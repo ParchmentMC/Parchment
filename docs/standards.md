@@ -23,7 +23,7 @@ This document details the standards that all contributions to Parchment mappings
 9. Favor using Mojang / Mojmap class names over <1.17 MCP classes. In general, the mojmap name is the de-facto standard (some exceptions may apply).
     - Example: Use `level` over `world`, `blockEntity` over `tileEntity`
 10. Common parameter names can use abbreviations for brevity:
-    - Example: `BlockPos pos, Level level, BlockState state, WorldGenLevel level`
+    - Example: `BlockPos pos, BlockState state, WorldGenLevel level`
 
 
 A note about lambda parameters: They can, and will conflict with both existing variables, other methods, and other lambdas. Care should be taken to review these, until such a time that an automated and/or testable solution is in place to verify that these cannot conflict.  
@@ -40,7 +40,7 @@ Prioritization:
 Content:
 
 1. Fully qualified mojmap class names should be used in javadoc tags such as `@link`.
-    - Example: `{@code net.minecraft.math.BlockPos}` instead of `{@code BlockPos`}
+    - Example: `{@link net.minecraft.math.BlockPos}` instead of `{@link BlockPos`}
 2. Javadocs should be informative - there is no explicit restrictions as long as it is useful.
 3. Avoid overly simple explanations, or “expected knowledge”:
     - Example: `getWorld() // Gets the world, @return the world`. This not a useful contribution.
