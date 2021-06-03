@@ -1,0 +1,907 @@
+{
+  "name": "com/mojang/blaze3d/systems/RenderSystem",
+  "fields": [
+    {
+      "name": "DEFAULTALPHACUTOFF",
+      "descriptor": "F"
+    },
+    {
+      "name": "LOGGER",
+      "descriptor": "Lorg/apache/logging/log4j/Logger;"
+    },
+    {
+      "name": "MAX_SUPPORTED_TEXTURE_SIZE",
+      "descriptor": "I"
+    },
+    {
+      "name": "MINIMUM_ATLAS_TEXTURE_SIZE",
+      "descriptor": "I"
+    },
+    {
+      "name": "RENDER_THREAD_TESSELATOR",
+      "descriptor": "Ldfo;"
+    },
+    {
+      "name": "gameThread",
+      "descriptor": "Ljava/lang/Thread;"
+    },
+    {
+      "name": "isInInit",
+      "descriptor": "Z"
+    },
+    {
+      "name": "isReplayingQueue",
+      "descriptor": "Z"
+    },
+    {
+      "name": "lastDrawTime",
+      "descriptor": "D"
+    },
+    {
+      "name": "recordingQueue",
+      "descriptor": "Ljava/util/concurrent/ConcurrentLinkedQueue;"
+    },
+    {
+      "name": "renderThread",
+      "descriptor": "Ljava/lang/Thread;"
+    }
+  ],
+  "methods": [
+    {
+      "name": "<clinit>",
+      "descriptor": "()V"
+    },
+    {
+      "name": "<init>",
+      "descriptor": "()V"
+    },
+    {
+      "name": "activeTexture",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "alphaFunc",
+      "descriptor": "(IF)V"
+    },
+    {
+      "name": "assertThread",
+      "descriptor": "(Ljava/util/function/Supplier;)V"
+    },
+    {
+      "name": "beginInitialization",
+      "descriptor": "()V"
+    },
+    {
+      "name": "bindTexture",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "blendColor",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "blendEquation",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "blendFunc",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "blendFunc",
+      "descriptor": "(Ldem$r;Ldem$j;)V"
+    },
+    {
+      "name": "blendFuncSeparate",
+      "descriptor": "(IIII)V"
+    },
+    {
+      "name": "blendFuncSeparate",
+      "descriptor": "(Ldem$r;Ldem$j;Ldem$r;Ldem$j;)V"
+    },
+    {
+      "name": "clear",
+      "descriptor": "(IZ)V"
+    },
+    {
+      "name": "clearColor",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "clearCurrentColor",
+      "descriptor": "()V"
+    },
+    {
+      "name": "clearDepth",
+      "descriptor": "(D)V"
+    },
+    {
+      "name": "clearStencil",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "clearTexGen",
+      "descriptor": "()V"
+    },
+    {
+      "name": "color3f",
+      "descriptor": "(FFF)V"
+    },
+    {
+      "name": "color4f",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "colorMask",
+      "descriptor": "(ZZZZ)V"
+    },
+    {
+      "name": "colorMaterial",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "defaultAlphaFunc",
+      "descriptor": "()V"
+    },
+    {
+      "name": "defaultBlendFunc",
+      "descriptor": "()V"
+    },
+    {
+      "name": "deleteTexture",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "depthFunc",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "depthMask",
+      "descriptor": "(Z)V"
+    },
+    {
+      "name": "disableAlphaTest",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disableBlend",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disableColorLogicOp",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disableColorMaterial",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disableCull",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disableDepthTest",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disableFog",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disableLighting",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disableLineOffset",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disablePolygonOffset",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disableRescaleNormal",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disableScissor",
+      "descriptor": "()V"
+    },
+    {
+      "name": "disableTexture",
+      "descriptor": "()V"
+    },
+    {
+      "name": "drawArrays",
+      "descriptor": "(III)V"
+    },
+    {
+      "name": "enableAlphaTest",
+      "descriptor": "()V"
+    },
+    {
+      "name": "enableBlend",
+      "descriptor": "()V"
+    },
+    {
+      "name": "enableColorLogicOp",
+      "descriptor": "()V"
+    },
+    {
+      "name": "enableColorMaterial",
+      "descriptor": "()V"
+    },
+    {
+      "name": "enableCull",
+      "descriptor": "()V"
+    },
+    {
+      "name": "enableDepthTest",
+      "descriptor": "()V"
+    },
+    {
+      "name": "enableFog",
+      "descriptor": "()V"
+    },
+    {
+      "name": "enableLighting",
+      "descriptor": "()V"
+    },
+    {
+      "name": "enableLineOffset",
+      "descriptor": "()V"
+    },
+    {
+      "name": "enablePolygonOffset",
+      "descriptor": "()V"
+    },
+    {
+      "name": "enableRescaleNormal",
+      "descriptor": "()V"
+    },
+    {
+      "name": "enableScissor",
+      "descriptor": "(IIII)V"
+    },
+    {
+      "name": "enableTexture",
+      "descriptor": "()V"
+    },
+    {
+      "name": "finishInitialization",
+      "descriptor": "()V"
+    },
+    {
+      "name": "flipFrame",
+      "descriptor": "(J)V"
+    },
+    {
+      "name": "fog",
+      "descriptor": "(IFFFF)V"
+    },
+    {
+      "name": "fogDensity",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "fogEnd",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "fogMode",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "fogMode",
+      "descriptor": "(Ldem$m;)V"
+    },
+    {
+      "name": "fogStart",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "fogi",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "getApiDescription",
+      "descriptor": "()Ljava/lang/String;"
+    },
+    {
+      "name": "getBackendDescription",
+      "descriptor": "()Ljava/lang/String;"
+    },
+    {
+      "name": "getCapsString",
+      "descriptor": "()Ljava/lang/String;"
+    },
+    {
+      "name": "getString",
+      "descriptor": "(ILjava/util/function/Consumer;)V"
+    },
+    {
+      "name": "glBindBuffer",
+      "descriptor": "(ILjava/util/function/Supplier;)V"
+    },
+    {
+      "name": "glBufferData",
+      "descriptor": "(ILjava/nio/ByteBuffer;I)V"
+    },
+    {
+      "name": "glDeleteBuffers",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "glGenBuffers",
+      "descriptor": "(Ljava/util/function/Consumer;)V"
+    },
+    {
+      "name": "glMultiTexCoord2f",
+      "descriptor": "(IFF)V"
+    },
+    {
+      "name": "glUniform1",
+      "descriptor": "(ILjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "glUniform1",
+      "descriptor": "(ILjava/nio/IntBuffer;)V"
+    },
+    {
+      "name": "glUniform1i",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "glUniform2",
+      "descriptor": "(ILjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "glUniform2",
+      "descriptor": "(ILjava/nio/IntBuffer;)V"
+    },
+    {
+      "name": "glUniform3",
+      "descriptor": "(ILjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "glUniform3",
+      "descriptor": "(ILjava/nio/IntBuffer;)V"
+    },
+    {
+      "name": "glUniform4",
+      "descriptor": "(ILjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "glUniform4",
+      "descriptor": "(ILjava/nio/IntBuffer;)V"
+    },
+    {
+      "name": "glUniformMatrix2",
+      "descriptor": "(IZLjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "glUniformMatrix3",
+      "descriptor": "(IZLjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "glUniformMatrix4",
+      "descriptor": "(IZLjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "initBackendSystem",
+      "descriptor": "()Ljava/util/function/LongSupplier;"
+    },
+    {
+      "name": "initGameThread",
+      "descriptor": "(Z)V"
+    },
+    {
+      "name": "initRenderThread",
+      "descriptor": "()V"
+    },
+    {
+      "name": "initRenderer",
+      "descriptor": "(IZ)V"
+    },
+    {
+      "name": "isInInitPhase",
+      "descriptor": "()Z"
+    },
+    {
+      "name": "isOnGameThread",
+      "descriptor": "()Z"
+    },
+    {
+      "name": "isOnGameThreadOrInit",
+      "descriptor": "()Z"
+    },
+    {
+      "name": "isOnRenderThread",
+      "descriptor": "()Z"
+    },
+    {
+      "name": "isOnRenderThreadOrInit",
+      "descriptor": "()Z"
+    },
+    {
+      "name": "lambda$activeTexture$22",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$alphaFunc$0",
+      "descriptor": "(IF)V"
+    },
+    {
+      "name": "lambda$bindTexture$25",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$blendColor$11",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "lambda$blendEquation$10",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$blendFunc$6",
+      "descriptor": "(Ldem$r;Ldem$j;)V"
+    },
+    {
+      "name": "lambda$blendFunc$7",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "lambda$blendFuncSeparate$8",
+      "descriptor": "(Ldem$r;Ldem$j;Ldem$r;Ldem$j;)V"
+    },
+    {
+      "name": "lambda$blendFuncSeparate$9",
+      "descriptor": "(IIII)V"
+    },
+    {
+      "name": "lambda$clear$35",
+      "descriptor": "(IZ)V"
+    },
+    {
+      "name": "lambda$clearColor$33",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "lambda$clearDepth$32",
+      "descriptor": "(D)V"
+    },
+    {
+      "name": "lambda$clearStencil$34",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$color3f$45",
+      "descriptor": "(FFF)V"
+    },
+    {
+      "name": "lambda$color4f$44",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "lambda$colorMask$28",
+      "descriptor": "(ZZZZ)V"
+    },
+    {
+      "name": "lambda$colorMaterial$1",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "lambda$deleteTexture$24",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$depthFunc$4",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$depthMask$5",
+      "descriptor": "(Z)V"
+    },
+    {
+      "name": "lambda$drawArrays$46",
+      "descriptor": "(III)V"
+    },
+    {
+      "name": "lambda$enableScissor$3",
+      "descriptor": "(IIII)V"
+    },
+    {
+      "name": "lambda$fog$17",
+      "descriptor": "(IFFFF)V"
+    },
+    {
+      "name": "lambda$fogDensity$14",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "lambda$fogEnd$16",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "lambda$fogMode$12",
+      "descriptor": "(Ldem$m;)V"
+    },
+    {
+      "name": "lambda$fogMode$13",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$fogStart$15",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "lambda$fogi$18",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "lambda$getString$51",
+      "descriptor": "(ILjava/util/function/Consumer;)V"
+    },
+    {
+      "name": "lambda$glBindBuffer$54",
+      "descriptor": "(ILjava/util/function/Supplier;)V"
+    },
+    {
+      "name": "lambda$glDeleteBuffers$55",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$glGenBuffers$72",
+      "descriptor": "(Ljava/util/function/Consumer;)V"
+    },
+    {
+      "name": "lambda$glMultiTexCoord2f$53",
+      "descriptor": "(IFF)V"
+    },
+    {
+      "name": "lambda$glUniform1$57",
+      "descriptor": "(ILjava/nio/IntBuffer;)V"
+    },
+    {
+      "name": "lambda$glUniform1$61",
+      "descriptor": "(ILjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "lambda$glUniform1i$56",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "lambda$glUniform2$58",
+      "descriptor": "(ILjava/nio/IntBuffer;)V"
+    },
+    {
+      "name": "lambda$glUniform2$62",
+      "descriptor": "(ILjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "lambda$glUniform3$59",
+      "descriptor": "(ILjava/nio/IntBuffer;)V"
+    },
+    {
+      "name": "lambda$glUniform3$63",
+      "descriptor": "(ILjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "lambda$glUniform4$60",
+      "descriptor": "(ILjava/nio/IntBuffer;)V"
+    },
+    {
+      "name": "lambda$glUniform4$64",
+      "descriptor": "(ILjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "lambda$glUniformMatrix2$65",
+      "descriptor": "(IZLjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "lambda$glUniformMatrix3$66",
+      "descriptor": "(IZLjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "lambda$glUniformMatrix4$67",
+      "descriptor": "(IZLjava/nio/FloatBuffer;)V"
+    },
+    {
+      "name": "lambda$lineWidth$47",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "lambda$logicOp$21",
+      "descriptor": "(Ldem$o;)V"
+    },
+    {
+      "name": "lambda$matrixMode$36",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$multMatrix$43",
+      "descriptor": "(Lb;)V"
+    },
+    {
+      "name": "lambda$normal3f$2",
+      "descriptor": "(FFF)V"
+    },
+    {
+      "name": "lambda$ortho$37",
+      "descriptor": "(DDDDDD)V"
+    },
+    {
+      "name": "lambda$pixelStore$48",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "lambda$pixelTransfer$49",
+      "descriptor": "(IF)V"
+    },
+    {
+      "name": "lambda$polygonMode$19",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "lambda$polygonOffset$20",
+      "descriptor": "(FF)V"
+    },
+    {
+      "name": "lambda$readPixels$50",
+      "descriptor": "(IIIIIILjava/nio/ByteBuffer;)V"
+    },
+    {
+      "name": "lambda$renderCrosshair$52",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$rotatef$38",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "lambda$scaled$40",
+      "descriptor": "(DDD)V"
+    },
+    {
+      "name": "lambda$scalef$39",
+      "descriptor": "(FFF)V"
+    },
+    {
+      "name": "lambda$setupGui3DDiffuseLighting$71",
+      "descriptor": "(Lg;Lg;)V"
+    },
+    {
+      "name": "lambda$setupGuiFlatDiffuseLighting$70",
+      "descriptor": "(Lg;Lg;)V"
+    },
+    {
+      "name": "lambda$setupLevelDiffuseLighting$69",
+      "descriptor": "(Lg;Lg;Lb;)V"
+    },
+    {
+      "name": "lambda$setupOverlayColor$68",
+      "descriptor": "(Ljava/util/function/IntSupplier;I)V"
+    },
+    {
+      "name": "lambda$shadeModel$26",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$stencilFunc$29",
+      "descriptor": "(III)V"
+    },
+    {
+      "name": "lambda$stencilMask$30",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$stencilOp$31",
+      "descriptor": "(III)V"
+    },
+    {
+      "name": "lambda$texParameter$23",
+      "descriptor": "(III)V"
+    },
+    {
+      "name": "lambda$translated$42",
+      "descriptor": "(DDD)V"
+    },
+    {
+      "name": "lambda$translatef$41",
+      "descriptor": "(FFF)V"
+    },
+    {
+      "name": "lambda$viewport$27",
+      "descriptor": "(IIII)V"
+    },
+    {
+      "name": "limitDisplayFPS",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lineWidth",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "loadIdentity",
+      "descriptor": "()V"
+    },
+    {
+      "name": "logicOp",
+      "descriptor": "(Ldem$o;)V"
+    },
+    {
+      "name": "matrixMode",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "maxSupportedTextureSize",
+      "descriptor": "()I"
+    },
+    {
+      "name": "mulTextureByProjModelView",
+      "descriptor": "()V"
+    },
+    {
+      "name": "multMatrix",
+      "descriptor": "(Lb;)V"
+    },
+    {
+      "name": "normal3f",
+      "descriptor": "(FFF)V"
+    },
+    {
+      "name": "ortho",
+      "descriptor": "(DDDDDD)V"
+    },
+    {
+      "name": "pixelStore",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "pixelTransfer",
+      "descriptor": "(IF)V"
+    },
+    {
+      "name": "polygonMode",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "polygonOffset",
+      "descriptor": "(FF)V"
+    },
+    {
+      "name": "popAttributes",
+      "descriptor": "()V"
+    },
+    {
+      "name": "popMatrix",
+      "descriptor": "()V"
+    },
+    {
+      "name": "pushLightingAttributes",
+      "descriptor": "()V"
+    },
+    {
+      "name": "pushMatrix",
+      "descriptor": "()V"
+    },
+    {
+      "name": "pushTextureAttributes",
+      "descriptor": "()V"
+    },
+    {
+      "name": "readPixels",
+      "descriptor": "(IIIIIILjava/nio/ByteBuffer;)V"
+    },
+    {
+      "name": "recordRenderCall",
+      "descriptor": "(Ldee;)V"
+    },
+    {
+      "name": "renderCrosshair",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "renderThreadTesselator",
+      "descriptor": "()Ldfo;"
+    },
+    {
+      "name": "replayQueue",
+      "descriptor": "()V"
+    },
+    {
+      "name": "rotatef",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "runAsFancy",
+      "descriptor": "(Ljava/lang/Runnable;)V"
+    },
+    {
+      "name": "scaled",
+      "descriptor": "(DDD)V"
+    },
+    {
+      "name": "scalef",
+      "descriptor": "(FFF)V"
+    },
+    {
+      "name": "setErrorCallback",
+      "descriptor": "(Lorg/lwjgl/glfw/GLFWErrorCallbackI;)V"
+    },
+    {
+      "name": "setupDefaultState",
+      "descriptor": "(IIII)V"
+    },
+    {
+      "name": "setupEndPortalTexGen",
+      "descriptor": "()V"
+    },
+    {
+      "name": "setupGui3DDiffuseLighting",
+      "descriptor": "(Lg;Lg;)V"
+    },
+    {
+      "name": "setupGuiFlatDiffuseLighting",
+      "descriptor": "(Lg;Lg;)V"
+    },
+    {
+      "name": "setupLevelDiffuseLighting",
+      "descriptor": "(Lg;Lg;Lb;)V"
+    },
+    {
+      "name": "setupNvFogDistance",
+      "descriptor": "()V"
+    },
+    {
+      "name": "setupOutline",
+      "descriptor": "()V"
+    },
+    {
+      "name": "setupOverlayColor",
+      "descriptor": "(Ljava/util/function/IntSupplier;I)V"
+    },
+    {
+      "name": "shadeModel",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "stencilFunc",
+      "descriptor": "(III)V"
+    },
+    {
+      "name": "stencilMask",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "stencilOp",
+      "descriptor": "(III)V"
+    },
+    {
+      "name": "teardownOutline",
+      "descriptor": "()V"
+    },
+    {
+      "name": "teardownOverlayColor",
+      "descriptor": "()V"
+    },
+    {
+      "name": "texParameter",
+      "descriptor": "(III)V"
+    },
+    {
+      "name": "translated",
+      "descriptor": "(DDD)V"
+    },
+    {
+      "name": "translatef",
+      "descriptor": "(FFF)V"
+    },
+    {
+      "name": "viewport",
+      "descriptor": "(IIII)V"
+    }
+  ]
+}
