@@ -10,19 +10,19 @@ This document details the standards that all contributions to Parchment mappings
     - Example: `pLevel`, `pXPos`
 3. Names should make sense without the prefix, and should be valid java identifiers NOT reserved keywords as such:
     - Example: `pFloat` is NOT valid, as `float` is a reserved keyword.
-    - Example:`pOs` is not a correct use of the prefix, it should be `pPos`
-4. Parameter names should be based on current context but otherwise verbose and complete words
+    - Example: `pOs` is not a correct use of the prefix, it should be `pPos`
+4. Parameter names may be named based on the types, and the context in which they are used. They should be verbose and use complete words - do not omit essential information for brevity's sake.
+    - Example: `BlockPos pAdjacentPos, BlockPos pCurrentPos`, not `BlockPos pPos1, BlockPos pPos2`
 5. Avoid single letters, or abbreviations.
     - Example: `pNorthWest` over `pNW`, `pMatrixStack` over `pMStack`. 
     - Exception: common abbreviations can be used: `IO` / `NBT`, etc.
-6. Use simple parameter names based off of class names, differentiating when there multiple of same type (using more words, not numbers)
-7. Use Lower Camel Case (`lowerCamelCase`)
-8. Do not use `$` or `_` in variable names
-9. All parameters should match the regex `p[A-Z][A-Za-z0-9]+`.
+6. Use Lower Camel Case (`lowerCamelCase`)
+7. Do not use `$` or `_` in variable names
+8. All parameters should match the regex `p[A-Z][A-Za-z0-9]+`.
     - Example: `pDot`, `pPos`, `pBlockState`
-10. Favor using Mojang / Mojmap class names over <1.17 MCP classes. In general, the mojmap name is the de-facto standard (some exceptions may apply).
+9. Favor using Mojang / Mojmap class names over <1.17 MCP classes. In general, the mojmap name is the de-facto standard (some exceptions may apply).
     - Example: Use `level` over `world`, `blockEntity` over `tileEntity`
-11. Common parameter names can use abbreviations for brevity:
+10. Common parameter names can use abbreviations for brevity:
     - Example: `BlockPos pos, Level level, BlockState state, WorldGenLevel level`
 
 
