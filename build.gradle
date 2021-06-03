@@ -1,0 +1,74 @@
+import org.parchmentmc.compass.tasks.GenerateExport
+
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+
+plugins {
+    id 'org.parchmentmc.compass' version '0.2.+'
+    id 'org.parchmentmc.writtenbooks' version '0.+'
+    id 'maven-publish'
+}
+
+group = 'org.parchmentmc.testing.data'
+def releaseType = project.findProperty('releaseType') ?: "local"
+def date = OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern('yyyy.MM.dd'))
+version = date + (releaseType == "release" ? '' : "-${releaseType}-SNAPSHOT")
+println("Version: $version")
+
+writtenbooks {
+    githubRepo = 'ParchmentMC/mappings-testing'
+}
+
+compass {
+    version = '1.16.5'
+}
+
+dependencies {
+    mcpconfig 'de.oceanlabs.mcp:mcp_config:1.16.5-20210115.111550'
+}
+
+publishing {
+    publications.all { p ->
+        p.pom {
+            name = 'Parchment Mappings'
+            description = 'Parameter names and javadoc mappings for Minecraft: Java Edition.'
+            organization {
+                name = 'ParchmentMC'
+                url = 'https://github.com/ParchmentMC'
+            }
+            licenses {
+                license {
+                    name = "CC0-1.0"
+                    url = "https://creativecommons.org/publicdomain/zero/1.0/legalcode"
+                }
+            }
+        }
+        afterEvaluate {
+            p.artifactId = "parchment-${project.compass.version.get()}"
+            p.pom.properties['minecraft_version'] = project.compass.version
+        }
+    }
+    publications.create('export', MavenPublication) { p ->
+        p.artifact(tasks.named("generateOfficialExport", GenerateExport).flatMap { it.output })
+    }
+    publications.create('staging', MavenPublication) { p ->
+        p.artifact(tasks.named("generateOfficialStagingExport", GenerateExport).flatMap { it.output })
+        p.version = "staging-SNAPSHOT"
+    }
+    repositories {
+        maven {
+            name 'projectLocal'
+            url "file://${rootProject.file('repo').absolutePath}"
+        }
+    }
+}
+
+tasks.register("publishExport") {
+    group = PublishingPlugin.PUBLISH_TASK_GROUP
+    description = "Publishes the 'export' Maven publication."
+
+    dependsOn tasks.withType(PublishToMavenRepository).matching {
+        it.publication == publishing.publications.export
+    }
+}
