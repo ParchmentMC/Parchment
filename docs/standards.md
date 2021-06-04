@@ -6,24 +6,24 @@ This document details the standards that all contributions to Parchment mappings
 
 1. Use American English for spellings
     - Example: `color`, not `colour`, `armor`, not `armour`
-2. All names should be prefixed with `p`
+1. All names should be prefixed with `p`
     - Example: `pLevel`, `pXPos`
-3. Names should make sense without the prefix, and should be valid java identifiers NOT reserved keywords as such:
+1. Names should make sense without the prefix, and should be valid java identifiers NOT reserved keywords as such:
     - Example: `pFloat` is NOT valid, as `float` is a reserved keyword.
     - Example: `pOs` is not a correct use of the prefix, it should be `pPos`
-4. Parameter names may be named based on the types, and the context in which they are used. They should be verbose and use complete words - do not omit essential information for brevity's sake.
+1. Parameter names may be named based on the types, and the context in which they are used. They should be verbose and use complete words - do not omit essential information for brevity's sake.
     - Example: `BlockPos pAdjacentPos, BlockPos pCurrentPos`, not `BlockPos pPos1, BlockPos pPos2`
-5. Avoid single letters, or abbreviations.
+1. Avoid single letters, or abbreviations.
     - Example: `pNorthWest` over `pNW`, `pMatrixStack` over `pMStack`. 
     - Exception: common abbreviations can be used: `IO` / `NBT`, etc.
-6. Use Lower Camel Case (`lowerCamelCase`)
-7. Do not use `$` or `_` in variable names
-8. All parameters should match the regex `p[A-Z][A-Za-z0-9]+`.
+    - Exception: common class / parameter names can be shortened: `BlockPos pPos, BlockState pState, WorldGenLevel pLevel`
+1. Use Lower Camel Case (`lowerCamelCase`)
+1. Do not use `$` or `_` in variable names
+1. All parameters should match the regex `p[A-Z][A-Za-z0-9]+`.
     - Example: `pDot`, `pPos`, `pBlockState`
-9. Favor using Mojang / Mojmap class names over <1.17 MCP classes. In general, the mojmap name is the de-facto standard (some exceptions may apply).
+1. Favor using Mojang / Mojmap class names over <1.17 MCP classes to name parameters. In general, the mojmap name is the de-facto standard.
     - Example: Use `level` over `world`, `blockEntity` over `tileEntity`
-10. Common parameter names can use abbreviations for brevity:
-    - Example: `BlockPos pos, BlockState state, WorldGenLevel level`
+    - Exception: If a Mojmap name would otherwise break a previous rule (i.e. `setColour(int)`, which would imply a parameter of `pColour`, is not American English)
 
 
 A note about lambda parameters: They can, and will conflict with both existing variables, other methods, and other lambdas. Care should be taken to review these, until such a time that an automated and/or testable solution is in place to verify that these cannot conflict.  
@@ -40,7 +40,7 @@ Prioritization:
 Content:
 
 1. Fully qualified mojmap class names should be used in javadoc tags such as `@link`.
-    - Example: `{@link net.minecraft.math.BlockPos}` instead of `{@link BlockPos`}
+    - Example: `{@link net.minecraft.math.BlockPos}` instead of `{@link BlockPos}`
 2. Javadocs should be informative - there is no explicit restrictions as long as it is useful.
 3. Avoid overly simple explanations, or “expected knowledge”:
     - Example: `getWorld() // Gets the world, @return the world`. This not a useful contribution.
