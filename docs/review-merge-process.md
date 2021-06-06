@@ -4,21 +4,21 @@ This document details the review and merge process for Parchment mappings.
 
 ### Requirements to merge:
 
-- If we have any automatic tests, they all must pass.
-  - Example: A PR may not be merged if the Contributor License Agreement (CLA) is not signed.
-- A PR requires two approving reviews
-  - One approving review is required to be from a Parchment team member.
-- We ask that people don’t review things that they don’t actually have the capability to effectively review (knowledge wise).
-- All external reviewers and suggestions are welcome.
+1. All reviews and suggestions from community members are welcome.
+1. All automatic tests must pass:
+    - The Contributor License Agreement (CLA) must be signed.
+1. A PR requires two approving reviews
+    - One approving review is required to be from a member of the ParchmentMC mapping reviewers team.
+    - The other review can be anyone except the original author.
+    - We ask that people don’t review things that they don’t actually have the capability to effectively review (knowledge wise).
+1. After a PR has been approved, it must wait at least 48 hours for any further comments (or, 24 hours if it is deemed to be only minor changes.)
+1. After the required waiting period, if there are no reviews that are requesting changes from a member of the mapping reviewers team then the PR will be merged.
+1. If, after such waiting period, there are members from the mapping reviewers team requesting changes, then those changes must be adressed before the PR can be merged, or go into the waiting period again.
+1. If a PR is generating conflicting opinions, it may be put to a fixed length comment period, where everone is open to disucss changes to the PR. After the comment period, lasting at most one week, it will be put to a vote between the ParchmentMC mapping reviewers team as to wether it should be merged or not.
+1. Submissions should be substantial, although are not required to have any 'minimum contribution' to be considered
+    - Prefer submitting one PR containing a number of smaller unrelated contributions, than many PRs containing very small contributions.
+    - On the other hand, do not lump together otherwise unrelated PR contributions unless there is a reason to do so (i.e. the unrelated contributions are small and can be easilly extended)
+1. PRs are merged and squashed, linked back to the author.
 
-On Resolving conflicting opinions:
 
-- Any names involving substantial conflicts should be available for public input for some length of time (i.e. a discussion time) before merging. After such time, the PR may be merged if there is:
-  1. A simple majority of Parchment team reviewers
-  2. In the event of a tie, A simple majority of all reviewers
-- Submissions should be substantial, although are not required to have any 'minimum contribution' to be considered
-  - Prefer submitting one PR containing a number of smaller unrelated contributions, than many PRs containing very small contributions.
-  - On the other hand, do not lump together otherwise unrelated PR contributions unless there is a reason to do so (i.e. the unrelated contributions are small and can be easilly extended)
-- Contributions must require a github authentication, to link contributors back to individual contributions.
-- Parchment Team / Reviewers can be free to merge and/or review at any time, based on time.
-- PRs are merged and squashed, linked back to the author.
+Note: the phrase "ParchmentMC mapping reviewers team" refers to the members of [the github team of the same name](https://github.com/orgs/ParchmentMC/teams/mapping-reviewers).
