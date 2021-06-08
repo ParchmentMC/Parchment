@@ -47,7 +47,10 @@
     },
     {
       "name": "j",
-      "descriptor": "Ljava/util/List;"
+      "descriptor": "Ljava/util/List;",
+      "javadoc": [
+        "A list of the loaded tile entities in the world"
+      ]
     },
     {
       "name": "k",
@@ -55,15 +58,24 @@
     },
     {
       "name": "l",
-      "descriptor": "Ljava/util/List;"
+      "descriptor": "Ljava/util/List;",
+      "javadoc": [
+        "Tile Entity additions that were deferred because the World was still iterating existing Tile Entities will be added to the world at the end of the tick."
+      ]
     },
     {
       "name": "m",
-      "descriptor": "Ljava/util/List;"
+      "descriptor": "Ljava/util/List;",
+      "javadoc": [
+        "Tile Entity removals that were deferred because the World was still iterating existing Tile Entities will be removed from the world at the end of the tick."
+      ]
     },
     {
       "name": "n",
-      "descriptor": "I"
+      "descriptor": "I",
+      "javadoc": [
+        "Contains the current Linear Congruential Generator seed for block updates. Used with an A value of 3 and a C value of 0x3c6ef35f, producing a highly planar series of values ill-suited for choosing random blocks in a 16x128x16 field."
+      ]
     },
     {
       "name": "o",
@@ -99,7 +111,10 @@
     },
     {
       "name": "w",
-      "descriptor": "Z"
+      "descriptor": "Z",
+      "javadoc": [
+        "True while the World is ticking , to prevent CME's if any of those ticks create more tile entities."
+      ]
     },
     {
       "name": "x",
@@ -125,11 +140,23 @@
     },
     {
       "name": "D",
-      "descriptor": "(Lfx;)Z"
+      "descriptor": "(Lfx;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "E",
-      "descriptor": "(Lfx;)Lccj;"
+      "descriptor": "(Lfx;)Lccj;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "G",
@@ -137,7 +164,10 @@
     },
     {
       "name": "M",
-      "descriptor": "()Z"
+      "descriptor": "()Z",
+      "javadoc": [
+        "Checks whether its daytime by seeing if the light subtracted from the skylight is less than 4. Always returns true on the client because vanilla has no need for it on the client, therefore it is not synced to the client"
+      ]
     },
     {
       "name": "N",
@@ -149,19 +179,31 @@
     },
     {
       "name": "P",
-      "descriptor": "()Ljava/lang/String;"
+      "descriptor": "()Ljava/lang/String;",
+      "javadoc": [
+        "Returns the name of the current chunk provider, by calling chunkprovider.makeString()"
+      ]
     },
     {
       "name": "Q",
-      "descriptor": "()V"
+      "descriptor": "()V",
+      "javadoc": [
+        "Called on construction of the World class to setup the initial skylight values"
+      ]
     },
     {
       "name": "R",
-      "descriptor": "()V"
+      "descriptor": "()V",
+      "javadoc": [
+        "Called from World constructor to set rainingStrength and thunderingStrength"
+      ]
     },
     {
       "name": "S",
-      "descriptor": "()V"
+      "descriptor": "()V",
+      "javadoc": [
+        "If on MP, sends a quitting packet."
+      ]
     },
     {
       "name": "T",
@@ -173,15 +215,24 @@
     },
     {
       "name": "V",
-      "descriptor": "()Lbrt;"
+      "descriptor": "()Lbrt;",
+      "javadoc": [
+        "Gets the GameRules instance."
+      ]
     },
     {
       "name": "W",
-      "descriptor": "()Z"
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if the current thunder strength (weighted with the rain strength) is greater than 0.9"
+      ]
     },
     {
       "name": "X",
-      "descriptor": "()Z"
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if the current rain strength is greater than 0.2"
+      ]
     },
     {
       "name": "Y",
@@ -197,75 +248,454 @@
     },
     {
       "name": "a",
-      "descriptor": "(DDDDDDLmd;)V"
+      "descriptor": "(DDDDDDLmd;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pX"
+        },
+        {
+          "index": 3,
+          "name": "pY"
+        },
+        {
+          "index": 5,
+          "name": "pZ"
+        },
+        {
+          "index": 7,
+          "name": "pMotionX"
+        },
+        {
+          "index": 9,
+          "name": "pMotionY"
+        },
+        {
+          "index": 11,
+          "name": "pMotionZ"
+        },
+        {
+          "index": 13,
+          "name": "pCompound"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(DDDLadp;Ladr;FFZ)V"
+      "descriptor": "(DDDLadp;Ladr;FFZ)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pX"
+        },
+        {
+          "index": 3,
+          "name": "pY"
+        },
+        {
+          "index": 5,
+          "name": "pZ"
+        },
+        {
+          "index": 7,
+          "name": "pSoundIn"
+        },
+        {
+          "index": 8,
+          "name": "pCategory"
+        },
+        {
+          "index": 9,
+          "name": "pVolume"
+        },
+        {
+          "index": 10,
+          "name": "pPitch"
+        },
+        {
+          "index": 11,
+          "name": "pDistanceDelay"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(F)F"
+      "descriptor": "(F)F",
+      "javadoc": [
+        "Return getCelestialAngle()*2*PI"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPartialTicks"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(I)Laqa;"
+      "descriptor": "(I)Laqa;",
+      "javadoc": [
+        "Returns the Entity with the given ID, or null if it doesn't exist in this World."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pId"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(II)Lcfw;"
+      "descriptor": "(II)Lcfw;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pChunkX"
+        },
+        {
+          "index": 2,
+          "name": "pChunkZ"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(IIII)Lfx;"
+      "descriptor": "(IIII)Lfx;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pX"
+        },
+        {
+          "index": 2,
+          "name": "pY"
+        },
+        {
+          "index": 3,
+          "name": "pZ"
+        },
+        {
+          "index": 4,
+          "name": "pYMask"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(IILcga;Z)Lcfw;"
+      "descriptor": "(IILcga;Z)Lcfw;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pX"
+        },
+        {
+          "index": 2,
+          "name": "pZ"
+        },
+        {
+          "index": 3,
+          "name": "pRequiredStatus"
+        },
+        {
+          "index": 4,
+          "name": "pNonnull"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(ILfx;I)V"
+      "descriptor": "(ILfx;I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pBreakerId"
+        },
+        {
+          "index": 2,
+          "name": "pPos"
+        },
+        {
+          "index": 3,
+          "name": "pProgress"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laqa;B)V"
+      "descriptor": "(Laqa;B)V",
+      "javadoc": [
+        "sends a Packet 38 (Entity Status) to all tracked players of that entity"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pEntityIn"
+        },
+        {
+          "index": 2,
+          "name": "pState"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laqa;DDDFLbrp$a;)Lbrp;"
+      "descriptor": "(Laqa;DDDFLbrp$a;)Lbrp;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pEntityIn"
+        },
+        {
+          "index": 2,
+          "name": "pXIn"
+        },
+        {
+          "index": 4,
+          "name": "pYIn"
+        },
+        {
+          "index": 6,
+          "name": "pZIn"
+        },
+        {
+          "index": 8,
+          "name": "pExplosionRadius"
+        },
+        {
+          "index": 9,
+          "name": "pModeIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laqa;DDDFZLbrp$a;)Lbrp;"
+      "descriptor": "(Laqa;DDDFZLbrp$a;)Lbrp;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pEntityIn"
+        },
+        {
+          "index": 2,
+          "name": "pXIn"
+        },
+        {
+          "index": 4,
+          "name": "pYIn"
+        },
+        {
+          "index": 6,
+          "name": "pZIn"
+        },
+        {
+          "index": 8,
+          "name": "pExplosionRadius"
+        },
+        {
+          "index": 9,
+          "name": "pCausesFire"
+        },
+        {
+          "index": 10,
+          "name": "pModeIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laqa;Lapk;Lbrq;DDDFZLbrp$a;)Lbrp;"
+      "descriptor": "(Laqa;Lapk;Lbrq;DDDFZLbrp$a;)Lbrp;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pExploder"
+        },
+        {
+          "index": 2,
+          "name": "pDamageSource"
+        },
+        {
+          "index": 3,
+          "name": "pContext"
+        },
+        {
+          "index": 4,
+          "name": "pX"
+        },
+        {
+          "index": 6,
+          "name": "pY"
+        },
+        {
+          "index": 8,
+          "name": "pZ"
+        },
+        {
+          "index": 10,
+          "name": "pSize"
+        },
+        {
+          "index": 11,
+          "name": "pCausesFire"
+        },
+        {
+          "index": 12,
+          "name": "pMode"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laqa;Ldci;Ljava/util/function/Predicate;)Ljava/util/List;"
+      "descriptor": "(Laqa;Ldci;Ljava/util/function/Predicate;)Ljava/util/List;",
+      "javadoc": [
+        "Gets all entities within the specified AABB excluding the one passed into it."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pEntityIn"
+        },
+        {
+          "index": 2,
+          "name": "pBoundingBox"
+        },
+        {
+          "index": 3,
+          "name": "pPredicate"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laqe;Ldci;Ljava/util/function/Predicate;)Ljava/util/List;"
+      "descriptor": "(Laqe;Ldci;Ljava/util/function/Predicate;)Ljava/util/List;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pType"
+        },
+        {
+          "index": 2,
+          "name": "pBoundingBox"
+        },
+        {
+          "index": 3,
+          "name": "pPredicate"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lbfw;DDDLadp;Ladr;FF)V"
+      "descriptor": "(Lbfw;DDDLadp;Ladr;FF)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPlayer"
+        },
+        {
+          "index": 2,
+          "name": "pX"
+        },
+        {
+          "index": 4,
+          "name": "pY"
+        },
+        {
+          "index": 6,
+          "name": "pZ"
+        },
+        {
+          "index": 8,
+          "name": "pSoundIn"
+        },
+        {
+          "index": 9,
+          "name": "pCategory"
+        },
+        {
+          "index": 10,
+          "name": "pVolume"
+        },
+        {
+          "index": 11,
+          "name": "pPitch"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lbfw;Laqa;Ladp;Ladr;FF)V"
+      "descriptor": "(Lbfw;Laqa;Ladp;Ladr;FF)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPlayerIn"
+        },
+        {
+          "index": 2,
+          "name": "pEntityIn"
+        },
+        {
+          "index": 3,
+          "name": "pEventIn"
+        },
+        {
+          "index": 4,
+          "name": "pCategoryIn"
+        },
+        {
+          "index": 5,
+          "name": "pVolume"
+        },
+        {
+          "index": 6,
+          "name": "pPitch"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lbfw;Lfx;)Z"
+      "descriptor": "(Lbfw;Lfx;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPlayer"
+        },
+        {
+          "index": 2,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lbfw;Lfx;Ladp;Ladr;FF)V"
+      "descriptor": "(Lbfw;Lfx;Ladp;Ladr;FF)V",
+      "javadoc": [
+        "Plays a sound. On the server, the sound is broadcast to all nearby <em>except</em> the given player. On the client, the sound only plays if the given player is the client player. Thus, this method is intended to be called from code running on both sides. The client plays it locally and the server plays it for everyone else."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPlayer"
+        },
+        {
+          "index": 2,
+          "name": "pPos"
+        },
+        {
+          "index": 3,
+          "name": "pSoundIn"
+        },
+        {
+          "index": 4,
+          "name": "pCategory"
+        },
+        {
+          "index": 5,
+          "name": "pVolume"
+        },
+        {
+          "index": 6,
+          "name": "pPitch"
+        }
+      ]
     },
     {
       "name": "a",
@@ -273,107 +703,467 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lccj;)Z"
+      "descriptor": "(Lccj;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pTile"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lchn$a;II)I"
+      "descriptor": "(Lchn$a;II)I",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pHeightmapType"
+        },
+        {
+          "index": 2,
+          "name": "pX"
+        },
+        {
+          "index": 3,
+          "name": "pZ"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lcxx;)V"
+      "descriptor": "(Lcxx;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pMapDataIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Laqa;)Z"
+      "descriptor": "(Lfx;Laqa;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pEntityIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Laqa;Lgc;)Z"
+      "descriptor": "(Lfx;Laqa;Lgc;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pEntity"
+        },
+        {
+          "index": 3,
+          "name": "pDirection"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Lbuo;II)V"
+      "descriptor": "(Lfx;Lbuo;II)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pBlockIn"
+        },
+        {
+          "index": 3,
+          "name": "pEventID"
+        },
+        {
+          "index": 4,
+          "name": "pEventParam"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Lbuo;Lfx;)V"
+      "descriptor": "(Lfx;Lbuo;Lfx;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pBlockIn"
+        },
+        {
+          "index": 3,
+          "name": "pFromPos"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Lbuo;Lgc;)V"
+      "descriptor": "(Lfx;Lbuo;Lgc;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pBlockType"
+        },
+        {
+          "index": 3,
+          "name": "pSkipSide"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Lccj;)V"
+      "descriptor": "(Lfx;Lccj;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pTileEntityIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Lceh;)Z"
+      "descriptor": "(Lfx;Lceh;)Z",
+      "javadoc": [
+        "Convenience method to update the block on both the client and server"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pState"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Lceh;I)Z"
+      "descriptor": "(Lfx;Lceh;I)Z",
+      "javadoc": [
+        "Sets a block state into this world.Flags are as follows:",
+        "1 will cause a block update.",
+        "2 will send the change to clients.",
+        "4 will prevent the block from being re-rendered.",
+        "8 will force any re-renders to run on the main thread instead",
+        "16 will prevent neighbor reactions (e.g. fences connecting, observers pulsing).",
+        "32 will prevent neighbor reactions from spawning drops.",
+        "64 will signify the block is being moved.",
+        "Flags can be OR-ed"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pNewState"
+        },
+        {
+          "index": 3,
+          "name": "pFlags"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Lceh;II)Z"
+      "descriptor": "(Lfx;Lceh;II)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pState"
+        },
+        {
+          "index": 3,
+          "name": "pFlags"
+        },
+        {
+          "index": 4,
+          "name": "pRecursionLeft"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Lceh;Lceh;)V"
+      "descriptor": "(Lfx;Lceh;Lceh;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pBlockStateIn"
+        },
+        {
+          "index": 3,
+          "name": "pNewState"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Lceh;Lceh;I)V"
+      "descriptor": "(Lfx;Lceh;Lceh;I)V",
+      "javadoc": [
+        "Flags are as in setBlockState"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pOldState"
+        },
+        {
+          "index": 3,
+          "name": "pNewState"
+        },
+        {
+          "index": 4,
+          "name": "pFlags"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Lgc;)Z"
+      "descriptor": "(Lfx;Lgc;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pSide"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Ljava/util/function/Predicate;)Z"
+      "descriptor": "(Lfx;Ljava/util/function/Predicate;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pState"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;Z)Z"
+      "descriptor": "(Lfx;Z)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pIsMoving"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;ZLaqa;I)Z"
+      "descriptor": "(Lfx;ZLaqa;I)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pDropBlock"
+        },
+        {
+          "index": 3,
+          "name": "pEntity"
+        },
+        {
+          "index": 4,
+          "name": "pRecursionLeft"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lhf;DDDDDD)V"
+      "descriptor": "(Lhf;DDDDDD)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pParticleData"
+        },
+        {
+          "index": 2,
+          "name": "pX"
+        },
+        {
+          "index": 4,
+          "name": "pY"
+        },
+        {
+          "index": 6,
+          "name": "pZ"
+        },
+        {
+          "index": 8,
+          "name": "pXSpeed"
+        },
+        {
+          "index": 10,
+          "name": "pYSpeed"
+        },
+        {
+          "index": 12,
+          "name": "pZSpeed"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lhf;ZDDDDDD)V"
+      "descriptor": "(Lhf;ZDDDDDD)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pParticleData"
+        },
+        {
+          "index": 2,
+          "name": "pForceAlwaysRender"
+        },
+        {
+          "index": 3,
+          "name": "pX"
+        },
+        {
+          "index": 5,
+          "name": "pY"
+        },
+        {
+          "index": 7,
+          "name": "pZ"
+        },
+        {
+          "index": 9,
+          "name": "pXSpeed"
+        },
+        {
+          "index": 11,
+          "name": "pYSpeed"
+        },
+        {
+          "index": 13,
+          "name": "pZSpeed"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Ljava/lang/Class;Ldci;Ljava/util/function/Predicate;)Ljava/util/List;"
+      "descriptor": "(Ljava/lang/Class;Ldci;Ljava/util/function/Predicate;)Ljava/util/List;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pClazz"
+        },
+        {
+          "index": 2,
+          "name": "pAabb"
+        },
+        {
+          "index": 3,
+          "name": "pFilter"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Ljava/lang/String;)Lcxx;"
+      "descriptor": "(Ljava/lang/String;)Lcxx;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pMapName"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Ljava/util/Collection;)V"
+      "descriptor": "(Ljava/util/Collection;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pTileEntityCollection"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Ljava/util/function/Consumer;Laqa;)V"
+      "descriptor": "(Ljava/util/function/Consumer;Laqa;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pConsumerEntity"
+        },
+        {
+          "index": 2,
+          "name": "pEntityIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Ll;)Lm;"
+      "descriptor": "(Ll;)Lm;",
+      "javadoc": [
+        "Adds some basic stats of the world to the given crash report."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pReport"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Loj;)V"
+      "descriptor": "(Loj;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "aa",
@@ -389,15 +1179,41 @@
     },
     {
       "name": "b",
-      "descriptor": "(F)F"
+      "descriptor": "(F)F",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pDelta"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(I)Z"
+      "descriptor": "(I)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pY"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(ILfx;I)V"
+      "descriptor": "(ILfx;I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pId"
+        },
+        {
+          "index": 2,
+          "name": "pPos"
+        },
+        {
+          "index": 3,
+          "name": "pData"
+        }
+      ]
     },
     {
       "name": "b",
@@ -405,23 +1221,73 @@
     },
     {
       "name": "b",
-      "descriptor": "(Lfx;)Lcux;"
+      "descriptor": "(Lfx;)Lcux;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(Lfx;Lbuo;)V"
+      "descriptor": "(Lfx;Lbuo;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pBlockIn"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(Lfx;Lccj;)V"
+      "descriptor": "(Lfx;Lccj;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pUnusedTileEntity"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(Lfx;Lceh;Lceh;)V"
+      "descriptor": "(Lfx;Lceh;Lceh;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pBlockPosIn"
+        },
+        {
+          "index": 2,
+          "name": "pOldState"
+        },
+        {
+          "index": 3,
+          "name": "pNewState"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(Lfx;Lgc;)I"
+      "descriptor": "(Lfx;Lgc;)I",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pFacing"
+        }
+      ]
     },
     {
       "name": "b",
@@ -429,11 +1295,75 @@
     },
     {
       "name": "b",
-      "descriptor": "(Lhf;DDDDDD)V"
+      "descriptor": "(Lhf;DDDDDD)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pParticleData"
+        },
+        {
+          "index": 2,
+          "name": "pX"
+        },
+        {
+          "index": 4,
+          "name": "pY"
+        },
+        {
+          "index": 6,
+          "name": "pZ"
+        },
+        {
+          "index": 8,
+          "name": "pXSpeed"
+        },
+        {
+          "index": 10,
+          "name": "pYSpeed"
+        },
+        {
+          "index": 12,
+          "name": "pZSpeed"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(Lhf;ZDDDDDD)V"
+      "descriptor": "(Lhf;ZDDDDDD)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pParticleData"
+        },
+        {
+          "index": 2,
+          "name": "pIgnoreRange"
+        },
+        {
+          "index": 3,
+          "name": "pX"
+        },
+        {
+          "index": 5,
+          "name": "pY"
+        },
+        {
+          "index": 7,
+          "name": "pZ"
+        },
+        {
+          "index": 9,
+          "name": "pXSpeed"
+        },
+        {
+          "index": 11,
+          "name": "pYSpeed"
+        },
+        {
+          "index": 13,
+          "name": "pZSpeed"
+        }
+      ]
     },
     {
       "name": "b",
@@ -441,7 +1371,20 @@
     },
     {
       "name": "b",
-      "descriptor": "(ZZ)V"
+      "descriptor": "(ZZ)V",
+      "javadoc": [
+        "first boolean for hostile mobs and second for peaceful mobs"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pHostile"
+        },
+        {
+          "index": 2,
+          "name": "pPeaceful"
+        }
+      ]
     },
     {
       "name": "c",
@@ -449,15 +1392,40 @@
     },
     {
       "name": "c",
-      "descriptor": "(F)V"
+      "descriptor": "(F)V",
+      "javadoc": [
+        "Sets the strength of the thunder."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pStrength"
+        }
+      ]
     },
     {
       "name": "c",
-      "descriptor": "(I)V"
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pTimeFlashIn"
+        }
+      ]
     },
     {
       "name": "c",
-      "descriptor": "(II)Lbrc;"
+      "descriptor": "(II)Lbrc;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pChunkX"
+        },
+        {
+          "index": 2,
+          "name": "pChunkZ"
+        }
+      ]
     },
     {
       "name": "c",
@@ -465,11 +1433,27 @@
     },
     {
       "name": "c",
-      "descriptor": "(Lfx;)Lccj;"
+      "descriptor": "(Lfx;)Lccj;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "c",
-      "descriptor": "(Lfx;Lbuo;)V"
+      "descriptor": "(Lfx;Lbuo;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pBlockIn"
+        }
+      ]
     },
     {
       "name": "close",
@@ -481,23 +1465,60 @@
     },
     {
       "name": "d",
-      "descriptor": "(F)F"
+      "descriptor": "(F)F",
+      "javadoc": [
+        "Returns rain strength."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pDelta"
+        }
+      ]
     },
     {
       "name": "d",
-      "descriptor": "(I)Z"
+      "descriptor": "(I)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pY"
+        }
+      ]
     },
     {
       "name": "d",
-      "descriptor": "(II)Lcgh;"
+      "descriptor": "(II)Lcgh;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pChunkX"
+        },
+        {
+          "index": 2,
+          "name": "pChunkZ"
+        }
+      ]
     },
     {
       "name": "d",
-      "descriptor": "(Lfx;)Laos;"
+      "descriptor": "(Lfx;)Laos;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "d_",
-      "descriptor": "(Lfx;)Lceh;"
+      "descriptor": "(Lfx;)Lceh;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "e",
@@ -505,7 +1526,16 @@
     },
     {
       "name": "e",
-      "descriptor": "(F)V"
+      "descriptor": "(F)V",
+      "javadoc": [
+        "Sets the strength of the rain."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pStrength"
+        }
+      ]
     },
     {
       "name": "f",
@@ -513,11 +1543,20 @@
     },
     {
       "name": "h",
-      "descriptor": "()Lcyd;"
+      "descriptor": "()Lcyd;",
+      "javadoc": [
+        "Returns the world's WorldInfo object"
+      ]
     },
     {
       "name": "j",
-      "descriptor": "(Lfx;)Lceh;"
+      "descriptor": "(Lfx;)Lceh;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "k",
@@ -525,7 +1564,16 @@
     },
     {
       "name": "k",
-      "descriptor": "(Lfx;)Z"
+      "descriptor": "(Lfx;)Z",
+      "javadoc": [
+        "Check if the given BlockPos has valid coordinates"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "l",
@@ -533,15 +1581,33 @@
     },
     {
       "name": "l",
-      "descriptor": "(Lfx;)Z"
+      "descriptor": "(Lfx;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "m",
-      "descriptor": "(Lfx;)Z"
+      "descriptor": "(Lfx;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "n",
-      "descriptor": "(Lfx;)Lcgh;"
+      "descriptor": "(Lfx;)Lcgh;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "o",
@@ -549,7 +1615,13 @@
     },
     {
       "name": "o",
-      "descriptor": "(Lfx;)V"
+      "descriptor": "(Lfx;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "p",
@@ -557,7 +1629,13 @@
     },
     {
       "name": "p",
-      "descriptor": "(Lfx;)Z"
+      "descriptor": "(Lfx;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "q",
@@ -565,15 +1643,39 @@
     },
     {
       "name": "q",
-      "descriptor": "(Lfx;)I"
+      "descriptor": "(Lfx;)I",
+      "javadoc": [
+        "Returns the single highest strong power out of all directions using getStrongPower(BlockPos, EnumFacing)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "r",
-      "descriptor": "(Lfx;)Z"
+      "descriptor": "(Lfx;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "s",
-      "descriptor": "(Lfx;)I"
+      "descriptor": "(Lfx;)I",
+      "javadoc": [
+        "Checks if the specified block or its neighbors are powered by a neighboring block. Used by blocks like TNT and Doors."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "s_",
@@ -585,7 +1687,16 @@
     },
     {
       "name": "t",
-      "descriptor": "(Lfx;)Z"
+      "descriptor": "(Lfx;)Z",
+      "javadoc": [
+        "Check if precipitation is currently happening at a position"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPosition"
+        }
+      ]
     },
     {
       "name": "t_",
@@ -593,7 +1704,13 @@
     },
     {
       "name": "u",
-      "descriptor": "(Lfx;)Z"
+      "descriptor": "(Lfx;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "u_",

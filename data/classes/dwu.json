@@ -11,7 +11,10 @@
     },
     {
       "name": "c",
-      "descriptor": "Lnd;"
+      "descriptor": "Lnd;",
+      "javadoc": [
+        "The NetworkManager instance used to communicate with the server, used to respond to various packets (primarilly movement and plugin channel related ones) and check the status of the network connection externally"
+      ]
     },
     {
       "name": "d",
@@ -19,15 +22,24 @@
     },
     {
       "name": "e",
-      "descriptor": "Ldot;"
+      "descriptor": "Ldot;",
+      "javadoc": [
+        "Seems to be either null (integrated server) or an instance of either GuiMultiplayer (when connecting to a server) or GuiScreenReamlsTOS (when connecting to MCO server)"
+      ]
     },
     {
       "name": "f",
-      "descriptor": "Ldjz;"
+      "descriptor": "Ldjz;",
+      "javadoc": [
+        "Reference to the Minecraft instance, which many handler methods operate on"
+      ]
     },
     {
       "name": "g",
-      "descriptor": "Ldwt;"
+      "descriptor": "Ldwt;",
+      "javadoc": [
+        "Reference to the current ClientWorld instance, which many handler methods operate on"
+      ]
     },
     {
       "name": "h",
@@ -35,11 +47,17 @@
     },
     {
       "name": "i",
-      "descriptor": "Z"
+      "descriptor": "Z",
+      "javadoc": [
+        "True if the client has finished downloading terrain and may spawn. Set upon receipt of S08PacketPlayerPosLook, reset upon respawning"
+      ]
     },
     {
       "name": "j",
-      "descriptor": "Ljava/util/Map;"
+      "descriptor": "Ljava/util/Map;",
+      "javadoc": [
+        "A mapping from player names to their respective GuiPlayerInfo (specifies the clients response time to the server)"
+      ]
     },
     {
       "name": "k",
@@ -63,7 +81,10 @@
     },
     {
       "name": "p",
-      "descriptor": "Ljava/util/Random;"
+      "descriptor": "Ljava/util/Random;",
+      "javadoc": [
+        "Just an ordinary random number generator, used to randomize audio pitch of item/orb pickup and randomize both particlespawn offset and velocity"
+      ]
     },
     {
       "name": "q",
@@ -97,11 +118,32 @@
     },
     {
       "name": "a",
-      "descriptor": "()Lnd;"
+      "descriptor": "()Lnd;",
+      "javadoc": [
+        "Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient"
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(IILcuo;Lbsf;IILjava/util/Iterator;Z)V"
+      "descriptor": "(IILcuo;Lbsf;IILjava/util/Iterator;Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pChunkX"
+        },
+        {
+          "index": 2,
+          "name": "pChunkZ"
+        },
+        {
+          "index": 3,
+          "name": "pLightManager"
+        },
+        {
+          "index": 4,
+          "name": "pType"
+        }
+      ]
     },
     {
       "name": "a",
@@ -113,7 +155,13 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lbfw;)Lbmb;"
+      "descriptor": "(Lbfw;)Lbmb;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pPlayer"
+        }
+      ]
     },
     {
       "name": "a",
@@ -129,7 +177,16 @@
     },
     {
       "name": "a",
-      "descriptor": "(Ljava/lang/String;)Ldwx;"
+      "descriptor": "(Ljava/lang/String;)Ldwx;",
+      "javadoc": [
+        "Gets the client's description information about another player on the server."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pName"
+        }
+      ]
     },
     {
       "name": "a",
@@ -145,271 +202,772 @@
     },
     {
       "name": "a",
-      "descriptor": "(Ljava/util/UUID;)Ldwx;"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Ljava/util/concurrent/CompletableFuture;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Lnr;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Loj;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Lon;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Loo;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Lop;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Loq;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Lor;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Los;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Lot;)V"
-    },
+      "descriptor": "(Ljava/util/UUID;)Ldwx;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pUniqueId"
+        }
+      ]
+    },
     {
-      "name": "a",
-      "descriptor": "(Lou;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Lov;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Low;)V"
-    },
+      "name": "a",
+      "descriptor": "(Ljava/util/concurrent/CompletableFuture;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pFutureIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Lnr;)V",
+      "javadoc": [
+        "Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pReason"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Loj;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Lon;)V",
+      "javadoc": [
+        "Spawns an instance of the objecttype indicated by the packet and sets its position and momentum"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Loo;)V",
+      "javadoc": [
+        "Spawns an experience orb and sets its value (amount of XP)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Lop;)V",
+      "javadoc": [
+        "Spawns the mob entity at the specified location, with the specified rotation, momentum and type. Updates the entities Datawatchers with the entity metadata specified in the packet"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Loq;)V",
+      "javadoc": [
+        "Handles the spawning of a painting object"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Lor;)V",
+      "javadoc": [
+        "Handles the creation of a nearby player entity, sets the position and held item"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
     {
       "name": "a",
-      "descriptor": "(Lox;)V"
+      "descriptor": "(Los;)V",
+      "javadoc": [
+        "Renders a specified animation: Waking up a player, a living entity swinging its currently held item, being hurt or receiving a critical hit by normal or magical means"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Loy;)V"
+      "descriptor": "(Lot;)V",
+      "javadoc": [
+        "Updates the players statistics or achievements"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
-      "name": "a",
-      "descriptor": "(Loz;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Lpa;)V"
-    },
-    {
-      "name": "a",
-      "descriptor": "(Lpb;)V"
-    },
+      "name": "a",
+      "descriptor": "(Lou;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
     {
       "name": "a",
-      "descriptor": "(Lpc;)V"
+      "descriptor": "(Lov;)V",
+      "javadoc": [
+        "Updates all registered IWorldAccess instances with destroyBlockInWorldPartially"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpd;)V"
+      "descriptor": "(Low;)V",
+      "javadoc": [
+        "Updates the NBTTagCompound metadata of instances of the following entitytypes: Mob spawners, command blocks, beacons, skulls, flowerpot"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
-      "name": "a",
-      "descriptor": "(Lpe;)V"
+      "name": "a",
+      "descriptor": "(Lox;)V",
+      "javadoc": [
+        "Triggers Block.onBlockEventReceived, which is implemented in BlockPistonBase for extension/retraction, BlockNote for setting the instrument (including audiovisual feedback) and in BlockContainer to set the number of players accessing a (Ender)Chest"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
+    {
+      "name": "a",
+      "descriptor": "(Loy;)V",
+      "javadoc": [
+        "Updates the block and metadata and generates a blockupdate (and notify the clients)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Loz;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
     {
-      "name": "a",
-      "descriptor": "(Lpf;)V"
-    },
+      "name": "a",
+      "descriptor": "(Lpa;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Lpb;)V",
+      "javadoc": [
+        "Prints a chatmessage in the chat GUI"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
     {
       "name": "a",
-      "descriptor": "(Lpg;)V"
-    },
+      "descriptor": "(Lpc;)V",
+      "javadoc": [
+        "This method is only called for manual tab-completion (the {@link net.minecraft.command.arguments.SuggestionProviders#ASK_SERVER minecraft:ask_server} suggestion provider)."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
     {
-      "name": "a",
-      "descriptor": "(Lph;)V"
-    },
+      "name": "a",
+      "descriptor": "(Lpd;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
     {
       "name": "a",
-      "descriptor": "(Lpi;)V"
-    },
+      "descriptor": "(Lpe;)V",
+      "javadoc": [
+        "Verifies that the server and client are synchronized with respect to the inventory/container opened by the player and confirms if it is the case."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
     {
       "name": "a",
-      "descriptor": "(Lpj;)V"
-    },
+      "descriptor": "(Lpf;)V",
+      "javadoc": [
+        "Resets the ItemStack held in hand and closes the window that is opened"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
     {
-      "name": "a",
-      "descriptor": "(Lpk;)V"
+      "name": "a",
+      "descriptor": "(Lpg;)V",
+      "javadoc": [
+        "Handles the placement of a specified ItemStack in a specified container/inventory slot"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Lph;)V",
+      "javadoc": [
+        "Sets the progressbar of the opened window to the specified value"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Lpi;)V",
+      "javadoc": [
+        "Handles pickin up an ItemStack or dropping one in your inventory or an open (non-creative) container"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Lpj;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
-    {
-      "name": "a",
-      "descriptor": "(Lpl;)V"
+    {
+      "name": "a",
+      "descriptor": "(Lpk;)V",
+      "javadoc": [
+        "Handles packets that have room for a channel specification. Vanilla implemented channels are \"MC|TrList\" to acquire a MerchantRecipeList trades for a villager merchant, \"MC|Brand\" which sets the server brand? on the player instance and finally \"MC|RPack\" which the server uses to communicate the identifier of the default server resourcepack for the client to load."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
+    },
+    {
+      "name": "a",
+      "descriptor": "(Lpl;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
-      "name": "a",
-      "descriptor": "(Lpm;)V"
+      "name": "a",
+      "descriptor": "(Lpm;)V",
+      "javadoc": [
+        "Closes the network channel"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
-    {
-      "name": "a",
-      "descriptor": "(Lpn;)V"
+    {
+      "name": "a",
+      "descriptor": "(Lpn;)V",
+      "javadoc": [
+        "Invokes the entities' handleUpdateHealth method which is implemented in LivingBase (hurt/death), MinecartMobSpawner (spawn delay), FireworkRocket & MinecartTNT (explosion), IronGolem (throwing,...), Witch (spawn particles), Zombie (villager transformation), Animal (breeding mode particles), Horse (breeding/smoke particles), Sheep (...), Tameable (...), Villager (particles for breeding mode, angry and happy), Wolf (...)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpo;)V"
+      "descriptor": "(Lpo;)V",
+      "javadoc": [
+        "Initiates a new explosion (sound, particles, drop spawn) for the affected blocks indicated by the packet."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpp;)V"
+      "descriptor": "(Lpp;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
-    {
-      "name": "a",
-      "descriptor": "(Lpq;)V"
+    {
+      "name": "a",
+      "descriptor": "(Lpq;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpr;)V"
+      "descriptor": "(Lpr;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lps;)V"
+      "descriptor": "(Lps;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpt;)V"
+      "descriptor": "(Lpt;)V",
+      "javadoc": [
+        "Updates the specified chunk with the supplied data, marks it for re-rendering and lighting recalculation"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpu;)V"
+      "descriptor": "(Lpu;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpv;)V"
+      "descriptor": "(Lpv;)V",
+      "javadoc": [
+        "Spawns a specified number of particles at the specified location with a randomized displacement according to specified bounds"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpw;)V"
+      "descriptor": "(Lpw;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpx;)V"
+      "descriptor": "(Lpx;)V",
+      "javadoc": [
+        "Registers some server properties (gametype,hardcore-mode,terraintype,difficulty,player limit), creates a new WorldClient and sets the player initial dimension"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpy;)V"
+      "descriptor": "(Lpy;)V",
+      "javadoc": [
+        "Updates the worlds MapStorage with the specified MapData for the specified map-identifier and invokes a MapItemRenderer for it"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpz;)V"
+      "descriptor": "(Lpz;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqa;)V"
+      "descriptor": "(Lqa;)V",
+      "javadoc": [
+        "Updates the specified entity's position by the specified relative moment and absolute rotation. Note that subclassing of the packet allows for the specification of a subset of this data (e.g. only rel. position, abs. rotation or both)."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqb;)V"
+      "descriptor": "(Lqb;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqc;)V"
+      "descriptor": "(Lqc;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqd;)V"
+      "descriptor": "(Lqd;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqe;)V"
+      "descriptor": "(Lqe;)V",
+      "javadoc": [
+        "Creates a sign in the specified location if it didn't exist and opens the GUI to edit its text"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqf;)V"
+      "descriptor": "(Lqf;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqg;)V"
+      "descriptor": "(Lqg;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqh;)V"
+      "descriptor": "(Lqh;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqi;)V"
+      "descriptor": "(Lqi;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqj;)V"
+      "descriptor": "(Lqj;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqk;)V"
+      "descriptor": "(Lqk;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lql;)V"
+      "descriptor": "(Lql;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqm;)V"
+      "descriptor": "(Lqm;)V",
+      "javadoc": [
+        "Locally eliminates the entities. Invoked by the server when the items are in fact destroyed, or the player is no longer registered as required to monitor them. The latter  happens when distance between the player and item increases beyond a certain treshold (typically the viewing distance)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqn;)V"
+      "descriptor": "(Lqn;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqo;)V"
+      "descriptor": "(Lqo;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqp;)V"
+      "descriptor": "(Lqp;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqq;)V"
+      "descriptor": "(Lqq;)V",
+      "javadoc": [
+        "Updates the direction in which the specified entity is looking, normally this head rotation is independent of the rotation of the entity itself"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqr;)V"
+      "descriptor": "(Lqr;)V",
+      "javadoc": [
+        "Received from the servers PlayerManager if between 1 and 64 blocks in a chunk are changed. If only one block requires an update, the server sends S23PacketBlockChange and if 64 or more blocks are changed, the server sends S21PacketChunkData"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqs;)V"
+      "descriptor": "(Lqs;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqt;)V"
+      "descriptor": "(Lqt;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqu;)V"
+      "descriptor": "(Lqu;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqv;)V"
+      "descriptor": "(Lqv;)V",
+      "javadoc": [
+        "Updates which hotbar slot of the player is currently selected"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqw;)V"
+      "descriptor": "(Lqw;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lqx;)V"
+      "descriptor": "(Lqx;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
@@ -417,107 +975,287 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lqz;)V"
+      "descriptor": "(Lqz;)V",
+      "javadoc": [
+        "Removes or sets the ScoreObjective to be displayed at a particular scoreboard position (list, sidebar, below name)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lra;)V"
+      "descriptor": "(Lra;)V",
+      "javadoc": [
+        "Invoked when the server registers new proximate objects in your watchlist or when objects in your watchlist have changed -> Registers any changes locally"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrb;)V"
+      "descriptor": "(Lrb;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrc;)V"
+      "descriptor": "(Lrc;)V",
+      "javadoc": [
+        "Sets the velocity of the specified entity to the specified value"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrd;)V"
+      "descriptor": "(Lrd;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lre;)V"
+      "descriptor": "(Lre;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrf;)V"
+      "descriptor": "(Lrf;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrg;)V"
+      "descriptor": "(Lrg;)V",
+      "javadoc": [
+        "May create a scoreboard objective, remove an objective from the scoreboard or update an objectives' displayname"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrh;)V"
+      "descriptor": "(Lrh;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lri;)V"
+      "descriptor": "(Lri;)V",
+      "javadoc": [
+        "Updates a team managed by the scoreboard: Create/Remove the team registration, Register/Remove the player-team-memberships, Set team displayname/prefix/suffix and/or whether friendly fire is enabled"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrj;)V"
+      "descriptor": "(Lrj;)V",
+      "javadoc": [
+        "Either updates the score with a specified value or removes the score for an objective"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrk;)V"
+      "descriptor": "(Lrk;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrl;)V"
+      "descriptor": "(Lrl;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrm;)V"
+      "descriptor": "(Lrm;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrn;)V"
+      "descriptor": "(Lrn;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lro;)V"
+      "descriptor": "(Lro;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrp;)V"
+      "descriptor": "(Lrp;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrq;)V"
+      "descriptor": "(Lrq;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrr;)V"
+      "descriptor": "(Lrr;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrs;)V"
+      "descriptor": "(Lrs;)V",
+      "javadoc": [
+        "Updates an entity's position and rotation as specified by the packet"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrt;)V"
+      "descriptor": "(Lrt;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lru;)V"
+      "descriptor": "(Lru;)V",
+      "javadoc": [
+        "Updates en entity's attributes and their respective modifiers, which are used for speed bonusses (player sprinting, animals fleeing, baby speed), weapon/tool attackDamage, hostiles followRange randomization, zombie maxHealth and knockback resistance as well as reinforcement spawning chance."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrv;)V"
+      "descriptor": "(Lrv;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrw;)V"
+      "descriptor": "(Lrw;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lrx;)V"
+      "descriptor": "(Lrx;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Ltf$a;)V"
+      "descriptor": "(Ltf$a;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pAction"
+        }
+      ]
     },
     {
       "name": "b",
@@ -525,11 +1263,20 @@
     },
     {
       "name": "b",
-      "descriptor": "(Ljava/lang/String;)Z"
+      "descriptor": "(Ljava/lang/String;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pUrl"
+        }
+      ]
     },
     {
       "name": "c",
-      "descriptor": "()V"
+      "descriptor": "()V",
+      "javadoc": [
+        "Clears the WorldClient instance associated with this NetHandlerPlayClient"
+      ]
     },
     {
       "name": "d",
