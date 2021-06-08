@@ -19,11 +19,17 @@
     },
     {
       "name": "d",
-      "descriptor": "Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;"
+      "descriptor": "Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;",
+      "javadoc": [
+        "Chunks in memory. This should only ever be manipulated by the main thread."
+      ]
     },
     {
       "name": "e",
-      "descriptor": "Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;"
+      "descriptor": "Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;",
+      "javadoc": [
+        "Same as {@link #loadedChunks}, but immutable for access from other threads. <em>This should never be mutated.</em>"
+      ]
     },
     {
       "name": "f",
@@ -31,7 +37,10 @@
     },
     {
       "name": "g",
-      "descriptor": "Lit/unimi/dsi/fastutil/longs/LongSet;"
+      "descriptor": "Lit/unimi/dsi/fastutil/longs/LongSet;",
+      "javadoc": [
+        "Chunk positions in this set have fully loaded and their TE's and entities are accessible from the world"
+      ]
     },
     {
       "name": "h",
@@ -59,11 +68,17 @@
     },
     {
       "name": "n",
-      "descriptor": "Lit/unimi/dsi/fastutil/longs/LongSet;"
+      "descriptor": "Lit/unimi/dsi/fastutil/longs/LongSet;",
+      "javadoc": [
+        "Chunks that have been requested to be unloaded, but haven't been unloaded yet."
+      ]
     },
     {
       "name": "o",
-      "descriptor": "Z"
+      "descriptor": "Z",
+      "javadoc": [
+        "True if changes have been made to {@link #loadedChunks} and thus a new copy of the collection has to be made into {@link #immutableLoadedChunks}."
+      ]
     },
     {
       "name": "p",
@@ -125,7 +140,13 @@
     },
     {
       "name": "a",
-      "descriptor": "(I)V"
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pViewDistance"
+        }
+      ]
     },
     {
       "name": "a",
@@ -137,43 +158,162 @@
     },
     {
       "name": "a",
-      "descriptor": "(JILzr;I)Lzr;"
+      "descriptor": "(JILzr;I)Lzr;",
+      "javadoc": [
+        "Sets level and loads/unloads chunk. Used by {@link net.minecraft.world.server.ChunkManager.ProxyTicketManager} to set chunk level."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pChunkPosIn"
+        },
+        {
+          "index": 3,
+          "name": "pNewLevel"
+        },
+        {
+          "index": 4,
+          "name": "pHolder",
+          "javadoc": "The {@link net.minecraft.world.server.ChunkHolder} of the chunk if it is loaded, and null otherwise."
+        },
+        {
+          "index": 5,
+          "name": "pOldLevel"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(JLzr;)V"
+      "descriptor": "(JLzr;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pChunkPosIn"
+        },
+        {
+          "index": 3,
+          "name": "pChunkHolderIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laah;)V"
+      "descriptor": "(Laah;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPlayer"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laah;Lbrd;[Loj;ZZ)V"
+      "descriptor": "(Laah;Lbrd;[Loj;ZZ)V",
+      "javadoc": [
+        "Sends the chunk to the client, or tells it to unload it."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPlayer"
+        },
+        {
+          "index": 2,
+          "name": "pChunkPosIn"
+        },
+        {
+          "index": 3,
+          "name": "pPacketCache"
+        },
+        {
+          "index": 4,
+          "name": "pWasLoaded"
+        },
+        {
+          "index": 5,
+          "name": "pLoad"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laah;Z)V"
+      "descriptor": "(Laah;Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPlayer"
+        },
+        {
+          "index": 2,
+          "name": "pTrack"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laah;[Loj;Lcgh;)V"
+      "descriptor": "(Laah;[Loj;Lcgh;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPlayer"
+        },
+        {
+          "index": 2,
+          "name": "pPacketCache"
+        },
+        {
+          "index": 3,
+          "name": "pChunkIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laqa;)V"
+      "descriptor": "(Laqa;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pEntityIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laqa;Loj;)V"
+      "descriptor": "(Laqa;Loj;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pEntity"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lbrd;)Ljava/lang/String;"
+      "descriptor": "(Lbrd;)Ljava/lang/String;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lbrd;II)I"
+      "descriptor": "(Lbrd;II)I",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pChunkPosIn"
+        },
+        {
+          "index": 1,
+          "name": "pX"
+        },
+        {
+          "index": 2,
+          "name": "pY"
+        }
+      ]
     },
     {
       "name": "a",
@@ -193,7 +333,20 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lbrd;Laqa;)D"
+      "descriptor": "(Lbrd;Laqa;)D",
+      "javadoc": [
+        "Returns the squared distance to the center of the chunk."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pChunkPosIn"
+        },
+        {
+          "index": 1,
+          "name": "pEntityIn"
+        }
+      ]
     },
     {
       "name": "a",
@@ -221,7 +374,20 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lbrd;Z)Ljava/util/stream/Stream;"
+      "descriptor": "(Lbrd;Z)Ljava/util/stream/Stream;",
+      "javadoc": [
+        "Returns the players tracking the given chunk."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        },
+        {
+          "index": 2,
+          "name": "pBoundaryOnly"
+        }
+      ]
     },
     {
       "name": "a",
@@ -229,7 +395,13 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lcfw;)Z"
+      "descriptor": "(Lcfw;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pChunkIn"
+        }
+      ]
     },
     {
       "name": "a",
@@ -265,7 +437,13 @@
     },
     {
       "name": "a",
-      "descriptor": "(Ljava/util/function/BooleanSupplier;)V"
+      "descriptor": "(Ljava/util/function/BooleanSupplier;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pHasMoreTime"
+        }
+      ]
     },
     {
       "name": "a",
@@ -313,7 +491,13 @@
     },
     {
       "name": "a",
-      "descriptor": "(Z)V"
+      "descriptor": "(Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pFlush"
+        }
+      ]
     },
     {
       "name": "a",
@@ -333,15 +517,33 @@
     },
     {
       "name": "b",
-      "descriptor": "(Laah;)Z"
+      "descriptor": "(Laah;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPlayer"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(Laqa;)V"
+      "descriptor": "(Laqa;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pEntity"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(Laqa;Loj;)V"
+      "descriptor": "(Laqa;Loj;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pEntity"
+        }
+      ]
     },
     {
       "name": "b",
@@ -377,7 +579,13 @@
     },
     {
       "name": "b",
-      "descriptor": "(Ljava/util/function/BooleanSupplier;)V"
+      "descriptor": "(Ljava/util/function/BooleanSupplier;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pHasMoreTime"
+        }
+      ]
     },
     {
       "name": "b",
@@ -389,7 +597,17 @@
     },
     {
       "name": "b",
-      "descriptor": "(Lzr;Lcga;)Ljava/util/concurrent/CompletableFuture;"
+      "descriptor": "(Lzr;Lcga;)Ljava/util/concurrent/CompletableFuture;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pChunkHolder"
+        },
+        {
+          "index": 2,
+          "name": "pChunkStatus"
+        }
+      ]
     },
     {
       "name": "b",
@@ -461,7 +679,13 @@
     },
     {
       "name": "d",
-      "descriptor": "(Lbrd;)Z"
+      "descriptor": "(Lbrd;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pChunkPosIn"
+        }
+      ]
     },
     {
       "name": "d",
@@ -497,11 +721,20 @@
     },
     {
       "name": "f",
-      "descriptor": "()Ljava/lang/Iterable;"
+      "descriptor": "()Ljava/lang/Iterable;",
+      "javadoc": [
+        "Gets an unmodifiable iterable of all loaded chunks in the chunk manager"
+      ]
     },
     {
       "name": "f",
-      "descriptor": "(Lbrd;)Ljava/util/concurrent/CompletableFuture;"
+      "descriptor": "(Lbrd;)Ljava/util/concurrent/CompletableFuture;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pChunkPos"
+        }
+      ]
     },
     {
       "name": "f",
@@ -525,7 +758,13 @@
     },
     {
       "name": "i",
-      "descriptor": "(Lbrd;)Lmd;"
+      "descriptor": "(Lbrd;)Lmd;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "j",

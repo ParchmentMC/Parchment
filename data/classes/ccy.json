@@ -21,7 +21,10 @@
     },
     {
       "name": "A",
-      "descriptor": "()D"
+      "descriptor": "()D",
+      "javadoc": [
+        "Gets the world Z position for this hopper entity."
+      ]
     },
     {
       "name": "B",
@@ -29,19 +32,58 @@
     },
     {
       "name": "Z_",
-      "descriptor": "()I"
+      "descriptor": "()I",
+      "javadoc": [
+        "Returns the number of slots in the inventory."
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(II)Lbmb;"
+      "descriptor": "(II)Lbmb;",
+      "javadoc": [
+        "Removes up to a specified number of items from an inventory slot and returns them in a new stack."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pIndex"
+        },
+        {
+          "index": 2,
+          "name": "pCount"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(ILbfv;)Lbic;"
+      "descriptor": "(ILbfv;)Lbic;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pId"
+        },
+        {
+          "index": 2,
+          "name": "pPlayer"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(ILbmb;)V"
+      "descriptor": "(ILbmb;)V",
+      "javadoc": [
+        "Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections)."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pIndex"
+        },
+        {
+          "index": 2,
+          "name": "pStack"
+        }
+      ]
     },
     {
       "name": "a",
@@ -49,11 +91,57 @@
     },
     {
       "name": "a",
-      "descriptor": "(Laon;Laon;Lbmb;ILgc;)Lbmb;"
+      "descriptor": "(Laon;Laon;Lbmb;ILgc;)Lbmb;",
+      "javadoc": [
+        "Insert the specified stack to the specified inventory and return any leftover items"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pSource"
+        },
+        {
+          "index": 1,
+          "name": "pDestination"
+        },
+        {
+          "index": 2,
+          "name": "pStack"
+        },
+        {
+          "index": 3,
+          "name": "pIndex"
+        },
+        {
+          "index": 4,
+          "name": "pDirection"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Laon;Laon;Lbmb;Lgc;)Lbmb;"
+      "descriptor": "(Laon;Laon;Lbmb;Lgc;)Lbmb;",
+      "javadoc": [
+        "Attempts to place the passed stack in the inventory, using as many slots as required. Returns leftover items"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pSource"
+        },
+        {
+          "index": 1,
+          "name": "pDestination"
+        },
+        {
+          "index": 2,
+          "name": "pStack"
+        },
+        {
+          "index": 3,
+          "name": "pDirection"
+        }
+      ]
     },
     {
       "name": "a",
@@ -61,7 +149,28 @@
     },
     {
       "name": "a",
-      "descriptor": "(Laon;Lbmb;ILgc;)Z"
+      "descriptor": "(Laon;Lbmb;ILgc;)Z",
+      "javadoc": [
+        "Can this hopper insert the specified item from the specified slot on the specified side?"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pInventoryIn"
+        },
+        {
+          "index": 1,
+          "name": "pStack"
+        },
+        {
+          "index": 2,
+          "name": "pIndex"
+        },
+        {
+          "index": 3,
+          "name": "pSide"
+        }
+      ]
     },
     {
       "name": "a",
@@ -73,19 +182,83 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lbmb;Lbmb;)Z"
+      "descriptor": "(Lbmb;Lbmb;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pStack1"
+        },
+        {
+          "index": 1,
+          "name": "pStack2"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lbrx;DDD)Laon;"
+      "descriptor": "(Lbrx;DDD)Laon;",
+      "javadoc": [
+        "Returns the IInventory (if applicable) of the TileEntity at the specified position"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pWorldIn"
+        },
+        {
+          "index": 1,
+          "name": "pX"
+        },
+        {
+          "index": 3,
+          "name": "pY"
+        },
+        {
+          "index": 5,
+          "name": "pZ"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lccx;)Z"
+      "descriptor": "(Lccx;)Z",
+      "javadoc": [
+        "Pull dropped {@link net.minecraft.entity.item.EntityItem EntityItem}s from the world above the hopper and items from any inventory attached to this hopper into the hopper's inventory.",
+        "",
+        "@return whether any items were successfully added to the hopper"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pHopper",
+          "javadoc": "the hopper in question"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lccx;Laon;ILgc;)Z"
+      "descriptor": "(Lccx;Laon;ILgc;)Z",
+      "javadoc": [
+        "Pulls from the specified slot in the inventory and places in any available slot in the hopper. Returns true if the entire stack was moved"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pHopper"
+        },
+        {
+          "index": 1,
+          "name": "pInventoryIn"
+        },
+        {
+          "index": 2,
+          "name": "pIndex"
+        },
+        {
+          "index": 3,
+          "name": "pDirection"
+        }
+      ]
     },
     {
       "name": "a",
@@ -97,11 +270,27 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lceh;Lmd;)V"
+      "descriptor": "(Lceh;Lmd;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pState"
+        },
+        {
+          "index": 2,
+          "name": "pNbt"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lgj;)V"
+      "descriptor": "(Lgj;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pItemsIn"
+        }
+      ]
     },
     {
       "name": "a",
@@ -109,7 +298,13 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lmd;)Lmd;"
+      "descriptor": "(Lmd;)Lmd;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pCompound"
+        }
+      ]
     },
     {
       "name": "aj_",
@@ -121,11 +316,45 @@
     },
     {
       "name": "b",
-      "descriptor": "(Laon;Lbmb;ILgc;)Z"
+      "descriptor": "(Laon;Lbmb;ILgc;)Z",
+      "javadoc": [
+        "Can this hopper extract the specified item from the specified slot on the specified side?"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pInventoryIn"
+        },
+        {
+          "index": 1,
+          "name": "pStack"
+        },
+        {
+          "index": 2,
+          "name": "pIndex"
+        },
+        {
+          "index": 3,
+          "name": "pSide"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(Laon;Lgc;)Z"
+      "descriptor": "(Laon;Lgc;)Z",
+      "javadoc": [
+        "Returns false if the inventory has any room to place items in"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pInventoryIn"
+        },
+        {
+          "index": 2,
+          "name": "pSide"
+        }
+      ]
     },
     {
       "name": "b",
@@ -137,15 +366,43 @@
     },
     {
       "name": "b",
-      "descriptor": "(Lccx;)Laon;"
+      "descriptor": "(Lccx;)Laon;",
+      "javadoc": [
+        "Gets the inventory that the provided hopper will transfer items from."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pHopper"
+        }
+      ]
     },
     {
       "name": "c",
-      "descriptor": "(I)V"
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pTicks"
+        }
+      ]
     },
     {
       "name": "c",
-      "descriptor": "(Laon;Lgc;)Z"
+      "descriptor": "(Laon;Lgc;)Z",
+      "javadoc": [
+        "Returns false if the specified IInventory contains any items"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pInventoryIn"
+        },
+        {
+          "index": 1,
+          "name": "pSide"
+        }
+      ]
     },
     {
       "name": "c",
@@ -169,7 +426,10 @@
     },
     {
       "name": "l",
-      "descriptor": "()Laon;"
+      "descriptor": "()Laon;",
+      "javadoc": [
+        "Returns the IInventory that this hopper is pointing into"
+      ]
     },
     {
       "name": "m",
@@ -177,7 +437,10 @@
     },
     {
       "name": "x",
-      "descriptor": "()D"
+      "descriptor": "()D",
+      "javadoc": [
+        "Gets the world X position for this hopper entity."
+      ]
     },
     {
       "name": "y",
@@ -185,7 +448,10 @@
     },
     {
       "name": "z",
-      "descriptor": "()D"
+      "descriptor": "()D",
+      "javadoc": [
+        "Gets the world Y position for this hopper entity."
+      ]
     }
   ]
 }

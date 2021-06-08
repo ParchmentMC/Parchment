@@ -45,7 +45,10 @@
     },
     {
       "name": "a",
-      "descriptor": "()D"
+      "descriptor": "()D",
+      "javadoc": [
+        "Returns the average length of the edges of the bounding box."
+      ]
     },
     {
       "name": "a",
@@ -53,19 +56,94 @@
     },
     {
       "name": "a",
-      "descriptor": "(DDD)Ldci;"
+      "descriptor": "(DDD)Ldci;",
+      "javadoc": [
+        "Creates a new {@link AxisAlignedBB} that has been contracted by the given amount, with positive changes decreasing max values and negative changes increasing min values.",
+        "<br/>",
+        "If the amount to contract by is larger than the length of a side, then the side will wrap (still creating a valid AABB - see last sample).",
+        "",
+        "<h3>Samples:</h3>",
+        "<table>",
+        "<tr><th>Input</th><th>Result</th></tr>",
+        "<tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 4, 4, 4).contract(2, 2, 2)</code></pre></td><td><pre><samp>box[0.0, 0.0, 0.0 -> 2.0, 2.0, 2.0]</samp></pre></td></tr>",
+        "<tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 4, 4, 4).contract(-2, -2, -2)</code></pre></td><td><pre><samp>box[2.0, 2.0, 2.0 -> 4.0, 4.0, 4.0]</samp></pre></td></tr>",
+        "<tr><td><pre><code>new AxisAlignedBB(5, 5, 5, 7, 7, 7).contract(0, 1, -1)</code></pre></td><td><pre><samp>box[5.0, 5.0, 6.0 -> 7.0, 6.0, 7.0]</samp></pre></td></tr>",
+        "<tr><td><pre><code>new AxisAlignedBB(-2, -2, -2, 2, 2, 2).contract(4, -4, 0)</code></pre></td><td><pre><samp>box[-8.0, 2.0, -2.0 -> -2.0, 8.0, 2.0]</samp></pre></td></tr>",
+        "</table>",
+        "",
+        "<h3>See Also:</h3>",
+        "<ul>",
+        "<li>{@link #expand(double, double, double)} - like this, except for expanding.</li>",
+        "<li>{@link #grow(double, double, double)} and {@link #grow(double)} - expands in all directions.</li>",
+        "<li>{@link #shrink(double)} - contracts in all directions (like {@link #grow(double)})</li>",
+        "</ul>",
+        "",
+        "@return A new modified bounding box."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pX"
+        },
+        {
+          "index": 3,
+          "name": "pY"
+        },
+        {
+          "index": 5,
+          "name": "pZ"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(DDDDDD)Z"
+      "descriptor": "(DDDDDD)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pX1"
+        },
+        {
+          "index": 3,
+          "name": "pY1"
+        },
+        {
+          "index": 5,
+          "name": "pZ1"
+        },
+        {
+          "index": 7,
+          "name": "pX2"
+        },
+        {
+          "index": 9,
+          "name": "pY2"
+        },
+        {
+          "index": 11,
+          "name": "pZ2"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lcra;)Ldci;"
+      "descriptor": "(Lcra;)Ldci;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pMutableBox"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Ldci;)Ldci;"
+      "descriptor": "(Ldci;)Ldci;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pOther"
+        }
+      ]
     },
     {
       "name": "a",
@@ -73,23 +151,81 @@
     },
     {
       "name": "a",
-      "descriptor": "(Ldci;Ldcn;[DLgc;DDD)Lgc;"
+      "descriptor": "(Ldci;Ldcn;[DLgc;DDD)Lgc;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pAabb"
+        },
+        {
+          "index": 1,
+          "name": "pStart"
+        },
+        {
+          "index": 2,
+          "name": "pMinDistance"
+        },
+        {
+          "index": 3,
+          "name": "pFacing"
+        },
+        {
+          "index": 4,
+          "name": "pDeltaX"
+        },
+        {
+          "index": 6,
+          "name": "pDeltaY"
+        },
+        {
+          "index": 8,
+          "name": "pDeltaZ"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Ldcn;)Ldci;"
+      "descriptor": "(Ldcn;)Ldci;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pVector"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Ldcn;Ldcn;)Z"
+      "descriptor": "(Ldcn;Ldcn;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pMin"
+        },
+        {
+          "index": 2,
+          "name": "pMax"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lfx;)Ldci;"
+      "descriptor": "(Lfx;)Ldci;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lgc$a;)D"
+      "descriptor": "(Lgc$a;)D",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pAxis"
+        }
+      ]
     },
     {
       "name": "a",
@@ -97,11 +233,87 @@
     },
     {
       "name": "a",
-      "descriptor": "(Ljava/lang/Iterable;Ldcn;Ldcn;Lfx;)Ldcj;"
+      "descriptor": "(Ljava/lang/Iterable;Ldcn;Ldcn;Lfx;)Ldcj;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pBoxes"
+        },
+        {
+          "index": 1,
+          "name": "pStart"
+        },
+        {
+          "index": 2,
+          "name": "pEnd"
+        },
+        {
+          "index": 3,
+          "name": "pPos"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "([DLgc;DDDDDDDDLgc;DDD)Lgc;"
+      "descriptor": "([DLgc;DDDDDDDDLgc;DDD)Lgc;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pMinDistance"
+        },
+        {
+          "index": 1,
+          "name": "pPrevDirection"
+        },
+        {
+          "index": 2,
+          "name": "pDistanceSide"
+        },
+        {
+          "index": 4,
+          "name": "pDistanceOtherA"
+        },
+        {
+          "index": 6,
+          "name": "pDistanceOtherB"
+        },
+        {
+          "index": 8,
+          "name": "pMinSide"
+        },
+        {
+          "index": 10,
+          "name": "pMinOtherA"
+        },
+        {
+          "index": 12,
+          "name": "pMaxOtherA"
+        },
+        {
+          "index": 14,
+          "name": "pMinOtherB"
+        },
+        {
+          "index": 16,
+          "name": "pMaxOtherB"
+        },
+        {
+          "index": 18,
+          "name": "pHitSide"
+        },
+        {
+          "index": 19,
+          "name": "pStartSide"
+        },
+        {
+          "index": 21,
+          "name": "pStartOtherA"
+        },
+        {
+          "index": 23,
+          "name": "pStartOtherB"
+        }
+      ]
     },
     {
       "name": "b",
@@ -113,11 +325,51 @@
     },
     {
       "name": "b",
-      "descriptor": "(DDD)Ldci;"
+      "descriptor": "(DDD)Ldci;",
+      "javadoc": [
+        "Creates a new {@link AxisAlignedBB} that has been expanded by the given amount, with positive changes increasing max values and negative changes decreasing min values.",
+        "",
+        "<h3>Samples:</h3>",
+        "<table>",
+        "<tr><th>Input</th><th>Result</th></tr>",
+        "<tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 1, 1, 1).expand(2, 2, 2)</code></pre></td><td><pre><samp>box[0, 0, 0 -> 3, 3, 3]</samp></pre></td><td>",
+        "<tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 1, 1, 1).expand(-2, -2, -2)</code></pre></td><td><pre><samp>box[-2, -2, -2 -> 1, 1, 1]</samp></pre></td><td>",
+        "<tr><td><pre><code>new AxisAlignedBB(5, 5, 5, 7, 7, 7).expand(0, 1, -1)</code></pre></td><td><pre><samp>box[5, 5, 4, 7, 8, 7]</samp></pre></td><td>",
+        "</table>",
+        "",
+        "<h3>See Also:</h3>",
+        "<ul>",
+        "<li>{@link #contract(double, double, double)} - like this, except for shrinking.</li>",
+        "<li>{@link #grow(double, double, double)} and {@link #grow(double)} - expands in all directions.</li>",
+        "<li>{@link #shrink(double)} - contracts in all directions (like {@link #grow(double)})</li>",
+        "</ul>",
+        "",
+        "@return A modified bounding box that will always be equal or greater in volume to this bounding box."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pX"
+        },
+        {
+          "index": 3,
+          "name": "pY"
+        },
+        {
+          "index": 5,
+          "name": "pZ"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(Ldci;)Ldci;"
+      "descriptor": "(Ldci;)Ldci;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pOther"
+        }
+      ]
     },
     {
       "name": "b",
@@ -125,15 +377,37 @@
     },
     {
       "name": "b",
-      "descriptor": "(Ldcn;)Ldci;"
+      "descriptor": "(Ldcn;)Ldci;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pVector"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(Ldcn;Ldcn;)Ljava/util/Optional;"
+      "descriptor": "(Ldcn;Ldcn;)Ljava/util/Optional;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pFrom"
+        },
+        {
+          "index": 2,
+          "name": "pTo"
+        }
+      ]
     },
     {
       "name": "b",
-      "descriptor": "(Lgc$a;)D"
+      "descriptor": "(Lgc$a;)D",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pAxis"
+        }
+      ]
     },
     {
       "name": "c",
@@ -145,11 +419,60 @@
     },
     {
       "name": "c",
-      "descriptor": "(DDD)Ldci;"
+      "descriptor": "(DDD)Ldci;",
+      "javadoc": [
+        "Creates a new {@link AxisAlignedBB} that has been contracted by the given amount in both directions. Negative values will shrink the AABB instead of expanding it.",
+        "<br/>",
+        "Side lengths will be increased by 2 times the value of the parameters, since both min and max are changed.",
+        "<br/>",
+        "If contracting and the amount to contract by is larger than the length of a side, then the side will wrap (still creating a valid AABB - see last ample).",
+        "",
+        "<h3>Samples:</h3>",
+        "<table>",
+        "<tr><th>Input</th><th>Result</th></tr>",
+        "<tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 1, 1, 1).grow(2, 2, 2)</code></pre></td><td><pre><samp>box[-2.0, -2.0, -2.0 -> 3.0, 3.0, 3.0]</samp></pre></td></tr>",
+        "<tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 6, 6, 6).grow(-2, -2, -2)</code></pre></td><td><pre><samp>box[2.0, 2.0, 2.0 -> 4.0, 4.0, 4.0]</samp></pre></td></tr>",
+        "<tr><td><pre><code>new AxisAlignedBB(5, 5, 5, 7, 7, 7).grow(0, 1, -1)</code></pre></td><td><pre><samp>box[5.0, 4.0, 6.0 -> 7.0, 8.0, 6.0]</samp></pre></td></tr>",
+        "<tr><td><pre><code>new AxisAlignedBB(1, 1, 1, 3, 3, 3).grow(-4, -2, -3)</code></pre></td><td><pre><samp>box[-1.0, 1.0, 0.0 -> 5.0, 3.0, 4.0]</samp></pre></td></tr>",
+        "</table>",
+        "",
+        "<h3>See Also:</h3>",
+        "<ul>",
+        "<li>{@link #expand(double, double, double)} - expands in only one direction.</li>",
+        "<li>{@link #contract(double, double, double)} - contracts in only one direction.</li>",
+        "<lu>{@link #grow(double)} - version of this that expands in all directions from one parameter.</li>",
+        "<li>{@link #shrink(double)} - contracts in all directions</li>",
+        "</ul>",
+        "",
+        "@return A modified bounding box."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pX"
+        },
+        {
+          "index": 3,
+          "name": "pY"
+        },
+        {
+          "index": 5,
+          "name": "pZ"
+        }
+      ]
     },
     {
       "name": "c",
-      "descriptor": "(Ldci;)Z"
+      "descriptor": "(Ldci;)Z",
+      "javadoc": [
+        "Checks if the bounding box intersects with another."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pOther"
+        }
+      ]
     },
     {
       "name": "c",
@@ -157,7 +480,13 @@
     },
     {
       "name": "c",
-      "descriptor": "(Ldcn;)Ldci;"
+      "descriptor": "(Ldcn;)Ldci;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pVec"
+        }
+      ]
     },
     {
       "name": "d",
@@ -169,11 +498,37 @@
     },
     {
       "name": "d",
-      "descriptor": "(DDD)Ldci;"
+      "descriptor": "(DDD)Ldci;",
+      "javadoc": [
+        "Offsets the current bounding box by the specified amount."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pX"
+        },
+        {
+          "index": 3,
+          "name": "pY"
+        },
+        {
+          "index": 5,
+          "name": "pZ"
+        }
+      ]
     },
     {
       "name": "d",
-      "descriptor": "(Ldcn;)Z"
+      "descriptor": "(Ldcn;)Z",
+      "javadoc": [
+        "Returns if the supplied Vec3D is completely inside the bounding box"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pVec"
+        }
+      ]
     },
     {
       "name": "e",
@@ -185,7 +540,21 @@
     },
     {
       "name": "e",
-      "descriptor": "(DDD)Z"
+      "descriptor": "(DDD)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pX"
+        },
+        {
+          "index": 3,
+          "name": "pY"
+        },
+        {
+          "index": 5,
+          "name": "pZ"
+        }
+      ]
     },
     {
       "name": "equals",
@@ -205,15 +574,59 @@
     },
     {
       "name": "g",
-      "descriptor": "(D)Ldci;"
+      "descriptor": "(D)Ldci;",
+      "javadoc": [
+        "Creates a new {@link AxisAlignedBB} that is expanded by the given value in all directions. Equivalent to {@link #grow(double, double, double)} with the given value for all 3 params. Negative values will shrink the AABB.",
+        "<br/>",
+        "Side lengths will be increased by 2 times the value of the parameter, since both min and max are changed.",
+        "<br/>",
+        "If contracting and the amount to contract by is larger than the length of a side, then the side will wrap (still creating a valid AABB - see samples on {@link #grow(double, double, double)}).",
+        "",
+        "@return A modified AABB."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pValue"
+        }
+      ]
     },
     {
       "name": "g",
-      "descriptor": "(DDD)Ldci;"
+      "descriptor": "(DDD)Ldci;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pXSize"
+        },
+        {
+          "index": 2,
+          "name": "pYSize"
+        },
+        {
+          "index": 4,
+          "name": "pZSize"
+        }
+      ]
     },
     {
       "name": "h",
-      "descriptor": "(D)Ldci;"
+      "descriptor": "(D)Ldci;",
+      "javadoc": [
+        "Creates a new {@link AxisAlignedBB} that is expanded by the given value in all directions. Equivalent to {@link #grow(double)} with value set to the negative of the value provided here. Passing a negative value to this method values will grow the AABB.",
+        "<br/>",
+        "Side lengths will be decreased by 2 times the value of the parameter, since both min and max are changed.",
+        "<br/>",
+        "If contracting and the amount to contract by is larger than the length of a side, then the side will wrap (still creating a valid AABB - see samples on {@link #grow(double, double, double)}).",
+        "",
+        "@return A modified AABB."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pValue"
+        }
+      ]
     },
     {
       "name": "hashCode",

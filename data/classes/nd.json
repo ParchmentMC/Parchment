@@ -35,23 +35,38 @@
     },
     {
       "name": "i",
-      "descriptor": "Ljava/util/Queue;"
+      "descriptor": "Ljava/util/Queue;",
+      "javadoc": [
+        "The queue for packets that require transmission"
+      ]
     },
     {
       "name": "j",
-      "descriptor": "Lio/netty/channel/Channel;"
+      "descriptor": "Lio/netty/channel/Channel;",
+      "javadoc": [
+        "The active channel"
+      ]
     },
     {
       "name": "k",
-      "descriptor": "Ljava/net/SocketAddress;"
+      "descriptor": "Ljava/net/SocketAddress;",
+      "javadoc": [
+        "The address of the remote party"
+      ]
     },
     {
       "name": "l",
-      "descriptor": "Lni;"
+      "descriptor": "Lni;",
+      "javadoc": [
+        "The INetHandler instance responsible for processing received packets"
+      ]
     },
     {
       "name": "m",
-      "descriptor": "Lnr;"
+      "descriptor": "Lnr;",
+      "javadoc": [
+        "A String indicating why the network has shutdown."
+      ]
     },
     {
       "name": "n",
@@ -97,11 +112,20 @@
     },
     {
       "name": "a",
-      "descriptor": "()V"
+      "descriptor": "()V",
+      "javadoc": [
+        "Checks timeouts and processes all packets received"
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(I)V"
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pThreshold"
+        }
+      ]
     },
     {
       "name": "a",
@@ -109,11 +133,37 @@
     },
     {
       "name": "a",
-      "descriptor": "(Ljava/net/InetAddress;IZ)Lnd;"
+      "descriptor": "(Ljava/net/InetAddress;IZ)Lnd;",
+      "javadoc": [
+        "Create a new NetworkManager from the server host and connect it to the server"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pAddress"
+        },
+        {
+          "index": 1,
+          "name": "pServerPort"
+        },
+        {
+          "index": 2,
+          "name": "pUseNativeTransport"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Ljava/net/SocketAddress;)Lnd;"
+      "descriptor": "(Ljava/net/SocketAddress;)Lnd;",
+      "javadoc": [
+        "Prepares a clientside NetworkManager: establishes a connection to the socket supplied and configures the channel pipeline. Returns the newly created instance."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pAddress"
+        }
+      ]
     },
     {
       "name": "a",
@@ -121,7 +171,16 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lne;)V"
+      "descriptor": "(Lne;)V",
+      "javadoc": [
+        "Sets the new connection state and registers which packets this channel may send and receive"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pNewState"
+        }
+      ]
     },
     {
       "name": "a",
@@ -129,11 +188,29 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lni;)V"
+      "descriptor": "(Lni;)V",
+      "javadoc": [
+        "Sets the NetHandler for this NetworkManager, no checks are made if this handler is suitable for the particular connection state (protocol)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pHandler"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lnr;)V"
+      "descriptor": "(Lnr;)V",
+      "javadoc": [
+        "Closes the channel, the parameter can be used for an exit message (not certain how it gets sent)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pMessage"
+        }
+      ]
     },
     {
       "name": "a",
@@ -141,11 +218,23 @@
     },
     {
       "name": "a",
-      "descriptor": "(Loj;)V"
+      "descriptor": "(Loj;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Loj;Lio/netty/util/concurrent/GenericFutureListener;)V"
+      "descriptor": "(Loj;Lio/netty/util/concurrent/GenericFutureListener;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacketIn"
+        }
+      ]
     },
     {
       "name": "a",
@@ -157,11 +246,27 @@
     },
     {
       "name": "b",
-      "descriptor": "(Loj;Lio/netty/util/concurrent/GenericFutureListener;)V"
+      "descriptor": "(Loj;Lio/netty/util/concurrent/GenericFutureListener;)V",
+      "javadoc": [
+        "Will commit the packet to the channel. If the current thread 'owns' the channel it will write and flush the packet, otherwise it will add a task for the channel eventloop thread to do that."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pInPacket"
+        },
+        {
+          "index": 2,
+          "name": "pFutureListeners"
+        }
+      ]
     },
     {
       "name": "c",
-      "descriptor": "()Ljava/net/SocketAddress;"
+      "descriptor": "()Ljava/net/SocketAddress;",
+      "javadoc": [
+        "Returns the socket address of the remote side. Server-only."
+      ]
     },
     {
       "name": "channelActive",
@@ -177,7 +282,10 @@
     },
     {
       "name": "d",
-      "descriptor": "()Z"
+      "descriptor": "()Z",
+      "javadoc": [
+        "True if this NetworkManager uses a memory connection (single player game). False may imply both an active TCP connection or simply no active connection at all"
+      ]
     },
     {
       "name": "e",
@@ -197,7 +305,10 @@
     },
     {
       "name": "h",
-      "descriptor": "()Z"
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if this NetworkManager has an active channel, false otherwise"
+      ]
     },
     {
       "name": "i",
@@ -205,15 +316,24 @@
     },
     {
       "name": "j",
-      "descriptor": "()Lni;"
+      "descriptor": "()Lni;",
+      "javadoc": [
+        "Gets the current handler for processing packets"
+      ]
     },
     {
       "name": "k",
-      "descriptor": "()Lnr;"
+      "descriptor": "()Lnr;",
+      "javadoc": [
+        "If this channel is closed, returns the exit message, null otherwise."
+      ]
     },
     {
       "name": "l",
-      "descriptor": "()V"
+      "descriptor": "()V",
+      "javadoc": [
+        "Switches the channel to manual reading modus"
+      ]
     },
     {
       "name": "m",
@@ -229,7 +349,10 @@
     },
     {
       "name": "p",
-      "descriptor": "()V"
+      "descriptor": "()V",
+      "javadoc": [
+        "Will iterate through the outboundPacketQueue and dispatch all Packets"
+      ]
     },
     {
       "name": "q",
