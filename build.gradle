@@ -28,6 +28,28 @@ dependencies {
     mcpconfig 'de.oceanlabs.mcp:mcp_config:1.16.5-20210115.111550'
 }
 
+tasks.register('officialExportZip', Zip) {
+    group = "build"
+    description = "Creates a ZIP archive containing the export produced by the 'official' intermediate provider and production data."
+    from(tasks.named('generateOfficialExport', GenerateExport).flatMap { it.output })
+    rename { 'parchment.json' }
+    reproducibleFileOrder = true
+    preserveFileTimestamps = false
+    destinationDirectory = project.layout.buildDirectory.dir('exportZips')
+    archiveBaseName = 'officialExport'
+}
+
+tasks.register('officialStagingExportZip', Zip) {
+    group = "build"
+    description = "Creates a ZIP archive containing the export produced by the 'official' intermediate provider and staging data."
+    from(tasks.named('generateOfficialStagingExport', GenerateExport).flatMap { it.output })
+    rename { 'parchment.json' }
+    reproducibleFileOrder = true
+    preserveFileTimestamps = false
+    destinationDirectory = project.layout.buildDirectory.dir('exportZips')
+    archiveBaseName = 'officialStagingExport'
+}
+
 publishing {
     publications.all { p ->
         p.pom {
@@ -50,10 +72,10 @@ publishing {
         }
     }
     publications.create('export', MavenPublication) { p ->
-        p.artifact(tasks.named("generateOfficialExport", GenerateExport).flatMap { it.output })
+        p.artifact tasks.named("officialExportZip", Zip)
     }
     publications.create('staging', MavenPublication) { p ->
-        p.artifact(tasks.named("generateOfficialStagingExport", GenerateExport).flatMap { it.output })
+        p.artifact tasks.named("officialStagingExportZip", Zip)
         p.version = "staging-SNAPSHOT"
     }
     repositories {
