@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/output/schema",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "descriptor": { "type": "string" },
+          "javadoc": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": [ "name", "descriptor" ]
+      }
+    },
+    "methods": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "descriptor": { "type": "string" },
+          "javadoc": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "index": { "type": "integer", "minimum": 0 },
+                "name": { "type": "string" },
+                "javadoc": { "type": "string" }
+              },
+              "required": [ "index", "name" ]
+            }
+          }
+        },
+        "required": [ "name", "descriptor" ]
+      }
+    }
+  },
+  "required": [ "name" ]
+}
