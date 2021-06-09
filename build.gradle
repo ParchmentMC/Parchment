@@ -10,14 +10,14 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'org.parchmentmc.testing.data'
+group = 'org.parchmentmc.data'
 def releaseType = project.findProperty('releaseType') ?: "local"
 def date = OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern('yyyyMMdd'))
 version = date + (releaseType == "release" ? '' : "-${releaseType}-SNAPSHOT")
 println("Version: $version")
 
 writtenbooks {
-    githubRepo = 'ParchmentMC/mappings-testing'
+    githubRepo = 'ParchmentMC/Parchment'
 }
 
 compass {
