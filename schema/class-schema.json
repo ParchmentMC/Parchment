@@ -1,50 +1,43 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
-  "type": "object",
-  "properties": {
-    "name": { "type": "string" },
-    "fields": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "descriptor": { "type": "string" },
-          "javadoc": {
-            "type": "array",
-            "items": { "type": "string" }
-          }
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/ClassMapping",
+    "definitions": {
+        "ClassMapping": {
+            "type": "object",
+            "properties": {
+                "name": { "type": "string" },
+                "fields": { "type": "array", "items": { "$ref": "#/definitions/FieldMapping" } },
+                "methods": { "type": "array", "items": { "$ref": "#/definitions/MethodMapping" } }
+            },
+            "required": [ "name" ]
         },
-        "required": [ "name", "descriptor" ]
-      }
-    },
-    "methods": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "descriptor": { "type": "string" },
-          "javadoc": {
-            "type": "array",
-            "items": { "type": "string" }
-          },
-          "parameters": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
+        "FieldMapping": {
+            "type": "object",
+            "properties": {
+                "name": { "type": "string" },
+                "descriptor": { "type": "string" },
+                "javadoc": { "type": "array", "items": { "type": "string" } }
+            },
+            "required": [ "name", "descriptor" ]
+        },
+        "MethodMapping": {
+            "type": "object",
+            "properties": {
+                "name": { "type": "string" },
+                "descriptor": { "type": "string" },
+                "javadoc": { "type": "array", "items": { "type": "string" } },
+                "parameters": { "type": "array", "items": { "$ref": "#/definitions/ParameterMapping" } }
+            },
+            "required": [ "name", "descriptor" ]
+        },
+        "ParameterMapping": {
+            "type": "object",
+            "properties": {
                 "index": { "type": "integer", "minimum": 0 },
                 "name": { "type": "string" },
                 "javadoc": { "type": "string" }
-              },
-              "required": [ "index", "name" ]
-            }
-          }
-        },
-        "required": [ "name", "descriptor" ]
-      }
+            },
+            "required": [ "index", "name" ]
+        }
     }
-  },
-  "required": [ "name" ]
 }
