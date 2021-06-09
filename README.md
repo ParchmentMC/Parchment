@@ -29,7 +29,7 @@ This is a relatively new project, and we need all the help we can get.
 Since we currently are heavily focused on getting a release out, we need to excuse ourselves for the lack of documentation, it will improve over time.
 
 ## Getting help:
-We provide public help in our Discord server, which you join using this [link](https://discord.gg/RDXVAV9h6F).
+We provide public help in our Discord server, which you join using this [link](https://discord.gg/XXHhhPRUxs).
 
 ## Licensing
 Parchment Mappings are released under the terms of the CC0 1.0 Universal (CC0 1.0). 
