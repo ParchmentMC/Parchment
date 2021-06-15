@@ -41,15 +41,27 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lcks;Lbwp;Lgg;Ljava/util/Random;)V"
+      "descriptor": "(Lcks;Lbwp;Lgg;Ljava/util/Random;)V",
+      "javadoc": [
+        "Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless of whether the block can receive random update ticks"
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lcks;Lcfk;)Lcks;"
+      "descriptor": "(Lcks;Lcfk;)Lcks;",
+      "javadoc": [
+        "Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.",
+        "@deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine."
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lcks;Lgl;Lcks;Lbwq;Lgg;Lgg;)Lcks;"
+      "descriptor": "(Lcks;Lgl;Lcks;Lbwq;Lgg;Lgg;)Lcks;",
+      "javadoc": [
+        "Update the provided state given the provided neighbor facing and neighbor state, returning a new state.",
+        "For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.",
+        "Note that this method should ideally consider only the specific face passed in."
+      ]
     },
     {
       "name": "a",
@@ -57,7 +69,10 @@
     },
     {
       "name": "b",
-      "descriptor": "(Lcks;Labr;Lgg;Ljava/util/Random;)V"
+      "descriptor": "(Lcks;Labr;Lgg;Ljava/util/Random;)V",
+      "javadoc": [
+        "Performs a random tick on a block."
+      ]
     }
   ]
 }

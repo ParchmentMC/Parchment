@@ -7,7 +7,10 @@
     },
     {
       "name": "b",
-      "descriptor": "Lgg;"
+      "descriptor": "Lgg;",
+      "javadoc": [
+        "An immutable block pos with zero as all coordinates."
+      ]
     },
     {
       "name": "c",
@@ -61,7 +64,10 @@
     },
     {
       "name": "<init>",
-      "descriptor": "(III)V"
+      "descriptor": "(III)V",
+      "javadoc": [
+        "Constructs a {@code BlockPos} using the provided X, Y, and Z coordinates."
+      ]
     },
     {
       "name": "<init>",
@@ -133,7 +139,10 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lgg;III)Ljava/lang/Iterable;"
+      "descriptor": "(Lgg;III)Ljava/lang/Iterable;",
+      "javadoc": [
+        "Returns BlockPos#getProximitySortedBoxPositions as an Iterator."
+      ]
     },
     {
       "name": "a",
@@ -157,7 +166,10 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lgl;I)Lgg;"
+      "descriptor": "(Lgl;I)Lgg;",
+      "javadoc": [
+        "Offsets this BlockPos n blocks in the given direction"
+      ]
     },
     {
       "name": "a",
@@ -185,7 +197,10 @@
     },
     {
       "name": "b",
-      "descriptor": "()Lgg;"
+      "descriptor": "()Lgg;",
+      "javadoc": [
+        "Offset this BlockPos 1 block up"
+      ]
     },
     {
       "name": "b",
@@ -193,7 +208,10 @@
     },
     {
       "name": "b",
-      "descriptor": "(I)Lgg;"
+      "descriptor": "(I)Lgg;",
+      "javadoc": [
+        "Offset this BlockPos n blocks up"
+      ]
     },
     {
       "name": "b",
@@ -201,7 +219,16 @@
     },
     {
       "name": "b",
-      "descriptor": "(IIIIII)Ljava/lang/Iterable;"
+      "descriptor": "(IIIIII)Ljava/lang/Iterable;",
+      "javadoc": [
+        "Creates an Iterable that returns all positions in the box specified by the given corners. <strong>Coordinates must be in order</strong>\" e.g. x1 <= x2.",
+        "",
+        "This method uses {@link BlockPos.MutableBlockPos MutableBlockPos} instead of regular BlockPos, which grants better performance. However, the resulting BlockPos instances can only be used inside the iteration loop (as otherwise the value will change), unless {@link #toImmutable()} is called. This method is ideal for searching large areas and only storing a few locations.",
+        "",
+        "@see #getAllInBox(BlockPos, BlockPos)",
+        "@see #getAllInBox(int, int, int, int, int, int)",
+        "@see #getAllInBoxMutable(BlockPos, BlockPos)"
+      ]
     },
     {
       "name": "b",
@@ -209,7 +236,10 @@
     },
     {
       "name": "b",
-      "descriptor": "(Lgg;III)Ljava/util/stream/Stream;"
+      "descriptor": "(Lgg;III)Ljava/util/stream/Stream;",
+      "javadoc": [
+        "Returns a stream of positions in a box shape, ordered by closest to furthest. Returns by definition the given position as first element in the stream."
+      ]
     },
     {
       "name": "b",
@@ -233,11 +263,17 @@
     },
     {
       "name": "c",
-      "descriptor": "()Lgg;"
+      "descriptor": "()Lgg;",
+      "javadoc": [
+        "Offset this BlockPos 1 block down"
+      ]
     },
     {
       "name": "c",
-      "descriptor": "(I)Lgg;"
+      "descriptor": "(I)Lgg;",
+      "javadoc": [
+        "Offset this BlockPos n blocks down"
+      ]
     },
     {
       "name": "c",
@@ -253,7 +289,10 @@
     },
     {
       "name": "c",
-      "descriptor": "(Lhb;)Lgg;"
+      "descriptor": "(Lhb;)Lgg;",
+      "javadoc": [
+        "Calculate the cross product of this and the given Vector"
+      ]
     },
     {
       "name": "d",
@@ -309,7 +348,13 @@
     },
     {
       "name": "h",
-      "descriptor": "()Lgg;"
+      "descriptor": "()Lgg;",
+      "javadoc": [
+        "Returns a version of this BlockPos that is guaranteed to be immutable.",
+        "",
+        "<p>When storing a BlockPos given to you for an extended period of time, make sure you",
+        "use this in case the value is changed internally.</p>"
+      ]
     },
     {
       "name": "h",
