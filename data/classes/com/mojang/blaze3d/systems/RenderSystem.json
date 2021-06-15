@@ -2,10 +2,6 @@
   "name": "com/mojang/blaze3d/systems/RenderSystem",
   "fields": [
     {
-      "name": "DEFAULTALPHACUTOFF",
-      "descriptor": "F"
-    },
-    {
       "name": "LOGGER",
       "descriptor": "Lorg/apache/logging/log4j/Logger;"
     },
@@ -19,7 +15,7 @@
     },
     {
       "name": "RENDER_THREAD_TESSELATOR",
-      "descriptor": "Ldfo;"
+      "descriptor": "Ldqm;"
     },
     {
       "name": "gameThread",
@@ -38,12 +34,80 @@
       "descriptor": "D"
     },
     {
+      "name": "modelViewMatrix",
+      "descriptor": "Ld;"
+    },
+    {
+      "name": "modelViewStack",
+      "descriptor": "Ldqk;"
+    },
+    {
+      "name": "projectionMatrix",
+      "descriptor": "Ld;"
+    },
+    {
       "name": "recordingQueue",
       "descriptor": "Ljava/util/concurrent/ConcurrentLinkedQueue;"
     },
     {
       "name": "renderThread",
       "descriptor": "Ljava/lang/Thread;"
+    },
+    {
+      "name": "savedProjectionMatrix",
+      "descriptor": "Ld;"
+    },
+    {
+      "name": "shader",
+      "descriptor": "Lens;"
+    },
+    {
+      "name": "shaderColor",
+      "descriptor": "[F"
+    },
+    {
+      "name": "shaderFogColor",
+      "descriptor": "[F"
+    },
+    {
+      "name": "shaderFogEnd",
+      "descriptor": "F"
+    },
+    {
+      "name": "shaderFogStart",
+      "descriptor": "F"
+    },
+    {
+      "name": "shaderGameTime",
+      "descriptor": "F"
+    },
+    {
+      "name": "shaderLightDirections",
+      "descriptor": "[Lk;"
+    },
+    {
+      "name": "shaderLineWidth",
+      "descriptor": "F"
+    },
+    {
+      "name": "shaderTextures",
+      "descriptor": "[I"
+    },
+    {
+      "name": "sharedSequential",
+      "descriptor": "Lcom/mojang/blaze3d/systems/RenderSystem$a;"
+    },
+    {
+      "name": "sharedSequentialLines",
+      "descriptor": "Lcom/mojang/blaze3d/systems/RenderSystem$a;"
+    },
+    {
+      "name": "sharedSequentialQuad",
+      "descriptor": "Lcom/mojang/blaze3d/systems/RenderSystem$a;"
+    },
+    {
+      "name": "textureMatrix",
+      "descriptor": "Ld;"
     }
   ],
   "methods": [
@@ -56,16 +120,56 @@
       "descriptor": "()V"
     },
     {
+      "name": "_backupProjectionMatrix",
+      "descriptor": "()V"
+    },
+    {
+      "name": "_restoreProjectionMatrix",
+      "descriptor": "()V"
+    },
+    {
+      "name": "_setShaderColor",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "_setShaderFogColor",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "_setShaderFogEnd",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "_setShaderFogStart",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "_setShaderLights",
+      "descriptor": "(Lk;Lk;)V"
+    },
+    {
+      "name": "_setShaderTexture",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "_setShaderTexture",
+      "descriptor": "(ILww;)V"
+    },
+    {
       "name": "activeTexture",
       "descriptor": "(I)V"
     },
     {
-      "name": "alphaFunc",
-      "descriptor": "(IF)V"
+      "name": "applyModelViewMatrix",
+      "descriptor": "()V"
     },
     {
       "name": "assertThread",
       "descriptor": "(Ljava/util/function/Supplier;)V"
+    },
+    {
+      "name": "backupProjectionMatrix",
+      "descriptor": "()V"
     },
     {
       "name": "beginInitialization",
@@ -76,8 +180,8 @@
       "descriptor": "(I)V"
     },
     {
-      "name": "blendColor",
-      "descriptor": "(FFFF)V"
+      "name": "bindTextureForSetup",
+      "descriptor": "(I)V"
     },
     {
       "name": "blendEquation",
@@ -89,7 +193,7 @@
     },
     {
       "name": "blendFunc",
-      "descriptor": "(Ldem$r;Ldem$j;)V"
+      "descriptor": "(Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;)V"
     },
     {
       "name": "blendFuncSeparate",
@@ -97,7 +201,7 @@
     },
     {
       "name": "blendFuncSeparate",
-      "descriptor": "(Ldem$r;Ldem$j;Ldem$r;Ldem$j;)V"
+      "descriptor": "(Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;)V"
     },
     {
       "name": "clear",
@@ -108,10 +212,6 @@
       "descriptor": "(FFFF)V"
     },
     {
-      "name": "clearCurrentColor",
-      "descriptor": "()V"
-    },
-    {
       "name": "clearDepth",
       "descriptor": "(D)V"
     },
@@ -120,28 +220,8 @@
       "descriptor": "(I)V"
     },
     {
-      "name": "clearTexGen",
-      "descriptor": "()V"
-    },
-    {
-      "name": "color3f",
-      "descriptor": "(FFF)V"
-    },
-    {
-      "name": "color4f",
-      "descriptor": "(FFFF)V"
-    },
-    {
       "name": "colorMask",
       "descriptor": "(ZZZZ)V"
-    },
-    {
-      "name": "colorMaterial",
-      "descriptor": "(II)V"
-    },
-    {
-      "name": "defaultAlphaFunc",
-      "descriptor": "()V"
     },
     {
       "name": "defaultBlendFunc",
@@ -160,19 +240,11 @@
       "descriptor": "(Z)V"
     },
     {
-      "name": "disableAlphaTest",
-      "descriptor": "()V"
-    },
-    {
       "name": "disableBlend",
       "descriptor": "()V"
     },
     {
       "name": "disableColorLogicOp",
-      "descriptor": "()V"
-    },
-    {
-      "name": "disableColorMaterial",
       "descriptor": "()V"
     },
     {
@@ -184,23 +256,7 @@
       "descriptor": "()V"
     },
     {
-      "name": "disableFog",
-      "descriptor": "()V"
-    },
-    {
-      "name": "disableLighting",
-      "descriptor": "()V"
-    },
-    {
-      "name": "disableLineOffset",
-      "descriptor": "()V"
-    },
-    {
       "name": "disablePolygonOffset",
-      "descriptor": "()V"
-    },
-    {
-      "name": "disableRescaleNormal",
       "descriptor": "()V"
     },
     {
@@ -212,12 +268,8 @@
       "descriptor": "()V"
     },
     {
-      "name": "drawArrays",
+      "name": "drawElements",
       "descriptor": "(III)V"
-    },
-    {
-      "name": "enableAlphaTest",
-      "descriptor": "()V"
     },
     {
       "name": "enableBlend",
@@ -225,10 +277,6 @@
     },
     {
       "name": "enableColorLogicOp",
-      "descriptor": "()V"
-    },
-    {
-      "name": "enableColorMaterial",
       "descriptor": "()V"
     },
     {
@@ -240,23 +288,7 @@
       "descriptor": "()V"
     },
     {
-      "name": "enableFog",
-      "descriptor": "()V"
-    },
-    {
-      "name": "enableLighting",
-      "descriptor": "()V"
-    },
-    {
-      "name": "enableLineOffset",
-      "descriptor": "()V"
-    },
-    {
       "name": "enablePolygonOffset",
-      "descriptor": "()V"
-    },
-    {
-      "name": "enableRescaleNormal",
       "descriptor": "()V"
     },
     {
@@ -276,34 +308,6 @@
       "descriptor": "(J)V"
     },
     {
-      "name": "fog",
-      "descriptor": "(IFFFF)V"
-    },
-    {
-      "name": "fogDensity",
-      "descriptor": "(F)V"
-    },
-    {
-      "name": "fogEnd",
-      "descriptor": "(F)V"
-    },
-    {
-      "name": "fogMode",
-      "descriptor": "(I)V"
-    },
-    {
-      "name": "fogMode",
-      "descriptor": "(Ldem$m;)V"
-    },
-    {
-      "name": "fogStart",
-      "descriptor": "(F)V"
-    },
-    {
-      "name": "fogi",
-      "descriptor": "(II)V"
-    },
-    {
       "name": "getApiDescription",
       "descriptor": "()Ljava/lang/String;"
     },
@@ -316,12 +320,72 @@
       "descriptor": "()Ljava/lang/String;"
     },
     {
+      "name": "getModelViewMatrix",
+      "descriptor": "()Ld;"
+    },
+    {
+      "name": "getModelViewStack",
+      "descriptor": "()Ldqk;"
+    },
+    {
+      "name": "getProjectionMatrix",
+      "descriptor": "()Ld;"
+    },
+    {
+      "name": "getSequentialBuffer",
+      "descriptor": "(Ldqp$b;I)Lcom/mojang/blaze3d/systems/RenderSystem$a;"
+    },
+    {
+      "name": "getShader",
+      "descriptor": "()Lens;"
+    },
+    {
+      "name": "getShaderColor",
+      "descriptor": "()[F"
+    },
+    {
+      "name": "getShaderFogColor",
+      "descriptor": "()[F"
+    },
+    {
+      "name": "getShaderFogEnd",
+      "descriptor": "()F"
+    },
+    {
+      "name": "getShaderFogStart",
+      "descriptor": "()F"
+    },
+    {
+      "name": "getShaderGameTime",
+      "descriptor": "()F"
+    },
+    {
+      "name": "getShaderLineWidth",
+      "descriptor": "()F"
+    },
+    {
+      "name": "getShaderTexture",
+      "descriptor": "(I)I"
+    },
+    {
       "name": "getString",
       "descriptor": "(ILjava/util/function/Consumer;)V"
     },
     {
+      "name": "getTextureId",
+      "descriptor": "(I)I"
+    },
+    {
+      "name": "getTextureMatrix",
+      "descriptor": "()Ld;"
+    },
+    {
       "name": "glBindBuffer",
-      "descriptor": "(ILjava/util/function/Supplier;)V"
+      "descriptor": "(ILjava/util/function/IntSupplier;)V"
+    },
+    {
+      "name": "glBindVertexArray",
+      "descriptor": "(Ljava/util/function/Supplier;)V"
     },
     {
       "name": "glBufferData",
@@ -332,12 +396,16 @@
       "descriptor": "(I)V"
     },
     {
+      "name": "glDeleteVertexArrays",
+      "descriptor": "(I)V"
+    },
+    {
       "name": "glGenBuffers",
       "descriptor": "(Ljava/util/function/Consumer;)V"
     },
     {
-      "name": "glMultiTexCoord2f",
-      "descriptor": "(IFF)V"
+      "name": "glGenVertexArrays",
+      "descriptor": "(Ljava/util/function/Consumer;)V"
     },
     {
       "name": "glUniform1",
@@ -424,295 +492,283 @@
       "descriptor": "()Z"
     },
     {
-      "name": "lambda$activeTexture$22",
+      "name": "lambda$activeTexture$13",
       "descriptor": "(I)V"
     },
     {
-      "name": "lambda$alphaFunc$0",
-      "descriptor": "(IF)V"
+      "name": "lambda$applyModelViewMatrix$66",
+      "descriptor": "(Ld;)V"
     },
     {
-      "name": "lambda$bindTexture$25",
+      "name": "lambda$backupProjectionMatrix$67",
+      "descriptor": "()V"
+    },
+    {
+      "name": "lambda$bindTexture$16",
       "descriptor": "(I)V"
     },
     {
-      "name": "lambda$blendColor$11",
-      "descriptor": "(FFFF)V"
+      "name": "lambda$blendEquation$9",
+      "descriptor": "(I)V"
     },
     {
-      "name": "lambda$blendEquation$10",
-      "descriptor": "(I)V"
+      "name": "lambda$blendFunc$5",
+      "descriptor": "(Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;)V"
     },
     {
       "name": "lambda$blendFunc$6",
-      "descriptor": "(Ldem$r;Ldem$j;)V"
+      "descriptor": "(II)V"
     },
     {
-      "name": "lambda$blendFunc$7",
-      "descriptor": "(II)V"
+      "name": "lambda$blendFuncSeparate$7",
+      "descriptor": "(Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;)V"
     },
     {
       "name": "lambda$blendFuncSeparate$8",
-      "descriptor": "(Ldem$r;Ldem$j;Ldem$r;Ldem$j;)V"
-    },
-    {
-      "name": "lambda$blendFuncSeparate$9",
       "descriptor": "(IIII)V"
     },
     {
-      "name": "lambda$clear$35",
+      "name": "lambda$clear$25",
       "descriptor": "(IZ)V"
     },
     {
-      "name": "lambda$clearColor$33",
+      "name": "lambda$clearColor$23",
       "descriptor": "(FFFF)V"
     },
     {
-      "name": "lambda$clearDepth$32",
+      "name": "lambda$clearDepth$22",
       "descriptor": "(D)V"
     },
     {
-      "name": "lambda$clearStencil$34",
+      "name": "lambda$clearStencil$24",
       "descriptor": "(I)V"
     },
     {
-      "name": "lambda$color3f$45",
-      "descriptor": "(FFF)V"
-    },
-    {
-      "name": "lambda$color4f$44",
-      "descriptor": "(FFFF)V"
-    },
-    {
-      "name": "lambda$colorMask$28",
+      "name": "lambda$colorMask$18",
       "descriptor": "(ZZZZ)V"
     },
     {
-      "name": "lambda$colorMaterial$1",
-      "descriptor": "(II)V"
-    },
-    {
-      "name": "lambda$deleteTexture$24",
+      "name": "lambda$deleteTexture$15",
       "descriptor": "(I)V"
     },
     {
-      "name": "lambda$depthFunc$4",
+      "name": "lambda$depthFunc$3",
       "descriptor": "(I)V"
     },
     {
-      "name": "lambda$depthMask$5",
+      "name": "lambda$depthMask$4",
       "descriptor": "(Z)V"
     },
     {
-      "name": "lambda$drawArrays$46",
+      "name": "lambda$drawElements$31",
       "descriptor": "(III)V"
     },
     {
-      "name": "lambda$enableScissor$3",
+      "name": "lambda$enableScissor$2",
       "descriptor": "(IIII)V"
     },
     {
-      "name": "lambda$fog$17",
-      "descriptor": "(IFFFF)V"
-    },
-    {
-      "name": "lambda$fogDensity$14",
-      "descriptor": "(F)V"
-    },
-    {
-      "name": "lambda$fogEnd$16",
-      "descriptor": "(F)V"
-    },
-    {
-      "name": "lambda$fogMode$12",
-      "descriptor": "(Ldem$m;)V"
-    },
-    {
-      "name": "lambda$fogMode$13",
-      "descriptor": "(I)V"
-    },
-    {
-      "name": "lambda$fogStart$15",
-      "descriptor": "(F)V"
-    },
-    {
-      "name": "lambda$fogi$18",
-      "descriptor": "(II)V"
-    },
-    {
-      "name": "lambda$getString$51",
+      "name": "lambda$getString$35",
       "descriptor": "(ILjava/util/function/Consumer;)V"
     },
     {
-      "name": "lambda$glBindBuffer$54",
-      "descriptor": "(ILjava/util/function/Supplier;)V"
+      "name": "lambda$glBindBuffer$37",
+      "descriptor": "(ILjava/util/function/IntSupplier;)V"
     },
     {
-      "name": "lambda$glDeleteBuffers$55",
+      "name": "lambda$glBindVertexArray$38",
+      "descriptor": "(Ljava/util/function/Supplier;)V"
+    },
+    {
+      "name": "lambda$glDeleteBuffers$39",
       "descriptor": "(I)V"
     },
     {
-      "name": "lambda$glGenBuffers$72",
+      "name": "lambda$glDeleteVertexArrays$40",
+      "descriptor": "(I)V"
+    },
+    {
+      "name": "lambda$glGenBuffers$58",
       "descriptor": "(Ljava/util/function/Consumer;)V"
     },
     {
-      "name": "lambda$glMultiTexCoord2f$53",
-      "descriptor": "(IFF)V"
+      "name": "lambda$glGenVertexArrays$59",
+      "descriptor": "(Ljava/util/function/Consumer;)V"
     },
     {
-      "name": "lambda$glUniform1$57",
+      "name": "lambda$glUniform1$42",
       "descriptor": "(ILjava/nio/IntBuffer;)V"
     },
     {
-      "name": "lambda$glUniform1$61",
+      "name": "lambda$glUniform1$46",
       "descriptor": "(ILjava/nio/FloatBuffer;)V"
     },
     {
-      "name": "lambda$glUniform1i$56",
+      "name": "lambda$glUniform1i$41",
       "descriptor": "(II)V"
     },
     {
-      "name": "lambda$glUniform2$58",
+      "name": "lambda$glUniform2$43",
       "descriptor": "(ILjava/nio/IntBuffer;)V"
     },
     {
-      "name": "lambda$glUniform2$62",
+      "name": "lambda$glUniform2$47",
       "descriptor": "(ILjava/nio/FloatBuffer;)V"
     },
     {
-      "name": "lambda$glUniform3$59",
+      "name": "lambda$glUniform3$44",
       "descriptor": "(ILjava/nio/IntBuffer;)V"
     },
     {
-      "name": "lambda$glUniform3$63",
+      "name": "lambda$glUniform3$48",
       "descriptor": "(ILjava/nio/FloatBuffer;)V"
     },
     {
-      "name": "lambda$glUniform4$60",
+      "name": "lambda$glUniform4$45",
       "descriptor": "(ILjava/nio/IntBuffer;)V"
     },
     {
-      "name": "lambda$glUniform4$64",
+      "name": "lambda$glUniform4$49",
       "descriptor": "(ILjava/nio/FloatBuffer;)V"
     },
     {
-      "name": "lambda$glUniformMatrix2$65",
+      "name": "lambda$glUniformMatrix2$50",
       "descriptor": "(IZLjava/nio/FloatBuffer;)V"
     },
     {
-      "name": "lambda$glUniformMatrix3$66",
+      "name": "lambda$glUniformMatrix3$51",
       "descriptor": "(IZLjava/nio/FloatBuffer;)V"
     },
     {
-      "name": "lambda$glUniformMatrix4$67",
+      "name": "lambda$glUniformMatrix4$52",
       "descriptor": "(IZLjava/nio/FloatBuffer;)V"
     },
     {
-      "name": "lambda$lineWidth$47",
+      "name": "lambda$lineWidth$32",
       "descriptor": "(F)V"
     },
     {
-      "name": "lambda$logicOp$21",
-      "descriptor": "(Ldem$o;)V"
+      "name": "lambda$logicOp$12",
+      "descriptor": "(Lcom/mojang/blaze3d/platform/GlStateManager$g;)V"
     },
     {
-      "name": "lambda$matrixMode$36",
-      "descriptor": "(I)V"
-    },
-    {
-      "name": "lambda$multMatrix$43",
-      "descriptor": "(Lb;)V"
-    },
-    {
-      "name": "lambda$normal3f$2",
-      "descriptor": "(FFF)V"
-    },
-    {
-      "name": "lambda$ortho$37",
-      "descriptor": "(DDDDDD)V"
-    },
-    {
-      "name": "lambda$pixelStore$48",
+      "name": "lambda$pixelStore$33",
       "descriptor": "(II)V"
     },
     {
-      "name": "lambda$pixelTransfer$49",
-      "descriptor": "(IF)V"
-    },
-    {
-      "name": "lambda$polygonMode$19",
+      "name": "lambda$polygonMode$10",
       "descriptor": "(II)V"
     },
     {
-      "name": "lambda$polygonOffset$20",
+      "name": "lambda$polygonOffset$11",
       "descriptor": "(FF)V"
     },
     {
-      "name": "lambda$readPixels$50",
+      "name": "lambda$readPixels$34",
       "descriptor": "(IIIIIILjava/nio/ByteBuffer;)V"
     },
     {
-      "name": "lambda$renderCrosshair$52",
+      "name": "lambda$renderCrosshair$36",
       "descriptor": "(I)V"
     },
     {
-      "name": "lambda$rotatef$38",
+      "name": "lambda$resetTextureMatrix$65",
+      "descriptor": "()V"
+    },
+    {
+      "name": "lambda$restoreProjectionMatrix$68",
+      "descriptor": "()V"
+    },
+    {
+      "name": "lambda$setProjectionMatrix$63",
+      "descriptor": "(Ld;)V"
+    },
+    {
+      "name": "lambda$setShader$60",
+      "descriptor": "(Ljava/util/function/Supplier;)V"
+    },
+    {
+      "name": "lambda$setShaderColor$30",
       "descriptor": "(FFFF)V"
     },
     {
-      "name": "lambda$scaled$40",
-      "descriptor": "(DDD)V"
+      "name": "lambda$setShaderFogColor$28",
+      "descriptor": "(FFFF)V"
     },
     {
-      "name": "lambda$scalef$39",
-      "descriptor": "(FFF)V"
+      "name": "lambda$setShaderFogEnd$27",
+      "descriptor": "(F)V"
     },
     {
-      "name": "lambda$setupGui3DDiffuseLighting$71",
-      "descriptor": "(Lg;Lg;)V"
+      "name": "lambda$setShaderFogStart$26",
+      "descriptor": "(F)V"
     },
     {
-      "name": "lambda$setupGuiFlatDiffuseLighting$70",
-      "descriptor": "(Lg;Lg;)V"
+      "name": "lambda$setShaderGameTime$69",
+      "descriptor": "(F)V"
     },
     {
-      "name": "lambda$setupLevelDiffuseLighting$69",
-      "descriptor": "(Lg;Lg;Lb;)V"
+      "name": "lambda$setShaderLights$29",
+      "descriptor": "(Lk;Lk;)V"
     },
     {
-      "name": "lambda$setupOverlayColor$68",
-      "descriptor": "(Ljava/util/function/IntSupplier;I)V"
+      "name": "lambda$setShaderTexture$61",
+      "descriptor": "(ILww;)V"
     },
     {
-      "name": "lambda$shadeModel$26",
+      "name": "lambda$setShaderTexture$62",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "lambda$setTextureMatrix$64",
+      "descriptor": "(Ld;)V"
+    },
+    {
+      "name": "lambda$setupGui3DDiffuseLighting$57",
+      "descriptor": "(Lk;Lk;)V"
+    },
+    {
+      "name": "lambda$setupGuiFlatDiffuseLighting$56",
+      "descriptor": "(Lk;Lk;)V"
+    },
+    {
+      "name": "lambda$setupLevelDiffuseLighting$55",
+      "descriptor": "(Lk;Lk;Ld;)V"
+    },
+    {
+      "name": "lambda$setupOverlayColor$53",
+      "descriptor": "(Ljava/util/function/IntSupplier;)V"
+    },
+    {
+      "name": "lambda$static$0",
+      "descriptor": "(Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V"
+    },
+    {
+      "name": "lambda$static$1",
+      "descriptor": "(Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V"
+    },
+    {
+      "name": "lambda$stencilFunc$19",
+      "descriptor": "(III)V"
+    },
+    {
+      "name": "lambda$stencilMask$20",
       "descriptor": "(I)V"
     },
     {
-      "name": "lambda$stencilFunc$29",
+      "name": "lambda$stencilOp$21",
       "descriptor": "(III)V"
     },
     {
-      "name": "lambda$stencilMask$30",
-      "descriptor": "(I)V"
+      "name": "lambda$teardownOverlayColor$54",
+      "descriptor": "()V"
     },
     {
-      "name": "lambda$stencilOp$31",
+      "name": "lambda$texParameter$14",
       "descriptor": "(III)V"
     },
     {
-      "name": "lambda$texParameter$23",
-      "descriptor": "(III)V"
-    },
-    {
-      "name": "lambda$translated$42",
-      "descriptor": "(DDD)V"
-    },
-    {
-      "name": "lambda$translatef$41",
-      "descriptor": "(FFF)V"
-    },
-    {
-      "name": "lambda$viewport$27",
+      "name": "lambda$viewport$17",
       "descriptor": "(IIII)V"
     },
     {
@@ -724,44 +780,16 @@
       "descriptor": "(F)V"
     },
     {
-      "name": "loadIdentity",
-      "descriptor": "()V"
-    },
-    {
       "name": "logicOp",
-      "descriptor": "(Ldem$o;)V"
-    },
-    {
-      "name": "matrixMode",
-      "descriptor": "(I)V"
+      "descriptor": "(Lcom/mojang/blaze3d/platform/GlStateManager$g;)V"
     },
     {
       "name": "maxSupportedTextureSize",
       "descriptor": "()I"
     },
     {
-      "name": "mulTextureByProjModelView",
-      "descriptor": "()V"
-    },
-    {
-      "name": "multMatrix",
-      "descriptor": "(Lb;)V"
-    },
-    {
-      "name": "normal3f",
-      "descriptor": "(FFF)V"
-    },
-    {
-      "name": "ortho",
-      "descriptor": "(DDDDDD)V"
-    },
-    {
       "name": "pixelStore",
       "descriptor": "(II)V"
-    },
-    {
-      "name": "pixelTransfer",
-      "descriptor": "(IF)V"
     },
     {
       "name": "polygonMode",
@@ -772,32 +800,12 @@
       "descriptor": "(FF)V"
     },
     {
-      "name": "popAttributes",
-      "descriptor": "()V"
-    },
-    {
-      "name": "popMatrix",
-      "descriptor": "()V"
-    },
-    {
-      "name": "pushLightingAttributes",
-      "descriptor": "()V"
-    },
-    {
-      "name": "pushMatrix",
-      "descriptor": "()V"
-    },
-    {
-      "name": "pushTextureAttributes",
-      "descriptor": "()V"
-    },
-    {
       "name": "readPixels",
       "descriptor": "(IIIIIILjava/nio/ByteBuffer;)V"
     },
     {
       "name": "recordRenderCall",
-      "descriptor": "(Ldee;)V"
+      "descriptor": "(Ldow;)V"
     },
     {
       "name": "renderCrosshair",
@@ -805,67 +813,99 @@
     },
     {
       "name": "renderThreadTesselator",
-      "descriptor": "()Ldfo;"
+      "descriptor": "()Ldqm;"
     },
     {
       "name": "replayQueue",
       "descriptor": "()V"
     },
     {
-      "name": "rotatef",
-      "descriptor": "(FFFF)V"
+      "name": "resetTextureMatrix",
+      "descriptor": "()V"
+    },
+    {
+      "name": "restoreProjectionMatrix",
+      "descriptor": "()V"
     },
     {
       "name": "runAsFancy",
       "descriptor": "(Ljava/lang/Runnable;)V"
     },
     {
-      "name": "scaled",
-      "descriptor": "(DDD)V"
+      "name": "setErrorCallback",
+      "descriptor": "(Lorg/lwjgl/glfw/GLFWErrorCallbackI;)V"
     },
     {
-      "name": "scalef",
+      "name": "setProjectionMatrix",
+      "descriptor": "(Ld;)V"
+    },
+    {
+      "name": "setShader",
+      "descriptor": "(Ljava/util/function/Supplier;)V"
+    },
+    {
+      "name": "setShaderColor",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "setShaderFogColor",
       "descriptor": "(FFF)V"
     },
     {
-      "name": "setErrorCallback",
-      "descriptor": "(Lorg/lwjgl/glfw/GLFWErrorCallbackI;)V"
+      "name": "setShaderFogColor",
+      "descriptor": "(FFFF)V"
+    },
+    {
+      "name": "setShaderFogEnd",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "setShaderFogStart",
+      "descriptor": "(F)V"
+    },
+    {
+      "name": "setShaderGameTime",
+      "descriptor": "(JF)V"
+    },
+    {
+      "name": "setShaderLights",
+      "descriptor": "(Lk;Lk;)V"
+    },
+    {
+      "name": "setShaderTexture",
+      "descriptor": "(II)V"
+    },
+    {
+      "name": "setShaderTexture",
+      "descriptor": "(ILww;)V"
+    },
+    {
+      "name": "setTextureMatrix",
+      "descriptor": "(Ld;)V"
     },
     {
       "name": "setupDefaultState",
       "descriptor": "(IIII)V"
     },
     {
-      "name": "setupEndPortalTexGen",
-      "descriptor": "()V"
-    },
-    {
       "name": "setupGui3DDiffuseLighting",
-      "descriptor": "(Lg;Lg;)V"
+      "descriptor": "(Lk;Lk;)V"
     },
     {
       "name": "setupGuiFlatDiffuseLighting",
-      "descriptor": "(Lg;Lg;)V"
+      "descriptor": "(Lk;Lk;)V"
     },
     {
       "name": "setupLevelDiffuseLighting",
-      "descriptor": "(Lg;Lg;Lb;)V"
-    },
-    {
-      "name": "setupNvFogDistance",
-      "descriptor": "()V"
-    },
-    {
-      "name": "setupOutline",
-      "descriptor": "()V"
+      "descriptor": "(Lk;Lk;Ld;)V"
     },
     {
       "name": "setupOverlayColor",
       "descriptor": "(Ljava/util/function/IntSupplier;I)V"
     },
     {
-      "name": "shadeModel",
-      "descriptor": "(I)V"
+      "name": "setupShaderLights",
+      "descriptor": "(Lens;)V"
     },
     {
       "name": "stencilFunc",
@@ -880,24 +920,12 @@
       "descriptor": "(III)V"
     },
     {
-      "name": "teardownOutline",
-      "descriptor": "()V"
-    },
-    {
       "name": "teardownOverlayColor",
       "descriptor": "()V"
     },
     {
       "name": "texParameter",
       "descriptor": "(III)V"
-    },
-    {
-      "name": "translated",
-      "descriptor": "(DDD)V"
-    },
-    {
-      "name": "translatef",
-      "descriptor": "(FFF)V"
     },
     {
       "name": "viewport",
