@@ -13,10 +13,12 @@ plugins {
 group = 'org.parchmentmc.data'
 def releaseType = project.findProperty('releaseType') ?: "local"
 def date = OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern('yyyyMMdd'))
-version = date + (releaseType == "release" ? '' : "-${releaseType}-SNAPSHOT")
+def isRelease = releaseType == "release"
+version = date + (isRelease ? '' : "-${releaseType}-SNAPSHOT")
 println("Version: $version")
 
 writtenbooks {
+    snapshotVersion = !isRelease
     githubRepo = 'ParchmentMC/Parchment'
 }
 
