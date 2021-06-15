@@ -95,7 +95,10 @@
     },
     {
       "name": "q",
-      "descriptor": "I"
+      "descriptor": "I",
+      "javadoc": [
+        "Contains the current Linear Congruential Generator seed for block updates. Used with an A value of 3 and a C value of 0x3c6ef35f, producing a highly planar series of values ill-suited for choosing random blocks in a 16x128x16 field."
+      ]
     },
     {
       "name": "r",
@@ -153,7 +156,10 @@
     },
     {
       "name": "J",
-      "descriptor": "()Ljava/lang/String;"
+      "descriptor": "()Ljava/lang/String;",
+      "javadoc": [
+        "Returns the name of the current chunk provider, by calling chunkprovider.makeString()"
+      ]
     },
     {
       "name": "K",
@@ -161,7 +167,10 @@
     },
     {
       "name": "P",
-      "descriptor": "()Z"
+      "descriptor": "()Z",
+      "javadoc": [
+        "Checks whether its daytime by seeing if the light subtracted from the skylight is less than 4. Always returns true on the client because vanilla has no need for it on the client, therefore it is not synced to the client"
+      ]
     },
     {
       "name": "Q",
@@ -173,15 +182,24 @@
     },
     {
       "name": "S",
-      "descriptor": "()V"
+      "descriptor": "()V",
+      "javadoc": [
+        "Called on construction of the World class to setup the initial skylight values"
+      ]
     },
     {
       "name": "T",
-      "descriptor": "()V"
+      "descriptor": "()V",
+      "javadoc": [
+        "Called from World constructor to set rainingStrength and thunderingStrength"
+      ]
     },
     {
       "name": "U",
-      "descriptor": "()V"
+      "descriptor": "()V",
+      "javadoc": [
+        "If on MP, sends a quitting packet."
+      ]
     },
     {
       "name": "V",
@@ -193,15 +211,24 @@
     },
     {
       "name": "X",
-      "descriptor": "()Lbwl;"
+      "descriptor": "()Lbwl;",
+      "javadoc": [
+        "Gets the GameRules instance."
+      ]
     },
     {
       "name": "Y",
-      "descriptor": "()Z"
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if the current thunder strength (weighted with the rain strength) is greater than 0.9"
+      ]
     },
     {
       "name": "Z",
-      "descriptor": "()Z"
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if the current rain strength is greater than 0.2"
+      ]
     },
     {
       "name": "a",
@@ -217,11 +244,17 @@
     },
     {
       "name": "a",
-      "descriptor": "(F)F"
+      "descriptor": "(F)F",
+      "javadoc": [
+        "Return getCelestialAngle()*2*PI"
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(I)Latf;"
+      "descriptor": "(I)Latf;",
+      "javadoc": [
+        "Returns the Entity with the given ID, or null if it doesn't exist in this World."
+      ]
     },
     {
       "name": "a",
@@ -241,7 +274,10 @@
     },
     {
       "name": "a",
-      "descriptor": "(Latf;B)V"
+      "descriptor": "(Latf;B)V",
+      "javadoc": [
+        "sends a Packet 38 (Entity Status) to all tracked players of that entity"
+      ]
     },
     {
       "name": "a",
@@ -261,7 +297,10 @@
     },
     {
       "name": "a",
-      "descriptor": "(Latf;Ldmv;Ljava/util/function/Predicate;)Ljava/util/List;"
+      "descriptor": "(Latf;Ldmv;Ljava/util/function/Predicate;)Ljava/util/List;",
+      "javadoc": [
+        "Gets all entities within the specified AABB excluding the one passed into it."
+      ]
     },
     {
       "name": "a",
@@ -281,7 +320,10 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lbkd;Lgg;Lafd;Laff;FF)V"
+      "descriptor": "(Lbkd;Lgg;Lafd;Laff;FF)V",
+      "javadoc": [
+        "Plays a sound. On the server, the sound is broadcast to all nearby <em>except</em> the given player. On the client, the sound only plays if the given player is the client player. Thus, this method is intended to be called from code running on both sides. The client plays it locally and the server plays it for everyone else."
+      ]
     },
     {
       "name": "a",
@@ -329,7 +371,18 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lgg;Lcks;I)Z"
+      "descriptor": "(Lgg;Lcks;I)Z",
+      "javadoc": [
+        "Sets a block state into this world.Flags are as follows:",
+        "1 will cause a block update.",
+        "2 will send the change to clients.",
+        "4 will prevent the block from being re-rendered.",
+        "8 will force any re-renders to run on the main thread instead",
+        "16 will prevent neighbor reactions (e.g. fences connecting, observers pulsing).",
+        "32 will prevent neighbor reactions from spawning drops.",
+        "64 will signify the block is being moved.",
+        "Flags can be OR-ed"
+      ]
     },
     {
       "name": "a",
@@ -341,7 +394,10 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lgg;Lcks;Lcks;I)V"
+      "descriptor": "(Lgg;Lcks;Lcks;I)V",
+      "javadoc": [
+        "Flags are as in setBlockState"
+      ]
     },
     {
       "name": "a",
@@ -389,7 +445,10 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lq;)Lr;"
+      "descriptor": "(Lq;)Lr;",
+      "javadoc": [
+        "Adds some basic stats of the world to the given crash report."
+      ]
     },
     {
       "name": "a_",
@@ -429,7 +488,10 @@
     },
     {
       "name": "b",
-      "descriptor": "(Lgg;Lcks;)Z"
+      "descriptor": "(Lgg;Lcks;)Z",
+      "javadoc": [
+        "Convenience method to update the block on both the client and server"
+      ]
     },
     {
       "name": "b",
@@ -453,7 +515,10 @@
     },
     {
       "name": "b",
-      "descriptor": "(ZZ)V"
+      "descriptor": "(ZZ)V",
+      "javadoc": [
+        "first boolean for hostile mobs and second for peaceful mobs"
+      ]
     },
     {
       "name": "b_",
@@ -461,7 +526,10 @@
     },
     {
       "name": "c",
-      "descriptor": "(F)V"
+      "descriptor": "(F)V",
+      "javadoc": [
+        "Sets the strength of the thunder."
+      ]
     },
     {
       "name": "c",
@@ -485,7 +553,10 @@
     },
     {
       "name": "d",
-      "descriptor": "(F)F"
+      "descriptor": "(F)F",
+      "javadoc": [
+        "Returns rain strength."
+      ]
     },
     {
       "name": "d",
@@ -497,7 +568,10 @@
     },
     {
       "name": "e",
-      "descriptor": "(F)V"
+      "descriptor": "(F)V",
+      "javadoc": [
+        "Sets the strength of the rain."
+      ]
     },
     {
       "name": "j_",
@@ -505,7 +579,10 @@
     },
     {
       "name": "k",
-      "descriptor": "(Lgg;)Z"
+      "descriptor": "(Lgg;)Z",
+      "javadoc": [
+        "Check if the given BlockPos has valid coordinates"
+      ]
     },
     {
       "name": "k_",
@@ -525,7 +602,10 @@
     },
     {
       "name": "m_",
-      "descriptor": "()Ldhy;"
+      "descriptor": "()Ldhy;",
+      "javadoc": [
+        "Returns the world's WorldInfo object"
+      ]
     },
     {
       "name": "n",
@@ -565,7 +645,10 @@
     },
     {
       "name": "q",
-      "descriptor": "(Lgg;)I"
+      "descriptor": "(Lgg;)I",
+      "javadoc": [
+        "Returns the single highest strong power out of all directions using getStrongPower(BlockPos, EnumFacing)"
+      ]
     },
     {
       "name": "q_",
@@ -589,11 +672,17 @@
     },
     {
       "name": "s",
-      "descriptor": "(Lgg;)I"
+      "descriptor": "(Lgg;)I",
+      "javadoc": [
+        "Checks if the specified block or its neighbors are powered by a neighboring block. Used by blocks like TNT and Doors."
+      ]
     },
     {
       "name": "t",
-      "descriptor": "(Lgg;)Z"
+      "descriptor": "(Lgg;)Z",
+      "javadoc": [
+        "Check if precipitation is currently happening at a position"
+      ]
     },
     {
       "name": "u",
