@@ -123,7 +123,13 @@
     },
     {
       "name": "a",
-      "descriptor": "(I)V"
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pThreshold"
+        }
+      ]
     },
     {
       "name": "a",
@@ -138,6 +144,12 @@
       "descriptor": "(Ljava/net/SocketAddress;)Loe;",
       "javadoc": [
         "Prepares a clientside NetworkManager: establishes a connection to the socket supplied and configures the channel pipeline. Returns the newly created instance."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pAddress"
+        }
       ]
     },
     {
@@ -149,6 +161,12 @@
       "descriptor": "(Lof;)V",
       "javadoc": [
         "Sets the new connection state and registers which packets this channel may send and receive"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pNewState"
+        }
       ]
     },
     {
@@ -156,6 +174,12 @@
       "descriptor": "(Loj;)V",
       "javadoc": [
         "Sets the NetHandler for this NetworkManager, no checks are made if this handler is suitable for the particular connection state (protocol)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pHandler"
+        }
       ]
     },
     {
@@ -163,6 +187,12 @@
       "descriptor": "(Los;)V",
       "javadoc": [
         "Closes the channel, the parameter can be used for an exit message (not certain how it gets sent)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pMessage"
+        }
       ]
     },
     {
@@ -171,11 +201,23 @@
     },
     {
       "name": "a",
-      "descriptor": "(Lpk;)V"
+      "descriptor": "(Lpk;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacket"
+        }
+      ]
     },
     {
       "name": "a",
-      "descriptor": "(Lpk;Lio/netty/util/concurrent/GenericFutureListener;)V"
+      "descriptor": "(Lpk;Lio/netty/util/concurrent/GenericFutureListener;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pPacket"
+        }
+      ]
     },
     {
       "name": "a",
@@ -194,6 +236,16 @@
       "descriptor": "(Lpk;Lio/netty/util/concurrent/GenericFutureListener;)V",
       "javadoc": [
         "Will commit the packet to the channel. If the current thread 'owns' the channel it will write and flush the packet, otherwise it will add a task for the channel eventloop thread to do that."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pInPacket"
+        },
+        {
+          "index": 2,
+          "name": "pFutureListeners"
+        }
       ]
     },
     {
