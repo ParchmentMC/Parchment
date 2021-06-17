@@ -1,4 +1,5 @@
 import org.parchmentmc.compass.tasks.GenerateExport
+import org.parchmentmc.compass.tasks.GenerateSanitizedExport
 
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
@@ -37,26 +38,38 @@ dependencies {
     mcpconfig 'de.oceanlabs.mcp:mcp_config:1.17-20210610.141446'
 }
 
+tasks.register('generateSanitizedExport', GenerateSanitizedExport) {
+    group = 'compass'
+    description = "Generates an export file using the 'official' intermediate provider and production data."
+    input = project.compass.productionData
+}
+
 tasks.register('officialExportZip', Zip) {
     group = "build"
     description = "Creates a ZIP archive containing the export produced by the 'official' intermediate provider and production data."
     from(tasks.named('generateOfficialExport', GenerateExport).flatMap { it.output })
-    rename { 'parchment.json' }
-    reproducibleFileOrder = true
-    preserveFileTimestamps = false
-    destinationDirectory = project.layout.buildDirectory.dir('exportZips')
     archiveBaseName = 'officialExport'
+}
+
+tasks.register('officialSanitizedExportZip', Zip) {
+    group = "build"
+    description = "Creates a ZIP archive containing the sanitized export produced by the 'official' intermediate provider and production data."
+    from(tasks.named('generateSanitizedExport', GenerateExport).flatMap { it.output })
+    archiveBaseName = 'officialSanitizedExport'
 }
 
 tasks.register('officialStagingExportZip', Zip) {
     group = "build"
     description = "Creates a ZIP archive containing the export produced by the 'official' intermediate provider and staging data."
     from(tasks.named('generateOfficialStagingExport', GenerateExport).flatMap { it.output })
+    archiveBaseName = 'officialStagingExport'
+}
+
+tasks.withType(Zip).matching { it.name.startsWith "official" }.configureEach {
     rename { 'parchment.json' }
     reproducibleFileOrder = true
     preserveFileTimestamps = false
     destinationDirectory = project.layout.buildDirectory.dir('exportZips')
-    archiveBaseName = 'officialStagingExport'
 }
 
 publishing {
@@ -82,6 +95,9 @@ publishing {
     }
     publications.create('export', MavenPublication) { p ->
         p.artifact tasks.named("officialExportZip", Zip)
+        p.artifact(tasks.named("officialSanitizedExportZip", Zip)) {
+            classifier = 'prefixed'
+        }
     }
     publications.create('staging', MavenPublication) { p ->
         p.artifact tasks.named("officialStagingExportZip", Zip)
