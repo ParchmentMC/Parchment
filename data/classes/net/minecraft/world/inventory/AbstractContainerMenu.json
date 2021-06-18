@@ -1,0 +1,406 @@
+{
+  "name": "net/minecraft/world/inventory/AbstractContainerMenu",
+  "methods": [
+    {
+      "name": "addDataSlot",
+      "descriptor": "(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "intValue"
+        }
+      ]
+    },
+    {
+      "name": "addDataSlots",
+      "descriptor": "(Lnet/minecraft/world/inventory/ContainerData;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "array"
+        }
+      ]
+    },
+    {
+      "name": "addSlot",
+      "descriptor": "(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;",
+      "javadoc": [
+        "Adds an item slot to this container"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "slot"
+        }
+      ]
+    },
+    {
+      "name": "addSlotListener",
+      "descriptor": "(Lnet/minecraft/world/inventory/ContainerListener;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "listener"
+        }
+      ]
+    },
+    {
+      "name": "broadcastChanges",
+      "descriptor": "()V",
+      "javadoc": [
+        "Looks for changes made in the container, sends them to every listener."
+      ]
+    },
+    {
+      "name": "canDragTo",
+      "descriptor": "(Lnet/minecraft/world/inventory/Slot;)Z",
+      "javadoc": [
+        "Returns true if the player can \"drag-spilt\" items into this slot,. returns true by default. Called to check if the slot can be added to a list of Slots to split the held ItemStack across."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "slot"
+        }
+      ]
+    },
+    {
+      "name": "canItemQuickReplace",
+      "descriptor": "(Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/item/ItemStack;Z)Z",
+      "javadoc": [
+        "Checks if it's possible to add the given itemstack to the given slot."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "slot"
+        },
+        {
+          "index": 1,
+          "name": "stack"
+        },
+        {
+          "index": 2,
+          "name": "stackSizeMatters"
+        }
+      ]
+    },
+    {
+      "name": "canTakeItemForPickAll",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z",
+      "javadoc": [
+        "Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        },
+        {
+          "index": 2,
+          "name": "slot"
+        }
+      ]
+    },
+    {
+      "name": "checkContainerDataCount",
+      "descriptor": "(Lnet/minecraft/world/inventory/ContainerData;I)V",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "intArray"
+        },
+        {
+          "index": 1,
+          "name": "minSize"
+        }
+      ]
+    },
+    {
+      "name": "checkContainerSize",
+      "descriptor": "(Lnet/minecraft/world/Container;I)V",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "inventory"
+        },
+        {
+          "index": 1,
+          "name": "minSize"
+        }
+      ]
+    },
+    {
+      "name": "clickMenuButton",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;I)Z",
+      "javadoc": [
+        "Handles the given Button-click on the server, currently only used by enchanting. Name is for legacy."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "getItems",
+      "descriptor": "()Lnet/minecraft/core/NonNullList;",
+      "javadoc": [
+        "returns a list if itemStacks, for each slot."
+      ]
+    },
+    {
+      "name": "getQuickCraftSlotCount",
+      "descriptor": "(Ljava/util/Set;ILnet/minecraft/world/item/ItemStack;I)V",
+      "javadoc": [
+        "Compute the new stack size, Returns the stack with the new size. Args : dragSlots, dragMode, dragStack, slotStackSize"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "dragSlots"
+        },
+        {
+          "index": 1,
+          "name": "dragMode"
+        },
+        {
+          "index": 2,
+          "name": "stack"
+        },
+        {
+          "index": 3,
+          "name": "slotStackSize"
+        }
+      ]
+    },
+    {
+      "name": "getQuickcraftHeader",
+      "descriptor": "(I)I",
+      "javadoc": [
+        "Args : clickedButton, Returns (0 : start drag, 1 : add slot, 2 : end drag)"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "clickedButton"
+        }
+      ]
+    },
+    {
+      "name": "getQuickcraftType",
+      "descriptor": "(I)I",
+      "javadoc": [
+        "Extracts the drag mode. Args : eventButton. Return (0 : evenly split, 1 : one item by slot, 2 : not used ?)"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "eventButton"
+        }
+      ]
+    },
+    {
+      "name": "getRedstoneSignalFromBlockEntity",
+      "descriptor": "(Lnet/minecraft/world/level/block/entity/BlockEntity;)I",
+      "javadoc": [
+        "Like the version that takes an inventory. If the given TileEntity is not an Inventory, 0 is returned instead."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "te"
+        }
+      ]
+    },
+    {
+      "name": "getRedstoneSignalFromContainer",
+      "descriptor": "(Lnet/minecraft/world/Container;)I",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "inv"
+        }
+      ]
+    },
+    {
+      "name": "getSlot",
+      "descriptor": "(I)Lnet/minecraft/world/inventory/Slot;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "slotId"
+        }
+      ]
+    },
+    {
+      "name": "isValidQuickcraftType",
+      "descriptor": "(ILnet/minecraft/world/entity/player/Player;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "dragMode"
+        },
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "moveItemStackTo",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;IIZ)Z",
+      "javadoc": [
+        "Merges provided ItemStack with the first avaliable one in the container/player inventor between minIndex (included) and maxIndex (excluded). Args : stack, minIndex, maxIndex, negativDirection. /!\\ the Container implementation do not check if the item is valid for the slot"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        },
+        {
+          "index": 2,
+          "name": "startIndex"
+        },
+        {
+          "index": 3,
+          "name": "endIndex"
+        },
+        {
+          "index": 4,
+          "name": "reverseDirection"
+        }
+      ]
+    },
+    {
+      "name": "quickMoveStack",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;",
+      "javadoc": [
+        "Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s)."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "index"
+        }
+      ]
+    },
+    {
+      "name": "removeSlotListener",
+      "descriptor": "(Lnet/minecraft/world/inventory/ContainerListener;)V",
+      "javadoc": [
+        "Remove the given Listener. Method name is for legacy."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "listener"
+        }
+      ]
+    },
+    {
+      "name": "removed",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;)V",
+      "javadoc": [
+        "Called when the container is closed."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "resetQuickCraft",
+      "descriptor": "()V",
+      "javadoc": [
+        "Reset the drag fields"
+      ]
+    },
+    {
+      "name": "setData",
+      "descriptor": "(II)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "id"
+        },
+        {
+          "index": 2,
+          "name": "data"
+        }
+      ]
+    },
+    {
+      "name": "setItem",
+      "descriptor": "(ILnet/minecraft/world/item/ItemStack;)V",
+      "javadoc": [
+        "Puts an ItemStack in a slot."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "slotID"
+        },
+        {
+          "index": 2,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "slotsChanged",
+      "descriptor": "(Lnet/minecraft/world/Container;)V",
+      "javadoc": [
+        "Callback for when the crafting matrix is changed."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "inventory"
+        }
+      ]
+    },
+    {
+      "name": "stillValid",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;)Z",
+      "javadoc": [
+        "Determines whether supplied player can use this container"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "stillValid",
+      "descriptor": "(Lnet/minecraft/world/inventory/ContainerLevelAccess;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/block/Block;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "levelPos"
+        },
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "targetBlock"
+        }
+      ]
+    }
+  ]
+}

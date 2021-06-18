@@ -1,0 +1,424 @@
+{
+  "name": "net/minecraft/world/entity/vehicle/AbstractMinecart",
+  "methods": [
+    {
+      "name": "activateMinecart",
+      "descriptor": "(IIIZ)V",
+      "javadoc": [
+        "Called every tick the minecart is on an activator rail."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 2,
+          "name": "y"
+        },
+        {
+          "index": 3,
+          "name": "z"
+        },
+        {
+          "index": 4,
+          "name": "receivingPower"
+        }
+      ]
+    },
+    {
+      "name": "addAdditionalSaveData",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "animateHurt",
+      "descriptor": "()V",
+      "javadoc": [
+        "Setups the entity to do the hurt animation. Only used by packets in multiplayer."
+      ]
+    },
+    {
+      "name": "canCollideWith",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "comeOffTrack",
+      "descriptor": "()V",
+      "javadoc": [
+        "Moves a minecart that is not attached to a rail"
+      ]
+    },
+    {
+      "name": "createMinecart",
+      "descriptor": "(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/entity/vehicle/AbstractMinecart$Type;)Lnet/minecraft/world/entity/vehicle/AbstractMinecart;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "level"
+        },
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 3,
+          "name": "y"
+        },
+        {
+          "index": 5,
+          "name": "z"
+        },
+        {
+          "index": 7,
+          "name": "type"
+        }
+      ]
+    },
+    {
+      "name": "destroy",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "source"
+        }
+      ]
+    },
+    {
+      "name": "exits",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/properties/RailShape;)Lcom/mojang/datafixers/util/Pair;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "shape"
+        }
+      ]
+    },
+    {
+      "name": "getBoundingBoxForCulling",
+      "descriptor": "()Lnet/minecraft/world/phys/AABB;",
+      "javadoc": [
+        "Gets the bounding box of this Entity, adjusted to take auxiliary entities into account (e.g. the tile contained by a minecart, such as a command block)."
+      ]
+    },
+    {
+      "name": "getDamage",
+      "descriptor": "()F",
+      "javadoc": [
+        "Gets the current amount of damage the minecart has taken. Decreases over time. The cart breaks when this is over 40."
+      ]
+    },
+    {
+      "name": "getDismountLocationForPassenger",
+      "descriptor": "(Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "livingEntity"
+        }
+      ]
+    },
+    {
+      "name": "getHurtDir",
+      "descriptor": "()I",
+      "javadoc": [
+        "Gets the rolling direction the cart rolls while being attacked. Can be 1 or -1."
+      ]
+    },
+    {
+      "name": "getHurtTime",
+      "descriptor": "()I",
+      "javadoc": [
+        "Gets the rolling amplitude the cart rolls while being attacked."
+      ]
+    },
+    {
+      "name": "getMaxSpeed",
+      "descriptor": "()D",
+      "javadoc": [
+        "Get's the maximum speed for a minecart"
+      ]
+    },
+    {
+      "name": "getMotionDirection",
+      "descriptor": "()Lnet/minecraft/core/Direction;",
+      "javadoc": [
+        "Gets the horizontal facing direction of this Entity, adjusted to take specially-treated entity types into account."
+      ]
+    },
+    {
+      "name": "getPassengersRidingOffset",
+      "descriptor": "()D",
+      "javadoc": [
+        "Returns the Y offset from the entity's position for any entity riding this one."
+      ]
+    },
+    {
+      "name": "getPos",
+      "descriptor": "(DDD)Lnet/minecraft/world/phys/Vec3;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 3,
+          "name": "y"
+        },
+        {
+          "index": 5,
+          "name": "z"
+        }
+      ]
+    },
+    {
+      "name": "getPosOffs",
+      "descriptor": "(DDDD)Lnet/minecraft/world/phys/Vec3;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 3,
+          "name": "y"
+        },
+        {
+          "index": 5,
+          "name": "z"
+        },
+        {
+          "index": 7,
+          "name": "offset"
+        }
+      ]
+    },
+    {
+      "name": "hurt",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+      "javadoc": [
+        "Called when the entity is attacked."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "source"
+        },
+        {
+          "index": 2,
+          "name": "amount"
+        }
+      ]
+    },
+    {
+      "name": "isPickable",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if other Entities should be prevented from moving through this Entity."
+      ]
+    },
+    {
+      "name": "isPushable",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if this entity should push and be pushed by other entities when colliding."
+      ]
+    },
+    {
+      "name": "isRedstoneConductor",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "lerpMotion",
+      "descriptor": "(DDD)V",
+      "javadoc": [
+        "Updates the entity motion clientside, called by packets from the server"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 3,
+          "name": "y"
+        },
+        {
+          "index": 5,
+          "name": "z"
+        }
+      ]
+    },
+    {
+      "name": "lerpTo",
+      "descriptor": "(DDDFFIZ)V",
+      "javadoc": [
+        "Sets a target for the client to interpolate towards over the next few ticks"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 3,
+          "name": "y"
+        },
+        {
+          "index": 5,
+          "name": "z"
+        },
+        {
+          "index": 7,
+          "name": "yaw"
+        },
+        {
+          "index": 8,
+          "name": "pitch"
+        },
+        {
+          "index": 9,
+          "name": "posRotationIncrements"
+        },
+        {
+          "index": 10,
+          "name": "teleport"
+        }
+      ]
+    },
+    {
+      "name": "moveAlongTrack",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "push",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)V",
+      "javadoc": [
+        "Applies a velocity to the entities, to push them away from eachother."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "readAdditionalSaveData",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)V",
+      "javadoc": [
+        "(abstract) Protected helper method to read subclass entity data from NBT."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "setCustomDisplay",
+      "descriptor": "(Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "showBlock"
+        }
+      ]
+    },
+    {
+      "name": "setDamage",
+      "descriptor": "(F)V",
+      "javadoc": [
+        "Sets the current amount of damage the minecart has taken. Decreases over time. The cart breaks when this is over 40."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "damage"
+        }
+      ]
+    },
+    {
+      "name": "setDisplayBlockState",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "displayTile"
+        }
+      ]
+    },
+    {
+      "name": "setDisplayOffset",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "displayTileOffset"
+        }
+      ]
+    },
+    {
+      "name": "setHurtDir",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Sets the rolling direction the cart rolls while being attacked. Can be 1 or -1."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "rollingDirection"
+        }
+      ]
+    },
+    {
+      "name": "setHurtTime",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Sets the rolling amplitude the cart rolls while being attacked."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "rollingAmplitude"
+        }
+      ]
+    },
+    {
+      "name": "tick",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called to update the entity's position/logic."
+      ]
+    }
+  ]
+}

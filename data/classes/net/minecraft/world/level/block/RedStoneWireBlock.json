@@ -1,0 +1,619 @@
+{
+  "name": "net/minecraft/world/level/block/RedStoneWireBlock",
+  "methods": [
+    {
+      "name": "animateTick",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V",
+      "javadoc": [
+        "Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless of whether the block can receive random update ticks"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "rand"
+        }
+      ]
+    },
+    {
+      "name": "calculateShape",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/phys/shapes/VoxelShape;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "calculateTargetStrength",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)I",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "canSurvive",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "canSurviveOn",
+      "descriptor": "(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "reader"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "checkCornerChangeAt",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V",
+      "javadoc": [
+        "Calls World.notifyNeighborsOfStateChange() for all neighboring blocks, but only if the given block is a redstone wire."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "createBlockStateDefinition",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "builder"
+        }
+      ]
+    },
+    {
+      "name": "getColorForPower",
+      "descriptor": "(I)I",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "power"
+        }
+      ]
+    },
+    {
+      "name": "getConnectingSide",
+      "descriptor": "(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Lnet/minecraft/world/level/block/state/properties/RedstoneSide;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "face"
+        }
+      ]
+    },
+    {
+      "name": "getConnectingSide",
+      "descriptor": "(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Z)Lnet/minecraft/world/level/block/state/properties/RedstoneSide;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "reader"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "direction"
+        },
+        {
+          "index": 4,
+          "name": "nonNormalCubeAbove"
+        }
+      ]
+    },
+    {
+      "name": "getConnectionState",
+      "descriptor": "(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "reader"
+        },
+        {
+          "index": 2,
+          "name": "state"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getDirectSignal",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I",
+      "javadoc": [
+        "@deprecated call via {@link IBlockState#getStrongPower(IBlockAccess,BlockPos,EnumFacing)} whenever possible. Implementing/overriding is fine."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "blockState"
+        },
+        {
+          "index": 2,
+          "name": "blockAccess"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "side"
+        }
+      ]
+    },
+    {
+      "name": "getMissingConnections",
+      "descriptor": "(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "reader"
+        },
+        {
+          "index": 2,
+          "name": "state"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getShape",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "context"
+        }
+      ]
+    },
+    {
+      "name": "getSignal",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I",
+      "javadoc": [
+        "@deprecated call via {@link IBlockState#getWeakPower(IBlockAccess,BlockPos,EnumFacing)} whenever possible. Implementing/overriding is fine."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "blockState"
+        },
+        {
+          "index": 2,
+          "name": "blockAccess"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "side"
+        }
+      ]
+    },
+    {
+      "name": "getStateForPlacement",
+      "descriptor": "(Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "context"
+        }
+      ]
+    },
+    {
+      "name": "getWireSignal",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;)I",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "isCross",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "isDot",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "isSignalSource",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;)Z",
+      "javadoc": [
+        "Can this block provide power. Only wire currently seems to have this change based on its state.",
+        "@deprecated call via {@link IBlockState#canProvidePower()} whenever possible. Implementing/overriding is fine."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "mirror",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "javadoc": [
+        "Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed blockstate.",
+        "@deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "mirror"
+        }
+      ]
+    },
+    {
+      "name": "neighborChanged",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos;Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "block"
+        },
+        {
+          "index": 5,
+          "name": "fromPos"
+        },
+        {
+          "index": 6,
+          "name": "isMoving"
+        }
+      ]
+    },
+    {
+      "name": "onPlace",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "oldState"
+        },
+        {
+          "index": 5,
+          "name": "isMoving"
+        }
+      ]
+    },
+    {
+      "name": "onRemove",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "newState"
+        },
+        {
+          "index": 5,
+          "name": "isMoving"
+        }
+      ]
+    },
+    {
+      "name": "rotate",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "javadoc": [
+        "Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.",
+        "@deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "rot"
+        }
+      ]
+    },
+    {
+      "name": "shouldConnectTo",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "shouldConnectTo",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "blockState"
+        },
+        {
+          "index": 1,
+          "name": "side"
+        }
+      ]
+    },
+    {
+      "name": "updateIndirectNeighbourShapes",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;II)V",
+      "javadoc": [
+        "performs updates on diagonal neighbors of the target position and passes in the flags. The flags can be referenced from the docs for {@link IWorldWriter#setBlockState(IBlockState, BlockPos, int)}."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "flags"
+        },
+        {
+          "index": 5,
+          "name": "recursionLeft"
+        }
+      ]
+    },
+    {
+      "name": "updateNeighborsOfNeighboringWires",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "updatePowerStrength",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "updateShape",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "javadoc": [
+        "Update the provided state given the provided neighbor facing and neighbor state, returning a new state.",
+        "For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.",
+        "Note that this method should ideally consider only the specific face passed in."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "facing"
+        },
+        {
+          "index": 3,
+          "name": "facingState"
+        },
+        {
+          "index": 4,
+          "name": "level"
+        },
+        {
+          "index": 5,
+          "name": "currentPos"
+        },
+        {
+          "index": 6,
+          "name": "facingPos"
+        }
+      ]
+    },
+    {
+      "name": "updatesOnShapeChange",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "prevState"
+        },
+        {
+          "index": 4,
+          "name": "newState"
+        }
+      ]
+    },
+    {
+      "name": "use",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "player"
+        },
+        {
+          "index": 5,
+          "name": "hand"
+        },
+        {
+          "index": 6,
+          "name": "hit"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "name": "net/minecraft/client/Screenshot",
+  "methods": [
+    {
+      "name": "_grab",
+      "descriptor": "(Ljava/io/File;Ljava/lang/String;IILcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "gameDirectory"
+        },
+        {
+          "index": 1,
+          "name": "screenshotName"
+        },
+        {
+          "index": 2,
+          "name": "width"
+        },
+        {
+          "index": 3,
+          "name": "height"
+        },
+        {
+          "index": 4,
+          "name": "buffer"
+        },
+        {
+          "index": 5,
+          "name": "messageConsumer"
+        }
+      ]
+    },
+    {
+      "name": "getFile",
+      "descriptor": "(Ljava/io/File;)Ljava/io/File;",
+      "javadoc": [
+        "Creates a unique PNG file in the given directory named by a timestamp.  Handles cases where the timestamp alone is not enough to create a uniquely named file, though it still might suffer from an unlikely race condition where the filename was unique when this method was called, but another process or thread created a file at the same path immediately after this method returned."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "gameDirectory"
+        }
+      ]
+    },
+    {
+      "name": "grab",
+      "descriptor": "(Ljava/io/File;IILcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V",
+      "javadoc": [
+        "Saves a screenshot in the game directory with a time-stamped filename.",
+        "Returns an ITextComponent indicating the success/failure of the saving."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "gameDirectory"
+        },
+        {
+          "index": 1,
+          "name": "width"
+        },
+        {
+          "index": 2,
+          "name": "height"
+        },
+        {
+          "index": 3,
+          "name": "buffer"
+        },
+        {
+          "index": 4,
+          "name": "messageConsumer"
+        }
+      ]
+    },
+    {
+      "name": "grab",
+      "descriptor": "(Ljava/io/File;Ljava/lang/String;IILcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V",
+      "javadoc": [
+        "Saves a screenshot in the game directory with the given file name (or null to generate a time-stamped name).",
+        "Returns an ITextComponent indicating the success/failure of the saving."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "gameDirectory"
+        },
+        {
+          "index": 1,
+          "name": "screenshotName"
+        },
+        {
+          "index": 2,
+          "name": "width"
+        },
+        {
+          "index": 3,
+          "name": "height"
+        },
+        {
+          "index": 4,
+          "name": "buffer"
+        },
+        {
+          "index": 5,
+          "name": "messageConsumer"
+        }
+      ]
+    },
+    {
+      "name": "takeScreenshot",
+      "descriptor": "(IILcom/mojang/blaze3d/pipeline/RenderTarget;)Lcom/mojang/blaze3d/platform/NativeImage;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "width"
+        },
+        {
+          "index": 1,
+          "name": "height"
+        },
+        {
+          "index": 2,
+          "name": "framebuffer"
+        }
+      ]
+    }
+  ]
+}

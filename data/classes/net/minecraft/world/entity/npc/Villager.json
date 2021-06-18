@@ -1,0 +1,400 @@
+{
+  "name": "net/minecraft/world/entity/npc/Villager",
+  "fields": [
+    {
+      "name": "FOOD_POINTS",
+      "descriptor": "Ljava/util/Map;",
+      "javadoc": [
+        "Mapping between valid food items and their respective efficiency values."
+      ]
+    },
+    {
+      "name": "WANTED_ITEMS",
+      "descriptor": "Ljava/util/Set;",
+      "javadoc": [
+        "Defaults items a villager regardless of its profession can pick up."
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "name": "addAdditionalSaveData",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "countFoodPointsInInventory",
+      "descriptor": "()I",
+      "javadoc": [
+        "@return calculated food value from item stacks in this villager's inventory"
+      ]
+    },
+    {
+      "name": "die",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;)V",
+      "javadoc": [
+        "Called when the mob's health reaches 0."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "cause"
+        }
+      ]
+    },
+    {
+      "name": "digestFood",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "qty"
+        }
+      ]
+    },
+    {
+      "name": "finalizeSpawn",
+      "descriptor": "(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "difficulty"
+        },
+        {
+          "index": 3,
+          "name": "reason"
+        },
+        {
+          "index": 4,
+          "name": "spawnData"
+        },
+        {
+          "index": 5,
+          "name": "dataTag"
+        }
+      ]
+    },
+    {
+      "name": "findSpawnPositionForGolemInColumn",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;DD)Lnet/minecraft/core/BlockPos;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "x"
+        },
+        {
+          "index": 4,
+          "name": "z"
+        }
+      ]
+    },
+    {
+      "name": "getHurtSound",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "damageSource"
+        }
+      ]
+    },
+    {
+      "name": "getPlayerReputation",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;)I",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "golemSpawnConditionsMet",
+      "descriptor": "(J)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "gameTime"
+        }
+      ]
+    },
+    {
+      "name": "handleEntityEvent",
+      "descriptor": "(B)V",
+      "javadoc": [
+        "Handler for {@link World#setEntityState}"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "hasExcessFood",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Used by {@link net.minecraft.entity.ai.EntityAIVillagerInteract EntityAIVillagerInteract} to check if the villager can give some items from an inventory to another villager."
+      ]
+    },
+    {
+      "name": "hasFarmSeeds",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if villager has seeds, potatoes or carrots in inventory"
+      ]
+    },
+    {
+      "name": "makeBrain",
+      "descriptor": "(Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "dynamic"
+        }
+      ]
+    },
+    {
+      "name": "mobInteract",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "hand"
+        }
+      ]
+    },
+    {
+      "name": "onReputationEventFrom",
+      "descriptor": "(Lnet/minecraft/world/entity/ai/village/ReputationEventType;Lnet/minecraft/world/entity/Entity;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "type"
+        },
+        {
+          "index": 2,
+          "name": "target"
+        }
+      ]
+    },
+    {
+      "name": "pickUpItem",
+      "descriptor": "(Lnet/minecraft/world/entity/item/ItemEntity;)V",
+      "javadoc": [
+        "Tests if this entity should pickup a weapon or an armor. Entity drops current weapon or armor if the new one is better."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "itemEntity"
+        }
+      ]
+    },
+    {
+      "name": "readAdditionalSaveData",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)V",
+      "javadoc": [
+        "(abstract) Protected helper method to read subclass entity data from NBT."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "refreshBrain",
+      "descriptor": "(Lnet/minecraft/server/level/ServerLevel;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "serverLevel"
+        }
+      ]
+    },
+    {
+      "name": "registerBrainGoals",
+      "descriptor": "(Lnet/minecraft/world/entity/ai/Brain;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "villagerBrain"
+        }
+      ]
+    },
+    {
+      "name": "releasePoi",
+      "descriptor": "(Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "moduleType"
+        }
+      ]
+    },
+    {
+      "name": "removeWhenFarAway",
+      "descriptor": "(D)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "distanceToClosestPlayer"
+        }
+      ]
+    },
+    {
+      "name": "rewardTradeXp",
+      "descriptor": "(Lnet/minecraft/world/item/trading/MerchantOffer;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "offer"
+        }
+      ]
+    },
+    {
+      "name": "setGossips",
+      "descriptor": "(Lnet/minecraft/nbt/Tag;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "gossip"
+        }
+      ]
+    },
+    {
+      "name": "setLastHurtByMob",
+      "descriptor": "(Lnet/minecraft/world/entity/LivingEntity;)V",
+      "javadoc": [
+        "Hint to AI tasks that we were attacked by the passed EntityLivingBase and should retaliate. Is not guaranteed to change our actual active target (for example if we are currently busy attacking someone else)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "livingBase"
+        }
+      ]
+    },
+    {
+      "name": "setOffers",
+      "descriptor": "(Lnet/minecraft/world/item/trading/MerchantOffers;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "offers"
+        }
+      ]
+    },
+    {
+      "name": "setTradingPlayer",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "setVillagerXp",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "xp"
+        }
+      ]
+    },
+    {
+      "name": "startSleeping",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "startTrading",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "tellWitnessesThatIWasMurdered",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "murderer"
+        }
+      ]
+    },
+    {
+      "name": "thunderHit",
+      "descriptor": "(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LightningBolt;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "lightning"
+        }
+      ]
+    },
+    {
+      "name": "tick",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called to update the entity's position/logic."
+      ]
+    },
+    {
+      "name": "updateSpecialPrices",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "wantsToSpawnGolem",
+      "descriptor": "(J)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "gameTime"
+        }
+      ]
+    }
+  ]
+}

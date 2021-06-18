@@ -1,0 +1,163 @@
+{
+  "name": "net/minecraft/world/inventory/StonecutterMenu",
+  "fields": [
+    {
+      "name": "input",
+      "descriptor": "Lnet/minecraft/world/item/ItemStack;",
+      "javadoc": [
+        "The {@plainlink ItemStack} set in the input slot by the player."
+      ]
+    },
+    {
+      "name": "lastSoundTime",
+      "descriptor": "J",
+      "javadoc": [
+        "Stores the game time of the last time the player took items from the the crafting result slot. This is used to prevent the sound from being played multiple times on the same tick."
+      ]
+    },
+    {
+      "name": "resultContainer",
+      "descriptor": "Lnet/minecraft/world/inventory/ResultContainer;",
+      "javadoc": [
+        "The inventory that stores the output of the crafting recipe."
+      ]
+    },
+    {
+      "name": "resultSlot",
+      "descriptor": "Lnet/minecraft/world/inventory/Slot;",
+      "javadoc": [
+        "The inventory slot that stores the output of the crafting recipe."
+      ]
+    },
+    {
+      "name": "selectedRecipeIndex",
+      "descriptor": "Lnet/minecraft/world/inventory/DataSlot;",
+      "javadoc": [
+        "The index of the selected recipe in the GUI."
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "name": "canTakeItemForPickAll",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z",
+      "javadoc": [
+        "Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        },
+        {
+          "index": 2,
+          "name": "slot"
+        }
+      ]
+    },
+    {
+      "name": "clickMenuButton",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;I)Z",
+      "javadoc": [
+        "Handles the given Button-click on the server, currently only used by enchanting. Name is for legacy."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "getSelectedRecipeIndex",
+      "descriptor": "()I",
+      "javadoc": [
+        "Returns the index of the selected recipe."
+      ]
+    },
+    {
+      "name": "quickMoveStack",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;",
+      "javadoc": [
+        "Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s)."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "index"
+        }
+      ]
+    },
+    {
+      "name": "registerUpdateListener",
+      "descriptor": "(Ljava/lang/Runnable;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "listener"
+        }
+      ]
+    },
+    {
+      "name": "removed",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;)V",
+      "javadoc": [
+        "Called when the container is closed."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "setupRecipeList",
+      "descriptor": "(Lnet/minecraft/world/Container;Lnet/minecraft/world/item/ItemStack;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "inventory"
+        },
+        {
+          "index": 2,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "slotsChanged",
+      "descriptor": "(Lnet/minecraft/world/Container;)V",
+      "javadoc": [
+        "Callback for when the crafting matrix is changed."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "inventory"
+        }
+      ]
+    },
+    {
+      "name": "stillValid",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;)Z",
+      "javadoc": [
+        "Determines whether supplied player can use this container"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    }
+  ]
+}

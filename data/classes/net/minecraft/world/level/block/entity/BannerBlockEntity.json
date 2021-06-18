@@ -1,0 +1,126 @@
+{
+  "name": "net/minecraft/world/level/block/entity/BannerBlockEntity",
+  "fields": [
+    {
+      "name": "itemPatterns",
+      "descriptor": "Lnet/minecraft/nbt/ListTag;",
+      "javadoc": [
+        "A list of all the banner patterns."
+      ]
+    },
+    {
+      "name": "patterns",
+      "descriptor": "Ljava/util/List;",
+      "javadoc": [
+        "A list of all patterns stored on this banner."
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "name": "createPatterns",
+      "descriptor": "(Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/nbt/ListTag;)Ljava/util/List;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "color"
+        },
+        {
+          "index": 1,
+          "name": "nbtList"
+        }
+      ]
+    },
+    {
+      "name": "fromItem",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/DyeColor;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        },
+        {
+          "index": 2,
+          "name": "color"
+        }
+      ]
+    },
+    {
+      "name": "getItemPatterns",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/nbt/ListTag;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "getPatternCount",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)I",
+      "javadoc": [
+        "Retrieves the amount of patterns stored on an ItemStack. If the tag does not exist this value will be 0."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "getPatterns",
+      "descriptor": "()Ljava/util/List;",
+      "javadoc": [
+        "Retrieves the list of patterns for this tile entity. The banner data will be initialized/refreshed before this happens."
+      ]
+    },
+    {
+      "name": "getUpdatePacket",
+      "descriptor": "()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;",
+      "javadoc": [
+        "Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}"
+      ]
+    },
+    {
+      "name": "getUpdateTag",
+      "descriptor": "()Lnet/minecraft/nbt/CompoundTag;",
+      "javadoc": [
+        "Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}"
+      ]
+    },
+    {
+      "name": "removeLastPattern",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)V",
+      "javadoc": [
+        "Removes all the banner related data from a provided instance of ItemStack."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "save",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "setCustomName",
+      "descriptor": "(Lnet/minecraft/network/chat/Component;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "name"
+        }
+      ]
+    }
+  ]
+}

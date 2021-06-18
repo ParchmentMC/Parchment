@@ -1,0 +1,107 @@
+{
+  "name": "net/minecraft/server/commands/AdvancementCommands",
+  "methods": [
+    {
+      "name": "addChildren",
+      "descriptor": "(Lnet/minecraft/advancements/Advancement;Ljava/util/List;)V",
+      "javadoc": [
+        "Recursively adds all children of the given advancement to the given list. Does not add the advancement itself to the list."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "advancement"
+        },
+        {
+          "index": 1,
+          "name": "list"
+        }
+      ]
+    },
+    {
+      "name": "getAdvancements",
+      "descriptor": "(Lnet/minecraft/advancements/Advancement;Lnet/minecraft/server/commands/AdvancementCommands$Mode;)Ljava/util/List;",
+      "javadoc": [
+        "Gets all advancements that match the given mode."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "advancement"
+        },
+        {
+          "index": 1,
+          "name": "mode"
+        }
+      ]
+    },
+    {
+      "name": "perform",
+      "descriptor": "(Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/server/commands/AdvancementCommands$Action;Ljava/util/Collection;)I",
+      "javadoc": [
+        "Performs the given action on each advancement in the list, for each player.",
+        "",
+        "@return The number of affected advancements across all players."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "source"
+        },
+        {
+          "index": 1,
+          "name": "targets"
+        },
+        {
+          "index": 2,
+          "name": "action"
+        },
+        {
+          "index": 3,
+          "name": "advancements"
+        }
+      ]
+    },
+    {
+      "name": "performCriterion",
+      "descriptor": "(Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/server/commands/AdvancementCommands$Action;Lnet/minecraft/advancements/Advancement;Ljava/lang/String;)I",
+      "javadoc": [
+        "Updates a single criterion based on the given action.",
+        "",
+        "@return The number of affected criteria across all players."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "source"
+        },
+        {
+          "index": 1,
+          "name": "targets"
+        },
+        {
+          "index": 2,
+          "name": "action"
+        },
+        {
+          "index": 3,
+          "name": "advancement"
+        },
+        {
+          "index": 4,
+          "name": "criterionName"
+        }
+      ]
+    },
+    {
+      "name": "register",
+      "descriptor": "(Lcom/mojang/brigadier/CommandDispatcher;)V",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "dispatcher"
+        }
+      ]
+    }
+  ]
+}

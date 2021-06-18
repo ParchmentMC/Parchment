@@ -1,0 +1,197 @@
+{
+  "name": "net/minecraft/network/Connection",
+  "fields": [
+    {
+      "name": "address",
+      "descriptor": "Ljava/net/SocketAddress;",
+      "javadoc": [
+        "The address of the remote party"
+      ]
+    },
+    {
+      "name": "channel",
+      "descriptor": "Lio/netty/channel/Channel;",
+      "javadoc": [
+        "The active channel"
+      ]
+    },
+    {
+      "name": "disconnectedReason",
+      "descriptor": "Lnet/minecraft/network/chat/Component;",
+      "javadoc": [
+        "A String indicating why the network has shutdown."
+      ]
+    },
+    {
+      "name": "packetListener",
+      "descriptor": "Lnet/minecraft/network/PacketListener;",
+      "javadoc": [
+        "The INetHandler instance responsible for processing received packets"
+      ]
+    },
+    {
+      "name": "queue",
+      "descriptor": "Ljava/util/Queue;",
+      "javadoc": [
+        "The queue for packets that require transmission"
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "name": "connectToLocalServer",
+      "descriptor": "(Ljava/net/SocketAddress;)Lnet/minecraft/network/Connection;",
+      "javadoc": [
+        "Prepares a clientside NetworkManager: establishes a connection to the socket supplied and configures the channel pipeline. Returns the newly created instance."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "address"
+        }
+      ]
+    },
+    {
+      "name": "disconnect",
+      "descriptor": "(Lnet/minecraft/network/chat/Component;)V",
+      "javadoc": [
+        "Closes the channel, the parameter can be used for an exit message (not certain how it gets sent)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "message"
+        }
+      ]
+    },
+    {
+      "name": "flushQueue",
+      "descriptor": "()V",
+      "javadoc": [
+        "Will iterate through the outboundPacketQueue and dispatch all Packets"
+      ]
+    },
+    {
+      "name": "getDisconnectedReason",
+      "descriptor": "()Lnet/minecraft/network/chat/Component;",
+      "javadoc": [
+        "If this channel is closed, returns the exit message, null otherwise."
+      ]
+    },
+    {
+      "name": "getPacketListener",
+      "descriptor": "()Lnet/minecraft/network/PacketListener;",
+      "javadoc": [
+        "Gets the current handler for processing packets"
+      ]
+    },
+    {
+      "name": "getRemoteAddress",
+      "descriptor": "()Ljava/net/SocketAddress;",
+      "javadoc": [
+        "Returns the socket address of the remote side. Server-only."
+      ]
+    },
+    {
+      "name": "isConnected",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if this NetworkManager has an active channel, false otherwise"
+      ]
+    },
+    {
+      "name": "isMemoryConnection",
+      "descriptor": "()Z",
+      "javadoc": [
+        "True if this NetworkManager uses a memory connection (single player game). False may imply both an active TCP connection or simply no active connection at all"
+      ]
+    },
+    {
+      "name": "send",
+      "descriptor": "(Lnet/minecraft/network/protocol/Packet;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "packet"
+        }
+      ]
+    },
+    {
+      "name": "send",
+      "descriptor": "(Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "packet"
+        }
+      ]
+    },
+    {
+      "name": "sendPacket",
+      "descriptor": "(Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V",
+      "javadoc": [
+        "Will commit the packet to the channel. If the current thread 'owns' the channel it will write and flush the packet, otherwise it will add a task for the channel eventloop thread to do that."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "inPacket"
+        },
+        {
+          "index": 2,
+          "name": "futureListeners"
+        }
+      ]
+    },
+    {
+      "name": "setListener",
+      "descriptor": "(Lnet/minecraft/network/PacketListener;)V",
+      "javadoc": [
+        "Sets the NetHandler for this NetworkManager, no checks are made if this handler is suitable for the particular connection state (protocol)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "handler"
+        }
+      ]
+    },
+    {
+      "name": "setProtocol",
+      "descriptor": "(Lnet/minecraft/network/ConnectionProtocol;)V",
+      "javadoc": [
+        "Sets the new connection state and registers which packets this channel may send and receive"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "newState"
+        }
+      ]
+    },
+    {
+      "name": "setReadOnly",
+      "descriptor": "()V",
+      "javadoc": [
+        "Switches the channel to manual reading modus"
+      ]
+    },
+    {
+      "name": "setupCompression",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "threshold"
+        }
+      ]
+    },
+    {
+      "name": "tick",
+      "descriptor": "()V",
+      "javadoc": [
+        "Checks timeouts and processes all packets received"
+      ]
+    }
+  ]
+}

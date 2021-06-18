@@ -1,0 +1,1324 @@
+{
+  "name": "net/minecraft/world/level/Level",
+  "fields": [
+    {
+      "name": "randValue",
+      "descriptor": "I",
+      "javadoc": [
+        "Contains the current Linear Congruential Generator seed for block updates. Used with an A value of 3 and a C value of 0x3c6ef35f, producing a highly planar series of values ill-suited for choosing random blocks in a 16x128x16 field."
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "name": "addAlwaysVisibleParticle",
+      "descriptor": "(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "particleData"
+        },
+        {
+          "index": 2,
+          "name": "x"
+        },
+        {
+          "index": 4,
+          "name": "y"
+        },
+        {
+          "index": 6,
+          "name": "z"
+        },
+        {
+          "index": 8,
+          "name": "xSpeed"
+        },
+        {
+          "index": 10,
+          "name": "ySpeed"
+        },
+        {
+          "index": 12,
+          "name": "zSpeed"
+        }
+      ]
+    },
+    {
+      "name": "addAlwaysVisibleParticle",
+      "descriptor": "(Lnet/minecraft/core/particles/ParticleOptions;ZDDDDDD)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "particleData"
+        },
+        {
+          "index": 2,
+          "name": "ignoreRange"
+        },
+        {
+          "index": 3,
+          "name": "x"
+        },
+        {
+          "index": 5,
+          "name": "y"
+        },
+        {
+          "index": 7,
+          "name": "z"
+        },
+        {
+          "index": 9,
+          "name": "xSpeed"
+        },
+        {
+          "index": 11,
+          "name": "ySpeed"
+        },
+        {
+          "index": 13,
+          "name": "zSpeed"
+        }
+      ]
+    },
+    {
+      "name": "addParticle",
+      "descriptor": "(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "particleData"
+        },
+        {
+          "index": 2,
+          "name": "x"
+        },
+        {
+          "index": 4,
+          "name": "y"
+        },
+        {
+          "index": 6,
+          "name": "z"
+        },
+        {
+          "index": 8,
+          "name": "xSpeed"
+        },
+        {
+          "index": 10,
+          "name": "ySpeed"
+        },
+        {
+          "index": 12,
+          "name": "zSpeed"
+        }
+      ]
+    },
+    {
+      "name": "addParticle",
+      "descriptor": "(Lnet/minecraft/core/particles/ParticleOptions;ZDDDDDD)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "particleData"
+        },
+        {
+          "index": 2,
+          "name": "forceAlwaysRender"
+        },
+        {
+          "index": 3,
+          "name": "x"
+        },
+        {
+          "index": 5,
+          "name": "y"
+        },
+        {
+          "index": 7,
+          "name": "z"
+        },
+        {
+          "index": 9,
+          "name": "xSpeed"
+        },
+        {
+          "index": 11,
+          "name": "ySpeed"
+        },
+        {
+          "index": 13,
+          "name": "zSpeed"
+        }
+      ]
+    },
+    {
+      "name": "blockEvent",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;II)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "block"
+        },
+        {
+          "index": 3,
+          "name": "eventID"
+        },
+        {
+          "index": 4,
+          "name": "eventParam"
+        }
+      ]
+    },
+    {
+      "name": "broadcastEntityEvent",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;B)V",
+      "javadoc": [
+        "sends a Packet 38 (Entity Status) to all tracked players of that entity"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        },
+        {
+          "index": 2,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "createFireworks",
+      "descriptor": "(DDDDDDLnet/minecraft/nbt/CompoundTag;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 3,
+          "name": "y"
+        },
+        {
+          "index": 5,
+          "name": "z"
+        },
+        {
+          "index": 7,
+          "name": "motionX"
+        },
+        {
+          "index": 9,
+          "name": "motionY"
+        },
+        {
+          "index": 11,
+          "name": "motionZ"
+        },
+        {
+          "index": 13,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "destroyBlock",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;ZLnet/minecraft/world/entity/Entity;I)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "dropBlock"
+        },
+        {
+          "index": 3,
+          "name": "entity"
+        },
+        {
+          "index": 4,
+          "name": "recursionLeft"
+        }
+      ]
+    },
+    {
+      "name": "destroyBlockProgress",
+      "descriptor": "(ILnet/minecraft/core/BlockPos;I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "breakerId"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "progress"
+        }
+      ]
+    },
+    {
+      "name": "disconnect",
+      "descriptor": "()V",
+      "javadoc": [
+        "If on MP, sends a quitting packet."
+      ]
+    },
+    {
+      "name": "explode",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;DDDFLnet/minecraft/world/level/Explosion$BlockInteraction;)Lnet/minecraft/world/level/Explosion;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        },
+        {
+          "index": 2,
+          "name": "x"
+        },
+        {
+          "index": 4,
+          "name": "y"
+        },
+        {
+          "index": 6,
+          "name": "z"
+        },
+        {
+          "index": 8,
+          "name": "explosionRadius"
+        },
+        {
+          "index": 9,
+          "name": "mode"
+        }
+      ]
+    },
+    {
+      "name": "explode",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;)Lnet/minecraft/world/level/Explosion;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        },
+        {
+          "index": 2,
+          "name": "x"
+        },
+        {
+          "index": 4,
+          "name": "y"
+        },
+        {
+          "index": 6,
+          "name": "z"
+        },
+        {
+          "index": 8,
+          "name": "explosionRadius"
+        },
+        {
+          "index": 9,
+          "name": "causesFire"
+        },
+        {
+          "index": 10,
+          "name": "mode"
+        }
+      ]
+    },
+    {
+      "name": "explode",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;)Lnet/minecraft/world/level/Explosion;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "exploder"
+        },
+        {
+          "index": 2,
+          "name": "damageSource"
+        },
+        {
+          "index": 3,
+          "name": "context"
+        },
+        {
+          "index": 4,
+          "name": "x"
+        },
+        {
+          "index": 6,
+          "name": "y"
+        },
+        {
+          "index": 8,
+          "name": "z"
+        },
+        {
+          "index": 10,
+          "name": "size"
+        },
+        {
+          "index": 11,
+          "name": "causesFire"
+        },
+        {
+          "index": 12,
+          "name": "mode"
+        }
+      ]
+    },
+    {
+      "name": "fillReportDetails",
+      "descriptor": "(Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReportCategory;",
+      "javadoc": [
+        "Adds some basic stats of the world to the given crash report."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "report"
+        }
+      ]
+    },
+    {
+      "name": "gatherChunkSourceStats",
+      "descriptor": "()Ljava/lang/String;",
+      "javadoc": [
+        "Returns the name of the current chunk provider, by calling chunkprovider.makeString()"
+      ]
+    },
+    {
+      "name": "getBestNeighborSignal",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)I",
+      "javadoc": [
+        "Checks if the specified block or its neighbors are powered by a neighboring block. Used by blocks like TNT and Doors."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getBlockEntity",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getBlockRandomPos",
+      "descriptor": "(IIII)Lnet/minecraft/core/BlockPos;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 2,
+          "name": "y"
+        },
+        {
+          "index": 3,
+          "name": "z"
+        },
+        {
+          "index": 4,
+          "name": "yMask"
+        }
+      ]
+    },
+    {
+      "name": "getBlockState",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getChunk",
+      "descriptor": "(II)Lnet/minecraft/world/level/chunk/LevelChunk;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "chunkX"
+        },
+        {
+          "index": 2,
+          "name": "chunkZ"
+        }
+      ]
+    },
+    {
+      "name": "getChunk",
+      "descriptor": "(IILnet/minecraft/world/level/chunk/ChunkStatus;Z)Lnet/minecraft/world/level/chunk/ChunkAccess;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 2,
+          "name": "z"
+        },
+        {
+          "index": 3,
+          "name": "requiredStatus"
+        },
+        {
+          "index": 4,
+          "name": "nonnull"
+        }
+      ]
+    },
+    {
+      "name": "getChunkAt",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/chunk/LevelChunk;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getChunkForCollisions",
+      "descriptor": "(II)Lnet/minecraft/world/level/BlockGetter;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "chunkX"
+        },
+        {
+          "index": 2,
+          "name": "chunkZ"
+        }
+      ]
+    },
+    {
+      "name": "getCurrentDifficultyAt",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/DifficultyInstance;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getDirectSignalTo",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)I",
+      "javadoc": [
+        "Returns the single highest strong power out of all directions using getStrongPower(BlockPos, EnumFacing)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getEntities",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;",
+      "javadoc": [
+        "Gets all entities within the specified AABB excluding the one passed into it."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        },
+        {
+          "index": 2,
+          "name": "boundingBox"
+        },
+        {
+          "index": 3,
+          "name": "predicate"
+        }
+      ]
+    },
+    {
+      "name": "getEntity",
+      "descriptor": "(I)Lnet/minecraft/world/entity/Entity;",
+      "javadoc": [
+        "Returns the Entity with the given ID, or null if it doesn't exist in this World."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "getFluidState",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getGameRules",
+      "descriptor": "()Lnet/minecraft/world/level/GameRules;",
+      "javadoc": [
+        "Gets the GameRules instance."
+      ]
+    },
+    {
+      "name": "getHeight",
+      "descriptor": "(Lnet/minecraft/world/level/levelgen/Heightmap$Types;II)I",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "heightmapType"
+        },
+        {
+          "index": 2,
+          "name": "x"
+        },
+        {
+          "index": 3,
+          "name": "z"
+        }
+      ]
+    },
+    {
+      "name": "getLevelData",
+      "descriptor": "()Lnet/minecraft/world/level/storage/LevelData;",
+      "javadoc": [
+        "Returns the world's WorldInfo object"
+      ]
+    },
+    {
+      "name": "getMapData",
+      "descriptor": "(Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "mapName"
+        }
+      ]
+    },
+    {
+      "name": "getRainLevel",
+      "descriptor": "(F)F",
+      "javadoc": [
+        "Returns rain strength."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "delta"
+        }
+      ]
+    },
+    {
+      "name": "getSignal",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "facing"
+        }
+      ]
+    },
+    {
+      "name": "getSunAngle",
+      "descriptor": "(F)F",
+      "javadoc": [
+        "Return getCelestialAngle()*2*PI"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "partialTicks"
+        }
+      ]
+    },
+    {
+      "name": "getThunderLevel",
+      "descriptor": "(F)F",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "delta"
+        }
+      ]
+    },
+    {
+      "name": "globalLevelEvent",
+      "descriptor": "(ILnet/minecraft/core/BlockPos;I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "id"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "data"
+        }
+      ]
+    },
+    {
+      "name": "guardEntityTick",
+      "descriptor": "(Ljava/util/function/Consumer;Lnet/minecraft/world/entity/Entity;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "consumerEntity"
+        },
+        {
+          "index": 2,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "hasNeighborSignal",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "hasSignal",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "side"
+        }
+      ]
+    },
+    {
+      "name": "isDay",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Checks whether its daytime by seeing if the light subtracted from the skylight is less than 4. Always returns true on the client because vanilla has no need for it on the client, therefore it is not synced to the client"
+      ]
+    },
+    {
+      "name": "isHumidAt",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "isInSpawnableBounds",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "isInWorldBounds",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Z",
+      "javadoc": [
+        "Check if the given BlockPos has valid coordinates"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "isInWorldBoundsHorizontal",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "isLoaded",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "isOutsideSpawnableHeight",
+      "descriptor": "(I)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "y"
+        }
+      ]
+    },
+    {
+      "name": "isRaining",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if the current rain strength is greater than 0.2"
+      ]
+    },
+    {
+      "name": "isRainingAt",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Z",
+      "javadoc": [
+        "Check if precipitation is currently happening at a position"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "position"
+        }
+      ]
+    },
+    {
+      "name": "isStateAtPosition",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "isThundering",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if the current thunder strength (weighted with the rain strength) is greater than 0.9"
+      ]
+    },
+    {
+      "name": "loadedAndEntityCanStandOn",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "loadedAndEntityCanStandOnFace",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Direction;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "entity"
+        },
+        {
+          "index": 3,
+          "name": "direction"
+        }
+      ]
+    },
+    {
+      "name": "mayInteract",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "neighborChanged",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "block"
+        },
+        {
+          "index": 3,
+          "name": "fromPos"
+        }
+      ]
+    },
+    {
+      "name": "onBlockStateChange",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "blockState"
+        },
+        {
+          "index": 3,
+          "name": "newState"
+        }
+      ]
+    },
+    {
+      "name": "playLocalSound",
+      "descriptor": "(DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFZ)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 3,
+          "name": "y"
+        },
+        {
+          "index": 5,
+          "name": "z"
+        },
+        {
+          "index": 7,
+          "name": "sound"
+        },
+        {
+          "index": 8,
+          "name": "category"
+        },
+        {
+          "index": 9,
+          "name": "volume"
+        },
+        {
+          "index": 10,
+          "name": "pitch"
+        },
+        {
+          "index": 11,
+          "name": "distanceDelay"
+        }
+      ]
+    },
+    {
+      "name": "playSound",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "x"
+        },
+        {
+          "index": 4,
+          "name": "y"
+        },
+        {
+          "index": 6,
+          "name": "z"
+        },
+        {
+          "index": 8,
+          "name": "sound"
+        },
+        {
+          "index": 9,
+          "name": "category"
+        },
+        {
+          "index": 10,
+          "name": "volume"
+        },
+        {
+          "index": 11,
+          "name": "pitch"
+        }
+      ]
+    },
+    {
+      "name": "playSound",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V",
+      "javadoc": [
+        "Plays a sound. On the server, the sound is broadcast to all nearby <em>except</em> the given player. On the client, the sound only plays if the given player is the client player. Thus, this method is intended to be called from code running on both sides. The client plays it locally and the server plays it for everyone else."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "sound"
+        },
+        {
+          "index": 4,
+          "name": "category"
+        },
+        {
+          "index": 5,
+          "name": "volume"
+        },
+        {
+          "index": 6,
+          "name": "pitch"
+        }
+      ]
+    },
+    {
+      "name": "playSound",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "entity"
+        },
+        {
+          "index": 3,
+          "name": "event"
+        },
+        {
+          "index": 4,
+          "name": "category"
+        },
+        {
+          "index": 5,
+          "name": "volume"
+        },
+        {
+          "index": 6,
+          "name": "pitch"
+        }
+      ]
+    },
+    {
+      "name": "prepareWeather",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called from World constructor to set rainingStrength and thunderingStrength"
+      ]
+    },
+    {
+      "name": "removeBlock",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Z)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "isMoving"
+        }
+      ]
+    },
+    {
+      "name": "removeBlockEntity",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "sendBlockUpdated",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;I)V",
+      "javadoc": [
+        "Flags are as in setBlockState"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "oldState"
+        },
+        {
+          "index": 3,
+          "name": "newState"
+        },
+        {
+          "index": 4,
+          "name": "flags"
+        }
+      ]
+    },
+    {
+      "name": "sendPacketToServer",
+      "descriptor": "(Lnet/minecraft/network/protocol/Packet;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "packet"
+        }
+      ]
+    },
+    {
+      "name": "setBlock",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z",
+      "javadoc": [
+        "Sets a block state into this world.Flags are as follows:",
+        "1 will cause a block update.",
+        "2 will send the change to clients.",
+        "4 will prevent the block from being re-rendered.",
+        "8 will force any re-renders to run on the main thread instead",
+        "16 will prevent neighbor reactions (e.g. fences connecting, observers pulsing).",
+        "32 will prevent neighbor reactions from spawning drops.",
+        "64 will signify the block is being moved.",
+        "Flags can be OR-ed"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "newState"
+        },
+        {
+          "index": 3,
+          "name": "flags"
+        }
+      ]
+    },
+    {
+      "name": "setBlock",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;II)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "state"
+        },
+        {
+          "index": 3,
+          "name": "flags"
+        },
+        {
+          "index": 4,
+          "name": "recursionLeft"
+        }
+      ]
+    },
+    {
+      "name": "setBlockAndUpdate",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z",
+      "javadoc": [
+        "Convenience method to update the block on both the client and server"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "setBlocksDirty",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "blockPos"
+        },
+        {
+          "index": 2,
+          "name": "oldState"
+        },
+        {
+          "index": 3,
+          "name": "newState"
+        }
+      ]
+    },
+    {
+      "name": "setRainLevel",
+      "descriptor": "(F)V",
+      "javadoc": [
+        "Sets the strength of the rain."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "strength"
+        }
+      ]
+    },
+    {
+      "name": "setSkyFlashTime",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "timeFlash"
+        }
+      ]
+    },
+    {
+      "name": "setSpawnSettings",
+      "descriptor": "(ZZ)V",
+      "javadoc": [
+        "first boolean for hostile mobs and second for peaceful mobs"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "hostile"
+        },
+        {
+          "index": 2,
+          "name": "peaceful"
+        }
+      ]
+    },
+    {
+      "name": "setThunderLevel",
+      "descriptor": "(F)V",
+      "javadoc": [
+        "Sets the strength of the thunder."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "strength"
+        }
+      ]
+    },
+    {
+      "name": "updateNeighborsAt",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "block"
+        }
+      ]
+    },
+    {
+      "name": "updateNeighborsAtExceptFromFacing",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/Direction;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "blockType"
+        },
+        {
+          "index": 3,
+          "name": "skipSide"
+        }
+      ]
+    },
+    {
+      "name": "updateNeighbourForOutputSignal",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "block"
+        }
+      ]
+    },
+    {
+      "name": "updateSkyBrightness",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called on construction of the World class to setup the initial skylight values"
+      ]
+    }
+  ]
+}
