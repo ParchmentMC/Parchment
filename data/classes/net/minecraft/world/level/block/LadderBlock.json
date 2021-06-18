@@ -1,0 +1,164 @@
+{
+  "name": "net/minecraft/world/level/block/LadderBlock",
+  "methods": [
+    {
+      "name": "canAttachTo",
+      "descriptor": "(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "blockReader"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "direction"
+        }
+      ]
+    },
+    {
+      "name": "canSurvive",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "createBlockStateDefinition",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "builder"
+        }
+      ]
+    },
+    {
+      "name": "getFluidState",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/FluidState;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        }
+      ]
+    },
+    {
+      "name": "getShape",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "context"
+        }
+      ]
+    },
+    {
+      "name": "getStateForPlacement",
+      "descriptor": "(Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "context"
+        }
+      ]
+    },
+    {
+      "name": "mirror",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "javadoc": [
+        "Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed blockstate.",
+        "@deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "mirror"
+        }
+      ]
+    },
+    {
+      "name": "rotate",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "javadoc": [
+        "Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.",
+        "@deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "rot"
+        }
+      ]
+    },
+    {
+      "name": "updateShape",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "javadoc": [
+        "Update the provided state given the provided neighbor facing and neighbor state, returning a new state.",
+        "For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.",
+        "Note that this method should ideally consider only the specific face passed in."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "facing"
+        },
+        {
+          "index": 3,
+          "name": "facingState"
+        },
+        {
+          "index": 4,
+          "name": "level"
+        },
+        {
+          "index": 5,
+          "name": "currentPos"
+        },
+        {
+          "index": 6,
+          "name": "facingPos"
+        }
+      ]
+    }
+  ]
+}

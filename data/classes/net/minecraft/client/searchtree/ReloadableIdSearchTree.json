@@ -1,0 +1,48 @@
+{
+  "name": "net/minecraft/client/searchtree/ReloadableIdSearchTree",
+  "methods": [
+    {
+      "name": "comparePosition",
+      "descriptor": "(Ljava/lang/Object;Ljava/lang/Object;)I",
+      "javadoc": [
+        "Compares two elements. Returns {@code 1} if the first element has more entries, {@code 0} if they have the same number of entries, and {@code -1} if the second element has more enties."
+      ]
+    },
+    {
+      "name": "index",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "javadoc": [
+        "Directly puts the given item into {@link #byId} and {@link #byName}, applying {@link #nameFunc} and {@link idFunc}."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "element"
+        }
+      ]
+    },
+    {
+      "name": "refresh",
+      "descriptor": "()V",
+      "javadoc": [
+        "Recalculates the contents of this search tree, reapplying {@link #nameFunc} and {@link #idFunc}. Should be called whenever resources are reloaded (e.g. language changes)."
+      ]
+    },
+    {
+      "name": "search",
+      "descriptor": "(Ljava/lang/String;)Ljava/util/List;",
+      "javadoc": [
+        "Searches this search tree for the given text.",
+        "<p>",
+        "If the query does not contain a <code>:</code>, then only {@link #byName} is searched\" if it does contain a colon, both {@link #byName} and {@link #byId} are searched and the results are merged using a {@link MergingIterator}.",
+        "@return A list of all matching items in this search tree."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "searchText"
+        }
+      ]
+    }
+  ]
+}

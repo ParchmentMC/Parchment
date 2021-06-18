@@ -1,0 +1,159 @@
+{
+  "name": "net/minecraft/world/inventory/Slot",
+  "methods": [
+    {
+      "name": "checkTakeAchievements",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)V",
+      "javadoc": [
+        "the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "getItem",
+      "descriptor": "()Lnet/minecraft/world/item/ItemStack;",
+      "javadoc": [
+        "Helper fnct to get the stack in the slot."
+      ]
+    },
+    {
+      "name": "getMaxStackSize",
+      "descriptor": "()I",
+      "javadoc": [
+        "Returns the maximum stack size for a given slot (usually the same as getInventoryStackLimit(), but 1 in the case of armor slots)"
+      ]
+    },
+    {
+      "name": "getMaxStackSize",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)I",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "hasItem",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns if this slot contains a stack."
+      ]
+    },
+    {
+      "name": "isActive",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Actualy only call when we want to render the white square effect over the slots. Return always True, except for the armor slot of the Donkey/Mule (we can't interact with the Undead and Skeleton horses)"
+      ]
+    },
+    {
+      "name": "mayPickup",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;)Z",
+      "javadoc": [
+        "Return whether this slot's stack can be taken from this slot."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "mayPlace",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)Z",
+      "javadoc": [
+        "Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "onQuickCraft",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;I)V",
+      "javadoc": [
+        "the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an internal count then calls onCrafting(item)."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        },
+        {
+          "index": 2,
+          "name": "amount"
+        }
+      ]
+    },
+    {
+      "name": "onQuickCraft",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V",
+      "javadoc": [
+        "if par2 has more items than par1, onCrafting(item,countIncrease) is called"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "oldStack"
+        },
+        {
+          "index": 2,
+          "name": "newStack"
+        }
+      ]
+    },
+    {
+      "name": "onSwapCraft",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "numItemsCrafted"
+        }
+      ]
+    },
+    {
+      "name": "remove",
+      "descriptor": "(I)Lnet/minecraft/world/item/ItemStack;",
+      "javadoc": [
+        "Decrease the size of the stack in slot (first int arg) by the amount of the second int arg. Returns the new stack."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "amount"
+        }
+      ]
+    },
+    {
+      "name": "set",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)V",
+      "javadoc": [
+        "Helper method to put a stack in the slot."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "setChanged",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called when the stack in a Slot changes"
+      ]
+    }
+  ]
+}

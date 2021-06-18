@@ -1,0 +1,553 @@
+{
+  "name": "net/minecraft/client/player/LocalPlayer",
+  "fields": [
+    {
+      "name": "positionReminder",
+      "descriptor": "I",
+      "javadoc": [
+        "Reset to 0 every time position is sent to the server, used to send periodic updates every 20 ticks even when the player is not moving."
+      ]
+    },
+    {
+      "name": "wasSprinting",
+      "descriptor": "Z",
+      "javadoc": [
+        "the last sprinting state sent to the server"
+      ]
+    },
+    {
+      "name": "xLast",
+      "descriptor": "D",
+      "javadoc": [
+        "The last X position which was transmitted to the server, used to determine when the X position changes and needs to be re-trasmitted"
+      ]
+    },
+    {
+      "name": "xRotLast",
+      "descriptor": "F",
+      "javadoc": [
+        "The last pitch value which was transmitted to the server, used to determine when the pitch changes and needs to be re-transmitted"
+      ]
+    },
+    {
+      "name": "yLast1",
+      "descriptor": "D",
+      "javadoc": [
+        "The last Y position which was transmitted to the server, used to determine when the Y position changes and needs to be re-transmitted"
+      ]
+    },
+    {
+      "name": "yRotLast",
+      "descriptor": "F",
+      "javadoc": [
+        "The last yaw value which was transmitted to the server, used to determine when the yaw changes and needs to be re-transmitted"
+      ]
+    },
+    {
+      "name": "zLast",
+      "descriptor": "D",
+      "javadoc": [
+        "The last Z position which was transmitted to the server, used to determine when the Z position changes and needs to be re-transmitted"
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "name": "actuallyHurt",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;F)V",
+      "javadoc": [
+        "Deals damage to the entity. This will take the armor of the entity into consideration before damaging the health bar."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "damageSrc"
+        },
+        {
+          "index": 2,
+          "name": "damageAmount"
+        }
+      ]
+    },
+    {
+      "name": "aiStep",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn."
+      ]
+    },
+    {
+      "name": "chat",
+      "descriptor": "(Ljava/lang/String;)V",
+      "javadoc": [
+        "Sends a chat message from the player."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "message"
+        }
+      ]
+    },
+    {
+      "name": "closeContainer",
+      "descriptor": "()V",
+      "javadoc": [
+        "set current crafting inventory back to the 2x2 square"
+      ]
+    },
+    {
+      "name": "crit",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)V",
+      "javadoc": [
+        "Called when the entity is dealt a critical hit."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entityHit"
+        }
+      ]
+    },
+    {
+      "name": "displayClientMessage",
+      "descriptor": "(Lnet/minecraft/network/chat/Component;Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "chatComponent"
+        },
+        {
+          "index": 2,
+          "name": "actionBar"
+        }
+      ]
+    },
+    {
+      "name": "getRopeHoldPosition",
+      "descriptor": "(F)Lnet/minecraft/world/phys/Vec3;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "partialTicks"
+        }
+      ]
+    },
+    {
+      "name": "getServerBrand",
+      "descriptor": "()Ljava/lang/String;",
+      "javadoc": [
+        "Gets the brand of the currently connected server. May be null if the server hasn't yet sent brand information. Server brand information is sent over the {@code MC|Brand} plugin channel, and is used to identify modded servers in crash reports."
+      ]
+    },
+    {
+      "name": "getViewXRot",
+      "descriptor": "(F)F",
+      "javadoc": [
+        "Gets the current pitch of the entity."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "partialTicks"
+        }
+      ]
+    },
+    {
+      "name": "getViewYRot",
+      "descriptor": "(F)F",
+      "javadoc": [
+        "Gets the current yaw of the entity"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "partialTicks"
+        }
+      ]
+    },
+    {
+      "name": "handleEntityEvent",
+      "descriptor": "(B)V",
+      "javadoc": [
+        "Handler for {@link World#setEntityState}"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "heal",
+      "descriptor": "(F)V",
+      "javadoc": [
+        "Heal living entity (param: amount of half-hearts)"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "healAmount"
+        }
+      ]
+    },
+    {
+      "name": "hurt",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+      "javadoc": [
+        "Called when the entity is attacked."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "source"
+        },
+        {
+          "index": 2,
+          "name": "amount"
+        }
+      ]
+    },
+    {
+      "name": "hurtTo",
+      "descriptor": "(F)V",
+      "javadoc": [
+        "Updates health locally."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "health"
+        }
+      ]
+    },
+    {
+      "name": "isEffectiveAi",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns whether the entity is in a server world"
+      ]
+    },
+    {
+      "name": "isLocalPlayer",
+      "descriptor": "()Z",
+      "javadoc": [
+        "returns true if this is an EntityPlayerSP, or the logged in player."
+      ]
+    },
+    {
+      "name": "magicCrit",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entityHit"
+        }
+      ]
+    },
+    {
+      "name": "move",
+      "descriptor": "(Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "type"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "moveTowardsClosestSpace",
+      "descriptor": "(DD)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 3,
+          "name": "z"
+        }
+      ]
+    },
+    {
+      "name": "onSyncedDataUpdated",
+      "descriptor": "(Lnet/minecraft/network/syncher/EntityDataAccessor;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "key"
+        }
+      ]
+    },
+    {
+      "name": "onUpdateAbilities",
+      "descriptor": "()V",
+      "javadoc": [
+        "Sends the player's abilities to the server (if there is one)."
+      ]
+    },
+    {
+      "name": "openCommandBlock",
+      "descriptor": "(Lnet/minecraft/world/level/block/entity/CommandBlockEntity;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "commandBlock"
+        }
+      ]
+    },
+    {
+      "name": "openItemGui",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        },
+        {
+          "index": 2,
+          "name": "hand"
+        }
+      ]
+    },
+    {
+      "name": "openMinecartCommandBlock",
+      "descriptor": "(Lnet/minecraft/world/level/BaseCommandBlock;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "commandBlock"
+        }
+      ]
+    },
+    {
+      "name": "openStructureBlock",
+      "descriptor": "(Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "structure"
+        }
+      ]
+    },
+    {
+      "name": "openTextEdit",
+      "descriptor": "(Lnet/minecraft/world/level/block/entity/SignBlockEntity;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "signTile"
+        }
+      ]
+    },
+    {
+      "name": "playSound",
+      "descriptor": "(Lnet/minecraft/sounds/SoundEvent;FF)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "sound"
+        },
+        {
+          "index": 2,
+          "name": "volume"
+        },
+        {
+          "index": 3,
+          "name": "pitch"
+        }
+      ]
+    },
+    {
+      "name": "removeEffectNoUpdate",
+      "descriptor": "(Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;",
+      "javadoc": [
+        "Removes the given potion effect from the active potion map and returns it. Does not call cleanup callbacks for the end of the potion effect."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "potioneffectin"
+        }
+      ]
+    },
+    {
+      "name": "removeRecipeHighlight",
+      "descriptor": "(Lnet/minecraft/world/item/crafting/Recipe;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "recipe"
+        }
+      ]
+    },
+    {
+      "name": "rideTick",
+      "descriptor": "()V",
+      "javadoc": [
+        "Handles updating while riding another entity"
+      ]
+    },
+    {
+      "name": "sendMessage",
+      "descriptor": "(Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V",
+      "javadoc": [
+        "Send a chat message to the CommandSender"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "component"
+        },
+        {
+          "index": 2,
+          "name": "senderUUID"
+        }
+      ]
+    },
+    {
+      "name": "sendPosition",
+      "descriptor": "()V",
+      "javadoc": [
+        "called every tick when the player is on foot. Performs all the things that normally happen during movement."
+      ]
+    },
+    {
+      "name": "setExperienceValues",
+      "descriptor": "(FII)V",
+      "javadoc": [
+        "Sets the current XP, total XP, and level number."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "currentXP"
+        },
+        {
+          "index": 2,
+          "name": "maxXP"
+        },
+        {
+          "index": 3,
+          "name": "level"
+        }
+      ]
+    },
+    {
+      "name": "setPermissionLevel",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "permissionLevel"
+        }
+      ]
+    },
+    {
+      "name": "setServerBrand",
+      "descriptor": "(Ljava/lang/String;)V",
+      "javadoc": [
+        "Sets the brand of the currently connected server. Server brand information is sent over the {@code MC|Brand} plugin channel, and is used to identify modded servers in crash reports."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "brand"
+        }
+      ]
+    },
+    {
+      "name": "setShowDeathScreen",
+      "descriptor": "(Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "show"
+        }
+      ]
+    },
+    {
+      "name": "setSprinting",
+      "descriptor": "(Z)V",
+      "javadoc": [
+        "Set sprinting switch for Entity."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "sprinting"
+        }
+      ]
+    },
+    {
+      "name": "startRiding",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;Z)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        },
+        {
+          "index": 2,
+          "name": "force"
+        }
+      ]
+    },
+    {
+      "name": "startUsingItem",
+      "descriptor": "(Lnet/minecraft/world/InteractionHand;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "hand"
+        }
+      ]
+    },
+    {
+      "name": "suffocatesAt",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "swing",
+      "descriptor": "(Lnet/minecraft/world/InteractionHand;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "hand"
+        }
+      ]
+    },
+    {
+      "name": "tick",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called to update the entity's position/logic."
+      ]
+    },
+    {
+      "name": "updateAutoJump",
+      "descriptor": "(FF)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "movementX"
+        },
+        {
+          "index": 2,
+          "name": "movementZ"
+        }
+      ]
+    }
+  ]
+}

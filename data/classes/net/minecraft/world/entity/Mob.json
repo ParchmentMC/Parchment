@@ -1,0 +1,857 @@
+{
+  "name": "net/minecraft/world/entity/Mob",
+  "methods": [
+    {
+      "name": "addAdditionalSaveData",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "aiStep",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn."
+      ]
+    },
+    {
+      "name": "ate",
+      "descriptor": "()V",
+      "javadoc": [
+        "This function applies the benefits of growing back wool and faster growing up to the acting entity. (This function is used in the AIEatGrass)"
+      ]
+    },
+    {
+      "name": "baseTick",
+      "descriptor": "()V",
+      "javadoc": [
+        "Gets called every tick from main Entity class"
+      ]
+    },
+    {
+      "name": "canAttackType",
+      "descriptor": "(Lnet/minecraft/world/entity/EntityType;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "type"
+        }
+      ]
+    },
+    {
+      "name": "canBeControlledByRider",
+      "descriptor": "()Z",
+      "javadoc": [
+        "returns true if all the conditions for steering the entity are met. For pigs, this is true if it is being ridden by a player and the player is holding a carrot-on-a-stick"
+      ]
+    },
+    {
+      "name": "canBeLeashed",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "canHoldItem",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "canReplaceCurrentItem",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "candidate"
+        },
+        {
+          "index": 2,
+          "name": "existing"
+        },
+        {
+          "index": 3,
+          "name": "slotType"
+        }
+      ]
+    },
+    {
+      "name": "canTakeItem",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "itemstack"
+        }
+      ]
+    },
+    {
+      "name": "checkAndHandleImportantInteractions",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "hand"
+        }
+      ]
+    },
+    {
+      "name": "checkDespawn",
+      "descriptor": "()V",
+      "javadoc": [
+        "Makes the entity despawn if requirements are reached"
+      ]
+    },
+    {
+      "name": "checkMobSpawnRules",
+      "descriptor": "(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z",
+      "javadoc": [
+        "Returns true if entity is spawned from spawner or if entity can spawn on given BlockPos"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "type"
+        },
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "reason"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "random"
+        }
+      ]
+    },
+    {
+      "name": "checkSpawnObstruction",
+      "descriptor": "(Lnet/minecraft/world/level/LevelReader;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        }
+      ]
+    },
+    {
+      "name": "checkSpawnRules",
+      "descriptor": "(Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "spawnReason"
+        }
+      ]
+    },
+    {
+      "name": "createLootContext",
+      "descriptor": "(ZLnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "attackedRecently"
+        },
+        {
+          "index": 2,
+          "name": "damageSource"
+        }
+      ]
+    },
+    {
+      "name": "createNavigation",
+      "descriptor": "(Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/ai/navigation/PathNavigation;",
+      "javadoc": [
+        "Returns new PathNavigateGround instance"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        }
+      ]
+    },
+    {
+      "name": "doHurtTarget",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "dropCustomDeathLoot",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;IZ)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "source"
+        },
+        {
+          "index": 2,
+          "name": "looting"
+        },
+        {
+          "index": 3,
+          "name": "recentlyHit"
+        }
+      ]
+    },
+    {
+      "name": "dropFromLootTable",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "damageSource"
+        },
+        {
+          "index": 2,
+          "name": "attackedRecently"
+        }
+      ]
+    },
+    {
+      "name": "dropLeash",
+      "descriptor": "(ZZ)V",
+      "javadoc": [
+        "Removes the leash from this entity"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "sendPacket"
+        },
+        {
+          "index": 2,
+          "name": "dropLead"
+        }
+      ]
+    },
+    {
+      "name": "finalizeSpawn",
+      "descriptor": "(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "difficulty"
+        },
+        {
+          "index": 3,
+          "name": "reason"
+        },
+        {
+          "index": 4,
+          "name": "spawnData"
+        },
+        {
+          "index": 5,
+          "name": "dataTag"
+        }
+      ]
+    },
+    {
+      "name": "getAmbientSoundInterval",
+      "descriptor": "()I",
+      "javadoc": [
+        "Get number of ticks, at least during which the living entity will be silent."
+      ]
+    },
+    {
+      "name": "getEquipmentDropChance",
+      "descriptor": "(Lnet/minecraft/world/entity/EquipmentSlot;)F",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "slot"
+        }
+      ]
+    },
+    {
+      "name": "getEquipmentForSlot",
+      "descriptor": "(Lnet/minecraft/world/entity/EquipmentSlot;I)Lnet/minecraft/world/item/Item;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "slot"
+        },
+        {
+          "index": 1,
+          "name": "chance"
+        }
+      ]
+    },
+    {
+      "name": "getExperienceReward",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;)I",
+      "javadoc": [
+        "Get the experience points the entity currently has."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "getItemBySlot",
+      "descriptor": "(Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "slot"
+        }
+      ]
+    },
+    {
+      "name": "getMaxFallDistance",
+      "descriptor": "()I",
+      "javadoc": [
+        "The maximum height from where the entity is alowed to jump (used in pathfinder)"
+      ]
+    },
+    {
+      "name": "getMaxHeadXRot",
+      "descriptor": "()I",
+      "javadoc": [
+        "The speed it takes to move the entityliving's rotationPitch through the faceEntity method. This is only currently use in wolves."
+      ]
+    },
+    {
+      "name": "getMaxSpawnClusterSize",
+      "descriptor": "()I",
+      "javadoc": [
+        "Will return how many at most can spawn in a chunk at once."
+      ]
+    },
+    {
+      "name": "getPathfindingMalus",
+      "descriptor": "(Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)F",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "nodeType"
+        }
+      ]
+    },
+    {
+      "name": "getSensing",
+      "descriptor": "()Lnet/minecraft/world/entity/ai/sensing/Sensing;",
+      "javadoc": [
+        "returns the EntitySenses Object for the EntityLiving"
+      ]
+    },
+    {
+      "name": "getTarget",
+      "descriptor": "()Lnet/minecraft/world/entity/LivingEntity;",
+      "javadoc": [
+        "Gets the active target the Task system uses for tracking"
+      ]
+    },
+    {
+      "name": "handleEntityEvent",
+      "descriptor": "(B)V",
+      "javadoc": [
+        "Handler for {@link World#setEntityState}"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "interact",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "hand"
+        }
+      ]
+    },
+    {
+      "name": "isEffectiveAi",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns whether the entity is in a server world"
+      ]
+    },
+    {
+      "name": "isMaxGroupSizeReached",
+      "descriptor": "(I)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "size"
+        }
+      ]
+    },
+    {
+      "name": "isNoAi",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Get whether this Entity's AI is disabled"
+      ]
+    },
+    {
+      "name": "isPersistenceRequired",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Return the persistenceRequired field (whether this entity is allowed to naturally despawn)"
+      ]
+    },
+    {
+      "name": "isWithinRestriction",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "jumpInLiquid",
+      "descriptor": "(Lnet/minecraft/tags/Tag;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "fluidTag"
+        }
+      ]
+    },
+    {
+      "name": "lookAt",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;FF)V",
+      "javadoc": [
+        "Changes pitch and yaw so that the entity calling the function is facing the entity provided as an argument."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        },
+        {
+          "index": 2,
+          "name": "maxYawIncrease"
+        },
+        {
+          "index": 3,
+          "name": "maxPitchIncrease"
+        }
+      ]
+    },
+    {
+      "name": "mobInteract",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "hand"
+        }
+      ]
+    },
+    {
+      "name": "onOffspringSpawnedFromEgg",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Mob;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "child"
+        }
+      ]
+    },
+    {
+      "name": "pickUpItem",
+      "descriptor": "(Lnet/minecraft/world/entity/item/ItemEntity;)V",
+      "javadoc": [
+        "Tests if this entity should pickup a weapon or an armor. Entity drops current weapon or armor if the new one is better."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "itemEntity"
+        }
+      ]
+    },
+    {
+      "name": "playAmbientSound",
+      "descriptor": "()V",
+      "javadoc": [
+        "Plays living's sound at its position"
+      ]
+    },
+    {
+      "name": "playHurtSound",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "source"
+        }
+      ]
+    },
+    {
+      "name": "populateDefaultEquipmentEnchantments",
+      "descriptor": "(Lnet/minecraft/world/DifficultyInstance;)V",
+      "javadoc": [
+        "Enchants Entity's current equipments based on given DifficultyInstance"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "difficulty"
+        }
+      ]
+    },
+    {
+      "name": "populateDefaultEquipmentSlots",
+      "descriptor": "(Lnet/minecraft/world/DifficultyInstance;)V",
+      "javadoc": [
+        "Gives armor or weapon for entity based on given DifficultyInstance"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "difficulty"
+        }
+      ]
+    },
+    {
+      "name": "readAdditionalSaveData",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)V",
+      "javadoc": [
+        "(abstract) Protected helper method to read subclass entity data from NBT."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "removeWhenFarAway",
+      "descriptor": "(D)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "distanceToClosestPlayer"
+        }
+      ]
+    },
+    {
+      "name": "restrictTo",
+      "descriptor": "(Lnet/minecraft/core/BlockPos;I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "distance"
+        }
+      ]
+    },
+    {
+      "name": "rotlerp",
+      "descriptor": "(FFF)F",
+      "javadoc": [
+        "Arguments: current rotation, intended rotation, max increment."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "angle"
+        },
+        {
+          "index": 2,
+          "name": "targetAngle"
+        },
+        {
+          "index": 3,
+          "name": "maxIncrease"
+        }
+      ]
+    },
+    {
+      "name": "setAggressive",
+      "descriptor": "(Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "hasAggro"
+        }
+      ]
+    },
+    {
+      "name": "setBaby",
+      "descriptor": "(Z)V",
+      "javadoc": [
+        "Set whether this zombie is a child."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "childZombie"
+        }
+      ]
+    },
+    {
+      "name": "setCanPickUpLoot",
+      "descriptor": "(Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "canPickup"
+        }
+      ]
+    },
+    {
+      "name": "setDelayedLeashHolderId",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "leashHolderID"
+        }
+      ]
+    },
+    {
+      "name": "setDropChance",
+      "descriptor": "(Lnet/minecraft/world/entity/EquipmentSlot;F)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "slot"
+        },
+        {
+          "index": 2,
+          "name": "chance"
+        }
+      ]
+    },
+    {
+      "name": "setItemSlot",
+      "descriptor": "(Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "slot"
+        },
+        {
+          "index": 2,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "setLeashedTo",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;Z)V",
+      "javadoc": [
+        "Sets the entity to be leashed to."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        },
+        {
+          "index": 2,
+          "name": "sendAttachNotification"
+        }
+      ]
+    },
+    {
+      "name": "setLeftHanded",
+      "descriptor": "(Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "leftHanded"
+        }
+      ]
+    },
+    {
+      "name": "setNoAi",
+      "descriptor": "(Z)V",
+      "javadoc": [
+        "Set whether this Entity's AI is disabled"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "disable"
+        }
+      ]
+    },
+    {
+      "name": "setPathfindingMalus",
+      "descriptor": "(Lnet/minecraft/world/level/pathfinder/BlockPathTypes;F)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "nodeType"
+        },
+        {
+          "index": 2,
+          "name": "priority"
+        }
+      ]
+    },
+    {
+      "name": "setPersistenceRequired",
+      "descriptor": "()V",
+      "javadoc": [
+        "Enable the Entity persistence"
+      ]
+    },
+    {
+      "name": "setSpeed",
+      "descriptor": "(F)V",
+      "javadoc": [
+        "set the movespeed used for the new AI system"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "speed"
+        }
+      ]
+    },
+    {
+      "name": "setTarget",
+      "descriptor": "(Lnet/minecraft/world/entity/LivingEntity;)V",
+      "javadoc": [
+        "Sets the active target the Task system uses for tracking"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "livingEntity"
+        }
+      ]
+    },
+    {
+      "name": "setXxa",
+      "descriptor": "(F)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "amount"
+        }
+      ]
+    },
+    {
+      "name": "setYya",
+      "descriptor": "(F)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "amount"
+        }
+      ]
+    },
+    {
+      "name": "setZza",
+      "descriptor": "(F)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "amount"
+        }
+      ]
+    },
+    {
+      "name": "spawnAnim",
+      "descriptor": "()V",
+      "javadoc": [
+        "Spawns an explosion particle around the Entity's location"
+      ]
+    },
+    {
+      "name": "startRiding",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;Z)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        },
+        {
+          "index": 2,
+          "name": "force"
+        }
+      ]
+    },
+    {
+      "name": "tick",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called to update the entity's position/logic."
+      ]
+    },
+    {
+      "name": "tickLeash",
+      "descriptor": "()V",
+      "javadoc": [
+        "Applies logic related to leashes, for example dragging the entity or breaking the leash."
+      ]
+    },
+    {
+      "name": "updateControlFlags",
+      "descriptor": "()V",
+      "javadoc": [
+        "Sets MOVE, JUMP, LOOK Goal.Flags depending if entity is riding or been controlled"
+      ]
+    }
+  ]
+}

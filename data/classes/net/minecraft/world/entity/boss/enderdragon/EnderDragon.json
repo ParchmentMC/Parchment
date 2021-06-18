@@ -1,0 +1,373 @@
+{
+  "name": "net/minecraft/world/entity/boss/enderdragon/EnderDragon",
+  "methods": [
+    {
+      "name": "addAdditionalSaveData",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "addEffect",
+      "descriptor": "(Lnet/minecraft/world/effect/MobEffectInstance;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "effectInstance"
+        }
+      ]
+    },
+    {
+      "name": "aiStep",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn."
+      ]
+    },
+    {
+      "name": "canChangeDimensions",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns false if this Entity can't move between dimensions. True if it can."
+      ]
+    },
+    {
+      "name": "canRide",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "checkCrystals",
+      "descriptor": "()V",
+      "javadoc": [
+        "Updates the state of the enderdragon's current endercrystal."
+      ]
+    },
+    {
+      "name": "checkDespawn",
+      "descriptor": "()V",
+      "javadoc": [
+        "Makes the entity despawn if requirements are reached"
+      ]
+    },
+    {
+      "name": "checkWalls",
+      "descriptor": "(Lnet/minecraft/world/phys/AABB;)Z",
+      "javadoc": [
+        "Destroys all blocks that aren't associated with 'The End' inside the given bounding box."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "area"
+        }
+      ]
+    },
+    {
+      "name": "findClosestNode",
+      "descriptor": "()I",
+      "javadoc": [
+        "Generates values for the fields pathPoints, and neighbors, and then returns the nearest pathPoint to the specified position."
+      ]
+    },
+    {
+      "name": "findClosestNode",
+      "descriptor": "(DDD)I",
+      "javadoc": [
+        "Returns the index into pathPoints of the nearest PathPoint."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 3,
+          "name": "y"
+        },
+        {
+          "index": 5,
+          "name": "z"
+        }
+      ]
+    },
+    {
+      "name": "findPath",
+      "descriptor": "(IILnet/minecraft/world/level/pathfinder/Node;)Lnet/minecraft/world/level/pathfinder/Path;",
+      "javadoc": [
+        "Find and return a path among the circles described by pathPoints, or null if the shortest path would just be directly between the start and finish with no intermediate points.",
+        "",
+        "Starting with pathPoint[startIdx], it searches the neighboring points (and their neighboring points, and so on) until it reaches pathPoint[finishIdx], at which point it calls makePath to seal the deal."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "startIdx"
+        },
+        {
+          "index": 2,
+          "name": "finishIdx"
+        },
+        {
+          "index": 3,
+          "name": "andThen"
+        }
+      ]
+    },
+    {
+      "name": "getHeadLookVector",
+      "descriptor": "(F)Lnet/minecraft/world/phys/Vec3;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "partialTicks"
+        }
+      ]
+    },
+    {
+      "name": "getHeadPartYOffset",
+      "descriptor": "(I[D[D)F",
+      "parameters": [
+        {
+          "index": 2,
+          "name": "spineEndOffsets"
+        },
+        {
+          "index": 3,
+          "name": "headPartOffsets"
+        }
+      ]
+    },
+    {
+      "name": "getHurtSound",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "damageSource"
+        }
+      ]
+    },
+    {
+      "name": "getLatencyPos",
+      "descriptor": "(IF)[D",
+      "javadoc": [
+        "Returns a double[3] array with movement offsets, used to calculate trailing tail/neck positions. [0] = yaw offset, [1] = y offset, [2] = unused, always 0. Parameters: buffer index offset, partial ticks."
+      ],
+      "parameters": [
+        {
+          "index": 2,
+          "name": "partialTicks"
+        }
+      ]
+    },
+    {
+      "name": "getSoundVolume",
+      "descriptor": "()F",
+      "javadoc": [
+        "Returns the volume for the sounds this mob makes."
+      ]
+    },
+    {
+      "name": "hurt",
+      "descriptor": "(Ljava/util/List;)V",
+      "javadoc": [
+        "Attacks all entities inside this list, dealing 5 hearts of damage."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entities"
+        }
+      ]
+    },
+    {
+      "name": "hurt",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+      "javadoc": [
+        "Called when the entity is attacked."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "source"
+        },
+        {
+          "index": 2,
+          "name": "amount"
+        }
+      ]
+    },
+    {
+      "name": "hurt",
+      "descriptor": "(Lnet/minecraft/world/entity/boss/EnderDragonPart;Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "part"
+        },
+        {
+          "index": 2,
+          "name": "source"
+        },
+        {
+          "index": 3,
+          "name": "damage"
+        }
+      ]
+    },
+    {
+      "name": "isPickable",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if other Entities should be prevented from moving through this Entity."
+      ]
+    },
+    {
+      "name": "kill",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called by the /kill command."
+      ]
+    },
+    {
+      "name": "knockBack",
+      "descriptor": "(Ljava/util/List;)V",
+      "javadoc": [
+        "Pushes all entities inside the list away from the enderdragon."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entities"
+        }
+      ]
+    },
+    {
+      "name": "onCrystalDestroyed",
+      "descriptor": "(Lnet/minecraft/world/entity/boss/enderdragon/EndCrystal;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/damagesource/DamageSource;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "crystal"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "dmgSrc"
+        }
+      ]
+    },
+    {
+      "name": "onSyncedDataUpdated",
+      "descriptor": "(Lnet/minecraft/network/syncher/EntityDataAccessor;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "key"
+        }
+      ]
+    },
+    {
+      "name": "readAdditionalSaveData",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)V",
+      "javadoc": [
+        "(abstract) Protected helper method to read subclass entity data from NBT."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "reallyHurt",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+      "javadoc": [
+        "Provides a way to cause damage to an ender dragon."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "source"
+        },
+        {
+          "index": 2,
+          "name": "amount"
+        }
+      ]
+    },
+    {
+      "name": "reconstructPath",
+      "descriptor": "(Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)Lnet/minecraft/world/level/pathfinder/Path;",
+      "javadoc": [
+        "Create and return a new PathEntity defining a path from the start to the finish, using the connections already made by the caller, findPath."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "start"
+        },
+        {
+          "index": 2,
+          "name": "finish"
+        }
+      ]
+    },
+    {
+      "name": "rotWrap",
+      "descriptor": "(D)F",
+      "javadoc": [
+        "Simplifies the value of a number by adding/subtracting 180 to the point that the number is between -180 and 180."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "angle"
+        }
+      ]
+    },
+    {
+      "name": "tickDeath",
+      "descriptor": "()V",
+      "javadoc": [
+        "handles entity death timer, experience orb and particle creation"
+      ]
+    },
+    {
+      "name": "tickPart",
+      "descriptor": "(Lnet/minecraft/world/entity/boss/EnderDragonPart;DDD)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "part"
+        },
+        {
+          "index": 2,
+          "name": "offsetX"
+        },
+        {
+          "index": 4,
+          "name": "offsetY"
+        },
+        {
+          "index": 6,
+          "name": "offsetZ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,448 @@
+{
+  "name": "net/minecraft/world/entity/vehicle/Boat",
+  "methods": [
+    {
+      "name": "addAdditionalSaveData",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "animateHurt",
+      "descriptor": "()V",
+      "javadoc": [
+        "Setups the entity to do the hurt animation. Only used by packets in multiplayer."
+      ]
+    },
+    {
+      "name": "canAddPassenger",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "passenger"
+        }
+      ]
+    },
+    {
+      "name": "canCollideWith",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "checkFallDamage",
+      "descriptor": "(DZLnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "y"
+        },
+        {
+          "index": 3,
+          "name": "onGround"
+        },
+        {
+          "index": 4,
+          "name": "state"
+        },
+        {
+          "index": 5,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "clampRotation",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)V",
+      "javadoc": [
+        "Applies this boat's yaw to the given entity. Used to update the orientation of its passenger."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entityToUpdate"
+        }
+      ]
+    },
+    {
+      "name": "floatBoat",
+      "descriptor": "()V",
+      "javadoc": [
+        "Update the boat's speed, based on momentum."
+      ]
+    },
+    {
+      "name": "getBubbleAngle",
+      "descriptor": "(F)F",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "partialTicks"
+        }
+      ]
+    },
+    {
+      "name": "getControllingPassenger",
+      "descriptor": "()Lnet/minecraft/world/entity/Entity;",
+      "javadoc": [
+        "For vehicles, the first passenger is generally considered the controller and \"drives\" the vehicle. For example, Pigs, Horses, and Boats are generally \"steered\" by the controlling passenger."
+      ]
+    },
+    {
+      "name": "getDamage",
+      "descriptor": "()F",
+      "javadoc": [
+        "Gets the damage taken from the last hit."
+      ]
+    },
+    {
+      "name": "getDismountLocationForPassenger",
+      "descriptor": "(Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "livingEntity"
+        }
+      ]
+    },
+    {
+      "name": "getEyeHeight",
+      "descriptor": "(Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pose"
+        },
+        {
+          "index": 2,
+          "name": "size"
+        }
+      ]
+    },
+    {
+      "name": "getGroundFriction",
+      "descriptor": "()F",
+      "javadoc": [
+        "Decides how much the boat should be gliding on the land (based on any slippery blocks)"
+      ]
+    },
+    {
+      "name": "getHurtDir",
+      "descriptor": "()I",
+      "javadoc": [
+        "Gets the forward direction of the entity."
+      ]
+    },
+    {
+      "name": "getHurtTime",
+      "descriptor": "()I",
+      "javadoc": [
+        "Gets the time since the last hit."
+      ]
+    },
+    {
+      "name": "getMotionDirection",
+      "descriptor": "()Lnet/minecraft/core/Direction;",
+      "javadoc": [
+        "Gets the horizontal facing direction of this Entity, adjusted to take specially-treated entity types into account."
+      ]
+    },
+    {
+      "name": "getPaddleState",
+      "descriptor": "(I)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "side"
+        }
+      ]
+    },
+    {
+      "name": "getPassengersRidingOffset",
+      "descriptor": "()D",
+      "javadoc": [
+        "Returns the Y offset from the entity's position for any entity riding this one."
+      ]
+    },
+    {
+      "name": "getRowingTime",
+      "descriptor": "(IF)F",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "side"
+        },
+        {
+          "index": 2,
+          "name": "limbSwing"
+        }
+      ]
+    },
+    {
+      "name": "getStatus",
+      "descriptor": "()Lnet/minecraft/world/entity/vehicle/Boat$Status;",
+      "javadoc": [
+        "Determines whether the boat is in water, gliding on land, or in air"
+      ]
+    },
+    {
+      "name": "hurt",
+      "descriptor": "(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+      "javadoc": [
+        "Called when the entity is attacked."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "source"
+        },
+        {
+          "index": 2,
+          "name": "amount"
+        }
+      ]
+    },
+    {
+      "name": "interact",
+      "descriptor": "(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "hand"
+        }
+      ]
+    },
+    {
+      "name": "isPickable",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if other Entities should be prevented from moving through this Entity."
+      ]
+    },
+    {
+      "name": "isPushable",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Returns true if this entity should push and be pushed by other entities when colliding."
+      ]
+    },
+    {
+      "name": "isUnderwater",
+      "descriptor": "()Lnet/minecraft/world/entity/vehicle/Boat$Status;",
+      "javadoc": [
+        "Decides whether the boat is currently underwater."
+      ]
+    },
+    {
+      "name": "lerpTo",
+      "descriptor": "(DDDFFIZ)V",
+      "javadoc": [
+        "Sets a target for the client to interpolate towards over the next few ticks"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 3,
+          "name": "y"
+        },
+        {
+          "index": 5,
+          "name": "z"
+        },
+        {
+          "index": 7,
+          "name": "yaw"
+        },
+        {
+          "index": 8,
+          "name": "pitch"
+        },
+        {
+          "index": 9,
+          "name": "posRotationIncrements"
+        },
+        {
+          "index": 10,
+          "name": "teleport"
+        }
+      ]
+    },
+    {
+      "name": "onAboveBubbleCol",
+      "descriptor": "(Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "downwards"
+        }
+      ]
+    },
+    {
+      "name": "onPassengerTurned",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)V",
+      "javadoc": [
+        "Applies this entity's orientation (pitch/yaw) to another entity. Used to update passenger orientation."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entityToUpdate"
+        }
+      ]
+    },
+    {
+      "name": "positionRider",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "passenger"
+        }
+      ]
+    },
+    {
+      "name": "push",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)V",
+      "javadoc": [
+        "Applies a velocity to the entities, to push them away from eachother."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "readAdditionalSaveData",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)V",
+      "javadoc": [
+        "(abstract) Protected helper method to read subclass entity data from NBT."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "setBubbleTime",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "ticks"
+        }
+      ]
+    },
+    {
+      "name": "setDamage",
+      "descriptor": "(F)V",
+      "javadoc": [
+        "Sets the damage taken from the last hit."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "damageTaken"
+        }
+      ]
+    },
+    {
+      "name": "setHurtDir",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Sets the forward direction of the entity."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "forwardDirection"
+        }
+      ]
+    },
+    {
+      "name": "setHurtTime",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Sets the time to count down from since the last time entity was hit."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "timeSinceHit"
+        }
+      ]
+    },
+    {
+      "name": "setInput",
+      "descriptor": "(ZZZZ)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "leftInputDown"
+        },
+        {
+          "index": 2,
+          "name": "rightInputDown"
+        },
+        {
+          "index": 3,
+          "name": "forwardInputDown"
+        },
+        {
+          "index": 4,
+          "name": "backInputDown"
+        }
+      ]
+    },
+    {
+      "name": "setPaddleState",
+      "descriptor": "(ZZ)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "left"
+        },
+        {
+          "index": 2,
+          "name": "right"
+        }
+      ]
+    },
+    {
+      "name": "setType",
+      "descriptor": "(Lnet/minecraft/world/entity/vehicle/Boat$Type;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "boatType"
+        }
+      ]
+    },
+    {
+      "name": "tick",
+      "descriptor": "()V",
+      "javadoc": [
+        "Called to update the entity's position/logic."
+      ]
+    }
+  ]
+}

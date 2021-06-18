@@ -1,0 +1,53 @@
+{
+  "name": "net/minecraft/world/level/block/entity/SpawnerBlockEntity",
+  "methods": [
+    {
+      "name": "getUpdatePacket",
+      "descriptor": "()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;",
+      "javadoc": [
+        "Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}"
+      ]
+    },
+    {
+      "name": "getUpdateTag",
+      "descriptor": "()Lnet/minecraft/nbt/CompoundTag;",
+      "javadoc": [
+        "Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}"
+      ]
+    },
+    {
+      "name": "onlyOpCanSetNbt",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Checks if players can use this tile entity to access operator (permission level 2) commands either directly or indirectly, such as give or setblock. A similar method exists for entities at {@link net.minecraft.entity.Entity#ignoreItemEntityData()}.<p>For example, {@link net.minecraft.tileentity.TileEntitySign#onlyOpsCanSetNbt() signs} (player right-clicking) and {@link net.minecraft.tileentity.TileEntityCommandBlock#onlyOpsCanSetNbt() command blocks} are considered accessible.</p>@return true if this block entity offers ways for unauthorized players to use restricted commands"
+      ]
+    },
+    {
+      "name": "save",
+      "descriptor": "(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "compound"
+        }
+      ]
+    },
+    {
+      "name": "triggerEvent",
+      "descriptor": "(II)Z",
+      "javadoc": [
+        "See {@link Block#eventReceived} for more information. This must return true serverside before it is called clientside."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "id"
+        },
+        {
+          "index": 2,
+          "name": "type"
+        }
+      ]
+    }
+  ]
+}

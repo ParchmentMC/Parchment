@@ -1,0 +1,556 @@
+{
+  "name": "net/minecraft/client/gui/components/EditBox",
+  "fields": [
+    {
+      "name": "canLoseFocus",
+      "descriptor": "Z",
+      "javadoc": [
+        "if true the textbox can lose focus by clicking elsewhere on the screen"
+      ]
+    },
+    {
+      "name": "displayPos",
+      "descriptor": "I",
+      "javadoc": [
+        "The current character index that should be used as start of the rendered text."
+      ]
+    },
+    {
+      "name": "filter",
+      "descriptor": "Ljava/util/function/Predicate;",
+      "javadoc": [
+        "Called to check if the text is valid"
+      ]
+    },
+    {
+      "name": "highlightPos",
+      "descriptor": "I",
+      "javadoc": [
+        "other selection position, maybe the same as the cursor"
+      ]
+    },
+    {
+      "name": "isEditable",
+      "descriptor": "Z",
+      "javadoc": [
+        "If this value is true along with isFocused, keyTyped will process the keys."
+      ]
+    },
+    {
+      "name": "value",
+      "descriptor": "Ljava/lang/String;",
+      "javadoc": [
+        "Has the current text being edited on the textbox."
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "name": "changeFocus",
+      "descriptor": "(Z)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "focus"
+        }
+      ]
+    },
+    {
+      "name": "charTyped",
+      "descriptor": "(CI)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "codePoint"
+        },
+        {
+          "index": 2,
+          "name": "modifiers"
+        }
+      ]
+    },
+    {
+      "name": "deleteChars",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Deletes the given number of characters from the current cursor's position, unless there is currently a selection, in which case the selection is deleted instead."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "num"
+        }
+      ]
+    },
+    {
+      "name": "deleteWords",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Deletes the given number of words from the current cursor's position, unless there is currently a selection, in which case the selection is deleted instead."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "num"
+        }
+      ]
+    },
+    {
+      "name": "getCursorPosition",
+      "descriptor": "()I",
+      "javadoc": [
+        "returns the current position of the cursor"
+      ]
+    },
+    {
+      "name": "getHighlighted",
+      "descriptor": "()Ljava/lang/String;",
+      "javadoc": [
+        "returns the text between the cursor and selectionEnd"
+      ]
+    },
+    {
+      "name": "getInnerWidth",
+      "descriptor": "()I",
+      "javadoc": [
+        "returns the width of the textbox depending on if background drawing is enabled"
+      ]
+    },
+    {
+      "name": "getMaxLength",
+      "descriptor": "()I",
+      "javadoc": [
+        "returns the maximum number of character that can be contained in this textbox"
+      ]
+    },
+    {
+      "name": "getValue",
+      "descriptor": "()Ljava/lang/String;",
+      "javadoc": [
+        "Returns the contents of the textbox"
+      ]
+    },
+    {
+      "name": "getWordPosition",
+      "descriptor": "(I)I",
+      "javadoc": [
+        "Gets the starting index of the word at the specified number of words away from the cursor position."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "numWords"
+        }
+      ]
+    },
+    {
+      "name": "getWordPosition",
+      "descriptor": "(II)I",
+      "javadoc": [
+        "Gets the starting index of the word at a distance of the specified number of words away from the given position."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "n"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getWordPosition",
+      "descriptor": "(IIZ)I",
+      "javadoc": [
+        "Like getNthWordFromPos (which wraps this), but adds option for skipping consecutive spaces"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "n"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "skipWs"
+        }
+      ]
+    },
+    {
+      "name": "insertText",
+      "descriptor": "(Ljava/lang/String;)V",
+      "javadoc": [
+        "Adds the given text after the cursor, or replaces the currently selected text if there is a selection."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "textToWrite"
+        }
+      ]
+    },
+    {
+      "name": "isBordered",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Gets whether the background and outline of this text box should be drawn (true if so)."
+      ]
+    },
+    {
+      "name": "isMouseOver",
+      "descriptor": "(DD)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "mouseX"
+        },
+        {
+          "index": 3,
+          "name": "mouseY"
+        }
+      ]
+    },
+    {
+      "name": "isVisible",
+      "descriptor": "()Z",
+      "javadoc": [
+        "returns true if this textbox is visible"
+      ]
+    },
+    {
+      "name": "keyPressed",
+      "descriptor": "(III)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "keyCode"
+        },
+        {
+          "index": 2,
+          "name": "scanCode"
+        },
+        {
+          "index": 3,
+          "name": "modifiers"
+        }
+      ]
+    },
+    {
+      "name": "mouseClicked",
+      "descriptor": "(DDI)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "mouseX"
+        },
+        {
+          "index": 3,
+          "name": "mouseY"
+        },
+        {
+          "index": 5,
+          "name": "button"
+        }
+      ]
+    },
+    {
+      "name": "moveCursor",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Moves the text cursor by a specified number of characters and clears the selection"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "num"
+        }
+      ]
+    },
+    {
+      "name": "moveCursorTo",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Sets the current position of the cursor."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "moveCursorToEnd",
+      "descriptor": "()V",
+      "javadoc": [
+        "Moves the cursor to the very end of this text box."
+      ]
+    },
+    {
+      "name": "moveCursorToStart",
+      "descriptor": "()V",
+      "javadoc": [
+        "Moves the cursor to the very start of this text box."
+      ]
+    },
+    {
+      "name": "onFocusedChanged",
+      "descriptor": "(Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "focused"
+        }
+      ]
+    },
+    {
+      "name": "onValueChange",
+      "descriptor": "(Ljava/lang/String;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "newText"
+        }
+      ]
+    },
+    {
+      "name": "renderButton",
+      "descriptor": "(Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "matrixStack"
+        },
+        {
+          "index": 2,
+          "name": "mouseX"
+        },
+        {
+          "index": 3,
+          "name": "mouseY"
+        },
+        {
+          "index": 4,
+          "name": "partialTicks"
+        }
+      ]
+    },
+    {
+      "name": "renderHighlight",
+      "descriptor": "(IIII)V",
+      "javadoc": [
+        "Draws the blue selection box."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "startX"
+        },
+        {
+          "index": 2,
+          "name": "startY"
+        },
+        {
+          "index": 3,
+          "name": "endX"
+        },
+        {
+          "index": 4,
+          "name": "endY"
+        }
+      ]
+    },
+    {
+      "name": "setBordered",
+      "descriptor": "(Z)V",
+      "javadoc": [
+        "Sets whether or not the background and outline of this text box should be drawn."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "enableBackgroundDrawing"
+        }
+      ]
+    },
+    {
+      "name": "setCanLoseFocus",
+      "descriptor": "(Z)V",
+      "javadoc": [
+        "Sets whether this text box loses focus when something other than it is clicked."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "canLoseFocus"
+        }
+      ]
+    },
+    {
+      "name": "setCursorPosition",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "setEditable",
+      "descriptor": "(Z)V",
+      "javadoc": [
+        "Sets whether this text box is enabled. Disabled text boxes cannot be typed in."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "enabled"
+        }
+      ]
+    },
+    {
+      "name": "setFilter",
+      "descriptor": "(Ljava/util/function/Predicate;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "validator"
+        }
+      ]
+    },
+    {
+      "name": "setFocus",
+      "descriptor": "(Z)V",
+      "javadoc": [
+        "Sets focus to this gui element"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "isFocused"
+        }
+      ]
+    },
+    {
+      "name": "setFormatter",
+      "descriptor": "(Ljava/util/function/BiFunction;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "textFormatter"
+        }
+      ]
+    },
+    {
+      "name": "setHighlightPos",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Sets the position of the selection anchor (the selection anchor and the cursor position mark the edges of the selection). If the anchor is set beyond the bounds of the current text, it will be put back inside."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "position"
+        }
+      ]
+    },
+    {
+      "name": "setMaxLength",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Sets the maximum length for the text in this text box. If the current text is longer than this length, the current text will be trimmed."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "length"
+        }
+      ]
+    },
+    {
+      "name": "setResponder",
+      "descriptor": "(Ljava/util/function/Consumer;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "rssponder"
+        }
+      ]
+    },
+    {
+      "name": "setTextColor",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Sets the color to use when drawing this text box's text. A different color is used if this text box is disabled."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "color"
+        }
+      ]
+    },
+    {
+      "name": "setTextColorUneditable",
+      "descriptor": "(I)V",
+      "javadoc": [
+        "Sets the color to use for text in this text box when this text box is disabled."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "color"
+        }
+      ]
+    },
+    {
+      "name": "setValue",
+      "descriptor": "(Ljava/lang/String;)V",
+      "javadoc": [
+        "Sets the text of the textbox, and moves the cursor to the end."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "text"
+        }
+      ]
+    },
+    {
+      "name": "setVisible",
+      "descriptor": "(Z)V",
+      "javadoc": [
+        "Sets whether or not this textbox is visible"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "isVisible"
+        }
+      ]
+    },
+    {
+      "name": "setX",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "x"
+        }
+      ]
+    },
+    {
+      "name": "tick",
+      "descriptor": "()V",
+      "javadoc": [
+        "Increments the cursor counter"
+      ]
+    }
+  ]
+}

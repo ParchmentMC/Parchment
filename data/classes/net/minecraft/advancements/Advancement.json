@@ -1,0 +1,93 @@
+{
+  "name": "net/minecraft/advancements/Advancement",
+  "methods": [
+    {
+      "name": "addChild",
+      "descriptor": "(Lnet/minecraft/advancements/Advancement;)V",
+      "javadoc": [
+        "Add the given {@code Advancement} as a child of this {@code Advancement}.",
+        "",
+        "@see #getParent()"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "advancement"
+        }
+      ]
+    },
+    {
+      "name": "deconstruct",
+      "descriptor": "()Lnet/minecraft/advancements/Advancement$Builder;",
+      "javadoc": [
+        "Creates a new advancement builder with the data from this advancement"
+      ]
+    },
+    {
+      "name": "getChatComponent",
+      "descriptor": "()Lnet/minecraft/network/chat/Component;",
+      "javadoc": [
+        "Returns the {@code ITextComponent} that is shown in the chat message sent after this {@code Advancement} is completed.",
+        "",
+        "@return the {@code ITextComponent} that is shown in the chat message sent after this {@code Advancement} is completed. If this {@code Advancement} is {@linkplain #getDisplay() invisible}, then it consists simply of {@link #getId()}. Otherwise, it is the {@linkplain DisplayInfo#getTitle() title} inside square brackets, colored by the {@linkplain net.minecraft.advancements.FrameType#getFormat frame type}, and hovering over it shows the {@linkplain DisplayInfo#getDescription() description}."
+      ]
+    },
+    {
+      "name": "getChildren",
+      "descriptor": "()Ljava/lang/Iterable;",
+      "javadoc": [
+        "Get the children of this {@code Advancement}.",
+        "",
+        "@return an {@code Iterable} of this {@code Advancement}'s children.",
+        "@see #getParent()"
+      ]
+    },
+    {
+      "name": "getCriteria",
+      "descriptor": "()Ljava/util/Map;",
+      "javadoc": [
+        "Get the {@link Criterion Criteria} used to decide the completion of this {@code Advancement}. Each key-value pair consists of a {@code Criterion} and its name.",
+        "",
+        "@return the criteria used to decide the completion of this {@code Advancement}",
+        "@see #getRequirements()"
+      ]
+    },
+    {
+      "name": "getDisplay",
+      "descriptor": "()Lnet/minecraft/advancements/DisplayInfo;",
+      "javadoc": [
+        "Get information that defines this {@code Advancement}'s appearance in GUIs.",
+        "",
+        "@return information that defines this {@code Advancement}'s appearance in GUIs. If {@code null}, signifies an invisible {@code Advancement}."
+      ]
+    },
+    {
+      "name": "getId",
+      "descriptor": "()Lnet/minecraft/resources/ResourceLocation;",
+      "javadoc": [
+        "Get this {@code Advancement}'s unique identifier.",
+        "",
+        "@return this {@code Advancement}'s unique identifier"
+      ]
+    },
+    {
+      "name": "getMaxCriteraRequired",
+      "descriptor": "()I",
+      "javadoc": [
+        "Get how many requirements this {@code Advancement} has.",
+        "",
+        "@return {@code this.getRequirements().length}",
+        "@see #getRequirements()"
+      ]
+    },
+    {
+      "name": "getParent",
+      "descriptor": "()Lnet/minecraft/advancements/Advancement;",
+      "javadoc": [
+        "Get the {@code Advancement} that is this {@code Advancement}'s parent. This determines the tree structure that appears in the {@linkplain GuiScreenAdvancements GUI}.",
+        "",
+        "@return the parent {@code Advancement} of this {@code Advancement}, or {@code null} to signify that this {@code Advancement} is a root with no parent."
+      ]
+    }
+  ]
+}

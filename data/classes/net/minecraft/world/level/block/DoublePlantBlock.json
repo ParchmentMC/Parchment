@@ -1,0 +1,211 @@
+{
+  "name": "net/minecraft/world/level/block/DoublePlantBlock",
+  "methods": [
+    {
+      "name": "canSurvive",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "createBlockStateDefinition",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "builder"
+        }
+      ]
+    },
+    {
+      "name": "getOffsetType",
+      "descriptor": "()Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;",
+      "javadoc": [
+        "Get the OffsetType for this Block. Determines if the model is rendered slightly offset."
+      ]
+    },
+    {
+      "name": "getSeed",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)J",
+      "javadoc": [
+        "Return a random long to be passed to {@link IBakedModel#getQuads}, used for random model rotations"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getStateForPlacement",
+      "descriptor": "(Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "context"
+        }
+      ]
+    },
+    {
+      "name": "playerDestroy",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/item/ItemStack;)V",
+      "javadoc": [
+        "Spawns the block's drops in the world. By the time this is called the Block has possibly been set to air via Block.removedByPlayer"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "player"
+        },
+        {
+          "index": 3,
+          "name": "pos"
+        },
+        {
+          "index": 4,
+          "name": "state"
+        },
+        {
+          "index": 5,
+          "name": "te"
+        },
+        {
+          "index": 6,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "playerWillDestroy",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V",
+      "javadoc": [
+        "Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect this block"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "state"
+        },
+        {
+          "index": 4,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "preventCreativeDropFromBottomPart",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "level"
+        },
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "state"
+        },
+        {
+          "index": 3,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "setPlacedBy",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V",
+      "javadoc": [
+        "Called by ItemBlocks after a block is set in the world, to allow post-place logic"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "pos"
+        },
+        {
+          "index": 3,
+          "name": "state"
+        },
+        {
+          "index": 4,
+          "name": "placer"
+        },
+        {
+          "index": 5,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "updateShape",
+      "descriptor": "(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;",
+      "javadoc": [
+        "Update the provided state given the provided neighbor facing and neighbor state, returning a new state.",
+        "For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.",
+        "Note that this method should ideally consider only the specific face passed in."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "state"
+        },
+        {
+          "index": 2,
+          "name": "facing"
+        },
+        {
+          "index": 3,
+          "name": "facingState"
+        },
+        {
+          "index": 4,
+          "name": "level"
+        },
+        {
+          "index": 5,
+          "name": "currentPos"
+        },
+        {
+          "index": 6,
+          "name": "facingPos"
+        }
+      ]
+    }
+  ]
+}

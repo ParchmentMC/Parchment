@@ -1,0 +1,114 @@
+{
+  "name": "net/minecraft/server/rcon/thread/QueryThreadGs4",
+  "methods": [
+    {
+      "name": "buildRuleResponse",
+      "descriptor": "(Ljava/net/DatagramPacket;)[B",
+      "javadoc": [
+        "Creates a query response as a byte array for the specified query DatagramPacket"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "requestPacket"
+        }
+      ]
+    },
+    {
+      "name": "getIdentBytes",
+      "descriptor": "(Ljava/net/SocketAddress;)[B",
+      "javadoc": [
+        "Returns the request ID provided by the authorized client"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "address"
+        }
+      ]
+    },
+    {
+      "name": "initSocket",
+      "descriptor": "()Z",
+      "javadoc": [
+        "Initializes the query system by binding it to a port"
+      ]
+    },
+    {
+      "name": "processPacket",
+      "descriptor": "(Ljava/net/DatagramPacket;)Z",
+      "javadoc": [
+        "Parses an incoming DatagramPacket, returning true if the packet was valid"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "requestPacket"
+        }
+      ]
+    },
+    {
+      "name": "pruneChallenges",
+      "descriptor": "()V",
+      "javadoc": [
+        "Removes all clients whose auth is no longer valid"
+      ]
+    },
+    {
+      "name": "recoverSocketError",
+      "descriptor": "(Ljava/lang/Exception;)V",
+      "javadoc": [
+        "Stops the query server and reports the given Exception"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "exception"
+        }
+      ]
+    },
+    {
+      "name": "sendChallenge",
+      "descriptor": "(Ljava/net/DatagramPacket;)V",
+      "javadoc": [
+        "Sends an auth challenge DatagramPacket to the client and adds the client to the queryClients map"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "requestPacket"
+        }
+      ]
+    },
+    {
+      "name": "sendTo",
+      "descriptor": "([BLjava/net/DatagramPacket;)V",
+      "javadoc": [
+        "Sends a byte array as a DatagramPacket response to the client who sent the given DatagramPacket"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "data"
+        },
+        {
+          "index": 2,
+          "name": "requestPacket"
+        }
+      ]
+    },
+    {
+      "name": "validChallenge",
+      "descriptor": "(Ljava/net/DatagramPacket;)Ljava/lang/Boolean;",
+      "javadoc": [
+        "Returns true if the client has a valid auth, otherwise false"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "requestPacket"
+        }
+      ]
+    }
+  ]
+}

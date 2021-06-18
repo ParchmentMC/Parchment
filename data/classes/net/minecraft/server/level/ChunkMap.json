@@ -1,0 +1,366 @@
+{
+  "name": "net/minecraft/server/level/ChunkMap",
+  "fields": [
+    {
+      "name": "entitiesInLevel",
+      "descriptor": "Lit/unimi/dsi/fastutil/longs/LongSet;",
+      "javadoc": [
+        "Chunk positions in this set have fully loaded and their TE's and entities are accessible from the world"
+      ]
+    },
+    {
+      "name": "modified",
+      "descriptor": "Z",
+      "javadoc": [
+        "True if changes have been made to {@link #loadedChunks} and thus a new copy of the collection has to be made into {@link #immutableLoadedChunks}."
+      ]
+    },
+    {
+      "name": "toDrop",
+      "descriptor": "Lit/unimi/dsi/fastutil/longs/LongSet;",
+      "javadoc": [
+        "Chunks that have been requested to be unloaded, but haven't been unloaded yet."
+      ]
+    },
+    {
+      "name": "updatingChunkMap",
+      "descriptor": "Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;",
+      "javadoc": [
+        "Chunks in memory. This should only ever be manipulated by the main thread."
+      ]
+    },
+    {
+      "name": "visibleChunkMap",
+      "descriptor": "Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;",
+      "javadoc": [
+        "Same as {@link #loadedChunks}, but immutable for access from other threads. <em>This should never be mutated.</em>"
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "name": "addEntity",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "broadcast",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/protocol/Packet;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "broadcastAndSend",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/protocol/Packet;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "checkerboardDistance",
+      "descriptor": "(Lnet/minecraft/world/level/ChunkPos;II)I",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "chunkPos"
+        },
+        {
+          "index": 1,
+          "name": "x"
+        },
+        {
+          "index": 2,
+          "name": "y"
+        }
+      ]
+    },
+    {
+      "name": "euclideanDistanceSquared",
+      "descriptor": "(Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/entity/Entity;)D",
+      "javadoc": [
+        "Returns the squared distance to the center of the chunk."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "chunkPos"
+        },
+        {
+          "index": 1,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "getChunkDebugData",
+      "descriptor": "(Lnet/minecraft/world/level/ChunkPos;)Ljava/lang/String;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "getChunks",
+      "descriptor": "()Ljava/lang/Iterable;",
+      "javadoc": [
+        "Gets an unmodifiable iterable of all loaded chunks in the chunk manager"
+      ]
+    },
+    {
+      "name": "getPlayers",
+      "descriptor": "(Lnet/minecraft/world/level/ChunkPos;Z)Ljava/util/stream/Stream;",
+      "javadoc": [
+        "Returns the players tracking the given chunk."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        },
+        {
+          "index": 2,
+          "name": "boundaryOnly"
+        }
+      ]
+    },
+    {
+      "name": "move",
+      "descriptor": "(Lnet/minecraft/server/level/ServerPlayer;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "noPlayersCloseForSpawning",
+      "descriptor": "(Lnet/minecraft/world/level/ChunkPos;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "chunkPos"
+        }
+      ]
+    },
+    {
+      "name": "playerLoadedChunk",
+      "descriptor": "(Lnet/minecraft/server/level/ServerPlayer;[Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/world/level/chunk/LevelChunk;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "packetCache"
+        },
+        {
+          "index": 3,
+          "name": "chunk"
+        }
+      ]
+    },
+    {
+      "name": "processUnloads",
+      "descriptor": "(Ljava/util/function/BooleanSupplier;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "hasMoreTime"
+        }
+      ]
+    },
+    {
+      "name": "readChunk",
+      "descriptor": "(Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/nbt/CompoundTag;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "pos"
+        }
+      ]
+    },
+    {
+      "name": "removeEntity",
+      "descriptor": "(Lnet/minecraft/world/entity/Entity;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "entity"
+        }
+      ]
+    },
+    {
+      "name": "save",
+      "descriptor": "(Lnet/minecraft/world/level/chunk/ChunkAccess;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "chunk"
+        }
+      ]
+    },
+    {
+      "name": "saveAllChunks",
+      "descriptor": "(Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "flush"
+        }
+      ]
+    },
+    {
+      "name": "scheduleChunkGeneration",
+      "descriptor": "(Lnet/minecraft/server/level/ChunkHolder;Lnet/minecraft/world/level/chunk/ChunkStatus;)Ljava/util/concurrent/CompletableFuture;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "chunkHolder"
+        },
+        {
+          "index": 2,
+          "name": "chunkStatus"
+        }
+      ]
+    },
+    {
+      "name": "scheduleChunkLoad",
+      "descriptor": "(Lnet/minecraft/world/level/ChunkPos;)Ljava/util/concurrent/CompletableFuture;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "chunkPos"
+        }
+      ]
+    },
+    {
+      "name": "scheduleUnload",
+      "descriptor": "(JLnet/minecraft/server/level/ChunkHolder;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "chunkPos"
+        },
+        {
+          "index": 3,
+          "name": "chunkHolder"
+        }
+      ]
+    },
+    {
+      "name": "setViewDistance",
+      "descriptor": "(I)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "viewDistance"
+        }
+      ]
+    },
+    {
+      "name": "skipPlayer",
+      "descriptor": "(Lnet/minecraft/server/level/ServerPlayer;)Z",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        }
+      ]
+    },
+    {
+      "name": "tick",
+      "descriptor": "(Ljava/util/function/BooleanSupplier;)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "hasMoreTime"
+        }
+      ]
+    },
+    {
+      "name": "updateChunkScheduling",
+      "descriptor": "(JILnet/minecraft/server/level/ChunkHolder;I)Lnet/minecraft/server/level/ChunkHolder;",
+      "javadoc": [
+        "Sets level and loads/unloads chunk. Used by {@link net.minecraft.world.server.ChunkManager.ProxyTicketManager} to set chunk level."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "chunkPos"
+        },
+        {
+          "index": 3,
+          "name": "newLevel"
+        },
+        {
+          "index": 4,
+          "name": "holder",
+          "javadoc": "The {@link net.minecraft.world.server.ChunkHolder} of the chunk if it is loaded, and null otherwise."
+        },
+        {
+          "index": 5,
+          "name": "oldLevel"
+        }
+      ]
+    },
+    {
+      "name": "updateChunkTracking",
+      "descriptor": "(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/ChunkPos;[Lnet/minecraft/network/protocol/Packet;ZZ)V",
+      "javadoc": [
+        "Sends the chunk to the client, or tells it to unload it."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "chunkPos"
+        },
+        {
+          "index": 3,
+          "name": "packetCache"
+        },
+        {
+          "index": 4,
+          "name": "wasLoaded"
+        },
+        {
+          "index": 5,
+          "name": "load"
+        }
+      ]
+    },
+    {
+      "name": "updatePlayerStatus",
+      "descriptor": "(Lnet/minecraft/server/level/ServerPlayer;Z)V",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "player"
+        },
+        {
+          "index": 2,
+          "name": "track"
+        }
+      ]
+    }
+  ]
+}

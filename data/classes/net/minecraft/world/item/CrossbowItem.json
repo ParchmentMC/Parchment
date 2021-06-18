@@ -1,0 +1,402 @@
+{
+  "name": "net/minecraft/world/item/CrossbowItem",
+  "fields": [
+    {
+      "name": "midLoadSoundPlayed",
+      "descriptor": "Z",
+      "javadoc": [
+        "Set to {@code true} when the crossbow is 50% charged."
+      ]
+    },
+    {
+      "name": "startSoundPlayed",
+      "descriptor": "Z",
+      "javadoc": [
+        "Set to {@code true} when the crossbow is 20% charged."
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "name": "addChargedProjectile",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "crossbow"
+        },
+        {
+          "index": 1,
+          "name": "projectile"
+        }
+      ]
+    },
+    {
+      "name": "appendHoverText",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V",
+      "javadoc": [
+        "allows items to add custom lines of information to the mouseover description"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "tooltip"
+        },
+        {
+          "index": 4,
+          "name": "flag"
+        }
+      ]
+    },
+    {
+      "name": "clearChargedProjectiles",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)V",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "containsChargedProjectile",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "stack"
+        },
+        {
+          "index": 1,
+          "name": "ammoItem"
+        }
+      ]
+    },
+    {
+      "name": "getAllSupportedProjectiles",
+      "descriptor": "()Ljava/util/function/Predicate;",
+      "javadoc": [
+        "Get the predicate to match ammunition when searching the player's inventory, not their main/offhand"
+      ]
+    },
+    {
+      "name": "getArrow",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/projectile/AbstractArrow;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "level"
+        },
+        {
+          "index": 1,
+          "name": "shooter"
+        },
+        {
+          "index": 2,
+          "name": "crossbow"
+        },
+        {
+          "index": 3,
+          "name": "ammo"
+        }
+      ]
+    },
+    {
+      "name": "getChargeDuration",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)I",
+      "javadoc": [
+        "The time the crossbow must be used to reload it"
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "getChargedProjectiles",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "getPowerForTime",
+      "descriptor": "(ILnet/minecraft/world/item/ItemStack;)F",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "useTime"
+        },
+        {
+          "index": 1,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "getShotPitches",
+      "descriptor": "(Ljava/util/Random;)[F",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "rand"
+        }
+      ]
+    },
+    {
+      "name": "getStartSound",
+      "descriptor": "(I)Lnet/minecraft/sounds/SoundEvent;",
+      "parameters": [
+        {
+          "index": 1,
+          "name": "enchantmentLevel"
+        }
+      ]
+    },
+    {
+      "name": "getUseAnimation",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/UseAnim;",
+      "javadoc": [
+        "returns the action that specifies what animation to play when the items is being used"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "getUseDuration",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)I",
+      "javadoc": [
+        "How long it takes to use or consume an item"
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "isCharged",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "onCrossbowShot",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V",
+      "javadoc": [
+        "Called after {@plainlink #fireProjectiles} to clear the charged projectile and to update the player advancements."
+      ],
+      "parameters": [
+        {
+          "index": 0,
+          "name": "level"
+        },
+        {
+          "index": 1,
+          "name": "shooter"
+        },
+        {
+          "index": 2,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "onUseTick",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;I)V",
+      "javadoc": [
+        "Called as the item is being used by an entity."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "livingEntity"
+        },
+        {
+          "index": 3,
+          "name": "stack"
+        },
+        {
+          "index": 4,
+          "name": "count"
+        }
+      ]
+    },
+    {
+      "name": "performShooting",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;FF)V",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "level"
+        },
+        {
+          "index": 1,
+          "name": "shooter"
+        },
+        {
+          "index": 2,
+          "name": "hand"
+        },
+        {
+          "index": 3,
+          "name": "stack"
+        },
+        {
+          "index": 4,
+          "name": "velocity"
+        },
+        {
+          "index": 5,
+          "name": "inaccuracy"
+        }
+      ]
+    },
+    {
+      "name": "releaseUsing",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V",
+      "javadoc": [
+        "Called when the player stops using an Item (stops holding the right mouse button)."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "stack"
+        },
+        {
+          "index": 2,
+          "name": "level"
+        },
+        {
+          "index": 3,
+          "name": "entityLiving"
+        },
+        {
+          "index": 4,
+          "name": "timeLeft"
+        }
+      ]
+    },
+    {
+      "name": "setCharged",
+      "descriptor": "(Lnet/minecraft/world/item/ItemStack;Z)V",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "stack"
+        },
+        {
+          "index": 1,
+          "name": "charged"
+        }
+      ]
+    },
+    {
+      "name": "shootProjectile",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;FZFFF)V",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "level"
+        },
+        {
+          "index": 1,
+          "name": "shooter"
+        },
+        {
+          "index": 2,
+          "name": "hand"
+        },
+        {
+          "index": 3,
+          "name": "crossbow"
+        },
+        {
+          "index": 4,
+          "name": "projectile"
+        },
+        {
+          "index": 5,
+          "name": "soundPitch"
+        },
+        {
+          "index": 6,
+          "name": "isCreativeMode"
+        },
+        {
+          "index": 7,
+          "name": "velocity"
+        },
+        {
+          "index": 8,
+          "name": "inaccuracy"
+        },
+        {
+          "index": 9,
+          "name": "projectileAngle"
+        }
+      ]
+    },
+    {
+      "name": "tryLoadProjectiles",
+      "descriptor": "(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)Z",
+      "parameters": [
+        {
+          "index": 0,
+          "name": "entity"
+        },
+        {
+          "index": 1,
+          "name": "stack"
+        }
+      ]
+    },
+    {
+      "name": "use",
+      "descriptor": "(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;",
+      "javadoc": [
+        "Called to trigger the item's \"innate\" right click behavior. To handle when this item is used on a Block, see {@link #onItemUse}."
+      ],
+      "parameters": [
+        {
+          "index": 1,
+          "name": "level"
+        },
+        {
+          "index": 2,
+          "name": "player"
+        },
+        {
+          "index": 3,
+          "name": "hand"
+        }
+      ]
+    }
+  ]
+}
