@@ -1,41 +1,24 @@
 CLASS net/minecraft/world/entity/animal/Sheep
 	FIELD COLORARRAY_BY_COLOR Ljava/util/Map;
 		COMMENT Map from EnumDyeColor to RGB values for passage to GlStateManager.color()
-	FIELD DATA_WOOL_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD EAT_ANIMATION_TICKS I
-	FIELD ITEM_BY_DYE Ljava/util/Map;
-	FIELD eatAnimationTick I
-	FIELD eatBlockGoal Lnet/minecraft/world/entity/ai/goal/EatBlockGoal;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD aiStep ()V
 		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD ate ()V
 		COMMENT This function applies the benefits of growing back wool and faster growing up to the acting entity. (This function is used in the AIEatGrass)
-	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
 	METHOD createSheepColor (Lnet/minecraft/world/item/DyeColor;)[F
 		ARG 0 dyeColor
-	METHOD customServerAiStep ()V
-	METHOD defineSynchedData ()V
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
 		ARG 1 level
 		ARG 2 difficulty
 		ARG 3 reason
 		ARG 4 spawnData
 		ARG 5 dataTag
-	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getBreedOffspring (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/AgeableMob;)Lnet/minecraft/world/entity/AgeableMob;
-	METHOD getBreedOffspring (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/AgeableMob;)Lnet/minecraft/world/entity/animal/Sheep;
 	METHOD getColor ()Lnet/minecraft/world/item/DyeColor;
 		COMMENT Gets the wool color of this sheep.
 	METHOD getColorArray (Lnet/minecraft/world/item/DyeColor;)[F
 		ARG 0 dyeColor
-	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getDefaultLootTable ()Lnet/minecraft/resources/ResourceLocation;
-	METHOD getHeadEatAngleScale (F)F
-	METHOD getHeadEatPositionScale (F)F
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getOffspringColor (Lnet/minecraft/world/entity/animal/Animal;Lnet/minecraft/world/entity/animal/Animal;)Lnet/minecraft/world/item/DyeColor;
@@ -53,11 +36,6 @@ CLASS net/minecraft/world/entity/animal/Sheep
 		ARG 1 id
 	METHOD isSheared ()Z
 		COMMENT returns true if a sheeps wool has been sheared
-	METHOD lambda$getOffspringColor$3 (Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/item/crafting/CraftingRecipe;)Lnet/minecraft/world/item/ItemStack;
-	METHOD lambda$getOffspringColor$4 (Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/world/item/DyeColor;)Lnet/minecraft/world/item/DyeColor;
-	METHOD lambda$mobInteract$2 (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/entity/player/Player;)V
-	METHOD lambda$static$0 (Ljava/util/EnumMap;)V
-	METHOD lambda$static$1 (Lnet/minecraft/world/item/DyeColor;)Lnet/minecraft/world/item/DyeColor;
 	METHOD makeContainer (Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/world/item/DyeColor;)Lnet/minecraft/world/inventory/CraftingContainer;
 		ARG 0 color
 		ARG 1 color1
@@ -70,8 +48,6 @@ CLASS net/minecraft/world/entity/animal/Sheep
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
-	METHOD readyForShearing ()Z
-	METHOD registerGoals ()V
 	METHOD setColor (Lnet/minecraft/world/item/DyeColor;)V
 		COMMENT Sets the wool color of this sheep
 		ARG 1 color
@@ -81,10 +57,6 @@ CLASS net/minecraft/world/entity/animal/Sheep
 	METHOD shear (Lnet/minecraft/sounds/SoundSource;)V
 		ARG 1 category
 	CLASS 1
-		METHOD <init> (Lnet/minecraft/world/inventory/MenuType;I)V
 		METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
 			COMMENT Determines whether supplied player can use this container
 			ARG 1 player
-	CLASS 2
-		FIELD $SwitchMap$net$minecraft$world$item$DyeColor [I
-		METHOD <clinit> ()V

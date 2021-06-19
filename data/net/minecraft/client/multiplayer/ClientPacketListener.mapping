@@ -1,58 +1,31 @@
 CLASS net/minecraft/client/multiplayer/ClientPacketListener
-	FIELD GENERIC_DISCONNECT_MESSAGE Lnet/minecraft/network/chat/Component;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD advancements Lnet/minecraft/client/multiplayer/ClientAdvancements;
 	FIELD callbackScreen Lnet/minecraft/client/gui/screens/Screen;
 		COMMENT Seems to be either null (integrated server) or an instance of either GuiMultiplayer (when connecting to a server) or GuiScreenReamlsTOS (when connecting to MCO server)
-	FIELD commands Lcom/mojang/brigadier/CommandDispatcher;
 	FIELD connection Lnet/minecraft/network/Connection;
 		COMMENT The NetworkManager instance used to communicate with the server, used to respond to various packets (primarilly movement and plugin channel related ones) and check the status of the network connection externally
-	FIELD debugQueryHandler Lnet/minecraft/client/DebugQueryHandler;
-	FIELD id Ljava/util/UUID;
 	FIELD level Lnet/minecraft/client/multiplayer/ClientLevel;
 		COMMENT Reference to the current ClientWorld instance, which many handler methods operate on
-	FIELD levelData Lnet/minecraft/client/multiplayer/ClientLevel$ClientLevelData;
-	FIELD levels Ljava/util/Set;
-	FIELD localGameProfile Lcom/mojang/authlib/GameProfile;
 	FIELD minecraft Lnet/minecraft/client/Minecraft;
 		COMMENT Reference to the Minecraft instance, which many handler methods operate on
 	FIELD playerInfoMap Ljava/util/Map;
 		COMMENT A mapping from player names to their respective GuiPlayerInfo (specifies the clients response time to the server)
 	FIELD random Ljava/util/Random;
 		COMMENT Just an ordinary random number generator, used to randomize audio pitch of item/orb pickup and randomize both particlespawn offset and velocity
-	FIELD recipeManager Lnet/minecraft/world/item/crafting/RecipeManager;
-	FIELD registryAccess Lnet/minecraft/core/RegistryAccess;
-	FIELD serverChunkRadius I
 	FIELD started Z
 		COMMENT True if the client has finished downloading terrain and may spawn. Set upon receipt of S08PacketPlayerPosLook, reset upon respawning
-	FIELD suggestionsProvider Lnet/minecraft/client/multiplayer/ClientSuggestionProvider;
-	FIELD tags Lnet/minecraft/tags/TagContainer;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/network/Connection;Lcom/mojang/authlib/GameProfile;)V
 	METHOD cleanup ()V
 		COMMENT Clears the WorldClient instance associated with this NetHandlerPlayClient
 	METHOD downloadCallback (Ljava/util/concurrent/CompletableFuture;)V
 		ARG 1 future
 	METHOD findTotem (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/item/ItemStack;
 		ARG 0 player
-	METHOD getAdvancements ()Lnet/minecraft/client/multiplayer/ClientAdvancements;
-	METHOD getCommands ()Lcom/mojang/brigadier/CommandDispatcher;
 	METHOD getConnection ()Lnet/minecraft/network/Connection;
 		COMMENT Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient
-	METHOD getDebugQueryHandler ()Lnet/minecraft/client/DebugQueryHandler;
-	METHOD getId ()Ljava/util/UUID;
-	METHOD getLevel ()Lnet/minecraft/client/multiplayer/ClientLevel;
-	METHOD getLocalGameProfile ()Lcom/mojang/authlib/GameProfile;
-	METHOD getOnlinePlayerIds ()Ljava/util/Collection;
-	METHOD getOnlinePlayers ()Ljava/util/Collection;
 	METHOD getPlayerInfo (Ljava/lang/String;)Lnet/minecraft/client/multiplayer/PlayerInfo;
 		COMMENT Gets the client's description information about another player on the server.
 		ARG 1 name
 	METHOD getPlayerInfo (Ljava/util/UUID;)Lnet/minecraft/client/multiplayer/PlayerInfo;
 		ARG 1 uniqueId
-	METHOD getRecipeManager ()Lnet/minecraft/world/item/crafting/RecipeManager;
-	METHOD getSuggestionsProvider ()Lnet/minecraft/client/multiplayer/ClientSuggestionProvider;
-	METHOD getTags ()Lnet/minecraft/tags/TagContainer;
 	METHOD handleAddEntity (Lnet/minecraft/network/protocol/game/ClientboundAddEntityPacket;)V
 		COMMENT Spawns an instance of the objecttype indicated by the packet and sets its position and momentum
 		ARG 1 packet
@@ -73,7 +46,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 	METHOD handleAddPlayer (Lnet/minecraft/network/protocol/game/ClientboundAddPlayerPacket;)V
 		COMMENT Handles the creation of a nearby player entity, sets the position and held item
 		ARG 1 packet
-	METHOD handleAddVibrationSignal (Lnet/minecraft/network/protocol/game/ClientboundAddVibrationSignalPacket;)V
 	METHOD handleAnimate (Lnet/minecraft/network/protocol/game/ClientboundAnimatePacket;)V
 		COMMENT Renders a specified animation: Waking up a player, a living entity swinging its currently held item, being hurt or receiving a critical hit by normal or magical means
 		ARG 1 packet
@@ -143,7 +115,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 packet
 	METHOD handleHorseScreenOpen (Lnet/minecraft/network/protocol/game/ClientboundHorseScreenOpenPacket;)V
 		ARG 1 packet
-	METHOD handleInitializeBorder (Lnet/minecraft/network/protocol/game/ClientboundInitializeBorderPacket;)V
 	METHOD handleItemCooldown (Lnet/minecraft/network/protocol/game/ClientboundCooldownPacket;)V
 		ARG 1 packet
 	METHOD handleKeepAlive (Lnet/minecraft/network/protocol/game/ClientboundKeepAlivePacket;)V
@@ -182,17 +153,12 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 	METHOD handleParticleEvent (Lnet/minecraft/network/protocol/game/ClientboundLevelParticlesPacket;)V
 		COMMENT Spawns a specified number of particles at the specified location with a randomized displacement according to specified bounds
 		ARG 1 packet
-	METHOD handlePing (Lnet/minecraft/network/protocol/game/ClientboundPingPacket;)V
 	METHOD handlePlaceRecipe (Lnet/minecraft/network/protocol/game/ClientboundPlaceGhostRecipePacket;)V
 		ARG 1 packet
 	METHOD handlePlayerAbilities (Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;)V
 		ARG 1 packet
-	METHOD handlePlayerCombatEnd (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatEndPacket;)V
-	METHOD handlePlayerCombatEnter (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatEnterPacket;)V
-	METHOD handlePlayerCombatKill (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatKillPacket;)V
 	METHOD handlePlayerInfo (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket;)V
 		ARG 1 packet
-	METHOD handleRemoveEntity (Lnet/minecraft/network/protocol/game/ClientboundRemoveEntityPacket;)V
 	METHOD handleRemoveMobEffect (Lnet/minecraft/network/protocol/game/ClientboundRemoveMobEffectPacket;)V
 		ARG 1 packet
 	METHOD handleResourcePack (Lnet/minecraft/network/protocol/game/ClientboundResourcePackPacket;)V
@@ -204,11 +170,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 packet
 	METHOD handleSelectAdvancementsTab (Lnet/minecraft/network/protocol/game/ClientboundSelectAdvancementsTabPacket;)V
 		ARG 1 packet
-	METHOD handleSetBorderCenter (Lnet/minecraft/network/protocol/game/ClientboundSetBorderCenterPacket;)V
-	METHOD handleSetBorderLerpSize (Lnet/minecraft/network/protocol/game/ClientboundSetBorderLerpSizePacket;)V
-	METHOD handleSetBorderSize (Lnet/minecraft/network/protocol/game/ClientboundSetBorderSizePacket;)V
-	METHOD handleSetBorderWarningDelay (Lnet/minecraft/network/protocol/game/ClientboundSetBorderWarningDelayPacket;)V
-	METHOD handleSetBorderWarningDistance (Lnet/minecraft/network/protocol/game/ClientboundSetBorderWarningDistancePacket;)V
 	METHOD handleSetCamera (Lnet/minecraft/network/protocol/game/ClientboundSetCameraPacket;)V
 		ARG 1 packet
 	METHOD handleSetCarriedItem (Lnet/minecraft/network/protocol/game/ClientboundSetCarriedItemPacket;)V
@@ -241,7 +202,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 	METHOD handleSetScore (Lnet/minecraft/network/protocol/game/ClientboundSetScorePacket;)V
 		COMMENT Either updates the score with a specified value or removes the score for an objective
 		ARG 1 packet
-	METHOD handleSetSpawn (Lnet/minecraft/network/protocol/game/ClientboundSetDefaultSpawnPositionPacket;)V
 	METHOD handleSetTime (Lnet/minecraft/network/protocol/game/ClientboundSetTimePacket;)V
 		ARG 1 packet
 	METHOD handleSoundEntityEvent (Lnet/minecraft/network/protocol/game/ClientboundSoundEntityPacket;)V
@@ -259,7 +219,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 	METHOD handleTeleportEntity (Lnet/minecraft/network/protocol/game/ClientboundTeleportEntityPacket;)V
 		COMMENT Updates an entity's position and rotation as specified by the packet
 		ARG 1 packet
-	METHOD handleTitlesClear (Lnet/minecraft/network/protocol/game/ClientboundClearTitlesPacket;)V
 	METHOD handleUpdateAdvancementsPacket (Lnet/minecraft/network/protocol/game/ClientboundUpdateAdvancementsPacket;)V
 		ARG 1 packet
 	METHOD handleUpdateAttributes (Lnet/minecraft/network/protocol/game/ClientboundUpdateAttributesPacket;)V
@@ -271,37 +230,12 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 packet
 	METHOD handleUpdateTags (Lnet/minecraft/network/protocol/game/ClientboundUpdateTagsPacket;)V
 		ARG 1 packet
-	METHOD lambda$downloadCallback$7 ()V
-	METHOD lambda$downloadCallback$8 (Ljava/lang/Throwable;)Ljava/lang/Void;
-	METHOD lambda$handleAddOrRemoveRecipes$3 (Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/world/item/crafting/Recipe;)V
-	METHOD lambda$handleAddOrRemoveRecipes$4 (Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)V
-	METHOD lambda$handleChunkBlocksUpdate$0 (ILnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-	METHOD lambda$handleCustomPayload$9 (Lnet/minecraft/resources/ResourceLocation;)Ljava/lang/IllegalArgumentException;
-	METHOD lambda$handleGameEvent$2 ()V
-	METHOD lambda$handlePlaceRecipe$11 (Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/item/crafting/Recipe;)V
-	METHOD lambda$handleResourcePack$5 (Ljava/lang/String;Ljava/lang/String;ZZ)V
-	METHOD lambda$handleResourcePack$6 (Ljava/lang/String;Ljava/lang/String;ZLnet/minecraft/network/protocol/game/ClientboundResourcePackPacket;)V
-	METHOD lambda$handleSetEquipment$1 (Lnet/minecraft/world/entity/Entity;Lcom/mojang/datafixers/util/Pair;)V
-	METHOD lambda$handleSetPlayerTeamPacket$10 (Lnet/minecraft/world/scores/PlayerTeam;Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Parameters;)V
-	METHOD levels ()Ljava/util/Set;
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason
-	METHOD preparePackPrompt (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/Component;
-	METHOD readSectionList (IILnet/minecraft/world/level/lighting/LevelLightEngine;Lnet/minecraft/world/level/LightLayer;Ljava/util/BitSet;Ljava/util/BitSet;Ljava/util/Iterator;Z)V
-	METHOD registryAccess ()Lnet/minecraft/core/RegistryAccess;
 	METHOD send (Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 packet
 	METHOD send (Lnet/minecraft/network/protocol/game/ServerboundResourcePackPacket$Action;)V
 		ARG 1 action
-	METHOD setActionBarText (Lnet/minecraft/network/protocol/game/ClientboundSetActionBarTextPacket;)V
-	METHOD setSubtitleText (Lnet/minecraft/network/protocol/game/ClientboundSetSubtitleTextPacket;)V
-	METHOD setTitleText (Lnet/minecraft/network/protocol/game/ClientboundSetTitleTextPacket;)V
-	METHOD setTitlesAnimation (Lnet/minecraft/network/protocol/game/ClientboundSetTitlesAnimationPacket;)V
 	METHOD validateResourcePackUrl (Ljava/lang/String;)Z
 		ARG 1 url
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$network$protocol$game$ClientboundPlayerInfoPacket$Action [I
-		FIELD $SwitchMap$net$minecraft$network$protocol$game$ClientboundRecipePacket$State [I
-		FIELD $SwitchMap$net$minecraft$server$ServerScoreboard$Method [I
-		METHOD <clinit> ()V

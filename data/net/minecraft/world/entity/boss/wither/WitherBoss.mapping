@@ -1,22 +1,4 @@
 CLASS net/minecraft/world/entity/boss/wither/WitherBoss
-	FIELD DATA_ID_INV Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD DATA_TARGETS Ljava/util/List;
-	FIELD DATA_TARGET_A Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD DATA_TARGET_B Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD DATA_TARGET_C Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD INVULNERABLE_TICKS I
-	FIELD LIVING_ENTITY_SELECTOR Ljava/util/function/Predicate;
-	FIELD TARGETING_CONDITIONS Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
-	FIELD bossEvent Lnet/minecraft/server/level/ServerBossEvent;
-	FIELD destroyBlocksTick I
-	FIELD idleHeadUpdates [I
-	FIELD nextHeadUpdate [I
-	FIELD xRotHeads [F
-	FIELD xRotOHeads [F
-	FIELD yRotHeads [F
-	FIELD yRotOHeads [F
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD addEffect (Lnet/minecraft/world/effect/MobEffectInstance;)Z
@@ -31,12 +13,8 @@ CLASS net/minecraft/world/entity/boss/wither/WitherBoss
 		ARG 0 block
 	METHOD canRide (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
-	METHOD causeFallDamage (FFLnet/minecraft/world/damagesource/DamageSource;)Z
 	METHOD checkDespawn ()V
 		COMMENT Makes the entity despawn if requirements are reached
-	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
-	METHOD customServerAiStep ()V
-	METHOD defineSynchedData ()V
 	METHOD dropCustomDeathLoot (Lnet/minecraft/world/damagesource/DamageSource;IZ)V
 		ARG 1 source
 		ARG 2 looting
@@ -45,8 +23,6 @@ CLASS net/minecraft/world/entity/boss/wither/WitherBoss
 		COMMENT Returns the target entity ID if present, or -1 if not
 		ARG 1 head
 			COMMENT The target offset, should be from 0-2
-	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
 	METHOD getHeadX (I)D
 		ARG 1 head
 	METHOD getHeadXRot (I)F
@@ -59,14 +35,10 @@ CLASS net/minecraft/world/entity/boss/wither/WitherBoss
 		ARG 1 head
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
-	METHOD getInvulnerableTicks ()I
-	METHOD getMobType ()Lnet/minecraft/world/entity/MobType;
 	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
-	METHOD isPowered ()Z
-	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
 	METHOD makeInvulnerable ()V
 		COMMENT Initializes this Wither's explosion sequence and makes it invulnerable. Called immediately after spawning.
 	METHOD makeStuckInBlock (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/phys/Vec3;)V
@@ -89,8 +61,6 @@ CLASS net/minecraft/world/entity/boss/wither/WitherBoss
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
-	METHOD registerGoals ()V
-	METHOD rotlerp (FFF)F
 	METHOD setAlternativeTarget (II)V
 		COMMENT Updates the target entity ID
 		ARG 1 targetOffset
@@ -106,7 +76,5 @@ CLASS net/minecraft/world/entity/boss/wither/WitherBoss
 		COMMENT Removes the given player from the list of players tracking this entity. See {@link Entity#addTrackingPlayer} for more information on tracking.
 		ARG 1 player
 	CLASS WitherDoNothingGoal
-		FIELD this$0 Lnet/minecraft/world/entity/boss/wither/WitherBoss;
-		METHOD <init> (Lnet/minecraft/world/entity/boss/wither/WitherBoss;)V
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.

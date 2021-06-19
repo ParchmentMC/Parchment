@@ -1,32 +1,4 @@
 CLASS net/minecraft/util/profiling/ActiveProfiler
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD WARNING_TIME_NANOS J
-	FIELD chartedPaths Ljava/util/Set;
-	FIELD currentEntry Lnet/minecraft/util/profiling/ActiveProfiler$PathEntry;
-	FIELD entries Ljava/util/Map;
-	FIELD getRealTime Ljava/util/function/LongSupplier;
-	FIELD getTickTime Ljava/util/function/IntSupplier;
-	FIELD path Ljava/lang/String;
-	FIELD paths Ljava/util/List;
-	FIELD startTimeNano J
-	FIELD startTimeTicks I
-	FIELD startTimes Lit/unimi/dsi/fastutil/longs/LongList;
-	FIELD started Z
-	FIELD warn Z
-	METHOD <clinit> ()V
-	METHOD <init> (Ljava/util/function/LongSupplier;Ljava/util/function/IntSupplier;Z)V
-	METHOD endTick ()V
-	METHOD getChartedPaths ()Ljava/util/Set;
-	METHOD getCurrentEntry ()Lnet/minecraft/util/profiling/ActiveProfiler$PathEntry;
-	METHOD getEntry (Ljava/lang/String;)Lnet/minecraft/util/profiling/ActiveProfiler$PathEntry;
-	METHOD getResults ()Lnet/minecraft/util/profiling/ProfileResults;
-	METHOD incrementCounter (Ljava/lang/String;)V
-	METHOD incrementCounter (Ljava/util/function/Supplier;)V
-	METHOD lambda$endTick$0 ()Ljava/lang/Object;
-	METHOD lambda$getCurrentEntry$3 (Ljava/lang/String;)Lnet/minecraft/util/profiling/ActiveProfiler$PathEntry;
-	METHOD lambda$pop$1 ()Ljava/lang/Object;
-	METHOD lambda$pop$2 (J)Ljava/lang/Object;
-	METHOD markForCharting (Lnet/minecraft/util/profiling/metrics/MetricCategory;)V
 	METHOD pop ()V
 		COMMENT End section
 	METHOD popPush (Ljava/lang/String;)V
@@ -38,15 +10,3 @@ CLASS net/minecraft/util/profiling/ActiveProfiler
 		ARG 1 name
 	METHOD push (Ljava/util/function/Supplier;)V
 		ARG 1 nameSupplier
-	METHOD startTick ()V
-	CLASS PathEntry
-		FIELD accumulatedDuration J
-		FIELD count J
-		FIELD counters Lit/unimi/dsi/fastutil/objects/Object2LongOpenHashMap;
-		FIELD maxDuration J
-		FIELD minDuration J
-		METHOD <init> ()V
-		METHOD getCount ()J
-		METHOD getCounters ()Lit/unimi/dsi/fastutil/objects/Object2LongMap;
-		METHOD getDuration ()J
-		METHOD getMaxDuration ()J

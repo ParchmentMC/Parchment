@@ -1,20 +1,4 @@
 CLASS com/mojang/blaze3d/platform/NativeImage
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD OFFSET_A I
-	FIELD OFFSET_B I
-	FIELD OFFSET_G I
-	FIELD OFFSET_R I
-	FIELD OPEN_OPTIONS Ljava/util/Set;
-	FIELD format Lcom/mojang/blaze3d/platform/NativeImage$Format;
-	FIELD height I
-	FIELD pixels J
-	FIELD size J
-	FIELD useStbFree Z
-	FIELD width I
-	METHOD <clinit> ()V
-	METHOD <init> (IIZ)V
-	METHOD <init> (Lcom/mojang/blaze3d/platform/NativeImage$Format;IIZ)V
-	METHOD <init> (Lcom/mojang/blaze3d/platform/NativeImage$Format;IIZJ)V
 	METHOD _upload (IIIIIIIZZZZ)V
 		ARG 1 level
 		ARG 2 xOffset
@@ -27,10 +11,6 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 9 clamp
 		ARG 10 mipmap
 		ARG 11 autoClose
-	METHOD asByteArray ()[B
-	METHOD blendPixel (III)V
-	METHOD checkAllocated ()V
-	METHOD close ()V
 	METHOD combine (IIII)I
 		ARG 0 alpha
 		ARG 1 blue
@@ -59,30 +39,23 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 6 height
 		ARG 7 mirrorX
 		ARG 8 mirrorY
-	METHOD downloadDepthBuffer (F)V
 	METHOD downloadTexture (IZ)V
 		ARG 1 level
 		ARG 2 opaque
-	METHOD drawPixels ()V
 	METHOD fillRect (IIIII)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 width
 		ARG 4 height
 		ARG 5 value
-	METHOD flipY ()V
-	METHOD format ()Lcom/mojang/blaze3d/platform/NativeImage$Format;
 	METHOD fromBase64 (Ljava/lang/String;)Lcom/mojang/blaze3d/platform/NativeImage;
 		ARG 0 string
 	METHOD getA (I)I
 		ARG 0 col
 	METHOD getB (I)I
 		ARG 0 col
-	METHOD getBlueOrLuminance (II)B
 	METHOD getG (I)I
 		ARG 0 col
-	METHOD getGreenOrLuminance (II)B
-	METHOD getHeight ()I
 	METHOD getLuminanceOrAlpha (II)B
 		ARG 1 x
 		ARG 2 y
@@ -91,11 +64,6 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 2 y
 	METHOD getR (I)I
 		ARG 0 col
-	METHOD getRedOrLuminance (II)B
-	METHOD getWidth ()I
-	METHOD isOutsideBounds (II)Z
-	METHOD lambda$upload$0 (IIIIIIIZZZZ)V
-	METHOD makePixelArray ()[I
 	METHOD read (Lcom/mojang/blaze3d/platform/NativeImage$Format;Ljava/io/InputStream;)Lcom/mojang/blaze3d/platform/NativeImage;
 		ARG 0 pixelFormat
 		ARG 1 inputStream
@@ -115,13 +83,10 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 	METHOD setFilter (ZZ)V
 		ARG 0 linear
 		ARG 1 mipmap
-	METHOD setPixelLuminance (IIB)V
 	METHOD setPixelRGBA (III)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 value
-	METHOD toString ()Ljava/lang/String;
-	METHOD untrack ()V
 	METHOD upload (IIIIIIIZZ)V
 		ARG 1 level
 		ARG 2 xOffset
@@ -153,74 +118,8 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 1 channel
 	METHOD writeToFile (Ljava/io/File;)V
 		ARG 1 file
-	METHOD writeToFile (Ljava/lang/String;)V
 	METHOD writeToFile (Ljava/nio/file/Path;)V
 		ARG 1 path
 	CLASS Format
-		FIELD $VALUES [Lcom/mojang/blaze3d/platform/NativeImage$Format;
-		FIELD LUMINANCE Lcom/mojang/blaze3d/platform/NativeImage$Format;
-		FIELD LUMINANCE_ALPHA Lcom/mojang/blaze3d/platform/NativeImage$Format;
-		FIELD RGB Lcom/mojang/blaze3d/platform/NativeImage$Format;
-		FIELD RGBA Lcom/mojang/blaze3d/platform/NativeImage$Format;
-		FIELD alphaOffset I
-		FIELD blueOffset I
-		FIELD components I
-		FIELD glFormat I
-		FIELD greenOffset I
-		FIELD hasAlpha Z
-		FIELD hasBlue Z
-		FIELD hasGreen Z
-		FIELD hasLuminance Z
-		FIELD hasRed Z
-		FIELD luminanceOffset I
-		FIELD redOffset I
-		FIELD supportedByStb Z
-		METHOD $values ()[Lcom/mojang/blaze3d/platform/NativeImage$Format;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;IIIZZZZZIIIIIZ)V
-		METHOD alphaOffset ()I
-		METHOD blueOffset ()I
-		METHOD components ()I
 		METHOD getStbFormat (I)Lcom/mojang/blaze3d/platform/NativeImage$Format;
 			ARG 0 channels
-		METHOD glFormat ()I
-		METHOD greenOffset ()I
-		METHOD hasAlpha ()Z
-		METHOD hasBlue ()Z
-		METHOD hasGreen ()Z
-		METHOD hasLuminance ()Z
-		METHOD hasLuminanceOrAlpha ()Z
-		METHOD hasLuminanceOrBlue ()Z
-		METHOD hasLuminanceOrGreen ()Z
-		METHOD hasLuminanceOrRed ()Z
-		METHOD hasRed ()Z
-		METHOD luminanceOffset ()I
-		METHOD luminanceOrAlphaOffset ()I
-		METHOD luminanceOrBlueOffset ()I
-		METHOD luminanceOrGreenOffset ()I
-		METHOD luminanceOrRedOffset ()I
-		METHOD redOffset ()I
-		METHOD setPackPixelStoreState ()V
-		METHOD setUnpackPixelStoreState ()V
-		METHOD supportedByStb ()Z
-		METHOD valueOf (Ljava/lang/String;)Lcom/mojang/blaze3d/platform/NativeImage$Format;
-		METHOD values ()[Lcom/mojang/blaze3d/platform/NativeImage$Format;
-	CLASS InternalGlFormat
-		FIELD $VALUES [Lcom/mojang/blaze3d/platform/NativeImage$InternalGlFormat;
-		FIELD RED Lcom/mojang/blaze3d/platform/NativeImage$InternalGlFormat;
-		FIELD RG Lcom/mojang/blaze3d/platform/NativeImage$InternalGlFormat;
-		FIELD RGB Lcom/mojang/blaze3d/platform/NativeImage$InternalGlFormat;
-		FIELD RGBA Lcom/mojang/blaze3d/platform/NativeImage$InternalGlFormat;
-		FIELD glFormat I
-		METHOD $values ()[Lcom/mojang/blaze3d/platform/NativeImage$InternalGlFormat;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;II)V
-		METHOD glFormat ()I
-		METHOD valueOf (Ljava/lang/String;)Lcom/mojang/blaze3d/platform/NativeImage$InternalGlFormat;
-		METHOD values ()[Lcom/mojang/blaze3d/platform/NativeImage$InternalGlFormat;
-	CLASS WriteCallback
-		FIELD exception Ljava/io/IOException;
-		FIELD output Ljava/nio/channels/WritableByteChannel;
-		METHOD <init> (Ljava/nio/channels/WritableByteChannel;)V
-		METHOD invoke (JJI)V
-		METHOD throwIfException ()V

@@ -1,13 +1,4 @@
 CLASS net/minecraft/world/inventory/EnchantmentMenu
-	FIELD access Lnet/minecraft/world/inventory/ContainerLevelAccess;
-	FIELD costs [I
-	FIELD enchantClue [I
-	FIELD enchantSlots Lnet/minecraft/world/Container;
-	FIELD enchantmentSeed Lnet/minecraft/world/inventory/DataSlot;
-	FIELD levelClue [I
-	FIELD random Ljava/util/Random;
-	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;)V
-	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
 	METHOD clickMenuButton (Lnet/minecraft/world/entity/player/Player;I)Z
 		COMMENT Handles the given Button-click on the server, currently only used by enchanting. Name is for legacy.
 		ARG 1 player
@@ -16,11 +7,6 @@ CLASS net/minecraft/world/inventory/EnchantmentMenu
 		ARG 1 stack
 		ARG 2 enchantSlot
 		ARG 3 level
-	METHOD getEnchantmentSeed ()I
-	METHOD getGoldCount ()I
-	METHOD lambda$clickMenuButton$1 (Lnet/minecraft/world/item/ItemStack;ILnet/minecraft/world/entity/player/Player;ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
-	METHOD lambda$removed$2 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
-	METHOD lambda$slotsChanged$0 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
 		ARG 1 player
@@ -35,21 +21,15 @@ CLASS net/minecraft/world/inventory/EnchantmentMenu
 		COMMENT Determines whether supplied player can use this container
 		ARG 1 player
 	CLASS 1
-		FIELD this$0 Lnet/minecraft/world/inventory/EnchantmentMenu;
-		METHOD <init> (Lnet/minecraft/world/inventory/EnchantmentMenu;I)V
 		METHOD setChanged ()V
 			COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
 	CLASS 2
-		FIELD this$0 Lnet/minecraft/world/inventory/EnchantmentMenu;
-		METHOD <init> (Lnet/minecraft/world/inventory/EnchantmentMenu;Lnet/minecraft/world/Container;III)V
 		METHOD getMaxStackSize ()I
 			COMMENT Returns the maximum stack size for a given slot (usually the same as getInventoryStackLimit(), but 1 in the case of armor slots)
 		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
 			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 			ARG 1 stack
 	CLASS 3
-		FIELD this$0 Lnet/minecraft/world/inventory/EnchantmentMenu;
-		METHOD <init> (Lnet/minecraft/world/inventory/EnchantmentMenu;Lnet/minecraft/world/Container;III)V
 		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
 			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 			ARG 1 stack

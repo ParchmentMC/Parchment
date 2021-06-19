@@ -1,24 +1,4 @@
 CLASS net/minecraft/server/level/WorldGenRegion
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD biomeManager Lnet/minecraft/world/level/biome/BiomeManager;
-	FIELD blockTicks Lnet/minecraft/world/level/TickList;
-	FIELD cache Ljava/util/List;
-	FIELD center Lnet/minecraft/world/level/ChunkPos;
-	FIELD currentlyGenerating Ljava/util/function/Supplier;
-	FIELD dimensionType Lnet/minecraft/world/level/dimension/DimensionType;
-	FIELD firstPos Lnet/minecraft/world/level/ChunkPos;
-	FIELD generatingStatus Lnet/minecraft/world/level/chunk/ChunkStatus;
-	FIELD lastPos Lnet/minecraft/world/level/ChunkPos;
-	FIELD level Lnet/minecraft/server/level/ServerLevel;
-	FIELD levelData Lnet/minecraft/world/level/storage/LevelData;
-	FIELD liquidTicks Lnet/minecraft/world/level/TickList;
-	FIELD random Ljava/util/Random;
-	FIELD seed J
-	FIELD size I
-	FIELD structureFeatureManager Lnet/minecraft/world/level/StructureFeatureManager;
-	FIELD writeRadiusCutoff I
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkStatus;I)V
 	METHOD addFreshEntity (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
@@ -34,16 +14,10 @@ CLASS net/minecraft/server/level/WorldGenRegion
 		ARG 2 dropBlock
 		ARG 3 entity
 		ARG 4 recursionLeft
-	METHOD dimensionType ()Lnet/minecraft/world/level/dimension/DimensionType;
-	METHOD ensureCanWrite (Lnet/minecraft/core/BlockPos;)Z
-	METHOD gameEvent (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;)V
-	METHOD getBiomeManager ()Lnet/minecraft/world/level/biome/BiomeManager;
 	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
 	METHOD getBlockState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 pos
-	METHOD getBlockTicks ()Lnet/minecraft/world/level/TickList;
-	METHOD getCenter ()Lnet/minecraft/world/level/ChunkPos;
 	METHOD getChunk (II)Lnet/minecraft/world/level/chunk/ChunkAccess;
 		ARG 1 chunkX
 		ARG 2 chunkZ
@@ -61,48 +35,32 @@ CLASS net/minecraft/server/level/WorldGenRegion
 		ARG 1 entity
 		ARG 2 boundingBox
 		ARG 3 predicate
-	METHOD getEntities (Lnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
 	METHOD getFluidState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;
 		ARG 1 pos
-	METHOD getHeight ()I
 	METHOD getHeight (Lnet/minecraft/world/level/levelgen/Heightmap$Types;II)I
 		ARG 1 heightmapType
 		ARG 2 x
 		ARG 3 z
-	METHOD getLevel ()Lnet/minecraft/server/level/ServerLevel;
 	METHOD getLevelData ()Lnet/minecraft/world/level/storage/LevelData;
 		COMMENT Returns the world's WorldInfo object
-	METHOD getLightEngine ()Lnet/minecraft/world/level/lighting/LevelLightEngine;
-	METHOD getLiquidTicks ()Lnet/minecraft/world/level/TickList;
-	METHOD getMinBuildHeight ()I
 	METHOD getNearestPlayer (DDDDLjava/util/function/Predicate;)Lnet/minecraft/world/entity/player/Player;
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
 		ARG 7 distance
 		ARG 9 predicate
-	METHOD getRandom ()Ljava/util/Random;
-	METHOD getSeaLevel ()I
 	METHOD getSeed ()J
 		COMMENT gets the random world seed
-	METHOD getServer ()Lnet/minecraft/server/MinecraftServer;
-	METHOD getShade (Lnet/minecraft/core/Direction;Z)F
-	METHOD getSkyDarken ()I
 	METHOD getUncachedNoiseBiome (III)Lnet/minecraft/world/level/biome/Biome;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD getWorldBorder ()Lnet/minecraft/world/level/border/WorldBorder;
 	METHOD hasChunk (II)Z
 		ARG 1 chunkX
 		ARG 2 chunkZ
-	METHOD isClientSide ()Z
-	METHOD isFluidAtPosition (Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;)Z
 	METHOD isStateAtPosition (Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;)Z
 		ARG 1 pos
 		ARG 2 state
-	METHOD lambda$new$0 (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/TickList;
-	METHOD lambda$new$1 (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/TickList;
 	METHOD levelEvent (Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 player
 		ARG 2 type
@@ -118,8 +76,6 @@ CLASS net/minecraft/server/level/WorldGenRegion
 		ARG 4 category
 		ARG 5 volume
 		ARG 6 pitch
-	METHOD players ()Ljava/util/List;
-	METHOD registryAccess ()Lnet/minecraft/core/RegistryAccess;
 	METHOD removeBlock (Lnet/minecraft/core/BlockPos;Z)Z
 		ARG 1 pos
 		ARG 2 isMoving
@@ -128,5 +84,3 @@ CLASS net/minecraft/server/level/WorldGenRegion
 		ARG 2 state
 		ARG 3 flags
 		ARG 4 recursionLeft
-	METHOD setCurrentlyGenerating (Ljava/util/function/Supplier;)V
-	METHOD startsForFeature (Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Ljava/util/stream/Stream;

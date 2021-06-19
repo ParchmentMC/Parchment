@@ -1,24 +1,6 @@
 CLASS net/minecraft/world/scores/PlayerTeam
-	FIELD BIT_FRIENDLY_FIRE I
-	FIELD BIT_SEE_INVISIBLES I
-	FIELD MAX_NAME_LENGTH I
-	FIELD allowFriendlyFire Z
-	FIELD collisionRule Lnet/minecraft/world/scores/Team$CollisionRule;
-	FIELD color Lnet/minecraft/ChatFormatting;
-	FIELD deathMessageVisibility Lnet/minecraft/world/scores/Team$Visibility;
-	FIELD displayName Lnet/minecraft/network/chat/Component;
-	FIELD displayNameStyle Lnet/minecraft/network/chat/Style;
-	FIELD name Ljava/lang/String;
-	FIELD nameTagVisibility Lnet/minecraft/world/scores/Team$Visibility;
-	FIELD playerPrefix Lnet/minecraft/network/chat/Component;
-	FIELD playerSuffix Lnet/minecraft/network/chat/Component;
-	FIELD players Ljava/util/Set;
-	FIELD scoreboard Lnet/minecraft/world/scores/Scoreboard;
-	FIELD seeFriendlyInvisibles Z
-	METHOD <init> (Lnet/minecraft/world/scores/Scoreboard;Ljava/lang/String;)V
 	METHOD canSeeFriendlyInvisibles ()Z
 		COMMENT Checks whether members of this team can see other members that are invisible.
-	METHOD formatNameForTeam (Lnet/minecraft/world/scores/Team;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
 	METHOD getCollisionRule ()Lnet/minecraft/world/scores/Team$CollisionRule;
 		COMMENT Gets the rule to be used for handling collisions with members of this team.
 	METHOD getColor ()Lnet/minecraft/ChatFormatting;
@@ -27,17 +9,12 @@ CLASS net/minecraft/world/scores/PlayerTeam
 		COMMENT Gets the visibility flags for player death messages.
 	METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
 		COMMENT Gets the display name for this team.
-	METHOD getFormattedDisplayName ()Lnet/minecraft/network/chat/MutableComponent;
-	METHOD getFormattedName (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
 	METHOD getName ()Ljava/lang/String;
 		COMMENT Retrieve the name by which this team is registered in the scoreboard
 	METHOD getNameTagVisibility ()Lnet/minecraft/world/scores/Team$Visibility;
 		COMMENT Gets the visibility flags for player name tags.
-	METHOD getPlayerPrefix ()Lnet/minecraft/network/chat/Component;
-	METHOD getPlayerSuffix ()Lnet/minecraft/network/chat/Component;
 	METHOD getPlayers ()Ljava/util/Collection;
 		COMMENT Gets a collection of all members of this team.
-	METHOD getScoreboard ()Lnet/minecraft/world/scores/Scoreboard;
 	METHOD isAllowFriendlyFire ()Z
 		COMMENT Checks whether friendly fire (PVP between members of the team) is allowed.
 	METHOD packOptions ()I
@@ -60,8 +37,6 @@ CLASS net/minecraft/world/scores/PlayerTeam
 	METHOD setNameTagVisibility (Lnet/minecraft/world/scores/Team$Visibility;)V
 		COMMENT Sets the visibility flags for player name tags.
 		ARG 1 visibility
-	METHOD setPlayerPrefix (Lnet/minecraft/network/chat/Component;)V
-	METHOD setPlayerSuffix (Lnet/minecraft/network/chat/Component;)V
 	METHOD setSeeFriendlyInvisibles (Z)V
 		COMMENT Sets whether members of this team can see other members that are invisible.
 		ARG 1 friendlyInvisibles

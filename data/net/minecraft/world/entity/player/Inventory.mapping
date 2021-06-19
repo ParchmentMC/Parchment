@@ -1,20 +1,4 @@
 CLASS net/minecraft/world/entity/player/Inventory
-	FIELD ALL_ARMOR_SLOTS [I
-	FIELD HELMET_SLOT_ONLY [I
-	FIELD INVENTORY_SIZE I
-	FIELD NOT_FOUND_INDEX I
-	FIELD POP_TIME_DURATION I
-	FIELD SELECTION_SIZE I
-	FIELD SLOT_OFFHAND I
-	FIELD armor Lnet/minecraft/core/NonNullList;
-	FIELD compartments Ljava/util/List;
-	FIELD items Lnet/minecraft/core/NonNullList;
-	FIELD offhand Lnet/minecraft/core/NonNullList;
-	FIELD player Lnet/minecraft/world/entity/player/Player;
-	FIELD selected I
-	FIELD timesChanged I
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/entity/player/Player;)V
 	METHOD add (ILnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Adds the stack to the specified slot in the player's inventory. Returns {@code false} if it's not possible to place the entire stack in the inventory.
 		ARG 1 slot
@@ -22,12 +6,9 @@ CLASS net/minecraft/world/entity/player/Inventory
 	METHOD add (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Adds the stack to the first empty slot in the player's inventory. Returns {@code false} if it's not possible to place the entire stack in the inventory.
 		ARG 1 itemStack
-	METHOD addResource (ILnet/minecraft/world/item/ItemStack;)I
 	METHOD addResource (Lnet/minecraft/world/item/ItemStack;)I
 		COMMENT This function stores as many items of an ItemStack as possible in a matching slot and returns the quantity of left over items.
 		ARG 1 itemStack
-	METHOD clearContent ()V
-	METHOD clearOrCountMatchingItems (Ljava/util/function/Predicate;ILnet/minecraft/world/Container;)I
 	METHOD contains (Lnet/minecraft/tags/Tag;)Z
 		ARG 1 itemTag
 	METHOD contains (Lnet/minecraft/world/item/ItemStack;)Z
@@ -35,11 +16,9 @@ CLASS net/minecraft/world/entity/player/Inventory
 		ARG 1 itemStack
 	METHOD dropAll ()V
 		COMMENT Drop all armor and main inventory items.
-	METHOD fillStackedContents (Lnet/minecraft/world/entity/player/StackedContents;)V
 	METHOD findSlotMatchingItem (Lnet/minecraft/world/item/ItemStack;)I
 		COMMENT Finds the stack or an equivalent one in the main inventory
 		ARG 1 stack
-	METHOD findSlotMatchingUnusedItem (Lnet/minecraft/world/item/ItemStack;)I
 	METHOD getArmor (I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT returns a player armor item (as itemstack) contained in specified armor slot.
 		ARG 1 slot
@@ -52,7 +31,6 @@ CLASS net/minecraft/world/entity/player/Inventory
 	METHOD getItem (I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns the stack in the given slot.
 		ARG 1 index
-	METHOD getName ()Lnet/minecraft/network/chat/Component;
 	METHOD getSelected ()Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns the item stack currently held by the player.
 	METHOD getSelectionSize ()I
@@ -60,24 +38,16 @@ CLASS net/minecraft/world/entity/player/Inventory
 	METHOD getSlotWithRemainingSpace (Lnet/minecraft/world/item/ItemStack;)I
 		COMMENT Stores a stack in the player's inventory. It first tries to place it in the selected slot in the player's hotbar, then the offhand slot, then any available/empty slot in the player's inventory.
 		ARG 1 itemStack
-	METHOD getSuitableHotbarSlot ()I
-	METHOD getTimesChanged ()I
 	METHOD hasRemainingSpaceForItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack1
 		ARG 2 stack2
-	METHOD hurtArmor (Lnet/minecraft/world/damagesource/DamageSource;F[I)V
-	METHOD isEmpty ()Z
 	METHOD isHotbarSlot (I)Z
 		ARG 0 index
-	METHOD lambda$add$0 (Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
-	METHOD lambda$hurtArmor$1 (ILnet/minecraft/world/entity/player/Player;)V
 	METHOD load (Lnet/minecraft/nbt/ListTag;)V
 		COMMENT Reads from the given tag list and fills the slots in the inventory with the correct items.
 		ARG 1 nbtTagList
 	METHOD pickSlot (I)V
 		ARG 1 index
-	METHOD placeItemBackInInventory (Lnet/minecraft/world/item/ItemStack;)V
-	METHOD placeItemBackInInventory (Lnet/minecraft/world/item/ItemStack;Z)V
 	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
 		ARG 1 index

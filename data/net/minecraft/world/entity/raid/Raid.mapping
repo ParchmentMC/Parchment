@@ -1,146 +1,16 @@
 CLASS net/minecraft/world/entity/raid/Raid
-	FIELD ATTEMPT_RAID_CLOSE I
-	FIELD ATTEMPT_RAID_FARTHEST I
-	FIELD ATTEMPT_RAID_INSIDE I
-	FIELD DEFAULT_MAX_BAD_OMEN_LEVEL I
-	FIELD DEFAULT_PRE_RAID_TICKS I
-	FIELD DEFEAT Lnet/minecraft/network/chat/Component;
-	FIELD HERO_OF_THE_VILLAGE_DURATION I
-	FIELD LOW_MOB_THRESHOLD I
-	FIELD MAX_CELEBRATION_TICKS I
-	FIELD MAX_NO_ACTION_TIME I
-	FIELD NUM_SPAWN_ATTEMPTS I
-	FIELD OMINOUS_BANNER_PATTERN_NAME Ljava/lang/String;
-	FIELD OUTSIDE_RAID_BOUNDS_TIMEOUT I
-	FIELD POST_RAID_TICK_LIMIT I
-	FIELD RAIDERS_REMAINING Ljava/lang/String;
-	FIELD RAID_BAR_DEFEAT_COMPONENT Lnet/minecraft/network/chat/Component;
-	FIELD RAID_BAR_VICTORY_COMPONENT Lnet/minecraft/network/chat/Component;
-	FIELD RAID_NAME_COMPONENT Lnet/minecraft/network/chat/Component;
-	FIELD RAID_REMOVAL_THRESHOLD_SQR I
-	FIELD RAID_TIMEOUT_TICKS I
-	FIELD SECTION_RADIUS_FOR_FINDING_NEW_VILLAGE_CENTER I
-	FIELD TICKS_PER_DAY I
-	FIELD VALID_RAID_RADIUS_SQR I
-	FIELD VICTORY Lnet/minecraft/network/chat/Component;
-	FIELD VILLAGE_RADIUS_BUFFER I
-	FIELD VILLAGE_SEARCH_RADIUS I
-	FIELD active Z
-	FIELD badOmenLevel I
-	FIELD celebrationTicks I
-	FIELD center Lnet/minecraft/core/BlockPos;
-	FIELD groupRaiderMap Ljava/util/Map;
-	FIELD groupToLeaderMap Ljava/util/Map;
-	FIELD groupsSpawned I
-	FIELD heroesOfTheVillage Ljava/util/Set;
-	FIELD id I
-	FIELD level Lnet/minecraft/server/level/ServerLevel;
-	FIELD numGroups I
-	FIELD postRaidTicks I
-	FIELD raidCooldownTicks I
-	FIELD raidEvent Lnet/minecraft/server/level/ServerBossEvent;
-	FIELD random Ljava/util/Random;
-	FIELD started Z
-	FIELD status Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
-	FIELD ticksActive J
-	FIELD totalHealth F
-	FIELD waveSpawnPos Ljava/util/Optional;
-	METHOD <clinit> ()V
-	METHOD <init> (ILnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V
-	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 	METHOD absorbBadOmen (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
-	METHOD addHeroOfTheVillage (Lnet/minecraft/world/entity/Entity;)V
-	METHOD addWaveMob (ILnet/minecraft/world/entity/raid/Raider;)Z
-	METHOD addWaveMob (ILnet/minecraft/world/entity/raid/Raider;Z)Z
-	METHOD findRandomSpawnPos (II)Lnet/minecraft/core/BlockPos;
-	METHOD getAllRaiders ()Ljava/util/Set;
-	METHOD getBadOmenLevel ()I
-	METHOD getCenter ()Lnet/minecraft/core/BlockPos;
-	METHOD getDefaultNumSpawns (Lnet/minecraft/world/entity/raid/Raid$RaiderType;IZ)I
-	METHOD getEnchantOdds ()F
-	METHOD getGroupsSpawned ()I
-	METHOD getHealthOfLivingRaiders ()F
-	METHOD getId ()I
-	METHOD getLeader (I)Lnet/minecraft/world/entity/raid/Raider;
-	METHOD getLeaderBannerInstance ()Lnet/minecraft/world/item/ItemStack;
-	METHOD getLevel ()Lnet/minecraft/world/level/Level;
-	METHOD getMaxBadOmenLevel ()I
 	METHOD getNumGroups (Lnet/minecraft/world/Difficulty;)I
 		ARG 1 difficulty
 	METHOD getPotentialBonusSpawns (Lnet/minecraft/world/entity/raid/Raid$RaiderType;Ljava/util/Random;ILnet/minecraft/world/DifficultyInstance;Z)I
 		ARG 3 wave
-	METHOD getTotalHealth ()F
-	METHOD getTotalRaidersAlive ()I
-	METHOD getValidSpawnPos (I)Ljava/util/Optional;
-	METHOD hasBonusWave ()Z
-	METHOD hasFirstWaveSpawned ()Z
-	METHOD hasMoreWaves ()Z
-	METHOD hasSpawnedBonusWave ()Z
-	METHOD isActive ()Z
-	METHOD isBetweenWaves ()Z
-	METHOD isFinalWave ()Z
-	METHOD isLoss ()Z
-	METHOD isOver ()Z
-	METHOD isStarted ()Z
-	METHOD isStopped ()Z
-	METHOD isVictory ()Z
 	METHOD joinRaid (ILnet/minecraft/world/entity/raid/Raider;Lnet/minecraft/core/BlockPos;Z)V
 		ARG 1 wave
-	METHOD lambda$addWaveMob$2 (Ljava/lang/Integer;)Ljava/util/Set;
-	METHOD lambda$moveRaidCenterToNearbyVillageSection$1 (Lnet/minecraft/core/BlockPos;)D
-	METHOD lambda$validPlayer$0 (Lnet/minecraft/server/level/ServerPlayer;)Z
-	METHOD moveRaidCenterToNearbyVillageSection ()V
-	METHOD playSound (Lnet/minecraft/core/BlockPos;)V
-	METHOD removeFromRaid (Lnet/minecraft/world/entity/raid/Raider;Z)V
-	METHOD removeLeader (I)V
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 nbt
-	METHOD setBadOmenLevel (I)V
-	METHOD setCenter (Lnet/minecraft/core/BlockPos;)V
-	METHOD setDirty ()V
 	METHOD setLeader (ILnet/minecraft/world/entity/raid/Raider;)V
 		ARG 1 raidId
-	METHOD shouldSpawnBonusGroup ()Z
-	METHOD shouldSpawnGroup ()Z
-	METHOD spawnGroup (Lnet/minecraft/core/BlockPos;)V
-	METHOD stop ()V
-	METHOD tick ()V
-	METHOD updateBossbar ()V
-	METHOD updatePlayers ()V
-	METHOD updateRaiders ()V
-	METHOD validPlayer ()Ljava/util/function/Predicate;
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$world$Difficulty [I
-		FIELD $SwitchMap$net$minecraft$world$entity$raid$Raid$RaiderType [I
-		METHOD <clinit> ()V
 	CLASS RaidStatus
-		FIELD $VALUES [Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
-		FIELD LOSS Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
-		FIELD ONGOING Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
-		FIELD STOPPED Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
-		FIELD VALUES [Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
-		FIELD VICTORY Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
-		METHOD $values ()[Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
 		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
 			ARG 0 name
-		METHOD getName ()Ljava/lang/String;
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
-		METHOD values ()[Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
-	CLASS RaiderType
-		FIELD $VALUES [Lnet/minecraft/world/entity/raid/Raid$RaiderType;
-		FIELD EVOKER Lnet/minecraft/world/entity/raid/Raid$RaiderType;
-		FIELD PILLAGER Lnet/minecraft/world/entity/raid/Raid$RaiderType;
-		FIELD RAVAGER Lnet/minecraft/world/entity/raid/Raid$RaiderType;
-		FIELD VALUES [Lnet/minecraft/world/entity/raid/Raid$RaiderType;
-		FIELD VINDICATOR Lnet/minecraft/world/entity/raid/Raid$RaiderType;
-		FIELD WITCH Lnet/minecraft/world/entity/raid/Raid$RaiderType;
-		FIELD entityType Lnet/minecraft/world/entity/EntityType;
-		FIELD spawnsPerWaveBeforeBonus [I
-		METHOD $values ()[Lnet/minecraft/world/entity/raid/Raid$RaiderType;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;ILnet/minecraft/world/entity/EntityType;[I)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/entity/raid/Raid$RaiderType;
-		METHOD values ()[Lnet/minecraft/world/entity/raid/Raid$RaiderType;

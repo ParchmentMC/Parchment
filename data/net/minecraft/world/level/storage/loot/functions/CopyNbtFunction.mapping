@@ -1,21 +1,8 @@
 CLASS net/minecraft/world/level/storage/loot/functions/CopyNbtFunction
-	FIELD operations Ljava/util/List;
-	FIELD source Lnet/minecraft/world/level/storage/loot/providers/nbt/NbtProvider;
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/level/storage/loot/providers/nbt/NbtProvider;Ljava/util/List;)V
-	METHOD compileNbtPath (Ljava/lang/String;)Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;
-	METHOD copyData (Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$Builder;
-	METHOD copyData (Lnet/minecraft/world/level/storage/loot/providers/nbt/NbtProvider;)Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$Builder;
-	METHOD getReferencedContextParams ()Ljava/util/Set;
-	METHOD getType ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunctionType;
-	METHOD lambda$run$0 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/nbt/Tag;Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$CopyOperation;)V
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
 	CLASS Builder
-		FIELD ops Ljava/util/List;
-		FIELD source Lnet/minecraft/world/level/storage/loot/providers/nbt/NbtProvider;
-		METHOD <init> (Lnet/minecraft/world/level/storage/loot/providers/nbt/NbtProvider;)V
-		METHOD build ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
 		METHOD copy (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$Builder;
 			ARG 1 sourcePath
 			ARG 2 targetPath
@@ -23,46 +10,7 @@ CLASS net/minecraft/world/level/storage/loot/functions/CopyNbtFunction
 			ARG 1 sourcePath
 			ARG 2 targetPath
 			ARG 3 copyAction
-		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$Builder;
-		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
-	CLASS CopyOperation
-		FIELD op Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$MergeStrategy;
-		FIELD sourcePath Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;
-		FIELD sourcePathText Ljava/lang/String;
-		FIELD targetPath Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;
-		FIELD targetPathText Ljava/lang/String;
-		METHOD <init> (Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$MergeStrategy;)V
-		METHOD apply (Ljava/util/function/Supplier;Lnet/minecraft/nbt/Tag;)V
-		METHOD fromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$CopyOperation;
-		METHOD toJson ()Lcom/google/gson/JsonObject;
-	CLASS MergeStrategy
-		FIELD $VALUES [Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$MergeStrategy;
-		FIELD APPEND Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$MergeStrategy;
-		FIELD MERGE Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$MergeStrategy;
-		FIELD REPLACE Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$MergeStrategy;
-		FIELD name Ljava/lang/String;
-		METHOD $values ()[Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$MergeStrategy;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
-		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$MergeStrategy;
-		METHOD merge (Lnet/minecraft/nbt/Tag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$MergeStrategy;
-		METHOD values ()[Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$MergeStrategy;
-		CLASS 1
-			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
-			METHOD merge (Lnet/minecraft/nbt/Tag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)V
-		CLASS 2
-			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
-			METHOD lambda$merge$0 (Lnet/minecraft/nbt/Tag;Lnet/minecraft/nbt/Tag;)V
-			METHOD lambda$merge$1 (Ljava/util/List;Lnet/minecraft/nbt/Tag;)V
-			METHOD merge (Lnet/minecraft/nbt/Tag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)V
-		CLASS 3
-			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
-			METHOD lambda$merge$0 (Lnet/minecraft/nbt/Tag;Lnet/minecraft/nbt/Tag;)V
-			METHOD lambda$merge$1 (Ljava/util/List;Lnet/minecraft/nbt/Tag;)V
-			METHOD merge (Lnet/minecraft/nbt/Tag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)V
 	CLASS Serializer
-		METHOD <init> ()V
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction;
 			ARG 1 object
 			ARG 2 deserializationContext
@@ -71,6 +19,3 @@ CLASS net/minecraft/world/level/storage/loot/functions/CopyNbtFunction
 			ARG 1 object
 			ARG 2 deserializationContext
 			ARG 3 conditions
-		METHOD serialize (Lcom/google/gson/JsonObject;Ljava/lang/Object;Lcom/google/gson/JsonSerializationContext;)V
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction;Lcom/google/gson/JsonSerializationContext;)V
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;Lcom/google/gson/JsonSerializationContext;)V

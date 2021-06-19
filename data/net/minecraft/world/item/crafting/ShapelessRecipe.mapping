@@ -1,10 +1,4 @@
 CLASS net/minecraft/world/item/crafting/ShapelessRecipe
-	FIELD group Ljava/lang/String;
-	FIELD id Lnet/minecraft/resources/ResourceLocation;
-	FIELD ingredients Lnet/minecraft/core/NonNullList;
-	FIELD result Lnet/minecraft/world/item/ItemStack;
-	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/NonNullList;)V
-	METHOD assemble (Lnet/minecraft/world/Container;)Lnet/minecraft/world/item/ItemStack;
 	METHOD assemble (Lnet/minecraft/world/inventory/CraftingContainer;)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns an Item that is the result of this recipe
 		ARG 1 inv
@@ -14,18 +8,13 @@ CLASS net/minecraft/world/item/crafting/ShapelessRecipe
 		ARG 2 height
 	METHOD getGroup ()Ljava/lang/String;
 		COMMENT Recipes with equal group are combined into one button in the recipe book
-	METHOD getId ()Lnet/minecraft/resources/ResourceLocation;
-	METHOD getIngredients ()Lnet/minecraft/core/NonNullList;
 	METHOD getResultItem ()Lnet/minecraft/world/item/ItemStack;
 		COMMENT Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
-	METHOD getSerializer ()Lnet/minecraft/world/item/crafting/RecipeSerializer;
-	METHOD matches (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Z
 	METHOD matches (Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/level/Level;)Z
 		COMMENT Used to check if a recipe matches current crafting inventory
 		ARG 1 inv
 		ARG 2 level
 	CLASS Serializer
-		METHOD <init> ()V
 		METHOD fromJson (Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/Recipe;
 			ARG 1 recipeId
 			ARG 2 json

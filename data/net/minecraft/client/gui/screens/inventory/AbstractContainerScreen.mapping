@@ -1,14 +1,8 @@
 CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
-	FIELD DOUBLECLICK_SPEED I
-	FIELD HOVER_ITEM_BLIT_OFFSET I
 	FIELD INVENTORY_LOCATION Lnet/minecraft/resources/ResourceLocation;
 		COMMENT The location of the inventory background texture
-	FIELD QUICKDROP_DELAY I
-	FIELD SLOT_ITEM_BLIT_OFFSET I
-	FIELD SNAPBACK_SPEED F
 	FIELD clickedSlot Lnet/minecraft/world/inventory/Slot;
 		COMMENT Used when touchscreen is enabled
-	FIELD doubleclick Z
 	FIELD draggingItem Lnet/minecraft/world/item/ItemStack;
 		COMMENT Used when touchscreen is enabled
 	FIELD hoveredSlot Lnet/minecraft/world/inventory/Slot;
@@ -17,39 +11,16 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 		COMMENT The Y size of the inventory window in pixels.
 	FIELD imageWidth I
 		COMMENT The X size of the inventory window in pixels.
-	FIELD inventoryLabelX I
-	FIELD inventoryLabelY I
-	FIELD isQuickCrafting Z
 	FIELD isSplittingStack Z
 		COMMENT Used when touchscreen is enabled.
-	FIELD lastClickButton I
-	FIELD lastClickSlot Lnet/minecraft/world/inventory/Slot;
-	FIELD lastClickTime J
-	FIELD lastQuickMoved Lnet/minecraft/world/item/ItemStack;
 	FIELD leftPos I
 		COMMENT Starting X position for the Gui. Inconsistent use for Gui backgrounds.
 	FIELD menu Lnet/minecraft/world/inventory/AbstractContainerMenu;
 		COMMENT A list of the players inventory slots
-	FIELD playerInventoryTitle Lnet/minecraft/network/chat/Component;
-	FIELD quickCraftSlots Ljava/util/Set;
-	FIELD quickCraftingButton I
-	FIELD quickCraftingRemainder I
-	FIELD quickCraftingType I
-	FIELD quickdropSlot Lnet/minecraft/world/inventory/Slot;
-	FIELD quickdropTime J
-	FIELD skipNextRelease Z
-	FIELD snapbackEnd Lnet/minecraft/world/inventory/Slot;
 	FIELD snapbackItem Lnet/minecraft/world/item/ItemStack;
 		COMMENT Used when touchscreen is enabled
-	FIELD snapbackStartX I
-	FIELD snapbackStartY I
-	FIELD snapbackTime J
-	FIELD titleLabelX I
-	FIELD titleLabelY I
 	FIELD topPos I
 		COMMENT Starting Y position for the Gui. Inconsistent use for Gui backgrounds.
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V
 	METHOD checkHotbarKeyPressed (II)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
@@ -58,14 +29,12 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 	METHOD findSlot (DD)Lnet/minecraft/world/inventory/Slot;
 		ARG 1 mouseX
 		ARG 3 mouseY
-	METHOD getMenu ()Lnet/minecraft/world/inventory/AbstractContainerMenu;
 	METHOD hasClickedOutside (DDIII)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
 		ARG 5 guiLeft
 		ARG 6 guiTop
 		ARG 7 mouseButton
-	METHOD init ()V
 	METHOD isHovering (IIIIDD)Z
 		ARG 1 x
 		ARG 2 y
@@ -77,7 +46,6 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 		ARG 1 slot
 		ARG 2 mouseX
 		ARG 4 mouseY
-	METHOD isPauseScreen ()Z
 	METHOD keyPressed (III)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
@@ -96,9 +64,6 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 		ARG 1 mouseX
 		ARG 3 mouseY
 		ARG 5 button
-	METHOD onClose ()V
-	METHOD recalculateQuickCraftRemaining ()V
-	METHOD removed ()V
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 matrixStack
 		ARG 2 mouseX
@@ -124,7 +89,6 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 	METHOD renderSlot (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/inventory/Slot;)V
 		ARG 1 matrixStack
 		ARG 2 slot
-	METHOD renderSlotHighlight (Lcom/mojang/blaze3d/vertex/PoseStack;III)V
 	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
 		ARG 1 matrixStack
 		ARG 2 x
@@ -135,4 +99,3 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 		ARG 2 slotId
 		ARG 3 mouseButton
 		ARG 4 type
-	METHOD tick ()V

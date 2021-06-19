@@ -1,42 +1,12 @@
 CLASS net/minecraft/client/Camera
-	FIELD FOG_DISTANCE_SCALE F
-	FIELD blockPosition Lnet/minecraft/core/BlockPos$MutableBlockPos;
-	FIELD detached Z
-	FIELD entity Lnet/minecraft/world/entity/Entity;
-	FIELD eyeHeight F
-	FIELD eyeHeightOld F
-	FIELD forwards Lcom/mojang/math/Vector3f;
-	FIELD initialized Z
-	FIELD left Lcom/mojang/math/Vector3f;
-	FIELD level Lnet/minecraft/world/level/BlockGetter;
-	FIELD position Lnet/minecraft/world/phys/Vec3;
-	FIELD rotation Lcom/mojang/math/Quaternion;
-	FIELD up Lcom/mojang/math/Vector3f;
-	FIELD xRot F
-	FIELD yRot F
-	METHOD <init> ()V
-	METHOD getBlockPosition ()Lnet/minecraft/core/BlockPos;
-	METHOD getEntity ()Lnet/minecraft/world/entity/Entity;
-	METHOD getFluidInCamera ()Lnet/minecraft/world/level/material/FogType;
-	METHOD getLeftVector ()Lcom/mojang/math/Vector3f;
-	METHOD getLookVector ()Lcom/mojang/math/Vector3f;
 	METHOD getMaxZoom (D)D
 		COMMENT Checks for collision of the third person camera and returns the distance
 		ARG 1 startingDistance
-	METHOD getNearPlane ()Lnet/minecraft/client/Camera$NearPlane;
-	METHOD getPosition ()Lnet/minecraft/world/phys/Vec3;
-	METHOD getUpVector ()Lcom/mojang/math/Vector3f;
-	METHOD getXRot ()F
-	METHOD getYRot ()F
-	METHOD isDetached ()Z
-	METHOD isInitialized ()Z
 	METHOD move (DDD)V
 		COMMENT Moves the render position relative to the view direction, for third person camera
 		ARG 1 distanceOffset
 		ARG 3 verticalOffset
 		ARG 5 horizontalOffset
-	METHOD reset ()V
-	METHOD rotation ()Lcom/mojang/math/Quaternion;
 	METHOD setPosition (DDD)V
 		COMMENT Sets the position and blockpos of the active render
 		ARG 1 x
@@ -53,14 +23,3 @@ CLASS net/minecraft/client/Camera
 		ARG 3 thirdPerson
 		ARG 4 thirdPersonReverse
 		ARG 5 partialTicks
-	METHOD tick ()V
-	CLASS NearPlane
-		FIELD forward Lnet/minecraft/world/phys/Vec3;
-		FIELD left Lnet/minecraft/world/phys/Vec3;
-		FIELD up Lnet/minecraft/world/phys/Vec3;
-		METHOD <init> (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
-		METHOD getBottomLeft ()Lnet/minecraft/world/phys/Vec3;
-		METHOD getBottomRight ()Lnet/minecraft/world/phys/Vec3;
-		METHOD getPointOnPlane (FF)Lnet/minecraft/world/phys/Vec3;
-		METHOD getTopLeft ()Lnet/minecraft/world/phys/Vec3;
-		METHOD getTopRight ()Lnet/minecraft/world/phys/Vec3;

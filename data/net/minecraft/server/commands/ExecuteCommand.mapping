@@ -1,12 +1,4 @@
 CLASS net/minecraft/server/commands/ExecuteCommand
-	FIELD CALLBACK_CHAINER Ljava/util/function/BinaryOperator;
-	FIELD ERROR_AREA_TOO_LARGE Lcom/mojang/brigadier/exceptions/Dynamic2CommandExceptionType;
-	FIELD ERROR_CONDITIONAL_FAILED Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD ERROR_CONDITIONAL_FAILED_COUNT Lcom/mojang/brigadier/exceptions/DynamicCommandExceptionType;
-	FIELD MAX_TEST_AREA I
-	FIELD SUGGEST_PREDICATE Lcom/mojang/brigadier/suggestion/SuggestionProvider;
-	METHOD <clinit> ()V
-	METHOD <init> ()V
 	METHOD addConditional (Lcom/mojang/brigadier/tree/CommandNode;Lcom/mojang/brigadier/builder/ArgumentBuilder;ZLnet/minecraft/server/commands/ExecuteCommand$CommandPredicate;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
 		ARG 0 context
 		ARG 1 builder
@@ -21,11 +13,9 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 1 literal
 		ARG 2 isIf
 		ARG 3 isMasked
-	METHOD checkCustomPredicate (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Z
 	METHOD checkIfRegions (Lcom/mojang/brigadier/context/CommandContext;Z)I
 		ARG 0 context
 		ARG 1 isMasked
-	METHOD checkMatchingData (Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;)I
 	METHOD checkRegions (Lcom/mojang/brigadier/context/CommandContext;Z)Ljava/util/OptionalInt;
 		ARG 0 context
 		ARG 1 isMasked
@@ -44,74 +34,11 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 	METHOD checkUnlessRegions (Lcom/mojang/brigadier/context/CommandContext;Z)I
 		ARG 0 context
 		ARG 1 isMasked
-	METHOD createNumericConditionalHandler (ZLnet/minecraft/server/commands/ExecuteCommand$CommandNumericPredicate;)Lcom/mojang/brigadier/Command;
 	METHOD expect (Lcom/mojang/brigadier/context/CommandContext;ZZ)Ljava/util/Collection;
 		COMMENT If actual and expected match, returns a collection containing only the source player.
 		ARG 0 context
 		ARG 1 actual
 		ARG 2 expected
-	METHOD lambda$addConditional$57 (ZLnet/minecraft/server/commands/ExecuteCommand$CommandPredicate;Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-	METHOD lambda$addConditional$58 (ZLnet/minecraft/server/commands/ExecuteCommand$CommandPredicate;Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$addConditionals$38 (Lcom/mojang/brigadier/context/CommandContext;)Z
-	METHOD lambda$addConditionals$39 (Lcom/mojang/brigadier/context/CommandContext;)Z
-	METHOD lambda$addConditionals$40 (Ljava/lang/Integer;Ljava/lang/Integer;)Z
-	METHOD lambda$addConditionals$41 (Lcom/mojang/brigadier/context/CommandContext;)Z
-	METHOD lambda$addConditionals$42 (Ljava/lang/Integer;Ljava/lang/Integer;)Z
-	METHOD lambda$addConditionals$43 (Lcom/mojang/brigadier/context/CommandContext;)Z
-	METHOD lambda$addConditionals$44 (Ljava/lang/Integer;Ljava/lang/Integer;)Z
-	METHOD lambda$addConditionals$45 (Lcom/mojang/brigadier/context/CommandContext;)Z
-	METHOD lambda$addConditionals$46 (Ljava/lang/Integer;Ljava/lang/Integer;)Z
-	METHOD lambda$addConditionals$47 (Lcom/mojang/brigadier/context/CommandContext;)Z
-	METHOD lambda$addConditionals$48 (Lcom/mojang/brigadier/context/CommandContext;)Z
-	METHOD lambda$addConditionals$49 (ZLcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-	METHOD lambda$addConditionals$50 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$addConditionals$51 (Lcom/mojang/brigadier/context/CommandContext;)Z
-	METHOD lambda$addConditionals$52 (ZLnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-	METHOD lambda$addConditionals$53 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$addConditionals$54 (Lcom/mojang/brigadier/tree/CommandNode;ZLnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
-	METHOD lambda$addIfBlocksConditional$59 (ZZLcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-	METHOD lambda$addIfBlocksConditional$60 (ZLcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$addIfBlocksConditional$61 (ZLcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$createNumericConditionalHandler$55 (Lnet/minecraft/server/commands/ExecuteCommand$CommandNumericPredicate;Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$createNumericConditionalHandler$56 (Lnet/minecraft/server/commands/ExecuteCommand$CommandNumericPredicate;Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$10 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-	METHOD lambda$register$11 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$register$12 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-	METHOD lambda$register$13 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-	METHOD lambda$register$14 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$register$15 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$register$16 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$register$17 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$register$5 (Lnet/minecraft/commands/CommandSourceStack;)Z
-	METHOD lambda$register$6 (Lnet/minecraft/commands/CommandSourceStack;)Z
-	METHOD lambda$register$7 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-	METHOD lambda$register$8 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-	METHOD lambda$register$9 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$static$0 (Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
-	METHOD lambda$static$1 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
-	METHOD lambda$static$2 (Lcom/mojang/brigadier/ResultConsumer;Lcom/mojang/brigadier/ResultConsumer;Lcom/mojang/brigadier/context/CommandContext;ZI)V
-	METHOD lambda$static$3 (Lcom/mojang/brigadier/ResultConsumer;Lcom/mojang/brigadier/ResultConsumer;)Lcom/mojang/brigadier/ResultConsumer;
-	METHOD lambda$static$4 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
-	METHOD lambda$storeData$36 (Ljava/util/function/IntFunction;I)Lnet/minecraft/nbt/Tag;
-	METHOD lambda$storeData$37 (Lnet/minecraft/server/commands/data/DataAccessor;ZLnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/function/IntFunction;Lcom/mojang/brigadier/context/CommandContext;ZI)V
-	METHOD lambda$storeValue$34 (Ljava/util/Collection;Lnet/minecraft/world/scores/Scoreboard;Lnet/minecraft/world/scores/Objective;ZLcom/mojang/brigadier/context/CommandContext;ZI)V
-	METHOD lambda$storeValue$35 (ZZLnet/minecraft/server/bossevents/CustomBossEvent;Lcom/mojang/brigadier/context/CommandContext;ZI)V
-	METHOD lambda$wrapStores$18 (ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$wrapStores$19 (ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$wrapStores$20 (ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$wrapStores$21 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-	METHOD lambda$wrapStores$22 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$wrapStores$23 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-	METHOD lambda$wrapStores$24 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$wrapStores$25 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-	METHOD lambda$wrapStores$26 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$wrapStores$27 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-	METHOD lambda$wrapStores$28 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$wrapStores$29 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-	METHOD lambda$wrapStores$30 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$wrapStores$31 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-	METHOD lambda$wrapStores$32 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD lambda$wrapStores$33 (Lcom/mojang/brigadier/tree/LiteralCommandNode;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
 	METHOD storeData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/function/IntFunction;Z)Lnet/minecraft/commands/CommandSourceStack;
@@ -134,7 +61,3 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 0 parent
 		ARG 1 literal
 		ARG 2 storingResult
-	CLASS CommandNumericPredicate
-		METHOD test (Lcom/mojang/brigadier/context/CommandContext;)I
-	CLASS CommandPredicate
-		METHOD test (Lcom/mojang/brigadier/context/CommandContext;)Z

@@ -1,25 +1,4 @@
 CLASS net/minecraft/world/level/block/RedStoneWireBlock
-	FIELD COLORS [Lnet/minecraft/world/phys/Vec3;
-	FIELD E I
-	FIELD EAST Lnet/minecraft/world/level/block/state/properties/EnumProperty;
-	FIELD H I
-	FIELD N I
-	FIELD NORTH Lnet/minecraft/world/level/block/state/properties/EnumProperty;
-	FIELD PARTICLE_DENSITY F
-	FIELD POWER Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
-	FIELD PROPERTY_BY_DIRECTION Ljava/util/Map;
-	FIELD S I
-	FIELD SHAPES_CACHE Ljava/util/Map;
-	FIELD SHAPES_FLOOR Ljava/util/Map;
-	FIELD SHAPES_UP Ljava/util/Map;
-	FIELD SHAPE_DOT Lnet/minecraft/world/phys/shapes/VoxelShape;
-	FIELD SOUTH Lnet/minecraft/world/level/block/state/properties/EnumProperty;
-	FIELD W I
-	FIELD WEST Lnet/minecraft/world/level/block/state/properties/EnumProperty;
-	FIELD crossState Lnet/minecraft/world/level/block/state/BlockState;
-	FIELD shouldSignal Z
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 	METHOD animateTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
 		COMMENT Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless of whether the block can receive random update ticks
 		ARG 1 state
@@ -93,7 +72,6 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 		COMMENT Can this block provide power. Only wire currently seems to have this change based on its state.
 		COMMENT @deprecated call via {@link IBlockState#canProvidePower()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
-	METHOD lambda$static$0 ([Lnet/minecraft/world/phys/Vec3;)V
 	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
 		COMMENT Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed blockstate.
 		COMMENT @deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine.
@@ -128,7 +106,6 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 	METHOD shouldConnectTo (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
 		ARG 0 blockState
 		ARG 1 side
-	METHOD spawnParticlesAlongLine (Lnet/minecraft/world/level/Level;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;FF)V
 	METHOD updateIndirectNeighbourShapes (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;II)V
 		COMMENT performs updates on diagonal neighbors of the target position and passes in the flags. The flags can be referenced from the docs for {@link IWorldWriter#setBlockState(IBlockState, BlockPos, int)}.
 		ARG 1 state
@@ -165,8 +142,3 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 		ARG 4 player
 		ARG 5 hand
 		ARG 6 hit
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$world$level$block$Mirror [I
-		FIELD $SwitchMap$net$minecraft$world$level$block$Rotation [I
-		FIELD $SwitchMap$net$minecraft$world$level$block$state$properties$RedstoneSide [I
-		METHOD <clinit> ()V

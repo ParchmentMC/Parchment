@@ -1,39 +1,18 @@
 CLASS net/minecraft/advancements/AdvancementRewards
-	FIELD EMPTY Lnet/minecraft/advancements/AdvancementRewards;
-	FIELD experience I
-	FIELD function Lnet/minecraft/commands/CommandFunction$CacheableFunction;
-	FIELD loot [Lnet/minecraft/resources/ResourceLocation;
-	FIELD recipes [Lnet/minecraft/resources/ResourceLocation;
-	METHOD <clinit> ()V
-	METHOD <init> (I[Lnet/minecraft/resources/ResourceLocation;[Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/commands/CommandFunction$CacheableFunction;)V
 	METHOD deserialize (Lcom/google/gson/JsonObject;)Lnet/minecraft/advancements/AdvancementRewards;
 		ARG 0 json
-	METHOD getRecipes ()[Lnet/minecraft/resources/ResourceLocation;
 	METHOD grant (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
-	METHOD lambda$grant$0 (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/commands/CommandFunction;)V
-	METHOD serializeToJson ()Lcom/google/gson/JsonElement;
-	METHOD toString ()Ljava/lang/String;
 	CLASS Builder
-		FIELD experience I
-		FIELD function Lnet/minecraft/resources/ResourceLocation;
-		FIELD loot Ljava/util/List;
-		FIELD recipes Ljava/util/List;
-		METHOD <init> ()V
 		METHOD addExperience (I)Lnet/minecraft/advancements/AdvancementRewards$Builder;
 			COMMENT Adds the given amount of experience. (Not a direct setter)
 			ARG 1 experience
-		METHOD addLootTable (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;
 		METHOD addRecipe (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;
 			COMMENT Adds the given recipe to the rewards.
 			ARG 1 recipe
-		METHOD build ()Lnet/minecraft/advancements/AdvancementRewards;
 		METHOD experience (I)Lnet/minecraft/advancements/AdvancementRewards$Builder;
 			COMMENT Creates a new builder with the given amount of experience as a reward
 			ARG 0 experience
-		METHOD function (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;
-		METHOD loot (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;
 		METHOD recipe (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;
 			COMMENT Creates a new builder with the given recipe as a reward.
 			ARG 0 recipe
-		METHOD runs (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;

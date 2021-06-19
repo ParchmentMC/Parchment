@@ -1,26 +1,10 @@
 CLASS net/minecraft/commands/arguments/EntityArgument
-	FIELD ERROR_NOT_SINGLE_ENTITY Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD ERROR_NOT_SINGLE_PLAYER Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD ERROR_ONLY_PLAYERS_ALLOWED Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD ERROR_SELECTORS_NOT_ALLOWED Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD EXAMPLES Ljava/util/Collection;
-	FIELD FLAG_PLAYERS_ONLY B
-	FIELD FLAG_SINGLE B
-	FIELD NO_ENTITIES_FOUND Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD NO_PLAYERS_FOUND Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD playersOnly Z
-	FIELD single Z
-	METHOD <clinit> ()V
-	METHOD <init> (ZZ)V
-	METHOD entities ()Lnet/minecraft/commands/arguments/EntityArgument;
-	METHOD entity ()Lnet/minecraft/commands/arguments/EntityArgument;
 	METHOD getEntities (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/Collection;
 		ARG 0 context
 		ARG 1 name
 	METHOD getEntity (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/world/entity/Entity;
 		ARG 0 context
 		ARG 1 name
-	METHOD getExamples ()Ljava/util/Collection;
 	METHOD getOptionalEntities (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/Collection;
 		ARG 0 context
 		ARG 1 name
@@ -33,20 +17,11 @@ CLASS net/minecraft/commands/arguments/EntityArgument
 	METHOD getPlayers (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/Collection;
 		ARG 0 context
 		ARG 1 name
-	METHOD lambda$listSuggestions$0 (Lnet/minecraft/commands/SharedSuggestionProvider;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)V
-	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
-	METHOD parse (Lcom/mojang/brigadier/StringReader;)Ljava/lang/Object;
-	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/selector/EntitySelector;
-	METHOD player ()Lnet/minecraft/commands/arguments/EntityArgument;
-	METHOD players ()Lnet/minecraft/commands/arguments/EntityArgument;
 	CLASS Serializer
-		METHOD <init> ()V
 		METHOD deserializeFromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lcom/mojang/brigadier/arguments/ArgumentType;
 			ARG 1 buffer
 		METHOD deserializeFromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/commands/arguments/EntityArgument;
 			ARG 1 buffer
-		METHOD serializeToJson (Lcom/mojang/brigadier/arguments/ArgumentType;Lcom/google/gson/JsonObject;)V
-		METHOD serializeToJson (Lnet/minecraft/commands/arguments/EntityArgument;Lcom/google/gson/JsonObject;)V
 		METHOD serializeToNetwork (Lcom/mojang/brigadier/arguments/ArgumentType;Lnet/minecraft/network/FriendlyByteBuf;)V
 			ARG 1 argument
 			ARG 2 buffer

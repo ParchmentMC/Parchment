@@ -1,25 +1,6 @@
 CLASS net/minecraft/client/server/IntegratedServer
-	FIELD CLIENT_VIEW_DISTANCE_OFFSET I
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD lanPinger Lnet/minecraft/client/server/LanServerPinger;
-	FIELD minecraft Lnet/minecraft/client/Minecraft;
-	FIELD paused Z
-	FIELD publishedGameType Lnet/minecraft/world/level/GameType;
-	FIELD publishedPort I
-	FIELD uuid Ljava/util/UUID;
-	METHOD <clinit> ()V
-	METHOD <init> (Ljava/lang/Thread;Lnet/minecraft/client/Minecraft;Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/ServerResources;Lnet/minecraft/world/level/storage/WorldData;Lcom/mojang/authlib/minecraft/MinecraftSessionService;Lcom/mojang/authlib/GameProfileRepository;Lnet/minecraft/server/players/GameProfileCache;Lnet/minecraft/server/level/progress/ChunkProgressListenerFactory;)V
-	METHOD fillServerSystemReport (Lnet/minecraft/SystemReport;)Lnet/minecraft/SystemReport;
-	METHOD forceSynchronousWrites ()Z
-	METHOD getForcedGameType ()Lnet/minecraft/world/level/GameType;
-	METHOD getFunctionCompilationLevel ()I
-	METHOD getModdedStatus ()Ljava/util/Optional;
-	METHOD getOperatorUserPermissionLevel ()I
 	METHOD getPort ()I
 		COMMENT Gets serverPort.
-	METHOD getRateLimitPacketsPerSecond ()I
-	METHOD getScaledTrackingDistance (I)I
-	METHOD getServerDirectory ()Ljava/io/File;
 	METHOD halt (Z)V
 		COMMENT Sets the serverRunning variable to false, in order to get the server to shut down.
 		ARG 1 waitForServer
@@ -27,16 +8,12 @@ CLASS net/minecraft/client/server/IntegratedServer
 		COMMENT Initialises the server and starts it.
 	METHOD isCommandBlockEnabled ()Z
 		COMMENT Return whether command blocks are enabled.
-	METHOD isDedicatedServer ()Z
 	METHOD isEpollEnabled ()Z
 		COMMENT Get if native transport should be used. Native transport means linux server performance improvements and optimized packet sending/receiving on linux
 	METHOD isPublished ()Z
 		COMMENT Returns true if this integrated server is open to LAN
 	METHOD isSingleplayerOwner (Lcom/mojang/authlib/GameProfile;)Z
 		ARG 1 profile
-	METHOD isSnooperEnabled ()Z
-	METHOD lambda$fillServerSystemReport$0 ()Ljava/lang/String;
-	METHOD lambda$halt$1 ()V
 	METHOD onServerCrash (Lnet/minecraft/CrashReport;)V
 		COMMENT Called on exit from the main run() loop.
 		ARG 1 report
@@ -51,11 +28,8 @@ CLASS net/minecraft/client/server/IntegratedServer
 		ARG 1 gameMode
 	METHOD setUUID (Ljava/util/UUID;)V
 		ARG 1 uuid
-	METHOD shouldInformAdmins ()Z
-	METHOD shouldRconBroadcast ()Z
 	METHOD stopServer ()V
 		COMMENT Saves all necessary data as preparation for stopping the server.
-	METHOD tickPaused ()V
 	METHOD tickServer (Ljava/util/function/BooleanSupplier;)V
 		COMMENT Main function called by run() every loop.
 		ARG 1 hasTimeLeft

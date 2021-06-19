@@ -1,34 +1,19 @@
 CLASS net/minecraft/server/Bootstrap
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD STDOUT Ljava/io/PrintStream;
 	FIELD isBootstrapped Z
 		COMMENT Whether the blocks, items, etc have already been registered
-	METHOD <clinit> ()V
-	METHOD <init> ()V
 	METHOD bootStrap ()V
 		COMMENT Registers blocks, items, stats, etc.
-	METHOD checkBootstrapCalled (Ljava/util/function/Supplier;)V
 	METHOD checkGameruleTranslations (Ljava/util/Set;)V
 		ARG 0 translations
 	METHOD checkTranslations (Ljava/lang/Iterable;Ljava/util/function/Function;Ljava/util/Set;)V
 		ARG 0 objects
 		ARG 1 objectToKeyFunction
 		ARG 2 translationSet
-	METHOD createBootstrapException (Ljava/util/function/Supplier;)Ljava/lang/RuntimeException;
-	METHOD getMissingTranslations ()Ljava/util/Set;
-	METHOD lambda$checkTranslations$0 (Ljava/util/function/Function;Lnet/minecraft/locale/Language;Ljava/util/Set;Ljava/lang/Object;)V
-	METHOD lambda$getMissingTranslations$1 (Lnet/minecraft/resources/ResourceLocation;)Ljava/lang/String;
-	METHOD lambda$validate$2 ()Ljava/lang/String;
-	METHOD lambda$validate$3 (Ljava/lang/String;)V
 	METHOD realStdoutPrintln (Ljava/lang/String;)V
 		ARG 0 message
-	METHOD validate ()V
 	METHOD wrapStreams ()V
 		COMMENT redirect standard streams to logger
 	CLASS 1
-		FIELD val$language Lnet/minecraft/locale/Language;
-		FIELD val$missing Ljava/util/Set;
-		METHOD <init> (Lnet/minecraft/locale/Language;Ljava/util/Set;)V
 		METHOD visit (Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Type;)V
 			ARG 1 key
 			ARG 2 type

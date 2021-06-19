@@ -1,7 +1,4 @@
 CLASS net/minecraft/server/network/ServerConnectionListener
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD SERVER_EPOLL_EVENT_GROUP Lnet/minecraft/util/LazyLoadedValue;
-	FIELD SERVER_EVENT_GROUP Lnet/minecraft/util/LazyLoadedValue;
 	FIELD channels Ljava/util/List;
 		COMMENT Contains all endpoints added to this NetworkSystem
 	FIELD connections Ljava/util/List;
@@ -10,12 +7,6 @@ CLASS net/minecraft/server/network/ServerConnectionListener
 		COMMENT True if this NetworkSystem has never had his endpoints terminated
 	FIELD server Lnet/minecraft/server/MinecraftServer;
 		COMMENT Reference to the MinecraftServer object.
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;)V
-	METHOD getServer ()Lnet/minecraft/server/MinecraftServer;
-	METHOD lambda$static$0 ()Lio/netty/channel/nio/NioEventLoopGroup;
-	METHOD lambda$static$1 ()Lio/netty/channel/epoll/EpollEventLoopGroup;
-	METHOD lambda$tick$2 (Lnet/minecraft/network/Connection;Lnet/minecraft/network/chat/Component;Lio/netty/util/concurrent/Future;)V
 	METHOD startMemoryChannel ()Ljava/net/SocketAddress;
 		COMMENT Adds a channel that listens locally
 	METHOD startTcpServerListener (Ljava/net/InetAddress;I)V
@@ -26,25 +17,3 @@ CLASS net/minecraft/server/network/ServerConnectionListener
 		COMMENT Shuts down all open endpoints (with immediate effect?)
 	METHOD tick ()V
 		COMMENT Will try to process the packets received by each NetworkManager, gracefully manage processing failures and cleans up dead connections
-	CLASS 1
-		FIELD this$0 Lnet/minecraft/server/network/ServerConnectionListener;
-		METHOD <init> (Lnet/minecraft/server/network/ServerConnectionListener;)V
-		METHOD initChannel (Lio/netty/channel/Channel;)V
-	CLASS 2
-		FIELD this$0 Lnet/minecraft/server/network/ServerConnectionListener;
-		METHOD <init> (Lnet/minecraft/server/network/ServerConnectionListener;)V
-		METHOD initChannel (Lio/netty/channel/Channel;)V
-	CLASS LatencySimulator
-		FIELD TIMER Lio/netty/util/Timer;
-		FIELD delay I
-		FIELD jitter I
-		FIELD queuedMessages Ljava/util/List;
-		METHOD <clinit> ()V
-		METHOD <init> (II)V
-		METHOD channelRead (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
-		METHOD delayDownstream (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
-		METHOD onTimeout (Lio/netty/util/Timeout;)V
-		CLASS DelayedMessage
-			FIELD ctx Lio/netty/channel/ChannelHandlerContext;
-			FIELD msg Ljava/lang/Object;
-			METHOD <init> (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V

@@ -1,30 +1,20 @@
 CLASS net/minecraft/world/item/BlockItem
-	FIELD BLOCK_ENTITY_TAG Ljava/lang/String;
-	FIELD BLOCK_STATE_TAG Ljava/lang/String;
-	FIELD block Lnet/minecraft/world/level/block/Block;
-	METHOD <init> (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/item/Item$Properties;)V
 	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
 		COMMENT allows items to add custom lines of information to the mouseover description
 		ARG 1 stack
 		ARG 2 level
 		ARG 3 tooltip
 		ARG 4 flag
-	METHOD canFitInsideContainerItems ()Z
-	METHOD canPlace (Lnet/minecraft/world/item/context/BlockPlaceContext;Lnet/minecraft/world/level/block/state/BlockState;)Z
 	METHOD fillItemCategory (Lnet/minecraft/world/item/CreativeModeTab;Lnet/minecraft/core/NonNullList;)V
 		COMMENT returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
 		ARG 1 group
 		ARG 2 items
-	METHOD getBlock ()Lnet/minecraft/world/level/block/Block;
 	METHOD getDescriptionId ()Ljava/lang/String;
 		COMMENT Returns the unlocalized name of this item.
 	METHOD getPlaceSound (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 state
 	METHOD getPlacementState (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 context
-	METHOD lambda$updateState$0 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Lnet/minecraft/world/level/block/state/BlockState;
-	METHOD mustSurvive ()Z
-	METHOD onDestroyed (Lnet/minecraft/world/entity/item/ItemEntity;)V
 	METHOD place (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 context
 	METHOD placeBlock (Lnet/minecraft/world/item/context/BlockPlaceContext;Lnet/minecraft/world/level/block/state/BlockState;)Z
@@ -33,7 +23,6 @@ CLASS net/minecraft/world/item/BlockItem
 	METHOD registerBlocks (Ljava/util/Map;Lnet/minecraft/world/item/Item;)V
 		ARG 1 blockToItemMap
 		ARG 2 item
-	METHOD updateBlockStateFromTag (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
 	METHOD updateCustomBlockEntityTag (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 pos
 		ARG 2 level
@@ -47,7 +36,6 @@ CLASS net/minecraft/world/item/BlockItem
 		ARG 3 stack
 	METHOD updatePlacementContext (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/item/context/BlockPlaceContext;
 		ARG 1 context
-	METHOD updateState (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/String;)Lnet/minecraft/world/level/block/state/BlockState;
 	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
 		COMMENT Called when this item is used when targetting a Block
 		ARG 1 context

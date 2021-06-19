@@ -1,9 +1,4 @@
 CLASS net/minecraft/server/commands/SpreadPlayersCommand
-	FIELD ERROR_FAILED_TO_SPREAD_ENTITIES Lcom/mojang/brigadier/exceptions/Dynamic4CommandExceptionType;
-	FIELD ERROR_FAILED_TO_SPREAD_TEAMS Lcom/mojang/brigadier/exceptions/Dynamic4CommandExceptionType;
-	FIELD MAX_ITERATION_COUNT I
-	METHOD <clinit> ()V
-	METHOD <init> ()V
 	METHOD createInitialPositions (Ljava/util/Random;IDDDD)[Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;
 		ARG 0 random
 		ARG 1 count
@@ -14,20 +9,9 @@ CLASS net/minecraft/server/commands/SpreadPlayersCommand
 	METHOD getNumberOfTeams (Ljava/util/Collection;)I
 		COMMENT Gets the number of unique teams for the given list of entities.
 		ARG 0 entities
-	METHOD lambda$register$2 (Lnet/minecraft/commands/CommandSourceStack;)Z
-	METHOD lambda$register$3 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$4 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$static$0 (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
-	METHOD lambda$static$1 (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
-	METHOD setPlayerPositions (Ljava/util/Collection;Lnet/minecraft/server/level/ServerLevel;[Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;IZ)D
-	METHOD spreadPlayers (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/phys/Vec2;FFIZLjava/util/Collection;)I
-	METHOD spreadPositions (Lnet/minecraft/world/phys/Vec2;DLnet/minecraft/server/level/ServerLevel;Ljava/util/Random;DDDDI[Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;Z)V
 	CLASS Position
-		FIELD x D
-		FIELD z D
-		METHOD <init> ()V
 		METHOD clamp (DDDD)Z
 			ARG 1 minX
 			ARG 3 minZ
@@ -35,13 +19,10 @@ CLASS net/minecraft/server/commands/SpreadPlayersCommand
 			ARG 7 maxZ
 		METHOD dist (Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;)D
 			ARG 1 other
-		METHOD getLength ()D
 		METHOD getSpawnY (Lnet/minecraft/world/level/BlockGetter;I)I
 			ARG 1 level
-		METHOD isSafe (Lnet/minecraft/world/level/BlockGetter;I)Z
 		METHOD moveAway (Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;)V
 			ARG 1 other
-		METHOD normalize ()V
 		METHOD randomize (Ljava/util/Random;DDDD)V
 			ARG 1 random
 			ARG 2 minX

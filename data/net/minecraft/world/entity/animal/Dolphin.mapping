@@ -1,33 +1,15 @@
 CLASS net/minecraft/world/entity/animal/Dolphin
-	FIELD ALLOWED_ITEMS Ljava/util/function/Predicate;
-	FIELD GOT_FISH Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD MOISTNESS_LEVEL Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD SWIM_WITH_PLAYER_TARGETING Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
-	FIELD TOTAL_AIR_SUPPLY I
-	FIELD TOTAL_MOISTNESS_LEVEL I
-	FIELD TREASURE_POS Lnet/minecraft/network/syncher/EntityDataAccessor;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
-	METHOD access$000 (Lnet/minecraft/world/entity/animal/Dolphin;)Ljava/util/Random;
-	METHOD access$100 (Lnet/minecraft/world/entity/animal/Dolphin;)Ljava/util/Random;
-	METHOD access$200 (Lnet/minecraft/world/entity/animal/Dolphin;)Ljava/util/Random;
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD addParticlesAroundSelf (Lnet/minecraft/core/particles/ParticleOptions;)V
 	METHOD canBeLeashed (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 player
-	METHOD canBreatheUnderwater ()Z
 	METHOD canRide (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD canTakeItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 itemstack
-	METHOD checkDolphinSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
-	METHOD closeToNextPos ()Z
-	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
 	METHOD createNavigation (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/ai/navigation/PathNavigation;
 		COMMENT Returns new PathNavigateGround instance
 		ARG 1 level
-	METHOD defineSynchedData ()V
 	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
@@ -36,29 +18,18 @@ CLASS net/minecraft/world/entity/animal/Dolphin
 		ARG 3 reason
 		ARG 4 spawnData
 		ARG 5 dataTag
-	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
-	METHOD getMaxAirSupply ()I
 	METHOD getMaxHeadXRot ()I
 		COMMENT The speed it takes to move the entityliving's rotationPitch through the faceEntity method. This is only currently use in wolves.
-	METHOD getMaxHeadYRot ()I
-	METHOD getMoistnessLevel ()I
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
-	METHOD getSwimSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getSwimSplashSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getTreasurePos ()Lnet/minecraft/core/BlockPos;
-	METHOD gotFish ()Z
-	METHOD handleAirSupply (I)V
 	METHOD handleEntityEvent (B)V
 		COMMENT Handler for {@link World#setEntityState}
 		ARG 1 id
 	METHOD increaseAirSupply (I)I
 		ARG 1 currentAir
-	METHOD lambda$static$0 (Lnet/minecraft/world/entity/item/ItemEntity;)Z
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
@@ -68,9 +39,6 @@ CLASS net/minecraft/world/entity/animal/Dolphin
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
-	METHOD registerGoals ()V
-	METHOD setGotFish (Z)V
-	METHOD setMoisntessLevel (I)V
 	METHOD setTreasurePos (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD tick ()V
@@ -78,14 +46,10 @@ CLASS net/minecraft/world/entity/animal/Dolphin
 	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 travelVector
 	CLASS DolphinSwimToTreasureGoal
-		FIELD dolphin Lnet/minecraft/world/entity/animal/Dolphin;
-		FIELD stuck Z
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Dolphin;)V
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD isInterruptable ()Z
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V
@@ -93,10 +57,6 @@ CLASS net/minecraft/world/entity/animal/Dolphin
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS DolphinSwimWithPlayerGoal
-		FIELD dolphin Lnet/minecraft/world/entity/animal/Dolphin;
-		FIELD player Lnet/minecraft/world/entity/player/Player;
-		FIELD speedModifier D
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Dolphin;D)V
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
@@ -108,12 +68,8 @@ CLASS net/minecraft/world/entity/animal/Dolphin
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS PlayWithItemsGoal
-		FIELD cooldown I
-		FIELD this$0 Lnet/minecraft/world/entity/animal/Dolphin;
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Dolphin;)V
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD drop (Lnet/minecraft/world/item/ItemStack;)V
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V

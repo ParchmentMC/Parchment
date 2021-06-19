@@ -1,21 +1,4 @@
 CLASS net/minecraft/commands/CommandSourceStack
-	FIELD ERROR_NOT_ENTITY Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD ERROR_NOT_PLAYER Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD anchor Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;
-	FIELD consumer Lcom/mojang/brigadier/ResultConsumer;
-	FIELD displayName Lnet/minecraft/network/chat/Component;
-	FIELD entity Lnet/minecraft/world/entity/Entity;
-	FIELD level Lnet/minecraft/server/level/ServerLevel;
-	FIELD permissionLevel I
-	FIELD rotation Lnet/minecraft/world/phys/Vec2;
-	FIELD server Lnet/minecraft/server/MinecraftServer;
-	FIELD silent Z
-	FIELD source Lnet/minecraft/commands/CommandSource;
-	FIELD textName Ljava/lang/String;
-	FIELD worldPosition Lnet/minecraft/world/phys/Vec3;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/commands/CommandSource;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec2;Lnet/minecraft/server/level/ServerLevel;ILjava/lang/String;Lnet/minecraft/network/chat/Component;Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/entity/Entity;)V
-	METHOD <init> (Lnet/minecraft/commands/CommandSource;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec2;Lnet/minecraft/server/level/ServerLevel;ILjava/lang/String;Lnet/minecraft/network/chat/Component;Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/entity/Entity;ZLcom/mojang/brigadier/ResultConsumer;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)V
 	METHOD broadcastToAdmins (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 message
 	METHOD customSuggestion (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
@@ -26,29 +9,12 @@ CLASS net/minecraft/commands/CommandSourceStack
 		ARG 2 anchorType
 	METHOD facing (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 lookPos
-	METHOD getAllTeams ()Ljava/util/Collection;
-	METHOD getAnchor ()Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;
-	METHOD getAvailableSoundEvents ()Ljava/util/Collection;
-	METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
-	METHOD getEntity ()Lnet/minecraft/world/entity/Entity;
-	METHOD getEntityOrException ()Lnet/minecraft/world/entity/Entity;
-	METHOD getLevel ()Lnet/minecraft/server/level/ServerLevel;
-	METHOD getOnlinePlayerNames ()Ljava/util/Collection;
-	METHOD getPlayerOrException ()Lnet/minecraft/server/level/ServerPlayer;
-	METHOD getPosition ()Lnet/minecraft/world/phys/Vec3;
-	METHOD getRecipeNames ()Ljava/util/stream/Stream;
-	METHOD getRotation ()Lnet/minecraft/world/phys/Vec2;
-	METHOD getServer ()Lnet/minecraft/server/MinecraftServer;
-	METHOD getTextName ()Ljava/lang/String;
 	METHOD hasPermission (I)Z
 		ARG 1 level
-	METHOD lambda$new$0 (Lcom/mojang/brigadier/context/CommandContext;ZI)V
-	METHOD levels ()Ljava/util/Set;
 	METHOD onCommandComplete (Lcom/mojang/brigadier/context/CommandContext;ZI)V
 		ARG 1 context
 		ARG 2 success
 		ARG 3 result
-	METHOD registryAccess ()Lnet/minecraft/core/RegistryAccess;
 	METHOD sendFailure (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 message
 	METHOD sendSuccess (Lnet/minecraft/network/chat/Component;Z)V
@@ -73,5 +39,3 @@ CLASS net/minecraft/commands/CommandSourceStack
 		ARG 1 pos
 	METHOD withRotation (Lnet/minecraft/world/phys/Vec2;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 pitchYaw
-	METHOD withSource (Lnet/minecraft/commands/CommandSource;)Lnet/minecraft/commands/CommandSourceStack;
-	METHOD withSuppressedOutput ()Lnet/minecraft/commands/CommandSourceStack;

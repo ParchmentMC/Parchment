@@ -1,11 +1,4 @@
 CLASS com/mojang/blaze3d/audio/OggAudioStream
-	FIELD EXPECTED_MAX_FRAME_SIZE I
-	FIELD audioFormat Ljavax/sound/sampled/AudioFormat;
-	FIELD buffer Ljava/nio/ByteBuffer;
-	FIELD handle J
-	FIELD input Ljava/io/InputStream;
-	METHOD <init> (Ljava/io/InputStream;)V
-	METHOD close ()V
 	METHOD convertMono (Ljava/nio/FloatBuffer;Lcom/mojang/blaze3d/audio/OggAudioStream$OutputConcat;)V
 		ARG 1 floatBuffer
 		ARG 2 oggAudioBuffer
@@ -13,21 +6,10 @@ CLASS com/mojang/blaze3d/audio/OggAudioStream
 		ARG 1 soundChannel1
 		ARG 2 soundChannel2
 		ARG 3 oggAudioBuffer
-	METHOD forwardBuffer ()V
-	METHOD getFormat ()Ljavax/sound/sampled/AudioFormat;
 	METHOD read (I)Ljava/nio/ByteBuffer;
 		ARG 1 size
-	METHOD readAll ()Ljava/nio/ByteBuffer;
 	METHOD readFrame (Lcom/mojang/blaze3d/audio/OggAudioStream$OutputConcat;)Z
 		ARG 1 oggAudioBuffer
-	METHOD refillFromStream ()Z
 	CLASS OutputConcat
-		FIELD bufferSize I
-		FIELD buffers Ljava/util/List;
-		FIELD byteCount I
-		FIELD currentBuffer Ljava/nio/ByteBuffer;
-		METHOD <init> (I)V
-		METHOD createNewBuffer ()V
-		METHOD get ()Ljava/nio/ByteBuffer;
 		METHOD put (F)V
 			ARG 1 floatValue

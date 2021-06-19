@@ -1,21 +1,8 @@
 CLASS net/minecraft/world/level/block/entity/SkullBlockEntity
-	FIELD TAG_SKULL_OWNER Ljava/lang/String;
-	FIELD isMovingMouth Z
-	FIELD mouthTickCount I
-	FIELD owner Lcom/mojang/authlib/GameProfile;
-	FIELD profileCache Lnet/minecraft/server/players/GameProfileCache;
-	FIELD sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
-	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-	METHOD dragonHeadAnimation (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/SkullBlockEntity;)V
-	METHOD getMouthAnimation (F)F
-	METHOD getOwnerProfile ()Lcom/mojang/authlib/GameProfile;
 	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
 		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
 	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
-	METHOD lambda$updateGameprofile$1 (Ljava/util/function/Consumer;Lcom/mojang/authlib/GameProfile;)V
-	METHOD lambda$updateOwnerProfile$0 (Lcom/mojang/authlib/GameProfile;)V
-	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
 	METHOD setOwner (Lcom/mojang/authlib/GameProfile;)V
@@ -24,5 +11,3 @@ CLASS net/minecraft/world/level/block/entity/SkullBlockEntity
 		ARG 0 profileCache
 	METHOD setSessionService (Lcom/mojang/authlib/minecraft/MinecraftSessionService;)V
 		ARG 0 sessionService
-	METHOD updateGameprofile (Lcom/mojang/authlib/GameProfile;Ljava/util/function/Consumer;)V
-	METHOD updateOwnerProfile ()V

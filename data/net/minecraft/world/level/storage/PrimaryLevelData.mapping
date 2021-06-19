@@ -1,80 +1,27 @@
 CLASS net/minecraft/world/level/storage/PrimaryLevelData
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD WORLD_GEN_SETTINGS Ljava/lang/String;
-	FIELD clearWeatherTime I
-	FIELD customBossEvents Lnet/minecraft/nbt/CompoundTag;
-	FIELD dayTime J
-	FIELD difficultyLocked Z
-	FIELD endDragonFightData Lnet/minecraft/nbt/CompoundTag;
-	FIELD fixerUpper Lcom/mojang/datafixers/DataFixer;
-	FIELD gameTime J
-	FIELD initialized Z
-	FIELD knownServerBrands Ljava/util/Set;
-	FIELD loadedPlayerTag Lnet/minecraft/nbt/CompoundTag;
-	FIELD playerDataVersion I
-	FIELD rainTime I
-	FIELD raining Z
-	FIELD scheduledEvents Lnet/minecraft/world/level/timers/TimerQueue;
-	FIELD settings Lnet/minecraft/world/level/LevelSettings;
-	FIELD spawnAngle F
-	FIELD thunderTime I
-	FIELD thundering Z
-	FIELD upgradedPlayerTag Z
-	FIELD version I
-	FIELD wanderingTraderId Ljava/util/UUID;
-	FIELD wanderingTraderSpawnChance I
-	FIELD wanderingTraderSpawnDelay I
-	FIELD wasModded Z
-	FIELD worldBorder Lnet/minecraft/world/level/border/WorldBorder$Settings;
-	FIELD worldGenSettings Lnet/minecraft/world/level/levelgen/WorldGenSettings;
-	FIELD worldGenSettingsLifecycle Lcom/mojang/serialization/Lifecycle;
-	FIELD xSpawn I
-	FIELD ySpawn I
-	FIELD zSpawn I
-	METHOD <clinit> ()V
-	METHOD <init> (Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundTag;ZIIIFJJIIIZIZZZLnet/minecraft/world/level/border/WorldBorder$Settings;IILjava/util/UUID;Ljava/util/Set;Lnet/minecraft/world/level/timers/TimerQueue;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldGenSettings;Lcom/mojang/serialization/Lifecycle;)V
-	METHOD <init> (Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldGenSettings;Lcom/mojang/serialization/Lifecycle;)V
 	METHOD createTag (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 registries
 		ARG 2 hostPlayerNBT
-	METHOD endDragonFightData ()Lnet/minecraft/nbt/CompoundTag;
-	METHOD fillCrashReportCategory (Lnet/minecraft/CrashReportCategory;Lnet/minecraft/world/level/LevelHeightAccessor;)V
 	METHOD getAllowCommands ()Z
 		COMMENT Returns true if commands are allowed on this World.
-	METHOD getClearWeatherTime ()I
-	METHOD getCustomBossEvents ()Lnet/minecraft/nbt/CompoundTag;
-	METHOD getDataPackConfig ()Lnet/minecraft/world/level/DataPackConfig;
 	METHOD getDayTime ()J
 		COMMENT Get current world time
-	METHOD getDifficulty ()Lnet/minecraft/world/Difficulty;
 	METHOD getGameRules ()Lnet/minecraft/world/level/GameRules;
 		COMMENT Gets the GameRules class Instance.
-	METHOD getGameTime ()J
 	METHOD getGameType ()Lnet/minecraft/world/level/GameType;
 		COMMENT Gets the GameType.
-	METHOD getKnownServerBrands ()Ljava/util/Set;
 	METHOD getLevelName ()Ljava/lang/String;
 		COMMENT Get current world name
-	METHOD getLevelSettings ()Lnet/minecraft/world/level/LevelSettings;
-	METHOD getLoadedPlayerTag ()Lnet/minecraft/nbt/CompoundTag;
 	METHOD getRainTime ()I
 		COMMENT Return the number of ticks until rain.
-	METHOD getScheduledEvents ()Lnet/minecraft/world/level/timers/TimerQueue;
-	METHOD getSpawnAngle ()F
 	METHOD getThunderTime ()I
 		COMMENT Returns the number of ticks until next thunderbolt.
-	METHOD getVersion ()I
-	METHOD getWanderingTraderId ()Ljava/util/UUID;
-	METHOD getWanderingTraderSpawnChance ()I
-	METHOD getWanderingTraderSpawnDelay ()I
-	METHOD getWorldBorder ()Lnet/minecraft/world/level/border/WorldBorder$Settings;
 	METHOD getXSpawn ()I
 		COMMENT Returns the x spawn position
 	METHOD getYSpawn ()I
 		COMMENT Return the Y axis spawning point of the player.
 	METHOD getZSpawn ()I
 		COMMENT Returns the z spawn position
-	METHOD isDifficultyLocked ()Z
 	METHOD isHardcore ()Z
 		COMMENT Returns true if hardcore mode is enabled, otherwise false
 	METHOD isInitialized ()Z
@@ -83,11 +30,6 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 		COMMENT Returns true if it is raining, false otherwise.
 	METHOD isThundering ()Z
 		COMMENT Returns true if it is thundering, false otherwise.
-	METHOD lambda$parse$0 (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/nbt/Tag;
-	METHOD lambda$parse$1 (Lcom/mojang/serialization/Dynamic;)Ljava/util/stream/Stream;
-	METHOD lambda$setTagData$2 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
-	METHOD lambda$setTagData$3 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
-	METHOD overworldData ()Lnet/minecraft/world/level/storage/ServerLevelData;
 	METHOD parse (Lcom/mojang/serialization/Dynamic;Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/storage/LevelVersion;Lnet/minecraft/world/level/levelgen/WorldGenSettings;Lcom/mojang/serialization/Lifecycle;)Lnet/minecraft/world/level/storage/PrimaryLevelData;
 		ARG 0 dynamic
 		ARG 1 dataFixer
@@ -160,7 +102,3 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 	METHOD setZSpawn (I)V
 		COMMENT Set the z spawn position to the passed in value
 		ARG 1 z
-	METHOD updatePlayerTag ()V
-	METHOD wasModded ()Z
-	METHOD worldGenSettings ()Lnet/minecraft/world/level/levelgen/WorldGenSettings;
-	METHOD worldGenSettingsLifecycle ()Lcom/mojang/serialization/Lifecycle;

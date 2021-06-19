@@ -1,20 +1,4 @@
 CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD MAX_ACTIONS_SIZE I
-	FIELD carriedIndex I
-	FIELD connection Lnet/minecraft/client/multiplayer/ClientPacketListener;
-	FIELD destroyBlockPos Lnet/minecraft/core/BlockPos;
-	FIELD destroyDelay I
-	FIELD destroyProgress F
-	FIELD destroyTicks F
-	FIELD destroyingItem Lnet/minecraft/world/item/ItemStack;
-	FIELD isDestroying Z
-	FIELD localPlayerMode Lnet/minecraft/world/level/GameType;
-	FIELD minecraft Lnet/minecraft/client/Minecraft;
-	FIELD previousLocalPlayerMode Lnet/minecraft/world/level/GameType;
-	FIELD unAckedActions Lit/unimi/dsi/fastutil/objects/Object2ObjectLinkedOpenHashMap;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/multiplayer/ClientPacketListener;)V
 	METHOD adjustPlayer (Lnet/minecraft/world/entity/player/Player;)V
 		COMMENT Sets player capabilities depending on current gametype. params: player
 		ARG 1 player
@@ -22,7 +6,6 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		COMMENT Attacks an entity
 		ARG 1 player
 		ARG 2 targetEntity
-	METHOD canHurtPlayer ()Z
 	METHOD continueDestroyBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
 		ARG 1 posBlock
 		ARG 2 directionFacing
@@ -40,8 +23,6 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		COMMENT Syncs the current player item with the server
 	METHOD getPickRange ()F
 		COMMENT player reach distance = 4F
-	METHOD getPlayerMode ()Lnet/minecraft/world/level/GameType;
-	METHOD getPreviousPlayerMode ()Lnet/minecraft/world/level/GameType;
 	METHOD handleBlockBreakAck (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;Z)V
 		ARG 1 level
 		ARG 2 pos
@@ -59,13 +40,11 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		COMMENT GuiEnchantment uses this during multiplayer to tell PlayerControllerMP to send a packet indicating the enchantment action the player has taken.
 		ARG 1 windowID
 		ARG 2 button
-	METHOD handleInventoryMouseClick (IIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
 	METHOD handlePickItem (I)V
 		ARG 1 index
 	METHOD handlePlaceRecipe (ILnet/minecraft/world/item/crafting/Recipe;Z)V
 		ARG 2 recipe
 		ARG 3 placeAll
-	METHOD hasExperience ()Z
 	METHOD hasFarPickRange ()Z
 		COMMENT true for hitting entities far away.
 	METHOD hasInfiniteItems ()Z
@@ -83,7 +62,6 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		ARG 2 target
 		ARG 3 ray
 		ARG 4 hand
-	METHOD isAlwaysFlying ()Z
 	METHOD isDestroying ()Z
 		COMMENT Return isHittingBlock
 	METHOD isServerControlledInventory ()Z
@@ -99,16 +77,13 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 	METHOD setLocalMode (Lnet/minecraft/world/level/GameType;)V
 		COMMENT Sets the game type for the player.
 		ARG 1 type
-	METHOD setLocalMode (Lnet/minecraft/world/level/GameType;Lnet/minecraft/world/level/GameType;)V
 	METHOD startDestroyBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
 		COMMENT Called when the player is hitting a block with an item.
 		ARG 1 loc
 		ARG 2 face
 	METHOD stopDestroyBlock ()V
 		COMMENT Resets current block damage
-	METHOD tick ()V
 	METHOD useItem (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 level
 		ARG 3 hand
-	METHOD useItemOn (Lnet/minecraft/client/player/LocalPlayer;Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;

@@ -1,123 +1,21 @@
 CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
-	FIELD COMMANDS_INFO Lnet/minecraft/network/chat/Component;
-	FIELD GAME_MODEL_LABEL Lnet/minecraft/network/chat/Component;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD NAME_LABEL Lnet/minecraft/network/chat/Component;
-	FIELD OUTPUT_DIR_INFO Lnet/minecraft/network/chat/Component;
-	FIELD SEED_INFO Lnet/minecraft/network/chat/Component;
-	FIELD SEED_LABEL Lnet/minecraft/network/chat/Component;
-	FIELD TEMP_WORLD_PREFIX Ljava/lang/String;
 	FIELD commands Z
 		COMMENT If cheats are allowed
-	FIELD commandsButton Lnet/minecraft/client/gui/components/CycleButton;
 	FIELD commandsChanged Z
 		COMMENT User explicitly clicked "Allow Cheats" at some point
 		COMMENT Prevents value changes due to changing game mode
-	FIELD createButton Lnet/minecraft/client/gui/components/Button;
-	FIELD dataPacks Lnet/minecraft/world/level/DataPackConfig;
-	FIELD dataPacksButton Lnet/minecraft/client/gui/components/Button;
-	FIELD difficulty Lnet/minecraft/world/Difficulty;
-	FIELD difficultyButton Lnet/minecraft/client/gui/components/CycleButton;
-	FIELD gameMode Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;
-	FIELD gameModeHelp1 Lnet/minecraft/network/chat/Component;
-	FIELD gameModeHelp2 Lnet/minecraft/network/chat/Component;
-	FIELD gameRules Lnet/minecraft/world/level/GameRules;
-	FIELD gameRulesButton Lnet/minecraft/client/gui/components/Button;
 	FIELD hardCore Z
 		COMMENT Set to true when "hardcore" is the currently-selected gamemode
-	FIELD initName Ljava/lang/String;
-	FIELD lastScreen Lnet/minecraft/client/gui/screens/Screen;
-	FIELD modeButton Lnet/minecraft/client/gui/components/CycleButton;
-	FIELD moreOptionsButton Lnet/minecraft/client/gui/components/Button;
-	FIELD nameEdit Lnet/minecraft/client/gui/components/EditBox;
-	FIELD oldGameMode Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;
-	FIELD resultFolder Ljava/lang/String;
-	FIELD tempDataPackDir Ljava/nio/file/Path;
-	FIELD tempDataPackRepository Lnet/minecraft/server/packs/repository/PackRepository;
-	FIELD worldGenSettingsComponent Lnet/minecraft/client/gui/screens/worldselection/WorldGenSettingsComponent;
-	FIELD worldGenSettingsVisible Z
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/world/level/DataPackConfig;Lnet/minecraft/client/gui/screens/worldselection/WorldGenSettingsComponent;)V
-	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldGenSettings;Ljava/nio/file/Path;Lnet/minecraft/world/level/DataPackConfig;Lnet/minecraft/core/RegistryAccess$RegistryHolder;)V
-	METHOD addRenderableWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
 	METHOD addWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
 		ARG 1 listener
-	METHOD cleanupTempResources ()V
-	METHOD copyBetweenDirs (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/nio/file/Path;)V
-	METHOD copyTempDataPackDirToNewWorld ()Z
-	METHOD create (Lnet/minecraft/client/gui/screens/Screen;)Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;
-	METHOD createTempDataPackDirFromExistingWorld (Ljava/nio/file/Path;Lnet/minecraft/client/Minecraft;)Ljava/nio/file/Path;
-	METHOD getDataPackSelectionSettings ()Lcom/mojang/datafixers/util/Pair;
-	METHOD getEffectiveDifficulty ()Lnet/minecraft/world/Difficulty;
-	METHOD getTempDataPackDir ()Ljava/nio/file/Path;
-	METHOD init ()V
 	METHOD keyPressed (III)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
-	METHOD lambda$copyTempDataPackDirToNewWorld$21 (Ljava/nio/file/Path;)Z
-	METHOD lambda$copyTempDataPackDirToNewWorld$22 (Ljava/nio/file/Path;Ljava/nio/file/Path;)V
-	METHOD lambda$createTempDataPackDirFromExistingWorld$23 (Ljava/nio/file/Path;Ljava/nio/file/Path;)Z
-	METHOD lambda$createTempDataPackDirFromExistingWorld$24 (Lorg/apache/commons/lang3/mutable/MutableObject;Ljava/nio/file/Path;Ljava/nio/file/Path;)V
-	METHOD lambda$init$0 (Ljava/lang/String;)V
-	METHOD lambda$init$1 (Lnet/minecraft/client/gui/components/CycleButton;)Lnet/minecraft/network/chat/MutableComponent;
-	METHOD lambda$init$10 (Lnet/minecraft/client/gui/components/Button;)V
-	METHOD lambda$init$11 (Lnet/minecraft/client/gui/components/Button;)V
-	METHOD lambda$init$12 (Lnet/minecraft/client/gui/components/Button;)V
-	METHOD lambda$init$2 (Lnet/minecraft/client/gui/components/CycleButton;Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;)V
-	METHOD lambda$init$3 (Lnet/minecraft/client/gui/components/CycleButton;Lnet/minecraft/world/Difficulty;)V
-	METHOD lambda$init$4 (Lnet/minecraft/client/gui/components/CycleButton;)Lnet/minecraft/network/chat/MutableComponent;
-	METHOD lambda$init$5 (Lnet/minecraft/client/gui/components/CycleButton;Ljava/lang/Boolean;)V
-	METHOD lambda$init$6 (Lnet/minecraft/client/gui/components/Button;)V
-	METHOD lambda$init$7 (Lnet/minecraft/world/level/GameRules;)V
-	METHOD lambda$init$8 (Ljava/util/Optional;)V
-	METHOD lambda$init$9 (Lnet/minecraft/client/gui/components/Button;)V
-	METHOD lambda$removeTempDataPackDir$20 (Ljava/nio/file/Path;)V
-	METHOD lambda$tryApplyNewDataPacks$13 (Ljava/util/List;Ljava/lang/String;)Z
-	METHOD lambda$tryApplyNewDataPacks$14 ()V
-	METHOD lambda$tryApplyNewDataPacks$15 (Lnet/minecraft/world/level/DataPackConfig;Lnet/minecraft/server/ServerResources;)V
-	METHOD lambda$tryApplyNewDataPacks$16 (Z)V
-	METHOD lambda$tryApplyNewDataPacks$17 ()V
-	METHOD lambda$tryApplyNewDataPacks$18 ()V
-	METHOD lambda$tryApplyNewDataPacks$19 (Ljava/lang/Void;Ljava/lang/Throwable;)Ljava/lang/Object;
-	METHOD onClose ()V
-	METHOD onCreate ()V
-	METHOD openDataPackSelectionScreen ()V
-	METHOD popScreen ()V
-	METHOD refreshWorldGenSettingsVisibility ()V
-	METHOD removeTempDataPackDir ()V
-	METHOD removed ()V
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 matrixStack
 		ARG 2 mouseX
 		ARG 3 mouseY
 		ARG 4 partialTicks
-	METHOD setGameMode (Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;)V
-	METHOD setWorldGenSettingsVisible (Z)V
-	METHOD tick ()V
-	METHOD toggleWorldGenSettingsVisibility ()V
-	METHOD tryApplyNewDataPacks (Lnet/minecraft/server/packs/repository/PackRepository;)V
-	METHOD updateGameModeHelp ()V
 	METHOD updateResultFolder ()V
 		COMMENT Determine a save-directory name from the world name
-	CLASS 1
-		FIELD this$0 Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;
-		METHOD <init> (Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;Lnet/minecraft/client/gui/Font;IIIILnet/minecraft/network/chat/Component;)V
-		METHOD createNarrationMessage ()Lnet/minecraft/network/chat/MutableComponent;
-	CLASS OperationFailedException
-		METHOD <init> (Ljava/lang/Throwable;)V
-	CLASS SelectedGameMode
-		FIELD $VALUES [Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;
-		FIELD CREATIVE Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;
-		FIELD DEBUG Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;
-		FIELD HARDCORE Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;
-		FIELD SURVIVAL Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;
-		FIELD displayName Lnet/minecraft/network/chat/Component;
-		FIELD gameType Lnet/minecraft/world/level/GameType;
-		FIELD name Ljava/lang/String;
-		METHOD $values ()[Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/world/level/GameType;)V
-		METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;
-		METHOD values ()[Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;

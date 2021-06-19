@@ -1,41 +1,8 @@
 CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
-	FIELD BATCH_SIZE I
-	FIELD RATE I
-	FIELD SCAN_RANGE I
-	FIELD batchCache Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;
-	FIELD memoryToAcquire Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;
-	FIELD nextScheduledStart J
-	FIELD onPoiAcquisitionEvent Ljava/util/Optional;
-	FIELD onlyIfAdult Z
-	FIELD poiType Lnet/minecraft/world/entity/ai/village/poi/PoiType;
-	METHOD <init> (Lnet/minecraft/world/entity/ai/village/poi/PoiType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLjava/util/Optional;)V
-	METHOD <init> (Lnet/minecraft/world/entity/ai/village/poi/PoiType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLjava/util/Optional;)V
-	METHOD checkExtraStartConditions (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Z
 	METHOD checkExtraStartConditions (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/PathfinderMob;)Z
 		ARG 1 level
 		ARG 2 owner
-	METHOD constructEntryConditionMap (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Lcom/google/common/collect/ImmutableMap;
-	METHOD lambda$start$0 (JLit/unimi/dsi/fastutil/longs/Long2ObjectMap$Entry;)Z
-	METHOD lambda$start$1 (JLnet/minecraft/core/BlockPos;)Z
-	METHOD lambda$start$2 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Z
-	METHOD lambda$start$3 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/PathfinderMob;Ljava/lang/Byte;)V
-	METHOD lambda$start$4 (Lnet/minecraft/world/entity/ai/village/poi/PoiManager;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/PathfinderMob;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/ai/village/poi/PoiType;)V
-	METHOD lambda$start$5 (Lnet/minecraft/world/entity/PathfinderMob;JJ)Lnet/minecraft/world/entity/ai/behavior/AcquirePoi$JitteredLinearRetry;
-	METHOD start (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)V
 	METHOD start (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/PathfinderMob;J)V
 		ARG 1 level
 		ARG 2 entity
 		ARG 3 gameTime
-	CLASS JitteredLinearRetry
-		FIELD MAX_INTERVAL_INCREASE I
-		FIELD MAX_RETRY_PATHFINDING_INTERVAL I
-		FIELD MIN_INTERVAL_INCREASE I
-		FIELD currentDelay I
-		FIELD nextScheduledAttemptTimestamp J
-		FIELD previousAttemptTimestamp J
-		FIELD random Ljava/util/Random;
-		METHOD <init> (Ljava/util/Random;J)V
-		METHOD isStillValid (J)Z
-		METHOD markAttempt (J)V
-		METHOD shouldRetry (J)Z
-		METHOD toString ()Ljava/lang/String;

@@ -1,10 +1,4 @@
 CLASS net/minecraft/advancements/critereon/MinMaxBounds
-	FIELD ERROR_EMPTY Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD ERROR_SWAPPED Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD max Ljava/lang/Number;
-	FIELD min Ljava/lang/Number;
-	METHOD <clinit> ()V
-	METHOD <init> (Ljava/lang/Number;Ljava/lang/Number;)V
 	METHOD fromJson (Lcom/google/gson/JsonElement;Lnet/minecraft/advancements/critereon/MinMaxBounds;Ljava/util/function/BiFunction;Lnet/minecraft/advancements/critereon/MinMaxBounds$BoundsFactory;)Lnet/minecraft/advancements/critereon/MinMaxBounds;
 		ARG 0 element
 		ARG 1 defaultValue
@@ -16,11 +10,8 @@ CLASS net/minecraft/advancements/critereon/MinMaxBounds
 		ARG 2 valueFunction
 		ARG 3 commandExceptionSupplier
 		ARG 4 function
-	METHOD getMax ()Ljava/lang/Number;
-	METHOD getMin ()Ljava/lang/Number;
 	METHOD isAllowedInputChat (Lcom/mojang/brigadier/StringReader;)Z
 		ARG 0 reader
-	METHOD isAny ()Z
 	METHOD optionallyFormat (Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
 		ARG 0 value
 		ARG 1 formatterFunction
@@ -28,39 +19,9 @@ CLASS net/minecraft/advancements/critereon/MinMaxBounds
 		ARG 0 reader
 		ARG 1 stringToValueFunction
 		ARG 2 commandExceptionSupplier
-	METHOD serializeToJson ()Lcom/google/gson/JsonElement;
-	CLASS BoundsFactory
-		METHOD create (Ljava/lang/Number;Ljava/lang/Number;)Lnet/minecraft/advancements/critereon/MinMaxBounds;
-	CLASS BoundsFromReaderFactory
-		METHOD create (Lcom/mojang/brigadier/StringReader;Ljava/lang/Number;Ljava/lang/Number;)Lnet/minecraft/advancements/critereon/MinMaxBounds;
-	CLASS Doubles
-		FIELD ANY Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;
-		FIELD maxSq Ljava/lang/Double;
-		FIELD minSq Ljava/lang/Double;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/Double;Ljava/lang/Double;)V
-		METHOD atLeast (D)Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;
-		METHOD atMost (D)Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;
-		METHOD between (DD)Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;
-		METHOD create (Lcom/mojang/brigadier/StringReader;Ljava/lang/Double;Ljava/lang/Double;)Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;
-		METHOD exactly (D)Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;
-		METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;
-		METHOD fromReader (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;
-		METHOD fromReader (Lcom/mojang/brigadier/StringReader;Ljava/util/function/Function;)Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;
-		METHOD lambda$fromReader$0 (Ljava/lang/Double;)Ljava/lang/Double;
-		METHOD matches (D)Z
-		METHOD matchesSqr (D)Z
-		METHOD squareOpt (Ljava/lang/Double;)Ljava/lang/Double;
 	CLASS Ints
-		FIELD ANY Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;
-		FIELD maxSq Ljava/lang/Long;
-		FIELD minSq Ljava/lang/Long;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/Integer;Ljava/lang/Integer;)V
 		METHOD atLeast (I)Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;
 			ARG 0 value
-		METHOD atMost (I)Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;
-		METHOD between (II)Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;
 		METHOD create (Lcom/mojang/brigadier/StringReader;Ljava/lang/Integer;Ljava/lang/Integer;)Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;
 			ARG 0 reader
 			ARG 1 min
@@ -74,9 +35,7 @@ CLASS net/minecraft/advancements/critereon/MinMaxBounds
 		METHOD fromReader (Lcom/mojang/brigadier/StringReader;Ljava/util/function/Function;)Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;
 			ARG 0 reader
 			ARG 1 valueFunction
-		METHOD lambda$fromReader$0 (Ljava/lang/Integer;)Ljava/lang/Integer;
 		METHOD matches (I)Z
 			ARG 1 value
-		METHOD matchesSqr (J)Z
 		METHOD squareOpt (Ljava/lang/Integer;)Ljava/lang/Long;
 			ARG 0 value

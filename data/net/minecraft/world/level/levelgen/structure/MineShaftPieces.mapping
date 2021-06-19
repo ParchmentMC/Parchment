@@ -1,29 +1,5 @@
 CLASS net/minecraft/world/level/levelgen/structure/MineShaftPieces
-	FIELD DEFAULT_SHAFT_HEIGHT I
-	FIELD DEFAULT_SHAFT_LENGTH I
-	FIELD DEFAULT_SHAFT_WIDTH I
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD MAX_CHAIN_HEIGHT I
-	FIELD MAX_DEPTH I
-	FIELD MAX_PILLAR_HEIGHT I
-	METHOD <clinit> ()V
-	METHOD <init> ()V
-	METHOD createRandomShaftPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;ILnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;)Lnet/minecraft/world/level/levelgen/structure/MineShaftPieces$MineShaftPiece;
-	METHOD generateAndAddPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/MineShaftPieces$MineShaftPiece;
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$core$Direction [I
-		METHOD <clinit> ()V
 	CLASS MineShaftCorridor
-		FIELD hasPlacedSpider Z
-		FIELD hasRails Z
-		FIELD numSections I
-		FIELD spiderCorridor Z
-		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;)V
-		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
-		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
-		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
-		METHOD canHangChainBelow (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
-		METHOD canPlaceColumnOnTopOf (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		METHOD createChest (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;IIILnet/minecraft/resources/ResourceLocation;)Z
 			COMMENT Adds chest to the structure and sets its contents
 			ARG 1 level
@@ -33,54 +9,15 @@ CLASS net/minecraft/world/level/levelgen/structure/MineShaftPieces
 			ARG 5 y
 			ARG 6 z
 			ARG 7 loot
-		METHOD fillColumnBetween (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos$MutableBlockPos;II)V
-		METHOD fillColumnDown (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/block/state/BlockState;IIILnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
-		METHOD fillPillarDownOrChainUp (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/block/state/BlockState;IIILnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
-		METHOD findCorridorSize (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
-		METHOD hasSturdyNeighbours (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIII)Z
-		METHOD maybePlaceCobWeb (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;FIII)V
-		METHOD placeDoubleLowerOrUpperSupport (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;III)V
-		METHOD placeSupport (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIIIILjava/util/Random;)V
-		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
-	CLASS MineShaftCrossing
-		FIELD direction Lnet/minecraft/core/Direction;
-		FIELD isTwoFloored Z
-		METHOD <init> (ILnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;)V
-		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
-		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
-		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
-		METHOD findCrossing (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
-		METHOD placeSupportPillar (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIII)V
-		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
 	CLASS MineShaftPiece
-		FIELD type Lnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;
-		METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;ILnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
-		METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;Lnet/minecraft/nbt/CompoundTag;)V
-		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
-		METHOD canBeReplaced (Lnet/minecraft/world/level/LevelReader;IIILnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
-		METHOD edgesLiquid (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
 		METHOD isSupportingBox (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIII)Z
 			ARG 1 blockReader
 			ARG 2 bounds
 			ARG 3 xStart
 			ARG 4 xEnd
 			ARG 6 z
-		METHOD setPlanksBlock (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/block/state/BlockState;III)V
 	CLASS MineShaftRoom
-		FIELD childEntranceBoxes Ljava/util/List;
-		METHOD <init> (ILjava/util/Random;IILnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;)V
-		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
-		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
-		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
-		METHOD lambda$addAdditionalSaveData$0 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
 		METHOD move (III)V
 			ARG 1 x
 			ARG 2 y
 			ARG 3 z
-		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
-	CLASS MineShaftStairs
-		METHOD <init> (ILnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;)V
-		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
-		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
-		METHOD findStairs (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
-		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z

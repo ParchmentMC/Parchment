@@ -1,32 +1,16 @@
 CLASS net/minecraft/world/SimpleContainer
-	FIELD items Lnet/minecraft/core/NonNullList;
-	FIELD listeners Ljava/util/List;
-	FIELD size I
-	METHOD <init> (I)V
-	METHOD <init> ([Lnet/minecraft/world/item/ItemStack;)V
 	METHOD addItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 	METHOD addListener (Lnet/minecraft/world/ContainerListener;)V
 		COMMENT Add a listener that will be notified when any item in this inventory is modified.
 		ARG 1 listener
-	METHOD canAddItem (Lnet/minecraft/world/item/ItemStack;)Z
-	METHOD clearContent ()V
-	METHOD createTag ()Lnet/minecraft/nbt/ListTag;
 	METHOD fillStackedContents (Lnet/minecraft/world/entity/player/StackedContents;)V
 		ARG 1 helper
-	METHOD fromTag (Lnet/minecraft/nbt/ListTag;)V
 	METHOD getContainerSize ()I
 		COMMENT Returns the number of slots in the inventory.
 	METHOD getItem (I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns the stack in the given slot.
 		ARG 1 index
-	METHOD isEmpty ()Z
-	METHOD lambda$removeAllItems$0 (Lnet/minecraft/world/item/ItemStack;)Z
-	METHOD lambda$toString$1 (Lnet/minecraft/world/item/ItemStack;)Z
-	METHOD moveItemToEmptySlots (Lnet/minecraft/world/item/ItemStack;)V
-	METHOD moveItemToOccupiedSlotsWithSameType (Lnet/minecraft/world/item/ItemStack;)V
-	METHOD moveItemsBetweenStacks (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
-	METHOD removeAllItems ()Ljava/util/List;
 	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
 		ARG 1 index
@@ -34,7 +18,6 @@ CLASS net/minecraft/world/SimpleContainer
 	METHOD removeItemNoUpdate (I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Removes a stack from the given slot and returns it.
 		ARG 1 index
-	METHOD removeItemType (Lnet/minecraft/world/item/Item;I)Lnet/minecraft/world/item/ItemStack;
 	METHOD removeListener (Lnet/minecraft/world/ContainerListener;)V
 		COMMENT removes the specified IInvBasic from receiving further change notices
 		ARG 1 listener
@@ -47,4 +30,3 @@ CLASS net/minecraft/world/SimpleContainer
 	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
 		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
 		ARG 1 player
-	METHOD toString ()Ljava/lang/String;

@@ -1,21 +1,13 @@
 CLASS net/minecraft/client/gui/screens/ChatScreen
-	FIELD MOUSE_SCROLL_SPEED I
-	FIELD USAGE_TEXT Lnet/minecraft/network/chat/Component;
-	FIELD commandSuggestions Lnet/minecraft/client/gui/components/CommandSuggestions;
-	FIELD historyBuffer Ljava/lang/String;
 	FIELD historyPos I
 		COMMENT keeps position of which chat message you will select when you press up, (does not increase for duplicated messages sent immediately after each other)
 	FIELD initial Ljava/lang/String;
 		COMMENT is the text that appears when you press the chat key and the input box appears pre-filled
 	FIELD input Lnet/minecraft/client/gui/components/EditBox;
 		COMMENT Chat entry field
-	METHOD <clinit> ()V
-	METHOD <init> (Ljava/lang/String;)V
-	METHOD init ()V
 	METHOD insertText (Ljava/lang/String;Z)V
 		ARG 1 text
 		ARG 2 overwrite
-	METHOD isPauseScreen ()Z
 	METHOD keyPressed (III)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
@@ -31,8 +23,6 @@ CLASS net/minecraft/client/gui/screens/ChatScreen
 	METHOD moveInHistory (I)V
 		COMMENT input is relative and is applied directly to the sentHistoryCursor so -1 is the previous message, 1 is the next message from the current cursor position
 		ARG 1 msgPos
-	METHOD onEdited (Ljava/lang/String;)V
-	METHOD removed ()V
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 matrixStack
 		ARG 2 mouseX
@@ -42,10 +32,3 @@ CLASS net/minecraft/client/gui/screens/ChatScreen
 		ARG 1 minecraft
 		ARG 2 width
 		ARG 3 height
-	METHOD setChatLine (Ljava/lang/String;)V
-	METHOD tick ()V
-	METHOD updateNarrationState (Lnet/minecraft/client/gui/narration/NarrationElementOutput;)V
-	CLASS 1
-		FIELD this$0 Lnet/minecraft/client/gui/screens/ChatScreen;
-		METHOD <init> (Lnet/minecraft/client/gui/screens/ChatScreen;Lnet/minecraft/client/gui/Font;IIIILnet/minecraft/network/chat/Component;)V
-		METHOD createNarrationMessage ()Lnet/minecraft/network/chat/MutableComponent;

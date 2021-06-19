@@ -1,35 +1,15 @@
 CLASS net/minecraft/world/level/lighting/LayerLightSectionStorage
-	FIELD DIRECTIONS [Lnet/minecraft/core/Direction;
-	FIELD EMPTY I
-	FIELD EMPTY_DATA Lnet/minecraft/world/level/chunk/DataLayer;
-	FIELD LIGHT_AND_DATA I
-	FIELD LIGHT_ONLY I
-	FIELD changedSections Lit/unimi/dsi/fastutil/longs/LongSet;
-	FIELD chunkSource Lnet/minecraft/world/level/chunk/LightChunkGetter;
 	FIELD columnsToRetainQueuedDataFor Lit/unimi/dsi/fastutil/longs/LongSet;
 		COMMENT Section column positions (section positions with Y=0) that need to be kept even if some of their sections could otherwise be removed.
 	FIELD dataSectionSet Lit/unimi/dsi/fastutil/longs/LongSet;
 		COMMENT Section positions with blocks in them that can be affected by lighting. All neighbor sections can spread light into them.
-	FIELD hasToRemove Z
-	FIELD layer Lnet/minecraft/world/level/LightLayer;
-	FIELD queuedSections Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;
-	FIELD sectionsAffectedByLightUpdates Lit/unimi/dsi/fastutil/longs/LongSet;
-	FIELD toMarkData Lit/unimi/dsi/fastutil/longs/LongSet;
-	FIELD toMarkNoData Lit/unimi/dsi/fastutil/longs/LongSet;
 	FIELD toRemove Lit/unimi/dsi/fastutil/longs/LongSet;
 		COMMENT Set of section positions that can be removed, because their light won't affect any blocks.
-	FIELD untrustedSections Lit/unimi/dsi/fastutil/longs/LongSet;
-	FIELD updatingSectionData Lnet/minecraft/world/level/lighting/DataLayerStorageMap;
-	FIELD visibleSectionData Lnet/minecraft/world/level/lighting/DataLayerStorageMap;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/level/LightLayer;Lnet/minecraft/world/level/chunk/LightChunkGetter;Lnet/minecraft/world/level/lighting/DataLayerStorageMap;)V
-	METHOD checkEdgesForSection (Lnet/minecraft/world/level/lighting/LayerLightEngine;J)V
 	METHOD clearQueuedSectionBlocks (Lnet/minecraft/world/level/lighting/LayerLightEngine;J)V
 		ARG 1 engine
 		ARG 2 sectionPos
 	METHOD createDataLayer (J)Lnet/minecraft/world/level/chunk/DataLayer;
 		ARG 1 sectionPos
-	METHOD enableLightSources (JZ)V
 	METHOD getDataLayer (JZ)Lnet/minecraft/world/level/chunk/DataLayer;
 		ARG 1 sectionPos
 		ARG 3 cached
@@ -46,22 +26,18 @@ CLASS net/minecraft/world/level/lighting/LayerLightSectionStorage
 		ARG 1 levelPos
 	METHOD getStoredLevel (J)I
 		ARG 1 levelPos
-	METHOD hasInconsistencies ()Z
-	METHOD lambda$clearQueuedSectionBlocks$0 (JJ)Z
 	METHOD markNewInconsistencies (Lnet/minecraft/world/level/lighting/LayerLightEngine;ZZ)V
 		ARG 1 engine
 		ARG 2 updateSkyLight
 		ARG 3 updateBlockLight
 	METHOD onNodeAdded (J)V
 		ARG 1 sectionPos
-	METHOD onNodeRemoved (J)V
 	METHOD queueSectionData (JLnet/minecraft/world/level/chunk/DataLayer;Z)V
 		ARG 1 sectionPos
 		ARG 3 array
 	METHOD retainData (JZ)V
 		ARG 1 sectionColumnPos
 		ARG 3 retain
-	METHOD runAllUpdates ()V
 	METHOD setLevel (JI)V
 		ARG 1 sectionPos
 		ARG 3 level
@@ -70,10 +46,6 @@ CLASS net/minecraft/world/level/lighting/LayerLightSectionStorage
 		ARG 3 lightLevel
 	METHOD storingLightForSection (J)Z
 		ARG 1 sectionPos
-	METHOD swapSectionMap ()V
 	METHOD updateSectionStatus (JZ)V
 		ARG 1 sectionPos
 		ARG 3 isEmpty
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$core$Direction [I
-		METHOD <clinit> ()V

@@ -1,26 +1,16 @@
 CLASS net/minecraft/client/gui/components/ChatComponent
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD MAX_CHAT_HISTORY I
 	FIELD allMessages Ljava/util/List;
 		COMMENT Chat lines to be displayed in the chat box
-	FIELD chatQueue Ljava/util/Deque;
-	FIELD chatScrollbarPos I
-	FIELD lastMessage J
-	FIELD minecraft Lnet/minecraft/client/Minecraft;
-	FIELD newMessageSinceScroll Z
 	FIELD recentChat Ljava/util/List;
 		COMMENT A list of messages previously sent through the chat GUI
 	FIELD trimmedMessages Ljava/util/List;
 		COMMENT List of the ChatLines currently drawn
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
 	METHOD addMessage (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 chatComponent
 	METHOD addMessage (Lnet/minecraft/network/chat/Component;I)V
 		COMMENT prints the ChatComponent to Chat. If the ID is not 0, deletes an existing Chat Line of that ID from the GUI
 		ARG 1 chatComponent
 		ARG 2 chatLineId
-	METHOD addMessage (Lnet/minecraft/network/chat/Component;IIZ)V
 	METHOD addRecentChat (Ljava/lang/String;)V
 		COMMENT Adds this string to the list of sent messages, for recall using the up/down arrow keys
 		ARG 1 message
@@ -28,31 +18,15 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 		COMMENT Clears the chat.
 		ARG 1 clearSentMsgHistory
 			COMMENT Whether or not to clear the user's sent message history
-	METHOD enqueueMessage (Lnet/minecraft/network/chat/Component;)V
-	METHOD getChatRateMillis ()J
-	METHOD getClickedComponentStyleAt (DD)Lnet/minecraft/network/chat/Style;
-	METHOD getHeight ()I
-	METHOD getHeight (D)I
-	METHOD getLinesPerPage ()I
 	METHOD getRecentChat ()Ljava/util/List;
 		COMMENT Gets the list of messages previously sent through the chat GUI
-	METHOD getScale ()D
 	METHOD getTimeFactor (I)D
 		ARG 0 counter
-	METHOD getWidth ()I
-	METHOD getWidth (D)I
-	METHOD handleChatQueueClicked (DD)Z
 	METHOD isChatFocused ()Z
 		COMMENT Returns true if the chat GUI is open
-	METHOD isChatHidden ()Z
-	METHOD lambda$removeById$0 (ILnet/minecraft/client/GuiMessage;)Z
-	METHOD lambda$removeById$1 (ILnet/minecraft/client/GuiMessage;)Z
-	METHOD processPendingMessages ()V
 	METHOD removeById (I)V
 		COMMENT finds and deletes a Chat line by ID
 		ARG 1 id
-	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;I)V
-	METHOD rescaleChat ()V
 	METHOD resetChatScroll ()V
 		COMMENT Resets the chat scroll (executed when the GUI is closed, among others)
 	METHOD scrollChat (D)V

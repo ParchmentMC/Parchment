@@ -1,12 +1,4 @@
 CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
-	FIELD CACHE Ljava/lang/ThreadLocal;
-	FIELD CACHE_SIZE I
-	FIELD DIRECTIONS [Lnet/minecraft/core/Direction;
-	FIELD FACE_CUBIC I
-	FIELD FACE_PARTIAL I
-	FIELD blockColors Lnet/minecraft/client/color/block/BlockColors;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/client/color/block/BlockColors;)V
 	METHOD calculateShape (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;[ILnet/minecraft/core/Direction;[FLjava/util/BitSet;)V
 		ARG 1 blockReader
 		ARG 2 state
@@ -15,8 +7,6 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 5 face
 		ARG 6 quadBounds
 		ARG 7 boundsFlags
-	METHOD clearCache ()V
-	METHOD enableCaching ()V
 	METHOD putQuadData (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lnet/minecraft/client/renderer/block/model/BakedQuad;FFFFIIIII)V
 		ARG 1 blockAccess
 		ARG 2 state
@@ -107,37 +97,10 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 8 random
 		ARG 9 rand
 		ARG 11 combinedOverlay
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$core$Direction [I
-		METHOD <clinit> ()V
 	CLASS AdjacencyInfo
-		FIELD $VALUES [Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
-		FIELD BY_FACING [Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
-		FIELD DOWN Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
-		FIELD EAST Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
-		FIELD NORTH Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
-		FIELD SOUTH Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
-		FIELD UP Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
-		FIELD WEST Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
-		FIELD corners [Lnet/minecraft/core/Direction;
-		FIELD doNonCubicWeight Z
-		FIELD vert0Weights [Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD vert1Weights [Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD vert2Weights [Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD vert3Weights [Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		METHOD $values ()[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I[Lnet/minecraft/core/Direction;FZ[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;)V
 		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
 			ARG 0 facing
-		METHOD lambda$static$0 ([Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
-		METHOD values ()[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
 	CLASS AmbientOcclusionFace
-		FIELD brightness [F
-		FIELD lightmap [I
-		FIELD this$0 Lnet/minecraft/client/renderer/block/ModelBlockRenderer;
-		METHOD <init> (Lnet/minecraft/client/renderer/block/ModelBlockRenderer;)V
 		METHOD blend (IIII)I
 			COMMENT Get ambient occlusion brightness
 			ARG 1 br1
@@ -162,33 +125,9 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 			ARG 6 bitSet
 			ARG 7 applyDiffuseLighting
 	CLASS AmbientVertexRemap
-		FIELD $VALUES [Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-		FIELD BY_FACING [Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-		FIELD DOWN Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-		FIELD EAST Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-		FIELD NORTH Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-		FIELD SOUTH Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-		FIELD UP Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-		FIELD WEST Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-		FIELD vert0 I
-		FIELD vert1 I
-		FIELD vert2 I
-		FIELD vert3 I
-		METHOD $values ()[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;IIIII)V
 		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
 			ARG 0 facing
-		METHOD lambda$static$0 ([Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-		METHOD values ()[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
 	CLASS Cache
-		FIELD brightnessCache Lit/unimi/dsi/fastutil/longs/Long2FloatLinkedOpenHashMap;
-		FIELD colorCache Lit/unimi/dsi/fastutil/longs/Long2IntLinkedOpenHashMap;
-		FIELD enabled Z
-		METHOD <init> ()V
-		METHOD disable ()V
-		METHOD enable ()V
 		METHOD getLightColor (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
 			ARG 1 blockState
 			ARG 2 lightReader
@@ -197,33 +136,3 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 			ARG 1 blockState
 			ARG 2 lightReader
 			ARG 3 blockPos
-		METHOD lambda$new$0 ()Lit/unimi/dsi/fastutil/longs/Long2IntLinkedOpenHashMap;
-		METHOD lambda$new$1 ()Lit/unimi/dsi/fastutil/longs/Long2FloatLinkedOpenHashMap;
-		CLASS 1
-			FIELD this$0 Lnet/minecraft/client/renderer/block/ModelBlockRenderer$Cache;
-			METHOD <init> (Lnet/minecraft/client/renderer/block/ModelBlockRenderer$Cache;IF)V
-			METHOD rehash (I)V
-		CLASS 2
-			FIELD this$0 Lnet/minecraft/client/renderer/block/ModelBlockRenderer$Cache;
-			METHOD <init> (Lnet/minecraft/client/renderer/block/ModelBlockRenderer$Cache;IF)V
-			METHOD rehash (I)V
-	CLASS SizeInfo
-		FIELD $VALUES [Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD DOWN Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD EAST Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD FLIP_DOWN Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD FLIP_EAST Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD FLIP_NORTH Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD FLIP_SOUTH Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD FLIP_UP Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD FLIP_WEST Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD NORTH Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD SOUTH Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD UP Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD WEST Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		FIELD shape I
-		METHOD $values ()[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;ILnet/minecraft/core/Direction;Z)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;
-		METHOD values ()[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;

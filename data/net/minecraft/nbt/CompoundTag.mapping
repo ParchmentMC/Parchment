@@ -1,13 +1,4 @@
 CLASS net/minecraft/nbt/CompoundTag
-	FIELD CODEC Lcom/mojang/serialization/Codec;
-	FIELD MAP_ENTRY_SIZE_IN_BITS I
-	FIELD SELF_SIZE_IN_BITS I
-	FIELD TYPE Lnet/minecraft/nbt/TagType;
-	FIELD tags Ljava/util/Map;
-	METHOD <clinit> ()V
-	METHOD <init> ()V
-	METHOD <init> (Ljava/util/Map;)V
-	METHOD accept (Lnet/minecraft/nbt/TagVisitor;)V
 	METHOD contains (Ljava/lang/String;)Z
 		COMMENT Returns whether the given string has been previously stored as a key in the map.
 		ARG 1 key
@@ -17,13 +8,10 @@ CLASS net/minecraft/nbt/CompoundTag
 		ARG 2 type
 	METHOD copy ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Creates a clone of the tag.
-	METHOD copy ()Lnet/minecraft/nbt/Tag;
 	METHOD createReport (Ljava/lang/String;Lnet/minecraft/nbt/TagType;Ljava/lang/ClassCastException;)Lnet/minecraft/CrashReport;
 		ARG 1 tagName
 		ARG 2 type
 		ARG 3 exception
-	METHOD entries ()Ljava/util/Map;
-	METHOD equals (Ljava/lang/Object;)Z
 	METHOD get (Ljava/lang/String;)Lnet/minecraft/nbt/Tag;
 		COMMENT gets a generic tag with the specified name
 		ARG 1 key
@@ -73,16 +61,10 @@ CLASS net/minecraft/nbt/CompoundTag
 	METHOD getTagType (Ljava/lang/String;)B
 		COMMENT Gets the ID byte for the given tag key
 		ARG 1 key
-	METHOD getType ()Lnet/minecraft/nbt/TagType;
 	METHOD getUUID (Ljava/lang/String;)Ljava/util/UUID;
 		ARG 1 key
 	METHOD hasUUID (Ljava/lang/String;)Z
 		ARG 1 key
-	METHOD hashCode ()I
-	METHOD isEmpty ()Z
-	METHOD lambda$createReport$2 (Ljava/lang/String;)Ljava/lang/String;
-	METHOD lambda$static$0 (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/DataResult;
-	METHOD lambda$static$1 (Lnet/minecraft/nbt/CompoundTag;)Lcom/mojang/serialization/Dynamic;
 	METHOD merge (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Deep copies all the tags of {@code other} into this tag, then returns itself.
 		ARG 1 other
@@ -97,7 +79,6 @@ CLASS net/minecraft/nbt/CompoundTag
 		COMMENT Stores a new NBTTagByte with the given byte value into the map with the given string key.
 		ARG 1 key
 		ARG 2 value
-	METHOD putByteArray (Ljava/lang/String;Ljava/util/List;)V
 	METHOD putByteArray (Ljava/lang/String;[B)V
 		COMMENT Stores a new NBTTagByteArray with the given array as data into the map with the given string key.
 		ARG 1 key
@@ -157,8 +138,6 @@ CLASS net/minecraft/nbt/CompoundTag
 	METHOD remove (Ljava/lang/String;)V
 		COMMENT Remove the specified tag.
 		ARG 1 key
-	METHOD size ()I
-	METHOD toString ()Ljava/lang/String;
 	METHOD write (Ljava/io/DataOutput;)V
 		COMMENT Write the actual data contents of the tag, implemented in NBT extension classes
 		ARG 1 output
@@ -167,9 +146,6 @@ CLASS net/minecraft/nbt/CompoundTag
 		ARG 1 data
 		ARG 2 output
 	CLASS 1
-		METHOD <init> ()V
-		METHOD getName ()Ljava/lang/String;
-		METHOD getPrettyName ()Ljava/lang/String;
 		METHOD load (Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/CompoundTag;
 			ARG 1 input
 			ARG 2 depth

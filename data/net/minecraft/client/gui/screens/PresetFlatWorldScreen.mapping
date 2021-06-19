@@ -1,41 +1,10 @@
 CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
-	FIELD DEFAULT_BIOME Lnet/minecraft/resources/ResourceKey;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD PRESETS Ljava/util/List;
-	FIELD SLOT_BG_SIZE I
-	FIELD SLOT_BG_X I
-	FIELD SLOT_BG_Y I
-	FIELD SLOT_FG_X I
-	FIELD SLOT_FG_Y I
-	FIELD SLOT_STAT_HEIGHT I
-	FIELD SLOT_TEX_SIZE I
-	FIELD export Lnet/minecraft/client/gui/components/EditBox;
-	FIELD list Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList;
-	FIELD listText Lnet/minecraft/network/chat/Component;
 	FIELD parent Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen;
 		COMMENT The parent GUI
-	FIELD selectButton Lnet/minecraft/client/gui/components/Button;
-	FIELD settings Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
-	FIELD shareText Lnet/minecraft/network/chat/Component;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen;)V
-	METHOD fromString (Lnet/minecraft/core/Registry;Ljava/lang/String;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
-	METHOD getLayerInfoFromString (Ljava/lang/String;I)Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;
-	METHOD getLayersInfoFromString (Ljava/lang/String;)Ljava/util/List;
-	METHOD init ()V
-	METHOD lambda$fromString$0 (Lnet/minecraft/resources/ResourceLocation;)Ljava/lang/IllegalArgumentException;
-	METHOD lambda$fromString$1 (Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/biome/Biome;
-	METHOD lambda$init$2 (Lnet/minecraft/core/Registry;Lnet/minecraft/client/gui/components/Button;)V
-	METHOD lambda$init$3 (Lnet/minecraft/client/gui/components/Button;)V
-	METHOD lambda$preset$4 (Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/biome/Biome;
-	METHOD lambda$preset$5 (Ljava/util/List;ZZZ[Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Registry;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
 	METHOD mouseScrolled (DDD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
 		ARG 5 delta
-	METHOD onClose ()V
-	METHOD preset (Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/resources/ResourceKey;Ljava/util/List;ZZZ[Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;)V
-	METHOD removed ()V
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 matrixStack
 		ARG 2 mouseX
@@ -45,19 +14,7 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 		ARG 1 minecraft
 		ARG 2 width
 		ARG 3 height
-	METHOD save (Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Ljava/lang/String;
-	METHOD tick ()V
-	METHOD updateButtonValidity (Z)V
-	CLASS PresetInfo
-		FIELD icon Lnet/minecraft/world/item/Item;
-		FIELD name Lnet/minecraft/network/chat/Component;
-		FIELD settings Ljava/util/function/Function;
-		METHOD <init> (Lnet/minecraft/world/item/Item;Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;)V
-		METHOD getName ()Lnet/minecraft/network/chat/Component;
 	CLASS PresetsList
-		FIELD this$0 Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen;
-		METHOD <init> (Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen;)V
-		METHOD isFocused ()Z
 		METHOD keyPressed (III)Z
 			ARG 1 keyCode
 			ARG 2 scanCode
@@ -67,12 +24,6 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 		METHOD setSelected (Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList$Entry;)V
 			ARG 1 entry
 		CLASS Entry
-			FIELD preset Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetInfo;
-			FIELD this$1 Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList;
-			METHOD <init> (Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList;Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetInfo;)V
-			METHOD blitSlot (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/world/item/Item;)V
-			METHOD blitSlotBg (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
-			METHOD getNarration ()Lnet/minecraft/network/chat/Component;
 			METHOD mouseClicked (DDI)Z
 				ARG 1 mouseX
 				ARG 3 mouseY
@@ -88,4 +39,3 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 				ARG 8 mouseY
 				ARG 9 isMouseOver
 				ARG 10 partialTicks
-			METHOD select ()V

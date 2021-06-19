@@ -1,29 +1,4 @@
 CLASS net/minecraft/world/level/chunk/ProtoChunk
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD biomes Lnet/minecraft/world/level/chunk/ChunkBiomeContainer;
-	FIELD blockEntities Ljava/util/Map;
-	FIELD blockEntityNbts Ljava/util/Map;
-	FIELD blockTicks Lnet/minecraft/world/level/chunk/ProtoTickList;
-	FIELD carvingMasks Ljava/util/Map;
-	FIELD chunkPos Lnet/minecraft/world/level/ChunkPos;
-	FIELD entities Ljava/util/List;
-	FIELD heightmaps Ljava/util/Map;
-	FIELD inhabitedTime J
-	FIELD isDirty Z
-	FIELD isLightCorrect Z
-	FIELD levelHeightAccessor Lnet/minecraft/world/level/LevelHeightAccessor;
-	FIELD lightEngine Lnet/minecraft/world/level/lighting/LevelLightEngine;
-	FIELD lights Ljava/util/List;
-	FIELD liquidTicks Lnet/minecraft/world/level/chunk/ProtoTickList;
-	FIELD postProcessing [Lit/unimi/dsi/fastutil/shorts/ShortList;
-	FIELD sections [Lnet/minecraft/world/level/chunk/LevelChunkSection;
-	FIELD status Lnet/minecraft/world/level/chunk/ChunkStatus;
-	FIELD structureStarts Ljava/util/Map;
-	FIELD structuresRefences Ljava/util/Map;
-	FIELD upgradeData Lnet/minecraft/world/level/chunk/UpgradeData;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/UpgradeData;Lnet/minecraft/world/level/LevelHeightAccessor;)V
-	METHOD <init> (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/UpgradeData;[Lnet/minecraft/world/level/chunk/LevelChunkSection;Lnet/minecraft/world/level/chunk/ProtoTickList;Lnet/minecraft/world/level/chunk/ProtoTickList;Lnet/minecraft/world/level/LevelHeightAccessor;)V
 	METHOD addEntity (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 entityCompound
 	METHOD addEntity (Lnet/minecraft/world/entity/Entity;)V
@@ -37,61 +12,28 @@ CLASS net/minecraft/world/level/chunk/ProtoChunk
 	METHOD addPackedPostProcess (SI)V
 		ARG 1 packedPosition
 		ARG 2 index
-	METHOD addReferenceForFeature (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;J)V
-	METHOD getAllReferences ()Ljava/util/Map;
-	METHOD getAllStarts ()Ljava/util/Map;
-	METHOD getBiomes ()Lnet/minecraft/world/level/chunk/ChunkBiomeContainer;
-	METHOD getBlockEntities ()Ljava/util/Map;
-	METHOD getBlockEntitiesPos ()Ljava/util/Set;
 	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
 	METHOD getBlockEntityNbt (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 pos
 	METHOD getBlockEntityNbtForSaving (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 pos
-	METHOD getBlockEntityNbts ()Ljava/util/Map;
 	METHOD getBlockState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 pos
-	METHOD getBlockTicks ()Lnet/minecraft/world/level/TickList;
-	METHOD getBlockTicks ()Lnet/minecraft/world/level/chunk/ProtoTickList;
 	METHOD getCarvingMask (Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)Ljava/util/BitSet;
 		ARG 1 type
-	METHOD getEntities ()Ljava/util/List;
 	METHOD getFluidState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;
 		ARG 1 pos
-	METHOD getHeighestPosition (Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/core/BlockPos;
-	METHOD getHeight ()I
 	METHOD getHeight (Lnet/minecraft/world/level/levelgen/Heightmap$Types;II)I
 		ARG 1 heightmapType
 		ARG 2 x
 		ARG 3 z
-	METHOD getHeightmaps ()Ljava/util/Collection;
-	METHOD getInhabitedTime ()J
-	METHOD getLights ()Ljava/util/stream/Stream;
-	METHOD getLiquidTicks ()Lnet/minecraft/world/level/TickList;
-	METHOD getLiquidTicks ()Lnet/minecraft/world/level/chunk/ProtoTickList;
-	METHOD getMinBuildHeight ()I
 	METHOD getOrCreateCarvingMask (Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)Ljava/util/BitSet;
 		ARG 1 type
 	METHOD getOrCreateHeightmapUnprimed (Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/world/level/levelgen/Heightmap;
 		ARG 1 type
-	METHOD getPackedLights ()[Lit/unimi/dsi/fastutil/shorts/ShortList;
 	METHOD getPos ()Lnet/minecraft/world/level/ChunkPos;
 		COMMENT Gets a {@link ChunkPos} representing the x and z coordinates of this chunk.
-	METHOD getPostProcessing ()[Lit/unimi/dsi/fastutil/shorts/ShortList;
-	METHOD getReferencesForFeature (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Lit/unimi/dsi/fastutil/longs/LongSet;
-	METHOD getSections ()[Lnet/minecraft/world/level/chunk/LevelChunkSection;
-	METHOD getStartForFeature (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Lnet/minecraft/world/level/levelgen/structure/StructureStart;
-	METHOD getStatus ()Lnet/minecraft/world/level/chunk/ChunkStatus;
-	METHOD getUpgradeData ()Lnet/minecraft/world/level/chunk/UpgradeData;
-	METHOD isLightCorrect ()Z
-	METHOD isUnsaved ()Z
-	METHOD lambda$addReferenceForFeature$4 (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Lit/unimi/dsi/fastutil/longs/LongSet;
-	METHOD lambda$getOrCreateCarvingMask$5 (Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)Ljava/util/BitSet;
-	METHOD lambda$getOrCreateHeightmapUnprimed$2 (Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/world/level/levelgen/Heightmap;
-	METHOD lambda$getReferencesForFeature$3 (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Lit/unimi/dsi/fastutil/longs/LongSet;
-	METHOD lambda$new$0 (Lnet/minecraft/world/level/block/Block;)Z
-	METHOD lambda$new$1 (Lnet/minecraft/world/level/material/Fluid;)Z
 	METHOD markPosForPostprocessing (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD packOffsetCoordinates (Lnet/minecraft/core/BlockPos;)S
@@ -104,7 +46,6 @@ CLASS net/minecraft/world/level/chunk/ProtoChunk
 		ARG 1 structureStarts
 	METHOD setBiomes (Lnet/minecraft/world/level/chunk/ChunkBiomeContainer;)V
 		ARG 1 biomes
-	METHOD setBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 	METHOD setBlockEntityNbt (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 nbt
 	METHOD setBlockState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/level/block/state/BlockState;
@@ -120,7 +61,6 @@ CLASS net/minecraft/world/level/chunk/ProtoChunk
 		ARG 1 lightCorrect
 	METHOD setLightEngine (Lnet/minecraft/world/level/lighting/LevelLightEngine;)V
 		ARG 1 lightManager
-	METHOD setStartForFeature (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;Lnet/minecraft/world/level/levelgen/structure/StructureStart;)V
 	METHOD setStatus (Lnet/minecraft/world/level/chunk/ChunkStatus;)V
 		ARG 1 status
 	METHOD setUnsaved (Z)V

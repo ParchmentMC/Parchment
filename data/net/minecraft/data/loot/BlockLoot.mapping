@@ -1,17 +1,4 @@
 CLASS net/minecraft/data/loot/BlockLoot
-	FIELD EXPLOSION_RESISTANT Ljava/util/Set;
-	FIELD HAS_NO_SHEARS_OR_SILK_TOUCH Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;
-	FIELD HAS_NO_SILK_TOUCH Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;
-	FIELD HAS_SHEARS Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;
-	FIELD HAS_SHEARS_OR_SILK_TOUCH Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;
-	FIELD HAS_SILK_TOUCH Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;
-	FIELD JUNGLE_LEAVES_SAPLING_CHANGES [F
-	FIELD NORMAL_LEAVES_SAPLING_CHANCES [F
-	FIELD map Ljava/util/Map;
-	METHOD <clinit> ()V
-	METHOD <init> ()V
-	METHOD accept (Ljava/lang/Object;)V
-	METHOD accept (Ljava/util/function/BiConsumer;)V
 	METHOD add (Lnet/minecraft/world/level/block/Block;Ljava/util/function/Function;)V
 		ARG 1 block
 		ARG 2 factory
@@ -36,10 +23,6 @@ CLASS net/minecraft/data/loot/BlockLoot
 		ARG 0 hive
 	METHOD createBeeNestDrop (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 0 nest
-	METHOD createCandleCakeDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD createCandleDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD createCaveVinesDrop (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD createCopperOreDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 	METHOD createCropDrops (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/Item;Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		COMMENT Drops the first item parameter always, and the second item parameter plus more of the first when the loot condition is met, applying fortune to only the second argument.
 		ARG 0 block
@@ -53,10 +36,8 @@ CLASS net/minecraft/data/loot/BlockLoot
 	METHOD createDoublePlantWithSeedDrops (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 0 block
 		ARG 1 sheared
-	METHOD createGlowLichenDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 	METHOD createGrassDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 0 block
-	METHOD createLapisOreDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 	METHOD createLeavesDrops (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;[F)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		COMMENT Used for all leaves, drops self with silk touch, otherwise drops the second Block param with the passed chances for fortune levels, adding in sticks.
 		ARG 0 block
@@ -78,7 +59,6 @@ CLASS net/minecraft/data/loot/BlockLoot
 		ARG 1 item
 	METHOD createPotFlowerItemTable (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 0 flower
-	METHOD createRedstoneOreDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 	METHOD createSelfDropDispatchTable (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 0 block
 		ARG 1 conditionBuilder
@@ -99,11 +79,9 @@ CLASS net/minecraft/data/loot/BlockLoot
 		ARG 1 alternativeLootEntry
 	METHOD createSingleItemTable (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 0 item
-	METHOD createSingleItemTable (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 	METHOD createSingleItemTableWithSilkTouch (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 0 block
 		ARG 1 noSilkTouch
-	METHOD createSingleItemTableWithSilkTouch (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 	METHOD createSinglePropConditionTable (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 0 block
 		ARG 1 property
@@ -123,90 +101,6 @@ CLASS net/minecraft/data/loot/BlockLoot
 		ARG 1 block
 	METHOD dropWhenSilkTouch (Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 block
-	METHOD lambda$accept$0 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$1 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$10 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$11 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$12 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$13 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$14 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$15 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$16 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$17 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$18 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$19 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$2 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$20 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$21 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$22 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$23 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$24 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$25 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$26 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$27 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$28 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$29 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$3 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$30 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$31 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$32 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$33 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$34 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$35 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$36 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$37 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$38 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$39 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$4 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$40 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$41 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$42 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$43 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$44 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$45 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$46 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$47 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$48 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$49 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$5 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$50 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$51 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$52 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$53 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$54 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$55 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$56 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$57 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$58 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$59 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$6 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$60 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$61 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$62 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$63 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$64 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$65 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$66 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$67 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$68 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$69 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$7 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$70 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$71 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$72 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$73 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$74 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$75 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$76 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$77 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$78 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$79 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$8 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$80 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$81 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$accept$9 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD lambda$dropPottedContents$82 (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-	METHOD noDrop ()Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 	METHOD otherWhenSilkTouch (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 block
 		ARG 2 silkTouchDrop

@@ -1,70 +1,21 @@
 CLASS net/minecraft/world/entity/npc/VillagerTrades
-	FIELD COMMON_ITEMS_SUPPLY I
-	FIELD DEFAULT_SUPPLY I
-	FIELD HIGH_TIER_PRICE_MULTIPLIER F
-	FIELD LOW_TIER_PRICE_MULTIPLIER F
-	FIELD TRADES Ljava/util/Map;
-	FIELD UNCOMMON_ITEMS_SUPPLY I
-	FIELD WANDERING_TRADER_TRADES Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
-	FIELD XP_LEVEL_1_BUY I
-	FIELD XP_LEVEL_1_SELL I
-	FIELD XP_LEVEL_2_BUY I
-	FIELD XP_LEVEL_2_SELL I
-	FIELD XP_LEVEL_3_BUY I
-	FIELD XP_LEVEL_3_SELL I
-	FIELD XP_LEVEL_4_BUY I
-	FIELD XP_LEVEL_4_SELL I
-	FIELD XP_LEVEL_5_TRADE I
-	METHOD <clinit> ()V
-	METHOD <init> ()V
-	METHOD lambda$static$0 (Ljava/util/HashMap;)V
-	METHOD toIntMap (Lcom/google/common/collect/ImmutableMap;)Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
 	CLASS DyedArmorForEmeralds
-		FIELD item Lnet/minecraft/world/item/Item;
-		FIELD maxUses I
-		FIELD value I
-		FIELD villagerXp I
-		METHOD <init> (Lnet/minecraft/world/item/Item;I)V
-		METHOD <init> (Lnet/minecraft/world/item/Item;III)V
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
-		METHOD getRandomDye (Ljava/util/Random;)Lnet/minecraft/world/item/DyeItem;
 	CLASS EmeraldForItems
-		FIELD cost I
-		FIELD item Lnet/minecraft/world/item/Item;
-		FIELD maxUses I
-		FIELD priceMultiplier F
-		FIELD villagerXp I
-		METHOD <init> (Lnet/minecraft/world/level/ItemLike;III)V
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
 	CLASS EmeraldsForVillagerTypeItem
-		FIELD cost I
-		FIELD maxUses I
-		FIELD trades Ljava/util/Map;
-		FIELD villagerXp I
-		METHOD <init> (IIILjava/util/Map;)V
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
-		METHOD lambda$new$0 (Ljava/util/Map;Lnet/minecraft/world/entity/npc/VillagerType;)Z
-		METHOD lambda$new$1 (Lnet/minecraft/world/entity/npc/VillagerType;)V
 	CLASS EnchantBookForEmeralds
-		FIELD villagerXp I
-		METHOD <init> (I)V
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
 	CLASS EnchantedItemForEmeralds
-		FIELD baseEmeraldCost I
-		FIELD itemStack Lnet/minecraft/world/item/ItemStack;
-		FIELD maxUses I
-		FIELD priceMultiplier F
-		FIELD villagerXp I
-		METHOD <init> (Lnet/minecraft/world/item/Item;III)V
-		METHOD <init> (Lnet/minecraft/world/item/Item;IIIF)V
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
@@ -73,65 +24,24 @@ CLASS net/minecraft/world/entity/npc/VillagerTrades
 			ARG 1 trader
 			ARG 2 rand
 	CLASS ItemsAndEmeraldsToItems
-		FIELD emeraldCost I
-		FIELD fromCount I
-		FIELD fromItem Lnet/minecraft/world/item/ItemStack;
-		FIELD maxUses I
-		FIELD priceMultiplier F
-		FIELD toCount I
-		FIELD toItem Lnet/minecraft/world/item/ItemStack;
-		FIELD villagerXp I
-		METHOD <init> (Lnet/minecraft/world/level/ItemLike;IILnet/minecraft/world/item/Item;III)V
-		METHOD <init> (Lnet/minecraft/world/level/ItemLike;ILnet/minecraft/world/item/Item;III)V
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
 	CLASS ItemsForEmeralds
-		FIELD emeraldCost I
-		FIELD itemStack Lnet/minecraft/world/item/ItemStack;
-		FIELD maxUses I
-		FIELD numberOfItems I
-		FIELD priceMultiplier F
-		FIELD villagerXp I
-		METHOD <init> (Lnet/minecraft/world/item/Item;III)V
-		METHOD <init> (Lnet/minecraft/world/item/Item;IIII)V
-		METHOD <init> (Lnet/minecraft/world/item/ItemStack;IIII)V
-		METHOD <init> (Lnet/minecraft/world/item/ItemStack;IIIIF)V
-		METHOD <init> (Lnet/minecraft/world/level/block/Block;IIII)V
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
 	CLASS SuspisciousStewForEmerald
-		FIELD duration I
-		FIELD effect Lnet/minecraft/world/effect/MobEffect;
-		FIELD priceMultiplier F
-		FIELD xp I
-		METHOD <init> (Lnet/minecraft/world/effect/MobEffect;II)V
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
 	CLASS TippedArrowForItemsAndEmeralds
-		FIELD emeraldCost I
-		FIELD fromCount I
-		FIELD fromItem Lnet/minecraft/world/item/Item;
-		FIELD maxUses I
-		FIELD priceMultiplier F
-		FIELD toCount I
 		FIELD toItem Lnet/minecraft/world/item/ItemStack;
 			COMMENT An ItemStack that can have potion effects written to it.
-		FIELD villagerXp I
-		METHOD <init> (Lnet/minecraft/world/item/Item;ILnet/minecraft/world/item/Item;IIII)V
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
-		METHOD lambda$getOffer$0 (Lnet/minecraft/world/item/alchemy/Potion;)Z
 	CLASS TreasureMapForEmeralds
-		FIELD destination Lnet/minecraft/world/level/levelgen/feature/StructureFeature;
-		FIELD destinationType Lnet/minecraft/world/level/saveddata/maps/MapDecoration$Type;
-		FIELD emeraldCost I
-		FIELD maxUses I
-		FIELD villagerXp I
-		METHOD <init> (ILnet/minecraft/world/level/levelgen/feature/StructureFeature;Lnet/minecraft/world/level/saveddata/maps/MapDecoration$Type;II)V
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand

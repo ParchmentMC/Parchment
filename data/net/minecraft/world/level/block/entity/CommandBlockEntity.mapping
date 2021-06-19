@@ -1,49 +1,15 @@
 CLASS net/minecraft/world/level/block/entity/CommandBlockEntity
-	FIELD auto Z
-	FIELD commandBlock Lnet/minecraft/world/level/BaseCommandBlock;
-	FIELD conditionMet Z
-	FIELD powered Z
-	FIELD sendToClient Z
-	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-	METHOD getCommandBlock ()Lnet/minecraft/world/level/BaseCommandBlock;
-	METHOD getMode ()Lnet/minecraft/world/level/block/entity/CommandBlockEntity$Mode;
 	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
 		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
-	METHOD isAutomatic ()Z
-	METHOD isConditional ()Z
-	METHOD isPowered ()Z
-	METHOD isSendToClient ()Z
-	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
-	METHOD markConditionMet ()Z
-	METHOD onModeSwitch ()V
 	METHOD onlyOpCanSetNbt ()Z
 		COMMENT Checks if players can use this tile entity to access operator (permission level 2) commands either directly or indirectly, such as give or setblock. A similar method exists for entities at {@link net.minecraft.entity.Entity#ignoreItemEntityData()}.<p>For example, {@link net.minecraft.tileentity.TileEntitySign#onlyOpsCanSetNbt() signs} (player right-clicking) and {@link net.minecraft.tileentity.TileEntityCommandBlock#onlyOpsCanSetNbt() command blocks} are considered accessible.</p>@return true if this block entity offers ways for unauthorized players to use restricted commands
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
-	METHOD scheduleTick ()V
 	METHOD setAutomatic (Z)V
 		ARG 1 auto
 	METHOD setPowered (Z)V
 		ARG 1 powered
-	METHOD setSendToClient (Z)V
-	METHOD wasConditionMet ()Z
 	CLASS 1
-		FIELD this$0 Lnet/minecraft/world/level/block/entity/CommandBlockEntity;
-		METHOD <init> (Lnet/minecraft/world/level/block/entity/CommandBlockEntity;)V
-		METHOD createCommandSourceStack ()Lnet/minecraft/commands/CommandSourceStack;
-		METHOD getLevel ()Lnet/minecraft/server/level/ServerLevel;
-		METHOD getPosition ()Lnet/minecraft/world/phys/Vec3;
-		METHOD onUpdated ()V
 		METHOD setCommand (Ljava/lang/String;)V
 			COMMENT Sets the command.
 			ARG 1 command
-	CLASS Mode
-		FIELD $VALUES [Lnet/minecraft/world/level/block/entity/CommandBlockEntity$Mode;
-		FIELD AUTO Lnet/minecraft/world/level/block/entity/CommandBlockEntity$Mode;
-		FIELD REDSTONE Lnet/minecraft/world/level/block/entity/CommandBlockEntity$Mode;
-		FIELD SEQUENCE Lnet/minecraft/world/level/block/entity/CommandBlockEntity$Mode;
-		METHOD $values ()[Lnet/minecraft/world/level/block/entity/CommandBlockEntity$Mode;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/level/block/entity/CommandBlockEntity$Mode;
-		METHOD values ()[Lnet/minecraft/world/level/block/entity/CommandBlockEntity$Mode;

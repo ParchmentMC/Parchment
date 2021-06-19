@@ -1,12 +1,8 @@
 CLASS net/minecraft/world/entity/player/StackedContents
-	FIELD EMPTY I
-	FIELD contents Lit/unimi/dsi/fastutil/ints/Int2IntMap;
-	METHOD <init> ()V
 	METHOD accountSimpleStack (Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 stack
 	METHOD accountStack (Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 stack
-	METHOD accountStack (Lnet/minecraft/world/item/ItemStack;I)V
 	METHOD canCraft (Lnet/minecraft/world/item/crafting/Recipe;Lit/unimi/dsi/fastutil/ints/IntList;)Z
 		ARG 1 recipe
 		ARG 2 packedItemList
@@ -14,7 +10,6 @@ CLASS net/minecraft/world/entity/player/StackedContents
 		ARG 1 recipe
 		ARG 2 packedItemList
 		ARG 3 maxAmount
-	METHOD clear ()V
 	METHOD fromStackingIndex (I)Lnet/minecraft/world/item/ItemStack;
 		ARG 0 packedItem
 	METHOD getBiggestCraftableStack (Lnet/minecraft/world/item/crafting/Recipe;ILit/unimi/dsi/fastutil/ints/IntList;)I
@@ -35,31 +30,10 @@ CLASS net/minecraft/world/entity/player/StackedContents
 		ARG 1 packedItem
 		ARG 2 maximum
 	CLASS RecipePicker
-		FIELD data Ljava/util/BitSet;
-		FIELD ingredientCount I
-		FIELD ingredients Ljava/util/List;
-		FIELD itemCount I
-		FIELD items [I
-		FIELD path Lit/unimi/dsi/fastutil/ints/IntList;
-		FIELD recipe Lnet/minecraft/world/item/crafting/Recipe;
-		FIELD this$0 Lnet/minecraft/world/entity/player/StackedContents;
-		METHOD <init> (Lnet/minecraft/world/entity/player/StackedContents;Lnet/minecraft/world/item/crafting/Recipe;)V
 		METHOD dfs (I)Z
 			ARG 1 amount
-		METHOD getIndex (ZII)I
-		METHOD getMinIngredientCount ()I
-		METHOD getSatisfiedIndex (I)I
-		METHOD getUniqueAvailableIngredientItems ()[I
-		METHOD getVisitedIndex (ZI)I
-		METHOD hasConnection (ZII)Z
-		METHOD hasResidual (ZII)Z
-		METHOD hasVisited (ZI)Z
-		METHOD isSatisfied (I)Z
-		METHOD setSatisfied (I)V
-		METHOD toggleResidual (ZII)V
 		METHOD tryPick (ILit/unimi/dsi/fastutil/ints/IntList;)Z
 			ARG 1 maxAmount
 			ARG 2 list
 		METHOD tryPickAll (ILit/unimi/dsi/fastutil/ints/IntList;)I
 			ARG 2 list
-		METHOD visit (ZI)V

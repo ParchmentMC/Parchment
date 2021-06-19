@@ -1,13 +1,4 @@
 CLASS net/minecraft/server/players/OldUsersConverter
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD OLD_IPBANLIST Ljava/io/File;
-	FIELD OLD_OPLIST Ljava/io/File;
-	FIELD OLD_USERBANLIST Ljava/io/File;
-	FIELD OLD_WHITELIST Ljava/io/File;
-	METHOD <clinit> ()V
-	METHOD <init> ()V
-	METHOD areOldPlayersConverted (Lnet/minecraft/server/MinecraftServer;)Z
-	METHOD areOldUserlistsRemoved ()Z
 	METHOD convertIpBanlist (Lnet/minecraft/server/MinecraftServer;)Z
 		ARG 0 server
 	METHOD convertMobOwnerIfNecessary (Lnet/minecraft/server/MinecraftServer;Ljava/lang/String;)Ljava/util/UUID;
@@ -23,9 +14,6 @@ CLASS net/minecraft/server/players/OldUsersConverter
 		ARG 0 server
 	METHOD ensureDirectoryExists (Ljava/io/File;)V
 		ARG 0 dir
-	METHOD getWorldPlayersDirectory (Lnet/minecraft/server/MinecraftServer;)Ljava/io/File;
-	METHOD lambda$lookupPlayers$0 (Ljava/lang/String;)Z
-	METHOD lambda$lookupPlayers$1 (I)[Ljava/lang/String;
 	METHOD lookupPlayers (Lnet/minecraft/server/MinecraftServer;Ljava/util/Collection;Lcom/mojang/authlib/ProfileLookupCallback;)V
 		ARG 0 server
 		ARG 1 names
@@ -38,43 +26,3 @@ CLASS net/minecraft/server/players/OldUsersConverter
 		ARG 1 read
 	METHOD renameOldFile (Ljava/io/File;)V
 		ARG 0 convertedFile
-	METHOD serverReadyAfterUserconversion (Lnet/minecraft/server/MinecraftServer;)Z
-	CLASS 1
-		FIELD val$bans Lnet/minecraft/server/players/UserBanList;
-		FIELD val$server Lnet/minecraft/server/MinecraftServer;
-		FIELD val$userMap Ljava/util/Map;
-		METHOD <init> (Lnet/minecraft/server/MinecraftServer;Ljava/util/Map;Lnet/minecraft/server/players/UserBanList;)V
-		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
-		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
-	CLASS 2
-		FIELD val$opsList Lnet/minecraft/server/players/ServerOpList;
-		FIELD val$server Lnet/minecraft/server/MinecraftServer;
-		METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/players/ServerOpList;)V
-		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
-		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
-	CLASS 3
-		FIELD val$server Lnet/minecraft/server/MinecraftServer;
-		FIELD val$whitelist Lnet/minecraft/server/players/UserWhiteList;
-		METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/players/UserWhiteList;)V
-		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
-		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
-	CLASS 4
-		FIELD val$profiles Ljava/util/List;
-		FIELD val$server Lnet/minecraft/server/MinecraftServer;
-		METHOD <init> (Lnet/minecraft/server/MinecraftServer;Ljava/util/List;)V
-		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
-		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
-	CLASS 5
-		FIELD val$names [Ljava/lang/String;
-		FIELD val$server Lnet/minecraft/server/dedicated/DedicatedServer;
-		FIELD val$unknownPlayerDirectory Ljava/io/File;
-		FIELD val$worldNewPlayerDirectory Ljava/io/File;
-		FIELD val$worldPlayerDirectory Ljava/io/File;
-		METHOD <init> (Lnet/minecraft/server/dedicated/DedicatedServer;Ljava/io/File;Ljava/io/File;Ljava/io/File;[Ljava/lang/String;)V
-		METHOD getFileNameForProfile (Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;
-		METHOD movePlayerFile (Ljava/io/File;Ljava/lang/String;Ljava/lang/String;)V
-		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
-		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
-	CLASS ConversionError
-		METHOD <init> (Ljava/lang/String;)V
-		METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V

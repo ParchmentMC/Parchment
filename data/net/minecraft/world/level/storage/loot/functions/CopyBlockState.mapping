@@ -1,25 +1,8 @@
 CLASS net/minecraft/world/level/storage/loot/functions/CopyBlockState
-	FIELD block Lnet/minecraft/world/level/block/Block;
-	FIELD properties Ljava/util/Set;
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/level/block/Block;Ljava/util/Set;)V
-	METHOD copyState (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/functions/CopyBlockState$Builder;
-	METHOD getReferencedContextParams ()Ljava/util/Set;
-	METHOD getType ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunctionType;
-	METHOD lambda$run$0 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/properties/Property;)V
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
-	METHOD serialize (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/String;
-	CLASS Builder
-		FIELD block Lnet/minecraft/world/level/block/Block;
-		FIELD properties Ljava/util/Set;
-		METHOD <init> (Lnet/minecraft/world/level/block/Block;)V
-		METHOD build ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
-		METHOD copy (Lnet/minecraft/world/level/block/state/properties/Property;)Lnet/minecraft/world/level/storage/loot/functions/CopyBlockState$Builder;
-		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/CopyBlockState$Builder;
-		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
 	CLASS Serializer
-		METHOD <init> ()V
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/CopyBlockState;
 			ARG 1 object
 			ARG 2 deserializationContext
@@ -28,9 +11,3 @@ CLASS net/minecraft/world/level/storage/loot/functions/CopyBlockState
 			ARG 1 object
 			ARG 2 deserializationContext
 			ARG 3 conditions
-		METHOD lambda$deserialize$1 (Lnet/minecraft/resources/ResourceLocation;)Ljava/lang/IllegalArgumentException;
-		METHOD lambda$deserialize$2 (Ljava/util/Set;Lnet/minecraft/world/level/block/state/StateDefinition;Lcom/google/gson/JsonElement;)V
-		METHOD lambda$serialize$0 (Lcom/google/gson/JsonArray;Lnet/minecraft/world/level/block/state/properties/Property;)V
-		METHOD serialize (Lcom/google/gson/JsonObject;Ljava/lang/Object;Lcom/google/gson/JsonSerializationContext;)V
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/CopyBlockState;Lcom/google/gson/JsonSerializationContext;)V
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;Lcom/google/gson/JsonSerializationContext;)V

@@ -1,117 +1,30 @@
 CLASS net/minecraft/server/level/ChunkHolder
-	FIELD BLOCKS_BEFORE_RESEND_FUDGE I
-	FIELD CHUNK_STATUSES Ljava/util/List;
-	FIELD FULL_CHUNK_STATUSES [Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
-	FIELD UNLOADED_CHUNK Lcom/mojang/datafixers/util/Either;
-	FIELD UNLOADED_CHUNK_FUTURE Ljava/util/concurrent/CompletableFuture;
-	FIELD UNLOADED_LEVEL_CHUNK Lcom/mojang/datafixers/util/Either;
-	FIELD UNLOADED_LEVEL_CHUNK_FUTURE Ljava/util/concurrent/CompletableFuture;
-	FIELD blockChangedLightSectionFilter Ljava/util/BitSet;
-	FIELD changedBlocksPerSection [Lit/unimi/dsi/fastutil/shorts/ShortSet;
-	FIELD chunkToSave Ljava/util/concurrent/CompletableFuture;
-	FIELD chunkToSaveHistory Lnet/minecraft/util/DebugBuffer;
 	FIELD entityTickingChunkFuture Ljava/util/concurrent/CompletableFuture;
 		COMMENT A future that returns the chunk if it is an entity ticking chunk, {@link net.minecraft.world.server.ChunkHolder.IChunkLoadingError#UNLOADED} otherwise.
 	FIELD fullChunkFuture Ljava/util/concurrent/CompletableFuture;
 		COMMENT A future that returns the chunk if it is a border chunk, {@link net.minecraft.world.server.ChunkHolder.IChunkLoadingError#UNLOADED} otherwise.
-	FIELD futures Ljava/util/concurrent/atomic/AtomicReferenceArray;
-	FIELD hasChangedSections Z
-	FIELD levelHeightAccessor Lnet/minecraft/world/level/LevelHeightAccessor;
-	FIELD lightEngine Lnet/minecraft/world/level/lighting/LevelLightEngine;
-	FIELD oldTicketLevel I
-	FIELD onLevelChange Lnet/minecraft/server/level/ChunkHolder$LevelChangeListener;
-	FIELD pendingFullStateConfirmation Ljava/util/concurrent/CompletableFuture;
-	FIELD playerProvider Lnet/minecraft/server/level/ChunkHolder$PlayerProvider;
-	FIELD pos Lnet/minecraft/world/level/ChunkPos;
-	FIELD queueLevel I
-	FIELD resendLight Z
-	FIELD skyChangedLightSectionFilter Ljava/util/BitSet;
-	FIELD ticketLevel I
 	FIELD tickingChunkFuture Ljava/util/concurrent/CompletableFuture;
 		COMMENT A future that returns the chunk if it is a ticking chunk, {@link net.minecraft.world.server.ChunkHolder.IChunkLoadingError#UNLOADED} otherwise.
-	FIELD wasAccessibleSinceLastSave Z
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/level/ChunkPos;ILnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/lighting/LevelLightEngine;Lnet/minecraft/server/level/ChunkHolder$LevelChangeListener;Lnet/minecraft/server/level/ChunkHolder$PlayerProvider;)V
-	METHOD blockChanged (Lnet/minecraft/core/BlockPos;)V
 	METHOD broadcast (Lnet/minecraft/network/protocol/Packet;Z)V
 		ARG 1 packet
 		ARG 2 boundaryOnly
 	METHOD broadcastBlockEntity (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 level
 		ARG 2 pos
-	METHOD broadcastBlockEntityIfNeeded (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 	METHOD broadcastChanges (Lnet/minecraft/world/level/chunk/LevelChunk;)V
 		ARG 1 chunk
-	METHOD demoteFullChunk (Lnet/minecraft/server/level/ChunkMap;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
-	METHOD getChunkToSave ()Ljava/util/concurrent/CompletableFuture;
-	METHOD getEntityTickingChunkFuture ()Ljava/util/concurrent/CompletableFuture;
-	METHOD getFullChunkFuture ()Ljava/util/concurrent/CompletableFuture;
 	METHOD getFullChunkStatus (I)Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
 		ARG 0 level
-	METHOD getFullStatus ()Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
-	METHOD getFutureIfPresent (Lnet/minecraft/world/level/chunk/ChunkStatus;)Ljava/util/concurrent/CompletableFuture;
-	METHOD getFutureIfPresentUnchecked (Lnet/minecraft/world/level/chunk/ChunkStatus;)Ljava/util/concurrent/CompletableFuture;
-	METHOD getLastAvailable ()Lnet/minecraft/world/level/chunk/ChunkAccess;
-	METHOD getLastAvailableStatus ()Lnet/minecraft/world/level/chunk/ChunkStatus;
-	METHOD getOrScheduleFuture (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ChunkMap;)Ljava/util/concurrent/CompletableFuture;
-	METHOD getPos ()Lnet/minecraft/world/level/ChunkPos;
-	METHOD getQueueLevel ()I
 	METHOD getStatus (I)Lnet/minecraft/world/level/chunk/ChunkStatus;
 		ARG 0 level
-	METHOD getTicketLevel ()I
-	METHOD getTickingChunk ()Lnet/minecraft/world/level/chunk/LevelChunk;
-	METHOD getTickingChunkFuture ()Ljava/util/concurrent/CompletableFuture;
-	METHOD lambda$broadcast$1 (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/server/level/ServerPlayer;)V
-	METHOD lambda$broadcastChanges$0 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-	METHOD lambda$scheduleFullChunkPromotion$5 (Lnet/minecraft/server/level/ChunkMap;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
-	METHOD lambda$scheduleFullChunkPromotion$6 (Ljava/util/concurrent/CompletableFuture;Lnet/minecraft/world/level/chunk/LevelChunk;)V
-	METHOD lambda$scheduleFullChunkPromotion$7 (Ljava/util/concurrent/CompletableFuture;Lcom/mojang/datafixers/util/Either;)V
-	METHOD lambda$updateChunkToSave$2 (Lnet/minecraft/world/level/chunk/ChunkAccess;)Lnet/minecraft/world/level/chunk/ChunkAccess;
-	METHOD lambda$updateChunkToSave$3 (Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/server/level/ChunkHolder$ChunkLoadingFailure;)Lnet/minecraft/world/level/chunk/ChunkAccess;
-	METHOD lambda$updateChunkToSave$4 (Lnet/minecraft/world/level/chunk/ChunkAccess;Lcom/mojang/datafixers/util/Either;)Lnet/minecraft/world/level/chunk/ChunkAccess;
-	METHOD lambda$updateFutures$8 (Lnet/minecraft/server/level/ChunkMap;Lcom/mojang/datafixers/util/Either;)Lcom/mojang/datafixers/util/Either;
-	METHOD refreshAccessibility ()V
-	METHOD replaceProtoChunk (Lnet/minecraft/world/level/chunk/ImposterProtoChunk;)V
-	METHOD scheduleFullChunkPromotion (Lnet/minecraft/server/level/ChunkMap;Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
 	METHOD sectionLightChanged (Lnet/minecraft/world/level/LightLayer;I)V
 		ARG 1 type
 		ARG 2 sectionY
-	METHOD setQueueLevel (I)V
 	METHOD setTicketLevel (I)V
 		ARG 1 level
-	METHOD updateChunkToSave (Ljava/util/concurrent/CompletableFuture;Ljava/lang/String;)V
-	METHOD updateFutures (Lnet/minecraft/server/level/ChunkMap;Ljava/util/concurrent/Executor;)V
-	METHOD wasAccessibleSinceLastSave ()Z
-	CLASS 1
-		FIELD this$0 Lnet/minecraft/server/level/ChunkHolder;
-		METHOD <init> (Lnet/minecraft/server/level/ChunkHolder;)V
-		METHOD toString ()Ljava/lang/String;
-	CLASS ChunkLoadingFailure
-		FIELD UNLOADED Lnet/minecraft/server/level/ChunkHolder$ChunkLoadingFailure;
-		METHOD <clinit> ()V
-		CLASS 1
-			METHOD <init> ()V
-			METHOD toString ()Ljava/lang/String;
-	CLASS ChunkSaveDebug
-		FIELD future Ljava/util/concurrent/CompletableFuture;
-		FIELD source Ljava/lang/String;
-		FIELD thread Ljava/lang/Thread;
-		METHOD <init> (Ljava/lang/Thread;Ljava/util/concurrent/CompletableFuture;Ljava/lang/String;)V
 	CLASS FullChunkStatus
-		FIELD $VALUES [Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
-		FIELD BORDER Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
-		FIELD ENTITY_TICKING Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
-		FIELD INACCESSIBLE Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
-		FIELD TICKING Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
-		METHOD $values ()[Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
 		METHOD isOrAfter (Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)Z
 			ARG 1 type
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
-		METHOD values ()[Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
-	CLASS LevelChangeListener
-		METHOD onLevelChange (Lnet/minecraft/world/level/ChunkPos;Ljava/util/function/IntSupplier;ILjava/util/function/IntConsumer;)V
 	CLASS PlayerProvider
 		METHOD getPlayers (Lnet/minecraft/world/level/ChunkPos;Z)Ljava/util/stream/Stream;
 			COMMENT Returns the players tracking the given chunk.

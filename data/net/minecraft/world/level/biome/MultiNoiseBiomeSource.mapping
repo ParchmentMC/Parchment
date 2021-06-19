@@ -1,88 +1,13 @@
 CLASS net/minecraft/world/level/biome/MultiNoiseBiomeSource
-	FIELD CODEC Lcom/mojang/serialization/Codec;
-	FIELD DEFAULT_NOISE_PARAMETERS Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;
-	FIELD DIRECT_CODEC Lcom/mojang/serialization/MapCodec;
-	FIELD altitudeNoise Lnet/minecraft/world/level/levelgen/synth/NormalNoise;
-	FIELD altitudeParams Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;
-	FIELD humidityNoise Lnet/minecraft/world/level/levelgen/synth/NormalNoise;
-	FIELD humidityParams Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;
-	FIELD parameters Ljava/util/List;
-	FIELD preset Ljava/util/Optional;
-	FIELD seed J
-	FIELD temperatureNoise Lnet/minecraft/world/level/levelgen/synth/NormalNoise;
-	FIELD temperatureParams Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;
-	FIELD useY Z
-	FIELD weirdnessNoise Lnet/minecraft/world/level/levelgen/synth/NormalNoise;
-	FIELD weirdnessParams Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;
-	METHOD <clinit> ()V
-	METHOD <init> (JLjava/util/List;)V
-	METHOD <init> (JLjava/util/List;Ljava/util/Optional;)V
-	METHOD <init> (JLjava/util/List;Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;)V
-	METHOD <init> (JLjava/util/List;Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;Ljava/util/Optional;)V
-	METHOD codec ()Lcom/mojang/serialization/Codec;
 	METHOD getNoiseBiome (III)Lnet/minecraft/world/level/biome/Biome;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD lambda$getNoiseBiome$12 (Lnet/minecraft/world/level/biome/Biome$ClimateParameters;Lcom/mojang/datafixers/util/Pair;)Ljava/lang/Float;
-	METHOD lambda$parameters$13 (Lnet/minecraft/core/Registry;)Lnet/minecraft/world/level/biome/Biome;
-	METHOD lambda$preset$11 (Lcom/mojang/datafixers/util/Pair;)Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$PresetInstance;
-	METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;)Ljava/lang/Long;
-	METHOD lambda$static$1 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-	METHOD lambda$static$10 (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;)Lcom/mojang/datafixers/util/Either;
-	METHOD lambda$static$2 (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;)Ljava/util/List;
-	METHOD lambda$static$3 (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;)Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;
-	METHOD lambda$static$4 (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;)Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;
-	METHOD lambda$static$5 (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;)Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;
-	METHOD lambda$static$6 (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;)Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$NoiseParameters;
-	METHOD lambda$static$7 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-	METHOD lambda$static$8 (Lcom/mojang/datafixers/util/Either;)Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;
-	METHOD lambda$static$9 (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;)Lcom/mojang/datafixers/util/Either;
-	METHOD overworld (Lnet/minecraft/core/Registry;J)Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;
-	METHOD parameters (Lnet/minecraft/core/Registry;)Lcom/google/common/collect/ImmutableList;
-	METHOD preset ()Ljava/util/Optional;
 	METHOD stable (J)Z
 		ARG 1 seed
 	METHOD withSeed (J)Lnet/minecraft/world/level/biome/BiomeSource;
 		ARG 1 seed
-	CLASS NoiseParameters
-		FIELD CODEC Lcom/mojang/serialization/Codec;
-		FIELD amplitudes Lit/unimi/dsi/fastutil/doubles/DoubleList;
-		FIELD firstOctave I
-		METHOD <clinit> ()V
-		METHOD <init> (ILjava/util/List;)V
-		METHOD <init> (I[D)V
-		METHOD amplitudes ()Lit/unimi/dsi/fastutil/doubles/DoubleList;
-		METHOD firstOctave ()I
-		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 	CLASS Preset
-		FIELD BY_NAME Ljava/util/Map;
-		FIELD NETHER Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$Preset;
-		FIELD biomeSource Lcom/mojang/datafixers/util/Function3;
-		FIELD name Lnet/minecraft/resources/ResourceLocation;
-		METHOD <clinit> ()V
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/datafixers/util/Function3;)V
 		METHOD biomeSource (Lnet/minecraft/core/Registry;J)Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;
 			ARG 1 lookupRegistry
 			ARG 2 seed
-		METHOD lambda$static$0 (Lnet/minecraft/core/Registry;)Lnet/minecraft/world/level/biome/Biome;
-		METHOD lambda$static$1 (Lnet/minecraft/core/Registry;)Lnet/minecraft/world/level/biome/Biome;
-		METHOD lambda$static$2 (Lnet/minecraft/core/Registry;)Lnet/minecraft/world/level/biome/Biome;
-		METHOD lambda$static$3 (Lnet/minecraft/core/Registry;)Lnet/minecraft/world/level/biome/Biome;
-		METHOD lambda$static$4 (Lnet/minecraft/core/Registry;)Lnet/minecraft/world/level/biome/Biome;
-		METHOD lambda$static$5 (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$Preset;Lnet/minecraft/core/Registry;Ljava/lang/Long;)Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;
-	CLASS PresetInstance
-		FIELD CODEC Lcom/mojang/serialization/MapCodec;
-		FIELD biomes Lnet/minecraft/core/Registry;
-		FIELD preset Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$Preset;
-		FIELD seed J
-		METHOD <clinit> ()V
-		METHOD <init> (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$Preset;Lnet/minecraft/core/Registry;J)V
-		METHOD biomeSource ()Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;
-		METHOD biomes ()Lnet/minecraft/core/Registry;
-		METHOD lambda$static$0 (Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/serialization/DataResult;
-		METHOD lambda$static$1 (Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/serialization/DataResult;
-		METHOD lambda$static$2 (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$Preset;)Lcom/mojang/serialization/DataResult;
-		METHOD lambda$static$3 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-		METHOD preset ()Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource$Preset;
-		METHOD seed ()J

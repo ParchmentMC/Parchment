@@ -1,20 +1,8 @@
 CLASS net/minecraft/commands/arguments/MessageArgument
-	FIELD EXAMPLES Ljava/util/Collection;
-	METHOD <clinit> ()V
-	METHOD <init> ()V
-	METHOD getExamples ()Ljava/util/Collection;
 	METHOD getMessage (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
 		ARG 0 context
 		ARG 1 name
-	METHOD message ()Lnet/minecraft/commands/arguments/MessageArgument;
-	METHOD parse (Lcom/mojang/brigadier/StringReader;)Ljava/lang/Object;
-	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/MessageArgument$Message;
 	CLASS Message
-		FIELD parts [Lnet/minecraft/commands/arguments/MessageArgument$Part;
-		FIELD text Ljava/lang/String;
-		METHOD <init> (Ljava/lang/String;[Lnet/minecraft/commands/arguments/MessageArgument$Part;)V
-		METHOD getParts ()[Lnet/minecraft/commands/arguments/MessageArgument$Part;
-		METHOD getText ()Ljava/lang/String;
 		METHOD parseText (Lcom/mojang/brigadier/StringReader;Z)Lnet/minecraft/commands/arguments/MessageArgument$Message;
 			COMMENT Parses a message. The algorithm for this is simply to run though and look for selectors, ignoring any invalid selectors in the text (since players may type e.g. "[@]").
 			ARG 0 reader
@@ -24,13 +12,6 @@ CLASS net/minecraft/commands/arguments/MessageArgument
 			ARG 1 source
 			ARG 2 allowSelectors
 	CLASS Part
-		FIELD end I
-		FIELD selector Lnet/minecraft/commands/arguments/selector/EntitySelector;
-		FIELD start I
-		METHOD <init> (IILnet/minecraft/commands/arguments/selector/EntitySelector;)V
-		METHOD getEnd ()I
-		METHOD getSelector ()Lnet/minecraft/commands/arguments/selector/EntitySelector;
-		METHOD getStart ()I
 		METHOD toComponent (Lnet/minecraft/commands/CommandSourceStack;)Lnet/minecraft/network/chat/Component;
 			COMMENT Runs the selector and returns the component produced by it. This method does not actually appear to ever return null.
 			ARG 1 source

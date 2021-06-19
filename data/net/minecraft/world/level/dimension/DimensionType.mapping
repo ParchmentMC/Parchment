@@ -1,52 +1,6 @@
 CLASS net/minecraft/world/level/dimension/DimensionType
-	FIELD BITS_FOR_Y I
-	FIELD CODEC Lcom/mojang/serialization/Codec;
-	FIELD DEFAULT_END Lnet/minecraft/world/level/dimension/DimensionType;
-	FIELD DEFAULT_NETHER Lnet/minecraft/world/level/dimension/DimensionType;
-	FIELD DEFAULT_OVERWORLD Lnet/minecraft/world/level/dimension/DimensionType;
-	FIELD DEFAULT_OVERWORLD_CAVES Lnet/minecraft/world/level/dimension/DimensionType;
-	FIELD DIRECT_CODEC Lcom/mojang/serialization/Codec;
-	FIELD END_EFFECTS Lnet/minecraft/resources/ResourceLocation;
-	FIELD END_LOCATION Lnet/minecraft/resources/ResourceKey;
-	FIELD MAX_Y I
-	FIELD MIN_HEIGHT I
-	FIELD MIN_Y I
-	FIELD MOON_BRIGHTNESS_PER_PHASE [F
-	FIELD MOON_PHASES I
-	FIELD NETHER_EFFECTS Lnet/minecraft/resources/ResourceLocation;
-	FIELD NETHER_LOCATION Lnet/minecraft/resources/ResourceKey;
-	FIELD OVERWORLD_CAVES_LOCATION Lnet/minecraft/resources/ResourceKey;
-	FIELD OVERWORLD_EFFECTS Lnet/minecraft/resources/ResourceLocation;
-	FIELD OVERWORLD_LOCATION Lnet/minecraft/resources/ResourceKey;
-	FIELD Y_SIZE I
-	FIELD ambientLight F
-	FIELD bedWorks Z
-	FIELD biomeZoomer Lnet/minecraft/world/level/biome/BiomeZoomer;
-	FIELD brightnessRamp [F
-	FIELD coordinateScale D
-	FIELD createDragonFight Z
-	FIELD effectsLocation Lnet/minecraft/resources/ResourceLocation;
-	FIELD fixedTime Ljava/util/OptionalLong;
-	FIELD hasCeiling Z
-	FIELD hasRaids Z
-	FIELD hasSkylight Z
-	FIELD height I
-	FIELD infiniburn Lnet/minecraft/resources/ResourceLocation;
-	FIELD logicalHeight I
-	FIELD minY I
-	FIELD natural Z
-	FIELD piglinSafe Z
-	FIELD respawnAnchorWorks Z
-	FIELD ultraWarm Z
-	METHOD <clinit> ()V
-	METHOD <init> (Ljava/util/OptionalLong;ZZZZDZZZZIIILnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;F)V
-	METHOD <init> (Ljava/util/OptionalLong;ZZZZDZZZZZIIILnet/minecraft/world/level/biome/BiomeZoomer;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;F)V
-	METHOD bedWorks ()Z
 	METHOD brightness (I)F
 		ARG 1 light
-	METHOD coordinateScale ()D
-	METHOD create (Ljava/util/OptionalLong;ZZZZDZZZZZIIILnet/minecraft/world/level/biome/BiomeZoomer;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;F)Lnet/minecraft/world/level/dimension/DimensionType;
-	METHOD createDragonFight ()Z
 	METHOD defaultDimensions (Lnet/minecraft/core/Registry;Lnet/minecraft/core/Registry;Lnet/minecraft/core/Registry;J)Lnet/minecraft/core/MappedRegistry;
 		ARG 0 lookUpRegistryDimensionType
 		ARG 1 lookUpRegistryBiome
@@ -60,49 +14,21 @@ CLASS net/minecraft/world/level/dimension/DimensionType
 		ARG 0 lookUpRegistryBiome
 		ARG 1 lookUpRegistryDimensionType
 		ARG 2 seed
-	METHOD effectsLocation ()Lnet/minecraft/resources/ResourceLocation;
 	METHOD equalTo (Lnet/minecraft/world/level/dimension/DimensionType;)Z
 		ARG 1 type
 	METHOD fillBrightnessRamp (F)[F
 		ARG 0 light
-	METHOD getBiomeZoomer ()Lnet/minecraft/world/level/biome/BiomeZoomer;
-	METHOD getFileSuffix ()Ljava/lang/String;
 	METHOD getStorageFolder (Lnet/minecraft/resources/ResourceKey;Ljava/io/File;)Ljava/io/File;
 		ARG 0 dimensionKey
 		ARG 1 levelFolder
 	METHOD getTeleportationScale (Lnet/minecraft/world/level/dimension/DimensionType;Lnet/minecraft/world/level/dimension/DimensionType;)D
 		ARG 0 firstType
 		ARG 1 secondType
-	METHOD guardY (Lnet/minecraft/world/level/dimension/DimensionType;)Lcom/mojang/serialization/DataResult;
-	METHOD hasCeiling ()Z
-	METHOD hasFixedTime ()Z
-	METHOD hasRaids ()Z
-	METHOD hasSkyLight ()Z
-	METHOD height ()I
-	METHOD infiniburn ()Lnet/minecraft/tags/Tag;
-	METHOD lambda$create$7 (Lcom/mojang/serialization/DataResult$PartialResult;)V
-	METHOD lambda$defaultDimensions$10 (Lnet/minecraft/core/Registry;)Lnet/minecraft/world/level/dimension/DimensionType;
-	METHOD lambda$defaultDimensions$11 (Lnet/minecraft/core/Registry;)Lnet/minecraft/world/level/dimension/DimensionType;
-	METHOD lambda$defaultEndGenerator$8 (Lnet/minecraft/core/Registry;)Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;
-	METHOD lambda$defaultNetherGenerator$9 (Lnet/minecraft/core/Registry;)Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;
-	METHOD lambda$static$0 (Ljava/util/Optional;)Ljava/util/OptionalLong;
-	METHOD lambda$static$1 (Ljava/util/OptionalLong;)Ljava/util/Optional;
-	METHOD lambda$static$2 (Lnet/minecraft/world/level/dimension/DimensionType;)Ljava/util/OptionalLong;
-	METHOD lambda$static$3 (Lnet/minecraft/world/level/dimension/DimensionType;)Lnet/minecraft/resources/ResourceLocation;
-	METHOD lambda$static$4 (Lnet/minecraft/world/level/dimension/DimensionType;)Lnet/minecraft/resources/ResourceLocation;
-	METHOD lambda$static$5 (Lnet/minecraft/world/level/dimension/DimensionType;)Ljava/lang/Float;
-	METHOD lambda$static$6 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-	METHOD logicalHeight ()I
-	METHOD minY ()I
 	METHOD moonPhase (J)I
 		ARG 1 dayTime
-	METHOD natural ()Z
 	METHOD parseLegacy (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/DataResult;
 		ARG 0 dynamic
-	METHOD piglinSafe ()Z
 	METHOD registerBuiltin (Lnet/minecraft/core/RegistryAccess$RegistryHolder;)Lnet/minecraft/core/RegistryAccess$RegistryHolder;
 		ARG 0 impl
-	METHOD respawnAnchorWorks ()Z
 	METHOD timeOfDay (J)F
 		ARG 1 dayTime
-	METHOD ultraWarm ()Z

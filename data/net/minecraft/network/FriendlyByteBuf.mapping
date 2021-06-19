@@ -1,277 +1,51 @@
 CLASS net/minecraft/network/FriendlyByteBuf
-	FIELD DEFAULT_NBT_QUOTA I
-	FIELD MAX_COMPONENT_STRING_LENGTH I
-	FIELD MAX_STRING_LENGTH S
-	FIELD MAX_VARINT_SIZE I
-	FIELD MAX_VARLONG_SIZE I
-	FIELD source Lio/netty/buffer/ByteBuf;
-	METHOD <init> (Lio/netty/buffer/ByteBuf;)V
-	METHOD accessByteBufWithCorrectSize ()[B
-	METHOD alloc ()Lio/netty/buffer/ByteBufAllocator;
-	METHOD array ()[B
-	METHOD arrayOffset ()I
-	METHOD asReadOnly ()Lio/netty/buffer/ByteBuf;
-	METHOD bytesBefore (B)I
-	METHOD bytesBefore (IB)I
-	METHOD bytesBefore (IIB)I
-	METHOD capacity ()I
-	METHOD capacity (I)Lio/netty/buffer/ByteBuf;
-	METHOD clear ()Lio/netty/buffer/ByteBuf;
-	METHOD compareTo (Lio/netty/buffer/ByteBuf;)I
-	METHOD compareTo (Ljava/lang/Object;)I
-	METHOD copy ()Lio/netty/buffer/ByteBuf;
-	METHOD copy (II)Lio/netty/buffer/ByteBuf;
-	METHOD discardReadBytes ()Lio/netty/buffer/ByteBuf;
-	METHOD discardSomeReadBytes ()Lio/netty/buffer/ByteBuf;
-	METHOD duplicate ()Lio/netty/buffer/ByteBuf;
-	METHOD ensureWritable (I)Lio/netty/buffer/ByteBuf;
-	METHOD ensureWritable (IZ)I
-	METHOD equals (Ljava/lang/Object;)Z
-	METHOD forEachByte (IILio/netty/util/ByteProcessor;)I
-	METHOD forEachByte (Lio/netty/util/ByteProcessor;)I
-	METHOD forEachByteDesc (IILio/netty/util/ByteProcessor;)I
-	METHOD forEachByteDesc (Lio/netty/util/ByteProcessor;)I
-	METHOD getBoolean (I)Z
-	METHOD getByte (I)B
-	METHOD getBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
-	METHOD getBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
-	METHOD getBytes (ILio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
-	METHOD getBytes (ILjava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;
-	METHOD getBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
-	METHOD getBytes (ILjava/nio/channels/FileChannel;JI)I
-	METHOD getBytes (ILjava/nio/channels/GatheringByteChannel;I)I
-	METHOD getBytes (I[B)Lio/netty/buffer/ByteBuf;
-	METHOD getBytes (I[BII)Lio/netty/buffer/ByteBuf;
-	METHOD getChar (I)C
-	METHOD getCharSequence (IILjava/nio/charset/Charset;)Ljava/lang/CharSequence;
-	METHOD getDouble (I)D
-	METHOD getFloat (I)F
-	METHOD getInt (I)I
-	METHOD getIntLE (I)I
-	METHOD getLong (I)J
-	METHOD getLongLE (I)J
-	METHOD getMedium (I)I
-	METHOD getMediumLE (I)I
-	METHOD getShort (I)S
-	METHOD getShortLE (I)S
-	METHOD getUnsignedByte (I)S
-	METHOD getUnsignedInt (I)J
-	METHOD getUnsignedIntLE (I)J
-	METHOD getUnsignedMedium (I)I
-	METHOD getUnsignedMediumLE (I)I
-	METHOD getUnsignedShort (I)I
-	METHOD getUnsignedShortLE (I)I
 	METHOD getVarIntSize (I)I
 		COMMENT Calculates the number of bytes required to fit the supplied int (0-5) if it were to be read/written using readVarIntFromBuffer or writeVarIntToBuffer
 		ARG 0 input
-	METHOD getVarLongSize (J)I
-	METHOD hasArray ()Z
-	METHOD hasMemoryAddress ()Z
-	METHOD hashCode ()I
-	METHOD indexOf (IIB)I
-	METHOD internalNioBuffer (II)Ljava/nio/ByteBuffer;
-	METHOD isDirect ()Z
-	METHOD isReadOnly ()Z
-	METHOD isReadable ()Z
-	METHOD isReadable (I)Z
-	METHOD isWritable ()Z
-	METHOD isWritable (I)Z
-	METHOD lambda$readWithCodec$0 (Lnet/minecraft/nbt/CompoundTag;Lcom/mojang/serialization/DataResult$PartialResult;)V
-	METHOD lambda$writeMap$2 (Ljava/util/function/BiConsumer;Ljava/util/function/BiConsumer;Ljava/lang/Object;Ljava/lang/Object;)V
-	METHOD lambda$writeWithCodec$1 (Ljava/lang/Object;Lcom/mojang/serialization/DataResult$PartialResult;)V
-	METHOD markReaderIndex ()Lio/netty/buffer/ByteBuf;
-	METHOD markWriterIndex ()Lio/netty/buffer/ByteBuf;
-	METHOD maxCapacity ()I
-	METHOD maxWritableBytes ()I
-	METHOD memoryAddress ()J
-	METHOD nioBuffer ()Ljava/nio/ByteBuffer;
-	METHOD nioBuffer (II)Ljava/nio/ByteBuffer;
-	METHOD nioBufferCount ()I
-	METHOD nioBuffers ()[Ljava/nio/ByteBuffer;
-	METHOD nioBuffers (II)[Ljava/nio/ByteBuffer;
-	METHOD order ()Ljava/nio/ByteOrder;
-	METHOD order (Ljava/nio/ByteOrder;)Lio/netty/buffer/ByteBuf;
-	METHOD readAnySizeNbt ()Lnet/minecraft/nbt/CompoundTag;
-	METHOD readBitSet ()Ljava/util/BitSet;
-	METHOD readBlockHitResult ()Lnet/minecraft/world/phys/BlockHitResult;
-	METHOD readBlockPos ()Lnet/minecraft/core/BlockPos;
-	METHOD readBoolean ()Z
-	METHOD readByte ()B
-	METHOD readByteArray ()[B
 	METHOD readByteArray (I)[B
 		ARG 1 maxLength
-	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
-	METHOD readBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
-	METHOD readBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
-	METHOD readBytes (Lio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
-	METHOD readBytes (Ljava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;
-	METHOD readBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
-	METHOD readBytes (Ljava/nio/channels/FileChannel;JI)I
-	METHOD readBytes (Ljava/nio/channels/GatheringByteChannel;I)I
-	METHOD readBytes ([B)Lio/netty/buffer/ByteBuf;
-	METHOD readBytes ([BII)Lio/netty/buffer/ByteBuf;
-	METHOD readChar ()C
-	METHOD readCharSequence (ILjava/nio/charset/Charset;)Ljava/lang/CharSequence;
-	METHOD readChunkPos ()Lnet/minecraft/world/level/ChunkPos;
-	METHOD readCollection (Ljava/util/function/IntFunction;Ljava/util/function/Function;)Ljava/util/Collection;
-	METHOD readComponent ()Lnet/minecraft/network/chat/Component;
-	METHOD readDate ()Ljava/util/Date;
-	METHOD readDouble ()D
 	METHOD readEnum (Ljava/lang/Class;)Ljava/lang/Enum;
 		ARG 1 enumClass
-	METHOD readFloat ()F
-	METHOD readInt ()I
-	METHOD readIntIdList ()Lit/unimi/dsi/fastutil/ints/IntList;
-	METHOD readIntLE ()I
 	METHOD readItem ()Lnet/minecraft/world/item/ItemStack;
 		COMMENT Reads an ItemStack from this buffer
-	METHOD readList (Ljava/util/function/Function;)Ljava/util/List;
-	METHOD readLong ()J
-	METHOD readLongArray ()[J
 	METHOD readLongArray ([J)[J
 		COMMENT Reads a length-prefixed array of longs from the buffer.
 		ARG 1 array
 	METHOD readLongArray ([JI)[J
 		ARG 1 array
 		ARG 2 maxLength
-	METHOD readLongLE ()J
-	METHOD readMap (Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/Map;
-	METHOD readMap (Ljava/util/function/IntFunction;Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/Map;
-	METHOD readMedium ()I
-	METHOD readMediumLE ()I
 	METHOD readNbt ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Reads a compressed NBTTagCompound from this buffer
-	METHOD readNbt (Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/CompoundTag;
-	METHOD readResourceLocation ()Lnet/minecraft/resources/ResourceLocation;
-	METHOD readRetainedSlice (I)Lio/netty/buffer/ByteBuf;
-	METHOD readSectionPos ()Lnet/minecraft/core/SectionPos;
-	METHOD readShort ()S
-	METHOD readShortLE ()S
-	METHOD readSlice (I)Lio/netty/buffer/ByteBuf;
-	METHOD readUUID ()Ljava/util/UUID;
-	METHOD readUnsignedByte ()S
-	METHOD readUnsignedInt ()J
-	METHOD readUnsignedIntLE ()J
-	METHOD readUnsignedMedium ()I
-	METHOD readUnsignedMediumLE ()I
-	METHOD readUnsignedShort ()I
-	METHOD readUnsignedShortLE ()I
-	METHOD readUtf ()Ljava/lang/String;
 	METHOD readUtf (I)Ljava/lang/String;
 		COMMENT Reads a string from this buffer. Expected parameter is maximum allowed string length. Will throw IOException if string length exceeds this value!
 		ARG 1 maxLength
 	METHOD readVarInt ()I
 		COMMENT Reads a compressed int from the buffer. To do so it maximally reads 5 byte-sized chunks whose most significant bit dictates whether another byte should be read.
-	METHOD readVarIntArray ()[I
 	METHOD readVarIntArray (I)[I
 		ARG 1 maxLength
-	METHOD readVarLong ()J
-	METHOD readWithCodec (Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
-	METHOD readWithCount (Ljava/util/function/Consumer;)V
-	METHOD readableBytes ()I
-	METHOD readerIndex ()I
-	METHOD readerIndex (I)Lio/netty/buffer/ByteBuf;
-	METHOD refCnt ()I
-	METHOD release ()Z
-	METHOD release (I)Z
-	METHOD resetReaderIndex ()Lio/netty/buffer/ByteBuf;
-	METHOD resetWriterIndex ()Lio/netty/buffer/ByteBuf;
-	METHOD retain ()Lio/netty/buffer/ByteBuf;
-	METHOD retain ()Lio/netty/util/ReferenceCounted;
-	METHOD retain (I)Lio/netty/buffer/ByteBuf;
-	METHOD retain (I)Lio/netty/util/ReferenceCounted;
-	METHOD retainedDuplicate ()Lio/netty/buffer/ByteBuf;
-	METHOD retainedSlice ()Lio/netty/buffer/ByteBuf;
-	METHOD retainedSlice (II)Lio/netty/buffer/ByteBuf;
-	METHOD setBoolean (IZ)Lio/netty/buffer/ByteBuf;
-	METHOD setByte (II)Lio/netty/buffer/ByteBuf;
-	METHOD setBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
-	METHOD setBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
-	METHOD setBytes (ILio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
-	METHOD setBytes (ILjava/io/InputStream;I)I
-	METHOD setBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
-	METHOD setBytes (ILjava/nio/channels/FileChannel;JI)I
-	METHOD setBytes (ILjava/nio/channels/ScatteringByteChannel;I)I
-	METHOD setBytes (I[B)Lio/netty/buffer/ByteBuf;
-	METHOD setBytes (I[BII)Lio/netty/buffer/ByteBuf;
-	METHOD setChar (II)Lio/netty/buffer/ByteBuf;
-	METHOD setCharSequence (ILjava/lang/CharSequence;Ljava/nio/charset/Charset;)I
-	METHOD setDouble (ID)Lio/netty/buffer/ByteBuf;
-	METHOD setFloat (IF)Lio/netty/buffer/ByteBuf;
-	METHOD setIndex (II)Lio/netty/buffer/ByteBuf;
-	METHOD setInt (II)Lio/netty/buffer/ByteBuf;
-	METHOD setIntLE (II)Lio/netty/buffer/ByteBuf;
-	METHOD setLong (IJ)Lio/netty/buffer/ByteBuf;
-	METHOD setLongLE (IJ)Lio/netty/buffer/ByteBuf;
-	METHOD setMedium (II)Lio/netty/buffer/ByteBuf;
-	METHOD setMediumLE (II)Lio/netty/buffer/ByteBuf;
-	METHOD setShort (II)Lio/netty/buffer/ByteBuf;
-	METHOD setShortLE (II)Lio/netty/buffer/ByteBuf;
-	METHOD setZero (II)Lio/netty/buffer/ByteBuf;
-	METHOD skipBytes (I)Lio/netty/buffer/ByteBuf;
-	METHOD slice ()Lio/netty/buffer/ByteBuf;
-	METHOD slice (II)Lio/netty/buffer/ByteBuf;
-	METHOD toString ()Ljava/lang/String;
-	METHOD toString (IILjava/nio/charset/Charset;)Ljava/lang/String;
-	METHOD toString (Ljava/nio/charset/Charset;)Ljava/lang/String;
-	METHOD touch ()Lio/netty/buffer/ByteBuf;
-	METHOD touch ()Lio/netty/util/ReferenceCounted;
-	METHOD touch (Ljava/lang/Object;)Lio/netty/buffer/ByteBuf;
-	METHOD touch (Ljava/lang/Object;)Lio/netty/util/ReferenceCounted;
-	METHOD unwrap ()Lio/netty/buffer/ByteBuf;
-	METHOD writableBytes ()I
-	METHOD writeBitSet (Ljava/util/BitSet;)V
 	METHOD writeBlockHitResult (Lnet/minecraft/world/phys/BlockHitResult;)V
 		ARG 1 result
 	METHOD writeBlockPos (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 pos
-	METHOD writeBoolean (Z)Lio/netty/buffer/ByteBuf;
-	METHOD writeByte (I)Lio/netty/buffer/ByteBuf;
 	METHOD writeByteArray ([B)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 array
-	METHOD writeBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
-	METHOD writeBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
-	METHOD writeBytes (Lio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
-	METHOD writeBytes (Ljava/io/InputStream;I)I
-	METHOD writeBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
-	METHOD writeBytes (Ljava/nio/channels/FileChannel;JI)I
-	METHOD writeBytes (Ljava/nio/channels/ScatteringByteChannel;I)I
-	METHOD writeBytes ([B)Lio/netty/buffer/ByteBuf;
-	METHOD writeBytes ([BII)Lio/netty/buffer/ByteBuf;
-	METHOD writeChar (I)Lio/netty/buffer/ByteBuf;
-	METHOD writeCharSequence (Ljava/lang/CharSequence;Ljava/nio/charset/Charset;)I
-	METHOD writeChunkPos (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/network/FriendlyByteBuf;
-	METHOD writeCollection (Ljava/util/Collection;Ljava/util/function/BiConsumer;)V
 	METHOD writeComponent (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 component
 	METHOD writeDate (Ljava/util/Date;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 time
-	METHOD writeDouble (D)Lio/netty/buffer/ByteBuf;
 	METHOD writeEnum (Ljava/lang/Enum;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
-	METHOD writeFloat (F)Lio/netty/buffer/ByteBuf;
-	METHOD writeInt (I)Lio/netty/buffer/ByteBuf;
-	METHOD writeIntIdList (Lit/unimi/dsi/fastutil/ints/IntList;)V
-	METHOD writeIntLE (I)Lio/netty/buffer/ByteBuf;
 	METHOD writeItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes the ItemStack's ID (short), then size (byte), then damage. (short)
 		ARG 1 stack
-	METHOD writeLong (J)Lio/netty/buffer/ByteBuf;
 	METHOD writeLongArray ([J)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes an array of longs to the buffer, prefixed by the length of the array (as a VarInt).
 		ARG 1 array
-	METHOD writeLongLE (J)Lio/netty/buffer/ByteBuf;
-	METHOD writeMap (Ljava/util/Map;Ljava/util/function/BiConsumer;Ljava/util/function/BiConsumer;)V
-	METHOD writeMedium (I)Lio/netty/buffer/ByteBuf;
-	METHOD writeMediumLE (I)Lio/netty/buffer/ByteBuf;
 	METHOD writeNbt (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes a compressed NBTTagCompound to this buffer
 		ARG 1 nbt
 	METHOD writeResourceLocation (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 resourceLocation
-	METHOD writeSectionPos (Lnet/minecraft/core/SectionPos;)Lnet/minecraft/network/FriendlyByteBuf;
-	METHOD writeShort (I)Lio/netty/buffer/ByteBuf;
-	METHOD writeShortLE (I)Lio/netty/buffer/ByteBuf;
 	METHOD writeUUID (Ljava/util/UUID;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 uuid
 	METHOD writeUtf (Ljava/lang/String;)Lnet/minecraft/network/FriendlyByteBuf;
@@ -287,7 +61,3 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 array
 	METHOD writeVarLong (J)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
-	METHOD writeWithCodec (Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
-	METHOD writeZero (I)Lio/netty/buffer/ByteBuf;
-	METHOD writerIndex ()I
-	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;

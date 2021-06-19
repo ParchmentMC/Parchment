@@ -1,65 +1,22 @@
 CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
-	FIELD LATENCY_CHECK_INTERVAL I
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD aboveGroundTickCount I
 		COMMENT Used to keep track of how the player is floating while gamerules should prevent that. Surpassing 80 ticks means kick
-	FIELD aboveGroundVehicleTickCount I
-	FIELD awaitingPositionFromClient Lnet/minecraft/world/phys/Vec3;
-	FIELD awaitingTeleport I
-	FIELD awaitingTeleportTime I
 	FIELD chatSpamTickCount I
 		COMMENT Incremented by 20 each time a user sends a chat message, decreased by one every tick. Non-ops kicked when over 200
-	FIELD clientIsFloating Z
-	FIELD clientVehicleIsFloating Z
-	FIELD connection Lnet/minecraft/network/Connection;
-	FIELD dropSpamTickCount I
-	FIELD firstGoodX D
-	FIELD firstGoodY D
-	FIELD firstGoodZ D
-	FIELD keepAliveChallenge J
-	FIELD keepAlivePending Z
-	FIELD keepAliveTime J
-	FIELD knownMovePacketCount I
-	FIELD lastGoodX D
-	FIELD lastGoodY D
-	FIELD lastGoodZ D
-	FIELD lastVehicle Lnet/minecraft/world/entity/Entity;
-	FIELD player Lnet/minecraft/server/level/ServerPlayer;
-	FIELD receivedMovePacketCount I
-	FIELD server Lnet/minecraft/server/MinecraftServer;
-	FIELD tickCount I
-	FIELD vehicleFirstGoodX D
-	FIELD vehicleFirstGoodY D
-	FIELD vehicleFirstGoodZ D
-	FIELD vehicleLastGoodX D
-	FIELD vehicleLastGoodY D
-	FIELD vehicleLastGoodZ D
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;)V
-	METHOD clampHorizontal (D)D
-	METHOD clampVertical (D)D
-	METHOD containsInvalidValues (DDDFF)Z
 	METHOD disconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Disconnect the player with a specified reason
 		ARG 1 textComponent
-	METHOD dismount (DDDFF)V
-	METHOD filterTextPacket (Ljava/lang/Object;Ljava/util/function/Consumer;Ljava/util/function/BiFunction;)V
-	METHOD filterTextPacket (Ljava/lang/String;Ljava/util/function/Consumer;)V
-	METHOD filterTextPacket (Ljava/util/List;Ljava/util/function/Consumer;)V
 	METHOD getConnection ()Lnet/minecraft/network/Connection;
 		COMMENT Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient
-	METHOD getPlayer ()Lnet/minecraft/server/level/ServerPlayer;
 	METHOD handleAcceptTeleportPacket (Lnet/minecraft/network/protocol/game/ServerboundAcceptTeleportationPacket;)V
 		ARG 1 packet
 	METHOD handleAnimate (Lnet/minecraft/network/protocol/game/ServerboundSwingPacket;)V
 		ARG 1 packet
 	METHOD handleBlockEntityTagQuery (Lnet/minecraft/network/protocol/game/ServerboundBlockEntityTagQuery;)V
 		ARG 1 packet
-	METHOD handleChangeDifficulty (Lnet/minecraft/network/protocol/game/ServerboundChangeDifficultyPacket;)V
 	METHOD handleChat (Lnet/minecraft/network/protocol/game/ServerboundChatPacket;)V
 		COMMENT Process chat messages (broadcast back to clients) and commands (executes)
 		ARG 1 packet
-	METHOD handleChat (Lnet/minecraft/server/network/TextFilter$FilteredText;)V
 	METHOD handleClientCommand (Lnet/minecraft/network/protocol/game/ServerboundClientCommandPacket;)V
 		COMMENT Processes the client status updates: respawn attempt from player, opening statistics or achievements, or acquiring 'open inventory' achievement
 		ARG 1 packet
@@ -91,11 +48,9 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD handleInteract (Lnet/minecraft/network/protocol/game/ServerboundInteractPacket;)V
 		COMMENT Processes left and right clicks on entities
 		ARG 1 packet
-	METHOD handleJigsawGenerate (Lnet/minecraft/network/protocol/game/ServerboundJigsawGeneratePacket;)V
 	METHOD handleKeepAlive (Lnet/minecraft/network/protocol/game/ServerboundKeepAlivePacket;)V
 		COMMENT Updates a players' ping statistics
 		ARG 1 packet
-	METHOD handleLockDifficulty (Lnet/minecraft/network/protocol/game/ServerboundLockDifficultyPacket;)V
 	METHOD handleMovePlayer (Lnet/minecraft/network/protocol/game/ServerboundMovePlayerPacket;)V
 		COMMENT Processes clients perspective on player positioning and/or orientation
 		ARG 1 packet
@@ -119,8 +74,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD handlePlayerInput (Lnet/minecraft/network/protocol/game/ServerboundPlayerInputPacket;)V
 		COMMENT Processes player movement input. Includes walking, strafing, jumping, sneaking" excludes riding and toggling flying/sprinting
 		ARG 1 packet
-	METHOD handlePong (Lnet/minecraft/network/protocol/game/ServerboundPongPacket;)V
-	METHOD handleRecipeBookChangeSettingsPacket (Lnet/minecraft/network/protocol/game/ServerboundRecipeBookChangeSettingsPacket;)V
 	METHOD handleRecipeBookSeenRecipePacket (Lnet/minecraft/network/protocol/game/ServerboundRecipeBookSeenRecipePacket;)V
 		ARG 1 packet
 	METHOD handleRenameItem (Lnet/minecraft/network/protocol/game/ServerboundRenameItemPacket;)V
@@ -143,7 +96,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD handleSetCreativeModeSlot (Lnet/minecraft/network/protocol/game/ServerboundSetCreativeModeSlotPacket;)V
 		COMMENT Update the server with an ItemStack in a slot.
 		ARG 1 packet
-	METHOD handleSetJigsawBlock (Lnet/minecraft/network/protocol/game/ServerboundSetJigsawBlockPacket;)V
 	METHOD handleSetStructureBlock (Lnet/minecraft/network/protocol/game/ServerboundSetStructureBlockPacket;)V
 		ARG 1 packet
 	METHOD handleSignUpdate (Lnet/minecraft/network/protocol/game/ServerboundSignUpdatePacket;)V
@@ -155,31 +107,12 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 packet
 	METHOD handleUseItemOn (Lnet/minecraft/network/protocol/game/ServerboundUseItemOnPacket;)V
 		ARG 1 packet
-	METHOD isPlayerCollidingWithAnythingNew (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/phys/AABB;)Z
-	METHOD isSingleplayerOwner ()Z
-	METHOD lambda$disconnect$0 (Lnet/minecraft/network/chat/Component;Lio/netty/util/concurrent/Future;)V
-	METHOD lambda$filterTextPacket$1 (Ljava/util/function/Consumer;Ljava/lang/Object;)V
-	METHOD lambda$handleChat$10 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/network/chat/Component;
-	METHOD lambda$handleCustomCommandSuggestions$2 (Lnet/minecraft/network/protocol/game/ServerboundCommandSuggestionPacket;Lcom/mojang/brigadier/suggestion/Suggestions;)V
-	METHOD lambda$handleEditBook$3 (ILjava/util/List;)V
-	METHOD lambda$handleEditBook$4 (ILjava/util/List;)V
-	METHOD lambda$handlePlaceRecipe$11 (Lnet/minecraft/network/protocol/game/ServerboundPlaceRecipePacket;Lnet/minecraft/world/item/crafting/Recipe;)V
-	METHOD lambda$handleSignUpdate$12 (Lnet/minecraft/network/protocol/game/ServerboundSignUpdatePacket;Ljava/util/List;)V
-	METHOD lambda$isPlayerCollidingWithAnythingNew$7 (Lnet/minecraft/world/entity/Entity;)Z
-	METHOD lambda$isPlayerCollidingWithAnythingNew$8 (Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/phys/shapes/VoxelShape;)Z
-	METHOD lambda$send$9 (Lnet/minecraft/network/protocol/Packet;)Ljava/lang/String;
-	METHOD lambda$signBook$5 (Ljava/lang/String;)Ljava/lang/String;
-	METHOD lambda$updateBookPages$6 (Ljava/util/function/UnaryOperator;Lnet/minecraft/server/network/TextFilter$FilteredText;)Lnet/minecraft/nbt/StringTag;
-	METHOD noBlocksAround (Lnet/minecraft/world/entity/Entity;)Z
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason
-	METHOD resetPosition ()V
-	METHOD send (Lnet/minecraft/network/protocol/Packet;)V
 	METHOD send (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V
 		ARG 1 packet
 		ARG 2 futureListeners
-	METHOD signBook (Lnet/minecraft/server/network/TextFilter$FilteredText;Ljava/util/List;I)V
 	METHOD teleport (DDDFF)V
 		ARG 1 x
 		ARG 3 y
@@ -194,26 +127,3 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 7 yaw
 		ARG 8 pitch
 		ARG 9 relativeSet
-	METHOD teleport (DDDFFLjava/util/Set;Z)V
-	METHOD tick ()V
-	METHOD updateBookContents (Ljava/util/List;I)V
-	METHOD updateBookPages (Ljava/util/List;Ljava/util/function/UnaryOperator;Lnet/minecraft/world/item/ItemStack;)V
-	METHOD updateSignText (Lnet/minecraft/network/protocol/game/ServerboundSignUpdatePacket;Ljava/util/List;)V
-	METHOD wasBlockPlacementAttempt (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/ItemStack;)Z
-	CLASS 1
-		FIELD this$0 Lnet/minecraft/server/network/ServerGamePacketListenerImpl;
-		FIELD val$target Lnet/minecraft/world/entity/Entity;
-		METHOD <init> (Lnet/minecraft/server/network/ServerGamePacketListenerImpl;Lnet/minecraft/world/entity/Entity;)V
-		METHOD lambda$onInteraction$0 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
-		METHOD onAttack ()V
-		METHOD onInteraction (Lnet/minecraft/world/InteractionHand;)V
-		METHOD onInteraction (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/Vec3;)V
-		METHOD performInteraction (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/server/network/ServerGamePacketListenerImpl$EntityInteraction;)V
-	CLASS 2
-		FIELD $SwitchMap$net$minecraft$network$protocol$game$ServerboundClientCommandPacket$Action [I
-		FIELD $SwitchMap$net$minecraft$network$protocol$game$ServerboundPlayerActionPacket$Action [I
-		FIELD $SwitchMap$net$minecraft$network$protocol$game$ServerboundPlayerCommandPacket$Action [I
-		FIELD $SwitchMap$net$minecraft$world$level$block$entity$CommandBlockEntity$Mode [I
-		METHOD <clinit> ()V
-	CLASS EntityInteraction
-		METHOD run (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;

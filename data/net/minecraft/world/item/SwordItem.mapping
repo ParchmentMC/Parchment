@@ -1,14 +1,11 @@
 CLASS net/minecraft/world/item/SwordItem
-	FIELD attackDamage F
 	FIELD defaultModifiers Lcom/google/common/collect/Multimap;
 		COMMENT Modifiers applied when the item is in the mainhand of a user.
-	METHOD <init> (Lnet/minecraft/world/item/Tier;IFLnet/minecraft/world/item/Item$Properties;)V
 	METHOD canAttackBlock (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 player
-	METHOD getDamage ()F
 	METHOD getDefaultAttributeModifiers (Lnet/minecraft/world/entity/EquipmentSlot;)Lcom/google/common/collect/Multimap;
 		COMMENT Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
 		ARG 1 equipmentSlot
@@ -23,8 +20,6 @@ CLASS net/minecraft/world/item/SwordItem
 	METHOD isCorrectToolForDrops (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		COMMENT Check whether this Item can harvest the given Block
 		ARG 1 block
-	METHOD lambda$hurtEnemy$0 (Lnet/minecraft/world/entity/LivingEntity;)V
-	METHOD lambda$mineBlock$1 (Lnet/minecraft/world/entity/LivingEntity;)V
 	METHOD mineBlock (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
 		COMMENT Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
 		ARG 1 stack

@@ -1,60 +1,17 @@
 CLASS com/mojang/blaze3d/platform/Window
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD actuallyFullscreen Z
-	FIELD defaultErrorCallback Lorg/lwjgl/glfw/GLFWErrorCallback;
-	FIELD dirty Z
-	FIELD errorSection Ljava/lang/String;
-	FIELD eventHandler Lcom/mojang/blaze3d/platform/WindowEventHandler;
-	FIELD framebufferHeight I
-	FIELD framebufferWidth I
-	FIELD framerateLimit I
-	FIELD fullscreen Z
-	FIELD guiScale D
-	FIELD guiScaledHeight I
-	FIELD guiScaledWidth I
-	FIELD height I
-	FIELD preferredFullscreenVideoMode Ljava/util/Optional;
-	FIELD screenManager Lcom/mojang/blaze3d/platform/ScreenManager;
-	FIELD vsync Z
-	FIELD width I
-	FIELD window J
-	FIELD windowedHeight I
-	FIELD windowedWidth I
-	FIELD windowedX I
-	FIELD windowedY I
-	FIELD x I
-	FIELD y I
-	METHOD <clinit> ()V
-	METHOD <init> (Lcom/mojang/blaze3d/platform/WindowEventHandler;Lcom/mojang/blaze3d/platform/ScreenManager;Lcom/mojang/blaze3d/platform/DisplayData;Ljava/lang/String;Ljava/lang/String;)V
 	METHOD bootCrash (IJ)V
 		ARG 0 error
 		ARG 1 description
 	METHOD calculateScale (IZ)I
 		ARG 1 guiScale
 		ARG 2 forceUnicode
-	METHOD changeFullscreenVideoMode ()V
 	METHOD checkGlfwError (Ljava/util/function/BiConsumer;)V
 		ARG 0 glfwErrorConsumer
-	METHOD close ()V
 	METHOD defaultErrorCallback (IJ)V
 		ARG 1 error
 		ARG 2 description
-	METHOD findBestMonitor ()Lcom/mojang/blaze3d/platform/Monitor;
-	METHOD getFramerateLimit ()I
-	METHOD getGuiScale ()D
-	METHOD getGuiScaledHeight ()I
-	METHOD getGuiScaledWidth ()I
-	METHOD getHeight ()I
-	METHOD getPreferredFullscreenVideoMode ()Ljava/util/Optional;
-	METHOD getRefreshRate ()I
-	METHOD getScreenHeight ()I
-	METHOD getScreenWidth ()I
-	METHOD getWidth ()I
 	METHOD getWindow ()J
 		COMMENT Gets a pointer to the native window object that is passed to GLFW.
-	METHOD getX ()I
-	METHOD getY ()I
-	METHOD isFullscreen ()Z
 	METHOD onEnter (JZ)V
 		ARG 1 window
 		ARG 3 ignoreFirst
@@ -78,34 +35,22 @@ CLASS com/mojang/blaze3d/platform/Window
 		ARG 2 x
 		ARG 3 y
 		ARG 4 channelInFile
-	METHOD refreshFramebufferSize ()V
-	METHOD setBootErrorCallback ()V
-	METHOD setDefaultErrorCallback ()V
 	METHOD setErrorSection (Ljava/lang/String;)V
 		ARG 1 renderPhase
 	METHOD setFramerateLimit (I)V
 		ARG 1 limit
 	METHOD setGuiScale (D)V
 		ARG 1 scaleFactor
-	METHOD setHeight (I)V
 	METHOD setIcon (Ljava/io/InputStream;Ljava/io/InputStream;)V
 		ARG 1 iconStream16X
 		ARG 2 iconStream32X
-	METHOD setMode ()V
 	METHOD setPreferredFullscreenVideoMode (Ljava/util/Optional;)V
 		ARG 1 fullscreenMode
 	METHOD setTitle (Ljava/lang/String;)V
 		ARG 1 title
-	METHOD setWidth (I)V
-	METHOD setWindowed (II)V
-	METHOD shouldClose ()Z
-	METHOD toggleFullScreen ()V
-	METHOD updateDisplay ()V
 	METHOD updateFullscreen (Z)V
 		ARG 1 vsyncEnabled
 	METHOD updateRawMouseInput (Z)V
 		ARG 1 value
 	METHOD updateVsync (Z)V
 		ARG 1 vsyncEnabled
-	CLASS WindowInitFailed
-		METHOD <init> (Ljava/lang/String;)V

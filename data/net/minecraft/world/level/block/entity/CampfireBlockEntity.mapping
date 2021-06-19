@@ -1,14 +1,4 @@
 CLASS net/minecraft/world/level/block/entity/CampfireBlockEntity
-	FIELD BURN_COOL_SPEED I
-	FIELD NUM_SLOTS I
-	FIELD cookingProgress [I
-	FIELD cookingTime [I
-	FIELD items Lnet/minecraft/core/NonNullList;
-	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-	METHOD clearContent ()V
-	METHOD cookTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/CampfireBlockEntity;)V
-	METHOD cooldownTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/CampfireBlockEntity;)V
-	METHOD dowse ()V
 	METHOD getCookableRecipe (Lnet/minecraft/world/item/ItemStack;)Ljava/util/Optional;
 		ARG 1 itemStack
 	METHOD getItems ()Lnet/minecraft/core/NonNullList;
@@ -17,10 +7,6 @@ CLASS net/minecraft/world/level/block/entity/CampfireBlockEntity
 		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
 	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
-	METHOD lambda$cookTick$0 (Lnet/minecraft/world/Container;Lnet/minecraft/world/item/crafting/CampfireCookingRecipe;)Lnet/minecraft/world/item/ItemStack;
-	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
-	METHOD markUpdated ()V
-	METHOD particleTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/CampfireBlockEntity;)V
 	METHOD placeFood (Lnet/minecraft/world/item/ItemStack;I)Z
 		ARG 1 itemStack
 		ARG 2 cookTime

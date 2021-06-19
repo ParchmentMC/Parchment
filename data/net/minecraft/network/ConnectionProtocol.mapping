@@ -1,42 +1,8 @@
 CLASS net/minecraft/network/ConnectionProtocol
-	FIELD $VALUES [Lnet/minecraft/network/ConnectionProtocol;
-	FIELD HANDSHAKING Lnet/minecraft/network/ConnectionProtocol;
-	FIELD LOGIN Lnet/minecraft/network/ConnectionProtocol;
-	FIELD LOOKUP [Lnet/minecraft/network/ConnectionProtocol;
-	FIELD MAX_PROTOCOL_ID I
-	FIELD MIN_PROTOCOL_ID I
-	FIELD PLAY Lnet/minecraft/network/ConnectionProtocol;
-	FIELD PROTOCOL_BY_PACKET Ljava/util/Map;
-	FIELD STATUS Lnet/minecraft/network/ConnectionProtocol;
-	FIELD flows Ljava/util/Map;
-	FIELD id I
-	METHOD $values ()[Lnet/minecraft/network/ConnectionProtocol;
-	METHOD <clinit> ()V
-	METHOD <init> (Ljava/lang/String;IILnet/minecraft/network/ConnectionProtocol$ProtocolBuilder;)V
-	METHOD createPacket (Lnet/minecraft/network/protocol/PacketFlow;ILnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/Packet;
 	METHOD getById (I)Lnet/minecraft/network/ConnectionProtocol;
 		ARG 0 stateId
-	METHOD getId ()I
 	METHOD getPacketId (Lnet/minecraft/network/protocol/PacketFlow;Lnet/minecraft/network/protocol/Packet;)Ljava/lang/Integer;
 		ARG 1 direction
 		ARG 2 packet
 	METHOD getProtocolForPacket (Lnet/minecraft/network/protocol/Packet;)Lnet/minecraft/network/ConnectionProtocol;
 		ARG 0 packet
-	METHOD lambda$static$0 (Lnet/minecraft/network/ConnectionProtocol;Ljava/lang/Class;)V
-	METHOD lambda$static$1 (Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/protocol/PacketFlow;Lnet/minecraft/network/ConnectionProtocol$PacketSet;)V
-	METHOD protocol ()Lnet/minecraft/network/ConnectionProtocol$ProtocolBuilder;
-	METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/network/ConnectionProtocol;
-	METHOD values ()[Lnet/minecraft/network/ConnectionProtocol;
-	CLASS PacketSet
-		FIELD classToId Lit/unimi/dsi/fastutil/objects/Object2IntMap;
-		FIELD idToDeserializer Ljava/util/List;
-		METHOD <init> ()V
-		METHOD addPacket (Ljava/lang/Class;Ljava/util/function/Function;)Lnet/minecraft/network/ConnectionProtocol$PacketSet;
-		METHOD createPacket (ILnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/Packet;
-		METHOD getAllPackets ()Ljava/lang/Iterable;
-		METHOD getId (Ljava/lang/Class;)Ljava/lang/Integer;
-		METHOD lambda$new$0 (Lit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;)V
-	CLASS ProtocolBuilder
-		FIELD flows Ljava/util/Map;
-		METHOD <init> ()V
-		METHOD addFlow (Lnet/minecraft/network/protocol/PacketFlow;Lnet/minecraft/network/ConnectionProtocol$PacketSet;)Lnet/minecraft/network/ConnectionProtocol$ProtocolBuilder;

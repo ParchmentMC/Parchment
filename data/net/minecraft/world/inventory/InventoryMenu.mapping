@@ -1,43 +1,10 @@
 CLASS net/minecraft/world/inventory/InventoryMenu
-	FIELD ARMOR_SLOT_END I
-	FIELD ARMOR_SLOT_START I
-	FIELD BLOCK_ATLAS Lnet/minecraft/resources/ResourceLocation;
-	FIELD CONTAINER_ID I
-	FIELD CRAFT_SLOT_END I
-	FIELD CRAFT_SLOT_START I
-	FIELD EMPTY_ARMOR_SLOT_BOOTS Lnet/minecraft/resources/ResourceLocation;
-	FIELD EMPTY_ARMOR_SLOT_CHESTPLATE Lnet/minecraft/resources/ResourceLocation;
-	FIELD EMPTY_ARMOR_SLOT_HELMET Lnet/minecraft/resources/ResourceLocation;
-	FIELD EMPTY_ARMOR_SLOT_LEGGINGS Lnet/minecraft/resources/ResourceLocation;
-	FIELD EMPTY_ARMOR_SLOT_SHIELD Lnet/minecraft/resources/ResourceLocation;
-	FIELD INV_SLOT_END I
-	FIELD INV_SLOT_START I
-	FIELD RESULT_SLOT I
-	FIELD SHIELD_SLOT I
-	FIELD SLOT_IDS [Lnet/minecraft/world/entity/EquipmentSlot;
-	FIELD TEXTURE_EMPTY_SLOTS [Lnet/minecraft/resources/ResourceLocation;
-	FIELD USE_ROW_SLOT_END I
-	FIELD USE_ROW_SLOT_START I
-	FIELD active Z
-	FIELD craftSlots Lnet/minecraft/world/inventory/CraftingContainer;
-	FIELD owner Lnet/minecraft/world/entity/player/Player;
-	FIELD resultSlots Lnet/minecraft/world/inventory/ResultContainer;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/entity/player/Inventory;ZLnet/minecraft/world/entity/player/Player;)V
 	METHOD canTakeItemForPickAll (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z
 		COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
 		ARG 1 stack
 		ARG 2 slot
-	METHOD clearCraftingContent ()V
 	METHOD fillCraftSlotsStackedContents (Lnet/minecraft/world/entity/player/StackedContents;)V
 		ARG 1 itemHelper
-	METHOD getCraftSlots ()Lnet/minecraft/world/inventory/CraftingContainer;
-	METHOD getGridHeight ()I
-	METHOD getGridWidth ()I
-	METHOD getRecipeBookType ()Lnet/minecraft/world/inventory/RecipeBookType;
-	METHOD getResultSlotIndex ()I
-	METHOD getSize ()I
-	METHOD isHotbarSlot (I)Z
 	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
 		ARG 1 player
@@ -47,7 +14,6 @@ CLASS net/minecraft/world/inventory/InventoryMenu
 	METHOD removed (Lnet/minecraft/world/entity/player/Player;)V
 		COMMENT Called when the container is closed.
 		ARG 1 player
-	METHOD shouldMoveToInventory (I)Z
 	METHOD slotsChanged (Lnet/minecraft/world/Container;)V
 		COMMENT Callback for when the crafting matrix is changed.
 		ARG 1 inventory
@@ -55,19 +21,11 @@ CLASS net/minecraft/world/inventory/InventoryMenu
 		COMMENT Determines whether supplied player can use this container
 		ARG 1 player
 	CLASS 1
-		FIELD this$0 Lnet/minecraft/world/inventory/InventoryMenu;
-		FIELD val$slot Lnet/minecraft/world/entity/EquipmentSlot;
-		METHOD <init> (Lnet/minecraft/world/inventory/InventoryMenu;Lnet/minecraft/world/Container;IIILnet/minecraft/world/entity/EquipmentSlot;)V
 		METHOD getMaxStackSize ()I
 			COMMENT Returns the maximum stack size for a given slot (usually the same as getInventoryStackLimit(), but 1 in the case of armor slots)
-		METHOD getNoItemIcon ()Lcom/mojang/datafixers/util/Pair;
 		METHOD mayPickup (Lnet/minecraft/world/entity/player/Player;)Z
 			COMMENT Return whether this slot's stack can be taken from this slot.
 			ARG 1 player
 		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
 			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 			ARG 1 stack
-	CLASS 2
-		FIELD this$0 Lnet/minecraft/world/inventory/InventoryMenu;
-		METHOD <init> (Lnet/minecraft/world/inventory/InventoryMenu;Lnet/minecraft/world/Container;III)V
-		METHOD getNoItemIcon ()Lcom/mojang/datafixers/util/Pair;

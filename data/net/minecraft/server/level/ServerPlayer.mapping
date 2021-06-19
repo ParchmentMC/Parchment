@@ -1,52 +1,10 @@
 CLASS net/minecraft/server/level/ServerPlayer
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD NEUTRAL_MOB_DEATH_NOTIFICATION_RADII_XZ I
-	FIELD NEUTRAL_MOB_DEATH_NOTIFICATION_RADII_Y I
-	FIELD advancements Lnet/minecraft/server/PlayerAdvancements;
 	FIELD camera Lnet/minecraft/world/entity/Entity;
 		COMMENT The entity the player is currently spectating through.
-	FIELD canChatColor Z
-	FIELD chatVisibility Lnet/minecraft/world/entity/player/ChatVisiblity;
-	FIELD connection Lnet/minecraft/server/network/ServerGamePacketListenerImpl;
-	FIELD containerCounter I
-	FIELD containerListener Lnet/minecraft/world/inventory/ContainerListener;
-	FIELD containerSynchronizer Lnet/minecraft/world/inventory/ContainerSynchronizer;
-	FIELD disconnected Z
-	FIELD enteredNetherPosition Lnet/minecraft/world/phys/Vec3;
-	FIELD gameMode Lnet/minecraft/server/level/ServerPlayerGameMode;
-	FIELD isChangingDimension Z
-	FIELD lastActionTime J
-	FIELD lastFoodSaturationZero Z
-	FIELD lastRecordedAirLevel I
-	FIELD lastRecordedArmor I
-	FIELD lastRecordedExperience I
-	FIELD lastRecordedFoodLevel I
 	FIELD lastRecordedHealthAndAbsorption F
 		COMMENT the total health of the player, includes actual health and absorption health. Updated every tick.
-	FIELD lastRecordedLevel I
 	FIELD lastSectionPos Lnet/minecraft/core/SectionPos;
 		COMMENT Player section position as last updated by TicketManager, used by ChunkManager
-	FIELD lastSentExp I
-	FIELD lastSentFood I
-	FIELD lastSentHealth F
-	FIELD latency I
-	FIELD levitationStartPos Lnet/minecraft/world/phys/Vec3;
-	FIELD levitationStartTime I
-	FIELD recipeBook Lnet/minecraft/stats/ServerRecipeBook;
-	FIELD respawnAngle F
-	FIELD respawnDimension Lnet/minecraft/resources/ResourceKey;
-	FIELD respawnForced Z
-	FIELD respawnPosition Lnet/minecraft/core/BlockPos;
-	FIELD seenCredits Z
-	FIELD server Lnet/minecraft/server/MinecraftServer;
-	FIELD spawnInvulnerableTime I
-	FIELD stats Lnet/minecraft/stats/ServerStatsCounter;
-	FIELD textFilter Lnet/minecraft/server/network/TextFilter;
-	FIELD textFilteringEnabled Z
-	FIELD wonGame Z
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/level/ServerLevel;Lcom/mojang/authlib/GameProfile;)V
-	METHOD acceptsChat (Lnet/minecraft/network/chat/ChatType;)Z
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD attack (Lnet/minecraft/world/entity/Entity;)V
@@ -56,19 +14,12 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 killed
 		ARG 2 scoreValue
 		ARG 3 damageSource
-	METHOD awardRecipes (Ljava/util/Collection;)I
-	METHOD awardRecipesByKey ([Lnet/minecraft/resources/ResourceLocation;)V
 	METHOD awardStat (Lnet/minecraft/stats/Stat;I)V
 		COMMENT Adds a value to a statistic field.
 		ARG 1 stat
 		ARG 2 amount
-	METHOD bedBlocked (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
-	METHOD bedInRange (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
-	METHOD broadcast (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 	METHOD broadcastToPlayer (Lnet/minecraft/server/level/ServerPlayer;)Z
 		ARG 1 player
-	METHOD calculateGameModeForNewPlayer (Lnet/minecraft/world/level/GameType;)Lnet/minecraft/world/level/GameType;
-	METHOD canChatInColor ()Z
 	METHOD canHarmPlayer (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 other
 	METHOD changeDimension (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;
@@ -82,16 +33,12 @@ CLASS net/minecraft/server/level/ServerPlayer
 		COMMENT set current crafting inventory back to the 2x2 square
 	METHOD completeUsingItem ()V
 		COMMENT Used for when item use count runs out, ie: eating completed
-	METHOD createEndPlatform (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V
-	METHOD createItemCooldowns ()Lnet/minecraft/world/item/ItemCooldowns;
 	METHOD crit (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Called when the entity is dealt a critical hit.
 		ARG 1 entityHit
 	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
 		COMMENT Called when the mob's health reaches 0.
 		ARG 1 cause
-	METHOD disconnect ()V
-	METHOD dismountTo (DDD)V
 	METHOD displayClientMessage (Lnet/minecraft/network/chat/Component;Z)V
 		ARG 1 chatComponent
 		ARG 2 actionBar
@@ -101,77 +48,34 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 3 onGround
 	METHOD doCloseContainer ()V
 		COMMENT Closes the container the player currently has open.
-	METHOD doTick ()V
 	METHOD drop (Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;
 		COMMENT Creates and drops the provided item. Depending on the dropAround, it will drop teh item around the player, instead of dropping the item from where the player is pointing at. Likewise, if traceItem is true, the dropped item entity will have the thrower set as the player.
 		ARG 1 droppedItem
 		ARG 2 dropAround
 		ARG 3 traceItem
-	METHOD findDimensionEntryPoint (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/portal/PortalInfo;
-	METHOD fudgeSpawnLocation (Lnet/minecraft/server/level/ServerLevel;)V
-	METHOD getAddEntityPacket ()Lnet/minecraft/network/protocol/Packet;
-	METHOD getAdvancements ()Lnet/minecraft/server/PlayerAdvancements;
-	METHOD getCamera ()Lnet/minecraft/world/entity/Entity;
-	METHOD getChatVisibility ()Lnet/minecraft/world/entity/player/ChatVisiblity;
-	METHOD getCoprime (I)I
-	METHOD getExitPortal (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Z)Ljava/util/Optional;
 	METHOD getIpAddress ()Ljava/lang/String;
 		COMMENT Gets the player's IP address. Used in /banip.
-	METHOD getLastActionTime ()J
-	METHOD getLastSectionPos ()Lnet/minecraft/core/SectionPos;
-	METHOD getLevel ()Lnet/minecraft/server/level/ServerLevel;
-	METHOD getPermissionLevel ()I
-	METHOD getRecipeBook ()Lnet/minecraft/stats/ServerRecipeBook;
-	METHOD getRespawnAngle ()F
-	METHOD getRespawnDimension ()Lnet/minecraft/resources/ResourceKey;
-	METHOD getRespawnPosition ()Lnet/minecraft/core/BlockPos;
-	METHOD getStats ()Lnet/minecraft/stats/ServerStatsCounter;
 	METHOD getTabListDisplayName ()Lnet/minecraft/network/chat/Component;
 		COMMENT Returns null which indicates the tab list should just display the player's name, return a different value to display the specified text instead of the player's name
-	METHOD getTextFilter ()Lnet/minecraft/server/network/TextFilter;
 	METHOD giveExperienceLevels (I)V
 		COMMENT Add experience levels to this player.
 		ARG 1 levels
-	METHOD giveExperiencePoints (I)V
-	METHOD handleTeamKill (Ljava/lang/String;Ljava/lang/String;[Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;)V
-	METHOD hasChangedDimension ()V
-	METHOD hasDisconnected ()Z
 	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
-	METHOD initInventoryMenu ()V
-	METHOD initMenu (Lnet/minecraft/world/inventory/AbstractContainerMenu;)V
-	METHOD isChangingDimension ()Z
-	METHOD isCreative ()Z
 	METHOD isInvulnerableTo (Lnet/minecraft/world/damagesource/DamageSource;)Z
 		COMMENT Returns whether this Entity is invulnerable to the given DamageSource.
 		ARG 1 source
 	METHOD isPvpAllowed ()Z
 		COMMENT Returns if other players can attack this player
-	METHOD isReachableBedBlock (Lnet/minecraft/core/BlockPos;)Z
-	METHOD isRespawnForced ()Z
 	METHOD isSpectator ()Z
 		COMMENT Returns true if the player is in spectator mode.
-	METHOD isTextFilteringEnabled ()Z
-	METHOD lambda$addAdditionalSaveData$0 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
-	METHOD lambda$awardStat$8 (ILnet/minecraft/world/scores/Score;)V
-	METHOD lambda$die$2 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-	METHOD lambda$die$3 (Lnet/minecraft/network/chat/Component;Lio/netty/util/concurrent/Future;)V
-	METHOD lambda$sendMessage$9 (Lnet/minecraft/network/chat/ChatType;Lnet/minecraft/network/chat/Component;Ljava/util/UUID;Lio/netty/util/concurrent/Future;)V
-	METHOD lambda$startSleepInBed$6 (Lnet/minecraft/world/entity/monster/Monster;)Z
-	METHOD lambda$startSleepInBed$7 (Lnet/minecraft/util/Unit;)V
-	METHOD lambda$tellNeutralMobsThatIDied$4 (Lnet/minecraft/world/entity/Mob;)Z
-	METHOD lambda$tellNeutralMobsThatIDied$5 (Lnet/minecraft/world/entity/Mob;)V
-	METHOD lambda$updateScoreForCriteria$1 (ILnet/minecraft/world/scores/Score;)V
-	METHOD loadGameTypes (Lnet/minecraft/nbt/CompoundTag;)V
-	METHOD lookAt (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)V
 	METHOD lookAt (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 anchor
 		ARG 2 target
 	METHOD magicCrit (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entityHit
-	METHOD mayInteract (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z
 	METHOD moveTo (DDD)V
 		ARG 1 x
 		ARG 3 y
@@ -180,10 +84,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		COMMENT get the next window id to use
 	METHOD onChangedBlock (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
-	METHOD onEffectAdded (Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)V
 	METHOD onEffectRemoved (Lnet/minecraft/world/effect/MobEffectInstance;)V
 		ARG 1 effect
-	METHOD onEffectUpdated (Lnet/minecraft/world/effect/MobEffectInstance;ZLnet/minecraft/world/entity/Entity;)V
 	METHOD onEnchantmentPerformed (Lnet/minecraft/world/item/ItemStack;I)V
 		ARG 1 enchantedItem
 		ARG 2 cost
@@ -203,18 +105,13 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD openItemGui (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)V
 		ARG 1 stack
 		ARG 2 hand
-	METHOD openMenu (Lnet/minecraft/world/MenuProvider;)Ljava/util/OptionalInt;
 	METHOD openTextEdit (Lnet/minecraft/world/level/block/entity/SignBlockEntity;)V
 		ARG 1 signTile
-	METHOD playNotifySound (Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
 	METHOD processPortalCooldown ()V
 		COMMENT Decrements the counter for the remaining time until the entity may use a portal again.
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
-	METHOD readPlayerMode (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Lnet/minecraft/world/level/GameType;
-	METHOD resetLastActionTime ()V
-	METHOD resetRecipes (Ljava/util/Collection;)I
 	METHOD resetSentInfo ()V
 		COMMENT this function is called when a players inventory is sent to him, lastHealth is updated on any dimension transitions, then reset.
 	METHOD resetStat (Lnet/minecraft/stats/Stat;)V
@@ -231,24 +128,17 @@ CLASS net/minecraft/server/level/ServerPlayer
 		COMMENT Send a chat message to the CommandSender
 		ARG 1 component
 		ARG 2 senderUUID
-	METHOD sendMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V
-	METHOD sendTexturePack (Ljava/lang/String;Ljava/lang/String;ZLnet/minecraft/network/chat/Component;)V
 	METHOD setCamera (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entityToSpectate
 	METHOD setExperienceLevels (I)V
 		ARG 1 level
-	METHOD setExperiencePoints (I)V
-	METHOD setGameMode (Lnet/minecraft/world/level/GameType;)Z
 	METHOD setLastSectionPos (Lnet/minecraft/core/SectionPos;)V
 		ARG 1 sectionPos
-	METHOD setLevel (Lnet/minecraft/server/level/ServerLevel;)V
 	METHOD setPlayerInput (FFZZ)V
 		ARG 1 strafe
 		ARG 2 forward
 		ARG 3 jumping
 		ARG 4 sneaking
-	METHOD setRespawnPosition (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/BlockPos;FZZ)V
-	METHOD shouldFilterMessageTo (Lnet/minecraft/server/level/ServerPlayer;)Z
 	METHOD startRiding (Lnet/minecraft/world/entity/Entity;Z)Z
 		ARG 1 entity
 		ARG 2 force
@@ -258,8 +148,6 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 pos
 	METHOD stopRiding ()V
 		COMMENT Dismounts this entity from the entity it is riding.
-	METHOD stopSleepInBed (ZZ)V
-	METHOD storeGameTypes (Lnet/minecraft/nbt/CompoundTag;)V
 	METHOD swing (Lnet/minecraft/world/InteractionHand;)V
 		ARG 1 hand
 	METHOD take (Lnet/minecraft/world/entity/Entity;I)V
@@ -278,12 +166,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 6 z
 		ARG 8 yaw
 		ARG 9 pitch
-	METHOD tellNeutralMobsThatIDied ()V
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
-	METHOD trackChunk (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/protocol/Packet;)V
-	METHOD triggerDimensionChangeTriggers (Lnet/minecraft/server/level/ServerLevel;)V
-	METHOD untrackChunk (Lnet/minecraft/world/level/ChunkPos;)V
 	METHOD updateInvisibilityStatus ()V
 		COMMENT Clears potion metadata values if the entity has no potion effects. Otherwise, updates potion effect color, ambience, and invisibility metadata values
 	METHOD updateOptions (Lnet/minecraft/network/protocol/game/ServerboundClientInformationPacket;)V
@@ -291,21 +175,3 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD updateScoreForCriteria (Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;I)V
 		ARG 1 criteria
 		ARG 2 points
-	METHOD updateUsingItem (Lnet/minecraft/world/item/ItemStack;)V
-	CLASS 1
-		FIELD this$0 Lnet/minecraft/server/level/ServerPlayer;
-		METHOD <init> (Lnet/minecraft/server/level/ServerPlayer;)V
-		METHOD broadcastCarriedItem (Lnet/minecraft/world/item/ItemStack;)V
-		METHOD broadcastDataValue (Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
-		METHOD sendCarriedChange (Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/item/ItemStack;)V
-		METHOD sendDataChange (Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
-		METHOD sendInitialData (Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/core/NonNullList;Lnet/minecraft/world/item/ItemStack;[I)V
-		METHOD sendSlotChange (Lnet/minecraft/world/inventory/AbstractContainerMenu;ILnet/minecraft/world/item/ItemStack;)V
-	CLASS 2
-		FIELD this$0 Lnet/minecraft/server/level/ServerPlayer;
-		METHOD <init> (Lnet/minecraft/server/level/ServerPlayer;)V
-		METHOD dataChanged (Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
-		METHOD slotChanged (Lnet/minecraft/world/inventory/AbstractContainerMenu;ILnet/minecraft/world/item/ItemStack;)V
-	CLASS 3
-		FIELD $SwitchMap$net$minecraft$world$entity$player$ChatVisiblity [I
-		METHOD <clinit> ()V

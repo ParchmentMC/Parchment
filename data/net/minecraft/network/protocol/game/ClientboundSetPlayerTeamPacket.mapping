@@ -1,59 +1,7 @@
 CLASS net/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket
-	FIELD MAX_COLLISION_LENGTH I
-	FIELD MAX_VISIBILITY_LENGTH I
-	FIELD METHOD_ADD I
-	FIELD METHOD_CHANGE I
-	FIELD METHOD_JOIN I
-	FIELD METHOD_LEAVE I
-	FIELD METHOD_REMOVE I
-	FIELD method I
-	FIELD name Ljava/lang/String;
-	FIELD parameters Ljava/util/Optional;
-	FIELD players Ljava/util/Collection;
-	METHOD <init> (Ljava/lang/String;ILjava/util/Optional;Ljava/util/Collection;)V
-	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
-	METHOD createAddOrModifyPacket (Lnet/minecraft/world/scores/PlayerTeam;Z)Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket;
-	METHOD createPlayerPacket (Lnet/minecraft/world/scores/PlayerTeam;Ljava/lang/String;Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Action;)Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket;
-	METHOD createRemovePacket (Lnet/minecraft/world/scores/PlayerTeam;)Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket;
-	METHOD getName ()Ljava/lang/String;
-	METHOD getParameters ()Ljava/util/Optional;
-	METHOD getPlayerAction ()Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Action;
-	METHOD getPlayers ()Ljava/util/Collection;
-	METHOD getTeamAction ()Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Action;
-	METHOD handle (Lnet/minecraft/network/PacketListener;)V
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
-	METHOD lambda$write$0 ()Ljava/lang/IllegalStateException;
-	METHOD shouldHaveParameters (I)Z
-	METHOD shouldHavePlayerList (I)Z
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buf
-	CLASS Action
-		FIELD $VALUES [Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Action;
-		FIELD ADD Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Action;
-		FIELD REMOVE Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Action;
-		METHOD $values ()[Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Action;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Action;
-		METHOD values ()[Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Action;
-	CLASS Parameters
-		FIELD collisionRule Ljava/lang/String;
-		FIELD color Lnet/minecraft/ChatFormatting;
-		FIELD displayName Lnet/minecraft/network/chat/Component;
-		FIELD nametagVisibility Ljava/lang/String;
-		FIELD options I
-		FIELD playerPrefix Lnet/minecraft/network/chat/Component;
-		FIELD playerSuffix Lnet/minecraft/network/chat/Component;
-		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
-		METHOD <init> (Lnet/minecraft/world/scores/PlayerTeam;)V
-		METHOD getCollisionRule ()Ljava/lang/String;
-		METHOD getColor ()Lnet/minecraft/ChatFormatting;
-		METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
-		METHOD getNametagVisibility ()Ljava/lang/String;
-		METHOD getOptions ()I
-		METHOD getPlayerPrefix ()Lnet/minecraft/network/chat/Component;
-		METHOD getPlayerSuffix ()Lnet/minecraft/network/chat/Component;
-		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V

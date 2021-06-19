@@ -1,9 +1,4 @@
 CLASS net/minecraft/world/level/block/state/pattern/BlockPattern
-	FIELD depth I
-	FIELD height I
-	FIELD pattern [[[Ljava/util/function/Predicate;
-	FIELD width I
-	METHOD <init> ([[[Ljava/util/function/Predicate;)V
 	METHOD createLevelCache (Lnet/minecraft/world/level/LevelReader;Z)Lcom/google/common/cache/LoadingCache;
 		ARG 0 level
 		ARG 1 forceLoad
@@ -11,17 +6,12 @@ CLASS net/minecraft/world/level/block/state/pattern/BlockPattern
 		COMMENT Calculates whether the given world position matches the pattern. Warning, fairly heavy function. @return a BlockPattern.PatternHelper if found, null otherwise.
 		ARG 1 level
 		ARG 2 pos
-	METHOD getDepth ()I
-	METHOD getHeight ()I
-	METHOD getPattern ()[[[Ljava/util/function/Predicate;
-	METHOD getWidth ()I
 	METHOD matches (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;Lcom/google/common/cache/LoadingCache;)Lnet/minecraft/world/level/block/state/pattern/BlockPattern$BlockPatternMatch;
 		COMMENT checks that the given pattern & rotation is at the block co-ordinates.
 		ARG 1 pos
 		ARG 2 finger
 		ARG 3 thumb
 		ARG 4 lcache
-	METHOD matches (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Lnet/minecraft/world/level/block/state/pattern/BlockPattern$BlockPatternMatch;
 	METHOD translateAndRotate (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;III)Lnet/minecraft/core/BlockPos;
 		COMMENT Offsets the position of pos in the direction of finger and thumb facing by offset amounts, follows the right-hand rule for cross products (finger, thumb, palm) @return A new BlockPos offset in the facing directions
 		ARG 0 pos
@@ -30,30 +20,10 @@ CLASS net/minecraft/world/level/block/state/pattern/BlockPattern
 		ARG 3 palmOffset
 		ARG 4 thumbOffset
 		ARG 5 fingerOffset
-	CLASS BlockCacheLoader
-		FIELD level Lnet/minecraft/world/level/LevelReader;
-		FIELD loadChunks Z
-		METHOD <init> (Lnet/minecraft/world/level/LevelReader;Z)V
-		METHOD load (Ljava/lang/Object;)Ljava/lang/Object;
-		METHOD load (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;
 	CLASS BlockPatternMatch
-		FIELD cache Lcom/google/common/cache/LoadingCache;
-		FIELD depth I
-		FIELD forwards Lnet/minecraft/core/Direction;
-		FIELD frontTopLeft Lnet/minecraft/core/BlockPos;
-		FIELD height I
-		FIELD up Lnet/minecraft/core/Direction;
-		FIELD width I
-		METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;Lcom/google/common/cache/LoadingCache;III)V
 		METHOD getBlock (III)Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;
 			ARG 1 palmOffset
 			ARG 2 thumbOffset
 			ARG 3 fingerOffset
-		METHOD getDepth ()I
-		METHOD getForwards ()Lnet/minecraft/core/Direction;
 		METHOD getFrontTopLeft ()Lnet/minecraft/core/BlockPos;
 			COMMENT Return the BlockPos of the Pattern
-		METHOD getHeight ()I
-		METHOD getUp ()Lnet/minecraft/core/Direction;
-		METHOD getWidth ()I
-		METHOD toString ()Ljava/lang/String;

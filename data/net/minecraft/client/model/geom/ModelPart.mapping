@@ -1,14 +1,4 @@
 CLASS net/minecraft/client/model/geom/ModelPart
-	FIELD children Ljava/util/Map;
-	FIELD cubes Ljava/util/List;
-	FIELD visible Z
-	FIELD x F
-	FIELD xRot F
-	FIELD y F
-	FIELD yRot F
-	FIELD z F
-	FIELD zRot F
-	METHOD <init> (Ljava/util/List;Ljava/util/Map;)V
 	METHOD compile (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lcom/mojang/blaze3d/vertex/VertexConsumer;IIFFFF)V
 		ARG 1 matrixEntry
 		ARG 2 buffer
@@ -20,13 +10,8 @@ CLASS net/minecraft/client/model/geom/ModelPart
 		ARG 8 alpha
 	METHOD copyFrom (Lnet/minecraft/client/model/geom/ModelPart;)V
 		ARG 1 modelRenderer
-	METHOD getAllParts ()Ljava/util/stream/Stream;
-	METHOD getChild (Ljava/lang/String;)Lnet/minecraft/client/model/geom/ModelPart;
 	METHOD getRandomCube (Ljava/util/Random;)Lnet/minecraft/client/model/geom/ModelPart$Cube;
 		ARG 1 random
-	METHOD isEmpty ()Z
-	METHOD lambda$visit$0 (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/model/geom/ModelPart$Visitor;Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/client/model/geom/ModelPart;)V
-	METHOD loadPose (Lnet/minecraft/client/model/geom/PartPose;)V
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;II)V
 		ARG 1 matrixStack
 		ARG 2 buffer
@@ -45,34 +30,9 @@ CLASS net/minecraft/client/model/geom/ModelPart
 		ARG 1 rotationPointX
 		ARG 2 rotationPointY
 		ARG 3 rotationPointZ
-	METHOD setRotation (FFF)V
-	METHOD storePose ()Lnet/minecraft/client/model/geom/PartPose;
 	METHOD translateAndRotate (Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 matrixStack
-	METHOD visit (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/model/geom/ModelPart$Visitor;)V
-	METHOD visit (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/model/geom/ModelPart$Visitor;Ljava/lang/String;)V
-	CLASS Cube
-		FIELD maxX F
-		FIELD maxY F
-		FIELD maxZ F
-		FIELD minX F
-		FIELD minY F
-		FIELD minZ F
-		FIELD polygons [Lnet/minecraft/client/model/geom/ModelPart$Polygon;
-		METHOD <init> (IIFFFFFFFFFZFF)V
-		METHOD compile (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lcom/mojang/blaze3d/vertex/VertexConsumer;IIFFFF)V
-	CLASS Polygon
-		FIELD normal Lcom/mojang/math/Vector3f;
-		FIELD vertices [Lnet/minecraft/client/model/geom/ModelPart$Vertex;
-		METHOD <init> ([Lnet/minecraft/client/model/geom/ModelPart$Vertex;FFFFFFZLnet/minecraft/core/Direction;)V
 	CLASS Vertex
-		FIELD pos Lcom/mojang/math/Vector3f;
-		FIELD u F
-		FIELD v F
-		METHOD <init> (FFFFF)V
-		METHOD <init> (Lcom/mojang/math/Vector3f;FF)V
 		METHOD remap (FF)Lnet/minecraft/client/model/geom/ModelPart$Vertex;
 			ARG 1 texU
 			ARG 2 texV
-	CLASS Visitor
-		METHOD visit (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Ljava/lang/String;ILnet/minecraft/client/model/geom/ModelPart$Cube;)V

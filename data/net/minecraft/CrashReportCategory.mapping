@@ -1,19 +1,9 @@
 CLASS net/minecraft/CrashReportCategory
-	FIELD entries Ljava/util/List;
-	FIELD stackTrace [Ljava/lang/StackTraceElement;
-	FIELD title Ljava/lang/String;
-	METHOD <init> (Ljava/lang/String;)V
 	METHOD fillInStackTrace (I)I
 		COMMENT Resets our stack trace according to the current trace, pruning the deepest 3 entries.  The parameter indicates how many additional deepest entries to prune.  Returns the number of entries in the resulting pruned stack trace.
 		ARG 1 size
-	METHOD formatLocation (Lnet/minecraft/world/level/LevelHeightAccessor;DDD)Ljava/lang/String;
-	METHOD formatLocation (Lnet/minecraft/world/level/LevelHeightAccessor;III)Ljava/lang/String;
-	METHOD formatLocation (Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/core/BlockPos;)Ljava/lang/String;
 	METHOD getDetails (Ljava/lang/StringBuilder;)V
 		ARG 1 builder
-	METHOD getStacktrace ()[Ljava/lang/StackTraceElement;
-	METHOD lambda$populateBlockDetails$0 (Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/core/BlockPos;)Ljava/lang/String;
-	METHOD populateBlockDetails (Lnet/minecraft/CrashReportCategory;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 	METHOD setDetail (Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraft/CrashReportCategory;
 		COMMENT Adds a Crashreport section with the given name with the given value (convered .toString())
 		ARG 1 sectionName
@@ -35,9 +25,3 @@ CLASS net/minecraft/CrashReportCategory
 		COMMENT Do the deepest two elements of our saved stack trace match the given elements, in order from the deepest?
 		ARG 1 s1
 		ARG 2 s2
-	CLASS Entry
-		FIELD key Ljava/lang/String;
-		FIELD value Ljava/lang/String;
-		METHOD <init> (Ljava/lang/String;Ljava/lang/Object;)V
-		METHOD getKey ()Ljava/lang/String;
-		METHOD getValue ()Ljava/lang/String;

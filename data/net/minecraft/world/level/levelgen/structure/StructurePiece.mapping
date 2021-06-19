@@ -1,19 +1,4 @@
 CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
-	FIELD CAVE_AIR Lnet/minecraft/world/level/block/state/BlockState;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD SHAPE_CHECK_BLOCKS Ljava/util/Set;
-	FIELD boundingBox Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
-	FIELD genDepth I
-	FIELD mirror Lnet/minecraft/world/level/block/Mirror;
-	FIELD orientation Lnet/minecraft/core/Direction;
-	FIELD rotation Lnet/minecraft/world/level/block/Rotation;
-	FIELD type Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;ILnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
-	METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;Lnet/minecraft/nbt/CompoundTag;)V
-	METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
-	METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
-	METHOD canBeReplaced (Lnet/minecraft/world/level/LevelReader;IIILnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
 	METHOD createChest (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 level
 		ARG 2 bounds
@@ -38,7 +23,6 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 6 z
 		ARG 7 facing
 		ARG 8 lootTable
-	METHOD createTag (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/nbt/CompoundTag;
 	METHOD fillColumnDown (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/block/state/BlockState;IIILnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
 		COMMENT Replaces air and liquid from given position downwards. Stops when hitting anything else than air or liquid
 		ARG 1 level
@@ -83,8 +67,6 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 9 alwaysReplace
 		ARG 10 rand
 		ARG 11 blockselector
-	METHOD generateBox (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Z)V
-	METHOD generateBox (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;ZLjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/StructurePiece$BlockSelector;)V
 	METHOD generateMaybeBox (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;FIIIIIILnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;ZZ)V
 		ARG 1 level
 		ARG 2 sbb
@@ -117,17 +99,8 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 3 y
 		ARG 4 z
 		ARG 5 boundingbox
-	METHOD getBoundingBox ()Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
 	METHOD getGenDepth ()I
 		COMMENT Returns the component type ID of this component.
-	METHOD getLocatorPosition ()Lnet/minecraft/core/BlockPos;
-	METHOD getMirror ()Lnet/minecraft/world/level/block/Mirror;
-	METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
-	METHOD getOrientation ()Lnet/minecraft/core/Direction;
-	METHOD getRandomHorizontalDirection (Ljava/util/Random;)Lnet/minecraft/core/Direction;
-	METHOD getRotation ()Lnet/minecraft/world/level/block/Rotation;
-	METHOD getType ()Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;
-	METHOD getWorldPos (III)Lnet/minecraft/core/BlockPos$MutableBlockPos;
 	METHOD getWorldX (II)I
 		ARG 1 x
 		ARG 2 z
@@ -136,17 +109,12 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 	METHOD getWorldZ (II)I
 		ARG 1 x
 		ARG 2 z
-	METHOD isCloseToChunk (Lnet/minecraft/world/level/ChunkPos;I)Z
 	METHOD isInterior (Lnet/minecraft/world/level/LevelReader;IIILnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
 		ARG 1 level
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
 		ARG 5 boundingbox
-	METHOD isReplaceableByStructures (Lnet/minecraft/world/level/block/state/BlockState;)Z
-	METHOD lambda$createTag$1 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
-	METHOD lambda$new$0 ()Ljava/lang/IllegalArgumentException;
-	METHOD makeBoundingBox (IIILnet/minecraft/core/Direction;III)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
 	METHOD maybeGenerateBlock (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;FIIILnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 level
 		ARG 2 boundingbox
@@ -167,20 +135,13 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 4 y
 		ARG 5 z
 		ARG 6 boundingbox
-	METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
 	METHOD reorient (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 0 level
 		ARG 1 pos
 		ARG 2 blockState
 	METHOD setOrientation (Lnet/minecraft/core/Direction;)V
 		ARG 1 facing
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$core$Direction [I
-		METHOD <clinit> ()V
 	CLASS BlockSelector
-		FIELD next Lnet/minecraft/world/level/block/state/BlockState;
-		METHOD <init> ()V
-		METHOD getNext ()Lnet/minecraft/world/level/block/state/BlockState;
 		METHOD next (Ljava/util/Random;IIIZ)V
 			COMMENT picks Block Ids and Metadata (Silverfish)
 			ARG 1 rand

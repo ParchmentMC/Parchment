@@ -1,62 +1,27 @@
 CLASS net/minecraft/world/entity/animal/horse/Llama
-	FIELD DATA_STRENGTH_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD DATA_SWAG_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD DATA_VARIANT_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD FOOD_ITEMS Lnet/minecraft/world/item/crafting/Ingredient;
-	FIELD MAX_STRENGTH I
-	FIELD VARIANTS I
-	FIELD caravanHead Lnet/minecraft/world/entity/animal/horse/Llama;
-	FIELD caravanTail Lnet/minecraft/world/entity/animal/horse/Llama;
-	FIELD didSpit Z
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD canBeControlledByRider ()Z
 		COMMENT returns true if all the conditions for steering the entity are met. For pigs, this is true if it is being ridden by a player and the player is holding a carrot-on-a-stick
-	METHOD canEatGrass ()Z
 	METHOD canMate (Lnet/minecraft/world/entity/animal/Animal;)Z
 		COMMENT Returns true if the mob is currently able to mate with the specified mob.
 		ARG 1 otherAnimal
-	METHOD canWearArmor ()Z
-	METHOD causeFallDamage (FFLnet/minecraft/world/damagesource/DamageSource;)Z
 	METHOD containerChanged (Lnet/minecraft/world/Container;)V
 		COMMENT Called by InventoryBasic.onInventoryChanged() on a array that is never filled.
 		ARG 1 invBasic
-	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
-	METHOD defineSynchedData ()V
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
 		ARG 1 level
 		ARG 2 difficulty
 		ARG 3 reason
 		ARG 4 spawnData
 		ARG 5 dataTag
-	METHOD followLeashSpeed ()D
-	METHOD followMommy ()V
-	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getAngrySound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getBreedOffspring (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/AgeableMob;)Lnet/minecraft/world/entity/AgeableMob;
-	METHOD getBreedOffspring (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/AgeableMob;)Lnet/minecraft/world/entity/animal/horse/Llama;
-	METHOD getCaravanHead ()Lnet/minecraft/world/entity/animal/horse/Llama;
-	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getDyeColor (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/DyeColor;
-	METHOD getEatingSound ()Lnet/minecraft/sounds/SoundEvent;
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
-	METHOD getInventoryColumns ()I
-	METHOD getInventorySize ()I
-	METHOD getLeashOffset ()Lnet/minecraft/world/phys/Vec3;
-	METHOD getMaxTemper ()I
 	METHOD getPassengersRidingOffset ()D
 		COMMENT Returns the Y offset from the entity's position for any entity riding this one.
-	METHOD getStrength ()I
-	METHOD getSwag ()Lnet/minecraft/world/item/DyeColor;
-	METHOD getVariant ()I
 	METHOD handleEating (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 player
 		ARG 2 stack
-	METHOD hasCaravanTail ()Z
-	METHOD inCaravan ()Z
 	METHOD isArmor (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
@@ -64,19 +29,12 @@ CLASS net/minecraft/world/entity/animal/horse/Llama
 		ARG 1 stack
 	METHOD isImmobile ()Z
 		COMMENT Dead and sleeping entities cannot move
-	METHOD isSaddleable ()Z
-	METHOD isTraderLlama ()Z
-	METHOD isWearingArmor ()Z
 	METHOD joinCaravan (Lnet/minecraft/world/entity/animal/horse/Llama;)V
 		ARG 1 caravanHead
-	METHOD leaveCaravan ()V
-	METHOD makeBabyLlama ()Lnet/minecraft/world/entity/animal/horse/Llama;
-	METHOD makeMad ()V
 	METHOD performRangedAttack (Lnet/minecraft/world/entity/LivingEntity;F)V
 		COMMENT Attack the specified entity using a ranged attack.
 		ARG 1 target
 		ARG 2 distanceFactor
-	METHOD playChestEquipsSound ()V
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 block
@@ -85,10 +43,8 @@ CLASS net/minecraft/world/entity/animal/horse/Llama
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
-	METHOD registerGoals ()V
 	METHOD setDidSpit (Z)V
 		ARG 1 didSpit
-	METHOD setRandomStrength ()V
 	METHOD setStrength (I)V
 		ARG 1 strength
 	METHOD setSwag (Lnet/minecraft/world/item/DyeColor;)V
@@ -97,15 +53,6 @@ CLASS net/minecraft/world/entity/animal/horse/Llama
 		ARG 1 variant
 	METHOD spit (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 target
-	METHOD updateContainerEquipment ()V
-	CLASS LlamaAttackWolfGoal
-		METHOD <init> (Lnet/minecraft/world/entity/animal/horse/Llama;)V
-		METHOD getFollowDistance ()D
-		METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
-	CLASS LlamaGroupData
-		FIELD variant I
-		METHOD <init> (I)V
 	CLASS LlamaHurtByTargetGoal
-		METHOD <init> (Lnet/minecraft/world/entity/animal/horse/Llama;)V
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing

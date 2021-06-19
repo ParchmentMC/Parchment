@@ -1,32 +1,8 @@
 CLASS net/minecraft/client/gui/components/AbstractSelectionList
-	FIELD centerListVertically Z
-	FIELD children Ljava/util/List;
-	FIELD headerHeight I
-	FIELD height I
-	FIELD hovered Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
-	FIELD itemHeight I
-	FIELD minecraft Lnet/minecraft/client/Minecraft;
-	FIELD renderBackground Z
-	FIELD renderHeader Z
-	FIELD renderSelection Z
-	FIELD renderTopAndBottom Z
-	FIELD scrollAmount D
-	FIELD scrolling Z
-	FIELD selected Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
-	FIELD width I
-	FIELD x0 I
-	FIELD x1 I
-	FIELD y0 I
-	FIELD y1 I
-	METHOD <init> (Lnet/minecraft/client/Minecraft;IIIII)V
 	METHOD addEntry (Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)I
 		ARG 1 entry
-	METHOD bindEntryToSelf (Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
 	METHOD centerScrollOn (Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
 		ARG 1 entry
-	METHOD children ()Ljava/util/List;
-	METHOD clearEntries ()V
-	METHOD clickedHeader (II)V
 	METHOD ensureVisible (Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
 		ARG 1 entry
 	METHOD getEntry (I)Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
@@ -34,23 +10,8 @@ CLASS net/minecraft/client/gui/components/AbstractSelectionList
 	METHOD getEntryAtPosition (DD)Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
 		ARG 1 mouseX
 		ARG 3 mouseY
-	METHOD getFocused ()Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
-	METHOD getFocused ()Lnet/minecraft/client/gui/components/events/GuiEventListener;
-	METHOD getHovered ()Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
-	METHOD getItemCount ()I
-	METHOD getMaxPosition ()I
-	METHOD getMaxScroll ()I
 	METHOD getRowBottom (I)I
 		ARG 1 index
-	METHOD getRowLeft ()I
-	METHOD getRowRight ()I
-	METHOD getRowTop (I)I
-	METHOD getRowWidth ()I
-	METHOD getScrollAmount ()D
-	METHOD getScrollBottom ()I
-	METHOD getScrollbarPosition ()I
-	METHOD getSelected ()Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
-	METHOD isFocused ()Z
 	METHOD isMouseOver (DD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -60,7 +21,6 @@ CLASS net/minecraft/client/gui/components/AbstractSelectionList
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
-	METHOD lambda$moveSelection$0 (Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)Z
 	METHOD mouseClicked (DDI)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -84,9 +44,6 @@ CLASS net/minecraft/client/gui/components/AbstractSelectionList
 	METHOD moveSelection (Lnet/minecraft/client/gui/components/AbstractSelectionList$SelectionDirection;Ljava/util/function/Predicate;)V
 		ARG 1 ordering
 		ARG 2 filter
-	METHOD narrateListElementPosition (Lnet/minecraft/client/gui/narration/NarrationElementOutput;Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
-	METHOD narrationPriority ()Lnet/minecraft/client/gui/narration/NarratableEntry$NarrationPriority;
-	METHOD refreshSelection ()V
 	METHOD remove (I)Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
 		ARG 1 index
 	METHOD removeEntry (Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)Z
@@ -120,13 +77,11 @@ CLASS net/minecraft/client/gui/components/AbstractSelectionList
 		ARG 1 scroll
 	METHOD setLeftPos (I)V
 		ARG 1 left
-	METHOD setRenderBackground (Z)V
 	METHOD setRenderHeader (ZI)V
 		ARG 1 value
 		ARG 2 height
 	METHOD setRenderSelection (Z)V
 		ARG 1 value
-	METHOD setRenderTopAndBottom (Z)V
 	METHOD setScrollAmount (D)V
 		ARG 1 scroll
 	METHOD setSelected (Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
@@ -139,8 +94,6 @@ CLASS net/minecraft/client/gui/components/AbstractSelectionList
 		ARG 1 width
 		ARG 2 height
 	CLASS Entry
-		FIELD list Lnet/minecraft/client/gui/components/AbstractSelectionList;
-		METHOD <init> ()V
 		METHOD isMouseOver (DD)Z
 			ARG 1 mouseX
 			ARG 3 mouseY
@@ -155,25 +108,3 @@ CLASS net/minecraft/client/gui/components/AbstractSelectionList
 			ARG 8 mouseY
 			ARG 9 isMouseOver
 			ARG 10 partialTicks
-	CLASS SelectionDirection
-		FIELD $VALUES [Lnet/minecraft/client/gui/components/AbstractSelectionList$SelectionDirection;
-		FIELD DOWN Lnet/minecraft/client/gui/components/AbstractSelectionList$SelectionDirection;
-		FIELD UP Lnet/minecraft/client/gui/components/AbstractSelectionList$SelectionDirection;
-		METHOD $values ()[Lnet/minecraft/client/gui/components/AbstractSelectionList$SelectionDirection;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/client/gui/components/AbstractSelectionList$SelectionDirection;
-		METHOD values ()[Lnet/minecraft/client/gui/components/AbstractSelectionList$SelectionDirection;
-	CLASS TrackedList
-		FIELD delegate Ljava/util/List;
-		FIELD this$0 Lnet/minecraft/client/gui/components/AbstractSelectionList;
-		METHOD <init> (Lnet/minecraft/client/gui/components/AbstractSelectionList;)V
-		METHOD add (ILjava/lang/Object;)V
-		METHOD add (ILnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
-		METHOD get (I)Ljava/lang/Object;
-		METHOD get (I)Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
-		METHOD remove (I)Ljava/lang/Object;
-		METHOD remove (I)Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
-		METHOD set (ILjava/lang/Object;)Ljava/lang/Object;
-		METHOD set (ILnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
-		METHOD size ()I

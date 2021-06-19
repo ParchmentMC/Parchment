@@ -1,17 +1,4 @@
 CLASS net/minecraft/client/renderer/PostChain
-	FIELD MAIN_RENDER_TARGET Ljava/lang/String;
-	FIELD customRenderTargets Ljava/util/Map;
-	FIELD fullSizedTargets Ljava/util/List;
-	FIELD lastStamp F
-	FIELD name Ljava/lang/String;
-	FIELD passes Ljava/util/List;
-	FIELD resourceManager Lnet/minecraft/server/packs/resources/ResourceManager;
-	FIELD screenHeight I
-	FIELD screenTarget Lcom/mojang/blaze3d/pipeline/RenderTarget;
-	FIELD screenWidth I
-	FIELD shaderOrthoMatrix Lcom/mojang/math/Matrix4f;
-	FIELD time F
-	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureManager;Lnet/minecraft/server/packs/resources/ResourceManager;Lcom/mojang/blaze3d/pipeline/RenderTarget;Lnet/minecraft/resources/ResourceLocation;)V
 	METHOD addPass (Ljava/lang/String;Lcom/mojang/blaze3d/pipeline/RenderTarget;Lcom/mojang/blaze3d/pipeline/RenderTarget;)Lnet/minecraft/client/renderer/PostPass;
 		ARG 1 programName
 		ARG 2 framebuffer
@@ -20,15 +7,10 @@ CLASS net/minecraft/client/renderer/PostChain
 		ARG 1 name
 		ARG 2 width
 		ARG 3 height
-	METHOD close ()V
-	METHOD getName ()Ljava/lang/String;
-	METHOD getRenderTarget (Ljava/lang/String;)Lcom/mojang/blaze3d/pipeline/RenderTarget;
 	METHOD getTempTarget (Ljava/lang/String;)Lcom/mojang/blaze3d/pipeline/RenderTarget;
 		ARG 1 attributeName
-	METHOD load (Lnet/minecraft/client/renderer/texture/TextureManager;Lnet/minecraft/resources/ResourceLocation;)V
 	METHOD parsePassNode (Lnet/minecraft/client/renderer/texture/TextureManager;Lcom/google/gson/JsonElement;)V
 		ARG 2 json
-	METHOD parseTargetNode (Lcom/google/gson/JsonElement;)V
 	METHOD parseUniformNode (Lcom/google/gson/JsonElement;)V
 		ARG 1 json
 	METHOD process (F)V
@@ -36,4 +18,3 @@ CLASS net/minecraft/client/renderer/PostChain
 	METHOD resize (II)V
 		ARG 1 width
 		ARG 2 height
-	METHOD updateOrthoMatrix ()V

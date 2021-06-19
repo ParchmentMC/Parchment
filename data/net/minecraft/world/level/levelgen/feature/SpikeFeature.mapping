@@ -1,12 +1,6 @@
 CLASS net/minecraft/world/level/levelgen/feature/SpikeFeature
-	FIELD NUMBER_OF_SPIKES I
-	FIELD SPIKE_CACHE Lcom/google/common/cache/LoadingCache;
-	FIELD SPIKE_DISTANCE I
-	METHOD <clinit> ()V
-	METHOD <init> (Lcom/mojang/serialization/Codec;)V
 	METHOD getSpikesForLevel (Lnet/minecraft/world/level/WorldGenLevel;)Ljava/util/List;
 		ARG 0 reader
-	METHOD place (Lnet/minecraft/world/level/levelgen/feature/FeaturePlaceContext;)Z
 	METHOD placeSpike (Lnet/minecraft/world/level/ServerLevelAccessor;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/feature/configurations/SpikeConfiguration;Lnet/minecraft/world/level/levelgen/feature/SpikeFeature$EndSpike;)V
 		COMMENT Places the End Spike in the world. Also generates the obsidian tower.
 		ARG 1 level
@@ -14,30 +8,5 @@ CLASS net/minecraft/world/level/levelgen/feature/SpikeFeature
 		ARG 3 config
 		ARG 4 spike
 	CLASS EndSpike
-		FIELD CODEC Lcom/mojang/serialization/Codec;
-		FIELD centerX I
-		FIELD centerZ I
-		FIELD guarded Z
-		FIELD height I
-		FIELD radius I
-		FIELD topBoundingBox Lnet/minecraft/world/phys/AABB;
-		METHOD <clinit> ()V
-		METHOD <init> (IIIIZ)V
-		METHOD getCenterX ()I
-		METHOD getCenterZ ()I
-		METHOD getHeight ()I
-		METHOD getRadius ()I
-		METHOD getTopBoundingBox ()Lnet/minecraft/world/phys/AABB;
 		METHOD isCenterWithinChunk (Lnet/minecraft/core/BlockPos;)Z
 			ARG 1 pos
-		METHOD isGuarded ()Z
-		METHOD lambda$static$0 (Lnet/minecraft/world/level/levelgen/feature/SpikeFeature$EndSpike;)Ljava/lang/Integer;
-		METHOD lambda$static$1 (Lnet/minecraft/world/level/levelgen/feature/SpikeFeature$EndSpike;)Ljava/lang/Integer;
-		METHOD lambda$static$2 (Lnet/minecraft/world/level/levelgen/feature/SpikeFeature$EndSpike;)Ljava/lang/Integer;
-		METHOD lambda$static$3 (Lnet/minecraft/world/level/levelgen/feature/SpikeFeature$EndSpike;)Ljava/lang/Integer;
-		METHOD lambda$static$4 (Lnet/minecraft/world/level/levelgen/feature/SpikeFeature$EndSpike;)Ljava/lang/Boolean;
-		METHOD lambda$static$5 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-	CLASS SpikeCacheLoader
-		METHOD <init> ()V
-		METHOD load (Ljava/lang/Long;)Ljava/util/List;
-		METHOD load (Ljava/lang/Object;)Ljava/lang/Object;

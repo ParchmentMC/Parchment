@@ -1,45 +1,24 @@
 CLASS net/minecraft/world/level/chunk/LevelChunkSection
-	FIELD GLOBAL_BLOCKSTATE_PALETTE Lnet/minecraft/world/level/chunk/Palette;
-	FIELD SECTION_HEIGHT I
-	FIELD SECTION_SIZE I
-	FIELD SECTION_WIDTH I
-	FIELD bottomBlockY I
-	FIELD nonEmptyBlockCount S
-	FIELD states Lnet/minecraft/world/level/chunk/PalettedContainer;
-	FIELD tickingBlockCount S
-	FIELD tickingFluidCount S
-	METHOD <clinit> ()V
-	METHOD <init> (I)V
-	METHOD <init> (ISSS)V
-	METHOD acquire ()V
 	METHOD bottomBlockY ()I
 		COMMENT Gets the y coordinate that this chunk section starts at (which is a multiple of 16). To get the y number, use <code>section.getYLocation() >> 4</code>. Note that there is a section below the world for lighting purposes.
 	METHOD getBlockState (III)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD getBottomBlockY (I)I
 	METHOD getFluidState (III)Lnet/minecraft/world/level/material/FluidState;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD getSerializedSize ()I
-	METHOD getStates ()Lnet/minecraft/world/level/chunk/PalettedContainer;
 	METHOD isEmpty ()Z
 		COMMENT Returns whether or not this block storage's Chunk is fully empty, based on its internal reference count.
 	METHOD isEmpty (Lnet/minecraft/world/level/chunk/LevelChunkSection;)Z
 		ARG 0 section
-	METHOD isRandomlyTicking ()Z
 	METHOD isRandomlyTickingBlocks ()Z
 		COMMENT Returns whether or not this block storage's Chunk will require random ticking, used to avoid looping through random block ticks when there are no blocks that would randomly tick.
-	METHOD isRandomlyTickingFluids ()Z
-	METHOD lambda$recalcBlockCounts$0 (Lnet/minecraft/world/level/block/state/BlockState;I)V
 	METHOD maybeHas (Ljava/util/function/Predicate;)Z
 		ARG 1 predicate
 	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 packetBuffer
-	METHOD recalcBlockCounts ()V
-	METHOD release ()V
 	METHOD setBlockState (IIILnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 x
 		ARG 2 y

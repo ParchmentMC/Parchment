@@ -1,28 +1,6 @@
 CLASS net/minecraft/client/renderer/texture/TextureAtlasSprite
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD animatedTexture Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$AnimatedTexture;
-	FIELD atlas Lnet/minecraft/client/renderer/texture/TextureAtlas;
-	FIELD height I
-	FIELD mainImage [Lcom/mojang/blaze3d/platform/NativeImage;
-	FIELD name Lnet/minecraft/resources/ResourceLocation;
-	FIELD u0 F
-	FIELD u1 F
-	FIELD v0 F
-	FIELD v1 F
-	FIELD width I
-	FIELD x I
-	FIELD y I
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureAtlas;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;IIIIILcom/mojang/blaze3d/platform/NativeImage;)V
-	METHOD atlas ()Lnet/minecraft/client/renderer/texture/TextureAtlas;
-	METHOD atlasSize ()F
-	METHOD close ()V
-	METHOD createTicker (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;III)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$AnimatedTexture;
-	METHOD getAnimationTicker ()Lnet/minecraft/client/renderer/texture/Tickable;
-	METHOD getFrameCount ()I
 	METHOD getHeight ()I
 		COMMENT Returns the height of the icon, in pixels.
-	METHOD getName ()Lnet/minecraft/resources/ResourceLocation;
 	METHOD getU (D)F
 		COMMENT Gets a U coordinate on the icon. 0 returns uMin and 16 returns uMax. Other arguments return in-between values.
 		ARG 1 u
@@ -30,8 +8,6 @@ CLASS net/minecraft/client/renderer/texture/TextureAtlasSprite
 		COMMENT Returns the minimum U coordinate to use when rendering with this icon.
 	METHOD getU1 ()F
 		COMMENT Returns the maximum U coordinate to use when rendering with this icon.
-	METHOD getUOffset (F)F
-	METHOD getUniqueFrames ()Ljava/util/stream/IntStream;
 	METHOD getV (D)F
 		COMMENT Gets a V coordinate on the icon. 0 returns vMin and 16 returns vMax. Other arguments return in-between values.
 		ARG 1 v
@@ -39,67 +15,20 @@ CLASS net/minecraft/client/renderer/texture/TextureAtlasSprite
 		COMMENT Returns the minimum V coordinate to use when rendering with this icon.
 	METHOD getV1 ()F
 		COMMENT Returns the maximum V coordinate to use when rendering with this icon.
-	METHOD getVOffset (F)F
 	METHOD getWidth ()I
 		COMMENT Returns the width of the icon, in pixels.
-	METHOD getX ()I
-	METHOD getY ()I
 	METHOD isTransparent (III)Z
 		ARG 1 frameIndex
 		ARG 2 pixelX
 		ARG 3 pixelY
-	METHOD lambda$createTicker$3 (Ljava/util/List;II)V
-	METHOD lambda$createTicker$4 (Lit/unimi/dsi/fastutil/ints/IntSet;I)Z
-	METHOD lambda$new$0 (Lcom/mojang/blaze3d/platform/NativeImage;)Ljava/lang/String;
-	METHOD lambda$new$1 ()Ljava/lang/String;
-	METHOD lambda$new$2 ()Ljava/lang/String;
-	METHOD toString ()Ljava/lang/String;
 	METHOD upload (II[Lcom/mojang/blaze3d/platform/NativeImage;)V
 		ARG 1 xOffset
 		ARG 2 yOffset
 		ARG 3 frames
-	METHOD uploadFirstFrame ()V
-	METHOD uvShrinkRatio ()F
 	METHOD wrap (Lcom/mojang/blaze3d/vertex/VertexConsumer;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
 		ARG 1 buffer
-	CLASS AnimatedTexture
-		FIELD frame I
-		FIELD frameRowSize I
-		FIELD frames Ljava/util/List;
-		FIELD interpolationData Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$InterpolationData;
-		FIELD subFrame I
-		FIELD this$0 Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
-		METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Ljava/util/List;ILnet/minecraft/client/renderer/texture/TextureAtlasSprite$InterpolationData;)V
-		METHOD close ()V
-		METHOD getFrameX (I)I
-		METHOD getFrameY (I)I
-		METHOD getUniqueFrames ()Ljava/util/stream/IntStream;
-		METHOD lambda$getUniqueFrames$1 (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$FrameInfo;)I
-		METHOD lambda$tick$0 ()V
-		METHOD tick ()V
-		METHOD uploadFirstFrame ()V
-		METHOD uploadFrame (I)V
-	CLASS FrameInfo
-		FIELD index I
-		FIELD time I
-		METHOD <init> (II)V
-	CLASS Info
-		FIELD height I
-		FIELD metadata Lnet/minecraft/client/resources/metadata/animation/AnimationMetadataSection;
-		FIELD name Lnet/minecraft/resources/ResourceLocation;
-		FIELD width I
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;IILnet/minecraft/client/resources/metadata/animation/AnimationMetadataSection;)V
-		METHOD height ()I
-		METHOD name ()Lnet/minecraft/resources/ResourceLocation;
-		METHOD width ()I
 	CLASS InterpolationData
-		FIELD activeFrame [Lcom/mojang/blaze3d/platform/NativeImage;
-		FIELD this$0 Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
-		METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;I)V
-		METHOD close ()V
-		METHOD getPixel (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$AnimatedTexture;IIII)I
 		METHOD mix (DII)I
 			ARG 1 ratio
 			ARG 3 val1
 			ARG 4 val2
-		METHOD uploadInterpolatedFrame (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$AnimatedTexture;)V

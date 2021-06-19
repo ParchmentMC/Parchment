@@ -7,14 +7,7 @@ CLASS net/minecraft/tags/Tag
 		ARG 0 elements
 	METHOD getRandomElement (Ljava/util/Random;)Ljava/lang/Object;
 		ARG 1 random
-	METHOD getValues ()Ljava/util/List;
-	METHOD lambda$codec$0 (Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/serialization/DataResult;
-	METHOD lambda$codec$1 (Ljava/util/function/Supplier;Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/serialization/DataResult;
-	METHOD lambda$codec$2 (Lnet/minecraft/tags/Tag;)Lcom/mojang/serialization/DataResult;
-	METHOD lambda$codec$3 (Ljava/util/function/Supplier;Lnet/minecraft/tags/Tag;)Lcom/mojang/serialization/DataResult;
 	CLASS Builder
-		FIELD entries Ljava/util/List;
-		METHOD <init> ()V
 		METHOD add (Lnet/minecraft/tags/Tag$BuilderEntry;)Lnet/minecraft/tags/Tag$Builder;
 			ARG 1 proxyTag
 		METHOD add (Lnet/minecraft/tags/Tag$Entry;Ljava/lang/String;)Lnet/minecraft/tags/Tag$Builder;
@@ -26,40 +19,18 @@ CLASS net/minecraft/tags/Tag
 		METHOD addFromJson (Lcom/google/gson/JsonObject;Ljava/lang/String;)Lnet/minecraft/tags/Tag$Builder;
 			ARG 1 json
 			ARG 2 identifier
-		METHOD addOptionalElement (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Lnet/minecraft/tags/Tag$Builder;
-		METHOD addOptionalTag (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Lnet/minecraft/tags/Tag$Builder;
 		METHOD addTag (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Lnet/minecraft/tags/Tag$Builder;
 			ARG 1 tag
 			ARG 2 identifier
-		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;)Lcom/mojang/datafixers/util/Either;
-		METHOD getEntries ()Ljava/util/stream/Stream;
-		METHOD lambda$addFromJson$2 (Ljava/lang/String;Lnet/minecraft/tags/Tag$Entry;)V
-		METHOD lambda$visitOptionalDependencies$1 (Ljava/util/function/Consumer;Lnet/minecraft/tags/Tag$BuilderEntry;)V
-		METHOD lambda$visitRequiredDependencies$0 (Ljava/util/function/Consumer;Lnet/minecraft/tags/Tag$BuilderEntry;)V
 		METHOD parseEntry (Lcom/google/gson/JsonElement;)Lnet/minecraft/tags/Tag$Entry;
 			ARG 0 json
-		METHOD serializeToJson ()Lcom/google/gson/JsonObject;
-		METHOD tag ()Lnet/minecraft/tags/Tag$Builder;
-		METHOD visitOptionalDependencies (Ljava/util/function/Consumer;)V
-		METHOD visitRequiredDependencies (Ljava/util/function/Consumer;)V
-	CLASS BuilderEntry
-		FIELD entry Lnet/minecraft/tags/Tag$Entry;
-		FIELD source Ljava/lang/String;
-		METHOD <init> (Lnet/minecraft/tags/Tag$Entry;Ljava/lang/String;)V
-		METHOD getEntry ()Lnet/minecraft/tags/Tag$Entry;
-		METHOD getSource ()Ljava/lang/String;
-		METHOD toString ()Ljava/lang/String;
 	CLASS ElementEntry
-		FIELD id Lnet/minecraft/resources/ResourceLocation;
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
 			ARG 1 resourceTagFunction
 			ARG 2 resourceElementFunction
 			ARG 3 elementConsumer
 		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
 			ARG 1 jsonArray
-		METHOD toString ()Ljava/lang/String;
-		METHOD verifyIfPresent (Ljava/util/function/Predicate;Ljava/util/function/Predicate;)Z
 	CLASS Entry
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
 			ARG 1 resourceTagFunction
@@ -67,43 +38,24 @@ CLASS net/minecraft/tags/Tag
 			ARG 3 elementConsumer
 		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
 			ARG 1 jsonArray
-		METHOD verifyIfPresent (Ljava/util/function/Predicate;Ljava/util/function/Predicate;)Z
-		METHOD visitOptionalDependencies (Ljava/util/function/Consumer;)V
-		METHOD visitRequiredDependencies (Ljava/util/function/Consumer;)V
-	CLASS Named
-		METHOD getName ()Lnet/minecraft/resources/ResourceLocation;
 	CLASS OptionalElementEntry
-		FIELD id Lnet/minecraft/resources/ResourceLocation;
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
 			ARG 1 resourceTagFunction
 			ARG 2 resourceElementFunction
 			ARG 3 elementConsumer
 		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
 			ARG 1 jsonArray
-		METHOD toString ()Ljava/lang/String;
-		METHOD verifyIfPresent (Ljava/util/function/Predicate;Ljava/util/function/Predicate;)Z
 	CLASS OptionalTagEntry
-		FIELD id Lnet/minecraft/resources/ResourceLocation;
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
 			ARG 1 resourceTagFunction
 			ARG 2 resourceElementFunction
 			ARG 3 elementConsumer
 		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
 			ARG 1 jsonArray
-		METHOD toString ()Ljava/lang/String;
-		METHOD verifyIfPresent (Ljava/util/function/Predicate;Ljava/util/function/Predicate;)Z
-		METHOD visitOptionalDependencies (Ljava/util/function/Consumer;)V
 	CLASS TagEntry
-		FIELD id Lnet/minecraft/resources/ResourceLocation;
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
 			ARG 1 resourceTagFunction
 			ARG 2 resourceElementFunction
 			ARG 3 elementConsumer
 		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
 			ARG 1 jsonArray
-		METHOD toString ()Ljava/lang/String;
-		METHOD verifyIfPresent (Ljava/util/function/Predicate;Ljava/util/function/Predicate;)Z
-		METHOD visitRequiredDependencies (Ljava/util/function/Consumer;)V

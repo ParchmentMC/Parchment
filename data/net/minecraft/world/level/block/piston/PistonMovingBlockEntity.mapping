@@ -1,38 +1,19 @@
 CLASS net/minecraft/world/level/block/piston/PistonMovingBlockEntity
-	FIELD NOCLIP Ljava/lang/ThreadLocal;
-	FIELD PUSH_OFFSET D
-	FIELD TICKS_TO_EXTEND I
-	FIELD TICK_MOVEMENT D
-	FIELD deathTicks I
-	FIELD direction Lnet/minecraft/core/Direction;
 	FIELD extending Z
 		COMMENT if this piston is extending or not
-	FIELD isSourcePiston Z
-	FIELD lastTicked J
-	FIELD movedState Lnet/minecraft/world/level/block/state/BlockState;
-	FIELD progress F
 	FIELD progressO F
 		COMMENT the progress in (de)extending
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;ZZ)V
 	METHOD finalTick ()V
 		COMMENT removes a piston's tile entity (and if the piston is moving, stops it)
-	METHOD fixEntityWithinPistonBase (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Direction;D)V
-	METHOD getCollisionRelatedBlockState ()Lnet/minecraft/world/level/block/state/BlockState;
 	METHOD getCollisionShape (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 reader
 		ARG 2 pos
-	METHOD getDirection ()Lnet/minecraft/core/Direction;
 	METHOD getExtendedProgress (F)F
 		ARG 1 progress
-	METHOD getLastTicked ()J
-	METHOD getMovedState ()Lnet/minecraft/world/level/block/state/BlockState;
 	METHOD getMovement (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/core/Direction;Lnet/minecraft/world/phys/AABB;)D
 		ARG 0 headShape
 		ARG 1 direction
 		ARG 2 facing
-	METHOD getMovementDirection ()Lnet/minecraft/core/Direction;
 	METHOD getProgress (F)F
 		COMMENT Get interpolated progress value (between lastProgress and progress) given the fractional time between ticks as an argument
 		ARG 1 ticks
@@ -46,25 +27,12 @@ CLASS net/minecraft/world/level/block/piston/PistonMovingBlockEntity
 		ARG 1 ticks
 	METHOD isExtending ()Z
 		COMMENT Returns true if a piston is extending
-	METHOD isSourcePiston ()Z
-	METHOD isStickyForEntities ()Z
-	METHOD lambda$moveStuckEntities$1 (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/entity/Entity;)Z
-	METHOD lambda$static$0 ()Lnet/minecraft/core/Direction;
-	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
 	METHOD matchesStickyCritera (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 0 shape
 		ARG 1 entity
-	METHOD moveByPositionAndProgress (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/level/block/piston/PistonMovingBlockEntity;)Lnet/minecraft/world/phys/AABB;
-	METHOD moveCollidedEntities (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;FLnet/minecraft/world/level/block/piston/PistonMovingBlockEntity;)V
 	METHOD moveEntityByPiston (Lnet/minecraft/core/Direction;Lnet/minecraft/world/entity/Entity;DLnet/minecraft/core/Direction;)V
 		ARG 0 direction
 		ARG 1 entity
 		ARG 2 progress
-	METHOD moveStuckEntities (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;FLnet/minecraft/world/level/block/piston/PistonMovingBlockEntity;)V
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
-	METHOD tick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/piston/PistonMovingBlockEntity;)V
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$core$Direction [I
-		FIELD $SwitchMap$net$minecraft$core$Direction$Axis [I
-		METHOD <clinit> ()V

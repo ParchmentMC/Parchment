@@ -1,37 +1,17 @@
 CLASS net/minecraft/world/entity/monster/Blaze
-	FIELD DATA_FLAGS_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD allowedHeightOffset F
-	FIELD nextHeightOffsetChangeTick I
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
 	METHOD aiStep ()V
 		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
-	METHOD causeFallDamage (FFLnet/minecraft/world/damagesource/DamageSource;)Z
-	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
-	METHOD customServerAiStep ()V
-	METHOD defineSynchedData ()V
-	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
 	METHOD getBrightness ()F
 		COMMENT Gets how bright this entity is.
-	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
-	METHOD isCharged ()Z
 	METHOD isOnFire ()Z
 		COMMENT Returns true if the entity is on fire. Used by render to add the fire effect on rendering.
-	METHOD isSensitiveToWater ()Z
-	METHOD registerGoals ()V
 	METHOD setCharged (Z)V
 		ARG 1 onFire
 	CLASS BlazeAttackGoal
-		FIELD attackStep I
-		FIELD attackTime I
-		FIELD blaze Lnet/minecraft/world/entity/monster/Blaze;
-		FIELD lastSeen I
-		METHOD <init> (Lnet/minecraft/world/entity/monster/Blaze;)V
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD getFollowDistance ()D
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V

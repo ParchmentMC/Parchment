@@ -1,47 +1,19 @@
 CLASS net/minecraft/world/level/block/entity/SignBlockEntity
-	FIELD FILTERED_TEXT_FIELD_NAMES [Ljava/lang/String;
-	FIELD LINES I
-	FIELD RAW_TEXT_FIELD_NAMES [Ljava/lang/String;
-	FIELD color Lnet/minecraft/world/item/DyeColor;
-	FIELD filteredMessages [Lnet/minecraft/network/chat/Component;
-	FIELD hasGlowingText Z
-	FIELD isEditable Z
-	FIELD messages [Lnet/minecraft/network/chat/Component;
-	FIELD playerWhoMayEdit Ljava/util/UUID;
-	FIELD renderMessagedFiltered Z
-	FIELD renderMessages [Lnet/minecraft/util/FormattedCharSequence;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 	METHOD createCommandSourceStack (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 player
-	METHOD deserializeTextSafe (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
-	METHOD executeClickCommands (Lnet/minecraft/server/level/ServerPlayer;)Z
-	METHOD getColor ()Lnet/minecraft/world/item/DyeColor;
-	METHOD getMessage (IZ)Lnet/minecraft/network/chat/Component;
-	METHOD getMessages (Z)[Lnet/minecraft/network/chat/Component;
-	METHOD getPlayerWhoMayEdit ()Ljava/util/UUID;
-	METHOD getRenderMessages (ZLjava/util/function/Function;)[Lnet/minecraft/util/FormattedCharSequence;
 	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
 		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
 	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
-	METHOD hasGlowingText ()Z
-	METHOD isEditable ()Z
-	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
-	METHOD loadLine (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
-	METHOD markUpdated ()V
 	METHOD onlyOpCanSetNbt ()Z
 		COMMENT Checks if players can use this tile entity to access operator (permission level 2) commands either directly or indirectly, such as give or setblock. A similar method exists for entities at {@link net.minecraft.entity.Entity#ignoreItemEntityData()}.<p>For example, {@link net.minecraft.tileentity.TileEntitySign#onlyOpsCanSetNbt() signs} (player right-clicking) and {@link net.minecraft.tileentity.TileEntityCommandBlock#onlyOpsCanSetNbt() command blocks} are considered accessible.</p>@return true if this block entity offers ways for unauthorized players to use restricted commands
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
-	METHOD setAllowedPlayerEditor (Ljava/util/UUID;)V
 	METHOD setColor (Lnet/minecraft/world/item/DyeColor;)Z
 		ARG 1 newColor
 	METHOD setEditable (Z)V
 		COMMENT Sets the sign's isEditable flag to the specified parameter.
 		ARG 1 isEditable
-	METHOD setHasGlowingText (Z)Z
 	METHOD setMessage (ILnet/minecraft/network/chat/Component;)V
 		ARG 1 line
 		ARG 2 signText
-	METHOD setMessage (ILnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)V

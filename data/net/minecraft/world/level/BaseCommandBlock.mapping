@@ -1,39 +1,23 @@
 CLASS net/minecraft/world/level/BaseCommandBlock
-	FIELD DEFAULT_NAME Lnet/minecraft/network/chat/Component;
 	FIELD TIME_FORMAT Ljava/text/SimpleDateFormat;
 		COMMENT The formatting for the timestamp on commands run.
 	FIELD command Ljava/lang/String;
 		COMMENT The command stored in the command block.
-	FIELD lastExecution J
 	FIELD lastOutput Lnet/minecraft/network/chat/Component;
 		COMMENT The previously run command.
 	FIELD name Lnet/minecraft/network/chat/Component;
 		COMMENT The custom name of the command block. (defaults to "@")
 	FIELD successCount I
 		COMMENT The number of successful commands run. (used for redstone output)
-	FIELD trackOutput Z
-	FIELD updateLastExecution Z
-	METHOD <clinit> ()V
-	METHOD <init> ()V
-	METHOD acceptsFailure ()Z
-	METHOD acceptsSuccess ()Z
-	METHOD createCommandSourceStack ()Lnet/minecraft/commands/CommandSourceStack;
 	METHOD getCommand ()Ljava/lang/String;
 		COMMENT Returns the command of the command block.
 	METHOD getLastOutput ()Lnet/minecraft/network/chat/Component;
 		COMMENT Returns the lastOutput.
-	METHOD getLevel ()Lnet/minecraft/server/level/ServerLevel;
-	METHOD getName ()Lnet/minecraft/network/chat/Component;
-	METHOD getPosition ()Lnet/minecraft/world/phys/Vec3;
 	METHOD getSuccessCount ()I
 		COMMENT returns the successCount int.
-	METHOD isTrackOutput ()Z
-	METHOD lambda$performCommand$0 (Lcom/mojang/brigadier/context/CommandContext;ZI)V
-	METHOD lambda$performCommand$1 ()Ljava/lang/String;
 	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT Reads NBT formatting and stored data into variables.
 		ARG 1 nbt
-	METHOD onUpdated ()V
 	METHOD performCommand (Lnet/minecraft/world/level/Level;)Z
 		ARG 1 level
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
@@ -53,6 +37,5 @@ CLASS net/minecraft/world/level/BaseCommandBlock
 		ARG 1 successCount
 	METHOD setTrackOutput (Z)V
 		ARG 1 shouldTrackOutput
-	METHOD shouldInformAdmins ()Z
 	METHOD usedBy (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player

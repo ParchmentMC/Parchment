@@ -1,38 +1,15 @@
 CLASS net/minecraft/advancements/AdvancementProgress
-	FIELD criteria Ljava/util/Map;
-	FIELD requirements [[Ljava/lang/String;
-	METHOD <init> ()V
-	METHOD <init> (Ljava/util/Map;)V
-	METHOD compareTo (Ljava/lang/Object;)I
-	METHOD compareTo (Lnet/minecraft/advancements/AdvancementProgress;)I
-	METHOD countCompletedRequirements ()I
 	METHOD fromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/advancements/AdvancementProgress;
 		ARG 0 buffer
-	METHOD getCompletedCriteria ()Ljava/lang/Iterable;
 	METHOD getCriterion (Ljava/lang/String;)Lnet/minecraft/advancements/CriterionProgress;
 		ARG 1 criterion
-	METHOD getFirstProgressDate ()Ljava/util/Date;
-	METHOD getPercent ()F
-	METHOD getProgressText ()Ljava/lang/String;
-	METHOD getRemainingCriteria ()Ljava/lang/Iterable;
 	METHOD grantProgress (Ljava/lang/String;)Z
 		ARG 1 criterion
-	METHOD hasProgress ()Z
-	METHOD isDone ()Z
-	METHOD lambda$serializeToNetwork$1 (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/advancements/CriterionProgress;)V
-	METHOD lambda$update$0 (Ljava/util/Set;Ljava/util/Map$Entry;)Z
 	METHOD revokeProgress (Ljava/lang/String;)Z
 		ARG 1 criterion
 	METHOD serializeToNetwork (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
-	METHOD toString ()Ljava/lang/String;
 	METHOD update (Ljava/util/Map;[[Ljava/lang/String;)V
 		COMMENT Update this AdvancementProgress' criteria and requirements
 		ARG 1 criteria
 		ARG 2 requirements
-	CLASS Serializer
-		METHOD <init> ()V
-		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
-		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/advancements/AdvancementProgress;
-		METHOD serialize (Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
-		METHOD serialize (Lnet/minecraft/advancements/AdvancementProgress;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
