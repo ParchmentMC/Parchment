@@ -1,0 +1,100 @@
+CLASS net/minecraft/network/protocol/game/ClientboundBossEventPacket
+	FIELD FLAG_DARKEN I
+	FIELD FLAG_FOG I
+	FIELD FLAG_MUSIC I
+	FIELD REMOVE_OPERATION Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Operation;
+	FIELD id Ljava/util/UUID;
+	FIELD operation Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Operation;
+	METHOD <clinit> ()V
+	METHOD <init> (Ljava/util/UUID;Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Operation;)V
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD createAddPacket (Lnet/minecraft/world/BossEvent;)Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket;
+	METHOD createRemovePacket (Ljava/util/UUID;)Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket;
+	METHOD createUpdateNamePacket (Lnet/minecraft/world/BossEvent;)Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket;
+	METHOD createUpdateProgressPacket (Lnet/minecraft/world/BossEvent;)Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket;
+	METHOD createUpdatePropertiesPacket (Lnet/minecraft/world/BossEvent;)Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket;
+	METHOD createUpdateStylePacket (Lnet/minecraft/world/BossEvent;)Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket;
+	METHOD dispatch (Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Handler;)V
+	METHOD encodeProperties (ZZZ)I
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf
+	CLASS 1
+		METHOD <init> ()V
+		METHOD dispatch (Ljava/util/UUID;Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Handler;)V
+		METHOD getType ()Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+	CLASS AddOperation
+		FIELD color Lnet/minecraft/world/BossEvent$BossBarColor;
+		FIELD createWorldFog Z
+		FIELD darkenScreen Z
+		FIELD name Lnet/minecraft/network/chat/Component;
+		FIELD overlay Lnet/minecraft/world/BossEvent$BossBarOverlay;
+		FIELD playMusic Z
+		FIELD progress F
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		METHOD <init> (Lnet/minecraft/world/BossEvent;)V
+		METHOD dispatch (Ljava/util/UUID;Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Handler;)V
+		METHOD getType ()Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+	CLASS Handler
+		METHOD add (Ljava/util/UUID;Lnet/minecraft/network/chat/Component;FLnet/minecraft/world/BossEvent$BossBarColor;Lnet/minecraft/world/BossEvent$BossBarOverlay;ZZZ)V
+		METHOD remove (Ljava/util/UUID;)V
+		METHOD updateName (Ljava/util/UUID;Lnet/minecraft/network/chat/Component;)V
+		METHOD updateProgress (Ljava/util/UUID;F)V
+		METHOD updateProperties (Ljava/util/UUID;ZZZ)V
+		METHOD updateStyle (Ljava/util/UUID;Lnet/minecraft/world/BossEvent$BossBarColor;Lnet/minecraft/world/BossEvent$BossBarOverlay;)V
+	CLASS Operation
+		METHOD dispatch (Ljava/util/UUID;Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Handler;)V
+		METHOD getType ()Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+	CLASS OperationType
+		FIELD $VALUES [Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		FIELD ADD Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		FIELD REMOVE Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		FIELD UPDATE_NAME Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		FIELD UPDATE_PROGRESS Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		FIELD UPDATE_PROPERTIES Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		FIELD UPDATE_STYLE Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		FIELD reader Ljava/util/function/Function;
+		METHOD $values ()[Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;ILjava/util/function/Function;)V
+		METHOD lambda$static$0 (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Operation;
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		METHOD values ()[Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+	CLASS UpdateNameOperation
+		FIELD name Lnet/minecraft/network/chat/Component;
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		METHOD <init> (Lnet/minecraft/network/chat/Component;)V
+		METHOD dispatch (Ljava/util/UUID;Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Handler;)V
+		METHOD getType ()Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+	CLASS UpdateProgressOperation
+		FIELD progress F
+		METHOD <init> (F)V
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		METHOD dispatch (Ljava/util/UUID;Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Handler;)V
+		METHOD getType ()Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+	CLASS UpdatePropertiesOperation
+		FIELD createWorldFog Z
+		FIELD darkenScreen Z
+		FIELD playMusic Z
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		METHOD <init> (ZZZ)V
+		METHOD dispatch (Ljava/util/UUID;Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Handler;)V
+		METHOD getType ()Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+	CLASS UpdateStyleOperation
+		FIELD color Lnet/minecraft/world/BossEvent$BossBarColor;
+		FIELD overlay Lnet/minecraft/world/BossEvent$BossBarOverlay;
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		METHOD <init> (Lnet/minecraft/world/BossEvent$BossBarColor;Lnet/minecraft/world/BossEvent$BossBarOverlay;)V
+		METHOD dispatch (Ljava/util/UUID;Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$Handler;)V
+		METHOD getType ()Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType;
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V

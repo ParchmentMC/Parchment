@@ -1,0 +1,38 @@
+CLASS net/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction
+	FIELD compositePredicates Ljava/util/function/Predicate;
+	FIELD predicates [Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
+	METHOD apply (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+	METHOD apply (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
+	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 stack
+		ARG 2 context
+	METHOD simpleBuilder (Ljava/util/function/Function;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V
+	CLASS Builder
+		FIELD conditions Ljava/util/List;
+		METHOD <init> ()V
+		METHOD getConditions ()[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
+		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		METHOD unwrap ()Ljava/lang/Object;
+		METHOD unwrap ()Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		METHOD when (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)Ljava/lang/Object;
+			ARG 1 conditionBuilder
+		METHOD when (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+			ARG 1 conditionBuilder
+	CLASS DummyBuilder
+		FIELD constructor Ljava/util/function/Function;
+		METHOD <init> (Ljava/util/function/Function;)V
+		METHOD build ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$DummyBuilder;
+	CLASS Serializer
+		METHOD <init> ()V
+		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
+		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
+			ARG 1 object
+			ARG 2 deserializationContext
+			ARG 3 conditions
+		METHOD serialize (Lcom/google/gson/JsonObject;Ljava/lang/Object;Lcom/google/gson/JsonSerializationContext;)V
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;Lcom/google/gson/JsonSerializationContext;)V

@@ -1,0 +1,106 @@
+CLASS net/minecraft/world/level/block/HopperBlock
+	FIELD BASE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD CONVEX_BASE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD DOWN_INTERACTION_SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD DOWN_SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD EAST_INTERACTION_SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD EAST_SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD ENABLED Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+	FIELD FACING Lnet/minecraft/world/level/block/state/properties/DirectionProperty;
+	FIELD FUNNEL Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD NORTH_INTERACTION_SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD NORTH_SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD SOUTH_INTERACTION_SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD SOUTH_SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD TOP Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD WEST_INTERACTION_SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD WEST_SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+	METHOD checkPoweredState (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
+		ARG 1 builder
+	METHOD entityInside (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 entity
+	METHOD getAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)I
+		COMMENT @deprecated call via {@link IBlockState#getComparatorInputOverride(World,BlockPos)} whenever possible. Implementing/overriding is fine.
+		ARG 1 blockState
+		ARG 2 level
+		ARG 3 pos
+	METHOD getInteractionShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+	METHOD getRenderShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/RenderShape;
+		COMMENT The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids, INVISIBLE to skip all rendering
+		COMMENT @deprecated call via {@link IBlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 context
+	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context
+	METHOD getTicker (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BlockEntityType;)Lnet/minecraft/world/level/block/entity/BlockEntityTicker;
+	METHOD hasAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		COMMENT @deprecated call via {@link IBlockState#hasComparatorInputOverride()} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+	METHOD isPathfindable (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/pathfinder/PathComputationType;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 type
+	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed blockstate.
+		COMMENT @deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+		ARG 2 mirror
+	METHOD neighborChanged (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos;Z)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 block
+		ARG 5 fromPos
+		ARG 6 isMoving
+	METHOD newBlockEntity (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+	METHOD onPlace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 oldState
+		ARG 5 isMoving
+	METHOD onRemove (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 newState
+		ARG 5 isMoving
+	METHOD rotate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.
+		COMMENT @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+		ARG 2 rot
+	METHOD setPlacedBy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Called by ItemBlocks after a block is set in the world, to allow post-place logic
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 placer
+		ARG 5 stack
+	METHOD use (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 player
+		ARG 5 hand
+		ARG 6 hit
+	CLASS 1
+		FIELD $SwitchMap$net$minecraft$core$Direction [I
+		METHOD <clinit> ()V

@@ -1,0 +1,36 @@
+CLASS net/minecraft/world/level/storage/loot/functions/SetLoreFunction
+	FIELD lore Ljava/util/List;
+	FIELD replace Z
+	FIELD resolutionContext Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;ZLjava/util/List;Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)V
+	METHOD getLoreTag (Lnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/nbt/ListTag;
+	METHOD getReferencedContextParams ()Ljava/util/Set;
+	METHOD getType ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunctionType;
+	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 stack
+		ARG 2 context
+	METHOD setLore ()Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction$Builder;
+	CLASS Builder
+		FIELD lore Ljava/util/List;
+		FIELD replace Z
+		FIELD resolutionContext Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;
+		METHOD <init> ()V
+		METHOD addLine (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction$Builder;
+		METHOD build ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction$Builder;
+		METHOD setReplace (Z)Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction$Builder;
+		METHOD setResolutionContext (Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction$Builder;
+	CLASS Serializer
+		METHOD <init> ()V
+		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
+			ARG 1 object
+			ARG 2 deserializationContext
+			ARG 3 conditions
+		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction;
+			ARG 1 object
+			ARG 2 deserializationContext
+			ARG 3 conditions
+		METHOD serialize (Lcom/google/gson/JsonObject;Ljava/lang/Object;Lcom/google/gson/JsonSerializationContext;)V
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;Lcom/google/gson/JsonSerializationContext;)V
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction;Lcom/google/gson/JsonSerializationContext;)V

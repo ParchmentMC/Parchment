@@ -1,0 +1,30 @@
+CLASS net/minecraft/client/gui/MapRenderer
+	FIELD HEIGHT I
+	FIELD MAP_ICONS Lnet/minecraft/client/renderer/RenderType;
+	FIELD MAP_ICONS_LOCATION Lnet/minecraft/resources/ResourceLocation;
+	FIELD WIDTH I
+	FIELD maps Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
+	FIELD textureManager Lnet/minecraft/client/renderer/texture/TextureManager;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureManager;)V
+	METHOD close ()V
+	METHOD getOrCreateMapInstance (ILnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)Lnet/minecraft/client/gui/MapRenderer$MapInstance;
+	METHOD lambda$getOrCreateMapInstance$0 (Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;I)Lnet/minecraft/client/gui/MapRenderer$MapInstance;
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/level/saveddata/maps/MapItemSavedData;ZI)V
+	METHOD resetData ()V
+		COMMENT Clears the currently loaded maps and removes their corresponding textures
+	METHOD update (ILnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
+	CLASS MapInstance
+		FIELD data Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
+		FIELD renderType Lnet/minecraft/client/renderer/RenderType;
+		FIELD texture Lnet/minecraft/client/renderer/texture/DynamicTexture;
+		FIELD this$0 Lnet/minecraft/client/gui/MapRenderer;
+		METHOD <init> (Lnet/minecraft/client/gui/MapRenderer;ILnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
+		METHOD close ()V
+		METHOD draw (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ZI)V
+			ARG 1 matrixStack
+			ARG 2 buffer
+			ARG 3 active
+			ARG 4 packedLight
+		METHOD updateTexture ()V
+			COMMENT Updates a map {@link net.minecraft.client.gui.MapItemRenderer.Instance#mapTexture texture}

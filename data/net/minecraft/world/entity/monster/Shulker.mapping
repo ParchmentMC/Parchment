@@ -1,0 +1,160 @@
+CLASS net/minecraft/world/entity/monster/Shulker
+	FIELD COVERED_ARMOR_MODIFIER Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;
+	FIELD COVERED_ARMOR_MODIFIER_UUID Ljava/util/UUID;
+	FIELD DATA_ATTACH_FACE_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD DATA_COLOR_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD DATA_PEEK_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD DEFAULT_COLOR B
+	FIELD FORWARD Lcom/mojang/math/Vector3f;
+	FIELD MAX_LID_OPEN F
+	FIELD MAX_TELEPORT_DISTANCE I
+	FIELD NO_COLOR B
+	FIELD OTHER_SHULKER_LIMIT I
+	FIELD OTHER_SHULKER_SCAN_RADIUS I
+	FIELD PEEK_PER_TICK F
+	FIELD TELEPORT_STEPS I
+	FIELD clientOldAttachPosition Lnet/minecraft/core/BlockPos;
+	FIELD clientSideTeleportInterpolation I
+	FIELD currentPeekAmount F
+	FIELD currentPeekAmountO F
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+	METHOD access$000 (Lnet/minecraft/world/entity/monster/Shulker;)Ljava/util/Random;
+	METHOD access$100 (Lnet/minecraft/world/entity/monster/Shulker;)Ljava/util/Random;
+	METHOD access$200 (Lnet/minecraft/world/entity/monster/Shulker;)Ljava/util/Random;
+	METHOD access$300 (Lnet/minecraft/world/entity/monster/Shulker;)Ljava/util/Random;
+	METHOD access$400 (Lnet/minecraft/world/entity/monster/Shulker;)Ljava/util/Random;
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD canBeCollidedWith ()Z
+	METHOD canStayAt (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+	METHOD createBodyControl ()Lnet/minecraft/world/entity/ai/control/BodyRotationControl;
+	METHOD defineSynchedData ()V
+	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
+	METHOD findAttachableSurface (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/Direction;
+	METHOD findNewAttachment ()V
+	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getAttachFace ()Lnet/minecraft/core/Direction;
+	METHOD getClientPeekAmount (F)F
+	METHOD getColor ()Lnet/minecraft/world/item/DyeColor;
+	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getDeltaMovement ()Lnet/minecraft/world/phys/Vec3;
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getMaxHeadXRot ()I
+		COMMENT The speed it takes to move the entityliving's rotationPitch through the faceEntity method. This is only currently use in wolves.
+	METHOD getMaxHeadYRot ()I
+	METHOD getMovementEmission ()Lnet/minecraft/world/entity/Entity$MovementEmission;
+	METHOD getMyRidingOffset ()D
+	METHOD getPhysicalPeek (F)F
+	METHOD getPickRadius ()F
+	METHOD getProgressAabb (Lnet/minecraft/core/Direction;F)Lnet/minecraft/world/phys/AABB;
+	METHOD getProgressDeltaAabb (Lnet/minecraft/core/Direction;FF)Lnet/minecraft/world/phys/AABB;
+	METHOD getRawPeekAmount ()I
+	METHOD getRenderPosition (F)Ljava/util/Optional;
+	METHOD getSoundSource ()Lnet/minecraft/sounds/SoundSource;
+	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
+		ARG 1 pose
+		ARG 2 size
+	METHOD hitByShulkerBullet ()V
+	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
+		COMMENT Called when the entity is attacked.
+		ARG 1 source
+		ARG 2 amount
+	METHOD isClosed ()Z
+	METHOD isPositionBlocked (Lnet/minecraft/core/BlockPos;)Z
+	METHOD lambda$onPeekAmountChange$1 (Lnet/minecraft/world/entity/Entity;)Z
+	METHOD lambda$static$0 ()Lcom/mojang/math/Vector3f;
+	METHOD lerpTo (DDDFFIZ)V
+		COMMENT Sets a target for the client to interpolate towards over the next few ticks
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 yaw
+		ARG 8 pitch
+		ARG 9 posRotationIncrements
+		ARG 10 teleport
+	METHOD makeBoundingBox ()Lnet/minecraft/world/phys/AABB;
+	METHOD move (Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 type
+		ARG 2 pos
+	METHOD onPeekAmountChange ()V
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD playAmbientSound ()V
+		COMMENT Plays living's sound at its position
+	METHOD push (Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Applies a velocity to the entities, to push them away from eachother.
+		ARG 1 entity
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD recreateFromPacket (Lnet/minecraft/network/protocol/game/ClientboundAddMobPacket;)V
+	METHOD registerGoals ()V
+	METHOD setAttachFace (Lnet/minecraft/core/Direction;)V
+	METHOD setColor (Lnet/minecraft/world/item/DyeColor;)V
+	METHOD setDeltaMovement (Lnet/minecraft/world/phys/Vec3;)V
+	METHOD setPos (DDD)V
+		COMMENT Sets the x,y,z of the entity from the given parameters. Also seems to set up a bounding box.
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD setRawPeekAmount (I)V
+		COMMENT Applies or removes armor modifier
+	METHOD startRiding (Lnet/minecraft/world/entity/Entity;Z)Z
+	METHOD stopRiding ()V
+	METHOD teleportSomewhere ()Z
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	METHOD updatePeekAmount ()Z
+	CLASS ShulkerAttackGoal
+		FIELD attackTime I
+		FIELD this$0 Lnet/minecraft/world/entity/monster/Shulker;
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;)V
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS ShulkerBodyRotationControl
+		METHOD <init> (Lnet/minecraft/world/entity/Mob;)V
+		METHOD clientTick ()V
+			COMMENT Update the Head and Body rendenring angles
+	CLASS ShulkerDefenseAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;)V
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;
+			ARG 1 targetDistance
+		METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+	CLASS ShulkerLookControl
+		FIELD this$0 Lnet/minecraft/world/entity/monster/Shulker;
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/Mob;)V
+		METHOD clampHeadRotationToBody ()V
+		METHOD getXRotD ()Ljava/util/Optional;
+		METHOD getYRotD ()Ljava/util/Optional;
+	CLASS ShulkerNearestAttackGoal
+		FIELD this$0 Lnet/minecraft/world/entity/monster/Shulker;
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/monster/Shulker;)V
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;
+			ARG 1 targetDistance
+	CLASS ShulkerPeekGoal
+		FIELD peekTime I
+		FIELD this$0 Lnet/minecraft/world/entity/monster/Shulker;
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;)V
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

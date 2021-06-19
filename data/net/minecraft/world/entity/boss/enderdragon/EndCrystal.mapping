@@ -1,0 +1,37 @@
+CLASS net/minecraft/world/entity/boss/enderdragon/EndCrystal
+	FIELD DATA_BEAM_TARGET Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD DATA_SHOW_BOTTOM Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD time I
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDD)V
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD defineSynchedData ()V
+	METHOD getAddEntityPacket ()Lnet/minecraft/network/protocol/Packet;
+	METHOD getBeamTarget ()Lnet/minecraft/core/BlockPos;
+	METHOD getMovementEmission ()Lnet/minecraft/world/entity/Entity$MovementEmission;
+	METHOD getPickResult ()Lnet/minecraft/world/item/ItemStack;
+	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
+		COMMENT Called when the entity is attacked.
+		ARG 1 source
+		ARG 2 amount
+	METHOD isPickable ()Z
+		COMMENT Returns true if other Entities should be prevented from moving through this Entity.
+	METHOD kill ()V
+		COMMENT Called by the /kill command.
+	METHOD onDestroyedBy (Lnet/minecraft/world/damagesource/DamageSource;)V
+		ARG 1 source
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD setBeamTarget (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 beamTarget
+	METHOD setShowBottom (Z)V
+		ARG 1 showBottom
+	METHOD shouldRenderAtSqrDistance (D)Z
+		COMMENT Checks if the entity is in range to render.
+		ARG 1 distance
+	METHOD showsBottom ()Z
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

@@ -1,0 +1,33 @@
+CLASS net/minecraft/world/damagesource/CombatTracker
+	FIELD RESET_COMBAT_STATUS_TIME I
+	FIELD RESET_DAMAGE_STATUS_TIME I
+	FIELD combatEndTime I
+	FIELD combatStartTime I
+	FIELD entries Ljava/util/List;
+	FIELD inCombat Z
+	FIELD lastDamageTime I
+	FIELD mob Lnet/minecraft/world/entity/LivingEntity;
+	FIELD nextLocation Ljava/lang/String;
+	FIELD takingDamage Z
+	METHOD <init> (Lnet/minecraft/world/entity/LivingEntity;)V
+	METHOD getCombatDuration ()I
+	METHOD getDeathMessage ()Lnet/minecraft/network/chat/Component;
+	METHOD getFallLocation (Lnet/minecraft/world/damagesource/CombatEntry;)Ljava/lang/String;
+		ARG 1 entry
+	METHOD getKiller ()Lnet/minecraft/world/entity/LivingEntity;
+	METHOD getKillerId ()I
+	METHOD getLastEntry ()Lnet/minecraft/world/damagesource/CombatEntry;
+	METHOD getMob ()Lnet/minecraft/world/entity/LivingEntity;
+		COMMENT Returns EntityLivingBase assigned for this CombatTracker
+	METHOD getMostSignificantFall ()Lnet/minecraft/world/damagesource/CombatEntry;
+	METHOD isInCombat ()Z
+	METHOD isTakingDamage ()Z
+	METHOD prepareForDamage ()V
+	METHOD recheckStatus ()V
+		COMMENT Resets this trackers list of combat entries
+	METHOD recordDamage (Lnet/minecraft/world/damagesource/DamageSource;FF)V
+		COMMENT Adds an entry for the combat tracker
+		ARG 1 damageSrc
+		ARG 2 health
+		ARG 3 damageAmount
+	METHOD resetPreparedStatus ()V

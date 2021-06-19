@@ -1,0 +1,43 @@
+CLASS net/minecraft/client/multiplayer/ServerData
+	FIELD iconB64 Ljava/lang/String;
+	FIELD ip Ljava/lang/String;
+	FIELD lan Z
+		COMMENT True if the server is a LAN server
+	FIELD motd Lnet/minecraft/network/chat/Component;
+	FIELD name Ljava/lang/String;
+	FIELD packStatus Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;
+	FIELD ping J
+	FIELD pinged Z
+	FIELD playerList Ljava/util/List;
+	FIELD protocol I
+	FIELD status Lnet/minecraft/network/chat/Component;
+	FIELD version Lnet/minecraft/network/chat/Component;
+	METHOD <init> (Ljava/lang/String;Ljava/lang/String;Z)V
+	METHOD copyFrom (Lnet/minecraft/client/multiplayer/ServerData;)V
+		ARG 1 serverData
+	METHOD getIconB64 ()Ljava/lang/String;
+		COMMENT Returns the base-64 encoded representation of the server's icon, or null if not available
+	METHOD getResourcePackStatus ()Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;
+	METHOD isLan ()Z
+		COMMENT Return true if the server is a LAN server
+	METHOD read (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/client/multiplayer/ServerData;
+		COMMENT Takes an NBTTagCompound with 'name' and 'ip' keys, returns a ServerData instance.
+		ARG 0 nbtCompound
+	METHOD setIconB64 (Ljava/lang/String;)V
+		ARG 1 icon
+	METHOD setResourcePackStatus (Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;)V
+		ARG 1 mode
+	METHOD write ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Returns an NBTTagCompound with the server's name, IP and maybe acceptTextures.
+	CLASS ServerPackStatus
+		FIELD $VALUES [Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;
+		FIELD DISABLED Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;
+		FIELD ENABLED Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;
+		FIELD PROMPT Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;
+		FIELD name Lnet/minecraft/network/chat/Component;
+		METHOD $values ()[Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+		METHOD getName ()Lnet/minecraft/network/chat/Component;
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;
+		METHOD values ()[Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;

@@ -1,0 +1,36 @@
+CLASS net/minecraft/network/chat/ClickEvent
+	FIELD action Lnet/minecraft/network/chat/ClickEvent$Action;
+	FIELD value Ljava/lang/String;
+	METHOD <init> (Lnet/minecraft/network/chat/ClickEvent$Action;Ljava/lang/String;)V
+	METHOD equals (Ljava/lang/Object;)Z
+	METHOD getAction ()Lnet/minecraft/network/chat/ClickEvent$Action;
+		COMMENT Gets the action to perform when this event is raised.
+	METHOD getValue ()Ljava/lang/String;
+		COMMENT Gets the value to perform the action on when this event is raised.  For example, if the action is "open URL", this would be the URL to open.
+	METHOD hashCode ()I
+	METHOD toString ()Ljava/lang/String;
+	CLASS Action
+		FIELD $VALUES [Lnet/minecraft/network/chat/ClickEvent$Action;
+		FIELD CHANGE_PAGE Lnet/minecraft/network/chat/ClickEvent$Action;
+		FIELD COPY_TO_CLIPBOARD Lnet/minecraft/network/chat/ClickEvent$Action;
+		FIELD LOOKUP Ljava/util/Map;
+		FIELD OPEN_FILE Lnet/minecraft/network/chat/ClickEvent$Action;
+		FIELD OPEN_URL Lnet/minecraft/network/chat/ClickEvent$Action;
+		FIELD RUN_COMMAND Lnet/minecraft/network/chat/ClickEvent$Action;
+		FIELD SUGGEST_COMMAND Lnet/minecraft/network/chat/ClickEvent$Action;
+		FIELD allowFromServer Z
+		FIELD name Ljava/lang/String;
+			COMMENT The canonical name used to refer to this action.
+		METHOD $values ()[Lnet/minecraft/network/chat/ClickEvent$Action;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Z)V
+		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/network/chat/ClickEvent$Action;
+			COMMENT Gets a value by its canonical name.
+			ARG 0 canonicalName
+		METHOD getName ()Ljava/lang/String;
+			COMMENT Gets the canonical name for this action (e.g., "run_command")
+		METHOD isAllowedFromServer ()Z
+			COMMENT Indicates whether this event can be run from chat text.
+		METHOD lambda$static$0 (Lnet/minecraft/network/chat/ClickEvent$Action;)Lnet/minecraft/network/chat/ClickEvent$Action;
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/network/chat/ClickEvent$Action;
+		METHOD values ()[Lnet/minecraft/network/chat/ClickEvent$Action;

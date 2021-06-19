@@ -1,0 +1,55 @@
+CLASS net/minecraft/world/effect/MobEffect
+	FIELD attributeModifiers Ljava/util/Map;
+		COMMENT Contains a Map of the AttributeModifiers registered by potions
+	FIELD category Lnet/minecraft/world/effect/MobEffectCategory;
+	FIELD color I
+	FIELD descriptionId Ljava/lang/String;
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffectCategory;I)V
+	METHOD addAttributeModifier (Lnet/minecraft/world/entity/ai/attributes/Attribute;Ljava/lang/String;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)Lnet/minecraft/world/effect/MobEffect;
+		COMMENT Adds an attribute modifier to this effect. This method can be called for more than one attribute. The attributes are applied to an entity when the potion effect is active and removed when it stops.
+		ARG 1 attribute
+		ARG 2 uuid
+		ARG 3 amount
+		ARG 5 operation
+	METHOD addAttributeModifiers (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/attributes/AttributeMap;I)V
+		ARG 1 livingEntity
+		ARG 2 attributeMap
+		ARG 3 amplifier
+	METHOD applyEffectTick (Lnet/minecraft/world/entity/LivingEntity;I)V
+		ARG 1 livingEntity
+		ARG 2 amplifier
+	METHOD applyInstantenousEffect (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/LivingEntity;ID)V
+		ARG 1 source
+		ARG 2 indirectSource
+		ARG 3 livingEntity
+		ARG 4 amplifier
+		ARG 5 health
+	METHOD byId (I)Lnet/minecraft/world/effect/MobEffect;
+		COMMENT Gets a Potion from the potion registry using a numeric Id.
+		ARG 0 potionID
+	METHOD getAttributeModifierValue (ILnet/minecraft/world/entity/ai/attributes/AttributeModifier;)D
+		ARG 1 amplifier
+		ARG 2 modifier
+	METHOD getAttributeModifiers ()Ljava/util/Map;
+	METHOD getCategory ()Lnet/minecraft/world/effect/MobEffectCategory;
+	METHOD getColor ()I
+		COMMENT Returns the color of the potion liquid.
+	METHOD getDescriptionId ()Ljava/lang/String;
+		COMMENT returns the name of the potion
+	METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
+	METHOD getId (Lnet/minecraft/world/effect/MobEffect;)I
+		COMMENT Gets the numeric Id associated with a potion.
+		ARG 0 potion
+	METHOD getOrCreateDescriptionId ()Ljava/lang/String;
+	METHOD isBeneficial ()Z
+		COMMENT Get if the potion is beneficial to the player. Beneficial potions are shown on the first row of the HUD
+	METHOD isDurationEffectTick (II)Z
+		COMMENT checks if Potion effect is ready to be applied this tick.
+		ARG 1 duration
+		ARG 2 amplifier
+	METHOD isInstantenous ()Z
+		COMMENT Returns true if the potion has an instant effect instead of a continuous one (eg Harming)
+	METHOD removeAttributeModifiers (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/attributes/AttributeMap;I)V
+		ARG 1 livingEntity
+		ARG 2 attributeMap
+		ARG 3 amplifier

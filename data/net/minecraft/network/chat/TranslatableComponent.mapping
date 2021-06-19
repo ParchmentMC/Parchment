@@ -1,0 +1,30 @@
+CLASS net/minecraft/network/chat/TranslatableComponent
+	FIELD FORMAT_PATTERN Ljava/util/regex/Pattern;
+	FIELD NO_ARGS [Ljava/lang/Object;
+	FIELD TEXT_NULL Lnet/minecraft/network/chat/FormattedText;
+	FIELD TEXT_PERCENT Lnet/minecraft/network/chat/FormattedText;
+	FIELD args [Ljava/lang/Object;
+	FIELD decomposedParts Ljava/util/List;
+		COMMENT The discrete elements that make up this component. For example, this would be ["Prefix, ", "FirstArg", "SecondArg", " again ", "SecondArg", " and ", "FirstArg", " lastly ", "ThirdArg", " and also ", "FirstArg", " again!"] for "translation.test.complex" (see en_us.json)
+	FIELD decomposedWith Lnet/minecraft/locale/Language;
+	FIELD key Ljava/lang/String;
+	METHOD <clinit> ()V
+	METHOD <init> (Ljava/lang/String;)V
+	METHOD <init> (Ljava/lang/String;[Ljava/lang/Object;)V
+	METHOD decompose ()V
+		COMMENT Ensures that all of the children are up to date with the most recent translation mapping.
+	METHOD decomposeTemplate (Ljava/lang/String;)V
+	METHOD equals (Ljava/lang/Object;)Z
+	METHOD getArgs ()[Ljava/lang/Object;
+		COMMENT Gets the object array that is used to translate the key.
+	METHOD getArgument (I)Lnet/minecraft/network/chat/FormattedText;
+	METHOD getKey ()Ljava/lang/String;
+		COMMENT Gets the key used to translate this component.
+	METHOD hashCode ()I
+	METHOD plainCopy ()Lnet/minecraft/network/chat/BaseComponent;
+	METHOD plainCopy ()Lnet/minecraft/network/chat/MutableComponent;
+	METHOD plainCopy ()Lnet/minecraft/network/chat/TranslatableComponent;
+	METHOD resolve (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/network/chat/MutableComponent;
+	METHOD toString ()Ljava/lang/String;
+	METHOD visitSelf (Lnet/minecraft/network/chat/FormattedText$ContentConsumer;)Ljava/util/Optional;
+	METHOD visitSelf (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;

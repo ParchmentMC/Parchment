@@ -1,0 +1,64 @@
+CLASS net/minecraft/client/KeyMapping
+	FIELD ALL Ljava/util/Map;
+	FIELD CATEGORIES Ljava/util/Set;
+	FIELD CATEGORY_CREATIVE Ljava/lang/String;
+	FIELD CATEGORY_GAMEPLAY Ljava/lang/String;
+	FIELD CATEGORY_INTERFACE Ljava/lang/String;
+	FIELD CATEGORY_INVENTORY Ljava/lang/String;
+	FIELD CATEGORY_MISC Ljava/lang/String;
+	FIELD CATEGORY_MOVEMENT Ljava/lang/String;
+	FIELD CATEGORY_MULTIPLAYER Ljava/lang/String;
+	FIELD CATEGORY_SORT_ORDER Ljava/util/Map;
+	FIELD MAP Ljava/util/Map;
+	FIELD category Ljava/lang/String;
+	FIELD clickCount I
+	FIELD defaultKey Lcom/mojang/blaze3d/platform/InputConstants$Key;
+	FIELD isDown Z
+	FIELD key Lcom/mojang/blaze3d/platform/InputConstants$Key;
+	FIELD name Ljava/lang/String;
+	METHOD <clinit> ()V
+	METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+	METHOD <init> (Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILjava/lang/String;)V
+	METHOD click (Lcom/mojang/blaze3d/platform/InputConstants$Key;)V
+		ARG 0 key
+	METHOD compareTo (Ljava/lang/Object;)I
+	METHOD compareTo (Lnet/minecraft/client/KeyMapping;)I
+	METHOD consumeClick ()Z
+		COMMENT Returns true on the initial key press. For continuous querying use {@link isKeyDown()}. Should be used in key events.
+	METHOD createNameSupplier (Ljava/lang/String;)Ljava/util/function/Supplier;
+		COMMENT Returns a supplier which gets a keybind's current binding (eg, <code>key.forward</code> returns <samp>W</samp> by default), or the keybind's name if no such keybind exists (eg, <code>key.invalid</code> returns <samp>key.invalid</samp>)
+		ARG 0 key
+	METHOD getCategory ()Ljava/lang/String;
+	METHOD getDefaultKey ()Lcom/mojang/blaze3d/platform/InputConstants$Key;
+	METHOD getName ()Ljava/lang/String;
+	METHOD getTranslatedKeyMessage ()Lnet/minecraft/network/chat/Component;
+	METHOD isDefault ()Z
+		COMMENT Returns true if the keybinding is using the default key and key modifier
+	METHOD isDown ()Z
+		COMMENT Returns true if the key is pressed (used for continuous querying). Should be used in tickers.
+	METHOD isUnbound ()Z
+	METHOD lambda$createNameSupplier$1 (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
+	METHOD lambda$static$0 (Ljava/util/HashMap;)V
+	METHOD matches (II)Z
+		ARG 1 keysym
+		ARG 2 scancode
+	METHOD matchesMouse (I)Z
+		COMMENT Returns true if the KeyBinding is set to a mouse key and the key matches
+		ARG 1 key
+	METHOD release ()V
+	METHOD releaseAll ()V
+	METHOD resetMapping ()V
+	METHOD same (Lnet/minecraft/client/KeyMapping;)Z
+		COMMENT Returns true if the supplied KeyBinding conflicts with this
+		ARG 1 binding
+	METHOD saveString ()Ljava/lang/String;
+	METHOD set (Lcom/mojang/blaze3d/platform/InputConstants$Key;Z)V
+		ARG 0 key
+		ARG 1 held
+	METHOD setAll ()V
+		COMMENT Completely recalculates whether any keybinds are held, from scratch.
+	METHOD setDown (Z)V
+		ARG 1 value
+	METHOD setKey (Lcom/mojang/blaze3d/platform/InputConstants$Key;)V
+		COMMENT Binds a new KeyCode to this
+		ARG 1 key

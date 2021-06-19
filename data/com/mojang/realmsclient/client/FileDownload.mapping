@@ -1,0 +1,45 @@
+CLASS com/mojang/realmsclient/client/FileDownload
+	FIELD INVALID_FILE_NAMES [Ljava/lang/String;
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD cancelled Z
+	FIELD currentThread Ljava/lang/Thread;
+	FIELD error Z
+	FIELD extracting Z
+	FIELD finished Z
+	FIELD request Lorg/apache/http/client/methods/HttpGet;
+	FIELD requestConfig Lorg/apache/http/client/config/RequestConfig;
+	FIELD resourcePackPath Ljava/io/File;
+	FIELD tempFile Ljava/io/File;
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD cancel ()V
+	METHOD contentLength (Ljava/lang/String;)J
+	METHOD deletePlayerTag (Ljava/io/File;)V
+	METHOD download (Lcom/mojang/realmsclient/dto/WorldDownload;Ljava/lang/String;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;Lnet/minecraft/world/level/storage/LevelStorageSource;)V
+	METHOD findAvailableFolderName (Ljava/lang/String;)Ljava/lang/String;
+	METHOD isError ()Z
+	METHOD isExtracting ()Z
+	METHOD isFinished ()Z
+	METHOD lambda$download$0 (Lcom/mojang/realmsclient/dto/WorldDownload;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;Ljava/lang/String;Lnet/minecraft/world/level/storage/LevelStorageSource;)V
+	METHOD untarGzipArchive (Ljava/lang/String;Ljava/io/File;Lnet/minecraft/world/level/storage/LevelStorageSource;)V
+	CLASS DownloadCountingOutputStream
+		FIELD listener Ljava/awt/event/ActionListener;
+		FIELD this$0 Lcom/mojang/realmsclient/client/FileDownload;
+		METHOD <init> (Lcom/mojang/realmsclient/client/FileDownload;Ljava/io/OutputStream;)V
+		METHOD afterWrite (I)V
+		METHOD setListener (Ljava/awt/event/ActionListener;)V
+	CLASS ProgressListener
+		FIELD downloadStatus Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;
+		FIELD levelStorageSource Lnet/minecraft/world/level/storage/LevelStorageSource;
+		FIELD tempFile Ljava/io/File;
+		FIELD this$0 Lcom/mojang/realmsclient/client/FileDownload;
+		FIELD worldName Ljava/lang/String;
+		METHOD <init> (Lcom/mojang/realmsclient/client/FileDownload;Ljava/lang/String;Ljava/io/File;Lnet/minecraft/world/level/storage/LevelStorageSource;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;)V
+		METHOD actionPerformed (Ljava/awt/event/ActionEvent;)V
+	CLASS ResourcePackProgressListener
+		FIELD downloadStatus Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;
+		FIELD tempFile Ljava/io/File;
+		FIELD this$0 Lcom/mojang/realmsclient/client/FileDownload;
+		FIELD worldDownload Lcom/mojang/realmsclient/dto/WorldDownload;
+		METHOD <init> (Lcom/mojang/realmsclient/client/FileDownload;Ljava/io/File;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;Lcom/mojang/realmsclient/dto/WorldDownload;)V
+		METHOD actionPerformed (Ljava/awt/event/ActionEvent;)V

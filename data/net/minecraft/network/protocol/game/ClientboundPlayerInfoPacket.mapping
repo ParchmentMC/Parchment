@@ -1,0 +1,65 @@
+CLASS net/minecraft/network/protocol/game/ClientboundPlayerInfoPacket
+	FIELD action Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
+	FIELD entries Ljava/util/List;
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD <init> (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;Ljava/util/Collection;)V
+	METHOD <init> (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;[Lnet/minecraft/server/level/ServerPlayer;)V
+	METHOD getAction ()Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
+	METHOD getEntries ()Ljava/util/List;
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD readDisplayName (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/chat/Component;
+	METHOD toString ()Ljava/lang/String;
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf
+	METHOD writeDisplayName (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/chat/Component;)V
+	CLASS Action
+		FIELD $VALUES [Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
+		FIELD ADD_PLAYER Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
+		FIELD REMOVE_PLAYER Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
+		FIELD UPDATE_DISPLAY_NAME Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
+		FIELD UPDATE_GAME_MODE Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
+		FIELD UPDATE_LATENCY Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
+		METHOD $values ()[Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;I)V
+		METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
+		METHOD values ()[Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;)V
+		CLASS 1
+			METHOD <init> (Ljava/lang/String;I)V
+			METHOD lambda$read$0 (Lcom/mojang/authlib/properties/PropertyMap;Lnet/minecraft/network/FriendlyByteBuf;)V
+			METHOD lambda$write$1 (Lnet/minecraft/network/FriendlyByteBuf;Lcom/mojang/authlib/properties/Property;)V
+			METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;
+			METHOD write (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;)V
+		CLASS 2
+			METHOD <init> (Ljava/lang/String;I)V
+			METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;
+			METHOD write (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;)V
+		CLASS 3
+			METHOD <init> (Ljava/lang/String;I)V
+			METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;
+			METHOD write (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;)V
+		CLASS 4
+			METHOD <init> (Ljava/lang/String;I)V
+			METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;
+			METHOD write (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;)V
+		CLASS 5
+			METHOD <init> (Ljava/lang/String;I)V
+			METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;
+			METHOD write (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;)V
+	CLASS PlayerUpdate
+		FIELD displayName Lnet/minecraft/network/chat/Component;
+		FIELD gameMode Lnet/minecraft/world/level/GameType;
+		FIELD latency I
+		FIELD profile Lcom/mojang/authlib/GameProfile;
+		METHOD <init> (Lcom/mojang/authlib/GameProfile;ILnet/minecraft/world/level/GameType;Lnet/minecraft/network/chat/Component;)V
+		METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
+		METHOD getGameMode ()Lnet/minecraft/world/level/GameType;
+		METHOD getLatency ()I
+		METHOD getProfile ()Lcom/mojang/authlib/GameProfile;
+		METHOD toString ()Ljava/lang/String;

@@ -1,0 +1,33 @@
+CLASS net/minecraft/world/level/storage/loot/functions/LootingEnchantFunction
+	FIELD NO_LIMIT I
+	FIELD limit I
+	FIELD value Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;I)V
+	METHOD getReferencedContextParams ()Ljava/util/Set;
+	METHOD getType ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunctionType;
+	METHOD hasLimit ()Z
+	METHOD lootingMultiplier (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/functions/LootingEnchantFunction$Builder;
+	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 stack
+		ARG 2 context
+	CLASS Builder
+		FIELD count Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;
+		FIELD limit I
+		METHOD <init> (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)V
+		METHOD build ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/LootingEnchantFunction$Builder;
+		METHOD setLimit (I)Lnet/minecraft/world/level/storage/loot/functions/LootingEnchantFunction$Builder;
+	CLASS Serializer
+		METHOD <init> ()V
+		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
+			ARG 1 object
+			ARG 2 deserializationContext
+			ARG 3 conditions
+		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootingEnchantFunction;
+			ARG 1 object
+			ARG 2 deserializationContext
+			ARG 3 conditions
+		METHOD serialize (Lcom/google/gson/JsonObject;Ljava/lang/Object;Lcom/google/gson/JsonSerializationContext;)V
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;Lcom/google/gson/JsonSerializationContext;)V
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/LootingEnchantFunction;Lcom/google/gson/JsonSerializationContext;)V

@@ -1,0 +1,133 @@
+CLASS net/minecraft/world/entity/projectile/AbstractArrow
+	FIELD ARROW_BASE_DAMAGE D
+	FIELD FLAG_CRIT I
+	FIELD FLAG_CROSSBOW I
+	FIELD FLAG_NOPHYSICS I
+	FIELD ID_FLAGS Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD PIERCE_LEVEL Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD baseDamage D
+	FIELD inGround Z
+	FIELD inGroundTime I
+	FIELD knockback I
+	FIELD lastState Lnet/minecraft/world/level/block/state/BlockState;
+	FIELD life I
+	FIELD pickup Lnet/minecraft/world/entity/projectile/AbstractArrow$Pickup;
+	FIELD piercedAndKilledEntities Ljava/util/List;
+	FIELD piercingIgnoreEntityIds Lit/unimi/dsi/fastutil/ints/IntOpenHashSet;
+	FIELD shakeTime I
+	FIELD soundEvent Lnet/minecraft/sounds/SoundEvent;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;DDDLnet/minecraft/world/level/Level;)V
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;)V
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD canHitEntity (Lnet/minecraft/world/entity/Entity;)Z
+	METHOD defineSynchedData ()V
+	METHOD doPostHurtEffects (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 living
+	METHOD findHitEntity (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/EntityHitResult;
+		COMMENT Gets the EntityRayTraceResult representing the entity hit
+		ARG 1 startVec
+		ARG 2 endVec
+	METHOD getBaseDamage ()D
+	METHOD getDefaultHitGroundSoundEvent ()Lnet/minecraft/sounds/SoundEvent;
+		COMMENT The sound made when an entity is hit by this projectile
+	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
+		ARG 1 pose
+		ARG 2 size
+	METHOD getHitGroundSoundEvent ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getKnockback ()I
+	METHOD getMovementEmission ()Lnet/minecraft/world/entity/Entity$MovementEmission;
+	METHOD getPickupItem ()Lnet/minecraft/world/item/ItemStack;
+	METHOD getPierceLevel ()B
+	METHOD getWaterInertia ()F
+	METHOD isAttackable ()Z
+		COMMENT Returns true if it's possible to attack this entity with an item.
+	METHOD isCritArrow ()Z
+		COMMENT Whether the arrow has a stream of critical hit particles flying behind it.
+	METHOD isNoPhysics ()Z
+		COMMENT Whether the arrow can noClip
+	METHOD lerpMotion (DDD)V
+		COMMENT Updates the entity motion clientside, called by packets from the server
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD lerpTo (DDDFFIZ)V
+		COMMENT Sets a target for the client to interpolate towards over the next few ticks
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 yaw
+		ARG 8 pitch
+		ARG 9 posRotationIncrements
+		ARG 10 teleport
+	METHOD move (Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 type
+		ARG 2 pos
+	METHOD onHitBlock (Lnet/minecraft/world/phys/BlockHitResult;)V
+	METHOD onHitEntity (Lnet/minecraft/world/phys/EntityHitResult;)V
+		COMMENT Called when the arrow hits an entity
+		ARG 1 result
+	METHOD playerTouch (Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called by a player entity when they collide with an entity
+		ARG 1 entity
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD resetPiercedEntities ()V
+	METHOD setBaseDamage (D)V
+		ARG 1 damage
+	METHOD setCritArrow (Z)V
+		COMMENT Whether the arrow has a stream of critical hit particles flying behind it.
+		ARG 1 critical
+	METHOD setEnchantmentEffectsFromEntity (Lnet/minecraft/world/entity/LivingEntity;F)V
+	METHOD setFlag (IZ)V
+	METHOD setKnockback (I)V
+		COMMENT Sets the amount of knockback the arrow applies when it hits a mob.
+		ARG 1 knockbackStrength
+	METHOD setNoPhysics (Z)V
+		COMMENT Sets if this arrow can noClip
+		ARG 1 noClip
+	METHOD setOwner (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD setPierceLevel (B)V
+		ARG 1 level
+	METHOD setShotFromCrossbow (Z)V
+		COMMENT Sets data about if this arrow entity was shot from a crossbow
+		ARG 1 fromCrossbow
+	METHOD setSoundEvent (Lnet/minecraft/sounds/SoundEvent;)V
+		ARG 1 sound
+	METHOD shoot (DDDFF)V
+		COMMENT Similar to setArrowHeading, it's point the throwable entity to a x, y, z direction.
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 velocity
+		ARG 8 inaccuracy
+	METHOD shotFromCrossbow ()Z
+		COMMENT Whether the arrow was shot from a crossbow.
+	METHOD shouldFall ()Z
+	METHOD shouldRenderAtSqrDistance (D)Z
+		COMMENT Checks if the entity is in range to render.
+		ARG 1 distance
+	METHOD startFalling ()V
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	METHOD tickDespawn ()V
+	METHOD tryPickup (Lnet/minecraft/world/entity/player/Player;)Z
+	CLASS 1
+		FIELD $SwitchMap$net$minecraft$world$entity$projectile$AbstractArrow$Pickup [I
+		METHOD <clinit> ()V
+	CLASS Pickup
+		FIELD $VALUES [Lnet/minecraft/world/entity/projectile/AbstractArrow$Pickup;
+		FIELD ALLOWED Lnet/minecraft/world/entity/projectile/AbstractArrow$Pickup;
+		FIELD CREATIVE_ONLY Lnet/minecraft/world/entity/projectile/AbstractArrow$Pickup;
+		FIELD DISALLOWED Lnet/minecraft/world/entity/projectile/AbstractArrow$Pickup;
+		METHOD $values ()[Lnet/minecraft/world/entity/projectile/AbstractArrow$Pickup;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;I)V
+		METHOD byOrdinal (I)Lnet/minecraft/world/entity/projectile/AbstractArrow$Pickup;
+			ARG 0 ordinal
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/entity/projectile/AbstractArrow$Pickup;
+		METHOD values ()[Lnet/minecraft/world/entity/projectile/AbstractArrow$Pickup;

@@ -1,0 +1,34 @@
+CLASS net/minecraft/world/item/CompassItem
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD TAG_LODESTONE_DIMENSION Ljava/lang/String;
+	FIELD TAG_LODESTONE_POS Ljava/lang/String;
+	FIELD TAG_LODESTONE_TRACKED Ljava/lang/String;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/item/Item$Properties;)V
+	METHOD addLodestoneTags (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/BlockPos;Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 lodestoneDimension
+		ARG 2 lodestonePos
+		ARG 3 nbt
+	METHOD getDescriptionId (Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
+		COMMENT Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have different names based on their damage or NBT.
+		ARG 1 stack
+	METHOD getLodestoneDimension (Lnet/minecraft/nbt/CompoundTag;)Ljava/util/Optional;
+		ARG 0 nbt
+	METHOD inventoryTick (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;IZ)V
+		COMMENT Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and update it's contents.
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 entity
+		ARG 4 itemSlot
+		ARG 5 isSelected
+	METHOD isFoil (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Returns true if this item has an enchantment glint. By default, this returns <code>stack.isItemEnchanted()</code>, but other items can override it (for instance, written books always return true).
+		COMMENT
+		COMMENT Note that if you override this method, you generally want to also call the super version (on {@link Item}) to get the glint for enchanted items. Of course, that is unnecessary if the overwritten version always returns true.
+		ARG 1 stack
+	METHOD isLodestoneCompass (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 stack
+	METHOD lambda$addLodestoneTags$0 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
+	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
+		COMMENT Called when this item is used when targetting a Block
+		ARG 1 context

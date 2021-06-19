@@ -1,0 +1,33 @@
+CLASS net/minecraft/world/level/chunk/EmptyLevelChunk
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/ChunkPos;)V
+	METHOD addAndRegisterBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/LevelChunk$EntityCreationType;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+		ARG 1 pos
+		ARG 2 creationMode
+	METHOD getBlockState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 pos
+	METHOD getFluidState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;
+		ARG 1 pos
+	METHOD getFullStatus ()Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
+	METHOD getLightEmission (Lnet/minecraft/core/BlockPos;)I
+		ARG 1 pos
+	METHOD isEmpty ()Z
+	METHOD isYSpaceEmpty (II)Z
+		COMMENT Returns whether the ExtendedBlockStorages containing levels (in blocks) from arg 1 to arg 2 are fully empty (true) or not (false).
+		ARG 1 startY
+		ARG 2 endY
+	METHOD markUnsaved ()V
+		COMMENT Sets the isModified flag for this Chunk
+	METHOD removeBlockEntity (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD setBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+	METHOD setBlockState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 isMoving
+	CLASS EmptyChunkBiomeContainer
+		FIELD EMPTY_BIOMES [Lnet/minecraft/world/level/biome/Biome;
+		METHOD <clinit> ()V
+		METHOD <init> (Lnet/minecraft/world/level/Level;)V
+		METHOD getNoiseBiome (III)Lnet/minecraft/world/level/biome/Biome;
+		METHOD writeBiomes ()[I

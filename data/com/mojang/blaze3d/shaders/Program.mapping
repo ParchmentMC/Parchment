@@ -1,0 +1,33 @@
+CLASS com/mojang/blaze3d/shaders/Program
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD MAX_LOG_LENGTH I
+	FIELD id I
+	FIELD name Ljava/lang/String;
+	FIELD type Lcom/mojang/blaze3d/shaders/Program$Type;
+	METHOD <clinit> ()V
+	METHOD <init> (Lcom/mojang/blaze3d/shaders/Program$Type;ILjava/lang/String;)V
+	METHOD attachToShader (Lcom/mojang/blaze3d/shaders/Shader;)V
+	METHOD close ()V
+	METHOD compileShader (Lcom/mojang/blaze3d/shaders/Program$Type;Ljava/lang/String;Ljava/io/InputStream;Ljava/lang/String;Lcom/mojang/blaze3d/preprocessor/GlslPreprocessor;)Lcom/mojang/blaze3d/shaders/Program;
+	METHOD compileShaderInternal (Lcom/mojang/blaze3d/shaders/Program$Type;Ljava/lang/String;Ljava/io/InputStream;Ljava/lang/String;Lcom/mojang/blaze3d/preprocessor/GlslPreprocessor;)I
+	METHOD createProgram (Lcom/mojang/blaze3d/shaders/Program$Type;Ljava/lang/String;I)Lcom/mojang/blaze3d/shaders/Program;
+	METHOD getId ()I
+	METHOD getName ()Ljava/lang/String;
+	CLASS Type
+		FIELD $VALUES [Lcom/mojang/blaze3d/shaders/Program$Type;
+		FIELD FRAGMENT Lcom/mojang/blaze3d/shaders/Program$Type;
+		FIELD VERTEX Lcom/mojang/blaze3d/shaders/Program$Type;
+		FIELD extension Ljava/lang/String;
+		FIELD glType I
+		FIELD name Ljava/lang/String;
+		FIELD programs Ljava/util/Map;
+		METHOD $values ()[Lcom/mojang/blaze3d/shaders/Program$Type;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;I)V
+		METHOD getExtension ()Ljava/lang/String;
+		METHOD getGlType ()I
+		METHOD getName ()Ljava/lang/String;
+		METHOD getPrograms ()Ljava/util/Map;
+			COMMENT gets a map of loaded shaders for the ShaderType.
+		METHOD valueOf (Ljava/lang/String;)Lcom/mojang/blaze3d/shaders/Program$Type;
+		METHOD values ()[Lcom/mojang/blaze3d/shaders/Program$Type;

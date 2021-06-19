@@ -1,0 +1,29 @@
+CLASS net/minecraft/client/multiplayer/ClientHandshakePacketListenerImpl
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD connection Lnet/minecraft/network/Connection;
+	FIELD localGameProfile Lcom/mojang/authlib/GameProfile;
+	FIELD minecraft Lnet/minecraft/client/Minecraft;
+	FIELD parent Lnet/minecraft/client/gui/screens/Screen;
+	FIELD updateStatus Ljava/util/function/Consumer;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/network/Connection;Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Ljava/util/function/Consumer;)V
+	METHOD authenticateServer (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
+		ARG 1 serverHash
+	METHOD getConnection ()Lnet/minecraft/network/Connection;
+		COMMENT Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient
+	METHOD getMinecraftSessionService ()Lcom/mojang/authlib/minecraft/MinecraftSessionService;
+	METHOD handleCompression (Lnet/minecraft/network/protocol/login/ClientboundLoginCompressionPacket;)V
+		ARG 1 packet
+	METHOD handleCustomQuery (Lnet/minecraft/network/protocol/login/ClientboundCustomQueryPacket;)V
+		ARG 1 packet
+	METHOD handleDisconnect (Lnet/minecraft/network/protocol/login/ClientboundLoginDisconnectPacket;)V
+		ARG 1 packet
+	METHOD handleGameProfile (Lnet/minecraft/network/protocol/login/ClientboundGameProfilePacket;)V
+		ARG 1 packet
+	METHOD handleHello (Lnet/minecraft/network/protocol/login/ClientboundHelloPacket;)V
+		ARG 1 packet
+	METHOD lambda$handleHello$0 (Ljavax/crypto/Cipher;Ljavax/crypto/Cipher;Lio/netty/util/concurrent/Future;)V
+	METHOD lambda$handleHello$1 (Ljava/lang/String;Lnet/minecraft/network/protocol/login/ServerboundKeyPacket;Ljavax/crypto/Cipher;Ljavax/crypto/Cipher;)V
+	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
+		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
+		ARG 1 reason

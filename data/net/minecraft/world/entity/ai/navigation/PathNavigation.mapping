@@ -1,0 +1,116 @@
+CLASS net/minecraft/world/entity/ai/navigation/PathNavigation
+	FIELD MAX_TIME_RECOMPUTE I
+	FIELD hasDelayedRecomputation Z
+	FIELD isStuck Z
+	FIELD lastStuckCheck I
+	FIELD lastStuckCheckPos Lnet/minecraft/world/phys/Vec3;
+	FIELD lastTimeoutCheck J
+	FIELD level Lnet/minecraft/world/level/Level;
+	FIELD maxDistanceToWaypoint F
+	FIELD maxVisitedNodesMultiplier F
+	FIELD mob Lnet/minecraft/world/entity/Mob;
+	FIELD nodeEvaluator Lnet/minecraft/world/level/pathfinder/NodeEvaluator;
+	FIELD path Lnet/minecraft/world/level/pathfinder/Path;
+	FIELD pathFinder Lnet/minecraft/world/level/pathfinder/PathFinder;
+	FIELD reachRange I
+		COMMENT Distance in which a path point counts as target-reaching
+	FIELD speedModifier D
+	FIELD targetPos Lnet/minecraft/core/BlockPos;
+	FIELD tick I
+	FIELD timeLastRecompute J
+	FIELD timeoutCachedNode Lnet/minecraft/core/Vec3i;
+	FIELD timeoutLimit D
+	FIELD timeoutTimer J
+	METHOD <init> (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/Level;)V
+	METHOD canFloat ()Z
+	METHOD canMoveDirectly (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;III)Z
+		COMMENT Checks if the specified entity can safely walk to the specified location.
+		ARG 1 posVec31
+		ARG 2 posVec32
+		ARG 3 sizeX
+		ARG 4 sizeY
+		ARG 5 sizeZ
+	METHOD canUpdatePath ()Z
+		COMMENT If on ground or swimming and can swim
+	METHOD createPath (DDDI)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns path to given BlockPos
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 accuracy
+	METHOD createPath (Ljava/util/Set;I)Lnet/minecraft/world/level/pathfinder/Path;
+		ARG 1 positions
+		ARG 2 distance
+	METHOD createPath (Ljava/util/Set;IZI)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns a path to one of the given targets or null
+		ARG 1 targets
+		ARG 2 regionOffset
+		ARG 3 offsetUpward
+		ARG 4 accuracy
+	METHOD createPath (Ljava/util/Set;IZIF)Lnet/minecraft/world/level/pathfinder/Path;
+	METHOD createPath (Ljava/util/stream/Stream;I)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns a path to one of the elements of the stream or null
+		ARG 1 targets
+		ARG 2 accuracy
+	METHOD createPath (Lnet/minecraft/core/BlockPos;I)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns path to given BlockPos
+		ARG 1 pos
+		ARG 2 accuracy
+	METHOD createPath (Lnet/minecraft/core/BlockPos;II)Lnet/minecraft/world/level/pathfinder/Path;
+	METHOD createPath (Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns a path to the given entity or null
+		ARG 1 entity
+	METHOD createPathFinder (I)Lnet/minecraft/world/level/pathfinder/PathFinder;
+	METHOD doStuckDetection (Lnet/minecraft/world/phys/Vec3;)V
+		COMMENT Checks if entity haven't been moved when last checked and if so, clears current {@link net.minecraft.pathfinding.PathEntity}
+		ARG 1 positionVec3
+	METHOD followThePath ()V
+	METHOD getMaxDistanceToWaypoint ()F
+	METHOD getNodeEvaluator ()Lnet/minecraft/world/level/pathfinder/NodeEvaluator;
+	METHOD getPath ()Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT gets the actively used PathEntity
+	METHOD getTargetPos ()Lnet/minecraft/core/BlockPos;
+	METHOD getTempMobPos ()Lnet/minecraft/world/phys/Vec3;
+	METHOD hasDelayedRecomputation ()Z
+		COMMENT Returns true if path can be changed by {@link net.minecraft.pathfinding.PathNavigate#onUpdateNavigation() onUpdateNavigation()}
+	METHOD isDone ()Z
+		COMMENT If null path or reached the end
+	METHOD isInLiquid ()Z
+		COMMENT Returns true if the entity is in water or lava, false otherwise
+	METHOD isInProgress ()Z
+	METHOD isStableDestination (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD isStuck ()Z
+	METHOD moveTo (DDDD)Z
+		COMMENT Try to find and set a path to XYZ. Returns true if successful. Args : x, y, z, speed
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 speed
+	METHOD moveTo (Lnet/minecraft/world/entity/Entity;D)Z
+		COMMENT Try to find and set a path to EntityLiving. Returns true if successful. Args : entity, speed
+		ARG 1 entity
+		ARG 2 speed
+	METHOD moveTo (Lnet/minecraft/world/level/pathfinder/Path;D)Z
+		COMMENT Sets a new path. If it's diferent from the old path. Checks to adjust path for sun avoiding, and stores start coords. Args : path, speed
+		ARG 1 pathentity
+		ARG 2 speed
+	METHOD recomputePath ()V
+	METHOD recomputePath (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD resetMaxVisitedNodesMultiplier ()V
+	METHOD resetStuckTimeout ()V
+	METHOD setCanFloat (Z)V
+		ARG 1 canSwim
+	METHOD setMaxVisitedNodesMultiplier (F)V
+		ARG 1 multiplier
+	METHOD setSpeedModifier (D)V
+		COMMENT Sets the speed
+		ARG 1 speed
+	METHOD shouldTargetNextNodeInDirection (Lnet/minecraft/world/phys/Vec3;)Z
+	METHOD stop ()V
+		COMMENT sets active PathEntity to null
+	METHOD tick ()V
+	METHOD timeoutPath ()V
+	METHOD trimPath ()V
+		COMMENT Trims path data from the end to the first sun covered block

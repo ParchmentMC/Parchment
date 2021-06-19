@@ -1,0 +1,15 @@
+CLASS net/minecraft/network/protocol/game/ClientboundRemoveMobEffectPacket
+	FIELD effect Lnet/minecraft/world/effect/MobEffect;
+	FIELD entityId I
+	METHOD <init> (ILnet/minecraft/world/effect/MobEffect;)V
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD getEffect ()Lnet/minecraft/world/effect/MobEffect;
+	METHOD getEntity (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/Entity;
+		ARG 1 level
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf

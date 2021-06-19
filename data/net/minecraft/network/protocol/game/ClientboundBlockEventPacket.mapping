@@ -1,0 +1,20 @@
+CLASS net/minecraft/network/protocol/game/ClientboundBlockEventPacket
+	FIELD b0 I
+	FIELD b1 I
+	FIELD block Lnet/minecraft/world/level/block/Block;
+	FIELD pos Lnet/minecraft/core/BlockPos;
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;II)V
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD getB0 ()I
+		COMMENT instrument data for noteblocks
+	METHOD getB1 ()I
+		COMMENT pitch data for noteblocks
+	METHOD getBlock ()Lnet/minecraft/world/level/block/Block;
+	METHOD getPos ()Lnet/minecraft/core/BlockPos;
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf

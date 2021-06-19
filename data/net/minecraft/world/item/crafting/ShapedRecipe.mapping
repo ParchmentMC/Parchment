@@ -1,0 +1,77 @@
+CLASS net/minecraft/world/item/crafting/ShapedRecipe
+	FIELD group Ljava/lang/String;
+	FIELD height I
+	FIELD id Lnet/minecraft/resources/ResourceLocation;
+	FIELD recipeItems Lnet/minecraft/core/NonNullList;
+	FIELD result Lnet/minecraft/world/item/ItemStack;
+	FIELD width I
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;IILnet/minecraft/core/NonNullList;Lnet/minecraft/world/item/ItemStack;)V
+	METHOD assemble (Lnet/minecraft/world/Container;)Lnet/minecraft/world/item/ItemStack;
+	METHOD assemble (Lnet/minecraft/world/inventory/CraftingContainer;)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Returns an Item that is the result of this recipe
+		ARG 1 inv
+	METHOD canCraftInDimensions (II)Z
+		COMMENT Used to determine if this recipe can fit in a grid of the given width/height
+		ARG 1 width
+		ARG 2 height
+	METHOD dissolvePattern ([Ljava/lang/String;Ljava/util/Map;II)Lnet/minecraft/core/NonNullList;
+		ARG 0 pattern
+		ARG 1 keys
+		ARG 2 patternWidth
+		ARG 3 patternHeight
+	METHOD firstNonSpace (Ljava/lang/String;)I
+		ARG 0 str
+	METHOD getGroup ()Ljava/lang/String;
+		COMMENT Recipes with equal group are combined into one button in the recipe book
+	METHOD getHeight ()I
+	METHOD getId ()Lnet/minecraft/resources/ResourceLocation;
+	METHOD getIngredients ()Lnet/minecraft/core/NonNullList;
+	METHOD getResultItem ()Lnet/minecraft/world/item/ItemStack;
+		COMMENT Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
+	METHOD getSerializer ()Lnet/minecraft/world/item/crafting/RecipeSerializer;
+	METHOD getWidth ()I
+	METHOD isIncomplete ()Z
+	METHOD itemFromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/Item;
+	METHOD itemStackFromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/ItemStack;
+	METHOD keyFromJson (Lcom/google/gson/JsonObject;)Ljava/util/Map;
+		COMMENT Returns a key json object as a Java HashMap.
+		ARG 0 json
+	METHOD lambda$isIncomplete$0 (Lnet/minecraft/world/item/crafting/Ingredient;)Z
+	METHOD lambda$isIncomplete$1 (Lnet/minecraft/world/item/crafting/Ingredient;)Z
+	METHOD lambda$itemFromJson$2 (Ljava/lang/String;)Lcom/google/gson/JsonSyntaxException;
+	METHOD lastNonSpace (Ljava/lang/String;)I
+		ARG 0 str
+	METHOD matches (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Z
+	METHOD matches (Lnet/minecraft/world/inventory/CraftingContainer;IIZ)Z
+		COMMENT Checks if the region of a crafting inventory is match for the recipe.
+		ARG 1 craftingInventory
+		ARG 2 width
+		ARG 3 height
+	METHOD matches (Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/level/Level;)Z
+		COMMENT Used to check if a recipe matches current crafting inventory
+		ARG 1 inv
+		ARG 2 level
+	METHOD patternFromJson (Lcom/google/gson/JsonArray;)[Ljava/lang/String;
+		ARG 0 jsonArr
+	METHOD shrink ([Ljava/lang/String;)[Ljava/lang/String;
+		ARG 0 toShrink
+	CLASS Serializer
+		METHOD <init> ()V
+		METHOD fromJson (Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/Recipe;
+			ARG 1 recipeId
+			ARG 2 json
+		METHOD fromJson (Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/ShapedRecipe;
+			ARG 1 recipeId
+			ARG 2 json
+		METHOD fromNetwork (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/item/crafting/Recipe;
+			ARG 1 recipeId
+			ARG 2 buffer
+		METHOD fromNetwork (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/item/crafting/ShapedRecipe;
+			ARG 1 recipeId
+			ARG 2 buffer
+		METHOD toNetwork (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/item/crafting/Recipe;)V
+			ARG 1 buffer
+			ARG 2 recipe
+		METHOD toNetwork (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/item/crafting/ShapedRecipe;)V
+			ARG 1 buffer
+			ARG 2 recipe

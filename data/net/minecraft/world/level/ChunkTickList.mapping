@@ -1,0 +1,30 @@
+CLASS net/minecraft/world/level/ChunkTickList
+	FIELD ticks Ljava/util/List;
+	FIELD toId Ljava/util/function/Function;
+	METHOD <init> (Ljava/util/function/Function;Ljava/util/List;)V
+	METHOD <init> (Ljava/util/function/Function;Ljava/util/List;J)V
+	METHOD copyOut (Lnet/minecraft/world/level/TickList;)V
+	METHOD create (Lnet/minecraft/nbt/ListTag;Ljava/util/function/Function;Ljava/util/function/Function;)Lnet/minecraft/world/level/ChunkTickList;
+	METHOD hasScheduledTick (Lnet/minecraft/core/BlockPos;Ljava/lang/Object;)Z
+		ARG 1 pos
+		ARG 2 item
+	METHOD lambda$copyOut$1 (Lnet/minecraft/world/level/TickList;Lnet/minecraft/world/level/ChunkTickList$ScheduledTick;)V
+	METHOD lambda$new$0 (JLnet/minecraft/world/level/TickNextTickData;)Lnet/minecraft/world/level/ChunkTickList$ScheduledTick;
+	METHOD save ()Lnet/minecraft/nbt/ListTag;
+	METHOD scheduleTick (Lnet/minecraft/core/BlockPos;Ljava/lang/Object;ILnet/minecraft/world/level/TickPriority;)V
+		ARG 1 pos
+		ARG 2 item
+		ARG 3 scheduledTime
+		ARG 4 priority
+	METHOD size ()I
+	METHOD willTickThisTick (Lnet/minecraft/core/BlockPos;Ljava/lang/Object;)Z
+		COMMENT Checks if this position/item is scheduled to be updated this tick
+		ARG 1 pos
+		ARG 2 obj
+	CLASS ScheduledTick
+		FIELD delay I
+		FIELD pos Lnet/minecraft/core/BlockPos;
+		FIELD priority Lnet/minecraft/world/level/TickPriority;
+		FIELD type Ljava/lang/Object;
+		METHOD <init> (Ljava/lang/Object;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/level/TickPriority;)V
+		METHOD toString ()Ljava/lang/String;

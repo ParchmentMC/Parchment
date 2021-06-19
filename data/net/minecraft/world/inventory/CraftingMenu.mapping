@@ -1,0 +1,46 @@
+CLASS net/minecraft/world/inventory/CraftingMenu
+	FIELD CRAFT_SLOT_END I
+	FIELD CRAFT_SLOT_START I
+	FIELD INV_SLOT_END I
+	FIELD INV_SLOT_START I
+	FIELD RESULT_SLOT I
+	FIELD USE_ROW_SLOT_END I
+	FIELD USE_ROW_SLOT_START I
+	FIELD access Lnet/minecraft/world/inventory/ContainerLevelAccess;
+	FIELD craftSlots Lnet/minecraft/world/inventory/CraftingContainer;
+	FIELD player Lnet/minecraft/world/entity/player/Player;
+	FIELD resultSlots Lnet/minecraft/world/inventory/ResultContainer;
+	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;)V
+	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
+	METHOD canTakeItemForPickAll (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z
+		COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
+		ARG 1 stack
+		ARG 2 slot
+	METHOD clearCraftingContent ()V
+	METHOD fillCraftSlotsStackedContents (Lnet/minecraft/world/entity/player/StackedContents;)V
+		ARG 1 itemHelper
+	METHOD getGridHeight ()I
+	METHOD getGridWidth ()I
+	METHOD getRecipeBookType ()Lnet/minecraft/world/inventory/RecipeBookType;
+	METHOD getResultSlotIndex ()I
+	METHOD getSize ()I
+	METHOD lambda$quickMoveStack$2 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+	METHOD lambda$removed$1 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+	METHOD lambda$slotsChanged$0 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
+		ARG 1 player
+		ARG 2 index
+	METHOD recipeMatches (Lnet/minecraft/world/item/crafting/Recipe;)Z
+		ARG 1 recipe
+	METHOD removed (Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called when the container is closed.
+		ARG 1 player
+	METHOD shouldMoveToInventory (I)Z
+	METHOD slotChangedCraftingGrid (Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/inventory/ResultContainer;)V
+	METHOD slotsChanged (Lnet/minecraft/world/Container;)V
+		COMMENT Callback for when the crafting matrix is changed.
+		ARG 1 inventory
+	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+		COMMENT Determines whether supplied player can use this container
+		ARG 1 player

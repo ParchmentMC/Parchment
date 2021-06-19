@@ -1,0 +1,122 @@
+CLASS net/minecraft/world/item/enchantment/EnchantmentHelper
+	METHOD <init> ()V
+	METHOD deserializeEnchantments (Lnet/minecraft/nbt/ListTag;)Ljava/util/Map;
+		ARG 0 serialized
+	METHOD doPostDamageEffects (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;)V
+		ARG 0 user
+		ARG 1 target
+	METHOD doPostHurtEffects (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;)V
+		ARG 0 user
+		ARG 1 attacker
+	METHOD enchantItem (Ljava/util/Random;Lnet/minecraft/world/item/ItemStack;IZ)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Applys a random enchantment to the specified item.
+		ARG 0 random
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 allowTreasure
+	METHOD filterCompatibleEnchantments (Ljava/util/List;Lnet/minecraft/world/item/enchantment/EnchantmentInstance;)V
+		ARG 0 dataList
+		ARG 1 data
+	METHOD getAvailableEnchantmentResults (ILnet/minecraft/world/item/ItemStack;Z)Ljava/util/List;
+		ARG 0 level
+		ARG 1 stack
+		ARG 2 allowTreasure
+	METHOD getBlockEfficiency (Lnet/minecraft/world/entity/LivingEntity;)I
+		ARG 0 entity
+	METHOD getDamageBonus (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/MobType;)F
+		ARG 0 stack
+		ARG 1 creatureAttribute
+	METHOD getDamageProtection (Ljava/lang/Iterable;Lnet/minecraft/world/damagesource/DamageSource;)I
+		COMMENT Returns the modifier of protection enchantments on armors equipped on player.
+		ARG 0 stacks
+		ARG 1 source
+	METHOD getDepthStrider (Lnet/minecraft/world/entity/LivingEntity;)I
+		ARG 0 entity
+	METHOD getEnchantmentCost (Ljava/util/Random;IILnet/minecraft/world/item/ItemStack;)I
+		COMMENT Returns the enchantability of itemstack, using a separate calculation for each enchantNum (0, 1 or 2), cutting to the max enchantability power of the table, which is locked to a max of 15.
+		ARG 0 rand
+		ARG 1 enchantNum
+		ARG 2 power
+		ARG 3 stack
+	METHOD getEnchantmentLevel (Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/entity/LivingEntity;)I
+		ARG 0 enchantment
+		ARG 1 entity
+	METHOD getEnchantments (Lnet/minecraft/world/item/ItemStack;)Ljava/util/Map;
+		COMMENT Return the enchantments for the specified stack.
+		ARG 0 stack
+	METHOD getFireAspect (Lnet/minecraft/world/entity/LivingEntity;)I
+		COMMENT Returns the fire aspect modifier of the players held item.
+		ARG 0 player
+	METHOD getFishingLuckBonus (Lnet/minecraft/world/item/ItemStack;)I
+		ARG 0 stack
+	METHOD getFishingSpeedBonus (Lnet/minecraft/world/item/ItemStack;)I
+		ARG 0 stack
+	METHOD getItemEnchantmentLevel (Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/item/ItemStack;)I
+		COMMENT Returns the level of enchantment on the ItemStack passed.
+		ARG 0 enchID
+		ARG 1 stack
+	METHOD getKnockbackBonus (Lnet/minecraft/world/entity/LivingEntity;)I
+		COMMENT Returns the Knockback modifier of the enchantment on the players held item.
+		ARG 0 player
+	METHOD getLoyalty (Lnet/minecraft/world/item/ItemStack;)I
+		ARG 0 stack
+	METHOD getMobLooting (Lnet/minecraft/world/entity/LivingEntity;)I
+		ARG 0 entity
+	METHOD getRandomItemWith (Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/Map$Entry;
+		COMMENT Gets an item with a specified enchantment from a living entity. If there are more than one valid items a random one will be returned.
+		ARG 0 targetEnchantment
+		ARG 1 entity
+	METHOD getRandomItemWith (Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/entity/LivingEntity;Ljava/util/function/Predicate;)Ljava/util/Map$Entry;
+		ARG 0 enchantment
+		ARG 1 livingEntity
+		ARG 2 stackCondition
+	METHOD getRespiration (Lnet/minecraft/world/entity/LivingEntity;)I
+		ARG 0 entity
+	METHOD getRiptide (Lnet/minecraft/world/item/ItemStack;)I
+		ARG 0 stack
+	METHOD getSweepingDamageRatio (Lnet/minecraft/world/entity/LivingEntity;)F
+		ARG 0 entity
+	METHOD hasAquaAffinity (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
+	METHOD hasBindingCurse (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 stack
+	METHOD hasChanneling (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 stack
+	METHOD hasFrostWalker (Lnet/minecraft/world/entity/LivingEntity;)Z
+		COMMENT Checks if the player has any armor enchanted with the frost walker enchantment.
+		COMMENT @return If player has equipment with frost walker
+		ARG 0 player
+	METHOD hasSoulSpeed (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
+	METHOD hasVanishingCurse (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 stack
+	METHOD isEnchantmentCompatible (Ljava/util/Collection;Lnet/minecraft/world/item/enchantment/Enchantment;)Z
+		ARG 0 enchantments
+		ARG 1 enchantment
+	METHOD lambda$deserializeEnchantments$0 (Ljava/util/Map;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/item/enchantment/Enchantment;)V
+	METHOD lambda$doPostDamageEffects$5 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/enchantment/Enchantment;I)V
+	METHOD lambda$doPostHurtEffects$4 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/enchantment/Enchantment;I)V
+	METHOD lambda$getDamageBonus$3 (Lorg/apache/commons/lang3/mutable/MutableFloat;Lnet/minecraft/world/entity/MobType;Lnet/minecraft/world/item/enchantment/Enchantment;I)V
+	METHOD lambda$getDamageProtection$2 (Lorg/apache/commons/lang3/mutable/MutableInt;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/item/enchantment/Enchantment;I)V
+	METHOD lambda$getRandomItemWith$6 (Lnet/minecraft/world/item/ItemStack;)Z
+	METHOD lambda$runIterationOnItem$1 (Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;ILnet/minecraft/world/item/enchantment/Enchantment;)V
+	METHOD runIterationOnInventory (Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;Ljava/lang/Iterable;)V
+		COMMENT Executes the enchantment modifier on the array of ItemStack passed.
+		ARG 0 modifier
+		ARG 1 stacks
+	METHOD runIterationOnItem (Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Executes the enchantment modifier on the ItemStack passed.
+		ARG 0 modifier
+		ARG 1 stack
+	METHOD selectEnchantment (Ljava/util/Random;Lnet/minecraft/world/item/ItemStack;IZ)Ljava/util/List;
+		COMMENT Create a list of random EnchantmentData (enchantments) that can be added together to the ItemStack, the 3rd parameter is the total enchantability level.
+		ARG 0 random
+		ARG 1 itemStack
+		ARG 2 level
+		ARG 3 allowTreasure
+	METHOD setEnchantments (Ljava/util/Map;Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Set the enchantments for the specified stack.
+		ARG 0 enchMap
+		ARG 1 stack
+	CLASS EnchantmentVisitor
+		METHOD accept (Lnet/minecraft/world/item/enchantment/Enchantment;I)V

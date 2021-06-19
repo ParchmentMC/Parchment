@@ -1,0 +1,36 @@
+CLASS net/minecraft/client/renderer/block/model/BlockModelDefinition
+	FIELD multiPart Lnet/minecraft/client/renderer/block/model/multipart/MultiPart;
+	FIELD variants Ljava/util/Map;
+	METHOD <init> (Ljava/util/List;)V
+	METHOD <init> (Ljava/util/Map;Lnet/minecraft/client/renderer/block/model/multipart/MultiPart;)V
+	METHOD equals (Ljava/lang/Object;)Z
+	METHOD fromStream (Lnet/minecraft/client/renderer/block/model/BlockModelDefinition$Context;Ljava/io/Reader;)Lnet/minecraft/client/renderer/block/model/BlockModelDefinition;
+		ARG 0 containerHolder
+		ARG 1 reader
+	METHOD getMultiPart ()Lnet/minecraft/client/renderer/block/model/multipart/MultiPart;
+	METHOD getMultiVariants ()Ljava/util/Set;
+	METHOD getVariant (Ljava/lang/String;)Lnet/minecraft/client/renderer/block/model/MultiVariant;
+	METHOD getVariants ()Ljava/util/Map;
+	METHOD hasVariant (Ljava/lang/String;)Z
+	METHOD hashCode ()I
+	METHOD isMultiPart ()Z
+	CLASS Context
+		FIELD definition Lnet/minecraft/world/level/block/state/StateDefinition;
+		FIELD gson Lcom/google/gson/Gson;
+		METHOD <init> ()V
+		METHOD getDefinition ()Lnet/minecraft/world/level/block/state/StateDefinition;
+		METHOD setDefinition (Lnet/minecraft/world/level/block/state/StateDefinition;)V
+			ARG 1 stateContainer
+	CLASS Deserializer
+		METHOD <init> ()V
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/client/renderer/block/model/BlockModelDefinition;
+		METHOD getMultiPart (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Lnet/minecraft/client/renderer/block/model/multipart/MultiPart;
+			ARG 1 deserializationContext
+			ARG 2 object
+		METHOD getVariants (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Ljava/util/Map;
+			ARG 1 deserializationContext
+			ARG 2 object
+	CLASS MissingVariantException
+		FIELD this$0 Lnet/minecraft/client/renderer/block/model/BlockModelDefinition;
+		METHOD <init> (Lnet/minecraft/client/renderer/block/model/BlockModelDefinition;)V

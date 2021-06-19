@@ -1,0 +1,29 @@
+CLASS net/minecraft/world/entity/ai/goal/Goal
+	FIELD flags Ljava/util/EnumSet;
+	METHOD <init> ()V
+	METHOD canContinueToUse ()Z
+		COMMENT Returns whether an in-progress EntityAIBase should continue executing
+	METHOD canUse ()Z
+		COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	METHOD getFlags ()Ljava/util/EnumSet;
+	METHOD isInterruptable ()Z
+	METHOD setFlags (Ljava/util/EnumSet;)V
+		ARG 1 flagSet
+	METHOD start ()V
+		COMMENT Execute a one shot task or start executing a continuous task
+	METHOD stop ()V
+		COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+	METHOD tick ()V
+		COMMENT Keep ticking a continuous task that has already been started
+	METHOD toString ()Ljava/lang/String;
+	CLASS Flag
+		FIELD $VALUES [Lnet/minecraft/world/entity/ai/goal/Goal$Flag;
+		FIELD JUMP Lnet/minecraft/world/entity/ai/goal/Goal$Flag;
+		FIELD LOOK Lnet/minecraft/world/entity/ai/goal/Goal$Flag;
+		FIELD MOVE Lnet/minecraft/world/entity/ai/goal/Goal$Flag;
+		FIELD TARGET Lnet/minecraft/world/entity/ai/goal/Goal$Flag;
+		METHOD $values ()[Lnet/minecraft/world/entity/ai/goal/Goal$Flag;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;I)V
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/entity/ai/goal/Goal$Flag;
+		METHOD values ()[Lnet/minecraft/world/entity/ai/goal/Goal$Flag;

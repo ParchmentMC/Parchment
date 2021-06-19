@@ -1,0 +1,37 @@
+CLASS net/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer
+	FIELD compositeCondition Ljava/util/function/Predicate;
+	FIELD conditions [Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
+		COMMENT Conditions for the loot entry to be applied.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
+	METHOD canRun (Lnet/minecraft/world/level/storage/loot/LootContext;)Z
+	METHOD getType ()Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryType;
+	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V
+	CLASS Builder
+		FIELD conditions Ljava/util/List;
+		METHOD <init> ()V
+		METHOD append (Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/entries/EntryGroup$Builder;
+		METHOD build ()Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;
+		METHOD getConditions ()[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
+		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;
+		METHOD otherwise (Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/entries/AlternativesEntry$Builder;
+		METHOD then (Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/entries/SequentialEntry$Builder;
+		METHOD unwrap ()Ljava/lang/Object;
+		METHOD unwrap ()Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;
+		METHOD when (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)Ljava/lang/Object;
+			ARG 1 conditionBuilder
+		METHOD when (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;
+			ARG 1 conditionBuilder
+	CLASS Serializer
+		METHOD <init> ()V
+		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;
+		METHOD deserializeCustom (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;
+			ARG 1 object
+			ARG 2 context
+			ARG 3 conditions
+		METHOD serialize (Lcom/google/gson/JsonObject;Ljava/lang/Object;Lcom/google/gson/JsonSerializationContext;)V
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;Lcom/google/gson/JsonSerializationContext;)V
+		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;Lcom/google/gson/JsonSerializationContext;)V
+			ARG 1 object
+			ARG 2 context
+			ARG 3 conditions

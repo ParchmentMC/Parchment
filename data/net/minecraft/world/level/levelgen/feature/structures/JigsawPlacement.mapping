@@ -1,0 +1,29 @@
+CLASS net/minecraft/world/level/levelgen/feature/structures/JigsawPlacement
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD addPieces (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/feature/configurations/JigsawConfiguration;Lnet/minecraft/world/level/levelgen/feature/structures/JigsawPlacement$PieceFactory;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;ZZLnet/minecraft/world/level/LevelHeightAccessor;)V
+	METHOD addPieces (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;ILnet/minecraft/world/level/levelgen/feature/structures/JigsawPlacement$PieceFactory;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Ljava/util/List;Ljava/util/Random;Lnet/minecraft/world/level/LevelHeightAccessor;)V
+	CLASS PieceFactory
+		METHOD create (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/world/level/levelgen/feature/structures/StructurePoolElement;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/level/block/Rotation;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;
+	CLASS PieceState
+		FIELD boundsTop I
+		FIELD depth I
+		FIELD free Lorg/apache/commons/lang3/mutable/MutableObject;
+		FIELD piece Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;Lorg/apache/commons/lang3/mutable/MutableObject;II)V
+	CLASS Placer
+		FIELD chunkGenerator Lnet/minecraft/world/level/chunk/ChunkGenerator;
+		FIELD factory Lnet/minecraft/world/level/levelgen/feature/structures/JigsawPlacement$PieceFactory;
+		FIELD maxDepth I
+		FIELD pieces Ljava/util/List;
+		FIELD placing Ljava/util/Deque;
+		FIELD pools Lnet/minecraft/core/Registry;
+		FIELD random Ljava/util/Random;
+		FIELD structureManager Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;
+		METHOD <init> (Lnet/minecraft/core/Registry;ILnet/minecraft/world/level/levelgen/feature/structures/JigsawPlacement$PieceFactory;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Ljava/util/List;Ljava/util/Random;)V
+		METHOD lambda$tryPlacingChildren$0 (Lnet/minecraft/world/level/levelgen/feature/structures/StructureTemplatePool;)Ljava/util/Optional;
+		METHOD lambda$tryPlacingChildren$1 (Lnet/minecraft/world/level/levelgen/feature/structures/StructureTemplatePool;)Ljava/lang/Integer;
+		METHOD lambda$tryPlacingChildren$2 (Lnet/minecraft/world/level/levelgen/feature/structures/StructureTemplatePool;)Ljava/lang/Integer;
+		METHOD lambda$tryPlacingChildren$3 (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate$StructureBlockInfo;)I
+		METHOD tryPlacingChildren (Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;Lorg/apache/commons/lang3/mutable/MutableObject;IIZLnet/minecraft/world/level/LevelHeightAccessor;)V

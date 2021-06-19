@@ -1,0 +1,26 @@
+CLASS net/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket
+	FIELD FLAG_CAN_FLY I
+	FIELD FLAG_FLYING I
+	FIELD FLAG_INSTABUILD I
+	FIELD FLAG_INVULNERABLE I
+	FIELD canFly Z
+	FIELD flyingSpeed F
+	FIELD instabuild Z
+	FIELD invulnerable Z
+	FIELD isFlying Z
+	FIELD walkingSpeed F
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD <init> (Lnet/minecraft/world/entity/player/Abilities;)V
+	METHOD canFly ()Z
+	METHOD canInstabuild ()Z
+	METHOD getFlyingSpeed ()F
+	METHOD getWalkingSpeed ()F
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD isFlying ()Z
+	METHOD isInvulnerable ()Z
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf

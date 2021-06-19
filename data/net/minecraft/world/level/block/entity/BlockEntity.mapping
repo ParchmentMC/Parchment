@@ -1,0 +1,48 @@
+CLASS net/minecraft/world/level/block/entity/BlockEntity
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD blockState Lnet/minecraft/world/level/block/state/BlockState;
+	FIELD level Lnet/minecraft/world/level/Level;
+		COMMENT the instance of the world the tile entity is in.
+	FIELD remove Z
+	FIELD type Lnet/minecraft/world/level/block/entity/BlockEntityType;
+	FIELD worldPosition Lnet/minecraft/core/BlockPos;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+	METHOD clearRemoved ()V
+		COMMENT validates a tile entity
+	METHOD fillCrashReportCategory (Lnet/minecraft/CrashReportCategory;)V
+		ARG 1 reportCategory
+	METHOD getBlockPos ()Lnet/minecraft/core/BlockPos;
+	METHOD getBlockState ()Lnet/minecraft/world/level/block/state/BlockState;
+	METHOD getLevel ()Lnet/minecraft/world/level/Level;
+	METHOD getType ()Lnet/minecraft/world/level/block/entity/BlockEntityType;
+	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
+	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
+	METHOD hasLevel ()Z
+		COMMENT Returns true if the worldObj isn't null.
+	METHOD isRemoved ()Z
+	METHOD lambda$fillCrashReportCategory$3 ()Ljava/lang/String;
+	METHOD lambda$loadStatic$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Ljava/lang/String;Lnet/minecraft/world/level/block/entity/BlockEntityType;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+	METHOD lambda$loadStatic$1 (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+	METHOD lambda$loadStatic$2 (Ljava/lang/String;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
+	METHOD loadStatic (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+	METHOD onlyOpCanSetNbt ()Z
+		COMMENT Checks if players can use this tile entity to access operator (permission level 2) commands either directly or indirectly, such as give or setblock. A similar method exists for entities at {@link net.minecraft.entity.Entity#ignoreItemEntityData()}.<p>For example, {@link net.minecraft.tileentity.TileEntitySign#onlyOpsCanSetNbt() signs} (player right-clicking) and {@link net.minecraft.tileentity.TileEntityCommandBlock#onlyOpsCanSetNbt() command blocks} are considered accessible.</p>@return true if this block entity offers ways for unauthorized players to use restricted commands
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD saveMetadata (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD setBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
+	METHOD setChanged ()V
+		COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
+	METHOD setChanged (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+	METHOD setLevel (Lnet/minecraft/world/level/Level;)V
+	METHOD setRemoved ()V
+		COMMENT invalidates a tile entity
+	METHOD triggerEvent (II)Z
+		COMMENT See {@link Block#eventReceived} for more information. This must return true serverside before it is called clientside.
+		ARG 1 id
+		ARG 2 type

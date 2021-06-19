@@ -1,0 +1,45 @@
+CLASS net/minecraft/client/gui/screens/LanguageSelectScreen
+	FIELD WARNING_LABEL Lnet/minecraft/network/chat/Component;
+	FIELD languageManager Lnet/minecraft/client/resources/language/LanguageManager;
+		COMMENT Reference to the LanguageManager object.
+	FIELD packSelectionList Lnet/minecraft/client/gui/screens/LanguageSelectScreen$LanguageSelectionList;
+		COMMENT The List GuiSlot object reference.
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/Options;Lnet/minecraft/client/resources/language/LanguageManager;)V
+	METHOD init ()V
+	METHOD lambda$init$0 (Lnet/minecraft/client/gui/components/Button;)V
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
+		ARG 1 matrixStack
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 partialTicks
+	CLASS LanguageSelectionList
+		FIELD this$0 Lnet/minecraft/client/gui/screens/LanguageSelectScreen;
+		METHOD <init> (Lnet/minecraft/client/gui/screens/LanguageSelectScreen;Lnet/minecraft/client/Minecraft;)V
+		METHOD access$000 (Lnet/minecraft/client/gui/screens/LanguageSelectScreen$LanguageSelectionList;)I
+		METHOD getRowWidth ()I
+		METHOD getScrollbarPosition ()I
+		METHOD isFocused ()Z
+		METHOD renderBackground (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+			ARG 1 matrixStack
+		CLASS Entry
+			FIELD language Lnet/minecraft/client/resources/language/LanguageInfo;
+			FIELD this$1 Lnet/minecraft/client/gui/screens/LanguageSelectScreen$LanguageSelectionList;
+			METHOD <init> (Lnet/minecraft/client/gui/screens/LanguageSelectScreen$LanguageSelectionList;Lnet/minecraft/client/resources/language/LanguageInfo;)V
+			METHOD getNarration ()Lnet/minecraft/network/chat/Component;
+			METHOD mouseClicked (DDI)Z
+				ARG 1 mouseX
+				ARG 3 mouseY
+				ARG 5 button
+			METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIZF)V
+				ARG 1 matrixStack
+				ARG 2 index
+				ARG 3 top
+				ARG 4 left
+				ARG 5 width
+				ARG 6 height
+				ARG 7 mouseX
+				ARG 8 mouseY
+				ARG 9 isMouseOver
+				ARG 10 partialTicks
+			METHOD select ()V

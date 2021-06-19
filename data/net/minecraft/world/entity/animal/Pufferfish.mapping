@@ -1,0 +1,51 @@
+CLASS net/minecraft/world/entity/animal/Pufferfish
+	FIELD PUFF_STATE Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD SCARY_MOB Ljava/util/function/Predicate;
+	FIELD STATE_FULL I
+	FIELD STATE_MID I
+	FIELD STATE_SMALL I
+	FIELD deflateTimer I
+	FIELD inflateCounter I
+	FIELD targetingConditions Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD aiStep ()V
+		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	METHOD defineSynchedData ()V
+	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getBucketItemStack ()Lnet/minecraft/world/item/ItemStack;
+	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getDimensions (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/entity/EntityDimensions;
+		ARG 1 pose
+	METHOD getFlopSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getPuffState ()I
+	METHOD getScale (I)F
+	METHOD lambda$aiStep$1 (Lnet/minecraft/world/entity/Mob;)Z
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD playerTouch (Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called by a player entity when they collide with an entity
+		ARG 1 entity
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD registerGoals ()V
+	METHOD setPuffState (I)V
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	METHOD touch (Lnet/minecraft/world/entity/Mob;)V
+	CLASS PufferfishPuffGoal
+		FIELD fish Lnet/minecraft/world/entity/animal/Pufferfish;
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Pufferfish;)V
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD lambda$canUse$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one

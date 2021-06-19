@@ -1,0 +1,31 @@
+CLASS net/minecraft/commands/arguments/item/ItemPredicateArgument
+	FIELD ERROR_UNKNOWN_TAG Lcom/mojang/brigadier/exceptions/DynamicCommandExceptionType;
+	FIELD EXAMPLES Ljava/util/Collection;
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD getExamples ()Ljava/util/Collection;
+	METHOD getItemPredicate (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/function/Predicate;
+		ARG 0 context
+		ARG 1 name
+	METHOD itemPredicate ()Lnet/minecraft/commands/arguments/item/ItemPredicateArgument;
+	METHOD lambda$parse$1 (Lnet/minecraft/commands/arguments/item/ItemPredicateArgument$ItemPredicate;Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/function/Predicate;
+	METHOD lambda$parse$2 (Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/brigadier/exceptions/CommandSyntaxException;
+	METHOD lambda$parse$3 (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/commands/arguments/item/ItemParser;Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/function/Predicate;
+	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+	METHOD parse (Lcom/mojang/brigadier/StringReader;)Ljava/lang/Object;
+	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/item/ItemPredicateArgument$Result;
+	CLASS ItemPredicate
+		FIELD item Lnet/minecraft/world/item/Item;
+		FIELD nbt Lnet/minecraft/nbt/CompoundTag;
+		METHOD <init> (Lnet/minecraft/world/item/Item;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD test (Ljava/lang/Object;)Z
+		METHOD test (Lnet/minecraft/world/item/ItemStack;)Z
+	CLASS Result
+		METHOD create (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/function/Predicate;
+	CLASS TagPredicate
+		FIELD nbt Lnet/minecraft/nbt/CompoundTag;
+		FIELD tag Lnet/minecraft/tags/Tag;
+		METHOD <init> (Lnet/minecraft/tags/Tag;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD test (Ljava/lang/Object;)Z
+		METHOD test (Lnet/minecraft/world/item/ItemStack;)Z

@@ -1,0 +1,245 @@
+CLASS net/minecraft/util/Mth
+	FIELD ASIN_TAB [D
+	FIELD BIG_ENOUGH_FLOAT F
+	FIELD BIG_ENOUGH_INT I
+	FIELD COS_TAB [D
+	FIELD DEG_TO_RAD F
+	FIELD EPSILON F
+	FIELD FRAC_BIAS D
+	FIELD FRAC_EXP I
+	FIELD HALF_PI F
+	FIELD LUT_SIZE I
+	FIELD MULTIPLY_DE_BRUIJN_BIT_POSITION [I
+		COMMENT Though it looks like an array, this is really more like a mapping. Key (index of this array) is the upper 5 bits of the result of multiplying a 32-bit unsigned integer by the B(2, 5) De Bruijn sequence 0x077CB531. Value (value stored in the array) is the unique index (from the right) of the leftmo
+	FIELD ONE_SIXTH D
+	FIELD PI F
+	FIELD RAD_TO_DEG F
+	FIELD RANDOM Ljava/util/Random;
+	FIELD SIN [F
+	FIELD SIN_SCALE F
+	FIELD SQRT_OF_TWO F
+	FIELD TWO_PI F
+	FIELD UUID_VARIANT J
+	FIELD UUID_VARIANT_2 J
+	FIELD UUID_VERSION J
+	FIELD UUID_VERSION_TYPE_4 J
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD abs (F)F
+		ARG 0 value
+	METHOD abs (I)I
+		COMMENT Returns the unsigned value of an int.
+		ARG 0 value
+	METHOD absFloor (D)I
+	METHOD absMax (DD)D
+		COMMENT Maximum of the absolute value of two numbers.
+		ARG 0 x
+		ARG 2 y
+	METHOD approach (FFF)F
+	METHOD approachDegrees (FFF)F
+	METHOD atan2 (DD)D
+	METHOD average ([J)D
+		ARG 0 values
+	METHOD binBiModalNormalDistribution (DDDDDDII)[D
+	METHOD binLogDistribution (DDII)[D
+	METHOD binNormalDistribution (DDDII)[D
+	METHOD binarySearch (IILjava/util/function/IntPredicate;)I
+		ARG 0 min
+		ARG 1 max
+		ARG 2 isTargetBeforeOrAt
+	METHOD catmullRomSplinePos (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;D)Lnet/minecraft/world/phys/Vec3;
+	METHOD ceil (D)I
+		ARG 0 value
+	METHOD ceil (F)I
+		ARG 0 value
+	METHOD ceillog2 (I)I
+		COMMENT Uses a B(2, 5) De Bruijn sequence and a lookup table to efficiently calculate the log-base-two of the given value. Optimized for cases where the input value is a power-of-two. If the input value is not a power-of-two, then subtract 1 from the return value.
+		ARG 0 value
+	METHOD clamp (BBB)B
+	METHOD clamp (DDD)D
+		ARG 0 num
+		ARG 2 min
+		ARG 4 max
+	METHOD clamp (FFF)F
+		COMMENT Returns the value of the first parameter, clamped to be within the lower and upper limits given by the second and third parameters
+		ARG 0 num
+		ARG 1 min
+		ARG 2 max
+	METHOD clamp (III)I
+		COMMENT Returns the value of the first parameter, clamped to be within the lower and upper limits given by the second and third parameters.
+		ARG 0 num
+		ARG 1 min
+		ARG 2 max
+	METHOD clamp (JJJ)J
+		ARG 0 num
+		ARG 2 min
+		ARG 4 max
+	METHOD clampedLerp (DDD)D
+		ARG 0 lowerBnd
+		ARG 2 upperBnd
+		ARG 4 slide
+	METHOD clampedLerp (FFF)F
+	METHOD clampedMap (DDDDD)D
+	METHOD color (FFF)I
+		COMMENT Makes an integer color from the given red, green, and blue float values
+		ARG 0 r
+		ARG 1 g
+		ARG 2 b
+	METHOD color (III)I
+		COMMENT Makes a single int color with the given red, green, and blue values.
+		ARG 0 r
+		ARG 1 g
+		ARG 2 b
+	METHOD colorMultiply (IFFF)I
+	METHOD colorMultiply (II)I
+	METHOD cos (F)F
+		COMMENT cos looked up in the sin table with the appropriate offset
+		ARG 0 value
+	METHOD createInsecureUUID ()Ljava/util/UUID;
+		COMMENT Generates a random UUID using the shared random
+	METHOD createInsecureUUID (Ljava/util/Random;)Ljava/util/UUID;
+		ARG 0 rand
+	METHOD cumulativeSum ([D)[D
+	METHOD degreesDifference (FF)F
+	METHOD degreesDifferenceAbs (FF)F
+	METHOD diffuseLight (FFF)F
+	METHOD equal (DD)Z
+		ARG 0 x
+		ARG 2 y
+	METHOD equal (FF)Z
+		ARG 0 x
+		ARG 1 y
+	METHOD fastFloor (D)I
+		COMMENT returns par0 cast as an int, and no greater than Integer.MAX_VALUE-1024
+		ARG 0 value
+	METHOD fastInvCubeRoot (F)F
+		ARG 0 number
+	METHOD fastInvSqrt (D)D
+		COMMENT Computes 1/sqrt(n) using <a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root">the fast inverse square root</a> with a constant of 0x5FE6EB50C7B537AA.
+		ARG 0 number
+	METHOD fastInvSqrt (F)F
+		ARG 0 number
+	METHOD floor (D)I
+		COMMENT Returns the greatest integer less than or equal to the double argument
+		ARG 0 value
+	METHOD floor (F)I
+		COMMENT Returns the greatest integer less than or equal to the float argument
+		ARG 0 value
+	METHOD frac (D)D
+		COMMENT Gets the decimal portion of the given double. For instance, {@code frac(5.5)} returns {@code .5}.
+		ARG 0 number
+	METHOD frac (F)F
+		ARG 0 number
+	METHOD getDouble (Ljava/lang/String;D)D
+		ARG 0 value
+		ARG 1 defaultValue
+	METHOD getDouble (Ljava/lang/String;DD)D
+		ARG 0 value
+		ARG 1 defaultValue
+		ARG 3 max
+	METHOD getInt (Ljava/lang/String;I)I
+		COMMENT parses the string as integer or returns the second parameter if it fails
+		ARG 0 value
+		ARG 1 defaultValue
+	METHOD getInt (Ljava/lang/String;II)I
+		COMMENT parses the string as integer or returns the second parameter if it fails. this value is capped to par2
+		ARG 0 value
+		ARG 1 defaultValue
+		ARG 2 max
+	METHOD getRandomForDistributionIntegral (Ljava/util/Random;[D)I
+	METHOD getSeed (III)J
+		ARG 0 x
+		ARG 1 y
+		ARG 2 z
+	METHOD getSeed (Lnet/minecraft/core/Vec3i;)J
+		ARG 0 pos
+	METHOD hsvToRgb (FFF)I
+		ARG 0 hue
+		ARG 1 saturation
+		ARG 2 value
+	METHOD intFloorDiv (II)I
+		COMMENT Buckets an integer with specifed bucket sizes.
+		ARG 0 x
+		ARG 1 y
+	METHOD inverseLerp (DDD)D
+	METHOD isPowerOfTwo (I)Z
+		COMMENT Is the given value a power of two?  (1, 2, 4, 8, 16, ...)
+		ARG 0 value
+	METHOD lambda$static$0 ([F)V
+	METHOD length (IDI)D
+	METHOD lerp (DDD)D
+		ARG 0 pct
+		ARG 2 start
+		ARG 4 end
+	METHOD lerp (FFF)F
+		ARG 0 pct
+		ARG 1 start
+		ARG 2 end
+	METHOD lerp2 (DDDDDD)D
+	METHOD lerp3 (DDDDDDDDDDD)D
+	METHOD lfloor (D)J
+		COMMENT Long version of floor()
+		ARG 0 value
+	METHOD log2 (I)I
+		COMMENT Efficiently calculates the floor of the base-2 log of an integer value.  This is effectively the index of the highest bit that is set.  For example, if the number in binary is 0...100101, this will return 5.
+		ARG 0 value
+	METHOD map (DDDDD)D
+	METHOD murmurHash3Mixer (I)I
+	METHOD murmurHash3Mixer (J)J
+	METHOD nextDouble (Ljava/util/Random;DD)D
+		ARG 0 random
+		ARG 1 minimum
+		ARG 3 maximum
+	METHOD nextFloat (Ljava/util/Random;FF)F
+		ARG 0 random
+		ARG 1 minimum
+		ARG 2 maximum
+	METHOD nextInt (Ljava/util/Random;II)I
+		ARG 0 random
+		ARG 1 minimum
+		ARG 2 maximum
+	METHOD normal (Ljava/util/Random;FF)F
+	METHOD positiveModulo (DD)D
+		ARG 0 numerator
+		ARG 2 denominator
+	METHOD positiveModulo (FF)F
+		ARG 0 numerator
+		ARG 1 denominator
+	METHOD positiveModulo (II)I
+		ARG 0 x
+		ARG 1 y
+	METHOD randomBetween (Ljava/util/Random;FF)F
+	METHOD randomBetweenInclusive (Ljava/util/Random;II)I
+	METHOD rayIntersectsAABB (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;)Z
+	METHOD rotLerp (FFF)F
+	METHOD rotWrap (D)F
+	METHOD rotateIfNecessary (FFF)F
+	METHOD rotlerp (FFF)F
+	METHOD roundToward (II)I
+	METHOD sign (D)I
+		ARG 0 x
+	METHOD sin (F)F
+		COMMENT sin looked up in a table
+		ARG 0 value
+	METHOD smallestEncompassingPowerOfTwo (I)I
+		COMMENT Returns the input value rounded up to the next highest power of two.
+		ARG 0 value
+	METHOD smoothstep (D)D
+	METHOD smoothstepDerivative (D)D
+	METHOD sqrt (F)F
+		ARG 0 value
+	METHOD square (D)D
+	METHOD square (F)F
+		ARG 0 value
+	METHOD square (I)I
+	METHOD triangleWave (FF)F
+	METHOD wobble (D)D
+	METHOD wrapDegrees (D)D
+		COMMENT the angle is reduced to an angle between -180 and +180 by mod, and a 360 check
+		ARG 0 value
+	METHOD wrapDegrees (F)F
+		COMMENT the angle is reduced to an angle between -180 and +180 by mod, and a 360 check
+		ARG 0 value
+	METHOD wrapDegrees (I)I
+		COMMENT Adjust the angle so that his value is in range [-180180[
+		ARG 0 angle

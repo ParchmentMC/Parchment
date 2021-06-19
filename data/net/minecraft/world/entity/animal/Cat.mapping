@@ -1,0 +1,134 @@
+CLASS net/minecraft/world/entity/animal/Cat
+	FIELD DATA_COLLAR_COLOR Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD DATA_TYPE_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD IS_LYING Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD NUMBER_OF_CAT_TYPES I
+	FIELD NUMBER_OF_CAT_TYPES_EXCEPT_ALL_BLACK I
+	FIELD RELAX_STATE_ONE Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD SPRINT_SPEED_MOD D
+	FIELD TEMPT_INGREDIENT Lnet/minecraft/world/item/crafting/Ingredient;
+	FIELD TEMPT_SPEED_MOD D
+	FIELD TEXTURE_BY_TYPE Ljava/util/Map;
+	FIELD TYPE_ALL_BLACK I
+	FIELD TYPE_BLACK I
+	FIELD TYPE_BRITISH I
+	FIELD TYPE_CALICO I
+	FIELD TYPE_JELLIE I
+	FIELD TYPE_PERSIAN I
+	FIELD TYPE_RAGDOLL I
+	FIELD TYPE_RED I
+	FIELD TYPE_SIAMESE I
+	FIELD TYPE_TABBY I
+	FIELD TYPE_WHITE I
+	FIELD WALK_SPEED_MOD D
+	FIELD avoidPlayersGoal Lnet/minecraft/world/entity/animal/Cat$CatAvoidEntityGoal;
+	FIELD lieDownAmount F
+	FIELD lieDownAmountO F
+	FIELD lieDownAmountOTail F
+	FIELD lieDownAmountTail F
+	FIELD relaxStateOneAmount F
+	FIELD relaxStateOneAmountO F
+	FIELD temptGoal Lnet/minecraft/world/entity/ai/goal/TemptGoal;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD canMate (Lnet/minecraft/world/entity/animal/Animal;)Z
+		COMMENT Returns true if the mob is currently able to mate with the specified mob.
+		ARG 1 otherAnimal
+	METHOD causeFallDamage (FFLnet/minecraft/world/damagesource/DamageSource;)Z
+	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+	METHOD customServerAiStep ()V
+	METHOD defineSynchedData ()V
+	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
+		ARG 1 level
+		ARG 2 difficulty
+		ARG 3 reason
+		ARG 4 spawnData
+		ARG 5 dataTag
+	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getAmbientSoundInterval ()I
+		COMMENT Get number of ticks, at least during which the living entity will be silent.
+	METHOD getAttackDamage ()F
+	METHOD getBreedOffspring (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/AgeableMob;)Lnet/minecraft/world/entity/AgeableMob;
+	METHOD getBreedOffspring (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/AgeableMob;)Lnet/minecraft/world/entity/animal/Cat;
+	METHOD getCatType ()I
+	METHOD getCollarColor ()Lnet/minecraft/world/item/DyeColor;
+	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getLieDownAmount (F)F
+	METHOD getLieDownAmountTail (F)F
+	METHOD getRelaxStateOneAmount (F)F
+	METHOD getResourceLocation ()Lnet/minecraft/resources/ResourceLocation;
+	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
+		ARG 1 pose
+		ARG 2 size
+	METHOD handleLieDown ()V
+	METHOD hiss ()V
+	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
+		ARG 1 stack
+	METHOD isLying ()Z
+	METHOD isRelaxStateOne ()Z
+	METHOD isSteppingCarefully ()Z
+	METHOD lambda$static$0 (Ljava/util/HashMap;)V
+	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 player
+		ARG 2 hand
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD reassessTameGoals ()V
+	METHOD registerGoals ()V
+	METHOD removeWhenFarAway (D)Z
+		ARG 1 distanceToClosestPlayer
+	METHOD setCatType (I)V
+		ARG 1 type
+	METHOD setCollarColor (Lnet/minecraft/world/item/DyeColor;)V
+		ARG 1 color
+	METHOD setLying (Z)V
+	METHOD setRelaxStateOne (Z)V
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	METHOD updateLieDownAmount ()V
+	METHOD updateRelaxStateOneAmount ()V
+	METHOD usePlayerItem (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V
+	CLASS CatAvoidEntityGoal
+		FIELD cat Lnet/minecraft/world/entity/animal/Cat;
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Cat;Ljava/lang/Class;FDD)V
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	CLASS CatRelaxOnOwnerGoal
+		FIELD cat Lnet/minecraft/world/entity/animal/Cat;
+		FIELD goalPos Lnet/minecraft/core/BlockPos;
+		FIELD onBedTicks I
+		FIELD ownerPlayer Lnet/minecraft/world/entity/player/Player;
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Cat;)V
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD giveMorningGift ()V
+		METHOD lambda$canUse$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos;
+		METHOD lambda$canUse$1 (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
+		METHOD spaceIsOccupied ()Z
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS CatTemptGoal
+		FIELD cat Lnet/minecraft/world/entity/animal/Cat;
+		FIELD selectedPlayer Lnet/minecraft/world/entity/player/Player;
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Cat;DLnet/minecraft/world/item/crafting/Ingredient;Z)V
+		METHOD canScare ()Z
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

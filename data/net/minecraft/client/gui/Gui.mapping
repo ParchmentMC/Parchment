@@ -1,0 +1,147 @@
+CLASS net/minecraft/client/gui/Gui
+	FIELD COLOR_WHITE I
+	FIELD DEMO_EXPIRED_TEXT Lnet/minecraft/network/chat/Component;
+	FIELD HEART_SEPARATION I
+	FIELD HEART_SIZE I
+	FIELD LINE_HEIGHT I
+	FIELD MIN_CROSSHAIR_ATTACK_SPEED F
+	FIELD NUM_HEARTS_PER_ROW I
+	FIELD PORTAL_OVERLAY_ALPHA_MIN F
+	FIELD POWDER_SNOW_OUTLINE_LOCATION Lnet/minecraft/resources/ResourceLocation;
+	FIELD PUMPKIN_BLUR_LOCATION Lnet/minecraft/resources/ResourceLocation;
+	FIELD SPACER Ljava/lang/String;
+	FIELD SPYGLASS_SCOPE_LOCATION Lnet/minecraft/resources/ResourceLocation;
+	FIELD VIGNETTE_LOCATION Lnet/minecraft/resources/ResourceLocation;
+	FIELD WIDGETS_LOCATION Lnet/minecraft/resources/ResourceLocation;
+	FIELD animateOverlayMessageColor Z
+	FIELD bossOverlay Lnet/minecraft/client/gui/components/BossHealthOverlay;
+	FIELD chat Lnet/minecraft/client/gui/components/ChatComponent;
+	FIELD chatListeners Ljava/util/Map;
+	FIELD debugScreen Lnet/minecraft/client/gui/components/DebugScreenOverlay;
+	FIELD displayHealth I
+	FIELD healthBlinkTime J
+		COMMENT Used with updateCounter to make the heart bar flash
+	FIELD itemRenderer Lnet/minecraft/client/renderer/entity/ItemRenderer;
+	FIELD lastHealth I
+	FIELD lastHealthTime J
+		COMMENT The last recorded system time
+	FIELD lastToolHighlight Lnet/minecraft/world/item/ItemStack;
+	FIELD minecraft Lnet/minecraft/client/Minecraft;
+	FIELD overlayMessageString Lnet/minecraft/network/chat/Component;
+	FIELD overlayMessageTime I
+	FIELD random Ljava/util/Random;
+	FIELD scopeScale F
+	FIELD screenHeight I
+	FIELD screenWidth I
+	FIELD spectatorGui Lnet/minecraft/client/gui/components/spectator/SpectatorGui;
+		COMMENT The spectator GUI for this in-game GUI instance
+	FIELD subtitle Lnet/minecraft/network/chat/Component;
+		COMMENT The current sub-title displayed
+	FIELD subtitleOverlay Lnet/minecraft/client/gui/components/SubtitleOverlay;
+	FIELD tabList Lnet/minecraft/client/gui/components/PlayerTabOverlay;
+	FIELD tickCount I
+	FIELD title Lnet/minecraft/network/chat/Component;
+		COMMENT The current title displayed
+	FIELD titleFadeInTime I
+		COMMENT The time that the title take to fade in
+	FIELD titleFadeOutTime I
+		COMMENT The time that the title take to fade out
+	FIELD titleStayTime I
+		COMMENT The time that the title is display
+	FIELD titleTime I
+		COMMENT A timer for the current title and subtitle displayed
+	FIELD toolHighlightTimer I
+	FIELD vignetteBrightness F
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+	METHOD canRenderCrosshairForSpectator (Lnet/minecraft/world/phys/HitResult;)Z
+		ARG 1 rayTrace
+	METHOD clear ()V
+	METHOD clearCache ()V
+	METHOD displayScoreboardSidebar (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/scores/Objective;)V
+	METHOD drawBackdrop (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;III)V
+		ARG 1 matrixStack
+		ARG 2 renderer
+	METHOD getBossOverlay ()Lnet/minecraft/client/gui/components/BossHealthOverlay;
+		COMMENT Accessor for the GuiBossOverlay
+	METHOD getCameraPlayer ()Lnet/minecraft/world/entity/player/Player;
+	METHOD getChat ()Lnet/minecraft/client/gui/components/ChatComponent;
+		COMMENT returns a pointer to the persistant Chat GUI, containing all previous chat messages and such
+	METHOD getFont ()Lnet/minecraft/client/gui/Font;
+	METHOD getGuiTicks ()I
+	METHOD getPlayerVehicleWithHealth ()Lnet/minecraft/world/entity/LivingEntity;
+	METHOD getSpectatorGui ()Lnet/minecraft/client/gui/components/spectator/SpectatorGui;
+	METHOD getTabList ()Lnet/minecraft/client/gui/components/PlayerTabOverlay;
+	METHOD getVehicleMaxHearts (Lnet/minecraft/world/entity/LivingEntity;)I
+		ARG 1 mountEntity
+	METHOD getVisibleVehicleHeartRows (I)I
+		ARG 1 mountHealth
+	METHOD guessChatUUID (Lnet/minecraft/network/chat/Component;)Ljava/util/UUID;
+	METHOD handleChat (Lnet/minecraft/network/chat/ChatType;Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V
+	METHOD lambda$displayScoreboardSidebar$1 (Lnet/minecraft/world/scores/Score;)Z
+	METHOD lambda$renderEffects$0 (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;FLcom/mojang/blaze3d/vertex/PoseStack;II)V
+	METHOD onDisconnected ()V
+		COMMENT Reset the GuiPlayerTabOverlay's message header and footer
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;F)V
+		ARG 1 matrixStack
+		ARG 2 partialTicks
+	METHOD renderCrosshair (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderDemoOverlay (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderEffects (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderExperienceBar (Lcom/mojang/blaze3d/vertex/PoseStack;I)V
+		ARG 1 matrixStack
+		ARG 2 xPos
+	METHOD renderHeart (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Gui$HeartType;IIIZZ)V
+	METHOD renderHearts (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/entity/player/Player;IIIIFIIIZ)V
+	METHOD renderHotbar (FLcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 partialTicks
+		ARG 2 matrixStack
+	METHOD renderJumpMeter (Lcom/mojang/blaze3d/vertex/PoseStack;I)V
+		ARG 1 matrixStack
+		ARG 2 xPosition
+	METHOD renderPlayerHealth (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderPortalOverlay (F)V
+		ARG 1 timeInPortal
+	METHOD renderSelectedItemName (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderSlot (IIFLnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;I)V
+	METHOD renderSpyglassOverlay (F)V
+	METHOD renderTextureOverlay (Lnet/minecraft/resources/ResourceLocation;F)V
+	METHOD renderVehicleHealth (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderVignette (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD resetTitleTimes ()V
+		COMMENT Set the differents times for the titles to their default values
+	METHOD setNowPlaying (Lnet/minecraft/network/chat/Component;)V
+	METHOD setOverlayMessage (Lnet/minecraft/network/chat/Component;Z)V
+		ARG 1 component
+		ARG 2 animateColor
+	METHOD setSubtitle (Lnet/minecraft/network/chat/Component;)V
+	METHOD setTimes (III)V
+	METHOD setTitle (Lnet/minecraft/network/chat/Component;)V
+	METHOD tick ()V
+		COMMENT The update tick for the ingame UI
+	METHOD updateVignetteBrightness (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	CLASS HeartType
+		FIELD $VALUES [Lnet/minecraft/client/gui/Gui$HeartType;
+		FIELD ABSORBING Lnet/minecraft/client/gui/Gui$HeartType;
+		FIELD CONTAINER Lnet/minecraft/client/gui/Gui$HeartType;
+		FIELD FROZEN Lnet/minecraft/client/gui/Gui$HeartType;
+		FIELD NORMAL Lnet/minecraft/client/gui/Gui$HeartType;
+		FIELD POISIONED Lnet/minecraft/client/gui/Gui$HeartType;
+		FIELD WITHERED Lnet/minecraft/client/gui/Gui$HeartType;
+		FIELD canBlink Z
+		FIELD index I
+		METHOD $values ()[Lnet/minecraft/client/gui/Gui$HeartType;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;IIZ)V
+		METHOD forPlayer (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/client/gui/Gui$HeartType;
+		METHOD getX (ZZ)I
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/client/gui/Gui$HeartType;
+		METHOD values ()[Lnet/minecraft/client/gui/Gui$HeartType;

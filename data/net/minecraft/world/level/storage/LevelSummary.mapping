@@ -1,0 +1,50 @@
+CLASS net/minecraft/world/level/storage/LevelSummary
+	FIELD icon Ljava/io/File;
+	FIELD info Lnet/minecraft/network/chat/Component;
+	FIELD levelId Ljava/lang/String;
+	FIELD levelVersion Lnet/minecraft/world/level/storage/LevelVersion;
+	FIELD locked Z
+	FIELD requiresConversion Z
+	FIELD settings Lnet/minecraft/world/level/LevelSettings;
+	METHOD <init> (Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/storage/LevelVersion;Ljava/lang/String;ZZLjava/io/File;)V
+	METHOD askToOpenWorld ()Z
+	METHOD backupStatus ()Lnet/minecraft/world/level/storage/LevelSummary$BackupStatus;
+	METHOD compareTo (Ljava/lang/Object;)I
+	METHOD compareTo (Lnet/minecraft/world/level/storage/LevelSummary;)I
+	METHOD createInfo ()Lnet/minecraft/network/chat/Component;
+	METHOD getGameMode ()Lnet/minecraft/world/level/GameType;
+		COMMENT Gets the EnumGameType.
+	METHOD getIcon ()Ljava/io/File;
+	METHOD getInfo ()Lnet/minecraft/network/chat/Component;
+	METHOD getLastPlayed ()J
+	METHOD getLevelId ()Ljava/lang/String;
+		COMMENT return the file name
+	METHOD getLevelName ()Ljava/lang/String;
+		COMMENT return the display name of the save
+	METHOD getSettings ()Lnet/minecraft/world/level/LevelSettings;
+	METHOD getWorldVersionName ()Lnet/minecraft/network/chat/MutableComponent;
+	METHOD hasCheats ()Z
+		COMMENT @return {@code true} if cheats are enabled for this world
+	METHOD isDisabled ()Z
+	METHOD isHardcore ()Z
+	METHOD isIncompatibleWorldHeight ()Z
+	METHOD isLocked ()Z
+	METHOD isRequiresConversion ()Z
+	METHOD levelVersion ()Lnet/minecraft/world/level/storage/LevelVersion;
+	METHOD markVersionInList ()Z
+	CLASS BackupStatus
+		FIELD $VALUES [Lnet/minecraft/world/level/storage/LevelSummary$BackupStatus;
+		FIELD DOWNGRADE Lnet/minecraft/world/level/storage/LevelSummary$BackupStatus;
+		FIELD NONE Lnet/minecraft/world/level/storage/LevelSummary$BackupStatus;
+		FIELD UPGRADE_TO_SNAPSHOT Lnet/minecraft/world/level/storage/LevelSummary$BackupStatus;
+		FIELD severe Z
+		FIELD shouldBackup Z
+		FIELD translationKey Ljava/lang/String;
+		METHOD $values ()[Lnet/minecraft/world/level/storage/LevelSummary$BackupStatus;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;IZZLjava/lang/String;)V
+		METHOD getTranslationKey ()Ljava/lang/String;
+		METHOD isSevere ()Z
+		METHOD shouldBackup ()Z
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/level/storage/LevelSummary$BackupStatus;
+		METHOD values ()[Lnet/minecraft/world/level/storage/LevelSummary$BackupStatus;

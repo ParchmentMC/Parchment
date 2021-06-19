@@ -1,0 +1,29 @@
+CLASS net/minecraft/client/multiplayer/ServerList
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD minecraft Lnet/minecraft/client/Minecraft;
+	FIELD serverList Ljava/util/List;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+	METHOD add (Lnet/minecraft/client/multiplayer/ServerData;)V
+		COMMENT Adds the given ServerData instance to the list.
+		ARG 1 server
+	METHOD get (I)Lnet/minecraft/client/multiplayer/ServerData;
+		COMMENT Gets the ServerData instance stored for the given index in the list.
+		ARG 1 index
+	METHOD load ()V
+		COMMENT Loads a list of servers from servers.dat, by running ServerData.getServerDataFromNBTCompound on each NBT compound found in the "servers" tag list.
+	METHOD remove (Lnet/minecraft/client/multiplayer/ServerData;)V
+		ARG 1 serverData
+	METHOD replace (ILnet/minecraft/client/multiplayer/ServerData;)V
+		ARG 1 index
+		ARG 2 server
+	METHOD save ()V
+		COMMENT Runs getNBTCompound on each ServerData instance, puts everything into a "servers" NBT list and writes it to servers.dat.
+	METHOD saveSingleServer (Lnet/minecraft/client/multiplayer/ServerData;)V
+		ARG 0 server
+	METHOD size ()I
+		COMMENT Counts the number of ServerData instances in the list.
+	METHOD swap (II)V
+		COMMENT Takes two list indexes, and swaps their order around.
+		ARG 1 pos1
+		ARG 2 pos2

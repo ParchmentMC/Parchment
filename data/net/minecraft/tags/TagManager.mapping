@@ -1,0 +1,27 @@
+CLASS net/minecraft/tags/TagManager
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD registryAccess Lnet/minecraft/core/RegistryAccess;
+	FIELD tags Lnet/minecraft/tags/TagContainer;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/core/RegistryAccess;)V
+	METHOD createLoader (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;Lnet/minecraft/tags/StaticTagHelper;)Lnet/minecraft/tags/TagManager$LoaderInfo;
+	METHOD getTags ()Lnet/minecraft/tags/TagContainer;
+	METHOD lambda$createLoader$6 (Lnet/minecraft/tags/TagLoader;Lnet/minecraft/server/packs/resources/ResourceManager;)Lnet/minecraft/tags/TagCollection;
+	METHOD lambda$reload$0 (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;Ljava/util/List;Lnet/minecraft/tags/StaticTagHelper;)V
+	METHOD lambda$reload$1 (Lnet/minecraft/tags/TagManager$LoaderInfo;)Ljava/util/concurrent/CompletableFuture;
+	METHOD lambda$reload$2 (I)[Ljava/util/concurrent/CompletableFuture;
+	METHOD lambda$reload$3 (Lnet/minecraft/tags/TagContainer$Builder;Lnet/minecraft/tags/TagManager$LoaderInfo;)V
+	METHOD lambda$reload$4 (Ljava/util/Map$Entry;)Ljava/lang/String;
+	METHOD lambda$reload$5 (Ljava/util/List;Ljava/lang/Void;)V
+	METHOD reload (Lnet/minecraft/server/packs/resources/PreparableReloadListener$PreparationBarrier;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;Lnet/minecraft/util/profiling/ProfilerFiller;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 stage
+		ARG 2 resourceManager
+		ARG 3 preparationsProfiler
+		ARG 4 reloadProfiler
+		ARG 5 backgroundExecutor
+		ARG 6 gameExecutor
+	CLASS LoaderInfo
+		FIELD helper Lnet/minecraft/tags/StaticTagHelper;
+		FIELD pendingLoad Ljava/util/concurrent/CompletableFuture;
+		METHOD <init> (Lnet/minecraft/tags/StaticTagHelper;Ljava/util/concurrent/CompletableFuture;)V
+		METHOD addToBuilder (Lnet/minecraft/tags/TagContainer$Builder;)V

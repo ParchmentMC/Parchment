@@ -1,0 +1,14 @@
+CLASS net/minecraft/util/DirectoryLock
+	FIELD DUMMY Ljava/nio/ByteBuffer;
+	FIELD LOCK_FILE Ljava/lang/String;
+	FIELD lock Ljava/nio/channels/FileLock;
+	FIELD lockFile Ljava/nio/channels/FileChannel;
+	METHOD <clinit> ()V
+	METHOD <init> (Ljava/nio/channels/FileChannel;Ljava/nio/channels/FileLock;)V
+	METHOD close ()V
+	METHOD create (Ljava/nio/file/Path;)Lnet/minecraft/util/DirectoryLock;
+	METHOD isLocked (Ljava/nio/file/Path;)Z
+	METHOD isValid ()Z
+	CLASS LockException
+		METHOD <init> (Ljava/nio/file/Path;Ljava/lang/String;)V
+		METHOD alreadyLocked (Ljava/nio/file/Path;)Lnet/minecraft/util/DirectoryLock$LockException;

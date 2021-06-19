@@ -1,0 +1,26 @@
+CLASS net/minecraft/world/level/storage/loot/PredicateManager
+	FIELD GSON Lcom/google/gson/Gson;
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD conditions Ljava/util/Map;
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD apply (Ljava/lang/Object;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+	METHOD apply (Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+		ARG 1 object
+		ARG 2 resourceManager
+		ARG 3 profiler
+	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
+		ARG 1 id
+	METHOD getKeys ()Ljava/util/Set;
+	METHOD lambda$apply$0 (Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonElement;)V
+	METHOD lambda$apply$1 (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/LootTable;
+	METHOD lambda$apply$2 (Lnet/minecraft/world/level/storage/loot/ValidationContext;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
+	METHOD lambda$apply$3 (Ljava/lang/String;Ljava/lang/String;)V
+	CLASS CompositePredicate
+		FIELD composedPredicate Ljava/util/function/Predicate;
+		FIELD terms [Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
+		METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
+		METHOD getType ()Lnet/minecraft/world/level/storage/loot/predicates/LootItemConditionType;
+		METHOD test (Ljava/lang/Object;)Z
+		METHOD test (Lnet/minecraft/world/level/storage/loot/LootContext;)Z
+		METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V

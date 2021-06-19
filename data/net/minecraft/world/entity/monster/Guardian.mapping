@@ -1,0 +1,87 @@
+CLASS net/minecraft/world/entity/monster/Guardian
+	FIELD ATTACK_TIME I
+	FIELD DATA_ID_ATTACK_TARGET Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD DATA_ID_MOVING Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD clientSideAttackTime I
+	FIELD clientSideCachedAttackTarget Lnet/minecraft/world/entity/LivingEntity;
+	FIELD clientSideSpikesAnimation F
+	FIELD clientSideSpikesAnimationO F
+	FIELD clientSideTailAnimation F
+	FIELD clientSideTailAnimationO F
+	FIELD clientSideTailAnimationSpeed F
+	FIELD clientSideTouchedGround Z
+	FIELD randomStrollGoal Lnet/minecraft/world/entity/ai/goal/RandomStrollGoal;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+	METHOD aiStep ()V
+		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	METHOD canBreatheUnderwater ()Z
+	METHOD checkGuardianSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
+	METHOD checkSpawnObstruction (Lnet/minecraft/world/level/LevelReader;)Z
+		ARG 1 level
+	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+	METHOD createNavigation (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/ai/navigation/PathNavigation;
+		COMMENT Returns new PathNavigateGround instance
+		ARG 1 level
+	METHOD defineSynchedData ()V
+	METHOD getActiveAttackTarget ()Lnet/minecraft/world/entity/LivingEntity;
+	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getAmbientSoundInterval ()I
+		COMMENT Get number of ticks, at least during which the living entity will be silent.
+	METHOD getAttackAnimationScale (F)F
+	METHOD getAttackDuration ()I
+	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getFlopSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getMaxHeadXRot ()I
+		COMMENT The speed it takes to move the entityliving's rotationPitch through the faceEntity method. This is only currently use in wolves.
+	METHOD getMobType ()Lnet/minecraft/world/entity/MobType;
+	METHOD getMovementEmission ()Lnet/minecraft/world/entity/Entity$MovementEmission;
+	METHOD getSpikesAnimation (F)F
+	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
+		ARG 1 pose
+		ARG 2 size
+	METHOD getTailAnimation (F)F
+	METHOD getWalkTargetValue (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelReader;)F
+		ARG 1 pos
+		ARG 2 level
+	METHOD hasActiveAttackTarget ()Z
+	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
+		COMMENT Called when the entity is attacked.
+		ARG 1 source
+		ARG 2 amount
+	METHOD isMoving ()Z
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD registerGoals ()V
+	METHOD setActiveAttackTarget (I)V
+		ARG 1 entityId
+	METHOD setMoving (Z)V
+		ARG 1 moving
+	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 travelVector
+	CLASS GuardianAttackGoal
+		FIELD attackTime I
+		FIELD elder Z
+		FIELD guardian Lnet/minecraft/world/entity/monster/Guardian;
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Guardian;)V
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS GuardianAttackSelector
+		FIELD guardian Lnet/minecraft/world/entity/monster/Guardian;
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Guardian;)V
+		METHOD test (Ljava/lang/Object;)Z
+		METHOD test (Lnet/minecraft/world/entity/LivingEntity;)Z
+	CLASS GuardianMoveControl
+		FIELD guardian Lnet/minecraft/world/entity/monster/Guardian;
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Guardian;)V
+		METHOD tick ()V

@@ -1,0 +1,46 @@
+CLASS net/minecraft/world/level/ClipContext
+	FIELD block Lnet/minecraft/world/level/ClipContext$Block;
+	FIELD collisionContext Lnet/minecraft/world/phys/shapes/CollisionContext;
+	FIELD fluid Lnet/minecraft/world/level/ClipContext$Fluid;
+	FIELD from Lnet/minecraft/world/phys/Vec3;
+	FIELD to Lnet/minecraft/world/phys/Vec3;
+	METHOD <init> (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/level/ClipContext$Block;Lnet/minecraft/world/level/ClipContext$Fluid;Lnet/minecraft/world/entity/Entity;)V
+	METHOD getBlockShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 blockState
+		ARG 2 level
+		ARG 3 pos
+	METHOD getFluidShape (Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+	METHOD getFrom ()Lnet/minecraft/world/phys/Vec3;
+	METHOD getTo ()Lnet/minecraft/world/phys/Vec3;
+	CLASS Block
+		FIELD $VALUES [Lnet/minecraft/world/level/ClipContext$Block;
+		FIELD COLLIDER Lnet/minecraft/world/level/ClipContext$Block;
+		FIELD OUTLINE Lnet/minecraft/world/level/ClipContext$Block;
+		FIELD VISUAL Lnet/minecraft/world/level/ClipContext$Block;
+		FIELD shapeGetter Lnet/minecraft/world/level/ClipContext$ShapeGetter;
+		METHOD $values ()[Lnet/minecraft/world/level/ClipContext$Block;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/world/level/ClipContext$ShapeGetter;)V
+		METHOD get (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/level/ClipContext$Block;
+		METHOD values ()[Lnet/minecraft/world/level/ClipContext$Block;
+	CLASS Fluid
+		FIELD $VALUES [Lnet/minecraft/world/level/ClipContext$Fluid;
+		FIELD ANY Lnet/minecraft/world/level/ClipContext$Fluid;
+		FIELD NONE Lnet/minecraft/world/level/ClipContext$Fluid;
+		FIELD SOURCE_ONLY Lnet/minecraft/world/level/ClipContext$Fluid;
+		FIELD canPick Ljava/util/function/Predicate;
+		METHOD $values ()[Lnet/minecraft/world/level/ClipContext$Fluid;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;ILjava/util/function/Predicate;)V
+		METHOD canPick (Lnet/minecraft/world/level/material/FluidState;)Z
+			ARG 1 state
+		METHOD lambda$static$0 (Lnet/minecraft/world/level/material/FluidState;)Z
+		METHOD lambda$static$1 (Lnet/minecraft/world/level/material/FluidState;)Z
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/level/ClipContext$Fluid;
+		METHOD values ()[Lnet/minecraft/world/level/ClipContext$Fluid;
+	CLASS ShapeGetter
+		METHOD get (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;

@@ -1,0 +1,11 @@
+CLASS net/minecraft/client/server/IntegratedPlayerList
+	FIELD playerData Lnet/minecraft/nbt/CompoundTag;
+	METHOD <init> (Lnet/minecraft/client/server/IntegratedServer;Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/world/level/storage/PlayerDataStorage;)V
+	METHOD canPlayerLogin (Ljava/net/SocketAddress;Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/network/chat/Component;
+	METHOD getServer ()Lnet/minecraft/client/server/IntegratedServer;
+	METHOD getServer ()Lnet/minecraft/server/MinecraftServer;
+	METHOD getSingleplayerData ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT On integrated servers, returns the host's player data to be written to level.dat.
+	METHOD save (Lnet/minecraft/server/level/ServerPlayer;)V
+		COMMENT also stores the NBTTags if this is an intergratedPlayerList
+		ARG 1 player

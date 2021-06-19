@@ -1,0 +1,30 @@
+CLASS net/minecraft/client/renderer/debug/GameEventListenerRenderer
+	FIELD BOX_HEIGHT F
+	FIELD LISTENER_RENDER_DIST I
+	FIELD minecraft Lnet/minecraft/client/Minecraft;
+	FIELD trackedGameEvents Ljava/util/List;
+	FIELD trackedListeners Ljava/util/List;
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+	METHOD lambda$render$0 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/debug/GameEventListenerRenderer$TrackedListener;)Z
+	METHOD lambda$render$1 (Lnet/minecraft/client/renderer/debug/GameEventListenerRenderer$TrackedListener;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDLnet/minecraft/core/BlockPos;)V
+	METHOD lambda$render$2 (Lcom/mojang/blaze3d/vertex/BufferBuilder;DDDLnet/minecraft/core/BlockPos;)V
+	METHOD lambda$render$3 (Lnet/minecraft/core/BlockPos;)V
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;DDD)V
+	METHOD renderTransparentFilledBox (Lnet/minecraft/world/phys/AABB;FFFF)V
+	METHOD trackGameEvent (Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;)V
+	METHOD trackListener (Lnet/minecraft/world/level/gameevent/PositionSource;I)V
+	CLASS TrackedGameEvent
+		FIELD gameEvent Lnet/minecraft/world/level/gameevent/GameEvent;
+		FIELD position Lnet/minecraft/world/phys/Vec3;
+		FIELD timeStamp J
+		METHOD <init> (JLnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/phys/Vec3;)V
+		METHOD isExpired ()Z
+	CLASS TrackedListener
+		FIELD listenerRange I
+		FIELD listenerSource Lnet/minecraft/world/level/gameevent/PositionSource;
+		METHOD <init> (Lnet/minecraft/world/level/gameevent/PositionSource;I)V
+		METHOD getListenerRadius ()I
+		METHOD getListenerSource ()Lnet/minecraft/world/level/gameevent/PositionSource;
+		METHOD getPosition (Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
+		METHOD handleGameEvent (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/BlockPos;)Z
+		METHOD isExpired (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z

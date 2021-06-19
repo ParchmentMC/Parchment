@@ -1,0 +1,39 @@
+CLASS net/minecraft/world/food/FoodData
+	FIELD exhaustionLevel F
+	FIELD foodLevel I
+	FIELD lastFoodLevel I
+	FIELD saturationLevel F
+	FIELD tickTimer I
+	METHOD <init> ()V
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT Writes the food data for the player.
+		ARG 1 compound
+	METHOD addExhaustion (F)V
+		COMMENT adds input to foodExhaustionLevel to a max of 40
+		ARG 1 exhaustion
+	METHOD eat (IF)V
+		COMMENT Add food stats.
+		ARG 1 foodLevel
+		ARG 2 foodSaturationModifier
+	METHOD eat (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 maybeFood
+		ARG 2 stack
+	METHOD getExhaustionLevel ()F
+	METHOD getFoodLevel ()I
+		COMMENT Get the player's food level.
+	METHOD getLastFoodLevel ()I
+	METHOD getSaturationLevel ()F
+		COMMENT Get the player's food saturation level.
+	METHOD needsFood ()Z
+		COMMENT Get whether the player must eat food.
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT Reads the food data for the player.
+		ARG 1 compound
+	METHOD setExhaustion (F)V
+	METHOD setFoodLevel (I)V
+		ARG 1 foodLevel
+	METHOD setSaturation (F)V
+		ARG 1 foodSaturationLevel
+	METHOD tick (Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Handles the food game logic.
+		ARG 1 player

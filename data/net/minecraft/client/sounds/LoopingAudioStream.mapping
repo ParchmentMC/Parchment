@@ -1,0 +1,14 @@
+CLASS net/minecraft/client/sounds/LoopingAudioStream
+	FIELD bufferedInputStream Ljava/io/BufferedInputStream;
+	FIELD provider Lnet/minecraft/client/sounds/LoopingAudioStream$AudioStreamProvider;
+	FIELD stream Lnet/minecraft/client/sounds/AudioStream;
+	METHOD <init> (Lnet/minecraft/client/sounds/LoopingAudioStream$AudioStreamProvider;Ljava/io/InputStream;)V
+	METHOD close ()V
+	METHOD getFormat ()Ljavax/sound/sampled/AudioFormat;
+	METHOD read (I)Ljava/nio/ByteBuffer;
+		ARG 1 size
+	CLASS AudioStreamProvider
+		METHOD create (Ljava/io/InputStream;)Lnet/minecraft/client/sounds/AudioStream;
+	CLASS NoCloseBuffer
+		METHOD <init> (Ljava/io/InputStream;)V
+		METHOD close ()V

@@ -1,0 +1,24 @@
+CLASS net/minecraft/world/level/chunk/ProtoTickList
+	FIELD chunkPos Lnet/minecraft/world/level/ChunkPos;
+	FIELD ignore Ljava/util/function/Predicate;
+	FIELD levelHeightAccessor Lnet/minecraft/world/level/LevelHeightAccessor;
+	FIELD toBeTicked [Lit/unimi/dsi/fastutil/shorts/ShortList;
+	METHOD <init> (Ljava/util/function/Predicate;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/nbt/ListTag;Lnet/minecraft/world/level/LevelHeightAccessor;)V
+	METHOD <init> (Ljava/util/function/Predicate;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/LevelHeightAccessor;)V
+	METHOD copyOut (Lnet/minecraft/world/level/TickList;Ljava/util/function/Function;)V
+		ARG 1 tickList
+		ARG 2 func
+	METHOD hasScheduledTick (Lnet/minecraft/core/BlockPos;Ljava/lang/Object;)Z
+		ARG 1 pos
+		ARG 2 item
+	METHOD save ()Lnet/minecraft/nbt/ListTag;
+	METHOD scheduleTick (Lnet/minecraft/core/BlockPos;Ljava/lang/Object;ILnet/minecraft/world/level/TickPriority;)V
+		ARG 1 pos
+		ARG 2 item
+		ARG 3 scheduledTime
+		ARG 4 priority
+	METHOD size ()I
+	METHOD willTickThisTick (Lnet/minecraft/core/BlockPos;Ljava/lang/Object;)Z
+		COMMENT Checks if this position/item is scheduled to be updated this tick
+		ARG 1 pos
+		ARG 2 obj

@@ -1,0 +1,173 @@
+CLASS net/minecraft/world/entity/animal/Turtle
+	FIELD BABY_ON_LAND_SELECTOR Ljava/util/function/Predicate;
+	FIELD FOOD_ITEMS Lnet/minecraft/world/item/crafting/Ingredient;
+	FIELD GOING_HOME Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD HAS_EGG Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD HOME_POS Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD LAYING_EGG Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD TRAVELLING Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD TRAVEL_POS Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD layEggCounter I
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+	METHOD access$000 (Lnet/minecraft/world/entity/animal/Turtle;)Ljava/util/Random;
+	METHOD access$100 (Lnet/minecraft/world/entity/animal/Turtle;)Ljava/util/Random;
+	METHOD access$200 (Lnet/minecraft/world/entity/animal/Turtle;)Z
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD ageBoundaryReached ()V
+	METHOD aiStep ()V
+		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	METHOD canBeLeashed (Lnet/minecraft/world/entity/player/Player;)Z
+		ARG 1 player
+	METHOD canBreatheUnderwater ()Z
+	METHOD canFallInLove ()Z
+	METHOD checkTurtleSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
+	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+	METHOD createNavigation (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/ai/navigation/PathNavigation;
+		COMMENT Returns new PathNavigateGround instance
+		ARG 1 level
+	METHOD defineSynchedData ()V
+	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
+		ARG 1 level
+		ARG 2 difficulty
+		ARG 3 reason
+		ARG 4 spawnData
+		ARG 5 dataTag
+	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getAmbientSoundInterval ()I
+		COMMENT Get number of ticks, at least during which the living entity will be silent.
+	METHOD getBreedOffspring (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/AgeableMob;)Lnet/minecraft/world/entity/AgeableMob;
+	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getHomePos ()Lnet/minecraft/core/BlockPos;
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getMobType ()Lnet/minecraft/world/entity/MobType;
+	METHOD getScale ()F
+	METHOD getSwimSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getTravelPos ()Lnet/minecraft/core/BlockPos;
+	METHOD getWalkTargetValue (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelReader;)F
+		ARG 1 pos
+		ARG 2 level
+	METHOD hasEgg ()Z
+	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
+		ARG 1 stack
+	METHOD isGoingHome ()Z
+	METHOD isLayingEgg ()Z
+	METHOD isPushedByFluid ()Z
+	METHOD isTravelling ()Z
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+	METHOD nextStep ()F
+	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 block
+	METHOD playSwimSound (F)V
+		ARG 1 volume
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD registerGoals ()V
+	METHOD setGoingHome (Z)V
+		ARG 1 isGoingHome
+	METHOD setHasEgg (Z)V
+		ARG 1 hasEgg
+	METHOD setHomePos (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 position
+	METHOD setLayingEgg (Z)V
+		ARG 1 isDigging
+	METHOD setTravelPos (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 position
+	METHOD setTravelling (Z)V
+		ARG 1 isTravelling
+	METHOD thunderHit (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LightningBolt;)V
+		ARG 1 level
+		ARG 2 lightning
+	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 travelVector
+	CLASS TurtleBreedGoal
+		FIELD turtle Lnet/minecraft/world/entity/animal/Turtle;
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Turtle;D)V
+		METHOD breed ()V
+			COMMENT Spawns a baby animal of the same type.
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	CLASS TurtleGoHomeGoal
+		FIELD GIVE_UP_TICKS I
+		FIELD closeToHomeTryTicks I
+		FIELD speedModifier D
+		FIELD stuck Z
+		FIELD turtle Lnet/minecraft/world/entity/animal/Turtle;
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Turtle;D)V
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS TurtleGoToWaterGoal
+		FIELD GIVE_UP_TICKS I
+		FIELD turtle Lnet/minecraft/world/entity/animal/Turtle;
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Turtle;D)V
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD isValidTarget (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+			COMMENT Return true to set given position as destination
+			ARG 1 level
+			ARG 2 pos
+		METHOD shouldRecalculatePath ()Z
+	CLASS TurtleLayEggGoal
+		FIELD turtle Lnet/minecraft/world/entity/animal/Turtle;
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Turtle;D)V
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD isValidTarget (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+			COMMENT Return true to set given position as destination
+			ARG 1 level
+			ARG 2 pos
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS TurtleMoveControl
+		FIELD turtle Lnet/minecraft/world/entity/animal/Turtle;
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Turtle;)V
+		METHOD tick ()V
+		METHOD updateSpeed ()V
+	CLASS TurtlePanicGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Turtle;D)V
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	CLASS TurtlePathNavigation
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Turtle;Lnet/minecraft/world/level/Level;)V
+		METHOD canUpdatePath ()Z
+			COMMENT If on ground or swimming and can swim
+		METHOD createPathFinder (I)Lnet/minecraft/world/level/pathfinder/PathFinder;
+		METHOD isStableDestination (Lnet/minecraft/core/BlockPos;)Z
+			ARG 1 pos
+	CLASS TurtleRandomStrollGoal
+		FIELD turtle Lnet/minecraft/world/entity/animal/Turtle;
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Turtle;DI)V
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	CLASS TurtleTravelGoal
+		FIELD speedModifier D
+		FIELD stuck Z
+		FIELD turtle Lnet/minecraft/world/entity/animal/Turtle;
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Turtle;D)V
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

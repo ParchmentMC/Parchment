@@ -1,0 +1,14 @@
+CLASS com/mojang/realmsclient/util/task/GetServerDetailsTask
+	FIELD connectLock Ljava/util/concurrent/locks/ReentrantLock;
+	FIELD lastScreen Lnet/minecraft/client/gui/screens/Screen;
+	FIELD mainScreen Lcom/mojang/realmsclient/RealmsMainScreen;
+	FIELD server Lcom/mojang/realmsclient/dto/RealmsServer;
+	METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lnet/minecraft/client/gui/screens/Screen;Lcom/mojang/realmsclient/dto/RealmsServer;Ljava/util/concurrent/locks/ReentrantLock;)V
+	METHOD connectScreen (Lcom/mojang/realmsclient/dto/RealmsServerAddress;)Lcom/mojang/realmsclient/gui/screens/RealmsLongRunningMcoTaskScreen;
+	METHOD fetchServerAddress ()Lcom/mojang/realmsclient/dto/RealmsServerAddress;
+	METHOD lambda$resourcePackDownloadConfirmationScreen$0 (Ljava/util/function/Function;Lcom/mojang/realmsclient/dto/RealmsServerAddress;)V
+	METHOD lambda$resourcePackDownloadConfirmationScreen$1 (Ljava/lang/Throwable;)Ljava/lang/Void;
+	METHOD lambda$resourcePackDownloadConfirmationScreen$2 (Lcom/mojang/realmsclient/dto/RealmsServerAddress;Ljava/util/function/Function;Z)V
+	METHOD resourcePackDownloadConfirmationScreen (Lcom/mojang/realmsclient/dto/RealmsServerAddress;Ljava/util/function/Function;)Lcom/mojang/realmsclient/gui/screens/RealmsLongConfirmationScreen;
+	METHOD run ()V
+	METHOD scheduleResourcePackDownload (Lcom/mojang/realmsclient/dto/RealmsServerAddress;)Ljava/util/concurrent/CompletableFuture;

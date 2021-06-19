@@ -1,0 +1,24 @@
+CLASS net/minecraft/world/level/chunk/HashMapPalette
+	FIELD bits I
+	FIELD reader Ljava/util/function/Function;
+	FIELD registry Lnet/minecraft/core/IdMapper;
+	FIELD resizeHandler Lnet/minecraft/world/level/chunk/PaletteResize;
+	FIELD values Lnet/minecraft/util/CrudeIncrementalIntIdentityHashBiMap;
+	FIELD writer Ljava/util/function/Function;
+	METHOD <init> (Lnet/minecraft/core/IdMapper;ILnet/minecraft/world/level/chunk/PaletteResize;Ljava/util/function/Function;Ljava/util/function/Function;)V
+	METHOD getSerializedSize ()I
+	METHOD getSize ()I
+	METHOD idFor (Ljava/lang/Object;)I
+		ARG 1 state
+	METHOD maybeHas (Ljava/util/function/Predicate;)Z
+	METHOD read (Lnet/minecraft/nbt/ListTag;)V
+		ARG 1 nbt
+	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buf
+	METHOD valueFor (I)Ljava/lang/Object;
+		COMMENT Gets the block state by the palette id.
+		ARG 1 indexKey
+	METHOD write (Lnet/minecraft/nbt/ListTag;)V
+		ARG 1 paletteList
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buf

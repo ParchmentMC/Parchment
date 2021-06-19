@@ -1,0 +1,48 @@
+CLASS net/minecraft/client/Screenshot
+	FIELD DATE_FORMAT Ljava/text/DateFormat;
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD bytes [B
+	FIELD file Ljava/io/File;
+	FIELD height I
+	FIELD outputStream Ljava/io/DataOutputStream;
+	FIELD rowHeight I
+	FIELD width I
+	METHOD <clinit> ()V
+	METHOD <init> (Ljava/io/File;III)V
+	METHOD _grab (Ljava/io/File;Ljava/lang/String;IILcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V
+		ARG 0 gameDirectory
+		ARG 1 screenshotName
+		ARG 2 width
+		ARG 3 height
+		ARG 4 buffer
+		ARG 5 messageConsumer
+	METHOD addRegion (Ljava/nio/ByteBuffer;IIII)V
+	METHOD close ()Ljava/io/File;
+	METHOD getFile (Ljava/io/File;)Ljava/io/File;
+		COMMENT Creates a unique PNG file in the given directory named by a timestamp.  Handles cases where the timestamp alone is not enough to create a uniquely named file, though it still might suffer from an unlikely race condition where the filename was unique when this method was called, but another process or thread created a file at the same path immediately after this method returned.
+		ARG 0 gameDirectory
+	METHOD grab (Ljava/io/File;IILcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V
+		COMMENT Saves a screenshot in the game directory with a time-stamped filename.
+		COMMENT Returns an ITextComponent indicating the success/failure of the saving.
+		ARG 0 gameDirectory
+		ARG 1 width
+		ARG 2 height
+		ARG 3 buffer
+		ARG 4 messageConsumer
+	METHOD grab (Ljava/io/File;Ljava/lang/String;IILcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V
+		COMMENT Saves a screenshot in the game directory with the given file name (or null to generate a time-stamped name).
+		COMMENT Returns an ITextComponent indicating the success/failure of the saving.
+		ARG 0 gameDirectory
+		ARG 1 screenshotName
+		ARG 2 width
+		ARG 3 height
+		ARG 4 buffer
+		ARG 5 messageConsumer
+	METHOD lambda$_grab$1 (Ljava/io/File;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+	METHOD lambda$_grab$2 (Lcom/mojang/blaze3d/platform/NativeImage;Ljava/io/File;Ljava/util/function/Consumer;)V
+	METHOD lambda$grab$0 (Ljava/io/File;Ljava/lang/String;IILcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V
+	METHOD saveRow ()V
+	METHOD takeScreenshot (IILcom/mojang/blaze3d/pipeline/RenderTarget;)Lcom/mojang/blaze3d/platform/NativeImage;
+		ARG 0 width
+		ARG 1 height
+		ARG 2 framebuffer
