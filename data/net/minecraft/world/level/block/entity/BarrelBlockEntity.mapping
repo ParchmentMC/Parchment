@@ -1,0 +1,34 @@
+CLASS net/minecraft/world/level/block/entity/BarrelBlockEntity
+	FIELD items Lnet/minecraft/core/NonNullList;
+	FIELD openersCounter Lnet/minecraft/world/level/block/entity/ContainerOpenersCounter;
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+	METHOD createMenu (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
+		ARG 1 id
+		ARG 2 player
+	METHOD getContainerSize ()I
+		COMMENT Returns the number of slots in the inventory.
+	METHOD getDefaultName ()Lnet/minecraft/network/chat/Component;
+	METHOD getItems ()Lnet/minecraft/core/NonNullList;
+	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
+	METHOD playSound (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/sounds/SoundEvent;)V
+		ARG 1 state
+		ARG 2 sound
+	METHOD recheckOpen ()V
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD setItems (Lnet/minecraft/core/NonNullList;)V
+		ARG 1 items
+	METHOD startOpen (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player
+	METHOD stopOpen (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player
+	METHOD updateBlockState (Lnet/minecraft/world/level/block/state/BlockState;Z)V
+		ARG 1 state
+		ARG 2 open
+	CLASS 1
+		FIELD this$0 Lnet/minecraft/world/level/block/entity/BarrelBlockEntity;
+		METHOD <init> (Lnet/minecraft/world/level/block/entity/BarrelBlockEntity;)V
+		METHOD isOwnContainer (Lnet/minecraft/world/entity/player/Player;)Z
+		METHOD onClose (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		METHOD onOpen (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		METHOD openerCountChanged (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;II)V

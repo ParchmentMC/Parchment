@@ -1,0 +1,19 @@
+CLASS net/minecraft/world/level/gameevent/vibrations/VibrationListener
+	FIELD config Lnet/minecraft/world/level/gameevent/vibrations/VibrationListener$VibrationListenerConfig;
+	FIELD listenerRange I
+	FIELD listenerSource Lnet/minecraft/world/level/gameevent/PositionSource;
+	FIELD receivingDistance I
+	FIELD receivingEvent Ljava/util/Optional;
+	FIELD travelTimeInTicks I
+	METHOD <init> (Lnet/minecraft/world/level/gameevent/PositionSource;ILnet/minecraft/world/level/gameevent/vibrations/VibrationListener$VibrationListenerConfig;)V
+	METHOD getListenerRadius ()I
+	METHOD getListenerSource ()Lnet/minecraft/world/level/gameevent/PositionSource;
+	METHOD handleGameEvent (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/BlockPos;)Z
+	METHOD isOccluded (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Z
+	METHOD isValidVibration (Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/entity/Entity;)Z
+	METHOD lambda$isOccluded$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
+	METHOD sendSignal (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)V
+	METHOD tick (Lnet/minecraft/world/level/Level;)V
+	CLASS VibrationListenerConfig
+		METHOD onSignalReceive (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/gameevent/GameEventListener;Lnet/minecraft/world/level/gameevent/GameEvent;I)V
+		METHOD shouldListen (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/gameevent/GameEventListener;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/entity/Entity;)Z

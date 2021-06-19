@@ -1,0 +1,35 @@
+CLASS net/minecraft/client/resources/SkinManager
+	FIELD PROPERTY_TEXTURES Ljava/lang/String;
+	FIELD insecureSkinCache Lcom/google/common/cache/LoadingCache;
+	FIELD sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
+	FIELD skinsDirectory Ljava/io/File;
+	FIELD textureManager Lnet/minecraft/client/renderer/texture/TextureManager;
+	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureManager;Ljava/io/File;Lcom/mojang/authlib/minecraft/MinecraftSessionService;)V
+	METHOD getInsecureSkinInformation (Lcom/mojang/authlib/GameProfile;)Ljava/util/Map;
+		ARG 1 profile
+	METHOD lambda$registerSkins$1 (Ljava/util/Map;Lnet/minecraft/client/resources/SkinManager$SkinTextureCallback;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;)V
+	METHOD lambda$registerSkins$2 (Ljava/util/Map;Lnet/minecraft/client/resources/SkinManager$SkinTextureCallback;)V
+	METHOD lambda$registerSkins$3 (Ljava/util/Map;Lnet/minecraft/client/resources/SkinManager$SkinTextureCallback;)V
+	METHOD lambda$registerSkins$4 (Lcom/mojang/authlib/GameProfile;ZLnet/minecraft/client/resources/SkinManager$SkinTextureCallback;)V
+	METHOD lambda$registerTexture$0 (Lnet/minecraft/client/resources/SkinManager$SkinTextureCallback;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;)V
+	METHOD registerSkins (Lcom/mojang/authlib/GameProfile;Lnet/minecraft/client/resources/SkinManager$SkinTextureCallback;Z)V
+		ARG 1 profile
+		ARG 2 skinAvailableCallback
+		ARG 3 requireSecure
+	METHOD registerTexture (Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;)Lnet/minecraft/resources/ResourceLocation;
+		COMMENT Used in the Skull renderer to fetch a skin. May download the skin if it's not in the cache
+		ARG 1 profileTexture
+		ARG 2 textureType
+	METHOD registerTexture (Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;Lnet/minecraft/client/resources/SkinManager$SkinTextureCallback;)Lnet/minecraft/resources/ResourceLocation;
+		COMMENT May download the skin if its not in the cache, can be passed a SkinManager#SkinAvailableCallback for handling
+		ARG 1 profileTexture
+		ARG 2 textureType
+		ARG 3 skinAvailableCallback
+	CLASS 1
+		FIELD this$0 Lnet/minecraft/client/resources/SkinManager;
+		FIELD val$sessionService Lcom/mojang/authlib/minecraft/MinecraftSessionService;
+		METHOD <init> (Lnet/minecraft/client/resources/SkinManager;Lcom/mojang/authlib/minecraft/MinecraftSessionService;)V
+		METHOD load (Ljava/lang/Object;)Ljava/lang/Object;
+		METHOD load (Ljava/lang/String;)Ljava/util/Map;
+	CLASS SkinTextureCallback
+		METHOD onSkinTextureAvailable (Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;)V

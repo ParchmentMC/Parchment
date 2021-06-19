@@ -1,0 +1,33 @@
+CLASS net/minecraft/world/level/block/state/StateDefinition
+	FIELD NAME_PATTERN Ljava/util/regex/Pattern;
+	FIELD owner Ljava/lang/Object;
+	FIELD propertiesByName Lcom/google/common/collect/ImmutableSortedMap;
+	FIELD states Lcom/google/common/collect/ImmutableList;
+	METHOD <clinit> ()V
+	METHOD <init> (Ljava/util/function/Function;Ljava/lang/Object;Lnet/minecraft/world/level/block/state/StateDefinition$Factory;Ljava/util/Map;)V
+	METHOD any ()Lnet/minecraft/world/level/block/state/StateHolder;
+	METHOD appendPropertyCodec (Lcom/mojang/serialization/MapCodec;Ljava/util/function/Supplier;Ljava/lang/String;Lnet/minecraft/world/level/block/state/properties/Property;)Lcom/mojang/serialization/MapCodec;
+	METHOD getOwner ()Ljava/lang/Object;
+	METHOD getPossibleStates ()Lcom/google/common/collect/ImmutableList;
+	METHOD getProperties ()Ljava/util/Collection;
+	METHOD getProperty (Ljava/lang/String;)Lnet/minecraft/world/level/block/state/properties/Property;
+		ARG 1 propertyName
+	METHOD lambda$appendPropertyCodec$4 (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/util/function/Supplier;)Lnet/minecraft/world/level/block/state/properties/Property$Value;
+	METHOD lambda$appendPropertyCodec$5 (Lnet/minecraft/world/level/block/state/properties/Property;Lcom/mojang/datafixers/util/Pair;)Lnet/minecraft/world/level/block/state/StateHolder;
+	METHOD lambda$appendPropertyCodec$6 (Lnet/minecraft/world/level/block/state/properties/Property;Lnet/minecraft/world/level/block/state/StateHolder;)Lcom/mojang/datafixers/util/Pair;
+	METHOD lambda$new$0 (Ljava/util/function/Function;Ljava/lang/Object;)Lnet/minecraft/world/level/block/state/StateHolder;
+	METHOD lambda$new$1 (Ljava/util/List;Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/util/List;
+	METHOD lambda$new$2 (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/util/List;)Ljava/util/stream/Stream;
+	METHOD lambda$new$3 (Lnet/minecraft/world/level/block/state/StateDefinition$Factory;Ljava/lang/Object;Lcom/mojang/serialization/MapCodec;Ljava/util/Map;Ljava/util/List;Ljava/util/List;)V
+	METHOD toString ()Ljava/lang/String;
+	CLASS Builder
+		FIELD owner Ljava/lang/Object;
+		FIELD properties Ljava/util/Map;
+		METHOD <init> (Ljava/lang/Object;)V
+		METHOD add ([Lnet/minecraft/world/level/block/state/properties/Property;)Lnet/minecraft/world/level/block/state/StateDefinition$Builder;
+			ARG 1 properties
+		METHOD create (Ljava/util/function/Function;Lnet/minecraft/world/level/block/state/StateDefinition$Factory;)Lnet/minecraft/world/level/block/state/StateDefinition;
+		METHOD validateProperty (Lnet/minecraft/world/level/block/state/properties/Property;)V
+			ARG 1 property
+	CLASS Factory
+		METHOD create (Ljava/lang/Object;Lcom/google/common/collect/ImmutableMap;Lcom/mojang/serialization/MapCodec;)Ljava/lang/Object;

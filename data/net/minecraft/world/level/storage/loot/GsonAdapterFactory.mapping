@@ -1,0 +1,31 @@
+CLASS net/minecraft/world/level/storage/loot/GsonAdapterFactory
+	METHOD <init> ()V
+	METHOD builder (Lnet/minecraft/core/Registry;Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Function;)Lnet/minecraft/world/level/storage/loot/GsonAdapterFactory$Builder;
+		ARG 0 registry
+		ARG 1 id
+		ARG 2 name
+		ARG 3 typeFunction
+	CLASS Builder
+		FIELD defaultType Lnet/minecraft/world/level/storage/loot/SerializerType;
+		FIELD elementName Ljava/lang/String;
+		FIELD inlineType Lcom/mojang/datafixers/util/Pair;
+		FIELD registry Lnet/minecraft/core/Registry;
+		FIELD typeGetter Ljava/util/function/Function;
+		FIELD typeKey Ljava/lang/String;
+		METHOD <init> (Lnet/minecraft/core/Registry;Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Function;)V
+		METHOD build ()Ljava/lang/Object;
+		METHOD withDefaultType (Lnet/minecraft/world/level/storage/loot/SerializerType;)Lnet/minecraft/world/level/storage/loot/GsonAdapterFactory$Builder;
+		METHOD withInlineSerializer (Lnet/minecraft/world/level/storage/loot/SerializerType;Lnet/minecraft/world/level/storage/loot/GsonAdapterFactory$InlineSerializer;)Lnet/minecraft/world/level/storage/loot/GsonAdapterFactory$Builder;
+	CLASS InlineSerializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+		METHOD serialize (Ljava/lang/Object;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
+	CLASS JsonAdapter
+		FIELD defaultType Lnet/minecraft/world/level/storage/loot/SerializerType;
+		FIELD elementName Ljava/lang/String;
+		FIELD inlineType Lcom/mojang/datafixers/util/Pair;
+		FIELD registry Lnet/minecraft/core/Registry;
+		FIELD typeGetter Ljava/util/function/Function;
+		FIELD typeKey Ljava/lang/String;
+		METHOD <init> (Lnet/minecraft/core/Registry;Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Function;Lnet/minecraft/world/level/storage/loot/SerializerType;Lcom/mojang/datafixers/util/Pair;)V
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+		METHOD serialize (Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;

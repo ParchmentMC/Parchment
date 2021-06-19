@@ -1,0 +1,25 @@
+CLASS net/minecraft/advancements/critereon/ChanneledLightningTrigger
+	FIELD ID Lnet/minecraft/resources/ResourceLocation;
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD createInstance (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/AbstractCriterionTriggerInstance;
+	METHOD createInstance (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/ChanneledLightningTrigger$TriggerInstance;
+		ARG 1 json
+		ARG 2 entityPredicate
+		ARG 3 conditionsParser
+	METHOD getId ()Lnet/minecraft/resources/ResourceLocation;
+	METHOD lambda$trigger$0 (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/level/storage/loot/LootContext;
+	METHOD lambda$trigger$1 (Ljava/util/List;Lnet/minecraft/advancements/critereon/ChanneledLightningTrigger$TriggerInstance;)Z
+	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Ljava/util/Collection;)V
+		ARG 1 player
+		ARG 2 entityTriggered
+	CLASS TriggerInstance
+		FIELD victims [Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;
+		METHOD <init> (Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;[Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;)V
+		METHOD channeledLightning ([Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/ChanneledLightningTrigger$TriggerInstance;
+			ARG 0 victims
+		METHOD lambda$channeledLightning$0 (I)[Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;
+		METHOD matches (Ljava/util/Collection;)Z
+			ARG 1 victims
+		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
+			ARG 1 conditions

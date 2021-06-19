@@ -1,0 +1,46 @@
+CLASS net/minecraft/world/level/block/entity/ChestBlockEntity
+	FIELD EVENT_SET_OPEN_COUNT I
+	FIELD chestLidController Lnet/minecraft/world/level/block/entity/ChestLidController;
+	FIELD items Lnet/minecraft/core/NonNullList;
+	FIELD openersCounter Lnet/minecraft/world/level/block/entity/ContainerOpenersCounter;
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+	METHOD <init> (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+	METHOD createMenu (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
+		ARG 1 id
+		ARG 2 player
+	METHOD getContainerSize ()I
+		COMMENT Returns the number of slots in the inventory.
+	METHOD getDefaultName ()Lnet/minecraft/network/chat/Component;
+	METHOD getItems ()Lnet/minecraft/core/NonNullList;
+	METHOD getOpenCount (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)I
+		ARG 0 reader
+		ARG 1 pos
+	METHOD getOpenNess (F)F
+		ARG 1 partialTicks
+	METHOD lidAnimateTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/ChestBlockEntity;)V
+	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
+	METHOD playSound (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/sounds/SoundEvent;)V
+	METHOD recheckOpen ()V
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD setItems (Lnet/minecraft/core/NonNullList;)V
+		ARG 1 items
+	METHOD signalOpenCount (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;II)V
+	METHOD startOpen (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player
+	METHOD stopOpen (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player
+	METHOD swapContents (Lnet/minecraft/world/level/block/entity/ChestBlockEntity;Lnet/minecraft/world/level/block/entity/ChestBlockEntity;)V
+		ARG 0 chest
+		ARG 1 otherChest
+	METHOD triggerEvent (II)Z
+		COMMENT See {@link Block#eventReceived} for more information. This must return true serverside before it is called clientside.
+		ARG 1 id
+		ARG 2 type
+	CLASS 1
+		FIELD this$0 Lnet/minecraft/world/level/block/entity/ChestBlockEntity;
+		METHOD <init> (Lnet/minecraft/world/level/block/entity/ChestBlockEntity;)V
+		METHOD isOwnContainer (Lnet/minecraft/world/entity/player/Player;)Z
+		METHOD onClose (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		METHOD onOpen (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		METHOD openerCountChanged (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;II)V

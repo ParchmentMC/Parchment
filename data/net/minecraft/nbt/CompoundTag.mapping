@@ -1,0 +1,180 @@
+CLASS net/minecraft/nbt/CompoundTag
+	FIELD CODEC Lcom/mojang/serialization/Codec;
+	FIELD MAP_ENTRY_SIZE_IN_BITS I
+	FIELD SELF_SIZE_IN_BITS I
+	FIELD TYPE Lnet/minecraft/nbt/TagType;
+	FIELD tags Ljava/util/Map;
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD <init> (Ljava/util/Map;)V
+	METHOD accept (Lnet/minecraft/nbt/TagVisitor;)V
+	METHOD contains (Ljava/lang/String;)Z
+		COMMENT Returns whether the given string has been previously stored as a key in the map.
+		ARG 1 key
+	METHOD contains (Ljava/lang/String;I)Z
+		COMMENT Returns whether the given string has been previously stored as a key in this tag compound as a particular type, denoted by a parameter in the form of an ordinal. If the provided ordinal is 99, this method will match tag types representing numbers.
+		ARG 1 key
+		ARG 2 type
+	METHOD copy ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Creates a clone of the tag.
+	METHOD copy ()Lnet/minecraft/nbt/Tag;
+	METHOD createReport (Ljava/lang/String;Lnet/minecraft/nbt/TagType;Ljava/lang/ClassCastException;)Lnet/minecraft/CrashReport;
+		ARG 1 tagName
+		ARG 2 type
+		ARG 3 exception
+	METHOD entries ()Ljava/util/Map;
+	METHOD equals (Ljava/lang/Object;)Z
+	METHOD get (Ljava/lang/String;)Lnet/minecraft/nbt/Tag;
+		COMMENT gets a generic tag with the specified name
+		ARG 1 key
+	METHOD getAllKeys ()Ljava/util/Set;
+		COMMENT Gets a set with the names of the keys in the tag compound.
+	METHOD getBoolean (Ljava/lang/String;)Z
+		COMMENT Retrieves a boolean value using the specified key, or false if no such key was stored. This uses the getByte method.
+		ARG 1 key
+	METHOD getByte (Ljava/lang/String;)B
+		COMMENT Retrieves a byte value using the specified key, or 0 if no such key was stored.
+		ARG 1 key
+	METHOD getByteArray (Ljava/lang/String;)[B
+		COMMENT Retrieves a byte array using the specified key, or a zero-length array if no such key was stored.
+		ARG 1 key
+	METHOD getCompound (Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Retrieves a NBTTagCompound subtag matching the specified key, or a new empty NBTTagCompound if no such key was stored.
+		ARG 1 key
+	METHOD getDouble (Ljava/lang/String;)D
+		COMMENT Retrieves a double value using the specified key, or 0 if no such key was stored.
+		ARG 1 key
+	METHOD getFloat (Ljava/lang/String;)F
+		COMMENT Retrieves a float value using the specified key, or 0 if no such key was stored.
+		ARG 1 key
+	METHOD getId ()B
+		COMMENT Gets the type byte for the tag.
+	METHOD getInt (Ljava/lang/String;)I
+		COMMENT Retrieves an integer value using the specified key, or 0 if no such key was stored.
+		ARG 1 key
+	METHOD getIntArray (Ljava/lang/String;)[I
+		COMMENT Retrieves an int array using the specified key, or a zero-length array if no such key was stored.
+		ARG 1 key
+	METHOD getList (Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+		COMMENT Gets the NBTTagList object with the given name.
+		ARG 1 key
+		ARG 2 type
+	METHOD getLong (Ljava/lang/String;)J
+		COMMENT Retrieves a long value using the specified key, or 0 if no such key was stored.
+		ARG 1 key
+	METHOD getLongArray (Ljava/lang/String;)[J
+		ARG 1 key
+	METHOD getShort (Ljava/lang/String;)S
+		COMMENT Retrieves a short value using the specified key, or 0 if no such key was stored.
+		ARG 1 key
+	METHOD getString (Ljava/lang/String;)Ljava/lang/String;
+		COMMENT Retrieves a string value using the specified key, or an empty string if no such key was stored.
+		ARG 1 key
+	METHOD getTagType (Ljava/lang/String;)B
+		COMMENT Gets the ID byte for the given tag key
+		ARG 1 key
+	METHOD getType ()Lnet/minecraft/nbt/TagType;
+	METHOD getUUID (Ljava/lang/String;)Ljava/util/UUID;
+		ARG 1 key
+	METHOD hasUUID (Ljava/lang/String;)Z
+		ARG 1 key
+	METHOD hashCode ()I
+	METHOD isEmpty ()Z
+	METHOD lambda$createReport$2 (Ljava/lang/String;)Ljava/lang/String;
+	METHOD lambda$static$0 (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/DataResult;
+	METHOD lambda$static$1 (Lnet/minecraft/nbt/CompoundTag;)Lcom/mojang/serialization/Dynamic;
+	METHOD merge (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Deep copies all the tags of {@code other} into this tag, then returns itself.
+		ARG 1 other
+	METHOD put (Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+		ARG 1 key
+		ARG 2 value
+	METHOD putBoolean (Ljava/lang/String;Z)V
+		COMMENT Stores the given boolean value as a NBTTagByte, storing 1 for true and 0 for false, using the given string key.
+		ARG 1 key
+		ARG 2 value
+	METHOD putByte (Ljava/lang/String;B)V
+		COMMENT Stores a new NBTTagByte with the given byte value into the map with the given string key.
+		ARG 1 key
+		ARG 2 value
+	METHOD putByteArray (Ljava/lang/String;Ljava/util/List;)V
+	METHOD putByteArray (Ljava/lang/String;[B)V
+		COMMENT Stores a new NBTTagByteArray with the given array as data into the map with the given string key.
+		ARG 1 key
+		ARG 2 value
+	METHOD putDouble (Ljava/lang/String;D)V
+		COMMENT Stores a new NBTTagDouble with the given double value into the map with the given string key.
+		ARG 1 key
+		ARG 2 value
+	METHOD putFloat (Ljava/lang/String;F)V
+		COMMENT Stores a new NBTTagFloat with the given float value into the map with the given string key.
+		ARG 1 key
+		ARG 2 value
+	METHOD putInt (Ljava/lang/String;I)V
+		COMMENT Stores a new NBTTagInt with the given integer value into the map with the given string key.
+		ARG 1 key
+		ARG 2 value
+	METHOD putIntArray (Ljava/lang/String;Ljava/util/List;)V
+		ARG 1 key
+		ARG 2 value
+	METHOD putIntArray (Ljava/lang/String;[I)V
+		COMMENT Stores a new NBTTagIntArray with the given array as data into the map with the given string key.
+		ARG 1 key
+		ARG 2 value
+	METHOD putLong (Ljava/lang/String;J)V
+		COMMENT Stores a new NBTTagLong with the given long value into the map with the given string key.
+		ARG 1 key
+		ARG 2 value
+	METHOD putLongArray (Ljava/lang/String;Ljava/util/List;)V
+		ARG 1 key
+		ARG 2 value
+	METHOD putLongArray (Ljava/lang/String;[J)V
+		ARG 1 key
+		ARG 2 value
+	METHOD putShort (Ljava/lang/String;S)V
+		COMMENT Stores a new NBTTagShort with the given short value into the map with the given string key.
+		ARG 1 key
+		ARG 2 value
+	METHOD putString (Ljava/lang/String;Ljava/lang/String;)V
+		COMMENT Stores a new NBTTagString with the given string value into the map with the given string key.
+		ARG 1 key
+		ARG 2 value
+	METHOD putUUID (Ljava/lang/String;Ljava/util/UUID;)V
+		ARG 1 key
+		ARG 2 value
+	METHOD readNamedTagData (Lnet/minecraft/nbt/TagType;Ljava/lang/String;Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/Tag;
+		ARG 0 type
+		ARG 1 name
+		ARG 2 input
+		ARG 3 depth
+		ARG 4 accounter
+	METHOD readNamedTagName (Ljava/io/DataInput;Lnet/minecraft/nbt/NbtAccounter;)Ljava/lang/String;
+		ARG 0 input
+		ARG 1 sizeTracker
+	METHOD readNamedTagType (Ljava/io/DataInput;Lnet/minecraft/nbt/NbtAccounter;)B
+		ARG 0 input
+		ARG 1 sizeTracker
+	METHOD remove (Ljava/lang/String;)V
+		COMMENT Remove the specified tag.
+		ARG 1 key
+	METHOD size ()I
+	METHOD toString ()Ljava/lang/String;
+	METHOD write (Ljava/io/DataOutput;)V
+		COMMENT Write the actual data contents of the tag, implemented in NBT extension classes
+		ARG 1 output
+	METHOD writeNamedTag (Ljava/lang/String;Lnet/minecraft/nbt/Tag;Ljava/io/DataOutput;)V
+		ARG 0 name
+		ARG 1 data
+		ARG 2 output
+	CLASS 1
+		METHOD <init> ()V
+		METHOD getName ()Ljava/lang/String;
+		METHOD getPrettyName ()Ljava/lang/String;
+		METHOD load (Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/CompoundTag;
+			ARG 1 input
+			ARG 2 depth
+			ARG 3 accounter
+		METHOD load (Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/Tag;
+			ARG 1 input
+			ARG 2 depth
+			ARG 3 accounter

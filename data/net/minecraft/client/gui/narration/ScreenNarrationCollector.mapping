@@ -1,0 +1,33 @@
+CLASS net/minecraft/client/gui/narration/ScreenNarrationCollector
+	FIELD entries Ljava/util/Map;
+	FIELD generation I
+	METHOD <init> ()V
+	METHOD collectNarrationText (Z)Ljava/lang/String;
+	METHOD lambda$collectNarrationText$2 (ZLjava/util/function/Consumer;Lnet/minecraft/client/gui/narration/ScreenNarrationCollector$EntryKey;Lnet/minecraft/client/gui/narration/ScreenNarrationCollector$NarrationEntry;)V
+	METHOD lambda$new$0 (Lnet/minecraft/client/gui/narration/ScreenNarrationCollector$EntryKey;)Lnet/minecraft/client/gui/narration/NarratedElementType;
+	METHOD lambda$new$1 (Lnet/minecraft/client/gui/narration/ScreenNarrationCollector$EntryKey;)Ljava/lang/Integer;
+	METHOD update (Ljava/util/function/Consumer;)V
+	CLASS 1
+		FIELD firstEntry Z
+		FIELD this$0 Lnet/minecraft/client/gui/narration/ScreenNarrationCollector;
+		FIELD val$result Ljava/lang/StringBuilder;
+		METHOD <init> (Lnet/minecraft/client/gui/narration/ScreenNarrationCollector;Ljava/lang/StringBuilder;)V
+		METHOD accept (Ljava/lang/Object;)V
+		METHOD accept (Ljava/lang/String;)V
+	CLASS EntryKey
+		FIELD depth I
+		FIELD type Lnet/minecraft/client/gui/narration/NarratedElementType;
+		METHOD <init> (Lnet/minecraft/client/gui/narration/NarratedElementType;I)V
+	CLASS NarrationEntry
+		FIELD alreadyNarrated Z
+		FIELD contents Lnet/minecraft/client/gui/narration/NarrationThunk;
+		FIELD generation I
+		METHOD <init> ()V
+		METHOD update (ILnet/minecraft/client/gui/narration/NarrationThunk;)Lnet/minecraft/client/gui/narration/ScreenNarrationCollector$NarrationEntry;
+	CLASS Output
+		FIELD depth I
+		FIELD this$0 Lnet/minecraft/client/gui/narration/ScreenNarrationCollector;
+		METHOD <init> (Lnet/minecraft/client/gui/narration/ScreenNarrationCollector;I)V
+		METHOD add (Lnet/minecraft/client/gui/narration/NarratedElementType;Lnet/minecraft/client/gui/narration/NarrationThunk;)V
+		METHOD lambda$add$0 (Lnet/minecraft/client/gui/narration/ScreenNarrationCollector$EntryKey;)Lnet/minecraft/client/gui/narration/ScreenNarrationCollector$NarrationEntry;
+		METHOD nest ()Lnet/minecraft/client/gui/narration/NarrationElementOutput;

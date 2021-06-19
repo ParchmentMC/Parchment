@@ -1,0 +1,49 @@
+CLASS net/minecraft/world/inventory/BeaconMenu
+	FIELD DATA_COUNT I
+	FIELD INV_SLOT_END I
+	FIELD INV_SLOT_START I
+	FIELD PAYMENT_SLOT I
+	FIELD SLOT_COUNT I
+	FIELD USE_ROW_SLOT_END I
+	FIELD USE_ROW_SLOT_START I
+	FIELD access Lnet/minecraft/world/inventory/ContainerLevelAccess;
+	FIELD beacon Lnet/minecraft/world/Container;
+	FIELD beaconData Lnet/minecraft/world/inventory/ContainerData;
+	FIELD paymentSlot Lnet/minecraft/world/inventory/BeaconMenu$PaymentSlot;
+	METHOD <init> (ILnet/minecraft/world/Container;)V
+	METHOD <init> (ILnet/minecraft/world/Container;Lnet/minecraft/world/inventory/ContainerData;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
+	METHOD getLevels ()I
+	METHOD getPrimaryEffect ()Lnet/minecraft/world/effect/MobEffect;
+	METHOD getSecondaryEffect ()Lnet/minecraft/world/effect/MobEffect;
+	METHOD hasPayment ()Z
+	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
+		ARG 1 player
+		ARG 2 index
+	METHOD removed (Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called when the container is closed.
+		ARG 1 player
+	METHOD setData (II)V
+		ARG 1 id
+		ARG 2 data
+	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+		COMMENT Determines whether supplied player can use this container
+		ARG 1 player
+	METHOD updateEffects (II)V
+	CLASS 1
+		FIELD this$0 Lnet/minecraft/world/inventory/BeaconMenu;
+		METHOD <init> (Lnet/minecraft/world/inventory/BeaconMenu;I)V
+		METHOD canPlaceItem (ILnet/minecraft/world/item/ItemStack;)Z
+			COMMENT Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot. For guis use Slot.isItemValid
+			ARG 1 index
+			ARG 2 stack
+		METHOD getMaxStackSize ()I
+			COMMENT Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended.
+	CLASS PaymentSlot
+		FIELD this$0 Lnet/minecraft/world/inventory/BeaconMenu;
+		METHOD <init> (Lnet/minecraft/world/inventory/BeaconMenu;Lnet/minecraft/world/Container;III)V
+		METHOD getMaxStackSize ()I
+			COMMENT Returns the maximum stack size for a given slot (usually the same as getInventoryStackLimit(), but 1 in the case of armor slots)
+		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
+			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
+			ARG 1 stack

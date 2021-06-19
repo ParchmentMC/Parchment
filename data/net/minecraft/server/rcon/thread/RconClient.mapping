@@ -1,0 +1,25 @@
+CLASS net/minecraft/server/rcon/thread/RconClient
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD SERVERDATA_AUTH I
+	FIELD SERVERDATA_AUTH_FAILURE I
+	FIELD SERVERDATA_AUTH_RESPONSE I
+	FIELD SERVERDATA_EXECCOMMAND I
+	FIELD SERVERDATA_RESPONSE_VALUE I
+	FIELD authed Z
+	FIELD buf [B
+	FIELD client Ljava/net/Socket;
+	FIELD rconPassword Ljava/lang/String;
+	FIELD serverInterface Lnet/minecraft/server/ServerInterface;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/server/ServerInterface;Ljava/lang/String;Ljava/net/Socket;)V
+	METHOD closeSocket ()V
+		COMMENT Closes the client socket
+	METHOD run ()V
+	METHOD send (IILjava/lang/String;)V
+		COMMENT Sends the given response message to the client
+		ARG 3 message
+	METHOD sendAuthFailure ()V
+		COMMENT Sends the standard RCon 'authorization failed' response packet
+	METHOD sendCmdResponse (ILjava/lang/String;)V
+		COMMENT Splits the response message into individual packets and sends each one
+	METHOD stop ()V

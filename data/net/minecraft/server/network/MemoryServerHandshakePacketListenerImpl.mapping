@@ -1,0 +1,12 @@
+CLASS net/minecraft/server/network/MemoryServerHandshakePacketListenerImpl
+	FIELD connection Lnet/minecraft/network/Connection;
+	FIELD server Lnet/minecraft/server/MinecraftServer;
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;)V
+	METHOD getConnection ()Lnet/minecraft/network/Connection;
+		COMMENT Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient
+	METHOD handleIntention (Lnet/minecraft/network/protocol/handshake/ClientIntentionPacket;)V
+		COMMENT There are two recognized intentions for initiating a handshake: logging in and acquiring server status. The NetworkManager's protocol will be reconfigured according to the specified intention, although a login-intention must pass a versioncheck or receive a disconnect otherwise
+		ARG 1 packet
+	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
+		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
+		ARG 1 reason

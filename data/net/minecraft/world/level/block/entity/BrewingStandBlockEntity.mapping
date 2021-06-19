@@ -1,0 +1,81 @@
+CLASS net/minecraft/world/level/block/entity/BrewingStandBlockEntity
+	FIELD DATA_BREW_TIME I
+	FIELD DATA_FUEL_USES I
+	FIELD FUEL_SLOT I
+	FIELD FUEL_USES I
+	FIELD INGREDIENT_SLOT I
+	FIELD NUM_DATA_VALUES I
+	FIELD SLOTS_FOR_DOWN [I
+	FIELD SLOTS_FOR_SIDES [I
+		COMMENT an array of the output slot indices
+	FIELD SLOTS_FOR_UP [I
+		COMMENT an array of the input slot indices
+	FIELD brewTime I
+	FIELD dataAccess Lnet/minecraft/world/inventory/ContainerData;
+	FIELD fuel I
+	FIELD ingredient Lnet/minecraft/world/item/Item;
+		COMMENT used to check if the current ingredient has been removed from the brewing stand during brewing
+	FIELD items Lnet/minecraft/core/NonNullList;
+		COMMENT The ItemStacks currently placed in the slots of the brewing stand
+	FIELD lastPotionCount [Z
+		COMMENT an integer with each bit specifying whether that slot of the stand contains a potion
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+	METHOD canPlaceItem (ILnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot. For guis use Slot.isItemValid
+		ARG 1 index
+		ARG 2 stack
+	METHOD canPlaceItemThroughFace (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Z
+		COMMENT Returns true if automation can insert the given item in the given slot from the given side.
+		ARG 1 index
+		ARG 2 itemStack
+		ARG 3 direction
+	METHOD canTakeItemThroughFace (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Z
+		COMMENT Returns true if automation can extract the given item in the given slot from the given side.
+		ARG 1 index
+		ARG 2 stack
+		ARG 3 direction
+	METHOD clearContent ()V
+	METHOD createMenu (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
+		ARG 1 id
+		ARG 2 player
+	METHOD doBrew (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/NonNullList;)V
+	METHOD getContainerSize ()I
+		COMMENT Returns the number of slots in the inventory.
+	METHOD getDefaultName ()Lnet/minecraft/network/chat/Component;
+	METHOD getItem (I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Returns the stack in the given slot.
+		ARG 1 index
+	METHOD getPotionBits ()[Z
+		COMMENT Creates an array of boolean values, each value represents a potion input slot, value is true if the slot is not null.
+	METHOD getSlotsForFace (Lnet/minecraft/core/Direction;)[I
+		ARG 1 side
+	METHOD isBrewable (Lnet/minecraft/core/NonNullList;)Z
+	METHOD isEmpty ()Z
+	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
+	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
+		ARG 1 index
+		ARG 2 count
+	METHOD removeItemNoUpdate (I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Removes a stack from the given slot and returns it.
+		ARG 1 index
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD serverTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BrewingStandBlockEntity;)V
+	METHOD setItem (ILnet/minecraft/world/item/ItemStack;)V
+		COMMENT Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+		ARG 1 index
+		ARG 2 stack
+	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
+		ARG 1 player
+	CLASS 1
+		FIELD this$0 Lnet/minecraft/world/level/block/entity/BrewingStandBlockEntity;
+		METHOD <init> (Lnet/minecraft/world/level/block/entity/BrewingStandBlockEntity;)V
+		METHOD get (I)I
+			ARG 1 index
+		METHOD getCount ()I
+		METHOD set (II)V
+			ARG 1 index
+			ARG 2 value

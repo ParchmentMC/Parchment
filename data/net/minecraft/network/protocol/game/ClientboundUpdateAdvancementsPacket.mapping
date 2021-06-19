@@ -1,0 +1,20 @@
+CLASS net/minecraft/network/protocol/game/ClientboundUpdateAdvancementsPacket
+	FIELD added Ljava/util/Map;
+	FIELD progress Ljava/util/Map;
+	FIELD removed Ljava/util/Set;
+	FIELD reset Z
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD <init> (ZLjava/util/Collection;Ljava/util/Set;Ljava/util/Map;)V
+	METHOD getAdded ()Ljava/util/Map;
+	METHOD getProgress ()Ljava/util/Map;
+	METHOD getRemoved ()Ljava/util/Set;
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD lambda$write$0 (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/advancements/Advancement$Builder;)V
+	METHOD lambda$write$1 (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/advancements/AdvancementProgress;)V
+	METHOD shouldReset ()Z
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf

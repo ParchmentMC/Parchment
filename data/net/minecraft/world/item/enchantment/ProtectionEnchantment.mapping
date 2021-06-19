@@ -1,0 +1,40 @@
+CLASS net/minecraft/world/item/enchantment/ProtectionEnchantment
+	FIELD type Lnet/minecraft/world/item/enchantment/ProtectionEnchantment$Type;
+	METHOD <init> (Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;Lnet/minecraft/world/item/enchantment/ProtectionEnchantment$Type;[Lnet/minecraft/world/entity/EquipmentSlot;)V
+	METHOD checkCompatibility (Lnet/minecraft/world/item/enchantment/Enchantment;)Z
+		COMMENT Determines if the enchantment passed can be applyied together with this enchantment.
+		ARG 1 ench
+	METHOD getDamageProtection (ILnet/minecraft/world/damagesource/DamageSource;)I
+		COMMENT Calculates the damage protection of the enchantment based on level and damage source passed.
+		ARG 1 level
+		ARG 2 source
+	METHOD getExplosionKnockbackAfterDampener (Lnet/minecraft/world/entity/LivingEntity;D)D
+		ARG 0 livingEntity
+		ARG 1 damage
+	METHOD getFireAfterDampener (Lnet/minecraft/world/entity/LivingEntity;I)I
+		COMMENT Gets the amount of ticks an entity should be set fire, adjusted for fire protection.
+		ARG 0 livingEntity
+		ARG 1 level
+	METHOD getMaxCost (I)I
+		ARG 1 enchantmentLevel
+	METHOD getMaxLevel ()I
+		COMMENT Returns the maximum level that the enchantment can have.
+	METHOD getMinCost (I)I
+		COMMENT Returns the minimal value of enchantability needed on the enchantment level passed.
+		ARG 1 enchantmentLevel
+	CLASS Type
+		FIELD $VALUES [Lnet/minecraft/world/item/enchantment/ProtectionEnchantment$Type;
+		FIELD ALL Lnet/minecraft/world/item/enchantment/ProtectionEnchantment$Type;
+		FIELD EXPLOSION Lnet/minecraft/world/item/enchantment/ProtectionEnchantment$Type;
+		FIELD FALL Lnet/minecraft/world/item/enchantment/ProtectionEnchantment$Type;
+		FIELD FIRE Lnet/minecraft/world/item/enchantment/ProtectionEnchantment$Type;
+		FIELD PROJECTILE Lnet/minecraft/world/item/enchantment/ProtectionEnchantment$Type;
+		FIELD levelCost I
+		FIELD minCost I
+		METHOD $values ()[Lnet/minecraft/world/item/enchantment/ProtectionEnchantment$Type;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;III)V
+		METHOD getLevelCost ()I
+		METHOD getMinCost ()I
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/item/enchantment/ProtectionEnchantment$Type;
+		METHOD values ()[Lnet/minecraft/world/item/enchantment/ProtectionEnchantment$Type;

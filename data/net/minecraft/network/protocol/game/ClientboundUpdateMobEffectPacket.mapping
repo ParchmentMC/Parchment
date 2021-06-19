@@ -1,0 +1,26 @@
+CLASS net/minecraft/network/protocol/game/ClientboundUpdateMobEffectPacket
+	FIELD FLAG_AMBIENT I
+	FIELD FLAG_SHOW_ICON I
+	FIELD FLAG_VISIBLE I
+	FIELD effectAmplifier B
+	FIELD effectDurationTicks I
+	FIELD effectId B
+	FIELD entityId I
+	FIELD flags B
+	METHOD <init> (ILnet/minecraft/world/effect/MobEffectInstance;)V
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD effectShowsIcon ()Z
+	METHOD getEffectAmplifier ()B
+	METHOD getEffectDurationTicks ()I
+	METHOD getEffectId ()B
+	METHOD getEntityId ()I
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD isEffectAmbient ()Z
+	METHOD isEffectVisible ()Z
+	METHOD isSuperLongDuration ()Z
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf

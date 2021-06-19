@@ -1,0 +1,49 @@
+CLASS net/minecraft/world/item/trading/MerchantOffer
+	FIELD baseCostA Lnet/minecraft/world/item/ItemStack;
+		COMMENT The first input for this offer.
+	FIELD costB Lnet/minecraft/world/item/ItemStack;
+		COMMENT The second input for this offer.
+	FIELD demand I
+	FIELD maxUses I
+	FIELD priceMultiplier F
+	FIELD result Lnet/minecraft/world/item/ItemStack;
+		COMMENT The output of this offer.
+	FIELD rewardExp Z
+	FIELD specialPriceDiff I
+	FIELD uses I
+	FIELD xp I
+	METHOD <init> (Lnet/minecraft/nbt/CompoundTag;)V
+	METHOD <init> (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;IIF)V
+	METHOD <init> (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;IIF)V
+	METHOD <init> (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;IIIF)V
+	METHOD <init> (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;IIIFI)V
+	METHOD addToSpecialPriceDiff (I)V
+		ARG 1 add
+	METHOD assemble ()Lnet/minecraft/world/item/ItemStack;
+	METHOD createTag ()Lnet/minecraft/nbt/CompoundTag;
+	METHOD getBaseCostA ()Lnet/minecraft/world/item/ItemStack;
+	METHOD getCostA ()Lnet/minecraft/world/item/ItemStack;
+	METHOD getCostB ()Lnet/minecraft/world/item/ItemStack;
+	METHOD getDemand ()I
+	METHOD getMaxUses ()I
+	METHOD getPriceMultiplier ()F
+	METHOD getResult ()Lnet/minecraft/world/item/ItemStack;
+	METHOD getSpecialPriceDiff ()I
+	METHOD getUses ()I
+	METHOD getXp ()I
+	METHOD increaseUses ()V
+	METHOD isOutOfStock ()Z
+	METHOD isRequiredItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 left
+		ARG 2 right
+	METHOD needsRestock ()Z
+	METHOD resetSpecialPriceDiff ()V
+	METHOD resetUses ()V
+	METHOD satisfiedBy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+	METHOD setSpecialPriceDiff (I)V
+		ARG 1 price
+	METHOD setToOutOfStock ()V
+	METHOD shouldRewardExp ()Z
+	METHOD take (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+	METHOD updateDemand ()V
+		COMMENT Calculates the demand with following formula: demand = demand + uses - maxUses - uses

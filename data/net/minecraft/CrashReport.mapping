@@ -1,0 +1,43 @@
+CLASS net/minecraft/CrashReport
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD details Ljava/util/List;
+	FIELD exception Ljava/lang/Throwable;
+	FIELD saveFile Ljava/io/File;
+	FIELD systemReport Lnet/minecraft/SystemReport;
+	FIELD title Ljava/lang/String;
+	FIELD trackingStackTrace Z
+	FIELD uncategorizedStackTrace [Ljava/lang/StackTraceElement;
+	METHOD <clinit> ()V
+	METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+	METHOD addCategory (Ljava/lang/String;)Lnet/minecraft/CrashReportCategory;
+		COMMENT Creates a CrashReportCategory
+		ARG 1 name
+	METHOD addCategory (Ljava/lang/String;I)Lnet/minecraft/CrashReportCategory;
+		COMMENT Creates a CrashReportCategory for the given stack trace depth
+		ARG 1 categoryName
+		ARG 2 stacktraceLength
+	METHOD forThrowable (Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/CrashReport;
+		COMMENT Creates a crash report for the exception
+		ARG 0 cause
+		ARG 1 description
+	METHOD getDetails ()Ljava/lang/String;
+	METHOD getDetails (Ljava/lang/StringBuilder;)V
+		COMMENT Gets the various sections of the crash report into the given StringBuilder
+		ARG 1 builder
+	METHOD getErrorComment ()Ljava/lang/String;
+		COMMENT Gets a random witty comment for inclusion in this CrashReport
+	METHOD getException ()Ljava/lang/Throwable;
+		COMMENT Returns the Throwable object that is the cause for the crash and Crash Report.
+	METHOD getExceptionMessage ()Ljava/lang/String;
+		COMMENT Gets the stack trace of the Throwable that caused this crash report, or if that fails, the cause .toString().
+	METHOD getFriendlyReport ()Ljava/lang/String;
+		COMMENT Gets the complete report with headers, stack trace, and different sections as a string.
+	METHOD getSaveFile ()Ljava/io/File;
+		COMMENT Gets the file this crash report is saved into.
+	METHOD getSystemReport ()Lnet/minecraft/SystemReport;
+	METHOD getTitle ()Ljava/lang/String;
+		COMMENT Returns the description of the Crash Report.
+	METHOD preload ()V
+	METHOD saveToFile (Ljava/io/File;)Z
+		COMMENT Saves this CrashReport to the given file and returns a value indicating whether we were successful at doing so.
+		ARG 1 toFile

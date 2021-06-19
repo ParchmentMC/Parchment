@@ -1,0 +1,58 @@
+CLASS net/minecraft/data/recipes/ShapedRecipeBuilder
+	FIELD advancement Lnet/minecraft/advancements/Advancement$Builder;
+	FIELD count I
+	FIELD group Ljava/lang/String;
+	FIELD key Ljava/util/Map;
+	FIELD result Lnet/minecraft/world/item/Item;
+	FIELD rows Ljava/util/List;
+	METHOD <init> (Lnet/minecraft/world/level/ItemLike;I)V
+	METHOD define (Ljava/lang/Character;Lnet/minecraft/tags/Tag;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Adds a key to the recipe pattern.
+		ARG 1 symbol
+		ARG 2 tag
+	METHOD define (Ljava/lang/Character;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Adds a key to the recipe pattern.
+		ARG 1 symbol
+		ARG 2 ingredient
+	METHOD define (Ljava/lang/Character;Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Adds a key to the recipe pattern.
+		ARG 1 symbol
+		ARG 2 item
+	METHOD ensureValid (Lnet/minecraft/resources/ResourceLocation;)V
+		COMMENT Makes sure that this recipe is valid and obtainable.
+		ARG 1 id
+	METHOD getResult ()Lnet/minecraft/world/item/Item;
+	METHOD group (Ljava/lang/String;)Lnet/minecraft/data/recipes/RecipeBuilder;
+	METHOD group (Ljava/lang/String;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+	METHOD pattern (Ljava/lang/String;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Adds a new entry to the patterns for this recipe.
+		ARG 1 pattern
+	METHOD save (Ljava/util/function/Consumer;Lnet/minecraft/resources/ResourceLocation;)V
+	METHOD shaped (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Creates a new builder for a shaped recipe.
+		ARG 0 result
+	METHOD shaped (Lnet/minecraft/world/level/ItemLike;I)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Creates a new builder for a shaped recipe.
+		ARG 0 result
+		ARG 1 count
+	METHOD unlockedBy (Ljava/lang/String;Lnet/minecraft/advancements/CriterionTriggerInstance;)Lnet/minecraft/data/recipes/RecipeBuilder;
+	METHOD unlockedBy (Ljava/lang/String;Lnet/minecraft/advancements/CriterionTriggerInstance;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+	CLASS Result
+		FIELD advancement Lnet/minecraft/advancements/Advancement$Builder;
+		FIELD advancementId Lnet/minecraft/resources/ResourceLocation;
+		FIELD count I
+		FIELD group Ljava/lang/String;
+		FIELD id Lnet/minecraft/resources/ResourceLocation;
+		FIELD key Ljava/util/Map;
+		FIELD pattern Ljava/util/List;
+		FIELD result Lnet/minecraft/world/item/Item;
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/Item;ILjava/lang/String;Ljava/util/List;Ljava/util/Map;Lnet/minecraft/advancements/Advancement$Builder;Lnet/minecraft/resources/ResourceLocation;)V
+		METHOD getAdvancementId ()Lnet/minecraft/resources/ResourceLocation;
+			COMMENT Gets the ID for the advancement associated with this recipe. Should not be null if {@link #getAdvancementJson} is non-null.
+		METHOD getId ()Lnet/minecraft/resources/ResourceLocation;
+			COMMENT Gets the ID for the recipe.
+		METHOD getType ()Lnet/minecraft/world/item/crafting/RecipeSerializer;
+		METHOD serializeAdvancement ()Lcom/google/gson/JsonObject;
+			COMMENT Gets the JSON for the advancement that unlocks this recipe. Null if there is no advancement.
+		METHOD serializeRecipeData (Lcom/google/gson/JsonObject;)V
+			ARG 1 json

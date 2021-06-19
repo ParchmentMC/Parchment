@@ -1,0 +1,164 @@
+CLASS net/minecraft/server/players/PlayerList
+	FIELD ALLOW_LOGOUTIVATOR Z
+	FIELD BAN_DATE_FORMAT Ljava/text/SimpleDateFormat;
+	FIELD IPBANLIST_FILE Ljava/io/File;
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD OPLIST_FILE Ljava/io/File;
+	FIELD SEND_PLAYER_INFO_INTERVAL I
+	FIELD USERBANLIST_FILE Ljava/io/File;
+	FIELD WHITELIST_FILE Ljava/io/File;
+	FIELD advancements Ljava/util/Map;
+	FIELD allowCheatsForAllPlayers Z
+	FIELD bans Lnet/minecraft/server/players/UserBanList;
+	FIELD doWhiteList Z
+	FIELD ipBans Lnet/minecraft/server/players/IpBanList;
+	FIELD maxPlayers I
+	FIELD ops Lnet/minecraft/server/players/ServerOpList;
+	FIELD playerIo Lnet/minecraft/world/level/storage/PlayerDataStorage;
+	FIELD players Ljava/util/List;
+	FIELD playersByUUID Ljava/util/Map;
+		COMMENT A map containing the key-value pairs for UUIDs and their EntityPlayerMP objects.
+	FIELD registryHolder Lnet/minecraft/core/RegistryAccess$RegistryHolder;
+	FIELD sendAllPlayerInfoIn I
+	FIELD server Lnet/minecraft/server/MinecraftServer;
+	FIELD stats Ljava/util/Map;
+	FIELD viewDistance I
+	FIELD whitelist Lnet/minecraft/server/players/UserWhiteList;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/world/level/storage/PlayerDataStorage;I)V
+	METHOD broadcast (Lnet/minecraft/world/entity/player/Player;DDDDLnet/minecraft/resources/ResourceKey;Lnet/minecraft/network/protocol/Packet;)V
+		COMMENT params: srcPlayer,x,y,z,r,dimension. The packet is not sent to the srcPlayer, but all other players within the search radius
+		ARG 1 except
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 radius
+		ARG 10 dimension
+		ARG 11 packet
+	METHOD broadcastAll (Lnet/minecraft/network/protocol/Packet;)V
+		ARG 1 packet
+	METHOD broadcastAll (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/resources/ResourceKey;)V
+	METHOD broadcastMessage (Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V
+	METHOD broadcastMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V
+	METHOD broadcastToAllExceptTeam (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 player
+		ARG 2 message
+	METHOD broadcastToTeam (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 player
+		ARG 2 message
+	METHOD canBypassPlayerLimit (Lcom/mojang/authlib/GameProfile;)Z
+		ARG 1 profile
+	METHOD canPlayerLogin (Ljava/net/SocketAddress;Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/network/chat/Component;
+	METHOD deop (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 profile
+	METHOD getBans ()Lnet/minecraft/server/players/UserBanList;
+	METHOD getIpBans ()Lnet/minecraft/server/players/IpBanList;
+	METHOD getMaxPlayers ()I
+		COMMENT Returns the maximum number of players allowed on the server.
+	METHOD getOpNames ()[Ljava/lang/String;
+	METHOD getOps ()Lnet/minecraft/server/players/ServerOpList;
+	METHOD getPlayer (Ljava/util/UUID;)Lnet/minecraft/server/level/ServerPlayer;
+		COMMENT Get's the EntityPlayerMP object representing the player with the UUID.
+		ARG 1 playerUUID
+	METHOD getPlayerAdvancements (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/server/PlayerAdvancements;
+	METHOD getPlayerByName (Ljava/lang/String;)Lnet/minecraft/server/level/ServerPlayer;
+		ARG 1 username
+	METHOD getPlayerCount ()I
+		COMMENT Returns the number of players currently on the server.
+	METHOD getPlayerForLogin (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/server/level/ServerPlayer;
+		COMMENT also checks for multiple logins across servers
+		ARG 1 profile
+	METHOD getPlayerNamesArray ()[Ljava/lang/String;
+		COMMENT Returns an array of the usernames of all the connected players.
+	METHOD getPlayerStats (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/stats/ServerStatsCounter;
+		ARG 1 player
+	METHOD getPlayers ()Ljava/util/List;
+	METHOD getPlayersWithAddress (Ljava/lang/String;)Ljava/util/List;
+		ARG 1 address
+	METHOD getServer ()Lnet/minecraft/server/MinecraftServer;
+	METHOD getSingleplayerData ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT On integrated servers, returns the host's player data to be written to level.dat.
+	METHOD getViewDistance ()I
+		COMMENT Gets the view distance, in chunks.
+	METHOD getWhiteList ()Lnet/minecraft/server/players/UserWhiteList;
+	METHOD getWhiteListNames ()[Ljava/lang/String;
+	METHOD isAllowCheatsForAllPlayers ()Z
+	METHOD isOp (Lcom/mojang/authlib/GameProfile;)Z
+		ARG 1 profile
+	METHOD isUsingWhitelist ()Z
+	METHOD isWhiteListed (Lcom/mojang/authlib/GameProfile;)Z
+		ARG 1 profile
+	METHOD lambda$placeNewPlayer$0 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/entity/Entity;
+	METHOD lambda$remove$1 (Lnet/minecraft/world/entity/Entity;)V
+	METHOD load (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/nbt/CompoundTag;
+		COMMENT called during player login. reads the player information from disk.
+		ARG 1 player
+	METHOD op (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 profile
+	METHOD placeNewPlayer (Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 netManager
+		ARG 2 player
+	METHOD reloadResources ()V
+	METHOD reloadWhiteList ()V
+	METHOD remove (Lnet/minecraft/server/level/ServerPlayer;)V
+		COMMENT Called when a player disconnects from the game. Writes player data to disk and removes them from the world.
+		ARG 1 player
+	METHOD removeAll ()V
+		COMMENT Kicks everyone with "Server closed" as reason.
+	METHOD respawn (Lnet/minecraft/server/level/ServerPlayer;Z)Lnet/minecraft/server/level/ServerPlayer;
+	METHOD save (Lnet/minecraft/server/level/ServerPlayer;)V
+		COMMENT also stores the NBTTags if this is an intergratedPlayerList
+		ARG 1 player
+	METHOD saveAll ()V
+		COMMENT Saves all of the players' current states.
+	METHOD sendAllPlayerInfo (Lnet/minecraft/server/level/ServerPlayer;)V
+		COMMENT sends the players inventory to himself
+		ARG 1 player
+	METHOD sendLevelInfo (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/level/ServerLevel;)V
+		COMMENT Updates the time and weather for the given player to those of the given world
+		ARG 1 player
+		ARG 2 level
+	METHOD sendPlayerPermissionLevel (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD sendPlayerPermissionLevel (Lnet/minecraft/server/level/ServerPlayer;I)V
+		ARG 1 player
+		ARG 2 permLevel
+	METHOD setAllowCheatsForAllPlayers (Z)V
+		COMMENT Sets whether all players are allowed to use commands (cheats) on the server.
+	METHOD setLevel (Lnet/minecraft/server/level/ServerLevel;)V
+	METHOD setUsingWhiteList (Z)V
+		ARG 1 whitelistEnabled
+	METHOD setViewDistance (I)V
+		ARG 1 viewDistance
+	METHOD tick ()V
+		COMMENT self explanitory
+	METHOD updateEntireScoreboard (Lnet/minecraft/server/ServerScoreboard;Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 scoreboard
+		ARG 2 player
+	CLASS 1
+		FIELD this$0 Lnet/minecraft/server/players/PlayerList;
+		METHOD <init> (Lnet/minecraft/server/players/PlayerList;)V
+		METHOD onBorderCenterSet (Lnet/minecraft/world/level/border/WorldBorder;DD)V
+			ARG 1 border
+			ARG 2 x
+			ARG 4 z
+		METHOD onBorderSetDamagePerBlock (Lnet/minecraft/world/level/border/WorldBorder;D)V
+			ARG 1 border
+			ARG 2 newAmount
+		METHOD onBorderSetDamageSafeZOne (Lnet/minecraft/world/level/border/WorldBorder;D)V
+			ARG 1 border
+			ARG 2 newSize
+		METHOD onBorderSetWarningBlocks (Lnet/minecraft/world/level/border/WorldBorder;I)V
+			ARG 1 border
+			ARG 2 newDistance
+		METHOD onBorderSetWarningTime (Lnet/minecraft/world/level/border/WorldBorder;I)V
+			ARG 1 border
+			ARG 2 newTime
+		METHOD onBorderSizeLerping (Lnet/minecraft/world/level/border/WorldBorder;DDJ)V
+			ARG 1 border
+			ARG 2 oldSize
+			ARG 4 newSize
+			ARG 6 time
+		METHOD onBorderSizeSet (Lnet/minecraft/world/level/border/WorldBorder;D)V
+			ARG 1 border
+			ARG 2 newSize

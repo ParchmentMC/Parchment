@@ -1,0 +1,67 @@
+CLASS net/minecraft/server/players/GameProfileCache
+	FIELD GAMEPROFILES_EXPIRATION_MONTHS I
+	FIELD GAMEPROFILES_MRU_LIMIT I
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD executor Ljava/util/concurrent/Executor;
+	FIELD file Ljava/io/File;
+	FIELD gson Lcom/google/gson/Gson;
+	FIELD operationCount Ljava/util/concurrent/atomic/AtomicLong;
+	FIELD profileRepository Lcom/mojang/authlib/GameProfileRepository;
+	FIELD profilesByName Ljava/util/Map;
+		COMMENT A map between player usernames and
+	FIELD profilesByUUID Ljava/util/Map;
+		COMMENT A map between and
+	FIELD requests Ljava/util/Map;
+	FIELD usesAuthentication Z
+	METHOD <clinit> ()V
+	METHOD <init> (Lcom/mojang/authlib/GameProfileRepository;Ljava/io/File;)V
+	METHOD add (Lcom/mojang/authlib/GameProfile;)V
+		COMMENT Add an entry to this cache
+		ARG 1 gameProfile
+	METHOD createDateFormat ()Ljava/text/DateFormat;
+	METHOD get (Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;
+		COMMENT Get a player's GameProfile given their username. Mojang's server's will be contacted if the entry is not cached locally.
+		ARG 1 username
+	METHOD get (Ljava/util/UUID;)Lcom/mojang/authlib/GameProfile;
+		COMMENT Get a player's {@link GameProfile} given their UUID
+		ARG 1 uuid
+	METHOD getAsync (Ljava/lang/String;Ljava/util/function/Consumer;)V
+	METHOD getNextOperation ()J
+	METHOD getTopMRUProfiles (I)Ljava/util/stream/Stream;
+	METHOD lambda$getAsync$0 (Ljava/util/function/Consumer;Lcom/mojang/authlib/GameProfile;Ljava/lang/Throwable;)V
+	METHOD lambda$getAsync$1 (Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;
+	METHOD lambda$getAsync$2 (Ljava/lang/String;Lcom/mojang/authlib/GameProfile;Ljava/lang/Throwable;)V
+	METHOD lambda$getAsync$3 (Ljava/util/function/Consumer;Lcom/mojang/authlib/GameProfile;Ljava/lang/Throwable;)V
+	METHOD lambda$load$4 (Ljava/text/DateFormat;Ljava/util/List;Lcom/google/gson/JsonElement;)V
+	METHOD lambda$save$5 (Lcom/google/gson/JsonArray;Ljava/text/DateFormat;Lnet/minecraft/server/players/GameProfileCache$GameProfileInfo;)V
+	METHOD load ()Ljava/util/List;
+	METHOD lookupGameProfile (Lcom/mojang/authlib/GameProfileRepository;Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;
+		ARG 0 profileRepo
+		ARG 1 name
+	METHOD readGameProfile (Lcom/google/gson/JsonElement;Ljava/text/DateFormat;)Lnet/minecraft/server/players/GameProfileCache$GameProfileInfo;
+	METHOD safeAdd (Lnet/minecraft/server/players/GameProfileCache$GameProfileInfo;)V
+	METHOD save ()V
+		COMMENT Save the cached profiles to disk
+	METHOD setExecutor (Ljava/util/concurrent/Executor;)V
+	METHOD setUsesAuthentication (Z)V
+		ARG 0 onlineMode
+	METHOD usesAuthentication ()Z
+	METHOD writeGameProfile (Lnet/minecraft/server/players/GameProfileCache$GameProfileInfo;Ljava/text/DateFormat;)Lcom/google/gson/JsonElement;
+	CLASS 1
+		FIELD val$result Ljava/util/concurrent/atomic/AtomicReference;
+		METHOD <init> (Ljava/util/concurrent/atomic/AtomicReference;)V
+		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
+		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
+	CLASS GameProfileInfo
+		FIELD expirationDate Ljava/util/Date;
+			COMMENT The date that this entry will expire
+		FIELD lastAccess J
+		FIELD profile Lcom/mojang/authlib/GameProfile;
+			COMMENT The player's GameProfile
+		METHOD <init> (Lcom/mojang/authlib/GameProfile;Ljava/util/Date;)V
+		METHOD getExpirationDate ()Ljava/util/Date;
+			COMMENT Get the date that this entry will expire
+		METHOD getLastAccess ()J
+		METHOD getProfile ()Lcom/mojang/authlib/GameProfile;
+			COMMENT Get the player's GameProfile
+		METHOD setLastAccess (J)V

@@ -1,0 +1,30 @@
+CLASS net/minecraft/advancements/Criterion
+	FIELD trigger Lnet/minecraft/advancements/CriterionTriggerInstance;
+	METHOD <init> ()V
+	METHOD <init> (Lnet/minecraft/advancements/CriterionTriggerInstance;)V
+	METHOD criteriaFromJson (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/DeserializationContext;)Ljava/util/Map;
+		COMMENT Deserializes all criterions defined within a JSON object.
+		ARG 0 json
+		ARG 1 conditionParser
+	METHOD criteriaFromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Ljava/util/Map;
+		COMMENT Read criteria from {@code buf}.
+		COMMENT
+		COMMENT @return the read criteria. Each key-value pair consists of a {@code Criterion} and its name.
+		COMMENT @see #serializeToNetwork(Map, PacketBuffer)
+		ARG 0 bus
+	METHOD criterionFromJson (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/Criterion;
+		ARG 0 json
+		ARG 1 conditionParser
+	METHOD criterionFromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/advancements/Criterion;
+		ARG 0 buffer
+	METHOD getTrigger ()Lnet/minecraft/advancements/CriterionTriggerInstance;
+	METHOD lambda$serializeToNetwork$0 (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/advancements/Criterion;)V
+	METHOD serializeToJson ()Lcom/google/gson/JsonElement;
+	METHOD serializeToNetwork (Ljava/util/Map;Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Write {@code criteria} to {@code buf}.
+		COMMENT
+		COMMENT @see #criteriaFromNetwork(PacketBuffer)
+		ARG 0 criteria
+		ARG 1 buf
+	METHOD serializeToNetwork (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer

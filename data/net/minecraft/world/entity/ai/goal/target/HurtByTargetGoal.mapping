@@ -1,0 +1,20 @@
+CLASS net/minecraft/world/entity/ai/goal/target/HurtByTargetGoal
+	FIELD ALERT_RANGE_Y I
+	FIELD HURT_BY_TARGETING Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
+	FIELD alertSameType Z
+	FIELD timestamp I
+		COMMENT Store the previous revengeTimer value
+	FIELD toIgnoreAlert [Ljava/lang/Class;
+	FIELD toIgnoreDamage [Ljava/lang/Class;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/PathfinderMob;[Ljava/lang/Class;)V
+	METHOD alertOther (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 mob
+		ARG 2 target
+	METHOD alertOthers ()V
+	METHOD canUse ()Z
+		COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	METHOD setAlertOthers ([Ljava/lang/Class;)Lnet/minecraft/world/entity/ai/goal/target/HurtByTargetGoal;
+		ARG 1 reinforcementTypes
+	METHOD start ()V
+		COMMENT Execute a one shot task or start executing a continuous task

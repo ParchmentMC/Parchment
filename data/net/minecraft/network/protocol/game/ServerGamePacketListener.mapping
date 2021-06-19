@@ -1,0 +1,103 @@
+CLASS net/minecraft/network/protocol/game/ServerGamePacketListener
+	METHOD handleAcceptTeleportPacket (Lnet/minecraft/network/protocol/game/ServerboundAcceptTeleportationPacket;)V
+		ARG 1 packet
+	METHOD handleAnimate (Lnet/minecraft/network/protocol/game/ServerboundSwingPacket;)V
+		ARG 1 packet
+	METHOD handleBlockEntityTagQuery (Lnet/minecraft/network/protocol/game/ServerboundBlockEntityTagQuery;)V
+		ARG 1 packet
+	METHOD handleChangeDifficulty (Lnet/minecraft/network/protocol/game/ServerboundChangeDifficultyPacket;)V
+	METHOD handleChat (Lnet/minecraft/network/protocol/game/ServerboundChatPacket;)V
+		COMMENT Process chat messages (broadcast back to clients) and commands (executes)
+		ARG 1 packet
+	METHOD handleClientCommand (Lnet/minecraft/network/protocol/game/ServerboundClientCommandPacket;)V
+		COMMENT Processes the client status updates: respawn attempt from player, opening statistics or achievements, or acquiring 'open inventory' achievement
+		ARG 1 packet
+	METHOD handleClientInformation (Lnet/minecraft/network/protocol/game/ServerboundClientInformationPacket;)V
+		COMMENT Updates serverside copy of client settings: language, render distance, chat visibility, chat colours, difficulty, and whether to show the cape
+		ARG 1 packet
+	METHOD handleContainerButtonClick (Lnet/minecraft/network/protocol/game/ServerboundContainerButtonClickPacket;)V
+		COMMENT Enchants the item identified by the packet given some convoluted conditions (matching window, which should/shouldn't be in use?)
+		ARG 1 packet
+	METHOD handleContainerClick (Lnet/minecraft/network/protocol/game/ServerboundContainerClickPacket;)V
+		COMMENT Executes a container/inventory slot manipulation as indicated by the packet. Sends the serverside result if they didn't match the indicated result and prevents further manipulation by the player until he confirms that it has the same open container/inventory
+		ARG 1 packet
+	METHOD handleContainerClose (Lnet/minecraft/network/protocol/game/ServerboundContainerClosePacket;)V
+		COMMENT Processes the client closing windows (container)
+		ARG 1 packet
+	METHOD handleCustomCommandSuggestions (Lnet/minecraft/network/protocol/game/ServerboundCommandSuggestionPacket;)V
+		COMMENT This method is only called for manual tab-completion (the {@link net.minecraft.command.arguments.SuggestionProviders#ASK_SERVER minecraft:ask_server} suggestion provider).
+		ARG 1 packet
+	METHOD handleCustomPayload (Lnet/minecraft/network/protocol/game/ServerboundCustomPayloadPacket;)V
+		COMMENT Synchronizes serverside and clientside book contents and signing
+		ARG 1 packet
+	METHOD handleEditBook (Lnet/minecraft/network/protocol/game/ServerboundEditBookPacket;)V
+		ARG 1 packet
+	METHOD handleEntityTagQuery (Lnet/minecraft/network/protocol/game/ServerboundEntityTagQuery;)V
+		ARG 1 packet
+	METHOD handleInteract (Lnet/minecraft/network/protocol/game/ServerboundInteractPacket;)V
+		COMMENT Processes left and right clicks on entities
+		ARG 1 packet
+	METHOD handleJigsawGenerate (Lnet/minecraft/network/protocol/game/ServerboundJigsawGeneratePacket;)V
+	METHOD handleKeepAlive (Lnet/minecraft/network/protocol/game/ServerboundKeepAlivePacket;)V
+		COMMENT Updates a players' ping statistics
+		ARG 1 packet
+	METHOD handleLockDifficulty (Lnet/minecraft/network/protocol/game/ServerboundLockDifficultyPacket;)V
+	METHOD handleMovePlayer (Lnet/minecraft/network/protocol/game/ServerboundMovePlayerPacket;)V
+		COMMENT Processes clients perspective on player positioning and/or orientation
+		ARG 1 packet
+	METHOD handleMoveVehicle (Lnet/minecraft/network/protocol/game/ServerboundMoveVehiclePacket;)V
+		ARG 1 packet
+	METHOD handlePaddleBoat (Lnet/minecraft/network/protocol/game/ServerboundPaddleBoatPacket;)V
+		ARG 1 packet
+	METHOD handlePickItem (Lnet/minecraft/network/protocol/game/ServerboundPickItemPacket;)V
+		ARG 1 packet
+	METHOD handlePlaceRecipe (Lnet/minecraft/network/protocol/game/ServerboundPlaceRecipePacket;)V
+		ARG 1 packet
+	METHOD handlePlayerAbilities (Lnet/minecraft/network/protocol/game/ServerboundPlayerAbilitiesPacket;)V
+		COMMENT Processes a player starting/stopping flying
+		ARG 1 packet
+	METHOD handlePlayerAction (Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket;)V
+		COMMENT Processes the player initiating/stopping digging on a particular spot, as well as a player dropping items
+		ARG 1 packet
+	METHOD handlePlayerCommand (Lnet/minecraft/network/protocol/game/ServerboundPlayerCommandPacket;)V
+		COMMENT Processes a range of action-types: sneaking, sprinting, waking from sleep, opening the inventory or setting jump height of the horse the player is riding
+		ARG 1 packet
+	METHOD handlePlayerInput (Lnet/minecraft/network/protocol/game/ServerboundPlayerInputPacket;)V
+		COMMENT Processes player movement input. Includes walking, strafing, jumping, sneaking" excludes riding and toggling flying/sprinting
+		ARG 1 packet
+	METHOD handlePong (Lnet/minecraft/network/protocol/game/ServerboundPongPacket;)V
+	METHOD handleRecipeBookChangeSettingsPacket (Lnet/minecraft/network/protocol/game/ServerboundRecipeBookChangeSettingsPacket;)V
+	METHOD handleRecipeBookSeenRecipePacket (Lnet/minecraft/network/protocol/game/ServerboundRecipeBookSeenRecipePacket;)V
+		ARG 1 packet
+	METHOD handleRenameItem (Lnet/minecraft/network/protocol/game/ServerboundRenameItemPacket;)V
+		ARG 1 packet
+	METHOD handleResourcePackResponse (Lnet/minecraft/network/protocol/game/ServerboundResourcePackPacket;)V
+		ARG 1 packet
+	METHOD handleSeenAdvancements (Lnet/minecraft/network/protocol/game/ServerboundSeenAdvancementsPacket;)V
+		ARG 1 packet
+	METHOD handleSelectTrade (Lnet/minecraft/network/protocol/game/ServerboundSelectTradePacket;)V
+		ARG 1 packet
+	METHOD handleSetBeaconPacket (Lnet/minecraft/network/protocol/game/ServerboundSetBeaconPacket;)V
+		ARG 1 packet
+	METHOD handleSetCarriedItem (Lnet/minecraft/network/protocol/game/ServerboundSetCarriedItemPacket;)V
+		COMMENT Updates which quickbar slot is selected
+		ARG 1 packet
+	METHOD handleSetCommandBlock (Lnet/minecraft/network/protocol/game/ServerboundSetCommandBlockPacket;)V
+		ARG 1 packet
+	METHOD handleSetCommandMinecart (Lnet/minecraft/network/protocol/game/ServerboundSetCommandMinecartPacket;)V
+		ARG 1 packet
+	METHOD handleSetCreativeModeSlot (Lnet/minecraft/network/protocol/game/ServerboundSetCreativeModeSlotPacket;)V
+		COMMENT Update the server with an ItemStack in a slot.
+		ARG 1 packet
+	METHOD handleSetJigsawBlock (Lnet/minecraft/network/protocol/game/ServerboundSetJigsawBlockPacket;)V
+	METHOD handleSetStructureBlock (Lnet/minecraft/network/protocol/game/ServerboundSetStructureBlockPacket;)V
+		ARG 1 packet
+	METHOD handleSignUpdate (Lnet/minecraft/network/protocol/game/ServerboundSignUpdatePacket;)V
+		ARG 1 packet
+	METHOD handleTeleportToEntityPacket (Lnet/minecraft/network/protocol/game/ServerboundTeleportToEntityPacket;)V
+		ARG 1 packet
+	METHOD handleUseItem (Lnet/minecraft/network/protocol/game/ServerboundUseItemPacket;)V
+		COMMENT Called when a client is using an item while not pointing at a block, but simply using an item
+		ARG 1 packet
+	METHOD handleUseItemOn (Lnet/minecraft/network/protocol/game/ServerboundUseItemOnPacket;)V
+		ARG 1 packet

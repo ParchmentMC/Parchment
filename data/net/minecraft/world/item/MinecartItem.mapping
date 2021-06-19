@@ -1,0 +1,18 @@
+CLASS net/minecraft/world/item/MinecartItem
+	FIELD DISPENSE_ITEM_BEHAVIOR Lnet/minecraft/core/dispenser/DispenseItemBehavior;
+	FIELD type Lnet/minecraft/world/entity/vehicle/AbstractMinecart$Type;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/vehicle/AbstractMinecart$Type;Lnet/minecraft/world/item/Item$Properties;)V
+	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
+		COMMENT Called when this item is used when targetting a Block
+		ARG 1 context
+	CLASS 1
+		FIELD defaultDispenseItemBehavior Lnet/minecraft/core/dispenser/DefaultDispenseItemBehavior;
+		METHOD <init> ()V
+		METHOD execute (Lnet/minecraft/core/BlockSource;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+			COMMENT Dispense the specified stack, play the dispense sound and spawn particles.
+			ARG 1 source
+			ARG 2 stack
+		METHOD playSound (Lnet/minecraft/core/BlockSource;)V
+			COMMENT Play the dispense sound from the specified block.
+			ARG 1 source

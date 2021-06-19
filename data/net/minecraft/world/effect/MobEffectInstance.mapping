@@ -1,0 +1,58 @@
+CLASS net/minecraft/world/effect/MobEffectInstance
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD ambient Z
+	FIELD amplifier I
+	FIELD duration I
+	FIELD effect Lnet/minecraft/world/effect/MobEffect;
+	FIELD hiddenEffect Lnet/minecraft/world/effect/MobEffectInstance;
+		COMMENT A hidden effect which is not shown to the player.
+	FIELD noCounter Z
+		COMMENT True if potion effect duration is at maximum, false otherwise.
+	FIELD showIcon Z
+	FIELD visible Z
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;)V
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;I)V
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;II)V
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;IIZZ)V
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;IIZZZ)V
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;IIZZZLnet/minecraft/world/effect/MobEffectInstance;)V
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffectInstance;)V
+	METHOD applyEffect (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 entity
+	METHOD compareTo (Ljava/lang/Object;)I
+	METHOD compareTo (Lnet/minecraft/world/effect/MobEffectInstance;)I
+	METHOD equals (Ljava/lang/Object;)Z
+	METHOD getAmplifier ()I
+	METHOD getDescriptionId ()Ljava/lang/String;
+	METHOD getDuration ()I
+	METHOD getEffect ()Lnet/minecraft/world/effect/MobEffect;
+	METHOD hashCode ()I
+	METHOD isAmbient ()Z
+		COMMENT Gets whether this potion effect originated from a beacon
+	METHOD isNoCounter ()Z
+		COMMENT Get the value of the isPotionDurationMax field.
+	METHOD isVisible ()Z
+		COMMENT Gets whether this potion effect will show ambient particles or not.
+	METHOD load (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/effect/MobEffectInstance;
+		COMMENT Read a custom potion effect from a potion item's NBT data.
+		ARG 0 nbt
+	METHOD loadSpecifiedEffect (Lnet/minecraft/world/effect/MobEffect;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/effect/MobEffectInstance;
+		ARG 0 effect
+		ARG 1 nbt
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Write a custom potion effect to a potion item's NBT data.
+		ARG 1 nbt
+	METHOD setDetailsFrom (Lnet/minecraft/world/effect/MobEffectInstance;)V
+	METHOD setNoCounter (Z)V
+		COMMENT Toggle the isPotionDurationMax field.
+		ARG 1 maxDuration
+	METHOD showIcon ()Z
+	METHOD tick (Lnet/minecraft/world/entity/LivingEntity;Ljava/lang/Runnable;)Z
+		ARG 1 entity
+	METHOD tickDownDuration ()I
+	METHOD toString ()Ljava/lang/String;
+	METHOD update (Lnet/minecraft/world/effect/MobEffectInstance;)Z
+		ARG 1 other
+	METHOD writeDetailsTo (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 nbt

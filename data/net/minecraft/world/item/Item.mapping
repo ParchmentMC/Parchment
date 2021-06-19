@@ -1,0 +1,206 @@
+CLASS net/minecraft/world/item/Item
+	FIELD BASE_ATTACK_DAMAGE_UUID Ljava/util/UUID;
+	FIELD BASE_ATTACK_SPEED_UUID Ljava/util/UUID;
+	FIELD BY_BLOCK Ljava/util/Map;
+	FIELD EAT_DURATION I
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD MAX_BAR_WIDTH I
+	FIELD MAX_STACK_SIZE I
+	FIELD category Lnet/minecraft/world/item/CreativeModeTab;
+	FIELD craftingRemainingItem Lnet/minecraft/world/item/Item;
+	FIELD descriptionId Ljava/lang/String;
+	FIELD foodProperties Lnet/minecraft/world/food/FoodProperties;
+	FIELD isFireResistant Z
+	FIELD maxDamage I
+	FIELD maxStackSize I
+	FIELD rarity Lnet/minecraft/world/item/Rarity;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/item/Item$Properties;)V
+	METHOD allowdedIn (Lnet/minecraft/world/item/CreativeModeTab;)Z
+		ARG 1 group
+	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
+		COMMENT allows items to add custom lines of information to the mouseover description
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 tooltip
+		ARG 4 flag
+	METHOD asItem ()Lnet/minecraft/world/item/Item;
+	METHOD byBlock (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/item/Item;
+		ARG 0 block
+	METHOD byId (I)Lnet/minecraft/world/item/Item;
+		ARG 0 id
+	METHOD canAttackBlock (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 player
+	METHOD canBeDepleted ()Z
+	METHOD canBeHurtBy (Lnet/minecraft/world/damagesource/DamageSource;)Z
+		ARG 1 damageSource
+	METHOD canFitInsideContainerItems ()Z
+	METHOD fillItemCategory (Lnet/minecraft/world/item/CreativeModeTab;Lnet/minecraft/core/NonNullList;)V
+		COMMENT returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+		ARG 1 group
+		ARG 2 items
+	METHOD finishUsingItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Called when the player finishes using this Item (E.g. finishes eating.). Not called when the player stops using the Item before the action is complete.
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 entityLiving
+	METHOD getBarColor (Lnet/minecraft/world/item/ItemStack;)I
+	METHOD getBarWidth (Lnet/minecraft/world/item/ItemStack;)I
+	METHOD getCraftingRemainingItem ()Lnet/minecraft/world/item/Item;
+	METHOD getDefaultAttributeModifiers (Lnet/minecraft/world/entity/EquipmentSlot;)Lcom/google/common/collect/Multimap;
+		COMMENT Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
+		ARG 1 equipmentSlot
+	METHOD getDefaultInstance ()Lnet/minecraft/world/item/ItemStack;
+	METHOD getDescription ()Lnet/minecraft/network/chat/Component;
+	METHOD getDescriptionId ()Ljava/lang/String;
+		COMMENT Returns the unlocalized name of this item.
+	METHOD getDescriptionId (Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
+		COMMENT Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have different names based on their damage or NBT.
+		ARG 1 stack
+	METHOD getDestroySpeed (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/state/BlockState;)F
+		ARG 1 stack
+		ARG 2 state
+	METHOD getDrinkingSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getEatingSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getEnchantmentValue ()I
+		COMMENT Return the enchantability factor of the item, most of the time is based on material.
+	METHOD getEquipSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getFoodProperties ()Lnet/minecraft/world/food/FoodProperties;
+	METHOD getId (Lnet/minecraft/world/item/Item;)I
+		ARG 0 item
+	METHOD getItemCategory ()Lnet/minecraft/world/item/CreativeModeTab;
+		COMMENT gets the CreativeTab this item is displayed on
+	METHOD getMaxDamage ()I
+		COMMENT Returns the maximum damage an item can take.
+	METHOD getMaxStackSize ()I
+		COMMENT Returns the maximum size of the stack for a specific item.
+	METHOD getName (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/chat/Component;
+		ARG 1 stack
+	METHOD getOrCreateDescriptionId ()Ljava/lang/String;
+	METHOD getPlayerPOVHitResult (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/ClipContext$Fluid;)Lnet/minecraft/world/phys/BlockHitResult;
+		ARG 0 level
+		ARG 1 player
+		ARG 2 fluidMode
+	METHOD getRarity (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/Rarity;
+		COMMENT Return an item rarity from EnumRarity
+		ARG 1 stack
+	METHOD getTooltipImage (Lnet/minecraft/world/item/ItemStack;)Ljava/util/Optional;
+	METHOD getUseAnimation (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/UseAnim;
+		COMMENT returns the action that specifies what animation to play when the items is being used
+		ARG 1 stack
+	METHOD getUseDuration (Lnet/minecraft/world/item/ItemStack;)I
+		COMMENT How long it takes to use or consume an item
+		ARG 1 stack
+	METHOD hasCraftingRemainingItem ()Z
+		COMMENT True if this Item has a container item (a.k.a. crafting result)
+	METHOD hurtEnemy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)Z
+		COMMENT Current implementations of this method in child classes do not use the entry argument beside ev. They just raise the damage on the stack.
+		ARG 1 stack
+		ARG 2 target
+		ARG 3 attacker
+	METHOD interactLivingEntity (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+		COMMENT Returns true if the item can be used on the given entity, e.g. shears on sheep.
+		ARG 1 stack
+		ARG 2 player
+		ARG 3 target
+		ARG 4 hand
+	METHOD inventoryTick (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;IZ)V
+		COMMENT Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and update it's contents.
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 entity
+		ARG 4 itemSlot
+		ARG 5 isSelected
+	METHOD isBarVisible (Lnet/minecraft/world/item/ItemStack;)Z
+	METHOD isComplex ()Z
+		COMMENT Returns {@code true} if this is a complex item.
+	METHOD isCorrectToolForDrops (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		COMMENT Check whether this Item can harvest the given Block
+		ARG 1 block
+	METHOD isEdible ()Z
+	METHOD isEnchantable (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Checks isDamagable and if it cannot be stacked
+		ARG 1 stack
+	METHOD isFireResistant ()Z
+	METHOD isFoil (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Returns true if this item has an enchantment glint. By default, this returns <code>stack.isItemEnchanted()</code>, but other items can override it (for instance, written books always return true).
+		COMMENT
+		COMMENT Note that if you override this method, you generally want to also call the super version (on {@link Item}) to get the glint for enchanted items. Of course, that is unnecessary if the overwritten version always returns true.
+		ARG 1 stack
+	METHOD isValidRepairItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Return whether this item is repairable in an anvil.
+		ARG 1 toRepair
+		ARG 2 repair
+	METHOD mineBlock (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
+		COMMENT Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 state
+		ARG 4 pos
+		ARG 5 entityLiving
+	METHOD onCraftedBy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called when item is crafted/smelted. Used only by maps so far.
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 player
+	METHOD onDestroyed (Lnet/minecraft/world/entity/item/ItemEntity;)V
+	METHOD onUseTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;I)V
+		COMMENT Called as the item is being used by an entity.
+		ARG 1 level
+		ARG 2 livingEntity
+		ARG 3 stack
+		ARG 4 count
+	METHOD overrideOtherStackedOnMe (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/inventory/ClickAction;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/SlotAccess;)Z
+	METHOD overrideStackedOnOther (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/inventory/ClickAction;Lnet/minecraft/world/entity/player/Player;)Z
+	METHOD releaseUsing (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V
+		COMMENT Called when the player stops using an Item (stops holding the right mouse button).
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 entityLiving
+		ARG 4 timeLeft
+	METHOD shouldOverrideMultiplayerNbt ()Z
+		COMMENT If this function returns true (or the item is damageable), the ItemStack's NBT tag will be sent to the client.
+	METHOD toString ()Ljava/lang/String;
+	METHOD use (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
+		COMMENT Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see {@link #onItemUse}.
+		ARG 1 level
+		ARG 2 player
+		ARG 3 hand
+	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
+		COMMENT Called when this item is used when targetting a Block
+		ARG 1 context
+	METHOD useOnRelease (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT If this itemstack's item is a crossbow
+		ARG 1 stack
+	METHOD verifyTagAfterLoad (Lnet/minecraft/nbt/CompoundTag;)V
+	CLASS 1
+		FIELD $SwitchMap$net$minecraft$world$item$Rarity [I
+		METHOD <clinit> ()V
+	CLASS Properties
+		FIELD category Lnet/minecraft/world/item/CreativeModeTab;
+		FIELD craftingRemainingItem Lnet/minecraft/world/item/Item;
+		FIELD foodProperties Lnet/minecraft/world/food/FoodProperties;
+			COMMENT Sets food information to this item
+		FIELD isFireResistant Z
+		FIELD maxDamage I
+		FIELD maxStackSize I
+		FIELD rarity Lnet/minecraft/world/item/Rarity;
+		METHOD <init> ()V
+		METHOD craftRemainder (Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 containerItem
+		METHOD defaultDurability (I)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 maxDamage
+		METHOD durability (I)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 maxDamage
+		METHOD fireResistant ()Lnet/minecraft/world/item/Item$Properties;
+		METHOD food (Lnet/minecraft/world/food/FoodProperties;)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 food
+		METHOD rarity (Lnet/minecraft/world/item/Rarity;)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 rarity
+		METHOD stacksTo (I)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 maxStackSize
+		METHOD tab (Lnet/minecraft/world/item/CreativeModeTab;)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 group

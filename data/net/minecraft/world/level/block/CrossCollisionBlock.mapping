@@ -1,0 +1,59 @@
+CLASS net/minecraft/world/level/block/CrossCollisionBlock
+	FIELD EAST Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+	FIELD NORTH Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+	FIELD PROPERTY_BY_DIRECTION Ljava/util/Map;
+	FIELD SOUTH Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+	FIELD WATERLOGGED Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+	FIELD WEST Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+	FIELD collisionShapeByIndex [Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD shapeByIndex [Lnet/minecraft/world/phys/shapes/VoxelShape;
+	FIELD stateToIndex Lit/unimi/dsi/fastutil/objects/Object2IntMap;
+	METHOD <clinit> ()V
+	METHOD <init> (FFFFFLnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+	METHOD getAABBIndex (Lnet/minecraft/world/level/block/state/BlockState;)I
+		ARG 1 state
+	METHOD getCollisionShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 context
+	METHOD getFluidState (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/FluidState;
+		ARG 1 state
+	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 context
+	METHOD indexFor (Lnet/minecraft/core/Direction;)I
+		ARG 0 facing
+	METHOD isPathfindable (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/pathfinder/PathComputationType;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 type
+	METHOD lambda$getAABBIndex$1 (Lnet/minecraft/world/level/block/state/BlockState;)I
+	METHOD lambda$static$0 (Ljava/util/Map$Entry;)Z
+	METHOD makeShapes (FFFFF)[Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 nodeWidth
+		ARG 2 extensionWidth
+		ARG 3 nodeHeight
+		ARG 4 extensionBottom
+		ARG 5 extensionHeight
+	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed blockstate.
+		COMMENT @deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+		ARG 2 mirror
+	METHOD propagatesSkylightDown (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 state
+		ARG 2 reader
+		ARG 3 pos
+	METHOD rotate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.
+		COMMENT @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+		ARG 2 rot
+	CLASS 1
+		FIELD $SwitchMap$net$minecraft$world$level$block$Mirror [I
+		FIELD $SwitchMap$net$minecraft$world$level$block$Rotation [I
+		METHOD <clinit> ()V

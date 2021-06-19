@@ -1,0 +1,16 @@
+CLASS net/minecraft/network/protocol/game/ClientboundBlockDestructionPacket
+	FIELD id I
+	FIELD pos Lnet/minecraft/core/BlockPos;
+	FIELD progress I
+	METHOD <init> (ILnet/minecraft/core/BlockPos;I)V
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD getId ()I
+	METHOD getPos ()Lnet/minecraft/core/BlockPos;
+	METHOD getProgress ()I
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf

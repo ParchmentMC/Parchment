@@ -1,0 +1,55 @@
+CLASS net/minecraft/server/network/ServerLoginPacketListenerImpl
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD MAX_TICKS_BEFORE_LOGIN I
+	FIELD RANDOM Ljava/util/Random;
+	FIELD UNIQUE_THREAD_ID Ljava/util/concurrent/atomic/AtomicInteger;
+	FIELD connection Lnet/minecraft/network/Connection;
+	FIELD delayedAcceptPlayer Lnet/minecraft/server/level/ServerPlayer;
+	FIELD gameProfile Lcom/mojang/authlib/GameProfile;
+	FIELD nonce [B
+	FIELD server Lnet/minecraft/server/MinecraftServer;
+	FIELD serverId Ljava/lang/String;
+	FIELD state Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;
+	FIELD tick I
+		COMMENT How long has player been trying to login into the server.
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;)V
+	METHOD createFakeProfile (Lcom/mojang/authlib/GameProfile;)Lcom/mojang/authlib/GameProfile;
+		ARG 1 original
+	METHOD disconnect (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 reason
+	METHOD getConnection ()Lnet/minecraft/network/Connection;
+		COMMENT Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient
+	METHOD getUserName ()Ljava/lang/String;
+	METHOD handleAcceptedLogin ()V
+	METHOD handleCustomQueryPacket (Lnet/minecraft/network/protocol/login/ServerboundCustomQueryPacket;)V
+	METHOD handleHello (Lnet/minecraft/network/protocol/login/ServerboundHelloPacket;)V
+		ARG 1 packet
+	METHOD handleKey (Lnet/minecraft/network/protocol/login/ServerboundKeyPacket;)V
+		ARG 1 packet
+	METHOD lambda$handleAcceptedLogin$0 (Lio/netty/channel/ChannelFuture;)V
+	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
+		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
+		ARG 1 reason
+	METHOD placeNewPlayer (Lnet/minecraft/server/level/ServerPlayer;)V
+	METHOD tick ()V
+	CLASS 1
+		FIELD this$0 Lnet/minecraft/server/network/ServerLoginPacketListenerImpl;
+		FIELD val$digest Ljava/lang/String;
+		METHOD <init> (Lnet/minecraft/server/network/ServerLoginPacketListenerImpl;Ljava/lang/String;Ljava/lang/String;)V
+		METHOD getAddress ()Ljava/net/InetAddress;
+		METHOD run ()V
+	CLASS State
+		FIELD $VALUES [Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;
+		FIELD ACCEPTED Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;
+		FIELD AUTHENTICATING Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;
+		FIELD DELAY_ACCEPT Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;
+		FIELD HELLO Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;
+		FIELD KEY Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;
+		FIELD NEGOTIATING Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;
+		FIELD READY_TO_ACCEPT Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;
+		METHOD $values ()[Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;I)V
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;
+		METHOD values ()[Lnet/minecraft/server/network/ServerLoginPacketListenerImpl$State;

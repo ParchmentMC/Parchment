@@ -1,0 +1,31 @@
+CLASS net/minecraft/network/protocol/game/ServerboundPlayerActionPacket
+	FIELD action Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+		COMMENT Status of the digging (started, ongoing, broken).
+	FIELD direction Lnet/minecraft/core/Direction;
+	FIELD pos Lnet/minecraft/core/BlockPos;
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD <init> (Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)V
+	METHOD getAction ()Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+	METHOD getDirection ()Lnet/minecraft/core/Direction;
+	METHOD getPos ()Lnet/minecraft/core/BlockPos;
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ServerGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf
+	CLASS Action
+		FIELD $VALUES [Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+		FIELD ABORT_DESTROY_BLOCK Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+		FIELD DROP_ALL_ITEMS Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+		FIELD DROP_ITEM Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+		FIELD RELEASE_USE_ITEM Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+		FIELD START_DESTROY_BLOCK Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+		FIELD STOP_DESTROY_BLOCK Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+		FIELD SWAP_ITEM_WITH_OFFHAND Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+		METHOD $values ()[Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;I)V
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
+		METHOD values ()[Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;

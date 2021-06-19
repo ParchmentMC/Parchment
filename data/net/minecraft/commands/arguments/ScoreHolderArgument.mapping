@@ -1,0 +1,54 @@
+CLASS net/minecraft/commands/arguments/ScoreHolderArgument
+	FIELD ERROR_NO_RESULTS Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
+	FIELD EXAMPLES Ljava/util/Collection;
+	FIELD FLAG_MULTIPLE B
+	FIELD SUGGEST_SCORE_HOLDERS Lcom/mojang/brigadier/suggestion/SuggestionProvider;
+	FIELD multiple Z
+	METHOD <clinit> ()V
+	METHOD <init> (Z)V
+	METHOD getExamples ()Ljava/util/Collection;
+	METHOD getName (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/lang/String;
+		COMMENT Gets a single score holder, with no objectives list.
+		ARG 0 context
+		ARG 1 name
+	METHOD getNames (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/Collection;
+		COMMENT Gets one or more score holders, with no objectives list.
+		ARG 0 context
+		ARG 1 name
+	METHOD getNames (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;Ljava/util/function/Supplier;)Ljava/util/Collection;
+		COMMENT Gets one or more score holders.
+		ARG 0 context
+		ARG 1 name
+		ARG 2 objectives
+	METHOD getNamesWithDefaultWildcard (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/Collection;
+		COMMENT Gets one or more score holders, using the server's complete list of objectives.
+		ARG 0 context
+		ARG 1 name
+	METHOD lambda$parse$2 (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/function/Supplier;)Ljava/util/Collection;
+	METHOD lambda$parse$3 (Ljava/util/Collection;Lnet/minecraft/commands/CommandSourceStack;Ljava/util/function/Supplier;)Ljava/util/Collection;
+	METHOD lambda$static$0 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)V
+	METHOD lambda$static$1 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+	METHOD parse (Lcom/mojang/brigadier/StringReader;)Ljava/lang/Object;
+	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/ScoreHolderArgument$Result;
+	METHOD scoreHolder ()Lnet/minecraft/commands/arguments/ScoreHolderArgument;
+	METHOD scoreHolders ()Lnet/minecraft/commands/arguments/ScoreHolderArgument;
+	CLASS Result
+		METHOD getNames (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/function/Supplier;)Ljava/util/Collection;
+	CLASS SelectorResult
+		FIELD selector Lnet/minecraft/commands/arguments/selector/EntitySelector;
+		METHOD <init> (Lnet/minecraft/commands/arguments/selector/EntitySelector;)V
+		METHOD getNames (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/function/Supplier;)Ljava/util/Collection;
+	CLASS Serializer
+		METHOD <init> ()V
+		METHOD deserializeFromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lcom/mojang/brigadier/arguments/ArgumentType;
+			ARG 1 buffer
+		METHOD deserializeFromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/commands/arguments/ScoreHolderArgument;
+			ARG 1 buffer
+		METHOD serializeToJson (Lcom/mojang/brigadier/arguments/ArgumentType;Lcom/google/gson/JsonObject;)V
+		METHOD serializeToJson (Lnet/minecraft/commands/arguments/ScoreHolderArgument;Lcom/google/gson/JsonObject;)V
+		METHOD serializeToNetwork (Lcom/mojang/brigadier/arguments/ArgumentType;Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 argument
+			ARG 2 buffer
+		METHOD serializeToNetwork (Lnet/minecraft/commands/arguments/ScoreHolderArgument;Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 argument
+			ARG 2 buffer

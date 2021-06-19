@@ -1,0 +1,38 @@
+CLASS net/minecraft/client/gui/components/PlayerTabOverlay
+	FIELD HEART_EMPTY_CONTAINER I
+	FIELD HEART_EMPTY_CONTAINER_BLINKING I
+	FIELD HEART_FULL I
+	FIELD HEART_GHOST_FULL I
+	FIELD HEART_GHOST_HALF_FULL I
+	FIELD HEART_GOLDEN_FULL I
+	FIELD HEART_GOLDEN_HALF_FULL I
+	FIELD HEART_HALF_FULL I
+	FIELD MAX_ROWS_PER_COL I
+	FIELD PLAYER_ORDERING Lcom/google/common/collect/Ordering;
+	FIELD footer Lnet/minecraft/network/chat/Component;
+	FIELD gui Lnet/minecraft/client/gui/Gui;
+	FIELD header Lnet/minecraft/network/chat/Component;
+	FIELD minecraft Lnet/minecraft/client/Minecraft;
+	FIELD visibilityId J
+		COMMENT The last time the playerlist was opened (went from not being renderd, to being rendered)
+	FIELD visible Z
+		COMMENT Weither or not the playerlist is currently being rendered
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/Gui;)V
+	METHOD decorateName (Lnet/minecraft/client/multiplayer/PlayerInfo;Lnet/minecraft/network/chat/MutableComponent;)Lnet/minecraft/network/chat/Component;
+	METHOD getNameForDisplay (Lnet/minecraft/client/multiplayer/PlayerInfo;)Lnet/minecraft/network/chat/Component;
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;ILnet/minecraft/world/scores/Scoreboard;Lnet/minecraft/world/scores/Objective;)V
+	METHOD renderPingIcon (Lcom/mojang/blaze3d/vertex/PoseStack;IIILnet/minecraft/client/multiplayer/PlayerInfo;)V
+	METHOD renderTablistScore (Lnet/minecraft/world/scores/Objective;ILjava/lang/String;IILnet/minecraft/client/multiplayer/PlayerInfo;Lcom/mojang/blaze3d/vertex/PoseStack;)V
+	METHOD reset ()V
+	METHOD setFooter (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 footer
+	METHOD setHeader (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 header
+	METHOD setVisible (Z)V
+		COMMENT Called by GuiIngame to update the information stored in the playerlist, does not actually render the list, however.
+		ARG 1 visible
+	CLASS PlayerInfoComparator
+		METHOD <init> ()V
+		METHOD compare (Ljava/lang/Object;Ljava/lang/Object;)I
+		METHOD compare (Lnet/minecraft/client/multiplayer/PlayerInfo;Lnet/minecraft/client/multiplayer/PlayerInfo;)I

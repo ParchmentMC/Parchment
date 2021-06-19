@@ -1,0 +1,23 @@
+CLASS net/minecraft/world/level/storage/loot/ItemModifierManager
+	FIELD GSON Lcom/google/gson/Gson;
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD functions Ljava/util/Map;
+	FIELD lootTables Lnet/minecraft/world/level/storage/loot/LootTables;
+	FIELD predicateManager Lnet/minecraft/world/level/storage/loot/PredicateManager;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/level/storage/loot/PredicateManager;Lnet/minecraft/world/level/storage/loot/LootTables;)V
+	METHOD apply (Ljava/lang/Object;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+	METHOD apply (Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+	METHOD get (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+	METHOD getKeys ()Ljava/util/Set;
+	METHOD lambda$apply$0 (Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonElement;)V
+	METHOD lambda$apply$1 (Lnet/minecraft/world/level/storage/loot/ValidationContext;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
+	METHOD lambda$apply$2 (Ljava/lang/String;Ljava/lang/String;)V
+	CLASS FunctionSequence
+		FIELD compositeFunction Ljava/util/function/BiFunction;
+		FIELD functions [Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		METHOD <init> ([Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
+		METHOD apply (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+		METHOD apply (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
+		METHOD getType ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunctionType;

@@ -1,0 +1,26 @@
+CLASS net/minecraft/network/protocol/game/ClientboundUpdateAttributesPacket
+	FIELD attributes Ljava/util/List;
+	FIELD entityId I
+	METHOD <init> (ILjava/util/Collection;)V
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD getEntityId ()I
+	METHOD getValues ()Ljava/util/List;
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD lambda$new$0 (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;
+	METHOD lambda$new$1 (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/game/ClientboundUpdateAttributesPacket$AttributeSnapshot;
+	METHOD lambda$write$2 (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
+	METHOD lambda$write$3 (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/protocol/game/ClientboundUpdateAttributesPacket$AttributeSnapshot;)V
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf
+	CLASS AttributeSnapshot
+		FIELD attribute Lnet/minecraft/world/entity/ai/attributes/Attribute;
+		FIELD base D
+		FIELD modifiers Ljava/util/Collection;
+		METHOD <init> (Lnet/minecraft/world/entity/ai/attributes/Attribute;DLjava/util/Collection;)V
+		METHOD getAttribute ()Lnet/minecraft/world/entity/ai/attributes/Attribute;
+		METHOD getBase ()D
+		METHOD getModifiers ()Ljava/util/Collection;

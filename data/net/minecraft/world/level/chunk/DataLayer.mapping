@@ -1,0 +1,37 @@
+CLASS net/minecraft/world/level/chunk/DataLayer
+	FIELD LAYER_SIZE I
+	FIELD NIBBLE_SIZE I
+	FIELD SIZE I
+	FIELD data [B
+	METHOD <init> ()V
+	METHOD <init> (I)V
+	METHOD <init> ([B)V
+	METHOD copy ()Lnet/minecraft/world/level/chunk/DataLayer;
+	METHOD get (I)I
+		ARG 1 index
+	METHOD get (III)I
+		COMMENT Returns the nibble of data corresponding to the passed in x, y, z. y is at most 6 bits, z is at most 4.
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD getData ()[B
+	METHOD getIndex (III)I
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD getPosition (I)I
+		ARG 1 index
+	METHOD isEmpty ()Z
+	METHOD isFirst (I)Z
+		ARG 1 index
+	METHOD layerToString (I)Ljava/lang/String;
+	METHOD set (II)V
+		ARG 1 index
+		ARG 2 value
+	METHOD set (IIII)V
+		COMMENT Arguments are x, y, z, val. Sets the nibble of data at x << 11 | z << 7 | y to val.
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 value
+	METHOD toString ()Ljava/lang/String;

@@ -1,0 +1,41 @@
+CLASS net/minecraft/world/entity/monster/Witch
+	FIELD DATA_USING_ITEM Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD SPEED_MODIFIER_DRINKING Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;
+	FIELD SPEED_MODIFIER_DRINKING_UUID Ljava/util/UUID;
+	FIELD attackPlayersGoal Lnet/minecraft/world/entity/ai/goal/target/NearestAttackableWitchTargetGoal;
+	FIELD healRaidersGoal Lnet/minecraft/world/entity/ai/goal/target/NearestHealableRaiderTargetGoal;
+	FIELD usingTime I
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+	METHOD aiStep ()V
+		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	METHOD applyRaidBuffs (IZ)V
+		ARG 1 wave
+	METHOD canBeLeader ()Z
+	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+	METHOD defineSynchedData ()V
+	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getCelebrateSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getDamageAfterMagicAbsorb (Lnet/minecraft/world/damagesource/DamageSource;F)F
+		COMMENT Reduces damage, depending on potions
+		ARG 1 source
+		ARG 2 damage
+	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
+		ARG 1 pose
+		ARG 2 size
+	METHOD handleEntityEvent (B)V
+		COMMENT Handler for {@link World#setEntityState}
+		ARG 1 id
+	METHOD isDrinkingPotion ()Z
+	METHOD lambda$registerGoals$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+	METHOD performRangedAttack (Lnet/minecraft/world/entity/LivingEntity;F)V
+		COMMENT Attack the specified entity using a ranged attack.
+		ARG 1 target
+		ARG 2 distanceFactor
+	METHOD registerGoals ()V
+	METHOD setUsingItem (Z)V
+		COMMENT Set whether this witch is aggressive at an entity.
+		ARG 1 drinkingPotion

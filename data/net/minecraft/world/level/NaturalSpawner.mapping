@@ -1,0 +1,63 @@
+CLASS net/minecraft/world/level/NaturalSpawner
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD MAGIC_NUMBER I
+	FIELD MIN_SPAWN_DISTANCE I
+	FIELD SPAWNING_CATEGORIES [Lnet/minecraft/world/entity/MobCategory;
+	FIELD SPAWN_DISTANCE_BLOCK I
+	FIELD SPAWN_DISTANCE_CHUNK I
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD canSpawnMobAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/biome/MobSpawnSettings$SpawnerData;Lnet/minecraft/core/BlockPos;)Z
+	METHOD createState (ILjava/lang/Iterable;Lnet/minecraft/world/level/NaturalSpawner$ChunkGetter;)Lnet/minecraft/world/level/NaturalSpawner$SpawnState;
+	METHOD getMobForSpawn (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/world/entity/Mob;
+	METHOD getRandomPosWithin (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/chunk/LevelChunk;)Lnet/minecraft/core/BlockPos;
+		ARG 0 level
+	METHOD getRandomSpawnMobAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Ljava/util/Random;Lnet/minecraft/core/BlockPos;)Ljava/util/Optional;
+	METHOD getRoughBiome (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Lnet/minecraft/world/level/biome/Biome;
+	METHOD getTopNonCollidingPos (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/entity/EntityType;II)Lnet/minecraft/core/BlockPos;
+		ARG 0 level
+		ARG 2 x
+		ARG 3 z
+	METHOD isRightDistanceToPlayerAndSpawnPoint (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/core/BlockPos$MutableBlockPos;D)Z
+	METHOD isSpawnPositionOk (Lnet/minecraft/world/entity/SpawnPlacements$Type;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/EntityType;)Z
+		ARG 0 placeType
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 entityType
+	METHOD isValidEmptySpawnBlock (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/world/entity/EntityType;)Z
+	METHOD isValidPositionForMob (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Mob;D)Z
+	METHOD isValidSpawnPostitionForType (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/biome/MobSpawnSettings$SpawnerData;Lnet/minecraft/core/BlockPos$MutableBlockPos;D)Z
+	METHOD lambda$createState$2 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/PotentialCalculator;Lit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/chunk/LevelChunk;)V
+	METHOD lambda$spawnCategoryForPosition$3 (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
+	METHOD lambda$spawnCategoryForPosition$4 (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/MobCategory;)Z
+	METHOD lambda$static$1 (I)[Lnet/minecraft/world/entity/MobCategory;
+	METHOD mobsAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/util/random/WeightedRandomList;
+	METHOD spawnCategoryForChunk (Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/world/level/NaturalSpawner$SpawnPredicate;Lnet/minecraft/world/level/NaturalSpawner$AfterSpawnCallback;)V
+	METHOD spawnCategoryForPosition (Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V
+	METHOD spawnCategoryForPosition (Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/NaturalSpawner$SpawnPredicate;Lnet/minecraft/world/level/NaturalSpawner$AfterSpawnCallback;)V
+	METHOD spawnForChunk (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/world/level/NaturalSpawner$SpawnState;ZZZ)V
+	METHOD spawnMobsForChunkGeneration (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/level/biome/Biome;Lnet/minecraft/world/level/ChunkPos;Ljava/util/Random;)V
+	CLASS 1
+		FIELD $SwitchMap$net$minecraft$world$entity$SpawnPlacements$Type [I
+		METHOD <clinit> ()V
+	CLASS AfterSpawnCallback
+		METHOD run (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+	CLASS ChunkGetter
+		METHOD query (JLjava/util/function/Consumer;)V
+	CLASS SpawnPredicate
+		METHOD test (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
+	CLASS SpawnState
+		FIELD lastCharge D
+		FIELD lastCheckedPos Lnet/minecraft/core/BlockPos;
+		FIELD lastCheckedType Lnet/minecraft/world/entity/EntityType;
+		FIELD mobCategoryCounts Lit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;
+		FIELD spawnPotential Lnet/minecraft/world/level/PotentialCalculator;
+		FIELD spawnableChunkCount I
+		FIELD unmodifiableMobCategoryCounts Lit/unimi/dsi/fastutil/objects/Object2IntMap;
+		METHOD <init> (ILit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;Lnet/minecraft/world/level/PotentialCalculator;)V
+		METHOD afterSpawn (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+		METHOD canSpawn (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
+		METHOD canSpawnForCategory (Lnet/minecraft/world/entity/MobCategory;)Z
+		METHOD getMobCategoryCounts ()Lit/unimi/dsi/fastutil/objects/Object2IntMap;
+		METHOD getSpawnableChunkCount ()I

@@ -1,0 +1,61 @@
+CLASS net/minecraft/world/scores/Team
+	METHOD <init> ()V
+	METHOD canSeeFriendlyInvisibles ()Z
+		COMMENT Checks whether members of this team can see other members that are invisible.
+	METHOD getCollisionRule ()Lnet/minecraft/world/scores/Team$CollisionRule;
+		COMMENT Gets the rule to be used for handling collisions with members of this team.
+	METHOD getColor ()Lnet/minecraft/ChatFormatting;
+		COMMENT Gets the color for this team. The team color is used mainly for team kill objectives and team-specific setDisplay usage" it does _not_ affect all situations (for instance, the prefix is used for the glowing effect).
+	METHOD getDeathMessageVisibility ()Lnet/minecraft/world/scores/Team$Visibility;
+		COMMENT Gets the visibility flags for player death messages.
+	METHOD getFormattedName (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+	METHOD getName ()Ljava/lang/String;
+		COMMENT Retrieve the name by which this team is registered in the scoreboard
+	METHOD getNameTagVisibility ()Lnet/minecraft/world/scores/Team$Visibility;
+		COMMENT Gets the visibility flags for player name tags.
+	METHOD getPlayers ()Ljava/util/Collection;
+		COMMENT Gets a collection of all members of this team.
+	METHOD isAlliedTo (Lnet/minecraft/world/scores/Team;)Z
+		COMMENT Same as ==
+		ARG 1 other
+	METHOD isAllowFriendlyFire ()Z
+		COMMENT Checks whether friendly fire (PVP between members of the team) is allowed.
+	CLASS CollisionRule
+		FIELD $VALUES [Lnet/minecraft/world/scores/Team$CollisionRule;
+		FIELD ALWAYS Lnet/minecraft/world/scores/Team$CollisionRule;
+		FIELD BY_NAME Ljava/util/Map;
+		FIELD NEVER Lnet/minecraft/world/scores/Team$CollisionRule;
+		FIELD PUSH_OTHER_TEAMS Lnet/minecraft/world/scores/Team$CollisionRule;
+		FIELD PUSH_OWN_TEAM Lnet/minecraft/world/scores/Team$CollisionRule;
+		FIELD id I
+		FIELD name Ljava/lang/String;
+		METHOD $values ()[Lnet/minecraft/world/scores/Team$CollisionRule;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;I)V
+		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/scores/Team$CollisionRule;
+			ARG 0 name
+		METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
+		METHOD lambda$static$0 (Lnet/minecraft/world/scores/Team$CollisionRule;)Ljava/lang/String;
+		METHOD lambda$static$1 (Lnet/minecraft/world/scores/Team$CollisionRule;)Lnet/minecraft/world/scores/Team$CollisionRule;
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/scores/Team$CollisionRule;
+		METHOD values ()[Lnet/minecraft/world/scores/Team$CollisionRule;
+	CLASS Visibility
+		FIELD $VALUES [Lnet/minecraft/world/scores/Team$Visibility;
+		FIELD ALWAYS Lnet/minecraft/world/scores/Team$Visibility;
+		FIELD BY_NAME Ljava/util/Map;
+		FIELD HIDE_FOR_OTHER_TEAMS Lnet/minecraft/world/scores/Team$Visibility;
+		FIELD HIDE_FOR_OWN_TEAM Lnet/minecraft/world/scores/Team$Visibility;
+		FIELD NEVER Lnet/minecraft/world/scores/Team$Visibility;
+		FIELD id I
+		FIELD name Ljava/lang/String;
+		METHOD $values ()[Lnet/minecraft/world/scores/Team$Visibility;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;I)V
+		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/scores/Team$Visibility;
+			ARG 0 name
+		METHOD getAllNames ()[Ljava/lang/String;
+		METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
+		METHOD lambda$static$0 (Lnet/minecraft/world/scores/Team$Visibility;)Ljava/lang/String;
+		METHOD lambda$static$1 (Lnet/minecraft/world/scores/Team$Visibility;)Lnet/minecraft/world/scores/Team$Visibility;
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/scores/Team$Visibility;
+		METHOD values ()[Lnet/minecraft/world/scores/Team$Visibility;

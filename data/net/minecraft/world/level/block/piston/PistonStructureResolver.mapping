@@ -1,0 +1,29 @@
+CLASS net/minecraft/world/level/block/piston/PistonStructureResolver
+	FIELD MAX_PUSH_DEPTH I
+	FIELD extending Z
+	FIELD level Lnet/minecraft/world/level/Level;
+	FIELD pistonDirection Lnet/minecraft/core/Direction;
+	FIELD pistonPos Lnet/minecraft/core/BlockPos;
+	FIELD pushDirection Lnet/minecraft/core/Direction;
+	FIELD startPos Lnet/minecraft/core/BlockPos;
+	FIELD toDestroy Ljava/util/List;
+		COMMENT This is a List<BlockPos> of blocks that will be destroyed when a piston attempts to move them.
+	FIELD toPush Ljava/util/List;
+		COMMENT This is a List<BlockPos> of all blocks that will be moved by the piston.
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Z)V
+	METHOD addBlockLine (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 1 origin
+		ARG 2 facing
+	METHOD addBranchingBlocks (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 fromPos
+	METHOD canStickToEachOther (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)Z
+	METHOD getPushDirection ()Lnet/minecraft/core/Direction;
+	METHOD getToDestroy ()Ljava/util/List;
+		COMMENT Returns an List<BlockPos> of all the blocks that are being destroyed by the piston.
+	METHOD getToPush ()Ljava/util/List;
+		COMMENT Returns a List<BlockPos> of all the blocks that are being moved by the piston.
+	METHOD isSticky (Lnet/minecraft/world/level/block/state/BlockState;)Z
+	METHOD reorderListAtCollision (II)V
+		ARG 1 offsets
+		ARG 2 index
+	METHOD resolve ()Z

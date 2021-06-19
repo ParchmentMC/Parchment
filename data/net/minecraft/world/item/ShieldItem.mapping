@@ -1,0 +1,31 @@
+CLASS net/minecraft/world/item/ShieldItem
+	FIELD EFFECTIVE_BLOCK_DELAY I
+	FIELD MINIMUM_DURABILITY_DAMAGE F
+	FIELD TAG_BASE_COLOR Ljava/lang/String;
+	METHOD <init> (Lnet/minecraft/world/item/Item$Properties;)V
+	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
+		COMMENT allows items to add custom lines of information to the mouseover description
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 tooltip
+		ARG 4 flag
+	METHOD getColor (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/DyeColor;
+		ARG 0 stack
+	METHOD getDescriptionId (Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
+		COMMENT Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have different names based on their damage or NBT.
+		ARG 1 stack
+	METHOD getUseAnimation (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/UseAnim;
+		COMMENT returns the action that specifies what animation to play when the items is being used
+		ARG 1 stack
+	METHOD getUseDuration (Lnet/minecraft/world/item/ItemStack;)I
+		COMMENT How long it takes to use or consume an item
+		ARG 1 stack
+	METHOD isValidRepairItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Return whether this item is repairable in an anvil.
+		ARG 1 toRepair
+		ARG 2 repair
+	METHOD use (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
+		COMMENT Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see {@link #onItemUse}.
+		ARG 1 level
+		ARG 2 player
+		ARG 3 hand

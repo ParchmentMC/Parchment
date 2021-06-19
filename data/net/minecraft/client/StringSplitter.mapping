@@ -1,0 +1,84 @@
+CLASS net/minecraft/client/StringSplitter
+	FIELD widthProvider Lnet/minecraft/client/StringSplitter$WidthProvider;
+	METHOD <init> (Lnet/minecraft/client/StringSplitter$WidthProvider;)V
+	METHOD componentStyleAtWidth (Lnet/minecraft/network/chat/FormattedText;I)Lnet/minecraft/network/chat/Style;
+	METHOD componentStyleAtWidth (Lnet/minecraft/util/FormattedCharSequence;I)Lnet/minecraft/network/chat/Style;
+	METHOD findLineBreak (Ljava/lang/String;ILnet/minecraft/network/chat/Style;)I
+	METHOD formattedHeadByWidth (Ljava/lang/String;ILnet/minecraft/network/chat/Style;)Ljava/lang/String;
+	METHOD formattedIndexByWidth (Ljava/lang/String;ILnet/minecraft/network/chat/Style;)I
+	METHOD getWordPosition (Ljava/lang/String;IIZ)I
+	METHOD headByWidth (Lnet/minecraft/network/chat/FormattedText;ILnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/FormattedText;
+	METHOD lambda$componentStyleAtWidth$4 (Lnet/minecraft/client/StringSplitter$WidthLimitedCharSink;Lnet/minecraft/network/chat/Style;Ljava/lang/String;)Ljava/util/Optional;
+	METHOD lambda$componentStyleAtWidth$5 (Lnet/minecraft/client/StringSplitter$WidthLimitedCharSink;Lorg/apache/commons/lang3/mutable/MutableObject;ILnet/minecraft/network/chat/Style;I)Z
+	METHOD lambda$plainTailByWidth$3 (Lorg/apache/commons/lang3/mutable/MutableFloat;ILorg/apache/commons/lang3/mutable/MutableInt;ILnet/minecraft/network/chat/Style;I)Z
+	METHOD lambda$splitLines$6 (Ljava/util/List;Ljava/lang/String;Lnet/minecraft/network/chat/Style;II)V
+	METHOD lambda$splitLines$7 (Ljava/util/List;Lnet/minecraft/network/chat/FormattedText;Ljava/lang/Boolean;)V
+	METHOD lambda$splitLines$8 (Ljava/util/List;Lnet/minecraft/network/chat/FormattedText;Lnet/minecraft/network/chat/FormattedText;Ljava/lang/Boolean;)V
+	METHOD lambda$splitLines$9 (Ljava/util/List;Lnet/minecraft/network/chat/Style;Ljava/lang/String;)Ljava/util/Optional;
+	METHOD lambda$stringWidth$0 (Lorg/apache/commons/lang3/mutable/MutableFloat;ILnet/minecraft/network/chat/Style;I)Z
+	METHOD lambda$stringWidth$1 (Lorg/apache/commons/lang3/mutable/MutableFloat;ILnet/minecraft/network/chat/Style;I)Z
+	METHOD lambda$stringWidth$2 (Lorg/apache/commons/lang3/mutable/MutableFloat;ILnet/minecraft/network/chat/Style;I)Z
+	METHOD plainHeadByWidth (Ljava/lang/String;ILnet/minecraft/network/chat/Style;)Ljava/lang/String;
+	METHOD plainIndexAtWidth (Ljava/lang/String;ILnet/minecraft/network/chat/Style;)I
+	METHOD plainTailByWidth (Ljava/lang/String;ILnet/minecraft/network/chat/Style;)Ljava/lang/String;
+	METHOD splitLines (Ljava/lang/String;ILnet/minecraft/network/chat/Style;)Ljava/util/List;
+	METHOD splitLines (Ljava/lang/String;ILnet/minecraft/network/chat/Style;ZLnet/minecraft/client/StringSplitter$LinePosConsumer;)V
+	METHOD splitLines (Lnet/minecraft/network/chat/FormattedText;ILnet/minecraft/network/chat/Style;)Ljava/util/List;
+	METHOD splitLines (Lnet/minecraft/network/chat/FormattedText;ILnet/minecraft/network/chat/Style;Ljava/util/function/BiConsumer;)V
+	METHOD splitLines (Lnet/minecraft/network/chat/FormattedText;ILnet/minecraft/network/chat/Style;Lnet/minecraft/network/chat/FormattedText;)Ljava/util/List;
+	METHOD stringWidth (Ljava/lang/String;)F
+	METHOD stringWidth (Lnet/minecraft/network/chat/FormattedText;)F
+	METHOD stringWidth (Lnet/minecraft/util/FormattedCharSequence;)F
+	CLASS 1
+		FIELD collector Lnet/minecraft/client/ComponentCollector;
+		FIELD this$0 Lnet/minecraft/client/StringSplitter;
+		FIELD val$output Lnet/minecraft/client/StringSplitter$WidthLimitedCharSink;
+		METHOD <init> (Lnet/minecraft/client/StringSplitter;Lnet/minecraft/client/StringSplitter$WidthLimitedCharSink;)V
+		METHOD accept (Lnet/minecraft/network/chat/Style;Ljava/lang/String;)Ljava/util/Optional;
+	CLASS FlatComponents
+		FIELD flatParts Ljava/lang/String;
+		FIELD parts Ljava/util/List;
+		METHOD <init> (Ljava/util/List;)V
+		METHOD charAt (I)C
+		METHOD getRemainder ()Lnet/minecraft/network/chat/FormattedText;
+		METHOD lambda$new$0 (Lnet/minecraft/client/StringSplitter$LineComponent;)Ljava/lang/String;
+		METHOD splitAt (IILnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/FormattedText;
+	CLASS LineBreakFinder
+		FIELD hadNonZeroWidthChar Z
+		FIELD lastSpace I
+		FIELD lastSpaceStyle Lnet/minecraft/network/chat/Style;
+		FIELD lineBreak I
+		FIELD lineBreakStyle Lnet/minecraft/network/chat/Style;
+		FIELD maxWidth F
+		FIELD nextChar I
+		FIELD offset I
+		FIELD this$0 Lnet/minecraft/client/StringSplitter;
+		FIELD width F
+		METHOD <init> (Lnet/minecraft/client/StringSplitter;F)V
+		METHOD accept (ILnet/minecraft/network/chat/Style;I)Z
+		METHOD addToOffset (I)V
+		METHOD finishIteration (ILnet/minecraft/network/chat/Style;)Z
+		METHOD getSplitPosition ()I
+		METHOD getSplitStyle ()Lnet/minecraft/network/chat/Style;
+		METHOD lineBreakFound ()Z
+	CLASS LineComponent
+		FIELD contents Ljava/lang/String;
+		FIELD style Lnet/minecraft/network/chat/Style;
+		METHOD <init> (Ljava/lang/String;Lnet/minecraft/network/chat/Style;)V
+		METHOD visit (Lnet/minecraft/network/chat/FormattedText$ContentConsumer;)Ljava/util/Optional;
+			ARG 1 acceptor
+		METHOD visit (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
+			ARG 1 acceptor
+			ARG 2 style
+	CLASS LinePosConsumer
+		METHOD accept (Lnet/minecraft/network/chat/Style;II)V
+	CLASS WidthLimitedCharSink
+		FIELD maxWidth F
+		FIELD position I
+		FIELD this$0 Lnet/minecraft/client/StringSplitter;
+		METHOD <init> (Lnet/minecraft/client/StringSplitter;F)V
+		METHOD accept (ILnet/minecraft/network/chat/Style;I)Z
+		METHOD getPosition ()I
+		METHOD resetPosition ()V
+	CLASS WidthProvider
+		METHOD getWidth (ILnet/minecraft/network/chat/Style;)F

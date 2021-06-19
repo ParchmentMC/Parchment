@@ -1,0 +1,28 @@
+CLASS net/minecraft/world/level/block/DoubleBlockCombiner
+	METHOD <init> ()V
+	METHOD combineWithNeigbour (Lnet/minecraft/world/level/block/entity/BlockEntityType;Ljava/util/function/Function;Ljava/util/function/Function;Lnet/minecraft/world/level/block/state/properties/DirectionProperty;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Ljava/util/function/BiPredicate;)Lnet/minecraft/world/level/block/DoubleBlockCombiner$NeighborCombineResult;
+	CLASS BlockType
+		FIELD $VALUES [Lnet/minecraft/world/level/block/DoubleBlockCombiner$BlockType;
+		FIELD FIRST Lnet/minecraft/world/level/block/DoubleBlockCombiner$BlockType;
+		FIELD SECOND Lnet/minecraft/world/level/block/DoubleBlockCombiner$BlockType;
+		FIELD SINGLE Lnet/minecraft/world/level/block/DoubleBlockCombiner$BlockType;
+		METHOD $values ()[Lnet/minecraft/world/level/block/DoubleBlockCombiner$BlockType;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;I)V
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/level/block/DoubleBlockCombiner$BlockType;
+		METHOD values ()[Lnet/minecraft/world/level/block/DoubleBlockCombiner$BlockType;
+	CLASS Combiner
+		METHOD acceptDouble (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+		METHOD acceptNone ()Ljava/lang/Object;
+		METHOD acceptSingle (Ljava/lang/Object;)Ljava/lang/Object;
+	CLASS NeighborCombineResult
+		METHOD apply (Lnet/minecraft/world/level/block/DoubleBlockCombiner$Combiner;)Ljava/lang/Object;
+		CLASS Double
+			FIELD first Ljava/lang/Object;
+			FIELD second Ljava/lang/Object;
+			METHOD <init> (Ljava/lang/Object;Ljava/lang/Object;)V
+			METHOD apply (Lnet/minecraft/world/level/block/DoubleBlockCombiner$Combiner;)Ljava/lang/Object;
+		CLASS Single
+			FIELD single Ljava/lang/Object;
+			METHOD <init> (Ljava/lang/Object;)V
+			METHOD apply (Lnet/minecraft/world/level/block/DoubleBlockCombiner$Combiner;)Ljava/lang/Object;

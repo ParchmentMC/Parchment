@@ -1,0 +1,23 @@
+CLASS net/minecraft/client/multiplayer/ClientAdvancements
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD advancements Lnet/minecraft/advancements/AdvancementList;
+	FIELD listener Lnet/minecraft/client/multiplayer/ClientAdvancements$Listener;
+	FIELD minecraft Lnet/minecraft/client/Minecraft;
+	FIELD progress Ljava/util/Map;
+	FIELD selectedTab Lnet/minecraft/advancements/Advancement;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+	METHOD getAdvancements ()Lnet/minecraft/advancements/AdvancementList;
+	METHOD setListener (Lnet/minecraft/client/multiplayer/ClientAdvancements$Listener;)V
+		ARG 1 listener
+	METHOD setSelectedTab (Lnet/minecraft/advancements/Advancement;Z)V
+		ARG 1 advancement
+		ARG 2 tellServer
+	METHOD update (Lnet/minecraft/network/protocol/game/ClientboundUpdateAdvancementsPacket;)V
+		ARG 1 packet
+	CLASS Listener
+		METHOD onSelectedTabChanged (Lnet/minecraft/advancements/Advancement;)V
+			ARG 1 advancement
+		METHOD onUpdateAdvancementProgress (Lnet/minecraft/advancements/Advancement;Lnet/minecraft/advancements/AdvancementProgress;)V
+			ARG 1 advancement
+			ARG 2 progress

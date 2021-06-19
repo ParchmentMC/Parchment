@@ -1,0 +1,17 @@
+CLASS net/minecraft/world/item/enchantment/DigDurabilityEnchantment
+	METHOD <init> (Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;[Lnet/minecraft/world/entity/EquipmentSlot;)V
+	METHOD canEnchant (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Determines if this enchantment can be applied to a specific ItemStack.
+		ARG 1 stack
+	METHOD getMaxCost (I)I
+		ARG 1 enchantmentLevel
+	METHOD getMaxLevel ()I
+		COMMENT Returns the maximum level that the enchantment can have.
+	METHOD getMinCost (I)I
+		COMMENT Returns the minimal value of enchantability needed on the enchantment level passed.
+		ARG 1 enchantmentLevel
+	METHOD shouldIgnoreDurabilityDrop (Lnet/minecraft/world/item/ItemStack;ILjava/util/Random;)Z
+		COMMENT Used by ItemStack.attemptDamageItem. Randomly determines if a point of damage should be negated using the enchantment level (par1). If the ItemStack is Armor then there is a flat 60% chance for damage to be negated no matter the enchantment level, otherwise there is a 1-(par/1) chance for damage to be negated.
+		ARG 0 stack
+		ARG 1 level
+		ARG 2 rand

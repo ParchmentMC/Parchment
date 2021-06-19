@@ -1,0 +1,205 @@
+CLASS net/minecraft/client/player/LocalPlayer
+	FIELD POSITION_REMINDER_INTERVAL I
+	FIELD SUFFOCATING_COLLISION_CHECK_SCALE D
+	FIELD WATER_VISION_MAX_TIME I
+	FIELD WATER_VISION_QUICK_PERCENT F
+	FIELD WATER_VISION_QUICK_TIME I
+	FIELD ambientSoundHandlers Ljava/util/List;
+	FIELD autoJumpEnabled Z
+	FIELD autoJumpTime I
+	FIELD connection Lnet/minecraft/client/multiplayer/ClientPacketListener;
+	FIELD crouching Z
+	FIELD flashOnSetHealth Z
+	FIELD handsBusy Z
+	FIELD input Lnet/minecraft/client/player/Input;
+	FIELD jumpRidingScale F
+	FIELD jumpRidingTicks I
+	FIELD lastOnGround Z
+	FIELD minecraft Lnet/minecraft/client/Minecraft;
+	FIELD oPortalTime F
+	FIELD permissionLevel I
+	FIELD portalTime F
+	FIELD positionReminder I
+		COMMENT Reset to 0 every time position is sent to the server, used to send periodic updates every 20 ticks even when the player is not moving.
+	FIELD recipeBook Lnet/minecraft/client/ClientRecipeBook;
+	FIELD serverBrand Ljava/lang/String;
+	FIELD showDeathScreen Z
+	FIELD sprintTime I
+	FIELD sprintTriggerTime I
+	FIELD startedUsingItem Z
+	FIELD stats Lnet/minecraft/stats/StatsCounter;
+	FIELD usingItemHand Lnet/minecraft/world/InteractionHand;
+	FIELD wasFallFlying Z
+	FIELD wasShiftKeyDown Z
+	FIELD wasSprinting Z
+		COMMENT the last sprinting state sent to the server
+	FIELD waterVisionTime I
+	FIELD xBob F
+	FIELD xBobO F
+	FIELD xLast D
+		COMMENT The last X position which was transmitted to the server, used to determine when the X position changes and needs to be re-trasmitted
+	FIELD xRotLast F
+		COMMENT The last pitch value which was transmitted to the server, used to determine when the pitch changes and needs to be re-transmitted
+	FIELD yBob F
+	FIELD yBobO F
+	FIELD yLast1 D
+		COMMENT The last Y position which was transmitted to the server, used to determine when the Y position changes and needs to be re-transmitted
+	FIELD yRotLast F
+		COMMENT The last yaw value which was transmitted to the server, used to determine when the yaw changes and needs to be re-transmitted
+	FIELD zLast D
+		COMMENT The last Z position which was transmitted to the server, used to determine when the Z position changes and needs to be re-transmitted
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/multiplayer/ClientPacketListener;Lnet/minecraft/stats/StatsCounter;Lnet/minecraft/client/ClientRecipeBook;ZZ)V
+	METHOD actuallyHurt (Lnet/minecraft/world/damagesource/DamageSource;F)V
+		COMMENT Deals damage to the entity. This will take the armor of the entity into consideration before damaging the health bar.
+		ARG 1 damageSrc
+		ARG 2 damageAmount
+	METHOD aiStep ()V
+		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	METHOD canAutoJump ()Z
+	METHOD canSpawnSoulSpeedParticle ()Z
+	METHOD canSpawnSprintParticle ()Z
+	METHOD chat (Ljava/lang/String;)V
+		COMMENT Sends a chat message from the player.
+		ARG 1 message
+	METHOD clientSideCloseContainer ()V
+	METHOD closeContainer ()V
+		COMMENT set current crafting inventory back to the 2x2 square
+	METHOD crit (Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Called when the entity is dealt a critical hit.
+		ARG 1 entityHit
+	METHOD displayClientMessage (Lnet/minecraft/network/chat/Component;Z)V
+		ARG 1 chatComponent
+		ARG 2 actionBar
+	METHOD drop (Z)Z
+	METHOD getCurrentMood ()F
+	METHOD getJumpRidingScale ()F
+	METHOD getPermissionLevel ()I
+	METHOD getRecipeBook ()Lnet/minecraft/client/ClientRecipeBook;
+	METHOD getRopeHoldPosition (F)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 partialTicks
+	METHOD getServerBrand ()Ljava/lang/String;
+		COMMENT Gets the brand of the currently connected server. May be null if the server hasn't yet sent brand information. Server brand information is sent over the {@code MC|Brand} plugin channel, and is used to identify modded servers in crash reports.
+	METHOD getStats ()Lnet/minecraft/stats/StatsCounter;
+	METHOD getUsedItemHand ()Lnet/minecraft/world/InteractionHand;
+	METHOD getViewXRot (F)F
+		COMMENT Gets the current pitch of the entity.
+		ARG 1 partialTicks
+	METHOD getViewYRot (F)F
+		COMMENT Gets the current yaw of the entity
+		ARG 1 partialTicks
+	METHOD getWaterVision ()F
+	METHOD handleEntityEvent (B)V
+		COMMENT Handler for {@link World#setEntityState}
+		ARG 1 id
+	METHOD handleNetherPortalClient ()V
+	METHOD hasEnoughImpulseToStartSprinting ()Z
+	METHOD heal (F)V
+		COMMENT Heal living entity (param: amount of half-hearts)
+		ARG 1 healAmount
+	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
+		COMMENT Called when the entity is attacked.
+		ARG 1 source
+		ARG 2 amount
+	METHOD hurtTo (F)V
+		COMMENT Updates health locally.
+		ARG 1 health
+	METHOD isAutoJumpEnabled ()Z
+	METHOD isControlledCamera ()Z
+	METHOD isCrouching ()Z
+	METHOD isEffectiveAi ()Z
+		COMMENT Returns whether the entity is in a server world
+	METHOD isHandsBusy ()Z
+	METHOD isLocalPlayer ()Z
+		COMMENT returns true if this is an EntityPlayerSP, or the logged in player.
+	METHOD isMoving ()Z
+	METHOD isMovingSlowly ()Z
+	METHOD isRidingJumpable ()Z
+	METHOD isShiftKeyDown ()Z
+	METHOD isSuppressingSlidingDownLadder ()Z
+	METHOD isUnderWater ()Z
+	METHOD isUsingItem ()Z
+	METHOD lambda$suffocatesAt$0 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
+	METHOD lambda$updateAutoJump$1 (Lnet/minecraft/world/entity/Entity;)Z
+	METHOD lambda$updateAutoJump$2 (Lnet/minecraft/world/phys/shapes/VoxelShape;)Ljava/util/stream/Stream;
+	METHOD magicCrit (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entityHit
+	METHOD move (Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 type
+		ARG 2 pos
+	METHOD moveTowardsClosestSpace (DD)V
+		ARG 1 x
+		ARG 3 z
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD onUpdateAbilities ()V
+		COMMENT Sends the player's abilities to the server (if there is one).
+	METHOD openCommandBlock (Lnet/minecraft/world/level/block/entity/CommandBlockEntity;)V
+		ARG 1 commandBlock
+	METHOD openItemGui (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)V
+		ARG 1 stack
+		ARG 2 hand
+	METHOD openJigsawBlock (Lnet/minecraft/world/level/block/entity/JigsawBlockEntity;)V
+	METHOD openMinecartCommandBlock (Lnet/minecraft/world/level/BaseCommandBlock;)V
+		ARG 1 commandBlock
+	METHOD openStructureBlock (Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)V
+		ARG 1 structure
+	METHOD openTextEdit (Lnet/minecraft/world/level/block/entity/SignBlockEntity;)V
+		ARG 1 signTile
+	METHOD playNotifySound (Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;FF)V
+		ARG 1 sound
+		ARG 2 volume
+		ARG 3 pitch
+	METHOD removeEffectNoUpdate (Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;
+		COMMENT Removes the given potion effect from the active potion map and returns it. Does not call cleanup callbacks for the end of the potion effect.
+		ARG 1 potioneffectin
+	METHOD removeRecipeHighlight (Lnet/minecraft/world/item/crafting/Recipe;)V
+		ARG 1 recipe
+	METHOD removeVehicle ()V
+	METHOD resetPos ()V
+	METHOD respawn ()V
+	METHOD rideTick ()V
+		COMMENT Handles updating while riding another entity
+	METHOD sendMessage (Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V
+		COMMENT Send a chat message to the CommandSender
+		ARG 1 component
+		ARG 2 senderUUID
+	METHOD sendOpenInventory ()V
+	METHOD sendPosition ()V
+		COMMENT called every tick when the player is on foot. Performs all the things that normally happen during movement.
+	METHOD sendRidingJump ()V
+	METHOD serverAiStep ()V
+	METHOD setExperienceValues (FII)V
+		COMMENT Sets the current XP, total XP, and level number.
+		ARG 1 currentXP
+		ARG 2 maxXP
+		ARG 3 level
+	METHOD setPermissionLevel (I)V
+		ARG 1 permissionLevel
+	METHOD setServerBrand (Ljava/lang/String;)V
+		COMMENT Sets the brand of the currently connected server. Server brand information is sent over the {@code MC|Brand} plugin channel, and is used to identify modded servers in crash reports.
+		ARG 1 brand
+	METHOD setShowDeathScreen (Z)V
+		ARG 1 show
+	METHOD setSprinting (Z)V
+		COMMENT Set sprinting switch for Entity.
+		ARG 1 sprinting
+	METHOD shouldShowDeathScreen ()Z
+	METHOD startRiding (Lnet/minecraft/world/entity/Entity;Z)Z
+		ARG 1 entity
+		ARG 2 force
+	METHOD startUsingItem (Lnet/minecraft/world/InteractionHand;)V
+		ARG 1 hand
+	METHOD stopUsingItem ()V
+	METHOD suffocatesAt (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD swing (Lnet/minecraft/world/InteractionHand;)V
+		ARG 1 hand
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	METHOD tickDeath ()V
+	METHOD updateAutoJump (FF)V
+		ARG 1 movementX
+		ARG 2 movementZ
+	METHOD updateIsUnderwater ()Z
+	METHOD updateTutorialInventoryAction (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/ClickAction;)V

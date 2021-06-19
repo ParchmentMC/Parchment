@@ -1,0 +1,36 @@
+CLASS net/minecraft/world/entity/ai/goal/FollowOwnerGoal
+	FIELD MAX_HORIZONTAL_DISTANCE_FROM_PLAYER_WHEN_TELEPORTING I
+	FIELD MAX_VERTICAL_DISTANCE_FROM_PLAYER_WHEN_TELEPORTING I
+	FIELD MIN_HORIZONTAL_DISTANCE_FROM_PLAYER_WHEN_TELEPORTING I
+	FIELD TELEPORT_WHEN_DISTANCE_IS I
+	FIELD canFly Z
+	FIELD level Lnet/minecraft/world/level/LevelReader;
+	FIELD navigation Lnet/minecraft/world/entity/ai/navigation/PathNavigation;
+	FIELD oldWaterCost F
+	FIELD owner Lnet/minecraft/world/entity/LivingEntity;
+	FIELD speedModifier D
+	FIELD startDistance F
+	FIELD stopDistance F
+	FIELD tamable Lnet/minecraft/world/entity/TamableAnimal;
+	FIELD timeToRecalcPath I
+	METHOD <init> (Lnet/minecraft/world/entity/TamableAnimal;DFFZ)V
+	METHOD canContinueToUse ()Z
+		COMMENT Returns whether an in-progress EntityAIBase should continue executing
+	METHOD canTeleportTo (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD canUse ()Z
+		COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	METHOD maybeTeleportTo (III)Z
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD randomIntInclusive (II)I
+		ARG 1 min
+		ARG 2 max
+	METHOD start ()V
+		COMMENT Execute a one shot task or start executing a continuous task
+	METHOD stop ()V
+		COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+	METHOD teleportToOwner ()V
+	METHOD tick ()V
+		COMMENT Keep ticking a continuous task that has already been started

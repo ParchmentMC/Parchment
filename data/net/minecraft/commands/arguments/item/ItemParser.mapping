@@ -1,0 +1,38 @@
+CLASS net/minecraft/commands/arguments/item/ItemParser
+	FIELD ERROR_NO_TAGS_ALLOWED Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
+	FIELD ERROR_UNKNOWN_ITEM Lcom/mojang/brigadier/exceptions/DynamicCommandExceptionType;
+	FIELD SUGGEST_NOTHING Ljava/util/function/BiFunction;
+	FIELD SYNTAX_START_NBT C
+	FIELD SYNTAX_TAG C
+	FIELD forTesting Z
+	FIELD item Lnet/minecraft/world/item/Item;
+	FIELD nbt Lnet/minecraft/nbt/CompoundTag;
+	FIELD reader Lcom/mojang/brigadier/StringReader;
+	FIELD suggestions Ljava/util/function/BiFunction;
+		COMMENT Builder to be used when creating a list of suggestions
+	FIELD tag Lnet/minecraft/resources/ResourceLocation;
+	FIELD tagCursor I
+	METHOD <clinit> ()V
+	METHOD <init> (Lcom/mojang/brigadier/StringReader;Z)V
+	METHOD fillSuggestions (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
+		COMMENT Create a list of suggestions for the specified builder.
+		ARG 1 builder
+	METHOD getItem ()Lnet/minecraft/world/item/Item;
+	METHOD getNbt ()Lnet/minecraft/nbt/CompoundTag;
+	METHOD getTag ()Lnet/minecraft/resources/ResourceLocation;
+	METHOD lambda$readItem$2 (ILnet/minecraft/resources/ResourceLocation;)Lcom/mojang/brigadier/exceptions/CommandSyntaxException;
+	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+	METHOD lambda$static$1 (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
+	METHOD parse ()Lnet/minecraft/commands/arguments/item/ItemParser;
+	METHOD readItem ()V
+	METHOD readNbt ()V
+	METHOD readTag ()V
+	METHOD suggestItemIdOrTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
+		COMMENT Builds a list of suggestions based on item tags (if the parser is set to allows tags) and item registry names.
+		ARG 1 builder
+	METHOD suggestOpenNbt (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
+		COMMENT Builds a list of suggestions based on item registry names.
+		ARG 1 builder
+	METHOD suggestTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
+		COMMENT Builds a list of suggestions based on item tags.
+		ARG 1 builder

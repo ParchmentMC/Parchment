@@ -1,0 +1,19 @@
+CLASS net/minecraft/world/level/block/state/pattern/BlockInWorld
+	FIELD cachedEntity Z
+	FIELD entity Lnet/minecraft/world/level/block/entity/BlockEntity;
+	FIELD level Lnet/minecraft/world/level/LevelReader;
+	FIELD loadChunks Z
+	FIELD pos Lnet/minecraft/core/BlockPos;
+	FIELD state Lnet/minecraft/world/level/block/state/BlockState;
+	METHOD <init> (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Z)V
+	METHOD getEntity ()Lnet/minecraft/world/level/block/entity/BlockEntity;
+		COMMENT Gets the tile entity as currently held, or (if it has not gotten it from the world) loads it from the world.
+	METHOD getLevel ()Lnet/minecraft/world/level/LevelReader;
+	METHOD getPos ()Lnet/minecraft/core/BlockPos;
+	METHOD getState ()Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Gets the block state as currently held, or (if it has not gotten it from the world) loads it from the world.
+		COMMENT This will only look up the state from the world if {@link #forceLoad} is true or the block position is loaded.
+	METHOD hasState (Ljava/util/function/Predicate;)Ljava/util/function/Predicate;
+		COMMENT Creates a new {@link Predicate} that will match when the given {@link IBlockState} predicate matches.
+		ARG 0 predicates
+	METHOD lambda$hasState$0 (Ljava/util/function/Predicate;Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z

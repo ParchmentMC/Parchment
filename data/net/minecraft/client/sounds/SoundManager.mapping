@@ -1,0 +1,84 @@
+CLASS net/minecraft/client/sounds/SoundManager
+	FIELD EMPTY_SOUND Lnet/minecraft/client/resources/sounds/Sound;
+	FIELD GSON Lcom/google/gson/Gson;
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD SOUNDS_PATH Ljava/lang/String;
+	FIELD SOUND_EVENT_REGISTRATION_TYPE Lcom/google/gson/reflect/TypeToken;
+	FIELD registry Ljava/util/Map;
+	FIELD soundEngine Lnet/minecraft/client/sounds/SoundEngine;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/client/Options;)V
+	METHOD addListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
+		ARG 1 listener
+	METHOD apply (Ljava/lang/Object;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+	METHOD apply (Lnet/minecraft/client/sounds/SoundManager$Preparations;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+		ARG 1 object
+		ARG 2 resourceManager
+		ARG 3 profiler
+	METHOD destroy ()V
+	METHOD getAvailableSounds ()Ljava/util/Collection;
+	METHOD getDebugString ()Ljava/lang/String;
+	METHOD getSoundEvent (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/sounds/WeighedSoundEvents;
+		ARG 1 location
+	METHOD isActive (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
+		ARG 1 sound
+	METHOD pause ()V
+	METHOD play (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
+		COMMENT Play a sound
+		ARG 1 sound
+	METHOD playDelayed (Lnet/minecraft/client/resources/sounds/SoundInstance;I)V
+		COMMENT Plays the sound in n ticks
+		ARG 1 sound
+		ARG 2 delay
+	METHOD prepare (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Ljava/lang/Object;
+	METHOD prepare (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Lnet/minecraft/client/sounds/SoundManager$Preparations;
+		COMMENT Performs any reloading that can be done off-thread, such as file IO
+		ARG 1 resourceManager
+		ARG 2 profiler
+	METHOD queueTickingSound (Lnet/minecraft/client/resources/sounds/TickableSoundInstance;)V
+		ARG 1 tickableSound
+	METHOD removeListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
+		ARG 1 listener
+	METHOD resume ()V
+	METHOD stop ()V
+	METHOD stop (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
+		ARG 1 sound
+	METHOD stop (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/sounds/SoundSource;)V
+		ARG 1 id
+		ARG 2 category
+	METHOD tick (Z)V
+		ARG 1 isGamePaused
+	METHOD updateSource (Lnet/minecraft/client/Camera;)V
+		ARG 1 activeRenderInfo
+	METHOD updateSourceVolume (Lnet/minecraft/sounds/SoundSource;F)V
+		ARG 1 category
+		ARG 2 volume
+	METHOD validateSoundResource (Lnet/minecraft/client/resources/sounds/Sound;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/ResourceManager;)Z
+		ARG 0 sound
+		ARG 1 soundLocation
+		ARG 2 resourceManager
+	CLASS 1
+		METHOD <init> ()V
+	CLASS 2
+		FIELD $SwitchMap$net$minecraft$client$resources$sounds$Sound$Type [I
+		METHOD <clinit> ()V
+	CLASS Preparations
+		FIELD registry Ljava/util/Map;
+		METHOD <init> ()V
+		METHOD apply (Ljava/util/Map;Lnet/minecraft/client/sounds/SoundEngine;)V
+			ARG 1 soundRegistry
+			ARG 2 soundManager
+		METHOD handleRegistration (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/sounds/SoundEventRegistration;Lnet/minecraft/server/packs/resources/ResourceManager;)V
+			ARG 1 soundLocation
+			ARG 2 soundList
+			ARG 3 resourceManager
+		CLASS 1
+			FIELD this$0 Lnet/minecraft/client/sounds/SoundManager$Preparations;
+			FIELD val$sound Lnet/minecraft/client/resources/sounds/Sound;
+			FIELD val$soundLocation Lnet/minecraft/resources/ResourceLocation;
+			METHOD <init> (Lnet/minecraft/client/sounds/SoundManager$Preparations;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/sounds/Sound;)V
+			METHOD getSound ()Ljava/lang/Object;
+			METHOD getSound ()Lnet/minecraft/client/resources/sounds/Sound;
+			METHOD getWeight ()I
+			METHOD preloadIfRequired (Lnet/minecraft/client/sounds/SoundEngine;)V
+				ARG 1 engine

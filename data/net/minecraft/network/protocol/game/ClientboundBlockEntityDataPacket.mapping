@@ -1,0 +1,30 @@
+CLASS net/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket
+	FIELD TYPE_ADV_COMMAND I
+	FIELD TYPE_BANNER I
+	FIELD TYPE_BEACON I
+	FIELD TYPE_BED I
+	FIELD TYPE_BEEHIVE I
+	FIELD TYPE_CAMPFIRE I
+	FIELD TYPE_CONDUIT I
+	FIELD TYPE_END_GATEWAY I
+	FIELD TYPE_JIGSAW I
+	FIELD TYPE_MOB_SPAWNER I
+	FIELD TYPE_SIGN I
+	FIELD TYPE_SKULL I
+	FIELD TYPE_STRUCT_COMMAND I
+	FIELD pos Lnet/minecraft/core/BlockPos;
+	FIELD tag Lnet/minecraft/nbt/CompoundTag;
+	FIELD type I
+		COMMENT Used only for vanilla tile entities
+	METHOD <init> (Lnet/minecraft/core/BlockPos;ILnet/minecraft/nbt/CompoundTag;)V
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD getPos ()Lnet/minecraft/core/BlockPos;
+	METHOD getTag ()Lnet/minecraft/nbt/CompoundTag;
+	METHOD getType ()I
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf

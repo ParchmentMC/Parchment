@@ -1,0 +1,95 @@
+CLASS net/minecraft/server/commands/data/DataCommands
+	FIELD ALL_PROVIDERS Ljava/util/List;
+	FIELD ERROR_EXPECTED_LIST Lcom/mojang/brigadier/exceptions/DynamicCommandExceptionType;
+	FIELD ERROR_EXPECTED_OBJECT Lcom/mojang/brigadier/exceptions/DynamicCommandExceptionType;
+	FIELD ERROR_GET_NON_EXISTENT Lcom/mojang/brigadier/exceptions/DynamicCommandExceptionType;
+	FIELD ERROR_GET_NOT_NUMBER Lcom/mojang/brigadier/exceptions/DynamicCommandExceptionType;
+	FIELD ERROR_INVALID_INDEX Lcom/mojang/brigadier/exceptions/DynamicCommandExceptionType;
+	FIELD ERROR_MERGE_UNCHANGED Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
+	FIELD ERROR_MULTIPLE_TAGS Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
+	FIELD SOURCE_PROVIDERS Ljava/util/List;
+	FIELD TARGET_PROVIDERS Ljava/util/List;
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD decorateModification (Ljava/util/function/BiConsumer;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+	METHOD getData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;)I
+		COMMENT Gets all NBT on the object, and applies syntax highlighting.
+		COMMENT
+		COMMENT @return 1
+		ARG 0 source
+		ARG 1 accessor
+	METHOD getData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;)I
+		COMMENT Gets a value, which can be of any known NBT type.
+		COMMENT
+		COMMENT @return The value associated with the element: length for strings, size for lists and compounds, and numeric value for primitives.
+		ARG 0 source
+		ARG 1 accessor
+		ARG 2 path
+	METHOD getNumeric (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;D)I
+		COMMENT Gets a single numeric element, scaled by the given amount.
+		COMMENT
+		COMMENT @return The element's value, scaled by scale.
+		ARG 0 source
+		ARG 1 accessor
+		ARG 2 path
+		ARG 3 scale
+	METHOD getSingleTag (Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Lnet/minecraft/server/commands/data/DataAccessor;)Lnet/minecraft/nbt/Tag;
+	METHOD insertAtIndex (ILnet/minecraft/nbt/CompoundTag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)I
+	METHOD lambda$decorateModification$22 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataManipulator;Lcom/mojang/brigadier/context/CommandContext;)I
+	METHOD lambda$decorateModification$23 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataManipulator;Lcom/mojang/brigadier/context/CommandContext;)I
+	METHOD lambda$decorateModification$24 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataManipulator;Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+	METHOD lambda$decorateModification$25 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataManipulator;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+	METHOD lambda$decorateModification$26 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataManipulator;Lcom/mojang/brigadier/context/CommandContext;)I
+	METHOD lambda$decorateModification$27 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataManipulator;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+	METHOD lambda$decorateModification$28 (Ljava/util/function/BiConsumer;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+	METHOD lambda$register$10 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/context/CommandContext;)I
+	METHOD lambda$register$11 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/context/CommandContext;)I
+	METHOD lambda$register$12 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/context/CommandContext;)I
+	METHOD lambda$register$13 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+	METHOD lambda$register$14 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/context/CommandContext;)I
+	METHOD lambda$register$15 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+	METHOD lambda$register$16 (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)I
+	METHOD lambda$register$17 (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)I
+	METHOD lambda$register$18 (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)I
+	METHOD lambda$register$19 (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)I
+	METHOD lambda$register$20 (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)I
+	METHOD lambda$register$21 (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lnet/minecraft/server/commands/data/DataCommands$DataManipulatorDecorator;)V
+	METHOD lambda$register$7 (Lnet/minecraft/commands/CommandSourceStack;)Z
+	METHOD lambda$register$8 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/context/CommandContext;)I
+	METHOD lambda$register$9 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+	METHOD lambda$static$1 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+	METHOD lambda$static$2 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+	METHOD lambda$static$3 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+	METHOD lambda$static$4 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+	METHOD lambda$static$5 (Ljava/util/function/Function;)Lnet/minecraft/server/commands/data/DataCommands$DataProvider;
+	METHOD lambda$static$6 (Ljava/util/function/Function;)Lnet/minecraft/server/commands/data/DataCommands$DataProvider;
+	METHOD manipulateData (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataManipulator;Ljava/util/List;)I
+	METHOD mergeData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/nbt/CompoundTag;)I
+		COMMENT Merges the given NBT into the targeted object's NBT.
+		COMMENT
+		COMMENT @return 1
+		ARG 0 source
+		ARG 1 accessor
+		ARG 2 nbt
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
+		ARG 0 dispatcher
+	METHOD removeData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;)I
+		COMMENT Removes the tag at the end of the path.
+		COMMENT
+		COMMENT @return 1
+		ARG 0 source
+		ARG 1 accessor
+		ARG 2 path
+	CLASS DataManipulator
+		METHOD modify (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)I
+	CLASS DataManipulatorDecorator
+		METHOD create (Lnet/minecraft/server/commands/data/DataCommands$DataManipulator;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+	CLASS DataProvider
+		METHOD access (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/commands/data/DataAccessor;
+			COMMENT Creates an accessor based on the command context. This should only refer to arguments registered in {@link createArgument}.
+			ARG 1 context
+		METHOD wrap (Lcom/mojang/brigadier/builder/ArgumentBuilder;Ljava/util/function/Function;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+			COMMENT Creates an argument used for accessing data related to this type of thing, including a literal to distinguish from other types.
+			ARG 1 builder
+			ARG 2 action

@@ -1,0 +1,202 @@
+CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
+	FIELD CHEST_SLOT_OFFSET I
+	FIELD DATA_ID_FLAGS Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD DATA_ID_OWNER_UUID Lnet/minecraft/network/syncher/EntityDataAccessor;
+	FIELD EQUIPMENT_SLOT_OFFSET I
+	FIELD FLAG_BRED I
+	FIELD FLAG_EATING I
+	FIELD FLAG_OPEN_MOUTH I
+	FIELD FLAG_SADDLE I
+	FIELD FLAG_STANDING I
+	FIELD FLAG_TAME I
+	FIELD FOOD_ITEMS Lnet/minecraft/world/item/crafting/Ingredient;
+	FIELD INVENTORY_SLOT_OFFSET I
+	FIELD INV_BASE_COUNT I
+	FIELD INV_SLOT_ARMOR I
+	FIELD INV_SLOT_SADDLE I
+	FIELD MOMMY_TARGETING Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
+	FIELD PARENT_HORSE_SELECTOR Ljava/util/function/Predicate;
+	FIELD allowStandSliding Z
+	FIELD canGallop Z
+	FIELD eatAnim F
+	FIELD eatAnimO F
+	FIELD eatingCounter I
+	FIELD gallopSoundCounter I
+		COMMENT Used to determine the sound that the horse should make when it steps
+	FIELD inventory Lnet/minecraft/world/SimpleContainer;
+	FIELD isJumping Z
+	FIELD mouthAnim F
+	FIELD mouthAnimO F
+	FIELD mouthCounter I
+	FIELD playerJumpPendingScale F
+	FIELD sprintCounter I
+	FIELD standAnim F
+	FIELD standAnimO F
+	FIELD standCounter I
+	FIELD tailCounter I
+	FIELD temper I
+		COMMENT The higher this value, the more likely the horse is to be tamed next time a player rides it.
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD addBehaviourGoals ()V
+	METHOD aiStep ()V
+		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	METHOD calculateFallDamage (FF)I
+		ARG 1 distance
+		ARG 2 damageMultiplier
+	METHOD canBeControlledByRider ()Z
+		COMMENT returns true if all the conditions for steering the entity are met. For pigs, this is true if it is being ridden by a player and the player is holding a carrot-on-a-stick
+	METHOD canEatGrass ()Z
+	METHOD canJump ()Z
+	METHOD canMate (Lnet/minecraft/world/entity/animal/Animal;)Z
+		COMMENT Returns true if the mob is currently able to mate with the specified mob.
+		ARG 1 otherAnimal
+	METHOD canParent ()Z
+		COMMENT Return true if the horse entity ready to mate. (no rider, not riding, tame, adult, not steril...)
+	METHOD canWearArmor ()Z
+	METHOD causeFallDamage (FFLnet/minecraft/world/damagesource/DamageSource;)Z
+	METHOD containerChanged (Lnet/minecraft/world/Container;)V
+		COMMENT Called by InventoryBasic.onInventoryChanged() on a array that is never filled.
+		ARG 1 invBasic
+	METHOD createBaseHorseAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+	METHOD createEquipmentSlotAccess (ILjava/util/function/Predicate;)Lnet/minecraft/world/entity/SlotAccess;
+	METHOD createInventory ()V
+	METHOD defineSynchedData ()V
+	METHOD doPlayerRide (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player
+	METHOD dropEquipment ()V
+	METHOD eating ()V
+	METHOD equipSaddle (Lnet/minecraft/sounds/SoundSource;)V
+	METHOD fedFood (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/InteractionResult;
+	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
+		ARG 1 level
+		ARG 2 difficulty
+		ARG 3 reason
+		ARG 4 spawnData
+		ARG 5 dataTag
+	METHOD followMommy ()V
+	METHOD generateRandomJumpStrength ()D
+		COMMENT Returns randomized jump strength
+	METHOD generateRandomMaxHealth ()F
+		COMMENT Returns randomized max health
+	METHOD generateRandomSpeed ()D
+		COMMENT Returns randomized movement speed
+	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getAmbientSoundInterval ()I
+		COMMENT Get number of ticks, at least during which the living entity will be silent.
+	METHOD getAngrySound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getBreedOffspring (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/AgeableMob;)Lnet/minecraft/world/entity/AgeableMob;
+	METHOD getControllingPassenger ()Lnet/minecraft/world/entity/Entity;
+		COMMENT For vehicles, the first passenger is generally considered the controller and "drives" the vehicle. For example, Pigs, Horses, and Boats are generally "steered" by the controlling passenger.
+	METHOD getCustomJump ()D
+	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getDismountLocationForPassenger (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 livingEntity
+	METHOD getDismountLocationInDirection (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;
+	METHOD getEatAnim (F)F
+	METHOD getEatingSound ()Lnet/minecraft/sounds/SoundEvent;
+	METHOD getFlag (I)Z
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getInventorySize ()I
+	METHOD getMaxSpawnClusterSize ()I
+		COMMENT Will return how many at most can spawn in a chunk at once.
+	METHOD getMaxTemper ()I
+	METHOD getMouthAnim (F)F
+	METHOD getOwnerUUID ()Ljava/util/UUID;
+	METHOD getSlot (I)Lnet/minecraft/world/entity/SlotAccess;
+	METHOD getSoundVolume ()F
+		COMMENT Returns the volume for the sounds this mob makes.
+	METHOD getStandAnim (F)F
+	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
+		ARG 1 pose
+		ARG 2 size
+	METHOD getTemper ()I
+	METHOD handleEating (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 player
+		ARG 2 stack
+	METHOD handleEntityEvent (B)V
+		COMMENT Handler for {@link World#setEntityState}
+		ARG 1 id
+	METHOD handleStartJump (I)V
+		ARG 1 jumpPower
+	METHOD handleStopJump ()V
+	METHOD hasInventoryChanged (Lnet/minecraft/world/Container;)Z
+	METHOD isArmor (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
+	METHOD isBred ()Z
+	METHOD isEating ()Z
+	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
+		ARG 1 stack
+	METHOD isImmobile ()Z
+		COMMENT Dead and sleeping entities cannot move
+	METHOD isJumping ()Z
+	METHOD isPushable ()Z
+		COMMENT Returns true if this entity should push and be pushed by other entities when colliding.
+	METHOD isSaddleable ()Z
+	METHOD isSaddled ()Z
+	METHOD isStanding ()Z
+	METHOD isTamed ()Z
+	METHOD isWearingArmor ()Z
+	METHOD lambda$getSlot$1 (Lnet/minecraft/world/item/ItemStack;)Z
+	METHOD lambda$getSlot$2 (Lnet/minecraft/world/item/ItemStack;)Z
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+	METHOD makeMad ()V
+	METHOD modifyTemper (I)I
+	METHOD moveTail ()V
+	METHOD onClimbable ()Z
+		COMMENT Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or for AI reasons)
+	METHOD onLeashDistance (F)V
+		ARG 1 distance
+	METHOD onPlayerJump (I)V
+		ARG 1 jumpPower
+	METHOD openInventory (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 playerEntity
+	METHOD openMouth ()V
+	METHOD playGallopSound (Lnet/minecraft/world/level/block/SoundType;)V
+	METHOD playJumpSound ()V
+	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 block
+	METHOD positionRider (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 passenger
+	METHOD randomizeAttributes ()V
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD registerGoals ()V
+	METHOD setBred (Z)V
+		ARG 1 breeding
+	METHOD setEating (Z)V
+	METHOD setFlag (IZ)V
+	METHOD setIsJumping (Z)V
+		ARG 1 jumping
+	METHOD setOffspringAttributes (Lnet/minecraft/world/entity/AgeableMob;Lnet/minecraft/world/entity/animal/horse/AbstractHorse;)V
+	METHOD setOwnerUUID (Ljava/util/UUID;)V
+		ARG 1 uniqueId
+	METHOD setStanding (Z)V
+		ARG 1 rearing
+	METHOD setTamed (Z)V
+		ARG 1 tamed
+	METHOD setTemper (I)V
+		ARG 1 temper
+	METHOD spawnTamingParticles (Z)V
+		COMMENT Spawns particles for the horse entity. par1 tells whether to spawn hearts. If it is false, it spawns smoke."
+	METHOD stand ()V
+	METHOD tameWithName (Lnet/minecraft/world/entity/player/Player;)Z
+		ARG 1 player
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 travelVector
+	METHOD updateContainerEquipment ()V
+	CLASS 1
+		FIELD this$0 Lnet/minecraft/world/entity/animal/horse/AbstractHorse;
+		FIELD val$check Ljava/util/function/Predicate;
+		FIELD val$slot I
+		METHOD <init> (Lnet/minecraft/world/entity/animal/horse/AbstractHorse;ILjava/util/function/Predicate;)V
+		METHOD get ()Lnet/minecraft/world/item/ItemStack;
+		METHOD set (Lnet/minecraft/world/item/ItemStack;)Z

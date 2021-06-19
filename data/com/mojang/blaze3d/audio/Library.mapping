@@ -1,0 +1,57 @@
+CLASS com/mojang/blaze3d/audio/Library
+	FIELD DEFAULT_CHANNEL_COUNT I
+	FIELD EMPTY Lcom/mojang/blaze3d/audio/Library$ChannelPool;
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD NUM_OPEN_DEVICE_RETRIES I
+	FIELD context J
+	FIELD device J
+	FIELD listener Lcom/mojang/blaze3d/audio/Listener;
+	FIELD staticChannels Lcom/mojang/blaze3d/audio/Library$ChannelPool;
+	FIELD streamingChannels Lcom/mojang/blaze3d/audio/Library$ChannelPool;
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD acquireChannel (Lcom/mojang/blaze3d/audio/Library$Pool;)Lcom/mojang/blaze3d/audio/Channel;
+		COMMENT Gets the source of a sound based on the mode
+		ARG 1 soundMode
+	METHOD cleanup ()V
+	METHOD getChannelCount ()I
+	METHOD getDebugString ()Ljava/lang/String;
+	METHOD getListener ()Lcom/mojang/blaze3d/audio/Listener;
+	METHOD init ()V
+	METHOD releaseChannel (Lcom/mojang/blaze3d/audio/Channel;)V
+		ARG 1 source
+	METHOD tryOpenDevice ()J
+	CLASS 1
+		METHOD <init> ()V
+		METHOD acquire ()Lcom/mojang/blaze3d/audio/Channel;
+		METHOD cleanup ()V
+		METHOD getMaxCount ()I
+		METHOD getUsedCount ()I
+		METHOD release (Lcom/mojang/blaze3d/audio/Channel;)Z
+			ARG 1 source
+	CLASS ChannelPool
+		METHOD acquire ()Lcom/mojang/blaze3d/audio/Channel;
+		METHOD cleanup ()V
+		METHOD getMaxCount ()I
+		METHOD getUsedCount ()I
+		METHOD release (Lcom/mojang/blaze3d/audio/Channel;)Z
+			ARG 1 source
+	CLASS CountingChannelPool
+		FIELD activeChannels Ljava/util/Set;
+		FIELD limit I
+		METHOD <init> (I)V
+		METHOD acquire ()Lcom/mojang/blaze3d/audio/Channel;
+		METHOD cleanup ()V
+		METHOD getMaxCount ()I
+		METHOD getUsedCount ()I
+		METHOD release (Lcom/mojang/blaze3d/audio/Channel;)Z
+			ARG 1 source
+	CLASS Pool
+		FIELD $VALUES [Lcom/mojang/blaze3d/audio/Library$Pool;
+		FIELD STATIC Lcom/mojang/blaze3d/audio/Library$Pool;
+		FIELD STREAMING Lcom/mojang/blaze3d/audio/Library$Pool;
+		METHOD $values ()[Lcom/mojang/blaze3d/audio/Library$Pool;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;I)V
+		METHOD valueOf (Ljava/lang/String;)Lcom/mojang/blaze3d/audio/Library$Pool;
+		METHOD values ()[Lcom/mojang/blaze3d/audio/Library$Pool;

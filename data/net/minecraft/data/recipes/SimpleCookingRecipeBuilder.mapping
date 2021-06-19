@@ -1,0 +1,56 @@
+CLASS net/minecraft/data/recipes/SimpleCookingRecipeBuilder
+	FIELD advancement Lnet/minecraft/advancements/Advancement$Builder;
+	FIELD cookingTime I
+	FIELD experience F
+	FIELD group Ljava/lang/String;
+	FIELD ingredient Lnet/minecraft/world/item/crafting/Ingredient;
+	FIELD result Lnet/minecraft/world/item/Item;
+	FIELD serializer Lnet/minecraft/world/item/crafting/SimpleCookingSerializer;
+	METHOD <init> (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;FILnet/minecraft/world/item/crafting/SimpleCookingSerializer;)V
+	METHOD blasting (Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/level/ItemLike;FI)Lnet/minecraft/data/recipes/SimpleCookingRecipeBuilder;
+		ARG 0 ingredient
+		ARG 1 result
+		ARG 2 experience
+		ARG 3 cookingTime
+	METHOD campfireCooking (Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/level/ItemLike;FI)Lnet/minecraft/data/recipes/SimpleCookingRecipeBuilder;
+	METHOD cooking (Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/level/ItemLike;FILnet/minecraft/world/item/crafting/SimpleCookingSerializer;)Lnet/minecraft/data/recipes/SimpleCookingRecipeBuilder;
+		ARG 0 ingredient
+		ARG 1 result
+		ARG 2 experience
+		ARG 3 cookingTime
+		ARG 4 serializer
+	METHOD ensureValid (Lnet/minecraft/resources/ResourceLocation;)V
+		COMMENT Makes sure that this obtainable.
+		ARG 1 id
+	METHOD getResult ()Lnet/minecraft/world/item/Item;
+	METHOD group (Ljava/lang/String;)Lnet/minecraft/data/recipes/RecipeBuilder;
+	METHOD group (Ljava/lang/String;)Lnet/minecraft/data/recipes/SimpleCookingRecipeBuilder;
+	METHOD save (Ljava/util/function/Consumer;Lnet/minecraft/resources/ResourceLocation;)V
+	METHOD smelting (Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/level/ItemLike;FI)Lnet/minecraft/data/recipes/SimpleCookingRecipeBuilder;
+		ARG 0 ingredient
+		ARG 1 result
+		ARG 2 experience
+		ARG 3 cookingTime
+	METHOD smoking (Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/level/ItemLike;FI)Lnet/minecraft/data/recipes/SimpleCookingRecipeBuilder;
+	METHOD unlockedBy (Ljava/lang/String;Lnet/minecraft/advancements/CriterionTriggerInstance;)Lnet/minecraft/data/recipes/RecipeBuilder;
+	METHOD unlockedBy (Ljava/lang/String;Lnet/minecraft/advancements/CriterionTriggerInstance;)Lnet/minecraft/data/recipes/SimpleCookingRecipeBuilder;
+	CLASS Result
+		FIELD advancement Lnet/minecraft/advancements/Advancement$Builder;
+		FIELD advancementId Lnet/minecraft/resources/ResourceLocation;
+		FIELD cookingTime I
+		FIELD experience F
+		FIELD group Ljava/lang/String;
+		FIELD id Lnet/minecraft/resources/ResourceLocation;
+		FIELD ingredient Lnet/minecraft/world/item/crafting/Ingredient;
+		FIELD result Lnet/minecraft/world/item/Item;
+		FIELD serializer Lnet/minecraft/world/item/crafting/RecipeSerializer;
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/Item;FILnet/minecraft/advancements/Advancement$Builder;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/crafting/RecipeSerializer;)V
+		METHOD getAdvancementId ()Lnet/minecraft/resources/ResourceLocation;
+			COMMENT Gets the ID for the advancement associated with this recipe. Should not be null if {@link #getAdvancementJson} is non-null.
+		METHOD getId ()Lnet/minecraft/resources/ResourceLocation;
+			COMMENT Gets the ID for the recipe.
+		METHOD getType ()Lnet/minecraft/world/item/crafting/RecipeSerializer;
+		METHOD serializeAdvancement ()Lcom/google/gson/JsonObject;
+			COMMENT Gets the JSON for the advancement that unlocks this recipe. Null if there is no advancement.
+		METHOD serializeRecipeData (Lcom/google/gson/JsonObject;)V
+			ARG 1 json

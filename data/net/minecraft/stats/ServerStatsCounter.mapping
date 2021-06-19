@@ -1,0 +1,26 @@
+CLASS net/minecraft/stats/ServerStatsCounter
+	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
+	FIELD dirty Ljava/util/Set;
+	FIELD file Ljava/io/File;
+	FIELD server Lnet/minecraft/server/MinecraftServer;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Ljava/io/File;)V
+	METHOD fromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/nbt/CompoundTag;
+	METHOD getDirty ()Ljava/util/Set;
+	METHOD getKey (Lnet/minecraft/stats/Stat;)Lnet/minecraft/resources/ResourceLocation;
+	METHOD getStat (Lnet/minecraft/stats/StatType;Ljava/lang/String;)Ljava/util/Optional;
+	METHOD lambda$parseLocal$0 (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;Lnet/minecraft/stats/Stat;)V
+	METHOD lambda$parseLocal$1 (Ljava/lang/String;)V
+	METHOD lambda$parseLocal$2 (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;Lnet/minecraft/stats/StatType;)V
+	METHOD lambda$parseLocal$3 (Ljava/lang/String;)V
+	METHOD lambda$toJson$4 (Lnet/minecraft/stats/StatType;)Lcom/google/gson/JsonObject;
+	METHOD markAllDirty ()V
+	METHOD parseLocal (Lcom/mojang/datafixers/DataFixer;Ljava/lang/String;)V
+	METHOD save ()V
+	METHOD sendStats (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD setValue (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/stats/Stat;I)V
+		COMMENT Triggers the logging of an achievement and attempts to announce to server
+		ARG 1 player
+		ARG 2 stat
+	METHOD toJson ()Ljava/lang/String;

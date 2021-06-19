@@ -1,0 +1,16 @@
+CLASS net/minecraft/network/protocol/game/ClientboundUpdateRecipesPacket
+	FIELD recipes Ljava/util/List;
+	METHOD <init> (Ljava/util/Collection;)V
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD fromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/item/crafting/Recipe;
+		ARG 0 buffer
+	METHOD getRecipes ()Ljava/util/List;
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD lambda$fromNetwork$0 (Lnet/minecraft/resources/ResourceLocation;)Ljava/lang/IllegalArgumentException;
+	METHOD toNetwork (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/item/crafting/Recipe;)V
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf

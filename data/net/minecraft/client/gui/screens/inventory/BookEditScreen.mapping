@@ -1,0 +1,144 @@
+CLASS net/minecraft/client/gui/screens/inventory/BookEditScreen
+	FIELD BLACK_CURSOR Lnet/minecraft/util/FormattedCharSequence;
+	FIELD DOUBLECLICK_SPEED I
+	FIELD EDIT_TITLE_LABEL Lnet/minecraft/network/chat/Component;
+	FIELD FINALIZE_WARNING_LABEL Lnet/minecraft/network/chat/Component;
+	FIELD GRAY_CURSOR Lnet/minecraft/util/FormattedCharSequence;
+	FIELD IMAGE_HEIGHT I
+	FIELD IMAGE_WIDTH I
+	FIELD TEXT_HEIGHT I
+	FIELD TEXT_WIDTH I
+	FIELD backButton Lnet/minecraft/client/gui/screens/inventory/PageButton;
+	FIELD book Lnet/minecraft/world/item/ItemStack;
+	FIELD cancelButton Lnet/minecraft/client/gui/components/Button;
+	FIELD currentPage I
+	FIELD displayCache Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$DisplayCache;
+	FIELD doneButton Lnet/minecraft/client/gui/components/Button;
+	FIELD finalizeButton Lnet/minecraft/client/gui/components/Button;
+	FIELD forwardButton Lnet/minecraft/client/gui/screens/inventory/PageButton;
+	FIELD frameTick I
+		COMMENT Update ticks since the gui was opened
+	FIELD hand Lnet/minecraft/world/InteractionHand;
+	FIELD isModified Z
+		COMMENT Whether the book's title or contents has been modified since being opened
+	FIELD isSigning Z
+		COMMENT Determines if the signing screen is open
+	FIELD lastClickTime J
+		COMMENT In milliseconds
+	FIELD lastIndex I
+	FIELD owner Lnet/minecraft/world/entity/player/Player;
+	FIELD ownerText Lnet/minecraft/network/chat/Component;
+	FIELD pageEdit Lnet/minecraft/client/gui/font/TextFieldHelper;
+	FIELD pageMsg Lnet/minecraft/network/chat/Component;
+	FIELD pages Ljava/util/List;
+	FIELD signButton Lnet/minecraft/client/gui/components/Button;
+	FIELD title Ljava/lang/String;
+	FIELD titleEdit Lnet/minecraft/client/gui/font/TextFieldHelper;
+	METHOD <clinit> ()V
+	METHOD <init> (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)V
+	METHOD appendPageToBook ()V
+		COMMENT Adds a new page to the book (capped at 100 pages)
+	METHOD bookKeyPressed (III)Z
+		COMMENT Handles keypresses, clipboard functions, and page turning
+		ARG 1 keyCode
+		ARG 2 scanCode
+		ARG 3 modifiers
+	METHOD changeLine (I)V
+	METHOD charTyped (CI)Z
+		ARG 1 codePoint
+		ARG 2 modifiers
+	METHOD clearDisplayCache ()V
+	METHOD clearDisplayCacheAfterPageChange ()V
+	METHOD convertLocalToScreen (Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;)Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;
+	METHOD convertScreenToLocal (Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;)Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;
+	METHOD createPartialLineSelection (Ljava/lang/String;Lnet/minecraft/client/StringSplitter;IIII)Lnet/minecraft/client/renderer/Rect2i;
+	METHOD createSelection (Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;)Lnet/minecraft/client/renderer/Rect2i;
+	METHOD eraseEmptyTrailingPages ()V
+	METHOD findLineFromPos ([II)I
+	METHOD getClipboard ()Ljava/lang/String;
+	METHOD getCurrentPageText ()Ljava/lang/String;
+		COMMENT Returns the contents of the current page as a string (or an empty string if the currPage isn't a valid page index)
+	METHOD getDisplayCache ()Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$DisplayCache;
+	METHOD getNumPages ()I
+		COMMENT Returns the number of pages in the book
+	METHOD init ()V
+	METHOD keyDown ()V
+	METHOD keyEnd ()V
+	METHOD keyHome ()V
+	METHOD keyPressed (III)Z
+		ARG 1 keyCode
+		ARG 2 scanCode
+		ARG 3 modifiers
+	METHOD keyUp ()V
+	METHOD lambda$init$4 (Lnet/minecraft/client/gui/components/Button;)V
+	METHOD lambda$init$5 (Lnet/minecraft/client/gui/components/Button;)V
+	METHOD lambda$init$6 (Lnet/minecraft/client/gui/components/Button;)V
+	METHOD lambda$init$7 (Lnet/minecraft/client/gui/components/Button;)V
+	METHOD lambda$init$8 (Lnet/minecraft/client/gui/components/Button;)V
+	METHOD lambda$init$9 (Lnet/minecraft/client/gui/components/Button;)V
+	METHOD lambda$new$0 (Ljava/lang/String;)Z
+	METHOD lambda$new$1 ()Ljava/lang/String;
+	METHOD lambda$new$2 (Ljava/lang/String;)V
+	METHOD lambda$new$3 (Ljava/lang/String;)Z
+	METHOD lambda$rebuildDisplayCache$10 (Lorg/apache/commons/lang3/mutable/MutableInt;Ljava/lang/String;Lorg/apache/commons/lang3/mutable/MutableBoolean;Lit/unimi/dsi/fastutil/ints/IntList;Ljava/util/List;Lnet/minecraft/network/chat/Style;II)V
+	METHOD mouseClicked (DDI)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+	METHOD mouseDragged (DDIDD)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+		ARG 6 dragX
+		ARG 8 dragY
+	METHOD pageBack ()V
+		COMMENT Displays the previous page
+	METHOD pageForward ()V
+		COMMENT Displays the next page (creating it if necessary)
+	METHOD rebuildDisplayCache ()Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$DisplayCache;
+	METHOD removed ()V
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
+		ARG 1 matrixStack
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 partialTicks
+	METHOD renderCursor (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;Z)V
+	METHOD renderHighlight ([Lnet/minecraft/client/renderer/Rect2i;)V
+	METHOD saveChanges (Z)V
+		ARG 1 publish
+	METHOD selectWord (I)V
+	METHOD setClipboard (Ljava/lang/String;)V
+	METHOD setCurrentPageText (Ljava/lang/String;)V
+	METHOD tick ()V
+	METHOD titleKeyPressed (III)Z
+		COMMENT Handles special keys pressed while editing the book's title
+		ARG 1 keyCode
+		ARG 2 scanCode
+		ARG 3 modifiers
+	METHOD updateButtonVisibility ()V
+		COMMENT Sets visibility for book buttons
+	CLASS DisplayCache
+		FIELD EMPTY Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$DisplayCache;
+		FIELD cursor Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;
+		FIELD cursorAtEnd Z
+		FIELD fullText Ljava/lang/String;
+		FIELD lineStarts [I
+		FIELD lines [Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$LineInfo;
+		FIELD selection [Lnet/minecraft/client/renderer/Rect2i;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;Z[I[Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$LineInfo;[Lnet/minecraft/client/renderer/Rect2i;)V
+		METHOD changeLine (II)I
+		METHOD findLineEnd (I)I
+		METHOD findLineStart (I)I
+		METHOD getIndexAtPosition (Lnet/minecraft/client/gui/Font;Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;)I
+	CLASS LineInfo
+		FIELD asComponent Lnet/minecraft/network/chat/Component;
+		FIELD contents Ljava/lang/String;
+		FIELD style Lnet/minecraft/network/chat/Style;
+		FIELD x I
+		FIELD y I
+		METHOD <init> (Lnet/minecraft/network/chat/Style;Ljava/lang/String;II)V
+	CLASS Pos2i
+		FIELD x I
+		FIELD y I
+		METHOD <init> (II)V

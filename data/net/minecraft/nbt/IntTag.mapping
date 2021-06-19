@@ -1,0 +1,46 @@
+CLASS net/minecraft/nbt/IntTag
+	FIELD SELF_SIZE_IN_BITS I
+	FIELD TYPE Lnet/minecraft/nbt/TagType;
+	FIELD data I
+	METHOD <clinit> ()V
+	METHOD <init> (I)V
+	METHOD accept (Lnet/minecraft/nbt/TagVisitor;)V
+	METHOD copy ()Lnet/minecraft/nbt/IntTag;
+		COMMENT Creates a clone of the tag.
+	METHOD copy ()Lnet/minecraft/nbt/Tag;
+	METHOD equals (Ljava/lang/Object;)Z
+	METHOD getAsByte ()B
+	METHOD getAsDouble ()D
+	METHOD getAsFloat ()F
+	METHOD getAsInt ()I
+	METHOD getAsLong ()J
+	METHOD getAsNumber ()Ljava/lang/Number;
+	METHOD getAsShort ()S
+	METHOD getId ()B
+		COMMENT Gets the type byte for the tag.
+	METHOD getType ()Lnet/minecraft/nbt/TagType;
+	METHOD hashCode ()I
+	METHOD valueOf (I)Lnet/minecraft/nbt/IntTag;
+		ARG 0 data
+	METHOD write (Ljava/io/DataOutput;)V
+		COMMENT Write the actual data contents of the tag, implemented in NBT extension classes
+		ARG 1 output
+	CLASS 1
+		METHOD <init> ()V
+		METHOD getName ()Ljava/lang/String;
+		METHOD getPrettyName ()Ljava/lang/String;
+		METHOD isValue ()Z
+		METHOD load (Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/IntTag;
+			ARG 1 input
+			ARG 2 depth
+			ARG 3 accounter
+		METHOD load (Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/Tag;
+			ARG 1 input
+			ARG 2 depth
+			ARG 3 accounter
+	CLASS Cache
+		FIELD HIGH I
+		FIELD LOW I
+		FIELD cache [Lnet/minecraft/nbt/IntTag;
+		METHOD <clinit> ()V
+		METHOD <init> ()V

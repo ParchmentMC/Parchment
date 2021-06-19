@@ -1,0 +1,24 @@
+CLASS net/minecraft/advancements/critereon/TameAnimalTrigger
+	FIELD ID Lnet/minecraft/resources/ResourceLocation;
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD createInstance (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/AbstractCriterionTriggerInstance;
+	METHOD createInstance (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/TameAnimalTrigger$TriggerInstance;
+		ARG 1 json
+		ARG 2 entityPredicate
+		ARG 3 conditionsParser
+	METHOD getId ()Lnet/minecraft/resources/ResourceLocation;
+	METHOD lambda$trigger$0 (Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/advancements/critereon/TameAnimalTrigger$TriggerInstance;)Z
+	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/animal/Animal;)V
+		ARG 1 player
+		ARG 2 entity
+	CLASS TriggerInstance
+		FIELD entity Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;
+		METHOD <init> (Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;)V
+		METHOD matches (Lnet/minecraft/world/level/storage/loot/LootContext;)Z
+			ARG 1 context
+		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
+			ARG 1 conditions
+		METHOD tamedAnimal ()Lnet/minecraft/advancements/critereon/TameAnimalTrigger$TriggerInstance;
+		METHOD tamedAnimal (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/TameAnimalTrigger$TriggerInstance;
+			ARG 0 entityCondition

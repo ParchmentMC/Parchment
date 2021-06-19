@@ -1,0 +1,14 @@
+CLASS net/minecraft/world/level/chunk/storage/ChunkStorage
+	FIELD fixerUpper Lcom/mojang/datafixers/DataFixer;
+	FIELD legacyStructureHandler Lnet/minecraft/world/level/levelgen/structure/LegacyStructureDataHandler;
+	FIELD worker Lnet/minecraft/world/level/chunk/storage/IOWorker;
+	METHOD <init> (Ljava/io/File;Lcom/mojang/datafixers/DataFixer;Z)V
+	METHOD close ()V
+	METHOD flushWorker ()V
+	METHOD getVersion (Lnet/minecraft/nbt/CompoundTag;)I
+		ARG 0 compound
+	METHOD read (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/nbt/CompoundTag;
+	METHOD upgradeChunkTag (Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Supplier;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+	METHOD write (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 pos
+		ARG 2 compound

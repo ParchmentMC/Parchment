@@ -1,0 +1,214 @@
+CLASS net/minecraft/world/level/levelgen/structure/StrongholdPieces
+	FIELD CHECK_AIR Z
+	FIELD LOWEST_Y_POSITION I
+	FIELD MAX_DEPTH I
+	FIELD SMALL_DOOR_HEIGHT I
+	FIELD SMALL_DOOR_WIDTH I
+	FIELD SMOOTH_STONE_SELECTOR Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$SmoothStoneSelector;
+	FIELD STRONGHOLD_PIECE_WEIGHTS [Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$PieceWeight;
+	FIELD currentPieces Ljava/util/List;
+	FIELD imposedPiece Ljava/lang/Class;
+	FIELD totalWeight I
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD findAndCreatePieceFactory (Ljava/lang/Class;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece;
+	METHOD generateAndAddPiece (Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StartPiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StructurePiece;
+	METHOD generatePieceFromSmallDoor (Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StartPiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece;
+	METHOD resetPieces ()V
+		COMMENT sets up Arrays with the Structure pieces and their weights
+	METHOD updatePieceWeight ()Z
+	CLASS 1
+		METHOD <init> (Ljava/lang/Class;II)V
+		METHOD doPlace (I)Z
+	CLASS 2
+		METHOD <init> (Ljava/lang/Class;II)V
+		METHOD doPlace (I)Z
+	CLASS 3
+		FIELD $SwitchMap$net$minecraft$core$Direction [I
+		FIELD $SwitchMap$net$minecraft$world$level$levelgen$structure$StrongholdPieces$StrongholdPiece$SmallDoorType [I
+		METHOD <clinit> ()V
+	CLASS ChestCorridor
+		FIELD DEPTH I
+		FIELD HEIGHT I
+		FIELD WIDTH I
+		FIELD hasPlacedChest Z
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
+		METHOD createPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$ChestCorridor;
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS FillerCorridor
+		FIELD steps I
+		METHOD <init> (ILnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD findPieceBox (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS FiveCrossing
+		FIELD DEPTH I
+		FIELD HEIGHT I
+		FIELD WIDTH I
+		FIELD leftHigh Z
+		FIELD leftLow Z
+		FIELD rightHigh Z
+		FIELD rightLow Z
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
+		METHOD createPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$FiveCrossing;
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS LeftTurn
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
+		METHOD createPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$LeftTurn;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS Library
+		FIELD DEPTH I
+		FIELD HEIGHT I
+		FIELD TALL_HEIGHT I
+		FIELD WIDTH I
+		FIELD isTall Z
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD createPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$Library;
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS PieceWeight
+		FIELD maxPlaceCount I
+		FIELD pieceClass Ljava/lang/Class;
+		FIELD placeCount I
+		FIELD weight I
+		METHOD <init> (Ljava/lang/Class;II)V
+		METHOD doPlace (I)Z
+		METHOD isValid ()Z
+	CLASS PortalRoom
+		FIELD DEPTH I
+		FIELD HEIGHT I
+		FIELD WIDTH I
+		FIELD hasPlacedSpawner Z
+		METHOD <init> (ILnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
+		METHOD createPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$PortalRoom;
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS PrisonHall
+		FIELD DEPTH I
+		FIELD HEIGHT I
+		FIELD WIDTH I
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
+		METHOD createPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$PrisonHall;
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS RightTurn
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
+		METHOD createPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$RightTurn;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS RoomCrossing
+		FIELD DEPTH I
+		FIELD HEIGHT I
+		FIELD WIDTH I
+		FIELD type I
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
+		METHOD createPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$RoomCrossing;
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS SmoothStoneSelector
+		METHOD <init> ()V
+		METHOD next (Ljava/util/Random;IIIZ)V
+			COMMENT picks Block Ids and Metadata (Silverfish)
+			ARG 1 rand
+			ARG 2 x
+			ARG 3 y
+			ARG 4 z
+			ARG 5 wall
+	CLASS StairsDown
+		FIELD DEPTH I
+		FIELD HEIGHT I
+		FIELD WIDTH I
+		FIELD isSource Z
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;IIILnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
+		METHOD createPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StairsDown;
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS StartPiece
+		FIELD pendingChildren Ljava/util/List;
+		FIELD portalRoomPiece Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$PortalRoom;
+		FIELD previousPiece Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$PieceWeight;
+		METHOD <init> (Ljava/util/Random;II)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD getLocatorPosition ()Lnet/minecraft/core/BlockPos;
+	CLASS Straight
+		FIELD DEPTH I
+		FIELD HEIGHT I
+		FIELD WIDTH I
+		FIELD leftChild Z
+		FIELD rightChild Z
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
+		METHOD createPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$Straight;
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS StraightStairsDown
+		FIELD DEPTH I
+		FIELD HEIGHT I
+		FIELD WIDTH I
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addChildren (Lnet/minecraft/world/level/levelgen/structure/StructurePiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
+		METHOD createPiece (Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;IIILnet/minecraft/core/Direction;I)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StraightStairsDown;
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
+		METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+	CLASS StrongholdPiece
+		FIELD entryDoor Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;ILnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD addAdditionalSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD generateSmallDoor (Lnet/minecraft/world/level/WorldGenLevel;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;III)V
+		METHOD generateSmallDoorChildForward (Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StartPiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;II)Lnet/minecraft/world/level/levelgen/structure/StructurePiece;
+		METHOD generateSmallDoorChildLeft (Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StartPiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;II)Lnet/minecraft/world/level/levelgen/structure/StructurePiece;
+		METHOD generateSmallDoorChildRight (Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StartPiece;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;II)Lnet/minecraft/world/level/levelgen/structure/StructurePiece;
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;
+		METHOD isOkBox (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
+			COMMENT returns false if the Structure Bounding Box goes below 10
+		METHOD randomSmallDoor (Ljava/util/Random;)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;
+		CLASS SmallDoorType
+			FIELD $VALUES [Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;
+			FIELD GRATES Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;
+			FIELD IRON_DOOR Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;
+			FIELD OPENING Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;
+			FIELD WOOD_DOOR Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;
+			METHOD $values ()[Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;
+			METHOD <clinit> ()V
+			METHOD <init> (Ljava/lang/String;I)V
+			METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;
+			METHOD values ()[Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;
+	CLASS Turn
+		FIELD DEPTH I
+		FIELD HEIGHT I
+		FIELD WIDTH I
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;ILnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD getNoiseEffect ()Lnet/minecraft/world/level/levelgen/feature/NoiseEffect;

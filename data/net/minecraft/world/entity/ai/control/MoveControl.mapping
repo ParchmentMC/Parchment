@@ -1,0 +1,45 @@
+CLASS net/minecraft/world/entity/ai/control/MoveControl
+	FIELD MAX_TURN I
+	FIELD MIN_SPEED F
+	FIELD MIN_SPEED_SQR F
+	FIELD mob Lnet/minecraft/world/entity/Mob;
+	FIELD operation Lnet/minecraft/world/entity/ai/control/MoveControl$Operation;
+	FIELD speedModifier D
+	FIELD strafeForwards F
+	FIELD strafeRight F
+	FIELD wantedX D
+	FIELD wantedY D
+	FIELD wantedZ D
+	METHOD <init> (Lnet/minecraft/world/entity/Mob;)V
+	METHOD getSpeedModifier ()D
+	METHOD getWantedX ()D
+	METHOD getWantedY ()D
+	METHOD getWantedZ ()D
+	METHOD hasWanted ()Z
+	METHOD isWalkable (FF)Z
+	METHOD rotlerp (FFF)F
+		COMMENT Attempt to rotate the first angle to become the second angle, but only allow overall direction change to at max be third parameter
+		ARG 1 sourceAngle
+		ARG 2 targetAngle
+		ARG 3 maximumChange
+	METHOD setWantedPosition (DDDD)V
+		COMMENT Sets the speed and location to move to
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 speed
+	METHOD strafe (FF)V
+		ARG 1 forward
+		ARG 2 strafe
+	METHOD tick ()V
+	CLASS Operation
+		FIELD $VALUES [Lnet/minecraft/world/entity/ai/control/MoveControl$Operation;
+		FIELD JUMPING Lnet/minecraft/world/entity/ai/control/MoveControl$Operation;
+		FIELD MOVE_TO Lnet/minecraft/world/entity/ai/control/MoveControl$Operation;
+		FIELD STRAFE Lnet/minecraft/world/entity/ai/control/MoveControl$Operation;
+		FIELD WAIT Lnet/minecraft/world/entity/ai/control/MoveControl$Operation;
+		METHOD $values ()[Lnet/minecraft/world/entity/ai/control/MoveControl$Operation;
+		METHOD <clinit> ()V
+		METHOD <init> (Ljava/lang/String;I)V
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/entity/ai/control/MoveControl$Operation;
+		METHOD values ()[Lnet/minecraft/world/entity/ai/control/MoveControl$Operation;

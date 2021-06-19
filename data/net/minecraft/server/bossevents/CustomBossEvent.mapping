@@ -1,0 +1,34 @@
+CLASS net/minecraft/server/bossevents/CustomBossEvent
+	FIELD id Lnet/minecraft/resources/ResourceLocation;
+	FIELD max I
+	FIELD players Ljava/util/Set;
+	FIELD value I
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/chat/Component;)V
+	METHOD addOfflinePlayer (Ljava/util/UUID;)V
+		ARG 1 player
+	METHOD addPlayer (Lnet/minecraft/server/level/ServerPlayer;)V
+		COMMENT Makes the boss visible to the given player.
+		ARG 1 player
+	METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
+	METHOD getMax ()I
+	METHOD getTextId ()Lnet/minecraft/resources/ResourceLocation;
+	METHOD getValue ()I
+	METHOD lambda$getDisplayName$0 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+	METHOD load (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/server/bossevents/CustomBossEvent;
+		ARG 0 nbt
+		ARG 1 id
+	METHOD onPlayerConnect (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD onPlayerDisconnect (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD removeAllPlayers ()V
+	METHOD removePlayer (Lnet/minecraft/server/level/ServerPlayer;)V
+		COMMENT Makes the boss non-visible to the given player.
+		ARG 1 player
+	METHOD save ()Lnet/minecraft/nbt/CompoundTag;
+	METHOD setMax (I)V
+		ARG 1 max
+	METHOD setPlayers (Ljava/util/Collection;)Z
+		ARG 1 serverPlayerList
+	METHOD setValue (I)V
+		ARG 1 value

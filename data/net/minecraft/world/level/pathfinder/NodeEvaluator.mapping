@@ -1,0 +1,52 @@
+CLASS net/minecraft/world/level/pathfinder/NodeEvaluator
+	FIELD canFloat Z
+	FIELD canOpenDoors Z
+	FIELD canPassDoors Z
+	FIELD entityDepth I
+	FIELD entityHeight I
+	FIELD entityWidth I
+	FIELD level Lnet/minecraft/world/level/PathNavigationRegion;
+	FIELD mob Lnet/minecraft/world/entity/Mob;
+	FIELD nodes Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
+	METHOD <init> ()V
+	METHOD canFloat ()Z
+	METHOD canOpenDoors ()Z
+	METHOD canPassDoors ()Z
+	METHOD done ()V
+		COMMENT This method is called when all nodes have been processed and PathEntity is created.
+		COMMENT {@link net.minecraft.world.pathfinder.WalkNodeProcessor WalkNodeProcessor} uses this to change its field {@link net.minecraft.world.pathfinder.WalkNodeProcessor#avoidsWater avoidsWater}
+	METHOD getBlockPathType (Lnet/minecraft/world/level/BlockGetter;III)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
+		COMMENT Returns the node type at the specified postion taking the block below into account
+		ARG 1 level
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD getBlockPathType (Lnet/minecraft/world/level/BlockGetter;IIILnet/minecraft/world/entity/Mob;IIIZZ)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
+		COMMENT Returns the significant (e.g LAVA if the entity were half in lava) node type at the location taking the surroundings and the entity size in account
+		ARG 1 blockaccess
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 entityliving
+		ARG 6 xSize
+		ARG 7 ySize
+		ARG 8 zSize
+		ARG 9 canBreakDoors
+		ARG 10 canEnterDoors
+	METHOD getGoal (DDD)Lnet/minecraft/world/level/pathfinder/Target;
+	METHOD getNeighbors ([Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)I
+	METHOD getNode (III)Lnet/minecraft/world/level/pathfinder/Node;
+		COMMENT Returns a mapped point or creates and adds one
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD getNode (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/Node;
+	METHOD getStart ()Lnet/minecraft/world/level/pathfinder/Node;
+	METHOD lambda$getNode$0 (IIII)Lnet/minecraft/world/level/pathfinder/Node;
+	METHOD prepare (Lnet/minecraft/world/level/PathNavigationRegion;Lnet/minecraft/world/entity/Mob;)V
+	METHOD setCanFloat (Z)V
+		ARG 1 canSwim
+	METHOD setCanOpenDoors (Z)V
+		ARG 1 canOpenDoors
+	METHOD setCanPassDoors (Z)V
+		ARG 1 canEnterDoors

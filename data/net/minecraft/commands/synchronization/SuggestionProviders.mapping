@@ -1,0 +1,32 @@
+CLASS net/minecraft/commands/synchronization/SuggestionProviders
+	FIELD ALL_RECIPES Lcom/mojang/brigadier/suggestion/SuggestionProvider;
+	FIELD ASK_SERVER Lcom/mojang/brigadier/suggestion/SuggestionProvider;
+	FIELD AVAILABLE_BIOMES Lcom/mojang/brigadier/suggestion/SuggestionProvider;
+	FIELD AVAILABLE_SOUNDS Lcom/mojang/brigadier/suggestion/SuggestionProvider;
+	FIELD DEFAULT_NAME Lnet/minecraft/resources/ResourceLocation;
+	FIELD PROVIDERS_BY_NAME Ljava/util/Map;
+	FIELD SUMMONABLE_ENTITIES Lcom/mojang/brigadier/suggestion/SuggestionProvider;
+	METHOD <clinit> ()V
+	METHOD <init> ()V
+	METHOD getName (Lcom/mojang/brigadier/suggestion/SuggestionProvider;)Lnet/minecraft/resources/ResourceLocation;
+		COMMENT Gets the ID for the given provider. If the provider is not a wrapped one created via {@link #register}, then it returns {@link #ASK_SERVER_ID} instead, as there is no known ID but ASK_SERVER always works.
+		ARG 0 provider
+	METHOD getProvider (Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/brigadier/suggestion/SuggestionProvider;
+		ARG 0 id
+	METHOD lambda$static$0 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+	METHOD lambda$static$1 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+	METHOD lambda$static$2 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+	METHOD lambda$static$3 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+	METHOD lambda$static$4 (Lnet/minecraft/world/entity/EntityType;)Lcom/mojang/brigadier/Message;
+	METHOD lambda$static$5 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+	METHOD register (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/brigadier/suggestion/SuggestionProvider;)Lcom/mojang/brigadier/suggestion/SuggestionProvider;
+		ARG 0 id
+		ARG 1 provider
+	METHOD safelySwap (Lcom/mojang/brigadier/suggestion/SuggestionProvider;)Lcom/mojang/brigadier/suggestion/SuggestionProvider;
+		COMMENT Checks to make sure that the given suggestion provider is a wrapped one that was created via {@link #register}. If not, returns {@link #ASK_SERVER}. Needed because custom providers don't have a known ID to send to the client, but ASK_SERVER always works.
+		ARG 0 provider
+	CLASS Wrapper
+		FIELD delegate Lcom/mojang/brigadier/suggestion/SuggestionProvider;
+		FIELD name Lnet/minecraft/resources/ResourceLocation;
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/brigadier/suggestion/SuggestionProvider;)V
+		METHOD getSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;

@@ -1,0 +1,33 @@
+CLASS com/mojang/blaze3d/platform/PngInfo
+	FIELD height I
+	FIELD width I
+	METHOD <init> (Ljava/lang/String;Ljava/io/InputStream;)V
+	METHOD createCallbacks (Ljava/io/InputStream;)Lcom/mojang/blaze3d/platform/PngInfo$StbReader;
+	CLASS StbReader
+		FIELD closed Z
+		METHOD <init> ()V
+		METHOD close ()V
+		METHOD eof (J)I
+		METHOD read (JI)I
+		METHOD read (JJI)I
+		METHOD skip (I)V
+		METHOD skip (JI)V
+	CLASS StbReaderBufferedChannel
+		FIELD START_BUFFER_SIZE I
+		FIELD bufferSize I
+		FIELD channel Ljava/nio/channels/ReadableByteChannel;
+		FIELD consumed I
+		FIELD read I
+		FIELD readBufferAddress J
+		METHOD <init> (Ljava/nio/channels/ReadableByteChannel;)V
+		METHOD close ()V
+		METHOD fillReadBuffer (I)V
+		METHOD read (JI)I
+		METHOD skip (I)V
+	CLASS StbReaderSeekableByteChannel
+		FIELD channel Ljava/nio/channels/SeekableByteChannel;
+		METHOD <init> (Ljava/nio/channels/SeekableByteChannel;)V
+		METHOD close ()V
+		METHOD eof (J)I
+		METHOD read (JI)I
+		METHOD skip (I)V

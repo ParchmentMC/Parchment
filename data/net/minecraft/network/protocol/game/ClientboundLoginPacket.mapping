@@ -1,0 +1,47 @@
+CLASS net/minecraft/network/protocol/game/ClientboundLoginPacket
+	FIELD HARDCORE_FLAG I
+	FIELD chunkRadius I
+	FIELD dimension Lnet/minecraft/resources/ResourceKey;
+	FIELD dimensionType Lnet/minecraft/world/level/dimension/DimensionType;
+	FIELD gameType Lnet/minecraft/world/level/GameType;
+	FIELD hardcore Z
+	FIELD isDebug Z
+	FIELD isFlat Z
+	FIELD levels Ljava/util/Set;
+	FIELD maxPlayers I
+	FIELD playerId I
+	FIELD previousGameType Lnet/minecraft/world/level/GameType;
+	FIELD reducedDebugInfo Z
+	FIELD registryHolder Lnet/minecraft/core/RegistryAccess$RegistryHolder;
+	FIELD seed J
+		COMMENT First 8 bytes of the SHA-256 hash of the world's seed
+	FIELD showDeathScreen Z
+		COMMENT Set to false when the doImmediateRespawn gamerule is true
+	METHOD <init> (ILnet/minecraft/world/level/GameType;Lnet/minecraft/world/level/GameType;JZLjava/util/Set;Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/world/level/dimension/DimensionType;Lnet/minecraft/resources/ResourceKey;IIZZZZ)V
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+	METHOD getChunkRadius ()I
+	METHOD getDimension ()Lnet/minecraft/resources/ResourceKey;
+	METHOD getDimensionType ()Lnet/minecraft/world/level/dimension/DimensionType;
+	METHOD getGameType ()Lnet/minecraft/world/level/GameType;
+	METHOD getMaxPlayers ()I
+	METHOD getPlayerId ()I
+	METHOD getPreviousGameType ()Lnet/minecraft/world/level/GameType;
+	METHOD getSeed ()J
+		COMMENT get value
+	METHOD handle (Lnet/minecraft/network/PacketListener;)V
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD isDebug ()Z
+	METHOD isFlat ()Z
+	METHOD isHardcore ()Z
+	METHOD isReducedDebugInfo ()Z
+	METHOD lambda$new$0 (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/resources/ResourceKey;
+	METHOD lambda$write$1 (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/resources/ResourceKey;)V
+	METHOD lambda$write$2 ()Lnet/minecraft/world/level/dimension/DimensionType;
+	METHOD levels ()Ljava/util/Set;
+	METHOD registryAccess ()Lnet/minecraft/core/RegistryAccess;
+	METHOD shouldShowDeathScreen ()Z
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf

@@ -1,0 +1,55 @@
+CLASS net/minecraft/world/entity/ExperienceOrb
+	FIELD ENTITY_SCAN_PERIOD I
+	FIELD LIFETIME I
+	FIELD MAX_FOLLOW_DIST I
+	FIELD ORB_GROUPS_PER_AREA I
+	FIELD ORB_MERGE_DISTANCE D
+	FIELD age I
+	FIELD count I
+	FIELD followingPlayer Lnet/minecraft/world/entity/player/Player;
+	FIELD health I
+	FIELD value I
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDDI)V
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD award (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;I)V
+	METHOD canMerge (Lnet/minecraft/world/entity/ExperienceOrb;)Z
+	METHOD canMerge (Lnet/minecraft/world/entity/ExperienceOrb;II)Z
+	METHOD defineSynchedData ()V
+	METHOD doWaterSplashEffect ()V
+		COMMENT Plays the {@link #getSplashSound() splash sound}, and the {@link ParticleType#WATER_BUBBLE} and {@link ParticleType#WATER_SPLASH} particles.
+	METHOD durabilityToXp (I)I
+		ARG 1 durability
+	METHOD getAddEntityPacket ()Lnet/minecraft/network/protocol/Packet;
+	METHOD getExperienceValue (I)I
+		COMMENT Get a fragment of the maximum experience points value for the supplied value of experience points value.
+		ARG 0 expValue
+	METHOD getIcon ()I
+		COMMENT Returns a number from 1 to 10 based on how much XP this orb is worth. This is used by RenderXPOrb to determine what texture to use.
+	METHOD getMovementEmission ()Lnet/minecraft/world/entity/Entity$MovementEmission;
+	METHOD getSoundSource ()Lnet/minecraft/sounds/SoundSource;
+	METHOD getValue ()I
+		COMMENT Returns the XP value of this XP orb.
+	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
+		COMMENT Called when the entity is attacked.
+		ARG 1 source
+		ARG 2 amount
+	METHOD isAttackable ()Z
+		COMMENT Returns true if it's possible to attack this entity with an item.
+	METHOD lambda$tryMergeToExisting$0 (IILnet/minecraft/world/entity/ExperienceOrb;)Z
+	METHOD merge (Lnet/minecraft/world/entity/ExperienceOrb;)V
+	METHOD playerTouch (Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called by a player entity when they collide with an entity
+		ARG 1 entity
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD repairPlayerItems (Lnet/minecraft/world/entity/player/Player;I)I
+	METHOD scanForEntities ()V
+	METHOD setUnderwaterMovement ()V
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	METHOD tryMergeToExisting (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;I)Z
+	METHOD xpToDurability (I)I
+		ARG 1 xp
