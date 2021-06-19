@@ -1,27 +1,15 @@
 CLASS net/minecraft/network/protocol/game/ServerboundContainerClickPacket
 	FIELD buttonNum I
 		COMMENT Button used
-	FIELD carriedItem Lnet/minecraft/world/item/ItemStack;
-	FIELD changedSlots Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
 	FIELD clickType Lnet/minecraft/world/inventory/ClickType;
 		COMMENT Inventory operation mode
 	FIELD containerId I
 		COMMENT The id of the window which was clicked. 0 for player inventory.
 	FIELD slotNum I
 		COMMENT Id of the clicked slot
-	METHOD <init> (IIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/item/ItemStack;Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;)V
-	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
-	METHOD getButtonNum ()I
-	METHOD getCarriedItem ()Lnet/minecraft/world/item/ItemStack;
-	METHOD getChangedSlots ()Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
-	METHOD getClickType ()Lnet/minecraft/world/inventory/ClickType;
-	METHOD getContainerId ()I
-	METHOD getSlotNum ()I
-	METHOD handle (Lnet/minecraft/network/PacketListener;)V
 	METHOD handle (Lnet/minecraft/network/protocol/game/ServerGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
-	METHOD lambda$new$0 (Lnet/minecraft/network/FriendlyByteBuf;)Ljava/lang/Integer;
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buf

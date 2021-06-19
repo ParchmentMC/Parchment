@@ -1,10 +1,4 @@
 CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
-	FIELD SPACE_BETWEEN_WALL_POSTS D
-	FIELD collisionCache Lit/unimi/dsi/fastutil/objects/Object2BooleanMap;
-	FIELD oldWaterCost F
-	FIELD pathTypesByPosCache Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;
-	METHOD <init> ()V
-	METHOD canReachWithoutCollision (Lnet/minecraft/world/level/pathfinder/Node;)Z
 	METHOD checkNeighbourBlocks (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		COMMENT Returns possible dangers in a 3x3 cube, otherwise nodeType
 		ARG 0 level
@@ -20,7 +14,6 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 		ARG 3 canEnterDoors
 		ARG 4 pos
 		ARG 5 nodeType
-	METHOD findAcceptedNode (IIIIDLnet/minecraft/core/Direction;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Lnet/minecraft/world/level/pathfinder/Node;
 	METHOD getBlockPathType (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		COMMENT Returns a significant cached path node type for specified position or calculates it
 		ARG 1 entityliving
@@ -43,7 +36,6 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 		ARG 8 zSize
 		ARG 9 canBreakDoors
 		ARG 10 canEnterDoors
-	METHOD getBlockPathTypeRaw (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 	METHOD getBlockPathTypeStatic (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos$MutableBlockPos;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		COMMENT Returns the node type at the specified postion taking the block below into account
 		ARG 0 level
@@ -68,21 +60,9 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD getFloorLevel (Lnet/minecraft/core/BlockPos;)D
 	METHOD getFloorLevel (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)D
 		ARG 0 level
 		ARG 1 pos
-	METHOD getGoal (DDD)Lnet/minecraft/world/level/pathfinder/Target;
-	METHOD getNeighbors ([Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)I
-	METHOD getStart ()Lnet/minecraft/world/level/pathfinder/Node;
-	METHOD hasCollisions (Lnet/minecraft/world/phys/AABB;)Z
-	METHOD hasPositiveMalus (Lnet/minecraft/core/BlockPos;)Z
-	METHOD isAmphibious ()Z
 	METHOD isBurningBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		COMMENT Checks whether the specified block state can cause burn damage
 		ARG 0 state
-	METHOD isDiagonalValid (Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)Z
-	METHOD isNeighborValid (Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)Z
-	METHOD lambda$getCachedBlockType$1 (IIILnet/minecraft/world/entity/Mob;J)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
-	METHOD lambda$hasCollisions$0 (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/phys/AABB;)Ljava/lang/Boolean;
-	METHOD prepare (Lnet/minecraft/world/level/PathNavigationRegion;Lnet/minecraft/world/entity/Mob;)V

@@ -1,30 +1,12 @@
 CLASS net/minecraft/client/sounds/SoundEngine
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
 	FIELD MARKER Lorg/apache/logging/log4j/Marker;
 		COMMENT The marker used for logging
-	FIELD MIN_SOURCE_LIFETIME I
-	FIELD MISSING_SOUND Ljava/lang/String;
-	FIELD ONLY_WARN_ONCE Ljava/util/Set;
-	FIELD PITCH_MAX F
-	FIELD PITCH_MIN F
-	FIELD VOLUME_MAX F
-	FIELD VOLUME_MIN F
-	FIELD channelAccess Lnet/minecraft/client/sounds/ChannelAccess;
-	FIELD executor Lnet/minecraft/client/sounds/SoundEngineExecutor;
-	FIELD instanceBySource Lcom/google/common/collect/Multimap;
-	FIELD instanceToChannel Ljava/util/Map;
-	FIELD library Lcom/mojang/blaze3d/audio/Library;
-	FIELD listener Lcom/mojang/blaze3d/audio/Listener;
-	FIELD listeners Ljava/util/List;
 	FIELD loaded Z
 		COMMENT Set to true when the SoundManager has been initialised.
 	FIELD options Lnet/minecraft/client/Options;
 		COMMENT Reference to the GameSettings object.
-	FIELD preloadQueue Ljava/util/List;
 	FIELD queuedSounds Ljava/util/Map;
 		COMMENT Contains sounds to play in n ticks. Type: HashMap<ISound, Integer>
-	FIELD queuedTickableSounds Ljava/util/List;
-	FIELD soundBuffers Lnet/minecraft/client/sounds/SoundBufferLibrary;
 	FIELD soundDeleteTime Ljava/util/Map;
 		COMMENT The future time in which to stop this sound. Type: HashMap<String, Integer>
 	FIELD soundManager Lnet/minecraft/client/sounds/SoundManager;
@@ -33,8 +15,6 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		COMMENT A counter for how long the sound manager has been running
 	FIELD tickingSounds Ljava/util/List;
 		COMMENT A subset of playingSounds, this contains only ITickableSounds
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/client/sounds/SoundManager;Lnet/minecraft/client/Options;Lnet/minecraft/server/packs/resources/ResourceManager;)V
 	METHOD addEventListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
 		ARG 1 listener
 	METHOD calculatePitch (Lnet/minecraft/client/resources/sounds/SoundInstance;)F
@@ -43,23 +23,10 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		ARG 1 sound
 	METHOD destroy ()V
 		COMMENT Cleans up the Sound System
-	METHOD getDebugString ()Ljava/lang/String;
 	METHOD getVolume (Lnet/minecraft/sounds/SoundSource;)F
 		ARG 1 category
 	METHOD isActive (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
 		ARG 1 sound
-	METHOD lambda$pause$9 (Ljava/util/stream/Stream;)V
-	METHOD lambda$play$4 (FFLnet/minecraft/client/resources/sounds/SoundInstance$Attenuation;FZZLnet/minecraft/world/phys/Vec3;ZLcom/mojang/blaze3d/audio/Channel;)V
-	METHOD lambda$play$5 (Lcom/mojang/blaze3d/audio/SoundBuffer;Lcom/mojang/blaze3d/audio/Channel;)V
-	METHOD lambda$play$6 (Lnet/minecraft/client/sounds/ChannelAccess$ChannelHandle;Lcom/mojang/blaze3d/audio/SoundBuffer;)V
-	METHOD lambda$play$7 (Lnet/minecraft/client/sounds/AudioStream;Lcom/mojang/blaze3d/audio/Channel;)V
-	METHOD lambda$play$8 (Lnet/minecraft/client/sounds/ChannelAccess$ChannelHandle;Lnet/minecraft/client/sounds/AudioStream;)V
-	METHOD lambda$resume$10 (Ljava/util/stream/Stream;)V
-	METHOD lambda$stopAll$2 (Lnet/minecraft/client/sounds/ChannelAccess$ChannelHandle;)V
-	METHOD lambda$tickNonPaused$3 (FFLnet/minecraft/world/phys/Vec3;Lcom/mojang/blaze3d/audio/Channel;)V
-	METHOD lambda$updateCategoryVolume$0 (FLcom/mojang/blaze3d/audio/Channel;)V
-	METHOD lambda$updateCategoryVolume$1 (Lnet/minecraft/client/resources/sounds/SoundInstance;Lnet/minecraft/client/sounds/ChannelAccess$ChannelHandle;)V
-	METHOD lambda$updateSource$11 (Lnet/minecraft/world/phys/Vec3;Lcom/mojang/math/Vector3f;Lcom/mojang/math/Vector3f;)V
 	METHOD loadLibrary ()V
 		COMMENT Tries to add the paulscode library and the relevant codecs. If it fails, the master volume  will be set to zero.
 	METHOD pause ()V
@@ -72,7 +39,6 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		ARG 2 delay
 	METHOD queueTickingSound (Lnet/minecraft/client/resources/sounds/TickableSoundInstance;)V
 		ARG 1 tickableSound
-	METHOD reload ()V
 	METHOD removeEventListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
 		ARG 1 listener
 	METHOD requestPreload (Lnet/minecraft/client/resources/sounds/Sound;)V
@@ -94,7 +60,6 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		COMMENT Stops all currently playing sounds
 	METHOD tick (Z)V
 		ARG 1 isGamePaused
-	METHOD tickNonPaused ()V
 	METHOD updateCategoryVolume (Lnet/minecraft/sounds/SoundSource;F)V
 		ARG 1 category
 		ARG 2 volume

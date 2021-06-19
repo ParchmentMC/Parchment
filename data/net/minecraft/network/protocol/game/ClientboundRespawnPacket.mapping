@@ -1,29 +1,11 @@
 CLASS net/minecraft/network/protocol/game/ClientboundRespawnPacket
-	FIELD dimension Lnet/minecraft/resources/ResourceKey;
-	FIELD dimensionType Lnet/minecraft/world/level/dimension/DimensionType;
-	FIELD isDebug Z
-	FIELD isFlat Z
-	FIELD keepAllPlayerData Z
-	FIELD playerGameType Lnet/minecraft/world/level/GameType;
-	FIELD previousPlayerGameType Lnet/minecraft/world/level/GameType;
 	FIELD seed J
 		COMMENT First 8 bytes of the SHA-256 hash of the world's seed
-	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
-	METHOD <init> (Lnet/minecraft/world/level/dimension/DimensionType;Lnet/minecraft/resources/ResourceKey;JLnet/minecraft/world/level/GameType;Lnet/minecraft/world/level/GameType;ZZZ)V
-	METHOD getDimension ()Lnet/minecraft/resources/ResourceKey;
-	METHOD getDimensionType ()Lnet/minecraft/world/level/dimension/DimensionType;
-	METHOD getPlayerGameType ()Lnet/minecraft/world/level/GameType;
-	METHOD getPreviousPlayerGameType ()Lnet/minecraft/world/level/GameType;
 	METHOD getSeed ()J
 		COMMENT get value
-	METHOD handle (Lnet/minecraft/network/PacketListener;)V
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
-	METHOD isDebug ()Z
-	METHOD isFlat ()Z
-	METHOD lambda$write$0 ()Lnet/minecraft/world/level/dimension/DimensionType;
-	METHOD shouldKeepAllPlayerData ()Z
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buf

@@ -1,38 +1,20 @@
 CLASS net/minecraft/world/entity/ai/goal/MoveToBlockGoal
-	FIELD GIVE_UP_TICKS I
-	FIELD INTERVAL_TICKS I
-	FIELD STAY_TICKS I
 	FIELD blockPos Lnet/minecraft/core/BlockPos;
 		COMMENT Block to move to
-	FIELD maxStayTicks I
-	FIELD mob Lnet/minecraft/world/entity/PathfinderMob;
 	FIELD nextStartTick I
 		COMMENT Controls task execution delay
-	FIELD reachedTarget Z
-	FIELD searchRange I
-	FIELD speedModifier D
-	FIELD tryTicks I
-	FIELD verticalSearchRange I
-	FIELD verticalSearchStart I
-	METHOD <init> (Lnet/minecraft/world/entity/PathfinderMob;DI)V
-	METHOD <init> (Lnet/minecraft/world/entity/PathfinderMob;DII)V
-	METHOD acceptedDistance ()D
 	METHOD canContinueToUse ()Z
 		COMMENT Returns whether an in-progress EntityAIBase should continue executing
 	METHOD canUse ()Z
 		COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	METHOD findNearestBlock ()Z
 		COMMENT Searches and sets new destination block and returns true if a suitable block (specified in {@link net.minecraft.entity.ai.EntityAIMoveToBlock#shouldMoveTo(World, BlockPos) EntityAIMoveToBlock#shouldMoveTo(World, BlockPos)}) can be found.
-	METHOD getMoveToTarget ()Lnet/minecraft/core/BlockPos;
-	METHOD isReachedTarget ()Z
 	METHOD isValidTarget (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
 		COMMENT Return true to set given position as destination
 		ARG 1 level
 		ARG 2 pos
-	METHOD moveMobToBlock ()V
 	METHOD nextStartTick (Lnet/minecraft/world/entity/PathfinderMob;)I
 		ARG 1 creature
-	METHOD shouldRecalculatePath ()Z
 	METHOD start ()V
 		COMMENT Execute a one shot task or start executing a continuous task
 	METHOD tick ()V

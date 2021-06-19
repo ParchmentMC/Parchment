@@ -1,7 +1,4 @@
 CLASS net/minecraft/server/commands/AdvancementCommands
-	FIELD SUGGEST_ADVANCEMENTS Lcom/mojang/brigadier/suggestion/SuggestionProvider;
-	METHOD <clinit> ()V
-	METHOD <init> ()V
 	METHOD addChildren (Lnet/minecraft/advancements/Advancement;Ljava/util/List;)V
 		COMMENT Recursively adds all children of the given advancement to the given list. Does not add the advancement itself to the list.
 		ARG 0 advancement
@@ -10,22 +7,6 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 		COMMENT Gets all advancements that match the given mode.
 		ARG 0 advancement
 		ARG 1 mode
-	METHOD lambda$register$1 (Lnet/minecraft/commands/CommandSourceStack;)Z
-	METHOD lambda$register$10 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
-	METHOD lambda$register$11 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$12 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$13 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$14 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$15 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$2 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$3 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
-	METHOD lambda$register$4 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$5 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$6 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$7 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$8 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$register$9 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$static$0 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 	METHOD perform (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/server/commands/AdvancementCommands$Action;Ljava/util/Collection;)I
 		COMMENT Performs the given action on each advancement in the list, for each player.
 		COMMENT
@@ -46,14 +27,6 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
 	CLASS Action
-		FIELD $VALUES [Lnet/minecraft/server/commands/AdvancementCommands$Action;
-		FIELD GRANT Lnet/minecraft/server/commands/AdvancementCommands$Action;
-		FIELD REVOKE Lnet/minecraft/server/commands/AdvancementCommands$Action;
-		FIELD key Ljava/lang/String;
-		METHOD $values ()[Lnet/minecraft/server/commands/AdvancementCommands$Action;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
-		METHOD getKey ()Ljava/lang/String;
 		METHOD perform (Lnet/minecraft/server/level/ServerPlayer;Ljava/lang/Iterable;)I
 			COMMENT Applies this action to all of the given advancements.
 			COMMENT
@@ -73,10 +46,7 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 			ARG 1 player
 			ARG 2 advancement
 			ARG 3 criterionName
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/server/commands/AdvancementCommands$Action;
-		METHOD values ()[Lnet/minecraft/server/commands/AdvancementCommands$Action;
 		CLASS 1
-			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 			METHOD perform (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/advancements/Advancement;)Z
 				COMMENT Applies this action to the given advancement.
 				COMMENT
@@ -91,7 +61,6 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 				ARG 2 advancement
 				ARG 3 criterionName
 		CLASS 2
-			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 			METHOD perform (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/advancements/Advancement;)Z
 				COMMENT Applies this action to the given advancement.
 				COMMENT
@@ -105,17 +74,3 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 				ARG 1 player
 				ARG 2 advancement
 				ARG 3 criterionName
-	CLASS Mode
-		FIELD $VALUES [Lnet/minecraft/server/commands/AdvancementCommands$Mode;
-		FIELD EVERYTHING Lnet/minecraft/server/commands/AdvancementCommands$Mode;
-		FIELD FROM Lnet/minecraft/server/commands/AdvancementCommands$Mode;
-		FIELD ONLY Lnet/minecraft/server/commands/AdvancementCommands$Mode;
-		FIELD THROUGH Lnet/minecraft/server/commands/AdvancementCommands$Mode;
-		FIELD UNTIL Lnet/minecraft/server/commands/AdvancementCommands$Mode;
-		FIELD children Z
-		FIELD parents Z
-		METHOD $values ()[Lnet/minecraft/server/commands/AdvancementCommands$Mode;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;IZZ)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/server/commands/AdvancementCommands$Mode;
-		METHOD values ()[Lnet/minecraft/server/commands/AdvancementCommands$Mode;

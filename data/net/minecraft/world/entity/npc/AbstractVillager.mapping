@@ -1,12 +1,4 @@
 CLASS net/minecraft/world/entity/npc/AbstractVillager
-	FIELD DATA_UNHAPPY_COUNTER Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD VILLAGER_INVENTORY_SIZE I
-	FIELD VILLAGER_SLOT_OFFSET I
-	FIELD inventory Lnet/minecraft/world/SimpleContainer;
-	FIELD offers Lnet/minecraft/world/item/trading/MerchantOffers;
-	FIELD tradingPlayer Lnet/minecraft/world/entity/player/Player;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD addOffersFromItemListings (Lnet/minecraft/world/item/trading/MerchantOffers;[Lnet/minecraft/world/entity/npc/VillagerTrades$ItemListing;I)V
@@ -20,7 +12,6 @@ CLASS net/minecraft/world/entity/npc/AbstractVillager
 		ARG 1 player
 	METHOD changeDimension (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 server
-	METHOD defineSynchedData ()V
 	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
 		COMMENT Called when the mob's health reaches 0.
 		ARG 1 cause
@@ -30,23 +21,13 @@ CLASS net/minecraft/world/entity/npc/AbstractVillager
 		ARG 3 reason
 		ARG 4 spawnData
 		ARG 5 dataTag
-	METHOD getInventory ()Lnet/minecraft/world/Container;
-	METHOD getInventory ()Lnet/minecraft/world/SimpleContainer;
-	METHOD getLevel ()Lnet/minecraft/world/level/Level;
-	METHOD getNotifyTradeSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getOffers ()Lnet/minecraft/world/item/trading/MerchantOffers;
 	METHOD getRopeHoldPosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
-	METHOD getSlot (I)Lnet/minecraft/world/entity/SlotAccess;
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
 	METHOD getTradeUpdatedSound (Z)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 getYesSound
-	METHOD getTradingPlayer ()Lnet/minecraft/world/entity/player/Player;
-	METHOD getUnhappyCounter ()I
-	METHOD getVillagerXp ()I
-	METHOD isTrading ()Z
 	METHOD notifyTrade (Lnet/minecraft/world/item/trading/MerchantOffer;)V
 		ARG 1 offer
 	METHOD notifyTradeUpdated (Lnet/minecraft/world/item/ItemStack;)V
@@ -56,7 +37,6 @@ CLASS net/minecraft/world/entity/npc/AbstractVillager
 		ARG 1 offers
 	METHOD overrideXp (I)V
 		ARG 1 xp
-	METHOD playCelebrateSound ()V
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
@@ -66,6 +46,3 @@ CLASS net/minecraft/world/entity/npc/AbstractVillager
 		ARG 1 player
 	METHOD setUnhappyCounter (I)V
 		ARG 1 ticks
-	METHOD showProgressBar ()Z
-	METHOD stopTrading ()V
-	METHOD updateTrades ()V

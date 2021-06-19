@@ -1,6 +1,4 @@
 CLASS net/minecraft/world/level/pathfinder/Node
-	FIELD cameFrom Lnet/minecraft/world/level/pathfinder/Node;
-	FIELD closed Z
 	FIELD costMalus F
 		COMMENT The additional cost of the path point. If negative, the path point will be sorted out by NodeProcessors.
 	FIELD f F
@@ -9,17 +7,8 @@ CLASS net/minecraft/world/level/pathfinder/Node
 		COMMENT The total cost of all path points up to this one. Corresponds to the A* g-score.
 	FIELD h F
 		COMMENT The estimated cost from this path point to the target. Corresponds to the A* h-score.
-	FIELD hash I
 	FIELD heapIdx I
 		COMMENT The index in the PathHeap. -1 if not assigned.
-	FIELD type Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
-	FIELD walkedDistance F
-	FIELD x I
-	FIELD y I
-	FIELD z I
-	METHOD <init> (III)V
-	METHOD asBlockPos ()Lnet/minecraft/core/BlockPos;
-	METHOD asVec3 ()Lnet/minecraft/world/phys/Vec3;
 	METHOD cloneAndMove (III)Lnet/minecraft/world/level/pathfinder/Node;
 		ARG 1 x
 		ARG 2 y
@@ -30,19 +19,11 @@ CLASS net/minecraft/world/level/pathfinder/Node
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
-	METHOD distanceManhattan (Lnet/minecraft/core/BlockPos;)F
-	METHOD distanceManhattan (Lnet/minecraft/world/level/pathfinder/Node;)F
-	METHOD distanceTo (Lnet/minecraft/core/BlockPos;)F
 	METHOD distanceTo (Lnet/minecraft/world/level/pathfinder/Node;)F
 		COMMENT Returns the linear distance to another path point
 		ARG 1 pathpoint
-	METHOD distanceToSqr (Lnet/minecraft/core/BlockPos;)F
 	METHOD distanceToSqr (Lnet/minecraft/world/level/pathfinder/Node;)F
 		COMMENT Returns the squared distance to another path point
 		ARG 1 pathpoint
-	METHOD equals (Ljava/lang/Object;)Z
-	METHOD hashCode ()I
 	METHOD inOpenSet ()Z
 		COMMENT Returns true if this point has already been assigned to a path
-	METHOD toString ()Ljava/lang/String;
-	METHOD writeToStream (Lnet/minecraft/network/FriendlyByteBuf;)V

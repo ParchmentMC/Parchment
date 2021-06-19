@@ -1,13 +1,4 @@
 CLASS net/minecraft/advancements/Advancement
-	FIELD chatComponent Lnet/minecraft/network/chat/Component;
-	FIELD children Ljava/util/Set;
-	FIELD criteria Ljava/util/Map;
-	FIELD display Lnet/minecraft/advancements/DisplayInfo;
-	FIELD id Lnet/minecraft/resources/ResourceLocation;
-	FIELD parent Lnet/minecraft/advancements/Advancement;
-	FIELD requirements [[Ljava/lang/String;
-	FIELD rewards Lnet/minecraft/advancements/AdvancementRewards;
-	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/Advancement;Lnet/minecraft/advancements/DisplayInfo;Lnet/minecraft/advancements/AdvancementRewards;Ljava/util/Map;[[Ljava/lang/String;)V
 	METHOD addChild (Lnet/minecraft/advancements/Advancement;)V
 		COMMENT Add the given {@code Advancement} as a child of this {@code Advancement}.
 		COMMENT
@@ -15,7 +6,6 @@ CLASS net/minecraft/advancements/Advancement
 		ARG 1 advancement
 	METHOD deconstruct ()Lnet/minecraft/advancements/Advancement$Builder;
 		COMMENT Creates a new advancement builder with the data from this advancement
-	METHOD equals (Ljava/lang/Object;)Z
 	METHOD getChatComponent ()Lnet/minecraft/network/chat/Component;
 		COMMENT Returns the {@code ITextComponent} that is shown in the chat message sent after this {@code Advancement} is completed.
 		COMMENT
@@ -47,21 +37,7 @@ CLASS net/minecraft/advancements/Advancement
 		COMMENT Get the {@code Advancement} that is this {@code Advancement}'s parent. This determines the tree structure that appears in the {@linkplain GuiScreenAdvancements GUI}.
 		COMMENT
 		COMMENT @return the parent {@code Advancement} of this {@code Advancement}, or {@code null} to signify that this {@code Advancement} is a root with no parent.
-	METHOD getRequirements ()[[Ljava/lang/String;
-	METHOD getRewards ()Lnet/minecraft/advancements/AdvancementRewards;
-	METHOD hashCode ()I
-	METHOD lambda$new$0 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-	METHOD toString ()Ljava/lang/String;
 	CLASS Builder
-		FIELD criteria Ljava/util/Map;
-		FIELD display Lnet/minecraft/advancements/DisplayInfo;
-		FIELD parent Lnet/minecraft/advancements/Advancement;
-		FIELD parentId Lnet/minecraft/resources/ResourceLocation;
-		FIELD requirements [[Ljava/lang/String;
-		FIELD requirementsStrategy Lnet/minecraft/advancements/RequirementsStrategy;
-		FIELD rewards Lnet/minecraft/advancements/AdvancementRewards;
-		METHOD <init> ()V
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/DisplayInfo;Lnet/minecraft/advancements/AdvancementRewards;Ljava/util/Map;[[Ljava/lang/String;)V
 		METHOD addCriterion (Ljava/lang/String;Lnet/minecraft/advancements/Criterion;)Lnet/minecraft/advancements/Advancement$Builder;
 			COMMENT Adds a criterion to the list of criteria
 			ARG 1 key
@@ -70,7 +46,6 @@ CLASS net/minecraft/advancements/Advancement
 			COMMENT Adds a criterion to the list of criteria
 			ARG 1 key
 			ARG 2 criterion
-		METHOD advancement ()Lnet/minecraft/advancements/Advancement$Builder;
 		METHOD build (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/Advancement;
 			ARG 1 id
 		METHOD canBuild (Ljava/util/function/Function;)Z
@@ -101,15 +76,12 @@ CLASS net/minecraft/advancements/Advancement
 			ARG 1 conditionParser
 		METHOD fromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 0 buf
-		METHOD getCriteria ()Ljava/util/Map;
-		METHOD lambda$build$0 (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/Advancement;
 		METHOD parent (Lnet/minecraft/advancements/Advancement;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 parent
 		METHOD parent (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 parentId
 		METHOD requirements (Lnet/minecraft/advancements/RequirementsStrategy;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 strategy
-		METHOD requirements ([[Ljava/lang/String;)Lnet/minecraft/advancements/Advancement$Builder;
 		METHOD rewards (Lnet/minecraft/advancements/AdvancementRewards$Builder;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 rewardsBuilder
 		METHOD rewards (Lnet/minecraft/advancements/AdvancementRewards;)Lnet/minecraft/advancements/Advancement$Builder;
@@ -117,7 +89,5 @@ CLASS net/minecraft/advancements/Advancement
 		METHOD save (Ljava/util/function/Consumer;Ljava/lang/String;)Lnet/minecraft/advancements/Advancement;
 			ARG 1 consumer
 			ARG 2 id
-		METHOD serializeToJson ()Lcom/google/gson/JsonObject;
 		METHOD serializeToNetwork (Lnet/minecraft/network/FriendlyByteBuf;)V
 			ARG 1 buf
-		METHOD toString ()Ljava/lang/String;

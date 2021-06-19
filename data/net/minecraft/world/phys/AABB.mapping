@@ -1,15 +1,4 @@
 CLASS net/minecraft/world/phys/AABB
-	FIELD EPSILON D
-	FIELD maxX D
-	FIELD maxY D
-	FIELD maxZ D
-	FIELD minX D
-	FIELD minY D
-	FIELD minZ D
-	METHOD <init> (DDDDDD)V
-	METHOD <init> (Lnet/minecraft/core/BlockPos;)V
-	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)V
-	METHOD <init> (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
 	METHOD clip (Ljava/lang/Iterable;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/BlockHitResult;
 		ARG 0 boxes
 		ARG 1 start
@@ -74,8 +63,6 @@ CLASS net/minecraft/world/phys/AABB
 		COMMENT
 		COMMENT @return A modified AABB.
 		ARG 1 value
-	METHOD deflate (DDD)Lnet/minecraft/world/phys/AABB;
-	METHOD equals (Ljava/lang/Object;)Z
 	METHOD expandTowards (DDD)Lnet/minecraft/world/phys/AABB;
 		COMMENT Creates a new {@link AxisAlignedBB} that has been expanded by the given amount, with positive changes increasing max values and negative changes decreasing min values.
 		COMMENT
@@ -100,7 +87,6 @@ CLASS net/minecraft/world/phys/AABB
 		ARG 5 z
 	METHOD expandTowards (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/AABB;
 		ARG 1 vector
-	METHOD getCenter ()Lnet/minecraft/world/phys/Vec3;
 	METHOD getDirection (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/phys/Vec3;[DLnet/minecraft/core/Direction;DDD)Lnet/minecraft/core/Direction;
 		ARG 0 aabb
 		ARG 1 start
@@ -111,11 +97,6 @@ CLASS net/minecraft/world/phys/AABB
 		ARG 8 deltaZ
 	METHOD getSize ()D
 		COMMENT Returns the average length of the edges of the bounding box.
-	METHOD getXsize ()D
-	METHOD getYsize ()D
-	METHOD getZsize ()D
-	METHOD hasNaN ()Z
-	METHOD hashCode ()I
 	METHOD inflate (D)Lnet/minecraft/world/phys/AABB;
 		COMMENT Creates a new {@link AxisAlignedBB} that is expanded by the given value in all directions. Equivalent to {@link #grow(double, double, double)} with the given value for all 3 params. Negative values will shrink the AABB.
 		COMMENT <br/>
@@ -185,13 +166,5 @@ CLASS net/minecraft/world/phys/AABB
 		ARG 1 vec
 	METHOD of (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Lnet/minecraft/world/phys/AABB;
 		ARG 0 mutableBox
-	METHOD ofSize (Lnet/minecraft/world/phys/Vec3;DDD)Lnet/minecraft/world/phys/AABB;
-	METHOD setMaxX (D)Lnet/minecraft/world/phys/AABB;
-	METHOD setMaxY (D)Lnet/minecraft/world/phys/AABB;
-	METHOD setMaxZ (D)Lnet/minecraft/world/phys/AABB;
-	METHOD setMinX (D)Lnet/minecraft/world/phys/AABB;
-	METHOD setMinY (D)Lnet/minecraft/world/phys/AABB;
-	METHOD setMinZ (D)Lnet/minecraft/world/phys/AABB;
-	METHOD toString ()Ljava/lang/String;
 	METHOD unitCubeFromLowerCorner (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/AABB;
 		ARG 0 vector

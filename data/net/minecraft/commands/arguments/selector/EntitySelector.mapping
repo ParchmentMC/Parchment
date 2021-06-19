@@ -1,21 +1,4 @@
 CLASS net/minecraft/commands/arguments/selector/EntitySelector
-	FIELD ANY_TYPE Lnet/minecraft/world/level/entity/EntityTypeTest;
-	FIELD INFINITE I
-	FIELD aabb Lnet/minecraft/world/phys/AABB;
-	FIELD currentEntity Z
-	FIELD entityUUID Ljava/util/UUID;
-	FIELD includesEntities Z
-	FIELD maxResults I
-	FIELD order Ljava/util/function/BiConsumer;
-	FIELD playerName Ljava/lang/String;
-	FIELD position Ljava/util/function/Function;
-	FIELD predicate Ljava/util/function/Predicate;
-	FIELD range Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;
-	FIELD type Lnet/minecraft/world/level/entity/EntityTypeTest;
-	FIELD usesSelector Z
-	FIELD worldLimited Z
-	METHOD <clinit> ()V
-	METHOD <init> (IZZLjava/util/function/Predicate;Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;Ljava/util/function/Function;Lnet/minecraft/world/phys/AABB;Ljava/util/function/BiConsumer;ZLjava/lang/String;Ljava/util/UUID;Lnet/minecraft/world/entity/EntityType;Z)V
 	METHOD addEntities (Ljava/util/List;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;Ljava/util/function/Predicate;)V
 		COMMENT Gets all entities matching this selector, and adds them to the passed list.
 		ARG 1 result
@@ -32,22 +15,9 @@ CLASS net/minecraft/commands/arguments/selector/EntitySelector
 		ARG 1 source
 	METHOD findSinglePlayer (Lnet/minecraft/commands/CommandSourceStack;)Lnet/minecraft/server/level/ServerPlayer;
 		ARG 1 source
-	METHOD getMaxResults ()I
 	METHOD getPredicate (Lnet/minecraft/world/phys/Vec3;)Ljava/util/function/Predicate;
 		COMMENT Returns a modified version of the predicate on this selector that also checks the AABB and distance.
 		ARG 1 pos
-	METHOD includesEntities ()Z
-	METHOD isSelfSelector ()Z
-	METHOD isWorldLimited ()Z
-	METHOD joinNames (Ljava/util/List;)Lnet/minecraft/network/chat/Component;
-	METHOD lambda$getPredicate$0 (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/entity/Entity;)Z
-	METHOD lambda$getPredicate$1 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
 	METHOD sortAndLimit (Lnet/minecraft/world/phys/Vec3;Ljava/util/List;)Ljava/util/List;
 		ARG 1 pos
 		ARG 2 entities
-	METHOD usesSelector ()Z
-	CLASS 1
-		METHOD <init> ()V
-		METHOD getBaseClass ()Ljava/lang/Class;
-		METHOD tryCast (Ljava/lang/Object;)Ljava/lang/Object;
-		METHOD tryCast (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/entity/Entity;

@@ -1,18 +1,4 @@
 CLASS net/minecraft/network/chat/Style
-	FIELD DEFAULT_FONT Lnet/minecraft/resources/ResourceLocation;
-	FIELD EMPTY Lnet/minecraft/network/chat/Style;
-	FIELD bold Ljava/lang/Boolean;
-	FIELD clickEvent Lnet/minecraft/network/chat/ClickEvent;
-	FIELD color Lnet/minecraft/network/chat/TextColor;
-	FIELD font Lnet/minecraft/resources/ResourceLocation;
-	FIELD hoverEvent Lnet/minecraft/network/chat/HoverEvent;
-	FIELD insertion Ljava/lang/String;
-	FIELD italic Ljava/lang/Boolean;
-	FIELD obfuscated Ljava/lang/Boolean;
-	FIELD strikethrough Ljava/lang/Boolean;
-	FIELD underlined Ljava/lang/Boolean;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/network/chat/TextColor;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lnet/minecraft/network/chat/ClickEvent;Lnet/minecraft/network/chat/HoverEvent;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)V
 	METHOD applyFormat (Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/Style;
 		ARG 1 formatting
 	METHOD applyFormats ([Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/Style;
@@ -22,16 +8,12 @@ CLASS net/minecraft/network/chat/Style
 	METHOD applyTo (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
 		COMMENT Merges the style with another one. If either styles are empty the other will be returned. If a value already exists on the current style it will not be overriden.
 		ARG 1 style
-	METHOD equals (Ljava/lang/Object;)Z
 	METHOD getClickEvent ()Lnet/minecraft/network/chat/ClickEvent;
 		COMMENT The effective chat click event.
-	METHOD getColor ()Lnet/minecraft/network/chat/TextColor;
-	METHOD getFont ()Lnet/minecraft/resources/ResourceLocation;
 	METHOD getHoverEvent ()Lnet/minecraft/network/chat/HoverEvent;
 		COMMENT The effective chat hover event.
 	METHOD getInsertion ()Ljava/lang/String;
 		COMMENT Get the text to be inserted into Chat when the component is shift-clicked
-	METHOD hashCode ()I
 	METHOD isBold ()Z
 		COMMENT Whether or not text of this ChatStyle should be in bold.
 	METHOD isEmpty ()Z
@@ -44,12 +26,10 @@ CLASS net/minecraft/network/chat/Style
 		COMMENT Whether or not to format text of this ChatStyle using strikethrough.
 	METHOD isUnderlined ()Z
 		COMMENT Whether or not text of this ChatStyle should be underlined.
-	METHOD toString ()Ljava/lang/String;
 	METHOD withBold (Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Style;
 		ARG 1 bold
 	METHOD withClickEvent (Lnet/minecraft/network/chat/ClickEvent;)Lnet/minecraft/network/chat/Style;
 		ARG 1 clickEvent
-	METHOD withColor (I)Lnet/minecraft/network/chat/Style;
 	METHOD withColor (Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/Style;
 		ARG 1 formatting
 	METHOD withColor (Lnet/minecraft/network/chat/TextColor;)Lnet/minecraft/network/chat/Style;
@@ -62,16 +42,7 @@ CLASS net/minecraft/network/chat/Style
 		ARG 1 insertion
 	METHOD withItalic (Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Style;
 		ARG 1 italic
-	METHOD withObfuscated (Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Style;
-	METHOD withStrikethrough (Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Style;
-	METHOD withUnderlined (Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Style;
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$ChatFormatting [I
-		METHOD <clinit> ()V
 	CLASS Serializer
-		METHOD <init> ()V
-		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
-		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/network/chat/Style;
 		METHOD getClickEvent (Lcom/google/gson/JsonObject;)Lnet/minecraft/network/chat/ClickEvent;
 			ARG 0 json
 		METHOD getFont (Lcom/google/gson/JsonObject;)Lnet/minecraft/resources/ResourceLocation;
@@ -85,5 +56,3 @@ CLASS net/minecraft/network/chat/Style
 			ARG 1 memberName
 		METHOD getTextColor (Lcom/google/gson/JsonObject;)Lnet/minecraft/network/chat/TextColor;
 			ARG 0 json
-		METHOD serialize (Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
-		METHOD serialize (Lnet/minecraft/network/chat/Style;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;

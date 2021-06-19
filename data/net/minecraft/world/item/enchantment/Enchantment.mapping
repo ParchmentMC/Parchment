@@ -1,9 +1,4 @@
 CLASS net/minecraft/world/item/enchantment/Enchantment
-	FIELD category Lnet/minecraft/world/item/enchantment/EnchantmentCategory;
-	FIELD descriptionId Ljava/lang/String;
-	FIELD rarity Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
-	FIELD slots [Lnet/minecraft/world/entity/EquipmentSlot;
-	METHOD <init> (Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;Lnet/minecraft/world/item/enchantment/EnchantmentCategory;[Lnet/minecraft/world/entity/EquipmentSlot;)V
 	METHOD byId (I)Lnet/minecraft/world/item/enchantment/Enchantment;
 		COMMENT Gets an Enchantment from the registry, based on a numeric ID.
 		ARG 0 id
@@ -44,7 +39,6 @@ CLASS net/minecraft/world/item/enchantment/Enchantment
 		ARG 1 enchantmentLevel
 	METHOD getMinLevel ()I
 		COMMENT Returns the minimum level that the enchantment can have.
-	METHOD getOrCreateDescriptionId ()Ljava/lang/String;
 	METHOD getRarity ()Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
 		COMMENT Retrieves the weight value of an Enchantment. This weight value is used within vanilla to determine how rare an enchantment is.
 	METHOD getSlotItems (Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/Map;
@@ -52,23 +46,10 @@ CLASS net/minecraft/world/item/enchantment/Enchantment
 		ARG 1 livingEntity
 	METHOD isCompatibleWith (Lnet/minecraft/world/item/enchantment/Enchantment;)Z
 		ARG 1 enchantment
-	METHOD isCurse ()Z
 	METHOD isDiscoverable ()Z
 		COMMENT Checks if the enchantment can be applied to loot table drops.
 	METHOD isTradeable ()Z
 		COMMENT Checks if the enchantment can be sold by villagers in their trades.
-	METHOD isTreasureOnly ()Z
 	CLASS Rarity
-		FIELD $VALUES [Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
-		FIELD COMMON Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
-		FIELD RARE Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
-		FIELD UNCOMMON Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
-		FIELD VERY_RARE Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
-		FIELD weight I
-		METHOD $values ()[Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;II)V
 		METHOD getWeight ()I
 			COMMENT Retrieves the weight of Rarity.
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
-		METHOD values ()[Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;

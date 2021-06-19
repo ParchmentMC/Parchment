@@ -1,53 +1,27 @@
 CLASS net/minecraft/client/gui/components/EditBox
-	FIELD BACKGROUND_COLOR I
-	FIELD BACKWARDS I
-	FIELD BORDER_COLOR I
-	FIELD BORDER_COLOR_FOCUSED I
-	FIELD CURSOR_APPEND_CHARACTER Ljava/lang/String;
-	FIELD CURSOR_INSERT_COLOR I
-	FIELD CURSOR_INSERT_WIDTH I
-	FIELD DEFAULT_TEXT_COLOR I
-	FIELD FORWARDS I
-	FIELD bordered Z
 	FIELD canLoseFocus Z
 		COMMENT if true the textbox can lose focus by clicking elsewhere on the screen
-	FIELD cursorPos I
 	FIELD displayPos I
 		COMMENT The current character index that should be used as start of the rendered text.
 	FIELD filter Ljava/util/function/Predicate;
 		COMMENT Called to check if the text is valid
-	FIELD font Lnet/minecraft/client/gui/Font;
-	FIELD formatter Ljava/util/function/BiFunction;
-	FIELD frame I
 	FIELD highlightPos I
 		COMMENT other selection position, maybe the same as the cursor
 	FIELD isEditable Z
 		COMMENT If this value is true along with isFocused, keyTyped will process the keys.
-	FIELD maxLength I
-	FIELD responder Ljava/util/function/Consumer;
-	FIELD shiftPressed Z
-	FIELD suggestion Ljava/lang/String;
-	FIELD textColor I
-	FIELD textColorUneditable I
 	FIELD value Ljava/lang/String;
 		COMMENT Has the current text being edited on the textbox.
-	METHOD <init> (Lnet/minecraft/client/gui/Font;IIIILnet/minecraft/client/gui/components/EditBox;Lnet/minecraft/network/chat/Component;)V
-	METHOD <init> (Lnet/minecraft/client/gui/Font;IIIILnet/minecraft/network/chat/Component;)V
-	METHOD canConsumeInput ()Z
 	METHOD changeFocus (Z)Z
 		ARG 1 focus
 	METHOD charTyped (CI)Z
 		ARG 1 codePoint
 		ARG 2 modifiers
-	METHOD createNarrationMessage ()Lnet/minecraft/network/chat/MutableComponent;
 	METHOD deleteChars (I)V
 		COMMENT Deletes the given number of characters from the current cursor's position, unless there is currently a selection, in which case the selection is deleted instead.
 		ARG 1 num
-	METHOD deleteText (I)V
 	METHOD deleteWords (I)V
 		COMMENT Deletes the given number of words from the current cursor's position, unless there is currently a selection, in which case the selection is deleted instead.
 		ARG 1 num
-	METHOD getCursorPos (I)I
 	METHOD getCursorPosition ()I
 		COMMENT returns the current position of the cursor
 	METHOD getHighlighted ()Ljava/lang/String;
@@ -56,7 +30,6 @@ CLASS net/minecraft/client/gui/components/EditBox
 		COMMENT returns the width of the textbox depending on if background drawing is enabled
 	METHOD getMaxLength ()I
 		COMMENT returns the maximum number of character that can be contained in this textbox
-	METHOD getScreenX (I)I
 	METHOD getValue ()Ljava/lang/String;
 		COMMENT Returns the contents of the textbox
 	METHOD getWordPosition (I)I
@@ -76,7 +49,6 @@ CLASS net/minecraft/client/gui/components/EditBox
 		ARG 1 textToWrite
 	METHOD isBordered ()Z
 		COMMENT Gets whether the background and outline of this text box should be drawn (true if so).
-	METHOD isEditable ()Z
 	METHOD isMouseOver (DD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -86,7 +58,6 @@ CLASS net/minecraft/client/gui/components/EditBox
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
-	METHOD lambda$new$0 (Ljava/lang/String;Ljava/lang/Integer;)Lnet/minecraft/util/FormattedCharSequence;
 	METHOD mouseClicked (DDI)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -142,7 +113,6 @@ CLASS net/minecraft/client/gui/components/EditBox
 		ARG 1 length
 	METHOD setResponder (Ljava/util/function/Consumer;)V
 		ARG 1 rssponder
-	METHOD setSuggestion (Ljava/lang/String;)V
 	METHOD setTextColor (I)V
 		COMMENT Sets the color to use when drawing this text box's text. A different color is used if this text box is disabled.
 		ARG 1 color
@@ -159,4 +129,3 @@ CLASS net/minecraft/client/gui/components/EditBox
 		ARG 1 x
 	METHOD tick ()V
 		COMMENT Increments the cursor counter
-	METHOD updateNarration (Lnet/minecraft/client/gui/narration/NarrationElementOutput;)V

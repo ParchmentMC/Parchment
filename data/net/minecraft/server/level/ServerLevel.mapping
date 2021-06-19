@@ -1,41 +1,13 @@
 CLASS net/minecraft/server/level/ServerLevel
-	FIELD EMPTY_TIME_NO_TICK I
-	FIELD END_SPAWN_POINT Lnet/minecraft/core/BlockPos;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD blockEvents Lit/unimi/dsi/fastutil/objects/ObjectLinkedOpenHashSet;
-	FIELD blockTicks Lnet/minecraft/world/level/ServerTickList;
-	FIELD chunkSource Lnet/minecraft/server/level/ServerChunkCache;
-	FIELD customSpawners Ljava/util/List;
-	FIELD dragonFight Lnet/minecraft/world/level/dimension/end/EndDragonFight;
-	FIELD dragonParts Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
-	FIELD emptyTime I
-	FIELD entityManager Lnet/minecraft/world/level/entity/PersistentEntitySectionManager;
-	FIELD entityTickList Lnet/minecraft/world/level/entity/EntityTickList;
-	FIELD handlingTick Z
-	FIELD liquidTicks Lnet/minecraft/world/level/ServerTickList;
-	FIELD navigatingMobs Ljava/util/Set;
-	FIELD noSave Z
-	FIELD players Ljava/util/List;
-	FIELD portalForcer Lnet/minecraft/world/level/portal/PortalForcer;
-	FIELD raids Lnet/minecraft/world/entity/raid/Raids;
-	FIELD server Lnet/minecraft/server/MinecraftServer;
-	FIELD serverLevelData Lnet/minecraft/world/level/storage/ServerLevelData;
-	FIELD sleepStatus Lnet/minecraft/server/players/SleepStatus;
-	FIELD structureFeatureManager Lnet/minecraft/world/level/StructureFeatureManager;
-	FIELD tickTime Z
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/world/level/storage/ServerLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/dimension/DimensionType;Lnet/minecraft/server/level/progress/ChunkProgressListener;Lnet/minecraft/world/level/chunk/ChunkGenerator;ZJLjava/util/List;Z)V
 	METHOD addDuringCommandTeleport (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
 	METHOD addDuringPortalTeleport (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
-	METHOD addDuringTeleport (Lnet/minecraft/world/entity/Entity;)V
 	METHOD addEntity (Lnet/minecraft/world/entity/Entity;)Z
 		COMMENT Called when an entity is spawned in the world. This includes players.
 		ARG 1 entity
 	METHOD addFreshEntity (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
-	METHOD addLegacyChunkEntities (Ljava/util/stream/Stream;)V
 	METHOD addNewPlayer (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
 	METHOD addPlayer (Lnet/minecraft/server/level/ServerPlayer;)V
@@ -45,9 +17,6 @@ CLASS net/minecraft/server/level/ServerLevel
 	METHOD addWithUUID (Lnet/minecraft/world/entity/Entity;)Z
 		COMMENT Used for "unnatural" ways of entities appearing in the world, e.g. summon command, interdimensional teleports
 		ARG 1 entity
-	METHOD addWorldGenChunkEntities (Ljava/util/stream/Stream;)V
-	METHOD announceSleepStatus ()V
-	METHOD areEntitiesLoaded (J)Z
 	METHOD blockEvent (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;II)V
 		ARG 1 pos
 		ARG 2 block
@@ -60,18 +29,14 @@ CLASS net/minecraft/server/level/ServerLevel
 		COMMENT sends a Packet 38 (Entity Status) to all tracked players of that entity
 		ARG 1 entity
 		ARG 2 state
-	METHOD canSleepThroughNights ()Z
 	METHOD clearBlockEvents (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
 		ARG 1 boundingBox
-	METHOD close ()V
 	METHOD destroyBlockProgress (ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 breakerId
 		ARG 2 pos
 		ARG 3 progress
 	METHOD doBlockEvent (Lnet/minecraft/world/level/BlockEventData;)Z
 		ARG 1 event
-	METHOD dragonFight ()Lnet/minecraft/world/level/dimension/end/EndDragonFight;
-	METHOD dumpBlockEntityTickers (Ljava/io/Writer;)V
 	METHOD dumpEntities (Ljava/io/Writer;Ljava/lang/Iterable;)V
 		ARG 0 writer
 		ARG 1 entities
@@ -85,8 +50,6 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 10 size
 		ARG 11 causesFire
 		ARG 12 mode
-	METHOD findLightningRod (Lnet/minecraft/core/BlockPos;)Ljava/util/Optional;
-	METHOD findLightningTargetAround (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
 	METHOD findNearestBiome (Lnet/minecraft/world/level/biome/Biome;Lnet/minecraft/core/BlockPos;II)Lnet/minecraft/core/BlockPos;
 		ARG 1 biome
 		ARG 2 pos
@@ -97,58 +60,27 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 2 pos
 		ARG 3 radius
 		ARG 4 skipExistingChunks
-	METHOD gameEvent (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;)V
-	METHOD gatherChunkSourceStats ()Ljava/lang/String;
 	METHOD getAllEntities ()Ljava/lang/Iterable;
 		COMMENT Gets an unmodifiable iterator of all loaded entities in the world.
-	METHOD getBlockTicks ()Lnet/minecraft/world/level/ServerTickList;
-	METHOD getBlockTicks ()Lnet/minecraft/world/level/TickList;
 	METHOD getChunkSource ()Lnet/minecraft/server/level/ServerChunkCache;
 		COMMENT Gets the world's chunk provider
-	METHOD getChunkSource ()Lnet/minecraft/world/level/chunk/ChunkSource;
-	METHOD getDataStorage ()Lnet/minecraft/world/level/storage/DimensionDataStorage;
-	METHOD getDragons ()Ljava/util/List;
-	METHOD getEntities ()Lnet/minecraft/world/level/entity/LevelEntityGetter;
-	METHOD getEntities (Lnet/minecraft/world/level/entity/EntityTypeTest;Ljava/util/function/Predicate;)Ljava/util/List;
 	METHOD getEntity (I)Lnet/minecraft/world/entity/Entity;
 		COMMENT Returns the Entity with the given ID, or null if it doesn't exist in this World.
 		ARG 1 id
 	METHOD getEntity (Ljava/util/UUID;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 uniqueId
-	METHOD getEntityOrPart (I)Lnet/minecraft/world/entity/Entity;
-	METHOD getForcedChunks ()Lit/unimi/dsi/fastutil/longs/LongSet;
-	METHOD getFreeMapId ()I
-	METHOD getLevel ()Lnet/minecraft/server/level/ServerLevel;
-	METHOD getLiquidTicks ()Lnet/minecraft/world/level/ServerTickList;
-	METHOD getLiquidTicks ()Lnet/minecraft/world/level/TickList;
-	METHOD getLogicalHeight ()I
 	METHOD getMapData (Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
 		ARG 1 mapName
 	METHOD getPlayers (Ljava/util/function/Predicate;)Ljava/util/List;
 		ARG 1 predicate
-	METHOD getPoiManager ()Lnet/minecraft/world/entity/ai/village/poi/PoiManager;
-	METHOD getPortalForcer ()Lnet/minecraft/world/level/portal/PortalForcer;
 	METHOD getRaidAt (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/entity/raid/Raid;
 		ARG 1 pos
-	METHOD getRaids ()Lnet/minecraft/world/entity/raid/Raids;
-	METHOD getRandomPlayer ()Lnet/minecraft/server/level/ServerPlayer;
-	METHOD getRecipeManager ()Lnet/minecraft/world/item/crafting/RecipeManager;
-	METHOD getScoreboard ()Lnet/minecraft/server/ServerScoreboard;
-	METHOD getScoreboard ()Lnet/minecraft/world/scores/Scoreboard;
 	METHOD getSeed ()J
 		COMMENT gets the random world seed
-	METHOD getServer ()Lnet/minecraft/server/MinecraftServer;
-	METHOD getShade (Lnet/minecraft/core/Direction;Z)F
-	METHOD getSharedSpawnAngle ()F
-	METHOD getSharedSpawnPos ()Lnet/minecraft/core/BlockPos;
-	METHOD getStructureManager ()Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;
-	METHOD getTagManager ()Lnet/minecraft/tags/TagContainer;
-	METHOD getTypeCount (Ljava/lang/Iterable;Ljava/util/function/Function;)Ljava/lang/String;
 	METHOD getUncachedNoiseBiome (III)Lnet/minecraft/world/level/biome/Biome;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD getWatchdogStats ()Ljava/lang/String;
 	METHOD globalLevelEvent (ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 id
 		ARG 2 pos
@@ -156,42 +88,12 @@ CLASS net/minecraft/server/level/ServerLevel
 	METHOD isCloseToVillage (Lnet/minecraft/core/BlockPos;I)Z
 		ARG 1 pos
 		ARG 2 sections
-	METHOD isFlat ()Z
-	METHOD isHandlingTick ()Z
-	METHOD isPositionEntityTicking (Lnet/minecraft/core/BlockPos;)Z
-	METHOD isPositionEntityTicking (Lnet/minecraft/world/level/ChunkPos;)Z
-	METHOD isPositionTickingWithEntitiesLoaded (Lnet/minecraft/core/BlockPos;)Z
 	METHOD isRaided (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD isVillage (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD isVillage (Lnet/minecraft/core/SectionPos;)Z
 		ARG 1 pos
-	METHOD lambda$clearBlockEvents$20 (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/BlockEventData;)Z
-	METHOD lambda$findLightningRod$7 (Lnet/minecraft/world/entity/ai/village/poi/PoiType;)Z
-	METHOD lambda$findLightningRod$8 (Lnet/minecraft/core/BlockPos;)Z
-	METHOD lambda$findLightningRod$9 (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
-	METHOD lambda$findLightningTargetAround$10 (Lnet/minecraft/world/entity/LivingEntity;)Z
-	METHOD lambda$findNearestBiome$15 (Lnet/minecraft/world/level/biome/Biome;Lnet/minecraft/world/level/biome/Biome;)Z
-	METHOD lambda$getEntities$13 (Ljava/util/function/Predicate;Ljava/util/List;Lnet/minecraft/world/entity/Entity;)V
-	METHOD lambda$getTypeCount$22 (Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;)Ljava/lang/String;
-	METHOD lambda$getWatchdogStats$21 (Lnet/minecraft/world/entity/Entity;)Ljava/lang/String;
-	METHOD lambda$makeObsidianPlatform$23 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V
-	METHOD lambda$makeObsidianPlatform$24 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V
-	METHOD lambda$new$0 (Lnet/minecraft/world/level/block/Block;)Z
-	METHOD lambda$new$1 (Lnet/minecraft/world/level/material/Fluid;)Z
-	METHOD lambda$new$2 (Lnet/minecraft/server/MinecraftServer;)Lnet/minecraft/world/level/storage/DimensionDataStorage;
-	METHOD lambda$new$3 (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/raid/Raids;
-	METHOD lambda$new$4 ()Lnet/minecraft/world/entity/raid/Raids;
-	METHOD lambda$onBlockStateChange$16 (Lnet/minecraft/core/BlockPos;)V
-	METHOD lambda$onBlockStateChange$17 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/ai/village/poi/PoiType;)V
-	METHOD lambda$onBlockStateChange$18 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/ai/village/poi/PoiType;)V
-	METHOD lambda$onBlockStateChange$19 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/ai/village/poi/PoiType;)V
-	METHOD lambda$sendVibrationParticle$14 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/network/protocol/game/ClientboundAddVibrationSignalPacket;Lnet/minecraft/server/level/ServerPlayer;)V
-	METHOD lambda$tick$5 (Lnet/minecraft/util/profiling/ProfilerFiller;Lnet/minecraft/world/entity/Entity;)V
-	METHOD lambda$tickNonPassenger$11 (Lnet/minecraft/world/entity/Entity;)Ljava/lang/String;
-	METHOD lambda$tickPassenger$12 (Lnet/minecraft/world/entity/Entity;)Ljava/lang/String;
-	METHOD lambda$wakeUpAllPlayers$6 (Lnet/minecraft/server/level/ServerPlayer;)V
 	METHOD levelEvent (Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 player
 		ARG 2 type
@@ -202,7 +104,6 @@ CLASS net/minecraft/server/level/ServerLevel
 	METHOD mayInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 player
 		ARG 2 pos
-	METHOD noSave ()Z
 	METHOD onBlockStateChange (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 blockState
@@ -227,12 +128,8 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 4 category
 		ARG 5 volume
 		ARG 6 pitch
-	METHOD players ()Ljava/util/List;
-	METHOD registryAccess ()Lnet/minecraft/core/RegistryAccess;
-	METHOD removePlayerImmediately (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity$RemovalReason;)V
 	METHOD resetEmptyTime ()V
 		COMMENT Resets the updateEntityTick field to 0
-	METHOD runBlockEvents ()V
 	METHOD save (Lnet/minecraft/util/ProgressListener;ZZ)V
 		ARG 1 progress
 		ARG 2 flush
@@ -278,7 +175,6 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 5 posY
 		ARG 7 posZ
 		ARG 9 packet
-	METHOD sendVibrationParticle (Lnet/minecraft/world/level/gameevent/vibrations/VibrationPath;)V
 	METHOD setChunkForced (IIZ)Z
 		ARG 1 chunkX
 		ARG 2 chunkZ
@@ -288,17 +184,13 @@ CLASS net/minecraft/server/level/ServerLevel
 	METHOD setDefaultSpawnPos (Lnet/minecraft/core/BlockPos;F)V
 		ARG 1 pos
 		ARG 2 angle
-	METHOD setMapData (Ljava/lang/String;Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
 	METHOD setWeatherParameters (IIZZ)V
 		ARG 1 clearTime
 		ARG 2 weatherTime
 		ARG 3 isRaining
 		ARG 4 isThundering
-	METHOD shouldDiscardEntity (Lnet/minecraft/world/entity/Entity;)Z
-	METHOD startsForFeature (Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Ljava/util/stream/Stream;
 	METHOD stopWeather ()V
 		COMMENT Clears the current rain and thunder weather states.
-	METHOD structureFeatureManager ()Lnet/minecraft/world/level/StructureFeatureManager;
 	METHOD tick (Ljava/util/function/BooleanSupplier;)V
 		COMMENT Runs a single tick for the world
 		ARG 1 hasTimeLeft
@@ -317,8 +209,6 @@ CLASS net/minecraft/server/level/ServerLevel
 	METHOD tickPassenger (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 ridingEntity
 		ARG 2 passengerEntity
-	METHOD tickTime ()V
-	METHOD toString ()Ljava/lang/String;
 	METHOD tryAddFreshEntityWithPassengers (Lnet/minecraft/world/entity/Entity;)Z
 		COMMENT Attempts to summon an entity and it's passangers. They will only be summoned if all entities are unique and not already in queue to be summoned.
 		ARG 1 entity
@@ -326,19 +216,3 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 1 chunk
 	METHOD updateSleepingPlayerList ()V
 		COMMENT Updates the flag that indicates whether or not all players in the world are sleeping.
-	METHOD wakeUpAllPlayers ()V
-	CLASS EntityCallbacks
-		FIELD this$0 Lnet/minecraft/server/level/ServerLevel;
-		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;)V
-		METHOD onCreated (Ljava/lang/Object;)V
-		METHOD onCreated (Lnet/minecraft/world/entity/Entity;)V
-		METHOD onDestroyed (Ljava/lang/Object;)V
-		METHOD onDestroyed (Lnet/minecraft/world/entity/Entity;)V
-		METHOD onTickingEnd (Ljava/lang/Object;)V
-		METHOD onTickingEnd (Lnet/minecraft/world/entity/Entity;)V
-		METHOD onTickingStart (Ljava/lang/Object;)V
-		METHOD onTickingStart (Lnet/minecraft/world/entity/Entity;)V
-		METHOD onTrackingEnd (Ljava/lang/Object;)V
-		METHOD onTrackingEnd (Lnet/minecraft/world/entity/Entity;)V
-		METHOD onTrackingStart (Ljava/lang/Object;)V
-		METHOD onTrackingStart (Lnet/minecraft/world/entity/Entity;)V

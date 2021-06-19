@@ -1,31 +1,11 @@
 CLASS net/minecraft/network/chat/HoverEvent
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD action Lnet/minecraft/network/chat/HoverEvent$Action;
-	FIELD value Ljava/lang/Object;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/network/chat/HoverEvent$Action;Ljava/lang/Object;)V
 	METHOD deserialize (Lcom/google/gson/JsonObject;)Lnet/minecraft/network/chat/HoverEvent;
 		ARG 0 json
-	METHOD equals (Ljava/lang/Object;)Z
 	METHOD getAction ()Lnet/minecraft/network/chat/HoverEvent$Action;
 		COMMENT Gets the action to perform when this event is raised.
 	METHOD getValue (Lnet/minecraft/network/chat/HoverEvent$Action;)Ljava/lang/Object;
 		ARG 1 actionType
-	METHOD hashCode ()I
-	METHOD serialize ()Lcom/google/gson/JsonObject;
-	METHOD toString ()Ljava/lang/String;
 	CLASS Action
-		FIELD LOOKUP Ljava/util/Map;
-		FIELD SHOW_ENTITY Lnet/minecraft/network/chat/HoverEvent$Action;
-		FIELD SHOW_ITEM Lnet/minecraft/network/chat/HoverEvent$Action;
-		FIELD SHOW_TEXT Lnet/minecraft/network/chat/HoverEvent$Action;
-		FIELD allowFromServer Z
-		FIELD argDeserializer Ljava/util/function/Function;
-		FIELD argSerializer Ljava/util/function/Function;
-		FIELD legacyArgDeserializer Ljava/util/function/Function;
-		FIELD name Ljava/lang/String;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;ZLjava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Function;)V
 		METHOD cast (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 parameter
 		METHOD deserialize (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent;
@@ -39,36 +19,15 @@ CLASS net/minecraft/network/chat/HoverEvent
 			COMMENT Gets the canonical name for this action (e.g., "show_achievement")
 		METHOD isAllowedFromServer ()Z
 			COMMENT Indicates whether this event can be run from chat text.
-		METHOD lambda$static$0 (Lnet/minecraft/network/chat/HoverEvent$Action;)Lnet/minecraft/network/chat/HoverEvent$Action;
 		METHOD serializeArg (Ljava/lang/Object;)Lcom/google/gson/JsonElement;
 			ARG 1 parameter
-		METHOD toString ()Ljava/lang/String;
 	CLASS EntityTooltipInfo
-		FIELD id Ljava/util/UUID;
-		FIELD linesCache Ljava/util/List;
-		FIELD name Lnet/minecraft/network/chat/Component;
-		FIELD type Lnet/minecraft/world/entity/EntityType;
-		METHOD <init> (Lnet/minecraft/world/entity/EntityType;Ljava/util/UUID;Lnet/minecraft/network/chat/Component;)V
 		METHOD create (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent$EntityTooltipInfo;
 			ARG 0 element
 		METHOD create (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/HoverEvent$EntityTooltipInfo;
 			ARG 0 component
-		METHOD equals (Ljava/lang/Object;)Z
-		METHOD getTooltipLines ()Ljava/util/List;
-		METHOD hashCode ()I
-		METHOD serialize ()Lcom/google/gson/JsonElement;
 	CLASS ItemStackInfo
-		FIELD count I
-		FIELD item Lnet/minecraft/world/item/Item;
-		FIELD itemStack Lnet/minecraft/world/item/ItemStack;
-		FIELD tag Lnet/minecraft/nbt/CompoundTag;
-		METHOD <init> (Lnet/minecraft/world/item/Item;ILnet/minecraft/nbt/CompoundTag;)V
-		METHOD <init> (Lnet/minecraft/world/item/ItemStack;)V
 		METHOD create (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent$ItemStackInfo;
 			ARG 0 element
 		METHOD create (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/HoverEvent$ItemStackInfo;
 			ARG 0 component
-		METHOD equals (Ljava/lang/Object;)Z
-		METHOD getItemStack ()Lnet/minecraft/world/item/ItemStack;
-		METHOD hashCode ()I
-		METHOD serialize ()Lcom/google/gson/JsonElement;

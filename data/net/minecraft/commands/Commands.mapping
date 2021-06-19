@@ -1,13 +1,4 @@
 CLASS net/minecraft/commands/Commands
-	FIELD LEVEL_ADMINS I
-	FIELD LEVEL_ALL I
-	FIELD LEVEL_GAMEMASTERS I
-	FIELD LEVEL_MODERATORS I
-	FIELD LEVEL_OWNERS I
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD dispatcher Lcom/mojang/brigadier/CommandDispatcher;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/commands/Commands$CommandSelection;)V
 	METHOD argument (Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
 		COMMENT Creates a new argument. Intended to be imported statically. The benefit of this over the brigadier {@link RequiredArgumentBuilder#argument} method is that it is typed to {@link CommandSource}.
 		ARG 0 name
@@ -19,17 +10,6 @@ CLASS net/minecraft/commands/Commands
 		ARG 2 rootSuggestion
 		ARG 3 source
 		ARG 4 commandNodeToSuggestionNode
-	METHOD getDispatcher ()Lcom/mojang/brigadier/CommandDispatcher;
-	METHOD getParseException (Lcom/mojang/brigadier/ParseResults;)Lcom/mojang/brigadier/exceptions/CommandSyntaxException;
-	METHOD lambda$createValidator$6 (Lnet/minecraft/commands/Commands$ParseFunction;Ljava/lang/String;)Z
-	METHOD lambda$fillUsableCommands$4 (Lnet/minecraft/commands/SharedSuggestionProvider;)Z
-	METHOD lambda$fillUsableCommands$5 (Lcom/mojang/brigadier/context/CommandContext;)I
-	METHOD lambda$new$0 (Lcom/mojang/brigadier/tree/CommandNode;Lcom/mojang/brigadier/tree/CommandNode;Lcom/mojang/brigadier/tree/CommandNode;Ljava/util/Collection;)V
-	METHOD lambda$new$1 (Lcom/mojang/brigadier/context/CommandContext;ZI)V
-	METHOD lambda$performCommand$2 (Ljava/lang/String;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-	METHOD lambda$performCommand$3 (Lnet/minecraft/network/chat/MutableComponent;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-	METHOD lambda$validate$7 (Lcom/mojang/brigadier/arguments/ArgumentType;)Z
-	METHOD lambda$validate$8 (Lcom/mojang/brigadier/arguments/ArgumentType;)Ljava/lang/String;
 	METHOD literal (Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
 		COMMENT Creates a new argument. Intended to be imported statically. The benefit of this over the brigadier {@link LiteralArgumentBuilder#literal} method is that it is typed to {@link CommandSource}.
 		ARG 0 name
@@ -41,18 +21,3 @@ CLASS net/minecraft/commands/Commands
 		ARG 2 command
 	METHOD sendCommands (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
-	METHOD validate ()V
-	CLASS CommandSelection
-		FIELD $VALUES [Lnet/minecraft/commands/Commands$CommandSelection;
-		FIELD ALL Lnet/minecraft/commands/Commands$CommandSelection;
-		FIELD DEDICATED Lnet/minecraft/commands/Commands$CommandSelection;
-		FIELD INTEGRATED Lnet/minecraft/commands/Commands$CommandSelection;
-		FIELD includeDedicated Z
-		FIELD includeIntegrated Z
-		METHOD $values ()[Lnet/minecraft/commands/Commands$CommandSelection;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;IZZ)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/commands/Commands$CommandSelection;
-		METHOD values ()[Lnet/minecraft/commands/Commands$CommandSelection;
-	CLASS ParseFunction
-		METHOD parse (Lcom/mojang/brigadier/StringReader;)V

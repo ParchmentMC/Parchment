@@ -1,35 +1,12 @@
 CLASS net/minecraft/server/rcon/thread/QueryThreadGs4
-	FIELD CHALLENGE_CHECK_INTERVAL J
-	FIELD GAME_ID Ljava/lang/String;
-	FIELD GAME_TYPE Ljava/lang/String;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD RESPONSE_CACHE_TIME J
-	FIELD buffer [B
-	FIELD hostIp Ljava/lang/String;
-	FIELD lastChallengeCheck J
-	FIELD lastRulesResponse J
-	FIELD maxPlayers I
-	FIELD port I
-	FIELD rulesResponse Lnet/minecraft/server/rcon/NetworkDataOutputStream;
-	FIELD serverInterface Lnet/minecraft/server/ServerInterface;
-	FIELD serverIp Ljava/lang/String;
-	FIELD serverName Ljava/lang/String;
-	FIELD serverPort I
-	FIELD socket Ljava/net/DatagramSocket;
-	FIELD validChallenges Ljava/util/Map;
-	FIELD worldName Ljava/lang/String;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/server/ServerInterface;I)V
 	METHOD buildRuleResponse (Ljava/net/DatagramPacket;)[B
 		COMMENT Creates a query response as a byte array for the specified query DatagramPacket
 		ARG 1 requestPacket
-	METHOD create (Lnet/minecraft/server/ServerInterface;)Lnet/minecraft/server/rcon/thread/QueryThreadGs4;
 	METHOD getIdentBytes (Ljava/net/SocketAddress;)[B
 		COMMENT Returns the request ID provided by the authorized client
 		ARG 1 address
 	METHOD initSocket ()Z
 		COMMENT Initializes the query system by binding it to a port
-	METHOD lambda$pruneChallenges$0 (JLnet/minecraft/server/rcon/thread/QueryThreadGs4$RequestChallenge;)Z
 	METHOD processPacket (Ljava/net/DatagramPacket;)Z
 		COMMENT Parses an incoming DatagramPacket, returning true if the packet was valid
 		ARG 1 requestPacket
@@ -38,7 +15,6 @@ CLASS net/minecraft/server/rcon/thread/QueryThreadGs4
 	METHOD recoverSocketError (Ljava/lang/Exception;)V
 		COMMENT Stops the query server and reports the given Exception
 		ARG 1 exception
-	METHOD run ()V
 	METHOD sendChallenge (Ljava/net/DatagramPacket;)V
 		COMMENT Sends an auth challenge DatagramPacket to the client and adds the client to the queryClients map
 		ARG 1 requestPacket
@@ -46,17 +22,10 @@ CLASS net/minecraft/server/rcon/thread/QueryThreadGs4
 		COMMENT Sends a byte array as a DatagramPacket response to the client who sent the given DatagramPacket
 		ARG 1 data
 		ARG 2 requestPacket
-	METHOD start ()Z
 	METHOD validChallenge (Ljava/net/DatagramPacket;)Ljava/lang/Boolean;
 		COMMENT Returns true if the client has a valid auth, otherwise false
 		ARG 1 requestPacket
 	CLASS RequestChallenge
-		FIELD challenge I
-		FIELD challengeBytes [B
-		FIELD ident Ljava/lang/String;
-		FIELD identBytes [B
-		FIELD time J
-		METHOD <init> (Ljava/net/DatagramPacket;)V
 		METHOD before (J)Ljava/lang/Boolean;
 			COMMENT Returns true if the auth's creation timestamp is less than the given time, otherwise false
 			ARG 1 currentTime
@@ -64,6 +33,5 @@ CLASS net/minecraft/server/rcon/thread/QueryThreadGs4
 			COMMENT Returns the random challenge number assigned to this auth
 		METHOD getChallengeBytes ()[B
 			COMMENT Returns the auth challenge value
-		METHOD getIdent ()Ljava/lang/String;
 		METHOD getIdentBytes ()[B
 			COMMENT Returns the request ID provided by the client.

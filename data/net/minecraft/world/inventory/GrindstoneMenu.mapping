@@ -1,21 +1,6 @@
 CLASS net/minecraft/world/inventory/GrindstoneMenu
-	FIELD ADDITIONAL_SLOT I
-	FIELD INPUT_SLOT I
-	FIELD INV_SLOT_END I
-	FIELD INV_SLOT_START I
-	FIELD MAX_NAME_LENGTH I
-	FIELD RESULT_SLOT I
-	FIELD USE_ROW_SLOT_END I
-	FIELD USE_ROW_SLOT_START I
-	FIELD access Lnet/minecraft/world/inventory/ContainerLevelAccess;
-	FIELD repairSlots Lnet/minecraft/world/Container;
 	FIELD resultSlots Lnet/minecraft/world/Container;
 		COMMENT The inventory slot that stores the output of the crafting recipe.
-	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;)V
-	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
-	METHOD createResult ()V
-	METHOD lambda$removeNonCurses$0 (Ljava/util/Map$Entry;)Z
-	METHOD lambda$removed$1 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 	METHOD mergeEnchants (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 copyTo
 		ARG 2 copyFrom
@@ -38,34 +23,23 @@ CLASS net/minecraft/world/inventory/GrindstoneMenu
 		COMMENT Determines whether supplied player can use this container
 		ARG 1 player
 	CLASS 1
-		FIELD this$0 Lnet/minecraft/world/inventory/GrindstoneMenu;
-		METHOD <init> (Lnet/minecraft/world/inventory/GrindstoneMenu;I)V
 		METHOD setChanged ()V
 			COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
 	CLASS 2
-		FIELD this$0 Lnet/minecraft/world/inventory/GrindstoneMenu;
-		METHOD <init> (Lnet/minecraft/world/inventory/GrindstoneMenu;Lnet/minecraft/world/Container;III)V
 		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
 			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 			ARG 1 stack
 	CLASS 3
-		FIELD this$0 Lnet/minecraft/world/inventory/GrindstoneMenu;
-		METHOD <init> (Lnet/minecraft/world/inventory/GrindstoneMenu;Lnet/minecraft/world/Container;III)V
 		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
 			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 			ARG 1 stack
 	CLASS 4
-		FIELD this$0 Lnet/minecraft/world/inventory/GrindstoneMenu;
-		FIELD val$access Lnet/minecraft/world/inventory/ContainerLevelAccess;
-		METHOD <init> (Lnet/minecraft/world/inventory/GrindstoneMenu;Lnet/minecraft/world/Container;IIILnet/minecraft/world/inventory/ContainerLevelAccess;)V
 		METHOD getExperienceAmount (Lnet/minecraft/world/level/Level;)I
 			COMMENT Returns the total amount of XP stored in all of the input slots of this container. The return value is randomized, so that it returns between 50% and 100% of the total XP.
 			ARG 1 level
 		METHOD getExperienceFromItem (Lnet/minecraft/world/item/ItemStack;)I
 			COMMENT Returns the total amount of XP stored in the enchantments of this stack.
 			ARG 1 stack
-		METHOD lambda$onTake$0 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
 			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 			ARG 1 stack
-		METHOD onTake (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V

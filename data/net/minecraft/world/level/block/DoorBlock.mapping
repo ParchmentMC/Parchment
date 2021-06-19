@@ -1,26 +1,12 @@
 CLASS net/minecraft/world/level/block/DoorBlock
-	FIELD AABB_DOOR_THICKNESS F
-	FIELD EAST_AABB Lnet/minecraft/world/phys/shapes/VoxelShape;
-	FIELD FACING Lnet/minecraft/world/level/block/state/properties/DirectionProperty;
-	FIELD HALF Lnet/minecraft/world/level/block/state/properties/EnumProperty;
-	FIELD HINGE Lnet/minecraft/world/level/block/state/properties/EnumProperty;
-	FIELD NORTH_AABB Lnet/minecraft/world/phys/shapes/VoxelShape;
-	FIELD OPEN Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
-	FIELD POWERED Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
-	FIELD SOUTH_AABB Lnet/minecraft/world/phys/shapes/VoxelShape;
-	FIELD WEST_AABB Lnet/minecraft/world/phys/shapes/VoxelShape;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 	METHOD canSurvive (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
-	METHOD getCloseSound ()I
 	METHOD getHinge (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/properties/DoorHingeSide;
 		ARG 1 context
-	METHOD getOpenSound ()I
 	METHOD getPistonPushReaction (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/PushReaction;
 		COMMENT @deprecated call via {@link IBlockState#getMobilityFlag()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
@@ -74,7 +60,6 @@ CLASS net/minecraft/world/level/block/DoorBlock
 		COMMENT @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 		ARG 2 rot
-	METHOD setOpen (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Z)V
 	METHOD setPlacedBy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Called by ItemBlocks after a block is set in the world, to allow post-place logic
 		ARG 1 level
@@ -99,7 +84,3 @@ CLASS net/minecraft/world/level/block/DoorBlock
 		ARG 4 player
 		ARG 5 hand
 		ARG 6 hit
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$core$Direction [I
-		FIELD $SwitchMap$net$minecraft$world$level$pathfinder$PathComputationType [I
-		METHOD <clinit> ()V

@@ -1,105 +1,31 @@
 CLASS net/minecraft/world/entity/animal/Panda
-	FIELD BREED_TARGETING Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
-	FIELD DATA_ID_FLAGS Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD EAT_COUNTER Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD EAT_TICK_INTERVAL I
-	FIELD FLAG_ON_BACK I
-	FIELD FLAG_ROLL I
-	FIELD FLAG_SIT I
-	FIELD FLAG_SNEEZE I
-	FIELD HIDDEN_GENE_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD MAIN_GENE_ID Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD PANDA_ITEMS Ljava/util/function/Predicate;
-	FIELD SNEEZE_COUNTER Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD TOTAL_ROLL_STEPS I
-	FIELD TOTAL_UNHAPPY_TIME I
-	FIELD UNHAPPY_COUNTER Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD didBite Z
-	FIELD gotBamboo Z
-	FIELD lookAtPlayerGoal Lnet/minecraft/world/entity/animal/Panda$PandaLookAtPlayerGoal;
-	FIELD onBackAmount F
-	FIELD onBackAmountO F
-	FIELD rollAmount F
-	FIELD rollAmountO F
-	FIELD rollCounter I
-	FIELD rollDelta Lnet/minecraft/world/phys/Vec3;
-	FIELD sitAmount F
-	FIELD sitAmountO F
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
-	METHOD access$000 (Lnet/minecraft/world/entity/animal/Panda;)Z
-	METHOD access$100 (Lnet/minecraft/world/entity/animal/Panda;)Ljava/util/Random;
-	METHOD access$1000 (Lnet/minecraft/world/entity/animal/Panda;)Ljava/util/Random;
-	METHOD access$1100 (Lnet/minecraft/world/entity/animal/Panda;)Ljava/util/Random;
-	METHOD access$200 (Lnet/minecraft/world/entity/animal/Panda;)Ljava/util/Random;
-	METHOD access$300 (Lnet/minecraft/world/entity/animal/Panda;)Ljava/util/Random;
-	METHOD access$400 (Lnet/minecraft/world/entity/animal/Panda;)Ljava/util/Random;
-	METHOD access$500 (Lnet/minecraft/world/entity/animal/Panda;)Ljava/util/Random;
-	METHOD access$600 (Lnet/minecraft/world/entity/animal/Panda;)Ljava/util/Random;
-	METHOD access$700 (Lnet/minecraft/world/entity/animal/Panda;)Ljava/util/Random;
-	METHOD access$800 (Lnet/minecraft/world/entity/animal/Panda;)Ljava/util/Random;
-	METHOD access$900 (Lnet/minecraft/world/entity/animal/Panda;)Ljava/util/Random;
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD addEatingParticles ()V
-	METHOD afterSneeze ()V
 	METHOD canBeLeashed (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 player
-	METHOD canPerformAction ()Z
 	METHOD canTakeItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 itemstack
-	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
-	METHOD defineSynchedData ()V
 	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
-	METHOD eat (Z)V
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
 		ARG 1 level
 		ARG 2 difficulty
 		ARG 3 reason
 		ARG 4 spawnData
 		ARG 5 dataTag
-	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getBreedOffspring (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/AgeableMob;)Lnet/minecraft/world/entity/AgeableMob;
-	METHOD getDeathSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getEatCounter ()I
 	METHOD getFlag (I)Z
 		ARG 1 flagId
-	METHOD getHiddenGene ()Lnet/minecraft/world/entity/animal/Panda$Gene;
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
-	METHOD getLieOnBackAmount (F)F
-	METHOD getMainGene ()Lnet/minecraft/world/entity/animal/Panda$Gene;
-	METHOD getOneOfGenesRandomly ()Lnet/minecraft/world/entity/animal/Panda$Gene;
-	METHOD getRollAmount (F)F
-	METHOD getSitAmount (F)F
-	METHOD getSneezeCounter ()I
-	METHOD getUnhappyCounter ()I
-	METHOD getVariant ()Lnet/minecraft/world/entity/animal/Panda$Gene;
-	METHOD handleEating ()V
-	METHOD handleRoll ()V
 	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
-	METHOD isAggressive ()Z
-	METHOD isBrown ()Z
-	METHOD isEating ()Z
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
 		ARG 1 stack
 	METHOD isFoodOrCake (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
-	METHOD isLazy ()Z
-	METHOD isOnBack ()Z
-	METHOD isPlayful ()Z
-	METHOD isRolling ()Z
-	METHOD isScared ()Z
-	METHOD isSitting ()Z
-	METHOD isSneezing ()Z
-	METHOD isWeak ()Z
-	METHOD isWorried ()Z
-	METHOD lambda$static$0 (Lnet/minecraft/world/entity/item/ItemEntity;)Z
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
@@ -112,10 +38,6 @@ CLASS net/minecraft/world/entity/animal/Panda
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
-	METHOD registerGoals ()V
-	METHOD roll (Z)V
-	METHOD setAttributes ()V
-	METHOD setEatCounter (I)V
 	METHOD setFlag (IZ)V
 		ARG 1 flagId
 	METHOD setGeneFromParents (Lnet/minecraft/world/entity/animal/Panda;Lnet/minecraft/world/entity/animal/Panda;)V
@@ -125,76 +47,29 @@ CLASS net/minecraft/world/entity/animal/Panda
 		ARG 1 pandaType
 	METHOD setMainGene (Lnet/minecraft/world/entity/animal/Panda$Gene;)V
 		ARG 1 pandaType
-	METHOD setOnBack (Z)V
-	METHOD setSneezeCounter (I)V
-	METHOD setUnhappyCounter (I)V
-	METHOD sit (Z)V
-	METHOD sneeze (Z)V
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
-	METHOD tryToSit ()V
-	METHOD updateOnBackAnimation ()V
-	METHOD updateRollAmount ()V
-	METHOD updateSitAmount ()V
 	CLASS Gene
-		FIELD $VALUES [Lnet/minecraft/world/entity/animal/Panda$Gene;
-		FIELD AGGRESSIVE Lnet/minecraft/world/entity/animal/Panda$Gene;
-		FIELD BROWN Lnet/minecraft/world/entity/animal/Panda$Gene;
-		FIELD BY_ID [Lnet/minecraft/world/entity/animal/Panda$Gene;
-		FIELD LAZY Lnet/minecraft/world/entity/animal/Panda$Gene;
-		FIELD MAX_GENE I
-		FIELD NORMAL Lnet/minecraft/world/entity/animal/Panda$Gene;
-		FIELD PLAYFUL Lnet/minecraft/world/entity/animal/Panda$Gene;
-		FIELD WEAK Lnet/minecraft/world/entity/animal/Panda$Gene;
-		FIELD WORRIED Lnet/minecraft/world/entity/animal/Panda$Gene;
-		FIELD id I
-		FIELD isRecessive Z
-		FIELD name Ljava/lang/String;
-		METHOD $values ()[Lnet/minecraft/world/entity/animal/Panda$Gene;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;IILjava/lang/String;Z)V
 		METHOD byId (I)Lnet/minecraft/world/entity/animal/Panda$Gene;
 			ARG 0 index
-		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/entity/animal/Panda$Gene;
-		METHOD getId ()I
-		METHOD getName ()Ljava/lang/String;
 		METHOD getRandom (Ljava/util/Random;)Lnet/minecraft/world/entity/animal/Panda$Gene;
 			ARG 0 rand
-		METHOD getVariantFromGenes (Lnet/minecraft/world/entity/animal/Panda$Gene;Lnet/minecraft/world/entity/animal/Panda$Gene;)Lnet/minecraft/world/entity/animal/Panda$Gene;
-		METHOD isRecessive ()Z
-		METHOD lambda$static$0 (I)[Lnet/minecraft/world/entity/animal/Panda$Gene;
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/entity/animal/Panda$Gene;
-		METHOD values ()[Lnet/minecraft/world/entity/animal/Panda$Gene;
 	CLASS PandaAttackGoal
-		FIELD panda Lnet/minecraft/world/entity/animal/Panda;
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;DZ)V
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS PandaAvoidGoal
-		FIELD panda Lnet/minecraft/world/entity/animal/Panda;
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;Ljava/lang/Class;FDD)V
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS PandaBreedGoal
-		FIELD panda Lnet/minecraft/world/entity/animal/Panda;
-		FIELD this$0 Lnet/minecraft/world/entity/animal/Panda;
-		FIELD unhappyCooldown I
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;Lnet/minecraft/world/entity/animal/Panda;D)V
-		METHOD canFindBamboo ()Z
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS PandaHurtByTargetGoal
-		FIELD panda Lnet/minecraft/world/entity/animal/Panda;
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;[Ljava/lang/Class;)V
 		METHOD alertOther (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/entity/LivingEntity;)V
 			ARG 1 mob
 			ARG 2 target
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 	CLASS PandaLieOnBackGoal
-		FIELD cooldown I
-		FIELD panda Lnet/minecraft/world/entity/animal/Panda;
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;)V
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
@@ -204,41 +79,25 @@ CLASS net/minecraft/world/entity/animal/Panda
 		METHOD stop ()V
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 	CLASS PandaLookAtPlayerGoal
-		FIELD panda Lnet/minecraft/world/entity/animal/Panda;
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;Ljava/lang/Class;F)V
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD lambda$canUse$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
-		METHOD setTarget (Lnet/minecraft/world/entity/LivingEntity;)V
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
-	CLASS PandaMoveControl
-		FIELD panda Lnet/minecraft/world/entity/animal/Panda;
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;)V
-		METHOD tick ()V
 	CLASS PandaPanicGoal
-		FIELD panda Lnet/minecraft/world/entity/animal/Panda;
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;D)V
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS PandaRollGoal
-		FIELD panda Lnet/minecraft/world/entity/animal/Panda;
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;)V
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD isInterruptable ()Z
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 	CLASS PandaSitGoal
-		FIELD cooldown I
-		FIELD this$0 Lnet/minecraft/world/entity/animal/Panda;
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;)V
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
@@ -250,8 +109,6 @@ CLASS net/minecraft/world/entity/animal/Panda
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS PandaSneezeGoal
-		FIELD panda Lnet/minecraft/world/entity/animal/Panda;
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;)V
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z

@@ -1,15 +1,6 @@
 CLASS net/minecraft/world/entity/ai/goal/GoalSelector
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD NO_GOAL Lnet/minecraft/world/entity/ai/goal/WrappedGoal;
-	FIELD availableGoals Ljava/util/Set;
-	FIELD disabledFlags Ljava/util/EnumSet;
 	FIELD lockedFlags Ljava/util/Map;
 		COMMENT Goals currently using a particular flag
-	FIELD newGoalRate I
-	FIELD profiler Ljava/util/function/Supplier;
-	FIELD tickCount I
-	METHOD <clinit> ()V
-	METHOD <init> (Ljava/util/function/Supplier;)V
 	METHOD addGoal (ILnet/minecraft/world/entity/ai/goal/Goal;)V
 		COMMENT Add a now AITask. Args : priority, task
 		ARG 1 priority
@@ -18,31 +9,12 @@ CLASS net/minecraft/world/entity/ai/goal/GoalSelector
 		ARG 1 flag
 	METHOD enableControlFlag (Lnet/minecraft/world/entity/ai/goal/Goal$Flag;)V
 		ARG 1 flag
-	METHOD getAvailableGoals ()Ljava/util/Set;
-	METHOD getRunningGoals ()Ljava/util/stream/Stream;
-	METHOD lambda$removeGoal$0 (Lnet/minecraft/world/entity/ai/goal/Goal;Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)Z
-	METHOD lambda$removeGoal$1 (Lnet/minecraft/world/entity/ai/goal/Goal;Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)Z
-	METHOD lambda$tick$2 (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)Z
-	METHOD lambda$tick$3 (Lnet/minecraft/world/entity/ai/goal/Goal$Flag;Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)V
-	METHOD lambda$tick$4 (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)Z
-	METHOD lambda$tick$5 (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)Z
-	METHOD lambda$tick$6 (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;Lnet/minecraft/world/entity/ai/goal/Goal$Flag;)Z
-	METHOD lambda$tick$7 (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)Z
-	METHOD lambda$tick$8 (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;Lnet/minecraft/world/entity/ai/goal/Goal$Flag;)V
-	METHOD lambda$tick$9 (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)V
-	METHOD removeAllGoals ()V
 	METHOD removeGoal (Lnet/minecraft/world/entity/ai/goal/Goal;)V
 		COMMENT removes the indicated task from the entity's AI tasks.
 		ARG 1 task
 	METHOD setControlFlag (Lnet/minecraft/world/entity/ai/goal/Goal$Flag;Z)V
 		ARG 1 flag
 		ARG 2 enabled
-	METHOD setNewGoalRate (I)V
-	METHOD tick ()V
 	CLASS 1
-		METHOD <init> ()V
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-	CLASS 2
-		METHOD <init> (ILnet/minecraft/world/entity/ai/goal/Goal;)V
-		METHOD isRunning ()Z

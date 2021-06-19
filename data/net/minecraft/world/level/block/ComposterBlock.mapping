@@ -1,14 +1,4 @@
 CLASS net/minecraft/world/level/block/ComposterBlock
-	FIELD AABB_SIDE_THICKNESS I
-	FIELD COMPOSTABLES Lit/unimi/dsi/fastutil/objects/Object2FloatMap;
-	FIELD LEVEL Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
-	FIELD MAX_LEVEL I
-	FIELD MIN_LEVEL I
-	FIELD OUTER_SHAPE Lnet/minecraft/world/phys/shapes/VoxelShape;
-	FIELD READY I
-	FIELD SHAPES [Lnet/minecraft/world/phys/shapes/VoxelShape;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 	METHOD add (FLnet/minecraft/world/level/ItemLike;)V
 		ARG 0 chance
 		ARG 1 item
@@ -17,7 +7,6 @@ CLASS net/minecraft/world/level/block/ComposterBlock
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 stack
-	METHOD bootStrap ()V
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
 	METHOD empty (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
@@ -68,7 +57,6 @@ CLASS net/minecraft/world/level/block/ComposterBlock
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 type
-	METHOD lambda$static$0 ([Lnet/minecraft/world/phys/shapes/VoxelShape;)V
 	METHOD onPlace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
 		ARG 1 state
 		ARG 2 level
@@ -88,7 +76,6 @@ CLASS net/minecraft/world/level/block/ComposterBlock
 		ARG 5 hand
 		ARG 6 hit
 	CLASS EmptyContainer
-		METHOD <init> ()V
 		METHOD canPlaceItemThroughFace (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Z
 			COMMENT Returns true if automation can insert the given item in the given slot from the given side.
 			ARG 1 index
@@ -102,11 +89,6 @@ CLASS net/minecraft/world/level/block/ComposterBlock
 		METHOD getSlotsForFace (Lnet/minecraft/core/Direction;)[I
 			ARG 1 side
 	CLASS InputContainer
-		FIELD changed Z
-		FIELD level Lnet/minecraft/world/level/LevelAccessor;
-		FIELD pos Lnet/minecraft/core/BlockPos;
-		FIELD state Lnet/minecraft/world/level/block/state/BlockState;
-		METHOD <init> (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)V
 		METHOD canPlaceItemThroughFace (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Z
 			COMMENT Returns true if automation can insert the given item in the given slot from the given side.
 			ARG 1 index
@@ -124,11 +106,6 @@ CLASS net/minecraft/world/level/block/ComposterBlock
 		METHOD setChanged ()V
 			COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
 	CLASS OutputContainer
-		FIELD changed Z
-		FIELD level Lnet/minecraft/world/level/LevelAccessor;
-		FIELD pos Lnet/minecraft/core/BlockPos;
-		FIELD state Lnet/minecraft/world/level/block/state/BlockState;
-		METHOD <init> (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
 		METHOD canPlaceItemThroughFace (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Z
 			COMMENT Returns true if automation can insert the given item in the given slot from the given side.
 			ARG 1 index

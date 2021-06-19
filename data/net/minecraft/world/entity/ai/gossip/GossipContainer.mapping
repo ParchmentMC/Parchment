@@ -1,28 +1,13 @@
 CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
-	FIELD DISCARD_THRESHOLD I
-	FIELD gossips Ljava/util/Map;
-	METHOD <init> ()V
 	METHOD add (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V
 		ARG 1 identifier
 		ARG 2 gossipType
 		ARG 3 gossipValue
-	METHOD decay ()V
-	METHOD getCountForType (Lnet/minecraft/world/entity/ai/gossip/GossipType;Ljava/util/function/DoublePredicate;)J
-	METHOD getGossipEntries ()Ljava/util/Map;
 	METHOD getOrCreate (Ljava/util/UUID;)Lnet/minecraft/world/entity/ai/gossip/GossipContainer$EntityGossips;
 		ARG 1 identifier
 	METHOD getReputation (Ljava/util/UUID;Ljava/util/function/Predicate;)I
 		ARG 1 identifier
 		ARG 2 gossip
-	METHOD lambda$add$5 (Lnet/minecraft/world/entity/ai/gossip/GossipType;Ljava/lang/Integer;Ljava/lang/Integer;)Ljava/lang/Integer;
-	METHOD lambda$getCountForType$4 (Ljava/util/function/DoublePredicate;Lnet/minecraft/world/entity/ai/gossip/GossipType;Lnet/minecraft/world/entity/ai/gossip/GossipContainer$EntityGossips;)Z
-	METHOD lambda$getGossipEntries$0 (Ljava/util/Map;Ljava/util/UUID;)V
-	METHOD lambda$getOrCreate$2 (Ljava/util/UUID;)Lnet/minecraft/world/entity/ai/gossip/GossipContainer$EntityGossips;
-	METHOD lambda$store$6 (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;)Lcom/mojang/serialization/Dynamic;
-	METHOD lambda$transferFrom$3 (Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;)V
-	METHOD lambda$unpack$1 (Ljava/util/Map$Entry;)Ljava/util/stream/Stream;
-	METHOD lambda$update$7 (Lcom/mojang/serialization/DataResult;)Ljava/util/stream/Stream;
-	METHOD lambda$update$8 (Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;)V
 	METHOD mergeValuesForAddition (Lnet/minecraft/world/entity/ai/gossip/GossipType;II)I
 		ARG 1 gossipType
 		ARG 2 existing
@@ -31,9 +16,6 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 		COMMENT Returns the greater of two int values
 		ARG 0 value1
 		ARG 1 value2
-	METHOD remove (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;)V
-	METHOD remove (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V
-	METHOD remove (Lnet/minecraft/world/entity/ai/gossip/GossipType;)V
 	METHOD selectGossipsForTransfer (Ljava/util/Random;I)Ljava/util/Collection;
 		ARG 1 rand
 		ARG 2 gossipAmount
@@ -43,17 +25,9 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 		ARG 1 gossip
 		ARG 2 rand
 		ARG 3 gossipAmount
-	METHOD unpack ()Ljava/util/stream/Stream;
 	METHOD update (Lcom/mojang/serialization/Dynamic;)V
 		ARG 1 dynamic
 	CLASS EntityGossips
-		FIELD entries Lit/unimi/dsi/fastutil/objects/Object2IntMap;
-		METHOD <init> ()V
-		METHOD decay ()V
-		METHOD isEmpty ()Z
-		METHOD lambda$unpack$2 (Ljava/util/UUID;Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;)Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;
-		METHOD lambda$weightedValue$0 (Ljava/util/function/Predicate;Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;)Z
-		METHOD lambda$weightedValue$1 (Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;)I
 		METHOD makeSureValueIsntTooLowOrTooHigh (Lnet/minecraft/world/entity/ai/gossip/GossipType;)V
 			ARG 1 gossipType
 		METHOD remove (Lnet/minecraft/world/entity/ai/gossip/GossipType;)V
@@ -63,16 +37,7 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 		METHOD weightedValue (Ljava/util/function/Predicate;)I
 			ARG 1 gossipType
 	CLASS GossipEntry
-		FIELD TAG_TARGET Ljava/lang/String;
-		FIELD TAG_TYPE Ljava/lang/String;
-		FIELD TAG_VALUE Ljava/lang/String;
-		FIELD target Ljava/util/UUID;
-		FIELD type Lnet/minecraft/world/entity/ai/gossip/GossipType;
-		FIELD value I
-		METHOD <init> (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V
 		METHOD load (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/DataResult;
 			ARG 0 dynamic
 		METHOD store (Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/Dynamic;
 			ARG 1 dynamic
-		METHOD toString ()Ljava/lang/String;
-		METHOD weightedValue ()I

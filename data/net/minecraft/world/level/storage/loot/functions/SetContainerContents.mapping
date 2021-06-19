@@ -1,24 +1,11 @@
 CLASS net/minecraft/world/level/storage/loot/functions/SetContainerContents
-	FIELD entries Ljava/util/List;
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Ljava/util/List;)V
-	METHOD getType ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunctionType;
-	METHOD lambda$run$0 (Lnet/minecraft/core/NonNullList;Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntry;)V
-	METHOD lambda$run$1 (Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/core/NonNullList;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;)V
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
-	METHOD setContents ()Lnet/minecraft/world/level/storage/loot/functions/SetContainerContents$Builder;
-	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V
 	CLASS Builder
-		FIELD entries Ljava/util/List;
-		METHOD <init> ()V
-		METHOD build ()Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
-		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
-		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/functions/SetContainerContents$Builder;
 		METHOD withEntry (Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/functions/SetContainerContents$Builder;
 			ARG 1 lootEntryBuilder
 	CLASS Serializer
-		METHOD <init> ()V
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
 			ARG 1 object
 			ARG 2 deserializationContext
@@ -27,6 +14,3 @@ CLASS net/minecraft/world/level/storage/loot/functions/SetContainerContents
 			ARG 1 object
 			ARG 2 deserializationContext
 			ARG 3 conditions
-		METHOD serialize (Lcom/google/gson/JsonObject;Ljava/lang/Object;Lcom/google/gson/JsonSerializationContext;)V
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;Lcom/google/gson/JsonSerializationContext;)V
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/SetContainerContents;Lcom/google/gson/JsonSerializationContext;)V

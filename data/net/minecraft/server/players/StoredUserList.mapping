@@ -1,10 +1,4 @@
 CLASS net/minecraft/server/players/StoredUserList
-	FIELD GSON Lcom/google/gson/Gson;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD file Ljava/io/File;
-	FIELD map Ljava/util/Map;
-	METHOD <clinit> ()V
-	METHOD <init> (Ljava/io/File;)V
 	METHOD add (Lnet/minecraft/server/players/StoredUserEntry;)V
 		COMMENT Adds an entry to the list
 		ARG 1 entry
@@ -14,18 +8,10 @@ CLASS net/minecraft/server/players/StoredUserList
 		ARG 1 entryData
 	METHOD get (Ljava/lang/Object;)Lnet/minecraft/server/players/StoredUserEntry;
 		ARG 1 obj
-	METHOD getEntries ()Ljava/util/Collection;
-	METHOD getFile ()Ljava/io/File;
 	METHOD getKeyForUser (Ljava/lang/Object;)Ljava/lang/String;
 		COMMENT Gets the key value for the given object
 		ARG 1 obj
-	METHOD getUserList ()[Ljava/lang/String;
-	METHOD isEmpty ()Z
-	METHOD lambda$save$0 (Lnet/minecraft/server/players/StoredUserEntry;)Lcom/google/gson/JsonObject;
-	METHOD load ()V
 	METHOD remove (Ljava/lang/Object;)V
 		ARG 1 entry
-	METHOD remove (Lnet/minecraft/server/players/StoredUserEntry;)V
 	METHOD removeExpired ()V
 		COMMENT Removes expired bans from the list. See {@link BanEntry#hasBanExpired}
-	METHOD save ()V

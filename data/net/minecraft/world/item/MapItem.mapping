@@ -1,9 +1,4 @@
 CLASS net/minecraft/world/item/MapItem
-	FIELD DEFAULT_MAP_COLOR I
-	FIELD IMAGE_HEIGHT I
-	FIELD IMAGE_WIDTH I
-	FIELD TAG_MAP Ljava/lang/String;
-	METHOD <init> (Lnet/minecraft/world/item/Item$Properties;)V
 	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
 		COMMENT allows items to add custom lines of information to the mouseover description
 		ARG 1 stack
@@ -17,13 +12,8 @@ CLASS net/minecraft/world/item/MapItem
 		ARG 3 scale
 		ARG 4 trackingPosition
 		ARG 5 unlimitedTracking
-	METHOD createAndStoreSavedData (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;IIIZZLnet/minecraft/resources/ResourceKey;)V
-	METHOD createNewSavedData (Lnet/minecraft/world/level/Level;IIIZZLnet/minecraft/resources/ResourceKey;)I
 	METHOD getColor (Lnet/minecraft/world/item/ItemStack;)I
 		ARG 0 stack
-	METHOD getCorrectStateForFluidBlock (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-	METHOD getMapId (Lnet/minecraft/world/item/ItemStack;)Ljava/lang/Integer;
-	METHOD getSavedData (Ljava/lang/Integer;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
 	METHOD getSavedData (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
 		ARG 0 stack
 		ARG 1 level
@@ -38,8 +28,6 @@ CLASS net/minecraft/world/item/MapItem
 		ARG 3 entity
 		ARG 4 itemSlot
 		ARG 5 isSelected
-	METHOD isLand ([Lnet/minecraft/world/level/biome/Biome;III)Z
-	METHOD lockMap (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)V
 	METHOD makeKey (I)Ljava/lang/String;
 		ARG 0 mapId
 	METHOD onCraftedBy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)V
@@ -47,9 +35,6 @@ CLASS net/minecraft/world/item/MapItem
 		ARG 1 stack
 		ARG 2 level
 		ARG 3 player
-	METHOD renderBiomePreviewMap (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
-	METHOD scaleMap (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;I)V
-	METHOD storeMapData (Lnet/minecraft/world/item/ItemStack;I)V
 	METHOD update (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
 		ARG 1 level
 		ARG 2 viewer

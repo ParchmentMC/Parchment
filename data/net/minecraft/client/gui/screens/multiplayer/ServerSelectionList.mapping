@@ -1,46 +1,13 @@
 CLASS net/minecraft/client/gui/screens/multiplayer/ServerSelectionList
-	FIELD CANT_CONNECT_TEXT Lnet/minecraft/network/chat/Component;
-	FIELD CANT_RESOLVE_TEXT Lnet/minecraft/network/chat/Component;
-	FIELD ICON_MISSING Lnet/minecraft/resources/ResourceLocation;
-	FIELD ICON_OVERLAY_LOCATION Lnet/minecraft/resources/ResourceLocation;
-	FIELD INCOMPATIBLE_TOOLTIP Lnet/minecraft/network/chat/Component;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD NO_CONNECTION_TOOLTIP Lnet/minecraft/network/chat/Component;
-	FIELD PINGING_TOOLTIP Lnet/minecraft/network/chat/Component;
-	FIELD SCANNING_LABEL Lnet/minecraft/network/chat/Component;
-	FIELD THREAD_POOL Ljava/util/concurrent/ThreadPoolExecutor;
-	FIELD lanHeader Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList$Entry;
-	FIELD networkServers Ljava/util/List;
-	FIELD onlineServers Ljava/util/List;
-	FIELD screen Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;Lnet/minecraft/client/Minecraft;IIIII)V
-	METHOD access$000 (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList;Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
-	METHOD access$100 (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList;I)I
-	METHOD getRowWidth ()I
-	METHOD getScrollbarPosition ()I
-	METHOD isFocused ()Z
 	METHOD keyPressed (III)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
-	METHOD lambda$moveSelection$2 (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList$Entry;)Z
-	METHOD lambda$refreshEntries$0 (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList;Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
-	METHOD lambda$refreshEntries$1 (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList;Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
 	METHOD moveSelection (Lnet/minecraft/client/gui/components/AbstractSelectionList$SelectionDirection;)V
 		ARG 1 ordering
-	METHOD refreshEntries ()V
-	METHOD setSelected (Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
 	METHOD setSelected (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList$Entry;)V
 		ARG 1 entry
-	METHOD updateNetworkServers (Ljava/util/List;)V
-	METHOD updateOnlineServers (Lnet/minecraft/client/multiplayer/ServerList;)V
-	CLASS Entry
-		METHOD <init> ()V
 	CLASS LANHeader
-		FIELD minecraft Lnet/minecraft/client/Minecraft;
-		METHOD <init> ()V
-		METHOD getNarration ()Lnet/minecraft/network/chat/Component;
 		METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIZF)V
 			ARG 1 matrixStack
 			ARG 2 index
@@ -53,17 +20,6 @@ CLASS net/minecraft/client/gui/screens/multiplayer/ServerSelectionList
 			ARG 9 isMouseOver
 			ARG 10 partialTicks
 	CLASS NetworkServerEntry
-		FIELD HIDDEN_ADDRESS_TEXT Lnet/minecraft/network/chat/Component;
-		FIELD ICON_WIDTH I
-		FIELD LAN_SERVER_HEADER Lnet/minecraft/network/chat/Component;
-		FIELD lastClickTime J
-		FIELD minecraft Lnet/minecraft/client/Minecraft;
-		FIELD screen Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;
-		FIELD serverData Lnet/minecraft/client/server/LanServer;
-		METHOD <clinit> ()V
-		METHOD <init> (Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;Lnet/minecraft/client/server/LanServer;)V
-		METHOD getNarration ()Lnet/minecraft/network/chat/Component;
-		METHOD getServerData ()Lnet/minecraft/client/server/LanServer;
 		METHOD mouseClicked (DDI)Z
 			ARG 1 mouseX
 			ARG 3 mouseY
@@ -80,33 +36,10 @@ CLASS net/minecraft/client/gui/screens/multiplayer/ServerSelectionList
 			ARG 9 isMouseOver
 			ARG 10 partialTicks
 	CLASS OnlineServerEntry
-		FIELD ICON_HEIGHT I
-		FIELD ICON_OVERLAY_X_MOVE_DOWN I
-		FIELD ICON_OVERLAY_X_MOVE_LEFT I
-		FIELD ICON_OVERLAY_X_MOVE_RIGHT I
-		FIELD ICON_OVERLAY_X_MOVE_UP I
-		FIELD ICON_OVERLAY_Y_SELECTED I
-		FIELD ICON_OVERLAY_Y_UNSELECTED I
-		FIELD ICON_WIDTH I
-		FIELD icon Lnet/minecraft/client/renderer/texture/DynamicTexture;
-		FIELD iconLocation Lnet/minecraft/resources/ResourceLocation;
-		FIELD lastClickTime J
-		FIELD lastIconB64 Ljava/lang/String;
-		FIELD minecraft Lnet/minecraft/client/Minecraft;
-		FIELD screen Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;
-		FIELD serverData Lnet/minecraft/client/multiplayer/ServerData;
-		FIELD this$0 Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList;
-		METHOD <init> (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList;Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;Lnet/minecraft/client/multiplayer/ServerData;)V
-		METHOD canJoin ()Z
-		METHOD drawIcon (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/resources/ResourceLocation;)V
-		METHOD getNarration ()Lnet/minecraft/network/chat/Component;
-		METHOD getServerData ()Lnet/minecraft/client/multiplayer/ServerData;
 		METHOD keyPressed (III)Z
 			ARG 1 keyCode
 			ARG 2 scanCode
 			ARG 3 modifiers
-		METHOD lambda$render$0 ()V
-		METHOD lambda$render$1 ()V
 		METHOD mouseClicked (DDI)Z
 			ARG 1 mouseX
 			ARG 3 mouseY
@@ -122,6 +55,3 @@ CLASS net/minecraft/client/gui/screens/multiplayer/ServerSelectionList
 			ARG 8 mouseY
 			ARG 9 isMouseOver
 			ARG 10 partialTicks
-		METHOD swap (II)V
-		METHOD updateServerList ()V
-		METHOD uploadServerIcon (Ljava/lang/String;)Z

@@ -1,40 +1,20 @@
 CLASS net/minecraft/client/model/HumanoidModel
-	FIELD HAT_OVERLAY_SCALE F
-	FIELD OVERLAY_SCALE F
-	FIELD SPYGLASS_ARM_CROUCH_ROT_X F
-	FIELD SPYGLASS_ARM_ROT_X F
-	FIELD SPYGLASS_ARM_ROT_Y F
-	FIELD body Lnet/minecraft/client/model/geom/ModelPart;
-	FIELD crouching Z
 	FIELD hat Lnet/minecraft/client/model/geom/ModelPart;
 		COMMENT The Biped's Headwear. Used for the outer layer of player skins.
-	FIELD head Lnet/minecraft/client/model/geom/ModelPart;
 	FIELD leftArm Lnet/minecraft/client/model/geom/ModelPart;
 		COMMENT The Biped's Left Arm
-	FIELD leftArmPose Lnet/minecraft/client/model/HumanoidModel$ArmPose;
 	FIELD leftLeg Lnet/minecraft/client/model/geom/ModelPart;
 		COMMENT The Biped's Left Leg
 	FIELD rightArm Lnet/minecraft/client/model/geom/ModelPart;
 		COMMENT The Biped's Right Arm
-	FIELD rightArmPose Lnet/minecraft/client/model/HumanoidModel$ArmPose;
 	FIELD rightLeg Lnet/minecraft/client/model/geom/ModelPart;
 		COMMENT The Biped's Right Leg
-	FIELD swimAmount F
-	METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;)V
-	METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;Ljava/util/function/Function;)V
-	METHOD bodyParts ()Ljava/lang/Iterable;
 	METHOD copyPropertiesTo (Lnet/minecraft/client/model/HumanoidModel;)V
 		ARG 1 model
-	METHOD createMesh (Lnet/minecraft/client/model/geom/builders/CubeDeformation;F)Lnet/minecraft/client/model/geom/builders/MeshDefinition;
 	METHOD getArm (Lnet/minecraft/world/entity/HumanoidArm;)Lnet/minecraft/client/model/geom/ModelPart;
 		ARG 1 side
 	METHOD getAttackArm (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/entity/HumanoidArm;
 		ARG 1 entity
-	METHOD getHead ()Lnet/minecraft/client/model/geom/ModelPart;
-	METHOD headParts ()Ljava/lang/Iterable;
-	METHOD poseLeftArm (Lnet/minecraft/world/entity/LivingEntity;)V
-	METHOD poseRightArm (Lnet/minecraft/world/entity/LivingEntity;)V
-	METHOD prepareMobModel (Lnet/minecraft/world/entity/Entity;FFF)V
 	METHOD prepareMobModel (Lnet/minecraft/world/entity/LivingEntity;FFF)V
 		ARG 1 entity
 		ARG 2 limbSwing
@@ -48,7 +28,6 @@ CLASS net/minecraft/client/model/HumanoidModel
 		ARG 3 mul
 	METHOD setAllVisible (Z)V
 		ARG 1 visible
-	METHOD setupAnim (Lnet/minecraft/world/entity/Entity;FFFFF)V
 	METHOD setupAnim (Lnet/minecraft/world/entity/LivingEntity;FFFFF)V
 		COMMENT Sets this entity's model rotation angles
 		ARG 1 entity
@@ -57,27 +36,6 @@ CLASS net/minecraft/client/model/HumanoidModel
 		ARG 4 ageInTicks
 		ARG 5 netHeadYaw
 		ARG 6 headPitch
-	METHOD setupAttackAnimation (Lnet/minecraft/world/entity/LivingEntity;F)V
 	METHOD translateToHand (Lnet/minecraft/world/entity/HumanoidArm;Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 side
 		ARG 2 matrixStack
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$client$model$HumanoidModel$ArmPose [I
-		METHOD <clinit> ()V
-	CLASS ArmPose
-		FIELD $VALUES [Lnet/minecraft/client/model/HumanoidModel$ArmPose;
-		FIELD BLOCK Lnet/minecraft/client/model/HumanoidModel$ArmPose;
-		FIELD BOW_AND_ARROW Lnet/minecraft/client/model/HumanoidModel$ArmPose;
-		FIELD CROSSBOW_CHARGE Lnet/minecraft/client/model/HumanoidModel$ArmPose;
-		FIELD CROSSBOW_HOLD Lnet/minecraft/client/model/HumanoidModel$ArmPose;
-		FIELD EMPTY Lnet/minecraft/client/model/HumanoidModel$ArmPose;
-		FIELD ITEM Lnet/minecraft/client/model/HumanoidModel$ArmPose;
-		FIELD SPYGLASS Lnet/minecraft/client/model/HumanoidModel$ArmPose;
-		FIELD THROW_SPEAR Lnet/minecraft/client/model/HumanoidModel$ArmPose;
-		FIELD twoHanded Z
-		METHOD $values ()[Lnet/minecraft/client/model/HumanoidModel$ArmPose;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;IZ)V
-		METHOD isTwoHanded ()Z
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/client/model/HumanoidModel$ArmPose;
-		METHOD values ()[Lnet/minecraft/client/model/HumanoidModel$ArmPose;

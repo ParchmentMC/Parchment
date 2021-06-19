@@ -1,28 +1,4 @@
 CLASS net/minecraft/world/inventory/AbstractContainerMenu
-	FIELD CARRIED_SLOT_SIZE I
-	FIELD QUICKCRAFT_HEADER_CONTINUE I
-	FIELD QUICKCRAFT_HEADER_END I
-	FIELD QUICKCRAFT_HEADER_START I
-	FIELD QUICKCRAFT_TYPE_CHARITABLE I
-	FIELD QUICKCRAFT_TYPE_CLONE I
-	FIELD QUICKCRAFT_TYPE_GREEDY I
-	FIELD SLOT_CLICKED_OUTSIDE I
-	FIELD carried Lnet/minecraft/world/item/ItemStack;
-	FIELD containerId I
-	FIELD containerListeners Ljava/util/List;
-	FIELD dataSlots Ljava/util/List;
-	FIELD lastSlots Lnet/minecraft/core/NonNullList;
-	FIELD menuType Lnet/minecraft/world/inventory/MenuType;
-	FIELD quickcraftSlots Ljava/util/Set;
-	FIELD quickcraftStatus I
-	FIELD quickcraftType I
-	FIELD remoteCarried Lnet/minecraft/world/item/ItemStack;
-	FIELD remoteDataSlots Lit/unimi/dsi/fastutil/ints/IntList;
-	FIELD remoteSlots Lnet/minecraft/core/NonNullList;
-	FIELD slots Lnet/minecraft/core/NonNullList;
-	FIELD suppressRemoteUpdates Z
-	FIELD synchronizer Lnet/minecraft/world/inventory/ContainerSynchronizer;
-	METHOD <init> (Lnet/minecraft/world/inventory/MenuType;I)V
 	METHOD addDataSlot (Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
 		ARG 1 intValue
 	METHOD addDataSlots (Lnet/minecraft/world/inventory/ContainerData;)V
@@ -52,15 +28,10 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 	METHOD checkContainerSize (Lnet/minecraft/world/Container;I)V
 		ARG 0 inventory
 		ARG 1 minSize
-	METHOD clearContainer (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/Container;)V
 	METHOD clickMenuButton (Lnet/minecraft/world/entity/player/Player;I)Z
 		COMMENT Handles the given Button-click on the server, currently only used by enchanting. Name is for legacy.
 		ARG 1 player
 		ARG 2 id
-	METHOD clicked (IILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
-	METHOD createCarriedSlotAccess ()Lnet/minecraft/world/entity/SlotAccess;
-	METHOD doClick (IILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
-	METHOD getCarried ()Lnet/minecraft/world/item/ItemStack;
 	METHOD getItems ()Lnet/minecraft/core/NonNullList;
 		COMMENT returns a list if itemStacks, for each slot.
 	METHOD getQuickCraftSlotCount (Ljava/util/Set;ILnet/minecraft/world/item/ItemStack;I)V
@@ -72,7 +43,6 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 	METHOD getQuickcraftHeader (I)I
 		COMMENT Args : clickedButton, Returns (0 : start drag, 1 : add slot, 2 : end drag)
 		ARG 0 clickedButton
-	METHOD getQuickcraftMask (II)I
 	METHOD getQuickcraftType (I)I
 		COMMENT Extracts the drag mode. Args : eventButton. Return (0 : evenly split, 1 : one item by slot, 2 : not used ?)
 		ARG 0 eventButton
@@ -83,15 +53,9 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 		ARG 0 inv
 	METHOD getSlot (I)Lnet/minecraft/world/inventory/Slot;
 		ARG 1 slotId
-	METHOD getType ()Lnet/minecraft/world/inventory/MenuType;
 	METHOD isValidQuickcraftType (ILnet/minecraft/world/entity/player/Player;)Z
 		ARG 0 dragMode
 		ARG 1 player
-	METHOD lambda$clicked$1 ()Ljava/lang/String;
-	METHOD lambda$clicked$2 ()Ljava/lang/String;
-	METHOD lambda$doClick$3 (Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
-	METHOD lambda$doClick$4 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
-	METHOD lambda$stillValid$0 (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
 	METHOD moveItemStackTo (Lnet/minecraft/world/item/ItemStack;IIZ)Z
 		COMMENT Merges provided ItemStack with the first avaliable one in the container/player inventor between minIndex (included) and maxIndex (excluded). Args : stack, minIndex, maxIndex, negativDirection. /!\ the Container implementation do not check if the item is valid for the slot
 		ARG 1 stack
@@ -110,10 +74,6 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 		ARG 1 player
 	METHOD resetQuickCraft ()V
 		COMMENT Reset the drag fields
-	METHOD resumeRemoteUpdates ()V
-	METHOD sendAllDataToRemote ()V
-	METHOD setAll (Ljava/util/List;)V
-	METHOD setCarried (Lnet/minecraft/world/item/ItemStack;)V
 	METHOD setData (II)V
 		ARG 1 id
 		ARG 2 data
@@ -121,9 +81,6 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 		COMMENT Puts an ItemStack in a slot.
 		ARG 1 slotID
 		ARG 2 stack
-	METHOD setRemoteCarried (Lnet/minecraft/world/item/ItemStack;)V
-	METHOD setRemoteSlot (ILnet/minecraft/world/item/ItemStack;)V
-	METHOD setSynchronizer (Lnet/minecraft/world/inventory/ContainerSynchronizer;)V
 	METHOD slotsChanged (Lnet/minecraft/world/Container;)V
 		COMMENT Callback for when the crafting matrix is changed.
 		ARG 1 inventory
@@ -134,14 +91,3 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 		ARG 0 levelPos
 		ARG 1 player
 		ARG 2 targetBlock
-	METHOD suppressRemoteUpdates ()V
-	METHOD synchronizeCarriedToRemote ()V
-	METHOD synchronizeDataSlotToRemote (II)V
-	METHOD synchronizeSlotToRemote (ILnet/minecraft/world/item/ItemStack;Ljava/util/function/Supplier;)V
-	METHOD transferState (Lnet/minecraft/world/inventory/AbstractContainerMenu;)V
-	METHOD triggerSlotListeners (ILnet/minecraft/world/item/ItemStack;Ljava/util/function/Supplier;)V
-	CLASS 1
-		FIELD this$0 Lnet/minecraft/world/inventory/AbstractContainerMenu;
-		METHOD <init> (Lnet/minecraft/world/inventory/AbstractContainerMenu;)V
-		METHOD get ()Lnet/minecraft/world/item/ItemStack;
-		METHOD set (Lnet/minecraft/world/item/ItemStack;)Z

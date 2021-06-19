@@ -1,46 +1,6 @@
 CLASS com/mojang/realmsclient/gui/RealmsWorldSlotButton
-	FIELD DEFAULT_WORLD_SLOT_1 Lnet/minecraft/resources/ResourceLocation;
-	FIELD DEFAULT_WORLD_SLOT_2 Lnet/minecraft/resources/ResourceLocation;
-	FIELD DEFAULT_WORLD_SLOT_3 Lnet/minecraft/resources/ResourceLocation;
-	FIELD EMPTY_SLOT_LOCATION Lnet/minecraft/resources/ResourceLocation;
-	FIELD SLOT_ACTIVE_TOOLTIP Lnet/minecraft/network/chat/Component;
-	FIELD SLOT_FRAME_LOCATION Lnet/minecraft/resources/ResourceLocation;
-	FIELD SWITCH_TO_MINIGAME_SLOT_TOOLTIP Lnet/minecraft/network/chat/Component;
-	FIELD SWITCH_TO_WORLD_SLOT_TOOLTIP Lnet/minecraft/network/chat/Component;
-	FIELD animTick I
-	FIELD serverDataProvider Ljava/util/function/Supplier;
-	FIELD slotIndex I
-	FIELD state Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$State;
-	FIELD toolTipSetter Ljava/util/function/Consumer;
-	METHOD <clinit> ()V
-	METHOD <init> (IIIILjava/util/function/Supplier;Ljava/util/function/Consumer;ILnet/minecraft/client/gui/components/Button$OnPress;)V
-	METHOD drawSlotFrame (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIZLjava/lang/String;IJLjava/lang/String;ZZLcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;Lnet/minecraft/network/chat/Component;)V
-	METHOD getAction (Lcom/mojang/realmsclient/dto/RealmsServer;ZZ)Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
-	METHOD getState ()Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$State;
-	METHOD getTooltipAndNarration (Lcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/String;ZZLcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;)Lcom/mojang/datafixers/util/Pair;
 	METHOD renderButton (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 matrixStack
 		ARG 2 mouseX
 		ARG 3 mouseY
 		ARG 4 partialTicks
-	METHOD tick ()V
-	CLASS Action
-		FIELD $VALUES [Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
-		FIELD JOIN Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
-		FIELD NOTHING Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
-		FIELD SWITCH_SLOT Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
-		METHOD $values ()[Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
-		METHOD valueOf (Ljava/lang/String;)Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
-		METHOD values ()[Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
-	CLASS State
-		FIELD action Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
-		FIELD actionPrompt Lnet/minecraft/network/chat/Component;
-		FIELD empty Z
-		FIELD image Ljava/lang/String;
-		FIELD imageId J
-		FIELD isCurrentlyActiveSlot Z
-		FIELD minigame Z
-		FIELD slotName Ljava/lang/String;
-		METHOD <init> (ZLjava/lang/String;JLjava/lang/String;ZZLcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;Lnet/minecraft/network/chat/Component;)V

@@ -1,32 +1,16 @@
 CLASS net/minecraft/network/protocol/game/ClientboundCommandsPacket
-	FIELD FLAG_CUSTOM_SUGGESTIONS B
-	FIELD FLAG_EXECUTABLE B
-	FIELD FLAG_REDIRECT B
-	FIELD MASK_TYPE B
-	FIELD TYPE_ARGUMENT B
-	FIELD TYPE_LITERAL B
-	FIELD TYPE_ROOT B
-	FIELD root Lcom/mojang/brigadier/tree/RootCommandNode;
-	METHOD <init> (Lcom/mojang/brigadier/tree/RootCommandNode;)V
-	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 	METHOD createBuilder (Lnet/minecraft/network/FriendlyByteBuf;B)Lcom/mojang/brigadier/builder/ArgumentBuilder;
 		ARG 0 buffer
 		ARG 1 buf
 		ARG 2 flags
 	METHOD enumerateNodes (Lcom/mojang/brigadier/tree/RootCommandNode;)Lit/unimi/dsi/fastutil/objects/Object2IntMap;
 		ARG 0 rootNode
-	METHOD getNodesInIdOrder (Lit/unimi/dsi/fastutil/objects/Object2IntMap;)Ljava/util/List;
-	METHOD getRoot ()Lcom/mojang/brigadier/tree/RootCommandNode;
-	METHOD handle (Lnet/minecraft/network/PacketListener;)V
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
-	METHOD lambda$resolveEntries$1 (Ljava/util/List;Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$Entry;)Z
-	METHOD lambda$write$0 (Lit/unimi/dsi/fastutil/objects/Object2IntMap;Lnet/minecraft/network/FriendlyByteBuf;Lcom/mojang/brigadier/tree/CommandNode;)V
 	METHOD readNode (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$Entry;
 		ARG 0 buffer
 		ARG 1 buf
-	METHOD resolveEntries (Ljava/util/List;)V
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buf
@@ -35,12 +19,3 @@ CLASS net/minecraft/network/protocol/game/ClientboundCommandsPacket
 		ARG 1 buf
 		ARG 2 node
 		ARG 3 nodeIds
-	CLASS Entry
-		FIELD builder Lcom/mojang/brigadier/builder/ArgumentBuilder;
-		FIELD children [I
-		FIELD flags B
-		FIELD node Lcom/mojang/brigadier/tree/CommandNode;
-		FIELD redirect I
-		METHOD <init> (Lcom/mojang/brigadier/builder/ArgumentBuilder;BI[I)V
-		METHOD build (Ljava/util/List;)Z
-		METHOD lambda$build$0 (Lcom/mojang/brigadier/context/CommandContext;)I

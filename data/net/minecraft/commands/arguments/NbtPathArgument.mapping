@@ -1,115 +1,30 @@
 CLASS net/minecraft/commands/arguments/NbtPathArgument
-	FIELD ERROR_INVALID_NODE Lcom/mojang/brigadier/exceptions/SimpleCommandExceptionType;
-	FIELD ERROR_NOTHING_FOUND Lcom/mojang/brigadier/exceptions/DynamicCommandExceptionType;
-	FIELD EXAMPLES Ljava/util/Collection;
-	FIELD INDEX_MATCH_END C
-	FIELD INDEX_MATCH_START C
-	FIELD KEY_MATCH_END C
-	FIELD KEY_MATCH_START C
-	FIELD QUOTED_KEY_START C
-	METHOD <clinit> ()V
-	METHOD <init> ()V
-	METHOD createTagPredicate (Lnet/minecraft/nbt/CompoundTag;)Ljava/util/function/Predicate;
-	METHOD getExamples ()Ljava/util/Collection;
 	METHOD getPath (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;
 		ARG 0 context
 		ARG 1 name
 	METHOD isAllowedInUnquotedName (C)Z
 		COMMENT Returns true if the given character is normal for a tag name, and false if it has special meaning for paths.
 		ARG 0 ch
-	METHOD lambda$createTagPredicate$1 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)Z
-	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
-	METHOD nbtPath ()Lnet/minecraft/commands/arguments/NbtPathArgument;
-	METHOD parse (Lcom/mojang/brigadier/StringReader;)Ljava/lang/Object;
-	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;
-	METHOD parseNode (Lcom/mojang/brigadier/StringReader;Z)Lnet/minecraft/commands/arguments/NbtPathArgument$Node;
-	METHOD readObjectNode (Lcom/mojang/brigadier/StringReader;Ljava/lang/String;)Lnet/minecraft/commands/arguments/NbtPathArgument$Node;
 	METHOD readUnquotedName (Lcom/mojang/brigadier/StringReader;)Ljava/lang/String;
 		COMMENT Reads a tag name until the next special character. Throws if the result would be a 0-length string. Does not handle quoted tag names.
 	CLASS AllElementsNode
-		FIELD INSTANCE Lnet/minecraft/commands/arguments/NbtPathArgument$AllElementsNode;
-		METHOD <clinit> ()V
-		METHOD <init> ()V
 		METHOD createPreferredParentTag ()Lnet/minecraft/nbt/Tag;
 			COMMENT Creates an empty element of the type read by this node.
-		METHOD getOrCreateTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;Ljava/util/List;)V
-		METHOD getTag (Lnet/minecraft/nbt/Tag;Ljava/util/List;)V
-		METHOD removeTag (Lnet/minecraft/nbt/Tag;)I
-		METHOD setTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;)I
 	CLASS CompoundChildNode
-		FIELD name Ljava/lang/String;
-		METHOD <init> (Ljava/lang/String;)V
 		METHOD createPreferredParentTag ()Lnet/minecraft/nbt/Tag;
 			COMMENT Creates an empty element of the type read by this node.
-		METHOD getOrCreateTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;Ljava/util/List;)V
-		METHOD getTag (Lnet/minecraft/nbt/Tag;Ljava/util/List;)V
-		METHOD removeTag (Lnet/minecraft/nbt/Tag;)I
-		METHOD setTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;)I
 	CLASS IndexedElementNode
-		FIELD index I
-		METHOD <init> (I)V
 		METHOD createPreferredParentTag ()Lnet/minecraft/nbt/Tag;
 			COMMENT Creates an empty element of the type read by this node.
-		METHOD getOrCreateTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;Ljava/util/List;)V
-		METHOD getTag (Lnet/minecraft/nbt/Tag;Ljava/util/List;)V
-		METHOD removeTag (Lnet/minecraft/nbt/Tag;)I
-		METHOD setTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;)I
 	CLASS MatchElementNode
-		FIELD pattern Lnet/minecraft/nbt/CompoundTag;
-		FIELD predicate Ljava/util/function/Predicate;
-		METHOD <init> (Lnet/minecraft/nbt/CompoundTag;)V
 		METHOD createPreferredParentTag ()Lnet/minecraft/nbt/Tag;
 			COMMENT Creates an empty element of the type read by this node.
-		METHOD getOrCreateTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;Ljava/util/List;)V
-		METHOD getTag (Lnet/minecraft/nbt/Tag;Ljava/util/List;)V
-		METHOD lambda$getOrCreateTag$0 (Ljava/util/List;Lorg/apache/commons/lang3/mutable/MutableBoolean;Lnet/minecraft/nbt/Tag;)V
-		METHOD removeTag (Lnet/minecraft/nbt/Tag;)I
-		METHOD setTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;)I
 	CLASS MatchObjectNode
-		FIELD name Ljava/lang/String;
-		FIELD pattern Lnet/minecraft/nbt/CompoundTag;
-		FIELD predicate Ljava/util/function/Predicate;
-		METHOD <init> (Ljava/lang/String;Lnet/minecraft/nbt/CompoundTag;)V
 		METHOD createPreferredParentTag ()Lnet/minecraft/nbt/Tag;
 			COMMENT Creates an empty element of the type read by this node.
-		METHOD getOrCreateTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;Ljava/util/List;)V
-		METHOD getTag (Lnet/minecraft/nbt/Tag;Ljava/util/List;)V
-		METHOD removeTag (Lnet/minecraft/nbt/Tag;)I
-		METHOD setTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;)I
 	CLASS MatchRootObjectNode
-		FIELD predicate Ljava/util/function/Predicate;
-		METHOD <init> (Lnet/minecraft/nbt/CompoundTag;)V
 		METHOD createPreferredParentTag ()Lnet/minecraft/nbt/Tag;
 			COMMENT Creates an empty element of the type read by this node.
-		METHOD getOrCreateTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;Ljava/util/List;)V
-		METHOD getTag (Lnet/minecraft/nbt/Tag;Ljava/util/List;)V
-		METHOD removeTag (Lnet/minecraft/nbt/Tag;)I
-		METHOD setTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;)I
-	CLASS NbtPath
-		FIELD nodeToOriginalPosition Lit/unimi/dsi/fastutil/objects/Object2IntMap;
-		FIELD nodes [Lnet/minecraft/commands/arguments/NbtPathArgument$Node;
-		FIELD original Ljava/lang/String;
-		METHOD <init> (Ljava/lang/String;[Lnet/minecraft/commands/arguments/NbtPathArgument$Node;Lit/unimi/dsi/fastutil/objects/Object2IntMap;)V
-		METHOD apply (Ljava/util/List;Ljava/util/function/Function;)I
-		METHOD countMatching (Lnet/minecraft/nbt/Tag;)I
-		METHOD createNotFoundException (Lnet/minecraft/commands/arguments/NbtPathArgument$Node;)Lcom/mojang/brigadier/exceptions/CommandSyntaxException;
-		METHOD get (Lnet/minecraft/nbt/Tag;)Ljava/util/List;
-		METHOD getOrCreate (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;)Ljava/util/List;
-		METHOD getOrCreateParents (Lnet/minecraft/nbt/Tag;)Ljava/util/List;
-		METHOD lambda$apply$0 (Ljava/lang/Integer;Ljava/lang/Integer;)Ljava/lang/Integer;
-		METHOD lambda$set$1 (Lnet/minecraft/commands/arguments/NbtPathArgument$Node;Ljava/util/function/Supplier;Lnet/minecraft/nbt/Tag;)Ljava/lang/Integer;
-		METHOD remove (Lnet/minecraft/nbt/Tag;)I
-		METHOD set (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;)I
-		METHOD set (Lnet/minecraft/nbt/Tag;Lnet/minecraft/nbt/Tag;)I
-		METHOD toString ()Ljava/lang/String;
 	CLASS Node
-		METHOD collect (Ljava/util/List;Ljava/util/function/BiConsumer;)Ljava/util/List;
 		METHOD createPreferredParentTag ()Lnet/minecraft/nbt/Tag;
 			COMMENT Creates an empty element of the type read by this node.
-		METHOD get (Ljava/util/List;)Ljava/util/List;
-		METHOD getOrCreate (Ljava/util/List;Ljava/util/function/Supplier;)Ljava/util/List;
-		METHOD getOrCreateTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;Ljava/util/List;)V
-		METHOD getTag (Lnet/minecraft/nbt/Tag;Ljava/util/List;)V
-		METHOD lambda$getOrCreate$0 (Ljava/util/function/Supplier;Lnet/minecraft/nbt/Tag;Ljava/util/List;)V
-		METHOD removeTag (Lnet/minecraft/nbt/Tag;)I
-		METHOD setTag (Lnet/minecraft/nbt/Tag;Ljava/util/function/Supplier;)I

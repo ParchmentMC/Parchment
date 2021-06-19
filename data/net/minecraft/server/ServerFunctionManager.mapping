@@ -1,54 +1,15 @@
 CLASS net/minecraft/server/ServerFunctionManager
-	FIELD LOAD_FUNCTION_TAG Lnet/minecraft/resources/ResourceLocation;
-	FIELD NO_RECURSIVE_TRACES Lnet/minecraft/network/chat/Component;
-	FIELD TICK_FUNCTION_TAG Lnet/minecraft/resources/ResourceLocation;
-	FIELD context Lnet/minecraft/server/ServerFunctionManager$ExecutionContext;
-	FIELD library Lnet/minecraft/server/ServerFunctionLibrary;
-	FIELD postReload Z
-	FIELD server Lnet/minecraft/server/MinecraftServer;
-	FIELD ticking Ljava/util/List;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/ServerFunctionLibrary;)V
 	METHOD execute (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;)I
 		ARG 1 functionObject
 		ARG 2 source
-	METHOD execute (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/ServerFunctionManager$TraceCallbacks;)I
 	METHOD executeTagFunctions (Ljava/util/Collection;Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 functionObjects
 		ARG 2 identifier
 	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
 		ARG 1 functionIdentifier
-	METHOD getCommandLimit ()I
-	METHOD getDispatcher ()Lcom/mojang/brigadier/CommandDispatcher;
-	METHOD getFunctionNames ()Ljava/lang/Iterable;
-	METHOD getGameLoopSender ()Lnet/minecraft/commands/CommandSourceStack;
 	METHOD getTag (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/tags/Tag;
 		ARG 1 functionTagIdentifier
-	METHOD getTagNames ()Ljava/lang/Iterable;
 	METHOD postReload (Lnet/minecraft/server/ServerFunctionLibrary;)V
 		ARG 1 reloader
 	METHOD replaceLibrary (Lnet/minecraft/server/ServerFunctionLibrary;)V
 		ARG 1 reloader
-	METHOD tick ()V
-	CLASS ExecutionContext
-		FIELD commandQueue Ljava/util/Deque;
-		FIELD depth I
-		FIELD nestedCalls Ljava/util/List;
-		FIELD this$0 Lnet/minecraft/server/ServerFunctionManager;
-		FIELD tracer Lnet/minecraft/server/ServerFunctionManager$TraceCallbacks;
-		METHOD <init> (Lnet/minecraft/server/ServerFunctionManager;Lnet/minecraft/server/ServerFunctionManager$TraceCallbacks;)V
-		METHOD delayFunctionCall (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;)V
-		METHOD reportError (Ljava/lang/String;)V
-		METHOD runTopCommand (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;)I
-	CLASS QueuedCommand
-		FIELD depth I
-		FIELD entry Lnet/minecraft/commands/CommandFunction$Entry;
-		FIELD sender Lnet/minecraft/commands/CommandSourceStack;
-		METHOD <init> (Lnet/minecraft/commands/CommandSourceStack;ILnet/minecraft/commands/CommandFunction$Entry;)V
-		METHOD execute (Lnet/minecraft/server/ServerFunctionManager;Ljava/util/Deque;ILnet/minecraft/server/ServerFunctionManager$TraceCallbacks;)V
-		METHOD toString ()Ljava/lang/String;
-	CLASS TraceCallbacks
-		METHOD onCall (ILnet/minecraft/resources/ResourceLocation;I)V
-		METHOD onCommand (ILjava/lang/String;)V
-		METHOD onError (ILjava/lang/String;)V
-		METHOD onReturn (ILjava/lang/String;I)V

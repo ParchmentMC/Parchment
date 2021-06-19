@@ -1,21 +1,10 @@
 CLASS net/minecraft/commands/synchronization/ArgumentTypes
-	FIELD BY_CLASS Ljava/util/Map;
-	FIELD BY_NAME Ljava/util/Map;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	METHOD <clinit> ()V
-	METHOD <init> ()V
-	METHOD bootStrap ()V
 	METHOD deserialize (Lnet/minecraft/network/FriendlyByteBuf;)Lcom/mojang/brigadier/arguments/ArgumentType;
 		ARG 0 buffer
-	METHOD findUsedArgumentTypes (Lcom/mojang/brigadier/tree/CommandNode;)Ljava/util/Set;
-	METHOD findUsedArgumentTypes (Lcom/mojang/brigadier/tree/CommandNode;Ljava/util/Set;Ljava/util/Set;)V
 	METHOD get (Lcom/mojang/brigadier/arguments/ArgumentType;)Lnet/minecraft/commands/synchronization/ArgumentTypes$Entry;
 		ARG 0 type
 	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/commands/synchronization/ArgumentTypes$Entry;
 		ARG 0 id
-	METHOD isTypeRegistered (Lcom/mojang/brigadier/arguments/ArgumentType;)Z
-	METHOD lambda$findUsedArgumentTypes$0 (Ljava/util/Set;Ljava/util/Set;Lcom/mojang/brigadier/tree/CommandNode;)V
-	METHOD register (Ljava/lang/String;Ljava/lang/Class;Lnet/minecraft/commands/synchronization/ArgumentSerializer;)V
 	METHOD serialize (Lnet/minecraft/network/FriendlyByteBuf;Lcom/mojang/brigadier/arguments/ArgumentType;)V
 		ARG 0 buffer
 		ARG 1 type
@@ -25,8 +14,3 @@ CLASS net/minecraft/commands/synchronization/ArgumentTypes
 	METHOD serializeToJson (Lcom/google/gson/JsonObject;Lcom/mojang/brigadier/arguments/ArgumentType;)V
 		ARG 0 json
 		ARG 1 type
-	CLASS Entry
-		FIELD clazz Ljava/lang/Class;
-		FIELD name Lnet/minecraft/resources/ResourceLocation;
-		FIELD serializer Lnet/minecraft/commands/synchronization/ArgumentSerializer;
-		METHOD <init> (Ljava/lang/Class;Lnet/minecraft/commands/synchronization/ArgumentSerializer;Lnet/minecraft/resources/ResourceLocation;)V

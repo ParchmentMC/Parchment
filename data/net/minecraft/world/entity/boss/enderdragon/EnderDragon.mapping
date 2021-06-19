@@ -1,45 +1,10 @@
 CLASS net/minecraft/world/entity/boss/enderdragon/EnderDragon
-	FIELD CRYSTAL_DESTROY_TARGETING Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
-	FIELD DATA_PHASE Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD DRAGON_DEATH_TIME_KEY Ljava/lang/String;
-	FIELD DRAGON_PHASE_KEY Ljava/lang/String;
-	FIELD GROWL_INTERVAL_MAX I
-	FIELD GROWL_INTERVAL_MIN I
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD SITTING_ALLOWED_DAMAGE_PERCENTAGE F
-	FIELD body Lnet/minecraft/world/entity/boss/EnderDragonPart;
-	FIELD dragonDeathTime I
-	FIELD dragonFight Lnet/minecraft/world/level/dimension/end/EndDragonFight;
-	FIELD flapTime F
-	FIELD growlTime I
-	FIELD head Lnet/minecraft/world/entity/boss/EnderDragonPart;
-	FIELD inWall Z
-	FIELD nearestCrystal Lnet/minecraft/world/entity/boss/enderdragon/EndCrystal;
-	FIELD neck Lnet/minecraft/world/entity/boss/EnderDragonPart;
-	FIELD nodeAdjacency [I
-	FIELD nodes [Lnet/minecraft/world/level/pathfinder/Node;
-	FIELD oFlapTime F
-	FIELD openSet Lnet/minecraft/world/level/pathfinder/BinaryHeap;
-	FIELD phaseManager Lnet/minecraft/world/entity/boss/enderdragon/phases/EnderDragonPhaseManager;
-	FIELD posPointer I
-	FIELD positions [[D
-	FIELD sittingDamageReceived I
-	FIELD subEntities [Lnet/minecraft/world/entity/boss/EnderDragonPart;
-	FIELD tail1 Lnet/minecraft/world/entity/boss/EnderDragonPart;
-	FIELD tail2 Lnet/minecraft/world/entity/boss/EnderDragonPart;
-	FIELD tail3 Lnet/minecraft/world/entity/boss/EnderDragonPart;
-	FIELD wing1 Lnet/minecraft/world/entity/boss/EnderDragonPart;
-	FIELD wing2 Lnet/minecraft/world/entity/boss/EnderDragonPart;
-	FIELD yRotA F
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD addEffect (Lnet/minecraft/world/effect/MobEffectInstance;)Z
 		ARG 1 effectInstance
 	METHOD aiStep ()V
 		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
-	METHOD canAttack (Lnet/minecraft/world/entity/LivingEntity;)Z
 	METHOD canChangeDimensions ()Z
 		COMMENT Returns false if this Entity can't move between dimensions. True if it can.
 	METHOD canRide (Lnet/minecraft/world/entity/Entity;)Z
@@ -51,8 +16,6 @@ CLASS net/minecraft/world/entity/boss/enderdragon/EnderDragon
 	METHOD checkWalls (Lnet/minecraft/world/phys/AABB;)Z
 		COMMENT Destroys all blocks that aren't associated with 'The End' inside the given bounding box.
 		ARG 1 area
-	METHOD createAttributes ()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
-	METHOD defineSynchedData ()V
 	METHOD findClosestNode ()I
 		COMMENT Generates values for the fields pathPoints, and neighbors, and then returns the nearest pathPoint to the specified position.
 	METHOD findClosestNode (DDD)I
@@ -67,24 +30,18 @@ CLASS net/minecraft/world/entity/boss/enderdragon/EnderDragon
 		ARG 1 startIdx
 		ARG 2 finishIdx
 		ARG 3 andThen
-	METHOD getAmbientSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getDragonFight ()Lnet/minecraft/world/level/dimension/end/EndDragonFight;
 	METHOD getHeadLookVector (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
 	METHOD getHeadPartYOffset (I[D[D)F
 		ARG 2 spineEndOffsets
 		ARG 3 headPartOffsets
-	METHOD getHeadYOffset ()F
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getLatencyPos (IF)[D
 		COMMENT Returns a double[3] array with movement offsets, used to calculate trailing tail/neck positions. [0] = yaw offset, [1] = y offset, [2] = unused, always 0. Parameters: buffer index offset, partial ticks.
 		ARG 2 partialTicks
-	METHOD getPhaseManager ()Lnet/minecraft/world/entity/boss/enderdragon/phases/EnderDragonPhaseManager;
-	METHOD getSoundSource ()Lnet/minecraft/sounds/SoundSource;
 	METHOD getSoundVolume ()F
 		COMMENT Returns the volume for the sounds this mob makes.
-	METHOD getSubEntities ()[Lnet/minecraft/world/entity/boss/EnderDragonPart;
 	METHOD hurt (Ljava/util/List;)V
 		COMMENT Attacks all entities inside this list, dealing 5 hearts of damage.
 		ARG 1 entities
@@ -96,7 +53,6 @@ CLASS net/minecraft/world/entity/boss/enderdragon/EnderDragon
 		ARG 1 part
 		ARG 2 source
 		ARG 3 damage
-	METHOD isFlapping ()Z
 	METHOD isPickable ()Z
 		COMMENT Returns true if other Entities should be prevented from moving through this Entity.
 	METHOD kill ()V
@@ -108,7 +64,6 @@ CLASS net/minecraft/world/entity/boss/enderdragon/EnderDragon
 		ARG 1 crystal
 		ARG 2 pos
 		ARG 3 dmgSrc
-	METHOD onFlap ()V
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
@@ -122,7 +77,6 @@ CLASS net/minecraft/world/entity/boss/enderdragon/EnderDragon
 		COMMENT Create and return a new PathEntity defining a path from the start to the finish, using the connections already made by the caller, findPath.
 		ARG 1 start
 		ARG 2 finish
-	METHOD recreateFromPacket (Lnet/minecraft/network/protocol/game/ClientboundAddMobPacket;)V
 	METHOD rotWrap (D)F
 		COMMENT Simplifies the value of a number by adding/subtracting 180 to the point that the number is between -180 and 180.
 		ARG 1 angle

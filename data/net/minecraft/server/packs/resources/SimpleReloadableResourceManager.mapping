@@ -1,39 +1,12 @@
 CLASS net/minecraft/server/packs/resources/SimpleReloadableResourceManager
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD listeners Ljava/util/List;
-	FIELD namespacedPacks Ljava/util/Map;
-	FIELD namespaces Ljava/util/Set;
-	FIELD packs Ljava/util/List;
-	FIELD type Lnet/minecraft/server/packs/PackType;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/server/packs/PackType;)V
 	METHOD add (Lnet/minecraft/server/packs/PackResources;)V
 		ARG 1 resourcePack
-	METHOD clear ()V
-	METHOD close ()V
-	METHOD createReload (Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/concurrent/CompletableFuture;Ljava/util/List;)Lnet/minecraft/server/packs/resources/ReloadInstance;
-	METHOD getNamespaces ()Ljava/util/Set;
-	METHOD getResource (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/server/packs/resources/Resource;
 	METHOD getResources (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/List;
 		ARG 1 resourceLocation
 	METHOD hasResource (Lnet/minecraft/resources/ResourceLocation;)Z
 		ARG 1 path
-	METHOD lambda$createReload$0 (Ljava/util/List;)Ljava/lang/Object;
-	METHOD listPacks ()Ljava/util/stream/Stream;
 	METHOD listResources (Ljava/lang/String;Ljava/util/function/Predicate;)Ljava/util/Collection;
 		ARG 1 path
 		ARG 2 filter
 	METHOD registerReloadListener (Lnet/minecraft/server/packs/resources/PreparableReloadListener;)V
 		ARG 1 listener
-	CLASS FailingReloadInstance
-		FIELD exception Lnet/minecraft/server/packs/resources/SimpleReloadableResourceManager$ResourcePackLoadingFailure;
-		FIELD failedFuture Ljava/util/concurrent/CompletableFuture;
-		METHOD <init> (Lnet/minecraft/server/packs/resources/SimpleReloadableResourceManager$ResourcePackLoadingFailure;)V
-		METHOD checkExceptions ()V
-		METHOD done ()Ljava/util/concurrent/CompletableFuture;
-		METHOD getActualProgress ()F
-		METHOD isDone ()Z
-	CLASS ResourcePackLoadingFailure
-		FIELD pack Lnet/minecraft/server/packs/PackResources;
-		METHOD <init> (Lnet/minecraft/server/packs/PackResources;Ljava/lang/Throwable;)V
-		METHOD getPack ()Lnet/minecraft/server/packs/PackResources;

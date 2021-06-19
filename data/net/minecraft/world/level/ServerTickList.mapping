@@ -1,15 +1,6 @@
 CLASS net/minecraft/world/level/ServerTickList
-	FIELD MAX_TICK_BLOCKS_PER_TICK I
 	FIELD alreadyTicked Ljava/util/List;
 		COMMENT Entries from {@link #pendingTickListEntriesThisTick} that have already run this tick.
-	FIELD currentlyTicking Ljava/util/Queue;
-	FIELD ignore Ljava/util/function/Predicate;
-	FIELD level Lnet/minecraft/server/level/ServerLevel;
-	FIELD tickNextTickList Ljava/util/Set;
-	FIELD tickNextTickSet Ljava/util/Set;
-	FIELD ticker Ljava/util/function/Consumer;
-	FIELD toId Ljava/util/function/Function;
-	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Ljava/util/function/Predicate;Ljava/util/function/Function;Ljava/util/function/Consumer;)V
 	METHOD addTickData (Lnet/minecraft/world/level/TickNextTickData;)V
 		ARG 1 entry
 	METHOD copy (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/BlockPos;)V
@@ -42,8 +33,6 @@ CLASS net/minecraft/world/level/ServerTickList
 		ARG 2 item
 		ARG 3 scheduledTime
 		ARG 4 priority
-	METHOD size ()I
-	METHOD tick ()V
 	METHOD willTickThisTick (Lnet/minecraft/core/BlockPos;Ljava/lang/Object;)Z
 		COMMENT Checks if this position/item is scheduled to be updated this tick
 		ARG 1 pos

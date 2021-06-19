@@ -1,39 +1,9 @@
 CLASS net/minecraft/world/level/block/entity/BellBlockEntity
-	FIELD DURATION I
-	FIELD GLOW_DURATION I
-	FIELD HEAR_BELL_RADIUS I
-	FIELD HIGHLIGHT_RAIDERS_RADIUS I
-	FIELD MAX_RESONATION_TICKS I
-	FIELD MIN_TICKS_BETWEEN_SEARCHES I
-	FIELD SEARCH_RADIUS I
-	FIELD TICKS_BEFORE_RESONATION I
-	FIELD clickDirection Lnet/minecraft/core/Direction;
-	FIELD lastRingTimestamp J
-	FIELD nearbyEntities Ljava/util/List;
-	FIELD resonating Z
 	FIELD resonationTicks I
 		COMMENT Warmup counter until raiders are revealed by glow and particle
-	FIELD shaking Z
 	FIELD ticks I
 		COMMENT How long the bell has been ringing
-	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-	METHOD areRaidersNearby (Lnet/minecraft/core/BlockPos;Ljava/util/List;)Z
-	METHOD clientTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BellBlockEntity;)V
-	METHOD glow (Lnet/minecraft/world/entity/LivingEntity;)V
-	METHOD isRaiderWithinRange (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
-	METHOD lambda$makeRaidersGlow$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
-	METHOD lambda$showBellParticles$1 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
-	METHOD lambda$showBellParticles$2 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
-	METHOD lambda$showBellParticles$3 (Lnet/minecraft/core/BlockPos;ILorg/apache/commons/lang3/mutable/MutableInt;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;)V
-	METHOD makeRaidersGlow (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/List;)V
-	METHOD onHit (Lnet/minecraft/core/Direction;)V
-	METHOD serverTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BellBlockEntity;)V
-	METHOD showBellParticles (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/List;)V
-	METHOD tick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BellBlockEntity;Lnet/minecraft/world/level/block/entity/BellBlockEntity$ResonationEndAction;)V
 	METHOD triggerEvent (II)Z
 		COMMENT See {@link Block#eventReceived} for more information. This must return true serverside before it is called clientside.
 		ARG 1 id
 		ARG 2 type
-	METHOD updateEntities ()V
-	CLASS ResonationEndAction
-		METHOD run (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/List;)V

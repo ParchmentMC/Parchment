@@ -1,23 +1,6 @@
 CLASS net/minecraft/world/inventory/ItemCombinerMenu
-	FIELD ADDITIONAL_SLOT I
-	FIELD INPUT_SLOT I
-	FIELD INV_SLOT_END I
-	FIELD INV_SLOT_START I
-	FIELD RESULT_SLOT I
-	FIELD USE_ROW_SLOT_END I
-	FIELD USE_ROW_SLOT_START I
-	FIELD access Lnet/minecraft/world/inventory/ContainerLevelAccess;
-	FIELD inputSlots Lnet/minecraft/world/Container;
-	FIELD player Lnet/minecraft/world/entity/player/Player;
-	FIELD resultSlots Lnet/minecraft/world/inventory/ResultContainer;
-	METHOD <init> (Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
 	METHOD createResult ()V
 		COMMENT called when the Anvil Input Slot changes, calculates the new result and puts it in the output slot
-	METHOD isValidBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z
-	METHOD lambda$removed$0 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
-	METHOD lambda$stillValid$1 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
-	METHOD mayPickup (Lnet/minecraft/world/entity/player/Player;Z)Z
-	METHOD onTake (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
 	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
 		ARG 1 player
@@ -25,7 +8,6 @@ CLASS net/minecraft/world/inventory/ItemCombinerMenu
 	METHOD removed (Lnet/minecraft/world/entity/player/Player;)V
 		COMMENT Called when the container is closed.
 		ARG 1 player
-	METHOD shouldQuickMoveToAdditionalSlot (Lnet/minecraft/world/item/ItemStack;)Z
 	METHOD slotsChanged (Lnet/minecraft/world/Container;)V
 		COMMENT Callback for when the crafting matrix is changed.
 		ARG 1 inventory
@@ -33,17 +15,12 @@ CLASS net/minecraft/world/inventory/ItemCombinerMenu
 		COMMENT Determines whether supplied player can use this container
 		ARG 1 player
 	CLASS 1
-		FIELD this$0 Lnet/minecraft/world/inventory/ItemCombinerMenu;
-		METHOD <init> (Lnet/minecraft/world/inventory/ItemCombinerMenu;I)V
 		METHOD setChanged ()V
 			COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
 	CLASS 2
-		FIELD this$0 Lnet/minecraft/world/inventory/ItemCombinerMenu;
-		METHOD <init> (Lnet/minecraft/world/inventory/ItemCombinerMenu;Lnet/minecraft/world/Container;III)V
 		METHOD mayPickup (Lnet/minecraft/world/entity/player/Player;)Z
 			COMMENT Return whether this slot's stack can be taken from this slot.
 			ARG 1 player
 		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
 			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 			ARG 1 stack
-		METHOD onTake (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V

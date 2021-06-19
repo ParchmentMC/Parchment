@@ -1,17 +1,8 @@
 CLASS net/minecraft/world/item/CrossbowItem
-	FIELD ARROW_POWER F
-	FIELD DEFAULT_RANGE I
-	FIELD FIREWORK_POWER F
-	FIELD MAX_CHARGE_DURATION I
-	FIELD MID_SOUND_PERCENT F
-	FIELD START_SOUND_PERCENT F
-	FIELD TAG_CHARGED Ljava/lang/String;
-	FIELD TAG_CHARGED_PROJECTILES Ljava/lang/String;
 	FIELD midLoadSoundPlayed Z
 		COMMENT Set to {@code true} when the crossbow is 50% charged.
 	FIELD startSoundPlayed Z
 		COMMENT Set to {@code true} when the crossbow is 20% charged.
-	METHOD <init> (Lnet/minecraft/world/item/Item$Properties;)V
 	METHOD addChargedProjectile (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 0 crossbow
 		ARG 1 projectile
@@ -38,17 +29,13 @@ CLASS net/minecraft/world/item/CrossbowItem
 		ARG 0 stack
 	METHOD getChargedProjectiles (Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;
 		ARG 0 stack
-	METHOD getDefaultProjectileRange ()I
 	METHOD getPowerForTime (ILnet/minecraft/world/item/ItemStack;)F
 		ARG 0 useTime
 		ARG 1 stack
-	METHOD getRandomShotPitch (ZLjava/util/Random;)F
-	METHOD getShootingPower (Lnet/minecraft/world/item/ItemStack;)F
 	METHOD getShotPitches (Ljava/util/Random;)[F
 		ARG 0 rand
 	METHOD getStartSound (I)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 enchantmentLevel
-	METHOD getSupportedHeldProjectiles ()Ljava/util/function/Predicate;
 	METHOD getUseAnimation (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/UseAnim;
 		COMMENT returns the action that specifies what animation to play when the items is being used
 		ARG 1 stack
@@ -57,9 +44,6 @@ CLASS net/minecraft/world/item/CrossbowItem
 		ARG 1 stack
 	METHOD isCharged (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 stack
-	METHOD lambda$containsChargedProjectile$0 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
-	METHOD lambda$shootProjectile$1 (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/entity/LivingEntity;)V
-	METHOD loadProjectile (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;ZZ)Z
 	METHOD onCrossbowShot (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Called after {@plainlink #fireProjectiles} to clear the charged projectile and to update the player advancements.
 		ARG 0 level
@@ -106,4 +90,3 @@ CLASS net/minecraft/world/item/CrossbowItem
 		ARG 1 level
 		ARG 2 player
 		ARG 3 hand
-	METHOD useOnRelease (Lnet/minecraft/world/item/ItemStack;)Z

@@ -1,11 +1,4 @@
 CLASS net/minecraft/world/item/crafting/SingleItemRecipe
-	FIELD group Ljava/lang/String;
-	FIELD id Lnet/minecraft/resources/ResourceLocation;
-	FIELD ingredient Lnet/minecraft/world/item/crafting/Ingredient;
-	FIELD result Lnet/minecraft/world/item/ItemStack;
-	FIELD serializer Lnet/minecraft/world/item/crafting/RecipeSerializer;
-	FIELD type Lnet/minecraft/world/item/crafting/RecipeType;
-	METHOD <init> (Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/item/crafting/RecipeSerializer;Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;)V
 	METHOD assemble (Lnet/minecraft/world/Container;)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns an Item that is the result of this recipe
 		ARG 1 inv
@@ -15,15 +8,9 @@ CLASS net/minecraft/world/item/crafting/SingleItemRecipe
 		ARG 2 height
 	METHOD getGroup ()Ljava/lang/String;
 		COMMENT Recipes with equal group are combined into one button in the recipe book
-	METHOD getId ()Lnet/minecraft/resources/ResourceLocation;
-	METHOD getIngredients ()Lnet/minecraft/core/NonNullList;
 	METHOD getResultItem ()Lnet/minecraft/world/item/ItemStack;
 		COMMENT Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
-	METHOD getSerializer ()Lnet/minecraft/world/item/crafting/RecipeSerializer;
-	METHOD getType ()Lnet/minecraft/world/item/crafting/RecipeType;
 	CLASS Serializer
-		FIELD factory Lnet/minecraft/world/item/crafting/SingleItemRecipe$Serializer$SingleItemMaker;
-		METHOD <init> (Lnet/minecraft/world/item/crafting/SingleItemRecipe$Serializer$SingleItemMaker;)V
 		METHOD fromJson (Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/Recipe;
 			ARG 1 recipeId
 			ARG 2 json
@@ -42,5 +29,3 @@ CLASS net/minecraft/world/item/crafting/SingleItemRecipe
 		METHOD toNetwork (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/item/crafting/SingleItemRecipe;)V
 			ARG 1 buffer
 			ARG 2 recipe
-		CLASS SingleItemMaker
-			METHOD create (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/crafting/SingleItemRecipe;

@@ -1,29 +1,16 @@
 CLASS net/minecraft/world/level/block/entity/BannerBlockEntity
-	FIELD MAX_PATTERNS I
-	FIELD TAG_COLOR Ljava/lang/String;
-	FIELD TAG_PATTERN Ljava/lang/String;
-	FIELD TAG_PATTERNS Ljava/lang/String;
-	FIELD baseColor Lnet/minecraft/world/item/DyeColor;
 	FIELD itemPatterns Lnet/minecraft/nbt/ListTag;
 		COMMENT A list of all the banner patterns.
-	FIELD name Lnet/minecraft/network/chat/Component;
 	FIELD patterns Ljava/util/List;
 		COMMENT A list of all patterns stored on this banner.
-	FIELD receivedData Z
-	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/item/DyeColor;)V
 	METHOD createPatterns (Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/nbt/ListTag;)Ljava/util/List;
 		ARG 0 color
 		ARG 1 nbtList
 	METHOD fromItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/DyeColor;)V
 		ARG 1 stack
 		ARG 2 color
-	METHOD getBaseColor ()Lnet/minecraft/world/item/DyeColor;
-	METHOD getCustomName ()Lnet/minecraft/network/chat/Component;
-	METHOD getItem ()Lnet/minecraft/world/item/ItemStack;
 	METHOD getItemPatterns (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/nbt/ListTag;
 		ARG 0 stack
-	METHOD getName ()Lnet/minecraft/network/chat/Component;
 	METHOD getPatternCount (Lnet/minecraft/world/item/ItemStack;)I
 		COMMENT Retrieves the amount of patterns stored on an ItemStack. If the tag does not exist this value will be 0.
 		ARG 0 stack
@@ -33,7 +20,6 @@ CLASS net/minecraft/world/level/block/entity/BannerBlockEntity
 		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
 	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
-	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
 	METHOD removeLastPattern (Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Removes all the banner related data from a provided instance of ItemStack.
 		ARG 0 stack

@@ -1,22 +1,4 @@
 CLASS net/minecraft/server/level/DistanceManager
-	FIELD ENTITY_TICKING_RANGE I
-	FIELD INITIAL_TICKET_LIST_CAPACITY I
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD PLAYER_TICKET_LEVEL I
-	FIELD chunksToUpdateFutures Ljava/util/Set;
-	FIELD mainThreadExecutor Ljava/util/concurrent/Executor;
-	FIELD naturalSpawnChunkCounter Lnet/minecraft/server/level/DistanceManager$FixedPlayerDistanceChunkTracker;
-	FIELD playerTicketManager Lnet/minecraft/server/level/DistanceManager$PlayerTicketTracker;
-	FIELD playersPerChunk Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;
-	FIELD ticketThrottler Lnet/minecraft/server/level/ChunkTaskPriorityQueueSorter;
-	FIELD ticketThrottlerInput Lnet/minecraft/util/thread/ProcessorHandle;
-	FIELD ticketThrottlerReleaser Lnet/minecraft/util/thread/ProcessorHandle;
-	FIELD ticketTickCounter J
-	FIELD ticketTracker Lnet/minecraft/server/level/DistanceManager$ChunkTicketTracker;
-	FIELD tickets Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;
-	FIELD ticketsToRelease Lit/unimi/dsi/fastutil/longs/LongSet;
-	METHOD <clinit> ()V
-	METHOD <init> (Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)V
 	METHOD addPlayer (Lnet/minecraft/core/SectionPos;Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 sectionPos
 		ARG 2 player
@@ -33,27 +15,12 @@ CLASS net/minecraft/server/level/DistanceManager
 		ARG 2 pos
 		ARG 3 level
 		ARG 4 value
-	METHOD dumpTickets (Ljava/lang/String;)V
 	METHOD getChunk (J)Lnet/minecraft/server/level/ChunkHolder;
 		ARG 1 chunkPos
-	METHOD getDebugStatus ()Ljava/lang/String;
 	METHOD getNaturalSpawnChunkCount ()I
 		COMMENT Returns the number of chunks taken into account when calculating the mob cap
-	METHOD getTicketDebugString (J)Ljava/lang/String;
-	METHOD getTicketLevelAt (Lnet/minecraft/util/SortedArraySet;)I
-	METHOD getTickets (J)Lnet/minecraft/util/SortedArraySet;
 	METHOD hasPlayersNearby (J)Z
 		ARG 1 chunkPos
-	METHOD isChunkToRemove (J)Z
-	METHOD lambda$addPlayer$7 (J)Lit/unimi/dsi/fastutil/objects/ObjectSet;
-	METHOD lambda$getTickets$6 (J)Lnet/minecraft/util/SortedArraySet;
-	METHOD lambda$purgeStaleTickets$0 (Lnet/minecraft/server/level/Ticket;)Z
-	METHOD lambda$runAllUpdates$1 (Lnet/minecraft/server/level/ChunkMap;Lnet/minecraft/server/level/ChunkHolder;)V
-	METHOD lambda$runAllUpdates$2 (Lnet/minecraft/server/level/Ticket;)Z
-	METHOD lambda$runAllUpdates$3 ()V
-	METHOD lambda$runAllUpdates$4 (J)V
-	METHOD lambda$runAllUpdates$5 (JLcom/mojang/datafixers/util/Either;)V
-	METHOD purgeStaleTickets ()V
 	METHOD removePlayer (Lnet/minecraft/core/SectionPos;Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 sectionPos
 		ARG 2 player
@@ -83,23 +50,16 @@ CLASS net/minecraft/server/level/DistanceManager
 	METHOD updatePlayerTickets (I)V
 		ARG 1 viewDistance
 	CLASS ChunkTicketTracker
-		FIELD this$0 Lnet/minecraft/server/level/DistanceManager;
-		METHOD <init> (Lnet/minecraft/server/level/DistanceManager;)V
 		METHOD getLevel (J)I
 			ARG 1 sectionPos
 		METHOD getLevelFromSource (J)I
 			ARG 1 pos
-		METHOD runDistanceUpdates (I)I
 		METHOD setLevel (JI)V
 			ARG 1 sectionPos
 			ARG 3 level
 	CLASS FixedPlayerDistanceChunkTracker
 		FIELD chunks Lit/unimi/dsi/fastutil/longs/Long2ByteMap;
 			COMMENT Chunks that are at most {@link #range} chunks away from the closest player.
-		FIELD maxDistance I
-		FIELD this$0 Lnet/minecraft/server/level/DistanceManager;
-		METHOD <init> (Lnet/minecraft/server/level/DistanceManager;I)V
-		METHOD dumpChunks (Ljava/lang/String;)V
 		METHOD getLevel (J)I
 			ARG 1 sectionPos
 		METHOD getLevelFromSource (J)I
@@ -112,32 +72,15 @@ CLASS net/minecraft/server/level/DistanceManager
 			ARG 3 oldLevel
 				COMMENT Previous level of the chunk if it was smaller than {@link #range}, {@code range + 2} otherwise.
 			ARG 4 newLevel
-		METHOD runAllUpdates ()V
 		METHOD setLevel (JI)V
 			ARG 1 sectionPos
 			ARG 3 level
 	CLASS PlayerTicketTracker
-		FIELD queueLevels Lit/unimi/dsi/fastutil/longs/Long2IntMap;
-		FIELD this$0 Lnet/minecraft/server/level/DistanceManager;
-		FIELD toUpdate Lit/unimi/dsi/fastutil/longs/LongSet;
-		FIELD viewDistance I
-		METHOD <init> (Lnet/minecraft/server/level/DistanceManager;I)V
-		METHOD haveTicketFor (I)Z
-		METHOD lambda$onLevelChange$0 ()V
-		METHOD lambda$onLevelChange$1 (JLnet/minecraft/server/level/Ticket;)V
-		METHOD lambda$onLevelChange$2 (JLnet/minecraft/server/level/Ticket;)V
-		METHOD lambda$onLevelChange$3 (I)I
-		METHOD lambda$onLevelChange$4 (JLnet/minecraft/server/level/Ticket;)V
-		METHOD lambda$onLevelChange$5 (JLnet/minecraft/server/level/Ticket;)V
-		METHOD lambda$runAllUpdates$6 (J)I
-		METHOD lambda$runAllUpdates$7 (JI)V
 		METHOD onLevelChange (JII)V
 			COMMENT Called after {@link PlayerChunkTracker#setLevel(long, int)} puts/removes chunk into/from {@link #chunksInRange}.
 			ARG 1 chunkPos
 			ARG 3 oldLevel
 				COMMENT Previous level of the chunk if it was smaller than {@link #range}, {@code range + 2} otherwise.
 			ARG 4 newLevel
-		METHOD onLevelChange (JIZZ)V
-		METHOD runAllUpdates ()V
 		METHOD updateViewDistance (I)V
 			ARG 1 viewDistance

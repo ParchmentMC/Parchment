@@ -1,16 +1,4 @@
 CLASS net/minecraft/Util
-	FIELD BACKGROUND_EXECUTOR Ljava/util/concurrent/ExecutorService;
-	FIELD BOOTSTRAP_EXECUTOR Ljava/util/concurrent/ExecutorService;
-	FIELD IO_POOL Ljava/util/concurrent/ExecutorService;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD NIL_UUID Ljava/util/UUID;
-	FIELD WORKER_COUNT Ljava/util/concurrent/atomic/AtomicInteger;
-	FIELD ZIP_FILE_SYSTEM_PROVIDER Ljava/nio/file/spi/FileSystemProvider;
-	FIELD timeSource Ljava/util/function/LongSupplier;
-	METHOD <clinit> ()V
-	METHOD <init> ()V
-	METHOD backgroundExecutor ()Ljava/util/concurrent/Executor;
-	METHOD bootstrapExecutor ()Ljava/util/concurrent/Executor;
 	METHOD copyBetweenDirs (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/nio/file/Path;)V
 		ARG 0 fromDirectory
 		ARG 1 toDirectory
@@ -29,7 +17,6 @@ CLASS net/minecraft/Util
 	METHOD doFetchChoiceType (Lcom/mojang/datafixers/DSL$TypeReference;Ljava/lang/String;)Lcom/mojang/datafixers/types/Type;
 		ARG 0 type
 		ARG 1 choiceName
-	METHOD doPause ()V
 	METHOD executeInSequence ([Ljava/util/function/BooleanSupplier;)Z
 		ARG 0 suppliers
 	METHOD failedFuture (Ljava/lang/Throwable;)Ljava/util/concurrent/CompletableFuture;
@@ -43,49 +30,24 @@ CLASS net/minecraft/Util
 	METHOD findPreviousInIterable (Ljava/lang/Iterable;Ljava/lang/Object;)Ljava/lang/Object;
 		ARG 0 iterable
 		ARG 1 current
-	METHOD fixedSize (Ljava/util/List;I)Lcom/mojang/serialization/DataResult;
 	METHOD fixedSize (Ljava/util/stream/IntStream;I)Lcom/mojang/serialization/DataResult;
 		ARG 0 stream
 		ARG 1 size
-	METHOD getEpochMillis ()J
-	METHOD getMillis ()J
-	METHOD getNanos ()J
-	METHOD getPlatform ()Lnet/minecraft/Util$OS;
 	METHOD getPropertyName (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Object;)Ljava/lang/String;
 		ARG 0 property
 		ARG 1 value
-	METHOD getRandom (Ljava/util/List;Ljava/util/Random;)Ljava/lang/Object;
 	METHOD getRandom ([ILjava/util/Random;)I
 		ARG 0 selections
 		ARG 1 rand
 	METHOD getRandom ([Ljava/lang/Object;Ljava/util/Random;)Ljava/lang/Object;
 		ARG 0 selections
 		ARG 1 rand
-	METHOD getVmArguments ()Ljava/util/stream/Stream;
-	METHOD identityStrategy ()Lit/unimi/dsi/fastutil/Hash$Strategy;
 	METHOD ifElse (Ljava/util/Optional;Ljava/util/function/Consumer;Ljava/lang/Runnable;)Ljava/util/Optional;
 		ARG 0 opt
 		ARG 1 consumer
 		ARG 2 orElse
-	METHOD ioPool ()Ljava/util/concurrent/Executor;
-	METHOD lambda$getVmArguments$5 (Ljava/lang/String;)Z
-	METHOD lambda$makeExecutor$2 (Ljava/lang/String;Ljava/util/concurrent/ForkJoinPool;)Ljava/util/concurrent/ForkJoinWorkerThread;
-	METHOD lambda$makeIoExecutor$3 (Ljava/lang/Runnable;)Ljava/lang/Thread;
-	METHOD lambda$prefix$13 (Ljava/util/function/Consumer;Ljava/lang/String;Ljava/lang/String;)V
-	METHOD lambda$sanitizeName$14 (Lnet/minecraft/CharPredicate;I)Ljava/lang/String;
-	METHOD lambda$sequence$6 (Ljava/lang/Object;Ljava/util/List;)Ljava/util/List;
-	METHOD lambda$sequence$7 (Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/CompletableFuture;)Ljava/util/concurrent/CompletableFuture;
-	METHOD lambda$sequence$8 (Ljava/util/List;Ljava/util/List;)Ljava/util/List;
-	METHOD lambda$sequence$9 (Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/CompletableFuture;)Ljava/util/concurrent/CompletableFuture;
-	METHOD lambda$sequenceFailFast$10 (Ljava/util/concurrent/CompletableFuture;Ljava/util/List;ILjava/lang/Object;Ljava/lang/Throwable;)V
-	METHOD lambda$sequenceFailFast$11 (Ljava/util/List;[Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/CompletableFuture;)V
-	METHOD lambda$sequenceFailFast$12 (Ljava/util/List;Ljava/lang/Void;)Ljava/util/List;
-	METHOD lambda$static$0 (Ljava/nio/file/spi/FileSystemProvider;)Z
-	METHOD lambda$static$1 ()Ljava/lang/IllegalStateException;
-	METHOD lambda$wrapThreadWithTaskName$4 (Ljava/lang/String;Ljava/lang/Runnable;)V
 	METHOD lastOf (Ljava/util/List;)Ljava/lang/Object;
 		ARG 0 list
-	METHOD logAndPauseIfInIde (Ljava/lang/String;)V
 	METHOD make (Ljava/lang/Object;Ljava/util/function/Consumer;)Ljava/lang/Object;
 		ARG 0 object
 		ARG 1 consumer
@@ -96,13 +58,9 @@ CLASS net/minecraft/Util
 		ARG 1 id
 	METHOD makeExecutor (Ljava/lang/String;)Ljava/util/concurrent/ExecutorService;
 		ARG 0 serviceName
-	METHOD makeIoExecutor ()Ljava/util/concurrent/ExecutorService;
-	METHOD memoize (Ljava/util/function/BiFunction;)Ljava/util/function/BiFunction;
-	METHOD memoize (Ljava/util/function/Function;)Ljava/util/function/Function;
 	METHOD name (Ljava/lang/Runnable;Ljava/util/function/Supplier;)Ljava/lang/Runnable;
 		ARG 0 runnable
 		ARG 1 supplier
-	METHOD offsetByCodepoints (Ljava/lang/String;II)I
 	METHOD onThreadException (Ljava/lang/Thread;Ljava/lang/Throwable;)V
 		ARG 0 thread
 		ARG 1 throwable
@@ -129,80 +87,15 @@ CLASS net/minecraft/Util
 	METHOD sequence (Ljava/util/List;)Ljava/util/concurrent/CompletableFuture;
 		COMMENT Takes a list of futures and returns a future of list that completes when all of them succeed or any of them error,
 		ARG 0 futures
-	METHOD sequenceFailFast (Ljava/util/List;)Ljava/util/concurrent/CompletableFuture;
 	METHOD shutdownExecutor (Ljava/util/concurrent/ExecutorService;)V
 		ARG 0 service
-	METHOD shutdownExecutors ()V
-	METHOD startTimerHackThread ()V
 	METHOD throwAsRuntime (Ljava/lang/Throwable;)V
 		ARG 0 throwable
-	METHOD toMap ()Ljava/util/stream/Collector;
 	METHOD toStream (Ljava/util/Optional;)Ljava/util/stream/Stream;
 		ARG 0 optional
-	METHOD wrapThreadWithTaskName (Ljava/lang/String;Ljava/lang/Runnable;)Ljava/lang/Runnable;
-	CLASS 1
-		METHOD <init> (Ljava/util/concurrent/ForkJoinPool;)V
-		METHOD onTermination (Ljava/lang/Throwable;)V
-	CLASS 3
-		FIELD val$from Ljava/nio/file/Path;
-		FIELD val$to Ljava/nio/file/Path;
-		METHOD <init> (Ljava/nio/file/Path;Ljava/nio/file/Path;)V
-		METHOD getAsBoolean ()Z
-		METHOD toString ()Ljava/lang/String;
-	CLASS 4
-		FIELD val$target Ljava/nio/file/Path;
-		METHOD <init> (Ljava/nio/file/Path;)V
-		METHOD getAsBoolean ()Z
-		METHOD toString ()Ljava/lang/String;
-	CLASS 5
-		FIELD val$target Ljava/nio/file/Path;
-		METHOD <init> (Ljava/nio/file/Path;)V
-		METHOD getAsBoolean ()Z
-		METHOD toString ()Ljava/lang/String;
-	CLASS 6
-		FIELD val$target Ljava/nio/file/Path;
-		METHOD <init> (Ljava/nio/file/Path;)V
-		METHOD getAsBoolean ()Z
-		METHOD toString ()Ljava/lang/String;
-	CLASS 7
-		METHOD <init> (Ljava/lang/String;)V
-		METHOD run ()V
-	CLASS 8
-		FIELD cache Ljava/util/Map;
-		FIELD val$function Ljava/util/function/Function;
-		METHOD <init> (Ljava/util/function/Function;)V
-		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
-		METHOD toString ()Ljava/lang/String;
-	CLASS 9
-		FIELD cache Ljava/util/Map;
-		FIELD val$function Ljava/util/function/BiFunction;
-		METHOD <init> (Ljava/util/function/BiFunction;)V
-		METHOD apply (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-		METHOD lambda$apply$0 (Ljava/util/function/BiFunction;Lcom/mojang/datafixers/util/Pair;)Ljava/lang/Object;
-		METHOD toString ()Ljava/lang/String;
-	CLASS IdentityStrategy
-		FIELD $VALUES [Lnet/minecraft/Util$IdentityStrategy;
-		FIELD INSTANCE Lnet/minecraft/Util$IdentityStrategy;
-		METHOD $values ()[Lnet/minecraft/Util$IdentityStrategy;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
-		METHOD equals (Ljava/lang/Object;Ljava/lang/Object;)Z
-		METHOD hashCode (Ljava/lang/Object;)I
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/Util$IdentityStrategy;
-		METHOD values ()[Lnet/minecraft/Util$IdentityStrategy;
 	CLASS OS
-		FIELD $VALUES [Lnet/minecraft/Util$OS;
-		FIELD LINUX Lnet/minecraft/Util$OS;
-		FIELD OSX Lnet/minecraft/Util$OS;
-		FIELD SOLARIS Lnet/minecraft/Util$OS;
-		FIELD UNKNOWN Lnet/minecraft/Util$OS;
-		FIELD WINDOWS Lnet/minecraft/Util$OS;
-		METHOD $values ()[Lnet/minecraft/Util$OS;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
 		METHOD getOpenUrlArguments (Ljava/net/URL;)[Ljava/lang/String;
 			ARG 1 url
-		METHOD lambda$openUrl$0 (Ljava/net/URL;)Ljava/lang/Process;
 		METHOD openFile (Ljava/io/File;)V
 			ARG 1 file
 		METHOD openUri (Ljava/lang/String;)V
@@ -211,13 +104,9 @@ CLASS net/minecraft/Util
 			ARG 1 uri
 		METHOD openUrl (Ljava/net/URL;)V
 			ARG 1 url
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/Util$OS;
-		METHOD values ()[Lnet/minecraft/Util$OS;
 		CLASS 1
-			METHOD <init> (Ljava/lang/String;I)V
 			METHOD getOpenUrlArguments (Ljava/net/URL;)[Ljava/lang/String;
 				ARG 1 url
 		CLASS 2
-			METHOD <init> (Ljava/lang/String;I)V
 			METHOD getOpenUrlArguments (Ljava/net/URL;)[Ljava/lang/String;
 				ARG 1 url

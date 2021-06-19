@@ -1,12 +1,4 @@
 CLASS net/minecraft/client/gui/Font
-	FIELD EFFECT_DEPTH F
-	FIELD SHADOW_OFFSET Lcom/mojang/math/Vector3f;
-	FIELD fonts Ljava/util/function/Function;
-	FIELD lineHeight I
-	FIELD random Ljava/util/Random;
-	FIELD splitter Lnet/minecraft/client/StringSplitter;
-	METHOD <clinit> ()V
-	METHOD <init> (Ljava/util/function/Function;)V
 	METHOD adjustColor (I)I
 		ARG 0 color
 	METHOD bidirectionalShaping (Ljava/lang/String;)Ljava/lang/String;
@@ -24,7 +16,6 @@ CLASS net/minecraft/client/gui/Font
 		ARG 3 x
 		ARG 4 y
 		ARG 5 color
-	METHOD draw (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/util/FormattedCharSequence;FFI)I
 	METHOD drawInBatch (Ljava/lang/String;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I
 		ARG 1 text
 		ARG 2 x
@@ -48,7 +39,6 @@ CLASS net/minecraft/client/gui/Font
 		ARG 9 colorBackground
 		ARG 10 packedLight
 		ARG 11 bidiFlag
-	METHOD drawInBatch (Lnet/minecraft/network/chat/Component;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I
 	METHOD drawInBatch (Lnet/minecraft/util/FormattedCharSequence;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I
 		ARG 1 processor
 		ARG 2 x
@@ -60,7 +50,6 @@ CLASS net/minecraft/client/gui/Font
 		ARG 8 transparent
 		ARG 9 colorBackground
 		ARG 10 packedLight
-	METHOD drawInBatch8xOutline (Lnet/minecraft/util/FormattedCharSequence;FFIILcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;I)V
 	METHOD drawInternal (Ljava/lang/String;FFILcom/mojang/math/Matrix4f;ZZ)I
 		ARG 1 text
 		ARG 2 x
@@ -124,14 +113,10 @@ CLASS net/minecraft/client/gui/Font
 		ARG 3 x
 		ARG 4 y
 		ARG 5 color
-	METHOD drawWordWrap (Lnet/minecraft/network/chat/FormattedText;IIII)V
 	METHOD getFontSet (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/gui/font/FontSet;
 		ARG 1 fontLocation
-	METHOD getSplitter ()Lnet/minecraft/client/StringSplitter;
 	METHOD isBidirectional ()Z
 		COMMENT Get bidiFlag that controls if the Unicode Bidirectional Algorithm should be run before rendering any string
-	METHOD lambda$drawInBatch8xOutline$1 (Lnet/minecraft/client/gui/Font$StringRenderOutput;[FIFIIILnet/minecraft/network/chat/Style;I)Z
-	METHOD lambda$new$0 (ILnet/minecraft/network/chat/Style;)F
 	METHOD plainSubstrByWidth (Ljava/lang/String;I)Ljava/lang/String;
 		ARG 1 text
 		ARG 2 maxLength
@@ -163,47 +148,15 @@ CLASS net/minecraft/client/gui/Font
 		ARG 8 isTransparent
 		ARG 9 colorBackground
 		ARG 10 packedLight
-	METHOD renderText (Lnet/minecraft/util/FormattedCharSequence;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)F
-	METHOD split (Lnet/minecraft/network/chat/FormattedText;I)Ljava/util/List;
-	METHOD substrByWidth (Lnet/minecraft/network/chat/FormattedText;I)Lnet/minecraft/network/chat/FormattedText;
 	METHOD width (Ljava/lang/String;)I
 		COMMENT Returns the width of this string. Equivalent of FontMetrics.stringWidth(String s).
 		ARG 1 text
 	METHOD width (Lnet/minecraft/network/chat/FormattedText;)I
 		ARG 1 properties
-	METHOD width (Lnet/minecraft/util/FormattedCharSequence;)I
 	METHOD wordWrapHeight (Ljava/lang/String;I)I
 		COMMENT Returns the height (in pixels) of the given string if it is wordwrapped to the given max width.
 		ARG 1 str
 		ARG 2 maxLength
-	CLASS DisplayMode
-		FIELD $VALUES [Lnet/minecraft/client/gui/Font$DisplayMode;
-		FIELD NORMAL Lnet/minecraft/client/gui/Font$DisplayMode;
-		FIELD POLYGON_OFFSET Lnet/minecraft/client/gui/Font$DisplayMode;
-		FIELD SEE_THROUGH Lnet/minecraft/client/gui/Font$DisplayMode;
-		METHOD $values ()[Lnet/minecraft/client/gui/Font$DisplayMode;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/client/gui/Font$DisplayMode;
-		METHOD values ()[Lnet/minecraft/client/gui/Font$DisplayMode;
 	CLASS StringRenderOutput
-		FIELD a F
-		FIELD b F
-		FIELD bufferSource Lnet/minecraft/client/renderer/MultiBufferSource;
-		FIELD dimFactor F
-		FIELD dropShadow Z
-		FIELD effects Ljava/util/List;
-		FIELD g F
-		FIELD mode Lnet/minecraft/client/gui/Font$DisplayMode;
-		FIELD packedLightCoords I
-		FIELD pose Lcom/mojang/math/Matrix4f;
-		FIELD r F
-		FIELD this$0 Lnet/minecraft/client/gui/Font;
-		FIELD x F
-		FIELD y F
-		METHOD <init> (Lnet/minecraft/client/gui/Font;Lnet/minecraft/client/renderer/MultiBufferSource;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/gui/Font$DisplayMode;I)V
-		METHOD <init> (Lnet/minecraft/client/gui/Font;Lnet/minecraft/client/renderer/MultiBufferSource;FFIZLcom/mojang/math/Matrix4f;ZI)V
-		METHOD accept (ILnet/minecraft/network/chat/Style;I)Z
 		METHOD addEffect (Lnet/minecraft/client/gui/font/glyphs/BakedGlyph$Effect;)V
 			ARG 1 effect
-		METHOD finish (IF)F

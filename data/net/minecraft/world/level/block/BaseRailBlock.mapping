@@ -1,15 +1,8 @@
 CLASS net/minecraft/world/level/block/BaseRailBlock
-	FIELD FLAT_AABB Lnet/minecraft/world/phys/shapes/VoxelShape;
-	FIELD HALF_BLOCK_AABB Lnet/minecraft/world/phys/shapes/VoxelShape;
-	FIELD WATERLOGGED Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
-	FIELD isStraight Z
-	METHOD <clinit> ()V
-	METHOD <init> (ZLnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 	METHOD canSurvive (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
-	METHOD getFluidState (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/FluidState;
 	METHOD getPistonPushReaction (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/PushReaction;
 		COMMENT @deprecated call via {@link IBlockState#getMobilityFlag()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
@@ -18,7 +11,6 @@ CLASS net/minecraft/world/level/block/BaseRailBlock
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 context
-	METHOD getShapeProperty ()Lnet/minecraft/world/level/block/state/properties/Property;
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 context
 	METHOD isRail (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z
@@ -26,7 +18,6 @@ CLASS net/minecraft/world/level/block/BaseRailBlock
 		ARG 1 pos
 	METHOD isRail (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
-	METHOD isStraight ()Z
 	METHOD neighborChanged (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos;Z)V
 		ARG 1 state
 		ARG 2 level
@@ -55,7 +46,6 @@ CLASS net/minecraft/world/level/block/BaseRailBlock
 		ARG 2 pos
 		ARG 3 state
 		ARG 4 placing
-	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
 	METHOD updateState (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 state
 		ARG 2 level
@@ -66,6 +56,3 @@ CLASS net/minecraft/world/level/block/BaseRailBlock
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 isMoving
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$world$level$block$state$properties$RailShape [I
-		METHOD <clinit> ()V

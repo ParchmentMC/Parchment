@@ -1,15 +1,4 @@
 CLASS net/minecraft/network/protocol/status/ServerStatus
-	FIELD FAVICON_HEIGHT I
-	FIELD FAVICON_WIDTH I
-	FIELD description Lnet/minecraft/network/chat/Component;
-	FIELD favicon Ljava/lang/String;
-	FIELD players Lnet/minecraft/network/protocol/status/ServerStatus$Players;
-	FIELD version Lnet/minecraft/network/protocol/status/ServerStatus$Version;
-	METHOD <init> ()V
-	METHOD getDescription ()Lnet/minecraft/network/chat/Component;
-	METHOD getFavicon ()Ljava/lang/String;
-	METHOD getPlayers ()Lnet/minecraft/network/protocol/status/ServerStatus$Players;
-	METHOD getVersion ()Lnet/minecraft/network/protocol/status/ServerStatus$Version;
 	METHOD setDescription (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 description
 	METHOD setFavicon (Ljava/lang/String;)V
@@ -19,36 +8,5 @@ CLASS net/minecraft/network/protocol/status/ServerStatus
 	METHOD setVersion (Lnet/minecraft/network/protocol/status/ServerStatus$Version;)V
 		ARG 1 version
 	CLASS Players
-		FIELD maxPlayers I
-		FIELD numPlayers I
-		FIELD sample [Lcom/mojang/authlib/GameProfile;
-		METHOD <init> (II)V
-		METHOD getMaxPlayers ()I
-		METHOD getNumPlayers ()I
-		METHOD getSample ()[Lcom/mojang/authlib/GameProfile;
 		METHOD setSample ([Lcom/mojang/authlib/GameProfile;)V
 			ARG 1 players
-		CLASS Serializer
-			METHOD <init> ()V
-			METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
-			METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/network/protocol/status/ServerStatus$Players;
-			METHOD serialize (Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
-			METHOD serialize (Lnet/minecraft/network/protocol/status/ServerStatus$Players;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
-	CLASS Serializer
-		METHOD <init> ()V
-		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
-		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/network/protocol/status/ServerStatus;
-		METHOD serialize (Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
-		METHOD serialize (Lnet/minecraft/network/protocol/status/ServerStatus;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
-	CLASS Version
-		FIELD name Ljava/lang/String;
-		FIELD protocol I
-		METHOD <init> (Ljava/lang/String;I)V
-		METHOD getName ()Ljava/lang/String;
-		METHOD getProtocol ()I
-		CLASS Serializer
-			METHOD <init> ()V
-			METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
-			METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/network/protocol/status/ServerStatus$Version;
-			METHOD serialize (Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
-			METHOD serialize (Lnet/minecraft/network/protocol/status/ServerStatus$Version;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;

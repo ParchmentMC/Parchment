@@ -1,18 +1,9 @@
 CLASS net/minecraft/client/searchtree/ReloadableIdSearchTree
-	FIELD contents Ljava/util/List;
-	FIELD idGetter Ljava/util/function/Function;
-	FIELD namespaceTree Lnet/minecraft/client/searchtree/SuffixArray;
-	FIELD orderT Lit/unimi/dsi/fastutil/objects/Object2IntMap;
-	FIELD pathTree Lnet/minecraft/client/searchtree/SuffixArray;
-	METHOD <init> (Ljava/util/function/Function;)V
-	METHOD add (Ljava/lang/Object;)V
-	METHOD clear ()V
 	METHOD comparePosition (Ljava/lang/Object;Ljava/lang/Object;)I
 		COMMENT Compares two elements. Returns {@code 1} if the first element has more entries, {@code 0} if they have the same number of entries, and {@code -1} if the second element has more enties.
 	METHOD index (Ljava/lang/Object;)V
 		COMMENT Directly puts the given item into {@link #byId} and {@link #byName}, applying {@link #nameFunc} and {@link idFunc}.
 		ARG 1 element
-	METHOD lambda$index$0 (Ljava/lang/Object;Lnet/minecraft/resources/ResourceLocation;)V
 	METHOD refresh ()V
 		COMMENT Recalculates the contents of this search tree, reapplying {@link #nameFunc} and {@link #idFunc}. Should be called whenever resources are reloaded (e.g. language changes).
 	METHOD search (Ljava/lang/String;)Ljava/util/List;
@@ -21,9 +12,3 @@ CLASS net/minecraft/client/searchtree/ReloadableIdSearchTree
 		COMMENT If the query does not contain a <code>:</code>, then only {@link #byName} is searched" if it does contain a colon, both {@link #byName} and {@link #byId} are searched and the results are merged using a {@link MergingIterator}.
 		COMMENT @return A list of all matching items in this search tree.
 		ARG 1 searchText
-	CLASS IntersectionIterator
-		FIELD firstIterator Lcom/google/common/collect/PeekingIterator;
-		FIELD orderT Ljava/util/Comparator;
-		FIELD secondIterator Lcom/google/common/collect/PeekingIterator;
-		METHOD <init> (Ljava/util/Iterator;Ljava/util/Iterator;Ljava/util/Comparator;)V
-		METHOD computeNext ()Ljava/lang/Object;

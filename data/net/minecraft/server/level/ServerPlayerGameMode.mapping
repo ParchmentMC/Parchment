@@ -1,39 +1,14 @@
 CLASS net/minecraft/server/level/ServerPlayerGameMode
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD delayedDestroyPos Lnet/minecraft/core/BlockPos;
-	FIELD delayedTickStart I
-	FIELD destroyPos Lnet/minecraft/core/BlockPos;
-	FIELD destroyProgressStart I
-	FIELD gameModeForPlayer Lnet/minecraft/world/level/GameType;
-	FIELD gameTicks I
-	FIELD hasDelayedDestroy Z
-	FIELD isDestroyingBlock Z
-	FIELD lastSentState I
-	FIELD level Lnet/minecraft/server/level/ServerLevel;
-	FIELD player Lnet/minecraft/server/level/ServerPlayer;
-	FIELD previousGameModeForPlayer Lnet/minecraft/world/level/GameType;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/server/level/ServerPlayer;)V
-	METHOD changeGameModeForPlayer (Lnet/minecraft/world/level/GameType;)Z
-	METHOD destroyAndAck (Lnet/minecraft/core/BlockPos;Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;Ljava/lang/String;)V
 	METHOD destroyBlock (Lnet/minecraft/core/BlockPos;)Z
 		COMMENT Attempts to harvest a block
 		ARG 1 pos
-	METHOD getGameModeForPlayer ()Lnet/minecraft/world/level/GameType;
-	METHOD getPreviousGameModeForPlayer ()Lnet/minecraft/world/level/GameType;
-	METHOD handleBlockBreakAction (Lnet/minecraft/core/BlockPos;Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;Lnet/minecraft/core/Direction;I)V
-	METHOD incrementDestroyProgress (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;I)F
 	METHOD isCreative ()Z
 		COMMENT Get if we are in creative game mode.
-	METHOD isSurvival ()Z
-	METHOD setGameModeForPlayer (Lnet/minecraft/world/level/GameType;Lnet/minecraft/world/level/GameType;)V
 	METHOD setLevel (Lnet/minecraft/server/level/ServerLevel;)V
 		COMMENT Sets the world instance.
 		ARG 1 serverLevel
-	METHOD tick ()V
 	METHOD useItem (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 level
 		ARG 3 stack
 		ARG 4 hand
-	METHOD useItemOn (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;

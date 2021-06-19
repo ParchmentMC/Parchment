@@ -1,29 +1,13 @@
 CLASS net/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer
-	FIELD DEFAULT_QUALITY I
-	FIELD DEFAULT_WEIGHT I
-	FIELD compositeFunction Ljava/util/function/BiFunction;
-	FIELD entry Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntry;
 	FIELD functions [Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
 		COMMENT Functions that are ran on the entry.
 	FIELD quality I
 		COMMENT The quality of the entry.
 	FIELD weight I
 		COMMENT The weight of the entry.
-	METHOD <init> (II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
-	METHOD createItemStack (Ljava/util/function/Consumer;Lnet/minecraft/world/level/storage/loot/LootContext;)V
-	METHOD expand (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)Z
 	METHOD simpleBuilder (Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$EntryConstructor;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$Builder;
 		ARG 0 entryBuilder
-	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V
-	CLASS 1
-		FIELD this$0 Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;
-		METHOD <init> (Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;)V
-		METHOD createItemStack (Ljava/util/function/Consumer;Lnet/minecraft/world/level/storage/loot/LootContext;)V
 	CLASS Builder
-		FIELD functions Ljava/util/List;
-		FIELD quality I
-		FIELD weight I
-		METHOD <init> ()V
 		METHOD apply (Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction$Builder;)Ljava/lang/Object;
 			ARG 1 functionBuilder
 		METHOD apply (Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction$Builder;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$Builder;
@@ -34,22 +18,11 @@ CLASS net/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer
 			ARG 1 quality
 		METHOD setWeight (I)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$Builder;
 			ARG 1 weight
-	CLASS DummyBuilder
-		FIELD constructor Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$EntryConstructor;
-		METHOD <init> (Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$EntryConstructor;)V
-		METHOD build ()Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;
-		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;
-		METHOD getThis ()Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$DummyBuilder;
 	CLASS EntryBase
-		FIELD this$0 Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;
-		METHOD <init> (Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;)V
 		METHOD getWeight (F)I
 			COMMENT Gets the effective weight based on the loot entry's weight and quality multiplied by looter's luck.
 			ARG 1 luck
-	CLASS EntryConstructor
-		METHOD build (II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;
 	CLASS Serializer
-		METHOD <init> ()V
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;
 			ARG 1 object
 			ARG 2 context

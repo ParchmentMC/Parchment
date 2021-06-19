@@ -1,25 +1,4 @@
 CLASS net/minecraft/world/level/biome/Biome
-	FIELD BIOME_INFO_NOISE Lnet/minecraft/world/level/levelgen/synth/PerlinSimplexNoise;
-	FIELD CODEC Lcom/mojang/serialization/Codec;
-	FIELD DIRECT_CODEC Lcom/mojang/serialization/Codec;
-	FIELD FROZEN_TEMPERATURE_NOISE Lnet/minecraft/world/level/levelgen/synth/PerlinSimplexNoise;
-	FIELD LIST_CODEC Lcom/mojang/serialization/Codec;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD NETWORK_CODEC Lcom/mojang/serialization/Codec;
-	FIELD TEMPERATURE_CACHE_SIZE I
-	FIELD TEMPERATURE_NOISE Lnet/minecraft/world/level/levelgen/synth/PerlinSimplexNoise;
-	FIELD biomeCategory Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-	FIELD climateSettings Lnet/minecraft/world/level/biome/Biome$ClimateSettings;
-	FIELD depth F
-	FIELD generationSettings Lnet/minecraft/world/level/biome/BiomeGenerationSettings;
-	FIELD mobSettings Lnet/minecraft/world/level/biome/MobSpawnSettings;
-	FIELD scale F
-	FIELD specialEffects Lnet/minecraft/world/level/biome/BiomeSpecialEffects;
-	FIELD structuresByStep Ljava/util/Map;
-	FIELD temperatureCache Ljava/lang/ThreadLocal;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/level/biome/Biome$ClimateSettings;Lnet/minecraft/world/level/biome/Biome$BiomeCategory;FFLnet/minecraft/world/level/biome/BiomeSpecialEffects;Lnet/minecraft/world/level/biome/BiomeGenerationSettings;Lnet/minecraft/world/level/biome/MobSpawnSettings;)V
-	METHOD buildSurfaceAt (Ljava/util/Random;Lnet/minecraft/world/level/chunk/ChunkAccess;IIIDLnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;IIJ)V
 	METHOD generate (Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/server/level/WorldGenRegion;JLnet/minecraft/world/level/levelgen/WorldgenRandom;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 structureManager
 		ARG 2 chunkGenerator
@@ -27,59 +6,17 @@ CLASS net/minecraft/world/level/biome/Biome
 		ARG 4 seed
 		ARG 6 rand
 		ARG 7 pos
-	METHOD getAmbientAdditions ()Ljava/util/Optional;
-	METHOD getAmbientLoop ()Ljava/util/Optional;
-	METHOD getAmbientMood ()Ljava/util/Optional;
-	METHOD getAmbientParticle ()Ljava/util/Optional;
-	METHOD getBackgroundMusic ()Ljava/util/Optional;
-	METHOD getBaseTemperature ()F
-	METHOD getBiomeCategory ()Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-	METHOD getDepth ()F
 	METHOD getDownfall ()F
 		COMMENT Gets a floating point representation of this biome's rainfall
-	METHOD getFogColor ()I
-	METHOD getFoliageColor ()I
-	METHOD getFoliageColorFromTexture ()I
-	METHOD getGenerationSettings ()Lnet/minecraft/world/level/biome/BiomeGenerationSettings;
 	METHOD getGrassColor (DD)I
 		ARG 1 posX
 		ARG 3 posZ
-	METHOD getGrassColorFromTexture ()I
 	METHOD getHeightAdjustedTemperature (Lnet/minecraft/core/BlockPos;)F
 		ARG 1 pos
-	METHOD getMobSettings ()Lnet/minecraft/world/level/biome/MobSpawnSettings;
-	METHOD getPrecipitation ()Lnet/minecraft/world/level/biome/Biome$Precipitation;
-	METHOD getScale ()F
-	METHOD getSkyColor ()I
-	METHOD getSpecialEffects ()Lnet/minecraft/world/level/biome/BiomeSpecialEffects;
 	METHOD getTemperature (Lnet/minecraft/core/BlockPos;)F
 		ARG 1 pos
-	METHOD getWaterColor ()I
-	METHOD getWaterFogColor ()I
-	METHOD isColdEnoughToSnow (Lnet/minecraft/core/BlockPos;)Z
 	METHOD isHumid ()Z
 		COMMENT Checks to see if the rainfall level of the biome is extremely high
-	METHOD lambda$generate$18 (Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Ljava/lang/String;
-	METHOD lambda$generate$19 (Lnet/minecraft/server/level/WorldGenRegion;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/WorldgenRandom;IIIIIILnet/minecraft/world/level/levelgen/structure/StructureStart;)V
-	METHOD lambda$generate$20 (Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/feature/ConfiguredFeature;)Ljava/lang/String;
-	METHOD lambda$new$15 (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Ljava/lang/Integer;
-	METHOD lambda$new$16 ()Lit/unimi/dsi/fastutil/longs/Long2FloatLinkedOpenHashMap;
-	METHOD lambda$new$17 ()Lit/unimi/dsi/fastutil/longs/Long2FloatLinkedOpenHashMap;
-	METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/Biome$ClimateSettings;
-	METHOD lambda$static$1 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-	METHOD lambda$static$10 (Lnet/minecraft/world/level/biome/Biome;)Ljava/lang/Float;
-	METHOD lambda$static$11 (Lnet/minecraft/world/level/biome/Biome;)Ljava/lang/Float;
-	METHOD lambda$static$12 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/BiomeSpecialEffects;
-	METHOD lambda$static$13 (Lnet/minecraft/world/level/biome/Biome$ClimateSettings;Lnet/minecraft/world/level/biome/Biome$BiomeCategory;Ljava/lang/Float;Ljava/lang/Float;Lnet/minecraft/world/level/biome/BiomeSpecialEffects;)Lnet/minecraft/world/level/biome/Biome;
-	METHOD lambda$static$14 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-	METHOD lambda$static$2 (Lnet/minecraft/world/level/biome/Biome;)Ljava/lang/Float;
-	METHOD lambda$static$3 (Lnet/minecraft/world/level/biome/Biome;)Ljava/lang/Float;
-	METHOD lambda$static$4 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/BiomeSpecialEffects;
-	METHOD lambda$static$5 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/BiomeGenerationSettings;
-	METHOD lambda$static$6 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/MobSpawnSettings;
-	METHOD lambda$static$7 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-	METHOD lambda$static$8 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/Biome$ClimateSettings;
-	METHOD lambda$static$9 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
 	METHOD shouldFreeze (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 level
 		ARG 2 pos
@@ -90,26 +27,9 @@ CLASS net/minecraft/world/level/biome/Biome
 	METHOD shouldSnow (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 level
 		ARG 2 pos
-	METHOD toString ()Ljava/lang/String;
-	CLASS 1
-		FIELD this$0 Lnet/minecraft/world/level/biome/Biome;
-		METHOD <init> (Lnet/minecraft/world/level/biome/Biome;IF)V
-		METHOD rehash (I)V
 	CLASS BiomeBuilder
-		FIELD biomeCategory Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD depth Ljava/lang/Float;
-		FIELD downfall Ljava/lang/Float;
-		FIELD generationSettings Lnet/minecraft/world/level/biome/BiomeGenerationSettings;
-		FIELD mobSpawnSettings Lnet/minecraft/world/level/biome/MobSpawnSettings;
-		FIELD precipitation Lnet/minecraft/world/level/biome/Biome$Precipitation;
-		FIELD scale Ljava/lang/Float;
-		FIELD specialEffects Lnet/minecraft/world/level/biome/BiomeSpecialEffects;
-		FIELD temperature Ljava/lang/Float;
-		FIELD temperatureModifier Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
-		METHOD <init> ()V
 		METHOD biomeCategory (Lnet/minecraft/world/level/biome/Biome$BiomeCategory;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
 			ARG 1 biomeCategory
-		METHOD build ()Lnet/minecraft/world/level/biome/Biome;
 		METHOD depth (F)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
 			ARG 1 depth
 		METHOD downfall (F)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
@@ -128,118 +48,26 @@ CLASS net/minecraft/world/level/biome/Biome
 			ARG 1 temperature
 		METHOD temperatureAdjustment (Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
 			ARG 1 temperatureSettings
-		METHOD toString ()Ljava/lang/String;
 	CLASS BiomeCategory
-		FIELD $VALUES [Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD BEACH Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD BY_NAME Ljava/util/Map;
-		FIELD CODEC Lcom/mojang/serialization/Codec;
-		FIELD DESERT Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD EXTREME_HILLS Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD FOREST Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD ICY Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD JUNGLE Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD MESA Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD MUSHROOM Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD NETHER Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD NONE Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD OCEAN Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD PLAINS Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD RIVER Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD SAVANNA Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD SWAMP Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD TAIGA Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD THEEND Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD UNDERGROUND Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		FIELD name Ljava/lang/String;
-		METHOD $values ()[Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
 			ARG 0 name
-		METHOD getName ()Ljava/lang/String;
-		METHOD getSerializedName ()Ljava/lang/String;
-		METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/Biome$BiomeCategory;)Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		METHOD values ()[Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
 	CLASS ClimateParameters
-		FIELD CODEC Lcom/mojang/serialization/Codec;
-		FIELD altitude F
-		FIELD humidity F
-		FIELD offset F
-		FIELD temperature F
-		FIELD weirdness F
-		METHOD <clinit> ()V
-		METHOD <init> (FFFFF)V
-		METHOD equals (Ljava/lang/Object;)Z
 		METHOD fitness (Lnet/minecraft/world/level/biome/Biome$ClimateParameters;)F
 			ARG 1 attributes
-		METHOD hashCode ()I
-		METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/Biome$ClimateParameters;)Ljava/lang/Float;
-		METHOD lambda$static$1 (Lnet/minecraft/world/level/biome/Biome$ClimateParameters;)Ljava/lang/Float;
-		METHOD lambda$static$2 (Lnet/minecraft/world/level/biome/Biome$ClimateParameters;)Ljava/lang/Float;
-		METHOD lambda$static$3 (Lnet/minecraft/world/level/biome/Biome$ClimateParameters;)Ljava/lang/Float;
-		METHOD lambda$static$4 (Lnet/minecraft/world/level/biome/Biome$ClimateParameters;)Ljava/lang/Float;
-		METHOD lambda$static$5 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-		METHOD toString ()Ljava/lang/String;
-	CLASS ClimateSettings
-		FIELD CODEC Lcom/mojang/serialization/MapCodec;
-		FIELD downfall F
-		FIELD precipitation Lnet/minecraft/world/level/biome/Biome$Precipitation;
-		FIELD temperature F
-		FIELD temperatureModifier Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
-		METHOD <clinit> ()V
-		METHOD <init> (Lnet/minecraft/world/level/biome/Biome$Precipitation;FLnet/minecraft/world/level/biome/Biome$TemperatureModifier;F)V
-		METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/Biome$ClimateSettings;)Lnet/minecraft/world/level/biome/Biome$Precipitation;
-		METHOD lambda$static$1 (Lnet/minecraft/world/level/biome/Biome$ClimateSettings;)Ljava/lang/Float;
-		METHOD lambda$static$2 (Lnet/minecraft/world/level/biome/Biome$ClimateSettings;)Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
-		METHOD lambda$static$3 (Lnet/minecraft/world/level/biome/Biome$ClimateSettings;)Ljava/lang/Float;
-		METHOD lambda$static$4 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 	CLASS Precipitation
-		FIELD $VALUES [Lnet/minecraft/world/level/biome/Biome$Precipitation;
-		FIELD BY_NAME Ljava/util/Map;
-		FIELD CODEC Lcom/mojang/serialization/Codec;
-		FIELD NONE Lnet/minecraft/world/level/biome/Biome$Precipitation;
-		FIELD RAIN Lnet/minecraft/world/level/biome/Biome$Precipitation;
-		FIELD SNOW Lnet/minecraft/world/level/biome/Biome$Precipitation;
-		FIELD name Ljava/lang/String;
-		METHOD $values ()[Lnet/minecraft/world/level/biome/Biome$Precipitation;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$Precipitation;
 			ARG 0 name
-		METHOD getName ()Ljava/lang/String;
-		METHOD getSerializedName ()Ljava/lang/String;
-		METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/Biome$Precipitation;)Lnet/minecraft/world/level/biome/Biome$Precipitation;
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$Precipitation;
-		METHOD values ()[Lnet/minecraft/world/level/biome/Biome$Precipitation;
 	CLASS TemperatureModifier
-		FIELD $VALUES [Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
-		FIELD BY_NAME Ljava/util/Map;
-		FIELD CODEC Lcom/mojang/serialization/Codec;
-		FIELD FROZEN Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
-		FIELD NONE Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
-		FIELD name Ljava/lang/String;
-		METHOD $values ()[Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
 			ARG 0 name
-		METHOD getName ()Ljava/lang/String;
-		METHOD getSerializedName ()Ljava/lang/String;
-		METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;)Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
 		METHOD modifyTemperature (Lnet/minecraft/core/BlockPos;F)F
 			ARG 1 pos
 			ARG 2 temperature
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
-		METHOD values ()[Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
 		CLASS 1
-			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 			METHOD modifyTemperature (Lnet/minecraft/core/BlockPos;F)F
 				ARG 1 pos
 				ARG 2 temperature
 		CLASS 2
-			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 			METHOD modifyTemperature (Lnet/minecraft/core/BlockPos;F)F
 				ARG 1 pos
 				ARG 2 temperature

@@ -1,17 +1,4 @@
 CLASS com/mojang/blaze3d/platform/GlStateManager
-	FIELD BLEND Lcom/mojang/blaze3d/platform/GlStateManager$BlendState;
-	FIELD COLOR_LOGIC Lcom/mojang/blaze3d/platform/GlStateManager$ColorLogicState;
-	FIELD COLOR_MASK Lcom/mojang/blaze3d/platform/GlStateManager$ColorMask;
-	FIELD CULL Lcom/mojang/blaze3d/platform/GlStateManager$CullState;
-	FIELD DEPTH Lcom/mojang/blaze3d/platform/GlStateManager$DepthState;
-	FIELD POLY_OFFSET Lcom/mojang/blaze3d/platform/GlStateManager$PolygonOffsetState;
-	FIELD SCISSOR Lcom/mojang/blaze3d/platform/GlStateManager$ScissorState;
-	FIELD STENCIL Lcom/mojang/blaze3d/platform/GlStateManager$StencilState;
-	FIELD TEXTURES [Lcom/mojang/blaze3d/platform/GlStateManager$TextureState;
-	FIELD TEXTURE_COUNT I
-	FIELD activeTexture I
-	METHOD <clinit> ()V
-	METHOD <init> ()V
 	METHOD _activeTexture (I)V
 		ARG 0 texture
 	METHOD _bindTexture (I)V
@@ -51,30 +38,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 depthFunc
 	METHOD _depthMask (Z)V
 		ARG 0 flag
-	METHOD _disableBlend ()V
-	METHOD _disableColorLogicOp ()V
-	METHOD _disableCull ()V
-	METHOD _disableDepthTest ()V
-	METHOD _disablePolygonOffset ()V
-	METHOD _disableScissorTest ()V
-	METHOD _disableTexture ()V
 	METHOD _disableVertexAttribArray (I)V
 		ARG 0 index
-	METHOD _drawElements (IIIJ)V
-	METHOD _enableBlend ()V
-	METHOD _enableColorLogicOp ()V
-	METHOD _enableCull ()V
-	METHOD _enableDepthTest ()V
-	METHOD _enablePolygonOffset ()V
-	METHOD _enableScissorTest ()V
-	METHOD _enableTexture ()V
 	METHOD _enableVertexAttribArray (I)V
 		ARG 0 index
-	METHOD _genTexture ()I
 	METHOD _genTextures ([I)V
 		ARG 0 textures
-	METHOD _getActiveTexture ()I
-	METHOD _getError ()I
 	METHOD _getInteger (I)I
 		ARG 0 pname
 	METHOD _getString (I)Ljava/lang/String;
@@ -89,16 +58,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 target
 		ARG 1 level
 		ARG 2 parameterName
-	METHOD _getTextureId (I)I
-	METHOD _glBindAttribLocation (IILjava/lang/CharSequence;)V
 	METHOD _glBindBuffer (II)V
 		ARG 0 target
 		ARG 1 buffer
 	METHOD _glBindFramebuffer (II)V
 		ARG 0 target
 		ARG 1 framebuffer
-	METHOD _glBindRenderbuffer (II)V
-	METHOD _glBindVertexArray (I)V
 	METHOD _glBlitFrameBuffer (IIIIIIIIII)V
 		ARG 0 srcX0
 		ARG 1 srcY0
@@ -110,7 +75,6 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 7 dstY1
 		ARG 8 mask
 		ARG 9 filter
-	METHOD _glBufferData (IJI)V
 	METHOD _glBufferData (ILjava/nio/ByteBuffer;I)V
 		ARG 0 target
 		ARG 1 data
@@ -128,26 +92,18 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 buffer
 	METHOD _glDeleteFramebuffers (I)V
 		ARG 0 frameBuffer
-	METHOD _glDeleteRenderbuffers (I)V
-	METHOD _glDeleteVertexArrays (I)V
-	METHOD _glDrawPixels (IIIIJ)V
-	METHOD _glFramebufferRenderbuffer (IIII)V
 	METHOD _glFramebufferTexture2D (IIIII)V
 		ARG 0 target
 		ARG 1 attachment
 		ARG 2 texTarget
 		ARG 3 texture
 		ARG 4 level
-	METHOD _glGenBuffers ()I
-	METHOD _glGenVertexArrays ()I
 	METHOD _glGetAttribLocation (ILjava/lang/CharSequence;)I
 		ARG 0 program
 		ARG 1 name
 	METHOD _glGetUniformLocation (ILjava/lang/CharSequence;)I
 		ARG 0 program
 		ARG 1 name
-	METHOD _glMapBuffer (II)Ljava/nio/ByteBuffer;
-	METHOD _glRenderbufferStorage (IIII)V
 	METHOD _glUniform1 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
@@ -187,7 +143,6 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 location
 		ARG 1 transpose
 		ARG 2 value
-	METHOD _glUnmapBuffer (I)V
 	METHOD _glUseProgram (I)V
 		ARG 0 program
 	METHOD _logicOp (I)V
@@ -201,7 +156,6 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD _polygonOffset (FF)V
 		ARG 0 factor
 		ARG 1 units
-	METHOD _readPixels (IIIIIIJ)V
 	METHOD _readPixels (IIIIIILjava/nio/ByteBuffer;)V
 		ARG 0 x
 		ARG 1 y
@@ -210,7 +164,6 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 4 format
 		ARG 5 type
 		ARG 6 pixels
-	METHOD _scissorBox (IIII)V
 	METHOD _stencilFunc (III)V
 		ARG 0 func
 		ARG 1 ref
@@ -249,7 +202,6 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 6 format
 		ARG 7 type
 		ARG 8 pixels
-	METHOD _vertexAttribIPointer (IIIIJ)V
 	METHOD _vertexAttribPointer (IIIZIJ)V
 		ARG 0 index
 		ARG 1 size
@@ -262,7 +214,6 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 y
 		ARG 2 width
 		ARG 3 height
-	METHOD getBoundFramebuffer ()I
 	METHOD glActiveTexture (I)V
 		ARG 0 texture
 	METHOD glAttachShader (II)V
@@ -277,15 +228,12 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 target
 	METHOD glCompileShader (I)V
 		ARG 0 shader
-	METHOD glCreateProgram ()I
 	METHOD glCreateShader (I)I
 		ARG 0 type
 	METHOD glDeleteProgram (I)V
 		ARG 0 program
 	METHOD glDeleteShader (I)V
 		ARG 0 shader
-	METHOD glGenFramebuffers ()I
-	METHOD glGenRenderbuffers ()I
 	METHOD glGetProgramInfoLog (II)Ljava/lang/String;
 		ARG 0 program
 		ARG 1 maxLength
@@ -300,9 +248,6 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 pname
 	METHOD glLinkProgram (I)V
 		ARG 0 program
-	METHOD glShaderSource (ILjava/util/List;)V
-	METHOD lambda$static$0 (I)Lcom/mojang/blaze3d/platform/GlStateManager$TextureState;
-	METHOD lambda$static$1 (I)[Lcom/mojang/blaze3d/platform/GlStateManager$TextureState;
 	METHOD setupGui3DDiffuseLighting (Lcom/mojang/math/Vector3f;Lcom/mojang/math/Vector3f;)V
 		ARG 0 lightingVector1
 		ARG 1 lightingVector2
@@ -313,147 +258,6 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 lightingVector1
 		ARG 1 lightingVector2
 		ARG 2 matrix
-	CLASS BlendState
-		FIELD dstAlpha I
-		FIELD dstRgb I
-		FIELD mode Lcom/mojang/blaze3d/platform/GlStateManager$BooleanState;
-		FIELD srcAlpha I
-		FIELD srcRgb I
-		METHOD <init> ()V
 	CLASS BooleanState
-		FIELD enabled Z
-		FIELD state I
-		METHOD <init> (I)V
-		METHOD disable ()V
-		METHOD enable ()V
 		METHOD setEnabled (Z)V
 			ARG 1 enabled
-	CLASS ColorLogicState
-		FIELD enable Lcom/mojang/blaze3d/platform/GlStateManager$BooleanState;
-		FIELD op I
-		METHOD <init> ()V
-	CLASS ColorMask
-		FIELD alpha Z
-		FIELD blue Z
-		FIELD green Z
-		FIELD red Z
-		METHOD <init> ()V
-	CLASS CullState
-		FIELD enable Lcom/mojang/blaze3d/platform/GlStateManager$BooleanState;
-		FIELD mode I
-		METHOD <init> ()V
-	CLASS DepthState
-		FIELD func I
-		FIELD mask Z
-		FIELD mode Lcom/mojang/blaze3d/platform/GlStateManager$BooleanState;
-		METHOD <init> ()V
-	CLASS DestFactor
-		FIELD $VALUES [Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD CONSTANT_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD CONSTANT_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD DST_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD DST_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD ONE Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD ONE_MINUS_CONSTANT_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD ONE_MINUS_CONSTANT_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD ONE_MINUS_DST_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD ONE_MINUS_DST_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD ONE_MINUS_SRC_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD ONE_MINUS_SRC_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD SRC_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD SRC_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD ZERO Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		FIELD value I
-		METHOD $values ()[Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;II)V
-		METHOD valueOf (Ljava/lang/String;)Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-		METHOD values ()[Lcom/mojang/blaze3d/platform/GlStateManager$DestFactor;
-	CLASS LogicOp
-		FIELD $VALUES [Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD AND Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD AND_INVERTED Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD AND_REVERSE Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD CLEAR Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD COPY Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD COPY_INVERTED Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD EQUIV Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD INVERT Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD NAND Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD NOOP Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD NOR Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD OR Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD OR_INVERTED Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD OR_REVERSE Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD SET Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD XOR Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		FIELD value I
-		METHOD $values ()[Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;II)V
-		METHOD valueOf (Ljava/lang/String;)Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-		METHOD values ()[Lcom/mojang/blaze3d/platform/GlStateManager$LogicOp;
-	CLASS PolygonOffsetState
-		FIELD factor F
-		FIELD fill Lcom/mojang/blaze3d/platform/GlStateManager$BooleanState;
-		FIELD line Lcom/mojang/blaze3d/platform/GlStateManager$BooleanState;
-		FIELD units F
-		METHOD <init> ()V
-	CLASS ScissorState
-		FIELD mode Lcom/mojang/blaze3d/platform/GlStateManager$BooleanState;
-		METHOD <init> ()V
-	CLASS SourceFactor
-		FIELD $VALUES [Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD CONSTANT_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD CONSTANT_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD DST_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD DST_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD ONE Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD ONE_MINUS_CONSTANT_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD ONE_MINUS_CONSTANT_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD ONE_MINUS_DST_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD ONE_MINUS_DST_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD ONE_MINUS_SRC_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD ONE_MINUS_SRC_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD SRC_ALPHA Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD SRC_ALPHA_SATURATE Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD SRC_COLOR Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD ZERO Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		FIELD value I
-		METHOD $values ()[Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;II)V
-		METHOD valueOf (Ljava/lang/String;)Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-		METHOD values ()[Lcom/mojang/blaze3d/platform/GlStateManager$SourceFactor;
-	CLASS StencilFunc
-		FIELD func I
-		FIELD mask I
-		FIELD ref I
-		METHOD <init> ()V
-	CLASS StencilState
-		FIELD fail I
-		FIELD func Lcom/mojang/blaze3d/platform/GlStateManager$StencilFunc;
-		FIELD mask I
-		FIELD zfail I
-		FIELD zpass I
-		METHOD <init> ()V
-	CLASS TextureState
-		FIELD binding I
-		FIELD enable Z
-		METHOD <init> ()V
-	CLASS Viewport
-		FIELD $VALUES [Lcom/mojang/blaze3d/platform/GlStateManager$Viewport;
-		FIELD INSTANCE Lcom/mojang/blaze3d/platform/GlStateManager$Viewport;
-		FIELD height I
-		FIELD width I
-		FIELD x I
-		FIELD y I
-		METHOD $values ()[Lcom/mojang/blaze3d/platform/GlStateManager$Viewport;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
-		METHOD height ()I
-		METHOD valueOf (Ljava/lang/String;)Lcom/mojang/blaze3d/platform/GlStateManager$Viewport;
-		METHOD values ()[Lcom/mojang/blaze3d/platform/GlStateManager$Viewport;
-		METHOD width ()I
-		METHOD x ()I
-		METHOD y ()I

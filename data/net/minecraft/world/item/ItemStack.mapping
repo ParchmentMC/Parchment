@@ -1,39 +1,6 @@
 CLASS net/minecraft/world/item/ItemStack
-	FIELD ATTRIBUTE_MODIFIER_FORMAT Ljava/text/DecimalFormat;
-	FIELD CODEC Lcom/mojang/serialization/Codec;
-	FIELD DONT_HIDE_TOOLTIP I
-	FIELD EMPTY Lnet/minecraft/world/item/ItemStack;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD LORE_STYLE Lnet/minecraft/network/chat/Style;
-	FIELD TAG_CAN_DESTROY_BLOCK_LIST Ljava/lang/String;
-	FIELD TAG_CAN_PLACE_ON_BLOCK_LIST Ljava/lang/String;
-	FIELD TAG_COLOR Ljava/lang/String;
-	FIELD TAG_DAMAGE Ljava/lang/String;
-	FIELD TAG_DISPLAY Ljava/lang/String;
-	FIELD TAG_DISPLAY_NAME Ljava/lang/String;
-	FIELD TAG_ENCH Ljava/lang/String;
-	FIELD TAG_ENCH_ID Ljava/lang/String;
-	FIELD TAG_ENCH_LEVEL Ljava/lang/String;
-	FIELD TAG_HIDE_FLAGS Ljava/lang/String;
-	FIELD TAG_LORE Ljava/lang/String;
-	FIELD TAG_REPAIR_COST Ljava/lang/String;
-	FIELD TAG_UNBREAKABLE Ljava/lang/String;
-	FIELD cachedBreakBlock Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;
-	FIELD cachedBreakBlockResult Z
-	FIELD cachedPlaceBlock Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;
-	FIELD cachedPlaceBlockResult Z
-	FIELD count I
-	FIELD emptyCacheFlag Z
 	FIELD entityRepresentation Lnet/minecraft/world/entity/Entity;
 		COMMENT The entity the item is attached to, like an Item Frame.
-	FIELD item Lnet/minecraft/world/item/Item;
-	FIELD popTime I
-	FIELD tag Lnet/minecraft/nbt/CompoundTag;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/nbt/CompoundTag;)V
-	METHOD <init> (Lnet/minecraft/world/level/ItemLike;)V
-	METHOD <init> (Lnet/minecraft/world/level/ItemLike;I)V
-	METHOD <init> (Lnet/minecraft/world/level/ItemLike;ILjava/util/Optional;)V
 	METHOD addAttributeModifier (Lnet/minecraft/world/entity/ai/attributes/Attribute;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;Lnet/minecraft/world/entity/EquipmentSlot;)V
 		ARG 1 attributeName
 		ARG 2 modifier
@@ -41,8 +8,6 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD addTagElement (Ljava/lang/String;Lnet/minecraft/nbt/Tag;)V
 		ARG 1 key
 		ARG 2 value
-	METHOD appendEnchantmentNames (Ljava/util/List;Lnet/minecraft/nbt/ListTag;)V
-	METHOD areSameBlocks (Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
 	METHOD copy ()Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns a new stack with the same properties.
 	METHOD enchant (Lnet/minecraft/world/item/enchantment/Enchantment;I)V
@@ -59,59 +24,37 @@ CLASS net/minecraft/world/item/ItemStack
 		COMMENT Gets the attribute modifiers for this ItemStack.
 		COMMENT Will check for an NBT tag list containing modifiers for the stack.
 		ARG 1 equipmentSlot
-	METHOD getBarColor ()I
-	METHOD getBarWidth ()I
 	METHOD getBaseRepairCost ()I
 		COMMENT Get this stack's repair cost, or 0 if no repair cost is defined.
-	METHOD getCount ()I
-	METHOD getDamageValue ()I
-	METHOD getDescriptionId ()Ljava/lang/String;
 	METHOD getDestroySpeed (Lnet/minecraft/world/level/block/state/BlockState;)F
 		ARG 1 block
 	METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
 		COMMENT Get a ChatComponent for this Item's display name that shows this Item on hover
-	METHOD getDrinkingSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getEatingSound ()Lnet/minecraft/sounds/SoundEvent;
-	METHOD getEnchantmentTags ()Lnet/minecraft/nbt/ListTag;
 	METHOD getEntityRepresentation ()Lnet/minecraft/world/entity/Entity;
 		COMMENT For example it'll return a ItemFrameEntity if it is in an itemframe
-	METHOD getEquipSound ()Lnet/minecraft/sounds/SoundEvent;
 	METHOD getFrame ()Lnet/minecraft/world/entity/decoration/ItemFrame;
 		COMMENT Return the item frame this stack is on. Returns null if not on an item frame.
-	METHOD getHideFlags ()I
-	METHOD getHoverName ()Lnet/minecraft/network/chat/Component;
 	METHOD getItem ()Lnet/minecraft/world/item/Item;
 		COMMENT Returns the object corresponding to the stack.
 	METHOD getMaxDamage ()I
 		COMMENT Returns the max damage an item in the stack can take.
 	METHOD getMaxStackSize ()I
 		COMMENT Returns maximum size of the stack.
-	METHOD getOrCreateTag ()Lnet/minecraft/nbt/CompoundTag;
 	METHOD getOrCreateTagElement (Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 key
-	METHOD getPopTime ()I
-	METHOD getRarity ()Lnet/minecraft/world/item/Rarity;
-	METHOD getTag ()Lnet/minecraft/nbt/CompoundTag;
 	METHOD getTagElement (Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Get an NBTTagCompound from this stack's NBT data.
 		ARG 1 key
-	METHOD getTooltipImage ()Ljava/util/Optional;
 	METHOD getTooltipLines (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/TooltipFlag;)Ljava/util/List;
 		COMMENT Return a list of strings containing information about the item
 		ARG 1 player
 		ARG 2 advanced
-	METHOD getUseAnimation ()Lnet/minecraft/world/item/UseAnim;
-	METHOD getUseDuration ()I
 	METHOD grow (I)V
 		ARG 1 count
-	METHOD hasAdventureModeBreakTagForBlock (Lnet/minecraft/tags/TagContainer;Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
-	METHOD hasAdventureModePlaceTagForBlock (Lnet/minecraft/tags/TagContainer;Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
 	METHOD hasCustomHoverName ()Z
 		COMMENT Returns true if the itemstack has a display name
-	METHOD hasFoil ()Z
 	METHOD hasTag ()Z
 		COMMENT Returns true if the ItemStack has an NBTTagCompound. Currently used to store enchantments.
-	METHOD hideTooltipPart (Lnet/minecraft/world/item/ItemStack$TooltipPart;)V
 	METHOD hurt (ILjava/util/Random;Lnet/minecraft/server/level/ServerPlayer;)Z
 		COMMENT Attempts to damage the ItemStack with par1 amount of damage, If the ItemStack has the Unbreaking enchantment there is a chance for each point of damage to be negated. Returns true if it takes more damage than getMaxDamage(). Returns false otherwise or if the ItemStack can't be damaged or if all points of damage are negated.
 		ARG 1 amount
@@ -135,9 +78,6 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 2 entity
 		ARG 3 inventorySlot
 		ARG 4 isCurrentItem
-	METHOD is (Lnet/minecraft/tags/Tag;)Z
-	METHOD is (Lnet/minecraft/world/item/Item;)Z
-	METHOD isBarVisible ()Z
 	METHOD isCorrectToolForDrops (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		COMMENT Check whether the given Block can be harvested using this ItemStack.
 		ARG 1 block
@@ -145,8 +85,6 @@ CLASS net/minecraft/world/item/ItemStack
 		COMMENT true if this itemStack is damageable
 	METHOD isDamaged ()Z
 		COMMENT returns true when a damageable item is damaged
-	METHOD isEdible ()Z
-	METHOD isEmpty ()Z
 	METHOD isEnchantable ()Z
 		COMMENT True if it is a tool and has no enchantments to begin with
 	METHOD isEnchanted ()Z
@@ -160,17 +98,8 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD isSameIgnoreDurability (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 stackA
 		ARG 1 stackB
-	METHOD isSameItemSameTags (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 	METHOD isStackable ()Z
 		COMMENT Returns true if the ItemStack can hold 2 or more units of the item.
-	METHOD lambda$appendEnchantmentNames$5 (Ljava/util/List;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/item/enchantment/Enchantment;)V
-	METHOD lambda$expandBlockState$6 (Lnet/minecraft/network/chat/MutableComponent;)Lnet/minecraft/network/chat/MutableComponent;
-	METHOD lambda$getDisplayName$7 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-	METHOD lambda$static$0 (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/Item;
-	METHOD lambda$static$1 (Lnet/minecraft/world/item/ItemStack;)Ljava/lang/Integer;
-	METHOD lambda$static$2 (Lnet/minecraft/world/item/ItemStack;)Ljava/util/Optional;
-	METHOD lambda$static$3 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-	METHOD lambda$static$4 (Ljava/text/DecimalFormat;)V
 	METHOD matches (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT compares ItemStack argument to the instance ItemStack returns true if both ItemStacks are equal
 		ARG 1 other
@@ -190,20 +119,16 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 1 level
 		ARG 2 player
 		ARG 3 amount
-	METHOD onDestroyed (Lnet/minecraft/world/entity/item/ItemEntity;)V
 	METHOD onUseTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V
 		COMMENT Called as the stack is being used by an entity.
 		ARG 1 level
 		ARG 2 livingEntity
 		ARG 3 count
-	METHOD overrideOtherStackedOnMe (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/inventory/ClickAction;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/SlotAccess;)Z
-	METHOD overrideStackedOnOther (Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/inventory/ClickAction;Lnet/minecraft/world/entity/player/Player;)Z
 	METHOD releaseUsing (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V
 		COMMENT Called when the player releases the use item button.
 		ARG 1 level
 		ARG 2 entityLiving
 		ARG 3 timeLeft
-	METHOD removeTagKey (Ljava/lang/String;)V
 	METHOD resetHoverName ()V
 		COMMENT Clear any custom name set for this ItemStack
 	METHOD sameItem (Lnet/minecraft/world/item/ItemStack;)Z
@@ -230,7 +155,6 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD setTag (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT Assigns a NBTTagCompound to the ItemStack, minecraft validates that only non-stackable items can have it.
 		ARG 1 nbt
-	METHOD shouldShowInTooltip (ILnet/minecraft/world/item/ItemStack$TooltipPart;)Z
 	METHOD shrink (I)V
 		ARG 1 count
 	METHOD split (I)Lnet/minecraft/world/item/ItemStack;
@@ -239,8 +163,6 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD tagMatches (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 stackA
 		ARG 1 stackB
-	METHOD toString ()Ljava/lang/String;
-	METHOD updateEmptyCacheFlag ()V
 	METHOD use (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
 		COMMENT Called whenr the item stack is equipped and right clicked. Replaces the item stack with the return value.
 		ARG 1 level
@@ -248,20 +170,3 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 3 hand
 	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 context
-	METHOD useOnRelease ()Z
-	CLASS TooltipPart
-		FIELD $VALUES [Lnet/minecraft/world/item/ItemStack$TooltipPart;
-		FIELD ADDITIONAL Lnet/minecraft/world/item/ItemStack$TooltipPart;
-		FIELD CAN_DESTROY Lnet/minecraft/world/item/ItemStack$TooltipPart;
-		FIELD CAN_PLACE Lnet/minecraft/world/item/ItemStack$TooltipPart;
-		FIELD DYE Lnet/minecraft/world/item/ItemStack$TooltipPart;
-		FIELD ENCHANTMENTS Lnet/minecraft/world/item/ItemStack$TooltipPart;
-		FIELD MODIFIERS Lnet/minecraft/world/item/ItemStack$TooltipPart;
-		FIELD UNBREAKABLE Lnet/minecraft/world/item/ItemStack$TooltipPart;
-		FIELD mask I
-		METHOD $values ()[Lnet/minecraft/world/item/ItemStack$TooltipPart;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
-		METHOD getMask ()I
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/item/ItemStack$TooltipPart;
-		METHOD values ()[Lnet/minecraft/world/item/ItemStack$TooltipPart;

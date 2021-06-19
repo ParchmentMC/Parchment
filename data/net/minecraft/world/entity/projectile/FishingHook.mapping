@@ -1,44 +1,11 @@
 CLASS net/minecraft/world/entity/projectile/FishingHook
-	FIELD DATA_BITING Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD DATA_HOOKED_ENTITY Lnet/minecraft/network/syncher/EntityDataAccessor;
-	FIELD MAX_OUT_OF_WATER_TIME I
-	FIELD biting Z
-	FIELD currentState Lnet/minecraft/world/entity/projectile/FishingHook$FishHookState;
-	FIELD fishAngle F
-	FIELD hookedIn Lnet/minecraft/world/entity/Entity;
-	FIELD life I
-	FIELD luck I
-	FIELD lureSpeed I
-	FIELD nibble I
-	FIELD openWater Z
-	FIELD outOfWaterTime I
-	FIELD syncronizedRandom Ljava/util/Random;
-	FIELD timeUntilHooked I
-	FIELD timeUntilLured I
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
-	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;II)V
-	METHOD <init> (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;II)V
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD calculateOpenWater (Lnet/minecraft/core/BlockPos;)Z
 	METHOD canChangeDimensions ()Z
 		COMMENT Returns false if this Entity can't move between dimensions. True if it can.
-	METHOD canHitEntity (Lnet/minecraft/world/entity/Entity;)Z
-	METHOD catchingFish (Lnet/minecraft/core/BlockPos;)V
-	METHOD checkCollision ()V
-	METHOD defineSynchedData ()V
-	METHOD getAddEntityPacket ()Lnet/minecraft/network/protocol/Packet;
-	METHOD getHookedIn ()Lnet/minecraft/world/entity/Entity;
-	METHOD getMovementEmission ()Lnet/minecraft/world/entity/Entity$MovementEmission;
-	METHOD getOpenWaterTypeForArea (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
-	METHOD getOpenWaterTypeForBlock (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
-	METHOD getPlayerOwner ()Lnet/minecraft/world/entity/player/Player;
 	METHOD handleEntityEvent (B)V
 		COMMENT Handler for {@link World#setEntityState}
 		ARG 1 id
-	METHOD isOpenWaterFishing ()Z
-	METHOD lambda$getOpenWaterTypeForArea$0 (Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;)Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
 	METHOD lerpTo (DDDFFIZ)V
 		COMMENT Sets a target for the client to interpolate towards over the next few ticks
 		ARG 1 x
@@ -48,49 +15,16 @@ CLASS net/minecraft/world/entity/projectile/FishingHook
 		ARG 8 pitch
 		ARG 9 posRotationIncrements
 		ARG 10 teleport
-	METHOD onClientRemoval ()V
-	METHOD onHitBlock (Lnet/minecraft/world/phys/BlockHitResult;)V
 	METHOD onHitEntity (Lnet/minecraft/world/phys/EntityHitResult;)V
 		COMMENT Called when the arrow hits an entity
 		ARG 1 result
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
-	METHOD pullEntity (Lnet/minecraft/world/entity/Entity;)V
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
-	METHOD recreateFromPacket (Lnet/minecraft/network/protocol/game/ClientboundAddEntityPacket;)V
-	METHOD remove (Lnet/minecraft/world/entity/Entity$RemovalReason;)V
-	METHOD retrieve (Lnet/minecraft/world/item/ItemStack;)I
-	METHOD setHookedEntity (Lnet/minecraft/world/entity/Entity;)V
-	METHOD setOwner (Lnet/minecraft/world/entity/Entity;)V
 	METHOD shouldRenderAtSqrDistance (D)Z
 		COMMENT Checks if the entity is in range to render.
 		ARG 1 distance
-	METHOD shouldStopFishing (Lnet/minecraft/world/entity/player/Player;)Z
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
-	METHOD updateOwnerInfo (Lnet/minecraft/world/entity/projectile/FishingHook;)V
-	CLASS 1
-		FIELD $SwitchMap$net$minecraft$world$entity$projectile$FishingHook$OpenWaterType [I
-		METHOD <clinit> ()V
-	CLASS FishHookState
-		FIELD $VALUES [Lnet/minecraft/world/entity/projectile/FishingHook$FishHookState;
-		FIELD BOBBING Lnet/minecraft/world/entity/projectile/FishingHook$FishHookState;
-		FIELD FLYING Lnet/minecraft/world/entity/projectile/FishingHook$FishHookState;
-		FIELD HOOKED_IN_ENTITY Lnet/minecraft/world/entity/projectile/FishingHook$FishHookState;
-		METHOD $values ()[Lnet/minecraft/world/entity/projectile/FishingHook$FishHookState;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/entity/projectile/FishingHook$FishHookState;
-		METHOD values ()[Lnet/minecraft/world/entity/projectile/FishingHook$FishHookState;
-	CLASS OpenWaterType
-		FIELD $VALUES [Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
-		FIELD ABOVE_WATER Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
-		FIELD INSIDE_WATER Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
-		FIELD INVALID Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
-		METHOD $values ()[Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
-		METHOD <clinit> ()V
-		METHOD <init> (Ljava/lang/String;I)V
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
-		METHOD values ()[Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;

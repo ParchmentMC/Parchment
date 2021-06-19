@@ -1,27 +1,4 @@
 CLASS net/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity
-	FIELD BURN_COOL_SPEED I
-	FIELD BURN_TIME_STANDARD I
-	FIELD DATA_COOKING_PROGRESS I
-	FIELD DATA_COOKING_TOTAL_TIME I
-	FIELD DATA_LIT_DURATION I
-	FIELD DATA_LIT_TIME I
-	FIELD NUM_DATA_VALUES I
-	FIELD SLOTS_FOR_DOWN [I
-	FIELD SLOTS_FOR_SIDES [I
-	FIELD SLOTS_FOR_UP [I
-	FIELD SLOT_FUEL I
-	FIELD SLOT_INPUT I
-	FIELD SLOT_RESULT I
-	FIELD cookingProgress I
-	FIELD cookingTotalTime I
-	FIELD dataAccess Lnet/minecraft/world/inventory/ContainerData;
-	FIELD items Lnet/minecraft/core/NonNullList;
-	FIELD litDuration I
-	FIELD litTime I
-	FIELD recipeType Lnet/minecraft/world/item/crafting/RecipeType;
-	FIELD recipesUsed Lit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/item/crafting/RecipeType;)V
 	METHOD add (Ljava/util/Map;Lnet/minecraft/tags/Tag;I)V
 		ARG 0 map
 		ARG 1 itemTag
@@ -32,9 +9,6 @@ CLASS net/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity
 		ARG 2 burnTime
 	METHOD awardUsedRecipes (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
-	METHOD awardUsedRecipesAndPopExperience (Lnet/minecraft/server/level/ServerPlayer;)V
-	METHOD burn (Lnet/minecraft/world/item/crafting/Recipe;Lnet/minecraft/core/NonNullList;I)Z
-	METHOD canBurn (Lnet/minecraft/world/item/crafting/Recipe;Lnet/minecraft/core/NonNullList;I)Z
 	METHOD canPlaceItem (ILnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot. For guis use Slot.isItemValid
 		ARG 1 index
@@ -49,32 +23,21 @@ CLASS net/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity
 		ARG 1 index
 		ARG 2 stack
 		ARG 3 direction
-	METHOD clearContent ()V
-	METHOD createExperience (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;IF)V
 	METHOD fillStackedContents (Lnet/minecraft/world/entity/player/StackedContents;)V
 		ARG 1 helper
 	METHOD getBurnDuration (Lnet/minecraft/world/item/ItemStack;)I
 		ARG 1 fuel
 	METHOD getContainerSize ()I
 		COMMENT Returns the number of slots in the inventory.
-	METHOD getFuel ()Ljava/util/Map;
 	METHOD getItem (I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns the stack in the given slot.
 		ARG 1 index
-	METHOD getRecipeUsed ()Lnet/minecraft/world/item/crafting/Recipe;
-	METHOD getRecipesToAwardAndPopExperience (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;)Ljava/util/List;
 	METHOD getSlotsForFace (Lnet/minecraft/core/Direction;)[I
 		ARG 1 side
-	METHOD getTotalCookTime (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;)I
-	METHOD isEmpty ()Z
 	METHOD isFuel (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 stack
-	METHOD isLit ()Z
 	METHOD isNeverAFurnaceFuel (Lnet/minecraft/world/item/Item;)Z
 		ARG 0 item
-	METHOD lambda$getRecipesToAwardAndPopExperience$1 (Ljava/util/List;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;Lnet/minecraft/world/item/crafting/Recipe;)V
-	METHOD lambda$save$0 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/resources/ResourceLocation;Ljava/lang/Integer;)V
-	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
 	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
 		ARG 1 index
@@ -84,7 +47,6 @@ CLASS net/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity
 		ARG 1 index
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
-	METHOD serverTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity;)V
 	METHOD setItem (ILnet/minecraft/world/item/ItemStack;)V
 		COMMENT Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
 		ARG 1 index
@@ -95,11 +57,8 @@ CLASS net/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity
 		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
 		ARG 1 player
 	CLASS 1
-		FIELD this$0 Lnet/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity;
-		METHOD <init> (Lnet/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity;)V
 		METHOD get (I)I
 			ARG 1 index
-		METHOD getCount ()I
 		METHOD set (II)V
 			ARG 1 index
 			ARG 2 value

@@ -1,40 +1,11 @@
 CLASS net/minecraft/world/level/biome/BiomeGenerationSettings
-	FIELD CODEC Lcom/mojang/serialization/MapCodec;
-	FIELD EMPTY Lnet/minecraft/world/level/biome/BiomeGenerationSettings;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD carvers Ljava/util/Map;
-	FIELD features Ljava/util/List;
-	FIELD flowerFeatures Ljava/util/List;
-	FIELD structureStarts Ljava/util/List;
-	FIELD surfaceBuilder Ljava/util/function/Supplier;
-	METHOD <clinit> ()V
-	METHOD <init> (Ljava/util/function/Supplier;Ljava/util/Map;Ljava/util/List;Ljava/util/List;)V
-	METHOD features ()Ljava/util/List;
 	METHOD getCarvers (Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)Ljava/util/List;
 		ARG 1 carvingType
-	METHOD getFlowerFeatures ()Ljava/util/List;
-	METHOD getSurfaceBuilder ()Ljava/util/function/Supplier;
-	METHOD getSurfaceBuilderConfig ()Lnet/minecraft/world/level/levelgen/surfacebuilders/SurfaceBuilderConfiguration;
 	METHOD isValidStart (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Z
 		ARG 1 structure
-	METHOD lambda$isValidStart$7 (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;Ljava/util/function/Supplier;)Z
-	METHOD lambda$new$6 (Lnet/minecraft/world/level/levelgen/feature/ConfiguredFeature;)Z
-	METHOD lambda$static$0 ()Lnet/minecraft/world/level/levelgen/surfacebuilders/ConfiguredSurfaceBuilder;
-	METHOD lambda$static$1 (Lnet/minecraft/world/level/biome/BiomeGenerationSettings;)Ljava/util/function/Supplier;
-	METHOD lambda$static$2 (Lnet/minecraft/world/level/biome/BiomeGenerationSettings;)Ljava/util/Map;
-	METHOD lambda$static$3 (Lnet/minecraft/world/level/biome/BiomeGenerationSettings;)Ljava/util/List;
-	METHOD lambda$static$4 (Lnet/minecraft/world/level/biome/BiomeGenerationSettings;)Ljava/util/List;
-	METHOD lambda$static$5 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-	METHOD lambda$withBiomeConfig$8 (Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;)Z
-	METHOD structures ()Ljava/util/Collection;
 	METHOD withBiomeConfig (Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;)Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;
 		ARG 1 structure
 	CLASS Builder
-		FIELD carvers Ljava/util/Map;
-		FIELD features Ljava/util/List;
-		FIELD structureStarts Ljava/util/List;
-		FIELD surfaceBuilder Ljava/util/Optional;
-		METHOD <init> ()V
 		METHOD addCarver (Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;Lnet/minecraft/world/level/levelgen/carver/ConfiguredWorldCarver;)Lnet/minecraft/world/level/biome/BiomeGenerationSettings$Builder;
 			ARG 1 carvingStage
 			ARG 2 carver
@@ -48,14 +19,6 @@ CLASS net/minecraft/world/level/biome/BiomeGenerationSettings
 			ARG 1 stage
 		METHOD addStructureStart (Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;)Lnet/minecraft/world/level/biome/BiomeGenerationSettings$Builder;
 			ARG 1 structure
-		METHOD build ()Lnet/minecraft/world/level/biome/BiomeGenerationSettings;
-		METHOD lambda$addCarver$2 (Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)Ljava/util/List;
-		METHOD lambda$addCarver$3 (Lnet/minecraft/world/level/levelgen/carver/ConfiguredWorldCarver;)Lnet/minecraft/world/level/levelgen/carver/ConfiguredWorldCarver;
-		METHOD lambda$addFeature$1 (Lnet/minecraft/world/level/levelgen/feature/ConfiguredFeature;)Lnet/minecraft/world/level/levelgen/feature/ConfiguredFeature;
-		METHOD lambda$addStructureStart$4 (Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;)Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;
-		METHOD lambda$build$5 ()Ljava/lang/IllegalStateException;
-		METHOD lambda$build$6 (Ljava/util/Map$Entry;)Ljava/util/List;
-		METHOD lambda$surfaceBuilder$0 (Lnet/minecraft/world/level/levelgen/surfacebuilders/ConfiguredSurfaceBuilder;)Lnet/minecraft/world/level/levelgen/surfacebuilders/ConfiguredSurfaceBuilder;
 		METHOD surfaceBuilder (Ljava/util/function/Supplier;)Lnet/minecraft/world/level/biome/BiomeGenerationSettings$Builder;
 			ARG 1 configuredSurfaceBuilderSupplier
 		METHOD surfaceBuilder (Lnet/minecraft/world/level/levelgen/surfacebuilders/ConfiguredSurfaceBuilder;)Lnet/minecraft/world/level/biome/BiomeGenerationSettings$Builder;

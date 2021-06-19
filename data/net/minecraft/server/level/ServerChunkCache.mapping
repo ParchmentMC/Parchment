@@ -1,23 +1,4 @@
 CLASS net/minecraft/server/level/ServerChunkCache
-	FIELD CACHE_SIZE I
-	FIELD CHUNK_STATUSES Ljava/util/List;
-	FIELD chunkMap Lnet/minecraft/server/level/ChunkMap;
-	FIELD dataStorage Lnet/minecraft/world/level/storage/DimensionDataStorage;
-	FIELD distanceManager Lnet/minecraft/server/level/DistanceManager;
-	FIELD generator Lnet/minecraft/world/level/chunk/ChunkGenerator;
-	FIELD lastChunk [Lnet/minecraft/world/level/chunk/ChunkAccess;
-	FIELD lastChunkPos [J
-	FIELD lastChunkStatus [Lnet/minecraft/world/level/chunk/ChunkStatus;
-	FIELD lastInhabitedUpdate J
-	FIELD lastSpawnState Lnet/minecraft/world/level/NaturalSpawner$SpawnState;
-	FIELD level Lnet/minecraft/server/level/ServerLevel;
-	FIELD lightEngine Lnet/minecraft/server/level/ThreadedLevelLightEngine;
-	FIELD mainThread Ljava/lang/Thread;
-	FIELD mainThreadProcessor Lnet/minecraft/server/level/ServerChunkCache$MainThreadExecutor;
-	FIELD spawnEnemies Z
-	FIELD spawnFriendlies Z
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/chunk/ChunkGenerator;IZLnet/minecraft/server/level/progress/ChunkProgressListener;Lnet/minecraft/world/level/entity/ChunkStatusUpdateListener;Ljava/util/function/Supplier;)V
 	METHOD addEntity (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD addRegionTicket (Lnet/minecraft/server/level/TicketType;Lnet/minecraft/world/level/ChunkPos;ILjava/lang/Object;)V
@@ -35,9 +16,6 @@ CLASS net/minecraft/server/level/ServerChunkCache
 		ARG 2 packet
 	METHOD checkChunkFuture (JLjava/util/function/Function;)Z
 		ARG 1 pos
-	METHOD chunkAbsent (Lnet/minecraft/server/level/ChunkHolder;I)Z
-	METHOD clearCache ()V
-	METHOD close ()V
 	METHOD gatherStats ()Ljava/lang/String;
 		COMMENT Converts the instance data to a readable string.
 	METHOD getChunk (IILnet/minecraft/world/level/chunk/ChunkStatus;Z)Lnet/minecraft/world/level/chunk/ChunkAccess;
@@ -50,42 +28,18 @@ CLASS net/minecraft/server/level/ServerChunkCache
 	METHOD getChunkForLighting (II)Lnet/minecraft/world/level/BlockGetter;
 		ARG 1 chunkX
 		ARG 2 chunkZ
-	METHOD getChunkFuture (IILnet/minecraft/world/level/chunk/ChunkStatus;Z)Ljava/util/concurrent/CompletableFuture;
-	METHOD getChunkFutureMainThread (IILnet/minecraft/world/level/chunk/ChunkStatus;Z)Ljava/util/concurrent/CompletableFuture;
 	METHOD getChunkNow (II)Lnet/minecraft/world/level/chunk/LevelChunk;
 		ARG 1 chunkX
 		ARG 2 chunkZ
-	METHOD getDataStorage ()Lnet/minecraft/world/level/storage/DimensionDataStorage;
-	METHOD getFullChunk (JLjava/util/function/Consumer;)V
-	METHOD getGenerator ()Lnet/minecraft/world/level/chunk/ChunkGenerator;
-	METHOD getLastSpawnState ()Lnet/minecraft/world/level/NaturalSpawner$SpawnState;
-	METHOD getLevel ()Lnet/minecraft/world/level/BlockGetter;
-	METHOD getLevel ()Lnet/minecraft/world/level/Level;
-	METHOD getLightEngine ()Lnet/minecraft/server/level/ThreadedLevelLightEngine;
-	METHOD getLightEngine ()Lnet/minecraft/world/level/lighting/LevelLightEngine;
-	METHOD getLoadedChunksCount ()I
-	METHOD getPendingTasksCount ()I
-	METHOD getPoiManager ()Lnet/minecraft/world/entity/ai/village/poi/PoiManager;
-	METHOD getTickingGenerated ()I
-	METHOD getVisibleChunkIfPresent (J)Lnet/minecraft/server/level/ChunkHolder;
 	METHOD hasChunk (II)Z
 		COMMENT Checks to see if a chunk exists at x, z
 		ARG 1 x
 		ARG 2 z
-	METHOD isPositionTicking (J)Z
-	METHOD lambda$getChunk$0 (IILnet/minecraft/world/level/chunk/ChunkStatus;Z)Lnet/minecraft/world/level/chunk/ChunkAccess;
-	METHOD lambda$getChunk$1 (Lnet/minecraft/world/level/chunk/ChunkAccess;)Lnet/minecraft/world/level/chunk/ChunkAccess;
-	METHOD lambda$getChunk$2 (ZLnet/minecraft/server/level/ChunkHolder$ChunkLoadingFailure;)Lnet/minecraft/world/level/chunk/ChunkAccess;
-	METHOD lambda$getChunkFuture$3 (IILnet/minecraft/world/level/chunk/ChunkStatus;Z)Ljava/util/concurrent/CompletableFuture;
-	METHOD lambda$getChunkFuture$4 (Ljava/util/concurrent/CompletableFuture;)Ljava/util/concurrent/CompletionStage;
-	METHOD lambda$onLightUpdate$6 (Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/LightLayer;)V
-	METHOD lambda$tickChunks$5 (JZLnet/minecraft/world/level/NaturalSpawner$SpawnState;ZILnet/minecraft/server/level/ChunkHolder;)V
 	METHOD move (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
 	METHOD onLightUpdate (Lnet/minecraft/world/level/LightLayer;Lnet/minecraft/core/SectionPos;)V
 		ARG 1 type
 		ARG 2 pos
-	METHOD pollTask ()Z
 	METHOD removeEntity (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD removeRegionTicket (Lnet/minecraft/server/level/TicketType;Lnet/minecraft/world/level/ChunkPos;ILjava/lang/Object;)V
@@ -93,7 +47,6 @@ CLASS net/minecraft/server/level/ServerChunkCache
 		ARG 2 pos
 		ARG 3 distance
 		ARG 4 value
-	METHOD runDistanceManagerUpdates ()Z
 	METHOD save (Z)V
 		ARG 1 flush
 	METHOD setSpawnSettings (ZZ)V
@@ -101,20 +54,12 @@ CLASS net/minecraft/server/level/ServerChunkCache
 		ARG 2 peaceful
 	METHOD setViewDistance (I)V
 		ARG 1 viewDistance
-	METHOD storeInCache (JLnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/chunk/ChunkStatus;)V
-	METHOD tick (Ljava/util/function/BooleanSupplier;)V
-	METHOD tickChunks ()V
 	METHOD updateChunkForced (Lnet/minecraft/world/level/ChunkPos;Z)V
 		ARG 1 pos
 		ARG 2 add
 	CLASS MainThreadExecutor
-		FIELD this$0 Lnet/minecraft/server/level/ServerChunkCache;
-		METHOD <init> (Lnet/minecraft/server/level/ServerChunkCache;Lnet/minecraft/world/level/Level;)V
 		METHOD doRunTask (Ljava/lang/Runnable;)V
 			ARG 1 task
-		METHOD getRunningThread ()Ljava/lang/Thread;
-		METHOD pollTask ()Z
-		METHOD scheduleExecutables ()Z
 		METHOD shouldRun (Ljava/lang/Runnable;)Z
 			ARG 1 runnable
 		METHOD wrapRunnable (Ljava/lang/Runnable;)Ljava/lang/Runnable;

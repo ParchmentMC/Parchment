@@ -1,88 +1,10 @@
 CLASS net/minecraft/client/renderer/LevelRenderer
-	FIELD CHUNK_SIZE I
-	FIELD CLOUDS_LOCATION Lnet/minecraft/resources/ResourceLocation;
-	FIELD DIRECTIONS [Lnet/minecraft/core/Direction;
-	FIELD END_SKY_LOCATION Lnet/minecraft/resources/ResourceLocation;
-	FIELD FORCEFIELD_LOCATION Lnet/minecraft/resources/ResourceLocation;
-	FIELD LOGGER Lorg/apache/logging/log4j/Logger;
-	FIELD MAX_CHUNKS_AREA I
-	FIELD MAX_CHUNKS_WIDTH I
-	FIELD MIN_FOG_DISTANCE I
-	FIELD MOON_LOCATION Lnet/minecraft/resources/ResourceLocation;
-	FIELD RAIN_DIAMETER I
-	FIELD RAIN_LOCATION Lnet/minecraft/resources/ResourceLocation;
-	FIELD RAIN_RADIUS I
-	FIELD SKY_DISC_RADIUS F
-	FIELD SNOW_LOCATION Lnet/minecraft/resources/ResourceLocation;
-	FIELD SUN_LOCATION Lnet/minecraft/resources/ResourceLocation;
-	FIELD TRANSPARENT_SORT_COUNT I
-	FIELD blockEntityRenderDispatcher Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher;
-	FIELD captureFrustum Z
-	FIELD capturedFrustum Lnet/minecraft/client/renderer/culling/Frustum;
-	FIELD chunkRenderDispatcher Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher;
-	FIELD chunksToCompile Ljava/util/Set;
-	FIELD cloudBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
-	FIELD cloudsTarget Lcom/mojang/blaze3d/pipeline/RenderTarget;
-	FIELD culledEntities I
-	FIELD cullingFrustum Lnet/minecraft/client/renderer/culling/Frustum;
-	FIELD darkBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
-	FIELD destroyingBlocks Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
-	FIELD destructionProgress Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;
 	FIELD entityEffect Lnet/minecraft/client/renderer/PostChain;
 		COMMENT Stores the shader group for the entity_outline shader
-	FIELD entityRenderDispatcher Lnet/minecraft/client/renderer/entity/EntityRenderDispatcher;
-	FIELD entityTarget Lcom/mojang/blaze3d/pipeline/RenderTarget;
-	FIELD frameId I
-	FIELD frameTimes Lnet/minecraft/client/renderer/RunningTrimmedMean;
-	FIELD frustumPoints [Lcom/mojang/math/Vector4f;
-	FIELD frustumPos Lcom/mojang/math/Vector3d;
-	FIELD generateClouds Z
 	FIELD globalBlockEntities Ljava/util/Set;
 		COMMENT Global tile entities, always rendered (beacon, end teleporter, structures)
-	FIELD itemEntityTarget Lcom/mojang/blaze3d/pipeline/RenderTarget;
-	FIELD lastCameraChunkX I
-	FIELD lastCameraChunkY I
-	FIELD lastCameraChunkZ I
-	FIELD lastCameraX D
-	FIELD lastCameraY D
-	FIELD lastCameraZ D
-	FIELD lastViewDistance I
-	FIELD level Lnet/minecraft/client/multiplayer/ClientLevel;
-	FIELD minecraft Lnet/minecraft/client/Minecraft;
-	FIELD needsUpdate Z
-	FIELD particlesTarget Lcom/mojang/blaze3d/pipeline/RenderTarget;
 	FIELD playingRecords Ljava/util/Map;
 		COMMENT Currently playing sounds. Type: HashMap<ChunkCoordinates, ISound>
-	FIELD prevCamRotX D
-	FIELD prevCamRotY D
-	FIELD prevCamX D
-	FIELD prevCamY D
-	FIELD prevCamZ D
-	FIELD prevCloudColor Lnet/minecraft/world/phys/Vec3;
-	FIELD prevCloudX I
-	FIELD prevCloudY I
-	FIELD prevCloudZ I
-	FIELD prevCloudsType Lnet/minecraft/client/CloudStatus;
-	FIELD rainSizeX [F
-	FIELD rainSizeZ [F
-	FIELD rainSoundTime I
-	FIELD renderBuffers Lnet/minecraft/client/renderer/RenderBuffers;
-	FIELD renderChunks Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
-	FIELD renderInfoMap Lnet/minecraft/client/renderer/LevelRenderer$RenderInfoMap;
-	FIELD renderedEntities I
-	FIELD skyBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
-	FIELD starBuffer Lcom/mojang/blaze3d/vertex/VertexBuffer;
-	FIELD textureManager Lnet/minecraft/client/renderer/texture/TextureManager;
-	FIELD ticks I
-	FIELD translucentTarget Lcom/mojang/blaze3d/pipeline/RenderTarget;
-	FIELD transparencyChain Lnet/minecraft/client/renderer/PostChain;
-	FIELD viewArea Lnet/minecraft/client/renderer/ViewArea;
-	FIELD weatherTarget Lcom/mojang/blaze3d/pipeline/RenderTarget;
-	FIELD xTransparentOld D
-	FIELD yTransparentOld D
-	FIELD zTransparentOld D
-	METHOD <clinit> ()V
-	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/renderer/RenderBuffers;)V
 	METHOD addChainedFilledBoxVertices (Lcom/mojang/blaze3d/vertex/BufferBuilder;DDDDDDFFFF)V
 		ARG 0 builder
 		ARG 1 x1
@@ -167,39 +89,24 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 4 cloudsY
 		ARG 6 cloudsZ
 		ARG 8 cloudsColor
-	METHOD buildSkyDisc (Lcom/mojang/blaze3d/vertex/BufferBuilder;F)V
 	METHOD calculateParticleLevel (Z)Lnet/minecraft/client/ParticleStatus;
 		ARG 1 minimiseLevel
-	METHOD captureFrustum ()V
-	METHOD captureFrustum (Lcom/mojang/math/Matrix4f;Lcom/mojang/math/Matrix4f;DDDLnet/minecraft/client/renderer/culling/Frustum;)V
 	METHOD checkPoseStack (Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 matrixStack
 	METHOD clear ()V
 		COMMENT Deletes all display lists
-	METHOD close ()V
 	METHOD compileChunksUntil (J)V
 		ARG 1 finishTimeNano
-	METHOD countRenderedChunks ()I
-	METHOD createDarkSky ()V
-	METHOD createLightSky ()V
-	METHOD createStars ()V
-	METHOD deinitTransparency ()V
 	METHOD destroyBlockProgress (ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 breakerId
 		ARG 2 pos
 		ARG 3 progress
-	METHOD doEntityOutline ()V
 	METHOD drawStars (Lcom/mojang/blaze3d/vertex/BufferBuilder;)V
 		ARG 1 bufferBuilder
-	METHOD entityTarget ()Lcom/mojang/blaze3d/pipeline/RenderTarget;
-	METHOD getChunkRenderDispatcher ()Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher;
 	METHOD getChunkStatistics ()Ljava/lang/String;
 		COMMENT Gets the render info for use on the Debug screen
-	METHOD getCloudsTarget ()Lcom/mojang/blaze3d/pipeline/RenderTarget;
 	METHOD getEntityStatistics ()Ljava/lang/String;
 		COMMENT Gets the entities info for use on the Debug screen
-	METHOD getItemEntityTarget ()Lcom/mojang/blaze3d/pipeline/RenderTarget;
-	METHOD getLastViewDistance ()D
 	METHOD getLightColor (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
 		ARG 0 lightReader
 		ARG 1 blockPos
@@ -207,38 +114,22 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 0 lightReader
 		ARG 1 blockState
 		ARG 2 blockPos
-	METHOD getParticlesTarget ()Lcom/mojang/blaze3d/pipeline/RenderTarget;
 	METHOD getRelativeFrom (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;
 		COMMENT Returns RenderChunk offset from given RenderChunk in given direction, or null if it can't be seen by player at given BlockPos.
 		ARG 1 playerPos
 		ARG 2 renderChunkBase
 		ARG 3 facing
-	METHOD getTotalChunks ()D
-	METHOD getTranslucentTarget ()Lcom/mojang/blaze3d/pipeline/RenderTarget;
-	METHOD getWeatherTarget ()Lcom/mojang/blaze3d/pipeline/RenderTarget;
 	METHOD globalLevelEvent (ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 soundID
 		ARG 2 pos
 		ARG 3 data
-	METHOD graphicsChanged ()V
-	METHOD hasRenderedAllChunks ()Z
 	METHOD initOutline ()V
 		COMMENT Creates the entity outline shader to be stored in RenderGlobal.entityOutlineShader
-	METHOD initTransparency ()V
-	METHOD killFrustum ()V
-	METHOD lambda$addParticle$5 (DDD)Ljava/lang/String;
-	METHOD lambda$destroyBlockProgress$6 (J)Ljava/util/SortedSet;
-	METHOD lambda$renderChunkLayer$3 (Lnet/minecraft/client/renderer/RenderType;)Ljava/lang/String;
-	METHOD lambda$renderLevel$1 (Lnet/minecraft/client/Camera;FZ)V
-	METHOD lambda$renderLevel$2 (Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
-	METHOD lambda$renderShape$4 (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;DDDFFFFDDDDDD)V
-	METHOD lambda$updateRenderChunks$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;)D
 	METHOD levelEvent (Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 player
 		ARG 2 type
 		ARG 3 blockPos
 		ARG 4 data
-	METHOD needsUpdate ()V
 	METHOD notifyNearbyEntities (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Z)V
 		COMMENT Called when a record starts or stops playing. Used to make parrots start or stop partying.
 		ARG 1 level
@@ -249,11 +140,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD playStreamingMusic (Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 sound
 		ARG 2 pos
-	METHOD prepareCullFrustum (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/phys/Vec3;Lcom/mojang/math/Matrix4f;)V
 	METHOD removeProgress (Lnet/minecraft/server/level/BlockDestructionProgress;)V
 		ARG 1 progress
-	METHOD renderChunkLayer (Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack;DDDLcom/mojang/math/Matrix4f;)V
-	METHOD renderClouds (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/math/Matrix4f;FDDD)V
 	METHOD renderDebug (Lnet/minecraft/client/Camera;)V
 		ARG 1 activeRenderInfo
 	METHOD renderEndSky (Lcom/mojang/blaze3d/vertex/PoseStack;)V
@@ -321,7 +209,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 4 green
 		ARG 5 blue
 		ARG 6 alpha
-	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDDDDFFFF)V
 	METHOD renderShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFF)V
 		ARG 0 matrixStack
 		ARG 1 buffer
@@ -333,7 +220,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 green
 		ARG 11 blue
 		ARG 12 alpha
-	METHOD renderSky (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/math/Matrix4f;FLjava/lang/Runnable;)V
 	METHOD renderSnowAndRain (Lnet/minecraft/client/renderer/LightTexture;FDDD)V
 		ARG 1 lightmap
 		ARG 2 partialTicks
@@ -351,8 +237,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 green
 		ARG 11 blue
 		ARG 12 alpha
-	METHOD renderWorldBorder (Lnet/minecraft/client/Camera;)V
-	METHOD resetChunksToCompile ()V
 	METHOD resize (II)V
 		ARG 1 width
 		ARG 2 height
@@ -393,34 +277,14 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 3 debugCamera
 		ARG 4 frameCount
 		ARG 5 playerSpectator
-	METHOD shouldShowEntityOutlines ()Z
-	METHOD tick ()V
 	METHOD tickRain (Lnet/minecraft/client/Camera;)V
 		ARG 1 activeRenderInfo
 	METHOD updateGlobalBlockEntities (Ljava/util/Collection;Ljava/util/Collection;)V
 		ARG 1 tileEntitiesToRemove
 		ARG 2 tileEntitiesToAdd
-	METHOD updateRenderChunks (Lnet/minecraft/client/renderer/culling/Frustum;IZLnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;ILnet/minecraft/core/BlockPos;)V
 	CLASS RenderChunkInfo
-		FIELD chunk Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;
-		FIELD directions B
-		FIELD sourceDirections B
-		FIELD step I
-		METHOD <init> (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/core/Direction;I)V
-		METHOD addSourceDirection (Lnet/minecraft/core/Direction;)V
 		METHOD hasDirection (Lnet/minecraft/core/Direction;)Z
 			ARG 1 facing
-		METHOD hasSourceDirection (I)Z
-		METHOD hasSourceDirections ()Z
 		METHOD setDirections (BLnet/minecraft/core/Direction;)V
 			ARG 1 dir
 			ARG 2 facing
-	CLASS RenderInfoMap
-		FIELD blank [Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;
-		FIELD infos [Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;
-		METHOD <init> (I)V
-		METHOD clear ()V
-		METHOD get (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;)Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;
-		METHOD put (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;)V
-	CLASS TransparencyShaderException
-		METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
