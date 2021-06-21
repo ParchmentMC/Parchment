@@ -1,4 +1,17 @@
 CLASS com/mojang/blaze3d/platform/NativeImage
+	METHOD <init> (IIZ)V
+		ARG 1 width
+		ARG 2 height
+	METHOD <init> (Lcom/mojang/blaze3d/platform/NativeImage$Format;IIZ)V
+		ARG 1 format
+		ARG 2 width
+		ARG 3 height
+	METHOD <init> (Lcom/mojang/blaze3d/platform/NativeImage$Format;IIZJ)V
+		ARG 1 format
+		ARG 2 width
+		ARG 3 height
+		ARG 4 useStbFree
+		ARG 5 pixels
 	METHOD _upload (IIIIIIIZZZZ)V
 		ARG 1 level
 		ARG 2 xOffset
@@ -11,13 +24,17 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 9 clamp
 		ARG 10 mipmap
 		ARG 11 autoClose
+	METHOD blendPixel (III)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 argb
 	METHOD combine (IIII)I
 		ARG 0 alpha
 		ARG 1 blue
 		ARG 2 green
 		ARG 3 red
 	METHOD copyFrom (Lcom/mojang/blaze3d/platform/NativeImage;)V
-		ARG 1 from
+		ARG 1 otherImage
 	METHOD copyFromFont (Lorg/lwjgl/stb/STBTTFontinfo;IIIFFFFII)V
 		COMMENT Renders given glyph into this image
 		ARG 1 info
@@ -51,11 +68,17 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 	METHOD fromBase64 (Ljava/lang/String;)Lcom/mojang/blaze3d/platform/NativeImage;
 		ARG 0 string
 	METHOD getA (I)I
-		ARG 0 col
+		ARG 0 packedARGB
 	METHOD getB (I)I
-		ARG 0 col
+		ARG 0 packedARGB
+	METHOD getBlueOrLuminance (II)B
+		ARG 1 x
+		ARG 2 y
 	METHOD getG (I)I
-		ARG 0 col
+		ARG 0 packedARGB
+	METHOD getGreenOrLuminance (II)B
+		ARG 1 x
+		ARG 2 y
 	METHOD getLuminanceOrAlpha (II)B
 		ARG 1 x
 		ARG 2 y
@@ -63,17 +86,23 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 1 x
 		ARG 2 y
 	METHOD getR (I)I
-		ARG 0 col
+		ARG 0 packedARGB
+	METHOD getRedOrLuminance (II)B
+		ARG 1 x
+		ARG 2 y
+	METHOD isOutsideBounds (II)Z
+		ARG 1 x
+		ARG 2 y
 	METHOD read (Lcom/mojang/blaze3d/platform/NativeImage$Format;Ljava/io/InputStream;)Lcom/mojang/blaze3d/platform/NativeImage;
-		ARG 0 pixelFormat
-		ARG 1 inputStream
+		ARG 0 format
+		ARG 1 textureStream
 	METHOD read (Lcom/mojang/blaze3d/platform/NativeImage$Format;Ljava/nio/ByteBuffer;)Lcom/mojang/blaze3d/platform/NativeImage;
-		ARG 0 pixelFormat
-		ARG 1 byteBuffer
+		ARG 0 format
+		ARG 1 textureData
 	METHOD read (Ljava/io/InputStream;)Lcom/mojang/blaze3d/platform/NativeImage;
-		ARG 0 inputStream
+		ARG 0 textureStream
 	METHOD read (Ljava/nio/ByteBuffer;)Lcom/mojang/blaze3d/platform/NativeImage;
-		ARG 0 byteBuffer
+		ARG 0 textureData
 	METHOD resizeSubRectTo (IIIILcom/mojang/blaze3d/platform/NativeImage;)V
 		ARG 1 x
 		ARG 2 y
@@ -83,10 +112,14 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 	METHOD setFilter (ZZ)V
 		ARG 0 linear
 		ARG 1 mipmap
+	METHOD setPixelLuminance (IIB)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 luminance
 	METHOD setPixelRGBA (III)V
 		ARG 1 x
 		ARG 2 y
-		ARG 3 value
+		ARG 3 rgba
 	METHOD upload (IIIIIIIZZ)V
 		ARG 1 level
 		ARG 2 xOffset
@@ -118,8 +151,30 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 1 channel
 	METHOD writeToFile (Ljava/io/File;)V
 		ARG 1 file
+	METHOD writeToFile (Ljava/lang/String;)V
+		ARG 1 filePath
 	METHOD writeToFile (Ljava/nio/file/Path;)V
 		ARG 1 path
 	CLASS Format
+		METHOD <init> (Ljava/lang/String;IIIZZZZZIIIIIZ)V
+			ARG 3 components
+			ARG 4 glFormat
+			ARG 5 hasRed
+			ARG 6 hasGreen
+			ARG 7 hasBlue
+			ARG 8 hasLuminance
+			ARG 9 hasAlpha
+			ARG 10 redOffset
+			ARG 11 greenOffset
+			ARG 12 blueOffset
+			ARG 13 luminanceOffset
+			ARG 14 alphaOffset
+			ARG 15 supportedByStb
 		METHOD getStbFormat (I)Lcom/mojang/blaze3d/platform/NativeImage$Format;
 			ARG 0 channels
+	CLASS WriteCallback
+		METHOD <init> (Ljava/nio/channels/WritableByteChannel;)V
+			ARG 1 channel
+	CLASS InternalGlFormat
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 glFormat

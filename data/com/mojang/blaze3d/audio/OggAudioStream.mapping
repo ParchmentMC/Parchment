@@ -1,15 +1,17 @@
 CLASS com/mojang/blaze3d/audio/OggAudioStream
+	METHOD <init> (Ljava/io/InputStream;)V
+		ARG 1 input
 	METHOD convertMono (Ljava/nio/FloatBuffer;Lcom/mojang/blaze3d/audio/OggAudioStream$OutputConcat;)V
-		ARG 1 floatBuffer
-		ARG 2 oggAudioBuffer
+		ARG 1 buffer
+		ARG 2 output
 	METHOD convertStereo (Ljava/nio/FloatBuffer;Ljava/nio/FloatBuffer;Lcom/mojang/blaze3d/audio/OggAudioStream$OutputConcat;)V
-		ARG 1 soundChannel1
-		ARG 2 soundChannel2
-		ARG 3 oggAudioBuffer
+		ARG 1 leftBuffer
+		ARG 2 rightBuffer
+		ARG 3 output
 	METHOD read (I)Ljava/nio/ByteBuffer;
 		ARG 1 size
 	METHOD readFrame (Lcom/mojang/blaze3d/audio/OggAudioStream$OutputConcat;)Z
-		ARG 1 oggAudioBuffer
+		ARG 1 output
 	CLASS OutputConcat
 		METHOD put (F)V
-			ARG 1 floatValue
+			ARG 1 value
