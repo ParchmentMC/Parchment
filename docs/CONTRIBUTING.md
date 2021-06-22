@@ -22,7 +22,7 @@ Setting up the repository for contributing is fairly simple.
 	- To name a parameter, either move the typing cursor to the parameter name and type the name then press <kbd>Enter</kbd>, or right-click the parameter name and select `Rename` from the context menu.
 	- To add javadocs to a class, field, method, or parameter, right-click the name and select `Edit Javadocs` from the context menu.
 	- To save your changes, press <kbd>Ctrl</kbd> + <kbd>S</kbd> or go to `File` > `Save`.
-	- Be mindful of the mapping standards while mapping, documeted in a [separate file][standards].
+	- Be mindful of the mapping standards while mapping, documented in a [separate file][standards].
 
 1. _Recommended:_ Validate your data through the `validateData` Gradle task. This checks for errors in the mapped data, such as mapped/documented synthetic methods. This task is also ran by the CI on every Pull Request.
 
