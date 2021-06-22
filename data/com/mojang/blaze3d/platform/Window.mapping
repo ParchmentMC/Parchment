@@ -1,10 +1,10 @@
 CLASS com/mojang/blaze3d/platform/Window
 	METHOD <init> (Lcom/mojang/blaze3d/platform/WindowEventHandler;Lcom/mojang/blaze3d/platform/ScreenManager;Lcom/mojang/blaze3d/platform/DisplayData;Ljava/lang/String;Ljava/lang/String;)V
-		ARG 1 eventHandle
+		ARG 1 eventHandler
 		ARG 2 screenManager
 		ARG 3 displayData
-		ARG 4 videoMode
-		ARG 5 windowTitle
+		ARG 4 preferredFullscreenVideoMode
+		ARG 5 title
 	METHOD bootCrash (IJ)V
 		ARG 0 error
 		ARG 1 description
@@ -23,18 +23,18 @@ CLASS com/mojang/blaze3d/platform/Window
 		ARG 3 cursorEntered
 			COMMENT {@code true} if the cursor entered the window, {@code false} if the cursor left
 	METHOD onFocus (JZ)V
-		ARG 1 windowPointer
+		ARG 1 window
 		ARG 3 hasFocus
 	METHOD onFramebufferResize (JII)V
-		ARG 1 windowPointer
+		ARG 1 window
 		ARG 3 framebufferWidth
 		ARG 4 framebufferHeight
 	METHOD onMove (JII)V
-		ARG 1 windowPointer
+		ARG 1 window
 		ARG 3 x
 		ARG 4 y
 	METHOD onResize (JII)V
-		ARG 1 windowPointer
+		ARG 1 window
 		ARG 3 width
 		ARG 4 height
 	METHOD readIconPixels (Ljava/io/InputStream;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)Ljava/nio/ByteBuffer;

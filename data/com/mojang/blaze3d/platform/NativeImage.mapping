@@ -27,14 +27,14 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 	METHOD blendPixel (III)V
 		ARG 1 x
 		ARG 2 y
-		ARG 3 argb
+		ARG 3 abgrColor
 	METHOD combine (IIII)I
 		ARG 0 alpha
 		ARG 1 blue
 		ARG 2 green
 		ARG 3 red
 	METHOD copyFrom (Lcom/mojang/blaze3d/platform/NativeImage;)V
-		ARG 1 otherImage
+		ARG 1 other
 	METHOD copyFromFont (Lorg/lwjgl/stb/STBTTFontinfo;IIIFFFFII)V
 		COMMENT Renders given glyph into this image
 		ARG 1 info
@@ -68,14 +68,14 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 	METHOD fromBase64 (Ljava/lang/String;)Lcom/mojang/blaze3d/platform/NativeImage;
 		ARG 0 string
 	METHOD getA (I)I
-		ARG 0 packedARGB
+		ARG 0 abgrColor
 	METHOD getB (I)I
-		ARG 0 packedARGB
+		ARG 0 abgrColor
 	METHOD getBlueOrLuminance (II)B
 		ARG 1 x
 		ARG 2 y
 	METHOD getG (I)I
-		ARG 0 packedARGB
+		ARG 0 abgrColor
 	METHOD getGreenOrLuminance (II)B
 		ARG 1 x
 		ARG 2 y
@@ -86,7 +86,7 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 1 x
 		ARG 2 y
 	METHOD getR (I)I
-		ARG 0 packedARGB
+		ARG 0 abgrColor
 	METHOD getRedOrLuminance (II)B
 		ARG 1 x
 		ARG 2 y
@@ -119,7 +119,7 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 	METHOD setPixelRGBA (III)V
 		ARG 1 x
 		ARG 2 y
-		ARG 3 rgba
+		ARG 3 abgrColor
 	METHOD upload (IIIIIIIZZ)V
 		ARG 1 level
 		ARG 2 xOffset
@@ -174,7 +174,7 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 			ARG 0 channels
 	CLASS WriteCallback
 		METHOD <init> (Ljava/nio/channels/WritableByteChannel;)V
-			ARG 1 channel
+			ARG 1 output
 	CLASS InternalGlFormat
 		METHOD <init> (Ljava/lang/String;II)V
 			ARG 3 glFormat
