@@ -3,27 +3,44 @@ CLASS net/minecraft/nbt/NbtUtils
 		ARG 0 nbt1
 		ARG 1 nbt2
 		ARG 2 compareTagList
+	METHOD createUUID (Ljava/util/UUID;)Lnet/minecraft/nbt/IntArrayTag;
+		ARG 0 uuid
+	METHOD indent (ILjava/lang/StringBuilder;)Ljava/lang/StringBuilder;
+		ARG 0 indentLevel
 	METHOD loadUUID (Lnet/minecraft/nbt/Tag;)Ljava/util/UUID;
 		COMMENT Reads a UUID from the passed NBTTagCompound.
 		ARG 0 tag
+	METHOD packStructureTemplate (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 compoundTag
+	METHOD prettyPrint (Ljava/lang/StringBuilder;Lnet/minecraft/nbt/Tag;IZ)Ljava/lang/StringBuilder;
+		ARG 2 indentLevel
+		ARG 3 prettyPrintArray
+	METHOD prettyPrint (Lnet/minecraft/nbt/Tag;Z)Ljava/lang/String;
+		ARG 1 prettyPrintArray
 	METHOD readBlockPos (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/core/BlockPos;
 		COMMENT Creates a BlockPos object from the data stored in the passed NBTTagCompound.
-		ARG 0 tag
+		ARG 0 compoundTag
 	METHOD readBlockState (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/level/block/state/BlockState;
 		COMMENT Reads a blockstate from the given tag.
-		ARG 0 tag
+		ARG 0 compoundTag
 	METHOD readGameProfile (Lnet/minecraft/nbt/CompoundTag;)Lcom/mojang/authlib/GameProfile;
 		COMMENT Reads and returns a GameProfile that has been saved to the passed in NBTTagCompound
-		ARG 0 compound
+		ARG 0 compoundTag
+	METHOD setValueHelper (Lnet/minecraft/world/level/block/state/StateHolder;Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/String;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/level/block/state/StateHolder;
+		ARG 2 propertyName
+		ARG 3 propertiesTag
+		ARG 4 stateTag
+	METHOD unpackStructureTemplate (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 compoundTag
 	METHOD update (Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/util/datafix/DataFixTypes;Lnet/minecraft/nbt/CompoundTag;I)Lnet/minecraft/nbt/CompoundTag;
 		ARG 0 dataFixer
 		ARG 1 type
-		ARG 2 nbt
+		ARG 2 compoundTag
 		ARG 3 version
 	METHOD update (Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/util/datafix/DataFixTypes;Lnet/minecraft/nbt/CompoundTag;II)Lnet/minecraft/nbt/CompoundTag;
 		ARG 0 dataFixer
 		ARG 1 type
-		ARG 2 nbt
+		ARG 2 compoundTag
 		ARG 3 version
 		ARG 4 newVersion
 	METHOD writeBlockPos (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/nbt/CompoundTag;
@@ -31,8 +48,8 @@ CLASS net/minecraft/nbt/NbtUtils
 		ARG 0 pos
 	METHOD writeBlockState (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Writes the given blockstate to the given tag.
-		ARG 0 tag
+		ARG 0 state
 	METHOD writeGameProfile (Lnet/minecraft/nbt/CompoundTag;Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Writes a GameProfile to an NBTTagCompound.
-		ARG 0 tagCompound
+		ARG 0 compoundTag
 		ARG 1 profile
