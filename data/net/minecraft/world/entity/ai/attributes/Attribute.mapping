@@ -1,5 +1,30 @@
-CLASS net/minecraft/world/entity/ai/attributes/Attribute
+CLASS net/minecraft/world/entity/ai/attributes/Attribute net/minecraft/world/entity/ai/attributes/Attribute
+	COMMENT Defines an entity attribute. These are properties of entities that can be dynamically modified.
+	FIELD defaultValue D
+		COMMENT The default value of the attribute.
+	FIELD descriptionId Ljava/lang/String;
+		COMMENT A description Id for the attribute. This is most commonly used as the localization key.
+	FIELD syncable Z
+		COMMENT Whether or not the value of this attribute should be kept in sync on the client.
+	METHOD <init> (Ljava/lang/String;D)V
+		ARG 1 description
+		ARG 2 defaultValue
+	METHOD getDefaultValue ()D
+		COMMENT Gets the default value for the attribute.
+		COMMENT @return The default value for the attribute.
+	METHOD getDescriptionId ()Ljava/lang/String;
+		COMMENT Gets the localization key of the attribute.
+		COMMENT @return The localization key of the attribute.
+	METHOD isClientSyncable ()Z
+		COMMENT Checks if the attribute value should be kept in sync on the client.
+		COMMENT @return Whether or not the attribute value should be kept in sync on the client.
 	METHOD sanitizeValue (D)D
+		COMMENT Sanitizes the value of the attribute to fit within the expected parameter range of the attribute.
+		COMMENT @return The sanitized attribute value.
 		ARG 1 value
+			COMMENT The value of the attribute to sanitize.
 	METHOD setSyncable (Z)Lnet/minecraft/world/entity/ai/attributes/Attribute;
+		COMMENT Sets whether or not the attribute value should be synced to the client.
+		COMMENT @return The same attribute instance being modified.
 		ARG 1 watch
+			COMMENT Whether or not the attribute value should be kept in sync.
