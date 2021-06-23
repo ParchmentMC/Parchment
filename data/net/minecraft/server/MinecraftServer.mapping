@@ -1,0 +1,153 @@
+CLASS net/minecraft/server/MinecraftServer
+	FIELD resourcePack Ljava/lang/String;
+		COMMENT The texture pack for the server
+	METHOD addTickable (Ljava/lang/Runnable;)V
+		ARG 1 tickable
+	METHOD detectBundledResources ()V
+		ARG 1 levelName
+		ARG 2 saveHandler
+	METHOD doRunTask (Lnet/minecraft/server/TickTask;)V
+		ARG 1 task
+	METHOD getCompressionThreshold ()I
+		COMMENT The compression treshold. If the packet is larger than the specified amount of bytes, it will be compressed
+	METHOD getFile (Ljava/lang/String;)Ljava/io/File;
+		COMMENT Returns a File object from the specified string.
+		ARG 1 fileName
+	METHOD getKeyPair ()Ljava/security/KeyPair;
+		COMMENT Gets KeyPair instanced in MinecraftServer.
+	METHOD getLevel (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/server/level/ServerLevel;
+		COMMENT Gets the worldServer by the given dimension.
+		ARG 1 dimension
+	METHOD getLocalIp ()Ljava/lang/String;
+		COMMENT "getHostname" is already taken, but both return the hostname.
+	METHOD getMaxPlayers ()I
+		COMMENT Returns the maximum number of players allowed on the server.
+	METHOD getPlayerCount ()I
+		COMMENT Returns the number of players currently on the server.
+	METHOD getPlayerNames ()[Ljava/lang/String;
+		COMMENT Returns an array of the usernames of all the connected players.
+	METHOD getPort ()I
+		COMMENT Gets serverPort.
+	METHOD getProfilePermissions (Lcom/mojang/authlib/GameProfile;)I
+		ARG 1 profile
+	METHOD getServerVersion ()Ljava/lang/String;
+		COMMENT Returns the server's Minecraft version as string.
+	METHOD getSingleplayerName ()Ljava/lang/String;
+		COMMENT Returns the username of the server owner (for integrated servers)
+	METHOD getSpawnProtectionRadius ()I
+		COMMENT Return the spawn protection area's size.
+	METHOD getSpawnRadius (Lnet/minecraft/server/level/ServerLevel;)I
+		ARG 1 level
+	METHOD halt (Z)V
+		COMMENT Sets the serverRunning variable to false, in order to get the server to shut down.
+		ARG 1 waitForServer
+	METHOD initServer ()Z
+		COMMENT Initialises the server and starts it.
+	METHOD isCommandBlockEnabled ()Z
+		COMMENT Return whether command blocks are enabled.
+	METHOD isDemo ()Z
+		COMMENT Gets whether this is a demo or not.
+	METHOD isEpollEnabled ()Z
+		COMMENT Get if native transport should be used. Native transport means linux server performance improvements and optimized packet sending/receiving on linux
+	METHOD isHardcore ()Z
+		COMMENT Defaults to false.
+	METHOD isPublished ()Z
+		COMMENT Returns true if this integrated server is open to LAN
+	METHOD isSingleplayerOwner (Lcom/mojang/authlib/GameProfile;)Z
+		ARG 1 profile
+	METHOD isUnderSpawnProtection (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)Z
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 player
+	METHOD kickUnlistedPlayers (Lnet/minecraft/commands/CommandSourceStack;)V
+		ARG 1 commandSource
+	METHOD onServerCrash (Lnet/minecraft/CrashReport;)V
+		COMMENT Called on exit from the main run() loop.
+		ARG 1 report
+	METHOD onServerExit ()V
+		COMMENT Directly calls System.exit(0), instantly killing the program.
+	METHOD populateSnooper (Lnet/minecraft/world/Snooper;)V
+		ARG 1 snooper
+	METHOD prepareLevels (Lnet/minecraft/server/level/progress/ChunkProgressListener;)V
+		COMMENT Loads the spawn chunks and any forced chunks
+	METHOD publishServer (Lnet/minecraft/world/level/GameType;ZI)Z
+		ARG 1 gameMode
+		ARG 2 cheats
+		ARG 3 port
+	METHOD saveAllChunks (ZZZ)Z
+		ARG 1 suppressLog
+		ARG 2 flush
+		ARG 3 forced
+	METHOD sendDifficultyUpdate (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD sendMessage (Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V
+		COMMENT Send a chat message to the CommandSender
+		ARG 1 component
+		ARG 2 senderUUID
+	METHOD setDefaultGameType (Lnet/minecraft/world/level/GameType;)V
+		COMMENT Sets the game type for all worlds.
+		ARG 1 gameMode
+	METHOD setDemo (Z)V
+		COMMENT Sets whether this is a demo or not.
+		ARG 1 demo
+	METHOD setDifficulty (Lnet/minecraft/world/Difficulty;Z)V
+		ARG 1 difficulty
+	METHOD setDifficultyLocked (Z)V
+		ARG 1 locked
+	METHOD setEnforceWhitelist (Z)V
+		ARG 1 whitelistEnabled
+	METHOD setFlightAllowed (Z)V
+		ARG 1 allow
+	METHOD setId (Ljava/lang/String;)V
+		ARG 1 serverId
+	METHOD setLocalIp (Ljava/lang/String;)V
+		ARG 1 host
+	METHOD setMotd (Ljava/lang/String;)V
+		ARG 1 motd
+	METHOD setPlayerIdleTimeout (I)V
+		ARG 1 idleTimeout
+	METHOD setPlayerList (Lnet/minecraft/server/players/PlayerList;)V
+		ARG 1 list
+	METHOD setPort (I)V
+		ARG 1 port
+	METHOD setPvpAllowed (Z)V
+		ARG 1 allowPvp
+	METHOD setResourcePack (Ljava/lang/String;Ljava/lang/String;)V
+		ARG 1 url
+		ARG 2 hash
+	METHOD setSingleplayerName (Ljava/lang/String;)V
+		COMMENT Sets the username of the owner of this server (in the case of an integrated server)
+		ARG 1 owner
+	METHOD setUsesAuthentication (Z)V
+		ARG 1 online
+	METHOD shouldRun (Lnet/minecraft/server/TickTask;)Z
+		ARG 1 runnable
+	METHOD spin (Ljava/util/function/Function;)Lnet/minecraft/server/MinecraftServer;
+		ARG 0 threadFunction
+	METHOD stopServer ()V
+		COMMENT Saves all necessary data as preparation for stopping the server.
+	METHOD tickChildren (Ljava/util/function/BooleanSupplier;)V
+		ARG 1 hasTimeLeft
+	METHOD tickServer (Ljava/util/function/BooleanSupplier;)V
+		COMMENT Main function called by run() every loop.
+		ARG 1 hasTimeLeft
+	METHOD updateStatusIcon (Lnet/minecraft/network/protocol/status/ServerStatus;)V
+		ARG 1 response
+	METHOD waitUntilNextTick ()V
+		COMMENT Runs all pending tasks and waits for more tasks until serverTime is reached.
+	METHOD wrapRunnable (Ljava/lang/Runnable;)Lnet/minecraft/server/TickTask;
+		ARG 1 runnable
+	CLASS 1
+		METHOD progressStage (Lnet/minecraft/network/chat/Component;)V
+			ARG 1 component
+		METHOD progressStagePercentage (I)V
+			COMMENT Updates the progress bar on the loading screen to the specified amount.
+			ARG 1 progress
+		METHOD progressStart (Lnet/minecraft/network/chat/Component;)V
+			ARG 1 component
+		METHOD progressStartNoAbort (Lnet/minecraft/network/chat/Component;)V
+			ARG 1 component
+	CLASS 2
+		METHOD visit (Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Type;)V
+			ARG 1 key
+			ARG 2 type

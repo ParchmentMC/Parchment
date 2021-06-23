@@ -1,0 +1,34 @@
+CLASS net/minecraft/world/level/chunk/LevelChunkSection
+	METHOD bottomBlockY ()I
+		COMMENT Gets the y coordinate that this chunk section starts at (which is a multiple of 16). To get the y number, use <code>section.getYLocation() >> 4</code>. Note that there is a section below the world for lighting purposes.
+	METHOD getBlockState (III)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD getFluidState (III)Lnet/minecraft/world/level/material/FluidState;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD isEmpty ()Z
+		COMMENT Returns whether or not this block storage's Chunk is fully empty, based on its internal reference count.
+	METHOD isEmpty (Lnet/minecraft/world/level/chunk/LevelChunkSection;)Z
+		ARG 0 section
+	METHOD isRandomlyTickingBlocks ()Z
+		COMMENT Returns whether or not this block storage's Chunk will require random ticking, used to avoid looping through random block ticks when there are no blocks that would randomly tick.
+	METHOD maybeHas (Ljava/util/function/Predicate;)Z
+		ARG 1 predicate
+	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 packetBuffer
+	METHOD setBlockState (IIILnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 blockState
+	METHOD setBlockState (IIILnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 state
+		ARG 5 useLocks
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 packetBuffer

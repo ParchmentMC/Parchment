@@ -1,0 +1,51 @@
+CLASS net/minecraft/world/level/block/DoublePlantBlock
+	METHOD canSurvive (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
+		ARG 1 builder
+	METHOD getOffsetType ()Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;
+		COMMENT Get the OffsetType for this Block. Determines if the model is rendered slightly offset.
+	METHOD getSeed (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)J
+		COMMENT Return a random long to be passed to {@link IBakedModel#getQuads}, used for random model rotations
+		ARG 1 state
+		ARG 2 pos
+	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context
+	METHOD playerDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Spawns the block's drops in the world. By the time this is called the Block has possibly been set to air via Block.removedByPlayer
+		ARG 1 level
+		ARG 2 player
+		ARG 3 pos
+		ARG 4 state
+		ARG 5 te
+		ARG 6 stack
+	METHOD playerWillDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect this block
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 player
+	METHOD preventCreativeDropFromBottomPart (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 player
+	METHOD setPlacedBy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Called by ItemBlocks after a block is set in the world, to allow post-place logic
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 placer
+		ARG 5 stack
+	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
+		COMMENT For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
+		COMMENT Note that this method should ideally consider only the specific face passed in.
+		ARG 1 state
+		ARG 2 facing
+		ARG 3 facingState
+		ARG 4 level
+		ARG 5 currentPos
+		ARG 6 facingPos

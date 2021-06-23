@@ -1,0 +1,81 @@
+CLASS net/minecraft/world/level/block/BedBlock
+	METHOD bounceUp (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD canSetSpawn (Lnet/minecraft/world/level/Level;)Z
+		ARG 0 level
+	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
+		ARG 1 builder
+	METHOD getBedOrientation (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/Direction;
+		ARG 0 reader
+		ARG 1 pos
+	METHOD getBlockType (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/DoubleBlockCombiner$BlockType;
+		ARG 0 state
+	METHOD getConnectedDirection (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/core/Direction;
+		ARG 0 state
+	METHOD getNeighbourDirection (Lnet/minecraft/world/level/block/state/properties/BedPart;Lnet/minecraft/core/Direction;)Lnet/minecraft/core/Direction;
+		COMMENT Given a bed part and the direction it's facing, find the direction to move to get the other bed part
+		ARG 0 part
+		ARG 1 direction
+	METHOD getPistonPushReaction (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/PushReaction;
+		COMMENT @deprecated call via {@link IBlockState#getMobilityFlag()} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+	METHOD getRenderShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/RenderShape;
+		COMMENT The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids, INVISIBLE to skip all rendering
+		COMMENT @deprecated call via {@link IBlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+	METHOD getSeed (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)J
+		COMMENT Return a random long to be passed to {@link IBakedModel#getQuads}, used for random model rotations
+		ARG 1 state
+		ARG 2 pos
+	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 context
+	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context
+	METHOD isBunkBed (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
+		ARG 0 blockReader
+		ARG 1 pos
+	METHOD isPathfindable (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/pathfinder/PathComputationType;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 type
+	METHOD kickVillagerOutOfBed (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 level
+		ARG 2 pos
+	METHOD playerWillDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect this block
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 player
+	METHOD setPlacedBy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Called by ItemBlocks after a block is set in the world, to allow post-place logic
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 placer
+		ARG 5 stack
+	METHOD updateEntityAfterFallOn (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Called when an Entity lands on this Block. This method *must* update motionY because the entity will not do that on its own
+		ARG 1 level
+		ARG 2 entity
+	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
+		COMMENT For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
+		COMMENT Note that this method should ideally consider only the specific face passed in.
+		ARG 1 state
+		ARG 2 facing
+		ARG 3 facingState
+		ARG 4 level
+		ARG 5 currentPos
+		ARG 6 facingPos
+	METHOD use (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 player
+		ARG 5 hand
+		ARG 6 hit

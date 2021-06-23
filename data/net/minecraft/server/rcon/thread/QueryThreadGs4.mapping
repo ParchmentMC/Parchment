@@ -1,0 +1,37 @@
+CLASS net/minecraft/server/rcon/thread/QueryThreadGs4
+	METHOD buildRuleResponse (Ljava/net/DatagramPacket;)[B
+		COMMENT Creates a query response as a byte array for the specified query DatagramPacket
+		ARG 1 requestPacket
+	METHOD getIdentBytes (Ljava/net/SocketAddress;)[B
+		COMMENT Returns the request ID provided by the authorized client
+		ARG 1 address
+	METHOD initSocket ()Z
+		COMMENT Initializes the query system by binding it to a port
+	METHOD processPacket (Ljava/net/DatagramPacket;)Z
+		COMMENT Parses an incoming DatagramPacket, returning true if the packet was valid
+		ARG 1 requestPacket
+	METHOD pruneChallenges ()V
+		COMMENT Removes all clients whose auth is no longer valid
+	METHOD recoverSocketError (Ljava/lang/Exception;)V
+		COMMENT Stops the query server and reports the given Exception
+		ARG 1 exception
+	METHOD sendChallenge (Ljava/net/DatagramPacket;)V
+		COMMENT Sends an auth challenge DatagramPacket to the client and adds the client to the queryClients map
+		ARG 1 requestPacket
+	METHOD sendTo ([BLjava/net/DatagramPacket;)V
+		COMMENT Sends a byte array as a DatagramPacket response to the client who sent the given DatagramPacket
+		ARG 1 data
+		ARG 2 requestPacket
+	METHOD validChallenge (Ljava/net/DatagramPacket;)Ljava/lang/Boolean;
+		COMMENT Returns true if the client has a valid auth, otherwise false
+		ARG 1 requestPacket
+	CLASS RequestChallenge
+		METHOD before (J)Ljava/lang/Boolean;
+			COMMENT Returns true if the auth's creation timestamp is less than the given time, otherwise false
+			ARG 1 currentTime
+		METHOD getChallenge ()I
+			COMMENT Returns the random challenge number assigned to this auth
+		METHOD getChallengeBytes ()[B
+			COMMENT Returns the auth challenge value
+		METHOD getIdentBytes ()[B
+			COMMENT Returns the request ID provided by the client.

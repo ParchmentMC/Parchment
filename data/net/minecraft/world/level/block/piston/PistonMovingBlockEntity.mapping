@@ -1,0 +1,38 @@
+CLASS net/minecraft/world/level/block/piston/PistonMovingBlockEntity
+	FIELD extending Z
+		COMMENT if this piston is extending or not
+	FIELD progressO F
+		COMMENT the progress in (de)extending
+	METHOD finalTick ()V
+		COMMENT removes a piston's tile entity (and if the piston is moving, stops it)
+	METHOD getCollisionShape (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 reader
+		ARG 2 pos
+	METHOD getExtendedProgress (F)F
+		ARG 1 progress
+	METHOD getMovement (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/core/Direction;Lnet/minecraft/world/phys/AABB;)D
+		ARG 0 headShape
+		ARG 1 direction
+		ARG 2 facing
+	METHOD getProgress (F)F
+		COMMENT Get interpolated progress value (between lastProgress and progress) given the fractional time between ticks as an argument
+		ARG 1 ticks
+	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
+	METHOD getXOff (F)F
+		ARG 1 ticks
+	METHOD getYOff (F)F
+		ARG 1 ticks
+	METHOD getZOff (F)F
+		ARG 1 ticks
+	METHOD isExtending ()Z
+		COMMENT Returns true if a piston is extending
+	METHOD matchesStickyCritera (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 shape
+		ARG 1 entity
+	METHOD moveEntityByPiston (Lnet/minecraft/core/Direction;Lnet/minecraft/world/entity/Entity;DLnet/minecraft/core/Direction;)V
+		ARG 0 direction
+		ARG 1 entity
+		ARG 2 progress
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound

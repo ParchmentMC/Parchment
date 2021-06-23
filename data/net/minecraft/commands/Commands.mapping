@@ -1,0 +1,23 @@
+CLASS net/minecraft/commands/Commands
+	METHOD argument (Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+		COMMENT Creates a new argument. Intended to be imported statically. The benefit of this over the brigadier {@link RequiredArgumentBuilder#argument} method is that it is typed to {@link CommandSource}.
+		ARG 0 name
+		ARG 1 type
+	METHOD createValidator (Lnet/minecraft/commands/Commands$ParseFunction;)Ljava/util/function/Predicate;
+		ARG 0 parser
+	METHOD fillUsableCommands (Lcom/mojang/brigadier/tree/CommandNode;Lcom/mojang/brigadier/tree/CommandNode;Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Map;)V
+		ARG 1 rootCommandSource
+		ARG 2 rootSuggestion
+		ARG 3 source
+		ARG 4 commandNodeToSuggestionNode
+	METHOD literal (Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+		COMMENT Creates a new argument. Intended to be imported statically. The benefit of this over the brigadier {@link LiteralArgumentBuilder#literal} method is that it is typed to {@link CommandSource}.
+		ARG 0 name
+	METHOD performCommand (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
+		COMMENT Runs a command.
+		COMMENT
+		COMMENT @return The success value of the command, or 0 if an exception occured.
+		ARG 1 source
+		ARG 2 command
+	METHOD sendCommands (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player

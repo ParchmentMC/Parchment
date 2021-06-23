@@ -1,0 +1,29 @@
+CLASS net/minecraft/world/level/pathfinder/Node
+	FIELD costMalus F
+		COMMENT The additional cost of the path point. If negative, the path point will be sorted out by NodeProcessors.
+	FIELD f F
+		COMMENT The total cost of the path containing this path point. Used as sort criteria in PathHeap. Corresponds to the A* f-score.
+	FIELD g F
+		COMMENT The total cost of all path points up to this one. Corresponds to the A* g-score.
+	FIELD h F
+		COMMENT The estimated cost from this path point to the target. Corresponds to the A* h-score.
+	FIELD heapIdx I
+		COMMENT The index in the PathHeap. -1 if not assigned.
+	METHOD cloneAndMove (III)Lnet/minecraft/world/level/pathfinder/Node;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD createFromStream (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/level/pathfinder/Node;
+		ARG 0 buf
+	METHOD createHash (III)I
+		ARG 0 x
+		ARG 1 y
+		ARG 2 z
+	METHOD distanceTo (Lnet/minecraft/world/level/pathfinder/Node;)F
+		COMMENT Returns the linear distance to another path point
+		ARG 1 pathpoint
+	METHOD distanceToSqr (Lnet/minecraft/world/level/pathfinder/Node;)F
+		COMMENT Returns the squared distance to another path point
+		ARG 1 pathpoint
+	METHOD inOpenSet ()Z
+		COMMENT Returns true if this point has already been assigned to a path

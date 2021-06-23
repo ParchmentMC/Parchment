@@ -1,0 +1,33 @@
+CLASS net/minecraft/world/entity/monster/Monster
+	METHOD aiStep ()V
+		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	METHOD checkAnyLightMonsterSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
+		COMMENT Static predicate for determining whether or not a monster can spawn at the provided location.
+		ARG 0 type
+		ARG 1 level
+		ARG 2 reason
+		ARG 3 pos
+		ARG 4 random
+	METHOD checkMonsterSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
+		COMMENT Static predicate for determining whether or not a monster can spawn at the provided location, incorporating a check of the current light level at the location.
+		ARG 0 type
+		ARG 1 level
+		ARG 2 reason
+		ARG 3 pos
+		ARG 4 random
+	METHOD getFallDamageSound (I)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 height
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getProjectile (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 shootable
+	METHOD getWalkTargetValue (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelReader;)F
+		ARG 1 pos
+		ARG 2 level
+	METHOD isDarkEnoughToSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
+		COMMENT Static predicate for determining if the current light level and environmental conditions allow for a monster to spawn.
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 random
+	METHOD shouldDropExperience ()Z
+		COMMENT Entity won't drop items or experience points if this returns false

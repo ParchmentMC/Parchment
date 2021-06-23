@@ -1,0 +1,55 @@
+CLASS net/minecraft/client/gui/screens/inventory/BookEditScreen
+	FIELD frameTick I
+		COMMENT Update ticks since the gui was opened
+	FIELD isModified Z
+		COMMENT Whether the book's title or contents has been modified since being opened
+	FIELD isSigning Z
+		COMMENT Determines if the signing screen is open
+	FIELD lastClickTime J
+		COMMENT In milliseconds
+	METHOD appendPageToBook ()V
+		COMMENT Adds a new page to the book (capped at 100 pages)
+	METHOD bookKeyPressed (III)Z
+		COMMENT Handles keypresses, clipboard functions, and page turning
+		ARG 1 keyCode
+		ARG 2 scanCode
+		ARG 3 modifiers
+	METHOD charTyped (CI)Z
+		ARG 1 codePoint
+		ARG 2 modifiers
+	METHOD getCurrentPageText ()Ljava/lang/String;
+		COMMENT Returns the contents of the current page as a string (or an empty string if the currPage isn't a valid page index)
+	METHOD getNumPages ()I
+		COMMENT Returns the number of pages in the book
+	METHOD keyPressed (III)Z
+		ARG 1 keyCode
+		ARG 2 scanCode
+		ARG 3 modifiers
+	METHOD mouseClicked (DDI)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+	METHOD mouseDragged (DDIDD)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+		ARG 6 dragX
+		ARG 8 dragY
+	METHOD pageBack ()V
+		COMMENT Displays the previous page
+	METHOD pageForward ()V
+		COMMENT Displays the next page (creating it if necessary)
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
+		ARG 1 matrixStack
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 partialTicks
+	METHOD saveChanges (Z)V
+		ARG 1 publish
+	METHOD titleKeyPressed (III)Z
+		COMMENT Handles special keys pressed while editing the book's title
+		ARG 1 keyCode
+		ARG 2 scanCode
+		ARG 3 modifiers
+	METHOD updateButtonVisibility ()V
+		COMMENT Sets visibility for book buttons

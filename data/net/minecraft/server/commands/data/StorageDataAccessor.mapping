@@ -1,0 +1,19 @@
+CLASS net/minecraft/server/commands/data/StorageDataAccessor
+	METHOD getPrintSuccess (Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;DI)Lnet/minecraft/network/chat/Component;
+		COMMENT Gets the message used as a result of querying the given path with a scale.
+		ARG 1 path
+		ARG 2 scale
+		ARG 4 value
+	METHOD getPrintSuccess (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/chat/Component;
+		COMMENT Gets the message used as a result of querying the given NBT (both for /data get and /data get path)
+		ARG 1 nbt
+	METHOD setData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 other
+	CLASS 1
+		METHOD access (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/commands/data/DataAccessor;
+			COMMENT Creates an accessor based on the command context. This should only refer to arguments registered in {@link createArgument}.
+			ARG 1 context
+		METHOD wrap (Lcom/mojang/brigadier/builder/ArgumentBuilder;Ljava/util/function/Function;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+			COMMENT Creates an argument used for accessing data related to this type of thing, including a literal to distinguish from other types.
+			ARG 1 builder
+			ARG 2 action

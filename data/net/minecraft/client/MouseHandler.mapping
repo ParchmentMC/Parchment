@@ -1,0 +1,36 @@
+CLASS net/minecraft/client/MouseHandler
+	METHOD grabMouse ()V
+		COMMENT Will set the focus to ingame if the Minecraft window is the active with focus. Also clears any GUI screen currently displayed
+	METHOD isMouseGrabbed ()Z
+		COMMENT Returns true if the mouse is grabbed.
+	METHOD onDrop (JLjava/util/List;)V
+		ARG 1 window
+		ARG 3 paths
+	METHOD onMove (JDD)V
+		COMMENT Will be called when the cursor is moved.
+		COMMENT
+		COMMENT <p>The callback function receives the cursor position, measured in screen coordinates but relative to the top-left corner of the window client area. On platforms that provide it, the full sub-pixel cursor position is passed on.</p>
+		COMMENT
+		COMMENT @see GLFWCursorPosCallbackI
+		ARG 1 handle
+		ARG 3 xpos
+		ARG 5 ypos
+	METHOD onPress (JIII)V
+		COMMENT Will be called when a mouse button is pressed or released.
+		COMMENT
+		COMMENT @see GLFWMouseButtonCallbackI
+		ARG 1 handle
+		ARG 3 button
+		ARG 4 action
+		ARG 5 mods
+	METHOD onScroll (JDD)V
+		COMMENT Will be called when a scrolling device is used, such as a mouse wheel or scrolling area of a touchpad.
+		COMMENT
+		COMMENT @see GLFWScrollCallbackI
+		ARG 1 handle
+		ARG 3 xoffset
+		ARG 5 yoffset
+	METHOD releaseMouse ()V
+		COMMENT Resets the player keystate, disables the ingame focus, and ungrabs the mouse cursor.
+	METHOD setup (J)V
+		ARG 1 handle

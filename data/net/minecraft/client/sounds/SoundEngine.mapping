@@ -1,0 +1,67 @@
+CLASS net/minecraft/client/sounds/SoundEngine
+	FIELD MARKER Lorg/apache/logging/log4j/Marker;
+		COMMENT The marker used for logging
+	FIELD loaded Z
+		COMMENT Set to true when the SoundManager has been initialised.
+	FIELD options Lnet/minecraft/client/Options;
+		COMMENT Reference to the GameSettings object.
+	FIELD queuedSounds Ljava/util/Map;
+		COMMENT Contains sounds to play in n ticks. Type: HashMap<ISound, Integer>
+	FIELD soundDeleteTime Ljava/util/Map;
+		COMMENT The future time in which to stop this sound. Type: HashMap<String, Integer>
+	FIELD soundManager Lnet/minecraft/client/sounds/SoundManager;
+		COMMENT A reference to the sound handler.
+	FIELD tickCount I
+		COMMENT A counter for how long the sound manager has been running
+	FIELD tickingSounds Ljava/util/List;
+		COMMENT A subset of playingSounds, this contains only ITickableSounds
+	METHOD addEventListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
+		ARG 1 listener
+	METHOD calculatePitch (Lnet/minecraft/client/resources/sounds/SoundInstance;)F
+		ARG 1 sound
+	METHOD calculateVolume (Lnet/minecraft/client/resources/sounds/SoundInstance;)F
+		ARG 1 sound
+	METHOD destroy ()V
+		COMMENT Cleans up the Sound System
+	METHOD getVolume (Lnet/minecraft/sounds/SoundSource;)F
+		ARG 1 category
+	METHOD isActive (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
+		ARG 1 sound
+	METHOD loadLibrary ()V
+		COMMENT Tries to add the paulscode library and the relevant codecs. If it fails, the master volume  will be set to zero.
+	METHOD pause ()V
+		COMMENT Pauses all currently playing sounds
+	METHOD play (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
+		ARG 1 sound
+	METHOD playDelayed (Lnet/minecraft/client/resources/sounds/SoundInstance;I)V
+		COMMENT Adds a sound to play in n tick
+		ARG 1 sound
+		ARG 2 delay
+	METHOD queueTickingSound (Lnet/minecraft/client/resources/sounds/TickableSoundInstance;)V
+		ARG 1 tickableSound
+	METHOD removeEventListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
+		ARG 1 listener
+	METHOD requestPreload (Lnet/minecraft/client/resources/sounds/Sound;)V
+		ARG 1 sound
+	METHOD requiresManualLooping (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
+		ARG 0 sound
+	METHOD resume ()V
+		COMMENT Resumes playing all currently playing sounds (after pauseAllSounds)
+	METHOD shouldLoopAutomatically (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
+		ARG 0 sound
+	METHOD shouldLoopManually (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
+		ARG 0 sound
+	METHOD stop (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
+		ARG 1 sound
+	METHOD stop (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/sounds/SoundSource;)V
+		ARG 1 soundName
+		ARG 2 category
+	METHOD stopAll ()V
+		COMMENT Stops all currently playing sounds
+	METHOD tick (Z)V
+		ARG 1 isGamePaused
+	METHOD updateCategoryVolume (Lnet/minecraft/sounds/SoundSource;F)V
+		ARG 1 category
+		ARG 2 volume
+	METHOD updateSource (Lnet/minecraft/client/Camera;)V
+		ARG 1 renderInfo

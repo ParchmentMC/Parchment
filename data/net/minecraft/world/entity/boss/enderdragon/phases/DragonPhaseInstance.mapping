@@ -1,0 +1,18 @@
+CLASS net/minecraft/world/entity/boss/enderdragon/phases/DragonPhaseInstance
+	METHOD begin ()V
+		COMMENT Called when this phase is set to active
+	METHOD doClientTick ()V
+		COMMENT Generates particle effects appropriate to the phase (or sometimes sounds).
+		COMMENT Called by dragon's onLivingUpdate. Only used when worldObj.isRemote.
+	METHOD doServerTick ()V
+		COMMENT Gives the phase a chance to update its status.
+		COMMENT Called by dragon's onLivingUpdate. Only used when !worldObj.isRemote.
+	METHOD getFlySpeed ()F
+		COMMENT Returns the maximum amount dragon may rise or fall during this phase
+	METHOD getFlyTargetLocation ()Lnet/minecraft/world/phys/Vec3;
+		COMMENT Returns the location the dragon is flying toward
+	METHOD onCrystalDestroyed (Lnet/minecraft/world/entity/boss/enderdragon/EndCrystal;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 crystal
+		ARG 2 pos
+		ARG 3 dmgSrc
+		ARG 4 plyr

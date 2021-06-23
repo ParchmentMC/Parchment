@@ -1,0 +1,74 @@
+CLASS net/minecraft/world/level/block/entity/HopperBlockEntity
+	METHOD addItem (Lnet/minecraft/world/Container;Lnet/minecraft/world/Container;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Attempts to place the passed stack in the inventory, using as many slots as required. Returns leftover items
+		ARG 0 source
+		ARG 1 destination
+		ARG 2 stack
+		ARG 3 direction
+	METHOD canMergeItems (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 stack1
+		ARG 1 stack2
+	METHOD canPlaceItemInContainer (Lnet/minecraft/world/Container;Lnet/minecraft/world/item/ItemStack;ILnet/minecraft/core/Direction;)Z
+		COMMENT Can this hopper insert the specified item from the specified slot on the specified side?
+		ARG 0 inventory
+		ARG 1 stack
+		ARG 2 index
+		ARG 3 side
+	METHOD canTakeItemFromContainer (Lnet/minecraft/world/Container;Lnet/minecraft/world/item/ItemStack;ILnet/minecraft/core/Direction;)Z
+		COMMENT Can this hopper extract the specified item from the specified slot on the specified side?
+		ARG 0 inventory
+		ARG 1 stack
+		ARG 2 index
+		ARG 3 side
+	METHOD createMenu (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
+		ARG 1 id
+		ARG 2 player
+	METHOD getContainerAt (Lnet/minecraft/world/level/Level;DDD)Lnet/minecraft/world/Container;
+		COMMENT Returns the IInventory (if applicable) of the TileEntity at the specified position
+		ARG 0 level
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD getContainerSize ()I
+		COMMENT Returns the number of slots in the inventory.
+	METHOD getLevelX ()D
+		COMMENT Gets the world X position for this hopper entity.
+	METHOD getLevelY ()D
+		COMMENT Gets the world Y position for this hopper entity.
+	METHOD getLevelZ ()D
+		COMMENT Gets the world Z position for this hopper entity.
+	METHOD isEmptyContainer (Lnet/minecraft/world/Container;Lnet/minecraft/core/Direction;)Z
+		COMMENT Returns false if the specified IInventory contains any items
+		ARG 0 inventory
+		ARG 1 side
+	METHOD isFullContainer (Lnet/minecraft/world/Container;Lnet/minecraft/core/Direction;)Z
+		COMMENT Returns false if the inventory has any room to place items in
+		ARG 1 inventory
+		ARG 2 side
+	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
+		ARG 1 index
+		ARG 2 count
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD setCooldown (I)V
+		ARG 1 ticks
+	METHOD setItem (ILnet/minecraft/world/item/ItemStack;)V
+		COMMENT Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+		ARG 1 index
+		ARG 2 stack
+	METHOD setItems (Lnet/minecraft/core/NonNullList;)V
+		ARG 1 items
+	METHOD tryMoveInItem (Lnet/minecraft/world/Container;Lnet/minecraft/world/Container;Lnet/minecraft/world/item/ItemStack;ILnet/minecraft/core/Direction;)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Insert the specified stack to the specified inventory and return any leftover items
+		ARG 0 source
+		ARG 1 destination
+		ARG 2 stack
+		ARG 3 index
+		ARG 4 direction
+	METHOD tryTakeInItemFromSlot (Lnet/minecraft/world/level/block/entity/Hopper;Lnet/minecraft/world/Container;ILnet/minecraft/core/Direction;)Z
+		COMMENT Pulls from the specified slot in the inventory and places in any available slot in the hopper. Returns true if the entire stack was moved
+		ARG 0 hopper
+		ARG 1 inventory
+		ARG 2 index
+		ARG 3 direction

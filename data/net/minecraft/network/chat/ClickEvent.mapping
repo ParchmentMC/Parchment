@@ -1,0 +1,15 @@
+CLASS net/minecraft/network/chat/ClickEvent
+	METHOD getAction ()Lnet/minecraft/network/chat/ClickEvent$Action;
+		COMMENT Gets the action to perform when this event is raised.
+	METHOD getValue ()Ljava/lang/String;
+		COMMENT Gets the value to perform the action on when this event is raised.  For example, if the action is "open URL", this would be the URL to open.
+	CLASS Action
+		FIELD name Ljava/lang/String;
+			COMMENT The canonical name used to refer to this action.
+		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/network/chat/ClickEvent$Action;
+			COMMENT Gets a value by its canonical name.
+			ARG 0 canonicalName
+		METHOD getName ()Ljava/lang/String;
+			COMMENT Gets the canonical name for this action (e.g., "run_command")
+		METHOD isAllowedFromServer ()Z
+			COMMENT Indicates whether this event can be run from chat text.

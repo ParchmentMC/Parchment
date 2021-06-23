@@ -1,0 +1,39 @@
+CLASS net/minecraft/util/Crypt
+	METHOD byteToPublicKey ([B)Ljava/security/PublicKey;
+		COMMENT Create a new PublicKey from encoded X.509 data
+		ARG 0 encodedKey
+	METHOD cipherData (ILjava/security/Key;[B)[B
+		COMMENT Encrypt or decrypt byte[] data using the specified key
+		ARG 0 opMode
+		ARG 1 key
+		ARG 2 data
+	METHOD decryptByteToSecretKey (Ljava/security/PrivateKey;[B)Ljavax/crypto/SecretKey;
+		COMMENT Decrypt shared secret AES key using RSA private key
+		ARG 0 key
+		ARG 1 secretKeyEncrypted
+	METHOD decryptUsingKey (Ljava/security/Key;[B)[B
+		COMMENT Decrypt byte[] data with RSA private key
+		ARG 0 key
+		ARG 1 data
+	METHOD digestData (Ljava/lang/String;Ljava/security/PublicKey;Ljavax/crypto/SecretKey;)[B
+		COMMENT Compute a serverId hash for use by sendSessionRequest()
+		ARG 0 serverId
+		ARG 1 publicKey
+		ARG 2 secretKey
+	METHOD encryptUsingKey (Ljava/security/Key;[B)[B
+		COMMENT Encrypt byte[] data with RSA public key
+		ARG 0 key
+		ARG 1 data
+	METHOD generateKeyPair ()Ljava/security/KeyPair;
+		COMMENT Generates RSA KeyPair
+	METHOD generateSecretKey ()Ljavax/crypto/SecretKey;
+		COMMENT Generate a new shared secret AES key from a secure random source
+	METHOD getCipher (ILjava/security/Key;)Ljavax/crypto/Cipher;
+		COMMENT Creates an Cipher instance using the AES/CFB8/NoPadding algorithm. Used for protocol encryption.
+		ARG 0 opMode
+		ARG 1 key
+	METHOD setupCipher (ILjava/lang/String;Ljava/security/Key;)Ljavax/crypto/Cipher;
+		COMMENT Creates the Cipher Instance.
+		ARG 0 opMode
+		ARG 1 transformation
+		ARG 2 key

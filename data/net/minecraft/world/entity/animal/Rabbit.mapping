@@ -1,0 +1,69 @@
+CLASS net/minecraft/world/entity/animal/Rabbit
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD aiStep ()V
+		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD facePoint (DD)V
+		ARG 1 x
+		ARG 3 z
+	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
+		ARG 1 level
+		ARG 2 difficulty
+		ARG 3 reason
+		ARG 4 spawnData
+		ARG 5 dataTag
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD handleEntityEvent (B)V
+		COMMENT Handler for {@link World#setEntityState}
+		ARG 1 id
+	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
+		ARG 1 stack
+	METHOD jumpFromGround ()V
+		COMMENT Causes this entity to do an upwards motion (jumping).
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD setJumping (Z)V
+		ARG 1 jumping
+	METHOD setRabbitType (I)V
+		ARG 1 rabbitTypeId
+	METHOD setSpeedModifier (D)V
+		ARG 1 newSpeed
+	METHOD wantsMoreFood ()Z
+		COMMENT Returns true if {@link net.minecraft.entity.passive.EntityRabbit#carrotTicks carrotTicks} has reached zero
+	CLASS EvilRabbitAttackGoal
+		METHOD getAttackReachSqr (Lnet/minecraft/world/entity/LivingEntity;)D
+			ARG 1 attackTarget
+	CLASS RabbitAvoidEntityGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	CLASS RabbitJumpControl
+		METHOD setCanJump (Z)V
+			ARG 1 canJump
+		METHOD tick ()V
+			COMMENT Called to actually make the entity jump if isJumping is true.
+	CLASS RabbitMoveControl
+		METHOD setWantedPosition (DDDD)V
+			COMMENT Sets the speed and location to move to
+			ARG 1 x
+			ARG 3 y
+			ARG 5 z
+			ARG 7 speed
+	CLASS RabbitPanicGoal
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS RaidGardenGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD isValidTarget (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+			COMMENT Return true to set given position as destination
+			ARG 1 level
+			ARG 2 pos
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

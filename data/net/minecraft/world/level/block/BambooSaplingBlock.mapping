@@ -1,0 +1,58 @@
+CLASS net/minecraft/world/level/block/BambooSaplingBlock
+	METHOD canSurvive (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+	METHOD getCloneItemStack (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD getDestroyProgress (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)F
+		COMMENT Get the hardness of this Block relative to the ability of the given player
+		COMMENT @deprecated call via {@link IBlockState#getPlayerRelativeBlockHardness(EntityPlayer,World,BlockPos)} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+		ARG 2 player
+		ARG 3 level
+		ARG 4 pos
+	METHOD getOffsetType ()Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;
+		COMMENT Get the OffsetType for this Block. Determines if the model is rendered slightly offset.
+	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 context
+	METHOD growBamboo (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 level
+		ARG 2 state
+	METHOD isBonemealSuccess (Lnet/minecraft/world/level/Level;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 level
+		ARG 2 rand
+		ARG 3 pos
+		ARG 4 state
+	METHOD isValidBonemealTarget (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)Z
+		COMMENT Whether this IGrowable can grow
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 isClient
+	METHOD performBonemeal (Lnet/minecraft/server/level/ServerLevel;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 level
+		ARG 2 rand
+		ARG 3 pos
+		ARG 4 state
+	METHOD randomTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
+		COMMENT Performs a random tick on a block.
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 random
+	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
+		COMMENT For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
+		COMMENT Note that this method should ideally consider only the specific face passed in.
+		ARG 1 state
+		ARG 2 facing
+		ARG 3 facingState
+		ARG 4 level
+		ARG 5 currentPos
+		ARG 6 facingPos

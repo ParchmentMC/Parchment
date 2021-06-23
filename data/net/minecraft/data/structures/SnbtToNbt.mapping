@@ -1,0 +1,22 @@
+CLASS net/minecraft/data/structures/SnbtToNbt
+	METHOD addFilter (Lnet/minecraft/data/structures/SnbtToNbt$Filter;)Lnet/minecraft/data/structures/SnbtToNbt;
+		ARG 1 transformer
+	METHOD applyFilters (Ljava/lang/String;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 fileName
+		ARG 2 nbt
+	METHOD getName ()Ljava/lang/String;
+		COMMENT Gets a name for this provider, to use in logging.
+	METHOD getName (Ljava/nio/file/Path;Ljava/nio/file/Path;)Ljava/lang/String;
+		COMMENT Gets the name of the given SNBT file, based on its path and the input directory. The result does not have the ".snbt" extension.
+		ARG 1 inputFolder
+		ARG 2 file
+	METHOD readStructure (Ljava/nio/file/Path;Ljava/lang/String;)Lnet/minecraft/data/structures/SnbtToNbt$TaskResult;
+		ARG 1 filePath
+		ARG 2 fileName
+	METHOD run (Lnet/minecraft/data/HashCache;)V
+		COMMENT Performs this provider's action.
+		ARG 1 cache
+	METHOD storeStructureIfChanged (Lnet/minecraft/data/HashCache;Lnet/minecraft/data/structures/SnbtToNbt$TaskResult;Ljava/nio/file/Path;)V
+		ARG 1 directory
+		ARG 2 taskResult
+		ARG 3 path

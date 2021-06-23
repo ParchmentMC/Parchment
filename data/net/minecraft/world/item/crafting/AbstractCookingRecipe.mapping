@@ -1,0 +1,20 @@
+CLASS net/minecraft/world/item/crafting/AbstractCookingRecipe
+	METHOD assemble (Lnet/minecraft/world/Container;)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Returns an Item that is the result of this recipe
+		ARG 1 inv
+	METHOD canCraftInDimensions (II)Z
+		COMMENT Used to determine if this recipe can fit in a grid of the given width/height
+		ARG 1 width
+		ARG 2 height
+	METHOD getCookingTime ()I
+		COMMENT Gets the cook time in ticks
+	METHOD getExperience ()F
+		COMMENT Gets the experience of this recipe
+	METHOD getGroup ()Ljava/lang/String;
+		COMMENT Recipes with equal group are combined into one button in the recipe book
+	METHOD getResultItem ()Lnet/minecraft/world/item/ItemStack;
+		COMMENT Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
+	METHOD matches (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Z
+		COMMENT Used to check if a recipe matches current crafting inventory
+		ARG 1 inv
+		ARG 2 level

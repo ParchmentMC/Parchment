@@ -1,0 +1,36 @@
+CLASS net/minecraft/world/level/block/FallingBlock
+	METHOD animateTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
+		COMMENT Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless of whether the block can receive random update ticks
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 rand
+	METHOD falling (Lnet/minecraft/world/entity/item/FallingBlockEntity;)V
+		ARG 1 fallingEntity
+	METHOD getDustColor (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)I
+		ARG 1 state
+		ARG 2 reader
+		ARG 3 pos
+	METHOD isFree (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 0 state
+	METHOD onPlace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 oldState
+		ARG 5 isMoving
+	METHOD tick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 rand
+	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
+		COMMENT For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
+		COMMENT Note that this method should ideally consider only the specific face passed in.
+		ARG 1 state
+		ARG 2 facing
+		ARG 3 facingState
+		ARG 4 level
+		ARG 5 currentPos
+		ARG 6 facingPos

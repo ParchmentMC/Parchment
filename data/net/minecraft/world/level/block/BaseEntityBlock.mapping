@@ -1,0 +1,17 @@
+CLASS net/minecraft/world/level/block/BaseEntityBlock
+	METHOD getMenuProvider (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/MenuProvider;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+	METHOD getRenderShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/RenderShape;
+		COMMENT The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids, INVISIBLE to skip all rendering
+		COMMENT @deprecated call via {@link IBlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+	METHOD triggerEvent (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;II)Z
+		COMMENT Called on server when World#addBlockEvent is called. If server returns true, then also called on the client. On the Server, this may perform additional changes to the world, like pistons replacing the block with an extended base. On the client, the update may involve replacing tile entities or effects such as sounds or particles
+		COMMENT @deprecated call via {@link IBlockState#onBlockEventReceived(World,BlockPos,int,int)} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 id
+		ARG 5 param

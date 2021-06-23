@@ -1,0 +1,42 @@
+CLASS net/minecraft/client/gui/screens/inventory/BookViewScreen
+	FIELD cachedPageComponents Ljava/util/List;
+		COMMENT Holds a copy of the page text, split into page width lines
+	FIELD playTurnSound Z
+		COMMENT Determines if a sound is played when the page is turned
+	METHOD forcePage (I)Z
+		COMMENT I'm not sure why this exists. The function it calls is public and does all of the work
+		ARG 1 pageNum
+	METHOD handleComponentClicked (Lnet/minecraft/network/chat/Style;)Z
+		ARG 1 style
+	METHOD keyPressed (III)Z
+		ARG 1 keyCode
+		ARG 2 scanCode
+		ARG 3 modifiers
+	METHOD mouseClicked (DDI)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+	METHOD pageBack ()V
+		COMMENT Moves the display back one page
+	METHOD pageForward ()V
+		COMMENT Moves the display forward one page
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
+		ARG 1 matrixStack
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 partialTicks
+	METHOD setPage (I)Z
+		COMMENT Moves the book to the specified page and returns true if it exists, false otherwise
+		ARG 1 pageNum
+	CLASS 1
+		METHOD getPageCount ()I
+			COMMENT Returns the size of the book
+	CLASS BookAccess
+		METHOD getPageCount ()I
+			COMMENT Returns the size of the book
+	CLASS WritableBookAccess
+		METHOD getPageCount ()I
+			COMMENT Returns the size of the book
+	CLASS WrittenBookAccess
+		METHOD getPageCount ()I
+			COMMENT Returns the size of the book

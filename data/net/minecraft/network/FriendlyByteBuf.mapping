@@ -1,0 +1,63 @@
+CLASS net/minecraft/network/FriendlyByteBuf
+	METHOD getVarIntSize (I)I
+		COMMENT Calculates the number of bytes required to fit the supplied int (0-5) if it were to be read/written using readVarIntFromBuffer or writeVarIntToBuffer
+		ARG 0 input
+	METHOD readByteArray (I)[B
+		ARG 1 maxLength
+	METHOD readEnum (Ljava/lang/Class;)Ljava/lang/Enum;
+		ARG 1 enumClass
+	METHOD readItem ()Lnet/minecraft/world/item/ItemStack;
+		COMMENT Reads an ItemStack from this buffer
+	METHOD readLongArray ([J)[J
+		COMMENT Reads a length-prefixed array of longs from the buffer.
+		ARG 1 array
+	METHOD readLongArray ([JI)[J
+		ARG 1 array
+		ARG 2 maxLength
+	METHOD readNbt ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Reads a compressed NBTTagCompound from this buffer
+	METHOD readUtf (I)Ljava/lang/String;
+		COMMENT Reads a string from this buffer. Expected parameter is maximum allowed string length. Will throw IOException if string length exceeds this value!
+		ARG 1 maxLength
+	METHOD readVarInt ()I
+		COMMENT Reads a compressed int from the buffer. To do so it maximally reads 5 byte-sized chunks whose most significant bit dictates whether another byte should be read.
+	METHOD readVarIntArray (I)[I
+		ARG 1 maxLength
+	METHOD writeBlockHitResult (Lnet/minecraft/world/phys/BlockHitResult;)V
+		ARG 1 result
+	METHOD writeBlockPos (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 pos
+	METHOD writeByteArray ([B)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 array
+	METHOD writeComponent (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 component
+	METHOD writeDate (Ljava/util/Date;)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 time
+	METHOD writeEnum (Ljava/lang/Enum;)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 value
+	METHOD writeItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes the ItemStack's ID (short), then size (byte), then damage. (short)
+		ARG 1 stack
+	METHOD writeLongArray ([J)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes an array of longs to the buffer, prefixed by the length of the array (as a VarInt).
+		ARG 1 array
+	METHOD writeNbt (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes a compressed NBTTagCompound to this buffer
+		ARG 1 nbt
+	METHOD writeResourceLocation (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 resourceLocation
+	METHOD writeUUID (Ljava/util/UUID;)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 uuid
+	METHOD writeUtf (Ljava/lang/String;)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 string
+	METHOD writeUtf (Ljava/lang/String;I)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 string
+		ARG 2 maxLength
+	METHOD writeVarInt (I)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes a compressed int to the buffer. The smallest number of bytes to fit the passed int will be written. Of each such byte only 7 bits will be used to describe the actual value since its most significant bit dictates whether the next byte is part of that same int. Micro-optimization for int values that are expected to have values below 128.
+		ARG 1 input
+	METHOD writeVarIntArray ([I)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes an array of VarInts to the buffer, prefixed by the length of the array (as a VarInt).
+		ARG 1 array
+	METHOD writeVarLong (J)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 value

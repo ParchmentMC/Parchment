@@ -1,0 +1,19 @@
+CLASS net/minecraft/advancements/critereon/PlayerInteractTrigger
+	METHOD createInstance (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/PlayerInteractTrigger$TriggerInstance;
+		ARG 1 json
+		ARG 2 entityPredicate
+		ARG 3 conditionsParser
+	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 player
+		ARG 2 stack
+		ARG 3 entity
+	CLASS TriggerInstance
+		METHOD itemUsedOnEntity (Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/ItemPredicate$Builder;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;)Lnet/minecraft/advancements/critereon/PlayerInteractTrigger$TriggerInstance;
+			ARG 0 player
+			ARG 1 stack
+			ARG 2 entity
+		METHOD matches (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Z
+			ARG 1 stack
+			ARG 2 context
+		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
+			ARG 1 conditions

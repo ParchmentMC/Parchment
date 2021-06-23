@@ -1,13 +1,19 @@
+import org.parchmentmc.compass.CompassPlugin
+import org.parchmentmc.compass.storage.io.MappingIOFormat
+import org.parchmentmc.compass.tasks.ConvertMapping
 import org.parchmentmc.compass.tasks.GenerateExport
+import org.parchmentmc.compass.tasks.GenerateSanitizedExport
+import org.parchmentmc.compass.tasks.VersionDownload
 
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 plugins {
-    id 'org.parchmentmc.compass' version '0.2.+'
+    id 'org.parchmentmc.compass' version '0.2.1'
     id 'org.parchmentmc.writtenbooks' version '0.+'
     id 'maven-publish'
+    id 'java-base'
 }
 
 group = 'org.parchmentmc.data'
@@ -24,6 +30,8 @@ writtenbooks {
 
 compass {
     version = '1.16.5'
+    productionDataFormat = MappingIOFormat.ENIGMA_EXPLODED
+    stagingDataFormat = MappingIOFormat.ENIGMA_EXPLODED
 }
 
 repositories {
@@ -31,32 +39,92 @@ repositories {
         name = 'MinecraftForge'
         url = 'https://maven.minecraftforge.net/'
     }
+    maven {
+        name = 'FabricMC'
+        url = 'https://maven.fabricmc.net/'
+    }
+}
+
+configurations {
+    enigma
+    vignette
 }
 
 dependencies {
+    // MCPConfig for the SRG intermediate
     mcpconfig 'de.oceanlabs.mcp:mcp_config:1.16.5-20210303.130956'
+
+    // Vignette, for remapping the client JAR
+    vignette 'net.minecraftforge.lex:vignette:0.2.0.9'
+
+    // Enigma, pretty interface for editing mappings
+    enigma 'cuchaz:enigma-swing:1.3.2'
+}
+
+def downloadClientJar = tasks.register('downloadClientJar', VersionDownload) {
+    group 'parchment'
+    description 'Downloads the client JAR for the current version set in Compass.'
+}
+
+def convertObfMap = tasks.register('convertObfMap', ConvertMapping) {
+    group 'parchment'
+    description 'Converts and reverses the Mojang obfuscation mappings.'
+
+    def obfDL = project.plugins.getPlugin(CompassPlugin).obfuscationMapsDownloader
+    inputFile = obfDL.getObfuscationMap().flatMap { s -> obfDL.outputDirectory.file('client.txt') }
+    inputFormat = ConvertMapping.Format.PROGUARD
+    outputFile = project.layout.buildDirectory.dir('remapped')
+            .zip(project.compass.version) { d, ver -> d.file("$ver-client.txt") }
+    outputFormat = ConvertMapping.Format.TSRG
+    reverse = true
+}
+
+def remapJar = tasks.register('remapJar', RemapJar) {
+    dependsOn downloadClientJar
+    inputJar = downloadClientJar.flatMap { it.outputFile }
+    mappings = convertObfMap.flatMap { it.outputFile }
+    outputJar = project.layout.buildDirectory.dir('remapped')
+            .zip(project.compass.version) { d, ver -> d.file("$ver-client.jar") }
+}
+
+tasks.register('enigma', EnigmaExec) {
+    inputJar = remapJar.flatMap { it.outputJar }
+    mappings = project.compass.productionData
+}
+
+tasks.register('generateSanitizedExport', GenerateSanitizedExport) {
+    group = 'compass'
+    description = "Generates an export file using the 'official' intermediate provider and production data."
+    input = project.compass.productionData
+    inputFormat = project.compass.productionDataFormat
 }
 
 tasks.register('officialExportZip', Zip) {
     group = "build"
     description = "Creates a ZIP archive containing the export produced by the 'official' intermediate provider and production data."
     from(tasks.named('generateOfficialExport', GenerateExport).flatMap { it.output })
-    rename { 'parchment.json' }
-    reproducibleFileOrder = true
-    preserveFileTimestamps = false
-    destinationDirectory = project.layout.buildDirectory.dir('exportZips')
     archiveBaseName = 'officialExport'
+}
+
+tasks.register('officialSanitizedExportZip', Zip) {
+    group = "build"
+    description = "Creates a ZIP archive containing the sanitized export produced by the 'official' intermediate provider and production data."
+    from(tasks.named('generateSanitizedExport', GenerateExport).flatMap { it.output })
+    archiveBaseName = 'officialSanitizedExport'
 }
 
 tasks.register('officialStagingExportZip', Zip) {
     group = "build"
     description = "Creates a ZIP archive containing the export produced by the 'official' intermediate provider and staging data."
     from(tasks.named('generateOfficialStagingExport', GenerateExport).flatMap { it.output })
+    archiveBaseName = 'officialStagingExport'
+}
+
+tasks.withType(Zip).matching { it.name.startsWith "official" }.configureEach {
     rename { 'parchment.json' }
     reproducibleFileOrder = true
     preserveFileTimestamps = false
     destinationDirectory = project.layout.buildDirectory.dir('exportZips')
-    archiveBaseName = 'officialStagingExport'
 }
 
 publishing {
@@ -82,6 +150,9 @@ publishing {
     }
     publications.create('export', MavenPublication) { p ->
         p.artifact tasks.named("officialExportZip", Zip)
+        p.artifact(tasks.named("officialSanitizedExportZip", Zip)) {
+            classifier = 'checked'
+        }
     }
     publications.create('staging', MavenPublication) { p ->
         p.artifact tasks.named("officialStagingExportZip", Zip)
@@ -101,5 +172,61 @@ tasks.register("publishExport") {
 
     dependsOn tasks.withType(PublishToMavenRepository).matching {
         it.publication == publishing.publications.export
+    }
+}
+
+abstract class RemapJar extends JavaExec {
+    @InputFile
+    abstract RegularFileProperty getInputJar()
+
+    @InputFile
+    abstract RegularFileProperty getMappings()
+
+    @OutputFile
+    abstract RegularFileProperty getOutputJar()
+
+    RemapJar() {
+        group 'parchment'
+        description 'Remaps the client JAR with the Mojang obfuscation mappings.'
+
+        classpath project.configurations.vignette
+        mainClass.set 'org.cadixdev.vignette.VignetteMain'
+
+        args = ['--mapping-format', 'tsrg']
+        argumentProviders.add({ ->
+            ['--jar-in', inputJar.get().asFile.absolutePath,
+             '--mappings', mappings.get().asFile.absolutePath,
+             '--jar-out', outputJar.get().asFile.absolutePath]
+        } as CommandLineArgumentProvider)
+    }
+}
+
+abstract class EnigmaExec extends JavaExec {
+    @InputFile
+    abstract RegularFileProperty getInputJar()
+
+    @InputDirectory
+    abstract DirectoryProperty getMappings()
+
+    EnigmaExec() {
+        group 'parchment'
+        description 'Runs the Enigma mapping tool.'
+
+        classpath project.configurations.enigma
+        mainClass.set 'cuchaz.enigma.gui.Main'
+
+        args = ['--no-edit-all', '--edit-parameters', '--edit-javadocs']
+        argumentProviders.add({ ->
+            ['--jar', inputJar.get().asFile.absolutePath,
+             '--mappings', mappings.get().asFile.absolutePath]
+        } as CommandLineArgumentProvider)
+
+        // Enigma runs on Java 16. If the Gradle JVM supports Java 16, then we are fine
+        // If not, then we set the java launcher via JVM toolchain so Gradle downloads a Java 16 JVM
+        if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_16)) {
+            javaLauncher.set project.javaToolchains.launcherFor {
+                languageVersion = JavaLanguageVersion.of(16)
+            } as Provider<JavaLauncher>
+        }
     }
 }

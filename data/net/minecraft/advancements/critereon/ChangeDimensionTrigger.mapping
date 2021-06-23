@@ -1,0 +1,17 @@
+CLASS net/minecraft/advancements/critereon/ChangeDimensionTrigger
+	METHOD createInstance (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/ChangeDimensionTrigger$TriggerInstance;
+		ARG 1 json
+		ARG 2 entityPredicate
+		ARG 3 conditionsParser
+	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;)V
+		ARG 1 player
+		ARG 2 fromLevel
+		ARG 3 toLevel
+	CLASS TriggerInstance
+		METHOD changedDimensionTo (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/advancements/critereon/ChangeDimensionTrigger$TriggerInstance;
+			ARG 0 toLevel
+		METHOD matches (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;)Z
+			ARG 1 fromLevel
+			ARG 2 toLevel
+		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
+			ARG 1 conditions

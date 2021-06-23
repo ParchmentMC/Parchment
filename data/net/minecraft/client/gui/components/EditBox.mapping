@@ -1,0 +1,131 @@
+CLASS net/minecraft/client/gui/components/EditBox
+	FIELD canLoseFocus Z
+		COMMENT if true the textbox can lose focus by clicking elsewhere on the screen
+	FIELD displayPos I
+		COMMENT The current character index that should be used as start of the rendered text.
+	FIELD filter Ljava/util/function/Predicate;
+		COMMENT Called to check if the text is valid
+	FIELD highlightPos I
+		COMMENT other selection position, maybe the same as the cursor
+	FIELD isEditable Z
+		COMMENT If this value is true along with isFocused, keyTyped will process the keys.
+	FIELD value Ljava/lang/String;
+		COMMENT Has the current text being edited on the textbox.
+	METHOD changeFocus (Z)Z
+		ARG 1 focus
+	METHOD charTyped (CI)Z
+		ARG 1 codePoint
+		ARG 2 modifiers
+	METHOD deleteChars (I)V
+		COMMENT Deletes the given number of characters from the current cursor's position, unless there is currently a selection, in which case the selection is deleted instead.
+		ARG 1 num
+	METHOD deleteWords (I)V
+		COMMENT Deletes the given number of words from the current cursor's position, unless there is currently a selection, in which case the selection is deleted instead.
+		ARG 1 num
+	METHOD getCursorPosition ()I
+		COMMENT returns the current position of the cursor
+	METHOD getHighlighted ()Ljava/lang/String;
+		COMMENT returns the text between the cursor and selectionEnd
+	METHOD getInnerWidth ()I
+		COMMENT returns the width of the textbox depending on if background drawing is enabled
+	METHOD getMaxLength ()I
+		COMMENT returns the maximum number of character that can be contained in this textbox
+	METHOD getValue ()Ljava/lang/String;
+		COMMENT Returns the contents of the textbox
+	METHOD getWordPosition (I)I
+		COMMENT Gets the starting index of the word at the specified number of words away from the cursor position.
+		ARG 1 numWords
+	METHOD getWordPosition (II)I
+		COMMENT Gets the starting index of the word at a distance of the specified number of words away from the given position.
+		ARG 1 n
+		ARG 2 pos
+	METHOD getWordPosition (IIZ)I
+		COMMENT Like getNthWordFromPos (which wraps this), but adds option for skipping consecutive spaces
+		ARG 1 n
+		ARG 2 pos
+		ARG 3 skipWs
+	METHOD insertText (Ljava/lang/String;)V
+		COMMENT Adds the given text after the cursor, or replaces the currently selected text if there is a selection.
+		ARG 1 textToWrite
+	METHOD isBordered ()Z
+		COMMENT Gets whether the background and outline of this text box should be drawn (true if so).
+	METHOD isMouseOver (DD)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+	METHOD isVisible ()Z
+		COMMENT returns true if this textbox is visible
+	METHOD keyPressed (III)Z
+		ARG 1 keyCode
+		ARG 2 scanCode
+		ARG 3 modifiers
+	METHOD mouseClicked (DDI)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+	METHOD moveCursor (I)V
+		COMMENT Moves the text cursor by a specified number of characters and clears the selection
+		ARG 1 num
+	METHOD moveCursorTo (I)V
+		COMMENT Sets the current position of the cursor.
+		ARG 1 pos
+	METHOD moveCursorToEnd ()V
+		COMMENT Moves the cursor to the very end of this text box.
+	METHOD moveCursorToStart ()V
+		COMMENT Moves the cursor to the very start of this text box.
+	METHOD onFocusedChanged (Z)V
+		ARG 1 focused
+	METHOD onValueChange (Ljava/lang/String;)V
+		ARG 1 newText
+	METHOD renderButton (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
+		ARG 1 matrixStack
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 partialTicks
+	METHOD renderHighlight (IIII)V
+		COMMENT Draws the blue selection box.
+		ARG 1 startX
+		ARG 2 startY
+		ARG 3 endX
+		ARG 4 endY
+	METHOD setBordered (Z)V
+		COMMENT Sets whether or not the background and outline of this text box should be drawn.
+		ARG 1 enableBackgroundDrawing
+	METHOD setCanLoseFocus (Z)V
+		COMMENT Sets whether this text box loses focus when something other than it is clicked.
+		ARG 1 canLoseFocus
+	METHOD setCursorPosition (I)V
+		ARG 1 pos
+	METHOD setEditable (Z)V
+		COMMENT Sets whether this text box is enabled. Disabled text boxes cannot be typed in.
+		ARG 1 enabled
+	METHOD setFilter (Ljava/util/function/Predicate;)V
+		ARG 1 validator
+	METHOD setFocus (Z)V
+		COMMENT Sets focus to this gui element
+		ARG 1 isFocused
+	METHOD setFormatter (Ljava/util/function/BiFunction;)V
+		ARG 1 textFormatter
+	METHOD setHighlightPos (I)V
+		COMMENT Sets the position of the selection anchor (the selection anchor and the cursor position mark the edges of the selection). If the anchor is set beyond the bounds of the current text, it will be put back inside.
+		ARG 1 position
+	METHOD setMaxLength (I)V
+		COMMENT Sets the maximum length for the text in this text box. If the current text is longer than this length, the current text will be trimmed.
+		ARG 1 length
+	METHOD setResponder (Ljava/util/function/Consumer;)V
+		ARG 1 rssponder
+	METHOD setTextColor (I)V
+		COMMENT Sets the color to use when drawing this text box's text. A different color is used if this text box is disabled.
+		ARG 1 color
+	METHOD setTextColorUneditable (I)V
+		COMMENT Sets the color to use for text in this text box when this text box is disabled.
+		ARG 1 color
+	METHOD setValue (Ljava/lang/String;)V
+		COMMENT Sets the text of the textbox, and moves the cursor to the end.
+		ARG 1 text
+	METHOD setVisible (Z)V
+		COMMENT Sets whether or not this textbox is visible
+		ARG 1 isVisible
+	METHOD setX (I)V
+		ARG 1 x
+	METHOD tick ()V
+		COMMENT Increments the cursor counter

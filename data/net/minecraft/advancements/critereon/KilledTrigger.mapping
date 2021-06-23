@@ -1,0 +1,21 @@
+CLASS net/minecraft/advancements/critereon/KilledTrigger
+	METHOD createInstance (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+		ARG 1 json
+		ARG 2 entityPredicate
+		ARG 3 conditionsParser
+	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;)V
+		ARG 1 player
+		ARG 2 entity
+		ARG 3 source
+	CLASS TriggerInstance
+		METHOD matches (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/world/damagesource/DamageSource;)Z
+			ARG 1 player
+			ARG 2 context
+			ARG 3 source
+		METHOD playerKilledEntity (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 builder
+		METHOD playerKilledEntity (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;Lnet/minecraft/advancements/critereon/DamageSourcePredicate$Builder;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 entityBuilder
+			ARG 1 sourceBuilder
+		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
+			ARG 1 conditions

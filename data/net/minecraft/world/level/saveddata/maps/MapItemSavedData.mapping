@@ -1,0 +1,38 @@
+CLASS net/minecraft/world/level/saveddata/maps/MapItemSavedData
+	METHOD addDecoration (Lnet/minecraft/world/level/saveddata/maps/MapDecoration$Type;Lnet/minecraft/world/level/LevelAccessor;Ljava/lang/String;DDDLnet/minecraft/network/chat/Component;)V
+		ARG 1 type
+		ARG 2 level
+		ARG 3 decorationName
+		ARG 4 levelX
+		ARG 6 levelZ
+		ARG 8 rotation
+		ARG 10 name
+	METHOD addTargetDecoration (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/BlockPos;Ljava/lang/String;Lnet/minecraft/world/level/saveddata/maps/MapDecoration$Type;)V
+		ARG 0 map
+		ARG 1 target
+		ARG 2 decorationName
+		ARG 3 type
+	METHOD checkBanners (Lnet/minecraft/world/level/BlockGetter;II)V
+		ARG 1 reader
+		ARG 2 x
+		ARG 3 z
+	METHOD getHoldingPlayer (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData$HoldingPlayer;
+		ARG 1 player
+	METHOD removedFromFrame (Lnet/minecraft/core/BlockPos;I)V
+		ARG 1 pos
+		ARG 2 entityId
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD tickCarriedBy (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Adds the player passed to the list of visible players and checks to see which players are visible
+		ARG 1 player
+		ARG 2 mapStack
+	CLASS HoldingPlayer
+		FIELD maxDirtyX I
+			COMMENT The highest dirty x value
+		FIELD maxDirtyY I
+			COMMENT The highest dirty z value
+		FIELD minDirtyX I
+			COMMENT The lowest dirty x value
+		FIELD minDirtyY I
+			COMMENT The lowest dirty z value

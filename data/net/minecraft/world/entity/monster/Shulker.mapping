@@ -1,0 +1,78 @@
+CLASS net/minecraft/world/entity/monster/Shulker
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getMaxHeadXRot ()I
+		COMMENT The speed it takes to move the entityliving's rotationPitch through the faceEntity method. This is only currently use in wolves.
+	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
+		ARG 1 pose
+		ARG 2 size
+	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
+		COMMENT Called when the entity is attacked.
+		ARG 1 source
+		ARG 2 amount
+	METHOD lerpTo (DDDFFIZ)V
+		COMMENT Sets a target for the client to interpolate towards over the next few ticks
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 yaw
+		ARG 8 pitch
+		ARG 9 posRotationIncrements
+		ARG 10 teleport
+	METHOD move (Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 type
+		ARG 2 pos
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD playAmbientSound ()V
+		COMMENT Plays living's sound at its position
+	METHOD push (Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Applies a velocity to the entities, to push them away from eachother.
+		ARG 1 entity
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD setPos (DDD)V
+		COMMENT Sets the x,y,z of the entity from the given parameters. Also seems to set up a bounding box.
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD setRawPeekAmount (I)V
+		COMMENT Applies or removes armor modifier
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	CLASS ShulkerAttackGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS ShulkerBodyRotationControl
+		METHOD clientTick ()V
+			COMMENT Update the Head and Body rendenring angles
+	CLASS ShulkerDefenseAttackGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;
+			ARG 1 targetDistance
+	CLASS ShulkerNearestAttackGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;
+			ARG 1 targetDistance
+	CLASS ShulkerPeekGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

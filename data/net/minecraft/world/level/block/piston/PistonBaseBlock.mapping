@@ -1,0 +1,78 @@
+CLASS net/minecraft/world/level/block/piston/PistonBaseBlock
+	FIELD isSticky Z
+		COMMENT This piston is the sticky one?
+	METHOD checkIfExtend (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
+		ARG 1 builder
+	METHOD getNeighborSignal (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 facing
+	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 context
+	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context
+	METHOD isPathfindable (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/pathfinder/PathComputationType;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 type
+	METHOD isPushable (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;ZLnet/minecraft/core/Direction;)Z
+		COMMENT Checks if the piston can push the given BlockState.
+		ARG 0 blockState
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 facing
+		ARG 4 destroyBlocks
+		ARG 5 direction
+	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed blockstate.
+		COMMENT @deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+		ARG 2 mirror
+	METHOD moveBlocks (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Z)Z
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 direction
+		ARG 4 extending
+	METHOD neighborChanged (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos;Z)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 block
+		ARG 5 fromPos
+		ARG 6 isMoving
+	METHOD onPlace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 oldState
+		ARG 5 isMoving
+	METHOD rotate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.
+		COMMENT @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+		ARG 2 rot
+	METHOD setPlacedBy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Called by ItemBlocks after a block is set in the world, to allow post-place logic
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 placer
+		ARG 5 stack
+	METHOD triggerEvent (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;II)Z
+		COMMENT Called on server when World#addBlockEvent is called. If server returns true, then also called on the client. On the Server, this may perform additional changes to the world, like pistons replacing the block with an extended base. On the client, the update may involve replacing tile entities or effects such as sounds or particles
+		COMMENT @deprecated call via {@link IBlockState#onBlockEventReceived(World,BlockPos,int,int)} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 id
+		ARG 5 param
+	METHOD useShapeForLightOcclusion (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state

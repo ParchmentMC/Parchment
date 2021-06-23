@@ -1,0 +1,35 @@
+CLASS net/minecraft/world/entity/animal/Squid
+	METHOD aiStep ()V
+		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getSoundVolume ()F
+		COMMENT Returns the volume for the sounds this mob makes.
+	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
+		ARG 1 pose
+		ARG 2 size
+	METHOD handleEntityEvent (B)V
+		COMMENT Handler for {@link World#setEntityState}
+		ARG 1 id
+	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
+		COMMENT Called when the entity is attacked.
+		ARG 1 source
+		ARG 2 amount
+	METHOD setMovementVector (FFF)V
+		ARG 1 randomMotionVecX
+		ARG 2 randomMotionVecY
+		ARG 3 randomMotionVecZ
+	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 travelVector
+	CLASS SquidFleeGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS SquidRandomMovementGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

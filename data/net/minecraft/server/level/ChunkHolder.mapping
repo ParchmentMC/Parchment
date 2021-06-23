@@ -1,0 +1,32 @@
+CLASS net/minecraft/server/level/ChunkHolder
+	FIELD entityTickingChunkFuture Ljava/util/concurrent/CompletableFuture;
+		COMMENT A future that returns the chunk if it is an entity ticking chunk, {@link net.minecraft.world.server.ChunkHolder.IChunkLoadingError#UNLOADED} otherwise.
+	FIELD fullChunkFuture Ljava/util/concurrent/CompletableFuture;
+		COMMENT A future that returns the chunk if it is a border chunk, {@link net.minecraft.world.server.ChunkHolder.IChunkLoadingError#UNLOADED} otherwise.
+	FIELD tickingChunkFuture Ljava/util/concurrent/CompletableFuture;
+		COMMENT A future that returns the chunk if it is a ticking chunk, {@link net.minecraft.world.server.ChunkHolder.IChunkLoadingError#UNLOADED} otherwise.
+	METHOD broadcast (Lnet/minecraft/network/protocol/Packet;Z)V
+		ARG 1 packet
+		ARG 2 boundaryOnly
+	METHOD broadcastBlockEntity (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 level
+		ARG 2 pos
+	METHOD broadcastChanges (Lnet/minecraft/world/level/chunk/LevelChunk;)V
+		ARG 1 chunk
+	METHOD getFullChunkStatus (I)Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
+		ARG 0 level
+	METHOD getStatus (I)Lnet/minecraft/world/level/chunk/ChunkStatus;
+		ARG 0 level
+	METHOD sectionLightChanged (Lnet/minecraft/world/level/LightLayer;I)V
+		ARG 1 type
+		ARG 2 sectionY
+	METHOD setTicketLevel (I)V
+		ARG 1 level
+	CLASS FullChunkStatus
+		METHOD isOrAfter (Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)Z
+			ARG 1 type
+	CLASS PlayerProvider
+		METHOD getPlayers (Lnet/minecraft/world/level/ChunkPos;Z)Ljava/util/stream/Stream;
+			COMMENT Returns the players tracking the given chunk.
+			ARG 1 pos
+			ARG 2 boundaryOnly

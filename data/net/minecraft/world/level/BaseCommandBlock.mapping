@@ -1,0 +1,41 @@
+CLASS net/minecraft/world/level/BaseCommandBlock
+	FIELD TIME_FORMAT Ljava/text/SimpleDateFormat;
+		COMMENT The formatting for the timestamp on commands run.
+	FIELD command Ljava/lang/String;
+		COMMENT The command stored in the command block.
+	FIELD lastOutput Lnet/minecraft/network/chat/Component;
+		COMMENT The previously run command.
+	FIELD name Lnet/minecraft/network/chat/Component;
+		COMMENT The custom name of the command block. (defaults to "@")
+	FIELD successCount I
+		COMMENT The number of successful commands run. (used for redstone output)
+	METHOD getCommand ()Ljava/lang/String;
+		COMMENT Returns the command of the command block.
+	METHOD getLastOutput ()Lnet/minecraft/network/chat/Component;
+		COMMENT Returns the lastOutput.
+	METHOD getSuccessCount ()I
+		COMMENT returns the successCount int.
+	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT Reads NBT formatting and stored data into variables.
+		ARG 1 nbt
+	METHOD performCommand (Lnet/minecraft/world/level/Level;)Z
+		ARG 1 level
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD sendMessage (Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V
+		COMMENT Send a chat message to the CommandSender
+		ARG 1 component
+		ARG 2 senderUUID
+	METHOD setCommand (Ljava/lang/String;)V
+		COMMENT Sets the command.
+		ARG 1 command
+	METHOD setLastOutput (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 lastOutputMessage
+	METHOD setName (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 name
+	METHOD setSuccessCount (I)V
+		ARG 1 successCount
+	METHOD setTrackOutput (Z)V
+		ARG 1 shouldTrackOutput
+	METHOD usedBy (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 player

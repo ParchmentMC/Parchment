@@ -1,0 +1,27 @@
+CLASS net/minecraft/world/entity/monster/PatrollingMonster
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
+		ARG 1 level
+		ARG 2 difficulty
+		ARG 3 reason
+		ARG 4 spawnData
+		ARG 5 dataTag
+	METHOD getMyRidingOffset ()D
+		COMMENT Returns the Y Offset of this entity.
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD removeWhenFarAway (D)Z
+		ARG 1 distanceToClosestPlayer
+	METHOD setPatrolLeader (Z)V
+		ARG 1 isLeader
+	CLASS LongDistancePatrolGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

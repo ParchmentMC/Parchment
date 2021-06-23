@@ -1,0 +1,30 @@
+CLASS net/minecraft/world/entity/projectile/FishingHook
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD canChangeDimensions ()Z
+		COMMENT Returns false if this Entity can't move between dimensions. True if it can.
+	METHOD handleEntityEvent (B)V
+		COMMENT Handler for {@link World#setEntityState}
+		ARG 1 id
+	METHOD lerpTo (DDDFFIZ)V
+		COMMENT Sets a target for the client to interpolate towards over the next few ticks
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 yaw
+		ARG 8 pitch
+		ARG 9 posRotationIncrements
+		ARG 10 teleport
+	METHOD onHitEntity (Lnet/minecraft/world/phys/EntityHitResult;)V
+		COMMENT Called when the arrow hits an entity
+		ARG 1 result
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD shouldRenderAtSqrDistance (D)Z
+		COMMENT Checks if the entity is in range to render.
+		ARG 1 distance
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

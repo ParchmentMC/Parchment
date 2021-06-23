@@ -1,0 +1,35 @@
+CLASS net/minecraft/data/recipes/ShapedRecipeBuilder
+	METHOD define (Ljava/lang/Character;Lnet/minecraft/tags/Tag;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Adds a key to the recipe pattern.
+		ARG 1 symbol
+		ARG 2 tag
+	METHOD define (Ljava/lang/Character;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Adds a key to the recipe pattern.
+		ARG 1 symbol
+		ARG 2 ingredient
+	METHOD define (Ljava/lang/Character;Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Adds a key to the recipe pattern.
+		ARG 1 symbol
+		ARG 2 item
+	METHOD ensureValid (Lnet/minecraft/resources/ResourceLocation;)V
+		COMMENT Makes sure that this recipe is valid and obtainable.
+		ARG 1 id
+	METHOD pattern (Ljava/lang/String;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Adds a new entry to the patterns for this recipe.
+		ARG 1 pattern
+	METHOD shaped (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Creates a new builder for a shaped recipe.
+		ARG 0 result
+	METHOD shaped (Lnet/minecraft/world/level/ItemLike;I)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		COMMENT Creates a new builder for a shaped recipe.
+		ARG 0 result
+		ARG 1 count
+	CLASS Result
+		METHOD getAdvancementId ()Lnet/minecraft/resources/ResourceLocation;
+			COMMENT Gets the ID for the advancement associated with this recipe. Should not be null if {@link #getAdvancementJson} is non-null.
+		METHOD getId ()Lnet/minecraft/resources/ResourceLocation;
+			COMMENT Gets the ID for the recipe.
+		METHOD serializeAdvancement ()Lcom/google/gson/JsonObject;
+			COMMENT Gets the JSON for the advancement that unlocks this recipe. Null if there is no advancement.
+		METHOD serializeRecipeData (Lcom/google/gson/JsonObject;)V
+			ARG 1 json

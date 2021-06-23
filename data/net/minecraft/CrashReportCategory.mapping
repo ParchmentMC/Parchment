@@ -1,0 +1,27 @@
+CLASS net/minecraft/CrashReportCategory
+	METHOD fillInStackTrace (I)I
+		COMMENT Resets our stack trace according to the current trace, pruning the deepest 3 entries.  The parameter indicates how many additional deepest entries to prune.  Returns the number of entries in the resulting pruned stack trace.
+		ARG 1 size
+	METHOD getDetails (Ljava/lang/StringBuilder;)V
+		ARG 1 builder
+	METHOD setDetail (Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraft/CrashReportCategory;
+		COMMENT Adds a Crashreport section with the given name with the given value (convered .toString())
+		ARG 1 sectionName
+		ARG 2 value
+	METHOD setDetail (Ljava/lang/String;Lnet/minecraft/CrashReportDetail;)Lnet/minecraft/CrashReportCategory;
+		COMMENT Adds an additional section to this crash report category, resolved by calling the given callable.
+		COMMENT
+		COMMENT If the given callable throws an exception, a detail containing that exception will be created instead.
+		ARG 1 name
+		ARG 2 detail
+	METHOD setDetailError (Ljava/lang/String;Ljava/lang/Throwable;)V
+		COMMENT Adds a Crashreport section with the given name with the given Throwable
+		ARG 1 sectionName
+		ARG 2 throwable
+	METHOD trimStacktrace (I)V
+		COMMENT Removes the given number entries from the bottom of the stack trace.
+		ARG 1 amount
+	METHOD validateStackTrace (Ljava/lang/StackTraceElement;Ljava/lang/StackTraceElement;)Z
+		COMMENT Do the deepest two elements of our saved stack trace match the given elements, in order from the deepest?
+		ARG 1 s1
+		ARG 2 s2

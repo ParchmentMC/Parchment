@@ -1,0 +1,48 @@
+CLASS net/minecraft/world/level/block/entity/StructureBlockEntity
+	METHOD createRandom (J)Ljava/util/Random;
+		ARG 0 seed
+	METHOD createdBy (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 author
+	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
+	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD saveStructure ()Z
+		COMMENT Saves the template, writing it to disk.
+		COMMENT
+		COMMENT @return true if the template was successfully saved.
+	METHOD saveStructure (Z)Z
+		COMMENT Saves the template, either updating the local version or writing it to disk.
+		COMMENT
+		COMMENT @return true if the template was successfully saved.
+		ARG 1 writeToDisk
+	METHOD setIgnoreEntities (Z)V
+		ARG 1 ignoreEntities
+	METHOD setIntegrity (F)V
+		ARG 1 integrity
+	METHOD setMetaData (Ljava/lang/String;)V
+		ARG 1 metadata
+	METHOD setMirror (Lnet/minecraft/world/level/block/Mirror;)V
+		ARG 1 mirror
+	METHOD setMode (Lnet/minecraft/world/level/block/state/properties/StructureMode;)V
+		ARG 1 mode
+	METHOD setPowered (Z)V
+		ARG 1 powered
+	METHOD setRotation (Lnet/minecraft/world/level/block/Rotation;)V
+		ARG 1 rotation
+	METHOD setSeed (J)V
+		ARG 1 seed
+	METHOD setShowAir (Z)V
+		ARG 1 showAir
+	METHOD setShowBoundingBox (Z)V
+		ARG 1 showBoundingBox
+	METHOD setStructureName (Ljava/lang/String;)V
+		ARG 1 name
+	METHOD setStructureName (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 newName
+	METHOD setStructurePos (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD usedBy (Lnet/minecraft/world/entity/player/Player;)Z
+		ARG 1 player

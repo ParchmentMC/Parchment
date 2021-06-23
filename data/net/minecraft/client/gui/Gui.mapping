@@ -1,0 +1,71 @@
+CLASS net/minecraft/client/gui/Gui
+	FIELD healthBlinkTime J
+		COMMENT Used with updateCounter to make the heart bar flash
+	FIELD lastHealthTime J
+		COMMENT The last recorded system time
+	FIELD spectatorGui Lnet/minecraft/client/gui/components/spectator/SpectatorGui;
+		COMMENT The spectator GUI for this in-game GUI instance
+	FIELD subtitle Lnet/minecraft/network/chat/Component;
+		COMMENT The current sub-title displayed
+	FIELD title Lnet/minecraft/network/chat/Component;
+		COMMENT The current title displayed
+	FIELD titleFadeInTime I
+		COMMENT The time that the title take to fade in
+	FIELD titleFadeOutTime I
+		COMMENT The time that the title take to fade out
+	FIELD titleStayTime I
+		COMMENT The time that the title is display
+	FIELD titleTime I
+		COMMENT A timer for the current title and subtitle displayed
+	METHOD canRenderCrosshairForSpectator (Lnet/minecraft/world/phys/HitResult;)Z
+		ARG 1 rayTrace
+	METHOD drawBackdrop (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;III)V
+		ARG 1 matrixStack
+		ARG 2 renderer
+	METHOD getBossOverlay ()Lnet/minecraft/client/gui/components/BossHealthOverlay;
+		COMMENT Accessor for the GuiBossOverlay
+	METHOD getChat ()Lnet/minecraft/client/gui/components/ChatComponent;
+		COMMENT returns a pointer to the persistant Chat GUI, containing all previous chat messages and such
+	METHOD getVehicleMaxHearts (Lnet/minecraft/world/entity/LivingEntity;)I
+		ARG 1 mountEntity
+	METHOD getVisibleVehicleHeartRows (I)I
+		ARG 1 mountHealth
+	METHOD onDisconnected ()V
+		COMMENT Reset the GuiPlayerTabOverlay's message header and footer
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;F)V
+		ARG 1 matrixStack
+		ARG 2 partialTicks
+	METHOD renderCrosshair (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderDemoOverlay (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderEffects (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderExperienceBar (Lcom/mojang/blaze3d/vertex/PoseStack;I)V
+		ARG 1 matrixStack
+		ARG 2 xPos
+	METHOD renderHotbar (FLcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 partialTicks
+		ARG 2 matrixStack
+	METHOD renderJumpMeter (Lcom/mojang/blaze3d/vertex/PoseStack;I)V
+		ARG 1 matrixStack
+		ARG 2 xPosition
+	METHOD renderPlayerHealth (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderPortalOverlay (F)V
+		ARG 1 timeInPortal
+	METHOD renderSelectedItemName (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderVehicleHealth (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 matrixStack
+	METHOD renderVignette (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD resetTitleTimes ()V
+		COMMENT Set the differents times for the titles to their default values
+	METHOD setOverlayMessage (Lnet/minecraft/network/chat/Component;Z)V
+		ARG 1 component
+		ARG 2 animateColor
+	METHOD tick ()V
+		COMMENT The update tick for the ingame UI
+	METHOD updateVignetteBrightness (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity

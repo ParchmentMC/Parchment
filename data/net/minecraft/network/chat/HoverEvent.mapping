@@ -1,0 +1,33 @@
+CLASS net/minecraft/network/chat/HoverEvent
+	METHOD deserialize (Lcom/google/gson/JsonObject;)Lnet/minecraft/network/chat/HoverEvent;
+		ARG 0 json
+	METHOD getAction ()Lnet/minecraft/network/chat/HoverEvent$Action;
+		COMMENT Gets the action to perform when this event is raised.
+	METHOD getValue (Lnet/minecraft/network/chat/HoverEvent$Action;)Ljava/lang/Object;
+		ARG 1 actionType
+	CLASS Action
+		METHOD cast (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 parameter
+		METHOD deserialize (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent;
+			ARG 1 element
+		METHOD deserializeFromLegacy (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/HoverEvent;
+			ARG 1 component
+		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/network/chat/HoverEvent$Action;
+			COMMENT Gets a value by its canonical name.
+			ARG 0 canonicalName
+		METHOD getName ()Ljava/lang/String;
+			COMMENT Gets the canonical name for this action (e.g., "show_achievement")
+		METHOD isAllowedFromServer ()Z
+			COMMENT Indicates whether this event can be run from chat text.
+		METHOD serializeArg (Ljava/lang/Object;)Lcom/google/gson/JsonElement;
+			ARG 1 parameter
+	CLASS EntityTooltipInfo
+		METHOD create (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent$EntityTooltipInfo;
+			ARG 0 element
+		METHOD create (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/HoverEvent$EntityTooltipInfo;
+			ARG 0 component
+	CLASS ItemStackInfo
+		METHOD create (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent$ItemStackInfo;
+			ARG 0 element
+		METHOD create (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/HoverEvent$ItemStackInfo;
+			ARG 0 component

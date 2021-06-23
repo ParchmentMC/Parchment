@@ -1,0 +1,32 @@
+CLASS net/minecraft/client/Options
+	METHOD broadcastOptions ()V
+		COMMENT Send a client info packet with settings information to the server
+	METHOD dataFix (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 nbt
+	METHOD getBackgroundColor (F)I
+		ARG 1 opacity
+	METHOD getBackgroundColor (I)I
+		ARG 1 chatColor
+	METHOD getBackgroundOpacity (F)F
+		ARG 1 opacity
+	METHOD getSoundSourceVolume (Lnet/minecraft/sounds/SoundSource;)F
+		ARG 1 category
+	METHOD load ()V
+		COMMENT Loads the options from the options file. It appears that this has replaced the previous 'loadOptions'
+	METHOD loadSelectedResourcePacks (Lnet/minecraft/server/packs/repository/PackRepository;)V
+		ARG 1 resourcePackList
+	METHOD save ()V
+		COMMENT Saves the options to the options file.
+	METHOD setCameraType (Lnet/minecraft/client/CameraType;)V
+		ARG 1 pointOfView
+	METHOD setKey (Lnet/minecraft/client/KeyMapping;Lcom/mojang/blaze3d/platform/InputConstants$Key;)V
+		ARG 1 keyBinding
+		ARG 2 input
+	METHOD setModelPart (Lnet/minecraft/world/entity/player/PlayerModelPart;Z)V
+		ARG 1 modelPart
+		ARG 2 enable
+	METHOD setSoundCategoryVolume (Lnet/minecraft/sounds/SoundSource;F)V
+		ARG 1 category
+		ARG 2 volume
+	METHOD useNativeTransport ()Z
+		COMMENT Return true if the client connect to a server using the native transport system

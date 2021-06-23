@@ -1,0 +1,42 @@
+CLASS net/minecraft/world/entity/ai/navigation/GroundPathNavigation
+	METHOD canMoveDirectly (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;III)Z
+		COMMENT Checks if the specified entity can safely walk to the specified location.
+		ARG 1 posVec31
+		ARG 2 posVec32
+		ARG 3 sizeX
+		ARG 4 sizeY
+		ARG 5 sizeZ
+	METHOD canUpdatePath ()Z
+		COMMENT If on ground or swimming and can swim
+	METHOD canWalkAbove (IIIIIILnet/minecraft/world/phys/Vec3;DD)Z
+		COMMENT Returns true if an entity does not collide with any solid blocks at the position.
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 sizeX
+		ARG 5 sizeY
+		ARG 6 sizeZ
+	METHOD canWalkOn (IIIIIILnet/minecraft/world/phys/Vec3;DD)Z
+		COMMENT Returns true when an entity could stand at a position, including solid blocks under the entire entity.
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 sizeX
+		ARG 5 sizeY
+		ARG 6 sizeZ
+		ARG 7 vec31
+	METHOD createPath (Lnet/minecraft/core/BlockPos;I)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns path to given BlockPos
+		ARG 1 pos
+		ARG 2 accuracy
+	METHOD createPath (Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns a path to the given entity or null
+		ARG 1 entity
+	METHOD getSurfaceY ()I
+		COMMENT Gets the safe pathing Y position for the entity depending on if it can path swim or not
+	METHOD setAvoidSun (Z)V
+		ARG 1 avoidSun
+	METHOD setCanOpenDoors (Z)V
+		ARG 1 canBreakDoors
+	METHOD trimPath ()V
+		COMMENT Trims path data from the end to the first sun covered block

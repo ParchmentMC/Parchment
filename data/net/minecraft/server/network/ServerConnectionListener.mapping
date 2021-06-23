@@ -1,0 +1,19 @@
+CLASS net/minecraft/server/network/ServerConnectionListener
+	FIELD channels Ljava/util/List;
+		COMMENT Contains all endpoints added to this NetworkSystem
+	FIELD connections Ljava/util/List;
+		COMMENT A list containing all NetworkManager instances of all endpoints
+	FIELD running Z
+		COMMENT True if this NetworkSystem has never had his endpoints terminated
+	FIELD server Lnet/minecraft/server/MinecraftServer;
+		COMMENT Reference to the MinecraftServer object.
+	METHOD startMemoryChannel ()Ljava/net/SocketAddress;
+		COMMENT Adds a channel that listens locally
+	METHOD startTcpServerListener (Ljava/net/InetAddress;I)V
+		COMMENT Adds a channel that listens on publicly accessible network ports
+		ARG 1 address
+		ARG 2 port
+	METHOD stop ()V
+		COMMENT Shuts down all open endpoints (with immediate effect?)
+	METHOD tick ()V
+		COMMENT Will try to process the packets received by each NetworkManager, gracefully manage processing failures and cleans up dead connections

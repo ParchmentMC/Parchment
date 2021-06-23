@@ -1,0 +1,35 @@
+CLASS net/minecraft/world/CompoundContainer
+	METHOD canPlaceItem (ILnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot. For guis use Slot.isItemValid
+		ARG 1 index
+		ARG 2 stack
+	METHOD contains (Lnet/minecraft/world/Container;)Z
+		COMMENT Return whether the given inventory is part of this large chest.
+		ARG 1 inventory
+	METHOD getContainerSize ()I
+		COMMENT Returns the number of slots in the inventory.
+	METHOD getItem (I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Returns the stack in the given slot.
+		ARG 1 index
+	METHOD getMaxStackSize ()I
+		COMMENT Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended.
+	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
+		ARG 1 index
+		ARG 2 count
+	METHOD removeItemNoUpdate (I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Removes a stack from the given slot and returns it.
+		ARG 1 index
+	METHOD setChanged ()V
+		COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
+	METHOD setItem (ILnet/minecraft/world/item/ItemStack;)V
+		COMMENT Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+		ARG 1 index
+		ARG 2 stack
+	METHOD startOpen (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player
+	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
+		ARG 1 player
+	METHOD stopOpen (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player

@@ -1,0 +1,33 @@
+CLASS net/minecraft/world/level/storage/loot/LootTable
+	METHOD createStackSplitter (Ljava/util/function/Consumer;)Ljava/util/function/Consumer;
+		ARG 0 stackConsumer
+	METHOD fill (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/storage/loot/LootContext;)V
+		ARG 1 inventory
+		ARG 2 context
+	METHOD getAvailableSlots (Lnet/minecraft/world/Container;Ljava/util/Random;)Ljava/util/List;
+		ARG 1 inventory
+		ARG 2 rand
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootContext;)Ljava/util/List;
+		ARG 1 context
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
+		ARG 1 contextData
+		ARG 2 stacksOut
+	METHOD getRandomItemsRaw (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
+		ARG 1 context
+		ARG 2 stacksOut
+	METHOD shuffleAndSplitItems (Ljava/util/List;ILjava/util/Random;)V
+		COMMENT shuffles items by changing their order and splitting stacks
+		ARG 1 stacks
+		ARG 2 emptySlotsCount
+		ARG 3 rand
+	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V
+		ARG 1 validator
+	CLASS Builder
+		METHOD apply (Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction$Builder;)Ljava/lang/Object;
+			ARG 1 functionBuilder
+		METHOD apply (Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+			ARG 1 functionBuilder
+		METHOD setParamSet (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+			ARG 1 parameterSet
+		METHOD withPool (Lnet/minecraft/world/level/storage/loot/LootPool$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+			ARG 1 lootPool

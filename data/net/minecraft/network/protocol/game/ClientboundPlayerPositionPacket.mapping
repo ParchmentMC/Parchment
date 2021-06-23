@@ -1,0 +1,17 @@
+CLASS net/minecraft/network/protocol/game/ClientboundPlayerPositionPacket
+	METHOD getRelativeArguments ()Ljava/util/Set;
+		COMMENT Returns a set of which fields are relative. Items in this set indicate that the value is a relative change applied to the player's position, rather than an exact value.
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf
+	CLASS RelativeArgument
+		METHOD isSet (I)Z
+			COMMENT Checks if this flag is set within the given set of flags.
+			ARG 1 flags
+		METHOD pack (Ljava/util/Set;)I
+			ARG 0 flags
+		METHOD unpack (I)Ljava/util/Set;
+			ARG 0 flags

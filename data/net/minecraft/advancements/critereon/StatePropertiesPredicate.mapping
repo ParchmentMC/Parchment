@@ -1,0 +1,49 @@
+CLASS net/minecraft/advancements/critereon/StatePropertiesPredicate
+	METHOD checkState (Lnet/minecraft/world/level/block/state/StateDefinition;Ljava/util/function/Consumer;)V
+		ARG 1 properties
+		ARG 2 stringConsumer
+	METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/StatePropertiesPredicate;
+		ARG 0 element
+	METHOD fromJson (Ljava/lang/String;Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/StatePropertiesPredicate$PropertyMatcher;
+		ARG 0 name
+		ARG 1 element
+	METHOD getStringOrNull (Lcom/google/gson/JsonElement;)Ljava/lang/String;
+		ARG 0 element
+	METHOD matches (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
+	METHOD matches (Lnet/minecraft/world/level/block/state/StateDefinition;Lnet/minecraft/world/level/block/state/StateHolder;)Z
+		ARG 1 properties
+		ARG 2 targetProperty
+	METHOD matches (Lnet/minecraft/world/level/material/FluidState;)Z
+		ARG 1 state
+	CLASS Builder
+		METHOD hasProperty (Lnet/minecraft/world/level/block/state/properties/Property;I)Lnet/minecraft/advancements/critereon/StatePropertiesPredicate$Builder;
+			ARG 1 intProp
+			ARG 2 value
+		METHOD hasProperty (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Lnet/minecraft/advancements/critereon/StatePropertiesPredicate$Builder;
+			ARG 1 prop
+			ARG 2 value
+		METHOD hasProperty (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/String;)Lnet/minecraft/advancements/critereon/StatePropertiesPredicate$Builder;
+			ARG 1 property
+			ARG 2 value
+		METHOD hasProperty (Lnet/minecraft/world/level/block/state/properties/Property;Z)Lnet/minecraft/advancements/critereon/StatePropertiesPredicate$Builder;
+			ARG 1 boolProp
+			ARG 2 value
+	CLASS ExactPropertyMatcher
+		METHOD match (Lnet/minecraft/world/level/block/state/StateHolder;Lnet/minecraft/world/level/block/state/properties/Property;)Z
+			ARG 1 properties
+			ARG 2 propertyTarget
+	CLASS PropertyMatcher
+		METHOD checkState (Lnet/minecraft/world/level/block/state/StateDefinition;Ljava/util/function/Consumer;)V
+			ARG 1 properties
+			ARG 2 propertyConsumer
+		METHOD match (Lnet/minecraft/world/level/block/state/StateDefinition;Lnet/minecraft/world/level/block/state/StateHolder;)Z
+			ARG 1 properties
+			ARG 2 propertyToMatch
+		METHOD match (Lnet/minecraft/world/level/block/state/StateHolder;Lnet/minecraft/world/level/block/state/properties/Property;)Z
+			ARG 1 properties
+			ARG 2 propertyTarget
+	CLASS RangedPropertyMatcher
+		METHOD match (Lnet/minecraft/world/level/block/state/StateHolder;Lnet/minecraft/world/level/block/state/properties/Property;)Z
+			ARG 1 properties
+			ARG 2 propertyTarget

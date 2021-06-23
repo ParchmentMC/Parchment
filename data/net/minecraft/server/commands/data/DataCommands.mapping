@@ -1,0 +1,46 @@
+CLASS net/minecraft/server/commands/data/DataCommands
+	METHOD getData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;)I
+		COMMENT Gets all NBT on the object, and applies syntax highlighting.
+		COMMENT
+		COMMENT @return 1
+		ARG 0 source
+		ARG 1 accessor
+	METHOD getData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;)I
+		COMMENT Gets a value, which can be of any known NBT type.
+		COMMENT
+		COMMENT @return The value associated with the element: length for strings, size for lists and compounds, and numeric value for primitives.
+		ARG 0 source
+		ARG 1 accessor
+		ARG 2 path
+	METHOD getNumeric (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;D)I
+		COMMENT Gets a single numeric element, scaled by the given amount.
+		COMMENT
+		COMMENT @return The element's value, scaled by scale.
+		ARG 0 source
+		ARG 1 accessor
+		ARG 2 path
+		ARG 3 scale
+	METHOD mergeData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/nbt/CompoundTag;)I
+		COMMENT Merges the given NBT into the targeted object's NBT.
+		COMMENT
+		COMMENT @return 1
+		ARG 0 source
+		ARG 1 accessor
+		ARG 2 nbt
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
+		ARG 0 dispatcher
+	METHOD removeData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;)I
+		COMMENT Removes the tag at the end of the path.
+		COMMENT
+		COMMENT @return 1
+		ARG 0 source
+		ARG 1 accessor
+		ARG 2 path
+	CLASS DataProvider
+		METHOD access (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/commands/data/DataAccessor;
+			COMMENT Creates an accessor based on the command context. This should only refer to arguments registered in {@link createArgument}.
+			ARG 1 context
+		METHOD wrap (Lcom/mojang/brigadier/builder/ArgumentBuilder;Ljava/util/function/Function;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+			COMMENT Creates an argument used for accessing data related to this type of thing, including a literal to distinguish from other types.
+			ARG 1 builder
+			ARG 2 action

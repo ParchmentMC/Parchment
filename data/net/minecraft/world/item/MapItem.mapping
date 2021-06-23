@@ -1,0 +1,44 @@
+CLASS net/minecraft/world/item/MapItem
+	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
+		COMMENT allows items to add custom lines of information to the mouseover description
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 tooltip
+		ARG 4 flag
+	METHOD create (Lnet/minecraft/world/level/Level;IIBZZ)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 level
+		ARG 1 levelX
+		ARG 2 levelZ
+		ARG 3 scale
+		ARG 4 trackingPosition
+		ARG 5 unlimitedTracking
+	METHOD getColor (Lnet/minecraft/world/item/ItemStack;)I
+		ARG 0 stack
+	METHOD getSavedData (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
+		ARG 0 stack
+		ARG 1 level
+	METHOD getUpdatePacket (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/network/protocol/Packet;
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 player
+	METHOD inventoryTick (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;IZ)V
+		COMMENT Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and update it's contents.
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 entity
+		ARG 4 itemSlot
+		ARG 5 isSelected
+	METHOD makeKey (I)Ljava/lang/String;
+		ARG 0 mapId
+	METHOD onCraftedBy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called when item is crafted/smelted. Used only by maps so far.
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 player
+	METHOD update (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
+		ARG 1 level
+		ARG 2 viewer
+		ARG 3 data
+	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
+		COMMENT Called when this item is used when targetting a Block
+		ARG 1 context

@@ -1,0 +1,101 @@
+CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
+	FIELD INVENTORY_LOCATION Lnet/minecraft/resources/ResourceLocation;
+		COMMENT The location of the inventory background texture
+	FIELD clickedSlot Lnet/minecraft/world/inventory/Slot;
+		COMMENT Used when touchscreen is enabled
+	FIELD draggingItem Lnet/minecraft/world/item/ItemStack;
+		COMMENT Used when touchscreen is enabled
+	FIELD hoveredSlot Lnet/minecraft/world/inventory/Slot;
+		COMMENT Holds the slot currently hovered
+	FIELD imageHeight I
+		COMMENT The Y size of the inventory window in pixels.
+	FIELD imageWidth I
+		COMMENT The X size of the inventory window in pixels.
+	FIELD isSplittingStack Z
+		COMMENT Used when touchscreen is enabled.
+	FIELD leftPos I
+		COMMENT Starting X position for the Gui. Inconsistent use for Gui backgrounds.
+	FIELD menu Lnet/minecraft/world/inventory/AbstractContainerMenu;
+		COMMENT A list of the players inventory slots
+	FIELD snapbackItem Lnet/minecraft/world/item/ItemStack;
+		COMMENT Used when touchscreen is enabled
+	FIELD topPos I
+		COMMENT Starting Y position for the Gui. Inconsistent use for Gui backgrounds.
+	METHOD checkHotbarKeyPressed (II)Z
+		ARG 1 keyCode
+		ARG 2 scanCode
+	METHOD checkHotbarMouseClicked (I)V
+		ARG 1 keyCode
+	METHOD findSlot (DD)Lnet/minecraft/world/inventory/Slot;
+		ARG 1 mouseX
+		ARG 3 mouseY
+	METHOD hasClickedOutside (DDIII)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 guiLeft
+		ARG 6 guiTop
+		ARG 7 mouseButton
+	METHOD isHovering (IIIIDD)Z
+		ARG 1 x
+		ARG 2 y
+		ARG 3 width
+		ARG 4 height
+		ARG 5 mouseX
+		ARG 7 mouseY
+	METHOD isHovering (Lnet/minecraft/world/inventory/Slot;DD)Z
+		ARG 1 slot
+		ARG 2 mouseX
+		ARG 4 mouseY
+	METHOD keyPressed (III)Z
+		ARG 1 keyCode
+		ARG 2 scanCode
+		ARG 3 modifiers
+	METHOD mouseClicked (DDI)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+	METHOD mouseDragged (DDIDD)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+		ARG 6 dragX
+		ARG 8 dragY
+	METHOD mouseReleased (DDI)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
+		ARG 1 matrixStack
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 partialTicks
+	METHOD renderBg (Lcom/mojang/blaze3d/vertex/PoseStack;FII)V
+		ARG 1 matrixStack
+		ARG 2 partialTicks
+		ARG 3 x
+		ARG 4 y
+	METHOD renderFloatingItem (Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V
+		COMMENT Draws an ItemStack.
+		COMMENT
+		COMMENT The z index is increased by 32 (and not decreased afterwards), and the item is then rendered at z=200.
+		ARG 1 stack
+		ARG 2 x
+		ARG 3 y
+		ARG 4 altText
+	METHOD renderLabels (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
+		ARG 1 matrixStack
+		ARG 2 x
+		ARG 3 y
+	METHOD renderSlot (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/inventory/Slot;)V
+		ARG 1 matrixStack
+		ARG 2 slot
+	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
+		ARG 1 matrixStack
+		ARG 2 x
+		ARG 3 y
+	METHOD slotClicked (Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ClickType;)V
+		COMMENT Called when the mouse is clicked over a slot or outside the gui.
+		ARG 1 slot
+		ARG 2 slotId
+		ARG 3 mouseButton
+		ARG 4 type

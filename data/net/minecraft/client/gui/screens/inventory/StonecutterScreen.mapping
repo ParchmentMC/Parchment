@@ -1,0 +1,40 @@
+CLASS net/minecraft/client/gui/screens/inventory/StonecutterScreen
+	FIELD scrolling Z
+		COMMENT Is {@code true} if the player clicked on the scroll wheel in the GUI.
+	FIELD startIndex I
+		COMMENT The index of the first recipe to display.
+		COMMENT The number of recipes displayed at any time is 12 (4 recipes per row, and 3 rows). If the player scrolled down one row, this value would be 4 (representing the index of the first slot on the second row).
+	METHOD containerChanged ()V
+		COMMENT Called every time this screen's container is changed (is marked as dirty).
+	METHOD mouseClicked (DDI)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+	METHOD mouseDragged (DDIDD)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 button
+		ARG 6 dragX
+		ARG 8 dragY
+	METHOD mouseScrolled (DDD)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
+		ARG 5 delta
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
+		ARG 1 matrixStack
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 partialTicks
+	METHOD renderBg (Lcom/mojang/blaze3d/vertex/PoseStack;FII)V
+		ARG 1 matrixStack
+		ARG 2 partialTicks
+		ARG 3 x
+		ARG 4 y
+	METHOD renderRecipes (III)V
+		ARG 1 left
+		ARG 2 top
+		ARG 3 recipeIndexOffsetMax
+	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
+		ARG 1 matrixStack
+		ARG 2 x
+		ARG 3 y

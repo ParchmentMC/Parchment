@@ -1,0 +1,357 @@
+CLASS net/minecraft/world/entity/LivingEntity
+	FIELD lastHurt F
+		COMMENT Damage taken in the last hit. Mobs are resistant to damage less than this for a short time after taking damage.
+	FIELD lastHurtMobTimestamp I
+		COMMENT Holds the value of ticksExisted when setLastAttacker was last called.
+	METHOD actuallyHurt (Lnet/minecraft/world/damagesource/DamageSource;F)V
+		COMMENT Deals damage to the entity. This will take the armor of the entity into consideration before damaging the health bar.
+		ARG 1 damageSrc
+		ARG 2 damageAmount
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD addEffect (Lnet/minecraft/world/effect/MobEffectInstance;)Z
+		ARG 1 effectInstance
+	METHOD aiStep ()V
+		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	METHOD animateHurt ()V
+		COMMENT Setups the entity to do the hurt animation. Only used by packets in multiplayer.
+	METHOD areAllEffectsAmbient (Ljava/util/Collection;)Z
+		COMMENT Returns true if all of the potion effects in the specified collection are ambient.
+		ARG 0 potionEffects
+	METHOD baseTick ()V
+		COMMENT Gets called every tick from main Entity class
+	METHOD blockUsingShield (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 entity
+	METHOD blockedByShield (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 entity
+	METHOD breakItem (Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Renders broken item particles using the given ItemStack
+		ARG 1 stack
+	METHOD calculateFallDamage (FF)I
+		ARG 1 distance
+		ARG 2 damageMultiplier
+	METHOD canAttack (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 1 target
+	METHOD canAttack (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;)Z
+		ARG 1 livingentity
+		ARG 2 predicate
+	METHOD canAttackType (Lnet/minecraft/world/entity/EntityType;)Z
+		ARG 1 type
+	METHOD canBeAffected (Lnet/minecraft/world/effect/MobEffectInstance;)Z
+		ARG 1 potioneffect
+	METHOD canTakeItem (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 itemstack
+	METHOD checkFallDamage (DZLnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 y
+		ARG 3 onGround
+		ARG 4 state
+		ARG 5 pos
+	METHOD checkTotemDeathProtection (Lnet/minecraft/world/damagesource/DamageSource;)Z
+		ARG 1 damageSource
+	METHOD completeUsingItem ()V
+		COMMENT Used for when item use count runs out, ie: eating completed
+	METHOD createLootContext (ZLnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
+		ARG 1 attackedRecently
+		ARG 2 damageSource
+	METHOD createWitherRose (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 entitySource
+	METHOD decreaseAirSupply (I)I
+		COMMENT Decrements the entity's air supply when underwater
+		ARG 1 air
+	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
+		COMMENT Called when the mob's health reaches 0.
+		ARG 1 cause
+	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD doPush (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD dropAllDeathLoot (Lnet/minecraft/world/damagesource/DamageSource;)V
+		ARG 1 damageSource
+	METHOD dropCustomDeathLoot (Lnet/minecraft/world/damagesource/DamageSource;IZ)V
+		ARG 1 source
+		ARG 2 looting
+		ARG 3 recentlyHit
+	METHOD dropFromLootTable (Lnet/minecraft/world/damagesource/DamageSource;Z)V
+		ARG 1 damageSource
+		ARG 2 attackedRecently
+	METHOD getAbsorptionAmount ()F
+		COMMENT Returns the amount of health added by the Absorption effect.
+	METHOD getArmorValue ()I
+		COMMENT Returns the current armor value as determined by a call to InventoryPlayer.getTotalArmorValue
+	METHOD getArrowCount ()I
+		COMMENT counts the amount of arrows stuck in the entity. getting hit by arrows increases this, used in rendering
+	METHOD getAttackAnim (F)F
+		COMMENT Gets the progression of the swing animation, ranges from 0.0 to 1.0.
+		ARG 1 partialTickTime
+	METHOD getAttribute (Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
+		ARG 1 attribute
+	METHOD getAttributeBaseValue (Lnet/minecraft/world/entity/ai/attributes/Attribute;)D
+		ARG 1 attribute
+	METHOD getAttributeValue (Lnet/minecraft/world/entity/ai/attributes/Attribute;)D
+		ARG 1 attribute
+	METHOD getBedOrientation ()Lnet/minecraft/core/Direction;
+		COMMENT gets the Direction for the camera if this entity is sleeping
+	METHOD getBoundingBoxForCulling ()Lnet/minecraft/world/phys/AABB;
+		COMMENT Gets the bounding box of this Entity, adjusted to take auxiliary entities into account (e.g. the tile contained by a minecart, such as a command block).
+	METHOD getCombatTracker ()Lnet/minecraft/world/damagesource/CombatTracker;
+		COMMENT 1.8.9
+	METHOD getCurrentSwingDuration ()I
+		COMMENT Returns an integer indicating the end point of the swing animation, used by {@link #swingProgress} to provide a progress indicator. Takes dig speed enchantments into account.
+	METHOD getDamageAfterArmorAbsorb (Lnet/minecraft/world/damagesource/DamageSource;F)F
+		COMMENT Reduces damage, depending on armor
+		ARG 1 source
+		ARG 2 damage
+	METHOD getDamageAfterMagicAbsorb (Lnet/minecraft/world/damagesource/DamageSource;F)F
+		COMMENT Reduces damage, depending on potions
+		ARG 1 source
+		ARG 2 damage
+	METHOD getDimensions (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/entity/EntityDimensions;
+		ARG 1 pose
+	METHOD getDrinkingSound (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 stack
+	METHOD getEatingSound (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 itemStack
+	METHOD getEffect (Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;
+		COMMENT returns the PotionEffect for the supplied Potion if it is active, null otherwise.
+		ARG 1 potion
+	METHOD getExperienceReward (Lnet/minecraft/world/entity/player/Player;)I
+		COMMENT Get the experience points the entity currently has.
+		ARG 1 player
+	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
+		ARG 1 pose
+		ARG 2 size
+	METHOD getFallDamageSound (I)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 height
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getItemBySlot (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 slot
+	METHOD getItemInHand (Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 hand
+	METHOD getLastArmorItem (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 slot
+	METHOD getLastHandItem (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 slot
+	METHOD getLocalBoundsForPose (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/phys/AABB;
+		ARG 1 pose
+	METHOD getMaxHealth ()F
+		COMMENT Returns the maximum health of the entity (what it is able to regenerate up to, what it spawned with, etc)
+	METHOD getProjectile (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 shootable
+	METHOD getSoundVolume ()F
+		COMMENT Returns the volume for the sounds this mob makes.
+	METHOD getSpeed ()F
+		COMMENT the movespeed used for the new AI system
+	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
+		ARG 1 pose
+		ARG 2 size
+	METHOD getSwimAmount (F)F
+		ARG 1 partialTicks
+	METHOD getViewYRot (F)F
+		COMMENT Gets the current yaw of the entity
+		ARG 1 partialTicks
+	METHOD getVisibilityPercent (Lnet/minecraft/world/entity/Entity;)D
+		ARG 1 lookingEntity
+	METHOD getVoicePitch ()F
+		COMMENT Gets the pitch of living sounds in living entities.
+	METHOD handleEntityEvent (B)V
+		COMMENT Handler for {@link World#setEntityState}
+		ARG 1 id
+	METHOD hasEffect (Lnet/minecraft/world/effect/MobEffect;)Z
+		ARG 1 potion
+	METHOD hasItemInSlot (Lnet/minecraft/world/entity/EquipmentSlot;)Z
+		ARG 1 slot
+	METHOD heal (F)V
+		COMMENT Heal living entity (param: amount of half-hearts)
+		ARG 1 healAmount
+	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
+		COMMENT Called when the entity is attacked.
+		ARG 1 source
+		ARG 2 amount
+	METHOD hurtArmor (Lnet/minecraft/world/damagesource/DamageSource;F)V
+		ARG 1 damageSource
+		ARG 2 damage
+	METHOD hurtCurrentlyUsedShield (F)V
+		ARG 1 damage
+	METHOD increaseAirSupply (I)I
+		ARG 1 currentAir
+	METHOD isAffectedByPotions ()Z
+		COMMENT Returns false if the entity is an armor stand. Returns true for all other entity living bases.
+	METHOD isAlive ()Z
+		COMMENT Returns true if the entity has not been {@link #removed}.
+	METHOD isAlwaysExperienceDropper ()Z
+		COMMENT Only use is to identify if class is an instance of player for experience dropping
+	METHOD isBaby ()Z
+		COMMENT If Animal, checks if the age timer is negative
+	METHOD isDamageSourceBlocked (Lnet/minecraft/world/damagesource/DamageSource;)Z
+		COMMENT Determines whether the entity can block the damage source based on the damage source's location, whether the damage source is blockable, and whether the entity is blocking.
+		ARG 1 damageSource
+	METHOD isEffectiveAi ()Z
+		COMMENT Returns whether the entity is in a server world
+	METHOD isHolding (Lnet/minecraft/world/item/Item;)Z
+		ARG 1 item
+	METHOD isImmobile ()Z
+		COMMENT Dead and sleeping entities cannot move
+	METHOD isInWall ()Z
+		COMMENT Checks if this entity is inside of an opaque block
+	METHOD isInvertedHealAndHarm ()Z
+		COMMENT Returns true if this entity is undead.
+	METHOD isPickable ()Z
+		COMMENT Returns true if other Entities should be prevented from moving through this Entity.
+	METHOD isPushable ()Z
+		COMMENT Returns true if this entity should push and be pushed by other entities when colliding.
+	METHOD isSleeping ()Z
+		COMMENT Returns whether player is sleeping or not
+	METHOD jumpFromGround ()V
+		COMMENT Causes this entity to do an upwards motion (jumping).
+	METHOD jumpInLiquid (Lnet/minecraft/tags/Tag;)V
+		ARG 1 fluidTag
+	METHOD kill ()V
+		COMMENT Called by the /kill command.
+	METHOD lerpHeadTo (FI)V
+		ARG 1 yaw
+		ARG 2 pitch
+	METHOD lerpTo (DDDFFIZ)V
+		COMMENT Sets a target for the client to interpolate towards over the next few ticks
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 yaw
+		ARG 8 pitch
+		ARG 9 posRotationIncrements
+		ARG 10 teleport
+	METHOD lookAt (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 anchor
+		ARG 2 target
+	METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
+		ARG 1 dynamic
+	METHOD markHurt ()V
+		COMMENT Marks this entity's velocity as changed, so that it can be re-synced with the client later
+	METHOD onChangedBlock (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD onClimbable ()Z
+		COMMENT Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or for AI reasons)
+	METHOD onEffectRemoved (Lnet/minecraft/world/effect/MobEffectInstance;)V
+		ARG 1 effect
+	METHOD onEnterCombat ()V
+		COMMENT Sends an ENTER_COMBAT packet to the client
+	METHOD onItemPickup (Lnet/minecraft/world/entity/item/ItemEntity;)V
+		ARG 1 item
+	METHOD onLeaveCombat ()V
+		COMMENT Sends an END_COMBAT packet to the client
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD outOfWorld ()V
+		COMMENT sets the dead flag. Used when you fall off the bottom of the world.
+	METHOD playBlockFallSound ()V
+		COMMENT Plays the fall sound for the block landed on
+	METHOD playHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)V
+		ARG 1 source
+	METHOD push (Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Applies a velocity to the entities, to push them away from eachother.
+		ARG 1 entity
+	METHOD randomTeleport (DDDZ)Z
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD removeEffect (Lnet/minecraft/world/effect/MobEffect;)Z
+		ARG 1 effect
+	METHOD removeEffectNoUpdate (Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;
+		COMMENT Removes the given potion effect from the active potion map and returns it. Does not call cleanup callbacks for the end of the potion effect.
+		ARG 1 potioneffectin
+	METHOD removeEffectParticles ()V
+		COMMENT Resets the potion effect color and ambience metadata values
+	METHOD rideTick ()V
+		COMMENT Handles updating while riding another entity
+	METHOD setAbsorptionAmount (F)V
+		ARG 1 amount
+	METHOD setArrowCount (I)V
+		COMMENT sets the amount of arrows stuck in the entity. used for rendering those
+		ARG 1 count
+	METHOD setHealth (F)V
+		ARG 1 health
+	METHOD setItemInHand (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 hand
+		ARG 2 stack
+	METHOD setItemSlot (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 slot
+		ARG 2 stack
+	METHOD setJumping (Z)V
+		ARG 1 jumping
+	METHOD setLastArmorItem (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 slot
+		ARG 2 stack
+	METHOD setLastHandItem (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 slot
+		ARG 2 stack
+	METHOD setLastHurtByMob (Lnet/minecraft/world/entity/LivingEntity;)V
+		COMMENT Hint to AI tasks that we were attacked by the passed EntityLivingBase and should retaliate. Is not guaranteed to change our actual active target (for example if we are currently busy attacking someone else)
+		ARG 1 livingBase
+	METHOD setLastHurtMob (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD setLivingEntityFlag (IZ)V
+		ARG 1 key
+		ARG 2 value
+	METHOD setNoActionTime (I)V
+		ARG 1 idleTime
+	METHOD setOnGround (Z)V
+		ARG 1 grounded
+	METHOD setPosToBed (Lnet/minecraft/core/BlockPos;)V
+		COMMENT Sets entity position to a supplied BlockPos plus a little offset
+	METHOD setRecordPlayingNearby (Lnet/minecraft/core/BlockPos;Z)V
+		COMMENT Called when a record starts or stops playing. Used to make parrots start or stop partying.
+		ARG 1 pos
+		ARG 2 isPartying
+	METHOD setSpeed (F)V
+		COMMENT set the movespeed used for the new AI system
+		ARG 1 speed
+	METHOD setSprinting (Z)V
+		COMMENT Set sprinting switch for Entity.
+		ARG 1 sprinting
+	METHOD setYBodyRot (F)V
+		COMMENT Set the render yaw offset
+		ARG 1 offset
+	METHOD setYHeadRot (F)V
+		COMMENT Sets the head's yaw rotation of the entity.
+		ARG 1 rotation
+	METHOD shouldDropExperience ()Z
+		COMMENT Entity won't drop items or experience points if this returns false
+	METHOD spawnItemParticles (Lnet/minecraft/world/item/ItemStack;I)V
+		ARG 1 stack
+		ARG 2 count
+	METHOD startSleeping (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD startUsingItem (Lnet/minecraft/world/InteractionHand;)V
+		ARG 1 hand
+	METHOD stopRiding ()V
+		COMMENT Dismounts this entity from the entity it is riding.
+	METHOD swing (Lnet/minecraft/world/InteractionHand;)V
+		ARG 1 hand
+	METHOD swing (Lnet/minecraft/world/InteractionHand;Z)V
+		ARG 1 hand
+		ARG 2 updateSelf
+	METHOD take (Lnet/minecraft/world/entity/Entity;I)V
+		COMMENT Called when the entity picks up an item.
+		ARG 1 entity
+		ARG 2 quantity
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	METHOD tickDeath ()V
+		COMMENT handles entity death timer, experience orb and particle creation
+	METHOD trapdoorUsableAsLadder (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 pos
+		ARG 2 state
+	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 travelVector
+	METHOD triggerItemUseEffects (Lnet/minecraft/world/item/ItemStack;I)V
+		ARG 1 stack
+		ARG 2 count
+	METHOD updateFallFlying ()V
+		COMMENT Called each tick. Updates state for the elytra.
+	METHOD updateInvisibilityStatus ()V
+		COMMENT Clears potion metadata values if the entity has no potion effects. Otherwise, updates potion effect color, ambience, and invisibility metadata values
+	METHOD updateSwingTime ()V
+		COMMENT Updates the arm swing progress counters and animation progress

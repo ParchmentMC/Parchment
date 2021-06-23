@@ -1,0 +1,34 @@
+CLASS net/minecraft/world/level/block/GrowingPlantBodyBlock
+	METHOD canBeReplaced (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/item/context/BlockPlaceContext;)Z
+		ARG 1 state
+		ARG 2 useContext
+	METHOD getCloneItemStack (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD isBonemealSuccess (Lnet/minecraft/world/level/Level;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 level
+		ARG 2 rand
+		ARG 3 pos
+		ARG 4 state
+	METHOD isValidBonemealTarget (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)Z
+		COMMENT Whether this IGrowable can grow
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 isClient
+	METHOD performBonemeal (Lnet/minecraft/server/level/ServerLevel;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 level
+		ARG 2 rand
+		ARG 3 pos
+		ARG 4 state
+	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
+		COMMENT For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
+		COMMENT Note that this method should ideally consider only the specific face passed in.
+		ARG 1 state
+		ARG 2 facing
+		ARG 3 facingState
+		ARG 4 level
+		ARG 5 currentPos
+		ARG 6 facingPos

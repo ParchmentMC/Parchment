@@ -1,0 +1,33 @@
+CLASS net/minecraft/world/level/block/entity/RandomizableContainerBlockEntity
+	METHOD getItem (I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Returns the stack in the given slot.
+		ARG 1 index
+	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
+		ARG 1 index
+		ARG 2 count
+	METHOD removeItemNoUpdate (I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Removes a stack from the given slot and returns it.
+		ARG 1 index
+	METHOD setItem (ILnet/minecraft/world/item/ItemStack;)V
+		COMMENT Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+		ARG 1 index
+		ARG 2 stack
+	METHOD setItems (Lnet/minecraft/core/NonNullList;)V
+		ARG 1 items
+	METHOD setLootTable (Lnet/minecraft/resources/ResourceLocation;J)V
+		ARG 1 lootTable
+		ARG 2 seed
+	METHOD setLootTable (Lnet/minecraft/world/level/BlockGetter;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 0 reader
+		ARG 1 rand
+		ARG 3 lootTable
+	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
+		ARG 1 player
+	METHOD tryLoadLootTable (Lnet/minecraft/nbt/CompoundTag;)Z
+		ARG 1 compound
+	METHOD trySaveLootTable (Lnet/minecraft/nbt/CompoundTag;)Z
+		ARG 1 compound
+	METHOD unpackLootTable (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player

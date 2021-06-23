@@ -1,0 +1,31 @@
+CLASS net/minecraft/world/level/levelgen/structure/BoundingBox
+	METHOD getXSpan ()I
+		COMMENT Get dimension of the bounding box in the x direction.
+	METHOD getYSpan ()I
+		COMMENT Get dimension of the bounding box in the y direction.
+	METHOD getZSpan ()I
+		COMMENT Get dimension of the bounding box in the z direction.
+	METHOD intersects (IIII)Z
+		COMMENT Discover if a coordinate is inside the bounding box area.
+		ARG 1 minX
+		ARG 2 minZ
+		ARG 3 maxX
+		ARG 4 maxZ
+	METHOD intersects (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
+		COMMENT Discover if bounding box can fit within the current bounding box object.
+		ARG 1 structurebb
+	METHOD isInside (Lnet/minecraft/core/Vec3i;)Z
+		COMMENT Checks if given Vec3i is inside of StructureBoundingBox
+		ARG 1 vec
+	METHOD orientBox (IIIIIIIIILnet/minecraft/core/Direction;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		COMMENT Create a bounding box with the specified dimensions and rotate it. Used to project a possible new component Bounding Box - to check if it would cut anything already spawned
+		ARG 0 structureMinX
+		ARG 1 structureMinY
+		ARG 2 structureMinZ
+		ARG 3 xMin
+		ARG 4 yMin
+		ARG 5 zMin
+		ARG 6 xMax
+		ARG 7 yMax
+		ARG 8 zMax
+		ARG 9 facing

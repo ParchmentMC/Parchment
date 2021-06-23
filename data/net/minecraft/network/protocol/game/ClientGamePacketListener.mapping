@@ -1,0 +1,205 @@
+CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
+	METHOD handleAddEntity (Lnet/minecraft/network/protocol/game/ClientboundAddEntityPacket;)V
+		COMMENT Spawns an instance of the objecttype indicated by the packet and sets its position and momentum
+		ARG 1 packet
+	METHOD handleAddExperienceOrb (Lnet/minecraft/network/protocol/game/ClientboundAddExperienceOrbPacket;)V
+		COMMENT Spawns an experience orb and sets its value (amount of XP)
+		ARG 1 packet
+	METHOD handleAddMob (Lnet/minecraft/network/protocol/game/ClientboundAddMobPacket;)V
+		COMMENT Spawns the mob entity at the specified location, with the specified rotation, momentum and type. Updates the entities Datawatchers with the entity metadata specified in the packet
+		ARG 1 packet
+	METHOD handleAddObjective (Lnet/minecraft/network/protocol/game/ClientboundSetObjectivePacket;)V
+		COMMENT May create a scoreboard objective, remove an objective from the scoreboard or update an objectives' displayname
+		ARG 1 packet
+	METHOD handleAddOrRemoveRecipes (Lnet/minecraft/network/protocol/game/ClientboundRecipePacket;)V
+		ARG 1 packet
+	METHOD handleAddPainting (Lnet/minecraft/network/protocol/game/ClientboundAddPaintingPacket;)V
+		COMMENT Handles the spawning of a painting object
+		ARG 1 packet
+	METHOD handleAddPlayer (Lnet/minecraft/network/protocol/game/ClientboundAddPlayerPacket;)V
+		COMMENT Handles the creation of a nearby player entity, sets the position and held item
+		ARG 1 packet
+	METHOD handleAnimate (Lnet/minecraft/network/protocol/game/ClientboundAnimatePacket;)V
+		COMMENT Renders a specified animation: Waking up a player, a living entity swinging its currently held item, being hurt or receiving a critical hit by normal or magical means
+		ARG 1 packet
+	METHOD handleAwardStats (Lnet/minecraft/network/protocol/game/ClientboundAwardStatsPacket;)V
+		COMMENT Updates the players statistics or achievements
+		ARG 1 packet
+	METHOD handleBlockBreakAck (Lnet/minecraft/network/protocol/game/ClientboundBlockBreakAckPacket;)V
+		ARG 1 packet
+	METHOD handleBlockDestruction (Lnet/minecraft/network/protocol/game/ClientboundBlockDestructionPacket;)V
+		COMMENT Updates all registered IWorldAccess instances with destroyBlockInWorldPartially
+		ARG 1 packet
+	METHOD handleBlockEntityData (Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;)V
+		COMMENT Updates the NBTTagCompound metadata of instances of the following entitytypes: Mob spawners, command blocks, beacons, skulls, flowerpot
+		ARG 1 packet
+	METHOD handleBlockEvent (Lnet/minecraft/network/protocol/game/ClientboundBlockEventPacket;)V
+		COMMENT Triggers Block.onBlockEventReceived, which is implemented in BlockPistonBase for extension/retraction, BlockNote for setting the instrument (including audiovisual feedback) and in BlockContainer to set the number of players accessing a (Ender)Chest
+		ARG 1 packet
+	METHOD handleBlockUpdate (Lnet/minecraft/network/protocol/game/ClientboundBlockUpdatePacket;)V
+		COMMENT Updates the block and metadata and generates a blockupdate (and notify the clients)
+		ARG 1 packet
+	METHOD handleBossUpdate (Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket;)V
+		ARG 1 packet
+	METHOD handleChangeDifficulty (Lnet/minecraft/network/protocol/game/ClientboundChangeDifficultyPacket;)V
+		ARG 1 packet
+	METHOD handleChat (Lnet/minecraft/network/protocol/game/ClientboundChatPacket;)V
+		COMMENT Prints a chatmessage in the chat GUI
+		ARG 1 packet
+	METHOD handleChunkBlocksUpdate (Lnet/minecraft/network/protocol/game/ClientboundSectionBlocksUpdatePacket;)V
+		COMMENT Received from the servers PlayerManager if between 1 and 64 blocks in a chunk are changed. If only one block requires an update, the server sends S23PacketBlockChange and if 64 or more blocks are changed, the server sends S21PacketChunkData
+		ARG 1 packet
+	METHOD handleCommandSuggestions (Lnet/minecraft/network/protocol/game/ClientboundCommandSuggestionsPacket;)V
+		COMMENT This method is only called for manual tab-completion (the {@link net.minecraft.command.arguments.SuggestionProviders#ASK_SERVER minecraft:ask_server} suggestion provider).
+		ARG 1 packet
+	METHOD handleCommands (Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket;)V
+		ARG 1 packet
+	METHOD handleContainerClose (Lnet/minecraft/network/protocol/game/ClientboundContainerClosePacket;)V
+		COMMENT Resets the ItemStack held in hand and closes the window that is opened
+		ARG 1 packet
+	METHOD handleContainerContent (Lnet/minecraft/network/protocol/game/ClientboundContainerSetContentPacket;)V
+		COMMENT Handles the placement of a specified ItemStack in a specified container/inventory slot
+		ARG 1 packet
+	METHOD handleContainerSetData (Lnet/minecraft/network/protocol/game/ClientboundContainerSetDataPacket;)V
+		COMMENT Sets the progressbar of the opened window to the specified value
+		ARG 1 packet
+	METHOD handleContainerSetSlot (Lnet/minecraft/network/protocol/game/ClientboundContainerSetSlotPacket;)V
+		COMMENT Handles pickin up an ItemStack or dropping one in your inventory or an open (non-creative) container
+		ARG 1 packet
+	METHOD handleCustomPayload (Lnet/minecraft/network/protocol/game/ClientboundCustomPayloadPacket;)V
+		COMMENT Handles packets that have room for a channel specification. Vanilla implemented channels are "MC|TrList" to acquire a MerchantRecipeList trades for a villager merchant, "MC|Brand" which sets the server brand? on the player instance and finally "MC|RPack" which the server uses to communicate the identifier of the default server resourcepack for the client to load.
+		ARG 1 packet
+	METHOD handleCustomSoundEvent (Lnet/minecraft/network/protocol/game/ClientboundCustomSoundPacket;)V
+		ARG 1 packet
+	METHOD handleDisconnect (Lnet/minecraft/network/protocol/game/ClientboundDisconnectPacket;)V
+		COMMENT Closes the network channel
+		ARG 1 packet
+	METHOD handleEntityEvent (Lnet/minecraft/network/protocol/game/ClientboundEntityEventPacket;)V
+		COMMENT Invokes the entities' handleUpdateHealth method which is implemented in LivingBase (hurt/death), MinecartMobSpawner (spawn delay), FireworkRocket & MinecartTNT (explosion), IronGolem (throwing,...), Witch (spawn particles), Zombie (villager transformation), Animal (breeding mode particles), Horse (breeding/smoke particles), Sheep (...), Tameable (...), Villager (particles for breeding mode, angry and happy), Wolf (...)
+		ARG 1 packet
+	METHOD handleEntityLinkPacket (Lnet/minecraft/network/protocol/game/ClientboundSetEntityLinkPacket;)V
+		ARG 1 packet
+	METHOD handleExplosion (Lnet/minecraft/network/protocol/game/ClientboundExplodePacket;)V
+		COMMENT Initiates a new explosion (sound, particles, drop spawn) for the affected blocks indicated by the packet.
+		ARG 1 packet
+	METHOD handleForgetLevelChunk (Lnet/minecraft/network/protocol/game/ClientboundForgetLevelChunkPacket;)V
+		ARG 1 packet
+	METHOD handleGameEvent (Lnet/minecraft/network/protocol/game/ClientboundGameEventPacket;)V
+		ARG 1 packet
+	METHOD handleHorseScreenOpen (Lnet/minecraft/network/protocol/game/ClientboundHorseScreenOpenPacket;)V
+		ARG 1 packet
+	METHOD handleItemCooldown (Lnet/minecraft/network/protocol/game/ClientboundCooldownPacket;)V
+		ARG 1 packet
+	METHOD handleKeepAlive (Lnet/minecraft/network/protocol/game/ClientboundKeepAlivePacket;)V
+		ARG 1 packet
+	METHOD handleLevelChunk (Lnet/minecraft/network/protocol/game/ClientboundLevelChunkPacket;)V
+		COMMENT Updates the specified chunk with the supplied data, marks it for re-rendering and lighting recalculation
+		ARG 1 packet
+	METHOD handleLevelEvent (Lnet/minecraft/network/protocol/game/ClientboundLevelEventPacket;)V
+		ARG 1 packet
+	METHOD handleLightUpdatePacked (Lnet/minecraft/network/protocol/game/ClientboundLightUpdatePacket;)V
+		ARG 1 packet
+	METHOD handleLogin (Lnet/minecraft/network/protocol/game/ClientboundLoginPacket;)V
+		COMMENT Registers some server properties (gametype,hardcore-mode,terraintype,difficulty,player limit), creates a new WorldClient and sets the player initial dimension
+		ARG 1 packet
+	METHOD handleLookAt (Lnet/minecraft/network/protocol/game/ClientboundPlayerLookAtPacket;)V
+		ARG 1 packet
+	METHOD handleMapItemData (Lnet/minecraft/network/protocol/game/ClientboundMapItemDataPacket;)V
+		COMMENT Updates the worlds MapStorage with the specified MapData for the specified map-identifier and invokes a MapItemRenderer for it
+		ARG 1 packet
+	METHOD handleMerchantOffers (Lnet/minecraft/network/protocol/game/ClientboundMerchantOffersPacket;)V
+		ARG 1 packet
+	METHOD handleMoveEntity (Lnet/minecraft/network/protocol/game/ClientboundMoveEntityPacket;)V
+		COMMENT Updates the specified entity's position by the specified relative moment and absolute rotation. Note that subclassing of the packet allows for the specification of a subset of this data (e.g. only rel. position, abs. rotation or both).
+		ARG 1 packet
+	METHOD handleMovePlayer (Lnet/minecraft/network/protocol/game/ClientboundPlayerPositionPacket;)V
+		ARG 1 packet
+	METHOD handleMoveVehicle (Lnet/minecraft/network/protocol/game/ClientboundMoveVehiclePacket;)V
+		ARG 1 packet
+	METHOD handleOpenBook (Lnet/minecraft/network/protocol/game/ClientboundOpenBookPacket;)V
+		ARG 1 packet
+	METHOD handleOpenScreen (Lnet/minecraft/network/protocol/game/ClientboundOpenScreenPacket;)V
+		ARG 1 packet
+	METHOD handleOpenSignEditor (Lnet/minecraft/network/protocol/game/ClientboundOpenSignEditorPacket;)V
+		COMMENT Creates a sign in the specified location if it didn't exist and opens the GUI to edit its text
+		ARG 1 packet
+	METHOD handleParticleEvent (Lnet/minecraft/network/protocol/game/ClientboundLevelParticlesPacket;)V
+		COMMENT Spawns a specified number of particles at the specified location with a randomized displacement according to specified bounds
+		ARG 1 packet
+	METHOD handlePlaceRecipe (Lnet/minecraft/network/protocol/game/ClientboundPlaceGhostRecipePacket;)V
+		ARG 1 packet
+	METHOD handlePlayerAbilities (Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;)V
+		ARG 1 packet
+	METHOD handlePlayerInfo (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket;)V
+		ARG 1 packet
+	METHOD handleRemoveMobEffect (Lnet/minecraft/network/protocol/game/ClientboundRemoveMobEffectPacket;)V
+		ARG 1 packet
+	METHOD handleResourcePack (Lnet/minecraft/network/protocol/game/ClientboundResourcePackPacket;)V
+		ARG 1 packet
+	METHOD handleRespawn (Lnet/minecraft/network/protocol/game/ClientboundRespawnPacket;)V
+		ARG 1 packet
+	METHOD handleRotateMob (Lnet/minecraft/network/protocol/game/ClientboundRotateHeadPacket;)V
+		COMMENT Updates the direction in which the specified entity is looking, normally this head rotation is independent of the rotation of the entity itself
+		ARG 1 packet
+	METHOD handleSelectAdvancementsTab (Lnet/minecraft/network/protocol/game/ClientboundSelectAdvancementsTabPacket;)V
+		ARG 1 packet
+	METHOD handleSetCamera (Lnet/minecraft/network/protocol/game/ClientboundSetCameraPacket;)V
+		ARG 1 packet
+	METHOD handleSetCarriedItem (Lnet/minecraft/network/protocol/game/ClientboundSetCarriedItemPacket;)V
+		COMMENT Updates which hotbar slot of the player is currently selected
+		ARG 1 packet
+	METHOD handleSetChunkCacheCenter (Lnet/minecraft/network/protocol/game/ClientboundSetChunkCacheCenterPacket;)V
+		ARG 1 packet
+	METHOD handleSetChunkCacheRadius (Lnet/minecraft/network/protocol/game/ClientboundSetChunkCacheRadiusPacket;)V
+		ARG 1 packet
+	METHOD handleSetDisplayObjective (Lnet/minecraft/network/protocol/game/ClientboundSetDisplayObjectivePacket;)V
+		COMMENT Removes or sets the ScoreObjective to be displayed at a particular scoreboard position (list, sidebar, below name)
+		ARG 1 packet
+	METHOD handleSetEntityData (Lnet/minecraft/network/protocol/game/ClientboundSetEntityDataPacket;)V
+		COMMENT Invoked when the server registers new proximate objects in your watchlist or when objects in your watchlist have changed -> Registers any changes locally
+		ARG 1 packet
+	METHOD handleSetEntityMotion (Lnet/minecraft/network/protocol/game/ClientboundSetEntityMotionPacket;)V
+		COMMENT Sets the velocity of the specified entity to the specified value
+		ARG 1 packet
+	METHOD handleSetEntityPassengersPacket (Lnet/minecraft/network/protocol/game/ClientboundSetPassengersPacket;)V
+		ARG 1 packet
+	METHOD handleSetEquipment (Lnet/minecraft/network/protocol/game/ClientboundSetEquipmentPacket;)V
+		ARG 1 packet
+	METHOD handleSetExperience (Lnet/minecraft/network/protocol/game/ClientboundSetExperiencePacket;)V
+		ARG 1 packet
+	METHOD handleSetHealth (Lnet/minecraft/network/protocol/game/ClientboundSetHealthPacket;)V
+		ARG 1 packet
+	METHOD handleSetPlayerTeamPacket (Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket;)V
+		COMMENT Updates a team managed by the scoreboard: Create/Remove the team registration, Register/Remove the player-team-memberships, Set team displayname/prefix/suffix and/or whether friendly fire is enabled
+		ARG 1 packet
+	METHOD handleSetScore (Lnet/minecraft/network/protocol/game/ClientboundSetScorePacket;)V
+		COMMENT Either updates the score with a specified value or removes the score for an objective
+		ARG 1 packet
+	METHOD handleSetTime (Lnet/minecraft/network/protocol/game/ClientboundSetTimePacket;)V
+		ARG 1 packet
+	METHOD handleSoundEntityEvent (Lnet/minecraft/network/protocol/game/ClientboundSoundEntityPacket;)V
+		ARG 1 packet
+	METHOD handleSoundEvent (Lnet/minecraft/network/protocol/game/ClientboundSoundPacket;)V
+		ARG 1 packet
+	METHOD handleStopSoundEvent (Lnet/minecraft/network/protocol/game/ClientboundStopSoundPacket;)V
+		ARG 1 packet
+	METHOD handleTabListCustomisation (Lnet/minecraft/network/protocol/game/ClientboundTabListPacket;)V
+		ARG 1 packet
+	METHOD handleTagQueryPacket (Lnet/minecraft/network/protocol/game/ClientboundTagQueryPacket;)V
+		ARG 1 packet
+	METHOD handleTakeItemEntity (Lnet/minecraft/network/protocol/game/ClientboundTakeItemEntityPacket;)V
+		ARG 1 packet
+	METHOD handleTeleportEntity (Lnet/minecraft/network/protocol/game/ClientboundTeleportEntityPacket;)V
+		COMMENT Updates an entity's position and rotation as specified by the packet
+		ARG 1 packet
+	METHOD handleUpdateAdvancementsPacket (Lnet/minecraft/network/protocol/game/ClientboundUpdateAdvancementsPacket;)V
+		ARG 1 packet
+	METHOD handleUpdateAttributes (Lnet/minecraft/network/protocol/game/ClientboundUpdateAttributesPacket;)V
+		COMMENT Updates en entity's attributes and their respective modifiers, which are used for speed bonusses (player sprinting, animals fleeing, baby speed), weapon/tool attackDamage, hostiles followRange randomization, zombie maxHealth and knockback resistance as well as reinforcement spawning chance.
+		ARG 1 packet
+	METHOD handleUpdateMobEffect (Lnet/minecraft/network/protocol/game/ClientboundUpdateMobEffectPacket;)V
+		ARG 1 packet
+	METHOD handleUpdateRecipes (Lnet/minecraft/network/protocol/game/ClientboundUpdateRecipesPacket;)V
+		ARG 1 packet
+	METHOD handleUpdateTags (Lnet/minecraft/network/protocol/game/ClientboundUpdateTagsPacket;)V
+		ARG 1 packet

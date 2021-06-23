@@ -1,0 +1,73 @@
+CLASS net/minecraft/world/level/biome/Biome
+	METHOD generate (Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/server/level/WorldGenRegion;JLnet/minecraft/world/level/levelgen/WorldgenRandom;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 structureManager
+		ARG 2 chunkGenerator
+		ARG 3 levelGenRegion
+		ARG 4 seed
+		ARG 6 rand
+		ARG 7 pos
+	METHOD getDownfall ()F
+		COMMENT Gets a floating point representation of this biome's rainfall
+	METHOD getGrassColor (DD)I
+		ARG 1 posX
+		ARG 3 posZ
+	METHOD getHeightAdjustedTemperature (Lnet/minecraft/core/BlockPos;)F
+		ARG 1 pos
+	METHOD getTemperature (Lnet/minecraft/core/BlockPos;)F
+		ARG 1 pos
+	METHOD isHumid ()Z
+		COMMENT Checks to see if the rainfall level of the biome is extremely high
+	METHOD shouldFreeze (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 level
+		ARG 2 pos
+	METHOD shouldFreeze (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Z)Z
+		ARG 1 level
+		ARG 2 water
+		ARG 3 mustBeAtEdge
+	METHOD shouldSnow (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 level
+		ARG 2 pos
+	CLASS BiomeBuilder
+		METHOD biomeCategory (Lnet/minecraft/world/level/biome/Biome$BiomeCategory;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
+			ARG 1 biomeCategory
+		METHOD depth (F)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
+			ARG 1 depth
+		METHOD downfall (F)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
+			ARG 1 downfall
+		METHOD generationSettings (Lnet/minecraft/world/level/biome/BiomeGenerationSettings;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
+			ARG 1 generationSettings
+		METHOD mobSpawnSettings (Lnet/minecraft/world/level/biome/MobSpawnSettings;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
+			ARG 1 mobSpawnSettings
+		METHOD precipitation (Lnet/minecraft/world/level/biome/Biome$Precipitation;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
+			ARG 1 precipitation
+		METHOD scale (F)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
+			ARG 1 scale
+		METHOD specialEffects (Lnet/minecraft/world/level/biome/BiomeSpecialEffects;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
+			ARG 1 effects
+		METHOD temperature (F)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
+			ARG 1 temperature
+		METHOD temperatureAdjustment (Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
+			ARG 1 temperatureSettings
+	CLASS BiomeCategory
+		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
+			ARG 0 name
+	CLASS ClimateParameters
+		METHOD fitness (Lnet/minecraft/world/level/biome/Biome$ClimateParameters;)F
+			ARG 1 attributes
+	CLASS Precipitation
+		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$Precipitation;
+			ARG 0 name
+	CLASS TemperatureModifier
+		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
+			ARG 0 name
+		METHOD modifyTemperature (Lnet/minecraft/core/BlockPos;F)F
+			ARG 1 pos
+			ARG 2 temperature
+		CLASS 1
+			METHOD modifyTemperature (Lnet/minecraft/core/BlockPos;F)F
+				ARG 1 pos
+				ARG 2 temperature
+		CLASS 2
+			METHOD modifyTemperature (Lnet/minecraft/core/BlockPos;F)F
+				ARG 1 pos
+				ARG 2 temperature

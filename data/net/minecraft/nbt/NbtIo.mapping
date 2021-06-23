@@ -1,0 +1,35 @@
+CLASS net/minecraft/nbt/NbtIo
+	METHOD read (Ljava/io/DataInput;)Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Reads from a CompressedStream.
+		ARG 0 inputStream
+	METHOD read (Ljava/io/DataInput;Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Reads the given DataInput, constructs, and returns an NBTTagCompound with the data from the DataInput
+		ARG 0 input
+		ARG 1 accounter
+	METHOD read (Ljava/io/File;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 file
+	METHOD readCompressed (Ljava/io/File;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 file
+	METHOD readCompressed (Ljava/io/InputStream;)Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Load the gzipped compound from the inputstream.
+		ARG 0 is
+	METHOD readUnnamedTag (Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/Tag;
+		ARG 0 input
+		ARG 1 depth
+		ARG 2 accounter
+	METHOD write (Lnet/minecraft/nbt/CompoundTag;Ljava/io/DataOutput;)V
+		ARG 0 compound
+		ARG 1 output
+	METHOD write (Lnet/minecraft/nbt/CompoundTag;Ljava/io/File;)V
+		ARG 0 compound
+		ARG 1 file
+	METHOD writeCompressed (Lnet/minecraft/nbt/CompoundTag;Ljava/io/File;)V
+		ARG 0 compound
+		ARG 1 file
+	METHOD writeCompressed (Lnet/minecraft/nbt/CompoundTag;Ljava/io/OutputStream;)V
+		COMMENT Write the compound, gzipped, to the outputstream.
+		ARG 0 compound
+		ARG 1 outputStream
+	METHOD writeUnnamedTag (Lnet/minecraft/nbt/Tag;Ljava/io/DataOutput;)V
+		ARG 0 tag
+		ARG 1 output

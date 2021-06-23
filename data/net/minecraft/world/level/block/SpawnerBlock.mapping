@@ -1,0 +1,15 @@
+CLASS net/minecraft/world/level/block/SpawnerBlock
+	METHOD getCloneItemStack (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD getRenderShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/RenderShape;
+		COMMENT The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids, INVISIBLE to skip all rendering
+		COMMENT @deprecated call via {@link IBlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
+		ARG 1 state
+	METHOD spawnAfterBreak (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Perform side-effects from block dropping, such as creating silverfish
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 stack

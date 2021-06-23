@@ -1,0 +1,34 @@
+CLASS net/minecraft/network/chat/Component
+	METHOD getContents ()Ljava/lang/String;
+		COMMENT Gets the raw content of this component (but not its sibling components), without any formatting codes. For example, this is the raw text in a {@link TextComponentString}, but it's the translated text for a {@link TextComponentTranslation} and it's the score value for a {@link TextComponentScore}.
+	METHOD getSiblings ()Ljava/util/List;
+		COMMENT Gets the sibling components of this one.
+	METHOD getString (I)Ljava/lang/String;
+		ARG 1 maxLen
+	METHOD getStyle ()Lnet/minecraft/network/chat/Style;
+		COMMENT Gets the style of this component. Returns a direct reference" changes to this style will modify the style of this component (IE, there is no need to call {@link #setStyle(Style)} again after modifying it).
+		COMMENT
+		COMMENT If this component's style is currently <code>null</code>, it will be initialized to the default style, and the parent style of all sibling components will be set to that style. (IE, changes to this style will also be reflected in sibling components.)
+		COMMENT
+		COMMENT This method never returns <code>null</code>.
+	METHOD visit (Lnet/minecraft/network/chat/FormattedText$ContentConsumer;)Ljava/util/Optional;
+		ARG 1 acceptor
+	METHOD visit (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
+		ARG 1 acceptor
+		ARG 2 style
+	CLASS Serializer
+		METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/MutableComponent;
+			ARG 0 json
+		METHOD fromJson (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/network/chat/MutableComponent;
+			ARG 0 reader
+		METHOD getPos (Lcom/google/gson/stream/JsonReader;)I
+			ARG 0 reader
+		METHOD serializeStyle (Lnet/minecraft/network/chat/Style;Lcom/google/gson/JsonObject;Lcom/google/gson/JsonSerializationContext;)V
+			ARG 1 style
+			ARG 2 object
+			ARG 3 ctx
+		METHOD toJson (Lnet/minecraft/network/chat/Component;)Ljava/lang/String;
+			COMMENT Serializes a component into JSON.
+			ARG 0 component
+		METHOD toJsonTree (Lnet/minecraft/network/chat/Component;)Lcom/google/gson/JsonElement;
+			ARG 0 component

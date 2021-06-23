@@ -1,0 +1,31 @@
+CLASS net/minecraft/world/entity/monster/SpellcasterIllager
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD setIsCastingSpell (Lnet/minecraft/world/entity/monster/SpellcasterIllager$IllagerSpell;)V
+		ARG 1 spellType
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	CLASS IllagerSpell
+		METHOD byId (I)Lnet/minecraft/world/entity/monster/SpellcasterIllager$IllagerSpell;
+			ARG 0 id
+	CLASS SpellcasterCastingSpellGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS SpellcasterUseSpellGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

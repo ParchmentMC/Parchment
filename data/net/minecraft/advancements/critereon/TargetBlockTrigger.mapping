@@ -1,0 +1,20 @@
+CLASS net/minecraft/advancements/critereon/TargetBlockTrigger
+	METHOD createInstance (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/TargetBlockTrigger$TriggerInstance;
+		ARG 1 json
+		ARG 2 entityPredicate
+		ARG 3 conditionsParser
+	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/Vec3;I)V
+		ARG 1 player
+		ARG 2 projectile
+		ARG 3 vector
+		ARG 4 signalStrength
+	CLASS TriggerInstance
+		METHOD matches (Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/world/phys/Vec3;I)Z
+			ARG 1 context
+			ARG 2 vector
+			ARG 3 signalStrength
+		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
+			ARG 1 conditions
+		METHOD targetHit (Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;)Lnet/minecraft/advancements/critereon/TargetBlockTrigger$TriggerInstance;
+			ARG 0 signalStrength
+			ARG 1 projectile

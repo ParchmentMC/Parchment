@@ -1,0 +1,80 @@
+CLASS net/minecraft/world/entity/player/Inventory
+	METHOD add (ILnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Adds the stack to the specified slot in the player's inventory. Returns {@code false} if it's not possible to place the entire stack in the inventory.
+		ARG 1 slot
+		ARG 2 stack
+	METHOD add (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Adds the stack to the first empty slot in the player's inventory. Returns {@code false} if it's not possible to place the entire stack in the inventory.
+		ARG 1 itemStack
+	METHOD addResource (Lnet/minecraft/world/item/ItemStack;)I
+		COMMENT This function stores as many items of an ItemStack as possible in a matching slot and returns the quantity of left over items.
+		ARG 1 itemStack
+	METHOD contains (Lnet/minecraft/tags/Tag;)Z
+		ARG 1 itemTag
+	METHOD contains (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Returns true if the specified ItemStack exists in the inventory.
+		ARG 1 itemStack
+	METHOD dropAll ()V
+		COMMENT Drop all armor and main inventory items.
+	METHOD findSlotMatchingItem (Lnet/minecraft/world/item/ItemStack;)I
+		COMMENT Finds the stack or an equivalent one in the main inventory
+		ARG 1 stack
+	METHOD getArmor (I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT returns a player armor item (as itemstack) contained in specified armor slot.
+		ARG 1 slot
+	METHOD getContainerSize ()I
+		COMMENT Returns the number of slots in the inventory.
+	METHOD getDestroySpeed (Lnet/minecraft/world/level/block/state/BlockState;)F
+		ARG 1 state
+	METHOD getFreeSlot ()I
+		COMMENT Returns the first item stack that is empty.
+	METHOD getItem (I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Returns the stack in the given slot.
+		ARG 1 index
+	METHOD getSelected ()Lnet/minecraft/world/item/ItemStack;
+		COMMENT Returns the item stack currently held by the player.
+	METHOD getSelectionSize ()I
+		COMMENT Get the size of the player hotbar inventory
+	METHOD getSlotWithRemainingSpace (Lnet/minecraft/world/item/ItemStack;)I
+		COMMENT Stores a stack in the player's inventory. It first tries to place it in the selected slot in the player's hotbar, then the offhand slot, then any available/empty slot in the player's inventory.
+		ARG 1 itemStack
+	METHOD hasRemainingSpaceForItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack1
+		ARG 2 stack2
+	METHOD isHotbarSlot (I)Z
+		ARG 0 index
+	METHOD load (Lnet/minecraft/nbt/ListTag;)V
+		COMMENT Reads from the given tag list and fills the slots in the inventory with the correct items.
+		ARG 1 nbtTagList
+	METHOD pickSlot (I)V
+		ARG 1 index
+	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
+		ARG 1 index
+		ARG 2 count
+	METHOD removeItem (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 stack
+	METHOD removeItemNoUpdate (I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Removes a stack from the given slot and returns it.
+		ARG 1 index
+	METHOD replaceWith (Lnet/minecraft/world/entity/player/Inventory;)V
+		COMMENT Copy the ItemStack contents from another InventoryPlayer instance
+		ARG 1 playerInventory
+	METHOD save (Lnet/minecraft/nbt/ListTag;)Lnet/minecraft/nbt/ListTag;
+		COMMENT Writes the inventory out as a list of compound tags. This is where the slot indices are used (+100 for armor, +80 for crafting).
+		ARG 1 nbtTagList
+	METHOD setChanged ()V
+		COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
+	METHOD setItem (ILnet/minecraft/world/item/ItemStack;)V
+		COMMENT Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+		ARG 1 index
+		ARG 2 stack
+	METHOD setPickedItem (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 stack
+	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
+		ARG 1 player
+	METHOD swapPaint (D)V
+		ARG 1 direction
+	METHOD tick ()V
+		COMMENT Decrement the number of animations remaining. Only called on client side. This is used to handle the animation of receiving a block.

@@ -1,0 +1,26 @@
+CLASS net/minecraft/network/protocol/game/ClientboundLevelParticlesPacket
+	METHOD getCount ()I
+		COMMENT Gets the amount of particles to spawn
+	METHOD getMaxSpeed ()F
+		COMMENT Gets the speed of the particle animation (used in client side rendering).
+	METHOD getX ()D
+		COMMENT Gets the x coordinate to spawn the particle.
+	METHOD getXDist ()F
+		COMMENT Gets the x coordinate offset for the particle. The particle may use the offset for particle spread.
+	METHOD getY ()D
+		COMMENT Gets the y coordinate to spawn the particle.
+	METHOD getYDist ()F
+		COMMENT Gets the y coordinate offset for the particle. The particle may use the offset for particle spread.
+	METHOD getZ ()D
+		COMMENT Gets the z coordinate to spawn the particle.
+	METHOD getZDist ()F
+		COMMENT Gets the z coordinate offset for the particle. The particle may use the offset for particle spread.
+	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
+		COMMENT Passes this Packet on to the NetHandler for processing.
+		ARG 1 handler
+	METHOD readParticle (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/core/particles/ParticleType;)Lnet/minecraft/core/particles/ParticleOptions;
+		ARG 1 buffer
+		ARG 2 particleType
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buf

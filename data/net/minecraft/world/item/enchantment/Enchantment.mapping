@@ -1,0 +1,55 @@
+CLASS net/minecraft/world/item/enchantment/Enchantment
+	METHOD byId (I)Lnet/minecraft/world/item/enchantment/Enchantment;
+		COMMENT Gets an Enchantment from the registry, based on a numeric ID.
+		ARG 0 id
+	METHOD canEnchant (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Determines if this enchantment can be applied to a specific ItemStack.
+		ARG 1 stack
+	METHOD checkCompatibility (Lnet/minecraft/world/item/enchantment/Enchantment;)Z
+		COMMENT Determines if the enchantment passed can be applyied together with this enchantment.
+		ARG 1 ench
+	METHOD doPostAttack (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;I)V
+		COMMENT Called whenever a mob is damaged with an item that has this enchantment on it.
+		ARG 1 user
+		ARG 2 target
+		ARG 3 level
+	METHOD doPostHurt (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;I)V
+		COMMENT Whenever an entity that has this enchantment on one of its associated items is damaged this method will be called.
+		ARG 1 user
+		ARG 2 attacker
+		ARG 3 level
+	METHOD getDamageBonus (ILnet/minecraft/world/entity/MobType;)F
+		COMMENT Calculates the additional damage that will be dealt by an item with this enchantment. This alternative to calcModifierDamage is sensitive to the targets EnumCreatureAttribute.
+		ARG 1 level
+		ARG 2 creatureType
+	METHOD getDamageProtection (ILnet/minecraft/world/damagesource/DamageSource;)I
+		COMMENT Calculates the damage protection of the enchantment based on level and damage source passed.
+		ARG 1 level
+		ARG 2 source
+	METHOD getDescriptionId ()Ljava/lang/String;
+		COMMENT Return the name of key in translation table of this enchantment.
+	METHOD getFullname (I)Lnet/minecraft/network/chat/Component;
+		ARG 1 level
+	METHOD getMaxCost (I)I
+		ARG 1 enchantmentLevel
+	METHOD getMaxLevel ()I
+		COMMENT Returns the maximum level that the enchantment can have.
+	METHOD getMinCost (I)I
+		COMMENT Returns the minimal value of enchantability needed on the enchantment level passed.
+		ARG 1 enchantmentLevel
+	METHOD getMinLevel ()I
+		COMMENT Returns the minimum level that the enchantment can have.
+	METHOD getRarity ()Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
+		COMMENT Retrieves the weight value of an Enchantment. This weight value is used within vanilla to determine how rare an enchantment is.
+	METHOD getSlotItems (Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/Map;
+		COMMENT Gets map of all the entity's currently equipped gear that this enchantment can go on
+		ARG 1 livingEntity
+	METHOD isCompatibleWith (Lnet/minecraft/world/item/enchantment/Enchantment;)Z
+		ARG 1 enchantment
+	METHOD isDiscoverable ()Z
+		COMMENT Checks if the enchantment can be applied to loot table drops.
+	METHOD isTradeable ()Z
+		COMMENT Checks if the enchantment can be sold by villagers in their trades.
+	CLASS Rarity
+		METHOD getWeight ()I
+			COMMENT Retrieves the weight of Rarity.

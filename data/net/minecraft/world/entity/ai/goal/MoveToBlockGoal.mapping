@@ -1,0 +1,21 @@
+CLASS net/minecraft/world/entity/ai/goal/MoveToBlockGoal
+	FIELD blockPos Lnet/minecraft/core/BlockPos;
+		COMMENT Block to move to
+	FIELD nextStartTick I
+		COMMENT Controls task execution delay
+	METHOD canContinueToUse ()Z
+		COMMENT Returns whether an in-progress EntityAIBase should continue executing
+	METHOD canUse ()Z
+		COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	METHOD findNearestBlock ()Z
+		COMMENT Searches and sets new destination block and returns true if a suitable block (specified in {@link net.minecraft.entity.ai.EntityAIMoveToBlock#shouldMoveTo(World, BlockPos) EntityAIMoveToBlock#shouldMoveTo(World, BlockPos)}) can be found.
+	METHOD isValidTarget (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+		COMMENT Return true to set given position as destination
+		ARG 1 level
+		ARG 2 pos
+	METHOD nextStartTick (Lnet/minecraft/world/entity/PathfinderMob;)I
+		ARG 1 creature
+	METHOD start ()V
+		COMMENT Execute a one shot task or start executing a continuous task
+	METHOD tick ()V
+		COMMENT Keep ticking a continuous task that has already been started

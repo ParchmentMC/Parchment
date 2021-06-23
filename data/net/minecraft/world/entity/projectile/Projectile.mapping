@@ -1,0 +1,35 @@
+CLASS net/minecraft/world/entity/projectile/Projectile
+	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 compound
+	METHOD lerpMotion (DDD)V
+		COMMENT Updates the entity motion clientside, called by packets from the server
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD onHit (Lnet/minecraft/world/phys/HitResult;)V
+		COMMENT Called when this EntityFireball hits a block or entity.
+		ARG 1 result
+	METHOD onHitEntity (Lnet/minecraft/world/phys/EntityHitResult;)V
+		COMMENT Called when the arrow hits an entity
+		ARG 1 result
+	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
+		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
+		ARG 1 compound
+	METHOD setOwner (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD shoot (DDDFF)V
+		COMMENT Similar to setArrowHeading, it's point the throwable entity to a x, y, z direction.
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 velocity
+		ARG 8 inaccuracy
+	METHOD shootFromRotation (Lnet/minecraft/world/entity/Entity;FFFFF)V
+		ARG 1 projectile
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+		ARG 5 velocity
+		ARG 6 inaccuracy
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

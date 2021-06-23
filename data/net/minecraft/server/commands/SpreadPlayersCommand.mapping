@@ -1,0 +1,31 @@
+CLASS net/minecraft/server/commands/SpreadPlayersCommand
+	METHOD createInitialPositions (Ljava/util/Random;IDDDD)[Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;
+		ARG 0 random
+		ARG 1 count
+		ARG 2 minX
+		ARG 4 minZ
+		ARG 6 maxX
+		ARG 8 maxZ
+	METHOD getNumberOfTeams (Ljava/util/Collection;)I
+		COMMENT Gets the number of unique teams for the given list of entities.
+		ARG 0 entities
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
+		ARG 0 dispatcher
+	CLASS Position
+		METHOD clamp (DDDD)Z
+			ARG 1 minX
+			ARG 3 minZ
+			ARG 5 maxX
+			ARG 7 maxZ
+		METHOD dist (Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;)D
+			ARG 1 other
+		METHOD getSpawnY (Lnet/minecraft/world/level/BlockGetter;I)I
+			ARG 1 level
+		METHOD moveAway (Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;)V
+			ARG 1 other
+		METHOD randomize (Ljava/util/Random;DDDD)V
+			ARG 1 random
+			ARG 2 minX
+			ARG 4 minZ
+			ARG 6 maxX
+			ARG 8 maZx

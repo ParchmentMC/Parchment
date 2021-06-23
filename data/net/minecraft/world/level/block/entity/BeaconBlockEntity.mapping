@@ -1,0 +1,37 @@
+CLASS net/minecraft/world/level/block/entity/BeaconBlockEntity
+	FIELD BEACON_EFFECTS [[Lnet/minecraft/world/effect/MobEffect;
+		COMMENT List of effects that Beacons can apply
+	FIELD beamSections Ljava/util/List;
+		COMMENT A list of beam segments for this beacon
+	FIELD levels I
+		COMMENT Level of this beacon's pyramid.
+	FIELD name Lnet/minecraft/network/chat/Component;
+		COMMENT The custom name for this beacon. This was unused until 1.14 see https://bugs.mojang.com/browse/MC-124395
+	FIELD primaryPower Lnet/minecraft/world/effect/MobEffect;
+		COMMENT Primary potion effect given by this beacon
+	FIELD secondaryPower Lnet/minecraft/world/effect/MobEffect;
+		COMMENT Secondary potion effect given by this beacon.
+	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
+	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
+	METHOD getValidEffectById (I)Lnet/minecraft/world/effect/MobEffect;
+		ARG 0 effectId
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD setCustomName (Lnet/minecraft/network/chat/Component;)V
+		COMMENT Sets the custom name for this beacon.
+		ARG 1 aname
+	METHOD setRemoved ()V
+		COMMENT invalidates a tile entity
+	CLASS 1
+		METHOD get (I)I
+			ARG 1 index
+		METHOD set (II)V
+			ARG 1 index
+			ARG 2 value
+	CLASS BeaconBeamSection
+		FIELD color [F
+			COMMENT RGB (0 to 1.0) colors of this beam segment
+		METHOD getColor ()[F
+			COMMENT Returns RGB (0 to 1.0) colors of this beam segment

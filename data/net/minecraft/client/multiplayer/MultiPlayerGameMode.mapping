@@ -1,0 +1,89 @@
+CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
+	METHOD adjustPlayer (Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Sets player capabilities depending on current gametype. params: player
+		ARG 1 player
+	METHOD attack (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Attacks an entity
+		ARG 1 player
+		ARG 2 targetEntity
+	METHOD continueDestroyBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 1 posBlock
+		ARG 2 directionFacing
+	METHOD createPlayer (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/stats/StatsCounter;Lnet/minecraft/client/ClientRecipeBook;)Lnet/minecraft/client/player/LocalPlayer;
+		ARG 1 level
+		ARG 2 statsManager
+		ARG 3 recipes
+	METHOD createPlayer (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/stats/StatsCounter;Lnet/minecraft/client/ClientRecipeBook;ZZ)Lnet/minecraft/client/player/LocalPlayer;
+		ARG 1 level
+		ARG 2 statsManager
+		ARG 3 recipes
+	METHOD destroyBlock (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD ensureHasSentCarriedItem ()V
+		COMMENT Syncs the current player item with the server
+	METHOD getPickRange ()F
+		COMMENT player reach distance = 4F
+	METHOD handleBlockBreakAck (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;Z)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 block
+		ARG 4 action
+		ARG 5 successful
+	METHOD handleCreativeModeItemAdd (Lnet/minecraft/world/item/ItemStack;I)V
+		COMMENT Used in PlayerControllerMP to update the server with an ItemStack in a slot.
+		ARG 1 itemStack
+		ARG 2 slotId
+	METHOD handleCreativeModeItemDrop (Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Sends a Packet107 to the server to drop the item on the ground
+		ARG 1 itemStack
+	METHOD handleInventoryButtonClick (II)V
+		COMMENT GuiEnchantment uses this during multiplayer to tell PlayerControllerMP to send a packet indicating the enchantment action the player has taken.
+		ARG 1 windowID
+		ARG 2 button
+	METHOD handlePickItem (I)V
+		ARG 1 index
+	METHOD handlePlaceRecipe (ILnet/minecraft/world/item/crafting/Recipe;Z)V
+		ARG 2 recipe
+		ARG 3 placeAll
+	METHOD hasFarPickRange ()Z
+		COMMENT true for hitting entities far away.
+	METHOD hasInfiniteItems ()Z
+		COMMENT returns true if player is in creative mode
+	METHOD hasMissTime ()Z
+		COMMENT Checks if the player is not creative, used for checking if it should break a block instantly
+	METHOD interact (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+		COMMENT Handles right clicking an entity, sends a packet to the server.
+		ARG 1 player
+		ARG 2 target
+		ARG 3 hand
+	METHOD interactAt (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/EntityHitResult;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+		COMMENT Handles right clicking an entity from the entities side, sends a packet to the server.
+		ARG 1 player
+		ARG 2 target
+		ARG 3 ray
+		ARG 4 hand
+	METHOD isDestroying ()Z
+		COMMENT Return isHittingBlock
+	METHOD isServerControlledInventory ()Z
+		COMMENT Checks if the player is riding a horse, used to chose the GUI to open
+	METHOD releaseUsingItem (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player
+	METHOD sameDestroyTarget (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD sendBlockAction (Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)V
+		ARG 1 action
+		ARG 2 pos
+		ARG 3 dir
+	METHOD setLocalMode (Lnet/minecraft/world/level/GameType;)V
+		COMMENT Sets the game type for the player.
+		ARG 1 type
+	METHOD startDestroyBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		COMMENT Called when the player is hitting a block with an item.
+		ARG 1 loc
+		ARG 2 face
+	METHOD stopDestroyBlock ()V
+		COMMENT Resets current block damage
+	METHOD useItem (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 player
+		ARG 2 level
+		ARG 3 hand

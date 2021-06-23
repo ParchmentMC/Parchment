@@ -1,0 +1,26 @@
+CLASS net/minecraft/world/level/GameType
+	METHOD byId (I)Lnet/minecraft/world/level/GameType;
+		COMMENT Gets the game type by it's ID. Will be survival if none was found.
+		ARG 0 id
+	METHOD byId (ILnet/minecraft/world/level/GameType;)Lnet/minecraft/world/level/GameType;
+		ARG 0 targetId
+		ARG 1 fallback
+	METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/level/GameType;
+		COMMENT Gets the game type registered with the specified name. If no matches were found, survival will be returned.
+		ARG 0 gamemodeName
+	METHOD byName (Ljava/lang/String;Lnet/minecraft/world/level/GameType;)Lnet/minecraft/world/level/GameType;
+		ARG 0 targetName
+		ARG 1 fallback
+	METHOD getId ()I
+		COMMENT Returns the ID of this game type
+	METHOD getName ()Ljava/lang/String;
+		COMMENT Returns the name of this game type
+	METHOD isBlockPlacingRestricted ()Z
+		COMMENT Returns true if this is the ADVENTURE game type
+	METHOD isCreative ()Z
+		COMMENT Returns true if this is the CREATIVE game type
+	METHOD isSurvival ()Z
+		COMMENT Returns true if this is the SURVIVAL or ADVENTURE game type
+	METHOD updatePlayerAbilities (Lnet/minecraft/world/entity/player/Abilities;)V
+		COMMENT Configures the player capabilities based on the game type
+		ARG 1 capabilities

@@ -1,0 +1,37 @@
+CLASS net/minecraft/world/level/LevelWriter
+	METHOD addFreshEntity (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD destroyBlock (Lnet/minecraft/core/BlockPos;Z)Z
+		COMMENT Sets a block to air, but also plays the sound and particles and can spawn drops
+		ARG 1 pos
+		ARG 2 dropBlock
+	METHOD destroyBlock (Lnet/minecraft/core/BlockPos;ZLnet/minecraft/world/entity/Entity;)Z
+		ARG 1 pos
+		ARG 2 dropBlock
+		ARG 3 entity
+	METHOD destroyBlock (Lnet/minecraft/core/BlockPos;ZLnet/minecraft/world/entity/Entity;I)Z
+		ARG 1 pos
+		ARG 2 dropBlock
+		ARG 3 entity
+		ARG 4 recursionLeft
+	METHOD removeBlock (Lnet/minecraft/core/BlockPos;Z)Z
+		ARG 1 pos
+		ARG 2 isMoving
+	METHOD setBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z
+		COMMENT Sets a block state into this world.Flags are as follows:
+		COMMENT 1 will cause a block update.
+		COMMENT 2 will send the change to clients.
+		COMMENT 4 will prevent the block from being re-rendered.
+		COMMENT 8 will force any re-renders to run on the main thread instead
+		COMMENT 16 will prevent neighbor reactions (e.g. fences connecting, observers pulsing).
+		COMMENT 32 will prevent neighbor reactions from spawning drops.
+		COMMENT 64 will signify the block is being moved.
+		COMMENT Flags can be OR-ed
+		ARG 1 pos
+		ARG 2 newState
+		ARG 3 flags
+	METHOD setBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;II)Z
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 flags
+		ARG 4 recursionLeft

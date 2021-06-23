@@ -1,0 +1,37 @@
+CLASS net/minecraft/resources/RegistryReadOps
+	METHOD decodeElement (Ljava/lang/Object;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)Lcom/mojang/serialization/DataResult;
+		ARG 1 input
+		ARG 2 registryKey
+		ARG 3 mapCodec
+		ARG 4 allowInlineDefinitions
+	METHOD decodeElements (Lnet/minecraft/core/MappedRegistry;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/DataResult;
+		ARG 1 simpleRegistry
+		ARG 2 registryKey
+		ARG 3 mapCodec
+	METHOD readAndRegisterElement (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/WritableRegistry;Lcom/mojang/serialization/Codec;Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/serialization/DataResult;
+		ARG 1 registryKey
+		ARG 2 mutableRegistry
+		ARG 3 mapCodec
+		ARG 4 id
+	METHOD readCache (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/resources/RegistryReadOps$ReadCache;
+		ARG 1 key
+	METHOD registry (Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/DataResult;
+		ARG 1 registryKey
+	CLASS ResourceAccess
+		METHOD forResourceManager (Lnet/minecraft/server/packs/resources/ResourceManager;)Lnet/minecraft/resources/RegistryReadOps$ResourceAccess;
+			ARG 0 manager
+		METHOD listResources (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Collection;
+			ARG 1 registryKey
+		CLASS 1
+			METHOD listResources (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Collection;
+				ARG 1 registryKey
+		CLASS MemoryMap
+			METHOD add (Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Encoder;ILjava/lang/Object;Lcom/mojang/serialization/Lifecycle;)V
+				ARG 1 dynamicRegistries
+				ARG 2 key
+				ARG 3 encoder
+				ARG 4 id
+				ARG 5 instance
+				ARG 6 lifecycle
+			METHOD listResources (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Collection;
+				ARG 1 registryKey

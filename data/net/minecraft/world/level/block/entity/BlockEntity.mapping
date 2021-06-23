@@ -1,0 +1,27 @@
+CLASS net/minecraft/world/level/block/entity/BlockEntity
+	FIELD level Lnet/minecraft/world/level/Level;
+		COMMENT the instance of the world the tile entity is in.
+	METHOD clearRemoved ()V
+		COMMENT validates a tile entity
+	METHOD fillCrashReportCategory (Lnet/minecraft/CrashReportCategory;)V
+		ARG 1 reportCategory
+	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
+	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
+	METHOD hasLevel ()Z
+		COMMENT Returns true if the worldObj isn't null.
+	METHOD onlyOpCanSetNbt ()Z
+		COMMENT Checks if players can use this tile entity to access operator (permission level 2) commands either directly or indirectly, such as give or setblock. A similar method exists for entities at {@link net.minecraft.entity.Entity#ignoreItemEntityData()}.<p>For example, {@link net.minecraft.tileentity.TileEntitySign#onlyOpsCanSetNbt() signs} (player right-clicking) and {@link net.minecraft.tileentity.TileEntityCommandBlock#onlyOpsCanSetNbt() command blocks} are considered accessible.</p>@return true if this block entity offers ways for unauthorized players to use restricted commands
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD saveMetadata (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 compound
+	METHOD setChanged ()V
+		COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
+	METHOD setRemoved ()V
+		COMMENT invalidates a tile entity
+	METHOD triggerEvent (II)Z
+		COMMENT See {@link Block#eventReceived} for more information. This must return true serverside before it is called clientside.
+		ARG 1 id
+		ARG 2 type

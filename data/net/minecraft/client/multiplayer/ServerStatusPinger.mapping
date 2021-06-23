@@ -1,0 +1,15 @@
+CLASS net/minecraft/client/multiplayer/ServerStatusPinger
+	FIELD connections Ljava/util/List;
+		COMMENT A list of NetworkManagers that have pending pings
+	METHOD pingServer (Lnet/minecraft/client/multiplayer/ServerData;Ljava/lang/Runnable;)V
+		ARG 1 server
+	CLASS 1
+		METHOD getConnection ()Lnet/minecraft/network/Connection;
+			COMMENT Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient
+		METHOD handlePongResponse (Lnet/minecraft/network/protocol/status/ClientboundPongResponsePacket;)V
+			ARG 1 packet
+		METHOD handleStatusResponse (Lnet/minecraft/network/protocol/status/ClientboundStatusResponsePacket;)V
+			ARG 1 packet
+		METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
+			COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
+			ARG 1 reason

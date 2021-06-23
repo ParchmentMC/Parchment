@@ -1,0 +1,26 @@
+CLASS net/minecraft/world/inventory/ItemCombinerMenu
+	METHOD createResult ()V
+		COMMENT called when the Anvil Input Slot changes, calculates the new result and puts it in the output slot
+	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
+		ARG 1 player
+		ARG 2 index
+	METHOD removed (Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called when the container is closed.
+		ARG 1 player
+	METHOD slotsChanged (Lnet/minecraft/world/Container;)V
+		COMMENT Callback for when the crafting matrix is changed.
+		ARG 1 inventory
+	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+		COMMENT Determines whether supplied player can use this container
+		ARG 1 player
+	CLASS 1
+		METHOD setChanged ()V
+			COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
+	CLASS 2
+		METHOD mayPickup (Lnet/minecraft/world/entity/player/Player;)Z
+			COMMENT Return whether this slot's stack can be taken from this slot.
+			ARG 1 player
+		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
+			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
+			ARG 1 stack

@@ -1,0 +1,13 @@
+CLASS net/minecraft/commands/arguments/EntityAnchorArgument
+	METHOD getAnchor (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;
+		ARG 0 context
+		ARG 1 name
+	CLASS Anchor
+		METHOD apply (Lnet/minecraft/commands/CommandSourceStack;)Lnet/minecraft/world/phys/Vec3;
+			COMMENT Gets the coordinate based on the given command source's position. If the source is not an entity, no offsetting occurs.
+			ARG 1 source
+		METHOD apply (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/phys/Vec3;
+			COMMENT Gets the coordinate based on the given entity's position.
+			ARG 1 entity
+		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;
+			ARG 0 name

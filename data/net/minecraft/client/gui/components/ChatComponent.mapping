@@ -1,0 +1,33 @@
+CLASS net/minecraft/client/gui/components/ChatComponent
+	FIELD allMessages Ljava/util/List;
+		COMMENT Chat lines to be displayed in the chat box
+	FIELD recentChat Ljava/util/List;
+		COMMENT A list of messages previously sent through the chat GUI
+	FIELD trimmedMessages Ljava/util/List;
+		COMMENT List of the ChatLines currently drawn
+	METHOD addMessage (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 chatComponent
+	METHOD addMessage (Lnet/minecraft/network/chat/Component;I)V
+		COMMENT prints the ChatComponent to Chat. If the ID is not 0, deletes an existing Chat Line of that ID from the GUI
+		ARG 1 chatComponent
+		ARG 2 chatLineId
+	METHOD addRecentChat (Ljava/lang/String;)V
+		COMMENT Adds this string to the list of sent messages, for recall using the up/down arrow keys
+		ARG 1 message
+	METHOD clearMessages (Z)V
+		COMMENT Clears the chat.
+		ARG 1 clearSentMsgHistory
+			COMMENT Whether or not to clear the user's sent message history
+	METHOD getRecentChat ()Ljava/util/List;
+		COMMENT Gets the list of messages previously sent through the chat GUI
+	METHOD getTimeFactor (I)D
+		ARG 0 counter
+	METHOD isChatFocused ()Z
+		COMMENT Returns true if the chat GUI is open
+	METHOD removeById (I)V
+		COMMENT finds and deletes a Chat line by ID
+		ARG 1 id
+	METHOD resetChatScroll ()V
+		COMMENT Resets the chat scroll (executed when the GUI is closed, among others)
+	METHOD scrollChat (D)V
+		ARG 1 posInc

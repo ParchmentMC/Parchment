@@ -1,0 +1,37 @@
+CLASS net/minecraft/client/gui/screens/CreateFlatWorldScreen
+	FIELD columnHeight Lnet/minecraft/network/chat/Component;
+		COMMENT The text used to identify the height of a layer
+	FIELD columnType Lnet/minecraft/network/chat/Component;
+		COMMENT The text used to identify the material for a layer
+	FIELD deleteLayerButton Lnet/minecraft/client/gui/components/Button;
+		COMMENT The remove layer button
+	METHOD hasValidSelection ()Z
+		COMMENT Returns whether there is a valid layer selection
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
+		ARG 1 matrixStack
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 partialTicks
+	METHOD updateButtonValidity ()V
+		COMMENT Would update whether or not the edit and remove buttons are enabled, but is currently disabled and always disables the buttons (which are invisible anyways)
+	CLASS DetailsList
+		METHOD setSelected (Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
+			ARG 1 entry
+		METHOD setSelected (Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen$DetailsList$Entry;)V
+			ARG 1 entry
+		CLASS Entry
+			METHOD mouseClicked (DDI)Z
+				ARG 1 mouseX
+				ARG 3 mouseY
+				ARG 5 button
+			METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIZF)V
+				ARG 1 matrixStack
+				ARG 2 index
+				ARG 3 top
+				ARG 4 left
+				ARG 5 width
+				ARG 6 height
+				ARG 7 mouseX
+				ARG 8 mouseY
+				ARG 9 isMouseOver
+				ARG 10 partialTicks

@@ -1,0 +1,97 @@
+CLASS net/minecraft/server/level/ChunkMap
+	FIELD entitiesInLevel Lit/unimi/dsi/fastutil/longs/LongSet;
+		COMMENT Chunk positions in this set have fully loaded and their TE's and entities are accessible from the world
+	FIELD modified Z
+		COMMENT True if changes have been made to {@link #loadedChunks} and thus a new copy of the collection has to be made into {@link #immutableLoadedChunks}.
+	FIELD toDrop Lit/unimi/dsi/fastutil/longs/LongSet;
+		COMMENT Chunks that have been requested to be unloaded, but haven't been unloaded yet.
+	FIELD updatingChunkMap Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;
+		COMMENT Chunks in memory. This should only ever be manipulated by the main thread.
+	FIELD visibleChunkMap Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;
+		COMMENT Same as {@link #loadedChunks}, but immutable for access from other threads. <em>This should never be mutated.</em>
+	METHOD addEntity (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD broadcast (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/protocol/Packet;)V
+		ARG 1 entity
+	METHOD broadcastAndSend (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/protocol/Packet;)V
+		ARG 1 entity
+	METHOD checkerboardDistance (Lnet/minecraft/world/level/ChunkPos;II)I
+		ARG 0 chunkPos
+		ARG 1 x
+		ARG 2 y
+	METHOD euclideanDistanceSquared (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/entity/Entity;)D
+		COMMENT Returns the squared distance to the center of the chunk.
+		ARG 0 chunkPos
+		ARG 1 entity
+	METHOD getChunkDebugData (Lnet/minecraft/world/level/ChunkPos;)Ljava/lang/String;
+		ARG 1 pos
+	METHOD getChunks ()Ljava/lang/Iterable;
+		COMMENT Gets an unmodifiable iterable of all loaded chunks in the chunk manager
+	METHOD getPlayers (Lnet/minecraft/world/level/ChunkPos;Z)Ljava/util/stream/Stream;
+		COMMENT Returns the players tracking the given chunk.
+		ARG 1 pos
+		ARG 2 boundaryOnly
+	METHOD move (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD noPlayersCloseForSpawning (Lnet/minecraft/world/level/ChunkPos;)Z
+		ARG 1 chunkPos
+	METHOD playerLoadedChunk (Lnet/minecraft/server/level/ServerPlayer;[Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/world/level/chunk/LevelChunk;)V
+		ARG 1 player
+		ARG 2 packetCache
+		ARG 3 chunk
+	METHOD processUnloads (Ljava/util/function/BooleanSupplier;)V
+		ARG 1 hasMoreTime
+	METHOD readChunk (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 pos
+	METHOD removeEntity (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD save (Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
+		ARG 1 chunk
+	METHOD saveAllChunks (Z)V
+		ARG 1 flush
+	METHOD scheduleChunkGeneration (Lnet/minecraft/server/level/ChunkHolder;Lnet/minecraft/world/level/chunk/ChunkStatus;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunkHolder
+		ARG 2 chunkStatus
+	METHOD scheduleChunkLoad (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunkPos
+	METHOD scheduleUnload (JLnet/minecraft/server/level/ChunkHolder;)V
+		ARG 1 chunkPos
+		ARG 3 chunkHolder
+	METHOD setViewDistance (I)V
+		ARG 1 viewDistance
+	METHOD skipPlayer (Lnet/minecraft/server/level/ServerPlayer;)Z
+		ARG 1 player
+	METHOD tick (Ljava/util/function/BooleanSupplier;)V
+		ARG 1 hasMoreTime
+	METHOD updateChunkScheduling (JILnet/minecraft/server/level/ChunkHolder;I)Lnet/minecraft/server/level/ChunkHolder;
+		COMMENT Sets level and loads/unloads chunk. Used by {@link net.minecraft.world.server.ChunkManager.ProxyTicketManager} to set chunk level.
+		ARG 1 chunkPos
+		ARG 3 newLevel
+		ARG 4 holder
+			COMMENT The {@link net.minecraft.world.server.ChunkHolder} of the chunk if it is loaded, and null otherwise.
+		ARG 5 oldLevel
+	METHOD updateChunkTracking (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/ChunkPos;[Lnet/minecraft/network/protocol/Packet;ZZ)V
+		COMMENT Sends the chunk to the client, or tells it to unload it.
+		ARG 1 player
+		ARG 2 chunkPos
+		ARG 3 packetCache
+		ARG 4 wasLoaded
+		ARG 5 load
+	METHOD updatePlayerStatus (Lnet/minecraft/server/level/ServerPlayer;Z)V
+		ARG 1 player
+		ARG 2 track
+	CLASS DistanceManager
+		METHOD getChunk (J)Lnet/minecraft/server/level/ChunkHolder;
+			ARG 1 chunkPos
+		METHOD updateChunkScheduling (JILnet/minecraft/server/level/ChunkHolder;I)Lnet/minecraft/server/level/ChunkHolder;
+			ARG 1 chunkPos
+			ARG 3 newLevel
+			ARG 4 holder
+			ARG 5 oldLevel
+	CLASS TrackedEntity
+		METHOD removePlayer (Lnet/minecraft/server/level/ServerPlayer;)V
+			ARG 1 player
+		METHOD updatePlayer (Lnet/minecraft/server/level/ServerPlayer;)V
+			ARG 1 player
+		METHOD updatePlayers (Ljava/util/List;)V
+			ARG 1 playersList
