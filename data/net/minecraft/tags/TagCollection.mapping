@@ -1,4 +1,9 @@
 CLASS net/minecraft/tags/TagCollection
+	METHOD createFromNetwork (Lnet/minecraft/tags/TagCollection$NetworkPayload;Lnet/minecraft/core/Registry;)Lnet/minecraft/tags/TagCollection;
+		ARG 0 payload
+		ARG 1 registry
+	METHOD getId (Lnet/minecraft/tags/Tag$Named;)Lnet/minecraft/resources/ResourceLocation;
+		ARG 1 tag
 	METHOD getId (Lnet/minecraft/tags/Tag;)Lnet/minecraft/resources/ResourceLocation;
 		ARG 1 tag
 	METHOD getMatchingTags (Ljava/lang/Object;)Ljava/util/Collection;
@@ -7,10 +12,21 @@ CLASS net/minecraft/tags/TagCollection
 		ARG 1 resourceLocation
 	METHOD getTagOrEmpty (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/tags/Tag;
 		ARG 1 id
+	METHOD hasTag (Lnet/minecraft/resources/ResourceLocation;)Z
+		ARG 1 resourceLocation
 	METHOD of (Ljava/util/Map;)Lnet/minecraft/tags/TagCollection;
 		ARG 0 idTagMap
+	METHOD serializeToNetwork (Lnet/minecraft/core/Registry;)Lnet/minecraft/tags/TagCollection$NetworkPayload;
+		ARG 1 registry
 	CLASS 1
 		METHOD getId (Lnet/minecraft/tags/Tag;)Lnet/minecraft/resources/ResourceLocation;
 			ARG 1 tag
 		METHOD getTagOrEmpty (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/tags/Tag;
 			ARG 1 id
+	CLASS NetworkPayload
+		METHOD <init> (Ljava/util/Map;)V
+			ARG 1 tags
+		METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/tags/TagCollection$NetworkPayload;
+			ARG 0 byteBuf
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 byteBuf
