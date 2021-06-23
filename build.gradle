@@ -11,20 +11,25 @@ import java.time.format.DateTimeFormatter
 
 plugins {
     id 'org.parchmentmc.compass' version '0.2.1'
-    id 'org.parchmentmc.writtenbooks' version '0.+'
+    id 'org.parchmentmc.writtenbooks' version '0.5.+'
     id 'maven-publish'
     id 'java-base'
 }
 
 group = 'org.parchmentmc.data'
 def releaseType = project.findProperty('releaseType') ?: "local"
-def date = OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern('yyyyMMdd'))
+def date = OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern('yyyy.MM.dd'))
 def isRelease = releaseType == "release"
 version = date + (isRelease ? '' : "-${releaseType}-SNAPSHOT")
+def isBleeding = releaseType == "bleeding"
+if (isBleeding) {
+    version = "BLEEDING"
+}
 println("Version: $version")
 
 writtenbooks {
     snapshotVersion = !isRelease
+    bleedingVersion = isBleeding
     githubRepo = 'ParchmentMC/Parchment'
 }
 
