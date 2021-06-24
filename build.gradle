@@ -19,17 +19,24 @@ plugins {
 group = 'org.parchmentmc.data'
 def releaseType = project.findProperty('releaseType') ?: "local"
 def date = OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern('yyyy.MM.dd'))
-def isRelease = releaseType == "release"
+def isRelease = releaseType.toString() == "release"
 version = date + (isRelease ? '' : "-${releaseType}-SNAPSHOT")
-def isBleeding = releaseType == "bleeding"
+def isBleeding = releaseType.toString() == "bleeding"
 if (isBleeding) {
     version = "BLEEDING-SNAPSHOT"
 }
 println("Version: $version")
 
-def isCI = (project.findProperty('CI') ?: "False") == "True";
-if (isCI) {
-    println("##teamcity[setParameter name='env.CI_VERSION' value='$version']")
+afterEvaluate {
+    def isCI = (project.findProperty('isCI') ?: "False").toString() == "True";
+    if (isCI) {
+        println("##teamcity[setParameter name='env.CI_VERSION' value='$version']")
+        println("##teamcity[setParameter name='env.CI_GROUP' value='$group']")
+        println("##teamcity[setParameter name='env.CI_GROUP' value='parchment-${project.compass.version.get()}']")
+    } else
+    {
+        println("Not outputting CI related data. CI Flag: " + project.findProperty('isCI'))
+    }
 }
 
 writtenbooks {
