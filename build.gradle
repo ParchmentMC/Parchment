@@ -27,6 +27,11 @@ if (isBleeding) {
 }
 println("Version: $version")
 
+def isCI = (project.findProperty('CI') ?: "False") == "True";
+if (isCi) {
+    println("##teamcity[setParameter name='env.CI_VERSION' value='$version']")
+}
+
 writtenbooks {
     snapshotVersion = !isRelease
     bleedingVersion = isBleeding
