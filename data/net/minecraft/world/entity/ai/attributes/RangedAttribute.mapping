@@ -1,11 +1,11 @@
 CLASS net/minecraft/world/entity/ai/attributes/RangedAttribute net/minecraft/world/entity/ai/attributes/RangedAttribute
-	COMMENT Defines an entity ettribute that is limited to a range of values.
+	COMMENT Defines an entity @see net.minecraft.world.entity.ai.attributes.Attribute attribute that is limited to a range of values.
 	FIELD maxValue D
 		COMMENT The highest possible value for the attribute.
 	FIELD minValue D
 		COMMENT The lowest possible value for the attribute.
 	METHOD <init> (Ljava/lang/String;DDD)V
-		ARG 1 description
+		ARG 1 descriptionId
 		ARG 2 defaultValue
 		ARG 4 min
 		ARG 6 max
@@ -16,4 +16,6 @@ CLASS net/minecraft/world/entity/ai/attributes/RangedAttribute net/minecraft/wor
 		COMMENT Gets the lowest possible value for the attribute.
 		COMMENT @return The lowest possible value for the attribute. {@link minValue}
 	METHOD sanitizeValue (D)D
+		COMMENT Sanitizes the value of the attribute to fit within the expected parameter range of the attribute. In this case it will clamp the value between {@link minValue} and {@link maxValue}.
+		COMMENT @return The clamped attribute value.
 		ARG 1 value
