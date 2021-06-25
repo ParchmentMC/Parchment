@@ -1,6 +1,13 @@
 CLASS net/minecraft/world/level/biome/MobSpawnSettings
+	METHOD <init> (FLjava/util/Map;Ljava/util/Map;Z)V
+		ARG 1 createGenerationProbability
+		ARG 2 spawners
+		ARG 3 mobSpawnCosts
+		ARG 4 playerSpawnFriendly
 	METHOD getMobSpawnCost (Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/world/level/biome/MobSpawnSettings$MobSpawnCost;
 		ARG 1 entityType
+	METHOD getMobs (Lnet/minecraft/world/entity/MobCategory;)Lnet/minecraft/util/random/WeightedRandomList;
+		ARG 1 category
 	CLASS Builder
 		METHOD addMobCharge (Lnet/minecraft/world/entity/EntityType;DD)Lnet/minecraft/world/level/biome/MobSpawnSettings$Builder;
 			ARG 1 entityType
@@ -11,8 +18,22 @@ CLASS net/minecraft/world/level/biome/MobSpawnSettings
 			ARG 2 spawner
 		METHOD creatureGenerationProbability (F)Lnet/minecraft/world/level/biome/MobSpawnSettings$Builder;
 			ARG 1 probability
+	CLASS SpawnerData
+		METHOD <init> (Lnet/minecraft/world/entity/EntityType;III)V
+			ARG 1 type
+			ARG 2 weight
+			ARG 3 minCount
+			ARG 4 maxCount
+		METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/util/random/Weight;II)V
+			ARG 1 type
+			ARG 2 weight
+			ARG 3 minCount
+			ARG 4 maxCount
 	CLASS MobSpawnCost
 		FIELD charge D
 			COMMENT Determines the cost per entity towards the maximum spawn cap.
 		FIELD energyBudget D
 			COMMENT Determines the total amount of entities that can spawn in a location based on their current cost (e.g. a cost of 0.1 and a max total of 1 means at most ten entities can spawn in the given locatoin).
+		METHOD <init> (DD)V
+			ARG 1 energyBudget
+			ARG 3 charge
