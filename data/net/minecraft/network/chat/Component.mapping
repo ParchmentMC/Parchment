@@ -11,18 +11,31 @@ CLASS net/minecraft/network/chat/Component
 		COMMENT If this component's style is currently <code>null</code>, it will be initialized to the default style, and the parent style of all sibling components will be set to that style. (IE, changes to this style will also be reflected in sibling components.)
 		COMMENT
 		COMMENT This method never returns <code>null</code>.
+	METHOD nullToEmpty (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
+		ARG 0 text
 	METHOD visit (Lnet/minecraft/network/chat/FormattedText$ContentConsumer;)Ljava/util/Optional;
 		ARG 1 acceptor
 	METHOD visit (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
 		ARG 1 acceptor
+		ARG 2 style
+	METHOD visitSelf (Lnet/minecraft/network/chat/FormattedText$ContentConsumer;)Ljava/util/Optional;
+		ARG 1 consumer
+	METHOD visitSelf (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
+		ARG 1 consumer
 		ARG 2 style
 	CLASS Serializer
 		METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/MutableComponent;
 			ARG 0 json
 		METHOD fromJson (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/network/chat/MutableComponent;
 			ARG 0 reader
+		METHOD fromJson (Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+			ARG 0 json
 		METHOD getPos (Lcom/google/gson/stream/JsonReader;)I
 			ARG 0 reader
+		METHOD parseSeparator (Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Ljava/util/Optional;
+			ARG 1 type
+			ARG 2 jsonContext
+			ARG 3 jsonObject
 		METHOD serializeStyle (Lnet/minecraft/network/chat/Style;Lcom/google/gson/JsonObject;Lcom/google/gson/JsonSerializationContext;)V
 			ARG 1 style
 			ARG 2 object

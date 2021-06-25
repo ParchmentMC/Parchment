@@ -1,4 +1,11 @@
 CLASS net/minecraft/network/chat/FormattedText
+	METHOD composite (Ljava/util/List;)Lnet/minecraft/network/chat/FormattedText;
+		ARG 0 elements
+	METHOD composite ([Lnet/minecraft/network/chat/FormattedText;)Lnet/minecraft/network/chat/FormattedText;
+		ARG 0 elements
+	METHOD of (Ljava/lang/String;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/FormattedText;
+		ARG 0 text
+		ARG 1 style
 	METHOD visit (Lnet/minecraft/network/chat/FormattedText$ContentConsumer;)Ljava/util/Optional;
 		ARG 1 acceptor
 	METHOD visit (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
@@ -28,3 +35,10 @@ CLASS net/minecraft/network/chat/FormattedText
 		METHOD visit (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
 			ARG 1 acceptor
 			ARG 2 style
+	CLASS ContentConsumer
+		METHOD accept (Ljava/lang/String;)Ljava/util/Optional;
+			ARG 1 content
+	CLASS StyledContentConsumer
+		METHOD accept (Lnet/minecraft/network/chat/Style;Ljava/lang/String;)Ljava/util/Optional;
+			ARG 1 style
+			ARG 2 content

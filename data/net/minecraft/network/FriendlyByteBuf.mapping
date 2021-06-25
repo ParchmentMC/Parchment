@@ -14,6 +14,13 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD readLongArray ([JI)[J
 		ARG 1 array
 		ARG 2 maxLength
+	METHOD readMap (Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/Map;
+		ARG 1 keyReader
+		ARG 2 valueReader
+	METHOD readMap (Ljava/util/function/IntFunction;Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/Map;
+		ARG 1 mapFactory
+		ARG 2 keyReader
+		ARG 3 valueReader
 	METHOD readNbt ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Reads a compressed NBTTagCompound from this buffer
 	METHOD readUtf (I)Ljava/lang/String;
@@ -41,6 +48,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD writeLongArray ([J)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes an array of longs to the buffer, prefixed by the length of the array (as a VarInt).
 		ARG 1 array
+	METHOD writeMap (Ljava/util/Map;Ljava/util/function/BiConsumer;Ljava/util/function/BiConsumer;)V
+		ARG 2 keyWriter
+		ARG 3 valueWriter
 	METHOD writeNbt (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes a compressed NBTTagCompound to this buffer
 		ARG 1 nbt
