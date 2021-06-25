@@ -1,10 +1,36 @@
 CLASS net/minecraft/world/level/levelgen/structure/BoundingBox
+	METHOD <init> (IIIIII)V
+		ARG 1 minX
+		ARG 2 minY
+		ARG 3 minZ
+		ARG 4 maxX
+		ARG 5 maxY
+		ARG 6 maxZ
+	METHOD <init> (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD encapsulate (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 1 pos
+	METHOD encapsulate (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 1 box
+	METHOD encapsulatingBoxes (Ljava/lang/Iterable;)Ljava/util/Optional;
+		ARG 0 boxes
+	METHOD encapsulatingPositions (Ljava/lang/Iterable;)Ljava/util/Optional;
+		ARG 0 positions
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 object
+	METHOD forAllCorners (Ljava/util/function/Consumer;)V
+		ARG 1 pos
+	METHOD fromCorners (Lnet/minecraft/core/Vec3i;Lnet/minecraft/core/Vec3i;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 0 minVec
+		ARG 1 maxVec
 	METHOD getXSpan ()I
 		COMMENT Get dimension of the bounding box in the x direction.
 	METHOD getYSpan ()I
 		COMMENT Get dimension of the bounding box in the y direction.
 	METHOD getZSpan ()I
 		COMMENT Get dimension of the bounding box in the z direction.
+	METHOD inflate (I)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 1 value
 	METHOD intersects (IIII)Z
 		COMMENT Discover if a coordinate is inside the bounding box area.
 		ARG 1 minX
@@ -17,6 +43,16 @@ CLASS net/minecraft/world/level/levelgen/structure/BoundingBox
 	METHOD isInside (Lnet/minecraft/core/Vec3i;)Z
 		COMMENT Checks if given Vec3i is inside of StructureBoundingBox
 		ARG 1 vec
+	METHOD move (III)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD move (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 1 vec
+	METHOD moved (III)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD orientBox (IIIIIIIIILnet/minecraft/core/Direction;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
 		COMMENT Create a bounding box with the specified dimensions and rotate it. Used to project a possible new component Bounding Box - to check if it would cut anything already spawned
 		ARG 0 structureMinX

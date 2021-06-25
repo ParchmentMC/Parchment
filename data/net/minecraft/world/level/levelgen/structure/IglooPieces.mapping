@@ -1,8 +1,30 @@
 CLASS net/minecraft/world/level/levelgen/structure/IglooPieces
+	METHOD addPieces (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/world/level/levelgen/structure/StructurePieceAccessor;Ljava/util/Random;)V
+		ARG 0 manager
+		ARG 1 pos
+		ARG 2 rot
+		ARG 3 pieces
+		ARG 4 rand
 	CLASS IglooPiece
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+			ARG 1 level
+			ARG 2 tag
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;I)V
+			ARG 1 manager
+			ARG 2 location
+			ARG 3 pos
+			ARG 4 rot
+			ARG 5 down
 		METHOD handleDataMarker (Ljava/lang/String;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/ServerLevelAccessor;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
 			ARG 1 function
 			ARG 2 pos
 			ARG 3 level
 			ARG 4 rand
 			ARG 5 sbb
+		METHOD makePosition (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/core/BlockPos;I)Lnet/minecraft/core/BlockPos;
+			ARG 0 location
+			ARG 1 pos
+			ARG 2 down
+		METHOD makeSettings (Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;
+			ARG 0 rot
+			ARG 1 location

@@ -1,8 +1,127 @@
 CLASS net/minecraft/world/level/levelgen/structure/WoodlandMansionPieces
+	METHOD generateMansion (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Ljava/util/List;Ljava/util/Random;)V
+		ARG 0 manager
+		ARG 1 pos
+		ARG 2 rot
+		ARG 3 pieces
+		ARG 4 rand
+	CLASS SimpleGrid
+		METHOD <init> (III)V
+			ARG 1 width
+			ARG 2 height
+			ARG 3 valueIfOutside
+		METHOD get (II)I
+			ARG 1 x
+			ARG 2 y
+		METHOD set (III)V
+			ARG 1 x
+			ARG 2 y
+		METHOD set (IIIII)V
+			ARG 1 minX
+			ARG 2 minY
+			ARG 3 maxX
+			ARG 4 maxY
+		METHOD setif (IIII)V
+			ARG 1 x
+			ARG 2 y
+	CLASS MansionGrid
+		METHOD <init> (Ljava/util/Random;)V
+			ARG 1 rand
+		METHOD cleanEdges (Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$SimpleGrid;)Z
+			ARG 1 grid
+	CLASS MansionPiecePlacer
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Ljava/util/Random;)V
+			ARG 1 manager
+			ARG 2 rand
+		METHOD addRoom1x1 (Ljava/util/List;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$FloorRoomCollection;)V
+			ARG 1 pieces
+			ARG 2 pos
+			ARG 3 rot
+			ARG 4 direction
+			ARG 5 floorRooms
+		METHOD addRoom1x2 (Ljava/util/List;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$FloorRoomCollection;Z)V
+			ARG 1 pieces
+			ARG 2 pos
+			ARG 3 rot
+			ARG 6 floorRooms
+		METHOD addRoom2x2 (Ljava/util/List;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$FloorRoomCollection;)V
+			ARG 1 pieces
+			ARG 2 pos
+			ARG 3 rot
+			ARG 6 floorRooms
+		METHOD addRoom2x2Secret (Ljava/util/List;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$FloorRoomCollection;)V
+			ARG 1 pieces
+			ARG 2 pos
+			ARG 3 rot
+			ARG 4 floorRooms
+		METHOD createMansion (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Ljava/util/List;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$MansionGrid;)V
+			ARG 1 pos
+			ARG 2 rot
+			ARG 3 pieces
+			ARG 4 grid
+		METHOD createRoof (Ljava/util/List;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$SimpleGrid;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$SimpleGrid;)V
+			ARG 1 pieces
+			ARG 2 pos
+			ARG 3 rot
+		METHOD entrance (Ljava/util/List;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$PlacementData;)V
+			ARG 1 pieces
+			ARG 2 data
+		METHOD traverseInnerTurn (Ljava/util/List;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$PlacementData;)V
+			ARG 1 pieces
+			ARG 2 data
+		METHOD traverseOuterWalls (Ljava/util/List;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$PlacementData;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$SimpleGrid;Lnet/minecraft/core/Direction;IIII)V
+			ARG 1 pieces
+			ARG 2 data
+			ARG 3 grid
+			ARG 4 direction
+			ARG 5 startX
+			ARG 6 startY
+		METHOD traverseTurn (Ljava/util/List;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$PlacementData;)V
+			ARG 1 pieces
+			ARG 2 data
+		METHOD traverseWallPiece (Ljava/util/List;Lnet/minecraft/world/level/levelgen/structure/WoodlandMansionPieces$PlacementData;)V
+			ARG 1 pieces
+			ARG 2 data
+	CLASS FloorRoomCollection
+		METHOD get1x1 (Ljava/util/Random;)Ljava/lang/String;
+			ARG 1 rand
+		METHOD get1x1Secret (Ljava/util/Random;)Ljava/lang/String;
+			ARG 1 rand
+		METHOD get1x2FrontEntrance (Ljava/util/Random;Z)Ljava/lang/String;
+			ARG 1 rand
+			ARG 2 isStairs
+		METHOD get1x2Secret (Ljava/util/Random;)Ljava/lang/String;
+			ARG 1 rand
+		METHOD get1x2SideEntrance (Ljava/util/Random;Z)Ljava/lang/String;
+			ARG 1 rand
+			ARG 2 isStairs
+		METHOD get2x2 (Ljava/util/Random;)Ljava/lang/String;
+			ARG 1 rand
+		METHOD get2x2Secret (Ljava/util/Random;)Ljava/lang/String;
+			ARG 1 rand
 	CLASS WoodlandMansionPiece
+		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+			ARG 1 level
+			ARG 2 tag
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Ljava/lang/String;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;)V
+			ARG 1 manager
+			ARG 2 name
+			ARG 3 pos
+			ARG 4 rot
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Ljava/lang/String;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/world/level/block/Mirror;)V
+			ARG 1 manager
+			ARG 2 name
+			ARG 3 pos
+			ARG 4 rot
+			ARG 5 mirror
 		METHOD handleDataMarker (Ljava/lang/String;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/ServerLevelAccessor;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
 			ARG 1 function
 			ARG 2 pos
 			ARG 3 level
 			ARG 4 rand
 			ARG 5 sbb
+		METHOD makeLocation (Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+			ARG 0 name
+		METHOD makeSettings (Lnet/minecraft/world/level/block/Mirror;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;
+			ARG 0 mirror
+			ARG 1 rot
