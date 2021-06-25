@@ -1,7 +1,17 @@
 CLASS net/minecraft/network/protocol/game/ClientboundUpdateAttributesPacket
+	METHOD <init> (ILjava/util/Collection;)V
+		ARG 1 entityId
+		ARG 2 attributes
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buf
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buf
+	CLASS AttributeSnapshot
+		METHOD <init> (Lnet/minecraft/world/entity/ai/attributes/Attribute;DLjava/util/Collection;)V
+			ARG 1 attribute
+			ARG 2 base
+			ARG 4 modifiers
