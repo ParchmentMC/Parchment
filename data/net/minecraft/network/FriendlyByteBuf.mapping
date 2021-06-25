@@ -1,73 +1,271 @@
 CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD getVarIntSize (I)I
-		COMMENT Calculates the number of bytes required to fit the supplied int (0-5) if it were to be read/written using readVarIntFromBuffer or writeVarIntToBuffer
+		COMMENT Calculates the number of bytes (0-5) required to fit the supplied int if it were to be read/written using readVarInt/writeVarInt
 		ARG 0 input
+	METHOD getVarLongSize (J)I
+		COMMENT Calculates the number of bytes required to fit the supplied long if it were to be read/written using readVarLong / writeVarLong
+	METHOD readAnySizeNbt ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Reads a NBT CompoundTag from this buffer.
+		COMMENT {@code null} is a valid value and may be returned.
+		COMMENT
+		COMMENT This method has no size limit on the NBT data.
+		COMMENT
+		COMMENT @see #writeNbt
+		COMMENT @see #readNbt()
+		COMMENT @see #readNbt(NbtAccounter)
+	METHOD readBitSet ()Ljava/util/BitSet;
+		COMMENT Read a BitSet as a long[].
+		COMMENT
+		COMMENT @see #writeBitSet
+	METHOD readBlockHitResult ()Lnet/minecraft/world/phys/BlockHitResult;
+		COMMENT Read a BlockHitResult.
+		COMMENT
+		COMMENT @see #writeBlockHitResult
+	METHOD readBlockPos ()Lnet/minecraft/core/BlockPos;
+		COMMENT Reads a BlockPos encoded as a long from the buffer.
+		COMMENT
+		COMMENT @see #writeBlockPos
 	METHOD readByteArray (I)[B
 		ARG 1 maxLength
+	METHOD readChunkPos ()Lnet/minecraft/world/level/ChunkPos;
+		COMMENT Reads a ChunkPos encoded as a long from the buffer.
+		COMMENT
+		COMMENT @see #writeChunkPos
+	METHOD readCollection (Ljava/util/function/IntFunction;Ljava/util/function/Function;)Ljava/util/Collection;
+		COMMENT Read a collection from this buffer. First a new collection is created given the number of elements using {@code collectionFactory}.
+		COMMENT Then every element is read using {@code elementReader}.
+		COMMENT
+		COMMENT @see #writeCollection
+		ARG 1 collectionFactory
+		ARG 2 elementReader
+	METHOD readComponent ()Lnet/minecraft/network/chat/Component;
+		COMMENT Reads a Component encoded as a JSON string from the buffer.
+		COMMENT
+		COMMENT @see #writeComponent
+	METHOD readDate ()Ljava/util/Date;
+		COMMENT Read a timestamp as milliseconds since the unix epoch.
+		COMMENT
+		COMMENT @see #writeDate
 	METHOD readEnum (Ljava/lang/Class;)Ljava/lang/Enum;
+		COMMENT Reads an enum of the given type T using the ordinal encoded as a VarInt from the buffer.
+		COMMENT
+		COMMENT @see #writeEnum
 		ARG 1 enumClass
+	METHOD readIntIdList ()Lit/unimi/dsi/fastutil/ints/IntList;
+		COMMENT Read an IntList of VarInts from this buffer.
+		COMMENT
+		COMMENT @see #writeIntIdList
 	METHOD readItem ()Lnet/minecraft/world/item/ItemStack;
-		COMMENT Reads an ItemStack from this buffer
-	METHOD readLongArray ([J)[J
+		COMMENT Reads an ItemStack from this buffer.
+		COMMENT
+		COMMENT @see #writeItem
+	METHOD readList (Ljava/util/function/Function;)Ljava/util/List;
+		COMMENT Read a List from this buffer. First a new list is created given the number of elements.
+		COMMENT Then every element is read using {@code elementReader}.
+		COMMENT
+		COMMENT @see #writeCollection
+		ARG 1 elementReader
+	METHOD readLongArray ()[J
 		COMMENT Reads a length-prefixed array of longs from the buffer.
+	METHOD readLongArray ([J)[J
+		COMMENT Reads a length-prefixed array of longs from the buffer.Reads a length-prefixed array of longs from the buffer.
+		COMMENT Will try to use the given long[] if possible. Note that if an array with the correct size is given, maxLength is ignored.
 		ARG 1 array
 	METHOD readLongArray ([JI)[J
+		COMMENT Reads a length-prefixed array of longs with a maximum length from the buffer.
+		COMMENT Will try to use the given long[] if possible. Note that if an array with the correct size is given, maxLength is ignored.
 		ARG 1 array
 		ARG 2 maxLength
 	METHOD readMap (Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/Map;
+		COMMENT Read a Map from this buffer. First a new HashMap is created.
+		COMMENT Then all keys and values are read using the given {@code keyReader} and {@code valueReader}.
+		COMMENT
+		COMMENT @see #writeMap
 		ARG 1 keyReader
 		ARG 2 valueReader
 	METHOD readMap (Ljava/util/function/IntFunction;Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/Map;
+		COMMENT Read a Map from this buffer. First a new Map is created given the number of elements using {@code mapFactory}.
+		COMMENT Then all keys and values are read using the given {@code keyReader} and {@code valueReader}.
+		COMMENT
+		COMMENT @see #writeMap
 		ARG 1 mapFactory
 		ARG 2 keyReader
 		ARG 3 valueReader
 	METHOD readNbt ()Lnet/minecraft/nbt/CompoundTag;
-		COMMENT Reads a compressed NBTTagCompound from this buffer
+		COMMENT Reads a NBT CompoundTag from this buffer.
+		COMMENT {@code null} is a valid value and may be returned.
+		COMMENT
+		COMMENT This method will read a maximum of 0x200000 bytes.
+		COMMENT
+		COMMENT @see #writeNbt
+		COMMENT @see #readAnySizeNbt
+		COMMENT @see #readNbt(NbtAccounter)
+	METHOD readNbt (Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Reads a NBT CompoundTag from this buffer.
+		COMMENT {@code null} is a valid value and may be returned.
+		COMMENT
+		COMMENT This method limits the size of the data using the given {@code NbtAccounter}.
+		COMMENT
+		COMMENT @see #writeNbt
+		COMMENT @see #readNbt()
+		COMMENT @see #readAnySizeNbt
+	METHOD readResourceLocation ()Lnet/minecraft/resources/ResourceLocation;
+		COMMENT Read a ResourceLocation using its String representation.
+		COMMENT
+		COMMENT @see #writeResourceLocation
+	METHOD readSectionPos ()Lnet/minecraft/core/SectionPos;
+		COMMENT Reads a SectionPos encoded as a long from the buffer.
+		COMMENT
+		COMMENT @see #writeSectionPos
+	METHOD readUUID ()Ljava/util/UUID;
+		COMMENT Reads a UUID encoded as two longs from this buffer.
+		COMMENT
+		COMMENT @see #writeUUID
+	METHOD readUtf ()Ljava/lang/String;
+		COMMENT Reads a String with a maximum length of {@code Short.MAX_VALUE}.
+		COMMENT
+		COMMENT @see #readUtf(int)
+		COMMENT @see #writeUtf
 	METHOD readUtf (I)Ljava/lang/String;
-		COMMENT Reads a string from this buffer. Expected parameter is maximum allowed string length. Will throw IOException if string length exceeds this value!
+		COMMENT Reads a string with a maximum length from this buffer.
+		COMMENT
+		COMMENT @see #writeUtf
 		ARG 1 maxLength
 	METHOD readVarInt ()I
 		COMMENT Reads a compressed int from the buffer. To do so it maximally reads 5 byte-sized chunks whose most significant bit dictates whether another byte should be read.
+		COMMENT
+		COMMENT @see #writeVarInt
+	METHOD readVarIntArray ()[I
+		COMMENT Reads an array of VarInts from this buffer.
+		COMMENT
+		COMMENT @see #writeVarIntArray
 	METHOD readVarIntArray (I)[I
+		COMMENT Reads an array of VarInts with a maximum length from this buffer.
+		COMMENT
+		COMMENT @see #writeVarIntArray
 		ARG 1 maxLength
+	METHOD readVarLong ()J
+		COMMENT Reads a compressed long from the buffer. To do so it maximally reads 10 byte-sized chunks whose most significant bit dictates whether another byte should be read.
+		COMMENT
+		COMMENT @see #writeVarLong
+	METHOD readWithCodec (Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
+		COMMENT Read a value of type {@code T} from this buffer using the given Codec.
+		COMMENT NBT is used under the hood to read the data.
+		COMMENT
+		COMMENT @see #writeWithCodec
+		ARG 1 codec
+	METHOD readWithCount (Ljava/util/function/Consumer;)V
+		COMMENT Read a VarInt N from this buffer, then reads N values by calling {@code reader}.
+		ARG 1 reader
+	METHOD writeBitSet (Ljava/util/BitSet;)V
+		COMMENT Write a BitSet as a long[].
+		COMMENT
+		COMMENT @see #readBitSet
 	METHOD writeBlockHitResult (Lnet/minecraft/world/phys/BlockHitResult;)V
+		COMMENT Write a BlockHitResult.
+		COMMENT
+		COMMENT @see #readBlockHitResult
 		ARG 1 result
 	METHOD writeBlockPos (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes a BlockPos encoded as a long to the buffer.
+		COMMENT
+		COMMENT @see #readBlockPos
 		ARG 1 pos
 	METHOD writeByteArray ([B)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 array
+	METHOD writeChunkPos (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes a ChunkPos encoded as a long to the buffer.
+		COMMENT
+		COMMENT @see #readChunkPos
+	METHOD writeCollection (Ljava/util/Collection;Ljava/util/function/BiConsumer;)V
+		COMMENT Write a collection to this buffer. Every element is encoded in order using {@code elementWriter}.
+		COMMENT
+		COMMENT @see #readCollection
+		ARG 1 collection
+		ARG 2 elementWriter
 	METHOD writeComponent (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes a Component encoded as a JSON string to the buffer.
+		COMMENT
+		COMMENT @see #readComponent
 		ARG 1 component
 	METHOD writeDate (Ljava/util/Date;)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Write a timestamp as milliseconds since the unix epoch.
+		COMMENT
+		COMMENT @see #readDate
 		ARG 1 time
 	METHOD writeEnum (Ljava/lang/Enum;)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes an enum of the given type T using the ordinal encoded as a VarInt to the buffer.
+		COMMENT
+		COMMENT @see #readEnum
 		ARG 1 value
+	METHOD writeIntIdList (Lit/unimi/dsi/fastutil/ints/IntList;)V
+		COMMENT Write an IntList to this buffer. Every element is encoded as a VarInt.
+		COMMENT
+		COMMENT @see #readIntIdList
 	METHOD writeItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/FriendlyByteBuf;
-		COMMENT Writes the ItemStack's ID (short), then size (byte), then damage. (short)
+		COMMENT Writes an ItemStack to this buffer.
+		COMMENT
+		COMMENT @see #readItem
 		ARG 1 stack
 	METHOD writeLongArray ([J)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes an array of longs to the buffer, prefixed by the length of the array (as a VarInt).
+		COMMENT
+		COMMENT @see #readLongArray
 		ARG 1 array
 	METHOD writeMap (Ljava/util/Map;Ljava/util/function/BiConsumer;Ljava/util/function/BiConsumer;)V
+		COMMENT Write a Map to this buffer. First the size of the map is written as a VarInt.
+		COMMENT Then all keys and values are written using the given {@code keyWriter} and {@code valueWriter}.
+		COMMENT
+		COMMENT @see #readMap
+		ARG 1 map
 		ARG 2 keyWriter
 		ARG 3 valueWriter
 	METHOD writeNbt (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/network/FriendlyByteBuf;
-		COMMENT Writes a compressed NBTTagCompound to this buffer
+		COMMENT Writes the given NBT CompoundTag to this buffer.
+		COMMENT {@code null} is a valid value and can be encoded by this method.
+		COMMENT
+		COMMENT @see #readNbt()
+		COMMENT @see #readAnySizeNbt
+		COMMENT @see #readNbt(NbtAccounter)
 		ARG 1 nbt
 	METHOD writeResourceLocation (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Write a ResourceLocation using its String representation.
+		COMMENT
+		COMMENT @see #readResourceLocation
 		ARG 1 resourceLocation
+	METHOD writeSectionPos (Lnet/minecraft/core/SectionPos;)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes a SectionPos encoded as a long to the buffer.
+		COMMENT
+		COMMENT @see #readSectionPos
 	METHOD writeUUID (Ljava/util/UUID;)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes a UUID encoded as two longs to this buffer.
+		COMMENT
+		COMMENT @see #readUUID
 		ARG 1 uuid
 	METHOD writeUtf (Ljava/lang/String;)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes a String with a maximum length of {@code Short.MAX_VALUE}.
+		COMMENT
+		COMMENT @see #readUtf
 		ARG 1 string
 	METHOD writeUtf (Ljava/lang/String;I)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes a String with a maximum length.
+		COMMENT
+		COMMENT @see #readUtf
 		ARG 1 string
 		ARG 2 maxLength
 	METHOD writeVarInt (I)Lnet/minecraft/network/FriendlyByteBuf;
-		COMMENT Writes a compressed int to the buffer. The smallest number of bytes to fit the passed int will be written. Of each such byte only 7 bits will be used to describe the actual value since its most significant bit dictates whether the next byte is part of that same int. Micro-optimization for int values that are expected to have values below 128.
+		COMMENT Writes a compressed int to the buffer. The smallest number of bytes to fit the passed long will be written. Of each such byte only 7 bits will be used to describe the actual value since its most significant bit dictates whether the next byte is part of that same int. Micro-optimization for int values that are usually small.
 		ARG 1 input
 	METHOD writeVarIntArray ([I)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes an array of VarInts to the buffer, prefixed by the length of the array (as a VarInt).
+		COMMENT
+		COMMENT @see #readVarIntArray
 		ARG 1 array
 	METHOD writeVarLong (J)Lnet/minecraft/network/FriendlyByteBuf;
+		COMMENT Writes a compressed long to the buffer. The smallest number of bytes to fit the passed long will be written. Of each such byte only 7 bits will be used to describe the actual value since its most significant bit dictates whether the next byte is part of that same long. Micro-optimization for long values that are usually small.
 		ARG 1 value
+	METHOD writeWithCodec (Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
+		COMMENT Write a value of type {@code T} to this buffer using the given Codec.
+		COMMENT NBT is used under the hood to write the data.
+		COMMENT
+		COMMENT @see #readWithCodec
