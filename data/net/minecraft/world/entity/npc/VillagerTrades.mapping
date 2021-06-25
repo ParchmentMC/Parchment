@@ -1,47 +1,145 @@
 CLASS net/minecraft/world/entity/npc/VillagerTrades
-	CLASS DyedArmorForEmeralds
-		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
-			ARG 1 trader
-			ARG 2 rand
-	CLASS EmeraldForItems
-		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
-			ARG 1 trader
-			ARG 2 rand
-	CLASS EmeraldsForVillagerTypeItem
-		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
-			ARG 1 trader
-			ARG 2 rand
-	CLASS EnchantBookForEmeralds
-		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
-			ARG 1 trader
-			ARG 2 rand
-	CLASS EnchantedItemForEmeralds
-		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
-			ARG 1 trader
-			ARG 2 rand
+	METHOD toIntMap (Lcom/google/common/collect/ImmutableMap;)Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
+		ARG 0 map
 	CLASS ItemListing
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
-	CLASS ItemsAndEmeraldsToItems
+	CLASS EmeraldForItems
+		METHOD <init> (Lnet/minecraft/world/level/ItemLike;III)V
+			ARG 1 item
+			ARG 2 cost
+			ARG 3 maxUses
+			ARG 4 villagerXp
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
 	CLASS ItemsForEmeralds
+		METHOD <init> (Lnet/minecraft/world/item/Item;III)V
+			ARG 1 item
+			ARG 2 emeraldCost
+			ARG 3 numberOfItems
+			ARG 4 villagerXp
+		METHOD <init> (Lnet/minecraft/world/item/Item;IIII)V
+			ARG 1 item
+			ARG 2 emeraldCost
+			ARG 3 numberOfItems
+			ARG 4 maxUses
+			ARG 5 villagerXp
+		METHOD <init> (Lnet/minecraft/world/item/ItemStack;IIII)V
+			ARG 1 itemStack
+			ARG 2 emeraldCost
+			ARG 3 numberOfItems
+			ARG 4 maxUses
+			ARG 5 villagerXp
+		METHOD <init> (Lnet/minecraft/world/item/ItemStack;IIIIF)V
+			ARG 1 itemStack
+			ARG 2 emeralCost
+			ARG 3 numberOfItems
+			ARG 4 maxUses
+			ARG 5 villagerXp
+			ARG 6 priceMultiplier
+		METHOD <init> (Lnet/minecraft/world/level/block/Block;IIII)V
+			ARG 1 block
+			ARG 2 emeraldCost
+			ARG 3 numberOfItems
+			ARG 4 maxUses
+			ARG 5 villagerXp
+		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
+			ARG 1 trader
+			ARG 2 rand
+	CLASS DyedArmorForEmeralds
+		METHOD <init> (Lnet/minecraft/world/item/Item;I)V
+			ARG 1 item
+			ARG 2 value
+		METHOD <init> (Lnet/minecraft/world/item/Item;III)V
+			ARG 1 item
+			ARG 2 value
+			ARG 3 maxUses
+			ARG 4 villagerXp
+		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
+			ARG 1 trader
+			ARG 2 rand
+		METHOD getRandomDye (Ljava/util/Random;)Lnet/minecraft/world/item/DyeItem;
+			ARG 0 random
+	CLASS EnchantBookForEmeralds
+		METHOD <init> (I)V
+			ARG 1 villagerXp
+		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
+			ARG 1 trader
+			ARG 2 rand
+	CLASS TreasureMapForEmeralds
+		METHOD <init> (ILnet/minecraft/world/level/levelgen/feature/StructureFeature;Lnet/minecraft/world/level/saveddata/maps/MapDecoration$Type;II)V
+			ARG 1 emeraldCost
+			ARG 2 destination
+			ARG 3 destinationType
+			ARG 4 maxUses
+			ARG 5 villagerXp
+		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
+			ARG 1 trader
+			ARG 2 rand
+	CLASS ItemsAndEmeraldsToItems
+		METHOD <init> (Lnet/minecraft/world/level/ItemLike;IILnet/minecraft/world/item/Item;III)V
+			ARG 1 forItem
+			ARG 2 fromCount
+			ARG 3 emeraldCost
+			ARG 4 toItem
+			ARG 5 toCount
+			ARG 6 maxUses
+			ARG 7 villagerXp
+		METHOD <init> (Lnet/minecraft/world/level/ItemLike;ILnet/minecraft/world/item/Item;III)V
+			ARG 1 forItem
+			ARG 2 fromCount
+			ARG 3 toItem
+			ARG 4 toCount
+			ARG 5 maxUses
+			ARG 6 villagerXp
+		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
+			ARG 1 trader
+			ARG 2 rand
+	CLASS EnchantedItemForEmeralds
+		METHOD <init> (Lnet/minecraft/world/item/Item;III)V
+			ARG 1 item
+			ARG 2 baseEmeraldCost
+			ARG 3 maxUses
+			ARG 4 villagerXp
+		METHOD <init> (Lnet/minecraft/world/item/Item;IIIF)V
+			ARG 1 item
+			ARG 2 baseEmeraldCost
+			ARG 3 maxUses
+			ARG 4 villagerXp
+			ARG 5 priceMultiplier
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
 	CLASS SuspisciousStewForEmerald
+		METHOD <init> (Lnet/minecraft/world/effect/MobEffect;II)V
+			ARG 1 effect
+			ARG 2 duration
+			ARG 3 xp
+		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
+			ARG 1 trader
+			ARG 2 rand
+	CLASS EmeraldsForVillagerTypeItem
+		METHOD <init> (IIILjava/util/Map;)V
+			ARG 1 cost
+			ARG 2 maxUses
+			ARG 3 villagerXp
+			ARG 4 trades
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
 	CLASS TippedArrowForItemsAndEmeralds
 		FIELD toItem Lnet/minecraft/world/item/ItemStack;
 			COMMENT An ItemStack that can have potion effects written to it.
-		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
-			ARG 1 trader
-			ARG 2 rand
-	CLASS TreasureMapForEmeralds
+		METHOD <init> (Lnet/minecraft/world/item/Item;ILnet/minecraft/world/item/Item;IIII)V
+			ARG 1 fromItem
+			ARG 2 fromCount
+			ARG 3 toItem
+			ARG 4 toCount
+			ARG 5 emeraldCost
+			ARG 6 maxUses
+			ARG 7 villagerXp
 		METHOD getOffer (Lnet/minecraft/world/entity/Entity;Ljava/util/Random;)Lnet/minecraft/world/item/trading/MerchantOffer;
 			ARG 1 trader
 			ARG 2 rand
