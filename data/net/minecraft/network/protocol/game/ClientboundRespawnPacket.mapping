@@ -1,6 +1,17 @@
 CLASS net/minecraft/network/protocol/game/ClientboundRespawnPacket
 	FIELD seed J
 		COMMENT First 8 bytes of the SHA-256 hash of the world's seed
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buf
+	METHOD <init> (Lnet/minecraft/world/level/dimension/DimensionType;Lnet/minecraft/resources/ResourceKey;JLnet/minecraft/world/level/GameType;Lnet/minecraft/world/level/GameType;ZZZ)V
+		ARG 1 dimensionType
+		ARG 2 dimension
+		ARG 3 seed
+		ARG 5 playerGameType
+		ARG 6 previousPlayerGameType
+		ARG 7 isDebug
+		ARG 8 isFlat
+		ARG 9 keepAllPlayerData
 	METHOD getSeed ()J
 		COMMENT get value
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
