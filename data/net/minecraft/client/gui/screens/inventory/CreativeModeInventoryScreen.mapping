@@ -7,11 +7,22 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		COMMENT True if the scrollbar is being dragged
 	FIELD selectedTab I
 		COMMENT Currently selected creative inventory tab index.
+	METHOD <init> (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player
 	METHOD canScroll ()Z
 		COMMENT returns (if you are not on the inventoryTab) and (the flag isn't set) and (you have more than 1 page of items)
 	METHOD charTyped (CI)Z
 		ARG 1 codePoint
 		ARG 2 modifiers
+	METHOD checkTabClicked (Lnet/minecraft/world/item/CreativeModeTab;DD)Z
+		ARG 1 creativeModeTab
+		ARG 2 relativeMouseX
+		ARG 4 relativeMouseY
+	METHOD checkTabHovering (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/CreativeModeTab;II)Z
+		ARG 1 poseStack
+		ARG 2 creativeModeTab
+		ARG 3 mouseX
+		ARG 4 mouseY
 	METHOD getSelectedTab ()I
 		COMMENT Returns the index of the currently selected tab.
 	METHOD handleHotbarLoadOrSave (Lnet/minecraft/client/Minecraft;IZZ)V
@@ -25,6 +36,9 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		ARG 5 guiLeft
 		ARG 6 guiTop
 		ARG 7 mouseButton
+	METHOD insideScrollbar (DD)Z
+		ARG 1 mouseX
+		ARG 3 mouseY
 	METHOD isCreativeSlot (Lnet/minecraft/world/inventory/Slot;)Z
 		ARG 1 slot
 	METHOD keyPressed (III)Z
@@ -35,6 +49,15 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
+	METHOD lambda$renderTooltip$3 (Lnet/minecraft/world/item/ItemStack;Ljava/util/List;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/tags/Tag;)V
+		ARG 2 tagName
+		ARG 3 tag
+	METHOD lambda$updateVisibleTags$0 (Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Z
+		ARG 1 tagName
+	METHOD lambda$updateVisibleTags$1 (Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Z
+		ARG 2 tagName
+	METHOD lambda$updateVisibleTags$2 (Lnet/minecraft/tags/TagCollection;Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 2 tagName
 	METHOD mouseClicked (DDI)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -67,6 +90,9 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		ARG 1 matrixStack
 		ARG 2 x
 		ARG 3 y
+	METHOD renderTabButton (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/CreativeModeTab;)V
+		ARG 1 poseStack
+		ARG 2 creativeModeTab
 	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/ItemStack;II)V
 		ARG 1 matrixStack
 		ARG 2 itemStack
@@ -87,31 +113,12 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		ARG 4 type
 	METHOD updateVisibleTags (Ljava/lang/String;)V
 		ARG 1 search
-	CLASS CustomCreativeSlot
-		METHOD mayPickup (Lnet/minecraft/world/entity/player/Player;)Z
-			COMMENT Return whether this slot's stack can be taken from this slot.
-			ARG 1 player
-	CLASS ItemPickerMenu
-		FIELD items Lnet/minecraft/core/NonNullList;
-			COMMENT the list of items in this container
-		METHOD canDragTo (Lnet/minecraft/world/inventory/Slot;)Z
-			COMMENT Returns true if the player can "drag-spilt" items into this slot,. returns true by default. Called to check if the slot can be added to a list of Slots to split the held ItemStack across.
-			ARG 1 slot
-		METHOD canTakeItemForPickAll (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z
-			COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
-			ARG 1 stack
-			ARG 2 slot
-		METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
-			COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
-			ARG 1 player
-			ARG 2 index
-		METHOD scrollTo (F)V
-			COMMENT Updates the gui slots ItemStack's based on scroll position.
-			ARG 1 pos
-		METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
-			COMMENT Determines whether supplied player can use this container
-			ARG 1 player
 	CLASS SlotWrapper
+		METHOD <init> (Lnet/minecraft/world/inventory/Slot;III)V
+			ARG 1 slot
+			ARG 2 index
+			ARG 3 x
+			ARG 4 y
 		METHOD getItem ()Lnet/minecraft/world/item/ItemStack;
 			COMMENT Helper fnct to get the stack in the slot.
 		METHOD getMaxStackSize ()I
@@ -136,3 +143,29 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 			ARG 1 stack
 		METHOD setChanged ()V
 			COMMENT Called when the stack in a Slot changes
+	CLASS ItemPickerMenu
+		FIELD items Lnet/minecraft/core/NonNullList;
+			COMMENT the list of items in this container
+		METHOD <init> (Lnet/minecraft/world/entity/player/Player;)V
+			ARG 1 player
+		METHOD canDragTo (Lnet/minecraft/world/inventory/Slot;)Z
+			COMMENT Returns true if the player can "drag-spilt" items into this slot,. returns true by default. Called to check if the slot can be added to a list of Slots to split the held ItemStack across.
+			ARG 1 slot
+		METHOD canTakeItemForPickAll (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z
+			COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
+			ARG 1 stack
+			ARG 2 slot
+		METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
+			COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
+			ARG 1 player
+			ARG 2 index
+		METHOD scrollTo (F)V
+			COMMENT Updates the gui slots ItemStack's based on scroll position.
+			ARG 1 pos
+		METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+			COMMENT Determines whether supplied player can use this container
+			ARG 1 player
+	CLASS CustomCreativeSlot
+		METHOD mayPickup (Lnet/minecraft/world/entity/player/Player;)Z
+			COMMENT Return whether this slot's stack can be taken from this slot.
+			ARG 1 player

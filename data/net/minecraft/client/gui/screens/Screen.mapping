@@ -1,4 +1,10 @@
 CLASS net/minecraft/client/gui/screens/Screen
+	METHOD <init> (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 title
+	METHOD addRenderableOnly (Lnet/minecraft/client/gui/components/Widget;)Lnet/minecraft/client/gui/components/Widget;
+		ARG 1 widget
+	METHOD addRenderableWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+		ARG 1 widget
 	METHOD addWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
 		ARG 1 listener
 	METHOD confirmLink (Z)V
@@ -33,6 +39,8 @@ CLASS net/minecraft/client/gui/screens/Screen
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
+	METHOD lambda$renderTooltip$0 (Ljava/util/List;Lnet/minecraft/world/inventory/tooltip/TooltipComponent;)V
+		ARG 1 tooltipComponent
 	METHOD onFilesDrop (Ljava/util/List;)V
 		ARG 1 packs
 	METHOD openLink (Ljava/net/URI;)V
@@ -52,6 +60,11 @@ CLASS net/minecraft/client/gui/screens/Screen
 		ARG 2 style
 		ARG 3 mouseX
 		ARG 4 mouseY
+	METHOD renderComponentTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Ljava/util/List;II)V
+		ARG 1 poseStack
+		ARG 2 tooltips
+		ARG 3 mouseX
+		ARG 4 mouseY
 	METHOD renderDirtBackground (I)V
 		ARG 1 vOffset
 	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Ljava/util/List;II)V
@@ -59,14 +72,25 @@ CLASS net/minecraft/client/gui/screens/Screen
 		ARG 2 tooltips
 		ARG 3 mouseX
 		ARG 4 mouseY
+	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Ljava/util/List;Ljava/util/Optional;II)V
+		ARG 1 poseStack
+		ARG 2 tooltips
+		ARG 3 visualTooltipComponent
+		ARG 4 mouseX
+		ARG 5 mouseY
 	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/network/chat/Component;II)V
 		ARG 1 matrixStack
 		ARG 2 text
 		ARG 3 mouseX
 		ARG 4 mouseY
 	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/ItemStack;II)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 itemStack
+		ARG 3 mouseX
+		ARG 4 mouseY
+	METHOD renderTooltipInternal (Lcom/mojang/blaze3d/vertex/PoseStack;Ljava/util/List;II)V
+		ARG 1 poseStack
+		ARG 2 clientTooltipComponents
 		ARG 3 mouseX
 		ARG 4 mouseY
 	METHOD resize (Lnet/minecraft/client/Minecraft;II)V

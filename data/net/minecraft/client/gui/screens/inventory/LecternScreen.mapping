@@ -1,11 +1,21 @@
 CLASS net/minecraft/client/gui/screens/inventory/LecternScreen
+	METHOD <init> (Lnet/minecraft/world/inventory/LecternMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 lecternMenu
+		ARG 2 playerInventory
+		ARG 3 title
 	METHOD forcePage (I)Z
 		COMMENT I'm not sure why this exists. The function it calls is public and does all of the work
 		ARG 1 pageNum
+	METHOD lambda$createMenuControls$0 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 doneButton
+	METHOD lambda$createMenuControls$1 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 takeBookButton
 	METHOD pageBack ()V
 		COMMENT Moves the display back one page
 	METHOD pageForward ()V
 		COMMENT Moves the display forward one page
+	METHOD sendButtonClick (I)V
+		ARG 1 pageData
 	CLASS 1
 		METHOD slotChanged (Lnet/minecraft/world/inventory/AbstractContainerMenu;ILnet/minecraft/world/item/ItemStack;)V
 			COMMENT Sends the contents of an inventory slot to the client-side Container. This doesn't have to match the actual contents of that slot.

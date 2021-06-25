@@ -3,6 +3,14 @@ CLASS net/minecraft/client/gui/screens/inventory/MerchantScreen
 		COMMENT The GUI texture for the villager merchant GUI.
 	FIELD shopItem I
 		COMMENT The integer value corresponding to the currently selected merchant recipe.
+	METHOD <init> (Lnet/minecraft/world/inventory/MerchantMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 merchantMenu
+		ARG 2 playerInventory
+		ARG 3 title
+	METHOD canScroll (I)Z
+		ARG 1 numOffers
+	METHOD lambda$init$0 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 tradeOfferButton
 	METHOD mouseClicked (DDI)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -22,16 +30,42 @@ CLASS net/minecraft/client/gui/screens/inventory/MerchantScreen
 		ARG 2 mouseX
 		ARG 3 mouseY
 		ARG 4 partialTicks
+	METHOD renderAndDecorateCostA (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;II)V
+		ARG 1 poseStack
+		ARG 2 realCost
+		ARG 3 baseCost
+		ARG 4 x
+		ARG 5 y
 	METHOD renderBg (Lcom/mojang/blaze3d/vertex/PoseStack;FII)V
 		ARG 1 matrixStack
 		ARG 2 partialTicks
 		ARG 3 x
 		ARG 4 y
+	METHOD renderButtonArrows (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/trading/MerchantOffer;II)V
+		ARG 1 poseStack
+		ARG 2 merchantOffer
+		ARG 3 posX
+		ARG 4 posY
 	METHOD renderLabels (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
 		ARG 1 matrixStack
 		ARG 2 x
 		ARG 3 y
+	METHOD renderProgressBar (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/world/item/trading/MerchantOffer;)V
+		ARG 1 poseStack
+		ARG 2 posX
+		ARG 3 posY
+		ARG 4 merchantOffer
+	METHOD renderScroller (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/world/item/trading/MerchantOffers;)V
+		ARG 1 poseStack
+		ARG 2 posX
+		ARG 3 posY
+		ARG 4 merchantOffers
 	CLASS TradeOfferButton
+		METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/MerchantScreen;IIILnet/minecraft/client/gui/components/Button$OnPress;)V
+			ARG 2 x
+			ARG 3 y
+			ARG 4 index
+			ARG 5 onPress
 		METHOD renderToolTip (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
 			ARG 1 matrixStack
 			ARG 2 mouseX

@@ -21,6 +21,10 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 		COMMENT Used when touchscreen is enabled
 	FIELD topPos I
 		COMMENT Starting Y position for the Gui. Inconsistent use for Gui backgrounds.
+	METHOD <init> (Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 menu
+		ARG 2 playerInventory
+		ARG 3 title
 	METHOD checkHotbarKeyPressed (II)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
@@ -72,8 +76,8 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 	METHOD renderBg (Lcom/mojang/blaze3d/vertex/PoseStack;FII)V
 		ARG 1 matrixStack
 		ARG 2 partialTicks
-		ARG 3 x
-		ARG 4 y
+		ARG 3 mouseX
+		ARG 4 mouseY
 	METHOD renderFloatingItem (Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V
 		COMMENT Draws an ItemStack.
 		COMMENT
@@ -84,11 +88,16 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 		ARG 4 altText
 	METHOD renderLabels (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
 		ARG 1 matrixStack
-		ARG 2 x
-		ARG 3 y
+		ARG 2 mouseX
+		ARG 3 mouseY
 	METHOD renderSlot (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/inventory/Slot;)V
 		ARG 1 matrixStack
 		ARG 2 slot
+	METHOD renderSlotHighlight (Lcom/mojang/blaze3d/vertex/PoseStack;III)V
+		ARG 0 poseStack
+		ARG 1 x
+		ARG 2 y
+		ARG 3 blitOffset
 	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
 		ARG 1 matrixStack
 		ARG 2 x
