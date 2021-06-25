@@ -1,4 +1,19 @@
 CLASS net/minecraft/world/phys/AABB
+	METHOD <init> (DDDDDD)V
+		ARG 1 minX
+		ARG 3 minY
+		ARG 5 minZ
+		ARG 7 maxX
+		ARG 9 maxY
+		ARG 11 maxZ
+	METHOD <init> (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 startPos
+		ARG 2 endPos
+	METHOD <init> (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 startVector
+		ARG 2 endVector
 	METHOD clip (Ljava/lang/Iterable;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/BlockHitResult;
 		ARG 0 boxes
 		ARG 1 start
@@ -63,6 +78,10 @@ CLASS net/minecraft/world/phys/AABB
 		COMMENT
 		COMMENT @return A modified AABB.
 		ARG 1 value
+	METHOD deflate (DDD)Lnet/minecraft/world/phys/AABB;
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD expandTowards (DDD)Lnet/minecraft/world/phys/AABB;
 		COMMENT Creates a new {@link AxisAlignedBB} that has been expanded by the given amount, with positive changes increasing max values and negative changes decreasing min values.
 		COMMENT
@@ -166,5 +185,22 @@ CLASS net/minecraft/world/phys/AABB
 		ARG 1 vec
 	METHOD of (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Lnet/minecraft/world/phys/AABB;
 		ARG 0 mutableBox
+	METHOD ofSize (Lnet/minecraft/world/phys/Vec3;DDD)Lnet/minecraft/world/phys/AABB;
+		ARG 0 center
+		ARG 1 xSize
+		ARG 3 ySize
+		ARG 5 zSize
+	METHOD setMaxX (D)Lnet/minecraft/world/phys/AABB;
+		ARG 1 maxX
+	METHOD setMaxY (D)Lnet/minecraft/world/phys/AABB;
+		ARG 1 maxY
+	METHOD setMaxZ (D)Lnet/minecraft/world/phys/AABB;
+		ARG 1 maxZ
+	METHOD setMinX (D)Lnet/minecraft/world/phys/AABB;
+		ARG 1 minX
+	METHOD setMinY (D)Lnet/minecraft/world/phys/AABB;
+		ARG 1 minY
+	METHOD setMinZ (D)Lnet/minecraft/world/phys/AABB;
+		ARG 1 minZ
 	METHOD unitCubeFromLowerCorner (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/AABB;
 		ARG 0 vector
