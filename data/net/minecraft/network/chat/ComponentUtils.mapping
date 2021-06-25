@@ -1,13 +1,45 @@
 CLASS net/minecraft/network/chat/ComponentUtils
 	METHOD formatAndSortList (Ljava/util/Collection;Ljava/util/function/Function;)Lnet/minecraft/network/chat/Component;
-		ARG 0 collection
-		ARG 1 toTextComponent
+		ARG 0 elements
+		ARG 1 componentExtractor
 	METHOD formatList (Ljava/util/Collection;)Lnet/minecraft/network/chat/Component;
-		ARG 0 collection
+		ARG 0 elements
+	METHOD formatList (Ljava/util/Collection;Ljava/util/Optional;Ljava/util/function/Function;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 elements
+		ARG 1 optionalSeparator
+		ARG 2 componentExtractor
+	METHOD formatList (Ljava/util/Collection;Ljava/util/function/Function;)Lnet/minecraft/network/chat/Component;
+		ARG 0 elements
+		ARG 1 componentExtractor
+	METHOD formatList (Ljava/util/Collection;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/Component;
+		ARG 0 elements
+		ARG 1 separator
+	METHOD formatList (Ljava/util/Collection;Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 elements
+		ARG 1 separator
+		ARG 2 componentExtractor
 	METHOD fromMessage (Lcom/mojang/brigadier/Message;)Lnet/minecraft/network/chat/Component;
 		ARG 0 message
 	METHOD getDisplayName (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/network/chat/Component;
 		ARG 0 profile
+	METHOD mergeStyles (Lnet/minecraft/network/chat/MutableComponent;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 component
+		ARG 1 style
+	METHOD resolveStyle (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/network/chat/Style;Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/network/chat/Style;
+		ARG 0 commandSourceStack
+		ARG 1 style
+		ARG 2 entity
+		ARG 3 recursionDepth
+	METHOD updateForEntity (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Optional;Lnet/minecraft/world/entity/Entity;I)Ljava/util/Optional;
+		ARG 0 commandSourceStack
+		ARG 1 optionalComponent
+		ARG 2 entity
+		ARG 3 recursionDepth
+	METHOD updateForEntity (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 commandSourceStack
+		ARG 1 component
+		ARG 2 entity
+		ARG 3 recursionDepth
 	METHOD wrapInSquareBrackets (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
 		COMMENT Wraps the text with square brackets.
 		ARG 0 toWrap
