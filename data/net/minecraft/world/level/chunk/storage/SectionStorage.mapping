@@ -1,3 +1,31 @@
 CLASS net/minecraft/world/level/chunk/storage/SectionStorage
+	METHOD <init> (Ljava/io/File;Ljava/util/function/Function;Ljava/util/function/Function;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/util/datafix/DataFixTypes;ZLnet/minecraft/world/level/LevelHeightAccessor;)V
+		ARG 1 file
+		ARG 2 codec
+		ARG 3 factory
+		ARG 4 fixerUpper
+		ARG 5 type
+		ARG 6 sync
+		ARG 7 levelHeightAccessor
+	METHOD flush (Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 1 pos
+	METHOD getKey (Lnet/minecraft/world/level/ChunkPos;I)J
+		ARG 0 pos
+		ARG 1 y
+	METHOD readColumn (Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 1 pos
+	METHOD readColumn (Lnet/minecraft/world/level/ChunkPos;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)V
+		ARG 1 pos
+		ARG 2 dynamicOps
+		ARG 3 tag
 	METHOD setDirty (J)V
 		ARG 1 sectionPos
+	METHOD tick (Ljava/util/function/BooleanSupplier;)V
+		ARG 1 booleanSupplier
+	METHOD tryRead (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 pos
+	METHOD writeColumn (Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 1 pos
+	METHOD writeColumn (Lnet/minecraft/world/level/ChunkPos;Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/Dynamic;
+		ARG 1 pos
+		ARG 2 dynamicOps
