@@ -1,0 +1,17 @@
+CLASS net/minecraft/world/level/chunk/storage/RegionBitmap net/minecraft/world/level/chunk/storage/RegionBitmap
+	COMMENT Keeps track of which parts of a region file are used and which parts are free.
+	METHOD allocate (I)I
+		COMMENT Gets a valid offset inside the region file with wnough space to store the given amount of sectors and marks tha tspace as used.
+		ARG 1 sectorCount
+	METHOD force (II)V
+		COMMENT Marks a range of 4KiB sectors relative to the region file as used.
+		ARG 1 sectorOffset
+			COMMENT The first sector in the range.
+		ARG 2 sectorCount
+			COMMENT The amount of sectors in the range.
+	METHOD free (II)V
+		COMMENT Marks a range of 4KiB sectors relative to the region file as not used.
+		ARG 1 sectorOffset
+			COMMENT The first sector in the range.
+		ARG 2 sectorCount
+			COMMENT The amount of sectors in the range.

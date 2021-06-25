@@ -1,0 +1,21 @@
+CLASS net/minecraft/world/level/chunk/storage/IOWorker
+	METHOD <init> (Ljava/io/File;ZLjava/lang/String;)V
+		ARG 1 regionFolder
+		ARG 2 sync
+		ARG 3 workerName
+	METHOD lambda$store$0 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/world/level/chunk/storage/IOWorker$PendingStore;
+		ARG 1 chunkPos
+	METHOD load (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 chunkPos
+	METHOD loadAsync (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunkPos
+	METHOD runStore (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/storage/IOWorker$PendingStore;)V
+		ARG 1 chunkPos
+	METHOD store (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/nbt/CompoundTag;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunkPos
+		ARG 2 chunkData
+	METHOD submitTask (Ljava/util/function/Supplier;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 task
+	CLASS PendingStore
+		METHOD <init> (Lnet/minecraft/nbt/CompoundTag;)V
+			ARG 1 data
