@@ -1,4 +1,10 @@
 CLASS net/minecraft/world/level/ClipContext
+	METHOD <init> (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/level/ClipContext$Block;Lnet/minecraft/world/level/ClipContext$Fluid;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 from
+		ARG 2 to
+		ARG 3 block
+		ARG 4 fluid
+		ARG 5 entity
 	METHOD getBlockShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 blockState
 		ARG 2 level
@@ -7,6 +13,17 @@ CLASS net/minecraft/world/level/ClipContext
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
+	CLASS Block
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/world/level/ClipContext$ShapeGetter;)V
+			ARG 3 shapeGetter
 	CLASS Fluid
+		METHOD <init> (Ljava/lang/String;ILjava/util/function/Predicate;)V
+			ARG 3 canPick
 		METHOD canPick (Lnet/minecraft/world/level/material/FluidState;)Z
 			ARG 1 state
+	CLASS ShapeGetter
+		METHOD get (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+			ARG 1 state
+			ARG 2 blockGetter
+			ARG 3 pos
+			ARG 4 context

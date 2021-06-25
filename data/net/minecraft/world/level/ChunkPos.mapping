@@ -1,9 +1,26 @@
 CLASS net/minecraft/world/level/ChunkPos
 	FIELD INVALID_CHUNK_POS J
 		COMMENT Value representing an absent or invalid chunkpos
+	METHOD <init> (II)V
+		ARG 1 x
+		ARG 2 y
+	METHOD <init> (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
 	METHOD asLong (II)J
 		COMMENT Converts the chunk coordinate pair to a long
 		ARG 0 x
+		ARG 1 z
+	METHOD asLong (Lnet/minecraft/core/BlockPos;)J
+		ARG 0 pos
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 object
+	METHOD getBlockAt (III)Lnet/minecraft/core/BlockPos;
+		ARG 1 xSection
+		ARG 2 y
+		ARG 3 zSection
+	METHOD getBlockX (I)I
+		ARG 1 x
+	METHOD getBlockZ (I)I
 		ARG 1 z
 	METHOD getChessboardDistance (Lnet/minecraft/world/level/ChunkPos;)I
 		ARG 1 chunkPos
@@ -11,6 +28,8 @@ CLASS net/minecraft/world/level/ChunkPos
 		COMMENT Get the last world X coordinate that belongs to this Chunk
 	METHOD getMaxBlockZ ()I
 		COMMENT Get the last world Z coordinate that belongs to this Chunk
+	METHOD getMiddleBlockPosition (I)Lnet/minecraft/core/BlockPos;
+		ARG 1 y
 	METHOD getMinBlockX ()I
 		COMMENT Get the first world X coordinate that belongs to this Chunk
 	METHOD getMinBlockZ ()I
@@ -33,3 +52,6 @@ CLASS net/minecraft/world/level/ChunkPos
 	METHOD rangeClosed (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/ChunkPos;)Ljava/util/stream/Stream;
 		ARG 0 start
 		ARG 1 end
+	CLASS 1
+		METHOD tryAdvance (Ljava/util/function/Consumer;)Z
+			ARG 1 consumer

@@ -1,6 +1,14 @@
 CLASS net/minecraft/world/level/Level
 	FIELD randValue I
 		COMMENT Contains the current Linear Congruential Generator seed for block updates. Used with an A value of 3 and a C value of 0x3c6ef35f, producing a highly planar series of values ill-suited for choosing random blocks in a 16x128x16 field.
+	METHOD <init> (Lnet/minecraft/world/level/storage/WritableLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/dimension/DimensionType;Ljava/util/function/Supplier;ZZJ)V
+		ARG 1 levelData
+		ARG 2 dimension
+		ARG 3 dimensionType
+		ARG 4 profiler
+		ARG 5 isClientSide
+		ARG 6 isDebug
+		ARG 7 biomeZoomSeed
 	METHOD addAlwaysVisibleParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
 		ARG 1 particleData
 		ARG 2 x
@@ -18,6 +26,11 @@ CLASS net/minecraft/world/level/Level
 		ARG 9 xSpeed
 		ARG 11 ySpeed
 		ARG 13 zSpeed
+	METHOD addBlockEntityTicker (Lnet/minecraft/world/level/block/entity/TickingBlockEntity;)V
+		ARG 1 tickingBlockEntity
+	METHOD addDestroyBlockEffect (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 state
 	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
 		ARG 1 particleData
 		ARG 2 x
@@ -35,6 +48,8 @@ CLASS net/minecraft/world/level/Level
 		ARG 9 xSpeed
 		ARG 11 ySpeed
 		ARG 13 zSpeed
+	METHOD blockEntityChanged (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
 	METHOD blockEvent (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;II)V
 		ARG 1 pos
 		ARG 2 block
@@ -175,6 +190,7 @@ CLASS net/minecraft/world/level/Level
 	METHOD isInWorldBounds (Lnet/minecraft/core/BlockPos;)Z
 		COMMENT Check if the given BlockPos has valid coordinates
 		ARG 0 pos
+		ARG 1 blockPos
 	METHOD isInWorldBoundsHorizontal (Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 pos
 	METHOD isLoaded (Lnet/minecraft/core/BlockPos;)Z
@@ -242,6 +258,11 @@ CLASS net/minecraft/world/level/Level
 		ARG 4 category
 		ARG 5 volume
 		ARG 6 pitch
+	METHOD postGameEventInRadius (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;I)V
+		ARG 1 entity
+		ARG 2 gameEvent
+		ARG 3 pos
+		ARG 4 notificationRadius
 	METHOD prepareWeather ()V
 		COMMENT Called from World constructor to set rainingStrength and thunderingStrength
 	METHOD removeBlock (Lnet/minecraft/core/BlockPos;Z)Z
@@ -279,10 +300,15 @@ CLASS net/minecraft/world/level/Level
 		COMMENT Convenience method to update the block on both the client and server
 		ARG 1 pos
 		ARG 2 state
+	METHOD setBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+		ARG 1 blockEntity
 	METHOD setBlocksDirty (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 blockPos
 		ARG 2 oldState
 		ARG 3 newState
+	METHOD setMapData (Ljava/lang/String;Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
+		ARG 1 mapId
+		ARG 2 data
 	METHOD setRainLevel (F)V
 		COMMENT Sets the strength of the rain.
 		ARG 1 strength
