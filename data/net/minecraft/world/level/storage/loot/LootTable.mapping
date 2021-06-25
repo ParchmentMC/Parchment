@@ -1,18 +1,29 @@
 CLASS net/minecraft/world/level/storage/loot/LootTable
+	METHOD <init> (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;[Lnet/minecraft/world/level/storage/loot/LootPool;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
+		ARG 1 paramSet
+		ARG 2 pools
+		ARG 3 functions
 	METHOD createStackSplitter (Ljava/util/function/Consumer;)Ljava/util/function/Consumer;
+		COMMENT Create a wrapped Consumer which will split stacks according to their maximum stack size before passing them on to the given stackConsumer.
 		ARG 0 stackConsumer
 	METHOD fill (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/storage/loot/LootContext;)V
-		ARG 1 inventory
+		COMMENT Fill the given container with random items from this loot table.
+		ARG 1 container
 		ARG 2 context
 	METHOD getAvailableSlots (Lnet/minecraft/world/Container;Ljava/util/Random;)Ljava/util/List;
 		ARG 1 inventory
 		ARG 2 rand
+	METHOD getParamSet ()Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;
+		COMMENT Get the parameter set for this LootTable.
 	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootContext;)Ljava/util/List;
+		COMMENT Generate random items to a List.
 		ARG 1 context
 	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
+		COMMENT Generate random items to the given Consumer, ensuring they do not exeed their maximum stack size.
 		ARG 1 contextData
 		ARG 2 stacksOut
 	METHOD getRandomItemsRaw (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
+		COMMENT Generate items to the given Consumer, ignoring maximum stack size.
 		ARG 1 context
 		ARG 2 stacksOut
 	METHOD shuffleAndSplitItems (Ljava/util/List;ILjava/util/Random;)V
@@ -21,6 +32,7 @@ CLASS net/minecraft/world/level/storage/loot/LootTable
 		ARG 2 emptySlotsCount
 		ARG 3 rand
 	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V
+		COMMENT Validate this LootTable using the given ValidationContext.
 		ARG 1 validator
 	CLASS Builder
 		METHOD apply (Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction$Builder;)Ljava/lang/Object;
