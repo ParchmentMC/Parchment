@@ -1,4 +1,7 @@
 CLASS net/minecraft/world/item/crafting/SimpleCookingSerializer
+	METHOD <init> (Lnet/minecraft/world/item/crafting/SimpleCookingSerializer$CookieBaker;I)V
+		ARG 1 factory
+		ARG 2 defaultCookTime
 	METHOD fromJson (Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/AbstractCookingRecipe;
 		ARG 1 recipeId
 		ARG 2 json
@@ -8,3 +11,11 @@ CLASS net/minecraft/world/item/crafting/SimpleCookingSerializer
 	METHOD toNetwork (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/item/crafting/AbstractCookingRecipe;)V
 		ARG 1 buffer
 		ARG 2 recipe
+	CLASS CookieBaker
+		METHOD create (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;FI)Lnet/minecraft/world/item/crafting/AbstractCookingRecipe;
+			ARG 1 id
+			ARG 2 group
+			ARG 3 ingredient
+			ARG 4 result
+			ARG 5 experience
+			ARG 6 cookTime
