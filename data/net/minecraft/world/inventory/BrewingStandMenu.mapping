@@ -5,7 +5,7 @@ CLASS net/minecraft/world/inventory/BrewingStandMenu
 	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/Container;Lnet/minecraft/world/inventory/ContainerData;)V
 		ARG 1 id
 		ARG 2 playerInventory
-		ARG 3 container
+		ARG 3 brewingStandContainer
 		ARG 4 brewingStandData
 	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
@@ -23,12 +23,6 @@ CLASS net/minecraft/world/inventory/BrewingStandMenu
 		METHOD mayPlaceItem (Lnet/minecraft/world/item/ItemStack;)Z
 			COMMENT Returns true if the given ItemStack is usable as a fuel in the brewing stand.
 			ARG 0 itemStack
-	CLASS IngredientsSlot
-		METHOD getMaxStackSize ()I
-			COMMENT Returns the maximum stack size for a given slot (usually the same as getInventoryStackLimit(), but 1 in the case of armor slots)
-		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
-			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
-			ARG 1 stack
 	CLASS PotionSlot
 		METHOD getMaxStackSize ()I
 			COMMENT Returns the maximum stack size for a given slot (usually the same as getInventoryStackLimit(), but 1 in the case of armor slots)
@@ -38,3 +32,9 @@ CLASS net/minecraft/world/inventory/BrewingStandMenu
 		METHOD mayPlaceItem (Lnet/minecraft/world/item/ItemStack;)Z
 			COMMENT Returns true if this itemstack can be filled with a potion
 			ARG 0 stack
+	CLASS IngredientsSlot
+		METHOD getMaxStackSize ()I
+			COMMENT Returns the maximum stack size for a given slot (usually the same as getInventoryStackLimit(), but 1 in the case of armor slots)
+		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
+			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
+			ARG 1 stack
