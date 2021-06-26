@@ -1,14 +1,28 @@
 CLASS net/minecraft/world/level/levelgen/structure/templatesystem/StructureManager
+	METHOD <init> (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lcom/mojang/datafixers/DataFixer;)V
+		ARG 1 resourceManager
+		ARG 2 levelStorage
+		ARG 3 fixerUpper
 	METHOD createAndValidatePathToStructure (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Ljava/nio/file/Path;
 		ARG 1 location
 		ARG 2 ext
 	METHOD createPathToStructure (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Ljava/nio/file/Path;
 		ARG 1 location
 		ARG 2 ext
+	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+		ARG 1 location
+	METHOD getOrCreate (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate;
+		ARG 1 location
+	METHOD loadFromGenerated (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+		ARG 1 location
+	METHOD loadFromResource (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+		ARG 1 location
 	METHOD onResourceManagerReload (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 1 resourceManager
 	METHOD readStructure (Ljava/io/InputStream;)Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate;
 		ARG 1 inputStream
+	METHOD readStructure (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate;
+		ARG 1 tag
 	METHOD remove (Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 templatePath
 	METHOD save (Lnet/minecraft/resources/ResourceLocation;)Z

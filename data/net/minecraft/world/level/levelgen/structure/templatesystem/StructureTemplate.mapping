@@ -1,6 +1,16 @@
 CLASS net/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate
+	METHOD addToLists (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate$StructureBlockInfo;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+		ARG 0 blockInfo
+		ARG 1 specialBlocks
+		ARG 2 blocksWithTag
+		ARG 3 normalBlocks
+	METHOD buildInfoList (Ljava/util/List;Ljava/util/List;Ljava/util/List;)Ljava/util/List;
+		ARG 0 specialBlocks
+		ARG 1 blocksWithTag
+		ARG 2 normalBlocks
 	METHOD calculateConnectedPosition (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
 		ARG 1 decorator
+		ARG 3 settings
 	METHOD calculateRelativePosition (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
 		ARG 0 decorator
 		ARG 1 pos
@@ -12,8 +22,49 @@ CLASS net/minecraft/world/level/levelgen/structure/templatesystem/StructureTempl
 		ARG 1 level
 		ARG 2 startPos
 		ARG 3 endPos
+	METHOD fillFromWorld (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Vec3i;ZLnet/minecraft/world/level/block/Block;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 vec
+		ARG 4 withEntities
+		ARG 5 toIgnore
+	METHOD filterBlocks (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Lnet/minecraft/world/level/block/Block;)Ljava/util/List;
+		ARG 1 pos
+		ARG 2 settings
+		ARG 3 block
+	METHOD filterBlocks (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Lnet/minecraft/world/level/block/Block;Z)Ljava/util/List;
+		ARG 1 pos
+		ARG 2 settings
+		ARG 3 block
+		ARG 4 relativePosition
+	METHOD getBoundingBox (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 1 startPos
+		ARG 2 rot
+		ARG 3 pivotPos
+		ARG 4 mirror
+	METHOD getBoundingBox (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Mirror;Lnet/minecraft/core/Vec3i;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 0 startPos
+		ARG 1 rot
+		ARG 2 pivotPos
+		ARG 3 mirror
+		ARG 4 size
+	METHOD getBoundingBox (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 1 settings
+		ARG 2 startPos
+	METHOD getSize (Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/core/Vec3i;
+		ARG 1 rot
+	METHOD getZeroPositionWithTransform (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Mirror;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/core/BlockPos;
+		ARG 1 targetPos
+		ARG 2 mirror
+		ARG 3 rot
+	METHOD getZeroPositionWithTransform (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Mirror;Lnet/minecraft/world/level/block/Rotation;II)Lnet/minecraft/core/BlockPos;
+		ARG 0 pos
+		ARG 1 mirror
+		ARG 2 rot
+		ARG 3 sizeX
+		ARG 4 sizeZ
 	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 compound
+		ARG 1 tag
 	METHOD loadPalette (Lnet/minecraft/nbt/ListTag;Lnet/minecraft/nbt/ListTag;)V
 		ARG 1 palletesNBT
 		ARG 2 blocksNBT
@@ -21,8 +72,23 @@ CLASS net/minecraft/world/level/levelgen/structure/templatesystem/StructureTempl
 		ARG 1 values
 	METHOD newIntegerList ([I)Lnet/minecraft/nbt/ListTag;
 		ARG 1 values
+	METHOD placeEntities (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Mirror;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Z)V
+		ARG 1 serverLevel
+		ARG 3 mirror
+		ARG 4 rot
+		ARG 6 boundingBox
+		ARG 7 withEntities
+	METHOD placeInWorld (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Ljava/util/Random;I)Z
+		ARG 1 serverLevel
+		ARG 4 settings
+		ARG 5 rand
+		ARG 6 flags
+	METHOD processBlockInfos (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Ljava/util/List;)Ljava/util/List;
+		ARG 0 level
+		ARG 3 settings
+		ARG 4 blockInfoList
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
-		ARG 1 nbt
+		ARG 1 tag
 	METHOD setAuthor (Ljava/lang/String;)V
 		ARG 1 author
 	METHOD transform (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Mirror;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
@@ -41,6 +107,11 @@ CLASS net/minecraft/world/level/levelgen/structure/templatesystem/StructureTempl
 		ARG 3 x
 		ARG 4 y
 		ARG 5 z
+	CLASS Palette
+		METHOD <init> (Ljava/util/List;)V
+			ARG 1 blocks
+		METHOD blocks (Lnet/minecraft/world/level/block/Block;)Ljava/util/List;
+			ARG 1 block
 	CLASS SimplePalette
 		METHOD addMapping (Lnet/minecraft/world/level/block/state/BlockState;I)V
 			ARG 1 state
@@ -49,3 +120,13 @@ CLASS net/minecraft/world/level/levelgen/structure/templatesystem/StructureTempl
 			ARG 1 state
 		METHOD stateFor (I)Lnet/minecraft/world/level/block/state/BlockState;
 			ARG 1 id
+	CLASS StructureBlockInfo
+		METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/nbt/CompoundTag;)V
+			ARG 1 pos
+			ARG 2 state
+			ARG 3 nbt
+	CLASS StructureEntityInfo
+		METHOD <init> (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;Lnet/minecraft/nbt/CompoundTag;)V
+			ARG 1 pos
+			ARG 2 blockPos
+			ARG 3 nbt
