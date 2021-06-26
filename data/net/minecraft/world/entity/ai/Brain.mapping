@@ -1,4 +1,9 @@
 CLASS net/minecraft/world/entity/ai/Brain
+	METHOD <init> (Ljava/util/Collection;Ljava/util/Collection;Lcom/google/common/collect/ImmutableList;Ljava/util/function/Supplier;)V
+		ARG 1 memoryCodec
+		ARG 2 sensorTypes
+		ARG 3 memoryValues
+		ARG 4 brainCodec
 	METHOD activityRequirementsAreMet (Lnet/minecraft/world/entity/schedule/Activity;)Z
 		ARG 1 activity
 	METHOD addActivity (Lnet/minecraft/world/entity/schedule/Activity;ILcom/google/common/collect/ImmutableList;)V
@@ -37,6 +42,8 @@ CLASS net/minecraft/world/entity/ai/Brain
 		ARG 1 type
 	METHOD getMemory (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Ljava/util/Optional;
 		ARG 1 type
+	METHOD getTimeUntilExpiry (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)J
+		ARG 1 memoryType
 	METHOD hasMemoryValue (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Z
 		ARG 1 type
 	METHOD isActive (Lnet/minecraft/world/entity/schedule/Activity;)Z
@@ -46,6 +53,14 @@ CLASS net/minecraft/world/entity/ai/Brain
 	METHOD isMemoryValue (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Ljava/lang/Object;)Z
 		ARG 1 memoryType
 		ARG 2 memory
+	METHOD lambda$addActivityAndRemoveMemoriesWhenStopped$2 (Ljava/lang/Integer;)Ljava/util/Map;
+		ARG 0 integer
+	METHOD lambda$addActivityAndRemoveMemoriesWhenStopped$3 (Lnet/minecraft/world/entity/schedule/Activity;)Ljava/util/Set;
+		ARG 0 activity
+	METHOD lambda$isMemoryValue$1 (Ljava/lang/Object;Ljava/lang/Object;)Z
+		ARG 1 type
+	METHOD lambda$memories$0 (Ljava/util/Map$Entry;)Lnet/minecraft/world/entity/ai/Brain$MemoryValue;
+		ARG 0 memory
 	METHOD provider (Ljava/util/Collection;Ljava/util/Collection;)Lnet/minecraft/world/entity/ai/Brain$Provider;
 		ARG 0 memoryTypes
 		ARG 1 sensorTypes
@@ -99,15 +114,46 @@ CLASS net/minecraft/world/entity/ai/Brain
 			ARG 1 memoryType
 			ARG 2 ops
 			ARG 3 input
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 mapLike
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;)Lcom/mojang/serialization/RecordBuilder;
+			ARG 1 brain
+			ARG 2 ops
+			ARG 3 builder
+		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
+			ARG 1 ops
+		METHOD lambda$decode$3 (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/datafixers/util/Pair;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Lcom/mojang/serialization/DataResult;
+			ARG 3 memoryType
+		METHOD lambda$decode$4 (Lcom/mojang/serialization/DynamicOps;Lorg/apache/commons/lang3/mutable/MutableObject;Lcom/mojang/datafixers/util/Pair;)V
+			ARG 3 pair
+		METHOD lambda$encode$8 (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;Lnet/minecraft/world/entity/ai/Brain$MemoryValue;)V
+			ARG 2 memory
+		METHOD lambda$keys$0 (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lcom/mojang/serialization/Codec;)Lnet/minecraft/resources/ResourceLocation;
+			ARG 1 codec
+		METHOD lambda$keys$1 (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Ljava/util/stream/Stream;
+			ARG 0 memoryType
+		METHOD lambda$keys$2 (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/resources/ResourceLocation;)Ljava/lang/Object;
+			ARG 1 id
+	CLASS Provider
+		METHOD <init> (Ljava/util/Collection;Ljava/util/Collection;)V
+			ARG 1 memoryTypes
+			ARG 2 sensorTypes
+		METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
+			ARG 1 ops
 	CLASS MemoryValue
+		METHOD <init> (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Ljava/util/Optional;)V
+			ARG 1 memoryType
+			ARG 2 value
 		METHOD createUnchecked (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Ljava/util/Optional;)Lnet/minecraft/world/entity/ai/Brain$MemoryValue;
 			ARG 0 memoryType
 			ARG 1 memory
+		METHOD lambda$serialize$0 (Lcom/mojang/serialization/RecordBuilder;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Lnet/minecraft/world/entity/ai/memory/ExpirableValue;)V
+			ARG 4 expirableValue
+		METHOD lambda$serialize$1 (Lcom/mojang/serialization/RecordBuilder;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;)V
+			ARG 3 codec
 		METHOD serialize (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;)V
 			ARG 1 ops
 			ARG 2 builder
 		METHOD setMemoryInternal (Lnet/minecraft/world/entity/ai/Brain;)V
 			ARG 1 brain
-	CLASS Provider
-		METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
-			ARG 1 ops

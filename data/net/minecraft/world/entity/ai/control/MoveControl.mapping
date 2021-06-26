@@ -1,4 +1,12 @@
 CLASS net/minecraft/world/entity/ai/control/MoveControl
+	METHOD <init> (Lnet/minecraft/world/entity/Mob;)V
+		ARG 1 mob
+	METHOD hasWanted ()Z
+		COMMENT If the mob is currently trying to go somewhere
+	METHOD isWalkable (FF)Z
+		COMMENT Returns true if the mob can walk successfully to a given X and Z
+		ARG 1 x
+		ARG 2 z
 	METHOD rotlerp (FFF)F
 		COMMENT Attempt to rotate the first angle to become the second angle, but only allow overall direction change to at max be third parameter
 		ARG 1 sourceAngle
@@ -13,3 +21,5 @@ CLASS net/minecraft/world/entity/ai/control/MoveControl
 	METHOD strafe (FF)V
 		ARG 1 forward
 		ARG 2 strafe
+	METHOD tick ()V
+		COMMENT Ticks the current moving operation

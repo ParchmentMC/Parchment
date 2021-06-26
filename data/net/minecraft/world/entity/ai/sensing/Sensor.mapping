@@ -1,8 +1,15 @@
 CLASS net/minecraft/world/entity/ai/sensing/Sensor
+	METHOD <init> (I)V
+		ARG 1 scanRate
 	METHOD doTick (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 level
 		ARG 2 entity
+	METHOD isEntityAttackable (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)Z
+		COMMENT Checks if entity is remembered as an attack target and is valid to attack
+		ARG 0 attacker
+		ARG 1 target
 	METHOD isEntityTargetable (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)Z
+		COMMENT Checks if the entity is remembered as a target and then tests the condition
 		ARG 0 livingEntity
 		ARG 1 target
 	METHOD tick (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V

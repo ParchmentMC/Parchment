@@ -3,11 +3,33 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 		ARG 1 identifier
 		ARG 2 gossipType
 		ARG 3 gossipValue
+	METHOD getCountForType (Lnet/minecraft/world/entity/ai/gossip/GossipType;Ljava/util/function/DoublePredicate;)J
+		ARG 1 gossipType
+		ARG 2 predicate
 	METHOD getOrCreate (Ljava/util/UUID;)Lnet/minecraft/world/entity/ai/gossip/GossipContainer$EntityGossips;
 		ARG 1 identifier
 	METHOD getReputation (Ljava/util/UUID;Ljava/util/function/Predicate;)I
 		ARG 1 identifier
 		ARG 2 gossip
+	METHOD lambda$add$5 (Lnet/minecraft/world/entity/ai/gossip/GossipType;Ljava/lang/Integer;Ljava/lang/Integer;)Ljava/lang/Integer;
+		ARG 2 value1
+		ARG 3 value2
+	METHOD lambda$getCountForType$4 (Ljava/util/function/DoublePredicate;Lnet/minecraft/world/entity/ai/gossip/GossipType;Lnet/minecraft/world/entity/ai/gossip/GossipContainer$EntityGossips;)Z
+		ARG 2 gossips
+	METHOD lambda$getGossipEntries$0 (Ljava/util/Map;Ljava/util/UUID;)V
+		ARG 2 uuid
+	METHOD lambda$getOrCreate$2 (Ljava/util/UUID;)Lnet/minecraft/world/entity/ai/gossip/GossipContainer$EntityGossips;
+		ARG 0 uuid
+	METHOD lambda$store$6 (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;)Lcom/mojang/serialization/Dynamic;
+		ARG 1 gossip
+	METHOD lambda$transferFrom$3 (Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;)V
+		ARG 1 gossip
+	METHOD lambda$unpack$1 (Ljava/util/Map$Entry;)Ljava/util/stream/Stream;
+		ARG 0 gossip
+	METHOD lambda$update$7 (Lcom/mojang/serialization/DataResult;)Ljava/util/stream/Stream;
+		ARG 0 dataResult
+	METHOD lambda$update$8 (Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;)V
+		ARG 1 gossip
 	METHOD mergeValuesForAddition (Lnet/minecraft/world/entity/ai/gossip/GossipType;II)I
 		ARG 1 gossipType
 		ARG 2 existing
@@ -16,6 +38,15 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 		COMMENT Returns the greater of two int values
 		ARG 0 value1
 		ARG 1 value2
+	METHOD remove (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;)V
+		ARG 1 uuid
+		ARG 2 gossipType
+	METHOD remove (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V
+		ARG 1 uuid
+		ARG 2 gossipType
+		ARG 3 gossipValue
+	METHOD remove (Lnet/minecraft/world/entity/ai/gossip/GossipType;)V
+		ARG 1 gossipType
 	METHOD selectGossipsForTransfer (Ljava/util/Random;I)Ljava/util/Collection;
 		ARG 1 rand
 		ARG 2 gossipAmount
@@ -27,7 +58,22 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 		ARG 3 gossipAmount
 	METHOD update (Lcom/mojang/serialization/Dynamic;)V
 		ARG 1 dynamic
+	CLASS GossipEntry
+		METHOD <init> (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V
+			ARG 1 uuid
+			ARG 2 gossipType
+			ARG 3 gossipValue
+		METHOD load (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/DataResult;
+			ARG 0 dynamic
+		METHOD store (Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/Dynamic;
+			ARG 1 dynamic
 	CLASS EntityGossips
+		METHOD lambda$unpack$2 (Ljava/util/UUID;Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;)Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;
+			ARG 1 gossip
+		METHOD lambda$weightedValue$0 (Ljava/util/function/Predicate;Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;)Z
+			ARG 1 gossip
+		METHOD lambda$weightedValue$1 (Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;)I
+			ARG 0 gossip
 		METHOD makeSureValueIsntTooLowOrTooHigh (Lnet/minecraft/world/entity/ai/gossip/GossipType;)V
 			ARG 1 gossipType
 		METHOD remove (Lnet/minecraft/world/entity/ai/gossip/GossipType;)V
@@ -36,8 +82,3 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 			ARG 1 identifier
 		METHOD weightedValue (Ljava/util/function/Predicate;)I
 			ARG 1 gossipType
-	CLASS GossipEntry
-		METHOD load (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/DataResult;
-			ARG 0 dynamic
-		METHOD store (Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/Dynamic;
-			ARG 1 dynamic

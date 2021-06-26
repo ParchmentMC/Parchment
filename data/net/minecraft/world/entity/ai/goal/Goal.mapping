@@ -1,13 +1,16 @@
 CLASS net/minecraft/world/entity/ai/goal/Goal
 	METHOD canContinueToUse ()Z
-		COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		COMMENT Returns whether the goal should continue executing
 	METHOD canUse ()Z
 		COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	METHOD setFlags (Ljava/util/EnumSet;)V
 		ARG 1 flagSet
 	METHOD start ()V
-		COMMENT Execute a one shot task or start executing a continuous task
+		COMMENT Called when the goal is about to start executing
 	METHOD stop ()V
-		COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		COMMENT Reset the task's internal state. Called when this task is interrupted by another one or stopped
 	METHOD tick ()V
 		COMMENT Keep ticking a continuous task that has already been started
+	CLASS Flag
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/entity/ai/goal/Goal$Flag;
+			ARG 0 name

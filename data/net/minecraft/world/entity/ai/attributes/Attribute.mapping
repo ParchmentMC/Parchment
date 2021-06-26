@@ -1,5 +1,15 @@
 CLASS net/minecraft/world/entity/ai/attributes/Attribute
+	METHOD <init> (Ljava/lang/String;D)V
+		COMMENT Attributes are potentially syncable doubles attached to an entity class used to control things like speed and max health.
+		COMMENT
+		COMMENT They have default values that get set on spawning, which can be modified by mods or other means
+		ARG 1 descriptionId
+		ARG 2 defaultValue
+	METHOD getDefaultValue ()D
+		COMMENT Gets the value set when the mob is spawned
+	METHOD isClientSyncable ()Z
+		COMMENT If the client needs to be informed of the attribute's data
 	METHOD sanitizeValue (D)D
 		ARG 1 value
 	METHOD setSyncable (Z)Lnet/minecraft/world/entity/ai/attributes/Attribute;
-		ARG 1 watch
+		ARG 1 syncable

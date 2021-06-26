@@ -1,4 +1,8 @@
 CLASS net/minecraft/world/entity/ai/goal/RangedCrossbowAttackGoal
+	METHOD <init> (Lnet/minecraft/world/entity/monster/Monster;DF)V
+		ARG 1 mob
+		ARG 2 speedModifier
+		ARG 4 attackRadius
 	METHOD canContinueToUse ()Z
 		COMMENT Returns whether an in-progress EntityAIBase should continue executing
 	METHOD canUse ()Z
@@ -7,3 +11,6 @@ CLASS net/minecraft/world/entity/ai/goal/RangedCrossbowAttackGoal
 		COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 	METHOD tick ()V
 		COMMENT Keep ticking a continuous task that has already been started
+	CLASS CrossbowState
+		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/entity/ai/goal/RangedCrossbowAttackGoal$CrossbowState;
+			ARG 0 name
