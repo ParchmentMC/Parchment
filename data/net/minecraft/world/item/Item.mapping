@@ -1,4 +1,6 @@
 CLASS net/minecraft/world/item/Item
+	METHOD <init> (Lnet/minecraft/world/item/Item$Properties;)V
+		ARG 1 properties
 	METHOD allowdedIn (Lnet/minecraft/world/item/CreativeModeTab;)Z
 		ARG 1 group
 	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
@@ -83,6 +85,8 @@ CLASS net/minecraft/world/item/Item
 		ARG 3 entity
 		ARG 4 itemSlot
 		ARG 5 isSelected
+	METHOD is (Lnet/minecraft/tags/Tag;)Z
+		ARG 1 tag
 	METHOD isComplex ()Z
 		COMMENT Returns {@code true} if this is a complex item.
 	METHOD isCorrectToolForDrops (Lnet/minecraft/world/level/block/state/BlockState;)Z
@@ -137,6 +141,8 @@ CLASS net/minecraft/world/item/Item
 	METHOD useOnRelease (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT If this itemstack's item is a crossbow
 		ARG 1 stack
+	METHOD verifyTagAfterLoad (Lnet/minecraft/nbt/CompoundTag;)Z
+		ARG 1 tag
 	CLASS Properties
 		FIELD foodProperties Lnet/minecraft/world/food/FoodProperties;
 			COMMENT Sets food information to this item
