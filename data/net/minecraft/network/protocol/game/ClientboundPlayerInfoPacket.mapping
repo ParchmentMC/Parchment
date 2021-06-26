@@ -1,6 +1,6 @@
 CLASS net/minecraft/network/protocol/game/ClientboundPlayerInfoPacket
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
-		ARG 1 buf
+		ARG 1 byteBuf
 	METHOD <init> (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;Ljava/util/Collection;)V
 		ARG 1 action
 		ARG 2 players
@@ -11,20 +11,20 @@ CLASS net/minecraft/network/protocol/game/ClientboundPlayerInfoPacket
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
 	METHOD readDisplayName (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/chat/Component;
-		ARG 0 buf
+		ARG 0 byteBuf
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 buf
+		ARG 1 byteBuf
 	METHOD writeDisplayName (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/chat/Component;)V
-		ARG 0 buf
+		ARG 0 byteBuf
 		ARG 1 displayName
 	CLASS Action
 		METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;
-			ARG 1 buf
+			ARG 1 byteBuf
 		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$Action;
 			ARG 0 name
 		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket$PlayerUpdate;)V
-			ARG 1 buf
+			ARG 1 byteBuf
 			ARG 2 updateData
 	CLASS PlayerUpdate
 		METHOD <init> (Lcom/mojang/authlib/GameProfile;ILnet/minecraft/world/level/GameType;Lnet/minecraft/network/chat/Component;)V
