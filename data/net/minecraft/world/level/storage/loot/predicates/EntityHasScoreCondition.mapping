@@ -1,0 +1,21 @@
+CLASS net/minecraft/world/level/storage/loot/predicates/EntityHasScoreCondition net/minecraft/world/level/storage/loot/predicates/EntityHasScoreCondition
+	COMMENT A LootItemCondition that checks if an Entity selected by a {@link LootContext.EntityTarget} has a given set of scores.
+	COMMENT If one of the given objectives does not exist or the entity does not have a score for that objective, the condition fails.
+	METHOD <init> (Ljava/util/Map;Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)V
+		ARG 1 scoreRanges
+		ARG 2 entityTarget
+	METHOD hasScore (Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/scores/Scoreboard;Ljava/lang/String;Lnet/minecraft/world/level/storage/loot/IntRange;)Z
+		ARG 1 lootContext
+		ARG 2 targetEntity
+		ARG 3 scoreboard
+		ARG 4 objectiveName
+		ARG 5 scoreRange
+	METHOD hasScores (Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)Lnet/minecraft/world/level/storage/loot/predicates/EntityHasScoreCondition$Builder;
+		ARG 0 entityTarget
+	CLASS Builder
+		METHOD <init> (Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)V
+			ARG 1 entityTarget
+		METHOD withScore (Ljava/lang/String;Lnet/minecraft/world/level/storage/loot/IntRange;)Lnet/minecraft/world/level/storage/loot/predicates/EntityHasScoreCondition$Builder;
+			COMMENT Add a check that the score for the given {@code objectiveName} is within {@code scoreRange}.
+			ARG 1 objectiveName
+			ARG 2 scoreRange

@@ -9,10 +9,15 @@ CLASS net/minecraft/world/level/storage/loot/IntRange net/minecraft/world/level/
 		ARG 1 lootContext
 		ARG 2 value
 	METHOD exact (I)Lnet/minecraft/world/level/storage/loot/IntRange;
+		COMMENT Create an IntRange that contains only exactly the given value.
 		ARG 0 exactValue
+	METHOD getReferencedContextParams ()Ljava/util/Set;
+		COMMENT The LootContextParams required for this IntRange.
 	METHOD lowerBound (I)Lnet/minecraft/world/level/storage/loot/IntRange;
+		COMMENT Create an IntRange with the given minimum (inclusive) and no upper bound.
 		ARG 0 min
 	METHOD range (II)Lnet/minecraft/world/level/storage/loot/IntRange;
+		COMMENT Create an IntRange that ranges from {@code min} to {@code max}, both inclusive.
 		ARG 0 min
 		ARG 1 max
 	METHOD test (Lnet/minecraft/world/level/storage/loot/LootContext;I)Z
@@ -20,6 +25,7 @@ CLASS net/minecraft/world/level/storage/loot/IntRange net/minecraft/world/level/
 		ARG 1 lootContext
 		ARG 2 value
 	METHOD upperBound (I)Lnet/minecraft/world/level/storage/loot/IntRange;
+		COMMENT Create an IntRange with the given maximum (inclusive) and no lower bound.
 		ARG 0 max
 	CLASS IntChecker
 		METHOD test (Lnet/minecraft/world/level/storage/loot/LootContext;I)Z

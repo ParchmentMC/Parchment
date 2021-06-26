@@ -1,7 +1,19 @@
-CLASS net/minecraft/world/level/storage/loot/functions/LootingEnchantFunction
+CLASS net/minecraft/world/level/storage/loot/functions/LootingEnchantFunction net/minecraft/world/level/storage/loot/functions/LootingEnchantFunction
+	COMMENT LootItemFunction that grows the stack's count by multiplying the {@linkplain LootContextParams#KILLER_ENTITY killer}'s looting enchantment level with some multiplier. Optionally a limit to the stack size is applied.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;I)V
+		ARG 1 conditions
+		ARG 2 lootingMultiplier
+		ARG 3 countLimit
+	METHOD lootingMultiplier (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/functions/LootingEnchantFunction$Builder;
+		ARG 0 lootingMultiplier
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
+	CLASS Builder
+		METHOD <init> (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)V
+			ARG 1 lootingMultiplier
+		METHOD setLimit (I)Lnet/minecraft/world/level/storage/loot/functions/LootingEnchantFunction$Builder;
+			ARG 1 limit
 	CLASS Serializer
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
 			ARG 1 object

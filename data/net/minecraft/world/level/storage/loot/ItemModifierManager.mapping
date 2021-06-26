@@ -1,0 +1,16 @@
+CLASS net/minecraft/world/level/storage/loot/ItemModifierManager net/minecraft/world/level/storage/loot/ItemModifierManager
+	COMMENT DataPack reload listener that reads loot functions from the ResourceManager and stores them.
+	COMMENT
+	COMMENT @see LootItemFunction
+	METHOD <init> (Lnet/minecraft/world/level/storage/loot/PredicateManager;Lnet/minecraft/world/level/storage/loot/LootTables;)V
+		ARG 1 predicateManager
+		ARG 2 lootTables
+	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		COMMENT Get the LootItemFunction with the given ID. Returns null if no such function exists.
+		ARG 1 functionId
+	METHOD get (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		COMMENT Get the LootItemFunction with the given ID. Returns {@code defaultFunction} if no such function exists.
+		ARG 1 functionId
+		ARG 2 defaultFunction
+	METHOD getKeys ()Ljava/util/Set;
+		COMMENT Get all known function IDs.
