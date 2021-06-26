@@ -5,12 +5,50 @@ CLASS net/minecraft/world/item/trading/MerchantOffer
 		COMMENT The second input for this offer.
 	FIELD result Lnet/minecraft/world/item/ItemStack;
 		COMMENT The output of this offer.
+	METHOD <init> (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 dataTag
+	METHOD <init> (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;IIF)V
+		ARG 1 baseCostA
+		ARG 2 result
+		ARG 3 maxUses
+		ARG 4 xp
+		ARG 5 priceMultiplier
+	METHOD <init> (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;IIF)V
+		ARG 1 baseCostA
+		ARG 2 costB
+		ARG 3 result
+		ARG 4 maxUses
+		ARG 5 xp
+		ARG 6 priceMultiplier
+	METHOD <init> (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;IIIF)V
+		ARG 1 baseCostA
+		ARG 2 costB
+		ARG 3 result
+		ARG 4 uses
+		ARG 5 maxUses
+		ARG 6 xp
+		ARG 7 priceMultiplier
+	METHOD <init> (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;IIIFI)V
+		ARG 1 baseCostA
+		ARG 2 costB
+		ARG 3 result
+		ARG 4 uses
+		ARG 5 maxUses
+		ARG 6 xp
+		ARG 7 priceMultiplier
+		ARG 8 demand
 	METHOD addToSpecialPriceDiff (I)V
 		ARG 1 add
 	METHOD isRequiredItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 left
 		ARG 2 right
+	METHOD satisfiedBy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 itemStack1
+		ARG 2 itemStack2
 	METHOD setSpecialPriceDiff (I)V
 		ARG 1 price
+	METHOD take (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 baseCostA
+		ARG 2 costB
 	METHOD updateDemand ()V
 		COMMENT Calculates the demand with following formula: demand = demand + uses - maxUses - uses
