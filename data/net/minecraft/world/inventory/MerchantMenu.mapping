@@ -1,8 +1,21 @@
 CLASS net/minecraft/world/inventory/MerchantMenu
+	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;)V
+		ARG 1 id
+		ARG 2 playerInventory
+	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/item/trading/Merchant;)V
+		ARG 1 id
+		ARG 2 playerInventory
+		ARG 3 merchant
 	METHOD canTakeItemForPickAll (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z
 		COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
 		ARG 1 stack
 		ARG 2 slot
+	METHOD isSameItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack1
+		ARG 2 stack2
+	METHOD moveFromInventoryToPaymentSlot (ILnet/minecraft/world/item/ItemStack;)V
+		ARG 1 selectedMerchantRecipe
+		ARG 2 inventorySlot
 	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
 		ARG 1 player
@@ -10,6 +23,8 @@ CLASS net/minecraft/world/inventory/MerchantMenu
 	METHOD removed (Lnet/minecraft/world/entity/player/Player;)V
 		COMMENT Called when the container is closed.
 		ARG 1 player
+	METHOD setCanRestock (Z)V
+		ARG 1 canRestock
 	METHOD setMerchantLevel (I)V
 		ARG 1 level
 	METHOD setOffers (Lnet/minecraft/world/item/trading/MerchantOffers;)V
@@ -17,6 +32,8 @@ CLASS net/minecraft/world/inventory/MerchantMenu
 		ARG 1 offers
 	METHOD setSelectionHint (I)V
 		ARG 1 currentRecipeIndex
+	METHOD setShowProgressBar (Z)V
+		ARG 1 showProgressBar
 	METHOD setXp (I)V
 		ARG 1 xp
 	METHOD slotsChanged (Lnet/minecraft/world/Container;)V
@@ -25,3 +42,5 @@ CLASS net/minecraft/world/inventory/MerchantMenu
 	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
 		COMMENT Determines whether supplied player can use this container
 		ARG 1 player
+	METHOD tryMoveItems (I)V
+		ARG 1 selectedMerchantRecipe
