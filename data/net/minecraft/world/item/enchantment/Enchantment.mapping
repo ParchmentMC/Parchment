@@ -16,7 +16,7 @@ CLASS net/minecraft/world/item/enchantment/Enchantment
 		ARG 0 id
 			COMMENT The internal numeric id of the enchantment.
 	METHOD canEnchant (Lnet/minecraft/world/item/ItemStack;)Z
-		COMMENT Checks if an enchantment can be applied to a given ItemStack.
+		COMMENT Checks if the enchantment can be applied to a given ItemStack.
 		ARG 1 stack
 			COMMENT The ItemStack to test.
 	METHOD checkCompatibility (Lnet/minecraft/world/item/enchantment/Enchantment;)Z
@@ -62,19 +62,18 @@ CLASS net/minecraft/world/item/enchantment/Enchantment
 	METHOD getMaxCost (I)I
 		ARG 1 level
 	METHOD getMaxLevel ()I
-		COMMENT Gets the maximum level of the enchantment under normal circumstances.
+		COMMENT Gets the maximum level of the enchantment under normal circumstances such as the enchanting table. This limit is not strictly enforced and may be ignored through custom item NBT or other customizations.
 	METHOD getMinCost (I)I
 		COMMENT Returns the minimal value of enchantability needed on the enchantment level passed.
 		ARG 1 level
 	METHOD getMinLevel ()I
-		COMMENT Gets the minimum level of this enchantment under normal circumstances.
+		COMMENT Gets the minimum level of the enchantment under normal circumstances such as the enchanting table. This limit is not strictly enforced and may be ignored through custom item NBT or other customizations.
 	METHOD getOrCreateDescriptionId ()Ljava/lang/String;
-		COMMENT Gets the raw description Id of the enchantment or creates a new one using the registry name of the enchantment.
-		COMMENT @return The descriptionId or a newly created Id.
+		COMMENT Lazily initializes a descriptionId for an enchantment using the enchantments registry name.
 	METHOD getRarity ()Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
 		COMMENT Gets the rarity of the enchantment. This determines how rare the enchantment will be in enchantment pools such as the enchanting table and loot tables.
 	METHOD getSlotItems (Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/Map;
-		COMMENT Creates a new map containing all items equipped by an entity in slots that the enchantment cares about. {@link slots} These items are not tested for having the enchantment.
+		COMMENT Creates a new map containing all items equipped by an entity in {@linkplain #slots slots that the enchantment cares about}. These items are not tested for having the enchantment.
 		ARG 1 entity
 			COMMENT The entity to collect equipment for.
 	METHOD isCompatibleWith (Lnet/minecraft/world/item/enchantment/Enchantment;)Z
