@@ -1,4 +1,10 @@
 CLASS net/minecraft/client/gui/screens/inventory/BeaconScreen
+	METHOD <init> (Lnet/minecraft/world/inventory/BeaconMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 beaconMenu
+		ARG 2 playerInventory
+		ARG 3 title
+	METHOD addBeaconButton (Lnet/minecraft/client/gui/components/AbstractWidget;)V
+		ARG 1 beaconButton
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 matrixStack
 		ARG 2 mouseX
@@ -19,16 +25,62 @@ CLASS net/minecraft/client/gui/screens/inventory/BeaconScreen
 			ARG 1 containerToSend
 			ARG 2 slotInd
 			ARG 3 stack
+	CLASS BeaconButton
+		METHOD renderToolTip (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
+			ARG 1 poseStack
+			ARG 2 relativeMouseX
+			ARG 3 relativeMouseY
+		METHOD updateStatus (I)V
+			ARG 1 beaconTier
 	CLASS BeaconPowerButton
+		METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BeaconScreen;IILnet/minecraft/world/effect/MobEffect;ZI)V
+			ARG 2 x
+			ARG 3 y
+			ARG 4 effect
+			ARG 5 isPrimary
+			ARG 6 tier
+		METHOD createEffectDescription (Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/network/chat/MutableComponent;
+			ARG 1 effect
 		METHOD renderToolTip (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
 			ARG 1 matrixStack
 			ARG 2 mouseX
 			ARG 3 mouseY
+		METHOD setEffect (Lnet/minecraft/world/effect/MobEffect;)V
+			ARG 1 effect
+	CLASS BeaconCancelButton
+		METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BeaconScreen;II)V
+			ARG 2 x
+			ARG 3 y
 	CLASS BeaconScreenButton
+		METHOD <init> (II)V
+			ARG 1 x
+			ARG 2 y
+		METHOD <init> (IILnet/minecraft/network/chat/Component;)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 message
 		METHOD renderButton (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 			ARG 1 matrixStack
 			ARG 2 mouseX
 			ARG 3 mouseY
 			ARG 4 partialTicks
+		METHOD renderIcon (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+			ARG 1 poseStack
 		METHOD setSelected (Z)V
 			ARG 1 selected
+	CLASS BeaconConfirmButton
+		METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BeaconScreen;II)V
+			ARG 2 x
+			ARG 3 y
+	CLASS BeaconSpriteScreenButton
+		METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BeaconScreen;IIIILnet/minecraft/network/chat/Component;)V
+			ARG 2 x
+			ARG 3 y
+			ARG 4 iconX
+			ARG 5 iconY
+			ARG 6 message
+	CLASS BeaconUpgradePowerButton
+		METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BeaconScreen;IILnet/minecraft/world/effect/MobEffect;)V
+			ARG 2 x
+			ARG 3 y
+			ARG 4 effect
