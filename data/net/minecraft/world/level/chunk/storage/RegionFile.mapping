@@ -1,39 +1,69 @@
-CLASS net/minecraft/world/level/chunk/storage/RegionFile
+CLASS net/minecraft/world/level/chunk/storage/RegionFile net/minecraft/world/level/chunk/storage/RegionFile
+	COMMENT This class handles a single region (or anvil) file and all files for single chunks at chunk positions for that one region file.
 	METHOD <init> (Ljava/io/File;Ljava/io/File;Z)V
 		ARG 1 regionFile
-		ARG 2 folder
+		ARG 2 containingFolder
 		ARG 3 sync
 	METHOD <init> (Ljava/nio/file/Path;Ljava/nio/file/Path;Lnet/minecraft/world/level/chunk/storage/RegionFileVersion;Z)V
 		ARG 1 regionFile
-		ARG 2 folder
+		ARG 2 containingFolder
 		ARG 3 version
 		ARG 4 sync
 	METHOD clear (Lnet/minecraft/world/level/ChunkPos;)V
-		ARG 1 pos
+		ARG 1 chunkPos
 	METHOD createChunkInputStream (Lnet/minecraft/world/level/ChunkPos;BLjava/io/InputStream;)Ljava/io/DataInputStream;
-		ARG 1 pos
+		ARG 1 chunkPos
+		ARG 2 versionByte
 		ARG 3 inputStream
 	METHOD createExternalChunkInputStream (Lnet/minecraft/world/level/ChunkPos;B)Ljava/io/DataInputStream;
-		ARG 1 pos
+		ARG 1 chunkPos
+		ARG 2 versionByte
 	METHOD createStream (Ljava/nio/ByteBuffer;I)Ljava/io/ByteArrayInputStream;
-		ARG 0 buffer
+		ARG 0 sourceBuffer
+		ARG 1 length
 	METHOD doesChunkExist (Lnet/minecraft/world/level/ChunkPos;)Z
-		ARG 1 pos
+		ARG 1 chunkPos
 	METHOD getChunkDataInputStream (Lnet/minecraft/world/level/ChunkPos;)Ljava/io/DataInputStream;
-		ARG 1 pos
+		ARG 1 chunkPos
 	METHOD getChunkDataOutputStream (Lnet/minecraft/world/level/ChunkPos;)Ljava/io/DataOutputStream;
-		ARG 1 pos
+		COMMENT Creates a new {@link java.io.InputStream} for a chunk stored in a separate file.
+		ARG 1 chunkPos
 	METHOD getExternalChunkPath (Lnet/minecraft/world/level/ChunkPos;)Ljava/nio/file/Path;
-		ARG 1 pos
+		COMMENT Gets the path to store a chunk that can not be stored within the region file because its larger than 1 MiB.
+		ARG 1 chunkPos
+	METHOD getExternalChunkVersion (B)B
+		ARG 0 versionByte
+	METHOD getNumSectors (I)I
+		COMMENT Gets the amount of 4KiB sectors used to store a chunk.
+		ARG 0 packedSectorOffset
 	METHOD getOffset (Lnet/minecraft/world/level/ChunkPos;)I
-		ARG 1 pos
+		ARG 1 chunkPos
 	METHOD getOffsetIndex (Lnet/minecraft/world/level/ChunkPos;)I
-		ARG 0 pos
+		COMMENT Gets the offset within the region file where the chunk metadata for a chunk can be found.
+		ARG 0 chunkPos
+	METHOD getSectorNumber (I)I
+		COMMENT Gets the offset in 4KiB sectors from the start of the region file, where the data for a chunk starts.
+		ARG 0 packedSectorOffset
+	METHOD getTimestamp ()I
+		COMMENT Gets a timestamp for the current time to be written to a region file.
 	METHOD hasChunk (Lnet/minecraft/world/level/ChunkPos;)Z
-		ARG 1 pos
+		ARG 1 chunkPos
+	METHOD isExternalStreamChunk (B)Z
+		ARG 0 versionByte
+	METHOD packSectorOffset (II)I
+		COMMENT Packs the offset in 4KiB sectors from the region file start and the amount of 4KiB sectors used to store a chunk into one {@code int}.
+		ARG 1 sectorOffset
+		ARG 2 sectorCount
+	METHOD sizeToSectors (I)I
+		COMMENT Gets the amount of sectors required to store chunk data of a certain size in bytes.
+		ARG 0 size
 	METHOD write (Lnet/minecraft/world/level/ChunkPos;Ljava/nio/ByteBuffer;)V
-		ARG 1 pos
-		ARG 2 buffer
+		ARG 1 chunkPos
+		ARG 2 chunkData
+	METHOD writeToExternalFile (Ljava/nio/file/Path;Ljava/nio/ByteBuffer;)Lnet/minecraft/world/level/chunk/storage/RegionFile$CommitOp;
+		COMMENT Writes a chunk to a separate file with only that chunk. This is used for chunks larger than 1 MiB
+		ARG 1 externalChunkFile
+		ARG 2 chunkData
 	CLASS ChunkBuffer
 		METHOD <init> (Lnet/minecraft/world/level/chunk/storage/RegionFile;Lnet/minecraft/world/level/ChunkPos;)V
 			ARG 2 pos

@@ -10,7 +10,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 plugins {
-    id 'org.parchmentmc.compass' version '0.2.1'
+    id 'org.parchmentmc.compass' version '0.2.2'
     id 'org.parchmentmc.writtenbooks' version '0.5.+'
     id 'maven-publish'
     id 'java-base'
@@ -33,6 +33,7 @@ afterEvaluate {
         println("##teamcity[setParameter name='env.CI_VERSION' value='$version']")
         println("##teamcity[setParameter name='env.CI_GROUP' value='$group']")
         println("##teamcity[setParameter name='env.CI_ARTIFACT' value='parchment-${project.compass.version.get()}']")
+        println("##teamcity[setParameter name='env.CI_GAME_VERSION' value='${project.compass.version.get()}']")
     } else
     {
         println("Not outputting CI related data. CI Flag: " + project.findProperty('isCI'))
