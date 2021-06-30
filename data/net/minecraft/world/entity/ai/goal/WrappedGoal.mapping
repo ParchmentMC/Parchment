@@ -1,22 +1,22 @@
 CLASS net/minecraft/world/entity/ai/goal/WrappedGoal
 	METHOD <init> (ILnet/minecraft/world/entity/ai/goal/Goal;)V
+		COMMENT This is an internal object used by the GoalSelector to choose between Goals.
+		COMMENT In most cases, it should not be constructed directly.
+		COMMENT
+		COMMENT For information on how individual methods work, see the javadocs for Goal:
+		COMMENT {@link net.minecraft.entity.ai.goal.Goal}
 		ARG 1 priority
 		ARG 2 goal
 	METHOD canBeReplacedBy (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)Z
 		ARG 1 other
 	METHOD canContinueToUse ()Z
-		COMMENT Returns whether an in-progress EntityAIBase should continue executing
 	METHOD canUse ()Z
-		COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	METHOD equals (Ljava/lang/Object;)Z
-		ARG 1 object
+		ARG 1 other
 	METHOD getGoal ()Lnet/minecraft/world/entity/ai/goal/Goal;
 		COMMENT Gets the private goal enclosed by this WrappedGoal. Call this rather than use an access transformer"
 	METHOD setFlags (Ljava/util/EnumSet;)V
 		ARG 1 flagSet
 	METHOD start ()V
-		COMMENT Execute a one shot task or start executing a continuous task
 	METHOD stop ()V
-		COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 	METHOD tick ()V
-		COMMENT Keep ticking a continuous task that has already been started

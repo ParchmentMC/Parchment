@@ -4,7 +4,7 @@ CLASS net/minecraft/world/entity/ai/goal/GoalSelector
 	METHOD <init> (Ljava/util/function/Supplier;)V
 		ARG 1 profiler
 	METHOD addGoal (ILnet/minecraft/world/entity/ai/goal/Goal;)V
-		COMMENT Add a now AITask. Args : priority, task
+		COMMENT Add a goal to the GoalSelector with a certain priority. Lower numbers are higher priority.
 		ARG 1 priority
 		ARG 2 goal
 	METHOD disableControlFlag (Lnet/minecraft/world/entity/ai/goal/Goal$Flag;)V
@@ -29,13 +29,16 @@ CLASS net/minecraft/world/entity/ai/goal/GoalSelector
 	METHOD lambda$tick$9 (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)V
 		ARG 1 wrappedGoal
 	METHOD removeGoal (Lnet/minecraft/world/entity/ai/goal/Goal;)V
-		COMMENT removes the indicated task from the entity's AI tasks.
+		COMMENT Remove the goal from the GoalSelector. This must be the same object as the goal you are trying to remove, which may not always be accessible.
 		ARG 1 goal
 	METHOD setControlFlag (Lnet/minecraft/world/entity/ai/goal/Goal$Flag;Z)V
 		ARG 1 flag
 		ARG 2 enabled
 	METHOD setNewGoalRate (I)V
 		ARG 1 newGoalRate
+	METHOD tick ()V
+		COMMENT Ticks every goal in the selector.
+		COMMENT Attempts to start each goal based on if it can be used, or stop it if it can't.
 	CLASS 1
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
