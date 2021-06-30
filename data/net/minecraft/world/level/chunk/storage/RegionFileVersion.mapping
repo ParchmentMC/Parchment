@@ -1,0 +1,28 @@
+CLASS net/minecraft/world/level/chunk/storage/RegionFileVersion net/minecraft/world/level/chunk/storage/RegionFileVersion
+	COMMENT A decorator for input and output streams used to read and write the chunk data from region files. This exists as there are different ways of compressing the chunk data inside a region file.
+	COMMENT @see net.minecraft.world.level.chunk.storage.RegionFileVersion#VERSION_GZIP
+	COMMENT @see net.minecraft.world.level.chunk.storage.RegionFileVersion#VERSION_DEFLATE
+	COMMENT @see net.minecraft.world.level.chunk.storage.RegionFileVersion#VERSION_NONE
+	FIELD VERSION_DEFLATE Lnet/minecraft/world/level/chunk/storage/RegionFileVersion;
+		COMMENT Used to store the chunk data in zlib format. This is the default.
+	FIELD VERSION_GZIP Lnet/minecraft/world/level/chunk/storage/RegionFileVersion;
+		COMMENT Used to store the chunk data in gzip format. Unused in practice.
+	FIELD VERSION_NONE Lnet/minecraft/world/level/chunk/storage/RegionFileVersion;
+		COMMENT Used to keep the chunk data uncompressed. Unused in practice.
+	METHOD <init> (ILnet/minecraft/world/level/chunk/storage/RegionFileVersion$StreamWrapper;Lnet/minecraft/world/level/chunk/storage/RegionFileVersion$StreamWrapper;)V
+		ARG 1 id
+		ARG 2 inputWrapper
+		ARG 3 outputWrapper
+	METHOD fromId (I)Lnet/minecraft/world/level/chunk/storage/RegionFileVersion;
+		ARG 0 id
+	METHOD isValidVersion (I)Z
+		ARG 0 id
+	METHOD register (Lnet/minecraft/world/level/chunk/storage/RegionFileVersion;)Lnet/minecraft/world/level/chunk/storage/RegionFileVersion;
+		ARG 0 fileVersion
+	METHOD wrap (Ljava/io/InputStream;)Ljava/io/InputStream;
+		ARG 1 inputStream
+	METHOD wrap (Ljava/io/OutputStream;)Ljava/io/OutputStream;
+		ARG 1 outputStream
+	CLASS StreamWrapper
+		METHOD wrap (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 stream

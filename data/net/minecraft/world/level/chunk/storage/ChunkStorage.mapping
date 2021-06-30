@@ -1,6 +1,16 @@
 CLASS net/minecraft/world/level/chunk/storage/ChunkStorage
+	METHOD <init> (Ljava/io/File;Lcom/mojang/datafixers/DataFixer;Z)V
+		ARG 1 regionFolder
+		ARG 2 fixerUpper
+		ARG 3 sync
 	METHOD getVersion (Lnet/minecraft/nbt/CompoundTag;)I
-		ARG 0 compound
+		ARG 0 chunkData
+	METHOD read (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 chunkPos
+	METHOD upgradeChunkTag (Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Supplier;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 levelKey
+		ARG 2 storage
+		ARG 3 chunkData
 	METHOD write (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 pos
-		ARG 2 compound
+		ARG 1 chunkPos
+		ARG 2 chunkData
