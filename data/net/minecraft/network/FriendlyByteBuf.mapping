@@ -1,9 +1,9 @@
 CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD getVarIntSize (I)I
-		COMMENT Calculates the number of bytes (0-5) required to fit the supplied int if it were to be read/written using readVarInt/writeVarInt
+		COMMENT Calculates the number of bytes ({@code [1-5]}) required to fit the supplied int if it were to be read/written using readVarInt/writeVarInt
 		ARG 0 input
 	METHOD getVarLongSize (J)I
-		COMMENT Calculates the number of bytes required to fit the supplied long if it were to be read/written using readVarLong / writeVarLong
+		COMMENT Calculates the number of bytes ({@code [1-10]} required to fit the supplied long if it were to be read/written using readVarLong / writeVarLong
 	METHOD readAnySizeNbt ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Reads a NBT CompoundTag from this buffer.
 		COMMENT {@code null} is a valid value and may be returned.
@@ -68,7 +68,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD readLongArray ()[J
 		COMMENT Reads a length-prefixed array of longs from the buffer.
 	METHOD readLongArray ([J)[J
-		COMMENT Reads a length-prefixed array of longs from the buffer.Reads a length-prefixed array of longs from the buffer.
+		COMMENT Reads a length-prefixed array of longs from the buffer.
 		COMMENT Will try to use the given long[] if possible. Note that if an array with the correct size is given, maxLength is ignored.
 		ARG 1 array
 	METHOD readLongArray ([JI)[J
@@ -254,7 +254,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 string
 		ARG 2 maxLength
 	METHOD writeVarInt (I)Lnet/minecraft/network/FriendlyByteBuf;
-		COMMENT Writes a compressed int to the buffer. The smallest number of bytes to fit the passed long will be written. Of each such byte only 7 bits will be used to describe the actual value since its most significant bit dictates whether the next byte is part of that same int. Micro-optimization for int values that are usually small.
+		COMMENT Writes a compressed int to the buffer. The smallest number of bytes to fit the passed int will be written. Of each such byte only 7 bits will be used to describe the actual value since its most significant bit dictates whether the next byte is part of that same int. Micro-optimization for int values that are usually small.
 		ARG 1 input
 	METHOD writeVarIntArray ([I)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes an array of VarInts to the buffer, prefixed by the length of the array (as a VarInt).
