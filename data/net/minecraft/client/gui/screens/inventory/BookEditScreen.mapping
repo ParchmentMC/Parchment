@@ -7,6 +7,10 @@ CLASS net/minecraft/client/gui/screens/inventory/BookEditScreen
 		COMMENT Determines if the signing screen is open
 	FIELD lastClickTime J
 		COMMENT In milliseconds
+	METHOD <init> (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)V
+		ARG 1 player
+		ARG 2 book
+		ARG 3 hand
 	METHOD appendPageToBook ()V
 		COMMENT Adds a new page to the book (capped at 100 pages)
 	METHOD bookKeyPressed (III)Z
@@ -14,9 +18,15 @@ CLASS net/minecraft/client/gui/screens/inventory/BookEditScreen
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
+	METHOD changeLine (I)V
+		ARG 1 yChange
 	METHOD charTyped (CI)Z
 		ARG 1 codePoint
 		ARG 2 modifiers
+	METHOD convertLocalToScreen (Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;)Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;
+		ARG 1 localScreenPos
+	METHOD convertScreenToLocal (Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;)Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;
+		ARG 1 screenPos
 	METHOD getCurrentPageText ()Ljava/lang/String;
 		COMMENT Returns the contents of the current page as a string (or an empty string if the currPage isn't a valid page index)
 	METHOD getNumPages ()I
@@ -44,8 +54,20 @@ CLASS net/minecraft/client/gui/screens/inventory/BookEditScreen
 		ARG 2 mouseX
 		ARG 3 mouseY
 		ARG 4 partialTicks
+	METHOD renderCursor (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;Z)V
+		ARG 1 poseStack
+		ARG 2 cursorPos
+		ARG 3 isEndOfText
+	METHOD renderHighlight ([Lnet/minecraft/client/renderer/Rect2i;)V
+		ARG 1 selected
 	METHOD saveChanges (Z)V
 		ARG 1 publish
+	METHOD selectWord (I)V
+		ARG 1 index
+	METHOD setClipboard (Ljava/lang/String;)V
+		ARG 1 clipboardValue
+	METHOD setCurrentPageText (Ljava/lang/String;)V
+		ARG 1 text
 	METHOD titleKeyPressed (III)Z
 		COMMENT Handles special keys pressed while editing the book's title
 		ARG 1 keyCode
@@ -53,3 +75,24 @@ CLASS net/minecraft/client/gui/screens/inventory/BookEditScreen
 		ARG 3 modifiers
 	METHOD updateButtonVisibility ()V
 		COMMENT Sets visibility for book buttons
+	CLASS Pos2i
+		METHOD <init> (II)V
+			ARG 1 x
+			ARG 2 y
+	CLASS LineInfo
+		METHOD <init> (Lnet/minecraft/network/chat/Style;Ljava/lang/String;II)V
+			ARG 1 style
+			ARG 2 contents
+			ARG 3 x
+			ARG 4 y
+	CLASS DisplayCache
+		METHOD <init> (Ljava/lang/String;Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;Z[I[Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$LineInfo;[Lnet/minecraft/client/renderer/Rect2i;)V
+			ARG 1 fullText
+			ARG 2 cursor
+			ARG 3 isCursorAtEnd
+			ARG 4 lineStarts
+			ARG 5 lines
+			ARG 6 selection
+		METHOD getIndexAtPosition (Lnet/minecraft/client/gui/Font;Lnet/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i;)I
+			ARG 1 font
+			ARG 2 cursorPosition
