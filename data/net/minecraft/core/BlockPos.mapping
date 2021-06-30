@@ -9,6 +9,12 @@ CLASS net/minecraft/core/BlockPos
 			COMMENT The Y coordinate
 		ARG 3 z
 			COMMENT The Z coordinate
+	METHOD <init> (Lnet/minecraft/core/Position;)V
+		ARG 1 position
+	METHOD <init> (Lnet/minecraft/core/Vec3i;)V
+		ARG 1 vec3i
+	METHOD <init> (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 vec3
 	METHOD above ()Lnet/minecraft/core/BlockPos;
 		COMMENT Offset this BlockPos 1 block up
 	METHOD above (I)Lnet/minecraft/core/BlockPos;
@@ -18,6 +24,8 @@ CLASS net/minecraft/core/BlockPos
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
+	METHOD atY (I)Lnet/minecraft/core/BlockPos;
+		ARG 1 height
 	METHOD below ()Lnet/minecraft/core/BlockPos;
 		COMMENT Offset this BlockPos 1 block down
 	METHOD below (I)Lnet/minecraft/core/BlockPos;
@@ -56,7 +64,7 @@ CLASS net/minecraft/core/BlockPos
 		ARG 0 aabb
 	METHOD cross (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/BlockPos;
 		COMMENT Calculate the cross product of this and the given Vector
-		ARG 1 vec
+		ARG 1 crossWith
 	METHOD findClosestMatch (Lnet/minecraft/core/BlockPos;IILjava/util/function/Predicate;)Ljava/util/Optional;
 		ARG 0 pos
 		ARG 1 width
@@ -86,6 +94,7 @@ CLASS net/minecraft/core/BlockPos
 		ARG 0 pos
 		ARG 2 direction
 	METHOD randomBetweenClosed (Ljava/util/Random;IIIIIII)Ljava/lang/Iterable;
+		COMMENT Creates an Iterable with n Objects in the area.
 		ARG 0 rand
 		ARG 1 amount
 		ARG 2 minX
@@ -94,12 +103,24 @@ CLASS net/minecraft/core/BlockPos
 		ARG 5 maxX
 		ARG 6 maxY
 		ARG 7 maxZ
+	METHOD randomInCube (Ljava/util/Random;ILnet/minecraft/core/BlockPos;I)Ljava/lang/Iterable;
+		COMMENT Creates an Iterable with n BlockPos Objects in a cube around the center with the specified maxDistance.
+		ARG 0 random
+		ARG 1 amount
+		ARG 2 center
+		ARG 3 distance
+	METHOD relative (Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos;
+		ARG 1 direction
 	METHOD relative (Lnet/minecraft/core/Direction;I)Lnet/minecraft/core/BlockPos;
 		COMMENT Offsets this BlockPos n blocks in the given direction
 		ARG 1 facing
 		ARG 2 n
 	METHOD rotate (Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/core/BlockPos;
 		ARG 1 rotation
+	METHOD south (I)Lnet/minecraft/core/BlockPos;
+		ARG 1 distance
+	METHOD subtract (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/BlockPos;
+		ARG 1 vec3i
 	METHOD withinManhattan (Lnet/minecraft/core/BlockPos;III)Ljava/lang/Iterable;
 		COMMENT Returns BlockPos#getProximitySortedBoxPositions as an Iterator.
 		ARG 0 pos
