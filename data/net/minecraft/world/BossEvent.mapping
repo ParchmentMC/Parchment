@@ -1,4 +1,9 @@
 CLASS net/minecraft/world/BossEvent
+	METHOD <init> (Ljava/util/UUID;Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/BossEvent$BossBarColor;Lnet/minecraft/world/BossEvent$BossBarOverlay;)V
+		ARG 1 id
+		ARG 2 name
+		ARG 3 color
+		ARG 4 overlay
 	METHOD setColor (Lnet/minecraft/world/BossEvent$BossBarColor;)V
 		ARG 1 color
 	METHOD setCreateWorldFog (Z)Lnet/minecraft/world/BossEvent;
@@ -11,9 +16,16 @@ CLASS net/minecraft/world/BossEvent
 		ARG 1 overlay
 	METHOD setPlayBossMusic (Z)Lnet/minecraft/world/BossEvent;
 		ARG 1 playEndBossMusic
+	METHOD setProgress (F)V
+		ARG 1 progress
 	CLASS BossBarColor
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/ChatFormatting;)V
+			ARG 3 name
+			ARG 4 formatting
 		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/BossEvent$BossBarColor;
 			ARG 0 name
 	CLASS BossBarOverlay
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 name
 		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/BossEvent$BossBarOverlay;
 			ARG 0 name
