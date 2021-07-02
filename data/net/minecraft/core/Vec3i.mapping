@@ -13,12 +13,12 @@ CLASS net/minecraft/core/Vec3i
 	METHOD above ()Lnet/minecraft/core/Vec3i;
 		COMMENT Creates a new Vec3i one unit up.
 	METHOD above (I)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i up by the distance.
+		COMMENT If distance is not 0, will create a new Vec3i offset by the distance upwards, otherwise will return this vector.
 		ARG 1 distance
 	METHOD below ()Lnet/minecraft/core/Vec3i;
 		COMMENT Creates a new Vec3i one unit down.
 	METHOD below (I)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i down by the distance.
+		COMMENT If distance is not 0, will create a new Vec3i offset by the distance downwards, otherwise will return this vector.
 		ARG 1 distance
 	METHOD closerThan (Lnet/minecraft/core/Position;D)Z
 		ARG 1 position
@@ -48,18 +48,18 @@ CLASS net/minecraft/core/Vec3i
 	METHOD east ()Lnet/minecraft/core/Vec3i;
 		COMMENT Creates a new Vec3i one unit east.
 	METHOD east (I)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i east by the distance.
+		COMMENT If distance is not 0, will create a new Vec3i offset by the distance east, otherwise will return this vector.
 		ARG 1 distance
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
 	METHOD get (Lnet/minecraft/core/Direction$Axis;)I
 		ARG 1 axis
 	METHOD getX ()I
-		COMMENT Gets the X coordinate.
+		COMMENT @return the X coordinate.
 	METHOD getY ()I
-		COMMENT Gets the Y coordinate.
+		COMMENT @return the Y coordinate.
 	METHOD getZ ()I
-		COMMENT Gets the Z coordinate.
+		COMMENT @return the Z coordinate.
 	METHOD lambda$static$0 ([I)Lnet/minecraft/core/Vec3i;
 		ARG 0 data
 	METHOD lambda$static$1 (Ljava/util/stream/IntStream;)Lcom/mojang/serialization/DataResult;
@@ -67,35 +67,38 @@ CLASS net/minecraft/core/Vec3i
 	METHOD lambda$static$2 (Lnet/minecraft/core/Vec3i;)Ljava/util/stream/IntStream;
 		ARG 0 vec3i
 	METHOD multiply (I)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i with all values multiplied with the factor.
-		ARG 1 factor
+		COMMENT If scalar is 1 will return this vector.
+		COMMENT If scalar is 0 will return {@link Vec3i.ZERO}.
+		COMMENT Will create a new Vec3i with all values multiplied by the scalar.
+		ARG 1 scalar
 	METHOD north ()Lnet/minecraft/core/Vec3i;
 		COMMENT Creates a new Vec3i one unit north.
 	METHOD north (I)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i north by the distance.
+		COMMENT If distance is not 0, will create a new Vec3i offset by the distance north, otherwise will return this vector.
 		ARG 1 distance
 	METHOD offset (DDD)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i with the given offset. The values are getting floored.
+		COMMENT If all values are not 0, will create a new Vec3i with the given offset, otherwise will return this vector.
+		COMMENT The values are getting floored.
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
 	METHOD offset (III)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i with the given offset.
+		COMMENT If all values are not 0, will create a new Vec3i with the given offset, otherwise will return this vector.
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
 	METHOD offset (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i with the given offset.
+		COMMENT If offset does not equals {@link Vec3i#ZERO}, will create a new Vec3i with the given offset, otherwise will return this vector.
 		ARG 1 offset
 	METHOD relative (Lnet/minecraft/core/Direction$Axis;I)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i with the distance on the axis.
+		COMMENT If distance is not 0, will create a new Vec3i offset by the distance on the given axis.
 		ARG 1 axis
 		ARG 2 distance
 	METHOD relative (Lnet/minecraft/core/Direction;)Lnet/minecraft/core/Vec3i;
 		COMMENT Creates a new Vec3i offseted by 1 in the direction.
 		ARG 1 direction
 	METHOD relative (Lnet/minecraft/core/Direction;I)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i with the distance in the direction.
+		COMMENT If distance is not 0, will create a new Vec3i offset by the distance in the given direction, otherwise will return this vector.
 		ARG 1 direction
 		ARG 2 distance
 	METHOD setX (I)Lnet/minecraft/core/Vec3i;
@@ -107,13 +110,13 @@ CLASS net/minecraft/core/Vec3i
 	METHOD south ()Lnet/minecraft/core/Vec3i;
 		COMMENT Creates a new Vec3i one unit south.
 	METHOD south (I)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i south by the distance.
+		COMMENT If distance is not 0, will create a new Vec3i offset by the distance south, otherwise will return this vector.
 		ARG 1 distance
 	METHOD subtract (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i subtracted by the subtrahend.
-		ARG 1 subtrahend
+		COMMENT If the given vector does not equals {@link Vec3i#ZERO}, will create a new Vec3i subtracted by the given vector, otherwise will return this vector.
+		ARG 1 vector
 	METHOD west ()Lnet/minecraft/core/Vec3i;
 		COMMENT Creates a new Vec3i one unit west.
 	METHOD west (I)Lnet/minecraft/core/Vec3i;
-		COMMENT Creates a new Vec3i west by the distance.
+		COMMENT If distance is not 0, will create a new Vec3i offset by the distance west, otherwise will return this vector.
 		ARG 1 distance
