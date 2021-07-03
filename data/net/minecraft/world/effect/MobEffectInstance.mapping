@@ -34,11 +34,13 @@ CLASS net/minecraft/world/effect/MobEffectInstance
 		ARG 6 showIcon
 		ARG 7 hiddenEffect
 	METHOD <init> (Lnet/minecraft/world/effect/MobEffectInstance;)V
-		ARG 1 mobEffect
+		ARG 1 effectInstance
 	METHOD applyEffect (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 entity
+	METHOD compareTo (Ljava/lang/Object;)I
+		ARG 1 effectInstance
 	METHOD equals (Ljava/lang/Object;)Z
-		ARG 1 hashCode
+		ARG 1 other
 	METHOD isAmbient ()Z
 		COMMENT Gets whether this potion effect originated from a beacon
 	METHOD isNoCounter ()Z
@@ -55,13 +57,13 @@ CLASS net/minecraft/world/effect/MobEffectInstance
 		COMMENT Write a custom potion effect to a potion item's NBT data.
 		ARG 1 nbt
 	METHOD setDetailsFrom (Lnet/minecraft/world/effect/MobEffectInstance;)V
-		ARG 1 mobEffect
+		ARG 1 effectInstance
 	METHOD setNoCounter (Z)V
 		COMMENT Toggle the isPotionDurationMax field.
 		ARG 1 maxDuration
 	METHOD tick (Lnet/minecraft/world/entity/LivingEntity;Ljava/lang/Runnable;)Z
 		ARG 1 entity
-		ARG 2 runnable
+		ARG 2 onExpirationRunnable
 	METHOD update (Lnet/minecraft/world/effect/MobEffectInstance;)Z
 		ARG 1 other
 	METHOD writeDetailsTo (Lnet/minecraft/nbt/CompoundTag;)V
