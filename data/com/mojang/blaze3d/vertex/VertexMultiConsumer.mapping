@@ -1,8 +1,15 @@
 CLASS com/mojang/blaze3d/vertex/VertexMultiConsumer
+	METHOD create (Lcom/mojang/blaze3d/vertex/VertexConsumer;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
+		ARG 0 consumer
 	METHOD create (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/VertexConsumer;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
-		ARG 0 vertexBuilder
-		ARG 1 delegateBuilder
+		ARG 0 first
+		ARG 1 second
+	METHOD create ([Lcom/mojang/blaze3d/vertex/VertexConsumer;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
+		ARG 0 delegates
 	CLASS Double
+		METHOD <init> (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/VertexConsumer;)V
+			ARG 1 first
+			ARG 2 second
 		METHOD color (IIII)Lcom/mojang/blaze3d/vertex/VertexConsumer;
 			ARG 1 red
 			ARG 2 green
@@ -40,3 +47,8 @@ CLASS com/mojang/blaze3d/vertex/VertexMultiConsumer
 			ARG 12 normalX
 			ARG 13 normalY
 			ARG 14 normalZ
+	CLASS Multiple
+		METHOD <init> ([Lcom/mojang/blaze3d/vertex/VertexConsumer;)V
+			ARG 1 delegates
+		METHOD forEach (Ljava/util/function/Consumer;)V
+			ARG 1 consumerConsumer

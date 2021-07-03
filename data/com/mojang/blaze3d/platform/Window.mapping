@@ -1,4 +1,10 @@
 CLASS com/mojang/blaze3d/platform/Window
+	METHOD <init> (Lcom/mojang/blaze3d/platform/WindowEventHandler;Lcom/mojang/blaze3d/platform/ScreenManager;Lcom/mojang/blaze3d/platform/DisplayData;Ljava/lang/String;Ljava/lang/String;)V
+		ARG 1 eventHandler
+		ARG 2 screenManager
+		ARG 3 displayData
+		ARG 4 preferredFullscreenVideoMode
+		ARG 5 title
 	METHOD bootCrash (IJ)V
 		ARG 0 error
 		ARG 1 description
@@ -6,7 +12,7 @@ CLASS com/mojang/blaze3d/platform/Window
 		ARG 1 guiScale
 		ARG 2 forceUnicode
 	METHOD checkGlfwError (Ljava/util/function/BiConsumer;)V
-		ARG 0 glfwErrorConsumer
+		ARG 0 errorConsumer
 	METHOD defaultErrorCallback (IJ)V
 		ARG 1 error
 		ARG 2 description
@@ -14,43 +20,51 @@ CLASS com/mojang/blaze3d/platform/Window
 		COMMENT Gets a pointer to the native window object that is passed to GLFW.
 	METHOD onEnter (JZ)V
 		ARG 1 window
-		ARG 3 ignoreFirst
+		ARG 3 cursorEntered
+			COMMENT {@code true} if the cursor entered the window, {@code false} if the cursor left
 	METHOD onFocus (JZ)V
-		ARG 1 windowPointer
+		ARG 1 window
 		ARG 3 hasFocus
 	METHOD onFramebufferResize (JII)V
-		ARG 1 windowPointer
+		ARG 1 window
 		ARG 3 framebufferWidth
 		ARG 4 framebufferHeight
 	METHOD onMove (JII)V
-		ARG 1 windowPointer
-		ARG 3 windowX
-		ARG 4 windowY
+		ARG 1 window
+		ARG 3 x
+		ARG 4 y
 	METHOD onResize (JII)V
-		ARG 1 windowPointer
-		ARG 3 windowWidth
-		ARG 4 windowHeight
+		ARG 1 window
+		ARG 3 width
+		ARG 4 height
 	METHOD readIconPixels (Ljava/io/InputStream;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)Ljava/nio/ByteBuffer;
 		ARG 1 textureStream
 		ARG 2 x
 		ARG 3 y
 		ARG 4 channelInFile
 	METHOD setErrorSection (Ljava/lang/String;)V
-		ARG 1 renderPhase
+		ARG 1 errorSection
 	METHOD setFramerateLimit (I)V
 		ARG 1 limit
 	METHOD setGuiScale (D)V
 		ARG 1 scaleFactor
+	METHOD setHeight (I)V
+		ARG 1 framebufferHeight
 	METHOD setIcon (Ljava/io/InputStream;Ljava/io/InputStream;)V
 		ARG 1 iconStream16X
 		ARG 2 iconStream32X
 	METHOD setPreferredFullscreenVideoMode (Ljava/util/Optional;)V
-		ARG 1 fullscreenMode
+		ARG 1 preferredFullscreenVideoMode
 	METHOD setTitle (Ljava/lang/String;)V
 		ARG 1 title
+	METHOD setWidth (I)V
+		ARG 1 framebufferWidth
+	METHOD setWindowed (II)V
+		ARG 1 windowedWidth
+		ARG 2 windowedHeight
 	METHOD updateFullscreen (Z)V
 		ARG 1 vsyncEnabled
 	METHOD updateRawMouseInput (Z)V
 		ARG 1 value
 	METHOD updateVsync (Z)V
-		ARG 1 vsyncEnabled
+		ARG 1 vsync
