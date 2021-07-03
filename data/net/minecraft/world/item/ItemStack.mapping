@@ -19,6 +19,12 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD addTagElement (Ljava/lang/String;Lnet/minecraft/nbt/Tag;)V
 		ARG 1 key
 		ARG 2 value
+	METHOD appendEnchantmentNames (Ljava/util/List;Lnet/minecraft/nbt/ListTag;)V
+		ARG 0 list
+		ARG 1 enchantmentTagList
+	METHOD areSameBlocks (Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+		ARG 0 blockA
+		ARG 1 blockB
 	METHOD copy ()Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns a new stack with the same properties.
 	METHOD enchant (Lnet/minecraft/world/item/enchantment/Enchantment;I)V
@@ -62,10 +68,18 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 2 advanced
 	METHOD grow (I)V
 		ARG 1 count
+	METHOD hasAdventureModeBreakTagForBlock (Lnet/minecraft/tags/TagContainer;Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+		ARG 1 tag
+		ARG 2 cachedBreakBlock
+	METHOD hasAdventureModePlaceTagForBlock (Lnet/minecraft/tags/TagContainer;Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+		ARG 1 tag
+		ARG 2 cachedPlaceBlock
 	METHOD hasCustomHoverName ()Z
 		COMMENT Returns true if the itemstack has a display name
 	METHOD hasTag ()Z
 		COMMENT Returns true if the ItemStack has an NBTTagCompound. Currently used to store enchantments.
+	METHOD hideTooltipPart (Lnet/minecraft/world/item/ItemStack$TooltipPart;)V
+		ARG 1 tooltip
 	METHOD hurt (ILjava/util/Random;Lnet/minecraft/server/level/ServerPlayer;)Z
 		COMMENT Attempts to damage the ItemStack with par1 amount of damage, If the ItemStack has the Unbreaking enchantment there is a chance for each point of damage to be negated. Returns true if it takes more damage than getMaxDamage(). Returns false otherwise or if the ItemStack can't be damaged or if all points of damage are negated.
 		ARG 1 amount
@@ -168,6 +182,9 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD setTag (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT Assigns a NBTTagCompound to the ItemStack, minecraft validates that only non-stackable items can have it.
 		ARG 1 nbt
+	METHOD shouldShowInTooltip (ILnet/minecraft/world/item/ItemStack$TooltipPart;)Z
+		ARG 0 hideFlags
+		ARG 1 tooltip
 	METHOD shrink (I)V
 		ARG 1 count
 	METHOD split (I)Lnet/minecraft/world/item/ItemStack;
