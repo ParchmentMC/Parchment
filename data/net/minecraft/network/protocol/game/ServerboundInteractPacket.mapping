@@ -4,7 +4,7 @@ CLASS net/minecraft/network/protocol/game/ServerboundInteractPacket
 		ARG 2 usingSecondaryAction
 		ARG 3 action
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
-		ARG 1 byteBuf
+		ARG 1 buffer
 	METHOD createAttackPacket (Lnet/minecraft/world/entity/Entity;Z)Lnet/minecraft/network/protocol/game/ServerboundInteractPacket;
 		ARG 0 entity
 		ARG 1 usingSecondaryAction
@@ -26,12 +26,12 @@ CLASS net/minecraft/network/protocol/game/ServerboundInteractPacket
 		ARG 1 handler
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 byteBuf
+		ARG 1 buffer
 	CLASS Action
 		METHOD dispatch (Lnet/minecraft/network/protocol/game/ServerboundInteractPacket$Handler;)V
 			ARG 1 handler
 		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
-			ARG 1 byteBuf
+			ARG 1 buffer
 	CLASS Handler
 		METHOD onInteraction (Lnet/minecraft/world/InteractionHand;)V
 			ARG 1 hand
@@ -43,12 +43,12 @@ CLASS net/minecraft/network/protocol/game/ServerboundInteractPacket
 			ARG 3 reader
 	CLASS InteractionAction
 		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
-			ARG 1 byteBuf
+			ARG 1 buffer
 		METHOD <init> (Lnet/minecraft/world/InteractionHand;)V
 			ARG 1 hand
 	CLASS InteractionAtLocationAction
 		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
-			ARG 1 byteBuf
+			ARG 1 buffer
 		METHOD <init> (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/Vec3;)V
 			ARG 1 hand
 			ARG 2 location
