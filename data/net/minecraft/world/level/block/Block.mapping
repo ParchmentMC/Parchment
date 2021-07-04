@@ -1,18 +1,16 @@
 CLASS net/minecraft/world/level/block/Block
 	METHOD animateTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
-		COMMENT Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that this method is unrelated to {@link net.minecraft.world.level.block.state.BlockBehaviour#randomTick} and {@link #isRandomlyTicking}, and will always be called regardless of whether the block can receive random update ticks.
+		COMMENT Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless of whether the block can receive random update ticks
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
-		ARG 4 random
+		ARG 4 rand
 	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/BlockGetter;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
-		COMMENT Called by {@link BlockItem#appendHoverText}.
 		ARG 1 stack
 		ARG 2 level
 		ARG 3 tooltip
 		ARG 4 flag
 	METHOD box (DDDDDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
-		COMMENT Create a VoxelShape in the shape of a box. The coordinate range is from 0-16 each.
 		ARG 0 x1
 		ARG 2 y1
 		ARG 4 z1
@@ -22,234 +20,129 @@ CLASS net/minecraft/world/level/block/Block
 	METHOD byItem (Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/level/block/Block;
 		ARG 0 item
 	METHOD canSupportCenter (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
-		COMMENT Checks whether the block at the given position has a supportive center (e.g. a fence).
-		COMMENT This is used by for example pressure plates to determine if their position is valid.
+		COMMENT Returns true if the block can stay on position if attached to given side
 		ARG 0 level
 		ARG 1 pos
 		ARG 2 direction
 	METHOD canSupportRigidBlock (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
-		COMMENT Checks whether the block at the given position has a rigid top side.
+		COMMENT Returns true if the block in given position has a solid top face
 		ARG 0 level
 		ARG 1 pos
-	METHOD copyProperty (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/properties/Property;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Copy the given property from {@code sourceState} to {@code targetState} and return the resulting BlockState.
-		ARG 0 sourceState
-		ARG 1 targetState
-		ARG 2 property
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
-		COMMENT Called by the Block constructor to register this block's state properties to the StateDefinition builder.
 		ARG 1 builder
 	METHOD defaultBlockState ()Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Gets the default BlockState for this block.
+		COMMENT Gets the default state for this block
 	METHOD destroy (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-		COMMENT Called after a player successfully destroyed this Block, the block is no longer present in the world.
+		COMMENT Called after a player destroys this Block - the posiiton pos may no longer hold the state indicated.
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
 	METHOD dropFromExplosion (Lnet/minecraft/world/level/Explosion;)Z
-		COMMENT Whether this block should spawn its drops when destroyed by an explosion.
+		COMMENT Return whether this block can drop from an explosion.
 		ARG 1 explosion
 	METHOD dropResources (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
-		COMMENT Spawn this block's drops in the world. This version of the method can only be used for blocks without a BlockEntity.
-		COMMENT
-		COMMENT @see #popResource
 		ARG 0 state
 		ARG 1 level
 		ARG 2 pos
 	METHOD dropResources (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;)V
-		COMMENT Spawn this block's drops in the world when harvested by the given entity (optional) and tool.
-		COMMENT
-		COMMENT @see #popResource
 		ARG 0 state
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 blockEntity
-		ARG 4 harvester
-		ARG 5 tool
-	METHOD dropResources (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;)V
-		COMMENT Spawn this block's drops in the world.
-		COMMENT
-		COMMENT @see #popResource
-		ARG 0 state
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 blockEntity
-	METHOD dropResources (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/storage/loot/LootContext$Builder;)V
-		COMMENT Spawn this block's drops in the world based on the given loot context builder.
-		COMMENT
-		COMMENT @see #popResource
-		ARG 0 state
-		ARG 1 lootContextBuilder
-	METHOD fallOn (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;F)V
-		COMMENT Called when an entity falls onto this block. Responsible for applying fall damage to the entity.
-		ARG 1 level
-		ARG 2 state
-		ARG 3 pos
 		ARG 4 entity
-		ARG 5 fallDistance
+		ARG 5 stack
+	METHOD dropResources (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+		ARG 0 state
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 blockEntity
 	METHOD fillItemCategory (Lnet/minecraft/world/item/CreativeModeTab;Lnet/minecraft/core/NonNullList;)V
-		COMMENT Fill the given list with ItemStacks that should be shown in the creative menu for this block.
+		COMMENT returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
 		ARG 1 group
 		ARG 2 items
 	METHOD getCloneItemStack (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/item/ItemStack;
-		COMMENT Gets an ItemStack that represents this block. Used for picking blocks with middle click.
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
 	METHOD getDescriptionId ()Ljava/lang/String;
-		COMMENT Get the description ID for this block, i.e. the key in the language file.
+		COMMENT Returns the unlocalized name of the block with "tile." appended to the front.
 	METHOD getDrops (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;)Ljava/util/List;
-		COMMENT Get this block's drops.
 		ARG 0 state
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 blockEntity
 	METHOD getDrops (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;
-		COMMENT Get this block's drops when harvested by the given entity (optional) and tool.
 		ARG 0 state
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 blockEntity
-		ARG 4 harvester
-		ARG 5 tool
+		ARG 4 entity
+		ARG 5 stack
 	METHOD getExplosionResistance ()F
-		COMMENT Returns how much this block can resist explosions.
-		COMMENT
-		COMMENT @see Explosion#explode
-	METHOD getFriction ()F
-		COMMENT The friction of this block against entities moving on top of it. The lower the number the faster an entity's speed will decrease.
+		COMMENT Returns how much this block can resist explosions from the passed in entity.
 	METHOD getId (Lnet/minecraft/world/level/block/state/BlockState;)I
-		COMMENT Get the numerical ID for a BlockState or 0 if {@code state} is {@code null}.
-		COMMENT
-		COMMENT @see #stateById
 		ARG 0 state
-	METHOD getJumpFactor ()F
-		COMMENT The factor by which this block affects the jumping height of entities jumping on top of it. The higher the number the higher the jump will be.
-	METHOD getName ()Lnet/minecraft/network/chat/MutableComponent;
-		COMMENT Get the display name of this block as a Component.
-	METHOD getShapeForEachState (Ljava/util/function/Function;)Lcom/google/common/collect/ImmutableMap;
-		COMMENT Creates a Map that maps every possible BlockState of this block to its shape. The shape is determined by {@code shapeFunction}.
-		ARG 1 shapeFunction
 	METHOD getSoundType (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/SoundType;
-		COMMENT Get the SoundType for this block.
 		ARG 1 state
-	METHOD getSpeedFactor ()F
-		COMMENT The factor by which this block affects the speed of entities moving on top of it.
-	METHOD getStateDefinition ()Lnet/minecraft/world/level/block/state/StateDefinition;
-		COMMENT Get this block's StateDefinition.
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Get the BlockState that should be placed for this block when a {@link net.minecraft.world.item.BlockItem} places it.
 		ARG 1 context
-	METHOD handlePrecipitation (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/biome/Biome$Precipitation;)V
-		ARG 1 state
-		ARG 2 level
-		ARG 3 pos
-		ARG 4 precipitation
-	METHOD hasDynamicShape ()Z
-		COMMENT Whether or not this block has a dynamic shape. Dynamic in this case means changing without the BlockState changing. If this method returns true, various caching is disabled for this block.
-	METHOD isExceptionForConnection (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		COMMENT Checks whether glass panes and similar blocks do not attach to the given BlockState, even if it is has a {@linkplain BlockBehavior.BaseBlockState#isFaceSturdy sturdy side}.
-		ARG 0 state
 	METHOD isFaceFull (Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/core/Direction;)Z
-		COMMENT Checks whether the given {@code VoxelShape} fully covers the whole block in the given direction.
 		ARG 0 shape
 		ARG 1 side
 	METHOD isPossibleToRespawnInThis ()Z
-		COMMENT Whether a player can respawn inside this block.
+		COMMENT Return true if an entity can be spawned inside the block (used to get the player's bed spawn location)
 	METHOD isRandomlyTicking (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		COMMENT Whether this block requires random ticks, given the BlockState.
-		COMMENT
-		COMMENT @see BlockBehaviour#randomTick
+		COMMENT Returns whether or not this block is of a type that needs random ticking. Called for ref-counting purposes by ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
 		ARG 1 state
 	METHOD isShapeFullBlock (Lnet/minecraft/world/phys/shapes/VoxelShape;)Z
-		COMMENT Checks whether the given {@code VoxelShape} is a full block (1x1x1).
+		COMMENT Gets whether the provided {@link VoxelShape} is opaque
 		ARG 0 shape
 	METHOD playerDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/item/ItemStack;)V
-		COMMENT Called after a player has successfully harvested this block. The block has already been removed from the level at this point.
-		COMMENT This method is not called if the player does not use the correct tool for the block.
+		COMMENT Spawns the block's drops in the world. By the time this is called the Block has possibly been set to air via Block.removedByPlayer
 		ARG 1 level
 		ARG 2 player
 		ARG 3 pos
 		ARG 4 state
-		ARG 5 blockEntity
-		ARG 6 tool
+		ARG 5 te
+		ARG 6 stack
 	METHOD playerWillDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V
-		COMMENT Called before this Block is set destroyed by a player. This method will be called regardless of whether or not the player's tool can actually harvest this block.
+		COMMENT Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect this block
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
 		ARG 4 player
 	METHOD popExperience (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;I)V
-		COMMENT Spawns the given amount of experience into the Level as experience orb entities.
+		COMMENT Spawns the given amount of experience into the World as XP orb entities
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 amount
-	METHOD popResource (Lnet/minecraft/world/level/Level;Ljava/util/function/Supplier;Lnet/minecraft/world/item/ItemStack;)V
-		COMMENT Spawns the given ItemEntity into the Level, respecting the {@linkplain net.minecraft.world.level.GameRules#RULE_DOBLOCKDROPS doTileDrops gamerule}.
-		ARG 0 level
-		ARG 1 itemEntitySupplier
-		ARG 2 stack
 	METHOD popResource (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
-		COMMENT Spawns the given stack into the Level at the given position, respecting the {@linkplain GameRules#RULE_DOBLOCKDROPS doTileDrops gamerule}.
+		COMMENT Spawns the given stack into the World at the given position, respecting the doTileDrops gamerule
 		ARG 0 level
 		ARG 1 pos
 		ARG 2 stack
-	METHOD popResourceFromFace (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/world/item/ItemStack;)V
-		COMMENT Spawns the given stack into the Level setting the motion so that it appears to be dropped from the given face and position, respecting the {@linkplain net.minecraft.world.level.GameRules#RULE_DOBLOCKDROPS doTileDrops gamerule}.
-		ARG 0 level
-		ARG 1 pos
-		ARG 2 face
-		ARG 3 stack
 	METHOD propagatesSkylightDown (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 state
-		ARG 2 level
+		ARG 2 reader
 		ARG 3 pos
 	METHOD pushEntitiesUp (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Called to move entities out of the way for a block state change. All entities that intersect with either the old or the new state will be moved up to be on top of the block.
 		ARG 0 oldState
 		ARG 1 newState
 		ARG 2 level
 		ARG 3 pos
 	METHOD registerDefaultState (Lnet/minecraft/world/level/block/state/BlockState;)V
-		COMMENT Set this block's default BlockState. This method must be called from the block constructor.
 		ARG 1 state
 	METHOD setPlacedBy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
-		COMMENT Called after this block has been placed in the level by a {@link BlockItem}.
+		COMMENT Called by ItemBlocks after a block is set in the world, to allow post-place logic
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
 		ARG 4 placer
 		ARG 5 stack
-	METHOD shouldRenderFace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/BlockPos;)Z
-		COMMENT Checks whether the given face (given by {@code direction}) should be rendered. This is based on whether neighboring shapes occlude the given face.
-		ARG 0 state
-		ARG 1 level
-		ARG 2 checkPos
-			COMMENT The position of the block being checked
-		ARG 3 direction
-			COMMENT The face being checked
-		ARG 4 offsetPos
-			COMMENT The position in the direction of {@code direction}
-	METHOD spawnDestroyParticles (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-		COMMENT Called by {@link #playerWillDestroy} to spawn the particles for destroying this block.
-		ARG 1 level
-		ARG 2 player
-		ARG 3 pos
-		ARG 4 state
 	METHOD stateById (I)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Get the BlockState for a numerical ID or the default air state if the ID is invalid.
-		COMMENT
-		COMMENT @see #getId(BlockState)
 		ARG 0 id
-	METHOD stepOn (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/Entity;)V
-		COMMENT Called when this block is stepped on by an entity. Will not be called if the entity is {@linkplain net.minecraft.world.entity.Entity#isSteppingCarefully stepping carefully} (usually means sneaking).
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 state
-		ARG 4 entity
 	METHOD updateEntityAfterFallOn (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/entity/Entity;)V
-		COMMENT Called after the entity has fallen onto this block. Responsible for handling the motion of the entity to respond to the collision event.
-		COMMENT By default this method simply sets the vertical motion to 0, effectively stopping the fall. Other effects are possible, for example a bounce like done by slime blocks.
+		COMMENT Called when an Entity lands on this Block. This method *must* update motionY because the entity will not do that on its own
 		ARG 1 level
 		ARG 2 entity
 	METHOD updateFromNeighbourShapes (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
@@ -258,16 +151,13 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 1 level
 		ARG 2 pos
 	METHOD updateOrDestroy (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;I)V
-		COMMENT Replaces oldState with newState, possibly playing effects and creating drops. Flags are as in {@link Level#setBlock}.
-		COMMENT If newState is air, oldState will be destroyed, spawning its drops. If newState is not air, no drops will be spawned.
+		COMMENT Replaces oldState with newState, possibly playing effects and creating drops. Flags are as in {@link World#setBlockState}
 		ARG 0 oldState
 		ARG 1 newState
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 flags
 	METHOD updateOrDestroy (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;II)V
-		COMMENT Replaces oldState with newState, possibly playing effects and creating drops. Flags are as in {@link Level#setBlock}.
-		COMMENT If newState is air, oldState will be destroyed, spawning its drops. If newState is not air, no drops will be spawned.
 		ARG 0 oldState
 		ARG 1 newState
 		ARG 2 level
@@ -275,15 +165,7 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 4 flags
 		ARG 5 recursionLeft
 	METHOD wasExploded (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/Explosion;)V
-		COMMENT Called after this Block was destroyed by an Explosion.
+		COMMENT Called when this Block is destroyed by an Explosion
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 explosion
-	METHOD withPropertiesOf (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Get a BlockState for this block with all properties from the given BlockState. Only properties that also exist on this block will be copied.
-		ARG 1 state
-	CLASS BlockStatePairKey
-		METHOD <init> (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)V
-			ARG 1 first
-			ARG 2 second
-			ARG 3 direction

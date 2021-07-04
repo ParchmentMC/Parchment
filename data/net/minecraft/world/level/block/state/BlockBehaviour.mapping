@@ -3,8 +3,6 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		COMMENT Determines how much velocity is maintained while moving on top of this block
 	FIELD isRandomlyTicking Z
 		COMMENT Flags whether or not this block is of a type that needs random ticking. Ref-counted by ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
-	METHOD <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
-		ARG 1 properties
 	METHOD attack (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 state
 		ARG 2 level
@@ -48,8 +46,8 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 4 pos
 	METHOD getDirectSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
 		COMMENT @deprecated call via {@link IBlockState#getStrongPower(IBlockAccess,BlockPos,EnumFacing)} whenever possible. Implementing/overriding is fine.
-		ARG 1 state
-		ARG 2 level
+		ARG 1 blockState
+		ARG 2 blockAccess
 		ARG 3 pos
 		ARG 4 side
 	METHOD getDrops (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/storage/loot/LootContext$Builder;)Ljava/util/List;
@@ -97,13 +95,13 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 4 context
 	METHOD getSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
 		COMMENT @deprecated call via {@link IBlockState#getWeakPower(IBlockAccess,BlockPos,EnumFacing)} whenever possible. Implementing/overriding is fine.
-		ARG 1 state
-		ARG 2 level
+		ARG 1 blockState
+		ARG 2 blockAccess
 		ARG 3 pos
 		ARG 4 side
 	METHOD getVisualShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 state
-		ARG 2 level
+		ARG 2 reader
 		ARG 3 pos
 		ARG 4 context
 	METHOD hasAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;)Z
@@ -157,7 +155,7 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		COMMENT Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.
 		COMMENT @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
-		ARG 2 rotation
+		ARG 2 rot
 	METHOD skipRendering (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
 		ARG 1 state
 		ARG 2 adjacentBlockState
@@ -172,7 +170,7 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
-		ARG 4 random
+		ARG 4 rand
 	METHOD triggerEvent (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;II)Z
 		COMMENT Called on server when World#addBlockEvent is called. If server returns true, then also called on the client. On the Server, this may perform additional changes to the world, like pistons replacing the block with an extended base. On the client, the update may involve replacing tile entities or effects such as sounds or particles
 		COMMENT @deprecated call via {@link IBlockState#onBlockEventReceived(World,BlockPos,int,int)} whenever possible. Implementing/overriding is fine.
@@ -207,54 +205,6 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 6 hit
 	METHOD useShapeForLightOcclusion (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
-	CLASS Properties
-		FIELD drops Lnet/minecraft/resources/ResourceLocation;
-			COMMENT Sets loot table information
-		FIELD isViewBlocking Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;
-			COMMENT If it blocks vision on the client side.
-		METHOD copy (Lnet/minecraft/world/level/block/state/BlockBehaviour;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 0 block
-		METHOD dropsLike (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 block
-		METHOD emissiveRendering (Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 emmisiveRenderPredicate
-		METHOD friction (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 slipperiness
-		METHOD hasPostProcess (Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 postProcessingPredicate
-		METHOD isRedstoneConductor (Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 opaquePredicate
-		METHOD isSuffocating (Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 suffocatesPredicate
-		METHOD isValidSpawn (Lnet/minecraft/world/level/block/state/BlockBehaviour$StateArgumentPredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 spawnPredicate
-		METHOD isViewBlocking (Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			COMMENT If it blocks vision on the client side.
-			ARG 1 blocksVisionPredicate
-		METHOD jumpFactor (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 factor
-		METHOD lightLevel (Ljava/util/function/ToIntFunction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 stateLightFunction
-		METHOD of (Lnet/minecraft/world/level/material/Material;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 0 material
-		METHOD of (Lnet/minecraft/world/level/material/Material;Ljava/util/function/Function;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 0 material
-			ARG 1 stateColorFunction
-		METHOD of (Lnet/minecraft/world/level/material/Material;Lnet/minecraft/world/item/DyeColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 0 material
-			ARG 1 color
-		METHOD of (Lnet/minecraft/world/level/material/Material;Lnet/minecraft/world/level/material/MaterialColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 0 material
-			ARG 1 mapColor
-		METHOD sound (Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 soundType
-		METHOD speedFactor (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 factor
-		METHOD strength (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 hardnessAndResistance
-		METHOD strength (FF)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 1 hardness
-			ARG 2 resistance
 	CLASS BlockStateBase
 		METHOD attack (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)V
 			ARG 1 level
@@ -476,3 +426,51 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			METHOD isFaceSturdy (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/SupportType;)Z
 				ARG 1 direction
 				ARG 2 blockVoxelShape
+	CLASS Properties
+		FIELD drops Lnet/minecraft/resources/ResourceLocation;
+			COMMENT Sets loot table information
+		FIELD isViewBlocking Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;
+			COMMENT If it blocks vision on the client side.
+		METHOD copy (Lnet/minecraft/world/level/block/state/BlockBehaviour;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 0 block
+		METHOD dropsLike (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 block
+		METHOD emissiveRendering (Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 emmisiveRenderPredicate
+		METHOD friction (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 slipperiness
+		METHOD hasPostProcess (Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 postProcessingPredicate
+		METHOD isRedstoneConductor (Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 opaquePredicate
+		METHOD isSuffocating (Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 suffocatesPredicate
+		METHOD isValidSpawn (Lnet/minecraft/world/level/block/state/BlockBehaviour$StateArgumentPredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 spawnPredicate
+		METHOD isViewBlocking (Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			COMMENT If it blocks vision on the client side.
+			ARG 1 blocksVisionPredicate
+		METHOD jumpFactor (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 factor
+		METHOD lightLevel (Ljava/util/function/ToIntFunction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 stateLightFunction
+		METHOD of (Lnet/minecraft/world/level/material/Material;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 0 material
+		METHOD of (Lnet/minecraft/world/level/material/Material;Ljava/util/function/Function;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 0 material
+			ARG 1 stateColorFunction
+		METHOD of (Lnet/minecraft/world/level/material/Material;Lnet/minecraft/world/item/DyeColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 0 material
+			ARG 1 color
+		METHOD of (Lnet/minecraft/world/level/material/Material;Lnet/minecraft/world/level/material/MaterialColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 0 material
+			ARG 1 mapColor
+		METHOD sound (Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 soundType
+		METHOD speedFactor (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 factor
+		METHOD strength (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 hardnessAndResistance
+		METHOD strength (FF)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 hardness
+			ARG 2 resistance
