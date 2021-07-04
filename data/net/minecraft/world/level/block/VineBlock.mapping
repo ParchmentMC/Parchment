@@ -8,19 +8,21 @@ CLASS net/minecraft/world/level/block/VineBlock
 		ARG 1 blockReader
 		ARG 2 pos
 	METHOD canSupportAtFace (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
-		ARG 1 blockReader
+		ARG 1 level
 		ARG 2 pos
 		ARG 3 direction
 	METHOD canSurvive (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
+	METHOD copyRandomFaces (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Ljava/util/Random;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 3 random
 	METHOD countFaces (Lnet/minecraft/world/level/block/state/BlockState;)I
 		ARG 1 state
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
 	METHOD getPropertyForFace (Lnet/minecraft/core/Direction;)Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
-		ARG 0 side
+		ARG 0 face
 	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 state
 		ARG 2 level
@@ -37,25 +39,17 @@ CLASS net/minecraft/world/level/block/VineBlock
 		ARG 1 level
 		ARG 2 neighborPos
 	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed blockstate.
-		COMMENT @deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 		ARG 2 mirror
 	METHOD randomTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
-		COMMENT Performs a random tick on a block.
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 random
 	METHOD rotate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.
-		COMMENT @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 		ARG 2 rot
 	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-		COMMENT For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
-		COMMENT Note that this method should ideally consider only the specific face passed in.
 		ARG 1 state
 		ARG 2 facing
 		ARG 3 facingState

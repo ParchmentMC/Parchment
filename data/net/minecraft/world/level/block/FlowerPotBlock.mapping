@@ -1,11 +1,12 @@
 CLASS net/minecraft/world/level/block/FlowerPotBlock
+	METHOD <init> (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+		ARG 1 content
+		ARG 2 properties
 	METHOD getCloneItemStack (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
 	METHOD getRenderShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/RenderShape;
-		COMMENT The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids, INVISIBLE to skip all rendering
-		COMMENT @deprecated call via {@link IBlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 state
@@ -18,9 +19,6 @@ CLASS net/minecraft/world/level/block/FlowerPotBlock
 		ARG 3 pos
 		ARG 4 type
 	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-		COMMENT For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
-		COMMENT Note that this method should ideally consider only the specific face passed in.
 		ARG 1 state
 		ARG 2 facing
 		ARG 3 facingState
