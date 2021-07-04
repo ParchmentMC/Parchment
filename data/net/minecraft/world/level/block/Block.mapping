@@ -6,6 +6,7 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 3 pos
 		ARG 4 rand
 	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/BlockGetter;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
+		COMMENT Called by {@link BlockItem#appendHoverText}.
 		ARG 1 stack
 		ARG 2 level
 		ARG 3 tooltip
@@ -30,17 +31,23 @@ CLASS net/minecraft/world/level/block/Block
 		COMMENT Checks whether the block at the given position has a rigid top side.
 		ARG 0 level
 		ARG 1 pos
+	METHOD copyProperty (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/properties/Property;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Copy the given property from {@code sourceState} to {@code targetState} and return the resulting BlockState.
+		ARG 0 sourceState
+		ARG 1 targetState
+		ARG 2 property
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
+		COMMENT Called by the Block constructor to register this block's state properties to the StateDefinition builder.
 		ARG 1 builder
 	METHOD defaultBlockState ()Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Gets the default state for this block
+		COMMENT Gets the default BlockState for this block.
 	METHOD destroy (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		COMMENT Called after a player successfully destroyed this Block, the block is no longer present in the world.
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
 	METHOD dropFromExplosion (Lnet/minecraft/world/level/Explosion;)Z
-		COMMENT Return whether this block can drop from an explosion.
+		COMMENT Whether this block should spawn its drops when destroyed by an explosion.
 		ARG 1 explosion
 	METHOD dropResources (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 		COMMENT Spawn this block's drops in the world. This version of the method can only be used for blocks without a BlockEntity.
@@ -109,18 +116,32 @@ CLASS net/minecraft/world/level/block/Block
 		COMMENT Returns how much this block can resist explosions.
 		COMMENT
 		COMMENT @see Explosion#explode
+	METHOD getFriction ()F
+		COMMENT The friction of this block against entities moving on top of it. The lower the number the faster an entity's speed will decrease.
 	METHOD getId (Lnet/minecraft/world/level/block/state/BlockState;)I
 		COMMENT Get the numerical ID for a BlockState or 0 if {@code state} is {@code null}.
 		COMMENT
 		COMMENT @see #stateById
 		ARG 0 state
+	METHOD getJumpFactor ()F
+		COMMENT The factor by which this block affects the jumping height of entities jumping on top of it. The higher the number the higher the jump will be.
 	METHOD getName ()Lnet/minecraft/network/chat/MutableComponent;
 		COMMENT Get the display name of this block as a Component.
+	METHOD getShapeForEachState (Ljava/util/function/Function;)Lcom/google/common/collect/ImmutableMap;
+		COMMENT Creates a Map that maps every possible BlockState of this block to its shape. The shape is determined by {@code shapeFunction}.
+		ARG 1 shapeFunction
 	METHOD getSoundType (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/SoundType;
+		COMMENT Get the SoundType for this block.
 		ARG 1 state
+	METHOD getSpeedFactor ()F
+		COMMENT The factor by which this block affects the speed of entities moving on top of it.
+	METHOD getStateDefinition ()Lnet/minecraft/world/level/block/state/StateDefinition;
+		COMMENT Get this block's StateDefinition.
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
 		COMMENT Get the BlockState that should be placed for this block when a {@link BlockItem} places it.
 		ARG 1 context
+	METHOD hasDynamicShape ()Z
+		COMMENT Whether or not this block has a dynamic shape. Dynamic in this case means changing without the BlockState changing. If this method returns true, various caching is disabled for this block.
 	METHOD isExceptionForConnection (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		COMMENT Checks whether glass panes and similar blocks do not attach to the given BlockState, even if it is has a {@linkplain BlockBehavior.BaseBlockState#isFaceSturdy sturdy side}.
 		ARG 0 state
@@ -148,7 +169,7 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 5 blockEntity
 		ARG 6 tool
 	METHOD playerWillDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V
-		COMMENT Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect this block
+		COMMENT Called before this Block is set destroyed by a player. This method will be called regardless of whether or not the player's tool can actually harvest this block.
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
@@ -185,6 +206,7 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 2 level
 		ARG 3 pos
 	METHOD registerDefaultState (Lnet/minecraft/world/level/block/state/BlockState;)V
+		COMMENT Set this block's default BlockState. This method must be called from the block constructor.
 		ARG 1 state
 	METHOD setPlacedBy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Called after this block has been placed in the level by a {@link BlockItem}.
@@ -203,6 +225,12 @@ CLASS net/minecraft/world/level/block/Block
 			COMMENT The face being checked
 		ARG 4 offsetPos
 			COMMENT The position in the direction of {@code direction}
+	METHOD spawnDestroyParticles (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		COMMENT Called by {@link #playerWillDestroy} to spawn the particles for destroying this block.
+		ARG 1 level
+		ARG 2 player
+		ARG 3 pos
+		ARG 4 state
 	METHOD stateById (I)Lnet/minecraft/world/level/block/state/BlockState;
 		COMMENT Get the BlockState for a numerical ID or the default air state if the ID is invalid.
 		COMMENT
@@ -246,3 +274,11 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 explosion
+	METHOD withPropertiesOf (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Get a BlockState for this block with all properties from the given BlockState. Only properties that also exist on this block will be copied.
+		ARG 1 state
+	CLASS BlockStatePairKey
+		METHOD <init> (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)V
+			ARG 1 first
+			ARG 2 second
+			ARG 3 direction
