@@ -1,6 +1,5 @@
 CLASS net/minecraft/world/level/block/entity/BlockEntity
 	FIELD level Lnet/minecraft/world/level/Level;
-		COMMENT the instance of the world the tile entity is in.
 	METHOD <init> (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 type
 		ARG 2 worldPosition
@@ -9,10 +8,8 @@ CLASS net/minecraft/world/level/block/entity/BlockEntity
 		COMMENT Marks this {@code BlockEntity} as valid again (no longer removed from the level).
 	METHOD fillCrashReportCategory (Lnet/minecraft/CrashReportCategory;)V
 		ARG 1 reportCategory
-	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
-	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
 	METHOD hasLevel ()Z
-		COMMENT Returns true if the worldObj isn't null.
+		COMMENT @return whether this BlockEntity's level has been set
 	METHOD lambda$loadStatic$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Ljava/lang/String;Lnet/minecraft/world/level/block/entity/BlockEntityType;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 3 type
 	METHOD lambda$loadStatic$1 (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/world/level/block/entity/BlockEntity;
@@ -23,18 +20,18 @@ CLASS net/minecraft/world/level/block/entity/BlockEntity
 		ARG 0 pos
 		ARG 1 state
 		ARG 2 tag
-	METHOD onlyOpCanSetNbt ()Z
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 tag
 	METHOD saveMetadata (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 tag
 	METHOD setBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 blockState
-	METHOD setChanged ()V
 	METHOD setChanged (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 0 level
 		ARG 1 pos
 		ARG 2 state
+	METHOD setLevel (Lnet/minecraft/world/level/Level;)V
+		ARG 1 level
 	METHOD setRemoved ()V
 		COMMENT Marks this {@code BlockEntity} as no longer valid (removed from the level).
 	METHOD triggerEvent (II)Z

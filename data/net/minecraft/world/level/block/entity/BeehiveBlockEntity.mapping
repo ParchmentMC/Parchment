@@ -1,5 +1,21 @@
 CLASS net/minecraft/world/level/block/entity/BeehiveBlockEntity
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 worldPosition
+		ARG 2 blockState
+	METHOD emptyAllLivingFromHive (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BeehiveBlockEntity$BeeReleaseStatus;)V
+		ARG 1 player
+		ARG 2 state
+		ARG 3 releaseStatus
+	METHOD getHoneyLevel (Lnet/minecraft/world/level/block/state/BlockState;)I
+		ARG 0 state
+	METHOD releaseAllOccupants (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BeehiveBlockEntity$BeeReleaseStatus;)Ljava/util/List;
+		ARG 1 state
+		ARG 2 releaseStatus
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
 	METHOD setChanged ()V
-		COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
+	CLASS BeeData
+		METHOD <init> (Lnet/minecraft/nbt/CompoundTag;II)V
+			ARG 1 entityData
+			ARG 2 ticksInHive
+			ARG 3 minOccupationTicks
