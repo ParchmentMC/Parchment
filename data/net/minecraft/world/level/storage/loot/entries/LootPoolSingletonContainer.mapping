@@ -1,10 +1,21 @@
-CLASS net/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer
+CLASS net/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer net/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer
+	COMMENT A LootPoolEntryContainer that expands into a single LootPoolEntry.
 	FIELD functions [Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
 		COMMENT Functions that are ran on the entry.
 	FIELD quality I
 		COMMENT The quality of the entry.
 	FIELD weight I
 		COMMENT The weight of the entry.
+	METHOD <init> (II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
+		ARG 1 weight
+		ARG 2 quality
+		ARG 3 conditions
+		ARG 4 functions
+	METHOD createItemStack (Ljava/util/function/Consumer;Lnet/minecraft/world/level/storage/loot/LootContext;)V
+		COMMENT Generate the loot stacks of this entry.
+		COMMENT Contrary to the method name this method does not always generate one stack, it can also generate zero or multiple stacks.
+		ARG 1 stackConsumer
+		ARG 2 lootContext
 	METHOD simpleBuilder (Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$EntryConstructor;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$Builder;
 		ARG 0 entryBuilder
 	CLASS Builder

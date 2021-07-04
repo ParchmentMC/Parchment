@@ -1,3 +1,10 @@
-CLASS net/minecraft/world/level/storage/loot/entries/AlternativesEntry
+CLASS net/minecraft/world/level/storage/loot/entries/AlternativesEntry net/minecraft/world/level/storage/loot/entries/AlternativesEntry
+	COMMENT A composite loot pool entry container that expands all its children in order until one of them succeeds.
+	COMMENT This container succeeds if one of its children succeeds.
+	METHOD alternatives ([Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/entries/AlternativesEntry$Builder;
+		ARG 0 children
 	METHOD compose ([Lnet/minecraft/world/level/storage/loot/entries/ComposableEntryContainer;)Lnet/minecraft/world/level/storage/loot/entries/ComposableEntryContainer;
 		ARG 1 entries
+	CLASS Builder
+		METHOD <init> ([Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)V
+			ARG 1 children

@@ -1,6 +1,44 @@
-CLASS net/minecraft/world/level/storage/loot/GsonAdapterFactory
+CLASS net/minecraft/world/level/storage/loot/GsonAdapterFactory net/minecraft/world/level/storage/loot/GsonAdapterFactory
+	COMMENT Creates Gson serializers based on {@link SerializerType} and {@link Serializer}.
+	COMMENT The resulting serializers handle JSON in the following structure:
+	COMMENT <code>
+	COMMENT {
+	COMMENT   "type": "minecraft:example",
+	COMMENT   "otherProperties": "go here"
+	COMMENT }
+	COMMENT </code>
+	COMMENT
+	COMMENT The {@code "type"} property is read (with a fallback to {@code defaultType}) and then looked up in the provided registry to produce the {@code SerializerType}. The type's {@code Serializer} is then used to deserialize the rest of the JSON object.
+	COMMENT
+	COMMENT If the serializer receives a JSON element that is not an object, it will try to use the {@code InlineSerializer} if provided.
 	METHOD builder (Lnet/minecraft/core/Registry;Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Function;)Lnet/minecraft/world/level/storage/loot/GsonAdapterFactory$Builder;
 		ARG 0 registry
 		ARG 1 id
 		ARG 2 name
 		ARG 3 typeFunction
+	CLASS Builder
+		METHOD <init> (Lnet/minecraft/core/Registry;Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Function;)V
+			ARG 1 registry
+			ARG 2 elementName
+			ARG 3 typeKey
+			ARG 4 typeGetter
+		METHOD withDefaultType (Lnet/minecraft/world/level/storage/loot/SerializerType;)Lnet/minecraft/world/level/storage/loot/GsonAdapterFactory$Builder;
+			ARG 1 defaultType
+		METHOD withInlineSerializer (Lnet/minecraft/world/level/storage/loot/SerializerType;Lnet/minecraft/world/level/storage/loot/GsonAdapterFactory$InlineSerializer;)Lnet/minecraft/world/level/storage/loot/GsonAdapterFactory$Builder;
+			ARG 1 inlineType
+			ARG 2 inlineSerializer
+	CLASS JsonAdapter
+		METHOD <init> (Lnet/minecraft/core/Registry;Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Function;Lnet/minecraft/world/level/storage/loot/SerializerType;Lcom/mojang/datafixers/util/Pair;)V
+			ARG 1 registry
+			ARG 2 elementName
+			ARG 3 typeKey
+			ARG 4 typeGetter
+			ARG 5 defaultType
+			ARG 6 inlineType
+	CLASS InlineSerializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+			ARG 1 json
+			ARG 2 context
+		METHOD serialize (Ljava/lang/Object;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
+			ARG 1 value
+			ARG 2 context
