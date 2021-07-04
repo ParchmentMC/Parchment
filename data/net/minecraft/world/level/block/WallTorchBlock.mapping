@@ -1,6 +1,5 @@
 CLASS net/minecraft/world/level/block/WallTorchBlock
 	METHOD animateTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
-		COMMENT Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless of whether the block can receive random update ticks
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
@@ -12,7 +11,6 @@ CLASS net/minecraft/world/level/block/WallTorchBlock
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
 	METHOD getDescriptionId ()Ljava/lang/String;
-		COMMENT Returns the unlocalized name of the block with "tile." appended to the front.
 	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 0 state
 	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
@@ -23,19 +21,12 @@ CLASS net/minecraft/world/level/block/WallTorchBlock
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 context
 	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed blockstate.
-		COMMENT @deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 		ARG 2 mirror
 	METHOD rotate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.
-		COMMENT @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 		ARG 2 rotation
 	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-		COMMENT For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
-		COMMENT Note that this method should ideally consider only the specific face passed in.
 		ARG 1 state
 		ARG 2 facing
 		ARG 3 facingState
