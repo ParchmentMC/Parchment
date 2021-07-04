@@ -1,4 +1,9 @@
 CLASS net/minecraft/advancements/AdvancementRewards
+	METHOD <init> (I[Lnet/minecraft/resources/ResourceLocation;[Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/commands/CommandFunction$CacheableFunction;)V
+		ARG 1 experience
+		ARG 2 loot
+		ARG 3 recipes
+		ARG 4 function
 	METHOD deserialize (Lcom/google/gson/JsonObject;)Lnet/minecraft/advancements/AdvancementRewards;
 		ARG 0 json
 	METHOD grant (Lnet/minecraft/server/level/ServerPlayer;)V
@@ -7,12 +12,20 @@ CLASS net/minecraft/advancements/AdvancementRewards
 		METHOD addExperience (I)Lnet/minecraft/advancements/AdvancementRewards$Builder;
 			COMMENT Adds the given amount of experience. (Not a direct setter)
 			ARG 1 experience
+		METHOD addLootTable (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;
+			ARG 1 loot
 		METHOD addRecipe (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;
 			COMMENT Adds the given recipe to the rewards.
 			ARG 1 recipe
 		METHOD experience (I)Lnet/minecraft/advancements/AdvancementRewards$Builder;
 			COMMENT Creates a new builder with the given amount of experience as a reward
 			ARG 0 experience
+		METHOD function (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;
+			ARG 0 function
+		METHOD loot (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;
+			ARG 0 loot
 		METHOD recipe (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;
 			COMMENT Creates a new builder with the given recipe as a reward.
 			ARG 0 recipe
+		METHOD runs (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementRewards$Builder;
+			ARG 1 function

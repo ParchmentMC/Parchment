@@ -1,14 +1,37 @@
 CLASS net/minecraft/advancements/critereon/WrappedMinMaxBounds
+	METHOD <init> (Ljava/lang/Float;Ljava/lang/Float;)V
+		ARG 1 min
+		ARG 2 max
+	METHOD atLeast (F)Lnet/minecraft/advancements/critereon/WrappedMinMaxBounds;
+		ARG 0 min
+	METHOD atMost (F)Lnet/minecraft/advancements/critereon/WrappedMinMaxBounds;
+		ARG 0 max
+	METHOD between (FF)Lnet/minecraft/advancements/critereon/WrappedMinMaxBounds;
+		ARG 0 min
+		ARG 1 max
+	METHOD exactly (F)Lnet/minecraft/advancements/critereon/WrappedMinMaxBounds;
+		ARG 0 value
+	METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/WrappedMinMaxBounds;
+		ARG 0 json
+	METHOD fromReader (Lcom/mojang/brigadier/StringReader;Z)Lnet/minecraft/advancements/critereon/WrappedMinMaxBounds;
+		ARG 0 reader
+		ARG 1 isFloatingPoint
 	METHOD fromReader (Lcom/mojang/brigadier/StringReader;ZLjava/util/function/Function;)Lnet/minecraft/advancements/critereon/WrappedMinMaxBounds;
 		ARG 0 reader
 		ARG 1 isFloatingPoint
-		ARG 2 valueFunction
+		ARG 2 valueFactory
 	METHOD isAllowedNumber (Lcom/mojang/brigadier/StringReader;Z)Z
 		ARG 0 reader
 		ARG 1 isFloatingPoint
+	METHOD lambda$fromReader$0 (Ljava/lang/Float;)Ljava/lang/Float;
+		ARG 0 value
+	METHOD matches (F)Z
+		ARG 1 value
+	METHOD matchesSqr (D)Z
+		ARG 1 value
 	METHOD optionallyFormat (Ljava/lang/Float;Ljava/util/function/Function;)Ljava/lang/Float;
 		ARG 0 value
-		ARG 1 valueFunction
+		ARG 1 valueFactory
 	METHOD readNumber (Lcom/mojang/brigadier/StringReader;Z)Ljava/lang/Float;
 		ARG 0 reader
 		ARG 1 isFloatingPoint

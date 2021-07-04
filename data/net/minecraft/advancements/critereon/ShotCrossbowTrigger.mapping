@@ -3,13 +3,20 @@ CLASS net/minecraft/advancements/critereon/ShotCrossbowTrigger
 		ARG 1 json
 		ARG 2 entityPredicate
 		ARG 3 conditionsParser
+	METHOD lambda$trigger$0 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/advancements/critereon/ShotCrossbowTrigger$TriggerInstance;)Z
+		ARG 1 instance
 	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 shooter
 		ARG 2 stack
 	CLASS TriggerInstance
+		METHOD <init> (Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/ItemPredicate;)V
+			ARG 1 player
+			ARG 2 item
 		METHOD matches (Lnet/minecraft/world/item/ItemStack;)Z
-			ARG 1 stack
+			ARG 1 item
 		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
 			ARG 1 conditions
+		METHOD shotCrossbow (Lnet/minecraft/advancements/critereon/ItemPredicate;)Lnet/minecraft/advancements/critereon/ShotCrossbowTrigger$TriggerInstance;
+			ARG 0 item
 		METHOD shotCrossbow (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/advancements/critereon/ShotCrossbowTrigger$TriggerInstance;
-			ARG 0 itemProvider
+			ARG 0 item
