@@ -16,6 +16,20 @@ CLASS net/minecraft/BlockUtil
 	METHOD getMaxRectangleLocation ([I)Lcom/mojang/datafixers/util/Pair;
 		COMMENT Finds the largest rectangle within the array of heights
 		ARG 0 heights
+	METHOD getTopConnectedBlock (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/Block;)Ljava/util/Optional;
+		ARG 0 getter
+		ARG 1 pos
+		ARG 2 bottomBlock
+		ARG 3 direction
+		ARG 4 topBlock
+	CLASS IntBounds
+		FIELD max I
+			COMMENT The Maximum IntBound value
+		FIELD min I
+			COMMENT The Minimum IntBound value
+		METHOD <init> (II)V
+			ARG 1 min
+			ARG 2 max
 	CLASS FoundRectangle
 		FIELD axis1Size I
 			COMMENT Distance between minimum and maximum values on the first axis argument
@@ -23,8 +37,7 @@ CLASS net/minecraft/BlockUtil
 			COMMENT Distance between minimum and maximum values on the second axis argument
 		FIELD minCorner Lnet/minecraft/core/BlockPos;
 			COMMENT Starting position of the rectangle represented by this result
-	CLASS IntBounds
-		FIELD max I
-			COMMENT The Maximum IntBound value
-		FIELD min I
-			COMMENT The Minimum IntBound value
+		METHOD <init> (Lnet/minecraft/core/BlockPos;II)V
+			ARG 1 minCorner
+			ARG 2 axis1Size
+			ARG 3 axis2Size
