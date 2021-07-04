@@ -30,12 +30,18 @@ CLASS net/minecraft/Util
 	METHOD findPreviousInIterable (Ljava/lang/Iterable;Ljava/lang/Object;)Ljava/lang/Object;
 		ARG 0 iterable
 		ARG 1 current
+	METHOD fixedSize (Ljava/util/List;I)Lcom/mojang/serialization/DataResult;
+		ARG 0 list
+		ARG 1 expectedSize
 	METHOD fixedSize (Ljava/util/stream/IntStream;I)Lcom/mojang/serialization/DataResult;
 		ARG 0 stream
 		ARG 1 size
 	METHOD getPropertyName (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Object;)Ljava/lang/String;
 		ARG 0 property
 		ARG 1 value
+	METHOD getRandom (Ljava/util/List;Ljava/util/Random;)Ljava/lang/Object;
+		ARG 0 list
+		ARG 1 random
 	METHOD getRandom ([ILjava/util/Random;)I
 		ARG 0 selections
 		ARG 1 rand
@@ -46,8 +52,35 @@ CLASS net/minecraft/Util
 		ARG 0 opt
 		ARG 1 consumer
 		ARG 2 orElse
+	METHOD lambda$getVmArguments$5 (Ljava/lang/String;)Z
+		ARG 0 arguments
+	METHOD lambda$makeExecutor$2 (Ljava/lang/String;Ljava/util/concurrent/ForkJoinPool;)Ljava/util/concurrent/ForkJoinWorkerThread;
+		ARG 1 forkJoin
+	METHOD lambda$makeIoExecutor$3 (Ljava/lang/Runnable;)Ljava/lang/Thread;
+		ARG 0 executor
+	METHOD lambda$prefix$13 (Ljava/util/function/Consumer;Ljava/lang/String;Ljava/lang/String;)V
+		ARG 2 text
+	METHOD lambda$sanitizeName$14 (Lnet/minecraft/CharPredicate;I)Ljava/lang/String;
+		ARG 1 charIndex
+	METHOD lambda$sequence$7 (Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/CompletableFuture;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 future
+		ARG 1 future1
+	METHOD lambda$sequence$9 (Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/CompletableFuture;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 future2
+		ARG 1 future3
+	METHOD lambda$sequenceFailFast$10 (Ljava/util/concurrent/CompletableFuture;Ljava/util/List;ILjava/lang/Object;Ljava/lang/Throwable;)V
+		ARG 3 completable
+		ARG 4 exception
+	METHOD lambda$sequenceFailFast$11 (Ljava/util/List;[Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/CompletableFuture;)V
+		ARG 3 future
+	METHOD lambda$sequenceFailFast$12 (Ljava/util/List;Ljava/lang/Void;)Ljava/util/List;
+		ARG 1 _undefined
+	METHOD lambda$static$0 (Ljava/nio/file/spi/FileSystemProvider;)Z
+		ARG 0 systemProvider
 	METHOD lastOf (Ljava/util/List;)Ljava/lang/Object;
 		ARG 0 list
+	METHOD logAndPauseIfInIde (Ljava/lang/String;)V
+		ARG 0 error
 	METHOD make (Ljava/lang/Object;Ljava/util/function/Consumer;)Ljava/lang/Object;
 		ARG 0 object
 		ARG 1 consumer
@@ -58,9 +91,17 @@ CLASS net/minecraft/Util
 		ARG 1 id
 	METHOD makeExecutor (Ljava/lang/String;)Ljava/util/concurrent/ExecutorService;
 		ARG 0 serviceName
+	METHOD memoize (Ljava/util/function/BiFunction;)Ljava/util/function/BiFunction;
+		ARG 0 memoBiFunction
+	METHOD memoize (Ljava/util/function/Function;)Ljava/util/function/Function;
+		ARG 0 memoFunction
 	METHOD name (Ljava/lang/Runnable;Ljava/util/function/Supplier;)Ljava/lang/Runnable;
 		ARG 0 runnable
 		ARG 1 supplier
+	METHOD offsetByCodepoints (Ljava/lang/String;II)I
+		ARG 0 text
+		ARG 1 cursorPos
+		ARG 2 direction
 	METHOD onThreadException (Ljava/lang/Thread;Ljava/lang/Throwable;)V
 		ARG 0 thread
 		ARG 1 throwable
@@ -87,12 +128,20 @@ CLASS net/minecraft/Util
 	METHOD sequence (Ljava/util/List;)Ljava/util/concurrent/CompletableFuture;
 		COMMENT Takes a list of futures and returns a future of list that completes when all of them succeed or any of them error,
 		ARG 0 futures
+	METHOD sequenceFailFast (Ljava/util/List;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 completableFutures
 	METHOD shutdownExecutor (Ljava/util/concurrent/ExecutorService;)V
 		ARG 0 service
 	METHOD throwAsRuntime (Ljava/lang/Throwable;)V
 		ARG 0 throwable
 	METHOD toStream (Ljava/util/Optional;)Ljava/util/stream/Stream;
 		ARG 0 optional
+	METHOD wrapThreadWithTaskName (Ljava/lang/String;Ljava/lang/Runnable;)Ljava/lang/Runnable;
+		ARG 0 name
+		ARG 1 task
+	CLASS 1
+		METHOD onTermination (Ljava/lang/Throwable;)V
+			ARG 1 throwOnTermination
 	CLASS OS
 		METHOD getOpenUrlArguments (Ljava/net/URL;)[Ljava/lang/String;
 			ARG 1 url
