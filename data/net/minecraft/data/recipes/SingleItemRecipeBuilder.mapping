@@ -1,4 +1,9 @@
 CLASS net/minecraft/data/recipes/SingleItemRecipeBuilder
+	METHOD <init> (Lnet/minecraft/world/item/crafting/RecipeSerializer;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/level/ItemLike;I)V
+		ARG 1 type
+		ARG 2 ingredient
+		ARG 3 result
+		ARG 4 count
 	METHOD ensureValid (Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 id
 	METHOD stonecutting (Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/data/recipes/SingleItemRecipeBuilder;
@@ -9,6 +14,15 @@ CLASS net/minecraft/data/recipes/SingleItemRecipeBuilder
 		ARG 1 result
 		ARG 2 count
 	CLASS Result
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/crafting/RecipeSerializer;Ljava/lang/String;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/Item;ILnet/minecraft/advancements/Advancement$Builder;Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 1 id
+			ARG 2 type
+			ARG 3 group
+			ARG 4 ingredient
+			ARG 5 result
+			ARG 6 count
+			ARG 7 advancement
+			ARG 8 advancementId
 		METHOD getAdvancementId ()Lnet/minecraft/resources/ResourceLocation;
 			COMMENT Gets the ID for the advancement associated with this recipe. Should not be null if {@link #getAdvancementJson} is non-null.
 		METHOD getId ()Lnet/minecraft/resources/ResourceLocation;
