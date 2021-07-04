@@ -11,10 +11,10 @@ CLASS net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
 	METHOD buildSurfaceAndBedrock (Lnet/minecraft/server/level/WorldGenRegion;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 		COMMENT Generate the SURFACE part of a chunk
 	METHOD createBaseStoneSource (ILnet/minecraft/world/level/ChunkPos;Ljava/util/function/Consumer;)Ljava/util/function/DoubleFunction;
-		ARG 2 pos
+		ARG 2 chunkPos
 	METHOD createCaveNoiseModifier (ILnet/minecraft/world/level/ChunkPos;Ljava/util/function/Consumer;)Ljava/util/function/DoubleFunction;
 		ARG 1 cellNoiseMinY
-		ARG 2 pos
+		ARG 2 chunkPos
 	METHOD doFill (Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;II)Lnet/minecraft/world/level/chunk/ChunkAccess;
 		ARG 1 structureManager
 		ARG 2 chunk
@@ -26,14 +26,14 @@ CLASS net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
 		ARG 3 settingsKey
 	CLASS OreVeinNoiseSource
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseBasedChunkGenerator;Lnet/minecraft/world/level/ChunkPos;IJ)V
-			ARG 2 pos
+			ARG 2 chunkPos
 			ARG 3 cellNoiseMinY
 			ARG 4 seed
 		METHOD prepare (D)V
 			ARG 1 factorZ
 	CLASS NoodleCaveNoiseModifier
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseBasedChunkGenerator;Lnet/minecraft/world/level/ChunkPos;I)V
-			ARG 2 pos
+			ARG 2 chunkPos
 			ARG 3 cellNoiseMinY
 		METHOD prepare (D)Lnet/minecraft/world/level/levelgen/NoiseModifier;
 			ARG 1 factorZ
