@@ -1,38 +1,58 @@
 CLASS net/minecraft/world/level/block/entity/ShulkerBoxBlockEntity
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 worldPosition
+		ARG 2 blockState
+	METHOD <init> (Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 color
+		ARG 2 worldPosition
+		ARG 3 blockState
 	METHOD canPlaceItemThroughFace (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Z
-		COMMENT Returns true if automation can insert the given item in the given slot from the given side.
 		ARG 1 index
 		ARG 2 itemStack
 		ARG 3 direction
 	METHOD canTakeItemThroughFace (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Z
-		COMMENT Returns true if automation can extract the given item in the given slot from the given side.
 		ARG 1 index
 		ARG 2 stack
 		ARG 3 direction
 	METHOD createMenu (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
 		ARG 1 id
 		ARG 2 player
+	METHOD doNeighborUpdates (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
 	METHOD getBoundingBox (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/phys/AABB;
 		ARG 1 state
 	METHOD getContainerSize ()I
-		COMMENT Returns the number of slots in the inventory.
 	METHOD getProgress (F)F
-		ARG 1 progress
+		ARG 1 partialTicks
 	METHOD getSlotsForFace (Lnet/minecraft/core/Direction;)[I
 		ARG 1 side
 	METHOD loadFromTag (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 compound
+		ARG 1 tag
+	METHOD moveCollidedEntities (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
 	METHOD saveToTag (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
-		ARG 1 compound
+		ARG 1 tag
 	METHOD setItems (Lnet/minecraft/core/NonNullList;)V
 		ARG 1 items
 	METHOD startOpen (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
 	METHOD stopOpen (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
+	METHOD tick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/ShulkerBoxBlockEntity;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 blockEntity
 	METHOD triggerEvent (II)Z
-		COMMENT See {@link Block#eventReceived} for more information. This must return true serverside before it is called clientside.
 		ARG 1 id
 		ARG 2 type
+	METHOD updateAnimation (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state

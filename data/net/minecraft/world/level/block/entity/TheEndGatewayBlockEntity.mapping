@@ -1,4 +1,20 @@
 CLASS net/minecraft/world/level/block/entity/TheEndGatewayBlockEntity
+	METHOD beamAnimationTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/TheEndGatewayBlockEntity;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 blockEntity
+	METHOD canEntityTeleport (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
+	METHOD findExitPortalXZPosTentative (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 level
+		ARG 1 pos
+	METHOD findExitPosition (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
+		ARG 0 level
+		ARG 1 pos
+	METHOD findOrCreateValidTeleportPos (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
+		ARG 0 level
+		ARG 1 pos
 	METHOD findTallestBlock (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;IZ)Lnet/minecraft/core/BlockPos;
 		ARG 0 level
 		ARG 1 pos
@@ -8,7 +24,6 @@ CLASS net/minecraft/world/level/block/entity/TheEndGatewayBlockEntity
 		ARG 0 chunk
 	METHOD getChunk (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/level/chunk/LevelChunk;
 		ARG 0 level
-		ARG 1 vec3
 	METHOD getCooldownPercent (F)F
 		ARG 1 partialTicks
 	METHOD getSpawnPercent (F)F
@@ -17,13 +32,33 @@ CLASS net/minecraft/world/level/block/entity/TheEndGatewayBlockEntity
 		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
 	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
+	METHOD isChunkEmpty (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;)Z
+		ARG 0 level
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
 	METHOD setExitPosition (Lnet/minecraft/core/BlockPos;Z)V
 		ARG 1 exitPortal
 	METHOD shouldRenderFace (Lnet/minecraft/core/Direction;)Z
 		ARG 1 face
+	METHOD spawnGatewayPortal (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/feature/configurations/EndGatewayConfiguration;)V
+		ARG 0 level
+		ARG 1 pos
+	METHOD teleportEntity (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/block/entity/TheEndGatewayBlockEntity;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 entity
+		ARG 4 blockEntity
+	METHOD teleportTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/TheEndGatewayBlockEntity;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 blockEntity
+	METHOD triggerCooldown (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/TheEndGatewayBlockEntity;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 blockEntity
 	METHOD triggerEvent (II)Z
-		COMMENT See {@link Block#eventReceived} for more information. This must return true serverside before it is called clientside.
 		ARG 1 id
 		ARG 2 type
