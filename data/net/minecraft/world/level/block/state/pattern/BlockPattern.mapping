@@ -1,29 +1,47 @@
 CLASS net/minecraft/world/level/block/state/pattern/BlockPattern
+	METHOD <init> ([[[Ljava/util/function/Predicate;)V
+		ARG 1 pattern
 	METHOD createLevelCache (Lnet/minecraft/world/level/LevelReader;Z)Lcom/google/common/cache/LoadingCache;
 		ARG 0 level
 		ARG 1 forceLoad
 	METHOD find (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/pattern/BlockPattern$BlockPatternMatch;
-		COMMENT Calculates whether the given world position matches the pattern. Warning, fairly heavy function. @return a BlockPattern.PatternHelper if found, null otherwise.
+		COMMENT Calculates whether the given world position matches the pattern. Warning, fairly heavy function.
+		COMMENT @return a BlockPatternMatch if found, null otherwise.
 		ARG 1 level
 		ARG 2 pos
 	METHOD matches (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;Lcom/google/common/cache/LoadingCache;)Lnet/minecraft/world/level/block/state/pattern/BlockPattern$BlockPatternMatch;
-		COMMENT checks that the given pattern & rotation is at the block co-ordinates.
+		COMMENT Checks that the given pattern & rotation is at the block coordinates.
 		ARG 1 pos
 		ARG 2 finger
 		ARG 3 thumb
-		ARG 4 lcache
+		ARG 4 cache
 	METHOD translateAndRotate (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;III)Lnet/minecraft/core/BlockPos;
-		COMMENT Offsets the position of pos in the direction of finger and thumb facing by offset amounts, follows the right-hand rule for cross products (finger, thumb, palm) @return A new BlockPos offset in the facing directions
+		COMMENT Offsets the position of pos in the direction of finger and thumb facing by offset amounts, follows the right-hand rule for cross products (finger, thumb, palm)
+		COMMENT
+		COMMENT @return a new BlockPos offset in the facing directions
 		ARG 0 pos
 		ARG 1 finger
 		ARG 2 thumb
 		ARG 3 palmOffset
 		ARG 4 thumbOffset
 		ARG 5 fingerOffset
+	CLASS BlockCacheLoader
+		METHOD <init> (Lnet/minecraft/world/level/LevelReader;Z)V
+			ARG 1 level
+			ARG 2 loadChunks
+		METHOD load (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 pos
 	CLASS BlockPatternMatch
+		METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;Lcom/google/common/cache/LoadingCache;III)V
+			ARG 1 frontTopLeft
+			ARG 2 forwards
+			ARG 3 up
+			ARG 4 cache
+			ARG 5 width
+			ARG 6 height
+			ARG 7 depth
 		METHOD getBlock (III)Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;
 			ARG 1 palmOffset
 			ARG 2 thumbOffset
 			ARG 3 fingerOffset
 		METHOD getFrontTopLeft ()Lnet/minecraft/core/BlockPos;
-			COMMENT Return the BlockPos of the Pattern
