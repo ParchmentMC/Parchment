@@ -1,7 +1,23 @@
 CLASS net/minecraft/network/protocol/game/ClientboundLightUpdatePacket
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD <init> (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/lighting/LevelLightEngine;Ljava/util/BitSet;Ljava/util/BitSet;Z)V
+		ARG 1 chunkPos
+		ARG 2 lightEngine
+		ARG 3 changedSkySections
+		ARG 4 changedBlockSections
+		ARG 5 trustEdges
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
+	METHOD prepareSectionData (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/lighting/LevelLightEngine;Lnet/minecraft/world/level/LightLayer;ILjava/util/BitSet;Ljava/util/BitSet;Ljava/util/List;)V
+		ARG 0 chunkPos
+		ARG 1 lightEngine
+		ARG 2 lightLayer
+		ARG 3 sectionIndex
+		ARG 4 yMask
+		ARG 5 emptyYMask
+		ARG 6 updateData
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 buf
+		ARG 1 buffer

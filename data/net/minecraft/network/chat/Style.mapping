@@ -1,8 +1,21 @@
-CLASS net/minecraft/network/chat/Style
+CLASS net/minecraft/network/chat/Style net/minecraft/network/chat/Style
+	COMMENT A Style for {@link Component}.
+	COMMENT Stores color, text formatting (bold, etc.) as well as possible HoverEvent/ClickEvent.
+	METHOD <init> (Lnet/minecraft/network/chat/TextColor;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lnet/minecraft/network/chat/ClickEvent;Lnet/minecraft/network/chat/HoverEvent;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 color
+		ARG 2 bold
+		ARG 3 italic
+		ARG 4 underlined
+		ARG 5 strikethrough
+		ARG 6 obfuscated
+		ARG 7 clickEvent
+		ARG 8 hoverEvent
+		ARG 9 insertion
+		ARG 10 font
 	METHOD applyFormat (Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/Style;
 		ARG 1 formatting
 	METHOD applyFormats ([Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/Style;
-		ARG 1 formatings
+		ARG 1 formats
 	METHOD applyLegacyFormat (Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/Style;
 		ARG 1 formatting
 	METHOD applyTo (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
@@ -10,6 +23,8 @@ CLASS net/minecraft/network/chat/Style
 		ARG 1 style
 	METHOD getClickEvent ()Lnet/minecraft/network/chat/ClickEvent;
 		COMMENT The effective chat click event.
+	METHOD getFont ()Lnet/minecraft/resources/ResourceLocation;
+		COMMENT The font to use for this Style
 	METHOD getHoverEvent ()Lnet/minecraft/network/chat/HoverEvent;
 		COMMENT The effective chat hover event.
 	METHOD getInsertion ()Ljava/lang/String;
@@ -30,6 +45,8 @@ CLASS net/minecraft/network/chat/Style
 		ARG 1 bold
 	METHOD withClickEvent (Lnet/minecraft/network/chat/ClickEvent;)Lnet/minecraft/network/chat/Style;
 		ARG 1 clickEvent
+	METHOD withColor (I)Lnet/minecraft/network/chat/Style;
+		ARG 1 rgb
 	METHOD withColor (Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/Style;
 		ARG 1 formatting
 	METHOD withColor (Lnet/minecraft/network/chat/TextColor;)Lnet/minecraft/network/chat/Style;
@@ -42,6 +59,12 @@ CLASS net/minecraft/network/chat/Style
 		ARG 1 insertion
 	METHOD withItalic (Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Style;
 		ARG 1 italic
+	METHOD withObfuscated (Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Style;
+		ARG 1 obfuscated
+	METHOD withStrikethrough (Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Style;
+		ARG 1 strikethrough
+	METHOD withUnderlined (Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Style;
+		ARG 1 underlined
 	CLASS Serializer
 		METHOD getClickEvent (Lcom/google/gson/JsonObject;)Lnet/minecraft/network/chat/ClickEvent;
 			ARG 0 json

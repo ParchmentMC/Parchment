@@ -1,7 +1,14 @@
 CLASS net/minecraft/network/protocol/game/ClientboundSetEntityMotionPacket
+	METHOD <init> (ILnet/minecraft/world/phys/Vec3;)V
+		ARG 1 id
+		ARG 2 deltaMovement
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD <init> (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 buf
+		ARG 1 buffer

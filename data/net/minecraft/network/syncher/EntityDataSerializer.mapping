@@ -1,10 +1,12 @@
-CLASS net/minecraft/network/syncher/EntityDataSerializer
+CLASS net/minecraft/network/syncher/EntityDataSerializer net/minecraft/network/syncher/EntityDataSerializer
+	COMMENT Handles encoding and decoding of data for {@link SynchedEntityData}.
+	COMMENT Note that mods cannot add new serializers, because this is not a managed registry and the serializer ID is limited to 16.
 	METHOD copy (Ljava/lang/Object;)Ljava/lang/Object;
 		ARG 1 value
 	METHOD createAccessor (I)Lnet/minecraft/network/syncher/EntityDataAccessor;
 		ARG 1 id
 	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Ljava/lang/Object;
-		ARG 1 buf
+		ARG 1 buffer
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;Ljava/lang/Object;)V
-		ARG 1 buf
+		ARG 1 buffer
 		ARG 2 value
