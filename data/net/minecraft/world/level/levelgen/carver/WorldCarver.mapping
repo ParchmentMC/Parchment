@@ -1,7 +1,54 @@
 CLASS net/minecraft/world/level/levelgen/carver/WorldCarver
+	METHOD <init> (Lcom/mojang/serialization/Codec;)V
+		ARG 1 codec
+	METHOD canReplaceBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
 	METHOD canReplaceBlock (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 		ARG 2 aboveState
+	METHOD carve (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/world/level/chunk/ChunkAccess;Ljava/util/function/Function;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/Aquifer;Lnet/minecraft/world/level/ChunkPos;Ljava/util/BitSet;)Z
+		ARG 1 context
+		ARG 2 config
+		ARG 3 chunk
+		ARG 5 random
+		ARG 6 aquifer
+		ARG 7 chunkPos
+		ARG 8 carvingMask
+	METHOD carveBlock (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/world/level/chunk/ChunkAccess;Ljava/util/function/Function;Ljava/util/BitSet;Ljava/util/Random;Lnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/world/level/levelgen/Aquifer;Lorg/apache/commons/lang3/mutable/MutableBoolean;)Z
+		ARG 1 context
+		ARG 2 config
+		ARG 3 chunk
+		ARG 5 carvingMask
+		ARG 6 random
+		ARG 9 aquifer
+	METHOD carveEllipsoid (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/world/level/chunk/ChunkAccess;Ljava/util/function/Function;JLnet/minecraft/world/level/levelgen/Aquifer;DDDDDLjava/util/BitSet;Lnet/minecraft/world/level/levelgen/carver/WorldCarver$CarveSkipChecker;)Z
+		ARG 1 context
+		ARG 2 config
+		ARG 3 chunk
+		ARG 5 seed
+		ARG 7 aquifer
+		ARG 18 carvingMask
+		ARG 19 skipChecker
+	METHOD configured (Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;)Lnet/minecraft/world/level/levelgen/carver/ConfiguredWorldCarver;
+		ARG 1 config
+	METHOD getCarveState (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/Aquifer;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context
+		ARG 2 config
+		ARG 3 pos
+		ARG 4 aquifer
+	METHOD getDebugState (Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 0 config
+		ARG 1 state
+	METHOD hasDisallowedLiquid (Lnet/minecraft/world/level/chunk/ChunkAccess;IIIIII)Z
+		ARG 1 chunk
+		ARG 2 minX
+		ARG 3 maxX
+		ARG 4 minY
+		ARG 5 maxY
+		ARG 6 minZ
+		ARG 7 maxZ
+	METHOD isDebugEnabled (Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;)Z
+		ARG 0 config
 	METHOD isEdge (IIIIII)Z
 		ARG 1 minX
 		ARG 2 maxX
@@ -9,6 +56,9 @@ CLASS net/minecraft/world/level/levelgen/carver/WorldCarver
 		ARG 4 maxZ
 		ARG 5 x
 		ARG 6 z
+	METHOD isStartChunk (Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Ljava/util/Random;)Z
+		ARG 1 config
+		ARG 2 random
 	METHOD register (Ljava/lang/String;Lnet/minecraft/world/level/levelgen/carver/WorldCarver;)Lnet/minecraft/world/level/levelgen/carver/WorldCarver;
 		ARG 0 key
 		ARG 1 carver

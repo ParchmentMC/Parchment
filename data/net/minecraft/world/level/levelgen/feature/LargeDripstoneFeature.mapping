@@ -1,0 +1,37 @@
+CLASS net/minecraft/world/level/levelgen/feature/LargeDripstoneFeature
+	METHOD makeDripstone (Lnet/minecraft/core/BlockPos;ZLjava/util/Random;ILnet/minecraft/util/valueproviders/FloatProvider;Lnet/minecraft/util/valueproviders/FloatProvider;)Lnet/minecraft/world/level/levelgen/feature/LargeDripstoneFeature$LargeDripstone;
+		ARG 0 root
+		ARG 1 pointingUp
+		ARG 2 random
+		ARG 3 radius
+		ARG 4 bluntnessBase
+		ARG 5 scaleBase
+	METHOD placeDebugMarkers (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/Column$Range;Lnet/minecraft/world/level/levelgen/feature/LargeDripstoneFeature$WindOffsetter;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 range
+		ARG 4 windOffsetter
+	CLASS WindOffsetter
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/util/valueproviders/FloatProvider;)V
+			ARG 1 originY
+			ARG 2 random
+		METHOD offset (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
+			ARG 1 pos
+	CLASS LargeDripstone
+		METHOD <init> (Lnet/minecraft/core/BlockPos;ZIDD)V
+			ARG 1 root
+			ARG 2 pointingUp
+			ARG 3 radius
+			ARG 4 bluntness
+			ARG 6 scale
+		METHOD getHeightAtRadius (F)I
+			ARG 1 radius
+		METHOD isSuitableForWind (Lnet/minecraft/world/level/levelgen/feature/configurations/LargeDripstoneConfiguration;)Z
+			ARG 1 config
+		METHOD moveBackUntilBaseIsInsideStoneAndShrinkRadiusIfNecessary (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/feature/LargeDripstoneFeature$WindOffsetter;)Z
+			ARG 1 level
+			ARG 2 windOffsetter
+		METHOD placeBlocks (Lnet/minecraft/world/level/WorldGenLevel;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/feature/LargeDripstoneFeature$WindOffsetter;)V
+			ARG 1 level
+			ARG 2 random
+			ARG 3 windOffsetter
