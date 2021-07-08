@@ -1,14 +1,16 @@
 CLASS net/minecraft/core/BlockPos
 	FIELD ZERO Lnet/minecraft/core/BlockPos;
-		COMMENT An immutable block pos with zero as all coordinates.
+		COMMENT An immutable BlockPos with zero as all coordinates.
 	METHOD <init> (III)V
-		COMMENT Constructs a {@code BlockPos} using the provided X, Y, and Z coordinates.
 		ARG 1 x
-			COMMENT The X coordinate
 		ARG 2 y
-			COMMENT The Y coordinate
 		ARG 3 z
-			COMMENT The Z coordinate
+	METHOD <init> (Lnet/minecraft/core/Position;)V
+		ARG 1 pos
+	METHOD <init> (Lnet/minecraft/core/Vec3i;)V
+		ARG 1 vector
+	METHOD <init> (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 vector
 	METHOD above ()Lnet/minecraft/core/BlockPos;
 		COMMENT Offset this BlockPos 1 block up
 	METHOD above (I)Lnet/minecraft/core/BlockPos;
@@ -18,6 +20,8 @@ CLASS net/minecraft/core/BlockPos
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
+	METHOD atY (I)Lnet/minecraft/core/BlockPos;
+		ARG 1 y
 	METHOD below ()Lnet/minecraft/core/BlockPos;
 		COMMENT Offset this BlockPos 1 block down
 	METHOD below (I)Lnet/minecraft/core/BlockPos;
@@ -28,9 +32,8 @@ CLASS net/minecraft/core/BlockPos
 		COMMENT
 		COMMENT This method uses {@link BlockPos.MutableBlockPos MutableBlockPos} instead of regular BlockPos, which grants better performance. However, the resulting BlockPos instances can only be used inside the iteration loop (as otherwise the value will change), unless {@link #toImmutable()} is called. This method is ideal for searching large areas and only storing a few locations.
 		COMMENT
-		COMMENT @see #getAllInBox(BlockPos, BlockPos)
-		COMMENT @see #getAllInBox(int, int, int, int, int, int)
-		COMMENT @see #getAllInBoxMutable(BlockPos, BlockPos)
+		COMMENT @see #betweenClosed(BlockPos, BlockPos)
+		COMMENT @see #betweenClosed(int, int, int, int, int, int)
 		ARG 0 x1
 		ARG 1 y1
 		ARG 2 z1
@@ -55,8 +58,7 @@ CLASS net/minecraft/core/BlockPos
 	METHOD betweenClosedStream (Lnet/minecraft/world/phys/AABB;)Ljava/util/stream/Stream;
 		ARG 0 aabb
 	METHOD cross (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/BlockPos;
-		COMMENT Calculate the cross product of this and the given Vector
-		ARG 1 vec
+		ARG 1 vector
 	METHOD findClosestMatch (Lnet/minecraft/core/BlockPos;IILjava/util/function/Predicate;)Ljava/util/Optional;
 		ARG 0 pos
 		ARG 1 width
@@ -86,7 +88,7 @@ CLASS net/minecraft/core/BlockPos
 		ARG 0 pos
 		ARG 2 direction
 	METHOD randomBetweenClosed (Ljava/util/Random;IIIIIII)Ljava/lang/Iterable;
-		ARG 0 rand
+		ARG 0 random
 		ARG 1 amount
 		ARG 2 minX
 		ARG 3 minY
@@ -94,24 +96,30 @@ CLASS net/minecraft/core/BlockPos
 		ARG 5 maxX
 		ARG 6 maxY
 		ARG 7 maxZ
+	METHOD randomInCube (Ljava/util/Random;ILnet/minecraft/core/BlockPos;I)Ljava/lang/Iterable;
+		ARG 0 random
+		ARG 1 amount
 	METHOD relative (Lnet/minecraft/core/Direction;I)Lnet/minecraft/core/BlockPos;
 		COMMENT Offsets this BlockPos n blocks in the given direction
 		ARG 1 facing
 		ARG 2 n
 	METHOD rotate (Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/core/BlockPos;
 		ARG 1 rotation
+	METHOD south (I)Lnet/minecraft/core/BlockPos;
+		ARG 1 distance
+	METHOD subtract (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/BlockPos;
+		ARG 1 vector
 	METHOD withinManhattan (Lnet/minecraft/core/BlockPos;III)Ljava/lang/Iterable;
-		COMMENT Returns BlockPos#getProximitySortedBoxPositions as an Iterator.
 		ARG 0 pos
-		ARG 1 xWidth
-		ARG 2 yHeight
-		ARG 3 zWidth
+		ARG 1 xSize
+		ARG 2 ySize
+		ARG 3 zSize
 	METHOD withinManhattanStream (Lnet/minecraft/core/BlockPos;III)Ljava/util/stream/Stream;
 		COMMENT Returns a stream of positions in a box shape, ordered by closest to furthest. Returns by definition the given position as first element in the stream.
 		ARG 0 pos
-		ARG 1 xWidth
-		ARG 2 yHeight
-		ARG 3 zWidth
+		ARG 1 xSize
+		ARG 2 ySize
+		ARG 3 zSize
 	CLASS MutableBlockPos
 		METHOD above ()Lnet/minecraft/core/Vec3i;
 			COMMENT Offset this BlockPos 1 block up
@@ -131,21 +139,16 @@ CLASS net/minecraft/core/BlockPos
 			COMMENT Calculate the cross product of this and the given Vector
 			ARG 1 vec
 		METHOD immutable ()Lnet/minecraft/core/BlockPos;
-			COMMENT Returns a version of this BlockPos that is guaranteed to be immutable.
-			COMMENT
-			COMMENT <p>When storing a BlockPos given to you for an extended period of time, make sure you
-			COMMENT use this in case the value is changed internally.</p>
 		METHOD move (III)Lnet/minecraft/core/BlockPos$MutableBlockPos;
 			ARG 1 x
 			ARG 2 y
 			ARG 3 z
 		METHOD move (Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos$MutableBlockPos;
-			ARG 1 facing
+			ARG 1 direction
 		METHOD move (Lnet/minecraft/core/Direction;I)Lnet/minecraft/core/BlockPos$MutableBlockPos;
-			ARG 1 facing
+			ARG 1 direction
 			ARG 2 n
 		METHOD relative (Lnet/minecraft/core/Direction;I)Lnet/minecraft/core/BlockPos;
-			COMMENT Offsets this BlockPos n blocks in the given direction
 			ARG 1 facing
 			ARG 2 n
 		METHOD relative (Lnet/minecraft/core/Direction;I)Lnet/minecraft/core/Vec3i;
@@ -159,21 +162,20 @@ CLASS net/minecraft/core/BlockPos
 			ARG 3 y
 			ARG 5 z
 		METHOD set (III)Lnet/minecraft/core/BlockPos$MutableBlockPos;
-			COMMENT Sets position
 			ARG 1 x
 			ARG 2 y
 			ARG 3 z
 		METHOD set (J)Lnet/minecraft/core/BlockPos$MutableBlockPos;
 			ARG 1 packedPos
 		METHOD set (Lnet/minecraft/core/AxisCycle;III)Lnet/minecraft/core/BlockPos$MutableBlockPos;
-			ARG 1 rotation
+			ARG 1 cycle
 			ARG 2 x
 			ARG 3 y
 			ARG 4 z
 		METHOD set (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/BlockPos$MutableBlockPos;
-			ARG 1 vec
+			ARG 1 vector
 		METHOD setWithOffset (Lnet/minecraft/core/Vec3i;III)Lnet/minecraft/core/BlockPos$MutableBlockPos;
-			ARG 1 pos
+			ARG 1 vector
 			ARG 2 offsetX
 			ARG 3 offsetY
 			ARG 4 offsetZ
