@@ -63,7 +63,7 @@ dependencies {
     vignette 'net.minecraftforge.lex:vignette:0.2.0.9'
 
     // Enigma, pretty interface for editing mappings
-    enigma 'cuchaz:enigma-swing:1.3.4'
+    enigma 'cuchaz:enigma-swing:1.4.1'
 }
 
 afterEvaluate {
@@ -231,7 +231,7 @@ abstract class EnigmaExec extends JavaExec {
         classpath project.configurations.enigma
         mainClass.set 'cuchaz.enigma.gui.Main'
 
-        args = ['--no-edit-all', '--edit-parameters', '--edit-javadocs']
+        args = ['--no-edit-all', '--edit-parameters', '--edit-javadocs', '--single-class-tree']
         argumentProviders.add({ ->
             ['--jar', inputJar.get().asFile.absolutePath,
              '--mappings', mappings.get().asFile.absolutePath]
