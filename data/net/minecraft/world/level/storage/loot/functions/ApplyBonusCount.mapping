@@ -1,4 +1,4 @@
-CLASS net/minecraft/world/level/storage/loot/functions/ApplyBonusCount net/minecraft/world/level/storage/loot/functions/ApplyBonusCount
+CLASS net/minecraft/world/level/storage/loot/functions/ApplyBonusCount
 	COMMENT LootItemFunction that modifies the stack's count based on an enchantment level on the {@linkplain LootContextParams#TOOL tool} using various formulas.
 	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/level/storage/loot/functions/ApplyBonusCount$Formula;)V
 		ARG 1 conditions
@@ -24,7 +24,7 @@ CLASS net/minecraft/world/level/storage/loot/functions/ApplyBonusCount net/minec
 		METHOD serializeParams (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonSerializationContext;)V
 			ARG 1 json
 			ARG 2 serializationContext
-	CLASS OreDrops OreDrops
+	CLASS OreDrops
 		COMMENT Applies a bonus count with a special formula used for fortune ore drops.
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/world/level/storage/loot/functions/ApplyBonusCount$Formula;
 			ARG 0 json
@@ -38,7 +38,7 @@ CLASS net/minecraft/world/level/storage/loot/functions/ApplyBonusCount net/minec
 			ARG 1 object
 			ARG 2 deserializationContext
 			ARG 3 conditions
-	CLASS UniformBonusCount UniformBonusCount
+	CLASS UniformBonusCount
 		COMMENT Adds a bonus count based on the enchantment level scaled by a constant multiplier.
 		METHOD <init> (I)V
 			ARG 1 bonusMultiplier
@@ -49,7 +49,7 @@ CLASS net/minecraft/world/level/storage/loot/functions/ApplyBonusCount net/minec
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/world/level/storage/loot/functions/ApplyBonusCount$Formula;
 			ARG 1 json
 			ARG 2 deserializationContext
-	CLASS BinomialWithBonusCount BinomialWithBonusCount
+	CLASS BinomialWithBonusCount
 		COMMENT Applies a bonus based on a binomial distribution with {@code n = enchantmentLevel + extraRounds} and {@code p = probability}.
 		METHOD <init> (IF)V
 			ARG 1 extraRounds

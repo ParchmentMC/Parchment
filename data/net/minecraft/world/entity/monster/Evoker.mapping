@@ -13,9 +13,6 @@ CLASS net/minecraft/world/entity/monster/Evoker
 		ARG 1 compound
 	METHOD setWololoTarget (Lnet/minecraft/world/entity/animal/Sheep;)V
 		ARG 1 wololoTarget
-	CLASS EvokerCastingSpellGoal
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
 	CLASS EvokerSummonSpellGoal
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
@@ -28,5 +25,8 @@ CLASS net/minecraft/world/entity/monster/Evoker
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS EvokerCastingSpellGoal
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started

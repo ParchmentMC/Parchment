@@ -23,6 +23,26 @@ CLASS net/minecraft/world/level/GameRules
 		ARG 2 type
 	METHOD visitGameRuleTypes (Lnet/minecraft/world/level/GameRules$GameRuleTypeVisitor;)V
 		ARG 0 visitor
+	CLASS Type
+		METHOD callVisitor (Lnet/minecraft/world/level/GameRules$GameRuleTypeVisitor;Lnet/minecraft/world/level/GameRules$Key;)V
+			ARG 1 visitor
+			ARG 2 key
+		METHOD createArgument (Ljava/lang/String;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+			ARG 1 name
+	CLASS Value
+		METHOD deserialize (Ljava/lang/String;)V
+			ARG 1 value
+		METHOD onChanged (Lnet/minecraft/server/MinecraftServer;)V
+			ARG 1 server
+		METHOD setFrom (Lnet/minecraft/world/level/GameRules$Value;Lnet/minecraft/server/MinecraftServer;)V
+			ARG 1 value
+			ARG 2 server
+		METHOD setFromArgument (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)V
+			ARG 1 context
+			ARG 2 paramName
+		METHOD updateFromArgument (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)V
+			ARG 1 context
+			ARG 2 paramName
 	CLASS BooleanValue
 		METHOD create (Z)Lnet/minecraft/world/level/GameRules$Type;
 			ARG 0 defaultValue
@@ -43,16 +63,6 @@ CLASS net/minecraft/world/level/GameRules
 		METHOD updateFromArgument (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)V
 			ARG 1 context
 			ARG 2 paramName
-	CLASS GameRuleTypeVisitor
-		METHOD visit (Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Type;)V
-			ARG 1 key
-			ARG 2 type
-		METHOD visitBoolean (Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Type;)V
-			ARG 1 value1
-			ARG 2 value2
-		METHOD visitInteger (Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Type;)V
-			ARG 1 value1
-			ARG 2 value2
 	CLASS IntegerValue
 		METHOD create (I)Lnet/minecraft/world/level/GameRules$Type;
 			ARG 0 defaultValue
@@ -74,23 +84,13 @@ CLASS net/minecraft/world/level/GameRules
 		METHOD updateFromArgument (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)V
 			ARG 1 context
 			ARG 2 paramName
-	CLASS Type
-		METHOD callVisitor (Lnet/minecraft/world/level/GameRules$GameRuleTypeVisitor;Lnet/minecraft/world/level/GameRules$Key;)V
-			ARG 1 visitor
-			ARG 2 key
-		METHOD createArgument (Ljava/lang/String;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
-			ARG 1 name
-	CLASS Value
-		METHOD deserialize (Ljava/lang/String;)V
-			ARG 1 value
-		METHOD onChanged (Lnet/minecraft/server/MinecraftServer;)V
-			ARG 1 server
-		METHOD setFrom (Lnet/minecraft/world/level/GameRules$Value;Lnet/minecraft/server/MinecraftServer;)V
-			ARG 1 value
-			ARG 2 server
-		METHOD setFromArgument (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)V
-			ARG 1 context
-			ARG 2 paramName
-		METHOD updateFromArgument (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)V
-			ARG 1 context
-			ARG 2 paramName
+	CLASS GameRuleTypeVisitor
+		METHOD visit (Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Type;)V
+			ARG 1 key
+			ARG 2 type
+		METHOD visitBoolean (Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Type;)V
+			ARG 1 value1
+			ARG 2 value2
+		METHOD visitInteger (Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Type;)V
+			ARG 1 value1
+			ARG 2 value2

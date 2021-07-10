@@ -57,6 +57,15 @@ CLASS net/minecraft/server/level/DistanceManager
 		METHOD setLevel (JI)V
 			ARG 1 sectionPos
 			ARG 3 level
+	CLASS PlayerTicketTracker
+		METHOD onLevelChange (JII)V
+			COMMENT Called after {@link PlayerChunkTracker#setLevel(long, int)} puts/removes chunk into/from {@link #chunksInRange}.
+			ARG 1 chunkPos
+			ARG 3 oldLevel
+				COMMENT Previous level of the chunk if it was smaller than {@link #range}, {@code range + 2} otherwise.
+			ARG 4 newLevel
+		METHOD updateViewDistance (I)V
+			ARG 1 viewDistance
 	CLASS FixedPlayerDistanceChunkTracker
 		FIELD chunks Lit/unimi/dsi/fastutil/longs/Long2ByteMap;
 			COMMENT Chunks that are at most {@link #range} chunks away from the closest player.
@@ -75,12 +84,3 @@ CLASS net/minecraft/server/level/DistanceManager
 		METHOD setLevel (JI)V
 			ARG 1 sectionPos
 			ARG 3 level
-	CLASS PlayerTicketTracker
-		METHOD onLevelChange (JII)V
-			COMMENT Called after {@link PlayerChunkTracker#setLevel(long, int)} puts/removes chunk into/from {@link #chunksInRange}.
-			ARG 1 chunkPos
-			ARG 3 oldLevel
-				COMMENT Previous level of the chunk if it was smaller than {@link #range}, {@code range + 2} otherwise.
-			ARG 4 newLevel
-		METHOD updateViewDistance (I)V
-			ARG 1 viewDistance

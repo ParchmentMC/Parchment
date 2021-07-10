@@ -21,6 +21,11 @@ CLASS net/minecraft/world/entity/monster/Silverfish
 		ARG 1 offset
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
+	CLASS SilverfishWakeUpFriendsGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
 	CLASS SilverfishMergeWithStoneGoal
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
@@ -28,8 +33,3 @@ CLASS net/minecraft/world/entity/monster/Silverfish
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
-	CLASS SilverfishWakeUpFriendsGoal
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
