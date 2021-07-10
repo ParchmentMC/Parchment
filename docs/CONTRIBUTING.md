@@ -25,6 +25,7 @@ Setting up the repository for contributing is fairly simple.
 	- Be mindful of the [Mapping Standards][standards] while mapping.
 
 1. _Recommended:_ Validate your data through the `validateData` Gradle task. This checks for errors in the mapped data, such as mapped/documented synthetic methods. This task is also ran by the CI on every Pull Request.
+	- If there are validation errors, it is suggested to run the `sanitizeData` task to automatically sanitize the data and remove potential causes of validation errors, such as synthetic methods.
 
 1. **Open a Pull Request.** Pull Requests are reviewed and merged according to our [PR Review Process][review-and-merge].
 
