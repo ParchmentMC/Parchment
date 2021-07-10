@@ -60,7 +60,7 @@ dependencies {
     mcpconfig 'de.oceanlabs.mcp:mcp_config:1.17-20210610.141446'
 
     // Vignette, for remapping the client JAR
-    vignette 'net.minecraftforge.lex:vignette:0.2.0.9'
+    vignette 'net.minecraftforge.lex:vignette:0.2.0.16'
 
     // Enigma, pretty interface for editing mappings
     enigma 'cuchaz:enigma-swing:1.4.1'
@@ -208,7 +208,7 @@ abstract class RemapJar extends JavaExec {
         classpath project.configurations.vignette
         mainClass.set 'org.cadixdev.vignette.VignetteMain'
 
-        args = ['--mapping-format', 'tsrg']
+        args = ['--stable', '--mapping-format', 'tsrg']
         argumentProviders.add({ ->
             ['--jar-in', inputJar.get().asFile.absolutePath,
              '--mappings', mappings.get().asFile.absolutePath,
