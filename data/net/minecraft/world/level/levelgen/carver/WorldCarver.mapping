@@ -15,7 +15,7 @@ CLASS net/minecraft/world/level/levelgen/carver/WorldCarver
 		ARG 2 aboveState
 	METHOD carve (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/world/level/chunk/ChunkAccess;Ljava/util/function/Function;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/Aquifer;Lnet/minecraft/world/level/ChunkPos;Ljava/util/BitSet;)Z
 		COMMENT Carves the given chunk with caves that originate from the given {@code chunkPos}.
-		COMMENT This method is invoked 289 times in order to generate each chunk (once for every position in an 8x8 chunk radius centered around the target chunk).
+		COMMENT This method is invoked 289 times in order to generate each chunk (once for every position in an 8 chunk radius, or 17x17 chunk area, centered around the target chunk).
 		COMMENT
 		COMMENT @see net.minecraft.world.level.chunk.ChunkGenerator#applyCarvers
 		ARG 1 context
@@ -38,7 +38,7 @@ CLASS net/minecraft/world/level/levelgen/carver/WorldCarver
 		ARG 6 random
 		ARG 7 pos
 			COMMENT The position to carve at. The method does not mutate this position.
-		ARG 8 mutablePos
+		ARG 8 checkPos
 			COMMENT An additional mutable block position object to be used and modified by the method
 		ARG 9 aquifer
 		ARG 10 reachedSurface
