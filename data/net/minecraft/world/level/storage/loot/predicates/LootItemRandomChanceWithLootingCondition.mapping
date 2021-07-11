@@ -1,4 +1,10 @@
-CLASS net/minecraft/world/level/storage/loot/predicates/LootItemRandomChanceWithLootingCondition
+CLASS net/minecraft/world/level/storage/loot/predicates/LootItemRandomChanceWithLootingCondition net/minecraft/world/level/storage/loot/predicates/LootItemRandomChanceWithLootingCondition
+	COMMENT A LootItemCondition that does a random chance check with a bonus based on the {@linkplain EnchantmentHelper#getMobLooting looting enchantment}.
+	METHOD <init> (FF)V
+		ARG 1 percent
+		ARG 2 lootingMultiplier
 	METHOD randomChanceAndLootingBoost (FF)Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;
 		ARG 0 chance
+			COMMENT The base chance
 		ARG 1 lootingMultiplier
+			COMMENT The multiplier for the looting level. The result of the multiplication is added to the chance.

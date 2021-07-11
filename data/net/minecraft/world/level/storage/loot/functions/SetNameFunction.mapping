@@ -1,7 +1,23 @@
-CLASS net/minecraft/world/level/storage/loot/functions/SetNameFunction
+CLASS net/minecraft/world/level/storage/loot/functions/SetNameFunction net/minecraft/world/level/storage/loot/functions/SetNameFunction
+	COMMENT LootItemFunction that sets a stack's name.
+	COMMENT The Component for the name is optionally resolved relative to a given {@link LootContext.EntityTarget} for entity-sensitive component data such as scoreboard scores.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)V
+		ARG 1 conditions
+		ARG 2 name
+		ARG 3 resolutionContext
+	METHOD createResolver (Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)Ljava/util/function/UnaryOperator;
+		COMMENT Create a UnaryOperator that resolves Components based on the given LootContext and EntityTarget.
+		COMMENT This will replace for example score components.
+		ARG 0 lootContext
+		ARG 1 resolutionContext
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
+	METHOD setName (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		ARG 0 name
+	METHOD setName (Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		ARG 0 name
+		ARG 1 resolutionContext
 	CLASS Serializer
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
 			ARG 1 object

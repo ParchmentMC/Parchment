@@ -1,5 +1,11 @@
-CLASS net/minecraft/world/level/storage/loot/entries/CompositeEntryBase
+CLASS net/minecraft/world/level/storage/loot/entries/CompositeEntryBase net/minecraft/world/level/storage/loot/entries/CompositeEntryBase
+	COMMENT Base class for loot pool entry containers that delegate to one or more children.
+	COMMENT The actual functionality is provided by composing the children into one composed container (see {@link #compose}).
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
+		ARG 1 children
+		ARG 2 conditions
 	METHOD compose ([Lnet/minecraft/world/level/storage/loot/entries/ComposableEntryContainer;)Lnet/minecraft/world/level/storage/loot/entries/ComposableEntryContainer;
+		COMMENT Compose the given children into one container.
 		ARG 1 entries
 	METHOD createSerializer (Lnet/minecraft/world/level/storage/loot/entries/CompositeEntryBase$CompositeEntryConstructor;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Serializer;
 		ARG 0 factory

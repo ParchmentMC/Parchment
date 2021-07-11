@@ -1,9 +1,25 @@
 CLASS com/mojang/math/Matrix4f
+	METHOD <init> (Lcom/mojang/math/Matrix4f;)V
+		ARG 1 other
+	METHOD <init> (Lcom/mojang/math/Quaternion;)V
+		ARG 1 quaternion
+	METHOD add (Lcom/mojang/math/Matrix4f;)V
+		ARG 1 other
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD load (Lcom/mojang/math/Matrix4f;)V
+		ARG 1 other
+	METHOD load (Ljava/nio/FloatBuffer;)V
+		ARG 1 buffer
+	METHOD load (Ljava/nio/FloatBuffer;Z)V
+		ARG 1 buffer
+		ARG 2 transpose
+	METHOD loadTransposed (Ljava/nio/FloatBuffer;)V
+		ARG 1 buffer
 	METHOD multiply (F)V
-		ARG 1 scale
+		ARG 1 multiplier
 	METHOD multiply (Lcom/mojang/math/Matrix4f;)V
-		COMMENT Multiply self on the right by the parameter
-		ARG 1 matrix
+		ARG 1 other
 	METHOD multiply (Lcom/mojang/math/Quaternion;)V
 		ARG 1 quaternion
 	METHOD orthographic (FFFF)Lcom/mojang/math/Matrix4f;
@@ -17,6 +33,13 @@ CLASS com/mojang/math/Matrix4f
 		ARG 3 nearPlane
 		ARG 4 farPlane
 	METHOD store (Ljava/nio/FloatBuffer;)V
-		ARG 1 floatBuffer
+		ARG 1 buffer
+	METHOD store (Ljava/nio/FloatBuffer;Z)V
+		ARG 1 buffer
+		ARG 2 transpose
+	METHOD storeTransposed (Ljava/nio/FloatBuffer;)V
+		ARG 1 buffer
+	METHOD subtract (Lcom/mojang/math/Matrix4f;)V
+		ARG 1 other
 	METHOD translate (Lcom/mojang/math/Vector3f;)V
 		ARG 1 vector

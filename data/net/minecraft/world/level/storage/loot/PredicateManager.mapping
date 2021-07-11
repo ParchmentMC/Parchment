@@ -1,7 +1,16 @@
-CLASS net/minecraft/world/level/storage/loot/PredicateManager
+CLASS net/minecraft/world/level/storage/loot/PredicateManager net/minecraft/world/level/storage/loot/PredicateManager
+	COMMENT DataPack reload listener that reads loot conditions from the ResourceManager and stores them.
+	COMMENT
+	COMMENT @see LootItemCondition
 	METHOD apply (Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
 		ARG 1 object
 		ARG 2 resourceManager
 		ARG 3 profiler
 	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
+		COMMENT Get the LootItemCondition with the given ID. Returns null if no such condition exists.
 		ARG 1 id
+	METHOD getKeys ()Ljava/util/Set;
+		COMMENT Get all known condition IDs.
+	CLASS CompositePredicate
+		METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
+			ARG 1 terms

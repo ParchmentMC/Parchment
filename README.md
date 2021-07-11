@@ -6,7 +6,7 @@ This repository contains all the mappings and data related to making the parchme
 > This is a relatively new project, and we need all the help we can get. Please excuse the lack of documentation in certain areas, they will be filled in and improved over time. Thank you!
 
 ## Contributing
-See the [`docs/CONTRIBUTING.md` file](docs/CONTRIBUTING.md) for more information.
+See the [`docs/CONTRIBUTING.md` file](docs/CONTRIBUTING.md) for information on contributing. Also look at the [repository wiki](https://github.com/ParchmentMC/Parchment/wiki) for more information, such as links to the mapping standards and PR review process documents.
 
 ## Tools and Libraries
 Our mappings system makes use of the following open-source tools and libraries:

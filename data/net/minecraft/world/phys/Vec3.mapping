@@ -1,4 +1,10 @@
 CLASS net/minecraft/world/phys/Vec3
+	METHOD <init> (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD <init> (Lcom/mojang/math/Vector3f;)V
+		ARG 1 floatVector
 	METHOD add (DDD)Lnet/minecraft/world/phys/Vec3;
 		COMMENT Adds the specified x,y,z vector components to this vector and returns the resulting vector. Does not change this vector.
 		ARG 1 x
@@ -49,6 +55,11 @@ CLASS net/minecraft/world/phys/Vec3
 		ARG 1 axis
 	METHOD length ()D
 		COMMENT Returns the length of the vector.
+	METHOD lerp (Lnet/minecraft/world/phys/Vec3;D)Lnet/minecraft/world/phys/Vec3;
+		COMMENT Lerps between this vector and the given vector.
+		COMMENT @see net.minecraft.util.Mth#lerp(double, double, double)
+		ARG 1 to
+		ARG 2 delta
 	METHOD multiply (DDD)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 factorX
 		ARG 3 factorY

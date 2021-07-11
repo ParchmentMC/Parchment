@@ -1,16 +1,21 @@
 CLASS net/minecraft/data/HashCache
+	METHOD <init> (Ljava/nio/file/Path;Ljava/lang/String;)V
+		ARG 1 path
+		ARG 2 cacheFileName
 	METHOD getHash (Ljava/nio/file/Path;)Ljava/lang/String;
 		COMMENT Gets the previous hash of a file, so that it doesn't need to be written to disk. Only meaningful before {@link recordHash} has been called.
 		COMMENT
 		COMMENT @return The hash that was recorded when {@link recordHash} was called on the previous run, or <code>null</code> if the file does not exist, or an empty string if the file exists but was not recorded. Note that the hash is <em>not</em> based on the current bytes on disk.
-		ARG 1 file
+		ARG 1 filePath
 	METHOD had (Ljava/nio/file/Path;)Z
-		ARG 1 file
+		ARG 1 filePath
+	METHOD keep (Ljava/nio/file/Path;)V
+		ARG 1 filePath
 	METHOD purgeStaleAndWrite ()V
 		COMMENT Writes the cache file containing the hashes of newly created files to the disk, and deletes any stale files.
 	METHOD putNew (Ljava/nio/file/Path;Ljava/lang/String;)V
 		COMMENT Inform the cache that a file has been written to {@code fileIn} with contents hashing to {@code hash}.
-		ARG 1 file
+		ARG 1 filePath
 		ARG 2 hash
 	METHOD walkOutputFiles ()Ljava/util/stream/Stream;
 		COMMENT Gets all files in the directory, other than the cache file itself.
