@@ -1,18 +1,19 @@
 CLASS net/minecraft/nbt/IntArrayTag
+	METHOD <init> (Ljava/util/List;)V
+		ARG 1 dataList
+	METHOD <init> ([I)V
+		ARG 1 data
 	METHOD addTag (ILnet/minecraft/nbt/Tag;)Z
 		ARG 1 index
 		ARG 2 nbt
-	METHOD copy ()Lnet/minecraft/nbt/IntArrayTag;
-		COMMENT Creates a clone of the tag.
-	METHOD getId ()B
-		COMMENT Gets the type byte for the tag.
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
 	METHOD setTag (ILnet/minecraft/nbt/Tag;)Z
 		ARG 1 index
 		ARG 2 nbt
 	METHOD toArray (Ljava/util/List;)[I
-		ARG 0 integers
+		ARG 0 dataList
 	METHOD write (Ljava/io/DataOutput;)V
-		COMMENT Write the actual data contents of the tag, implemented in NBT extension classes
 		ARG 1 output
 	CLASS 1
 		METHOD load (Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/IntArrayTag;
