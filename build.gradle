@@ -10,7 +10,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 plugins {
-    id 'org.parchmentmc.compass' version '0.2.2'
+    id 'org.parchmentmc.compass' version '0.3.2'
     id 'org.parchmentmc.writtenbooks' version '0.5.+'
     id 'maven-publish'
     id 'java-base'
@@ -26,19 +26,6 @@ if (isBleeding) {
     version = "BLEEDING-SNAPSHOT"
 }
 println("Version: $version")
-
-afterEvaluate {
-    def isCI = (project.findProperty('isCI') ?: "False").toString() == "True";
-    if (isCI) {
-        println("##teamcity[setParameter name='env.CI_VERSION' value='$version']")
-        println("##teamcity[setParameter name='env.CI_GROUP' value='$group']")
-        println("##teamcity[setParameter name='env.CI_ARTIFACT' value='parchment-${project.compass.version.get()}']")
-        println("##teamcity[setParameter name='env.CI_GAME_VERSION' value='${project.compass.version.get()}']")
-    } else
-    {
-        println("Not outputting CI related data. CI Flag: " + project.findProperty('isCI'))
-    }
-}
 
 writtenbooks {
     snapshotVersion = !isRelease
@@ -73,10 +60,21 @@ dependencies {
     mcpconfig 'de.oceanlabs.mcp:mcp_config:1.17-20210610.141446'
 
     // Vignette, for remapping the client JAR
-    vignette 'net.minecraftforge.lex:vignette:0.2.0.9'
+    vignette 'net.minecraftforge.lex:vignette:0.2.0.16'
 
     // Enigma, pretty interface for editing mappings
-    enigma 'cuchaz:enigma-swing:1.3.4'
+    enigma 'cuchaz:enigma-swing:1.4.1'
+}
+
+afterEvaluate {
+    def isCI = Boolean.parseBoolean(project.findProperty('isCI') as String)
+    if (isCI) {
+        println("Running on CI.")
+        println("##teamcity[setParameter name='env.CI_VERSION' value='$version']")
+        println("##teamcity[setParameter name='env.CI_GROUP' value='$group']")
+        println("##teamcity[setParameter name='env.CI_ARTIFACT' value='parchment-${project.compass.version.get()}']")
+        println("##teamcity[setParameter name='env.CI_GAME_VERSION' value='${project.compass.version.get()}']")
+    }
 }
 
 def downloadClientJar = tasks.register('downloadClientJar', VersionDownload) {
@@ -210,7 +208,7 @@ abstract class RemapJar extends JavaExec {
         classpath project.configurations.vignette
         mainClass.set 'org.cadixdev.vignette.VignetteMain'
 
-        args = ['--mapping-format', 'tsrg']
+        args = ['--stable', '--mapping-format', 'tsrg']
         argumentProviders.add({ ->
             ['--jar-in', inputJar.get().asFile.absolutePath,
              '--mappings', mappings.get().asFile.absolutePath,
@@ -233,7 +231,7 @@ abstract class EnigmaExec extends JavaExec {
         classpath project.configurations.enigma
         mainClass.set 'cuchaz.enigma.gui.Main'
 
-        args = ['--no-edit-all', '--edit-parameters', '--edit-javadocs']
+        args = ['--no-edit-all', '--edit-parameters', '--edit-javadocs', '--single-class-tree']
         argumentProviders.add({ ->
             ['--jar', inputJar.get().asFile.absolutePath,
              '--mappings', mappings.get().asFile.absolutePath]
