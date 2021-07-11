@@ -3,12 +3,28 @@ CLASS net/minecraft/world/level/chunk/storage/ChunkSerializer
 		ARG 0 chunkNBT
 	METHOD packOffsets ([Lit/unimi/dsi/fastutil/shorts/ShortList;)Lnet/minecraft/nbt/ListTag;
 		ARG 0 list
+	METHOD packStructureData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/ChunkPos;Ljava/util/Map;Ljava/util/Map;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 structureMap
+		ARG 3 referenceMap
+	METHOD postLoadChunk (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/chunk/LevelChunk;)V
+		ARG 0 level
+		ARG 1 tag
+		ARG 2 chunk
 	METHOD read (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/world/entity/ai/village/poi/PoiManager;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/level/chunk/ProtoChunk;
 		ARG 0 level
 		ARG 1 templateManager
 		ARG 2 poiManager
 		ARG 3 pos
 		ARG 4 compound
+	METHOD unpackStructureReferences (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/nbt/CompoundTag;)Ljava/util/Map;
+		ARG 0 pos
+		ARG 1 tag
+	METHOD unpackStructureStart (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;J)Ljava/util/Map;
+		ARG 0 level
+		ARG 1 tag
+		ARG 2 seed
 	METHOD write (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkAccess;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 0 level
 		ARG 1 chunk
