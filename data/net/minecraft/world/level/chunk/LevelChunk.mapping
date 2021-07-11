@@ -3,11 +3,36 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		COMMENT A Map of ChunkPositions to TileEntities in this chunk
 	FIELD inhabitedTime J
 		COMMENT the cumulative number of ticks players have been in this chunk
+	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ProtoChunk;Ljava/util/function/Consumer;)V
+		ARG 1 level
+		ARG 2 chunk
+		ARG 3 postLoad
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/ChunkBiomeContainer;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 biomes
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/ChunkBiomeContainer;Lnet/minecraft/world/level/chunk/UpgradeData;Lnet/minecraft/world/level/TickList;Lnet/minecraft/world/level/TickList;J[Lnet/minecraft/world/level/chunk/LevelChunkSection;Ljava/util/function/Consumer;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 biomes
+		ARG 4 data
+		ARG 5 blockTicks
+		ARG 6 liquidTicks
+		ARG 7 inhabitedTime
+		ARG 9 sections
+		ARG 10 postLoad
+	METHOD addAndRegisterBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+		ARG 1 blockEntity
 	METHOD addEntity (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Adds an entity to the chunk.
 		ARG 1 entity
+	METHOD addGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+		ARG 1 blockEntity
 	METHOD createBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
+	METHOD createTicker (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/level/block/entity/BlockEntityTicker;)Lnet/minecraft/world/level/block/entity/TickingBlockEntity;
+		ARG 1 blockEntity
+		ARG 2 ticker
 	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
 	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/LevelChunk$EntityCreationType;)Lnet/minecraft/world/level/block/entity/BlockEntity;
@@ -33,8 +58,12 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 1 type
 	METHOD getPos ()Lnet/minecraft/world/level/ChunkPos;
 		COMMENT Gets a {@link ChunkPos} representing the x and z coordinates of this chunk.
+	METHOD isTicking (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
 	METHOD markUnsaved ()V
 		COMMENT Sets the isModified flag for this Chunk
+	METHOD onBlockEntityRemove (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+		ARG 1 blockEntity
 	METHOD packTicks (Lnet/minecraft/server/level/ServerLevel;)V
 		COMMENT Remove scheduled ticks belonging to this chunk from the world and keep it locally for incoming serialization
 		ARG 1 serverLevel
@@ -44,6 +73,15 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 2 compound
 	METHOD removeBlockEntity (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
+	METHOD removeBlockEntityTicker (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD removeGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+		ARG 1 blockEntity
+	METHOD replaceWithPacketData (Lnet/minecraft/world/level/chunk/ChunkBiomeContainer;Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/nbt/CompoundTag;Ljava/util/BitSet;)V
+		ARG 1 container
+		ARG 2 buffer
+		ARG 3 tag
+		ARG 4 bits
 	METHOD setAllReferences (Ljava/util/Map;)V
 		ARG 1 structureReferences
 	METHOD setAllStarts (Ljava/util/Map;)V
@@ -66,3 +104,14 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 1 modified
 	METHOD unpackTicks ()V
 		COMMENT Reschedule all serialized scheduled ticks this chunk had
+	METHOD updateBlockEntityTicker (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+		ARG 1 blockEntity
+	CLASS BoundTickingBlockEntity
+		METHOD <init> (Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/level/block/entity/BlockEntityTicker;)V
+			ARG 2 blockEntity
+			ARG 3 ticker
+	CLASS RebindableTickingBlockEntityWrapper
+		METHOD <init> (Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/world/level/block/entity/TickingBlockEntity;)V
+			ARG 2 ticker
+		METHOD rebind (Lnet/minecraft/world/level/block/entity/TickingBlockEntity;)V
+			ARG 1 ticker
