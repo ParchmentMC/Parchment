@@ -9,6 +9,10 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 		ARG 1 pos
 	METHOD getBlockEntityNbtForSaving (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 pos
+	METHOD getEventDispatcher (I)Lnet/minecraft/world/level/gameevent/GameEventDispatcher;
+		ARG 1 sectionY
+	METHOD getHeighestPosition (Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/core/BlockPos;
+		ARG 1 types
 	METHOD getHeight (Lnet/minecraft/world/level/levelgen/Heightmap$Types;II)I
 		ARG 1 heightmapType
 		ARG 2 x
@@ -19,6 +23,8 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 		ARG 1 type
 	METHOD getOrCreateOffsetList ([Lit/unimi/dsi/fastutil/shorts/ShortList;I)Lit/unimi/dsi/fastutil/shorts/ShortList;
 		ARG 0 packedPositions
+		ARG 1 index
+	METHOD getOrCreateSection (I)Lnet/minecraft/world/level/chunk/LevelChunkSection;
 		ARG 1 index
 	METHOD getPos ()Lnet/minecraft/world/level/ChunkPos;
 		COMMENT Gets a {@link ChunkPos} representing the x and z coordinates of this chunk.
@@ -32,6 +38,8 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 		ARG 1 pos
 	METHOD setAllStarts (Ljava/util/Map;)V
 		ARG 1 structureStarts
+	METHOD setBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+		ARG 1 blockEntity
 	METHOD setBlockEntityNbt (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 nbt
 	METHOD setBlockState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/level/block/state/BlockState;

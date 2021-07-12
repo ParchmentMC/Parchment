@@ -1,4 +1,4 @@
-CLASS net/minecraft/world/level/storage/loot/LootContext net/minecraft/world/level/storage/loot/LootContext
+CLASS net/minecraft/world/level/storage/loot/LootContext
 	COMMENT LootContext stores various context information for loot generation.
 	COMMENT This includes the Level as well as any known {@link LootContextParam}s.
 	METHOD <init> (Ljava/util/Random;FLnet/minecraft/server/level/ServerLevel;Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/Map;Ljava/util/Map;)V
@@ -72,7 +72,7 @@ CLASS net/minecraft/world/level/storage/loot/LootContext net/minecraft/world/lev
 			ARG 2 value
 		METHOD withRandom (Ljava/util/Random;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
 			ARG 1 random
-	CLASS DynamicDrop DynamicDrop
+	CLASS DynamicDrop
 		COMMENT DynamicDrop allows a loot generating object (e.g. a Block or Entity) to provide dynamic drops to a loot table.
 		COMMENT An example of this are shulker boxes, which provide their contents as a dynamic drop source.
 		COMMENT Dynamic drops are registered with a name using {@link LootContext.Builder#withDynamicDrop}.
@@ -81,7 +81,7 @@ CLASS net/minecraft/world/level/storage/loot/LootContext net/minecraft/world/lev
 		METHOD add (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
 			ARG 1 lootContext
 			ARG 2 stackConsumer
-	CLASS EntityTarget EntityTarget
+	CLASS EntityTarget
 		COMMENT Represents a type of entity that can be looked up in a {@link LootContext} using a {@link LootContextParam}.
 		FIELD DIRECT_KILLER Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;
 			COMMENT Looks up {@link LootContextParams#DIRECT_KILLER_ENTITY}.
@@ -95,6 +95,4 @@ CLASS net/minecraft/world/level/storage/loot/LootContext net/minecraft/world/lev
 			ARG 3 name
 			ARG 4 param
 		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;
-			ARG 0 name
-		METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;
 			ARG 0 name
