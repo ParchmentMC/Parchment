@@ -7,6 +7,13 @@ CLASS net/minecraft/tags/Tag
 		ARG 0 elements
 	METHOD getRandomElement (Ljava/util/Random;)Ljava/lang/Object;
 		ARG 1 random
+	CLASS Entry
+		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
+			ARG 1 resourceTagFunction
+			ARG 2 resourceElementFunction
+			ARG 3 elementConsumer
+		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
+			ARG 1 jsonArray
 	CLASS Builder
 		METHOD add (Lnet/minecraft/tags/Tag$BuilderEntry;)Lnet/minecraft/tags/Tag$Builder;
 			ARG 1 proxyTag
@@ -24,21 +31,14 @@ CLASS net/minecraft/tags/Tag
 			ARG 2 identifier
 		METHOD parseEntry (Lcom/google/gson/JsonElement;)Lnet/minecraft/tags/Tag$Entry;
 			ARG 0 json
+	CLASS TagEntry
+		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
+			ARG 1 resourceTagFunction
+			ARG 2 resourceElementFunction
+			ARG 3 elementConsumer
+		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
+			ARG 1 jsonArray
 	CLASS ElementEntry
-		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
-			ARG 1 resourceTagFunction
-			ARG 2 resourceElementFunction
-			ARG 3 elementConsumer
-		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
-			ARG 1 jsonArray
-	CLASS Entry
-		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
-			ARG 1 resourceTagFunction
-			ARG 2 resourceElementFunction
-			ARG 3 elementConsumer
-		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
-			ARG 1 jsonArray
-	CLASS OptionalElementEntry
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
 			ARG 1 resourceTagFunction
 			ARG 2 resourceElementFunction
@@ -52,7 +52,7 @@ CLASS net/minecraft/tags/Tag
 			ARG 3 elementConsumer
 		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
 			ARG 1 jsonArray
-	CLASS TagEntry
+	CLASS OptionalElementEntry
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
 			ARG 1 resourceTagFunction
 			ARG 2 resourceElementFunction

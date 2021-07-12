@@ -54,7 +54,32 @@ CLASS net/minecraft/world/entity/animal/Turtle
 			COMMENT Spawns a baby animal of the same type.
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	CLASS TurtlePanicGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS TurtleGoHomeGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS TurtleLayEggGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD isValidTarget (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+			COMMENT Return true to set given position as destination
+			ARG 1 level
+			ARG 2 pos
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS TurtleTravelGoal
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
@@ -74,20 +99,6 @@ CLASS net/minecraft/world/entity/animal/Turtle
 			COMMENT Return true to set given position as destination
 			ARG 1 level
 			ARG 2 pos
-	CLASS TurtleLayEggGoal
-		METHOD canContinueToUse ()Z
-			COMMENT Returns whether an in-progress EntityAIBase should continue executing
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD isValidTarget (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
-			COMMENT Return true to set given position as destination
-			ARG 1 level
-			ARG 2 pos
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
-	CLASS TurtlePanicGoal
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS TurtlePathNavigation
 		METHOD canUpdatePath ()Z
 			COMMENT If on ground or swimming and can swim
@@ -96,14 +107,3 @@ CLASS net/minecraft/world/entity/animal/Turtle
 	CLASS TurtleRandomStrollGoal
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-	CLASS TurtleTravelGoal
-		METHOD canContinueToUse ()Z
-			COMMENT Returns whether an in-progress EntityAIBase should continue executing
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
-		METHOD stop ()V
-			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started

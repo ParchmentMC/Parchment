@@ -42,11 +42,9 @@ CLASS net/minecraft/world/entity/monster/EnderMan
 		ARG 5 z
 	METHOD teleportTowards (Lnet/minecraft/world/entity/Entity;)Z
 		COMMENT Teleport the enderman to another entity
-	CLASS EndermanFreezeWhenLookedAt
+	CLASS EndermanTakeBlockGoal
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS EndermanLeaveBlockGoal
@@ -67,8 +65,10 @@ CLASS net/minecraft/world/entity/monster/EnderMan
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
-	CLASS EndermanTakeBlockGoal
+	CLASS EndermanFreezeWhenLookedAt
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
