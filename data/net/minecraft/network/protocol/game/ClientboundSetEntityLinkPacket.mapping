@@ -1,9 +1,15 @@
 CLASS net/minecraft/network/protocol/game/ClientboundSetEntityLinkPacket
 	FIELD destId I
 		COMMENT The entity that is holding the leash, or -1 to clear the holder.
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD <init> (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 source
+		ARG 2 destination
+			COMMENT The entity to link to or {@code null} to break any existing link.
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 buf
+		ARG 1 buffer

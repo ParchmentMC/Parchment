@@ -1,13 +1,16 @@
 CLASS net/minecraft/world/level/storage/loot/functions/FillPlayerHead
+	COMMENT LootItemFunction that applies the {@code "SkullOwner"} NBT tag to any player heads based on the given {@link LootContext.EntityTarget}.
+	COMMENT If the given target does not resolve to a player, nothing happens.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)V
+		ARG 1 conditions
+		ARG 2 entityTarget
+	METHOD fillPlayerHead (Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		ARG 0 entityTarget
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
 	CLASS Serializer
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/FillPlayerHead;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
 			ARG 1 object
 			ARG 2 deserializationContext
 			ARG 3 conditions

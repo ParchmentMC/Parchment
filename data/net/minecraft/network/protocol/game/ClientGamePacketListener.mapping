@@ -1,4 +1,5 @@
 CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
+	COMMENT PacketListener for the client side of the PLAY protocol.
 	METHOD handleAddEntity (Lnet/minecraft/network/protocol/game/ClientboundAddEntityPacket;)V
 		COMMENT Spawns an instance of the objecttype indicated by the packet and sets its position and momentum
 		ARG 1 packet
@@ -18,6 +19,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleAddPlayer (Lnet/minecraft/network/protocol/game/ClientboundAddPlayerPacket;)V
 		COMMENT Handles the creation of a nearby player entity, sets the position and held item
+		ARG 1 packet
+	METHOD handleAddVibrationSignal (Lnet/minecraft/network/protocol/game/ClientboundAddVibrationSignalPacket;)V
 		ARG 1 packet
 	METHOD handleAnimate (Lnet/minecraft/network/protocol/game/ClientboundAnimatePacket;)V
 		COMMENT Renders a specified animation: Waking up a player, a living entity swinging its currently held item, being hurt or receiving a critical hit by normal or magical means
@@ -88,6 +91,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleHorseScreenOpen (Lnet/minecraft/network/protocol/game/ClientboundHorseScreenOpenPacket;)V
 		ARG 1 packet
+	METHOD handleInitializeBorder (Lnet/minecraft/network/protocol/game/ClientboundInitializeBorderPacket;)V
+		ARG 1 packet
 	METHOD handleItemCooldown (Lnet/minecraft/network/protocol/game/ClientboundCooldownPacket;)V
 		ARG 1 packet
 	METHOD handleKeepAlive (Lnet/minecraft/network/protocol/game/ClientboundKeepAlivePacket;)V
@@ -126,11 +131,21 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleParticleEvent (Lnet/minecraft/network/protocol/game/ClientboundLevelParticlesPacket;)V
 		COMMENT Spawns a specified number of particles at the specified location with a randomized displacement according to specified bounds
 		ARG 1 packet
+	METHOD handlePing (Lnet/minecraft/network/protocol/game/ClientboundPingPacket;)V
+		ARG 1 packet
 	METHOD handlePlaceRecipe (Lnet/minecraft/network/protocol/game/ClientboundPlaceGhostRecipePacket;)V
 		ARG 1 packet
 	METHOD handlePlayerAbilities (Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;)V
 		ARG 1 packet
+	METHOD handlePlayerCombatEnd (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatEndPacket;)V
+		ARG 1 packet
+	METHOD handlePlayerCombatEnter (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatEnterPacket;)V
+		ARG 1 packet
+	METHOD handlePlayerCombatKill (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatKillPacket;)V
+		ARG 1 packet
 	METHOD handlePlayerInfo (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket;)V
+		ARG 1 packet
+	METHOD handleRemoveEntity (Lnet/minecraft/network/protocol/game/ClientboundRemoveEntityPacket;)V
 		ARG 1 packet
 	METHOD handleRemoveMobEffect (Lnet/minecraft/network/protocol/game/ClientboundRemoveMobEffectPacket;)V
 		ARG 1 packet
@@ -142,6 +157,16 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		COMMENT Updates the direction in which the specified entity is looking, normally this head rotation is independent of the rotation of the entity itself
 		ARG 1 packet
 	METHOD handleSelectAdvancementsTab (Lnet/minecraft/network/protocol/game/ClientboundSelectAdvancementsTabPacket;)V
+		ARG 1 packet
+	METHOD handleSetBorderCenter (Lnet/minecraft/network/protocol/game/ClientboundSetBorderCenterPacket;)V
+		ARG 1 packet
+	METHOD handleSetBorderLerpSize (Lnet/minecraft/network/protocol/game/ClientboundSetBorderLerpSizePacket;)V
+		ARG 1 packet
+	METHOD handleSetBorderSize (Lnet/minecraft/network/protocol/game/ClientboundSetBorderSizePacket;)V
+		ARG 1 packet
+	METHOD handleSetBorderWarningDelay (Lnet/minecraft/network/protocol/game/ClientboundSetBorderWarningDelayPacket;)V
+		ARG 1 packet
+	METHOD handleSetBorderWarningDistance (Lnet/minecraft/network/protocol/game/ClientboundSetBorderWarningDistancePacket;)V
 		ARG 1 packet
 	METHOD handleSetCamera (Lnet/minecraft/network/protocol/game/ClientboundSetCameraPacket;)V
 		ARG 1 packet
@@ -175,6 +200,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleSetScore (Lnet/minecraft/network/protocol/game/ClientboundSetScorePacket;)V
 		COMMENT Either updates the score with a specified value or removes the score for an objective
 		ARG 1 packet
+	METHOD handleSetSpawn (Lnet/minecraft/network/protocol/game/ClientboundSetDefaultSpawnPositionPacket;)V
+		ARG 1 packet
 	METHOD handleSetTime (Lnet/minecraft/network/protocol/game/ClientboundSetTimePacket;)V
 		ARG 1 packet
 	METHOD handleSoundEntityEvent (Lnet/minecraft/network/protocol/game/ClientboundSoundEntityPacket;)V
@@ -192,6 +219,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleTeleportEntity (Lnet/minecraft/network/protocol/game/ClientboundTeleportEntityPacket;)V
 		COMMENT Updates an entity's position and rotation as specified by the packet
 		ARG 1 packet
+	METHOD handleTitlesClear (Lnet/minecraft/network/protocol/game/ClientboundClearTitlesPacket;)V
+		ARG 1 packet
 	METHOD handleUpdateAdvancementsPacket (Lnet/minecraft/network/protocol/game/ClientboundUpdateAdvancementsPacket;)V
 		ARG 1 packet
 	METHOD handleUpdateAttributes (Lnet/minecraft/network/protocol/game/ClientboundUpdateAttributesPacket;)V
@@ -202,4 +231,12 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleUpdateRecipes (Lnet/minecraft/network/protocol/game/ClientboundUpdateRecipesPacket;)V
 		ARG 1 packet
 	METHOD handleUpdateTags (Lnet/minecraft/network/protocol/game/ClientboundUpdateTagsPacket;)V
+		ARG 1 packet
+	METHOD setActionBarText (Lnet/minecraft/network/protocol/game/ClientboundSetActionBarTextPacket;)V
+		ARG 1 packet
+	METHOD setSubtitleText (Lnet/minecraft/network/protocol/game/ClientboundSetSubtitleTextPacket;)V
+		ARG 1 packet
+	METHOD setTitleText (Lnet/minecraft/network/protocol/game/ClientboundSetTitleTextPacket;)V
+		ARG 1 packet
+	METHOD setTitlesAnimation (Lnet/minecraft/network/protocol/game/ClientboundSetTitlesAnimationPacket;)V
 		ARG 1 packet

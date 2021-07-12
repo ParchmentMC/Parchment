@@ -1,12 +1,18 @@
 CLASS net/minecraft/world/level/storage/loot/functions/SetContainerLootTable
+	COMMENT LootItemFunction that sets the LootTable and optionally the loot table seed on the stack's {@code BlockEntityTag}. The effect of this is that containers such as chests will receive the given LootTable when placed.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/resources/ResourceLocation;J)V
+		ARG 1 conditions
+		ARG 2 lootTableId
+		ARG 3 lootTableSeed
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
+	METHOD withLootTable (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		ARG 0 lootTableId
+	METHOD withLootTable (Lnet/minecraft/resources/ResourceLocation;J)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		ARG 0 lootTableId
+		ARG 1 lootTableSeed
 	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetContainerLootTable;
 			ARG 1 object
 			ARG 2 deserializationContext

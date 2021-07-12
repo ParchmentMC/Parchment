@@ -1,9 +1,15 @@
 CLASS net/minecraft/network/protocol/game/ServerboundPlayerActionPacket
 	FIELD action Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;
 		COMMENT Status of the digging (started, ongoing, broken).
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD <init> (Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)V
+		ARG 1 action
+		ARG 2 pos
+		ARG 3 direction
 	METHOD handle (Lnet/minecraft/network/protocol/game/ServerGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 buf
+		ARG 1 buffer

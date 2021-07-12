@@ -1,12 +1,18 @@
 CLASS net/minecraft/world/level/storage/loot/functions/SetItemCountFunction
+	COMMENT LootItemFunction that sets the stack's count based on a {@link NumberProvider}, optionally adding to any existing count.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;Z)V
+		ARG 1 conditions
+		ARG 2 countValue
+		ARG 3 add
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
+	METHOD setCount (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		ARG 0 countValue
+	METHOD setCount (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;Z)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		ARG 0 countValue
+		ARG 1 add
 	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetItemCountFunction;
 			ARG 1 object
 			ARG 2 deserializationContext

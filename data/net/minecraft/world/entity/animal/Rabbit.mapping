@@ -35,12 +35,20 @@ CLASS net/minecraft/world/entity/animal/Rabbit
 		ARG 1 newSpeed
 	METHOD wantsMoreFood ()Z
 		COMMENT Returns true if {@link net.minecraft.entity.passive.EntityRabbit#carrotTicks carrotTicks} has reached zero
-	CLASS EvilRabbitAttackGoal
-		METHOD getAttackReachSqr (Lnet/minecraft/world/entity/LivingEntity;)D
-			ARG 1 attackTarget
-	CLASS RabbitAvoidEntityGoal
+	CLASS RaidGardenGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD isValidTarget (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+			COMMENT Return true to set given position as destination
+			ARG 1 level
+			ARG 2 pos
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS RabbitPanicGoal
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
 	CLASS RabbitJumpControl
 		METHOD setCanJump (Z)V
 			ARG 1 canJump
@@ -53,17 +61,9 @@ CLASS net/minecraft/world/entity/animal/Rabbit
 			ARG 3 y
 			ARG 5 z
 			ARG 7 speed
-	CLASS RabbitPanicGoal
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
-	CLASS RaidGardenGoal
-		METHOD canContinueToUse ()Z
-			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+	CLASS EvilRabbitAttackGoal
+		METHOD getAttackReachSqr (Lnet/minecraft/world/entity/LivingEntity;)D
+			ARG 1 attackTarget
+	CLASS RabbitAvoidEntityGoal
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD isValidTarget (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
-			COMMENT Return true to set given position as destination
-			ARG 1 level
-			ARG 2 pos
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started

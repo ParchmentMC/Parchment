@@ -1,7 +1,30 @@
 CLASS net/minecraft/network/protocol/game/ClientboundAddEntityPacket
+	METHOD <init> (ILjava/util/UUID;DDDFFLnet/minecraft/world/entity/EntityType;ILnet/minecraft/world/phys/Vec3;)V
+		ARG 1 id
+		ARG 2 uuid
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
+		ARG 9 xRot
+		ARG 10 yRot
+		ARG 11 type
+		ARG 12 data
+		ARG 13 deltaMovement
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD <init> (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD <init> (Lnet/minecraft/world/entity/Entity;I)V
+		ARG 1 entity
+		ARG 2 data
+	METHOD <init> (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/EntityType;ILnet/minecraft/core/BlockPos;)V
+		ARG 1 entity
+		ARG 2 type
+		ARG 3 data
+		ARG 4 pos
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 buf
+		ARG 1 buffer

@@ -1,19 +1,48 @@
 CLASS net/minecraft/world/level/storage/loot/functions/SetAttributesFunction
+	COMMENT LootItemFunction that adds a list of attribute modifiers to the stacks.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Ljava/util/List;)V
+		ARG 1 conditions
+		ARG 2 modifiers
+	METHOD modifier (Ljava/lang/String;Lnet/minecraft/world/entity/ai/attributes/Attribute;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/functions/SetAttributesFunction$ModifierBuilder;
+		ARG 0 name
+		ARG 1 attribute
+		ARG 2 operation
+		ARG 3 value
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
+	CLASS Builder
+		METHOD withModifier (Lnet/minecraft/world/level/storage/loot/functions/SetAttributesFunction$ModifierBuilder;)Lnet/minecraft/world/level/storage/loot/functions/SetAttributesFunction$Builder;
+			ARG 1 modifierBuilder
 	CLASS Modifier
+		METHOD <init> (Ljava/lang/String;Lnet/minecraft/world/entity/ai/attributes/Attribute;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;[Lnet/minecraft/world/entity/EquipmentSlot;Ljava/util/UUID;)V
+			ARG 1 name
+			ARG 2 attribute
+			ARG 3 operation
+			ARG 4 amount
+			ARG 5 slots
+			ARG 6 id
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/world/level/storage/loot/functions/SetAttributesFunction$Modifier;
 			ARG 0 jsonObj
 			ARG 1 context
+		METHOD operationFromString (Ljava/lang/String;)Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+			ARG 0 name
+		METHOD operationToString (Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)Ljava/lang/String;
+			ARG 0 operation
 		METHOD serialize (Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonObject;
 			ARG 1 context
 	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetAttributesFunction;
 			ARG 1 object
 			ARG 2 deserializationContext
 			ARG 3 conditions
+	CLASS ModifierBuilder
+		METHOD <init> (Ljava/lang/String;Lnet/minecraft/world/entity/ai/attributes/Attribute;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)V
+			ARG 1 name
+			ARG 2 attribute
+			ARG 3 operation
+			ARG 4 amount
+		METHOD forSlot (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/level/storage/loot/functions/SetAttributesFunction$ModifierBuilder;
+			ARG 1 slot
+		METHOD withUuid (Ljava/util/UUID;)Lnet/minecraft/world/level/storage/loot/functions/SetAttributesFunction$ModifierBuilder;
+			ARG 1 id

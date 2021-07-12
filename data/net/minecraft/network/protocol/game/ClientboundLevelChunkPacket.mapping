@@ -1,7 +1,16 @@
 CLASS net/minecraft/network/protocol/game/ClientboundLevelChunkPacket
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD <init> (Lnet/minecraft/world/level/chunk/LevelChunk;)V
+		ARG 1 chunk
+	METHOD calculateChunkSize (Lnet/minecraft/world/level/chunk/LevelChunk;)I
+		ARG 1 chunk
+	METHOD extractChunkData (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/level/chunk/LevelChunk;)Ljava/util/BitSet;
+		ARG 1 buffer
+		ARG 2 chunk
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 buf
+		ARG 1 buffer

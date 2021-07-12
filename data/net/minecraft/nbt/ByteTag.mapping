@@ -1,21 +1,16 @@
 CLASS net/minecraft/nbt/ByteTag
-	METHOD copy ()Lnet/minecraft/nbt/ByteTag;
-		COMMENT Creates a clone of the tag.
-	METHOD getId ()B
-		COMMENT Gets the type byte for the tag.
+	METHOD <init> (B)V
+		ARG 1 data
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
 	METHOD valueOf (B)Lnet/minecraft/nbt/ByteTag;
-		ARG 0 byteValue
+		ARG 0 data
 	METHOD valueOf (Z)Lnet/minecraft/nbt/ByteTag;
-		ARG 0 one
+		ARG 0 data
 	METHOD write (Ljava/io/DataOutput;)V
-		COMMENT Write the actual data contents of the tag, implemented in NBT extension classes
 		ARG 1 output
 	CLASS 1
 		METHOD load (Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/ByteTag;
-			ARG 1 input
-			ARG 2 depth
-			ARG 3 accounter
-		METHOD load (Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/Tag;
 			ARG 1 input
 			ARG 2 depth
 			ARG 3 accounter

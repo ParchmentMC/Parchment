@@ -1,13 +1,16 @@
 CLASS com/mojang/blaze3d/pipeline/RenderTarget
+	METHOD <init> (Z)V
+		ARG 1 useDepth
 	METHOD _bindWrite (Z)V
 		ARG 1 setViewport
 	METHOD _blitToScreen (IIZ)V
 		ARG 1 width
 		ARG 2 height
+		ARG 3 disableBlend
 	METHOD _resize (IIZ)V
 		ARG 1 width
 		ARG 2 height
-		ARG 3 onMac
+		ARG 3 clearError
 	METHOD bindWrite (Z)V
 		ARG 1 setViewport
 	METHOD blitToScreen (II)V
@@ -16,20 +19,23 @@ CLASS com/mojang/blaze3d/pipeline/RenderTarget
 	METHOD blitToScreen (IIZ)V
 		ARG 1 width
 		ARG 2 height
+		ARG 3 disableBlend
 	METHOD clear (Z)V
-		ARG 1 onMac
+		ARG 1 clearError
+	METHOD copyDepthFrom (Lcom/mojang/blaze3d/pipeline/RenderTarget;)V
+		ARG 1 otherTarget
 	METHOD createBuffers (IIZ)V
 		ARG 1 width
 		ARG 2 height
-		ARG 3 onMac
+		ARG 3 clearError
 	METHOD resize (IIZ)V
 		ARG 1 width
 		ARG 2 height
-		ARG 3 onMac
+		ARG 3 clearError
 	METHOD setClearColor (FFFF)V
 		ARG 1 red
 		ARG 2 green
 		ARG 3 blue
 		ARG 4 alpha
 	METHOD setFilterMode (I)V
-		ARG 1 framebufferFilter
+		ARG 1 filterMode

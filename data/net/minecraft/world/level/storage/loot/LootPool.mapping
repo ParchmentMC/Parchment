@@ -1,12 +1,27 @@
 CLASS net/minecraft/world/level/storage/loot/LootPool
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)V
+		ARG 1 entries
+		ARG 2 conditions
+		ARG 3 functions
+		ARG 4 rolls
+		ARG 5 bonusRolls
+	METHOD addRandomItems (Ljava/util/function/Consumer;Lnet/minecraft/world/level/storage/loot/LootContext;)V
+		COMMENT Generate the random items from this LootPool to the given {@code stackConsumer}.
+		COMMENT This first checks this pool's conditions, generating nothing if they do not match.
+		COMMENT Then the random items are generated based on the {@link LootPoolEntry LootPoolEntries} in this pool according to the rolls and bonusRools, applying any loot functions.
+		ARG 1 stackConsumer
+		ARG 2 lootContext
+	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V
+		COMMENT Validate this LootPool according to the given context.
+		ARG 1 context
 	CLASS Builder
 		METHOD add (Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/LootPool$Builder;
 			ARG 1 entriesBuilder
-		METHOD apply (Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction$Builder;)Ljava/lang/Object;
-			ARG 1 functionBuilder
 		METHOD apply (Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction$Builder;)Lnet/minecraft/world/level/storage/loot/LootPool$Builder;
 			ARG 1 functionBuilder
-		METHOD when (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)Ljava/lang/Object;
-			ARG 1 conditionBuilder
+		METHOD setBonusRolls (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/LootPool$Builder;
+			ARG 1 bonusRolls
+		METHOD setRolls (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/LootPool$Builder;
+			ARG 1 rolls
 		METHOD when (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)Lnet/minecraft/world/level/storage/loot/LootPool$Builder;
 			ARG 1 conditionBuilder

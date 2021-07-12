@@ -1,8 +1,7 @@
 CLASS net/minecraft/nbt/Tag
+	METHOD accept (Lnet/minecraft/nbt/TagVisitor;)V
+		ARG 1 visitor
 	METHOD copy ()Lnet/minecraft/nbt/Tag;
-		COMMENT Creates a clone of the tag.
-	METHOD getId ()B
-		COMMENT Gets the type byte for the tag.
+		COMMENT Creates a deep copy of the value held by this tag. Primitive and string tage will return the same tag instance while all other objects will return a new tag instance with the copied data.
 	METHOD write (Ljava/io/DataOutput;)V
-		COMMENT Write the actual data contents of the tag, implemented in NBT extension classes
 		ARG 1 output

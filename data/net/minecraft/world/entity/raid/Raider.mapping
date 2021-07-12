@@ -36,6 +36,15 @@ CLASS net/minecraft/world/entity/raid/Raider
 		ARG 1 delay
 	METHOD setWave (I)V
 		ARG 1 wave
+	CLASS RaiderCelebration
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
 	CLASS HoldGroundAttackGoal
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
@@ -48,15 +57,6 @@ CLASS net/minecraft/world/entity/raid/Raider
 	CLASS ObtainRaidLeaderBannerGoal
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
-	CLASS RaiderCelebration
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
-		METHOD stop ()V
-			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS RaiderMoveThroughVillageGoal

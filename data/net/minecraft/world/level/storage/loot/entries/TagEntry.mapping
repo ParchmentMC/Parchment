@@ -1,17 +1,21 @@
 CLASS net/minecraft/world/level/storage/loot/entries/TagEntry
+	COMMENT A loot pool entry container that generates based on an item tag.
+	COMMENT If {@code expand} is set to true, it will expand into separate LootPoolEntries for every item in the tag, otherwise it will simply generate all items in the tag.
+	METHOD <init> (Lnet/minecraft/tags/Tag;ZII[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
+		ARG 1 tag
+		ARG 2 expand
+		ARG 3 weight
+		ARG 4 quality
+		ARG 5 conditions
+		ARG 6 functions
 	METHOD expandTag (Lnet/minecraft/tags/Tag;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$Builder;
 		ARG 0 tag
 	METHOD expandTag (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)Z
 		ARG 1 context
 		ARG 2 generatorConsumer
+	METHOD tagContents (Lnet/minecraft/tags/Tag;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$Builder;
+		ARG 0 tag
 	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;
-			ARG 1 object
-			ARG 2 context
-			ARG 3 weight
-			ARG 4 quality
-			ARG 5 conditions
-			ARG 6 functions
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/entries/TagEntry;
 			ARG 1 object
 			ARG 2 context
@@ -19,14 +23,6 @@ CLASS net/minecraft/world/level/storage/loot/entries/TagEntry
 			ARG 4 quality
 			ARG 5 conditions
 			ARG 6 functions
-		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;Lcom/google/gson/JsonSerializationContext;)V
-			ARG 1 object
-			ARG 2 context
-			ARG 3 conditions
-		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;Lcom/google/gson/JsonSerializationContext;)V
-			ARG 1 object
-			ARG 2 context
-			ARG 3 conditions
 		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/TagEntry;Lcom/google/gson/JsonSerializationContext;)V
 			ARG 1 object
 			ARG 2 context

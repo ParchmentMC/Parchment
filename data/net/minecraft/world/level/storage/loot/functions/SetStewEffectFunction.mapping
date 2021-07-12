@@ -1,12 +1,16 @@
 CLASS net/minecraft/world/level/storage/loot/functions/SetStewEffectFunction
+	COMMENT LootItemFunction that adds an effect to any suspicious stew items. A random effect is chosen from the given map every time.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Ljava/util/Map;)V
+		ARG 1 conditions
+		ARG 2 effectDurationMap
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
+	CLASS Builder
+		METHOD withEffect (Lnet/minecraft/world/effect/MobEffect;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/functions/SetStewEffectFunction$Builder;
+			ARG 1 effect
+			ARG 2 durationValue
 	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetStewEffectFunction;
 			ARG 1 object
 			ARG 2 deserializationContext

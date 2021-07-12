@@ -46,6 +46,11 @@ CLASS net/minecraft/world/entity/monster/Slime
 		ARG 2 resetHealth
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
+	CLASS SlimeFloatGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
 	CLASS SlimeAttackGoal
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
@@ -55,22 +60,17 @@ CLASS net/minecraft/world/entity/monster/Slime
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
-	CLASS SlimeFloatGoal
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
-	CLASS SlimeKeepOnJumpingGoal
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
 	CLASS SlimeMoveControl
 		METHOD setDirection (FZ)V
 			ARG 1 yRot
 			ARG 2 aggressive
 		METHOD setWantedMovement (D)V
 			ARG 1 speed
+	CLASS SlimeKeepOnJumpingGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
 	CLASS SlimeRandomDirectionGoal
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
