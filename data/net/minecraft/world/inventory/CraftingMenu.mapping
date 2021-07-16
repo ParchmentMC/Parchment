@@ -1,10 +1,26 @@
 CLASS net/minecraft/world/inventory/CraftingMenu
+	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;)V
+		ARG 1 containerId
+		ARG 2 playerInventory
+	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
+		ARG 1 containerId
+		ARG 2 playerInventory
+		ARG 3 access
 	METHOD canTakeItemForPickAll (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z
 		COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
 		ARG 1 stack
 		ARG 2 slot
 	METHOD fillCraftSlotsStackedContents (Lnet/minecraft/world/entity/player/StackedContents;)V
 		ARG 1 itemHelper
+	METHOD lambda$quickMoveStack$2 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 2 level
+		ARG 3 blockPos
+	METHOD lambda$removed$1 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 2 level
+		ARG 3 blockPos
+	METHOD lambda$slotsChanged$0 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 level
+		ARG 2 blockPos
 	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
 		ARG 1 player
@@ -14,6 +30,12 @@ CLASS net/minecraft/world/inventory/CraftingMenu
 	METHOD removed (Lnet/minecraft/world/entity/player/Player;)V
 		COMMENT Called when the container is closed.
 		ARG 1 player
+	METHOD slotChangedCraftingGrid (ILnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/inventory/ResultContainer;)V
+		ARG 0 containerId
+		ARG 1 level
+		ARG 2 player
+		ARG 3 container
+		ARG 4 resultContainer
 	METHOD slotsChanged (Lnet/minecraft/world/Container;)V
 		COMMENT Callback for when the crafting matrix is changed.
 		ARG 1 inventory

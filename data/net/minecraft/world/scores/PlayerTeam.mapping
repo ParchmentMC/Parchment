@@ -1,6 +1,12 @@
 CLASS net/minecraft/world/scores/PlayerTeam
+	METHOD <init> (Lnet/minecraft/world/scores/Scoreboard;Ljava/lang/String;)V
+		ARG 1 scoreboard
+		ARG 2 name
 	METHOD canSeeFriendlyInvisibles ()Z
 		COMMENT Checks whether members of this team can see other members that are invisible.
+	METHOD formatNameForTeam (Lnet/minecraft/world/scores/Team;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 playerTeam
+		ARG 1 playerName
 	METHOD getCollisionRule ()Lnet/minecraft/world/scores/Team$CollisionRule;
 		COMMENT Gets the rule to be used for handling collisions with members of this team.
 	METHOD getColor ()Lnet/minecraft/ChatFormatting;
@@ -37,6 +43,10 @@ CLASS net/minecraft/world/scores/PlayerTeam
 	METHOD setNameTagVisibility (Lnet/minecraft/world/scores/Team$Visibility;)V
 		COMMENT Sets the visibility flags for player name tags.
 		ARG 1 visibility
+	METHOD setPlayerPrefix (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 playerPrefix
+	METHOD setPlayerSuffix (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 playerSuffix
 	METHOD setSeeFriendlyInvisibles (Z)V
 		COMMENT Sets whether members of this team can see other members that are invisible.
 		ARG 1 friendlyInvisibles
