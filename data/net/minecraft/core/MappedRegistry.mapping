@@ -16,15 +16,12 @@ CLASS net/minecraft/core/MappedRegistry
 	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Ljava/lang/Object;
 		ARG 1 name
 	METHOD getId (Ljava/lang/Object;)I
-		COMMENT Gets the integer ID we use to identify the given object.
 		ARG 1 value
 	METHOD getKey (Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
-		COMMENT Gets the name we use to identify the given object.
 		ARG 1 value
 	METHOD getResourceKey (Ljava/lang/Object;)Ljava/util/Optional;
 		ARG 1 value
 	METHOD keySet ()Ljava/util/Set;
-		COMMENT Gets all the keys recognized by this registry.
 	METHOD lifecycle (Ljava/lang/Object;)Lcom/mojang/serialization/Lifecycle;
 		ARG 1 object
 	METHOD networkCodec (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
@@ -41,8 +38,8 @@ CLASS net/minecraft/core/MappedRegistry
 		ARG 3 instance
 		ARG 4 lifecycle
 	METHOD registerMapping (ILnet/minecraft/resources/ResourceKey;Ljava/lang/Object;Lcom/mojang/serialization/Lifecycle;Z)Ljava/lang/Object;
-		ARG 1 index
-		ARG 2 registryKey
+		ARG 1 id
+		ARG 2 key
 		ARG 3 value
 		ARG 4 lifecycle
 		ARG 5 logDuplicateKeys
@@ -54,3 +51,8 @@ CLASS net/minecraft/core/MappedRegistry
 	METHOD withNameAndId (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/MapCodec;)Lcom/mojang/serialization/MapCodec;
 		ARG 0 registryKey
 		ARG 1 mapCodec
+	CLASS RegistryEntry
+		METHOD <init> (Lnet/minecraft/resources/ResourceKey;ILjava/lang/Object;)V
+			ARG 1 key
+			ARG 2 id
+			ARG 3 value
