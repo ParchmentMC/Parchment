@@ -1,32 +1,4 @@
 CLASS net/minecraft/client/Screenshot
-	METHOD _grab (Ljava/io/File;Ljava/lang/String;IILcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V
-		ARG 0 gameDirectory
-		ARG 1 screenshotName
-		ARG 2 width
-		ARG 3 height
-		ARG 4 buffer
-		ARG 5 messageConsumer
 	METHOD getFile (Ljava/io/File;)Ljava/io/File;
 		COMMENT Creates a unique PNG file in the given directory named by a timestamp.  Handles cases where the timestamp alone is not enough to create a uniquely named file, though it still might suffer from an unlikely race condition where the filename was unique when this method was called, but another process or thread created a file at the same path immediately after this method returned.
 		ARG 0 gameDirectory
-	METHOD grab (Ljava/io/File;IILcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V
-		COMMENT Saves a screenshot in the game directory with a time-stamped filename.
-		COMMENT Returns an ITextComponent indicating the success/failure of the saving.
-		ARG 0 gameDirectory
-		ARG 1 width
-		ARG 2 height
-		ARG 3 buffer
-		ARG 4 messageConsumer
-	METHOD grab (Ljava/io/File;Ljava/lang/String;IILcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V
-		COMMENT Saves a screenshot in the game directory with the given file name (or null to generate a time-stamped name).
-		COMMENT Returns an ITextComponent indicating the success/failure of the saving.
-		ARG 0 gameDirectory
-		ARG 1 screenshotName
-		ARG 2 width
-		ARG 3 height
-		ARG 4 buffer
-		ARG 5 messageConsumer
-	METHOD takeScreenshot (IILcom/mojang/blaze3d/pipeline/RenderTarget;)Lcom/mojang/blaze3d/platform/NativeImage;
-		ARG 0 width
-		ARG 1 height
-		ARG 2 framebuffer
