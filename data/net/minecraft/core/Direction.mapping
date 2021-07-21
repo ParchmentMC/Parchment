@@ -47,7 +47,6 @@ CLASS net/minecraft/core/Direction
 		COMMENT @return the index of this horizontal facing (0-3). The order is S-W-N-E
 	METHOD get3DDataValue ()I
 		COMMENT @return the index of this Direction (0-5). The order is D-U-N-S-W-E
-	METHOD getAxisDirection ()Lnet/minecraft/core/Direction$AxisDirection;
 	METHOD getClockWise ()Lnet/minecraft/core/Direction;
 		COMMENT Rotate this Direction around the Y axis clockwise (NORTH => EAST => SOUTH => WEST => NORTH)
 	METHOD getCounterClockWise ()Lnet/minecraft/core/Direction;
@@ -57,7 +56,6 @@ CLASS net/minecraft/core/Direction
 	METHOD getFacingAxis (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Direction$Axis;)Lnet/minecraft/core/Direction;
 		ARG 0 entity
 		ARG 1 axis
-	METHOD getName ()Ljava/lang/String;
 	METHOD getNearest (DDD)Lnet/minecraft/core/Direction;
 		ARG 0 x
 		ARG 2 y
@@ -108,7 +106,6 @@ CLASS net/minecraft/core/Direction
 			ARG 1 x
 			ARG 2 y
 			ARG 3 z
-		METHOD getName ()Ljava/lang/String;
 		METHOD getPlane ()Lnet/minecraft/core/Direction$Plane;
 			COMMENT @return this Axis' Plane (VERTICAL for Y, HORIZONTAL for X and Z)
 		METHOD getRandom (Ljava/util/Random;)Lnet/minecraft/core/Direction$Axis;
@@ -128,33 +125,6 @@ CLASS net/minecraft/core/Direction
 		METHOD getRandomDirection (Ljava/util/Random;)Lnet/minecraft/core/Direction;
 			COMMENT Choose a random Direction from this Plane using the given Random
 			ARG 1 random
-		CLASS 1
-			METHOD choose (DDD)D
-				ARG 1 x
-				ARG 3 y
-				ARG 5 z
-			METHOD choose (III)I
-				ARG 1 x
-				ARG 2 y
-				ARG 3 z
-		CLASS 2
-			METHOD choose (DDD)D
-				ARG 1 x
-				ARG 3 y
-				ARG 5 z
-			METHOD choose (III)I
-				ARG 1 x
-				ARG 2 y
-				ARG 3 z
-		CLASS 3
-			METHOD choose (DDD)D
-				ARG 1 x
-				ARG 3 y
-				ARG 5 z
-			METHOD choose (III)I
-				ARG 1 x
-				ARG 2 y
-				ARG 3 z
 	CLASS AxisDirection
 		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
 			ARG 3 step
