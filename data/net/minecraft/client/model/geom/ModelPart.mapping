@@ -1,7 +1,10 @@
 CLASS net/minecraft/client/model/geom/ModelPart
+	METHOD <init> (Ljava/util/List;Ljava/util/Map;)V
+		ARG 1 cubes
+		ARG 2 children
 	METHOD compile (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lcom/mojang/blaze3d/vertex/VertexConsumer;IIFFFF)V
-		ARG 1 matrixEntry
-		ARG 2 buffer
+		ARG 1 pose
+		ARG 2 vertexConsumer
 		ARG 3 packedLight
 		ARG 4 packedOverlay
 		ARG 5 red
@@ -9,17 +12,21 @@ CLASS net/minecraft/client/model/geom/ModelPart
 		ARG 7 blue
 		ARG 8 alpha
 	METHOD copyFrom (Lnet/minecraft/client/model/geom/ModelPart;)V
-		ARG 1 modelRenderer
+		ARG 1 modelPart
+	METHOD getChild (Ljava/lang/String;)Lnet/minecraft/client/model/geom/ModelPart;
+		ARG 1 name
 	METHOD getRandomCube (Ljava/util/Random;)Lnet/minecraft/client/model/geom/ModelPart$Cube;
 		ARG 1 random
+	METHOD loadPose (Lnet/minecraft/client/model/geom/PartPose;)V
+		ARG 1 partPose
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;II)V
-		ARG 1 matrixStack
-		ARG 2 buffer
+		ARG 1 poseStack
+		ARG 2 vertexConsumer
 		ARG 3 packedLight
 		ARG 4 packedOverlay
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;IIFFFF)V
-		ARG 1 matrixStack
-		ARG 2 buffer
+		ARG 1 poseStack
+		ARG 2 vertexConsumer
 		ARG 3 packedLight
 		ARG 4 packedOverlay
 		ARG 5 red
@@ -27,12 +34,54 @@ CLASS net/minecraft/client/model/geom/ModelPart
 		ARG 7 blue
 		ARG 8 alpha
 	METHOD setPos (FFF)V
-		ARG 1 rotationPointX
-		ARG 2 rotationPointY
-		ARG 3 rotationPointZ
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD setRotation (FFF)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD translateAndRotate (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
+	METHOD visit (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/model/geom/ModelPart$Visitor;)V
+		ARG 1 poseStack
+		ARG 2 visitor
+	CLASS Cube
+		METHOD <init> (IIFFFFFFFFFZFF)V
+			ARG 1 texCoordU
+			ARG 2 texCoordV
+			ARG 3 originX
+			ARG 4 originY
+			ARG 5 originZ
+			ARG 6 dimensionX
+			ARG 7 dimensionY
+			ARG 8 dimensionZ
+			ARG 9 growX
+			ARG 10 growY
+			ARG 11 growZ
+			ARG 12 mirror
+			ARG 13 texWidthScaled
+			ARG 14 texHeightScaled
+		METHOD compile (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lcom/mojang/blaze3d/vertex/VertexConsumer;IIFFFF)V
+			ARG 1 pose
+			ARG 2 vertexConsumer
+			ARG 3 packedLight
+			ARG 4 packedOverlay
+			ARG 5 red
+			ARG 6 blue
+			ARG 7 green
+			ARG 8 alpha
 	CLASS Vertex
+		METHOD <init> (FFFFF)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
+			ARG 4 u
+			ARG 5 v
+		METHOD <init> (Lcom/mojang/math/Vector3f;FF)V
+			ARG 1 pos
+			ARG 2 u
+			ARG 3 v
 		METHOD remap (FF)Lnet/minecraft/client/model/geom/ModelPart$Vertex;
-			ARG 1 texU
-			ARG 2 texV
+			ARG 1 u
+			ARG 2 v
