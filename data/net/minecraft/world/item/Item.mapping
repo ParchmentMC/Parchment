@@ -2,13 +2,13 @@ CLASS net/minecraft/world/item/Item
 	METHOD <init> (Lnet/minecraft/world/item/Item$Properties;)V
 		ARG 1 properties
 	METHOD allowdedIn (Lnet/minecraft/world/item/CreativeModeTab;)Z
-		ARG 1 tab
+		ARG 1 category
 	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
 		COMMENT allows items to add custom lines of information to the mouseover description
 		ARG 1 stack
 		ARG 2 level
 		ARG 3 tooltipComponents
-		ARG 4 flag
+		ARG 4 isAdvanced
 	METHOD byBlock (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/item/Item;
 		ARG 0 block
 	METHOD byId (I)Lnet/minecraft/world/item/Item;
@@ -35,7 +35,7 @@ CLASS net/minecraft/world/item/Item
 		ARG 1 stack
 	METHOD getDefaultAttributeModifiers (Lnet/minecraft/world/entity/EquipmentSlot;)Lcom/google/common/collect/Multimap;
 		COMMENT Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
-		ARG 1 equipmentSlot
+		ARG 1 slot
 	METHOD getDescriptionId ()Ljava/lang/String;
 		COMMENT Returns the unlocalized name of this item.
 	METHOD getDescriptionId (Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
@@ -83,7 +83,7 @@ CLASS net/minecraft/world/item/Item
 		ARG 1 stack
 		ARG 2 player
 		ARG 3 interactionTarget
-		ARG 4 hand
+		ARG 4 usedHand
 	METHOD inventoryTick (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;IZ)V
 		COMMENT Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and update it's contents.
 		ARG 1 stack
@@ -109,14 +109,14 @@ CLASS net/minecraft/world/item/Item
 	METHOD isValidRepairItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Return whether this item is repairable in an anvil.
 		ARG 1 stack
-		ARG 2 repairMaterial
+		ARG 2 repairCandidate
 	METHOD mineBlock (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
 		COMMENT Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
 		ARG 1 stack
 		ARG 2 level
 		ARG 3 state
 		ARG 4 pos
-		ARG 5 entityLiving
+		ARG 5 miner
 	METHOD onCraftedBy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)V
 		COMMENT Called when item is crafted/smelted. Used only by maps so far.
 		ARG 1 stack
@@ -131,8 +131,8 @@ CLASS net/minecraft/world/item/Item
 		ARG 3 stack
 		ARG 4 remainingUseDuration
 	METHOD overrideOtherStackedOnMe (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/inventory/ClickAction;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/SlotAccess;)Z
-		ARG 1 primaryStack
-		ARG 2 secondaryStack
+		ARG 1 stack
+		ARG 2 other
 		ARG 3 slot
 		ARG 4 action
 		ARG 5 player
@@ -147,14 +147,14 @@ CLASS net/minecraft/world/item/Item
 		ARG 1 stack
 		ARG 2 level
 		ARG 3 livingEntity
-		ARG 4 timeLeft
+		ARG 4 timeCharged
 	METHOD shouldOverrideMultiplayerNbt ()Z
 		COMMENT If this function returns true (or the item is damageable), the ItemStack's NBT tag will be sent to the client.
 	METHOD use (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
 		COMMENT Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see {@link #onItemUse}.
 		ARG 1 level
 		ARG 2 player
-		ARG 3 hand
+		ARG 3 usedHand
 	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
 		COMMENT Called when this item is used when targetting a Block
 		ARG 1 context

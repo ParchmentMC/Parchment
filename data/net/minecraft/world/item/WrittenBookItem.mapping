@@ -7,11 +7,13 @@ CLASS net/minecraft/world/item/WrittenBookItem
 		ARG 4 flag
 	METHOD getGeneration (Lnet/minecraft/world/item/ItemStack;)I
 		COMMENT Gets the generation of the book (how many times it has been cloned)
-		ARG 0 book
+		ARG 0 bookStack
 	METHOD getName (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/chat/Component;
+		COMMENT Gets the title name of the book
 		ARG 1 stack
 	METHOD getPageCount (Lnet/minecraft/world/item/ItemStack;)I
-		ARG 0 stack
+		COMMENT Gets the page count of the book
+		ARG 0 bookSTack
 	METHOD isFoil (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Returns true if this item has an enchantment glint. By default, this returns <code>stack.isItemEnchanted()</code>, but other items can override it (for instance, written books always return true).
 		COMMENT
@@ -20,7 +22,7 @@ CLASS net/minecraft/world/item/WrittenBookItem
 	METHOD makeSureTagIsValid (Lnet/minecraft/nbt/CompoundTag;)Z
 		ARG 0 compoundTag
 	METHOD resolveBookComponents (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/player/Player;)Z
-		ARG 0 stack
+		ARG 0 bookStack
 		ARG 1 resolvingSource
 		ARG 2 resolvingPlayer
 	METHOD resolvePage (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/player/Player;Ljava/lang/String;)Ljava/lang/String;
