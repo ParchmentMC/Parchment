@@ -3,7 +3,6 @@ CLASS net/minecraft/world/level/block/BeehiveBlock
 		ARG 1 level
 		ARG 2 pos
 	METHOD animateTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
-		COMMENT Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless of whether the block can receive random update ticks
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
@@ -14,7 +13,6 @@ CLASS net/minecraft/world/level/block/BeehiveBlock
 		ARG 0 level
 		ARG 1 pos
 	METHOD getAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)I
-		COMMENT @deprecated call via {@link IBlockState#getComparatorInputOverride(World,BlockPos)} whenever possible. Implementing/overriding is fine.
 		ARG 1 blockState
 		ARG 2 level
 		ARG 3 pos
@@ -22,21 +20,17 @@ CLASS net/minecraft/world/level/block/BeehiveBlock
 		ARG 1 state
 		ARG 2 builder
 	METHOD getRandomOffset (Ljava/util/Random;)Lnet/minecraft/core/Direction;
-		ARG 0 rand
+		ARG 0 random
 	METHOD getRenderShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/RenderShape;
-		COMMENT The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids, INVISIBLE to skip all rendering
-		COMMENT @deprecated call via {@link IBlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 context
 	METHOD hasAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		COMMENT @deprecated call via {@link IBlockState#hasComparatorInputOverride()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 	METHOD hiveContainsBees (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 level
 		ARG 2 pos
 	METHOD playerDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/item/ItemStack;)V
-		COMMENT Spawns the block's drops in the world. By the time this is called the Block has possibly been set to air via Block.removedByPlayer
 		ARG 1 level
 		ARG 2 player
 		ARG 3 pos
@@ -54,7 +48,7 @@ CLASS net/minecraft/world/level/block/BeehiveBlock
 		ARG 2 state
 		ARG 3 pos
 		ARG 4 player
-		ARG 5 tileState
+		ARG 5 beeReleaseStatus
 	METHOD resetHoneyLevel (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 level
 		ARG 2 state
@@ -76,9 +70,6 @@ CLASS net/minecraft/world/level/block/BeehiveBlock
 		ARG 2 pos
 		ARG 3 state
 	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-		COMMENT For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
-		COMMENT Note that this method should ideally consider only the specific face passed in.
 		ARG 1 state
 		ARG 2 facing
 		ARG 3 facingState

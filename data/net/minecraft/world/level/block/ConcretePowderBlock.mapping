@@ -1,4 +1,7 @@
 CLASS net/minecraft/world/level/block/ConcretePowderBlock
+	METHOD <init> (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+		ARG 1 concrete
+		ARG 2 properties
 	METHOD canSolidify (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
 	METHOD getDustColor (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)I
@@ -8,16 +11,13 @@ CLASS net/minecraft/world/level/block/ConcretePowderBlock
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 context
 	METHOD shouldSolidify (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 0 reader
+		ARG 0 level
 		ARG 1 pos
 		ARG 2 state
 	METHOD touchesLiquid (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
-		ARG 0 reader
+		ARG 0 level
 		ARG 1 pos
 	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-		COMMENT For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
-		COMMENT Note that this method should ideally consider only the specific face passed in.
 		ARG 1 state
 		ARG 2 facing
 		ARG 3 facingState

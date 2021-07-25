@@ -1,6 +1,5 @@
 CLASS net/minecraft/world/level/block/RespawnAnchorBlock
 	METHOD animateTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
-		COMMENT Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless of whether the block can receive random update ticks
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
@@ -20,11 +19,14 @@ CLASS net/minecraft/world/level/block/RespawnAnchorBlock
 		ARG 2 level
 		ARG 3 pos2
 	METHOD findStandUpPosition (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/CollisionGetter;Lnet/minecraft/core/BlockPos;)Ljava/util/Optional;
-		ARG 0 entity
-		ARG 1 reader
+		ARG 0 entityType
+		ARG 1 level
+		ARG 2 pos
+	METHOD findStandUpPosition (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/CollisionGetter;Lnet/minecraft/core/BlockPos;Z)Ljava/util/Optional;
+		ARG 0 entityType
+		ARG 1 level
 		ARG 2 pos
 	METHOD getAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)I
-		COMMENT @deprecated call via {@link IBlockState#getComparatorInputOverride(World,BlockPos)} whenever possible. Implementing/overriding is fine.
 		ARG 1 blockState
 		ARG 2 level
 		ARG 3 pos
@@ -32,7 +34,6 @@ CLASS net/minecraft/world/level/block/RespawnAnchorBlock
 		ARG 0 state
 		ARG 1 scale
 	METHOD hasAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		COMMENT @deprecated call via {@link IBlockState#hasComparatorInputOverride()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 	METHOD isPathfindable (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/pathfinder/PathComputationType;)Z
 		ARG 1 state

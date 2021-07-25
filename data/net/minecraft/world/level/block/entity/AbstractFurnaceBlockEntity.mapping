@@ -1,60 +1,75 @@
 CLASS net/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity
+	METHOD <init> (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/item/crafting/RecipeType;)V
+		ARG 1 type
+		ARG 2 worldPosition
+		ARG 3 blockState
+		ARG 4 recipeType
 	METHOD add (Ljava/util/Map;Lnet/minecraft/tags/Tag;I)V
 		ARG 0 map
 		ARG 1 itemTag
 		ARG 2 burnTime
 	METHOD add (Ljava/util/Map;Lnet/minecraft/world/level/ItemLike;I)V
 		ARG 0 map
-		ARG 1 itemProvider
+		ARG 1 item
 		ARG 2 burnTime
 	METHOD awardUsedRecipes (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
+	METHOD awardUsedRecipesAndPopExperience (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD burn (Lnet/minecraft/world/item/crafting/Recipe;Lnet/minecraft/core/NonNullList;I)Z
+		ARG 0 recipe
+	METHOD canBurn (Lnet/minecraft/world/item/crafting/Recipe;Lnet/minecraft/core/NonNullList;I)Z
+		ARG 0 recipe
 	METHOD canPlaceItem (ILnet/minecraft/world/item/ItemStack;)Z
-		COMMENT Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot. For guis use Slot.isItemValid
 		ARG 1 index
 		ARG 2 stack
 	METHOD canPlaceItemThroughFace (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Z
-		COMMENT Returns true if automation can insert the given item in the given slot from the given side.
 		ARG 1 index
 		ARG 2 itemStack
 		ARG 3 direction
 	METHOD canTakeItemThroughFace (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Z
-		COMMENT Returns true if automation can extract the given item in the given slot from the given side.
 		ARG 1 index
 		ARG 2 stack
 		ARG 3 direction
+	METHOD createExperience (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;IF)V
+		ARG 0 level
 	METHOD fillStackedContents (Lnet/minecraft/world/entity/player/StackedContents;)V
 		ARG 1 helper
 	METHOD getBurnDuration (Lnet/minecraft/world/item/ItemStack;)I
 		ARG 1 fuel
 	METHOD getContainerSize ()I
-		COMMENT Returns the number of slots in the inventory.
 	METHOD getItem (I)Lnet/minecraft/world/item/ItemStack;
-		COMMENT Returns the stack in the given slot.
 		ARG 1 index
+	METHOD getRecipesToAwardAndPopExperience (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;)Ljava/util/List;
+		ARG 1 level
 	METHOD getSlotsForFace (Lnet/minecraft/core/Direction;)[I
 		ARG 1 side
+	METHOD getTotalCookTime (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;)I
+		ARG 0 level
+		ARG 1 recipeType
+		ARG 2 container
 	METHOD isFuel (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 stack
 	METHOD isNeverAFurnaceFuel (Lnet/minecraft/world/item/Item;)Z
 		ARG 0 item
 	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
-		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
 		ARG 1 index
 		ARG 2 count
 	METHOD removeItemNoUpdate (I)Lnet/minecraft/world/item/ItemStack;
-		COMMENT Removes a stack from the given slot and returns it.
 		ARG 1 index
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
+	METHOD serverTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/AbstractFurnaceBlockEntity;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 blockEntity
 	METHOD setItem (ILnet/minecraft/world/item/ItemStack;)V
-		COMMENT Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
 		ARG 1 index
 		ARG 2 stack
 	METHOD setRecipeUsed (Lnet/minecraft/world/item/crafting/Recipe;)V
 		ARG 1 recipe
 	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
-		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
 		ARG 1 player
 	CLASS 1
 		METHOD get (I)I

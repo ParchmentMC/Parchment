@@ -1,4 +1,7 @@
 CLASS net/minecraft/world/level/block/LiquidBlock
+	METHOD <init> (Lnet/minecraft/world/level/material/FlowingFluid;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+		ARG 1 fluid
+		ARG 2 properties
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
 	METHOD fizz (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)V
@@ -15,8 +18,6 @@ CLASS net/minecraft/world/level/block/LiquidBlock
 	METHOD getFluidState (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/FluidState;
 		ARG 1 state
 	METHOD getRenderShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/RenderShape;
-		COMMENT The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids, INVISIBLE to skip all rendering
-		COMMENT @deprecated call via {@link IBlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 state
@@ -29,7 +30,6 @@ CLASS net/minecraft/world/level/block/LiquidBlock
 		ARG 3 pos
 		ARG 4 type
 	METHOD isRandomlyTicking (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		COMMENT Returns whether or not this block is of a type that needs random ticking. Called for ref-counting purposes by ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
 		ARG 1 state
 	METHOD neighborChanged (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos;Z)V
 		ARG 1 state
@@ -49,7 +49,6 @@ CLASS net/minecraft/world/level/block/LiquidBlock
 		ARG 2 reader
 		ARG 3 pos
 	METHOD randomTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
-		COMMENT Performs a random tick on a block.
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
@@ -63,9 +62,6 @@ CLASS net/minecraft/world/level/block/LiquidBlock
 		ARG 2 adjacentBlockState
 		ARG 3 side
 	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-		COMMENT For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
-		COMMENT Note that this method should ideally consider only the specific face passed in.
 		ARG 1 state
 		ARG 2 facing
 		ARG 3 facingState

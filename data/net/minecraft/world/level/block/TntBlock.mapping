@@ -2,11 +2,10 @@ CLASS net/minecraft/world/level/block/TntBlock
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
 	METHOD dropFromExplosion (Lnet/minecraft/world/level/Explosion;)Z
-		COMMENT Return whether this block can drop from an explosion.
 		ARG 1 explosion
 	METHOD explode (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 		ARG 0 level
-		ARG 1 levelConflicting
+		ARG 1 pos
 	METHOD explode (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 0 level
 		ARG 1 pos
@@ -30,7 +29,6 @@ CLASS net/minecraft/world/level/block/TntBlock
 		ARG 3 hit
 		ARG 4 projectile
 	METHOD playerWillDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V
-		COMMENT Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect this block
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
@@ -43,7 +41,6 @@ CLASS net/minecraft/world/level/block/TntBlock
 		ARG 5 hand
 		ARG 6 hit
 	METHOD wasExploded (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/Explosion;)V
-		COMMENT Called when this Block is destroyed by an Explosion
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 explosion
