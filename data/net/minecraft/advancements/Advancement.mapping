@@ -4,27 +4,27 @@ CLASS net/minecraft/advancements/Advancement
 		ARG 2 parent
 		ARG 3 display
 		ARG 4 rewards
-		ARG 5 criterion
+		ARG 5 criteria
 		ARG 6 requirements
 	METHOD addChild (Lnet/minecraft/advancements/Advancement;)V
-		COMMENT Add the given {@code Advancement} as a child of this {@code Advancement}.
+		COMMENT Add the provided {@code child} as a child of this advancement.
 		ARG 1 child
 	METHOD deconstruct ()Lnet/minecraft/advancements/Advancement$Builder;
-		COMMENT Deconstructs this advancement into a {@link net.minecraft.advancements.Advancement#Builder}
+		COMMENT Deconstructs this advancement into a {@link net.minecraft.advancements.Advancement#Builder}.
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
 	METHOD getChatComponent ()Lnet/minecraft/network/chat/Component;
-		COMMENT @return The {@link net.minecraft.network.chat.Component} that is shown in the chat message sent after this {@code Advancement} is completed.
+		COMMENT @return The {@link net.minecraft.network.chat.Component} that is shown in the chat message sent after this advancement is completed.
 	METHOD getChildren ()Ljava/lang/Iterable;
 		COMMENT @return An iterable through this advancement's children.
 	METHOD getCriteria ()Ljava/util/Map;
-		COMMENT @return A map of criteria required to complete this advancement, in a map from names to {@link net.minecraft.advancements.Criterion}s.
+		COMMENT @return A map of criteria required to complete this advancement. Keys represent the criteria names and values are the {@link net.minecraft.advancements.Criterion} instances.
 	METHOD getDisplay ()Lnet/minecraft/advancements/DisplayInfo;
-		COMMENT @return Display information for this {@code Advancement}, or {@code null} if this advancement is invisible.
+		COMMENT @return Display information for this advancement, or {@code null} if this advancement is invisible.
 	METHOD getId ()Lnet/minecraft/resources/ResourceLocation;
-		COMMENT @return The ID of this {@code Advancement}
+		COMMENT @return The ID of this advancement.
 	METHOD getMaxCriteraRequired ()I
-		COMMENT @return How many requirements this {@code Advancement} has.
+		COMMENT @return How many requirements this advancement has.
 	METHOD getParent ()Lnet/minecraft/advancements/Advancement;
 		COMMENT @return The parent advancement to display in the advancements screen or {@code null} to signify this is a root advancement.
 	METHOD lambda$new$0 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
@@ -43,10 +43,10 @@ CLASS net/minecraft/advancements/Advancement
 			ARG 1 key
 			ARG 2 criterion
 		METHOD build (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/Advancement;
-			ARG 1 id
+			ARG 1 parentId
 		METHOD canBuild (Ljava/util/function/Function;)Z
 			COMMENT Tries to resolve the parent of this advancement, if possible. Returns true on success.
-			ARG 1 lookup
+			ARG 1 parentLookup
 		METHOD display (Lnet/minecraft/advancements/DisplayInfo;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 display
 		METHOD display (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/FrameType;ZZZ)Lnet/minecraft/advancements/Advancement$Builder;
