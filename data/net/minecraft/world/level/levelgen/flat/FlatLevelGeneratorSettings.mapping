@@ -1,13 +1,13 @@
 CLASS net/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings
 	METHOD <init> (Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/StructureSettings;Ljava/util/List;ZZLjava/util/Optional;)V
 		ARG 1 biomes
-		ARG 2 settings
-		ARG 3 layers
-		ARG 4 hasLakes
-		ARG 5 hasDecoration
+		ARG 2 structureSettings
+		ARG 3 layersInfo
+		ARG 4 addLakes
+		ARG 5 decoration
 		ARG 6 biome
 	METHOD <init> (Lnet/minecraft/world/level/levelgen/StructureSettings;Lnet/minecraft/core/Registry;)V
-		ARG 1 settings
+		ARG 1 structureSettings
 		ARG 2 biomes
 	METHOD getBiome ()Lnet/minecraft/world/level/biome/Biome;
 		COMMENT Return the biome used on this preset.
@@ -15,10 +15,18 @@ CLASS net/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings
 		ARG 0 biomes
 	METHOD getLayersInfo ()Ljava/util/List;
 		COMMENT Return the list of layers on this preset.
+	METHOD lambda$static$5 (Ljava/util/HashMap;)V
+		ARG 0 structureFeatures
+	METHOD lambda$updateLayers$8 (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 0 state
 	METHOD setBiome (Ljava/util/function/Supplier;)V
 		ARG 1 biome
+	METHOD validateHeight (Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Lcom/mojang/serialization/DataResult;
+		ARG 0 flatSettings
 	METHOD withLayers (Ljava/util/List;Lnet/minecraft/world/level/levelgen/StructureSettings;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
-		ARG 1 flatLayers
-		ARG 2 settings
+		COMMENT @return A new {@code FlatLevelGeneratorSettings} populated from this one, but with the provided layers and structure settings.
+		ARG 1 layersInfo
+		ARG 2 structureSettings
 	METHOD withStructureSettings (Lnet/minecraft/world/level/levelgen/StructureSettings;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
-		ARG 1 settings
+		COMMENT @return A new {@code FlatLevelGeneratorSettings} populated from this one, but with the provided structure settings.
+		ARG 1 structureSettings
