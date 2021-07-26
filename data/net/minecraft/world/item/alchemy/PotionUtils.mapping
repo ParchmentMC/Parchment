@@ -1,38 +1,68 @@
 CLASS net/minecraft/world/item/alchemy/PotionUtils
 	METHOD addPotionTooltip (Lnet/minecraft/world/item/ItemStack;Ljava/util/List;F)V
+		COMMENT Adds the tooltip of the {@code Potion} stored on the {@code ItemStack} along a "durationFactor"
 		ARG 0 stack
+			COMMENT the passed {@code ItemStack}
 		ARG 1 tooltips
+			COMMENT the passed List of current {@code Component} tooltips
 		ARG 2 durationFactor
+			COMMENT the passed durationFactor of the {@code Potion}
 	METHOD getAllEffects (Lnet/minecraft/nbt/CompoundTag;)Ljava/util/List;
-		COMMENT Creates a list of PotionEffect from data on a NBTTagCompound.
+		COMMENT Creates a List of {@code MobEffectInstance}s from data on a {@code CompoundTag}.
 		ARG 0 compoundTag
+			COMMENT the passed {@code CompoundTag}
 	METHOD getAllEffects (Lnet/minecraft/world/item/alchemy/Potion;Ljava/util/Collection;)Ljava/util/List;
+		COMMENT Creates a List of {@code MobEffectInstance} from a {@code Potion} as well as a Collection of {@code MobEffectInstance}
 		ARG 0 potion
+			COMMENT the {@code Potion} being passed in
 		ARG 1 effects
+			COMMENT a collection of various {@code MobEffectInstance}
 	METHOD getColor (Ljava/util/Collection;)I
+		COMMENT Gets the merged Integer color based from a collection of {@code MobEffectInstance}
 		ARG 0 effects
+			COMMENT the passed collection of {@code MobEffectInstance}
 	METHOD getColor (Lnet/minecraft/world/item/ItemStack;)I
+		COMMENT Gets the Integer color of an {@code ItemStack} as defined by it's stored potion color tag
 		ARG 0 stack
+			COMMENT the passed {@code ItemStack}
 	METHOD getColor (Lnet/minecraft/world/item/alchemy/Potion;)I
+		COMMENT Gets the Integer color of an {@code Potion}
 		ARG 0 potion
+			COMMENT the passed {@code Potion}
 	METHOD getCustomEffects (Lnet/minecraft/nbt/CompoundTag;)Ljava/util/List;
+		COMMENT Creates a List of {@code MobEffectInstance} from data on the passed {@code CompoundTag}
 		ARG 0 compoundTag
+			COMMENT the passed {@code CompoundTag}
 	METHOD getCustomEffects (Lnet/minecraft/nbt/CompoundTag;Ljava/util/List;)V
+		COMMENT Fills a predefined list with {@code MobEffectInstance} from a {@code CompoundNBT}
 		ARG 0 compoundTag
+			COMMENT the passed {@code CompoundNBT}
 		ARG 1 effectList
+			COMMENT the predefined List holding {@code MobEffectInstance}
 	METHOD getCustomEffects (Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;
+		COMMENT Creates a List of {@code MobEffectInstance}s from data on the passed {@code {@code ItemStack}}
 		ARG 0 stack
+			COMMENT the passed {@code ItemStack}
 	METHOD getMobEffects (Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;
-		COMMENT Creates a List of PotionEffect from data on the passed ItemStack's NBTTagCompound.
+		COMMENT Creates a List of {@code MobEffectInstance} from data on the passed {@code ItemStack} {@code CompoundTag}.
 		ARG 0 stack
+			COMMENT The passed {@code ItemStack}
 	METHOD getPotion (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/item/alchemy/Potion;
-		COMMENT If no correct potion is found, returns the default one : PotionTypes.water
+		COMMENT Attempts to get the {@code Potion} type of the passed {@code CompoundTag}
+		COMMENT If no correct potion is found, returns the default one : {@code Potions.WATER}
 		ARG 0 compoundTag
+			COMMENT the passed {@code CompoundTag}
 	METHOD getPotion (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/alchemy/Potion;
+		COMMENT Attempts to get the {@code Potion} from an {@code ItemStack}
+		COMMENT If it fails, returns the default one : {@code Potions.WATER}
 		ARG 0 stack
+			COMMENT the passed {@code ItemStack}
 	METHOD setCustomEffects (Lnet/minecraft/world/item/ItemStack;Ljava/util/Collection;)Lnet/minecraft/world/item/ItemStack;
 		ARG 0 stack
 		ARG 1 effects
 	METHOD setPotion (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/alchemy/Potion;)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Sets the {@code Potion} type to the {@code ItemStack}
 		ARG 0 stack
+			COMMENT the passed {@code ItemStack} to apply to
 		ARG 1 potion
+			COMMENT the passed {@code Potion} to use to apply to the {@code ItemStack}
