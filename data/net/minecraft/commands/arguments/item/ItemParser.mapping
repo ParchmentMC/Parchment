@@ -1,15 +1,27 @@
 CLASS net/minecraft/commands/arguments/item/ItemParser
 	FIELD suggestions Ljava/util/function/BiFunction;
 		COMMENT Builder to be used when creating a list of suggestions
+	METHOD <init> (Lcom/mojang/brigadier/StringReader;Z)V
+		ARG 1 reader
+		ARG 2 forTesting
 	METHOD fillSuggestions (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		COMMENT Create a list of suggestions for the specified builder.
 		ARG 1 builder
+		ARG 2 tags
+	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 itemId
+	METHOD lambda$static$1 (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 builder
+		ARG 1 tags
 	METHOD suggestItemIdOrTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		COMMENT Builds a list of suggestions based on item tags (if the parser is set to allows tags) and item registry names.
 		ARG 1 builder
+		ARG 2 tags
 	METHOD suggestOpenNbt (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		COMMENT Builds a list of suggestions based on item registry names.
 		ARG 1 builder
+		ARG 2 tags
 	METHOD suggestTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		COMMENT Builds a list of suggestions based on item tags.
 		ARG 1 builder
+		ARG 2 tags

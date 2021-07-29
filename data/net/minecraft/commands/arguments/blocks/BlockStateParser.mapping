@@ -1,4 +1,7 @@
 CLASS net/minecraft/commands/arguments/blocks/BlockStateParser
+	METHOD <init> (Lcom/mojang/brigadier/StringReader;Z)V
+		ARG 1 reader
+		ARG 2 forTesting
 	METHOD addSuggestions (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/world/level/block/state/properties/Property;)Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;
 		ARG 0 builder
 		ARG 1 property
@@ -8,8 +11,35 @@ CLASS net/minecraft/commands/arguments/blocks/BlockStateParser
 		ARG 2 value
 	METHOD fillSuggestions (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
+		ARG 2 tags
 	METHOD getVagueProperties ()Ljava/util/Map;
 		COMMENT Gets all of the properties the user has specified.
+	METHOD hasBlockEntity (Lnet/minecraft/tags/TagCollection;)Z
+		ARG 1 tags
+	METHOD lambda$readProperties$7 (Lnet/minecraft/world/level/block/state/properties/Property;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 builder
+		ARG 2 tags
+	METHOD lambda$readVagueProperties$8 (Ljava/lang/String;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
+		ARG 2 builder
+		ARG 3 tags
+	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 blockId
+	METHOD lambda$static$1 (Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 blockId
+		ARG 1 property
+	METHOD lambda$static$2 (Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 property
+		ARG 1 blockId
+	METHOD lambda$static$3 (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 blockId
+		ARG 1 value
+		ARG 2 property
+	METHOD lambda$static$4 (Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 property
+		ARG 1 blockId
+	METHOD lambda$static$5 (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 builder
+		ARG 1 tags
 	METHOD parse (Z)Lnet/minecraft/commands/arguments/blocks/BlockStateParser;
 		ARG 1 parseBlockEntity
 	METHOD serialize (Lnet/minecraft/world/level/block/state/BlockState;)Ljava/lang/String;
@@ -20,21 +50,38 @@ CLASS net/minecraft/commands/arguments/blocks/BlockStateParser
 		ARG 3 valuePosition
 	METHOD suggestBlockIdOrTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
+		ARG 2 tags
 	METHOD suggestEquals (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
+		ARG 2 tags
 	METHOD suggestNextPropertyOrEnd (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
+		ARG 2 tags
 	METHOD suggestOpenNbt (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
+		ARG 2 tags
 	METHOD suggestOpenPropertiesOrNbt (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
+		ARG 2 tags
+	METHOD suggestOpenVaguePropertiesOrNbt (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 builder
+		ARG 2 tags
 	METHOD suggestPropertyName (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
+		ARG 2 tags
 	METHOD suggestPropertyNameOrEnd (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
+		ARG 2 tags
 	METHOD suggestTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
+		ARG 2 tags
 	METHOD suggestVaguePropertyName (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
+		ARG 2 tags
 	METHOD suggestVaguePropertyNameOrEnd (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
+		ARG 2 tags
+	METHOD suggestVaguePropertyValue (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 builder
+		ARG 2 tags
+		ARG 3 property

@@ -2,7 +2,17 @@ CLASS net/minecraft/commands/arguments/EntityAnchorArgument
 	METHOD getAnchor (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;
 		ARG 0 context
 		ARG 1 name
+	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 pos
+	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 context
+		ARG 2 builder
+	METHOD parse (Lcom/mojang/brigadier/StringReader;)Ljava/lang/Object;
+		ARG 1 reader
 	CLASS Anchor
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Ljava/util/function/BiFunction;)V
+			ARG 3 name
+			ARG 4 transform
 		METHOD apply (Lnet/minecraft/commands/CommandSourceStack;)Lnet/minecraft/world/phys/Vec3;
 			COMMENT Gets the coordinate based on the given command source's position. If the source is not an entity, no offsetting occurs.
 			ARG 1 source
@@ -11,3 +21,11 @@ CLASS net/minecraft/commands/arguments/EntityAnchorArgument
 			ARG 1 entity
 		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;
 			ARG 0 name
+		METHOD lambda$static$0 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/phys/Vec3;
+			ARG 0 pos
+			ARG 1 entity
+		METHOD lambda$static$1 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/phys/Vec3;
+			ARG 0 pos
+			ARG 1 entity
+		METHOD lambda$static$2 (Ljava/util/HashMap;)V
+			ARG 0 map
