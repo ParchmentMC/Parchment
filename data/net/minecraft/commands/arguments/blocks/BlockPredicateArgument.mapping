@@ -13,7 +13,7 @@ CLASS net/minecraft/commands/arguments/blocks/BlockPredicateArgument
 	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 context
 		ARG 2 builder
-	METHOD parse (Lcom/mojang/brigadier/StringReader;)Ljava/lang/Object;
+	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/blocks/BlockPredicateArgument$Result;
 		ARG 1 reader
 	CLASS Result
 		METHOD create (Lnet/minecraft/tags/TagContainer;)Ljava/util/function/Predicate;
@@ -23,12 +23,12 @@ CLASS net/minecraft/commands/arguments/blocks/BlockPredicateArgument
 			ARG 1 tag
 			ARG 2 vagueProperties
 			ARG 3 nbt
-		METHOD test (Ljava/lang/Object;)Z
+		METHOD test (Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
 			ARG 1 block
 	CLASS BlockPredicate
 		METHOD <init> (Lnet/minecraft/world/level/block/state/BlockState;Ljava/util/Set;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 state
 			ARG 2 properties
 			ARG 3 nbt
-		METHOD test (Ljava/lang/Object;)Z
+		METHOD test (Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
 			ARG 1 block
