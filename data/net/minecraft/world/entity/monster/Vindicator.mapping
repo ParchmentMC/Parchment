@@ -14,6 +14,8 @@ CLASS net/minecraft/world/entity/monster/Vindicator
 	METHOD isAlliedTo (Lnet/minecraft/world/entity/Entity;)Z
 		COMMENT Returns whether this Entity is on the same team as the given Entity.
 		ARG 1 entity
+	METHOD lambda$static$0 (Lnet/minecraft/world/Difficulty;)Z
+		ARG 0 difficulty
 	METHOD populateDefaultEquipmentSlots (Lnet/minecraft/world/DifficultyInstance;)V
 		COMMENT Gives armor or weapon for entity based on given DifficultyInstance
 		ARG 1 difficulty
@@ -30,9 +32,13 @@ CLASS net/minecraft/world/entity/monster/Vindicator
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 	CLASS VindicatorMeleeAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Vindicator;Lnet/minecraft/world/entity/monster/Vindicator;)V
+			ARG 2 vindicator
 		METHOD getAttackReachSqr (Lnet/minecraft/world/entity/LivingEntity;)D
 			ARG 1 attackTarget
 	CLASS VindicatorJohnnyAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Vindicator;)V
+			ARG 1 vindicator
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD start ()V

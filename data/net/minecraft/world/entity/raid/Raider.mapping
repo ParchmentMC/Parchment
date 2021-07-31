@@ -5,6 +5,7 @@ CLASS net/minecraft/world/entity/raid/Raider
 		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD applyRaidBuffs (IZ)V
 		ARG 1 wave
+		ARG 2 unusedFalse
 	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
 		COMMENT Called when the mob's health reaches 0.
 		ARG 1 cause
@@ -27,13 +28,13 @@ CLASS net/minecraft/world/entity/raid/Raider
 	METHOD removeWhenFarAway (D)Z
 		ARG 1 distanceToClosestPlayer
 	METHOD setCanJoinRaid (Z)V
-		ARG 1 canJoin
+		ARG 1 canJoinRaid
 	METHOD setCelebrating (Z)V
-		ARG 1 celebrate
+		ARG 1 celebrating
 	METHOD setCurrentRaid (Lnet/minecraft/world/entity/raid/Raid;)V
 		ARG 1 raid
 	METHOD setTicksOutsideRaid (I)V
-		ARG 1 delay
+		ARG 1 ticksOutsideRaid
 	METHOD setWave (I)V
 		ARG 1 wave
 	CLASS RaiderCelebration
@@ -60,6 +61,10 @@ CLASS net/minecraft/world/entity/raid/Raider
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS RaiderMoveThroughVillageGoal
+		METHOD <init> (Lnet/minecraft/world/entity/raid/Raider;DI)V
+			ARG 1 raider
+			ARG 2 speedModifier
+			ARG 4 distanceToPoi
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z

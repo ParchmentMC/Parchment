@@ -33,6 +33,8 @@ CLASS net/minecraft/world/entity/monster/Spider
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
 	CLASS SpiderAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Spider;)V
+			ARG 1 spider
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
@@ -40,6 +42,9 @@ CLASS net/minecraft/world/entity/monster/Spider
 		METHOD getAttackReachSqr (Lnet/minecraft/world/entity/LivingEntity;)D
 			ARG 1 attackTarget
 	CLASS SpiderTargetGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Spider;Ljava/lang/Class;)V
+			ARG 1 spider
+			ARG 2 entityTypeToTarget
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS SpiderEffectsGroupData
