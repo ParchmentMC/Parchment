@@ -1,4 +1,10 @@
 CLASS net/minecraft/world/entity/item/FallingBlockEntity
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 state
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD displayFireAnimation ()Z
@@ -14,7 +20,9 @@ CLASS net/minecraft/world/entity/item/FallingBlockEntity
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD setHurtsEntities (Z)V
+		ARG 1 hurtEntities
 	METHOD setStartPos (Lnet/minecraft/core/BlockPos;)V
-		ARG 1 origin
+		ARG 1 startPos
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.

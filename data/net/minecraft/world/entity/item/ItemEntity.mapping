@@ -1,9 +1,22 @@
 CLASS net/minecraft/world/entity/item/ItemEntity
+	METHOD <init> (Lnet/minecraft/world/entity/item/ItemEntity;)V
+		ARG 1 itemEntity
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDD)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 stack
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD areMergable (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 0 stack1
-		ARG 1 stack2
+		ARG 0 destinationStack
+		ARG 1 originStack
 	METHOD changeDimension (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 server
 	METHOD getItem ()Lnet/minecraft/world/item/ItemStack;
@@ -16,9 +29,21 @@ CLASS net/minecraft/world/entity/item/ItemEntity
 		ARG 2 amount
 	METHOD isAttackable ()Z
 		COMMENT Returns true if it's possible to attack this entity with an item.
+	METHOD lambda$mergeWithNeighbours$0 (Lnet/minecraft/world/entity/item/ItemEntity;)Z
+		ARG 1 neighbour
+	METHOD merge (Lnet/minecraft/world/entity/item/ItemEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/item/ItemEntity;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 0 destinationEntity
+		ARG 1 destinationStack
+		ARG 2 originEntity
+		ARG 3 originStack
+	METHOD merge (Lnet/minecraft/world/entity/item/ItemEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 0 destinationEntity
+		ARG 1 destinationStack
+		ARG 2 originStack
 	METHOD merge (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;I)Lnet/minecraft/world/item/ItemStack;
-		ARG 0 stack1
-		ARG 1 stack2
+		ARG 0 destinationStack
+		ARG 1 originStack
+		ARG 2 amount
 	METHOD mergeWithNeighbours ()V
 		COMMENT Looks for other itemstacks nearby and tries to stack them together
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
@@ -33,10 +58,12 @@ CLASS net/minecraft/world/entity/item/ItemEntity
 		COMMENT Sets the item that this entity represents.
 		ARG 1 stack
 	METHOD setOwner (Ljava/util/UUID;)V
-		ARG 1 ownerId
+		ARG 1 owner
 	METHOD setPickUpDelay (I)V
-		ARG 1 ticks
+		ARG 1 pickupDelay
 	METHOD setThrower (Ljava/util/UUID;)V
-		ARG 1 throwerId
+		ARG 1 thrower
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
+	METHOD tryToMerge (Lnet/minecraft/world/entity/item/ItemEntity;)V
+		ARG 1 itemEntity
