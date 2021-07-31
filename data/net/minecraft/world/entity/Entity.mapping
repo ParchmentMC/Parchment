@@ -11,8 +11,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
-		ARG 7 yaw
-		ARG 8 pitch
+		ARG 7 yRot
+		ARG 8 xRot
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD addPassenger (Lnet/minecraft/world/entity/Entity;)V
@@ -33,12 +33,12 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD broadcastToPlayer (Lnet/minecraft/server/level/ServerPlayer;)Z
 		ARG 1 player
 	METHOD calculateUpVector (FF)Lnet/minecraft/world/phys/Vec3;
-		ARG 1 pitch
-		ARG 2 yaw
+		ARG 1 xRot
+		ARG 2 yRot
 	METHOD calculateViewVector (FF)Lnet/minecraft/world/phys/Vec3;
-		COMMENT Creates a Vec3 using the pitch and yaw of the entities rotation.
-		ARG 1 pitch
-		ARG 2 yaw
+		COMMENT Creates a Vec3 using the xRot and yRot of the entities rotation.
+		ARG 1 xRot
+		ARG 2 yRot
 	METHOD canAddPassenger (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 passenger
 	METHOD canChangeDimensions ()Z
@@ -48,7 +48,10 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD canEnterPose (Lnet/minecraft/world/entity/Pose;)Z
 		ARG 1 pose
 	METHOD canRide (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 entity
+		ARG 1 vehicle
+	METHOD causeFallDamage (FF)Z
+		ARG 1 fallDistance
+		ARG 2 damageMultiplier
 	METHOD changeDimension (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 server
 	METHOD checkDespawn ()V
@@ -132,9 +135,9 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD getBrightness ()F
 		COMMENT Gets how bright this entity is.
 	METHOD getCollisionHorizontalEscapeVector (DDF)Lnet/minecraft/world/phys/Vec3;
-		ARG 0 mountWidth
-		ARG 2 riderWidth
-		ARG 4 yaw
+		ARG 0 vehicleWidth
+		ARG 2 passengerWidth
+		ARG 4 yRot
 	METHOD getCommandSenderWorld ()Lnet/minecraft/world/level/Level;
 		COMMENT Get the world, if available. <b>{@code null} is not allowed!</b> If you are not an entity in the world, return the overworld
 	METHOD getControllingPassenger ()Lnet/minecraft/world/entity/Entity;
@@ -211,10 +214,10 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT interpolated look vector
 		ARG 1 partialTicks
 	METHOD getViewXRot (F)F
-		COMMENT Gets the current pitch of the entity.
+		COMMENT Gets the current xRot of the entity.
 		ARG 1 partialTicks
 	METHOD getViewYRot (F)F
-		COMMENT Gets the current yaw of the entity
+		COMMENT Gets the current yRot of the entity
 		ARG 1 partialTicks
 	METHOD getX (D)D
 		ARG 1 scale
@@ -273,7 +276,7 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 5 z
 	METHOD isFree (Lnet/minecraft/world/phys/AABB;)Z
 		COMMENT Determines if a liquid is present within the specified AxisAlignedBB.
-		ARG 1 bb
+		ARG 1 box
 	METHOD isIgnoringBlockTriggers ()Z
 		COMMENT Return whether this entity should NOT trigger a pressure plate or a tripwire.
 	METHOD isInWall ()Z
@@ -341,9 +344,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
-		ARG 7 yaw
-		ARG 8 pitch
-		ARG 9 posRotationIncrements
+		ARG 7 yRot
+		ARG 8 xRot
+		ARG 9 lerpSteps
 		ARG 10 teleport
 	METHOD limitPistonMovement (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 pos
@@ -375,16 +378,16 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 3 y
 		ARG 5 z
 	METHOD moveTo (DDDFF)V
-		COMMENT Sets the location and Yaw/Pitch of an entity in the world
+		COMMENT Sets the location and yRot/xRot of an entity in the world
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
-		ARG 7 yaw
-		ARG 8 pitch
+		ARG 7 yRot
+		ARG 8 xRot
 	METHOD moveTo (Lnet/minecraft/core/BlockPos;FF)V
 		ARG 1 pos
-		ARG 2 rotationYaw
-		ARG 3 rotationPitch
+		ARG 2 yRot
+		ARG 3 xRot
 	METHOD moveTo (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 vec
 	METHOD moveTowardsClosestSpace (DDD)V
@@ -404,7 +407,7 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD onInsideBubbleColumn (Z)V
 		ARG 1 downwards
 	METHOD onPassengerTurned (Lnet/minecraft/world/entity/Entity;)V
-		COMMENT Applies this entity's orientation (pitch/yaw) to another entity. Used to update passenger orientation.
+		COMMENT Applies this entity's orientation (xRot/yRot) to another entity. Used to update passenger orientation.
 		ARG 1 entityToUpdate
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
@@ -413,9 +416,9 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD outOfWorld ()V
 		COMMENT sets the dead flag. Used when you fall off the bottom of the world.
 	METHOD pick (DFZ)Lnet/minecraft/world/phys/HitResult;
-		ARG 1 rayTraceDistance
+		ARG 1 hitDistance
 		ARG 3 partialTicks
-		ARG 4 rayTraceFluids
+		ARG 4 hitFluids
 	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;FF)V
 		ARG 1 sound
 		ARG 2 volume
@@ -427,11 +430,11 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 volume
 	METHOD playerTouch (Lnet/minecraft/world/entity/player/Player;)V
 		COMMENT Called by a player entity when they collide with an entity
-		ARG 1 entity
+		ARG 1 player
 	METHOD positionRider (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 passenger
 	METHOD positionRider (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity$MoveFunction;)V
-		ARG 1 entity
+		ARG 1 passenger
 		ARG 2 callback
 	METHOD processPortalCooldown ()V
 		COMMENT Decrements the counter for the remaining time until the entity may use a portal again.
@@ -513,7 +516,7 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD setNoGravity (Z)V
 		ARG 1 noGravity
 	METHOD setOnGround (Z)V
-		ARG 1 grounded
+		ARG 1 onGround
 	METHOD setPacketCoordinates (DDD)V
 		ARG 1 x
 		ARG 3 y
@@ -540,8 +543,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 ticks
 	METHOD setRot (FF)V
 		COMMENT Sets the rotation of the entity.
-		ARG 1 yaw
-		ARG 2 pitch
+		ARG 1 yRot
+		ARG 2 xRot
 	METHOD setSecondsOnFire (I)V
 		COMMENT Sets entity to burn for x amount of seconds, cannot lower amount of existing fire.
 		ARG 1 seconds
@@ -567,11 +570,11 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD setViewScale (D)V
 		ARG 0 renderDistWeight
 	METHOD setYBodyRot (F)V
-		COMMENT Set the render yaw offset
-		ARG 1 offset
+		COMMENT Set the body y rotation of the entity.
+		ARG 1 yBodyRot
 	METHOD setYHeadRot (F)V
-		COMMENT Sets the head's yaw rotation of the entity.
-		ARG 1 rotation
+		COMMENT Sets the head's y rotation of the entity.
+		ARG 1 yHeadRot
 	METHOD shouldBlockExplode (Lnet/minecraft/world/level/Explosion;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;F)Z
 		ARG 1 explosion
 		ARG 2 level
@@ -598,11 +601,11 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 item
 	METHOD spawnAtLocation (Lnet/minecraft/world/level/ItemLike;I)Lnet/minecraft/world/entity/item/ItemEntity;
 		ARG 1 item
-		ARG 2 offset
+		ARG 2 offsetY
 	METHOD startRiding (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 entity
+		ARG 1 vehicle
 	METHOD startRiding (Lnet/minecraft/world/entity/Entity;Z)Z
-		ARG 1 entity
+		ARG 1 vehicle
 		ARG 2 force
 	METHOD startSeenByPlayer (Lnet/minecraft/server/level/ServerPlayer;)V
 		COMMENT Add the given player to the list of players tracking this entity. For instance, a player may track a boss in order to view its associated boss bar.
@@ -628,8 +631,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
 	METHOD turn (DD)V
-		ARG 1 yaw
-		ARG 3 pitch
+		ARG 1 yRot
+		ARG 3 xRot
 	METHOD updateFluidHeightAndDoFluidPushing (Lnet/minecraft/tags/Tag;D)Z
 		ARG 1 fluidTag
 		ARG 2 motionScale

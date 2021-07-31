@@ -1,4 +1,15 @@
 CLASS net/minecraft/world/entity/EntityType
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType$EntityFactory;Lnet/minecraft/world/entity/MobCategory;ZZZZLcom/google/common/collect/ImmutableSet;Lnet/minecraft/world/entity/EntityDimensions;II)V
+		ARG 1 factory
+		ARG 2 category
+		ARG 3 serialize
+		ARG 4 summon
+		ARG 5 fireImmune
+		ARG 6 canSpawnFarFromPlayer
+		ARG 7 immuneTo
+		ARG 8 dimensions
+		ARG 9 clientTrackingRange
+		ARG 10 updateInterval
 	METHOD by (Lnet/minecraft/nbt/CompoundTag;)Ljava/util/Optional;
 		ARG 0 compound
 	METHOD byString (Ljava/lang/String;)Ljava/util/Optional;
@@ -16,20 +27,42 @@ CLASS net/minecraft/world/entity/EntityType
 		ARG 3 customName
 		ARG 4 player
 		ARG 5 pos
-		ARG 6 reason
+		ARG 6 spawnType
+		ARG 7 shouldOffsetY
+		ARG 8 shouldOffsetYMore
 	METHOD create (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 level
 	METHOD create (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/world/entity/Entity;
 		ARG 0 level
 		ARG 1 type
+	METHOD getAABB (DDD)Lnet/minecraft/world/phys/AABB;
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD getKey (Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/resources/ResourceLocation;
 		ARG 0 entityType
+	METHOD getYOffset (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;ZLnet/minecraft/world/phys/AABB;)D
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 shouldOffsetYMore
+		ARG 3 box
 	METHOD is (Lnet/minecraft/tags/Tag;)Z
 		COMMENT Checks if this entity type is contained in the tag
 		ARG 1 tag
+	METHOD isBlockDangerous (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
+	METHOD lambda$create$1 (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/world/entity/Entity;
+		ARG 1 entityType
+	METHOD lambda$create$2 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD lambda$getYOffset$0 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
+	METHOD lambda$loadEntityRecursive$4 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/Level;Ljava/util/function/Function;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/entity/Entity;
+		ARG 3 vehicle
 	METHOD loadEntityRecursive (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/Level;Ljava/util/function/Function;)Lnet/minecraft/world/entity/Entity;
 		ARG 0 compound
 		ARG 1 level
+		ARG 2 entityFunction
 	METHOD loadStaticEntity (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
 		ARG 0 compound
 		ARG 1 level
@@ -42,28 +75,46 @@ CLASS net/minecraft/world/entity/EntityType
 		ARG 3 customName
 		ARG 4 player
 		ARG 5 pos
-		ARG 6 reason
+		ARG 6 spawnType
+		ARG 7 shouldOffsetY
+		ARG 8 shouldOffsetYMore
 	METHOD spawn (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/MobSpawnType;ZZ)Lnet/minecraft/world/entity/Entity;
-		ARG 1 level
+		ARG 1 serverLevel
 		ARG 2 stack
 		ARG 3 player
 		ARG 4 pos
-		ARG 5 reason
+		ARG 5 spawnType
+		ARG 6 shouldOffsetY
+		ARG 7 shouldOffsetYMore
 	METHOD updateCustomEntityTag (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 0 level
 		ARG 1 player
 		ARG 2 spawnedEntity
 		ARG 3 itemNBT
 	CLASS Builder
+		METHOD <init> (Lnet/minecraft/world/entity/EntityType$EntityFactory;Lnet/minecraft/world/entity/MobCategory;)V
+			ARG 1 factory
+			ARG 2 category
 		METHOD build (Ljava/lang/String;)Lnet/minecraft/world/entity/EntityType;
-			ARG 1 id
+			ARG 1 key
 		METHOD clientTrackingRange (I)Lnet/minecraft/world/entity/EntityType$Builder;
-			ARG 1 range
+			ARG 1 clientTrackingRange
 		METHOD createNothing (Lnet/minecraft/world/entity/MobCategory;)Lnet/minecraft/world/entity/EntityType$Builder;
-			ARG 0 classification
+			ARG 0 category
+		METHOD immuneTo ([Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/entity/EntityType$Builder;
+			ARG 1 blocks
+		METHOD lambda$createNothing$0 (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/Entity;
+			ARG 0 entityType
+			ARG 1 level
 		METHOD of (Lnet/minecraft/world/entity/EntityType$EntityFactory;Lnet/minecraft/world/entity/MobCategory;)Lnet/minecraft/world/entity/EntityType$Builder;
 			ARG 0 factory
-			ARG 1 classification
+			ARG 1 category
 		METHOD sized (FF)Lnet/minecraft/world/entity/EntityType$Builder;
 			ARG 1 width
 			ARG 2 height
+		METHOD updateInterval (I)Lnet/minecraft/world/entity/EntityType$Builder;
+			ARG 1 updateInterval
+	CLASS EntityFactory
+		METHOD create (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/Entity;
+			ARG 1 entityType
+			ARG 2 level

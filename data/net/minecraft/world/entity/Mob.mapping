@@ -13,9 +13,16 @@ CLASS net/minecraft/world/entity/Mob
 		COMMENT returns true if all the conditions for steering the entity are met. For pigs, this is true if it is being ridden by a player and the player is holding a carrot-on-a-stick
 	METHOD canBeLeashed (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 player
+	METHOD canCutCorner (Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Z
+		ARG 1 pathType
+	METHOD canFireProjectileWeapon (Lnet/minecraft/world/item/ProjectileWeaponItem;)Z
+		ARG 1 projectileItem
 	METHOD canHoldItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
 	METHOD canReplaceCurrentItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 candidate
+		ARG 2 existing
+	METHOD canReplaceEqualItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 candidate
 		ARG 2 existing
 	METHOD canTakeItem (Lnet/minecraft/world/item/ItemStack;)Z
@@ -29,14 +36,17 @@ CLASS net/minecraft/world/entity/Mob
 		COMMENT Returns true if entity is spawned from spawner or if entity can spawn on given BlockPos
 		ARG 0 type
 		ARG 1 level
-		ARG 2 reason
+		ARG 2 spawnType
 		ARG 3 pos
 		ARG 4 random
 	METHOD checkSpawnObstruction (Lnet/minecraft/world/level/LevelReader;)Z
 		ARG 1 level
 	METHOD checkSpawnRules (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;)Z
 		ARG 1 level
-		ARG 2 spawnReason
+		ARG 2 reason
+	METHOD convertTo (Lnet/minecraft/world/entity/EntityType;Z)Lnet/minecraft/world/entity/Mob;
+		ARG 1 entityType
+		ARG 2 transferInventory
 	METHOD createLootContext (ZLnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
 		ARG 1 attackedRecently
 		ARG 2 damageSource
@@ -54,10 +64,17 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 2 attackedRecently
 	METHOD dropLeash (ZZ)V
 		COMMENT Removes the leash from this entity
-		ARG 1 sendPacket
-		ARG 2 dropLead
+		ARG 1 broadcastPacket
+		ARG 2 dropLeash
+	METHOD enchantSpawnedArmor (FLnet/minecraft/world/entity/EquipmentSlot;)V
+		ARG 1 chanceMultiplier
+		ARG 2 slot
+	METHOD enchantSpawnedWeapon (F)V
+		ARG 1 chanceMultiplier
+	METHOD equipItemIfPossible (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
-		ARG 1 level
+		ARG 1 server
 		ARG 2 difficulty
 		ARG 3 reason
 		ARG 4 spawnData
@@ -69,6 +86,8 @@ CLASS net/minecraft/world/entity/Mob
 	METHOD getEquipmentForSlot (Lnet/minecraft/world/entity/EquipmentSlot;I)Lnet/minecraft/world/item/Item;
 		ARG 0 slot
 		ARG 1 chance
+	METHOD getEquipmentSlotForItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/EquipmentSlot;
+		ARG 0 stack
 	METHOD getExperienceReward (Lnet/minecraft/world/entity/player/Player;)I
 		COMMENT Get the experience points the entity currently has.
 		ARG 1 player
@@ -100,15 +119,22 @@ CLASS net/minecraft/world/entity/Mob
 		COMMENT Get whether this Entity's AI is disabled
 	METHOD isPersistenceRequired ()Z
 		COMMENT Return the persistenceRequired field (whether this entity is allowed to naturally despawn)
+	METHOD isValidSlotForItem (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 slot
+		ARG 1 stack
 	METHOD isWithinRestriction (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD jumpInLiquid (Lnet/minecraft/tags/Tag;)V
 		ARG 1 fluidTag
 	METHOD lookAt (Lnet/minecraft/world/entity/Entity;FF)V
-		COMMENT Changes pitch and yaw so that the entity calling the function is facing the entity provided as an argument.
+		COMMENT Changes xRot and yRot so that the entity calling the function is facing the entity provided as an argument.
 		ARG 1 entity
-		ARG 2 maxYawIncrease
-		ARG 3 maxPitchIncrease
+		ARG 2 maxYRotIncrease
+		ARG 3 maxXRotIncrease
+	METHOD maybeDisableShield (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 player
+		ARG 2 mobItemStack
+		ARG 3 playerItemStack
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
@@ -142,32 +168,37 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 2 targetAngle
 		ARG 3 maxIncrease
 	METHOD setAggressive (Z)V
-		ARG 1 hasAggro
+		ARG 1 isAggressive
 	METHOD setBaby (Z)V
-		COMMENT Set whether this zombie is a child.
-		ARG 1 childZombie
+		COMMENT Set whether this mob is a child.
+		ARG 1 isBaby
 	METHOD setCanPickUpLoot (Z)V
-		ARG 1 canPickup
+		ARG 1 canPickUpLoot
 	METHOD setDelayedLeashHolderId (I)V
 		ARG 1 leashHolderID
 	METHOD setDropChance (Lnet/minecraft/world/entity/EquipmentSlot;F)V
 		ARG 1 slot
 		ARG 2 chance
+	METHOD setGuaranteedDrop (Lnet/minecraft/world/entity/EquipmentSlot;)V
+		ARG 1 slot
 	METHOD setItemSlot (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 slot
+		ARG 2 stack
+	METHOD setItemSlotAndDropWhenKilled (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 slot
 		ARG 2 stack
 	METHOD setLeashedTo (Lnet/minecraft/world/entity/Entity;Z)V
 		COMMENT Sets the entity to be leashed to.
 		ARG 1 entity
-		ARG 2 sendAttachNotification
+		ARG 2 broadcastPacket
 	METHOD setLeftHanded (Z)V
 		ARG 1 leftHanded
 	METHOD setNoAi (Z)V
 		COMMENT Set whether this Entity's AI is disabled
-		ARG 1 disable
+		ARG 1 noAi
 	METHOD setPathfindingMalus (Lnet/minecraft/world/level/pathfinder/BlockPathTypes;F)V
 		ARG 1 nodeType
-		ARG 2 priority
+		ARG 2 malus
 	METHOD setPersistenceRequired ()V
 		COMMENT Enable the Entity persistence
 	METHOD setSpeed (F)V
@@ -175,7 +206,7 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 1 speed
 	METHOD setTarget (Lnet/minecraft/world/entity/LivingEntity;)V
 		COMMENT Sets the active target the Task system uses for tracking
-		ARG 1 livingEntity
+		ARG 1 target
 	METHOD setXxa (F)V
 		ARG 1 amount
 	METHOD setYya (F)V
@@ -193,3 +224,5 @@ CLASS net/minecraft/world/entity/Mob
 		COMMENT Applies logic related to leashes, for example dragging the entity or breaking the leash.
 	METHOD updateControlFlags ()V
 		COMMENT Sets MOVE, JUMP, LOOK Goal.Flags depending if entity is riding or been controlled
+	METHOD wantsToPickUp (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
