@@ -1,24 +1,28 @@
 CLASS net/minecraft/core/Registry
+	METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;)V
+		ARG 1 key
+		ARG 2 lifecycle
 	METHOD checkRegistry (Lnet/minecraft/core/WritableRegistry;)V
-		ARG 0 registry
+		ARG 0 metaRegistry
+	METHOD containsKey (Lnet/minecraft/resources/ResourceKey;)Z
+		ARG 1 key
 	METHOD containsKey (Lnet/minecraft/resources/ResourceLocation;)Z
 		ARG 1 name
 	METHOD createRegistryKey (Ljava/lang/String;)Lnet/minecraft/resources/ResourceKey;
-		ARG 0 name
+		ARG 0 registryName
 	METHOD get (Lnet/minecraft/resources/ResourceKey;)Ljava/lang/Object;
 		ARG 1 key
 	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Ljava/lang/Object;
 		ARG 1 name
 	METHOD getId (Ljava/lang/Object;)I
-		COMMENT Gets the integer ID we use to identify the given object.
 		ARG 1 value
 	METHOD getKey (Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
-		COMMENT Gets the name we use to identify the given object.
+		COMMENT @return the name used to identify the given object within this registry or {@code null} if the object is not within this registry
 		ARG 1 value
 	METHOD getOptional (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
 		ARG 1 registryKey
 	METHOD getOptional (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
-		ARG 1 id
+		ARG 1 name
 	METHOD getOrThrow (Lnet/minecraft/resources/ResourceKey;)Ljava/lang/Object;
 		ARG 1 key
 	METHOD getRandom (Ljava/util/Random;)Ljava/lang/Object;
@@ -28,41 +32,46 @@ CLASS net/minecraft/core/Registry
 	METHOD internalRegister (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/WritableRegistry;Ljava/util/function/Supplier;Lcom/mojang/serialization/Lifecycle;)Lnet/minecraft/core/WritableRegistry;
 		COMMENT Registers the passed registry
 		ARG 0 registryKey
-		ARG 1 instance
-		ARG 2 objectSupplier
+		ARG 1 registry
+		ARG 2 loader
 		ARG 3 lifecycle
 	METHOD keySet ()Ljava/util/Set;
-		COMMENT Gets all the keys recognized by this registry.
+		COMMENT @return all keys in this registry
+	METHOD lambda$checkRegistry$55 (Lnet/minecraft/core/WritableRegistry;Lnet/minecraft/core/WritableRegistry;)V
+		ARG 1 registry
+	METHOD lambda$static$54 (Lnet/minecraft/resources/ResourceLocation;Ljava/util/function/Supplier;)V
+		ARG 0 registryName
+		ARG 1 loader
 	METHOD lifecycle (Ljava/lang/Object;)Lcom/mojang/serialization/Lifecycle;
-		ARG 1 object
+		ARG 1 value
 	METHOD register (Lnet/minecraft/core/Registry;Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
 		ARG 0 registry
-		ARG 1 identifier
+		ARG 1 name
 		ARG 2 value
 	METHOD register (Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceLocation;Ljava/lang/Object;)Ljava/lang/Object;
 		ARG 0 registry
-		ARG 1 identifier
+		ARG 1 name
 		ARG 2 value
 	METHOD registerDefaulted (Lnet/minecraft/resources/ResourceKey;Ljava/lang/String;Lcom/mojang/serialization/Lifecycle;Ljava/util/function/Supplier;)Lnet/minecraft/core/DefaultedRegistry;
 		ARG 0 registryKey
-		ARG 1 defaultedValueKey
+		ARG 1 defaultValueName
 		ARG 2 lifecycle
-		ARG 3 supplier
+		ARG 3 loader
 	METHOD registerDefaulted (Lnet/minecraft/resources/ResourceKey;Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraft/core/DefaultedRegistry;
 		ARG 0 registryKey
-		ARG 1 defaultedValueKey
-		ARG 2 supplier
+		ARG 1 defaultValueName
+		ARG 2 loader
 	METHOD registerMapping (Lnet/minecraft/core/Registry;ILjava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
 		ARG 0 registry
 		ARG 1 id
-		ARG 2 identifier
+		ARG 2 name
 		ARG 3 value
 	METHOD registerSimple (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Ljava/util/function/Supplier;)Lnet/minecraft/core/Registry;
 		COMMENT Makes a simple registry and registers it
 		ARG 0 registryKey
 		ARG 1 lifecycle
-		ARG 2 supplier
+		ARG 2 loader
 	METHOD registerSimple (Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Supplier;)Lnet/minecraft/core/Registry;
 		COMMENT Makes a simple registry with the default lifecycle of "experimental" and registers it
 		ARG 0 registryKey
-		ARG 1 supplier
+		ARG 1 loader

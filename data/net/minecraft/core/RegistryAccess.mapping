@@ -1,27 +1,32 @@
 CLASS net/minecraft/core/RegistryAccess
 	METHOD addBuiltinElements (Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/resources/RegistryReadOps$ResourceAccess$MemoryMap;Lnet/minecraft/core/RegistryAccess$RegistryData;)V
-		ARG 0 dynamicRegistries
-		ARG 1 registryAccess
-		ARG 2 codecHolder
+		ARG 0 registryHolder
 	METHOD copy (Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/core/Registry;)V
-		ARG 0 dynamicRegistries
+		ARG 0 registryHolder
 		ARG 1 registry
 	METHOD copyBuiltin (Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/resources/ResourceKey;)V
-		ARG 0 dynamicRegistries
+		ARG 0 registryHolder
 		ARG 1 key
+	METHOD ownedRegistry (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+		ARG 1 registryKey
 	METHOD put (Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)V
-		ARG 0 codecHolder
 		ARG 1 registryKey
 		ARG 2 codec
 	METHOD put (Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)V
-		ARG 0 codecHolder
 		ARG 1 registryKey
 		ARG 2 codec
 		ARG 3 codec2
+	CLASS RegistryData
+		METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)V
+			ARG 1 key
+			ARG 2 codec
+			ARG 3 networkCodec
 	CLASS RegistryHolder
 		METHOD captureMap (Lcom/mojang/serialization/codecs/UnboundedMapCodec;)Lcom/mojang/serialization/Codec;
-			ARG 0 unboundedCodec
+			ARG 0 unboundedMapCodec
 		METHOD createRegistry (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/MappedRegistry;
-			ARG 0 registerKey
+			ARG 0 registryKey
 		METHOD getNetworkCodec (Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/DataResult;
 			ARG 0 registryKey
+		METHOD lambda$ownedRegistry$7 (Lnet/minecraft/core/MappedRegistry;)Lnet/minecraft/core/WritableRegistry;
+			ARG 0 registry

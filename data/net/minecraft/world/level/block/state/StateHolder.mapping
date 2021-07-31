@@ -1,12 +1,19 @@
 CLASS net/minecraft/world/level/block/state/StateHolder
+	METHOD <init> (Ljava/lang/Object;Lcom/google/common/collect/ImmutableMap;Lcom/mojang/serialization/MapCodec;)V
+		ARG 1 owner
+		ARG 2 values
+		ARG 3 propertiesCodec
 	METHOD cycle (Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Object;
 		ARG 1 property
 	METHOD findNextInCollection (Ljava/util/Collection;Ljava/lang/Object;)Ljava/lang/Object;
-		ARG 0 allowedValues
+		ARG 0 collection
+		ARG 1 value
+	METHOD getOptionalValue (Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/util/Optional;
+		ARG 1 property
 	METHOD getProperties ()Ljava/util/Collection;
-		COMMENT Gets an unmodifiable collection of all possible properties.
+		COMMENT @return an unmodifiable collection of all possible properties.
 	METHOD getValue (Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
-		COMMENT Get the value of the given Property for this BlockState
+		COMMENT @return the value of the given Property for this state
 		ARG 1 property
 	METHOD hasProperty (Lnet/minecraft/world/level/block/state/properties/Property;)Z
 		ARG 1 property

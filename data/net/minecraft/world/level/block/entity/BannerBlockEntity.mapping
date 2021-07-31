@@ -3,25 +3,30 @@ CLASS net/minecraft/world/level/block/entity/BannerBlockEntity
 		COMMENT A list of all the banner patterns.
 	FIELD patterns Ljava/util/List;
 		COMMENT A list of all patterns stored on this banner.
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 worldPosition
+		ARG 2 blockState
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/item/DyeColor;)V
+		ARG 1 worldPosition
+		ARG 2 blockState
+		ARG 3 baseColor
 	METHOD createPatterns (Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/nbt/ListTag;)Ljava/util/List;
 		ARG 0 color
-		ARG 1 nbtList
+		ARG 1 listTag
 	METHOD fromItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/DyeColor;)V
 		ARG 1 stack
 		ARG 2 color
 	METHOD getItemPatterns (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/nbt/ListTag;
 		ARG 0 stack
 	METHOD getPatternCount (Lnet/minecraft/world/item/ItemStack;)I
-		COMMENT Retrieves the amount of patterns stored on an ItemStack. If the tag does not exist this value will be 0.
+		COMMENT @return the amount of patterns stored in the given ItemStack. Defaults to zero if none are stored.
 		ARG 0 stack
 	METHOD getPatterns ()Ljava/util/List;
-		COMMENT Retrieves the list of patterns for this tile entity. The banner data will be initialized/refreshed before this happens.
+		COMMENT @return the patterns for this banner.
 	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
-		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
 	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
-		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
 	METHOD removeLastPattern (Lnet/minecraft/world/item/ItemStack;)V
-		COMMENT Removes all the banner related data from a provided instance of ItemStack.
+		COMMENT Removes all banner data from the given ItemStack.
 		ARG 0 stack
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound

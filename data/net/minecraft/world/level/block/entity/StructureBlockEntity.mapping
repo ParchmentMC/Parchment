@@ -1,12 +1,21 @@
 CLASS net/minecraft/world/level/block/entity/StructureBlockEntity
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 worldPosition
+		ARG 2 blockState
 	METHOD createRandom (J)Ljava/util/Random;
 		ARG 0 seed
 	METHOD createdBy (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 author
 	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
-		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
 	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
-		COMMENT Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the chunk or when many blocks change at once. This compound comes back to you clientside in {@link handleUpdateTag}
+	METHOD lambda$detectSize$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
+		ARG 2 boundingBox
+	METHOD loadStructure (Lnet/minecraft/server/level/ServerLevel;)Z
+		ARG 1 level
+	METHOD loadStructure (Lnet/minecraft/server/level/ServerLevel;Z)Z
+		ARG 1 level
+	METHOD loadStructure (Lnet/minecraft/server/level/ServerLevel;ZLnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate;)Z
+		ARG 1 level
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
 	METHOD saveStructure ()Z
@@ -23,7 +32,7 @@ CLASS net/minecraft/world/level/block/entity/StructureBlockEntity
 	METHOD setIntegrity (F)V
 		ARG 1 integrity
 	METHOD setMetaData (Ljava/lang/String;)V
-		ARG 1 metadata
+		ARG 1 metaData
 	METHOD setMirror (Lnet/minecraft/world/level/block/Mirror;)V
 		ARG 1 mirror
 	METHOD setMode (Lnet/minecraft/world/level/block/state/properties/StructureMode;)V
@@ -39,10 +48,12 @@ CLASS net/minecraft/world/level/block/entity/StructureBlockEntity
 	METHOD setShowBoundingBox (Z)V
 		ARG 1 showBoundingBox
 	METHOD setStructureName (Ljava/lang/String;)V
-		ARG 1 name
+		ARG 1 structureName
 	METHOD setStructureName (Lnet/minecraft/resources/ResourceLocation;)V
-		ARG 1 newName
+		ARG 1 structureName
 	METHOD setStructurePos (Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
+		ARG 1 structurePos
+	METHOD setStructureSize (Lnet/minecraft/core/Vec3i;)V
+		ARG 1 structureSize
 	METHOD usedBy (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 player

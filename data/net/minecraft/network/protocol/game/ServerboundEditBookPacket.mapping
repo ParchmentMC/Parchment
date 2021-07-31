@@ -1,17 +1,13 @@
 CLASS net/minecraft/network/protocol/game/ServerboundEditBookPacket
+	METHOD <init> (ILjava/util/List;Ljava/util/Optional;)V
+		ARG 1 slot
+		ARG 2 pages
+		ARG 3 title
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
-	METHOD <init> (Lnet/minecraft/world/item/ItemStack;ZI)V
-		ARG 1 book
-		ARG 2 signing
-		ARG 3 slot
-	METHOD getBook ()Lnet/minecraft/world/item/ItemStack;
-		COMMENT The client written book stack containing up to date nbt data.
 	METHOD handle (Lnet/minecraft/network/protocol/game/ServerGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
-	METHOD isSigning ()Z
-		COMMENT If true it updates author, title and pages. Otherwise just update pages.
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buffer

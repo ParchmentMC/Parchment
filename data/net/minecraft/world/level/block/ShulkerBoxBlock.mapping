@@ -1,13 +1,20 @@
 CLASS net/minecraft/world/level/block/ShulkerBoxBlock
+	METHOD <init> (Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+		ARG 1 color
+		ARG 2 properties
 	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/BlockGetter;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
 		ARG 1 stack
 		ARG 2 level
 		ARG 3 tooltip
 		ARG 4 flag
+	METHOD canOpen (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/ShulkerBoxBlockEntity;)Z
+		ARG 0 state
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 blockEntity
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
 	METHOD getAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)I
-		COMMENT @deprecated call via {@link IBlockState#getComparatorInputOverride(World,BlockPos)} whenever possible. Implementing/overriding is fine.
 		ARG 1 blockState
 		ARG 2 level
 		ARG 3 pos
@@ -27,11 +34,8 @@ CLASS net/minecraft/world/level/block/ShulkerBoxBlock
 		ARG 1 state
 		ARG 2 builder
 	METHOD getPistonPushReaction (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/PushReaction;
-		COMMENT @deprecated call via {@link IBlockState#getMobilityFlag()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 	METHOD getRenderShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/RenderShape;
-		COMMENT The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids, INVISIBLE to skip all rendering
-		COMMENT @deprecated call via {@link IBlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 state
@@ -41,11 +45,8 @@ CLASS net/minecraft/world/level/block/ShulkerBoxBlock
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 context
 	METHOD hasAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		COMMENT @deprecated call via {@link IBlockState#hasComparatorInputOverride()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed blockstate.
-		COMMENT @deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 		ARG 2 mirror
 	METHOD onRemove (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
@@ -55,18 +56,14 @@ CLASS net/minecraft/world/level/block/ShulkerBoxBlock
 		ARG 4 newState
 		ARG 5 isMoving
 	METHOD playerWillDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V
-		COMMENT Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect this block
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
 		ARG 4 player
 	METHOD rotate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;
-		COMMENT Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.
-		COMMENT @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 		ARG 2 rot
 	METHOD setPlacedBy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
-		COMMENT Called by ItemBlocks after a block is set in the world, to allow post-place logic
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state

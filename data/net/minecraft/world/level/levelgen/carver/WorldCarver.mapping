@@ -1,34 +1,64 @@
 CLASS net/minecraft/world/level/levelgen/carver/WorldCarver
 	METHOD <init> (Lcom/mojang/serialization/Codec;)V
 		ARG 1 codec
+	METHOD canReach (Lnet/minecraft/world/level/ChunkPos;DDIIF)Z
+		ARG 0 chunkPos
+		ARG 1 x
+		ARG 3 z
+		ARG 5 branchIndex
+		ARG 6 branchCount
+		ARG 7 width
 	METHOD canReplaceBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 	METHOD canReplaceBlock (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 		ARG 2 aboveState
 	METHOD carve (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/world/level/chunk/ChunkAccess;Ljava/util/function/Function;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/Aquifer;Lnet/minecraft/world/level/ChunkPos;Ljava/util/BitSet;)Z
+		COMMENT Carves the given chunk with caves that originate from the given {@code chunkPos}.
+		COMMENT This method is invoked 289 times in order to generate each chunk (once for every position in an 8 chunk radius, or 17x17 chunk area, centered around the target chunk).
+		COMMENT
+		COMMENT @see net.minecraft.world.level.chunk.ChunkGenerator#applyCarvers
 		ARG 1 context
 		ARG 2 config
 		ARG 3 chunk
+			COMMENT The chunk to be carved
+		ARG 4 biomeAccessor
 		ARG 5 random
 		ARG 6 aquifer
 		ARG 7 chunkPos
+			COMMENT The chunk position this carver is being called from
 		ARG 8 carvingMask
 	METHOD carveBlock (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/world/level/chunk/ChunkAccess;Ljava/util/function/Function;Ljava/util/BitSet;Ljava/util/Random;Lnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/world/level/levelgen/Aquifer;Lorg/apache/commons/lang3/mutable/MutableBoolean;)Z
+		COMMENT Carves a single block, replacing it with the appropiate state if possible, and handles replacing exposed dirt with grass.
 		ARG 1 context
 		ARG 2 config
 		ARG 3 chunk
+		ARG 4 biomeAccessor
 		ARG 5 carvingMask
 		ARG 6 random
+		ARG 7 pos
+			COMMENT The position to carve at. The method does not mutate this position.
+		ARG 8 checkPos
+			COMMENT An additional mutable block position object to be used and modified by the method
 		ARG 9 aquifer
+		ARG 10 reachedSurface
+			COMMENT Set to true if the block carved was the surface, which is checked as being either grass or mycelium
 	METHOD carveEllipsoid (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/world/level/chunk/ChunkAccess;Ljava/util/function/Function;JLnet/minecraft/world/level/levelgen/Aquifer;DDDDDLjava/util/BitSet;Lnet/minecraft/world/level/levelgen/carver/WorldCarver$CarveSkipChecker;)Z
+		COMMENT Carves blocks in an ellipsoid (more accurately a spheroid), defined by a center (x, y, z) position, with a horizontal and vertical radius (the semi-axies)
 		ARG 1 context
 		ARG 2 config
 		ARG 3 chunk
+		ARG 4 biomeAccessor
 		ARG 5 seed
 		ARG 7 aquifer
+		ARG 8 x
+		ARG 10 y
+		ARG 12 z
+		ARG 14 horizontalRadius
+		ARG 16 verticalRadius
 		ARG 18 carvingMask
 		ARG 19 skipChecker
+			COMMENT Used to skip certain blocks within the carved region.
 	METHOD configured (Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;)Lnet/minecraft/world/level/levelgen/carver/ConfiguredWorldCarver;
 		ARG 1 config
 	METHOD getCarveState (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/Aquifer;)Lnet/minecraft/world/level/block/state/BlockState;
@@ -50,15 +80,23 @@ CLASS net/minecraft/world/level/levelgen/carver/WorldCarver
 	METHOD isDebugEnabled (Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;)Z
 		ARG 0 config
 	METHOD isEdge (IIIIII)Z
-		ARG 1 minX
-		ARG 2 maxX
-		ARG 3 minZ
-		ARG 4 maxZ
-		ARG 5 x
-		ARG 6 z
+		ARG 0 x
+		ARG 1 z
+		ARG 2 minX
+		ARG 3 maxX
+		ARG 4 minZ
+		ARG 5 maxZ
 	METHOD isStartChunk (Lnet/minecraft/world/level/levelgen/carver/CarverConfiguration;Ljava/util/Random;)Z
 		ARG 1 config
 		ARG 2 random
 	METHOD register (Ljava/lang/String;Lnet/minecraft/world/level/levelgen/carver/WorldCarver;)Lnet/minecraft/world/level/levelgen/carver/WorldCarver;
 		ARG 0 key
 		ARG 1 carver
+	CLASS CarveSkipChecker
+		COMMENT Used to define certain positions to skip or ignore when carving.
+		METHOD shouldSkip (Lnet/minecraft/world/level/levelgen/carver/CarvingContext;DDDI)Z
+			ARG 1 context
+			ARG 2 relativeX
+			ARG 4 relativeY
+			ARG 6 relativeZ
+			ARG 8 y
