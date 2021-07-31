@@ -44,6 +44,8 @@ CLASS net/minecraft/world/entity/animal/Wolf
 		ARG 1 stack
 	METHOD isWet ()Z
 		COMMENT True if the wolf is wet
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
@@ -54,9 +56,9 @@ CLASS net/minecraft/world/entity/animal/Wolf
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
 	METHOD setCollarColor (Lnet/minecraft/world/item/DyeColor;)V
-		ARG 1 collarcolor
+		ARG 1 collarColor
 	METHOD setIsInterested (Z)V
-		ARG 1 beg
+		ARG 1 isInterested
 	METHOD setPersistentAngerTarget (Ljava/util/UUID;)V
 		ARG 1 target
 	METHOD setRemainingPersistentAngerTime (I)V
@@ -69,6 +71,12 @@ CLASS net/minecraft/world/entity/animal/Wolf
 		ARG 1 target
 		ARG 2 owner
 	CLASS WolfAvoidEntityGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Wolf;Lnet/minecraft/world/entity/animal/Wolf;Ljava/lang/Class;FDD)V
+			ARG 2 wolf
+			ARG 3 entityClassToAvoid
+			ARG 4 maxDist
+			ARG 5 walkSpeedModifier
+			ARG 7 sprintSpeedModifier
 		METHOD avoidLlama (Lnet/minecraft/world/entity/animal/horse/Llama;)Z
 			ARG 1 llama
 		METHOD canUse ()Z

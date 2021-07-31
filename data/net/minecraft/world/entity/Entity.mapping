@@ -149,7 +149,7 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD getDirection ()Lnet/minecraft/core/Direction;
 		COMMENT Gets the horizontal facing direction of this Entity.
 	METHOD getDismountLocationForPassenger (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;
-		ARG 1 livingEntity
+		ARG 1 passenger
 	METHOD getEncodeId ()Ljava/lang/String;
 		COMMENT Returns the string that identifies this Entity's class
 	METHOD getExitPortal (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Z)Ljava/util/Optional;
@@ -161,7 +161,7 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 pose
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
-		ARG 2 size
+		ARG 2 dimension
 	METHOD getEyePosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
 	METHOD getFluidHeight (Lnet/minecraft/tags/Tag;)D
@@ -419,13 +419,15 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 hitDistance
 		ARG 3 partialTicks
 		ARG 4 hitFluids
+	METHOD playFlySound (F)F
+		ARG 1 volume
 	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;FF)V
 		ARG 1 sound
 		ARG 2 volume
 		ARG 3 pitch
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
-		ARG 2 block
+		ARG 2 state
 	METHOD playSwimSound (F)V
 		ARG 1 volume
 	METHOD playerTouch (Lnet/minecraft/world/entity/player/Player;)V

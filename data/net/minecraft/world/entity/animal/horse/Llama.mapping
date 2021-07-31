@@ -15,6 +15,8 @@ CLASS net/minecraft/world/entity/animal/horse/Llama
 		ARG 3 reason
 		ARG 4 spawnData
 		ARG 5 dataTag
+	METHOD getDyeColor (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/DyeColor;
+		ARG 0 stack
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getPassengersRidingOffset ()D
@@ -53,6 +55,16 @@ CLASS net/minecraft/world/entity/animal/horse/Llama
 		ARG 1 variant
 	METHOD spit (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 target
+	CLASS LlamaGroupData
+		METHOD <init> (I)V
+			ARG 1 variant
+	CLASS LlamaAttackWolfGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/horse/Llama;)V
+			ARG 1 llama
+		METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+			ARG 0 entity
 	CLASS LlamaHurtByTargetGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/horse/Llama;)V
+			ARG 1 llama
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing

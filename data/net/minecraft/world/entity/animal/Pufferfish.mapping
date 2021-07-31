@@ -7,6 +7,10 @@ CLASS net/minecraft/world/entity/animal/Pufferfish
 		ARG 1 pose
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
+	METHOD getScale (I)F
+		ARG 0 puffStage
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
 	METHOD playerTouch (Lnet/minecraft/world/entity/player/Player;)V
@@ -15,9 +19,15 @@ CLASS net/minecraft/world/entity/animal/Pufferfish
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD setPuffState (I)V
+		ARG 1 puffState
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
+	METHOD touch (Lnet/minecraft/world/entity/Mob;)V
+		ARG 1 mob
 	CLASS PufferfishPuffGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Pufferfish;)V
+			ARG 1 fish
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD start ()V
