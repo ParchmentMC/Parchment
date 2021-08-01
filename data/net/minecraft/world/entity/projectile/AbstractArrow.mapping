@@ -1,8 +1,18 @@
 CLASS net/minecraft/world/entity/projectile/AbstractArrow
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;DDDLnet/minecraft/world/level/Level;)V
+		ARG 1 entityType
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 level
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;)V
+		ARG 1 entityType
+		ARG 2 shooter
+		ARG 3 level
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD doPostHurtEffects (Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 1 living
+		ARG 1 target
 	METHOD findHitEntity (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/EntityHitResult;
 		COMMENT Gets the EntityRayTraceResult representing the entity hit
 		ARG 1 startVec
@@ -45,25 +55,31 @@ CLASS net/minecraft/world/entity/projectile/AbstractArrow
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
 	METHOD setBaseDamage (D)V
-		ARG 1 damage
+		ARG 1 baseDamage
 	METHOD setCritArrow (Z)V
 		COMMENT Whether the arrow has a stream of critical hit particles flying behind it.
-		ARG 1 critical
+		ARG 1 critArrow
+	METHOD setEnchantmentEffectsFromEntity (Lnet/minecraft/world/entity/LivingEntity;F)V
+		ARG 1 shooter
+		ARG 2 velocity
+	METHOD setFlag (IZ)V
+		ARG 1 id
+		ARG 2 value
 	METHOD setKnockback (I)V
 		COMMENT Sets the amount of knockback the arrow applies when it hits a mob.
-		ARG 1 knockbackStrength
+		ARG 1 knockback
 	METHOD setNoPhysics (Z)V
 		COMMENT Sets if this arrow can noClip
-		ARG 1 noClip
+		ARG 1 noPhysics
 	METHOD setOwner (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD setPierceLevel (B)V
-		ARG 1 level
+		ARG 1 pierceLevel
 	METHOD setShotFromCrossbow (Z)V
 		COMMENT Sets data about if this arrow entity was shot from a crossbow
-		ARG 1 fromCrossbow
+		ARG 1 shotFromCrossbow
 	METHOD setSoundEvent (Lnet/minecraft/sounds/SoundEvent;)V
-		ARG 1 sound
+		ARG 1 soundEvent
 	METHOD shoot (DDDFF)V
 		COMMENT Similar to setArrowHeading, it's point the throwable entity to a x, y, z direction.
 		ARG 1 x
