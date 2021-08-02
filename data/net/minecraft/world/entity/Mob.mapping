@@ -4,13 +4,13 @@ CLASS net/minecraft/world/entity/Mob
 	METHOD aiStep ()V
 		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD ate ()V
-		COMMENT This function applies the benefits of growing back wool and faster growing up to the acting entity. (This function is used in the AIEatGrass)
+		COMMENT This function applies the benefits of growing back wool and faster growing up to the acting entity. (This function is used in the EatBlockGoal)
 	METHOD baseTick ()V
 		COMMENT Gets called every tick from main Entity class
 	METHOD canAttackType (Lnet/minecraft/world/entity/EntityType;)Z
 		ARG 1 type
 	METHOD canBeControlledByRider ()Z
-		COMMENT returns true if all the conditions for steering the entity are met. For pigs, this is true if it is being ridden by a player and the player is holding a carrot-on-a-stick
+		COMMENT @return true if all the conditions for steering the entity are met. For pigs, this is true if it is being ridden by a player and the player is holding a carrot-on-a-stick
 	METHOD canBeLeashed (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 player
 	METHOD canCutCorner (Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Z
@@ -51,7 +51,7 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 1 attackedRecently
 		ARG 2 damageSource
 	METHOD createNavigation (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/ai/navigation/PathNavigation;
-		COMMENT Returns new PathNavigateGround instance
+		COMMENT Returns new GroundPathNavigation instance
 		ARG 1 level
 	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
@@ -96,17 +96,17 @@ CLASS net/minecraft/world/entity/Mob
 	METHOD getMaxFallDistance ()I
 		COMMENT The maximum height from where the entity is alowed to jump (used in pathfinder)
 	METHOD getMaxHeadXRot ()I
-		COMMENT The speed it takes to move the entityliving's rotationPitch through the faceEntity method. This is only currently use in wolves.
+		COMMENT The speed it takes to move the entityliving's head rotation through the faceEntity method.
 	METHOD getMaxSpawnClusterSize ()I
 		COMMENT Will return how many at most can spawn in a chunk at once.
 	METHOD getPathfindingMalus (Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)F
 		ARG 1 nodeType
 	METHOD getSensing ()Lnet/minecraft/world/entity/ai/sensing/Sensing;
-		COMMENT returns the EntitySenses Object for the EntityLiving
+		COMMENT returns the Sensing Object for the LivingEntity
 	METHOD getTarget ()Lnet/minecraft/world/entity/LivingEntity;
-		COMMENT Gets the active target the Task system uses for tracking
+		COMMENT Gets the active target the Goal system uses for tracking
 	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
+		COMMENT Handler for {@link net.minecraft.world.level.Level#broadcastEntityEvent}
 		ARG 1 id
 	METHOD interact (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
@@ -118,7 +118,7 @@ CLASS net/minecraft/world/entity/Mob
 	METHOD isNoAi ()Z
 		COMMENT Get whether this Entity's AI is disabled
 	METHOD isPersistenceRequired ()Z
-		COMMENT Return the persistenceRequired field (whether this entity is allowed to naturally despawn)
+		COMMENT @return the persistenceRequired field (whether this entity is allowed to naturally despawn)
 	METHOD isValidSlotForItem (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 slot
 		ARG 1 stack
@@ -126,6 +126,12 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 1 pos
 	METHOD jumpInLiquid (Lnet/minecraft/tags/Tag;)V
 		ARG 1 fluidTag
+	METHOD lambda$canReplaceEqualItem$0 (Ljava/lang/String;)Z
+		ARG 0 stack
+	METHOD lambda$canReplaceEqualItem$1 (Ljava/lang/String;)Z
+		ARG 0 stack
+	METHOD lambda$checkAndHandleImportantInteractions$2 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Mob;)V
+		ARG 2 mob
 	METHOD lookAt (Lnet/minecraft/world/entity/Entity;FF)V
 		COMMENT Changes xRot and yRot so that the entity calling the function is facing the entity provided as an argument.
 		ARG 1 entity
@@ -189,7 +195,7 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 2 stack
 	METHOD setLeashedTo (Lnet/minecraft/world/entity/Entity;Z)V
 		COMMENT Sets the entity to be leashed to.
-		ARG 1 entity
+		ARG 1 leashHolder
 		ARG 2 broadcastPacket
 	METHOD setLeftHanded (Z)V
 		ARG 1 leftHanded
@@ -205,7 +211,7 @@ CLASS net/minecraft/world/entity/Mob
 		COMMENT set the movespeed used for the new AI system
 		ARG 1 speed
 	METHOD setTarget (Lnet/minecraft/world/entity/LivingEntity;)V
-		COMMENT Sets the active target the Task system uses for tracking
+		COMMENT Sets the active target the Goal system uses for tracking
 		ARG 1 target
 	METHOD setXxa (F)V
 		ARG 1 amount
