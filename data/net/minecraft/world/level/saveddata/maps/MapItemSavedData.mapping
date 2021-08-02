@@ -1,4 +1,14 @@
 CLASS net/minecraft/world/level/saveddata/maps/MapItemSavedData
+	METHOD <init> (IIBZZZLnet/minecraft/resources/ResourceKey;)V
+		ARG 1 x
+		ARG 2 z
+		ARG 3 scale
+		ARG 4 trackingPosition
+		ARG 5 unlimitedTracking
+		ARG 6 locked
+		ARG 7 dimension
+	METHOD addClientSideDecorations (Ljava/util/List;)V
+		ARG 1 decorations
 	METHOD addDecoration (Lnet/minecraft/world/level/saveddata/maps/MapDecoration$Type;Lnet/minecraft/world/level/LevelAccessor;Ljava/lang/String;DDDLnet/minecraft/network/chat/Component;)V
 		ARG 1 type
 		ARG 2 level
@@ -16,17 +26,62 @@ CLASS net/minecraft/world/level/saveddata/maps/MapItemSavedData
 		ARG 1 reader
 		ARG 2 x
 		ARG 3 z
+	METHOD createForClient (BZLnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
+		ARG 0 scale
+		ARG 1 locked
+		ARG 2 dimension
+	METHOD createFresh (DDBZZLnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
+		ARG 0 x
+		ARG 2 z
+		ARG 4 scale
+		ARG 5 trackingPosition
+		ARG 6 unlimitedTracking
+		ARG 7 dimension
 	METHOD getHoldingPlayer (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData$HoldingPlayer;
 		ARG 1 player
+	METHOD getUpdatePacket (ILnet/minecraft/world/entity/player/Player;)Lnet/minecraft/network/protocol/Packet;
+		ARG 1 mapId
+		ARG 2 player
+	METHOD isTrackedCountOverLimit (I)Z
+		ARG 1 trackedCount
+	METHOD load (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
+		ARG 0 compoundTag
+	METHOD removeDecoration (Ljava/lang/String;)V
+		ARG 1 identifier
 	METHOD removedFromFrame (Lnet/minecraft/core/BlockPos;I)V
 		ARG 1 pos
 		ARG 2 entityId
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
+	METHOD scaled (I)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
+		ARG 1 scalar
+	METHOD setColor (IIB)V
+		ARG 1 x
+		ARG 2 z
+		ARG 3 color
+	METHOD setColorsDirty (II)V
+		ARG 1 x
+		ARG 2 z
 	METHOD tickCarriedBy (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Adds the player passed to the list of visible players and checks to see which players are visible
 		ARG 1 player
 		ARG 2 mapStack
+	METHOD toggleBanner (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 accessor
+		ARG 2 pos
+	METHOD updateColor (IIB)Z
+		ARG 1 x
+		ARG 2 z
+		ARG 3 color
+	CLASS MapPatch
+		METHOD <init> (IIII[B)V
+			ARG 1 startX
+			ARG 2 startY
+			ARG 3 width
+			ARG 4 height
+			ARG 5 mapColors
+		METHOD applyToMap (Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
+			ARG 1 savedData
 	CLASS HoldingPlayer
 		FIELD maxDirtyX I
 			COMMENT The highest dirty x value
@@ -36,3 +91,10 @@ CLASS net/minecraft/world/level/saveddata/maps/MapItemSavedData
 			COMMENT The lowest dirty x value
 		FIELD minDirtyY I
 			COMMENT The lowest dirty z value
+		METHOD <init> (Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;Lnet/minecraft/world/entity/player/Player;)V
+			ARG 2 player
+		METHOD markColorsDirty (II)V
+			ARG 1 x
+			ARG 2 z
+		METHOD nextUpdatePacket (I)Lnet/minecraft/network/protocol/Packet;
+			ARG 1 mapId

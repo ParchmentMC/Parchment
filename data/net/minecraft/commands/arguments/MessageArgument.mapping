@@ -2,11 +2,20 @@ CLASS net/minecraft/commands/arguments/MessageArgument
 	METHOD getMessage (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
 		ARG 0 context
 		ARG 1 name
+	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/MessageArgument$Message;
+		ARG 1 reader
 	CLASS Part
+		METHOD <init> (IILnet/minecraft/commands/arguments/selector/EntitySelector;)V
+			ARG 1 start
+			ARG 2 end
+			ARG 3 selector
 		METHOD toComponent (Lnet/minecraft/commands/CommandSourceStack;)Lnet/minecraft/network/chat/Component;
 			COMMENT Runs the selector and returns the component produced by it. This method does not actually appear to ever return null.
 			ARG 1 source
 	CLASS Message
+		METHOD <init> (Ljava/lang/String;[Lnet/minecraft/commands/arguments/MessageArgument$Part;)V
+			ARG 1 text
+			ARG 2 parts
 		METHOD parseText (Lcom/mojang/brigadier/StringReader;Z)Lnet/minecraft/commands/arguments/MessageArgument$Message;
 			COMMENT Parses a message. The algorithm for this is simply to run though and look for selectors, ignoring any invalid selectors in the text (since players may type e.g. "[@]").
 			ARG 0 reader

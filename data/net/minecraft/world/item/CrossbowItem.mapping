@@ -4,8 +4,8 @@ CLASS net/minecraft/world/item/CrossbowItem
 	FIELD startSoundPlayed Z
 		COMMENT Set to {@code true} when the crossbow is 20% charged.
 	METHOD addChargedProjectile (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 0 crossbow
-		ARG 1 projectile
+		ARG 0 crossbowStack
+		ARG 1 ammoStack
 	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
 		COMMENT allows items to add custom lines of information to the mouseover description
 		ARG 1 stack
@@ -13,27 +13,32 @@ CLASS net/minecraft/world/item/CrossbowItem
 		ARG 3 tooltip
 		ARG 4 flag
 	METHOD clearChargedProjectiles (Lnet/minecraft/world/item/ItemStack;)V
-		ARG 0 stack
+		ARG 0 crossbowStack
 	METHOD containsChargedProjectile (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item;)Z
-		ARG 0 stack
+		ARG 0 crossbowStack
 		ARG 1 ammoItem
 	METHOD getAllSupportedProjectiles ()Ljava/util/function/Predicate;
 		COMMENT Get the predicate to match ammunition when searching the player's inventory, not their main/offhand
 	METHOD getArrow (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/projectile/AbstractArrow;
 		ARG 0 level
-		ARG 1 shooter
-		ARG 2 crossbow
-		ARG 3 ammo
+		ARG 1 livingEntity
+		ARG 2 crossbowStack
+		ARG 3 ammoStack
 	METHOD getChargeDuration (Lnet/minecraft/world/item/ItemStack;)I
 		COMMENT The time the crossbow must be used to reload it
-		ARG 0 stack
+		ARG 0 crossbowStack
 	METHOD getChargedProjectiles (Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;
-		ARG 0 stack
+		ARG 0 crossbowStack
 	METHOD getPowerForTime (ILnet/minecraft/world/item/ItemStack;)F
 		ARG 0 useTime
-		ARG 1 stack
+		ARG 1 crossbowStack
+	METHOD getRandomShotPitch (ZLjava/util/Random;)F
+		ARG 0 isHighPitched
+		ARG 1 random
+	METHOD getShootingPower (Lnet/minecraft/world/item/ItemStack;)F
+		ARG 0 crossbowStack
 	METHOD getShotPitches (Ljava/util/Random;)[F
-		ARG 0 rand
+		ARG 0 random
 	METHOD getStartSound (I)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 enchantmentLevel
 	METHOD getUseAnimation (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/UseAnim;
@@ -43,12 +48,22 @@ CLASS net/minecraft/world/item/CrossbowItem
 		COMMENT How long it takes to use or consume an item
 		ARG 1 stack
 	METHOD isCharged (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 0 stack
+		ARG 0 crossbowStack
+	METHOD lambda$containsChargedProjectile$0 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stackToCheck
+	METHOD lambda$shootProjectile$1 (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 contextEntity
+	METHOD loadProjectile (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;ZZ)Z
+		ARG 0 shooter
+		ARG 1 crossbowStack
+		ARG 2 ammoStack
+		ARG 3 hasAmmo
+		ARG 4 isCreative
 	METHOD onCrossbowShot (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Called after {@plainlink #fireProjectiles} to clear the charged projectile and to update the player advancements.
 		ARG 0 level
 		ARG 1 shooter
-		ARG 2 stack
+		ARG 2 crossbowStack
 	METHOD onUseTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;I)V
 		COMMENT Called as the item is being used by an entity.
 		ARG 1 level
@@ -58,8 +73,8 @@ CLASS net/minecraft/world/item/CrossbowItem
 	METHOD performShooting (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;FF)V
 		ARG 0 level
 		ARG 1 shooter
-		ARG 2 hand
-		ARG 3 stack
+		ARG 2 usedHand
+		ARG 3 crossbowStack
 		ARG 4 velocity
 		ARG 5 inaccuracy
 	METHOD releaseUsing (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V
@@ -69,22 +84,22 @@ CLASS net/minecraft/world/item/CrossbowItem
 		ARG 3 entityLiving
 		ARG 4 timeLeft
 	METHOD setCharged (Lnet/minecraft/world/item/ItemStack;Z)V
-		ARG 0 stack
-		ARG 1 charged
+		ARG 0 crossbowStack
+		ARG 1 isCharged
 	METHOD shootProjectile (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;FZFFF)V
 		ARG 0 level
 		ARG 1 shooter
 		ARG 2 hand
-		ARG 3 crossbow
-		ARG 4 projectile
+		ARG 3 crossbowStack
+		ARG 4 ammoStack
 		ARG 5 soundPitch
 		ARG 6 isCreativeMode
 		ARG 7 velocity
 		ARG 8 inaccuracy
 		ARG 9 projectileAngle
 	METHOD tryLoadProjectiles (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 0 entity
-		ARG 1 stack
+		ARG 0 shooter
+		ARG 1 crossbowStack
 	METHOD use (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
 		COMMENT Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see {@link #onItemUse}.
 		ARG 1 level

@@ -1,4 +1,6 @@
 CLASS net/minecraft/commands/Commands
+	METHOD <init> (Lnet/minecraft/commands/Commands$CommandSelection;)V
+		ARG 1 selection
 	METHOD argument (Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
 		COMMENT Creates a new argument. Intended to be imported statically. The benefit of this over the brigadier {@link RequiredArgumentBuilder#argument} method is that it is typed to {@link CommandSource}.
 		ARG 0 name
@@ -10,6 +12,31 @@ CLASS net/minecraft/commands/Commands
 		ARG 2 rootSuggestion
 		ARG 3 source
 		ARG 4 commandNodeToSuggestionNode
+	METHOD getParseException (Lcom/mojang/brigadier/ParseResults;)Lcom/mojang/brigadier/exceptions/CommandSyntaxException;
+		ARG 0 result
+	METHOD lambda$createValidator$6 (Lnet/minecraft/commands/Commands$ParseFunction;Ljava/lang/String;)Z
+		ARG 1 input
+	METHOD lambda$fillUsableCommands$4 (Lnet/minecraft/commands/SharedSuggestionProvider;)Z
+		ARG 0 suggestionProvider
+	METHOD lambda$fillUsableCommands$5 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$new$0 (Lcom/mojang/brigadier/tree/CommandNode;Lcom/mojang/brigadier/tree/CommandNode;Lcom/mojang/brigadier/tree/CommandNode;Ljava/util/Collection;)V
+		ARG 1 parent
+		ARG 2 child
+		ARG 3 sibling
+		ARG 4 inputs
+	METHOD lambda$new$1 (Lcom/mojang/brigadier/context/CommandContext;ZI)V
+		ARG 0 context
+		ARG 1 success
+		ARG 2 result
+	METHOD lambda$performCommand$2 (Ljava/lang/String;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 style
+	METHOD lambda$performCommand$3 (Lnet/minecraft/network/chat/MutableComponent;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 style
+	METHOD lambda$validate$7 (Lcom/mojang/brigadier/arguments/ArgumentType;)Z
+		ARG 0 type
+	METHOD lambda$validate$8 (Lcom/mojang/brigadier/arguments/ArgumentType;)Ljava/lang/String;
+		ARG 0 type
 	METHOD literal (Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
 		COMMENT Creates a new argument. Intended to be imported statically. The benefit of this over the brigadier {@link LiteralArgumentBuilder#literal} method is that it is typed to {@link CommandSource}.
 		ARG 0 name
@@ -21,3 +48,10 @@ CLASS net/minecraft/commands/Commands
 		ARG 2 command
 	METHOD sendCommands (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
+	CLASS ParseFunction
+		METHOD parse (Lcom/mojang/brigadier/StringReader;)V
+			ARG 1 input
+	CLASS CommandSelection
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 includeIntegrated
+			ARG 4 includeDedicated

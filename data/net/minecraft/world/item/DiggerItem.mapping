@@ -1,6 +1,12 @@
 CLASS net/minecraft/world/item/DiggerItem
 	FIELD blocks Lnet/minecraft/tags/Tag;
 		COMMENT Hardcoded set of blocks this tool can properly dig at full speed. Modders see instead.
+	METHOD <init> (FFLnet/minecraft/world/item/Tier;Lnet/minecraft/tags/Tag;Lnet/minecraft/world/item/Item$Properties;)V
+		ARG 1 attackDamageModifier
+		ARG 2 attackSpeedModifier
+		ARG 3 tier
+		ARG 4 blocks
+		ARG 5 properties
 	METHOD getDefaultAttributeModifiers (Lnet/minecraft/world/entity/EquipmentSlot;)Lcom/google/common/collect/Multimap;
 		COMMENT Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
 		ARG 1 equipmentSlot
@@ -12,6 +18,10 @@ CLASS net/minecraft/world/item/DiggerItem
 		ARG 1 stack
 		ARG 2 target
 		ARG 3 attacker
+	METHOD lambda$hurtEnemy$0 (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 0 contextEntity
+	METHOD lambda$mineBlock$1 (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 0 contextEntity
 	METHOD mineBlock (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
 		COMMENT Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
 		ARG 1 stack
