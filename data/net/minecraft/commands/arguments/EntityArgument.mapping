@@ -1,4 +1,7 @@
 CLASS net/minecraft/commands/arguments/EntityArgument
+	METHOD <init> (ZZ)V
+		ARG 1 single
+		ARG 2 playersOnly
 	METHOD getEntities (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/Collection;
 		ARG 0 context
 		ARG 1 name
@@ -17,6 +20,13 @@ CLASS net/minecraft/commands/arguments/EntityArgument
 	METHOD getPlayers (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/Collection;
 		ARG 0 context
 		ARG 1 name
+	METHOD lambda$listSuggestions$0 (Lnet/minecraft/commands/SharedSuggestionProvider;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)V
+		ARG 2 offsetBuilder
+	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 context
+		ARG 2 builder
+	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/selector/EntitySelector;
+		ARG 1 reader
 	CLASS Serializer
 		METHOD deserializeFromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/commands/arguments/EntityArgument;
 			ARG 1 buffer
