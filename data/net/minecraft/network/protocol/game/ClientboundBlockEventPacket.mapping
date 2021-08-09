@@ -1,11 +1,22 @@
 CLASS net/minecraft/network/protocol/game/ClientboundBlockEventPacket
+	COMMENT Triggers a block event on the client.
+	COMMENT
+	COMMENT @see Block#triggerEvent
+	COMMENT @see Level#blockEvent
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;II)V
+		ARG 1 pos
+		ARG 2 block
+		ARG 3 b0
+			COMMENT first parameter of the block event. The meaning of this value depends on the block.
+		ARG 4 b1
+			COMMENT second parameter of the block event. The meaning of this value depends on the block.
 	METHOD getB0 ()I
-		COMMENT instrument data for noteblocks
+		COMMENT First parameter of the block event. The meaning of this value depends on the block.
 	METHOD getB1 ()I
-		COMMENT pitch data for noteblocks
+		COMMENT Second parameter of the block event. The meaning of this value depends on the block.
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 buf
+		ARG 1 buffer

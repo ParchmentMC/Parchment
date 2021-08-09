@@ -1,14 +1,105 @@
 CLASS net/minecraft/world/level/levelgen/structure/StrongholdPieces
 	METHOD resetPieces ()V
 		COMMENT sets up Arrays with the Structure pieces and their weights
+	CLASS Library
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 box
+			ARG 4 orientation
+	CLASS LeftTurn
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 box
+			ARG 4 orientation
+	CLASS Straight
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 box
+			ARG 4 orientation
+	CLASS RightTurn
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 box
+			ARG 4 orientation
+	CLASS PortalRoom
+		METHOD <init> (ILnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 box
+			ARG 3 orientation
+	CLASS PrisonHall
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 box
+			ARG 4 orientation
+	CLASS StairsDown
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 box
+			ARG 4 orientation
+	CLASS StartPiece
+		METHOD <init> (Ljava/util/Random;II)V
+			ARG 1 random
+			ARG 2 x
+			ARG 3 z
+	CLASS PieceWeight
+		METHOD <init> (Ljava/lang/Class;II)V
+			ARG 1 pieceClass
+			ARG 2 weight
+			ARG 3 maxPlaceCount
+	CLASS FiveCrossing
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 box
+			ARG 4 orientation
+	CLASS RoomCrossing
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 box
+			ARG 4 orientation
+	CLASS ChestCorridor
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 box
+			ARG 4 orientation
+	CLASS FillerCorridor
+		METHOD <init> (ILnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 box
+			ARG 3 orientation
+	CLASS StrongholdPiece
+		METHOD generateSmallDoor (Lnet/minecraft/world/level/WorldGenLevel;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;III)V
+			ARG 1 level
+			ARG 2 random
+			ARG 3 box
+			ARG 4 type
+			ARG 5 x
+			ARG 6 y
+			ARG 7 z
+		METHOD isOkBox (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
+			COMMENT returns false if the Structure Bounding Box goes below 10
+			ARG 0 box
+		METHOD randomSmallDoor (Ljava/util/Random;)Lnet/minecraft/world/level/levelgen/structure/StrongholdPieces$StrongholdPiece$SmallDoorType;
+			ARG 1 random
+	CLASS StraightStairsDown
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 box
+			ARG 4 orientation
 	CLASS SmoothStoneSelector
 		METHOD next (Ljava/util/Random;IIIZ)V
 			COMMENT picks Block Ids and Metadata (Silverfish)
-			ARG 1 rand
+			ARG 1 random
 			ARG 2 x
 			ARG 3 y
 			ARG 4 z
 			ARG 5 wall
-	CLASS StrongholdPiece
-		METHOD isOkBox (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
-			COMMENT returns false if the Structure Bounding Box goes below 10

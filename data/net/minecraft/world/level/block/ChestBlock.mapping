@@ -18,7 +18,7 @@ CLASS net/minecraft/world/level/block/ChestBlock
 	METHOD getBlockType (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/DoubleBlockCombiner$BlockType;
 		ARG 0 state
 	METHOD getConnectedDirection (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/core/Direction;
-		COMMENT Returns a facing pointing from the given state to its attached double chest
+		COMMENT @return the Direction pointing from the given state to its attached double chest
 		ARG 0 state
 	METHOD getContainer (Lnet/minecraft/world/level/block/ChestBlock;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Z)Lnet/minecraft/world/Container;
 		ARG 0 chest
@@ -47,8 +47,8 @@ CLASS net/minecraft/world/level/block/ChestBlock
 		COMMENT @deprecated call via {@link IBlockState#hasComparatorInputOverride()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 	METHOD isBlockedChestByBlock (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
-		ARG 0 reader
-		ARG 1 level
+		ARG 0 level
+		ARG 1 pos
 	METHOD isCatSittingOnChest (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 level
 		ARG 1 pos
@@ -77,7 +77,7 @@ CLASS net/minecraft/world/level/block/ChestBlock
 		COMMENT Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.
 		COMMENT @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
-		ARG 2 rot
+		ARG 2 rotation
 	METHOD setPlacedBy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Called by ItemBlocks after a block is set in the world, to allow post-place logic
 		ARG 1 level

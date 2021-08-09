@@ -1,4 +1,7 @@
 CLASS net/minecraft/data/tags/TagsProvider
+	METHOD <init> (Lnet/minecraft/data/DataGenerator;Lnet/minecraft/core/Registry;)V
+		ARG 1 generator
+		ARG 2 registry
 	METHOD getOrCreateRawBuilder (Lnet/minecraft/tags/Tag$Named;)Lnet/minecraft/tags/Tag$Builder;
 		ARG 1 tag
 	METHOD getPath (Lnet/minecraft/resources/ResourceLocation;)Ljava/nio/file/Path;
@@ -10,6 +13,10 @@ CLASS net/minecraft/data/tags/TagsProvider
 	METHOD tag (Lnet/minecraft/tags/Tag$Named;)Lnet/minecraft/data/tags/TagsProvider$TagAppender;
 		ARG 1 tag
 	CLASS TagAppender
+		METHOD <init> (Lnet/minecraft/tags/Tag$Builder;Lnet/minecraft/core/Registry;Ljava/lang/String;)V
+			ARG 1 builder
+			ARG 2 registry
+			ARG 3 source
 		METHOD add (Ljava/lang/Object;)Lnet/minecraft/data/tags/TagsProvider$TagAppender;
 			ARG 1 item
 		METHOD add ([Ljava/lang/Object;)Lnet/minecraft/data/tags/TagsProvider$TagAppender;

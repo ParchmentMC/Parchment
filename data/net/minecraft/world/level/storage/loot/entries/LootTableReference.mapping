@@ -1,14 +1,14 @@
 CLASS net/minecraft/world/level/storage/loot/entries/LootTableReference
+	COMMENT A loot pool entry container that generates loot by referencing another loot table.
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
+		ARG 1 lootTableId
+		ARG 2 weight
+		ARG 3 quality
+		ARG 4 conditions
+		ARG 5 functions
 	METHOD lootTableReference (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$Builder;
 		ARG 0 table
 	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;
-			ARG 1 object
-			ARG 2 context
-			ARG 3 weight
-			ARG 4 quality
-			ARG 5 conditions
-			ARG 6 functions
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/entries/LootTableReference;
 			ARG 1 object
 			ARG 2 context
@@ -16,14 +16,6 @@ CLASS net/minecraft/world/level/storage/loot/entries/LootTableReference
 			ARG 4 quality
 			ARG 5 conditions
 			ARG 6 functions
-		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;Lcom/google/gson/JsonSerializationContext;)V
-			ARG 1 object
-			ARG 2 context
-			ARG 3 conditions
-		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;Lcom/google/gson/JsonSerializationContext;)V
-			ARG 1 object
-			ARG 2 context
-			ARG 3 conditions
 		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootTableReference;Lcom/google/gson/JsonSerializationContext;)V
 			ARG 1 object
 			ARG 2 context

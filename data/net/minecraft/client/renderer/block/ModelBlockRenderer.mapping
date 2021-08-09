@@ -97,8 +97,20 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 8 random
 		ARG 9 rand
 		ARG 11 combinedOverlay
+	CLASS Cache
+		METHOD getLightColor (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
+			ARG 1 blockState
+			ARG 2 lightReader
+			ARG 3 blockPos
+		METHOD getShadeBrightness (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)F
+			ARG 1 blockState
+			ARG 2 lightReader
+			ARG 3 blockPos
 	CLASS AdjacencyInfo
 		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
+			ARG 0 facing
+	CLASS AmbientVertexRemap
+		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
 			ARG 0 facing
 	CLASS AmbientOcclusionFace
 		METHOD blend (IIII)I
@@ -124,15 +136,3 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 			ARG 5 vertexes
 			ARG 6 bitSet
 			ARG 7 applyDiffuseLighting
-	CLASS AmbientVertexRemap
-		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-			ARG 0 facing
-	CLASS Cache
-		METHOD getLightColor (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
-			ARG 1 blockState
-			ARG 2 lightReader
-			ARG 3 blockPos
-		METHOD getShadeBrightness (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)F
-			ARG 1 blockState
-			ARG 2 lightReader
-			ARG 3 blockPos

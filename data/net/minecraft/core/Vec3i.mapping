@@ -1,16 +1,24 @@
 CLASS net/minecraft/core/Vec3i
 	FIELD ZERO Lnet/minecraft/core/Vec3i;
 		COMMENT An immutable vector with zero as all coordinates.
+	METHOD <init> (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD <init> (III)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD above ()Lnet/minecraft/core/Vec3i;
-		COMMENT Offset this BlockPos 1 block up
+		COMMENT Offset this vector 1 unit up
 	METHOD above (I)Lnet/minecraft/core/Vec3i;
-		COMMENT Offset this BlockPos n blocks up
-		ARG 1 n
+		COMMENT Offset this vector upwards by the given distance.
+		ARG 1 distance
 	METHOD below ()Lnet/minecraft/core/Vec3i;
-		COMMENT Offset this BlockPos 1 block down
+		COMMENT Offset this vector 1 unit down
 	METHOD below (I)Lnet/minecraft/core/Vec3i;
-		COMMENT Offset this BlockPos n blocks down
-		ARG 1 n
+		COMMENT Offset this vector downwards by the given distance.
+		ARG 1 distance
 	METHOD closerThan (Lnet/minecraft/core/Position;D)Z
 		ARG 1 position
 		ARG 2 distance
@@ -19,7 +27,7 @@ CLASS net/minecraft/core/Vec3i
 		ARG 2 distance
 	METHOD cross (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/Vec3i;
 		COMMENT Calculate the cross product of this and the given Vector
-		ARG 1 vec
+		ARG 1 vector
 	METHOD distManhattan (Lnet/minecraft/core/Vec3i;)I
 		ARG 1 vector
 	METHOD distSqr (DDDZ)D
@@ -32,7 +40,11 @@ CLASS net/minecraft/core/Vec3i
 		ARG 2 useCenter
 	METHOD distSqr (Lnet/minecraft/core/Vec3i;)D
 		COMMENT Calculate squared distance to the given Vector
-		ARG 1 to
+		ARG 1 vector
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD get (Lnet/minecraft/core/Direction$Axis;)I
+		ARG 1 axis
 	METHOD getX ()I
 		COMMENT Gets the X coordinate.
 	METHOD getY ()I
@@ -40,6 +52,6 @@ CLASS net/minecraft/core/Vec3i
 	METHOD getZ ()I
 		COMMENT Gets the Z coordinate.
 	METHOD relative (Lnet/minecraft/core/Direction;I)Lnet/minecraft/core/Vec3i;
-		COMMENT Offsets this BlockPos n blocks in the given direction
-		ARG 1 facing
-		ARG 2 n
+		COMMENT Offsets this Vector by the given distance in the specified direction.
+		ARG 1 direction
+		ARG 2 distance

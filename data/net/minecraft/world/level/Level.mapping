@@ -1,6 +1,14 @@
 CLASS net/minecraft/world/level/Level
 	FIELD randValue I
 		COMMENT Contains the current Linear Congruential Generator seed for block updates. Used with an A value of 3 and a C value of 0x3c6ef35f, producing a highly planar series of values ill-suited for choosing random blocks in a 16x128x16 field.
+	METHOD <init> (Lnet/minecraft/world/level/storage/WritableLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/dimension/DimensionType;Ljava/util/function/Supplier;ZZJ)V
+		ARG 1 levelData
+		ARG 2 dimension
+		ARG 3 dimensionType
+		ARG 4 profiler
+		ARG 5 isClientSide
+		ARG 6 isDebug
+		ARG 7 biomeZoomSeed
 	METHOD addAlwaysVisibleParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
 		ARG 1 particleData
 		ARG 2 x
@@ -175,6 +183,7 @@ CLASS net/minecraft/world/level/Level
 	METHOD isInWorldBounds (Lnet/minecraft/core/BlockPos;)Z
 		COMMENT Check if the given BlockPos has valid coordinates
 		ARG 0 pos
+		ARG 1 blockPos
 	METHOD isInWorldBoundsHorizontal (Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 pos
 	METHOD isLoaded (Lnet/minecraft/core/BlockPos;)Z

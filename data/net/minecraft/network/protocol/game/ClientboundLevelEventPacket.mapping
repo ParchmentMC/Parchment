@@ -3,9 +3,14 @@ CLASS net/minecraft/network/protocol/game/ClientboundLevelEventPacket
 		COMMENT can be a block/item id or other depending on the soundtype
 	FIELD globalEvent Z
 		COMMENT If true the sound is played across the server
+	METHOD <init> (ILnet/minecraft/core/BlockPos;IZ)V
+		ARG 1 type
+		ARG 2 pos
+		ARG 3 data
+		ARG 4 globalEvent
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 buf
+		ARG 1 buffer

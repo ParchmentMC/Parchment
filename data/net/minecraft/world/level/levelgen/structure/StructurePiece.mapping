@@ -1,10 +1,14 @@
 CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
+	METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 type
+		ARG 2 tag
 	METHOD createChest (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 level
 		ARG 2 bounds
-		ARG 3 rand
+		ARG 3 random
 		ARG 4 pos
 		ARG 5 resourceLocation
+		ARG 6 state
 	METHOD createChest (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;IIILnet/minecraft/resources/ResourceLocation;)Z
 		COMMENT Adds chest to the structure and sets its contents
 		ARG 1 level
@@ -17,7 +21,7 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 	METHOD createDispenser (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;IIILnet/minecraft/core/Direction;Lnet/minecraft/resources/ResourceLocation;)Z
 		ARG 1 level
 		ARG 2 sbb
-		ARG 3 rand
+		ARG 3 random
 		ARG 4 x
 		ARG 5 y
 		ARG 6 z
@@ -65,12 +69,12 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 7 maxY
 		ARG 8 maxZ
 		ARG 9 alwaysReplace
-		ARG 10 rand
+		ARG 10 random
 		ARG 11 blockselector
 	METHOD generateMaybeBox (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;FIIIIIILnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;ZZ)V
 		ARG 1 level
 		ARG 2 sbb
-		ARG 3 rand
+		ARG 3 random
 		ARG 4 chance
 		ARG 5 x1
 		ARG 6 y1
@@ -109,6 +113,9 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 	METHOD getWorldZ (II)I
 		ARG 1 x
 		ARG 2 z
+	METHOD isCloseToChunk (Lnet/minecraft/world/level/ChunkPos;I)Z
+		ARG 1 chunkPos
+		ARG 2 distance
 	METHOD isInterior (Lnet/minecraft/world/level/LevelReader;IIILnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
 		ARG 1 level
 		ARG 2 x
@@ -118,7 +125,7 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 	METHOD maybeGenerateBlock (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;FIIILnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 level
 		ARG 2 boundingbox
-		ARG 3 rand
+		ARG 3 random
 		ARG 4 chance
 		ARG 5 x
 		ARG 6 y
@@ -135,6 +142,14 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 4 y
 		ARG 5 z
 		ARG 6 boundingbox
+	METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 level
+		ARG 2 structureManager
+		ARG 3 chunkGenerator
+		ARG 4 random
+		ARG 5 box
+		ARG 6 chunkPos
+		ARG 7 pos
 	METHOD reorient (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 0 level
 		ARG 1 pos
@@ -144,7 +159,7 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 	CLASS BlockSelector
 		METHOD next (Ljava/util/Random;IIIZ)V
 			COMMENT picks Block Ids and Metadata (Silverfish)
-			ARG 1 rand
+			ARG 1 random
 			ARG 2 x
 			ARG 3 y
 			ARG 4 z

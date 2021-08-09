@@ -1,4 +1,8 @@
 CLASS net/minecraft/world/level/biome/BiomeSource
+	METHOD <init> (Ljava/util/List;)V
+		ARG 1 possibleBiomes
+	METHOD <init> (Ljava/util/stream/Stream;)V
+		ARG 1 biomes
 	METHOD canGenerateStructure (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Z
 		ARG 1 structure
 	METHOD findBiomeHorizontal (IIIIILjava/util/function/Predicate;Ljava/util/Random;Z)Lnet/minecraft/core/BlockPos;
@@ -8,7 +12,7 @@ CLASS net/minecraft/world/level/biome/BiomeSource
 		ARG 4 radius
 		ARG 5 increment
 		ARG 6 biomes
-		ARG 7 rand
+		ARG 7 random
 		ARG 8 findClosest
 	METHOD findBiomeHorizontal (IIIILjava/util/function/Predicate;Ljava/util/Random;)Lnet/minecraft/core/BlockPos;
 		ARG 1 x
@@ -16,7 +20,7 @@ CLASS net/minecraft/world/level/biome/BiomeSource
 		ARG 3 z
 		ARG 4 radius
 		ARG 5 biomes
-		ARG 6 rand
+		ARG 6 random
 	METHOD getBiomesWithin (IIII)Ljava/util/Set;
 		COMMENT Returns the set of biomes contained in cube of side length 2 * radius + 1 centered at (xIn, yIn, zIn)
 		ARG 1 x

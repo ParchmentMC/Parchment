@@ -1,13 +1,22 @@
 CLASS net/minecraft/world/level/storage/loot/LootTables
+	COMMENT DataPack reload listener that reads loot tables from the ResourceManager and stores them.
+	COMMENT
+	COMMENT @see LootTable
+	METHOD <init> (Lnet/minecraft/world/level/storage/loot/PredicateManager;)V
+		ARG 1 predicateManager
 	METHOD apply (Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
 		ARG 1 object
 		ARG 2 resourceManager
 		ARG 3 profiler
 	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/LootTable;
-		ARG 1 ressources
+		COMMENT Get a LootTable by its ID. Returns the empty loot table if no such table exists.
+		ARG 1 lootTableId
+	METHOD getIds ()Ljava/util/Set;
+		COMMENT Get all known LootTable IDs.
 	METHOD serialize (Lnet/minecraft/world/level/storage/loot/LootTable;)Lcom/google/gson/JsonElement;
 		ARG 0 lootTable
 	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/storage/loot/LootTable;)V
+		COMMENT Validate the given LootTable with the given ID using the given ValidationContext.
 		ARG 0 validator
 		ARG 1 id
 		ARG 2 lootTable

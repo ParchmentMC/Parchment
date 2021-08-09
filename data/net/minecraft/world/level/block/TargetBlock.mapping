@@ -2,8 +2,8 @@ CLASS net/minecraft/world/level/block/TargetBlock
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
 	METHOD getRedstoneStrength (Lnet/minecraft/world/phys/BlockHitResult;Lnet/minecraft/world/phys/Vec3;)I
-		ARG 0 result
-		ARG 1 vector
+		ARG 0 hit
+		ARG 1 hitLocation
 	METHOD getSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
 		COMMENT @deprecated call via {@link IBlockState#getWeakPower(IBlockAccess,BlockPos,EnumFacing)} whenever possible. Implementing/overriding is fine.
 		ARG 1 blockState
@@ -39,5 +39,5 @@ CLASS net/minecraft/world/level/block/TargetBlock
 	METHOD updateRedstoneOutput (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/phys/BlockHitResult;Lnet/minecraft/world/entity/Entity;)I
 		ARG 0 level
 		ARG 1 state
-		ARG 2 result
-		ARG 3 entity
+		ARG 2 hit
+		ARG 3 projectile

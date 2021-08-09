@@ -1,0 +1,24 @@
+CLASS net/minecraft/commands/CommandFunction
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;[Lnet/minecraft/commands/CommandFunction$Entry;)V
+		ARG 1 id
+		ARG 2 entries
+	METHOD fromLines (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandSourceStack;Ljava/util/List;)Lnet/minecraft/commands/CommandFunction;
+		ARG 0 id
+		ARG 1 dispatcher
+		ARG 2 source
+		ARG 3 lines
+	CLASS CommandEntry
+		METHOD <init> (Lcom/mojang/brigadier/ParseResults;)V
+			ARG 1 parse
+	CLASS FunctionEntry
+		METHOD <init> (Lnet/minecraft/commands/CommandFunction;)V
+			ARG 1 function
+	CLASS CacheableFunction
+		METHOD <init> (Lnet/minecraft/commands/CommandFunction;)V
+			ARG 1 function
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 1 id
+		METHOD get (Lnet/minecraft/server/ServerFunctionManager;)Ljava/util/Optional;
+			ARG 1 functionManager
+		METHOD lambda$getId$0 (Lnet/minecraft/commands/CommandFunction;)Lnet/minecraft/resources/ResourceLocation;
+			ARG 0 function

@@ -4,10 +4,10 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD _bindTexture (I)V
 		ARG 0 texture
 	METHOD _blendEquation (I)V
-		ARG 0 blendEquation
+		ARG 0 mode
 	METHOD _blendFunc (II)V
-		ARG 0 srcFactor
-		ARG 1 dstFactor
+		ARG 0 sourceFactor
+		ARG 1 destFactor
 	METHOD _blendFuncSeparate (IIII)V
 		ARG 0 srcFactor
 		ARG 1 dstFactor
@@ -148,7 +148,7 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 	METHOD _logicOp (I)V
 		ARG 0 logicOperation
 	METHOD _pixelStore (II)V
-		ARG 0 pname
+		ARG 0 parameterName
 		ARG 1 param
 	METHOD _polygonMode (II)V
 		ARG 0 face
@@ -164,6 +164,11 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 4 format
 		ARG 5 type
 		ARG 6 pixels
+	METHOD _scissorBox (IIII)V
+		ARG 0 x
+		ARG 1 y
+		ARG 2 width
+		ARG 3 height
 	METHOD _stencilFunc (III)V
 		ARG 0 func
 		ARG 1 ref
@@ -172,8 +177,11 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 mask
 	METHOD _stencilOp (III)V
 		ARG 0 sfail
+			COMMENT The action to take if the stencil test fails.
 		ARG 1 dpfail
+			COMMENT The action to take if the depth buffer test fails.
 		ARG 2 dppass
+			COMMENT The action to take if the depth buffer test passes.
 	METHOD _texImage2D (IIIIIIIILjava/nio/IntBuffer;)V
 		ARG 0 target
 		ARG 1 level
@@ -258,6 +266,17 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 lightingVector1
 		ARG 1 lightingVector2
 		ARG 2 matrix
+	CLASS LogicOp
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 value
+	CLASS DestFactor
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 value
 	CLASS BooleanState
+		METHOD <init> (I)V
+			ARG 1 state
 		METHOD setEnabled (Z)V
 			ARG 1 enabled
+	CLASS SourceFactor
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 value

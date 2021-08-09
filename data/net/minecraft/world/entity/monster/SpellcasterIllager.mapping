@@ -11,15 +11,6 @@ CLASS net/minecraft/world/entity/monster/SpellcasterIllager
 	CLASS IllagerSpell
 		METHOD byId (I)Lnet/minecraft/world/entity/monster/SpellcasterIllager$IllagerSpell;
 			ARG 0 id
-	CLASS SpellcasterCastingSpellGoal
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
-		METHOD stop ()V
-			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
 	CLASS SpellcasterUseSpellGoal
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
@@ -27,5 +18,14 @@ CLASS net/minecraft/world/entity/monster/SpellcasterIllager
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS SpellcasterCastingSpellGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started

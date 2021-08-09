@@ -27,6 +27,11 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 		ARG 3 gossipAmount
 	METHOD update (Lcom/mojang/serialization/Dynamic;)V
 		ARG 1 dynamic
+	CLASS GossipEntry
+		METHOD load (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/DataResult;
+			ARG 0 dynamic
+		METHOD store (Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/Dynamic;
+			ARG 1 dynamic
 	CLASS EntityGossips
 		METHOD makeSureValueIsntTooLowOrTooHigh (Lnet/minecraft/world/entity/ai/gossip/GossipType;)V
 			ARG 1 gossipType
@@ -36,8 +41,3 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 			ARG 1 identifier
 		METHOD weightedValue (Ljava/util/function/Predicate;)I
 			ARG 1 gossipType
-	CLASS GossipEntry
-		METHOD load (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/DataResult;
-			ARG 0 dynamic
-		METHOD store (Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/Dynamic;
-			ARG 1 dynamic

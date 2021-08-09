@@ -1,4 +1,7 @@
 CLASS net/minecraft/network/chat/HoverEvent
+	METHOD <init> (Lnet/minecraft/network/chat/HoverEvent$Action;Ljava/lang/Object;)V
+		ARG 1 action
+		ARG 2 value
 	METHOD deserialize (Lcom/google/gson/JsonObject;)Lnet/minecraft/network/chat/HoverEvent;
 		ARG 0 json
 	METHOD getAction ()Lnet/minecraft/network/chat/HoverEvent$Action;
@@ -21,13 +24,23 @@ CLASS net/minecraft/network/chat/HoverEvent
 			COMMENT Indicates whether this event can be run from chat text.
 		METHOD serializeArg (Ljava/lang/Object;)Lcom/google/gson/JsonElement;
 			ARG 1 parameter
-	CLASS EntityTooltipInfo
-		METHOD create (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent$EntityTooltipInfo;
-			ARG 0 element
-		METHOD create (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/HoverEvent$EntityTooltipInfo;
-			ARG 0 component
 	CLASS ItemStackInfo
+		METHOD <init> (Lnet/minecraft/world/item/Item;ILnet/minecraft/nbt/CompoundTag;)V
+			ARG 1 item
+			ARG 2 count
+			ARG 3 tag
+		METHOD <init> (Lnet/minecraft/world/item/ItemStack;)V
+			ARG 1 stack
 		METHOD create (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent$ItemStackInfo;
 			ARG 0 element
 		METHOD create (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/HoverEvent$ItemStackInfo;
+			ARG 0 component
+	CLASS EntityTooltipInfo
+		METHOD <init> (Lnet/minecraft/world/entity/EntityType;Ljava/util/UUID;Lnet/minecraft/network/chat/Component;)V
+			ARG 1 type
+			ARG 2 id
+			ARG 3 name
+		METHOD create (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent$EntityTooltipInfo;
+			ARG 0 element
+		METHOD create (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/HoverEvent$EntityTooltipInfo;
 			ARG 0 component

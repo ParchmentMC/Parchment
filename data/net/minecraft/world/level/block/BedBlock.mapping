@@ -1,12 +1,19 @@
 CLASS net/minecraft/world/level/block/BedBlock
+	METHOD <init> (Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+		ARG 1 color
+		ARG 2 properties
 	METHOD bounceUp (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD canSetSpawn (Lnet/minecraft/world/level/Level;)Z
 		ARG 0 level
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
+	METHOD findStandUpPosition (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/CollisionGetter;Lnet/minecraft/core/BlockPos;F)Ljava/util/Optional;
+		ARG 0 entityType
+		ARG 1 level
+		ARG 2 pos
 	METHOD getBedOrientation (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/Direction;
-		ARG 0 reader
+		ARG 0 level
 		ARG 1 pos
 	METHOD getBlockType (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/DoubleBlockCombiner$BlockType;
 		ARG 0 state
@@ -35,7 +42,7 @@ CLASS net/minecraft/world/level/block/BedBlock
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 context
 	METHOD isBunkBed (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
-		ARG 0 blockReader
+		ARG 0 level
 		ARG 1 pos
 	METHOD isPathfindable (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/pathfinder/PathComputationType;)Z
 		ARG 1 state

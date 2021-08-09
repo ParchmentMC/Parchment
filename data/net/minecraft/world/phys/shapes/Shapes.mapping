@@ -4,12 +4,12 @@ CLASS net/minecraft/world/phys/shapes/Shapes
 		ARG 1 adjacentShape
 		ARG 2 side
 	METHOD box (DDDDDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
-		ARG 0 x1
-		ARG 2 y1
-		ARG 4 z1
-		ARG 6 x2
-		ARG 8 y2
-		ARG 10 z2
+		ARG 0 minX
+		ARG 2 minY
+		ARG 4 minZ
+		ARG 6 maxX
+		ARG 8 maxY
+		ARG 10 maxZ
 	METHOD collide (Lnet/minecraft/core/Direction$Axis;Lnet/minecraft/world/phys/AABB;Ljava/util/stream/Stream;D)D
 		ARG 0 movementAxis
 		ARG 1 collisionBox
@@ -32,11 +32,15 @@ CLASS net/minecraft/world/phys/shapes/Shapes
 	METHOD create (Lnet/minecraft/world/phys/AABB;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 0 aabb
 	METHOD createIndexMerger (ILit/unimi/dsi/fastutil/doubles/DoubleList;Lit/unimi/dsi/fastutil/doubles/DoubleList;ZZ)Lnet/minecraft/world/phys/shapes/IndexMerger;
+		ARG 0 size
 		ARG 1 list1
 		ARG 2 list2
 	METHOD faceShapeOccludes (Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/phys/shapes/VoxelShape;)Z
 		ARG 0 voxelShape1
 		ARG 1 voxelShape2
+	METHOD findBits (DD)I
+		ARG 0 minBits
+		ARG 2 maxBits
 	METHOD getFaceShape (Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/core/Direction;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 0 voxelShape
 		ARG 1 direction
@@ -44,14 +48,27 @@ CLASS net/minecraft/world/phys/shapes/Shapes
 		ARG 0 shape1
 		ARG 1 shape2
 		ARG 2 function
+	METHOD joinIsNotEmpty (Lnet/minecraft/world/phys/shapes/IndexMerger;Lnet/minecraft/world/phys/shapes/IndexMerger;Lnet/minecraft/world/phys/shapes/IndexMerger;Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;Lnet/minecraft/world/phys/shapes/BooleanOp;)Z
+		ARG 0 mergerX
+		ARG 1 mergerY
+		ARG 2 mergerZ
+		ARG 3 primaryShape
+		ARG 4 secondaryShape
+		ARG 5 resultOperator
 	METHOD joinIsNotEmpty (Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/phys/shapes/BooleanOp;)Z
 		ARG 0 shape1
 		ARG 1 shape2
-		ARG 2 function
+		ARG 2 resultOperator
 	METHOD joinUnoptimized (Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/phys/shapes/BooleanOp;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 0 shape1
 		ARG 1 shape2
 		ARG 2 function
+	METHOD lambda$collide$4 ([DLnet/minecraft/core/Direction$Axis;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/phys/shapes/VoxelShape;)V
+		ARG 3 shape
+	METHOD lambda$joinIsNotEmpty$3 (Lnet/minecraft/world/phys/shapes/IndexMerger;Lnet/minecraft/world/phys/shapes/IndexMerger;Lnet/minecraft/world/phys/shapes/BooleanOp;Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;III)Z
+		ARG 5 x1
+		ARG 6 y1
+		ARG 7 z1
 	METHOD lastC (DDD)I
 		ARG 0 desiredOffset
 		ARG 2 min
@@ -66,3 +83,11 @@ CLASS net/minecraft/world/phys/shapes/Shapes
 	METHOD or (Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/phys/shapes/VoxelShape;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 0 shape1
 		ARG 1 shape2
+	CLASS DoubleLineConsumer
+		METHOD consume (DDDDDD)V
+			ARG 1 minX
+			ARG 3 minY
+			ARG 5 minZ
+			ARG 7 maxX
+			ARG 9 maxY
+			ARG 11 maxZ

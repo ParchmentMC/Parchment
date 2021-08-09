@@ -1,24 +1,42 @@
 CLASS net/minecraft/world/level/levelgen/structure/BoundingBox
+	COMMENT A simple three dimensional mutable integer bounding box.
+	COMMENT Note that this box is both mutable, and has an implementation of {@code hashCode()} and {@code equals()}.
+	COMMENT This can be used as {@code HashMap} keys for example, if the user can ensure the instances themselves are not modified.
+	METHOD <init> (IIIIII)V
+		ARG 1 minX
+		ARG 2 minY
+		ARG 3 minZ
+		ARG 4 maxX
+		ARG 5 maxY
+		ARG 6 maxZ
+	METHOD getLength ()Lnet/minecraft/core/Vec3i;
+		COMMENT Returns a vector describing the dimensions of this bounding box.
+		COMMENT Note that unlike {@code getXSpan()}, {@code getYSpan()}, and {@code getZSpan()}, the length is interpreted here as the difference in coordinates. So a box over a 1x1x1 area, which still contains a single point, will report length zero.
 	METHOD getXSpan ()I
-		COMMENT Get dimension of the bounding box in the x direction.
+		COMMENT @return The length of this bounding box along the x axis.
 	METHOD getYSpan ()I
-		COMMENT Get dimension of the bounding box in the y direction.
+		COMMENT @return The length of this bounding box along the y axis.
 	METHOD getZSpan ()I
-		COMMENT Get dimension of the bounding box in the z direction.
+		COMMENT @return The length of this bounding box along the z axis.
 	METHOD intersects (IIII)Z
-		COMMENT Discover if a coordinate is inside the bounding box area.
+		COMMENT @return {@code true} if this bounding box intersects the horizontal x/z region described by the min and max parameters.
 		ARG 1 minX
 		ARG 2 minZ
 		ARG 3 maxX
 		ARG 4 maxZ
 	METHOD intersects (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
-		COMMENT Discover if bounding box can fit within the current bounding box object.
-		ARG 1 structurebb
+		COMMENT @return {@code true} if {@code box} intersects this box.
+		ARG 1 box
 	METHOD isInside (Lnet/minecraft/core/Vec3i;)Z
-		COMMENT Checks if given Vec3i is inside of StructureBoundingBox
-		ARG 1 vec
+		COMMENT @return {@code true} if the bounding box contains the {@code vector}.
+		ARG 1 vector
+	METHOD moved (III)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		COMMENT @return A new bounding box equal to this box, translated by the given coordinates.
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD orientBox (IIIIIIIIILnet/minecraft/core/Direction;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
-		COMMENT Create a bounding box with the specified dimensions and rotate it. Used to project a possible new component Bounding Box - to check if it would cut anything already spawned
+		COMMENT Create a bounding box with the specified dimensions and rotate it. Used to project a possible new component Bounding Box - to check if it would cut anything already spawned.
 		ARG 0 structureMinX
 		ARG 1 structureMinY
 		ARG 2 structureMinZ

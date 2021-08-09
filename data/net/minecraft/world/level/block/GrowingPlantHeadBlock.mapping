@@ -1,11 +1,17 @@
 CLASS net/minecraft/world/level/block/GrowingPlantHeadBlock
+	METHOD <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;Lnet/minecraft/core/Direction;Lnet/minecraft/world/phys/shapes/VoxelShape;ZD)V
+		ARG 1 properties
+		ARG 2 growthDirection
+		ARG 3 shape
+		ARG 4 scheduleFluidTicks
+		ARG 5 growPerTickProbability
 	METHOD canGrowInto (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
 	METHOD getBlocksToGrowWhenBonemealed (Ljava/util/Random;)I
-		COMMENT Used to determine how much to grow the plant when using bonemeal. Kelp always returns 1, where as the nether vines return a random value at least 1.
-		ARG 1 rand
+		COMMENT Used to determine how much to grow the plant when using bonemeal.
+		ARG 1 random
 	METHOD getStateForPlacement (Lnet/minecraft/world/level/LevelAccessor;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 level
 	METHOD isBonemealSuccess (Lnet/minecraft/world/level/Level;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z

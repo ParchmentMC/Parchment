@@ -1,4 +1,8 @@
 CLASS net/minecraft/world/level/block/CampfireBlock
+	METHOD <init> (ZILnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+		ARG 1 spawnParticles
+		ARG 2 fireDamage
+		ARG 3 properties
 	METHOD animateTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
 		COMMENT Called periodically clientside on blocks near the player to show effects (like furnace fire particles). Note that this method is unrelated to {@link randomTick} and {@link #needsRandomTick}, and will always be called regardless of whether the block can receive random update ticks
 		ARG 1 state
@@ -35,7 +39,7 @@ CLASS net/minecraft/world/level/block/CampfireBlock
 		ARG 3 pos
 		ARG 4 type
 	METHOD isSmokeSource (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		COMMENT Returns true if the block of the passed blockstate is a Hay block, otherwise false.
+		COMMENT @return whether the given block state produces the thicker signal fire smoke when put below a campfire.
 		ARG 1 state
 	METHOD isSmokeyPos (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 level

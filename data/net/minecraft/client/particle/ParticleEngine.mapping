@@ -1,4 +1,7 @@
 CLASS net/minecraft/client/particle/ParticleEngine
+	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/renderer/texture/TextureManager;)V
+		ARG 1 level
+		ARG 2 textureManager
 	METHOD add (Lnet/minecraft/client/particle/Particle;)V
 		ARG 1 effect
 	METHOD crack (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)V
@@ -23,9 +26,19 @@ CLASS net/minecraft/client/particle/ParticleEngine
 	METHOD destroy (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 state
+	METHOD lambda$reload$1 (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/Map;Ljava/util/concurrent/Executor;Lnet/minecraft/resources/ResourceLocation;)Ljava/util/concurrent/CompletableFuture;
+		ARG 4 registryName
+	METHOD lambda$reload$3 (Lnet/minecraft/util/profiling/ProfilerFiller;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/Map;Ljava/lang/Void;)Lnet/minecraft/client/renderer/texture/TextureAtlas$Preparations;
+		ARG 4 v
+	METHOD lambda$reload$5 (Lnet/minecraft/util/profiling/ProfilerFiller;Ljava/util/Map;Lnet/minecraft/client/renderer/texture/TextureAtlas$Preparations;)V
+		ARG 3 preparations
+	METHOD lambda$tick$7 (Lnet/minecraft/client/particle/ParticleRenderType;Ljava/util/Queue;)V
+		ARG 1 renderType
+	METHOD lambda$tick$8 (Lnet/minecraft/client/particle/ParticleRenderType;)Ljava/util/Queue;
+		ARG 0 renderType
 	METHOD loadParticleDescription (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/ResourceLocation;Ljava/util/Map;)V
 		ARG 1 manager
-		ARG 2 particleId
+		ARG 2 registryName
 		ARG 3 textures
 	METHOD makeParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)Lnet/minecraft/client/particle/Particle;
 		ARG 1 particleData
@@ -67,4 +80,7 @@ CLASS net/minecraft/client/particle/ParticleEngine
 		METHOD get (Ljava/util/Random;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
 			ARG 1 rand
 		METHOD rebind (Ljava/util/List;)V
+			ARG 1 sprites
+	CLASS SpriteParticleRegistration
+		METHOD create (Lnet/minecraft/client/particle/SpriteSet;)Lnet/minecraft/client/particle/ParticleProvider;
 			ARG 1 sprites

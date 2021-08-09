@@ -1,4 +1,11 @@
 CLASS net/minecraft/world/item/crafting/ShapedRecipe
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;IILnet/minecraft/core/NonNullList;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 id
+		ARG 2 group
+		ARG 3 width
+		ARG 4 height
+		ARG 5 recipeItems
+		ARG 6 result
 	METHOD assemble (Lnet/minecraft/world/inventory/CraftingContainer;)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns an Item that is the result of this recipe
 		ARG 1 inv
@@ -12,45 +19,37 @@ CLASS net/minecraft/world/item/crafting/ShapedRecipe
 		ARG 2 patternWidth
 		ARG 3 patternHeight
 	METHOD firstNonSpace (Ljava/lang/String;)I
-		ARG 0 str
+		ARG 0 entry
 	METHOD getGroup ()Ljava/lang/String;
 		COMMENT Recipes with equal group are combined into one button in the recipe book
 	METHOD getResultItem ()Lnet/minecraft/world/item/ItemStack;
 		COMMENT Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
 	METHOD keyFromJson (Lcom/google/gson/JsonObject;)Ljava/util/Map;
 		COMMENT Returns a key json object as a Java HashMap.
-		ARG 0 json
+		ARG 0 keyEntry
 	METHOD lastNonSpace (Ljava/lang/String;)I
-		ARG 0 str
+		ARG 0 entry
 	METHOD matches (Lnet/minecraft/world/inventory/CraftingContainer;IIZ)Z
 		COMMENT Checks if the region of a crafting inventory is match for the recipe.
 		ARG 1 craftingInventory
 		ARG 2 width
 		ARG 3 height
+		ARG 4 mirrored
 	METHOD matches (Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/level/Level;)Z
 		COMMENT Used to check if a recipe matches current crafting inventory
 		ARG 1 inv
 		ARG 2 level
 	METHOD patternFromJson (Lcom/google/gson/JsonArray;)[Ljava/lang/String;
-		ARG 0 jsonArr
+		ARG 0 patternArray
 	METHOD shrink ([Ljava/lang/String;)[Ljava/lang/String;
 		ARG 0 toShrink
 	CLASS Serializer
-		METHOD fromJson (Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/Recipe;
-			ARG 1 recipeId
-			ARG 2 json
 		METHOD fromJson (Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/ShapedRecipe;
 			ARG 1 recipeId
 			ARG 2 json
-		METHOD fromNetwork (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/item/crafting/Recipe;
-			ARG 1 recipeId
-			ARG 2 buffer
 		METHOD fromNetwork (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/item/crafting/ShapedRecipe;
 			ARG 1 recipeId
 			ARG 2 buffer
-		METHOD toNetwork (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/item/crafting/Recipe;)V
-			ARG 1 buffer
-			ARG 2 recipe
 		METHOD toNetwork (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/item/crafting/ShapedRecipe;)V
 			ARG 1 buffer
 			ARG 2 recipe

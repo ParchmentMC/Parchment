@@ -1,5 +1,36 @@
 CLASS net/minecraft/world/level/levelgen/structure/MineShaftPieces
+	CLASS MineShaftRoom
+		METHOD <init> (ILjava/util/Random;IILnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 x
+			ARG 4 z
+			ARG 5 type
+		METHOD move (III)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
+	CLASS MineShaftPiece
+		METHOD isSupportingBox (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIII)Z
+			ARG 1 level
+			ARG 2 bounds
+			ARG 3 xStart
+			ARG 4 xEnd
+			ARG 5 y
+			ARG 6 z
+	CLASS MineShaftStairs
+		METHOD <init> (ILnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;)V
+			ARG 1 genDepth
+			ARG 2 box
+			ARG 3 direction
+			ARG 4 type
 	CLASS MineShaftCorridor
+		METHOD <init> (ILjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;)V
+			ARG 1 genDepth
+			ARG 2 random
+			ARG 3 box
+			ARG 4 direction
+			ARG 5 type
 		METHOD createChest (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;IIILnet/minecraft/resources/ResourceLocation;)Z
 			COMMENT Adds chest to the structure and sets its contents
 			ARG 1 level
@@ -9,15 +40,25 @@ CLASS net/minecraft/world/level/levelgen/structure/MineShaftPieces
 			ARG 5 y
 			ARG 6 z
 			ARG 7 loot
-	CLASS MineShaftPiece
-		METHOD isSupportingBox (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIII)Z
-			ARG 1 blockReader
-			ARG 2 bounds
-			ARG 3 xStart
-			ARG 4 xEnd
-			ARG 6 z
-	CLASS MineShaftRoom
-		METHOD move (III)V
-			ARG 1 x
-			ARG 2 y
-			ARG 3 z
+		METHOD placeSupport (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIIIILjava/util/Random;)V
+			ARG 1 level
+			ARG 2 box
+			ARG 3 minX
+			ARG 4 minY
+			ARG 5 z
+			ARG 6 maxY
+			ARG 7 maxX
+			ARG 8 random
+	CLASS MineShaftCrossing
+		METHOD <init> (ILnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;)V
+			ARG 1 genDepth
+			ARG 2 box
+			ARG 3 direction
+			ARG 4 type
+		METHOD placeSupportPillar (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIII)V
+			ARG 1 level
+			ARG 2 box
+			ARG 3 x
+			ARG 4 y
+			ARG 5 z
+			ARG 6 maxY

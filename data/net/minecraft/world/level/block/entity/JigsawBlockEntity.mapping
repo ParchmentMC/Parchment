@@ -1,4 +1,6 @@
 CLASS net/minecraft/world/level/block/entity/JigsawBlockEntity
+	METHOD generate (Lnet/minecraft/server/level/ServerLevel;IZ)V
+		ARG 1 level
 	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
 		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
 	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
@@ -6,4 +8,19 @@ CLASS net/minecraft/world/level/block/entity/JigsawBlockEntity
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
 	METHOD setFinalState (Ljava/lang/String;)V
-		ARG 1 blockName
+		ARG 1 finalState
+	METHOD setJoint (Lnet/minecraft/world/level/block/entity/JigsawBlockEntity$JointType;)V
+		ARG 1 joint
+	METHOD setName (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 name
+	METHOD setPool (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 pool
+	METHOD setTarget (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 target
+	CLASS JointType
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 name
+		METHOD byName (Ljava/lang/String;)Ljava/util/Optional;
+			ARG 0 name
+		METHOD lambda$byName$0 (Ljava/lang/String;Lnet/minecraft/world/level/block/entity/JigsawBlockEntity$JointType;)Z
+			ARG 1 jointType

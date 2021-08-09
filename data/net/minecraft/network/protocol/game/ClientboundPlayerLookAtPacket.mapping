@@ -1,4 +1,13 @@
 CLASS net/minecraft/network/protocol/game/ClientboundPlayerLookAtPacket
+	METHOD <init> (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;DDD)V
+		ARG 1 fromAnchor
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+	METHOD <init> (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)V
+		ARG 1 fromAnchor
+		ARG 2 entity
+		ARG 3 toAnchor
 	METHOD getPosition (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 level
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
@@ -6,4 +15,4 @@ CLASS net/minecraft/network/protocol/game/ClientboundPlayerLookAtPacket
 		ARG 1 handler
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 buf
+		ARG 1 buffer

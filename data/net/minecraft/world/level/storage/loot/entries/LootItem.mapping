@@ -1,4 +1,11 @@
 CLASS net/minecraft/world/level/storage/loot/entries/LootItem
+	COMMENT A loot pool entry that always generates a given item.
+	METHOD <init> (Lnet/minecraft/world/item/Item;II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
+		ARG 1 item
+		ARG 2 weight
+		ARG 3 quality
+		ARG 4 conditions
+		ARG 5 functions
 	METHOD lootTableItem (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$Builder;
 		ARG 0 item
 	CLASS Serializer
@@ -9,22 +16,7 @@ CLASS net/minecraft/world/level/storage/loot/entries/LootItem
 			ARG 4 quality
 			ARG 5 conditions
 			ARG 6 functions
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;
-			ARG 1 object
-			ARG 2 context
-			ARG 3 weight
-			ARG 4 quality
-			ARG 5 conditions
-			ARG 6 functions
 		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootItem;Lcom/google/gson/JsonSerializationContext;)V
-			ARG 1 object
-			ARG 2 context
-			ARG 3 conditions
-		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;Lcom/google/gson/JsonSerializationContext;)V
-			ARG 1 object
-			ARG 2 context
-			ARG 3 conditions
-		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;Lcom/google/gson/JsonSerializationContext;)V
 			ARG 1 object
 			ARG 2 context
 			ARG 3 conditions

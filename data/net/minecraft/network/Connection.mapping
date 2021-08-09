@@ -4,16 +4,23 @@ CLASS net/minecraft/network/Connection
 	FIELD channel Lio/netty/channel/Channel;
 		COMMENT The active channel
 	FIELD disconnectedReason Lnet/minecraft/network/chat/Component;
-		COMMENT A String indicating why the network has shutdown.
+		COMMENT A Component indicating why the network has shutdown.
 	FIELD packetListener Lnet/minecraft/network/PacketListener;
-		COMMENT The INetHandler instance responsible for processing received packets
+		COMMENT The PacketListener instance responsible for processing received packets
 	FIELD queue Ljava/util/Queue;
-		COMMENT The queue for packets that require transmission
+		COMMENT The queue for packets that get sent before the channel is connected.
+		COMMENT Every tick or whenever a new packet is sent the connection will try to flush this queue, if the channel has since finished connecting.
 	METHOD connectToLocalServer (Ljava/net/SocketAddress;)Lnet/minecraft/network/Connection;
-		COMMENT Prepares a clientside NetworkManager: establishes a connection to the socket supplied and configures the channel pipeline. Returns the newly created instance.
+		COMMENT Prepares a clientside Connection for a local in-memory connection ("single player").
+		COMMENT Establishes a connection to the socket supplied and configures the channel pipeline (only the packet handler is necessary,
+		COMMENT since this is for an in-memory connection). Returns the newly created instance.
 		ARG 0 address
 	METHOD disconnect (Lnet/minecraft/network/chat/Component;)V
-		COMMENT Closes the channel, the parameter can be used for an exit message (not certain how it gets sent)
+		COMMENT Closes the channel with a given reason. The reason is stored for later and will be used for informational purposes (info log on server,
+		COMMENT disconnection screen on the client). This method is also called on the client when the server requests disconnection via
+		COMMENT {@code ClientboundDisconnectPacket}.
+		COMMENT
+		COMMENT Closing the channel this way does not send any disconnection packets, it simply terminates the underlying netty channel.
 		ARG 1 message
 	METHOD flushQueue ()V
 		COMMENT Will iterate through the outboundPacketQueue and dispatch all Packets
@@ -23,8 +30,14 @@ CLASS net/minecraft/network/Connection
 		COMMENT Gets the current handler for processing packets
 	METHOD getRemoteAddress ()Ljava/net/SocketAddress;
 		COMMENT Returns the socket address of the remote side. Server-only.
+	METHOD handleDisconnection ()V
+		COMMENT Checks if the channle is no longer active and if so, processes the disconnection
+		COMMENT by notifying the current packet listener, which will handle things like removing the player from the world (serverside) or
+		COMMENT showing the disconnection screen (clientside).
 	METHOD isConnected ()Z
 		COMMENT Returns true if this NetworkManager has an active channel, false otherwise
+	METHOD isConnecting ()Z
+		COMMENT Returns true while this connection is still connecting, i.e. {@link #channelActive} has not fired yet.
 	METHOD isMemoryConnection ()Z
 		COMMENT True if this NetworkManager uses a memory connection (single player game). False may imply both an active TCP connection or simply no active connection at all
 	METHOD send (Lnet/minecraft/network/protocol/Packet;)V
@@ -35,6 +48,15 @@ CLASS net/minecraft/network/Connection
 		COMMENT Will commit the packet to the channel. If the current thread 'owns' the channel it will write and flush the packet, otherwise it will add a task for the channel eventloop thread to do that.
 		ARG 1 inPacket
 		ARG 2 futureListeners
+	METHOD setEncryptionKey (Ljavax/crypto/Cipher;Ljavax/crypto/Cipher;)V
+		COMMENT Enables encryption for this connection using the given decrypting and encrypting ciphers.
+		COMMENT This adds new handlers to this connection's pipeline which handle the decrypting and encrypting.
+		COMMENT This happens as part of the normal network handshake.
+		COMMENT
+		COMMENT @see ClientboundHelloPacket
+		COMMENT @see ServerboundKeyPacket
+		ARG 1 decryptingCipher
+		ARG 2 encryptingCipher
 	METHOD setListener (Lnet/minecraft/network/PacketListener;)V
 		COMMENT Sets the NetHandler for this NetworkManager, no checks are made if this handler is suitable for the particular connection state (protocol)
 		ARG 1 handler
