@@ -10,7 +10,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 plugins {
-    id 'org.parchmentmc.compass' version '0.3.2'
+    id 'org.parchmentmc.compass' version '0.3.3'
     id 'org.parchmentmc.writtenbooks' version '0.5.+'
     id 'maven-publish'
     id 'java-base'
@@ -106,6 +106,10 @@ def remapJar = tasks.register('remapJar', RemapJar) {
 tasks.register('enigma', EnigmaExec) {
     inputJar = remapJar.flatMap { it.outputJar }
     mappings = project.compass.productionData
+}
+
+tasks.withType(GenerateExport) {
+    useBlackstone = true
 }
 
 tasks.register('generateSanitizedExport', GenerateSanitizedExport) {
