@@ -1,4 +1,9 @@
 CLASS net/minecraft/world/item/crafting/UpgradeRecipe
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 id
+		ARG 2 base
+		ARG 3 addition
+		ARG 4 result
 	METHOD assemble (Lnet/minecraft/world/Container;)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns an Item that is the result of this recipe
 		ARG 1 inv
@@ -10,6 +15,8 @@ CLASS net/minecraft/world/item/crafting/UpgradeRecipe
 		COMMENT Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
 	METHOD isAdditionIngredient (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 addition
+	METHOD lambda$isIncomplete$0 (Lnet/minecraft/world/item/crafting/Ingredient;)Z
+		ARG 0 ingredient
 	METHOD matches (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Z
 		COMMENT Used to check if a recipe matches current crafting inventory
 		ARG 1 inv

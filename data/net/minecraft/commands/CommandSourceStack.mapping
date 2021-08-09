@@ -1,4 +1,27 @@
 CLASS net/minecraft/commands/CommandSourceStack
+	METHOD <init> (Lnet/minecraft/commands/CommandSource;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec2;Lnet/minecraft/server/level/ServerLevel;ILjava/lang/String;Lnet/minecraft/network/chat/Component;Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 source
+		ARG 2 worldPosition
+		ARG 3 rotation
+		ARG 4 level
+		ARG 5 permissionLevel
+		ARG 6 textName
+		ARG 7 displayName
+		ARG 8 server
+		ARG 9 entity
+	METHOD <init> (Lnet/minecraft/commands/CommandSource;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec2;Lnet/minecraft/server/level/ServerLevel;ILjava/lang/String;Lnet/minecraft/network/chat/Component;Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/entity/Entity;ZLcom/mojang/brigadier/ResultConsumer;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)V
+		ARG 1 source
+		ARG 2 worldPosition
+		ARG 3 rotation
+		ARG 4 level
+		ARG 5 permissionLevel
+		ARG 6 textName
+		ARG 7 displayName
+		ARG 8 server
+		ARG 9 entity
+		ARG 10 silent
+		ARG 11 consumer
+		ARG 12 anchor
 	METHOD broadcastToAdmins (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 message
 	METHOD customSuggestion (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
@@ -6,11 +29,15 @@ CLASS net/minecraft/commands/CommandSourceStack
 		ARG 2 suggestionsBuilder
 	METHOD facing (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 entity
-		ARG 2 anchorType
+		ARG 2 anchor
 	METHOD facing (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 lookPos
 	METHOD hasPermission (I)Z
 		ARG 1 level
+	METHOD lambda$new$0 (Lcom/mojang/brigadier/context/CommandContext;ZI)V
+		ARG 0 context
+		ARG 1 success
+		ARG 2 result
 	METHOD onCommandComplete (Lcom/mojang/brigadier/context/CommandContext;ZI)V
 		ARG 1 context
 		ARG 2 success
@@ -21,9 +48,9 @@ CLASS net/minecraft/commands/CommandSourceStack
 		ARG 1 message
 		ARG 2 allowLogging
 	METHOD withAnchor (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 1 entityAnchorType
+		ARG 1 anchor
 	METHOD withCallback (Lcom/mojang/brigadier/ResultConsumer;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 1 resultConsumer
+		ARG 1 consumer
 	METHOD withCallback (Lcom/mojang/brigadier/ResultConsumer;Ljava/util/function/BinaryOperator;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 resultConsumer
 		ARG 2 resultConsumerSelector
@@ -32,10 +59,12 @@ CLASS net/minecraft/commands/CommandSourceStack
 	METHOD withLevel (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 level
 	METHOD withMaximumPermission (I)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 1 level
+		ARG 1 permissionLevel
 	METHOD withPermission (I)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 1 level
+		ARG 1 permissionLevel
 	METHOD withPosition (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 pos
 	METHOD withRotation (Lnet/minecraft/world/phys/Vec2;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 1 pitchYaw
+		ARG 1 rotation
+	METHOD withSource (Lnet/minecraft/commands/CommandSource;)Lnet/minecraft/commands/CommandSourceStack;
+		ARG 1 source

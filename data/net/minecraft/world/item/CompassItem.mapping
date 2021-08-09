@@ -2,12 +2,12 @@ CLASS net/minecraft/world/item/CompassItem
 	METHOD addLodestoneTags (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/BlockPos;Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 lodestoneDimension
 		ARG 2 lodestonePos
-		ARG 3 nbt
+		ARG 3 compoundTag
 	METHOD getDescriptionId (Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
 		COMMENT Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have different names based on their damage or NBT.
 		ARG 1 stack
 	METHOD getLodestoneDimension (Lnet/minecraft/nbt/CompoundTag;)Ljava/util/Optional;
-		ARG 0 nbt
+		ARG 0 compoundTag
 	METHOD inventoryTick (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;IZ)V
 		COMMENT Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and update it's contents.
 		ARG 1 stack
@@ -22,6 +22,8 @@ CLASS net/minecraft/world/item/CompassItem
 		ARG 1 stack
 	METHOD isLodestoneCompass (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 stack
+	METHOD lambda$addLodestoneTags$0 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
+		ARG 1 tag
 	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
 		COMMENT Called when this item is used when targetting a Block
 		ARG 1 context

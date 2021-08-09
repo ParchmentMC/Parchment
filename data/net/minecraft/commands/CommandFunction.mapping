@@ -1,0 +1,37 @@
+CLASS net/minecraft/commands/CommandFunction
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;[Lnet/minecraft/commands/CommandFunction$Entry;)V
+		ARG 1 id
+		ARG 2 entries
+	METHOD fromLines (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandSourceStack;Ljava/util/List;)Lnet/minecraft/commands/CommandFunction;
+		ARG 0 id
+		ARG 1 dispatcher
+		ARG 2 source
+		ARG 3 lines
+	CLASS Entry
+		METHOD execute (Lnet/minecraft/server/ServerFunctionManager;Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Deque;IILnet/minecraft/server/ServerFunctionManager$TraceCallbacks;)V
+			ARG 1 functionManager
+			ARG 2 source
+			ARG 3 queuedCommands
+			ARG 4 commandLimit
+			ARG 5 depth
+			ARG 6 tracer
+	CLASS CommandEntry
+		METHOD <init> (Lcom/mojang/brigadier/ParseResults;)V
+			ARG 1 parse
+		METHOD execute (Lnet/minecraft/server/ServerFunctionManager;Lnet/minecraft/commands/CommandSourceStack;)I
+			ARG 1 functionManager
+			ARG 2 source
+	CLASS FunctionEntry
+		METHOD <init> (Lnet/minecraft/commands/CommandFunction;)V
+			ARG 1 function
+		METHOD lambda$execute$0 (Lnet/minecraft/server/ServerFunctionManager$TraceCallbacks;IILjava/util/Deque;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/commands/CommandFunction;)V
+			ARG 5 function
+	CLASS CacheableFunction
+		METHOD <init> (Lnet/minecraft/commands/CommandFunction;)V
+			ARG 1 function
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 1 id
+		METHOD get (Lnet/minecraft/server/ServerFunctionManager;)Ljava/util/Optional;
+			ARG 1 functionManager
+		METHOD lambda$getId$0 (Lnet/minecraft/commands/CommandFunction;)Lnet/minecraft/resources/ResourceLocation;
+			ARG 0 function

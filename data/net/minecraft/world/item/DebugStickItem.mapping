@@ -8,10 +8,20 @@ CLASS net/minecraft/world/item/DebugStickItem
 		ARG 0 state
 		ARG 1 property
 		ARG 2 backwards
+	METHOD getNameHelper (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/String;
+		ARG 0 state
+		ARG 1 property
 	METHOD getRelative (Ljava/lang/Iterable;Ljava/lang/Object;Z)Ljava/lang/Object;
 		ARG 0 allowedValues
 		ARG 1 currentValue
 		ARG 2 backwards
+	METHOD handleInteraction (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;ZLnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 player
+		ARG 2 stateClicked
+		ARG 3 accessor
+		ARG 4 pos
+		ARG 5 shouldCycleState
+		ARG 6 debugStack
 	METHOD isFoil (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Returns true if this item has an enchantment glint. By default, this returns <code>stack.isItemEnchanted()</code>, but other items can override it (for instance, written books always return true).
 		COMMENT
@@ -19,7 +29,7 @@ CLASS net/minecraft/world/item/DebugStickItem
 		ARG 1 stack
 	METHOD message (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/network/chat/Component;)V
 		ARG 0 player
-		ARG 1 text
+		ARG 1 messageComponent
 	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
 		COMMENT Called when this item is used when targetting a Block
 		ARG 1 context

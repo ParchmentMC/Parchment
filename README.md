@@ -20,7 +20,7 @@ Our mappings system makes use of the following open-source tools and libraries:
 
 ## Support
 Want to ask a question? Get help on how to use these mappings? Or tips on contributing to the mappings? Head over to
-our [public Discord server](https://parchmentmc.org/discord.html)!
+our [public Discord server](https://discord.parchmentmc.org/)!
 
 ## Licensing
 Parchment mappings are released under the terms of the CC0 1.0 Universal (CC0 1.0), see the [`LICENSE.txt`](LICENSE.txt) 
