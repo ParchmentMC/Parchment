@@ -1,3 +1,13 @@
 CLASS net/minecraft/world/level/levelgen/RandomSource
+	COMMENT A basic interface for random number generation. This mirrors the same methods in {@link java.util.Random}, however it does not make any gaurentee that these are threadsafe, unlike {@code Random}.
+	COMMENT The notable difference is that {@link #setSeed(long)} is not {@code synchronized} and should not be accessed from multiple threads.
+	COMMENT The documentation for each individual method can be assumed to be otherwise the same as the identically named method in {@link java.util.Random}.
+	COMMENT <p>
+	COMMENT @see java.util.Random
+	COMMENT @see net.minecraft.world.level.levelgen.SimpleRandomSource
+	METHOD consumeCount (I)V
+		ARG 1 count
+	METHOD nextInt (I)I
+		ARG 1 bound
 	METHOD setSeed (J)V
 		ARG 1 seed

@@ -1,4 +1,6 @@
 CLASS net/minecraft/world/level/levelgen/NoiseInterpolator
+	COMMENT An abstraction for the "perlerp" (itself a portmanteau of "perlin", from Perlin noise, and "lerp", indicating linear interpolation.) function used in Minecraft's noise generation.
+	COMMENT Tri-linear interpolation avoids sampling noise at each position, and instead samples cell corners, and linearly interpolates values between said corners. This manages said interpolation, in a way friendly to iteration to avoid unnesecary computations.
 	METHOD <init> (IIILnet/minecraft/world/level/ChunkPos;ILnet/minecraft/world/level/levelgen/NoiseInterpolator$NoiseColumnFiller;)V
 		ARG 1 cellCountX
 		ARG 2 cellCountY
@@ -9,13 +11,16 @@ CLASS net/minecraft/world/level/levelgen/NoiseInterpolator
 	METHOD advanceCellX (I)V
 		ARG 1 x
 	METHOD allocateSlice (II)[[D
-		ARG 0 y
-		ARG 1 z
+		ARG 0 cellCountY
+		ARG 1 cellCountZ
 	METHOD calculateValue (D)D
 		ARG 1 value
+	METHOD fillSlice ([[DI)V
+		ARG 1 cell
+		ARG 2 cellX
 	METHOD selectCellYZ (II)V
-		ARG 1 y
-		ARG 2 z
+		ARG 1 cellX
+		ARG 2 cellZ
 	METHOD updateForX (D)V
 		ARG 1 x
 	METHOD updateForY (D)V
