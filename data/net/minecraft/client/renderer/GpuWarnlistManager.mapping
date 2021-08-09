@@ -3,7 +3,23 @@ CLASS net/minecraft/client/renderer/GpuWarnlistManager
 		ARG 1 object
 		ARG 2 resourceManager
 		ARG 3 profiler
+	METHOD compilePatterns (Lcom/google/gson/JsonArray;Ljava/util/List;)V
+		ARG 0 jsonArray
+		ARG 1 patterns
+	METHOD lambda$compilePatterns$1 (Ljava/util/List;Lcom/google/gson/JsonElement;)V
+		ARG 1 jsonElement
+	METHOD parseJson (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Lcom/google/gson/JsonObject;
+		ARG 0 resourceManager
+		ARG 1 profilerFiller
 	METHOD prepare (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Lnet/minecraft/client/renderer/GpuWarnlistManager$Preparations;
 		COMMENT Performs any reloading that can be done off-thread, such as file IO
 		ARG 1 resourceManager
 		ARG 2 profiler
+	CLASS Preparations
+		METHOD <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+			ARG 1 rendererPatterns
+			ARG 2 versionPatterns
+			ARG 3 vendorPatterns
+		METHOD matchAny (Ljava/util/List;Ljava/lang/String;)Ljava/lang/String;
+			ARG 0 patterns
+			ARG 1 string
