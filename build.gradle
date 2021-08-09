@@ -109,7 +109,8 @@ tasks.register('enigma', EnigmaExec) {
 }
 
 tasks.withType(GenerateExport) {
-    useBlackstone = true
+    // Disable if UPDATING is set. This will ensure cascaded method data does not get mixed into the production data when updating.
+    useBlackstone = project.hasProperty('UPDATING')
 }
 
 tasks.register('generateSanitizedExport', GenerateSanitizedExport) {
