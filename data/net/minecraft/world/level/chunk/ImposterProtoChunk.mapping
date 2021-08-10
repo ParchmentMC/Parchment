@@ -1,53 +1,10 @@
 CLASS net/minecraft/world/level/chunk/ImposterProtoChunk
+	COMMENT During world generation, adjacent chunks may be fully generated (and thus be level chunks), but are often needed in proto chunk form. This wraps a completely generated chunk as a proto chunk.
 	METHOD <init> (Lnet/minecraft/world/level/chunk/LevelChunk;)V
 		ARG 1 wrapped
-	METHOD addEntity (Lnet/minecraft/world/entity/Entity;)V
-		COMMENT Adds an entity to the chunk.
-		ARG 1 entity
 	METHOD fixType (Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/world/level/levelgen/Heightmap$Types;
-		ARG 1 types
-	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
-		ARG 1 pos
-	METHOD getBlockEntityNbt (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/nbt/CompoundTag;
-		ARG 1 pos
-	METHOD getBlockEntityNbtForSaving (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/nbt/CompoundTag;
-		ARG 1 pos
-	METHOD getBlockState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-		ARG 1 pos
-	METHOD getCarvingMask (Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)Ljava/util/BitSet;
 		ARG 1 type
-	METHOD getFluidState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;
-		ARG 1 pos
-	METHOD getHeight (Lnet/minecraft/world/level/levelgen/Heightmap$Types;II)I
-		ARG 1 heightmapType
-		ARG 2 x
-		ARG 3 z
-	METHOD getOrCreateCarvingMask (Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)Ljava/util/BitSet;
-		ARG 1 type
-	METHOD getPos ()Lnet/minecraft/world/level/ChunkPos;
-		COMMENT Gets a {@link ChunkPos} representing the x and z coordinates of this chunk.
-	METHOD markPosForPostprocessing (Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
-	METHOD removeBlockEntity (Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
-	METHOD setAllReferences (Ljava/util/Map;)V
-		ARG 1 structureReferences
-	METHOD setAllStarts (Ljava/util/Map;)V
-		ARG 1 structureStarts
-	METHOD setBiomes (Lnet/minecraft/world/level/chunk/ChunkBiomeContainer;)V
-		ARG 1 biomes
-	METHOD setBlockEntityNbt (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 nbt
-	METHOD setBlockState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/level/block/state/BlockState;
-		ARG 1 pos
-		ARG 2 state
-		ARG 3 isMoving
-	METHOD setHeightmap (Lnet/minecraft/world/level/levelgen/Heightmap$Types;[J)V
-		ARG 1 type
-		ARG 2 data
-	METHOD setLightCorrect (Z)V
-		ARG 1 lightCorrect
-	METHOD setStatus (Lnet/minecraft/world/level/chunk/ChunkStatus;)V
-		ARG 1 status
-	METHOD setUnsaved (Z)V
-		ARG 1 modified
+	METHOD lambda$getBlockTicks$0 (Lnet/minecraft/world/level/block/Block;)Z
+		ARG 0 block
+	METHOD lambda$getLiquidTicks$1 (Lnet/minecraft/world/level/material/Fluid;)Z
+		ARG 0 fluid

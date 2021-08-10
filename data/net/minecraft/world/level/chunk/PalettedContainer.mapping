@@ -6,6 +6,8 @@ CLASS net/minecraft/world/level/chunk/PalettedContainer
 		ARG 4 writer
 		ARG 5 defaultValue
 	METHOD count (Lnet/minecraft/world/level/chunk/PalettedContainer$CountConsumer;)V
+		COMMENT Counts the number of instances of each state in the container.
+		COMMENT The provided consumer is invoked for each state with the number of instances.
 		ARG 1 countConsumer
 	METHOD get (I)Ljava/lang/Object;
 		ARG 1 index
@@ -30,19 +32,36 @@ CLASS net/minecraft/world/level/chunk/PalettedContainer
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
+	METHOD lambda$count$1 (Lit/unimi/dsi/fastutil/ints/Int2IntMap;I)V
+		ARG 0 counts
+		ARG 1 count
+	METHOD lambda$new$0 (ILjava/lang/Object;)I
+		ARG 0 bits
+		ARG 1 objectAdded
+	METHOD maybeHas (Ljava/util/function/Predicate;)Z
+		ARG 1 predicate
 	METHOD read (Lnet/minecraft/nbt/ListTag;[J)V
-		ARG 1 paletteNbt
+		ARG 1 tag
 		ARG 2 data
 	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)V
-		ARG 1 buf
+		ARG 1 buffer
+	METHOD set (IIILjava/lang/Object;)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 state
 	METHOD set (ILjava/lang/Object;)V
 		ARG 1 index
 		ARG 2 state
 	METHOD setBits (I)V
 		ARG 1 bits
 	METHOD write (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;Ljava/lang/String;)V
-		ARG 1 compound
+		ARG 1 tag
 		ARG 2 paletteName
 		ARG 3 paletteDataName
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
-		ARG 1 buf
+		ARG 1 buffer
+	CLASS CountConsumer
+		METHOD accept (Ljava/lang/Object;I)V
+			ARG 1 state
+			ARG 2 count

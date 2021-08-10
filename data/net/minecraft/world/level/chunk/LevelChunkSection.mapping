@@ -1,36 +1,44 @@
 CLASS net/minecraft/world/level/chunk/LevelChunkSection
+	METHOD <init> (I)V
+		ARG 1 sectionY
 	METHOD <init> (ISSS)V
-		ARG 1 y
+		ARG 1 sectionY
 		ARG 2 nonEmptyBlockCount
 		ARG 3 tickingBlockCount
 		ARG 4 tickingFluidCount
 	METHOD bottomBlockY ()I
-		COMMENT Gets the y coordinate that this chunk section starts at (which is a multiple of 16). To get the y number, use <code>section.getYLocation() >> 4</code>. Note that there is a section below the world for lighting purposes.
+		COMMENT @return The lowest y coordinate in this section.
 	METHOD getBlockState (III)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
 	METHOD getBottomBlockY (I)I
-		ARG 0 y
+		ARG 0 sectionY
 	METHOD getFluidState (III)Lnet/minecraft/world/level/material/FluidState;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
 	METHOD isEmpty ()Z
-		COMMENT Returns whether or not this block storage's Chunk is fully empty, based on its internal reference count.
+		COMMENT @return {@code true} if this section is empty (consisting only of air-like blocks).
 	METHOD isEmpty (Lnet/minecraft/world/level/chunk/LevelChunkSection;)Z
 		ARG 0 section
 	METHOD isRandomlyTickingBlocks ()Z
-		COMMENT Returns whether or not this block storage's Chunk will require random ticking, used to avoid looping through random block ticks when there are no blocks that would randomly tick.
+		COMMENT @return {@code true} if this section has any blocks that require random ticks.
+	METHOD isRandomlyTickingFluids ()Z
+		COMMENT @return {@code true} if this section has any fluids that require random ticks.
+	METHOD lambda$recalcBlockCounts$0 (Lnet/minecraft/world/level/block/state/BlockState;I)V
+		ARG 1 state
+		ARG 2 count
 	METHOD maybeHas (Ljava/util/function/Predicate;)Z
+		COMMENT @return {@code true} if this section has any states matching the given predicate. As the internal representation uses a {@link net.minecraft.world.level.chunk.Palette}, this is more efficient than looping through every position in the section, or indeed the chunk.
 		ARG 1 predicate
 	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)V
-		ARG 1 packetBuffer
+		ARG 1 buffer
 	METHOD setBlockState (IIILnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-		ARG 4 blockState
+		ARG 4 state
 	METHOD setBlockState (IIILnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 x
 		ARG 2 y
@@ -38,4 +46,4 @@ CLASS net/minecraft/world/level/chunk/LevelChunkSection
 		ARG 4 state
 		ARG 5 useLocks
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
-		ARG 1 packetBuffer
+		ARG 1 buffer
