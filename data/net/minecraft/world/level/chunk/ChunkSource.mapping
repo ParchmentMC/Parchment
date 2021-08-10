@@ -1,7 +1,10 @@
 CLASS net/minecraft/world/level/chunk/ChunkSource
 	METHOD gatherStats ()Ljava/lang/String;
-		COMMENT Converts the instance data to a readable string.
+		COMMENT @return A human readable string representing data about this chunk source.
 	METHOD getChunk (IILnet/minecraft/world/level/chunk/ChunkStatus;Z)Lnet/minecraft/world/level/chunk/ChunkAccess;
+		COMMENT Gets the chunk at the provided position, if it exists.
+		COMMENT If {@code load} is {@code true}, then this will force a chunk load.
+		COMMENT Note: This method <strong>can deadlock</strong> when called from within an existing chunk load, as it will be stuck waiting for the current chunk to load!
 		ARG 1 chunkX
 		ARG 2 chunkZ
 		ARG 3 requiredStatus
@@ -17,9 +20,9 @@ CLASS net/minecraft/world/level/chunk/ChunkSource
 		ARG 1 chunkX
 		ARG 2 chunkZ
 	METHOD hasChunk (II)Z
-		COMMENT Checks to see if a chunk exists at x, z
-		ARG 1 x
-		ARG 2 z
+		COMMENT @return {@code true} if a chunk is loaded at the provided position, without forcing a chunk load.
+		ARG 1 chunkX
+		ARG 2 chunkZ
 	METHOD setSpawnSettings (ZZ)V
 		ARG 1 hostile
 		ARG 2 peaceful
