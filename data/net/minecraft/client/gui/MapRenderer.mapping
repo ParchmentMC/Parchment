@@ -1,11 +1,34 @@
 CLASS net/minecraft/client/gui/MapRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureManager;)V
+		ARG 1 textureManager
+	METHOD getOrCreateMapInstance (ILnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)Lnet/minecraft/client/gui/MapRenderer$MapInstance;
+		ARG 1 mapId
+		ARG 2 data
+	METHOD lambda$getOrCreateMapInstance$0 (Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;Ljava/lang/Integer;Lnet/minecraft/client/gui/MapRenderer$MapInstance;)Lnet/minecraft/client/gui/MapRenderer$MapInstance;
+		ARG 2 id
+		ARG 3 map
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/level/saveddata/maps/MapItemSavedData;ZI)V
+		ARG 1 poseStack
+		ARG 2 buffer
+		ARG 3 mapId
+		ARG 4 data
+		ARG 5 notInHand
+		ARG 6 packedLight
 	METHOD resetData ()V
 		COMMENT Clears the currently loaded maps and removes their corresponding textures
+	METHOD update (ILnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
+		ARG 1 mapId
+		ARG 2 data
 	CLASS MapInstance
+		METHOD <init> (Lnet/minecraft/client/gui/MapRenderer;ILnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
+			ARG 2 mapId
+			ARG 3 data
 		METHOD draw (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ZI)V
-			ARG 1 matrixStack
+			ARG 1 poseStack
 			ARG 2 buffer
-			ARG 3 active
+			ARG 3 notInHand
 			ARG 4 packedLight
+		METHOD replaceMapData (Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
+			ARG 1 data
 		METHOD updateTexture ()V
 			COMMENT Updates a map {@link net.minecraft.client.gui.MapItemRenderer.Instance#mapTexture texture}

@@ -17,11 +17,20 @@ CLASS net/minecraft/client/gui/Gui
 		COMMENT The time that the title is display
 	FIELD titleTime I
 		COMMENT A timer for the current title and subtitle displayed
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+		ARG 1 minecraft
 	METHOD canRenderCrosshairForSpectator (Lnet/minecraft/world/phys/HitResult;)Z
-		ARG 1 rayTrace
+		ARG 1 hitResult
+	METHOD displayScoreboardSidebar (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/scores/Objective;)V
+		ARG 1 poseStack
+		ARG 2 objective
 	METHOD drawBackdrop (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;III)V
-		ARG 1 matrixStack
-		ARG 2 renderer
+		COMMENT Draw semi-transparent box behind text
+		ARG 1 poseStack
+		ARG 2 font
+		ARG 3 y
+		ARG 4 width
+		ARG 5 color
 	METHOD getBossOverlay ()Lnet/minecraft/client/gui/components/BossHealthOverlay;
 		COMMENT Accessor for the GuiBossOverlay
 	METHOD getChat ()Lnet/minecraft/client/gui/components/ChatComponent;
@@ -30,42 +39,102 @@ CLASS net/minecraft/client/gui/Gui
 		ARG 1 mountEntity
 	METHOD getVisibleVehicleHeartRows (I)I
 		ARG 1 mountHealth
+	METHOD guessChatUUID (Lnet/minecraft/network/chat/Component;)Ljava/util/UUID;
+		COMMENT Try to find the UUID of player that send message
+		ARG 1 message
+	METHOD handleChat (Lnet/minecraft/network/chat/ChatType;Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V
+		ARG 1 chatType
+		ARG 2 message
+		ARG 3 sender
+	METHOD lambda$displayScoreboardSidebar$1 (Lnet/minecraft/world/scores/Score;)Z
+		ARG 0 score
 	METHOD onDisconnected ()V
 		COMMENT Reset the GuiPlayerTabOverlay's message header and footer
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;F)V
-		ARG 1 matrixStack
-		ARG 2 partialTicks
+		ARG 1 poseStack
+		ARG 2 partialTick
 	METHOD renderCrosshair (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 	METHOD renderDemoOverlay (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 	METHOD renderEffects (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 	METHOD renderExperienceBar (Lcom/mojang/blaze3d/vertex/PoseStack;I)V
-		ARG 1 matrixStack
-		ARG 2 xPos
+		ARG 1 poseStack
+		ARG 2 x
+	METHOD renderHeart (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Gui$HeartType;IIIZZ)V
+		ARG 1 poseStack
+		ARG 2 heartType
+		ARG 3 x
+		ARG 4 y
+		ARG 5 vOffset
+		ARG 6 blink
+		ARG 7 halfHeart
+	METHOD renderHearts (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/entity/player/Player;IIIIFIIIZ)V
+		ARG 1 poseStack
+		ARG 2 player
+		ARG 3 x
+		ARG 4 y
+		ARG 5 rowHeight
+		ARG 6 regen
+		ARG 7 healthMax
+		ARG 8 health
+		ARG 9 healthLast
+		ARG 10 absorb
+		ARG 11 blink
 	METHOD renderHotbar (FLcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 partialTicks
-		ARG 2 matrixStack
+		ARG 1 partialTick
+		ARG 2 poseStack
 	METHOD renderJumpMeter (Lcom/mojang/blaze3d/vertex/PoseStack;I)V
-		ARG 1 matrixStack
-		ARG 2 xPosition
+		ARG 1 poseStack
+		ARG 2 x
 	METHOD renderPlayerHealth (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 	METHOD renderPortalOverlay (F)V
-		ARG 1 timeInPortal
+		ARG 1 portalTime
 	METHOD renderSelectedItemName (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
+	METHOD renderSlot (IIFLnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;I)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 partialTick
+		ARG 4 player
+		ARG 5 stack
+		ARG 6 itemIndex
+	METHOD renderSpyglassOverlay (F)V
+		ARG 1 scopeScale
+	METHOD renderTextureOverlay (Lnet/minecraft/resources/ResourceLocation;F)V
+		ARG 1 texture
+		ARG 2 alpha
 	METHOD renderVehicleHealth (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 	METHOD renderVignette (Lnet/minecraft/world/entity/Entity;)V
-		ARG 1 entity
+		ARG 1 cameraEntity
 	METHOD resetTitleTimes ()V
 		COMMENT Set the differents times for the titles to their default values
+	METHOD setNowPlaying (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 recordName
 	METHOD setOverlayMessage (Lnet/minecraft/network/chat/Component;Z)V
-		ARG 1 component
-		ARG 2 animateColor
+		ARG 1 overlayMessageString
+		ARG 2 animateOverlayMessageColor
+	METHOD setSubtitle (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 subtitle
+	METHOD setTimes (III)V
+		ARG 1 titleFadeInTime
+		ARG 2 titleStayTime
+		ARG 3 titleFadeOutTime
+	METHOD setTitle (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 title
 	METHOD tick ()V
 		COMMENT The update tick for the ingame UI
 	METHOD updateVignetteBrightness (Lnet/minecraft/world/entity/Entity;)V
-		ARG 1 entity
+		ARG 1 cameraEntity
+	CLASS HeartType
+		METHOD <init> (Ljava/lang/String;IIZ)V
+			ARG 3 index
+			ARG 4 canBlink
+		METHOD forPlayer (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/client/gui/Gui$HeartType;
+			ARG 0 player
+		METHOD getX (ZZ)I
+			ARG 1 halfHeart
+			ARG 2 blink

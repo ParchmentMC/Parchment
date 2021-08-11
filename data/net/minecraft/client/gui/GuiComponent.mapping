@@ -1,6 +1,6 @@
 CLASS net/minecraft/client/gui/GuiComponent
 	METHOD blit (Lcom/mojang/blaze3d/vertex/PoseStack;IIFFIIII)V
-		ARG 0 matrixStack
+		ARG 0 poseStack
 		ARG 1 x
 		ARG 2 y
 		ARG 3 uOffset
@@ -10,7 +10,7 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 7 textureWidth
 		ARG 8 textureHeight
 	METHOD blit (Lcom/mojang/blaze3d/vertex/PoseStack;IIIFFIIII)V
-		ARG 0 matrixStack
+		ARG 0 poseStack
 		ARG 1 x
 		ARG 2 y
 		ARG 3 blitOffset
@@ -21,7 +21,7 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 8 textureHeight
 		ARG 9 textureWidth
 	METHOD blit (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIFFIIII)V
-		ARG 0 matrixStack
+		ARG 0 poseStack
 		ARG 1 x
 		ARG 2 y
 		ARG 3 width
@@ -33,7 +33,7 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 9 textureWidth
 		ARG 10 textureHeight
 	METHOD blit (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIII)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 x
 		ARG 3 y
 		ARG 4 uOffset
@@ -41,7 +41,7 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 6 uWidth
 		ARG 7 vHeight
 	METHOD blit (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIILnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
-		ARG 0 matrixStack
+		ARG 0 poseStack
 		ARG 1 x
 		ARG 2 y
 		ARG 3 blitOffset
@@ -103,31 +103,31 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 5 color
 	METHOD fillGradient (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIII)V
 		ARG 1 poseStack
-		ARG 2 x1
-		ARG 3 y1
-		ARG 4 x2
-		ARG 5 y2
+		ARG 2 minX
+		ARG 3 minY
+		ARG 4 maxX
+		ARG 5 maxY
 		ARG 6 colorFrom
 		ARG 7 colorTo
 	METHOD fillGradient (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIII)V
 		ARG 0 poseStack
-		ARG 1 x1
-		ARG 2 y1
-		ARG 3 x2
-		ARG 4 y2
+		ARG 1 minX
+		ARG 2 minY
+		ARG 3 maxX
+		ARG 4 maxY
 		ARG 5 colorFrom
 		ARG 6 colorTo
 		ARG 7 blitOffset
 	METHOD fillGradient (Lcom/mojang/math/Matrix4f;Lcom/mojang/blaze3d/vertex/BufferBuilder;IIIIIII)V
 		ARG 0 matrix
 		ARG 1 builder
-		ARG 2 x1
-		ARG 3 y1
-		ARG 4 x2
-		ARG 5 y2
+		ARG 2 minX
+		ARG 3 minY
+		ARG 4 maxX
+		ARG 5 maxY
 		ARG 6 blitOffset
-		ARG 7 colorA
-		ARG 8 colorB
+		ARG 7 colorFrom
+		ARG 8 colorTo
 	METHOD hLine (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
 		ARG 1 poseStack
 		ARG 2 minX
@@ -135,11 +135,11 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 4 y
 		ARG 5 color
 	METHOD innerBlit (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIFFII)V
-		ARG 0 matrixStack
-		ARG 1 x1
-		ARG 2 x2
-		ARG 3 y1
-		ARG 4 y2
+		ARG 0 poseStack
+		ARG 1 minX
+		ARG 2 maxX
+		ARG 3 minY
+		ARG 4 maxY
 		ARG 5 blitOffset
 		ARG 6 uWidth
 		ARG 7 vHeight
@@ -149,10 +149,10 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 11 textureHeight
 	METHOD innerBlit (Lcom/mojang/math/Matrix4f;IIIIIFFFF)V
 		ARG 0 matrix
-		ARG 1 x1
-		ARG 2 x2
-		ARG 3 y1
-		ARG 4 y2
+		ARG 1 minX
+		ARG 2 maxX
+		ARG 3 minY
+		ARG 4 maxY
 		ARG 5 blitOffset
 		ARG 6 minU
 		ARG 7 maxU
@@ -166,7 +166,7 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 4 maxY
 		ARG 5 color
 	METHOD setBlitOffset (I)V
-		ARG 1 value
+		ARG 1 blitOffset
 	METHOD vLine (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
 		ARG 1 poseStack
 		ARG 2 x
