@@ -18,16 +18,42 @@ CLASS net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
 	METHOD doFill (Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;II)Lnet/minecraft/world/level/chunk/ChunkAccess;
 		ARG 1 structureManager
 		ARG 2 chunk
+		ARG 3 minCellY
+		ARG 4 cellCountY
 	METHOD getAquifer (IILnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/world/level/levelgen/Aquifer;
 		ARG 1 minCellY
 		ARG 2 cellCountY
 		ARG 3 chunkPos
+	METHOD iterateNoiseColumn (II[Lnet/minecraft/world/level/block/state/BlockState;Ljava/util/function/Predicate;II)Ljava/util/OptionalInt;
+		ARG 1 x
+		ARG 2 z
+		ARG 3 column
+		ARG 4 stoppingState
+		ARG 5 minCellY
+		ARG 6 cellCountY
+	METHOD lambda$doFill$5 (ILnet/minecraft/world/level/levelgen/NoiseInterpolator;)V
+		ARG 1 interpolator
+	METHOD lambda$doFill$6 (IILnet/minecraft/world/level/levelgen/NoiseInterpolator;)V
+		ARG 2 interpolator
+	METHOD lambda$doFill$7 (DLnet/minecraft/world/level/levelgen/NoiseInterpolator;)V
+		ARG 2 interpolator
+	METHOD lambda$doFill$8 (DLnet/minecraft/world/level/levelgen/NoiseInterpolator;)V
+		ARG 2 interpolator
 	METHOD setBedrock (Lnet/minecraft/world/level/chunk/ChunkAccess;Ljava/util/Random;)V
 		ARG 1 chunk
 		ARG 2 random
 	METHOD stable (JLnet/minecraft/resources/ResourceKey;)Z
 		ARG 1 seed
 		ARG 3 settingsKey
+	METHOD updateNoiseAndGenerateBaseState (Lnet/minecraft/world/level/levelgen/Beardifier;Lnet/minecraft/world/level/levelgen/Aquifer;Lnet/minecraft/world/level/levelgen/BaseStoneSource;Lnet/minecraft/world/level/levelgen/NoiseModifier;IIID)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 beardifier
+		ARG 2 aquifer
+		ARG 3 baseStoneSource
+		ARG 4 noiseModifier
+		ARG 5 x
+		ARG 6 y
+		ARG 7 z
+		ARG 8 noise
 	CLASS OreVeinNoiseSource
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseBasedChunkGenerator;Lnet/minecraft/world/level/ChunkPos;IJ)V
 			ARG 2 chunkPos

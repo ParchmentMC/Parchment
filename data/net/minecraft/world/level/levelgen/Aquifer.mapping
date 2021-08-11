@@ -1,11 +1,21 @@
 CLASS net/minecraft/world/level/levelgen/Aquifer
+	COMMENT Aquifers are responsible for non-sea level fluids found in terrain generation, but also managing that different aquifers don't intersect with eachother in ways that would create undesirable fluid placement.
+	COMMENT The aquifer interface itself is a modifier on a per-block basis. It computes a block state to be placed for each position in the world.
+	COMMENT <p>
+	COMMENT Aquifers work by first partitioning a single chunk into a low resolution grid. They then generate, via various noise layers, an {@link Aquifer.AquiferStatus} at each grid point.
+	COMMENT At each point, the grid cell containing that point is calculated, and then of the eight grid corners, the three closest aquifers are found, by square eucildean distance.
+	COMMENT Borders between aquifers are created by comparing nearby aquifers to see if the given point is near-equidistant from them, indicating a border if so, or fluid/air depending on the aquifer height if not.
 	METHOD computeState (Lnet/minecraft/world/level/levelgen/BaseStoneSource;IIID)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Computes the state to be placed at a given (x, y, z) position in the world.
 		ARG 1 stoneSource
+			COMMENT The stone source used to choose solid blocks (stone) for placement.
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
 		ARG 5 noise
+			COMMENT The cumulative terrain density noise. Positive values indicate the position is typically filled with solid blocks, negative values indicate air or fluid.
 	METHOD create (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/synth/NormalNoise;Lnet/minecraft/world/level/levelgen/synth/NormalNoise;Lnet/minecraft/world/level/levelgen/synth/NormalNoise;Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;Lnet/minecraft/world/level/levelgen/NoiseSampler;II)Lnet/minecraft/world/level/levelgen/Aquifer;
+		COMMENT Creates a standard noise based aquifer. This aquifer will place liquid (both water and lava), air, and stone as described above.
 		ARG 0 chunkPos
 		ARG 1 barrierNoise
 		ARG 2 waterLevelNoise
@@ -15,8 +25,12 @@ CLASS net/minecraft/world/level/levelgen/Aquifer
 		ARG 6 minY
 		ARG 7 height
 	METHOD createDisabled (ILnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/levelgen/Aquifer;
+		COMMENT Creates a disabled, or no-op aquifer. This will fill any open areas below sea level with the default fluid.
 		ARG 0 seaLevel
 		ARG 1 defaultFluid
+	METHOD shouldScheduleFluidUpdate ()Z
+		COMMENT Returns true there should be a fluid update scheduled - due to a fluid block being placed in a possibly unsteady position - at the last position passed into {@link #computeState}.
+		COMMENT This <strong>must</strong> be invoked only after {@link #computeState}, and will be using the same parameters as that method.
 	CLASS NoiseBasedAquifer
 		METHOD <init> (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/synth/NormalNoise;Lnet/minecraft/world/level/levelgen/synth/NormalNoise;Lnet/minecraft/world/level/levelgen/synth/NormalNoise;Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;Lnet/minecraft/world/level/levelgen/NoiseSampler;II)V
 			ARG 1 chunkPos
@@ -27,16 +41,29 @@ CLASS net/minecraft/world/level/levelgen/Aquifer
 			ARG 6 sampler
 			ARG 7 minY
 			ARG 8 height
+		METHOD calculatePressure (IDLnet/minecraft/world/level/levelgen/Aquifer$NoiseBasedAquifer$AquiferStatus;Lnet/minecraft/world/level/levelgen/Aquifer$NoiseBasedAquifer$AquiferStatus;)D
+			COMMENT Calculates a pressure value for an aquifer. Used when determining if there should be solid stone between two aquifers. The product of the pressure and similarity determines if stone should be placed.
+			ARG 1 y
+			ARG 2 barrierNoiseValue
+			ARG 4 firstAquifer
+			ARG 5 secondAquifer
 		METHOD computeAquifer (III)Lnet/minecraft/world/level/levelgen/Aquifer$NoiseBasedAquifer$AquiferStatus;
+			COMMENT Computes the aquifer which is centered at the given (x, y, z) position.
+			COMMENT Aquifers are placed at a positive offset from their grid corner and so the grid corner can always be extracted from the aquifer position.
+			COMMENT If the aquifer y level is above {@link ALWAYS_USE_SEA_LEVEL_WHEN_ABOVE}, then the aquifer fluid level will be at sea level.
+			COMMENT Otherwise, this queries the internal noise functions to determine both the height of the aquifer, and the fluid (either lava or water).
 			ARG 1 x
 			ARG 2 y
 			ARG 3 z
 		METHOD getAquiferStatus (J)Lnet/minecraft/world/level/levelgen/Aquifer$NoiseBasedAquifer$AquiferStatus;
-			ARG 1 pos
+			COMMENT Calculates the aquifer at a given location. Internally references a cache using the grid positions as an index. If the cache is not populated, computes a new aquifer at that grid location using {@link #computeAquifer}.
+			ARG 1 packedPos
+				COMMENT The aquifer block position, packed into a {@code long}.
 		METHOD getIndex (III)I
-			ARG 1 x
-			ARG 2 y
-			ARG 3 z
+			COMMENT @return A cache index based on grid positions.
+			ARG 1 gridX
+			ARG 2 gridY
+			ARG 3 gridZ
 		METHOD gridX (I)I
 			ARG 1 x
 		METHOD gridY (I)I
@@ -44,8 +71,19 @@ CLASS net/minecraft/world/level/levelgen/Aquifer
 		METHOD gridZ (I)I
 			ARG 1 z
 		METHOD isLavaLevel (I)Z
+			COMMENT @return {@code true} if the provided y position is below the level under which all air blocks should be filled with lava.
+			COMMENT @see #ALWAYS_LAVA_AT_OR_BELOW_Y_INDEX
 			ARG 1 y
+		METHOD similarity (II)D
+			COMMENT Compares two distances (between aquifers).
+			COMMENT @return {@code 1.0} if the distances are equal, and returns smaller values the more different in absolute value the two distances are.
+			ARG 1 firstDistance
+			ARG 2 secondDistance
 		CLASS AquiferStatus
+			FIELD fluidLevel I
+				COMMENT The y height of the aquifer.
+			FIELD fluidType Lnet/minecraft/world/level/block/state/BlockState;
+				COMMENT The fluid state the aquifer is filled with.
 			METHOD <init> (ILnet/minecraft/world/level/block/state/BlockState;)V
 				ARG 1 fluidLevel
 				ARG 2 fluidState
