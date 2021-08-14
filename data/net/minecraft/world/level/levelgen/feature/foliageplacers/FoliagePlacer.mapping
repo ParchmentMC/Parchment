@@ -2,30 +2,67 @@ CLASS net/minecraft/world/level/levelgen/feature/foliageplacers/FoliagePlacer
 	METHOD <init> (Lnet/minecraft/util/valueproviders/IntProvider;Lnet/minecraft/util/valueproviders/IntProvider;)V
 		ARG 1 radius
 		ARG 2 offset
-	METHOD createFoliage (Lnet/minecraft/world/level/LevelSimulatedReader;Ljava/util/function/BiConsumer;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration;ILnet/minecraft/world/level/levelgen/feature/foliageplacers/FoliagePlacer$FoliageAttachment;III)V
+	METHOD createFoliage (Lnet/minecraft/world/level/LevelSimulatedReader;Ljava/util/function/BiConsumer;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration;ILnet/minecraft/world/level/levelgen/feature/foliageplacers/FoliagePlacer$FoliageAttachment;II)V
 		ARG 1 level
+		ARG 2 blockSetter
 		ARG 3 random
 		ARG 4 config
+		ARG 5 maxFreeTreeHeight
+		ARG 6 attachment
+		ARG 7 foliageHeight
+		ARG 8 foliageRadius
+	METHOD createFoliage (Lnet/minecraft/world/level/LevelSimulatedReader;Ljava/util/function/BiConsumer;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration;ILnet/minecraft/world/level/levelgen/feature/foliageplacers/FoliagePlacer$FoliageAttachment;III)V
+		ARG 1 level
+		ARG 2 blockSetter
+		ARG 3 random
+		ARG 4 config
+		ARG 5 maxFreeTreeHeight
+		ARG 6 attachment
+		ARG 7 foliageHeight
+		ARG 8 foliageRadius
+		ARG 9 offset
 	METHOD foliageHeight (Ljava/util/Random;ILnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration;)I
 		ARG 1 random
 		ARG 2 height
 		ARG 3 config
+	METHOD foliagePlacerParts (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/Products$P2;
+		ARG 0 instance
 	METHOD foliageRadius (Ljava/util/Random;I)I
 		ARG 1 random
 		ARG 2 radius
 	METHOD offset (Ljava/util/Random;)I
 		ARG 1 random
 	METHOD placeLeavesRow (Lnet/minecraft/world/level/LevelSimulatedReader;Ljava/util/function/BiConsumer;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration;Lnet/minecraft/core/BlockPos;IIZ)V
+		COMMENT Places leaves in a shape within radius {@code range}, and a y offset of {@code yOffset} from the provided block position.
 		ARG 1 level
+		ARG 2 blockSetter
 		ARG 3 random
 		ARG 4 config
 		ARG 5 pos
+		ARG 6 range
+		ARG 7 yOffset
+		ARG 8 large
+			COMMENT When {@code true}, the leaf placement extends an additional one block outside the {@code range} and skip checking is adjusted to fit the larger area.
 	METHOD shouldSkipLocation (Ljava/util/Random;IIIIZ)Z
+		COMMENT Skips certain positions based on the provided shape, such as rounding corners randomly.
+		COMMENT The coordinates are passed in as absolute value, and should be within [0, {@code range}].
 		ARG 1 random
+		ARG 2 localX
+		ARG 3 localY
+		ARG 4 localZ
+		ARG 5 range
+		ARG 6 large
 	METHOD shouldSkipLocationSigned (Ljava/util/Random;IIIIZ)Z
 		ARG 1 random
+		ARG 2 localX
+		ARG 3 localY
+		ARG 4 localZ
+		ARG 5 range
+		ARG 6 large
 	METHOD tryPlaceLeaf (Lnet/minecraft/world/level/LevelSimulatedReader;Ljava/util/function/BiConsumer;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration;Lnet/minecraft/core/BlockPos;)V
+		COMMENT Attempts to place a leaf block at the given position, if possible.
 		ARG 0 level
+		ARG 1 blockSetter
 		ARG 2 random
 		ARG 3 config
 		ARG 4 pos
