@@ -1,4 +1,11 @@
 CLASS net/minecraft/client/renderer/chunk/RenderChunkRegion
+	METHOD <init> (Lnet/minecraft/world/level/Level;II[[Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 level
+		ARG 2 centerX
+		ARG 3 centerZ
+		ARG 4 chunks
+		ARG 5 start
+		ARG 6 end
 	METHOD createIfNotEmpty (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;I)Lnet/minecraft/client/renderer/chunk/RenderChunkRegion;
 		COMMENT generates a RenderChunkCache, but returns null if the chunk is empty (contains only air)
 		ARG 0 level
@@ -13,7 +20,7 @@ CLASS net/minecraft/client/renderer/chunk/RenderChunkRegion
 	METHOD getBlockState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 pos
 	METHOD getBlockTint (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/ColorResolver;)I
-		ARG 1 blockPos
+		ARG 1 pos
 		ARG 2 colorResolver
 	METHOD getFluidState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;
 		ARG 1 pos
@@ -23,3 +30,9 @@ CLASS net/minecraft/client/renderer/chunk/RenderChunkRegion
 		ARG 3 z
 	METHOD index (Lnet/minecraft/core/BlockPos;)I
 		ARG 1 pos
+	METHOD isAllEmpty (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;II[[Lnet/minecraft/world/level/chunk/LevelChunk;)Z
+		ARG 0 from
+		ARG 1 to
+		ARG 2 x
+		ARG 3 z
+		ARG 4 chunks
