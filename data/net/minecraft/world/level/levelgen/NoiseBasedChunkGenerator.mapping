@@ -9,10 +9,13 @@ CLASS net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
 		ARG 3 seed
 		ARG 5 settings
 	METHOD createBaseStoneSource (ILnet/minecraft/world/level/ChunkPos;Ljava/util/function/Consumer;)Ljava/util/function/DoubleFunction;
+		ARG 1 minCellY
 		ARG 2 chunkPos
+		ARG 3 interpolators
 	METHOD createCaveNoiseModifier (ILnet/minecraft/world/level/ChunkPos;Ljava/util/function/Consumer;)Ljava/util/function/DoubleFunction;
-		ARG 1 cellNoiseMinY
+		ARG 1 minCellY
 		ARG 2 chunkPos
+		ARG 3 interpolators
 	METHOD doFill (Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;II)Lnet/minecraft/world/level/chunk/ChunkAccess;
 		ARG 1 structureManager
 		ARG 2 chunk
@@ -29,6 +32,16 @@ CLASS net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
 		ARG 4 stoppingState
 		ARG 5 minCellY
 		ARG 6 cellCountY
+	METHOD lambda$createBaseStoneSource$10 (D)Lnet/minecraft/world/level/levelgen/BaseStoneSource;
+		ARG 1 deltaZ
+	METHOD lambda$createBaseStoneSource$11 (Lnet/minecraft/world/level/levelgen/NoiseBasedChunkGenerator$OreVeinNoiseSource;III)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
+	METHOD lambda$createBaseStoneSource$12 (Lnet/minecraft/world/level/levelgen/NoiseBasedChunkGenerator$OreVeinNoiseSource;Lnet/minecraft/world/level/levelgen/BaseStoneSource;D)Lnet/minecraft/world/level/levelgen/BaseStoneSource;
+		ARG 2 deltaZ
+	METHOD lambda$createCaveNoiseModifier$9 (D)Lnet/minecraft/world/level/levelgen/NoiseModifier;
+		ARG 0 deltaZ
 	METHOD lambda$doFill$5 (ILnet/minecraft/world/level/levelgen/NoiseInterpolator;)V
 		ARG 1 interpolator
 	METHOD lambda$doFill$6 (IILnet/minecraft/world/level/levelgen/NoiseInterpolator;)V
@@ -55,13 +68,17 @@ CLASS net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
 	CLASS OreVeinNoiseSource
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseBasedChunkGenerator;Lnet/minecraft/world/level/ChunkPos;IJ)V
 			ARG 2 chunkPos
-			ARG 3 cellNoiseMinY
+			ARG 3 minCellY
 			ARG 4 seed
+		METHOD listInterpolators (Ljava/util/function/Consumer;)V
+			ARG 1 interpolators
 		METHOD prepare (D)V
 			ARG 1 factorZ
 	CLASS NoodleCaveNoiseModifier
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseBasedChunkGenerator;Lnet/minecraft/world/level/ChunkPos;I)V
 			ARG 2 chunkPos
-			ARG 3 cellNoiseMinY
+			ARG 3 minCellY
+		METHOD listInterpolators (Ljava/util/function/Consumer;)V
+			ARG 1 interpolators
 		METHOD prepare (D)Lnet/minecraft/world/level/levelgen/NoiseModifier;
 			ARG 1 factorZ
