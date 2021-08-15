@@ -2,10 +2,10 @@ CLASS net/minecraft/client/gui/Font
 	METHOD <init> (Ljava/util/function/Function;)V
 		ARG 1 fonts
 	METHOD adjustColor (I)I
-		COMMENT Increase alpha value of color if the alpha value is close to zero
+		COMMENT Increases alpha value of color if the alpha value is close to zero.
 		ARG 0 color
 	METHOD bidirectionalShaping (Ljava/lang/String;)Ljava/lang/String;
-		COMMENT Apply Unicode Bidirectional Algorithm to string and return a new possibly reordered string for visual rendering.
+		COMMENT Applies Unicode Bidirectional Algorithm to string and return a new possibly reordered string for visual rendering.
 		ARG 1 text
 	METHOD draw (Lcom/mojang/blaze3d/vertex/PoseStack;Ljava/lang/String;FFI)I
 		ARG 1 poseStack
@@ -30,9 +30,9 @@ CLASS net/minecraft/client/gui/Font
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
-		ARG 5 drawShadow
-		ARG 6 matrix
-		ARG 7 buffer
+		ARG 5 dropShadow
+		ARG 6 pose
+		ARG 7 bufferSource
 		ARG 8 seeThrough
 		ARG 9 colorBackground
 		ARG 10 packedLight
@@ -41,21 +41,21 @@ CLASS net/minecraft/client/gui/Font
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
-		ARG 5 drawShadow
-		ARG 6 matrix
-		ARG 7 buffer
+		ARG 5 dropShadow
+		ARG 6 pose
+		ARG 7 bufferSource
 		ARG 8 seeThrough
 		ARG 9 colorBackground
 		ARG 10 packedLight
-		ARG 11 isBidirectional
+		ARG 11 bidirectional
 	METHOD drawInBatch (Lnet/minecraft/network/chat/Component;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
-		ARG 5 drawShadow
-		ARG 6 matrix
-		ARG 7 buffer
+		ARG 5 dropShadow
+		ARG 6 pose
+		ARG 7 bufferSource
 		ARG 8 seeThrough
 		ARG 9 colorBackground
 		ARG 10 packedLight
@@ -64,57 +64,57 @@ CLASS net/minecraft/client/gui/Font
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
-		ARG 5 drawShadow
-		ARG 6 matrix
-		ARG 7 buffer
+		ARG 5 dropShadow
+		ARG 6 pose
+		ARG 7 bufferSource
 		ARG 8 seeThrough
 		ARG 9 colorBackground
 		ARG 10 packedLight
 	METHOD drawInBatch8xOutline (Lnet/minecraft/util/FormattedCharSequence;FFIILcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;I)V
-		COMMENT Draw text with outline, by drawing every character 8 times with slight offsets
+		COMMENT Draws text with outline, by drawing every character 8 times with slight offsets.
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
 		ARG 5 outlineColor
-		ARG 6 matrix
-		ARG 7 buffer
+		ARG 6 pose
+		ARG 7 bufferSource
 		ARG 8 packedLight
 	METHOD drawInternal (Ljava/lang/String;FFILcom/mojang/math/Matrix4f;ZZ)I
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
-		ARG 5 matrix
-		ARG 6 drawShadow
-		ARG 7 isBidirectional
+		ARG 5 pose
+		ARG 6 dropShadow
+		ARG 7 bidirectional
 	METHOD drawInternal (Ljava/lang/String;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZIIZ)I
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
-		ARG 5 drawShadow
-		ARG 6 matrix
-		ARG 7 buffer
+		ARG 5 dropShadow
+		ARG 6 pose
+		ARG 7 bufferSource
 		ARG 8 seeThrough
 		ARG 9 colorBackground
 		ARG 10 packedLight
-		ARG 11 isBidirectional
+		ARG 11 bidirectional
 	METHOD drawInternal (Lnet/minecraft/util/FormattedCharSequence;FFILcom/mojang/math/Matrix4f;Z)I
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
-		ARG 5 matrix
-		ARG 6 drawShadow
+		ARG 5 pose
+		ARG 6 dropShadow
 	METHOD drawInternal (Lnet/minecraft/util/FormattedCharSequence;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
-		ARG 5 drawShadow
-		ARG 6 matrix
-		ARG 7 buffer
+		ARG 5 dropShadow
+		ARG 6 pose
+		ARG 7 bufferSource
 		ARG 8 seeThrough
 		ARG 9 colorBackground
 		ARG 10 packedLight
@@ -130,7 +130,7 @@ CLASS net/minecraft/client/gui/Font
 		ARG 3 x
 		ARG 4 y
 		ARG 5 color
-		ARG 6 isBidirectional
+		ARG 6 bidirectional
 	METHOD drawShadow (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/network/chat/Component;FFI)I
 		ARG 1 poseStack
 		ARG 2 text
@@ -164,10 +164,11 @@ CLASS net/minecraft/client/gui/Font
 		ARG 1 text
 		ARG 2 width
 	METHOD plainSubstrByWidth (Ljava/lang/String;IZ)Ljava/lang/String;
-		COMMENT tail parameter decides if returning tail (end) or head (start) of string
+		COMMENT
 		ARG 1 text
 		ARG 2 width
 		ARG 3 tail
+			COMMENT Decides if returning tail (end) or head (start) of string.
 	METHOD renderChar (Lnet/minecraft/client/gui/font/glyphs/BakedGlyph;ZZFFFLcom/mojang/math/Matrix4f;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFFFI)V
 		ARG 1 glyph
 		ARG 2 bold
@@ -175,8 +176,8 @@ CLASS net/minecraft/client/gui/Font
 		ARG 4 boldOffset
 		ARG 5 x
 		ARG 6 y
-		ARG 7 matrix
-		ARG 8 buffer
+		ARG 7 pose
+		ARG 8 consumer
 		ARG 9 red
 		ARG 10 green
 		ARG 11 blue
@@ -187,9 +188,9 @@ CLASS net/minecraft/client/gui/Font
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
-		ARG 5 drawShadow
-		ARG 6 matrix
-		ARG 7 buffer
+		ARG 5 dropShadow
+		ARG 6 pose
+		ARG 7 bufferSource
 		ARG 8 seeThrough
 		ARG 9 colorBackground
 		ARG 10 packedLight
@@ -199,8 +200,8 @@ CLASS net/minecraft/client/gui/Font
 		ARG 3 y
 		ARG 4 color
 		ARG 5 dropShadow
-		ARG 6 matrix
-		ARG 7 buffer
+		ARG 6 pose
+		ARG 7 bufferSource
 		ARG 8 seeThrough
 		ARG 9 colorBackground
 		ARG 10 packedLight
