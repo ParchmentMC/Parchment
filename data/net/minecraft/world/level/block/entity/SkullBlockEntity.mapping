@@ -1,4 +1,6 @@
 CLASS net/minecraft/world/level/block/entity/SkullBlockEntity
+	METHOD getMouthAnimation (F)F
+		ARG 1 partialTicks
 	METHOD getUpdatePacket ()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
 		COMMENT Retrieves packet to send to the client whenever this Tile Entity is resynced via World.notifyBlockUpdate. For modded TE's, this packet comes back to you clientside in {@link #onDataPacket}
 	METHOD getUpdateTag ()Lnet/minecraft/nbt/CompoundTag;
@@ -6,7 +8,7 @@ CLASS net/minecraft/world/level/block/entity/SkullBlockEntity
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
 	METHOD setOwner (Lcom/mojang/authlib/GameProfile;)V
-		ARG 1 playerProfile
+		ARG 1 owner
 	METHOD setProfileCache (Lnet/minecraft/server/players/GameProfileCache;)V
 		ARG 0 profileCache
 	METHOD setSessionService (Lcom/mojang/authlib/minecraft/MinecraftSessionService;)V

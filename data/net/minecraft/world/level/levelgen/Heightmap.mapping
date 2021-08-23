@@ -1,4 +1,7 @@
 CLASS net/minecraft/world/level/levelgen/Heightmap
+	METHOD <init> (Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/Heightmap$Types;)V
+		ARG 1 chunk
+		ARG 2 type
 	METHOD getFirstAvailable (I)I
 		ARG 1 dataArrayIndex
 	METHOD getFirstAvailable (II)I
@@ -20,5 +23,9 @@ CLASS net/minecraft/world/level/levelgen/Heightmap
 		ARG 3 z
 		ARG 4 state
 	CLASS Types
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/world/level/levelgen/Heightmap$Usage;Ljava/util/function/Predicate;)V
+			ARG 3 serializationKey
+			ARG 4 usage
+			ARG 5 isOpaque
 		METHOD getFromKey (Ljava/lang/String;)Lnet/minecraft/world/level/levelgen/Heightmap$Types;
 			ARG 0 id

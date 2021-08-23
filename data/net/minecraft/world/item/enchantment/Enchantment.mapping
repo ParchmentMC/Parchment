@@ -1,55 +1,99 @@
 CLASS net/minecraft/world/item/enchantment/Enchantment
+	FIELD category Lnet/minecraft/world/item/enchantment/EnchantmentCategory;
+		COMMENT The category of the enchantment. This often controls which items the enchantment can be applied to and which creative tabs the enchantment will be displayed under.
+	FIELD descriptionId Ljava/lang/String;
+		COMMENT The descriptionId for the enchantment. Commonly used to create localization keys.
+	FIELD rarity Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
+		COMMENT The rarity of the enchantment.
+	FIELD slots [Lnet/minecraft/world/entity/EquipmentSlot;
+		COMMENT The valid equipment slots for the enchantment.
+	METHOD <init> (Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;Lnet/minecraft/world/item/enchantment/EnchantmentCategory;[Lnet/minecraft/world/entity/EquipmentSlot;)V
+		ARG 1 rarity
+		ARG 2 category
+		ARG 3 applicableSlots
 	METHOD byId (I)Lnet/minecraft/world/item/enchantment/Enchantment;
-		COMMENT Gets an Enchantment from the registry, based on a numeric ID.
+		COMMENT Gets an enchantment from the registry using it's internal numeric Id.
 		ARG 0 id
+			COMMENT The internal numeric id of the enchantment.
 	METHOD canEnchant (Lnet/minecraft/world/item/ItemStack;)Z
-		COMMENT Determines if this enchantment can be applied to a specific ItemStack.
+		COMMENT Checks if the enchantment can be applied to a given ItemStack.
 		ARG 1 stack
+			COMMENT The ItemStack to test.
 	METHOD checkCompatibility (Lnet/minecraft/world/item/enchantment/Enchantment;)Z
-		COMMENT Determines if the enchantment passed can be applyied together with this enchantment.
-		ARG 1 ench
+		COMMENT Checks if the enchantment can be applied with another enchantment. Being incompatible will prevent the two enchantments from being applied to the same item.
+		COMMENT @return Whether or not the two enchantments are compatible.
+		ARG 1 other
+			COMMENT The other enchantment to test compatibility with.
 	METHOD doPostAttack (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;I)V
-		COMMENT Called whenever a mob is damaged with an item that has this enchantment on it.
-		ARG 1 user
+		COMMENT A hook that is called every time an entity with this enchantment attacks another entity.
+		ARG 1 attacker
+			COMMENT The user of the enchantment.
 		ARG 2 target
+			COMMENT The entity being attacked.
 		ARG 3 level
+			COMMENT The level of the enchantment.
 	METHOD doPostHurt (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;I)V
-		COMMENT Whenever an entity that has this enchantment on one of its associated items is damaged this method will be called.
+		COMMENT A hook that is called every time an entity with this enchantment is attacked by another entity.
 		ARG 1 user
+			COMMENT The user of the enchantment.
 		ARG 2 attacker
+			COMMENT The entity that attacked the user.
 		ARG 3 level
+			COMMENT The level of the enchantment.
 	METHOD getDamageBonus (ILnet/minecraft/world/entity/MobType;)F
-		COMMENT Calculates the additional damage that will be dealt by an item with this enchantment. This alternative to calcModifierDamage is sensitive to the targets EnumCreatureAttribute.
+		COMMENT Calculates the amount of additional damage to deal when attacking with an item with the enchantment.
 		ARG 1 level
-		ARG 2 creatureType
+			COMMENT The level of the enchantment being used.
+		ARG 2 type
 	METHOD getDamageProtection (ILnet/minecraft/world/damagesource/DamageSource;)I
-		COMMENT Calculates the damage protection of the enchantment based on level and damage source passed.
+		COMMENT Calculates the amount of additional damage protection to provide when a user is damaged.
 		ARG 1 level
+			COMMENT The level of the enchantment being used.
 		ARG 2 source
+			COMMENT The source of the damage.
 	METHOD getDescriptionId ()Ljava/lang/String;
-		COMMENT Return the name of key in translation table of this enchantment.
+		COMMENT Gets the description Id of the enchantment. This is commonly used to create localization keys.
 	METHOD getFullname (I)Lnet/minecraft/network/chat/Component;
+		COMMENT Gets the name of the enchantment with the level appended to the end. The game will attempt to convert the letter to roman numerals.
+		COMMENT @return The name of the enchantment with the level appened to the end.
 		ARG 1 level
+			COMMENT The level of the enchantment.
 	METHOD getMaxCost (I)I
-		ARG 1 enchantmentLevel
+		ARG 1 level
 	METHOD getMaxLevel ()I
-		COMMENT Returns the maximum level that the enchantment can have.
+		COMMENT Gets the maximum level of the enchantment under normal circumstances such as the enchanting table. This limit is not strictly enforced and may be ignored through custom item NBT or other customizations.
 	METHOD getMinCost (I)I
 		COMMENT Returns the minimal value of enchantability needed on the enchantment level passed.
-		ARG 1 enchantmentLevel
+		ARG 1 level
 	METHOD getMinLevel ()I
-		COMMENT Returns the minimum level that the enchantment can have.
+		COMMENT Gets the minimum level of the enchantment under normal circumstances such as the enchanting table. This limit is not strictly enforced and may be ignored through custom item NBT or other customizations.
+	METHOD getOrCreateDescriptionId ()Ljava/lang/String;
+		COMMENT Lazily initializes a descriptionId for an enchantment using the enchantments registry name.
 	METHOD getRarity ()Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
-		COMMENT Retrieves the weight value of an Enchantment. This weight value is used within vanilla to determine how rare an enchantment is.
+		COMMENT Gets the rarity of the enchantment. This determines how rare the enchantment will be in enchantment pools such as the enchanting table and loot tables.
 	METHOD getSlotItems (Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/Map;
-		COMMENT Gets map of all the entity's currently equipped gear that this enchantment can go on
-		ARG 1 livingEntity
+		COMMENT Creates a new map containing all items equipped by an entity in {@linkplain #slots slots that the enchantment cares about}. These items are not tested for having the enchantment.
+		ARG 1 entity
+			COMMENT The entity to collect equipment for.
 	METHOD isCompatibleWith (Lnet/minecraft/world/item/enchantment/Enchantment;)Z
-		ARG 1 enchantment
+		COMMENT Checks if the enchantment is compatible with another enchantment.
+		COMMENT @return Whether or not both enchantments agree that they are compatible with eachother.
+		ARG 1 other
+			COMMENT The other enchantment to test compatibility with.
+	METHOD isCurse ()Z
+		COMMENT Checks if the enchantment is considered a curse. These enchantments are treated as debuffs and can not be removed from items under normal circumstances.
+		COMMENT @return Whether or not the enchantment is a curse.
 	METHOD isDiscoverable ()Z
-		COMMENT Checks if the enchantment can be applied to loot table drops.
+		COMMENT Checks if the enchantment can be discovered by game mechanics which pull random enchanments from the enchantment registry.
+		COMMENT @return Whether or not the enchantment can be discovered.
 	METHOD isTradeable ()Z
-		COMMENT Checks if the enchantment can be sold by villagers in their trades.
+		COMMENT Checks if the enchantment can be traded by NPCs like villagers.
+		COMMENT @return Whether or not this enchantment can be traded.
+	METHOD isTreasureOnly ()Z
+		COMMENT Checks if the enchantment should be considered a treasure enchantment. These enchantments can not be obtained using the enchantment table. The mending enchantment is an example of a treasure enchantment.
+		COMMENT @return Whether or not the enchantment is a treasure enchantment.
 	CLASS Rarity
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 weight
 		METHOD getWeight ()I
 			COMMENT Retrieves the weight of Rarity.

@@ -1,8 +1,16 @@
 CLASS net/minecraft/client/gui/screens/inventory/StructureBlockEditScreen
+	METHOD <init> (Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)V
+		ARG 1 structureBlockEntity
 	METHOD keyPressed (III)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
+	METHOD parseCoordinate (Ljava/lang/String;)I
+		ARG 1 coordinate
+	METHOD parseIntegrity (Ljava/lang/String;)F
+		ARG 1 integrity
+	METHOD parseSeed (Ljava/lang/String;)J
+		ARG 1 seed
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 matrixStack
 		ARG 2 mouseX
@@ -12,6 +20,8 @@ CLASS net/minecraft/client/gui/screens/inventory/StructureBlockEditScreen
 		ARG 1 minecraft
 		ARG 2 width
 		ARG 3 height
+	METHOD sendToServer (Lnet/minecraft/world/level/block/entity/StructureBlockEntity$UpdateType;)Z
+		ARG 1 updateType
 	CLASS 1
 		METHOD charTyped (CI)Z
 			ARG 1 codePoint

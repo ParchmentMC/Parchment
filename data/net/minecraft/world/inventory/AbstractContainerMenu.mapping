@@ -31,7 +31,7 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 		ARG 0 intArray
 		ARG 1 minSize
 	METHOD checkContainerSize (Lnet/minecraft/world/Container;I)V
-		ARG 0 container
+		ARG 0 inventory
 		ARG 1 minSize
 	METHOD clearContainer (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/Container;)V
 		ARG 1 player
@@ -73,9 +73,9 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 		ARG 0 eventButton
 	METHOD getRedstoneSignalFromBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)I
 		COMMENT Like the version that takes an inventory. If the given TileEntity is not an Inventory, 0 is returned instead.
-		ARG 0 blockEntity
+		ARG 0 te
 	METHOD getRedstoneSignalFromContainer (Lnet/minecraft/world/Container;)I
-		ARG 0 container
+		ARG 0 inv
 	METHOD getSlot (I)Lnet/minecraft/world/inventory/Slot;
 		ARG 1 slotId
 	METHOD isSynched (Lnet/minecraft/world/entity/player/Player;)Z
@@ -118,11 +118,11 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 		ARG 2 isSynched
 	METHOD slotsChanged (Lnet/minecraft/world/Container;)V
 		COMMENT Callback for when the crafting matrix is changed.
-		ARG 1 container
+		ARG 1 inventory
 	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
 		COMMENT Determines whether supplied player can use this container
 		ARG 1 player
 	METHOD stillValid (Lnet/minecraft/world/inventory/ContainerLevelAccess;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/block/Block;)Z
-		ARG 0 access
+		ARG 0 levelPos
 		ARG 1 player
 		ARG 2 targetBlock

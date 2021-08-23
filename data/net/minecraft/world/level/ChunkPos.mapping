@@ -1,10 +1,17 @@
 CLASS net/minecraft/world/level/ChunkPos
 	FIELD INVALID_CHUNK_POS J
 		COMMENT Value representing an absent or invalid chunkpos
+	METHOD <init> (II)V
+		ARG 1 x
+		ARG 2 y
+	METHOD <init> (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
 	METHOD asLong (II)J
 		COMMENT Converts the chunk coordinate pair to a long
 		ARG 0 x
 		ARG 1 z
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
 	METHOD getChessboardDistance (Lnet/minecraft/world/level/ChunkPos;)I
 		ARG 1 chunkPos
 	METHOD getMaxBlockX ()I
@@ -33,3 +40,6 @@ CLASS net/minecraft/world/level/ChunkPos
 	METHOD rangeClosed (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/ChunkPos;)Ljava/util/stream/Stream;
 		ARG 0 start
 		ARG 1 end
+	CLASS 1
+		METHOD tryAdvance (Ljava/util/function/Consumer;)Z
+			ARG 1 consumer

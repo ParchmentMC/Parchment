@@ -1,56 +1,88 @@
 CLASS net/minecraft/commands/arguments/selector/EntitySelectorParser
+	METHOD <init> (Lcom/mojang/brigadier/StringReader;)V
+		ARG 1 reader
+	METHOD <init> (Lcom/mojang/brigadier/StringReader;Z)V
+		ARG 1 reader
+		ARG 2 allowSelectors
 	METHOD addPredicate (Ljava/util/function/Predicate;)V
-		ARG 1 filter
+		ARG 1 predicate
 	METHOD createAabb (DDD)Lnet/minecraft/world/phys/AABB;
 		ARG 1 sizeX
 		ARG 3 sizeY
 		ARG 5 sizeZ
 	METHOD createRotationPredicate (Lnet/minecraft/advancements/critereon/WrappedMinMaxBounds;Ljava/util/function/ToDoubleFunction;)Ljava/util/function/Predicate;
 		ARG 1 angleBounds
-		ARG 2 angleFunc
+		ARG 2 angleFunction
 	METHOD fillSelectorSuggestions (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)V
-		ARG 0 suggestionBuilder
+		ARG 0 builder
 	METHOD fillSuggestions (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
 		ARG 2 consumer
+	METHOD lambda$getSelector$10 (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 vector
+	METHOD lambda$getSelector$11 (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 vector
+	METHOD lambda$new$9 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
+	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 type
+	METHOD lambda$static$1 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 value
+	METHOD lambda$static$2 (Lnet/minecraft/world/phys/Vec3;Ljava/util/List;)V
+		ARG 0 pos
+		ARG 1 entities
+	METHOD lambda$static$4 (Lnet/minecraft/world/phys/Vec3;Ljava/util/List;)V
+		ARG 0 pos
+		ARG 1 entities
+	METHOD lambda$static$6 (Lnet/minecraft/world/phys/Vec3;Ljava/util/List;)V
+		ARG 0 vector
+		ARG 1 entities
+	METHOD lambda$static$7 (Lnet/minecraft/world/phys/Vec3;Ljava/util/List;)V
+		ARG 0 vector
+		ARG 1 entities
+	METHOD lambda$static$8 (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 builder
+		ARG 1 consumer
+	METHOD limitToType (Lnet/minecraft/world/entity/EntityType;)V
+		ARG 1 type
 	METHOD setDeltaX (D)V
-		ARG 1 dx
+		ARG 1 deltaX
 	METHOD setDeltaY (D)V
-		ARG 1 dy
+		ARG 1 deltaY
 	METHOD setDeltaZ (D)V
-		ARG 1 dz
+		ARG 1 deltaZ
 	METHOD setHasAdvancements (Z)V
-		ARG 1 value
+		ARG 1 hasAdvancements
 	METHOD setHasGamemodeEquals (Z)V
-		ARG 1 value
+		ARG 1 hasGamemodeEquals
 	METHOD setHasGamemodeNotEquals (Z)V
-		ARG 1 value
+		ARG 1 hasGamemodeNotEquals
 	METHOD setHasNameEquals (Z)V
-		ARG 1 value
+		ARG 1 hasNameEquals
 	METHOD setHasNameNotEquals (Z)V
-		ARG 1 value
+		ARG 1 hasNameNotEquals
 	METHOD setHasScores (Z)V
-		ARG 1 value
+		ARG 1 hasScores
 	METHOD setHasTeamEquals (Z)V
-		ARG 1 value
+		ARG 1 hasTeamEquals
 	METHOD setHasTeamNotEquals (Z)V
-		ARG 1 value
+		ARG 1 hasTeamNotEquals
 	METHOD setIncludesEntities (Z)V
-		ARG 1 includeNonPlayers
+		ARG 1 includesEntities
 	METHOD setLevel (Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;)V
 		ARG 1 level
 	METHOD setLimited (Z)V
-		ARG 1 value
+		ARG 1 isLimited
 	METHOD setMaxResults (I)V
-		ARG 1 limit
+		ARG 1 maxResults
 	METHOD setOrder (Ljava/util/function/BiConsumer;)V
-		ARG 1 sorter
+		ARG 1 order
 	METHOD setRotX (Lnet/minecraft/advancements/critereon/WrappedMinMaxBounds;)V
-		ARG 1 xRotation
+		ARG 1 rotX
 	METHOD setRotY (Lnet/minecraft/advancements/critereon/WrappedMinMaxBounds;)V
-		ARG 1 yRotation
+		ARG 1 rotY
 	METHOD setSorted (Z)V
-		ARG 1 value
+		ARG 1 isSorted
 	METHOD setSuggestions (Ljava/util/function/BiFunction;)V
 		ARG 1 suggestionHandler
 	METHOD setX (D)V
@@ -63,7 +95,7 @@ CLASS net/minecraft/commands/arguments/selector/EntitySelectorParser
 		ARG 1 builder
 		ARG 2 consumer
 	METHOD suggestNameOrSelector (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 suggestionBuilder
+		ARG 1 builder
 		ARG 2 consumer
 	METHOD suggestOpenOptions (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder

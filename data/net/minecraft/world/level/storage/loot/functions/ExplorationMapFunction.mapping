@@ -1,13 +1,17 @@
 CLASS net/minecraft/world/level/storage/loot/functions/ExplorationMapFunction
+	COMMENT Convert any empty maps into explorer maps that lead to a structure that is nearest to the current {@linkplain LootContextParams.ORIGIN}, if present.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;Lnet/minecraft/world/level/saveddata/maps/MapDecoration$Type;BIZ)V
+		ARG 1 conditions
+		ARG 2 destination
+		ARG 3 mapDecoration
+		ARG 4 zoom
+		ARG 5 searchRadius
+		ARG 6 skipKnownStructures
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
 	CLASS Serializer
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/ExplorationMapFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
 			ARG 1 object
 			ARG 2 deserializationContext
 			ARG 3 conditions

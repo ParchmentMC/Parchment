@@ -32,30 +32,6 @@ CLASS net/minecraft/world/entity/monster/Phantom
 		ARG 1 distance
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
-	CLASS PhantomAttackPlayerTargetGoal
-		METHOD canContinueToUse ()Z
-			COMMENT Returns whether an in-progress EntityAIBase should continue executing
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-	CLASS PhantomAttackStrategyGoal
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
-		METHOD stop ()V
-			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
-	CLASS PhantomBodyRotationControl
-		METHOD clientTick ()V
-			COMMENT Update the Head and Body rendenring angles
-	CLASS PhantomCircleAroundAnchorGoal
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
 	CLASS PhantomLookControl
 		METHOD tick ()V
 			COMMENT Updates look
@@ -68,5 +44,29 @@ CLASS net/minecraft/world/entity/monster/Phantom
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS PhantomAttackStrategyGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS PhantomBodyRotationControl
+		METHOD clientTick ()V
+			COMMENT Update the Head and Body rendenring angles
+	CLASS PhantomAttackPlayerTargetGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	CLASS PhantomCircleAroundAnchorGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started

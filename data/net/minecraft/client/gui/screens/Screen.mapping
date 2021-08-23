@@ -1,4 +1,6 @@
 CLASS net/minecraft/client/gui/screens/Screen
+	METHOD <init> (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 title
 	METHOD addWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
 		ARG 1 listener
 	METHOD confirmLink (Z)V
@@ -52,6 +54,11 @@ CLASS net/minecraft/client/gui/screens/Screen
 		ARG 2 style
 		ARG 3 mouseX
 		ARG 4 mouseY
+	METHOD renderComponentTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Ljava/util/List;II)V
+		ARG 1 poseStack
+		ARG 2 tooltips
+		ARG 3 mouseX
+		ARG 4 mouseY
 	METHOD renderDirtBackground (I)V
 		ARG 1 vOffset
 	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Ljava/util/List;II)V
@@ -65,7 +72,7 @@ CLASS net/minecraft/client/gui/screens/Screen
 		ARG 3 mouseX
 		ARG 4 mouseY
 	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/ItemStack;II)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 itemStack
 		ARG 3 mouseX
 		ARG 4 mouseY

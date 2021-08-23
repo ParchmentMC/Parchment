@@ -1,7 +1,7 @@
 CLASS net/minecraft/world/item/crafting/Recipe
 	METHOD assemble (Lnet/minecraft/world/Container;)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns an Item that is the result of this recipe
-		ARG 1 inv
+		ARG 1 container
 	METHOD canCraftInDimensions (II)Z
 		COMMENT Used to determine if this recipe can fit in a grid of the given width/height
 		ARG 1 width
@@ -9,12 +9,12 @@ CLASS net/minecraft/world/item/crafting/Recipe
 	METHOD getGroup ()Ljava/lang/String;
 		COMMENT Recipes with equal group are combined into one button in the recipe book
 	METHOD getRemainingItems (Lnet/minecraft/world/Container;)Lnet/minecraft/core/NonNullList;
-		ARG 1 inv
+		ARG 1 container
 	METHOD getResultItem ()Lnet/minecraft/world/item/ItemStack;
 		COMMENT Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
 	METHOD isSpecial ()Z
 		COMMENT If true, this recipe does not appear in the recipe book and does not respect recipe unlocking (and the doLimitedCrafting gamerule)
 	METHOD matches (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Z
 		COMMENT Used to check if a recipe matches current crafting inventory
-		ARG 1 inv
+		ARG 1 container
 		ARG 2 level

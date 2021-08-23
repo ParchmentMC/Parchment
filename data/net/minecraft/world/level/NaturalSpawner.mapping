@@ -1,12 +1,96 @@
 CLASS net/minecraft/world/level/NaturalSpawner
+	METHOD canSpawnMobAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/biome/MobSpawnSettings$SpawnerData;Lnet/minecraft/core/BlockPos;)Z
+		ARG 0 level
+		ARG 1 structureManager
+		ARG 2 generator
+		ARG 3 category
+		ARG 4 data
+		ARG 5 pos
+	METHOD createState (ILjava/lang/Iterable;Lnet/minecraft/world/level/NaturalSpawner$ChunkGetter;)Lnet/minecraft/world/level/NaturalSpawner$SpawnState;
+		ARG 0 spawnableChunkCount
+		ARG 1 entities
+		ARG 2 chunkGetter
+	METHOD getMobForSpawn (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/world/entity/Mob;
+		ARG 0 level
+		ARG 1 entityType
 	METHOD getRandomPosWithin (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/chunk/LevelChunk;)Lnet/minecraft/core/BlockPos;
 		ARG 0 level
+		ARG 1 chunk
+	METHOD getRoughBiome (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Lnet/minecraft/world/level/biome/Biome;
+		ARG 0 pos
+		ARG 1 chunk
 	METHOD getTopNonCollidingPos (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/entity/EntityType;II)Lnet/minecraft/core/BlockPos;
 		ARG 0 level
+		ARG 1 entityType
 		ARG 2 x
 		ARG 3 z
+	METHOD isRightDistanceToPlayerAndSpawnPoint (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/core/BlockPos$MutableBlockPos;D)Z
+		ARG 0 level
+		ARG 1 chunk
+		ARG 2 pos
+		ARG 3 distance
 	METHOD isSpawnPositionOk (Lnet/minecraft/world/entity/SpawnPlacements$Type;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/EntityType;)Z
 		ARG 0 placeType
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 entityType
+	METHOD isValidEmptySpawnBlock (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/world/entity/EntityType;)Z
+		ARG 0 block
+		ARG 1 pos
+		ARG 2 blockState
+		ARG 3 fluidState
+		ARG 4 entityType
+	METHOD isValidPositionForMob (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Mob;D)Z
+		ARG 0 level
+		ARG 1 mob
+		ARG 2 distance
+	METHOD isValidSpawnPostitionForType (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/biome/MobSpawnSettings$SpawnerData;Lnet/minecraft/core/BlockPos$MutableBlockPos;D)Z
+		ARG 0 level
+		ARG 1 category
+		ARG 2 structureManager
+		ARG 3 generator
+		ARG 4 data
+		ARG 5 pos
+		ARG 6 distance
+	METHOD spawnCategoryForChunk (Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/world/level/NaturalSpawner$SpawnPredicate;Lnet/minecraft/world/level/NaturalSpawner$AfterSpawnCallback;)V
+		ARG 0 category
+		ARG 1 level
+		ARG 2 chunk
+		ARG 3 filter
+		ARG 4 callback
+	METHOD spawnCategoryForPosition (Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/NaturalSpawner$SpawnPredicate;Lnet/minecraft/world/level/NaturalSpawner$AfterSpawnCallback;)V
+		ARG 0 category
+		ARG 1 level
+		ARG 2 chunk
+		ARG 3 pos
+		ARG 4 filter
+		ARG 5 callback
+	METHOD spawnForChunk (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/world/level/NaturalSpawner$SpawnState;ZZZ)V
+		ARG 0 level
+		ARG 1 chunk
+		ARG 2 spawnState
+		ARG 3 spawnFriendlies
+		ARG 4 spawnMonsters
+	CLASS SpawnState
+		METHOD <init> (ILit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;Lnet/minecraft/world/level/PotentialCalculator;)V
+			ARG 1 spawnableChunkCount
+			ARG 2 mobCategoryCounts
+			ARG 3 spawnPotential
+		METHOD afterSpawn (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+			ARG 1 mob
+			ARG 2 chunk
+		METHOD canSpawn (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
+			ARG 1 entityType
+			ARG 2 pos
+			ARG 3 chunk
+		METHOD canSpawnForCategory (Lnet/minecraft/world/entity/MobCategory;)Z
+			ARG 1 category
+	CLASS SpawnPredicate
+		METHOD test (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
+			ARG 1 entityType
+			ARG 2 pos
+			ARG 3 chunk
+	CLASS AfterSpawnCallback
+		METHOD run (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+			ARG 1 mob
+			ARG 2 chunk

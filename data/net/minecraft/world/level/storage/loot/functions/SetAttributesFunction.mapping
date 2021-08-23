@@ -1,4 +1,8 @@
 CLASS net/minecraft/world/level/storage/loot/functions/SetAttributesFunction
+	COMMENT LootItemFunction that adds a list of attribute modifiers to the stacks.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Ljava/util/List;)V
+		ARG 1 conditions
+		ARG 2 modifiers
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
@@ -6,13 +10,13 @@ CLASS net/minecraft/world/level/storage/loot/functions/SetAttributesFunction
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/world/level/storage/loot/functions/SetAttributesFunction$Modifier;
 			ARG 0 jsonObj
 			ARG 1 context
+		METHOD operationFromString (Ljava/lang/String;)Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+			ARG 0 name
+		METHOD operationToString (Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)Ljava/lang/String;
+			ARG 0 operation
 		METHOD serialize (Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonObject;
 			ARG 1 context
 	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetAttributesFunction;
 			ARG 1 object
 			ARG 2 deserializationContext

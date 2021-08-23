@@ -34,8 +34,28 @@ CLASS net/minecraft/world/level/border/WorldBorder
 	METHOD setWarningTime (I)V
 		ARG 1 warningTime
 	CLASS Settings
+		METHOD <init> (DDDDIIDJD)V
+			ARG 1 centerX
+			ARG 3 centerZ
+			ARG 5 damagePerBlock
+			ARG 7 safeZone
+			ARG 9 warningBlocks
+			ARG 10 warningTime
+			ARG 11 size
+			ARG 13 sizeLerpTime
+			ARG 15 sizeLerpTarget
+		METHOD <init> (Lnet/minecraft/world/level/border/WorldBorder;)V
+			ARG 1 border
 		METHOD read (Lcom/mojang/serialization/DynamicLike;Lnet/minecraft/world/level/border/WorldBorder$Settings;)Lnet/minecraft/world/level/border/WorldBorder$Settings;
 			ARG 0 dynamic
 			ARG 1 defaultValue
 		METHOD write (Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 nbt
+	CLASS MovingBorderExtent
+		METHOD <init> (Lnet/minecraft/world/level/border/WorldBorder;DDJ)V
+			ARG 2 from
+			ARG 4 to
+			ARG 6 lerpDuration
+	CLASS StaticBorderExtent
+		METHOD <init> (Lnet/minecraft/world/level/border/WorldBorder;D)V
+			ARG 2 size

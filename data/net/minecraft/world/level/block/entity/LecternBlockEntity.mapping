@@ -1,24 +1,25 @@
 CLASS net/minecraft/world/level/block/entity/LecternBlockEntity
 	METHOD createCommandSourceStack (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/commands/CommandSourceStack;
-		COMMENT Creates a CommandSource for resolving the contents of a book. If the player is null, a fake commandsource for this lectern is used.
+		COMMENT Creates a CommandSourceStack for resolving the contents of a book. If the player is null, a CommandSourceStack with the generic name {@code "Lectern"} is used.
 		ARG 1 player
 	METHOD hasBook ()Z
-		COMMENT True if the item in this lectern is a book or written book. False if it is another item (i.e. an empty stack)
+		COMMENT @return whether the ItemStack in this lectern is a book or written book
 	METHOD onlyOpCanSetNbt ()Z
 		COMMENT Checks if players can use this tile entity to access operator (permission level 2) commands either directly or indirectly, such as give or setblock. A similar method exists for entities at {@link net.minecraft.entity.Entity#ignoreItemEntityData()}.<p>For example, {@link net.minecraft.tileentity.TileEntitySign#onlyOpsCanSetNbt() signs} (player right-clicking) and {@link net.minecraft.tileentity.TileEntityCommandBlock#onlyOpsCanSetNbt() command blocks} are considered accessible.</p>@return true if this block entity offers ways for unauthorized players to use restricted commands
 	METHOD resolveBook (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/item/ItemStack;
-		COMMENT Resolves the passed book, if it is a book and has not yet been resolved.
+		COMMENT Resolves the contents of the passed ItemStack, if it is a book
 		ARG 1 stack
 		ARG 2 player
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound
 	METHOD setBook (Lnet/minecraft/world/item/ItemStack;)V
-		COMMENT Sets the item stack in this lectern. Note that this does not update the block state use {@link LecternBlock#tryPlaceBook} for that.
+		COMMENT Sets the ItemStack in this lectern. Note that this does not update the block state, use {@link net.minecraft.world.level.block.LecternBlock#tryPlaceBook} for that.
 		ARG 1 stack
 	METHOD setBook (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V
-		COMMENT Sets the item stack in this lectern. Note that this does not update the block state use {@link LecternBlock#tryPlaceBook} for that.
+		COMMENT Sets the ItemStack in this lectern. Note that this does not update the block state, use {@link net.minecraft.world.level.block.LecternBlock#tryPlaceBook} for that.
 		ARG 1 stack
 		ARG 2 player
+			COMMENT the player used for resolving the components within the book
 	METHOD setPage (I)V
 		ARG 1 page
 	CLASS 1

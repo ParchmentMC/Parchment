@@ -78,21 +78,19 @@ CLASS net/minecraft/world/entity/animal/Bee
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-	CLASS BeeBecomeAngryTargetGoal
+	CLASS BeeWanderGoal
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-	CLASS BeeEnterHiveGoal
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
+	CLASS BeeLookControl
+		METHOD tick ()V
+			COMMENT Updates look
 	CLASS BeeGoToHiveGoal
 		METHOD blacklistTarget (Lnet/minecraft/core/BlockPos;)V
 			ARG 1 pos
-		METHOD canContinueToUse ()Z
-			COMMENT Returns whether an in-progress EntityAIBase should continue executing
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD hasReachedTarget (Lnet/minecraft/core/BlockPos;)Z
 			ARG 1 pos
 		METHOD isTargetBlacklisted (Lnet/minecraft/core/BlockPos;)Z
@@ -105,32 +103,12 @@ CLASS net/minecraft/world/entity/animal/Bee
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
-	CLASS BeeGoToKnownFlowerGoal
-		METHOD canContinueToUse ()Z
-			COMMENT Returns whether an in-progress EntityAIBase should continue executing
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
-		METHOD stop ()V
-			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
 	CLASS BeeGrowCropGoal
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
-	CLASS BeeHurtByOtherGoal
-		METHOD alertOther (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/entity/LivingEntity;)V
-			ARG 1 mob
-			ARG 2 target
-		METHOD canContinueToUse ()Z
-			COMMENT Returns whether an in-progress EntityAIBase should continue executing
-	CLASS BeeLocateHiveGoal
+	CLASS BeeEnterHiveGoal
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
-	CLASS BeeLookControl
-		METHOD tick ()V
-			COMMENT Updates look
 	CLASS BeePollinateGoal
 		METHOD findNearestBlock (Ljava/util/function/Predicate;D)Ljava/util/Optional;
 			ARG 2 distance
@@ -140,10 +118,24 @@ CLASS net/minecraft/world/entity/animal/Bee
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
-	CLASS BeeWanderGoal
+	CLASS BeeLocateHiveGoal
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+	CLASS BeeHurtByOtherGoal
+		METHOD alertOther (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/entity/LivingEntity;)V
+			ARG 1 mob
+			ARG 2 target
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+	CLASS BeeGoToKnownFlowerGoal
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS BeeBecomeAngryTargetGoal
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task

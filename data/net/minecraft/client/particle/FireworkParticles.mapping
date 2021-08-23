@@ -1,59 +1,15 @@
 CLASS net/minecraft/client/particle/FireworkParticles
-	CLASS FlashProvider
-		METHOD createParticle (Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDD)Lnet/minecraft/client/particle/Particle;
-			ARG 1 type
-			ARG 2 level
-			ARG 3 x
-			ARG 5 y
-			ARG 7 z
-			ARG 9 xSpeed
-			ARG 11 ySpeed
-			ARG 13 zSpeed
-		METHOD createParticle (Lnet/minecraft/core/particles/SimpleParticleType;Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDD)Lnet/minecraft/client/particle/Particle;
-			ARG 1 type
-			ARG 2 level
-			ARG 3 x
-			ARG 5 y
-			ARG 7 z
-			ARG 9 xSpeed
-			ARG 11 ySpeed
-			ARG 13 zSpeed
-	CLASS OverlayParticle
-		METHOD getQuadSize (F)F
-			ARG 1 scaleFactor
-		METHOD render (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/Camera;F)V
-			ARG 1 buffer
-			ARG 2 renderInfo
-			ARG 3 partialTicks
-	CLASS SparkParticle
-		METHOD render (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/Camera;F)V
-			ARG 1 buffer
-			ARG 2 renderInfo
-			ARG 3 partialTicks
-		METHOD setFlicker (Z)V
-			ARG 1 twinkle
-		METHOD setTrail (Z)V
-			ARG 1 trail
-	CLASS SparkProvider
-		METHOD createParticle (Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDD)Lnet/minecraft/client/particle/Particle;
-			ARG 1 type
-			ARG 2 level
-			ARG 3 x
-			ARG 5 y
-			ARG 7 z
-			ARG 9 xSpeed
-			ARG 11 ySpeed
-			ARG 13 zSpeed
-		METHOD createParticle (Lnet/minecraft/core/particles/SimpleParticleType;Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDD)Lnet/minecraft/client/particle/Particle;
-			ARG 1 type
-			ARG 2 level
-			ARG 3 x
-			ARG 5 y
-			ARG 7 z
-			ARG 9 xSpeed
-			ARG 11 ySpeed
-			ARG 13 zSpeed
 	CLASS Starter
+		METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDDLnet/minecraft/client/particle/ParticleEngine;Lnet/minecraft/nbt/CompoundTag;)V
+			ARG 1 level
+			ARG 2 x
+			ARG 4 y
+			ARG 6 z
+			ARG 8 xSpeed
+			ARG 10 ySpeed
+			ARG 12 zSpeed
+			ARG 14 engine
+			ARG 15 tag
 		METHOD createParticle (DDDDDD[I[IZZ)V
 			COMMENT Creates a single particle.
 			ARG 1 x
@@ -88,3 +44,54 @@ CLASS net/minecraft/client/particle/FireworkParticles
 			ARG 5 fadeColours
 			ARG 6 trail
 			ARG 7 twinkle
+			ARG 8 creeper
+	CLASS FlashProvider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites
+		METHOD createParticle (Lnet/minecraft/core/particles/SimpleParticleType;Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDD)Lnet/minecraft/client/particle/Particle;
+			ARG 1 type
+			ARG 2 level
+			ARG 3 x
+			ARG 5 y
+			ARG 7 z
+			ARG 9 xSpeed
+			ARG 11 ySpeed
+			ARG 13 zSpeed
+	CLASS SparkParticle
+		METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDDLnet/minecraft/client/particle/ParticleEngine;Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 level
+			ARG 2 x
+			ARG 4 y
+			ARG 6 z
+			ARG 8 xSpeed
+			ARG 10 ySpeed
+			ARG 12 zSpeed
+			ARG 14 engine
+			ARG 15 sprites
+		METHOD render (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/Camera;F)V
+			ARG 1 buffer
+			ARG 2 renderInfo
+			ARG 3 partialTicks
+		METHOD setFlicker (Z)V
+			ARG 1 twinkle
+		METHOD setTrail (Z)V
+			ARG 1 trail
+	CLASS SparkProvider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites
+		METHOD createParticle (Lnet/minecraft/core/particles/SimpleParticleType;Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDD)Lnet/minecraft/client/particle/Particle;
+			ARG 1 type
+			ARG 2 level
+			ARG 3 x
+			ARG 5 y
+			ARG 7 z
+			ARG 9 xSpeed
+			ARG 11 ySpeed
+			ARG 13 zSpeed
+	CLASS OverlayParticle
+		METHOD getQuadSize (F)F
+			ARG 1 scaleFactor
+		METHOD render (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/Camera;F)V
+			ARG 1 buffer
+			ARG 2 renderInfo
+			ARG 3 partialTicks

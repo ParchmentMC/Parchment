@@ -1,12 +1,18 @@
 CLASS net/minecraft/world/level/storage/loot/functions/SetLoreFunction
+	COMMENT LootItemFunction that sets a stack's lore tag, optionally replacing any previously present lore.
+	COMMENT The Components for the lore tag are optionally resolved relative to a given {@link LootContext.EntityTarget} for entity-sensitive component data such as scoreboard scores.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;ZLjava/util/List;Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)V
+		ARG 1 conditions
+		ARG 2 replace
+		ARG 3 lore
+		ARG 4 resolutionContext
+	METHOD getLoreTag (Lnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/nbt/ListTag;
+		ARG 1 stack
+		ARG 2 createIfMissing
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
 	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction;
 			ARG 1 object
 			ARG 2 deserializationContext

@@ -1,5 +1,11 @@
 CLASS net/minecraft/world/level/levelgen/surfacebuilders/SurfaceBuilder
+	METHOD <init> (Lcom/mojang/serialization/Codec;)V
+		ARG 1 codec
+	METHOD configured (Lnet/minecraft/world/level/levelgen/surfacebuilders/SurfaceBuilderConfiguration;)Lnet/minecraft/world/level/levelgen/surfacebuilders/ConfiguredSurfaceBuilder;
+		ARG 1 config
 	METHOD initNoise (J)V
+		COMMENT Initialize this surface builder with the current world seed.
+		COMMENT This is called prior to {@link #apply}. In general, most subclasses cache the world seed and only re-initialize if the cached seed is different from the provided seed, for performance.
 		ARG 1 seed
 	METHOD register (Ljava/lang/String;Lnet/minecraft/world/level/levelgen/surfacebuilders/SurfaceBuilder;)Lnet/minecraft/world/level/levelgen/surfacebuilders/SurfaceBuilder;
 		ARG 0 key

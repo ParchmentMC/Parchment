@@ -52,7 +52,7 @@ CLASS net/minecraft/world/item/enchantment/EnchantmentHelper
 		ARG 0 stack
 	METHOD getItemEnchantmentLevel (Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/item/ItemStack;)I
 		COMMENT Returns the level of enchantment on the ItemStack passed.
-		ARG 0 enchID
+		ARG 0 enchantment
 		ARG 1 stack
 	METHOD getKnockbackBonus (Lnet/minecraft/world/entity/LivingEntity;)I
 		COMMENT Returns the Knockback modifier of the enchantment on the players held item.
@@ -92,13 +92,29 @@ CLASS net/minecraft/world/item/enchantment/EnchantmentHelper
 	METHOD isEnchantmentCompatible (Ljava/util/Collection;Lnet/minecraft/world/item/enchantment/Enchantment;)Z
 		ARG 0 enchantments
 		ARG 1 enchantment
+	METHOD lambda$deserializeEnchantments$0 (Ljava/util/Map;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/item/enchantment/Enchantment;)V
+		ARG 2 enchantment
+	METHOD lambda$doPostDamageEffects$5 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/enchantment/Enchantment;I)V
+		ARG 2 enchantment
+		ARG 3 level
+	METHOD lambda$doPostHurtEffects$4 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/enchantment/Enchantment;I)V
+		ARG 2 enchantment
+		ARG 3 level
+	METHOD lambda$getDamageBonus$3 (Lorg/apache/commons/lang3/mutable/MutableFloat;Lnet/minecraft/world/entity/MobType;Lnet/minecraft/world/item/enchantment/Enchantment;I)V
+		ARG 2 enchantment
+		ARG 3 level
+	METHOD lambda$getDamageProtection$2 (Lorg/apache/commons/lang3/mutable/MutableInt;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/item/enchantment/Enchantment;I)V
+		ARG 2 enchantment
+		ARG 3 level
+	METHOD lambda$getRandomItemWith$6 (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 stack
 	METHOD runIterationOnInventory (Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;Ljava/lang/Iterable;)V
 		COMMENT Executes the enchantment modifier on the array of ItemStack passed.
-		ARG 0 modifier
+		ARG 0 visitor
 		ARG 1 stacks
 	METHOD runIterationOnItem (Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Executes the enchantment modifier on the ItemStack passed.
-		ARG 0 modifier
+		ARG 0 visitor
 		ARG 1 stack
 	METHOD selectEnchantment (Ljava/util/Random;Lnet/minecraft/world/item/ItemStack;IZ)Ljava/util/List;
 		COMMENT Create a list of random EnchantmentData (enchantments) that can be added together to the ItemStack, the 3rd parameter is the total enchantability level.
@@ -108,5 +124,9 @@ CLASS net/minecraft/world/item/enchantment/EnchantmentHelper
 		ARG 3 allowTreasure
 	METHOD setEnchantments (Ljava/util/Map;Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Set the enchantments for the specified stack.
-		ARG 0 enchMap
+		ARG 0 enchantmentsMap
 		ARG 1 stack
+	CLASS EnchantmentVisitor
+		METHOD accept (Lnet/minecraft/world/item/enchantment/Enchantment;I)V
+			ARG 1 enchantment
+			ARG 2 level

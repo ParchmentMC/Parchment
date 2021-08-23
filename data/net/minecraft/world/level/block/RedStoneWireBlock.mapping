@@ -4,7 +4,7 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
-		ARG 4 rand
+		ARG 4 random
 	METHOD calculateShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 state
 	METHOD calculateTargetStrength (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)I
@@ -19,7 +19,7 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 		ARG 2 pos
 		ARG 3 state
 	METHOD checkCornerChangeAt (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
-		COMMENT Calls World.notifyNeighborsOfStateChange() for all neighboring blocks, but only if the given block is a redstone wire.
+		COMMENT Calls {@link net.minecraft.world.level.Level#updateNeighborsAt} for all neighboring blocks, but only if the given block is a redstone wire.
 		ARG 1 level
 		ARG 2 pos
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
@@ -31,12 +31,12 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 		ARG 2 pos
 		ARG 3 face
 	METHOD getConnectingSide (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Z)Lnet/minecraft/world/level/block/state/properties/RedstoneSide;
-		ARG 1 reader
+		ARG 1 level
 		ARG 2 pos
 		ARG 3 direction
 		ARG 4 nonNormalCubeAbove
 	METHOD getConnectionState (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-		ARG 1 reader
+		ARG 1 level
 		ARG 2 state
 		ARG 3 pos
 	METHOD getDirectSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
@@ -46,7 +46,7 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 		ARG 3 pos
 		ARG 4 side
 	METHOD getMissingConnections (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-		ARG 1 reader
+		ARG 1 level
 		ARG 2 state
 		ARG 3 pos
 	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
@@ -100,12 +100,12 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 		COMMENT Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.
 		COMMENT @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
-		ARG 2 rot
+		ARG 2 rotation
 	METHOD shouldConnectTo (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
 	METHOD shouldConnectTo (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
-		ARG 0 blockState
-		ARG 1 side
+		ARG 0 state
+		ARG 1 direction
 	METHOD updateIndirectNeighbourShapes (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;II)V
 		COMMENT performs updates on diagonal neighbors of the target position and passes in the flags. The flags can be referenced from the docs for {@link IWorldWriter#setBlockState(IBlockState, BlockPos, int)}.
 		ARG 1 state
@@ -133,7 +133,7 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 	METHOD updatesOnShapeChange (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 level
 		ARG 2 pos
-		ARG 3 prevState
+		ARG 3 oldState
 		ARG 4 newState
 	METHOD use (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 state

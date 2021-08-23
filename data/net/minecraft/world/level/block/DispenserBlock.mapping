@@ -14,8 +14,8 @@ CLASS net/minecraft/world/level/block/DispenserBlock
 	METHOD getDispenseMethod (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/core/dispenser/DispenseItemBehavior;
 		ARG 1 stack
 	METHOD getDispensePosition (Lnet/minecraft/core/BlockSource;)Lnet/minecraft/core/Position;
-		COMMENT Get the position where the dispenser at the given Coordinates should dispense to.
-		ARG 0 coords
+		COMMENT @return the position where the dispenser at the given position should dispense to.
+		ARG 0 blockSource
 	METHOD getRenderShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/RenderShape;
 		COMMENT The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids, INVISIBLE to skip all rendering
 		COMMENT @deprecated call via {@link IBlockState#getRenderType()} whenever possible. Implementing/overriding is fine.
@@ -25,6 +25,8 @@ CLASS net/minecraft/world/level/block/DispenserBlock
 	METHOD hasAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		COMMENT @deprecated call via {@link IBlockState#hasComparatorInputOverride()} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
+	METHOD lambda$static$0 (Lit/unimi/dsi/fastutil/objects/Object2ObjectOpenHashMap;)V
+		ARG 0 map
 	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
 		COMMENT Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed blockstate.
 		COMMENT @deprecated call via {@link IBlockState#withMirror(Mirror)} whenever possible. Implementing/overriding is fine.
@@ -50,7 +52,7 @@ CLASS net/minecraft/world/level/block/DispenserBlock
 		COMMENT Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.
 		COMMENT @deprecated call via {@link IBlockState#withRotation(Rotation)} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
-		ARG 2 rot
+		ARG 2 rotation
 	METHOD setPlacedBy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Called by ItemBlocks after a block is set in the world, to allow post-place logic
 		ARG 1 level
@@ -62,7 +64,7 @@ CLASS net/minecraft/world/level/block/DispenserBlock
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
-		ARG 4 rand
+		ARG 4 random
 	METHOD use (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 state
 		ARG 2 level

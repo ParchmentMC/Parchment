@@ -1,5 +1,18 @@
 CLASS net/minecraft/world/level/storage/loot/entries/ComposableEntryContainer
+	COMMENT Base interface for loot pool entry containers.
+	COMMENT A loot pool entry container holds one or more loot pools and will expand into those.
+	COMMENT Additionally, the container can either succeed or fail, based on its conditions.
+	FIELD ALWAYS_FALSE Lnet/minecraft/world/level/storage/loot/entries/ComposableEntryContainer;
+		COMMENT A container which always fails.
+	FIELD ALWAYS_TRUE Lnet/minecraft/world/level/storage/loot/entries/ComposableEntryContainer;
+		COMMENT A container that always succeeds.
 	METHOD and (Lnet/minecraft/world/level/storage/loot/entries/ComposableEntryContainer;)Lnet/minecraft/world/level/storage/loot/entries/ComposableEntryContainer;
 		ARG 1 entry
+	METHOD expand (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)Z
+		COMMENT Expand this loot pool entry container by calling {@code entryConsumer} with any applicable entries
+		COMMENT
+		COMMENT @return whether this loot pool entry container successfully expanded or not
+		ARG 1 lootContext
+		ARG 2 entryConsumer
 	METHOD or (Lnet/minecraft/world/level/storage/loot/entries/ComposableEntryContainer;)Lnet/minecraft/world/level/storage/loot/entries/ComposableEntryContainer;
 		ARG 1 entry

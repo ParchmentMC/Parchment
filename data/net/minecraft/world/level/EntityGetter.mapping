@@ -2,26 +2,35 @@ CLASS net/minecraft/world/level/EntityGetter
 	METHOD getEntities (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;
 		COMMENT Will get all entities within the specified AABB excluding the one passed into it. Args: entityToExclude, aabb
 		ARG 1 entity
-		ARG 2 bb
+		ARG 2 area
 	METHOD getEntities (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
 		COMMENT Gets all entities within the specified AABB excluding the one passed into it.
 		ARG 1 entity
-		ARG 2 boundingBox
+		ARG 2 area
 		ARG 3 predicate
+	METHOD getEntitiesOfClass (Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;
+		ARG 1 entityClass
+		ARG 2 area
 	METHOD getEntitiesOfClass (Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
 		ARG 1 clazz
-		ARG 2 aabb
+		ARG 2 area
+		ARG 3 filter
+	METHOD getEntityCollisions (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+		ARG 1 entity
+		ARG 2 area
 		ARG 3 filter
 	METHOD getNearbyEntities (Ljava/lang/Class;Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;
 		ARG 1 entityClazz
 		ARG 2 entityPredicate
 		ARG 3 entity
+		ARG 4 area
 	METHOD getNearbyPlayers (Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;
 		ARG 1 predicate
 		ARG 2 target
-		ARG 3 box
+		ARG 3 area
 	METHOD getNearestEntity (Ljava/lang/Class;Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;Lnet/minecraft/world/entity/LivingEntity;DDDLnet/minecraft/world/phys/AABB;)Lnet/minecraft/world/entity/LivingEntity;
 		ARG 1 entityClazz
+		ARG 2 conditions
 		ARG 3 target
 		ARG 4 x
 		ARG 6 y
@@ -60,6 +69,9 @@ CLASS net/minecraft/world/level/EntityGetter
 	METHOD getNearestPlayer (Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;Lnet/minecraft/world/entity/LivingEntity;DDD)Lnet/minecraft/world/entity/player/Player;
 		ARG 1 predicate
 		ARG 2 target
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
 	METHOD getPlayerByUUID (Ljava/util/UUID;)Lnet/minecraft/world/entity/player/Player;
 		ARG 1 uniqueId
 	METHOD hasNearbyAlivePlayer (DDDD)Z

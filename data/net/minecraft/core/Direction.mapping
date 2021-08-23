@@ -6,17 +6,27 @@ CLASS net/minecraft/core/Direction
 	FIELD data3d I
 		COMMENT Ordering index for D-U-N-S-W-E
 	FIELD normal Lnet/minecraft/core/Vec3i;
-		COMMENT Normalized Vector that points in the direction of this Facing
+		COMMENT Normalized vector that points in the direction of this Direction
 	FIELD oppositeIndex I
-		COMMENT Index of the opposite Facing in the VALUES array
+		COMMENT Index of the opposite Direction in the VALUES array
+	METHOD <init> (Ljava/lang/String;IIIILjava/lang/String;Lnet/minecraft/core/Direction$AxisDirection;Lnet/minecraft/core/Direction$Axis;Lnet/minecraft/core/Vec3i;)V
+		ARG 3 data3d
+		ARG 4 oppositeIndex
+		ARG 5 data2d
+		ARG 6 name
+		ARG 7 axisDirection
+		ARG 8 axis
+		ARG 9 normal
 	METHOD byName (Ljava/lang/String;)Lnet/minecraft/core/Direction;
-		COMMENT Get the facing specified by the given name
+		COMMENT @return the Direction specified by the given name or null if no such Direction exists
 		ARG 0 name
 	METHOD from2DDataValue (I)Lnet/minecraft/core/Direction;
-		COMMENT Gets the EnumFacing corresponding to the given horizontal index (0-3). Out of bounds values are wrapped around. The order is S-W-N-E.
+		COMMENT @return the Direction corresponding to the given horizontal index (0-3). Out of bounds values are wrapped around. The order is S-W-N-E.
+		COMMENT @see #get2DDataValue
 		ARG 0 horizontalIndex
 	METHOD from3DDataValue (I)Lnet/minecraft/core/Direction;
-		COMMENT Gets the EnumFacing corresponding to the given index (0-5). Out of bounds values are wrapped around. The order is D-U-N-S-W-E.
+		COMMENT @return the {@code Direction} corresponding to the given index (0-5). Out of bounds values are wrapped around. The order is D-U-N-S-W-E.
+		COMMENT @see #get3DDataValue
 		ARG 0 index
 	METHOD fromAxisAndDirection (Lnet/minecraft/core/Direction$Axis;Lnet/minecraft/core/Direction$AxisDirection;)Lnet/minecraft/core/Direction;
 		ARG 0 axis
@@ -26,21 +36,21 @@ CLASS net/minecraft/core/Direction
 		ARG 1 y
 		ARG 2 z
 	METHOD fromYRot (D)Lnet/minecraft/core/Direction;
-		COMMENT Get the EnumFacing corresponding to the given angle in degrees (0-360). Out of bounds values are wrapped around. An angle of 0 is SOUTH, an angle of 90 would be WEST.
+		COMMENT @return the Direction corresponding to the given angle in degrees (0-360). Out of bounds values are wrapped around. An angle of 0 is SOUTH, an angle of 90 would be WEST.
 		ARG 0 angle
 	METHOD get (Lnet/minecraft/core/Direction$AxisDirection;Lnet/minecraft/core/Direction$Axis;)Lnet/minecraft/core/Direction;
 		ARG 0 axisDirection
 		ARG 1 axis
 	METHOD get2DDataValue ()I
-		COMMENT Get the index of this horizontal facing (0-3). The order is S-W-N-E
+		COMMENT @return the index of this horizontal facing (0-3). The order is S-W-N-E
 	METHOD get3DDataValue ()I
-		COMMENT Get the Index of this Facing (0-5). The order is D-U-N-S-W-E
+		COMMENT @return the index of this Direction (0-5). The order is D-U-N-S-W-E
 	METHOD getAxisDirection ()Lnet/minecraft/core/Direction$AxisDirection;
 		COMMENT Get the AxisDirection of this Facing.
 	METHOD getClockWise ()Lnet/minecraft/core/Direction;
-		COMMENT Rotate this Facing around the Y axis clockwise (NORTH => EAST => SOUTH => WEST => NORTH)
+		COMMENT Rotate this Direction around the Y axis clockwise (NORTH => EAST => SOUTH => WEST => NORTH)
 	METHOD getCounterClockWise ()Lnet/minecraft/core/Direction;
-		COMMENT Rotate this Facing around the Y axis counter-clockwise (NORTH => WEST => SOUTH => EAST => NORTH)
+		COMMENT Rotate this Direction around the Y axis counter-clockwise (NORTH => WEST => SOUTH => EAST => NORTH)
 	METHOD getName ()Ljava/lang/String;
 		COMMENT Same as getName, but does not override the method from Enum.
 	METHOD getNearest (DDD)Lnet/minecraft/core/Direction;
@@ -52,17 +62,17 @@ CLASS net/minecraft/core/Direction
 		ARG 1 y
 		ARG 2 z
 	METHOD getNormal ()Lnet/minecraft/core/Vec3i;
-		COMMENT Get a normalized Vector that points in the direction of this Facing.
+		COMMENT @return the normalized Vector that points in the direction of this Direction.
 	METHOD getOpposite ()Lnet/minecraft/core/Direction;
-		COMMENT Get the opposite Facing (e.g. DOWN => UP)
+		COMMENT @return the opposite Direction (e.g. DOWN => UP)
 	METHOD getRandom (Ljava/util/Random;)Lnet/minecraft/core/Direction;
-		ARG 0 rand
+		ARG 0 random
 	METHOD getStepX ()I
-		COMMENT Gets the offset in the x direction to the block in front of this facing.
+		COMMENT @return the offset in the x direction
 	METHOD getStepY ()I
-		COMMENT Gets the offset in the y direction to the block in front of this facing.
+		COMMENT @return the offset in the y direction
 	METHOD getStepZ ()I
-		COMMENT Gets the offset in the z direction to the block in front of this facing.
+		COMMENT @return the offset in the z direction
 	METHOD isFacingAngle (F)Z
 		ARG 1 degrees
 	METHOD makeDirectionArray (Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)[Lnet/minecraft/core/Direction;
@@ -71,17 +81,20 @@ CLASS net/minecraft/core/Direction
 		ARG 1 second
 		ARG 2 third
 	METHOD orderedByNearest (Lnet/minecraft/world/entity/Entity;)[Lnet/minecraft/core/Direction;
-		COMMENT Gets the {@link EnumFacing} values for the provided entity's
+		COMMENT Gets the {@code Direction} values for the provided entity's
 		COMMENT looking direction. Dependent on yaw and pitch of entity looking.
 		ARG 0 entity
 	METHOD rotate (Lcom/mojang/math/Matrix4f;Lnet/minecraft/core/Direction;)Lnet/minecraft/core/Direction;
 		ARG 0 matrix
 		ARG 1 direction
 	METHOD toYRot ()F
-		COMMENT Gets the angle in degrees corresponding to this EnumFacing.
+		COMMENT @return the angle in degrees corresponding to this Direction.
+		COMMENT @see #fromYRot
 	CLASS Axis
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 name
 		METHOD byName (Ljava/lang/String;)Lnet/minecraft/core/Direction$Axis;
-			COMMENT Get the axis specified by the given name
+			COMMENT @return the Axis specified by the given name or {@code null} if no such Axis exists
 			ARG 0 name
 		METHOD choose (DDD)D
 			ARG 1 x
@@ -94,42 +107,27 @@ CLASS net/minecraft/core/Direction
 		METHOD getName ()Ljava/lang/String;
 			COMMENT Like getName but doesn't override the method from Enum.
 		METHOD getPlane ()Lnet/minecraft/core/Direction$Plane;
-			COMMENT Get this Axis' Plane (VERTICAL for Y, HORIZONTAL for X and Z)
+			COMMENT @return this Axis' Plane (VERTICAL for Y, HORIZONTAL for X and Z)
 		METHOD getRandom (Ljava/util/Random;)Lnet/minecraft/core/Direction$Axis;
-			ARG 0 rand
+			ARG 0 random
 		METHOD isHorizontal ()Z
-			COMMENT If this Axis is on the horizontal plane (true for X and Z)
-		CLASS 1
-			METHOD choose (DDD)D
-				ARG 1 x
-				ARG 3 y
-				ARG 5 z
-			METHOD choose (III)I
-				ARG 1 x
-				ARG 2 y
-				ARG 3 z
-		CLASS 2
-			METHOD choose (DDD)D
-				ARG 1 x
-				ARG 3 y
-				ARG 5 z
-			METHOD choose (III)I
-				ARG 1 x
-				ARG 2 y
-				ARG 3 z
-		CLASS 3
-			METHOD choose (DDD)D
-				ARG 1 x
-				ARG 3 y
-				ARG 5 z
-			METHOD choose (III)I
-				ARG 1 x
-				ARG 2 y
-				ARG 3 z
-	CLASS AxisDirection
-		METHOD getStep ()I
-			COMMENT Get the offset for this AxisDirection. 1 for POSITIVE, -1 for NEGATIVE
+			COMMENT @return whether this Axis is on the horizontal plane (true for X and Z)
+		METHOD lambda$static$0 (Lnet/minecraft/core/Direction$Axis;)Lnet/minecraft/core/Direction$Axis;
+			ARG 0 axis
+		METHOD test (Lnet/minecraft/core/Direction;)Z
+			ARG 1 direction
 	CLASS Plane
+		METHOD <init> (Ljava/lang/String;I[Lnet/minecraft/core/Direction;[Lnet/minecraft/core/Direction$Axis;)V
+			ARG 3 faces
+			ARG 4 axis
+		METHOD getRandomAxis (Ljava/util/Random;)Lnet/minecraft/core/Direction$Axis;
+			ARG 1 random
 		METHOD getRandomDirection (Ljava/util/Random;)Lnet/minecraft/core/Direction;
-			COMMENT Choose a random Facing from this Plane using the given Random
-			ARG 1 rand
+			COMMENT Choose a random Direction from this Plane using the given Random
+			ARG 1 random
+	CLASS AxisDirection
+		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
+			ARG 3 step
+			ARG 4 name
+		METHOD getStep ()I
+			COMMENT @return the offset for this AxisDirection. 1 for POSITIVE, -1 for NEGATIVE

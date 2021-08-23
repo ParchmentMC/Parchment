@@ -24,27 +24,45 @@ CLASS net/minecraft/util/Mth
 		COMMENT Uses a B(2, 5) De Bruijn sequence and a lookup table to efficiently calculate the log-base-two of the given value. Optimized for cases where the input value is a power-of-two. If the input value is not a power-of-two, then subtract 1 from the return value.
 		ARG 0 value
 	METHOD clamp (DDD)D
-		ARG 0 num
+		COMMENT Returns the given value if between the lower and the upper bound. If the value is less than the lower bound, returns the lower bound. If the value is greater than the upper bound, returns the upper bound.
+		ARG 0 value
+			COMMENT The value that is clamped.
 		ARG 2 min
+			COMMENT The lower bound for the clamp.
 		ARG 4 max
+			COMMENT The upper bound for the clamp.
 	METHOD clamp (FFF)F
-		COMMENT Returns the value of the first parameter, clamped to be within the lower and upper limits given by the second and third parameters
-		ARG 0 num
+		COMMENT Returns the given value if between the lower and the upper bound. If the value is less than the lower bound, returns the lower bound. If the value is greater than the upper bound, returns the upper bound.
+		ARG 0 value
+			COMMENT The value that is clamped.
 		ARG 1 min
+			COMMENT The lower bound for the clamp.
 		ARG 2 max
+			COMMENT The upper bound for the clamp.
 	METHOD clamp (III)I
-		COMMENT Returns the value of the first parameter, clamped to be within the lower and upper limits given by the second and third parameters.
-		ARG 0 num
+		COMMENT Returns the given value if between the lower and the upper bound. If the value is less than the lower bound, returns the lower bound. If the value is greater than the upper bound, returns the upper bound.
+		ARG 0 value
+			COMMENT The value that is clamped.
 		ARG 1 min
+			COMMENT The lower bound for the clamp.
 		ARG 2 max
+			COMMENT The upper bound for the clamp.
 	METHOD clamp (JJJ)J
-		ARG 0 num
+		COMMENT Returns the given value if between the lower and the upper bound. If the value is less than the lower bound, returns the lower bound. If the value is greater than the upper bound, returns the upper bound.
+		ARG 0 value
+			COMMENT The value that is clamped.
 		ARG 2 min
+			COMMENT The lower bound for the clamp.
 		ARG 4 max
+			COMMENT The upper bound for the clamp.
 	METHOD clampedLerp (DDD)D
-		ARG 0 lowerBnd
-		ARG 2 upperBnd
-		ARG 4 slide
+		COMMENT Method for linear interpolation of doubles.
+		ARG 0 start
+			COMMENT Start value for the lerp.
+		ARG 2 end
+			COMMENT End value for the lerp.
+		ARG 4 delta
+			COMMENT A value between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value) If the value is not between 0 and 1, it is clamped.
 	METHOD color (FFF)I
 		COMMENT Makes an integer color from the given red, green, and blue float values
 		ARG 0 r
@@ -111,13 +129,21 @@ CLASS net/minecraft/util/Mth
 		COMMENT Is the given value a power of two?  (1, 2, 4, 8, 16, ...)
 		ARG 0 value
 	METHOD lerp (DDD)D
-		ARG 0 pct
+		COMMENT Method for linear interpolation of doubles
+		ARG 0 delta
+			COMMENT A value usually between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value)
 		ARG 2 start
+			COMMENT Start value for the lerp
 		ARG 4 end
+			COMMENT End value for the lerp
 	METHOD lerp (FFF)F
-		ARG 0 pct
+		COMMENT Method for linear interpolation of floats
+		ARG 0 delta
+			COMMENT A value usually between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value)
 		ARG 1 start
+			COMMENT Start value for the lerp
 		ARG 2 end
+			COMMENT End value for the lerp
 	METHOD lfloor (D)J
 		COMMENT Long version of floor()
 		ARG 0 value

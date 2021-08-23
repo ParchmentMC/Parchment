@@ -1,9 +1,16 @@
 CLASS net/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer
+	COMMENT Base class for loot pool entry containers. This class just stores a list of conditions that are checked before the entry generates loot.
 	FIELD conditions [Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
 		COMMENT Conditions for the loot entry to be applied.
+	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
+		ARG 1 conditions
+	METHOD canRun (Lnet/minecraft/world/level/storage/loot/LootContext;)Z
+		ARG 1 lootContext
+	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V
+		ARG 1 validationContext
 	CLASS Builder
-		METHOD when (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)Ljava/lang/Object;
-			ARG 1 conditionBuilder
+		METHOD otherwise (Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/entries/AlternativesEntry$Builder;
+			ARG 1 childBuilder
 		METHOD when (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;
 			ARG 1 conditionBuilder
 	CLASS Serializer

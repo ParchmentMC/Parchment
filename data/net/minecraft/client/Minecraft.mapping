@@ -9,6 +9,8 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT Time in nanoseconds of when the class is loaded
 	FIELD profileProperties Lcom/mojang/authlib/properties/PropertyMap;
 		COMMENT The player's GameProfile properties
+	METHOD <init> (Lnet/minecraft/client/main/GameConfig;)V
+		ARG 1 gameConfig
 	METHOD adaptV3 (Ljava/util/function/Supplier;)Ljava/util/function/Supplier;
 		ARG 0 resourcePackSupplier
 	METHOD adaptV4 (Ljava/util/function/Supplier;)Ljava/util/function/Supplier;
@@ -33,6 +35,9 @@ CLASS net/minecraft/client/Minecraft
 		ARG 4 dimensionGeneratorSettings
 	METHOD createSearchTrees ()V
 		COMMENT Fills {@link #searchTreeManager} with the current item and recipe registry contents.
+	METHOD createSocialInteractions (Lcom/mojang/authlib/yggdrasil/YggdrasilAuthenticationService;Lnet/minecraft/client/main/GameConfig;)Lcom/mojang/authlib/minecraft/SocialInteractionsService;
+		ARG 1 authService
+		ARG 2 gameConfig
 	METHOD debugFpsMeterKeyPress (I)V
 		COMMENT Update debugProfilerName in response to number keys in debug screen
 		ARG 1 keyCount
@@ -170,3 +175,8 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT Returns if ambient occlusion is enabled
 	METHOD wrapRunnable (Ljava/lang/Runnable;)Ljava/lang/Runnable;
 		ARG 1 runnable
+	CLASS ServerStem
+		METHOD <init> (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/ServerResources;Lnet/minecraft/world/level/storage/WorldData;)V
+			ARG 1 packRepository
+			ARG 2 serverResources
+			ARG 3 worldData

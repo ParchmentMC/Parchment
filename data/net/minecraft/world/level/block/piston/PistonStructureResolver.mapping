@@ -1,17 +1,22 @@
 CLASS net/minecraft/world/level/block/piston/PistonStructureResolver
 	FIELD toDestroy Ljava/util/List;
-		COMMENT This is a List<BlockPos> of blocks that will be destroyed when a piston attempts to move them.
+		COMMENT All blocks to be destroyed by the piston
 	FIELD toPush Ljava/util/List;
-		COMMENT This is a List<BlockPos> of all blocks that will be moved by the piston.
+		COMMENT All block positions to be moved by the piston
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Z)V
+		ARG 1 level
+		ARG 2 pistonPos
+		ARG 3 pistonDirection
+		ARG 4 extending
 	METHOD addBlockLine (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
-		ARG 1 origin
-		ARG 2 facing
+		ARG 1 originPos
+		ARG 2 direction
 	METHOD addBranchingBlocks (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 fromPos
 	METHOD getToDestroy ()Ljava/util/List;
-		COMMENT Returns an List<BlockPos> of all the blocks that are being destroyed by the piston.
+		COMMENT @return all block positions to be destroyed by the piston
 	METHOD getToPush ()Ljava/util/List;
-		COMMENT Returns a List<BlockPos> of all the blocks that are being moved by the piston.
+		COMMENT @return all block positions to be moved by the piston
 	METHOD reorderListAtCollision (II)V
 		ARG 1 offsets
 		ARG 2 index
