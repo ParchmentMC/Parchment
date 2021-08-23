@@ -1,9 +1,9 @@
 CLASS net/minecraft/world/entity/ai/Brain
 	METHOD <init> (Ljava/util/Collection;Ljava/util/Collection;Lcom/google/common/collect/ImmutableList;Ljava/util/function/Supplier;)V
-		ARG 1 memoryModuleTypeCollection
+		ARG 1 memoryModuleTypes
 		ARG 2 sensorTypes
 		ARG 3 memoryValues
-		ARG 4 brainCodec
+		ARG 4 codec
 	METHOD activityRequirementsAreMet (Lnet/minecraft/world/entity/schedule/Activity;)Z
 		ARG 1 activity
 	METHOD addActivity (Lnet/minecraft/world/entity/schedule/Activity;ILcom/google/common/collect/ImmutableList;)V
@@ -116,9 +116,13 @@ CLASS net/minecraft/world/entity/ai/Brain
 			ARG 3 input
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
-			ARG 2 mapLike
+			ARG 2 input
 		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
 			ARG 1 ops
+		METHOD lambda$captureRead$6 (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/DataResult;
+			ARG 2 codec
+		METHOD lambda$captureRead$7 (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/world/entity/ai/memory/ExpirableValue;)Lnet/minecraft/world/entity/ai/Brain$MemoryValue;
+			ARG 1 expirableValue
 		METHOD lambda$decode$3 (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/datafixers/util/Pair;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Lcom/mojang/serialization/DataResult;
 			ARG 3 memoryType
 		METHOD lambda$decode$4 (Lcom/mojang/serialization/DynamicOps;Lorg/apache/commons/lang3/mutable/MutableObject;Lcom/mojang/datafixers/util/Pair;)V
