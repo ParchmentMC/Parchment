@@ -1,15 +1,31 @@
 CLASS net/minecraft/advancements/AdvancementProgress
+	METHOD <init> (Ljava/util/Map;)V
+		ARG 1 criteria
 	METHOD fromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/advancements/AdvancementProgress;
 		ARG 0 buffer
 	METHOD getCriterion (Ljava/lang/String;)Lnet/minecraft/advancements/CriterionProgress;
-		ARG 1 criterion
+		ARG 1 criterionName
 	METHOD grantProgress (Ljava/lang/String;)Z
-		ARG 1 criterion
+		ARG 1 criterionName
+	METHOD lambda$serializeToNetwork$1 (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/advancements/CriterionProgress;)V
+		ARG 0 bufferIn
+		ARG 1 advancementProgress
+	METHOD lambda$update$0 (Ljava/util/Set;Ljava/util/Map$Entry;)Z
+		ARG 1 entry
 	METHOD revokeProgress (Ljava/lang/String;)Z
-		ARG 1 criterion
+		ARG 1 criterionName
 	METHOD serializeToNetwork (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
 	METHOD update (Ljava/util/Map;[[Ljava/lang/String;)V
 		COMMENT Update this AdvancementProgress' criteria and requirements
 		ARG 1 criteria
 		ARG 2 requirements
+	CLASS Serializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+			ARG 1 json
+			ARG 2 typeOfT
+			ARG 3 context
+		METHOD serialize (Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
+			ARG 1 src
+			ARG 2 typeOfSrc
+			ARG 3 context

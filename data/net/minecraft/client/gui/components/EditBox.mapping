@@ -11,6 +11,20 @@ CLASS net/minecraft/client/gui/components/EditBox
 		COMMENT If this value is true along with isFocused, keyTyped will process the keys.
 	FIELD value Ljava/lang/String;
 		COMMENT Has the current text being edited on the textbox.
+	METHOD <init> (Lnet/minecraft/client/gui/Font;IIIILnet/minecraft/client/gui/components/EditBox;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 font
+		ARG 2 x
+		ARG 3 y
+		ARG 4 width
+		ARG 5 height
+		ARG 7 message
+	METHOD <init> (Lnet/minecraft/client/gui/Font;IIIILnet/minecraft/network/chat/Component;)V
+		ARG 1 font
+		ARG 2 x
+		ARG 3 y
+		ARG 4 width
+		ARG 5 height
+		ARG 6 message
 	METHOD changeFocus (Z)Z
 		ARG 1 focus
 	METHOD charTyped (CI)Z
@@ -22,6 +36,8 @@ CLASS net/minecraft/client/gui/components/EditBox
 	METHOD deleteWords (I)V
 		COMMENT Deletes the given number of words from the current cursor's position, unless there is currently a selection, in which case the selection is deleted instead.
 		ARG 1 num
+	METHOD getCursorPos (I)I
+		ARG 1 delta
 	METHOD getCursorPosition ()I
 		COMMENT returns the current position of the cursor
 	METHOD getHighlighted ()Ljava/lang/String;
@@ -64,7 +80,7 @@ CLASS net/minecraft/client/gui/components/EditBox
 		ARG 5 button
 	METHOD moveCursor (I)V
 		COMMENT Moves the text cursor by a specified number of characters and clears the selection
-		ARG 1 num
+		ARG 1 delta
 	METHOD moveCursorTo (I)V
 		COMMENT Sets the current position of the cursor.
 		ARG 1 pos
@@ -112,7 +128,9 @@ CLASS net/minecraft/client/gui/components/EditBox
 		COMMENT Sets the maximum length for the text in this text box. If the current text is longer than this length, the current text will be trimmed.
 		ARG 1 length
 	METHOD setResponder (Ljava/util/function/Consumer;)V
-		ARG 1 rssponder
+		ARG 1 responder
+	METHOD setSuggestion (Ljava/lang/String;)V
+		ARG 1 suggestion
 	METHOD setTextColor (I)V
 		COMMENT Sets the color to use when drawing this text box's text. A different color is used if this text box is disabled.
 		ARG 1 color

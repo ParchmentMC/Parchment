@@ -3,12 +3,19 @@ CLASS net/minecraft/advancements/critereon/FishingRodHookedTrigger
 		ARG 1 json
 		ARG 2 entityPredicate
 		ARG 3 conditionsParser
+	METHOD lambda$trigger$0 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/Collection;Lnet/minecraft/advancements/critereon/FishingRodHookedTrigger$TriggerInstance;)Z
+		ARG 3 instance
 	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/projectile/FishingHook;Ljava/util/Collection;)V
 		ARG 1 player
 		ARG 2 rod
 		ARG 3 entity
-		ARG 4 items
+		ARG 4 stacks
 	CLASS TriggerInstance
+		METHOD <init> (Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/ItemPredicate;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/ItemPredicate;)V
+			ARG 1 player
+			ARG 2 rod
+			ARG 3 entity
+			ARG 4 item
 		METHOD fishedItem (Lnet/minecraft/advancements/critereon/ItemPredicate;Lnet/minecraft/advancements/critereon/EntityPredicate;Lnet/minecraft/advancements/critereon/ItemPredicate;)Lnet/minecraft/advancements/critereon/FishingRodHookedTrigger$TriggerInstance;
 			ARG 0 rod
 			ARG 1 bobber
@@ -16,6 +23,6 @@ CLASS net/minecraft/advancements/critereon/FishingRodHookedTrigger
 		METHOD matches (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/Collection;)Z
 			ARG 1 rod
 			ARG 2 context
-			ARG 3 items
+			ARG 3 stacks
 		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
 			ARG 1 conditions

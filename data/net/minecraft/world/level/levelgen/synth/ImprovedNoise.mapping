@@ -1,4 +1,10 @@
 CLASS net/minecraft/world/level/levelgen/synth/ImprovedNoise
+	COMMENT Generates a single octave of Perlin noise.
+	FIELD p [B
+		COMMENT A permutation array used in noise calculation.
+		COMMENT This is populated with the values [0, 256) and shuffled per instance of {@code ImprovedNoise}.
+		COMMENT
+		COMMENT @see #p(int)
 	METHOD <init> (Lnet/minecraft/world/level/levelgen/RandomSource;)V
 		ARG 1 randomSource
 	METHOD gradDot (IDDD)D
@@ -6,5 +12,36 @@ CLASS net/minecraft/world/level/levelgen/synth/ImprovedNoise
 		ARG 1 xFactor
 		ARG 3 yFactor
 		ARG 5 zFactor
+	METHOD noise (DDD)D
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD noise (DDDDD)D
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 yScale
+		ARG 9 yMax
+	METHOD noiseWithDerivative (DDD[D)D
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 values
 	METHOD p (I)I
-		ARG 1 permutIndex
+		ARG 1 index
+	METHOD sampleAndLerp (IIIDDDD)D
+		ARG 1 gridX
+		ARG 2 gridY
+		ARG 3 gridZ
+		ARG 4 deltaX
+		ARG 6 weirdDeltaY
+		ARG 8 deltaZ
+		ARG 10 deltaY
+	METHOD sampleWithDerivative (IIIDDD[D)D
+		ARG 1 gridX
+		ARG 2 gridY
+		ARG 3 gridZ
+		ARG 4 deltaX
+		ARG 6 deltaY
+		ARG 8 deltaZ
+		ARG 10 noiseValues

@@ -1,12 +1,43 @@
 CLASS net/minecraft/advancements/critereon/EntityPredicate
+	METHOD <init> (Lnet/minecraft/advancements/critereon/EntityTypePredicate;Lnet/minecraft/advancements/critereon/DistancePredicate;Lnet/minecraft/advancements/critereon/LocationPredicate;Lnet/minecraft/advancements/critereon/LocationPredicate;Lnet/minecraft/advancements/critereon/MobEffectsPredicate;Lnet/minecraft/advancements/critereon/NbtPredicate;Lnet/minecraft/advancements/critereon/EntityFlagsPredicate;Lnet/minecraft/advancements/critereon/EntityEquipmentPredicate;Lnet/minecraft/advancements/critereon/PlayerPredicate;Lnet/minecraft/advancements/critereon/FishingHookPredicate;Lnet/minecraft/advancements/critereon/LighthingBoltPredicate;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 entityType
+		ARG 2 distanceToPlayer
+		ARG 3 location
+		ARG 4 steppingOnLocation
+		ARG 5 effects
+		ARG 6 nbt
+		ARG 7 flags
+		ARG 8 equipment
+		ARG 9 player
+		ARG 10 fishingHook
+		ARG 11 lightningBolt
+		ARG 12 team
+		ARG 13 catType
+	METHOD <init> (Lnet/minecraft/advancements/critereon/EntityTypePredicate;Lnet/minecraft/advancements/critereon/DistancePredicate;Lnet/minecraft/advancements/critereon/LocationPredicate;Lnet/minecraft/advancements/critereon/LocationPredicate;Lnet/minecraft/advancements/critereon/MobEffectsPredicate;Lnet/minecraft/advancements/critereon/NbtPredicate;Lnet/minecraft/advancements/critereon/EntityFlagsPredicate;Lnet/minecraft/advancements/critereon/EntityEquipmentPredicate;Lnet/minecraft/advancements/critereon/PlayerPredicate;Lnet/minecraft/advancements/critereon/FishingHookPredicate;Lnet/minecraft/advancements/critereon/LighthingBoltPredicate;Lnet/minecraft/advancements/critereon/EntityPredicate;Lnet/minecraft/advancements/critereon/EntityPredicate;Lnet/minecraft/advancements/critereon/EntityPredicate;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 entityType
+		ARG 2 distanceToPlayer
+		ARG 3 location
+		ARG 4 steppingOnLocation
+		ARG 5 effects
+		ARG 6 nbt
+		ARG 7 flags
+		ARG 8 equipment
+		ARG 9 player
+		ARG 10 fishingHook
+		ARG 11 lightningBolt
+		ARG 12 vehicle
+		ARG 13 passenger
+		ARG 14 targetedEntity
+		ARG 15 team
+		ARG 16 catType
 	METHOD createContext (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/level/storage/loot/LootContext;
 		ARG 0 player
 		ARG 1 entity
 	METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/EntityPredicate;
-		ARG 0 element
+		ARG 0 json
 	METHOD matches (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 level
-		ARG 2 vector
+		ARG 2 position
 		ARG 3 entity
 	METHOD matches (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 player
@@ -15,17 +46,19 @@ CLASS net/minecraft/advancements/critereon/EntityPredicate
 		METHOD catType (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 catType
 		METHOD distance (Lnet/minecraft/advancements/critereon/DistancePredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
-			ARG 1 distance
+			ARG 1 distanceToPlayer
 		METHOD effects (Lnet/minecraft/advancements/critereon/MobEffectsPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 effects
 		METHOD entityType (Lnet/minecraft/advancements/critereon/EntityTypePredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
-			ARG 1 type
+			ARG 1 entityType
 		METHOD equipment (Lnet/minecraft/advancements/critereon/EntityEquipmentPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 equipment
 		METHOD fishingHook (Lnet/minecraft/advancements/critereon/FishingHookPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 fishing
 		METHOD flags (Lnet/minecraft/advancements/critereon/EntityFlagsPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 flags
+		METHOD lighthingBolt (Lnet/minecraft/advancements/critereon/LighthingBoltPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
+			ARG 1 lightningBolt
 		METHOD located (Lnet/minecraft/advancements/critereon/LocationPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 location
 		METHOD nbt (Lnet/minecraft/advancements/critereon/NbtPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
@@ -33,38 +66,44 @@ CLASS net/minecraft/advancements/critereon/EntityPredicate
 		METHOD of (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 catType
 		METHOD of (Lnet/minecraft/tags/Tag;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
-			ARG 1 type
+			ARG 1 entityType
 		METHOD of (Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
-			ARG 1 type
+			ARG 1 entityType
+		METHOD passenger (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
+			ARG 1 passenger
 		METHOD player (Lnet/minecraft/advancements/critereon/PlayerPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 player
+		METHOD steppingOn (Lnet/minecraft/advancements/critereon/LocationPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
+			ARG 1 steppingOnLocation
 		METHOD targetedEntity (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
-			ARG 1 target
+			ARG 1 targetedEntity
 		METHOD team (Ljava/lang/String;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 team
 		METHOD vehicle (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
-			ARG 1 mount
+			ARG 1 vehicle
 	CLASS Composite
+		METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
+			ARG 1 conditions
 		METHOD create ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;
 			ARG 0 conditions
 		METHOD fromElement (Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;
 			ARG 0 name
-			ARG 1 conditions
-			ARG 2 element
-		METHOD fromJson (Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;
-			ARG 0 jsonObject
-			ARG 1 name
-			ARG 2 conditions
-		METHOD fromJsonArray (Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;)[Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;
-			ARG 0 jsonObject
-			ARG 1 name
-			ARG 2 conditions
-		METHOD matches (Lnet/minecraft/world/level/storage/loot/LootContext;)Z
 			ARG 1 context
+			ARG 2 json
+		METHOD fromJson (Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;
+			ARG 0 json
+			ARG 1 property
+			ARG 2 context
+		METHOD fromJsonArray (Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;)[Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;
+			ARG 0 json
+			ARG 1 property
+			ARG 2 context
+		METHOD matches (Lnet/minecraft/world/level/storage/loot/LootContext;)Z
+			ARG 1 lootContext
 		METHOD toJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonElement;
-			ARG 1 serializer
+			ARG 1 context
 		METHOD toJson ([Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonElement;
 			ARG 0 predicates
-			ARG 1 serializer
+			ARG 1 context
 		METHOD wrap (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;
 			ARG 0 entityCondition

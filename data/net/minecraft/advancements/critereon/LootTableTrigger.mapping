@@ -3,13 +3,18 @@ CLASS net/minecraft/advancements/critereon/LootTableTrigger
 		ARG 1 json
 		ARG 2 entityPredicate
 		ARG 3 conditionsParser
+	METHOD lambda$trigger$0 (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/critereon/LootTableTrigger$TriggerInstance;)Z
+		ARG 1 instance
 	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 player
-		ARG 2 generatedLoot
+		ARG 2 lootTable
 	CLASS TriggerInstance
+		METHOD <init> (Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 1 player
+			ARG 2 lootTable
 		METHOD lootTableUsed (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/critereon/LootTableTrigger$TriggerInstance;
-			ARG 0 generatedLoot
+			ARG 0 lootTable
 		METHOD matches (Lnet/minecraft/resources/ResourceLocation;)Z
-			ARG 1 generatedLoot
+			ARG 1 lootTable
 		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
 			ARG 1 conditions

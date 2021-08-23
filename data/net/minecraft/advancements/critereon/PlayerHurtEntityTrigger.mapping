@@ -3,6 +3,8 @@ CLASS net/minecraft/advancements/critereon/PlayerHurtEntityTrigger
 		ARG 1 json
 		ARG 2 entityPredicate
 		ARG 3 conditionsParser
+	METHOD lambda$trigger$0 (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/world/damagesource/DamageSource;FFZLnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;)Z
+		ARG 6 instance
 	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;FFZ)V
 		ARG 1 player
 		ARG 2 entity
@@ -11,6 +13,10 @@ CLASS net/minecraft/advancements/critereon/PlayerHurtEntityTrigger
 		ARG 5 amountTaken
 		ARG 6 blocked
 	CLASS TriggerInstance
+		METHOD <init> (Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/DamagePredicate;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;)V
+			ARG 1 player
+			ARG 2 damage
+			ARG 3 entity
 		METHOD matches (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/world/damagesource/DamageSource;FFZ)Z
 			ARG 1 player
 			ARG 2 context
@@ -19,6 +25,16 @@ CLASS net/minecraft/advancements/critereon/PlayerHurtEntityTrigger
 			ARG 5 taken
 			ARG 6 blocked
 		METHOD playerHurtEntity (Lnet/minecraft/advancements/critereon/DamagePredicate$Builder;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
-			ARG 0 builder
+			ARG 0 damageBuilder
+		METHOD playerHurtEntity (Lnet/minecraft/advancements/critereon/DamagePredicate$Builder;Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
+			ARG 0 damageBuilder
+			ARG 1 entity
+		METHOD playerHurtEntity (Lnet/minecraft/advancements/critereon/DamagePredicate;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
+			ARG 0 damage
+		METHOD playerHurtEntity (Lnet/minecraft/advancements/critereon/DamagePredicate;Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
+			ARG 0 damage
+			ARG 1 entity
+		METHOD playerHurtEntity (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
+			ARG 0 entity
 		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
 			ARG 1 conditions

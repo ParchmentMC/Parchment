@@ -1,6 +1,22 @@
 CLASS net/minecraft/world/phys/shapes/BitSetDiscreteVoxelShape
+	METHOD <init> (Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;)V
+		ARG 1 shape
+	METHOD clearZStrip (IIII)V
+		ARG 1 zMin
+		ARG 2 zMax
+		ARG 3 x
+		ARG 4 y
+	METHOD fillUpdateBounds (IIIZ)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 update
 	METHOD firstFull (Lnet/minecraft/core/Direction$Axis;)I
 		ARG 1 axis
+	METHOD forAllBoxes (Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape$IntLineConsumer;Z)V
+		ARG 0 shape
+		ARG 1 consumer
+		ARG 2 combine
 	METHOD getIndex (III)I
 		ARG 1 x
 		ARG 2 y
@@ -9,5 +25,45 @@ CLASS net/minecraft/world/phys/shapes/BitSetDiscreteVoxelShape
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD isXZRectangleFull (IIIII)Z
+		ARG 1 xMin
+		ARG 2 xMax
+		ARG 3 zMin
+		ARG 4 zMax
+		ARG 5 y
+	METHOD isZStripFull (IIII)Z
+		ARG 1 zMin
+		ARG 2 zMax
+		ARG 3 x
+		ARG 4 y
+	METHOD join (Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;Lnet/minecraft/world/phys/shapes/IndexMerger;Lnet/minecraft/world/phys/shapes/IndexMerger;Lnet/minecraft/world/phys/shapes/IndexMerger;Lnet/minecraft/world/phys/shapes/BooleanOp;)Lnet/minecraft/world/phys/shapes/BitSetDiscreteVoxelShape;
+		ARG 0 mainShape
+		ARG 1 secondaryShape
+		ARG 2 mergerX
+		ARG 3 mergerY
+		ARG 4 mergerZ
+		ARG 5 operator
+	METHOD lambda$join$0 (Lnet/minecraft/world/phys/shapes/BooleanOp;Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;IILnet/minecraft/world/phys/shapes/DiscreteVoxelShape;IILnet/minecraft/world/phys/shapes/BitSetDiscreteVoxelShape;II[I[ZIII)Z
+		ARG 12 z1
+		ARG 13 z2
+		ARG 14 z3
+	METHOD lambda$join$1 (Lnet/minecraft/world/phys/shapes/IndexMerger;Lnet/minecraft/world/phys/shapes/BooleanOp;Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;ILnet/minecraft/world/phys/shapes/DiscreteVoxelShape;ILnet/minecraft/world/phys/shapes/BitSetDiscreteVoxelShape;I[I[ZIII)Z
+		ARG 10 y1
+		ARG 11 y2
+		ARG 12 y3
+	METHOD lambda$join$2 (Lnet/minecraft/world/phys/shapes/IndexMerger;Lnet/minecraft/world/phys/shapes/IndexMerger;Lnet/minecraft/world/phys/shapes/BooleanOp;Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;Lnet/minecraft/world/phys/shapes/BitSetDiscreteVoxelShape;[IIII)Z
+		ARG 7 x1
+		ARG 8 x2
+		ARG 9 x3
 	METHOD lastFull (Lnet/minecraft/core/Direction$Axis;)I
 		ARG 1 axis
+	METHOD withFilledBounds (IIIIIIIII)Lnet/minecraft/world/phys/shapes/BitSetDiscreteVoxelShape;
+		ARG 0 x
+		ARG 1 y
+		ARG 2 z
+		ARG 3 xMin
+		ARG 4 yMin
+		ARG 5 zMin
+		ARG 6 xMax
+		ARG 7 yMax
+		ARG 8 zMax

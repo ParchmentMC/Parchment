@@ -1,21 +1,57 @@
 CLASS net/minecraft/advancements/critereon/KilledTrigger
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 id
 	METHOD createInstance (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
 		ARG 1 json
 		ARG 2 entityPredicate
 		ARG 3 conditionsParser
+	METHOD lambda$trigger$0 (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;)Z
+		ARG 3 instance
 	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;)V
 		ARG 1 player
 		ARG 2 entity
 		ARG 3 source
 	CLASS TriggerInstance
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/DamageSourcePredicate;)V
+			ARG 1 criterion
+			ARG 2 player
+			ARG 3 entityPredicate
+			ARG 4 killingBlow
+		METHOD entityKilledPlayer (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 entityPredicateBuilder
+		METHOD entityKilledPlayer (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;Lnet/minecraft/advancements/critereon/DamageSourcePredicate$Builder;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 entityPredicateBuilder
+			ARG 1 killingBlowBuilder
+		METHOD entityKilledPlayer (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;Lnet/minecraft/advancements/critereon/DamageSourcePredicate;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 entityPredicateBuilder
+			ARG 1 killingBlow
+		METHOD entityKilledPlayer (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 entityPredicate
+		METHOD entityKilledPlayer (Lnet/minecraft/advancements/critereon/EntityPredicate;Lnet/minecraft/advancements/critereon/DamageSourcePredicate$Builder;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 entityPredicate
+			ARG 1 killingBlowBuilder
+		METHOD entityKilledPlayer (Lnet/minecraft/advancements/critereon/EntityPredicate;Lnet/minecraft/advancements/critereon/DamageSourcePredicate;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 entityPredicate
+			ARG 1 killingBlow
 		METHOD matches (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/world/damagesource/DamageSource;)Z
 			ARG 1 player
 			ARG 2 context
 			ARG 3 source
 		METHOD playerKilledEntity (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
-			ARG 0 builder
+			ARG 0 entityPredicateBuilder
 		METHOD playerKilledEntity (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;Lnet/minecraft/advancements/critereon/DamageSourcePredicate$Builder;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
-			ARG 0 entityBuilder
-			ARG 1 sourceBuilder
+			ARG 0 entityPredicateBuilder
+			ARG 1 killingBlowBuilder
+		METHOD playerKilledEntity (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;Lnet/minecraft/advancements/critereon/DamageSourcePredicate;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 entityPredicateBuilder
+			ARG 1 killingBlow
+		METHOD playerKilledEntity (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 entityPredicate
+		METHOD playerKilledEntity (Lnet/minecraft/advancements/critereon/EntityPredicate;Lnet/minecraft/advancements/critereon/DamageSourcePredicate$Builder;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 entityPredicate
+			ARG 1 killingBlowBuilder
+		METHOD playerKilledEntity (Lnet/minecraft/advancements/critereon/EntityPredicate;Lnet/minecraft/advancements/critereon/DamageSourcePredicate;)Lnet/minecraft/advancements/critereon/KilledTrigger$TriggerInstance;
+			ARG 0 entityPredicate
+			ARG 1 killingBlow
 		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
 			ARG 1 conditions

@@ -1,12 +1,35 @@
 CLASS net/minecraft/resources/RegistryFileCodec
+	METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)V
+		ARG 1 registryKey
+		ARG 2 elementCodec
+		ARG 3 allowInline
 	METHOD create (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)Lnet/minecraft/resources/RegistryFileCodec;
 		ARG 0 registryKey
-		ARG 1 codec
+		ARG 1 elementCodec
 	METHOD create (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)Lnet/minecraft/resources/RegistryFileCodec;
 		ARG 0 registryKey
-		ARG 1 registryKeyCodec
-		ARG 2 allowInlineDefinitions
+		ARG 1 elementCodec
+		ARG 2 allowInline
+	METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 ops
+		ARG 2 input
+	METHOD encode (Ljava/util/function/Supplier;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 input
+		ARG 2 ops
+		ARG 3 prefix
 	METHOD homogeneousList (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
-		COMMENT Gets the codecs for all registry objects
+		COMMENT @return a codec for a list of suppliers of a registry object
 		ARG 0 registryKey
-		ARG 1 registryKeyCodec
+		ARG 1 elementCodec
+	METHOD lambda$decode$6 (Ljava/lang/Object;)Ljava/util/function/Supplier;
+		ARG 0 element
+	METHOD lambda$decode$7 (Lcom/mojang/datafixers/util/Pair;)Lcom/mojang/datafixers/util/Pair;
+		ARG 0 result
+	METHOD lambda$homogeneousList$1 (Ljava/lang/Object;)Ljava/util/function/Supplier;
+		ARG 0 element
+	METHOD lambda$homogeneousList$2 (Ljava/util/List;)Ljava/util/List;
+		ARG 0 elements
+	METHOD lambda$homogeneousList$3 (Ljava/util/List;)Ljava/util/List;
+		ARG 0 elements
+	METHOD lambda$homogeneousList$4 (Lcom/mojang/datafixers/util/Either;)Ljava/util/List;
+		ARG 0 either

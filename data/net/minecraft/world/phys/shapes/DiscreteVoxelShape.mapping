@@ -1,9 +1,22 @@
 CLASS net/minecraft/world/phys/shapes/DiscreteVoxelShape
+	METHOD <init> (III)V
+		ARG 1 xSize
+		ARG 2 ySize
+		ARG 3 zSize
+	METHOD fill (III)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD firstFull (Lnet/minecraft/core/Direction$Axis;)I
 		ARG 1 axis
+	METHOD firstFull (Lnet/minecraft/core/Direction$Axis;II)I
+		ARG 1 axis
+		ARG 2 y
+		ARG 3 z
 	METHOD forAllAxisEdges (Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape$IntLineConsumer;Lnet/minecraft/core/AxisCycle;Z)V
 		ARG 1 lineConsumer
 		ARG 2 axis
+		ARG 3 combine
 	METHOD forAllAxisFaces (Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape$IntFaceConsumer;Lnet/minecraft/core/AxisCycle;)V
 		ARG 1 faceConsumer
 		ARG 2 axisRotation
@@ -40,3 +53,19 @@ CLASS net/minecraft/world/phys/shapes/DiscreteVoxelShape
 	METHOD lastFull (Lnet/minecraft/core/Direction$Axis;II)I
 		COMMENT gives the index of the last filled part in the column
 		ARG 1 axis
+		ARG 2 y
+		ARG 3 z
+	CLASS IntFaceConsumer
+		METHOD consume (Lnet/minecraft/core/Direction;III)V
+			ARG 1 direction
+			ARG 2 x
+			ARG 3 y
+			ARG 4 z
+	CLASS IntLineConsumer
+		METHOD consume (IIIIII)V
+			ARG 1 x1
+			ARG 2 y1
+			ARG 3 z1
+			ARG 4 x2
+			ARG 5 y2
+			ARG 6 z2
