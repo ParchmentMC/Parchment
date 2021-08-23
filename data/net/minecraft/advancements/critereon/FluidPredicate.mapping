@@ -1,6 +1,17 @@
 CLASS net/minecraft/advancements/critereon/FluidPredicate
+	METHOD <init> (Lnet/minecraft/tags/Tag;Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/advancements/critereon/StatePropertiesPredicate;)V
+		ARG 1 tag
+		ARG 2 fluid
+		ARG 3 properties
 	METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/FluidPredicate;
-		ARG 0 element
+		ARG 0 json
 	METHOD matches (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 level
 		ARG 2 pos
+	CLASS Builder
+		METHOD of (Lnet/minecraft/tags/Tag;)Lnet/minecraft/advancements/critereon/FluidPredicate$Builder;
+			ARG 1 fluids
+		METHOD of (Lnet/minecraft/world/level/material/Fluid;)Lnet/minecraft/advancements/critereon/FluidPredicate$Builder;
+			ARG 1 fluid
+		METHOD setProperties (Lnet/minecraft/advancements/critereon/StatePropertiesPredicate;)Lnet/minecraft/advancements/critereon/FluidPredicate$Builder;
+			ARG 1 properties

@@ -5,10 +5,26 @@ CLASS net/minecraft/advancements/critereon/BeeNestDestroyedTrigger
 		ARG 3 conditionsParser
 	METHOD deserializeBlock (Lcom/google/gson/JsonObject;)Lnet/minecraft/world/level/block/Block;
 		ARG 0 json
+	METHOD lambda$trigger$1 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/item/ItemStack;ILnet/minecraft/advancements/critereon/BeeNestDestroyedTrigger$TriggerInstance;)Z
+		ARG 3 instance
+	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/item/ItemStack;I)V
+		ARG 1 player
+		ARG 2 state
+		ARG 3 stack
+		ARG 4 numBees
 	CLASS TriggerInstance
+		METHOD <init> (Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/advancements/critereon/ItemPredicate;Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;)V
+			ARG 1 player
+			ARG 2 block
+			ARG 3 item
+			ARG 4 numBees
 		METHOD destroyedBeeNest (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/advancements/critereon/ItemPredicate$Builder;Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;)Lnet/minecraft/advancements/critereon/BeeNestDestroyedTrigger$TriggerInstance;
 			ARG 0 block
-			ARG 1 itemConditionBuilder
+			ARG 1 itemPredicateBuilder
 			ARG 2 beesContained
+		METHOD matches (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/item/ItemStack;I)Z
+			ARG 1 state
+			ARG 2 stack
+			ARG 3 numBees
 		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
 			ARG 1 conditions
