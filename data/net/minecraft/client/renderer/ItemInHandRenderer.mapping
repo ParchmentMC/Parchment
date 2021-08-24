@@ -1,4 +1,6 @@
 CLASS net/minecraft/client/renderer/ItemInHandRenderer
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+		ARG 1 minecraft
 	METHOD applyEatTransform (Lcom/mojang/blaze3d/vertex/PoseStack;FLnet/minecraft/world/entity/HumanoidArm;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 matrixStack
 		ARG 2 partialTicks
@@ -15,6 +17,10 @@ CLASS net/minecraft/client/renderer/ItemInHandRenderer
 	METHOD calculateMapTilt (F)F
 		COMMENT Return the angle to render the Map
 		ARG 1 pitch
+	METHOD evaluateWhichHandsToRender (Lnet/minecraft/client/player/LocalPlayer;)Lnet/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection;
+		ARG 0 player
+	METHOD isChargedCrossbow (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 stack
 	METHOD itemUsed (Lnet/minecraft/world/InteractionHand;)V
 		ARG 1 hand
 	METHOD renderArmWithItem (Lnet/minecraft/client/player/AbstractClientPlayer;FFLnet/minecraft/world/InteractionHand;FLnet/minecraft/world/item/ItemStack;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V
@@ -74,3 +80,11 @@ CLASS net/minecraft/client/renderer/ItemInHandRenderer
 		ARG 4 pitch
 		ARG 5 equippedProgress
 		ARG 6 swingProgress
+	METHOD selectionUsingItemWhileHoldingBowLike (Lnet/minecraft/client/player/LocalPlayer;)Lnet/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection;
+		ARG 0 player
+	CLASS HandRenderSelection
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 renderMainHand
+			ARG 4 renderOffHand
+		METHOD onlyForHand (Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/client/renderer/ItemInHandRenderer$HandRenderSelection;
+			ARG 0 hand

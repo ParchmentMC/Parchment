@@ -1,4 +1,9 @@
 CLASS net/minecraft/client/renderer/PostChain
+	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureManager;Lnet/minecraft/server/packs/resources/ResourceManager;Lcom/mojang/blaze3d/pipeline/RenderTarget;Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 textureManager
+		ARG 2 resourceManager
+		ARG 3 screenTarget
+		ARG 4 name
 	METHOD addPass (Ljava/lang/String;Lcom/mojang/blaze3d/pipeline/RenderTarget;Lcom/mojang/blaze3d/pipeline/RenderTarget;)Lnet/minecraft/client/renderer/PostPass;
 		ARG 1 programName
 		ARG 2 framebuffer
@@ -7,10 +12,18 @@ CLASS net/minecraft/client/renderer/PostChain
 		ARG 1 name
 		ARG 2 width
 		ARG 3 height
+	METHOD getRenderTarget (Ljava/lang/String;)Lcom/mojang/blaze3d/pipeline/RenderTarget;
+		ARG 1 target
 	METHOD getTempTarget (Ljava/lang/String;)Lcom/mojang/blaze3d/pipeline/RenderTarget;
 		ARG 1 attributeName
+	METHOD load (Lnet/minecraft/client/renderer/texture/TextureManager;Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 textureManager
+		ARG 2 resourceLocation
 	METHOD parsePassNode (Lnet/minecraft/client/renderer/texture/TextureManager;Lcom/google/gson/JsonElement;)V
+		ARG 1 textureManager
 		ARG 2 json
+	METHOD parseTargetNode (Lcom/google/gson/JsonElement;)V
+		ARG 1 json
 	METHOD parseUniformNode (Lcom/google/gson/JsonElement;)V
 		ARG 1 json
 	METHOD process (F)V
