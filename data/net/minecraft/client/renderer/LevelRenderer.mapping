@@ -10,18 +10,18 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 renderBuffers
 	METHOD addChainedFilledBoxVertices (Lcom/mojang/blaze3d/vertex/BufferBuilder;DDDDDDFFFF)V
 		ARG 0 builder
-		ARG 1 x1
-		ARG 3 y1
-		ARG 5 z1
-		ARG 7 x2
-		ARG 9 y2
-		ARG 11 z2
+		ARG 1 minX
+		ARG 3 minY
+		ARG 5 minZ
+		ARG 7 maxX
+		ARG 9 maxY
+		ARG 11 maxZ
 		ARG 13 red
 		ARG 14 green
 		ARG 15 blue
 		ARG 16 alpha
 	METHOD addFrustumQuad (Lcom/mojang/blaze3d/vertex/VertexConsumer;IIIIIII)V
-		ARG 1 buffer
+		ARG 1 consumer
 		ARG 2 vertex1
 		ARG 3 vertex2
 		ARG 4 vertex3
@@ -30,10 +30,10 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 7 green
 		ARG 8 blue
 	METHOD addFrustumVertex (Lcom/mojang/blaze3d/vertex/VertexConsumer;I)V
-		ARG 1 buffer
+		ARG 1 consumer
 		ARG 2 vertex
 	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
-		ARG 1 particleData
+		ARG 1 options
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
@@ -41,8 +41,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 ySpeed
 		ARG 12 zSpeed
 	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;ZDDDDDD)V
-		ARG 1 particleData
-		ARG 2 alwaysRender
+		ARG 1 options
+		ARG 2 ignoreRange
 		ARG 3 x
 		ARG 5 y
 		ARG 7 z
@@ -50,7 +50,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 11 ySpeed
 		ARG 13 zSpeed
 	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;ZZDDDDDD)V
-		ARG 1 particleData
+		ARG 1 options
 		ARG 2 ignoreRange
 		ARG 3 minimizeLevel
 		ARG 4 x
@@ -60,8 +60,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 12 ySpeed
 		ARG 14 zSpeed
 	METHOD addParticleInternal (Lnet/minecraft/core/particles/ParticleOptions;ZDDDDDD)Lnet/minecraft/client/particle/Particle;
-		ARG 1 particleData
-		ARG 2 alwaysRender
+		ARG 1 options
+		ARG 2 ignoreRange
 		ARG 3 x
 		ARG 5 y
 		ARG 7 z
@@ -69,9 +69,9 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 11 ySpeed
 		ARG 13 zSpeed
 	METHOD addParticleInternal (Lnet/minecraft/core/particles/ParticleOptions;ZZDDDDDD)Lnet/minecraft/client/particle/Particle;
-		ARG 1 particleData
-		ARG 2 alwaysRender
-		ARG 3 minimizeLevel
+		ARG 1 options
+		ARG 2 ignoreRange
+		ARG 3 decreased
 		ARG 4 x
 		ARG 6 y
 		ARG 8 z
@@ -87,18 +87,25 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 4 newState
 		ARG 5 flags
 	METHOD buildClouds (Lcom/mojang/blaze3d/vertex/BufferBuilder;DDDLnet/minecraft/world/phys/Vec3;)V
-		ARG 1 buffer
-		ARG 2 cloudsX
-		ARG 4 cloudsY
-		ARG 6 cloudsZ
-		ARG 8 cloudsColor
+		ARG 1 builder
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 cloudColor
 	METHOD buildSkyDisc (Lcom/mojang/blaze3d/vertex/BufferBuilder;F)V
 		ARG 0 builder
 		ARG 1 y
 	METHOD calculateParticleLevel (Z)Lnet/minecraft/client/ParticleStatus;
-		ARG 1 minimiseLevel
+		ARG 1 decreased
+	METHOD captureFrustum (Lcom/mojang/math/Matrix4f;Lcom/mojang/math/Matrix4f;DDDLnet/minecraft/client/renderer/culling/Frustum;)V
+		ARG 1 projection
+		ARG 2 matrix
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
+		ARG 9 frustum
 	METHOD checkPoseStack (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 	METHOD clear ()V
 		COMMENT Deletes all display lists
 	METHOD compileChunksUntil (J)V
@@ -108,33 +115,44 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 pos
 		ARG 3 progress
 	METHOD drawStars (Lcom/mojang/blaze3d/vertex/BufferBuilder;)V
-		ARG 1 bufferBuilder
+		ARG 1 builder
 	METHOD getChunkStatistics ()Ljava/lang/String;
 		COMMENT Gets the render info for use on the Debug screen
 	METHOD getEntityStatistics ()Ljava/lang/String;
 		COMMENT Gets the entities info for use on the Debug screen
 	METHOD getLightColor (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
-		ARG 0 lightReader
-		ARG 1 blockPos
+		ARG 0 level
+		ARG 1 pos
 	METHOD getLightColor (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)I
-		ARG 0 lightReader
-		ARG 1 blockState
-		ARG 2 blockPos
+		ARG 0 level
+		ARG 1 state
+		ARG 2 pos
 	METHOD getRelativeFrom (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;
 		COMMENT Returns RenderChunk offset from given RenderChunk in given direction, or null if it can't be seen by player at given BlockPos.
-		ARG 1 playerPos
-		ARG 2 renderChunkBase
+		ARG 1 pos
+		ARG 2 renderChunk
 		ARG 3 facing
 	METHOD globalLevelEvent (ILnet/minecraft/core/BlockPos;I)V
-		ARG 1 soundID
+		ARG 1 type
 		ARG 2 pos
 		ARG 3 data
 	METHOD initOutline ()V
 		COMMENT Creates the entity outline shader to be stored in RenderGlobal.entityOutlineShader
+	METHOD lambda$renderLevel$2 (Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
+		ARG 2 renderType
+	METHOD lambda$renderShape$4 (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;DDDFFFFDDDDDD)V
+		ARG 12 minX
+		ARG 14 minY
+		ARG 16 minZ
+		ARG 18 maxX
+		ARG 20 maxY
+		ARG 22 maxZ
+	METHOD lambda$updateRenderChunks$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;)D
+		ARG 1 renderChunkInfo
 	METHOD levelEvent (Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 player
 		ARG 2 type
-		ARG 3 blockPos
+		ARG 3 pos
 		ARG 4 data
 	METHOD notifyNearbyEntities (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Z)V
 		COMMENT Called when a record starts or stops playing. Used to make parrots start or stop partying.
@@ -144,43 +162,61 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD onResourceManagerReload (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 1 resourceManager
 	METHOD playStreamingMusic (Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/core/BlockPos;)V
-		ARG 1 sound
+		ARG 1 soundEvent
 		ARG 2 pos
+	METHOD prepareCullFrustum (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/phys/Vec3;Lcom/mojang/math/Matrix4f;)V
+		ARG 1 poseStack
+		ARG 2 position
+		ARG 3 projection
 	METHOD removeProgress (Lnet/minecraft/server/level/BlockDestructionProgress;)V
 		ARG 1 progress
+	METHOD renderChunkLayer (Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack;DDDLcom/mojang/math/Matrix4f;)V
+		ARG 1 renderType
+		ARG 2 poseStack
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
+		ARG 9 projection
+	METHOD renderClouds (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/math/Matrix4f;FDDD)V
+		ARG 1 poseStack
+		ARG 2 projection
+		ARG 3 partialTicks
+		ARG 4 x
+		ARG 6 y
+		ARG 8 z
 	METHOD renderDebug (Lnet/minecraft/client/Camera;)V
-		ARG 1 activeRenderInfo
+		ARG 1 camera
 	METHOD renderEndSky (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 	METHOD renderEntity (Lnet/minecraft/world/entity/Entity;DDDFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;)V
 		ARG 1 entity
-		ARG 2 camX
-		ARG 4 camY
-		ARG 6 camZ
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
 		ARG 8 partialTicks
-		ARG 9 matrixStack
-		ARG 10 buffer
+		ARG 9 poseStack
+		ARG 10 bufferSource
 	METHOD renderHitOutline (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 matrixStack
-		ARG 2 buffer
+		ARG 1 poseStack
+		ARG 2 consumer
 		ARG 3 entity
 		ARG 4 x
 		ARG 6 y
 		ARG 8 z
-		ARG 10 blockPos
-		ARG 11 blockState
+		ARG 10 pos
+		ARG 11 state
 	METHOD renderLevel (Lcom/mojang/blaze3d/vertex/PoseStack;FJZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lcom/mojang/math/Matrix4f;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 partialTicks
 		ARG 3 finishTimeNano
 		ARG 5 drawBlockOutline
-		ARG 6 activeRenderInfo
+		ARG 6 camera
 		ARG 7 gameRenderer
-		ARG 8 lightmap
+		ARG 8 lightTexture
 		ARG 9 projection
 	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDDDDFFFF)V
-		ARG 0 matrixStack
-		ARG 1 buffer
+		ARG 0 poseStack
+		ARG 1 consumer
 		ARG 2 minX
 		ARG 4 minY
 		ARG 6 minZ
@@ -192,8 +228,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 16 blue
 		ARG 17 alpha
 	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDDDDFFFFFFF)V
-		ARG 0 matrixStack
-		ARG 1 buffer
+		ARG 0 poseStack
+		ARG 1 consumer
 		ARG 2 minX
 		ARG 4 minY
 		ARG 6 minZ
@@ -208,16 +244,28 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 19 green2
 		ARG 20 blue2
 	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/AABB;FFFF)V
-		ARG 0 matrixStack
-		ARG 1 buffer
+		ARG 0 poseStack
+		ARG 1 consumer
 		ARG 2 aabb
 		ARG 3 red
 		ARG 4 green
 		ARG 5 blue
 		ARG 6 alpha
+	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDDDDFFFF)V
+		ARG 0 consumer
+		ARG 1 minX
+		ARG 3 minY
+		ARG 5 minZ
+		ARG 7 maxX
+		ARG 9 maxY
+		ARG 11 maxZ
+		ARG 13 red
+		ARG 14 green
+		ARG 15 blue
+		ARG 16 alpha
 	METHOD renderShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFF)V
-		ARG 0 matrixStack
-		ARG 1 buffer
+		ARG 0 poseStack
+		ARG 1 consumer
 		ARG 2 shape
 		ARG 3 x
 		ARG 5 y
@@ -226,15 +274,20 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 green
 		ARG 11 blue
 		ARG 12 alpha
+	METHOD renderSky (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/math/Matrix4f;FLjava/lang/Runnable;)V
+		ARG 1 poseStack
+		ARG 2 projection
+		ARG 3 partialTicks
+		ARG 4 fogRenderer
 	METHOD renderSnowAndRain (Lnet/minecraft/client/renderer/LightTexture;FDDD)V
-		ARG 1 lightmap
+		ARG 1 lightTexture
 		ARG 2 partialTicks
 		ARG 3 x
 		ARG 5 y
 		ARG 7 z
 	METHOD renderVoxelShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFF)V
-		ARG 0 matrixStack
-		ARG 1 buffer
+		ARG 0 poseStack
+		ARG 1 consumer
 		ARG 2 shape
 		ARG 3 x
 		ARG 5 y
@@ -243,11 +296,13 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 green
 		ARG 11 blue
 		ARG 12 alpha
+	METHOD renderWorldBorder (Lnet/minecraft/client/Camera;)V
+		ARG 1 camera
 	METHOD resize (II)V
 		ARG 1 width
 		ARG 2 height
 	METHOD setBlockDirty (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 blockPos
+		ARG 1 pos
 		ARG 2 oldState
 		ARG 3 newState
 	METHOD setBlockDirty (Lnet/minecraft/core/BlockPos;Z)V
@@ -255,15 +310,15 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 rerenderOnMainThread
 	METHOD setBlocksDirty (IIIIII)V
 		COMMENT On the client, re-renders all blocks in this range, inclusive. On the server, does nothing.
-		ARG 1 x1
-		ARG 2 y1
-		ARG 3 z1
-		ARG 4 x2
-		ARG 5 y2
-		ARG 6 z2
+		ARG 1 minX
+		ARG 2 minY
+		ARG 3 minZ
+		ARG 4 maxX
+		ARG 5 maxY
+		ARG 6 maxZ
 	METHOD setLevel (Lnet/minecraft/client/multiplayer/ClientLevel;)V
 		COMMENT set null to clear
-		ARG 1 levelClient
+		ARG 1 level
 	METHOD setSectionDirty (III)V
 		ARG 1 sectionX
 		ARG 2 sectionY
@@ -278,19 +333,47 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 sectionY
 		ARG 3 sectionZ
 	METHOD setupRender (Lnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/culling/Frustum;ZIZ)V
-		ARG 1 activeRenderInfo
-		ARG 2 camera
-		ARG 3 debugCamera
+		ARG 1 camera
+		ARG 2 frustum
+		ARG 3 cullingFrustum
 		ARG 4 frameCount
-		ARG 5 playerSpectator
+		ARG 5 playerInSpectator
 	METHOD tickRain (Lnet/minecraft/client/Camera;)V
-		ARG 1 activeRenderInfo
+		ARG 1 camera
 	METHOD updateGlobalBlockEntities (Ljava/util/Collection;Ljava/util/Collection;)V
-		ARG 1 tileEntitiesToRemove
-		ARG 2 tileEntitiesToAdd
+		ARG 1 blockEntitiesToRemove
+		ARG 2 blockEntitiesToAdd
+	METHOD updateRenderChunks (Lnet/minecraft/client/renderer/culling/Frustum;IZLnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;ILnet/minecraft/core/BlockPos;)V
+		ARG 1 frustum
+		ARG 2 frameCount
+		ARG 3 playerInSpectator
+		ARG 4 position
+		ARG 5 pos
+		ARG 6 renderChunk
+		ARG 7 chunkSize
+	CLASS RenderInfoMap
+		METHOD <init> (I)V
+			ARG 1 size
+		METHOD get (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;)Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;
+			ARG 1 renderChunk
+		METHOD put (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;)V
+			ARG 1 renderChunk
+			ARG 2 info
 	CLASS RenderChunkInfo
+		METHOD <init> (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/core/Direction;I)V
+			ARG 1 renderChunk
+			ARG 2 sourceDirection
+			ARG 3 step
+		METHOD addSourceDirection (Lnet/minecraft/core/Direction;)V
+			ARG 1 direction
 		METHOD hasDirection (Lnet/minecraft/core/Direction;)Z
 			ARG 1 facing
+		METHOD hasSourceDirection (I)Z
+			ARG 1 directionIndex
 		METHOD setDirections (BLnet/minecraft/core/Direction;)V
 			ARG 1 dir
 			ARG 2 facing
+	CLASS TransparencyShaderException
+		METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+			ARG 1 message
+			ARG 2 cause
