@@ -1,138 +1,166 @@
 CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
+	METHOD <init> (Lnet/minecraft/client/color/block/BlockColors;)V
+		ARG 1 blockColors
 	METHOD calculateShape (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;[ILnet/minecraft/core/Direction;[FLjava/util/BitSet;)V
-		ARG 1 blockReader
+		ARG 1 level
 		ARG 2 state
 		ARG 3 pos
-		ARG 4 vertexData
+		ARG 4 vertices
 		ARG 5 face
 		ARG 6 quadBounds
 		ARG 7 boundsFlags
 	METHOD putQuadData (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lnet/minecraft/client/renderer/block/model/BakedQuad;FFFFIIIII)V
-		ARG 1 blockAccess
+		ARG 1 level
 		ARG 2 state
 		ARG 3 pos
-		ARG 4 buffer
-		ARG 5 matrixEntry
+		ARG 4 consumer
+		ARG 5 pose
 		ARG 6 quad
-		ARG 7 colorMul0
-		ARG 8 colorMul1
-		ARG 9 colorMul2
-		ARG 10 colorMul3
-		ARG 11 brightness0
-		ARG 12 brightness1
-		ARG 13 brightness2
-		ARG 14 brightness3
-		ARG 15 combinedOverlay
+		ARG 7 brightness
+		ARG 8 brightness1
+		ARG 9 brightness2
+		ARG 10 brightness3
+		ARG 11 lightmap
+		ARG 12 lightmap1
+		ARG 13 lightmap2
+		ARG 14 lightmap3
+		ARG 15 overlay
 	METHOD renderModel (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/client/resources/model/BakedModel;FFFII)V
-		ARG 1 matrixEntry
-		ARG 2 buffer
+		ARG 1 pose
+		ARG 2 consumer
 		ARG 3 state
 		ARG 4 model
 		ARG 5 red
 		ARG 6 green
 		ARG 7 blue
-		ARG 8 combinedLight
-		ARG 9 combinedOverlay
+		ARG 8 packedLight
+		ARG 9 overlay
 	METHOD renderModelFaceAO (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Ljava/util/List;[FLjava/util/BitSet;Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientOcclusionFace;I)V
-		ARG 1 blockAccess
+		ARG 1 level
 		ARG 2 state
 		ARG 3 pos
-		ARG 4 matrixStack
-		ARG 5 buffer
-		ARG 6 list
+		ARG 4 poseStack
+		ARG 5 consumer
+		ARG 6 quads
 		ARG 7 quadBounds
-		ARG 8 bitSet
+		ARG 8 boundsFlags
 		ARG 9 aoFace
-		ARG 10 combinedOverlay
+		ARG 10 overlay
 	METHOD renderModelFaceFlat (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;IIZLcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Ljava/util/List;Ljava/util/BitSet;)V
-		ARG 1 blockAccess
+		ARG 1 level
 		ARG 2 state
 		ARG 3 pos
 		ARG 4 brightness
-		ARG 5 combinedOverlay
+		ARG 5 overlay
 		ARG 6 ownBrightness
-		ARG 7 matrixStack
-		ARG 8 buffer
-		ARG 9 list
-		ARG 10 bitSet
+		ARG 7 poseStack
+		ARG 8 consumer
+		ARG 9 quads
+		ARG 10 vertexFlags
 	METHOD renderQuadList (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFFLjava/util/List;II)V
-		ARG 0 matrixEntry
-		ARG 1 buffer
+		ARG 0 pose
+		ARG 1 consumer
 		ARG 2 red
 		ARG 3 green
 		ARG 4 blue
-		ARG 5 listQuads
-		ARG 6 combinedLight
-		ARG 7 combinedOverlay
+		ARG 5 quads
+		ARG 6 packedLight
+		ARG 7 overlay
 	METHOD tesselateBlock (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLjava/util/Random;JI)Z
 		ARG 1 level
 		ARG 2 model
 		ARG 3 state
 		ARG 4 pos
-		ARG 5 matrix
-		ARG 6 buffer
+		ARG 5 poseStack
+		ARG 6 consumer
 		ARG 7 checkSides
 		ARG 8 random
-		ARG 9 rand
-		ARG 11 combinedOverlay
+		ARG 9 seed
+		ARG 11 overlay
 	METHOD tesselateWithAO (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLjava/util/Random;JI)Z
 		ARG 1 level
 		ARG 2 model
 		ARG 3 state
 		ARG 4 pos
-		ARG 5 matrixStack
-		ARG 6 buffer
+		ARG 5 poseStack
+		ARG 6 consumer
 		ARG 7 checkSides
 		ARG 8 random
-		ARG 9 rand
-		ARG 11 combinedOverlay
+		ARG 9 seed
+		ARG 11 overlay
 	METHOD tesselateWithoutAO (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLjava/util/Random;JI)Z
 		ARG 1 level
 		ARG 2 model
 		ARG 3 state
 		ARG 4 pos
-		ARG 5 matrixStack
-		ARG 6 buffer
+		ARG 5 poseStack
+		ARG 6 consumer
 		ARG 7 checkSides
 		ARG 8 random
-		ARG 9 rand
-		ARG 11 combinedOverlay
+		ARG 9 seed
+		ARG 11 overlay
 	CLASS Cache
 		METHOD getLightColor (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
-			ARG 1 blockState
-			ARG 2 lightReader
-			ARG 3 blockPos
+			ARG 1 state
+			ARG 2 level
+			ARG 3 pos
 		METHOD getShadeBrightness (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)F
-			ARG 1 blockState
-			ARG 2 lightReader
-			ARG 3 blockPos
+			ARG 1 state
+			ARG 2 level
+			ARG 3 pos
+		CLASS 1
+			METHOD rehash (I)V
+				ARG 1 newN
+		CLASS 2
+			METHOD rehash (I)V
+				ARG 1 newN
+	CLASS SizeInfo
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/core/Direction;Z)V
+			ARG 3 direction
+			ARG 4 flip
 	CLASS AdjacencyInfo
+		METHOD <init> (Ljava/lang/String;I[Lnet/minecraft/core/Direction;FZ[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;)V
+			ARG 3 corners
+			ARG 5 doNotCubicWeight
+			ARG 6 vert0Weights
+			ARG 7 vert1Weights
+			ARG 8 vert2Weights
+			ARG 9 vert3Weights
 		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
 			ARG 0 facing
+		METHOD lambda$static$0 ([Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;)V
+			ARG 0 byFacing
 	CLASS AmbientVertexRemap
+		METHOD <init> (Ljava/lang/String;IIIII)V
+			ARG 3 vert0
+			ARG 4 vert1
+			ARG 5 vert2
+			ARG 6 vert3
 		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
 			ARG 0 facing
+		METHOD lambda$static$0 ([Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;)V
+			ARG 0 byFacing
 	CLASS AmbientOcclusionFace
 		METHOD blend (IIII)I
 			COMMENT Get ambient occlusion brightness
-			ARG 1 br1
-			ARG 2 br2
-			ARG 3 br3
-			ARG 4 br4
+			ARG 1 brightness
+			ARG 2 brightness1
+			ARG 3 brightness2
+			ARG 4 brightness3
 		METHOD blend (IIIIFFFF)I
-			ARG 1 b1
-			ARG 2 b2
-			ARG 3 b3
-			ARG 4 b4
-			ARG 5 w1
-			ARG 6 w2
-			ARG 7 w3
-			ARG 8 w4
+			ARG 1 brightness
+			ARG 2 brightness1
+			ARG 3 brightness2
+			ARG 4 brightness3
+			ARG 5 weight
+			ARG 6 weight1
+			ARG 7 weight2
+			ARG 8 weight3
 		METHOD calculate (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;[FLjava/util/BitSet;Z)V
-			ARG 1 reader
+			ARG 1 level
 			ARG 2 state
 			ARG 3 pos
 			ARG 4 direction
-			ARG 5 vertexes
-			ARG 6 bitSet
-			ARG 7 applyDiffuseLighting
+			ARG 5 quadBounds
+			ARG 6 boundsFlags
+			ARG 7 shade
