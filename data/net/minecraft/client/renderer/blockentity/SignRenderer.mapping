@@ -1,4 +1,22 @@
 CLASS net/minecraft/client/renderer/blockentity/SignRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider$Context;)V
+		ARG 1 context
+	METHOD createSignModel (Lnet/minecraft/client/model/geom/EntityModelSet;Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/client/renderer/blockentity/SignRenderer$SignModel;
+		ARG 0 entityModelSet
+		ARG 1 woodType
+	METHOD getDarkColor (Lnet/minecraft/world/level/block/entity/SignBlockEntity;)I
+		ARG 0 blockEntity
+	METHOD getWoodType (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/block/state/properties/WoodType;
+		ARG 0 block
+	METHOD isOutlineVisible (Lnet/minecraft/world/level/block/entity/SignBlockEntity;I)Z
+		ARG 0 blockEntity
+		ARG 1 textColor
+	METHOD lambda$new$0 (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;
+		ARG 0 woodType
+	METHOD lambda$new$1 (Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider$Context;Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/client/renderer/blockentity/SignRenderer$SignModel;
+		ARG 1 woodType
+	METHOD lambda$render$2 (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/util/FormattedCharSequence;
+		ARG 1 message
 	METHOD render (Lnet/minecraft/world/level/block/entity/SignBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V
 		ARG 1 blockEntity
 		ARG 2 partialTicks
@@ -7,6 +25,8 @@ CLASS net/minecraft/client/renderer/blockentity/SignRenderer
 		ARG 5 combinedLight
 		ARG 6 combinedOverlay
 	CLASS SignModel
+		METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;)V
+			ARG 1 root
 		METHOD renderToBuffer (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;IIFFFF)V
 			ARG 1 matrixStack
 			ARG 2 buffer
