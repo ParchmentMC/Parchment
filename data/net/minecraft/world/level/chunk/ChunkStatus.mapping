@@ -1,7 +1,7 @@
 CLASS net/minecraft/world/level/chunk/ChunkStatus
 	COMMENT The statuses that chunks go through during different phases of generation and loading.
 	COMMENT Each status has an asynchronous task that is completed to generate a chunk, and one to load a chunk up to that status.
-	COMMENT Chunks are generated in sequential stages, some of which rely on nearby chunks from the previous stage. To this respect, tasks define a "range" that they require chunks to be generated up to the previous stage. This is responsible for the cocentric squares seen in the chunk loading screen.
+	COMMENT Chunks are generated in sequential stages, some of which rely on nearby chunks from the previous stage. To this respect, tasks define a "range" that they require chunks to be generated up to the previous stage. This is responsible for the concentric squares seen in the chunk loading screen.
 	METHOD <init> (Ljava/lang/String;Lnet/minecraft/world/level/chunk/ChunkStatus;ILjava/util/EnumSet;Lnet/minecraft/world/level/chunk/ChunkStatus$ChunkType;Lnet/minecraft/world/level/chunk/ChunkStatus$GenerationTask;Lnet/minecraft/world/level/chunk/ChunkStatus$LoadingTask;)V
 		ARG 1 name
 		ARG 2 parent
@@ -206,7 +206,7 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 			ARG 8 neighboringChunks
 			ARG 9 loadingChunk
 	CLASS SimpleGenerationTask
-		COMMENT An {@link GenerationTask} which completes all work synchronously.
+		COMMENT A {@link GenerationTask} which completes all work synchronously.
 		METHOD doWork (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 			ARG 1 status
 			ARG 2 level
