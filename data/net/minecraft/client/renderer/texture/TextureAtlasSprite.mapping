@@ -1,4 +1,18 @@
 CLASS net/minecraft/client/renderer/texture/TextureAtlasSprite
+	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureAtlas;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;IIIIILcom/mojang/blaze3d/platform/NativeImage;)V
+		ARG 1 atlas
+		ARG 2 spriteInfo
+		ARG 3 mipLevel
+		ARG 4 storageX
+		ARG 5 storageY
+		ARG 6 x
+		ARG 7 y
+		ARG 8 image
+	METHOD createTicker (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;III)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$AnimatedTexture;
+		ARG 1 spriteInfo
+		ARG 2 imageWidth
+		ARG 3 imageHeight
+		ARG 4 mipLevel
 	METHOD getHeight ()I
 		COMMENT Returns the height of the icon, in pixels.
 	METHOD getU (D)F
@@ -8,6 +22,8 @@ CLASS net/minecraft/client/renderer/texture/TextureAtlasSprite
 		COMMENT Returns the minimum U coordinate to use when rendering with this icon.
 	METHOD getU1 ()F
 		COMMENT Returns the maximum U coordinate to use when rendering with this icon.
+	METHOD getUOffset (F)F
+		ARG 1 offset
 	METHOD getV (D)F
 		COMMENT Gets a V coordinate on the icon. 0 returns vMin and 16 returns vMax. Other arguments return in-between values.
 		ARG 1 v
@@ -15,20 +31,61 @@ CLASS net/minecraft/client/renderer/texture/TextureAtlasSprite
 		COMMENT Returns the minimum V coordinate to use when rendering with this icon.
 	METHOD getV1 ()F
 		COMMENT Returns the maximum V coordinate to use when rendering with this icon.
+	METHOD getVOffset (F)F
+		ARG 1 offset
 	METHOD getWidth ()I
 		COMMENT Returns the width of the icon, in pixels.
 	METHOD isTransparent (III)Z
 		ARG 1 frameIndex
 		ARG 2 pixelX
 		ARG 3 pixelY
+	METHOD lambda$createTicker$3 (Ljava/util/List;II)V
+		ARG 1 index
+		ARG 2 time
+	METHOD lambda$createTicker$4 (Lit/unimi/dsi/fastutil/ints/IntSet;I)Z
+		ARG 0 index
 	METHOD upload (II[Lcom/mojang/blaze3d/platform/NativeImage;)V
 		ARG 1 xOffset
 		ARG 2 yOffset
 		ARG 3 frames
 	METHOD wrap (Lcom/mojang/blaze3d/vertex/VertexConsumer;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
-		ARG 1 buffer
+		ARG 1 consumer
+	CLASS Info
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;IILnet/minecraft/client/resources/metadata/animation/AnimationMetadataSection;)V
+			ARG 1 name
+			ARG 2 width
+			ARG 3 height
+			ARG 4 metadata
+	CLASS FrameInfo
+		METHOD <init> (II)V
+			ARG 1 index
+			ARG 2 time
+	CLASS AnimatedTexture
+		METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Ljava/util/List;ILnet/minecraft/client/renderer/texture/TextureAtlasSprite$InterpolationData;)V
+			ARG 2 frames
+			ARG 3 frameRowSize
+			ARG 4 interpolationData
+		METHOD getFrameX (I)I
+			ARG 1 frameIndex
+		METHOD getFrameY (I)I
+			ARG 1 frameIndex
+		METHOD lambda$getUniqueFrames$1 (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$FrameInfo;)I
+			ARG 0 frame
+		METHOD uploadFrame (I)V
+			ARG 1 frameIndex
 	CLASS InterpolationData
+		METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;I)V
+			ARG 2 spriteInfo
+			ARG 3 mipLevel
+		METHOD getPixel (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$AnimatedTexture;IIII)I
+			ARG 1 texture
+			ARG 2 frameIndex
+			ARG 3 mipLevel
+			ARG 4 x
+			ARG 5 y
 		METHOD mix (DII)I
 			ARG 1 ratio
-			ARG 3 val1
-			ARG 4 val2
+			ARG 3 value0
+			ARG 4 value1
+		METHOD uploadInterpolatedFrame (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$AnimatedTexture;)V
+			ARG 1 texture
