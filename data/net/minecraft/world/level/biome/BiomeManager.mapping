@@ -16,15 +16,17 @@ CLASS net/minecraft/world/level/biome/BiomeManager
 		ARG 2 y
 		ARG 3 z
 	METHOD getPrimaryBiomeAtChunk (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/world/level/biome/Biome;
-		ARG 1 pos
+		ARG 1 chunkPos
 	METHOD obfuscateSeed (J)J
 		ARG 0 seed
 	METHOD withDifferentSource (Lnet/minecraft/world/level/biome/BiomeSource;)Lnet/minecraft/world/level/biome/BiomeManager;
-		ARG 1 newProvider
+		ARG 1 newSource
 	CLASS NoiseBiomeSource
 		METHOD getNoiseBiome (III)Lnet/minecraft/world/level/biome/Biome;
+			COMMENT Gets the biome at the given quart positions.
+			COMMENT Note that the coordinates passed into this method are 1/4 the scale of block coordinates. The noise biome is then used by the {@link net.minecraft.world.level.biome.BiomeZoomer} to produce a biome for each unique position, whilst only saving the biomes once per each 4x4x4 cube.
 			ARG 1 x
 			ARG 2 y
 			ARG 3 z
 		METHOD getPrimaryBiome (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/world/level/biome/Biome;
-			ARG 1 pos
+			ARG 1 chunkPos

@@ -1,25 +1,13 @@
 CLASS net/minecraft/world/level/chunk/ProtoTickList
 	METHOD <init> (Ljava/util/function/Predicate;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/nbt/ListTag;Lnet/minecraft/world/level/LevelHeightAccessor;)V
-		ARG 1 filter
-		ARG 2 pos
+		ARG 1 ignore
+		ARG 2 chunkPos
 		ARG 3 tag
-		ARG 4 level
+		ARG 4 levelHeightAccessor
 	METHOD <init> (Ljava/util/function/Predicate;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/LevelHeightAccessor;)V
 		ARG 1 filter
 		ARG 2 pos
 		ARG 3 level
 	METHOD copyOut (Lnet/minecraft/world/level/TickList;Ljava/util/function/Function;)V
 		ARG 1 tickList
-		ARG 2 func
-	METHOD hasScheduledTick (Lnet/minecraft/core/BlockPos;Ljava/lang/Object;)Z
-		ARG 1 pos
-		ARG 2 item
-	METHOD scheduleTick (Lnet/minecraft/core/BlockPos;Ljava/lang/Object;ILnet/minecraft/world/level/TickPriority;)V
-		ARG 1 pos
-		ARG 2 item
-		ARG 3 scheduledTime
-		ARG 4 priority
-	METHOD willTickThisTick (Lnet/minecraft/core/BlockPos;Ljava/lang/Object;)Z
-		COMMENT Checks if this position/item is scheduled to be updated this tick
-		ARG 1 pos
-		ARG 2 obj
+		ARG 2 objectAccessor

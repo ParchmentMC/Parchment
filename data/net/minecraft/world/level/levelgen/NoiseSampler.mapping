@@ -1,4 +1,5 @@
 CLASS net/minecraft/world/level/levelgen/NoiseSampler
+	COMMENT Samples the base terrain density noise, using the biome's depth and scale factors.
 	METHOD <init> (Lnet/minecraft/world/level/biome/BiomeSource;IIILnet/minecraft/world/level/levelgen/NoiseSettings;Lnet/minecraft/world/level/levelgen/synth/BlendedNoise;Lnet/minecraft/world/level/levelgen/synth/SimplexNoise;Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;Lnet/minecraft/world/level/levelgen/NoiseModifier;)V
 		ARG 1 biomeSource
 		ARG 2 cellWidth
@@ -9,5 +10,27 @@ CLASS net/minecraft/world/level/levelgen/NoiseSampler
 		ARG 7 islandNoise
 		ARG 8 depthNoise
 		ARG 9 caveNoiseModifier
+	METHOD applySlide (DI)D
+		COMMENT Applies a slide factor to the density noise, which interpolates the edges of the world towards a target value.
+		ARG 1 noise
+		ARG 3 y
+	METHOD computeInitialDensity (IDDD)D
+		COMMENT Computes an initial density for the noise, which controls the overall style of the terrain.
+		COMMENT For example, in the overworld, this density is inversely proportional to the y value, and results in terrain that is solid at the bottom and air at the top.
+		ARG 1 y
+		ARG 2 depth
+		ARG 4 scale
+		ARG 6 randomDensityOffset
 	METHOD fillNoiseColumn ([DIILnet/minecraft/world/level/levelgen/NoiseSettings;III)V
+		ARG 1 noiseValues
+		ARG 2 cellX
+		ARG 3 cellZ
 		ARG 4 noiseSettings
+		ARG 5 biomeY
+		ARG 6 minCellY
+		ARG 7 cellCountY
+	METHOD getRandomDensity (II)D
+		ARG 1 x
+		ARG 2 z
+	METHOD lambda$static$0 ([F)V
+		ARG 0 kernel

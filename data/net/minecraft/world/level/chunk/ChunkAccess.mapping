@@ -1,6 +1,5 @@
 CLASS net/minecraft/world/level/chunk/ChunkAccess
 	METHOD addEntity (Lnet/minecraft/world/entity/Entity;)V
-		COMMENT Adds an entity to the chunk.
 		ARG 1 entity
 	METHOD addPackedPostProcess (SI)V
 		ARG 1 packedPosition
@@ -12,13 +11,11 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 	METHOD getEventDispatcher (I)Lnet/minecraft/world/level/gameevent/GameEventDispatcher;
 		ARG 1 sectionY
 	METHOD getHeighestPosition (Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/core/BlockPos;
-		ARG 1 types
+		ARG 1 type
 	METHOD getHeight (Lnet/minecraft/world/level/levelgen/Heightmap$Types;II)I
-		ARG 1 heightmapType
+		ARG 1 type
 		ARG 2 x
 		ARG 3 z
-	METHOD getHighestSectionPosition ()I
-		COMMENT Returns the topmost ExtendedBlockStorage instance for this Chunk that actually contains a block.
 	METHOD getOrCreateHeightmapUnprimed (Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/world/level/levelgen/Heightmap;
 		ARG 1 type
 	METHOD getOrCreateOffsetList ([Lit/unimi/dsi/fastutil/shorts/ShortList;I)Lit/unimi/dsi/fastutil/shorts/ShortList;
@@ -26,10 +23,7 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 		ARG 1 index
 	METHOD getOrCreateSection (I)Lnet/minecraft/world/level/chunk/LevelChunkSection;
 		ARG 1 index
-	METHOD getPos ()Lnet/minecraft/world/level/ChunkPos;
-		COMMENT Gets a {@link ChunkPos} representing the x and z coordinates of this chunk.
 	METHOD isYSpaceEmpty (II)Z
-		COMMENT Returns whether the ExtendedBlockStorages containing levels (in blocks) from arg 1 to arg 2 are fully empty (true) or not (false).
 		ARG 1 startY
 		ARG 2 endY
 	METHOD markPosForPostprocessing (Lnet/minecraft/core/BlockPos;)V
@@ -41,7 +35,7 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 	METHOD setBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 blockEntity
 	METHOD setBlockEntityNbt (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 nbt
+		ARG 1 tag
 	METHOD setBlockState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 pos
 		ARG 2 state
@@ -50,8 +44,8 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 		ARG 1 type
 		ARG 2 data
 	METHOD setInhabitedTime (J)V
-		ARG 1 newInhabitedTime
+		ARG 1 inhabitedTime
 	METHOD setLightCorrect (Z)V
 		ARG 1 lightCorrect
 	METHOD setUnsaved (Z)V
-		ARG 1 modified
+		ARG 1 unsaved

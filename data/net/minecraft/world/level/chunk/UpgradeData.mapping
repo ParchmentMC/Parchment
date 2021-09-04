@@ -4,6 +4,8 @@ CLASS net/minecraft/world/level/chunk/UpgradeData
 		ARG 2 level
 	METHOD <init> (Lnet/minecraft/world/level/LevelHeightAccessor;)V
 		ARG 1 level
+	METHOD lambda$upgrade$0 (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/chunk/UpgradeData$BlockFixer;)V
+		ARG 1 fixer
 	METHOD updateState (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 0 state
 		ARG 1 direction
@@ -16,11 +18,20 @@ CLASS net/minecraft/world/level/chunk/UpgradeData
 		ARG 1 chunk
 	METHOD upgradeSides (Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/core/Direction8;)V
 		ARG 0 chunk
+		ARG 1 side
 	CLASS BlockFixer
 		METHOD processChunk (Lnet/minecraft/world/level/LevelAccessor;)V
 			ARG 1 level
+		METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+			ARG 1 state
+			ARG 2 direction
+			ARG 3 offsetState
+			ARG 4 level
+			ARG 5 pos
+			ARG 6 offsetPos
 	CLASS BlockFixers
 		METHOD <init> (Ljava/lang/String;IZ[Lnet/minecraft/world/level/block/Block;)V
+			ARG 3 chunkyFixer
 			ARG 4 blocks
 		METHOD <init> (Ljava/lang/String;I[Lnet/minecraft/world/level/block/Block;)V
 			ARG 3 blocks

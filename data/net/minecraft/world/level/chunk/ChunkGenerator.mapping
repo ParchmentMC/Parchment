@@ -1,20 +1,20 @@
 CLASS net/minecraft/world/level/chunk/ChunkGenerator
 	METHOD <init> (Lnet/minecraft/world/level/biome/BiomeSource;Lnet/minecraft/world/level/biome/BiomeSource;Lnet/minecraft/world/level/levelgen/StructureSettings;J)V
 		ARG 1 biomeSource
-		ARG 2 runtimeSource
+		ARG 2 runtimeBiomeSource
 		ARG 3 settings
 		ARG 4 strongholdSeed
 	METHOD <init> (Lnet/minecraft/world/level/biome/BiomeSource;Lnet/minecraft/world/level/levelgen/StructureSettings;)V
 		ARG 1 biomeSource
 		ARG 2 settings
 	METHOD applyBiomeDecoration (Lnet/minecraft/server/level/WorldGenRegion;Lnet/minecraft/world/level/StructureFeatureManager;)V
-		ARG 1 region
-		ARG 2 structureManager
+		ARG 1 level
+		ARG 2 structureFeatureManager
 	METHOD applyCarvers (JLnet/minecraft/world/level/biome/BiomeManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)V
 		ARG 1 seed
 		ARG 3 biomeManager
 		ARG 4 chunk
-		ARG 5 carving
+		ARG 5 step
 	METHOD buildSurfaceAndBedrock (Lnet/minecraft/server/level/WorldGenRegion;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 		COMMENT Generate the SURFACE part of a chunk
 		ARG 1 level
@@ -26,25 +26,25 @@ CLASS net/minecraft/world/level/chunk/ChunkGenerator
 		ARG 2 chunk
 	METHOD createReferences (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 		ARG 1 level
-		ARG 2 structureManager
+		ARG 2 structureFeatureManager
 		ARG 3 chunk
 	METHOD createStructure (Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;JLnet/minecraft/world/level/biome/Biome;)V
 		ARG 1 feature
-		ARG 2 registry
-		ARG 3 structureManager
+		ARG 2 registryAccess
+		ARG 3 structureFeatureManager
 		ARG 4 chunk
-		ARG 5 templateManager
+		ARG 5 structureManager
 		ARG 6 seed
 		ARG 8 biome
 	METHOD createStructures (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;J)V
-		ARG 1 registry
-		ARG 2 structureManager
+		ARG 1 registryAccess
+		ARG 2 structureFeatureManager
 		ARG 3 chunk
-		ARG 4 templateManager
+		ARG 4 structureManager
 		ARG 5 seed
 	METHOD fillFromNoise (Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 executor
-		ARG 2 structureManager
+		ARG 2 structureFeatureManager
 		ARG 3 chunk
 	METHOD findNearestMapFeature (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;Lnet/minecraft/core/BlockPos;IZ)Lnet/minecraft/core/BlockPos;
 		ARG 1 level
@@ -59,11 +59,21 @@ CLASS net/minecraft/world/level/chunk/ChunkGenerator
 	METHOD getBaseHeight (IILnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/level/LevelHeightAccessor;)I
 		ARG 1 x
 		ARG 2 z
-		ARG 3 heightmap
+		ARG 3 type
+		ARG 4 level
+	METHOD getFirstFreeHeight (IILnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/level/LevelHeightAccessor;)I
+		ARG 1 x
+		ARG 2 z
+		ARG 3 type
+		ARG 4 level
+	METHOD getFirstOccupiedHeight (IILnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/level/LevelHeightAccessor;)I
+		ARG 1 x
+		ARG 2 z
+		ARG 3 type
 		ARG 4 level
 	METHOD getMobsAt (Lnet/minecraft/world/level/biome/Biome;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/util/random/WeightedRandomList;
 		ARG 1 biome
-		ARG 2 structureManager
+		ARG 2 structureFeatureManager
 		ARG 3 category
 		ARG 4 pos
 	METHOD getSpawnHeight (Lnet/minecraft/world/level/LevelHeightAccessor;)I
@@ -71,6 +81,6 @@ CLASS net/minecraft/world/level/chunk/ChunkGenerator
 	METHOD hasStronghold (Lnet/minecraft/world/level/ChunkPos;)Z
 		ARG 1 pos
 	METHOD spawnOriginalMobs (Lnet/minecraft/server/level/WorldGenRegion;)V
-		ARG 1 region
+		ARG 1 level
 	METHOD withSeed (J)Lnet/minecraft/world/level/chunk/ChunkGenerator;
 		ARG 1 seed
