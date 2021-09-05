@@ -1,10 +1,10 @@
 CLASS net/minecraft/client/renderer/LevelRenderer
 	FIELD entityEffect Lnet/minecraft/client/renderer/PostChain;
-		COMMENT Stores the shader group for the entity_outline shader
 	FIELD globalBlockEntities Ljava/util/Set;
-		COMMENT Global tile entities, always rendered (beacon, end teleporter, structures)
+		COMMENT Global block entities; these are always rendered, even if off-screen.
+		COMMENT <p>
+		COMMENT Any block entity is added to this if {@link net.minecraft.client.renderer.blockentity.BeaconRenderer#shouldRenderOffScreen(net.minecraft.world.level.block.entity.BeaconBlockEntity)} returns {@code true}.
 	FIELD playingRecords Ljava/util/Map;
-		COMMENT Currently playing sounds. Type: HashMap<ChunkCoordinates, ISound>
 	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/renderer/RenderBuffers;)V
 		ARG 1 minecraft
 		ARG 2 renderBuffers
@@ -79,7 +79,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 12 ySpeed
 		ARG 14 zSpeed
 	METHOD allChanged ()V
-		COMMENT Loads all the renderers and sets up the basic settings usage
+		COMMENT Loads all renderers and sets up the basic options usage.
 	METHOD blockChanged (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;I)V
 		ARG 1 level
 		ARG 2 pos
@@ -106,8 +106,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 9 frustum
 	METHOD checkPoseStack (Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 poseStack
-	METHOD clear ()V
-		COMMENT Deletes all display lists
 	METHOD compileChunksUntil (J)V
 		ARG 1 finishNanoTime
 	METHOD destroyBlockProgress (ILnet/minecraft/core/BlockPos;I)V
@@ -117,9 +115,9 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD drawStars (Lcom/mojang/blaze3d/vertex/BufferBuilder;)V
 		ARG 1 builder
 	METHOD getChunkStatistics ()Ljava/lang/String;
-		COMMENT Gets the render info for use on the Debug screen
+		COMMENT @return chunk rendering statistics to display on the {@linkplain net.minecraft.client.gui.components.DebugScreenOverlay debug overlay}
 	METHOD getEntityStatistics ()Ljava/lang/String;
-		COMMENT Gets the entities info for use on the Debug screen
+		COMMENT @return entity rendering statistics to display on the {@linkplain net.minecraft.client.gui.components.DebugScreenOverlay debug overlay}
 	METHOD getLightColor (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
 		ARG 0 level
 		ARG 1 pos
@@ -128,7 +126,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 state
 		ARG 2 pos
 	METHOD getRelativeFrom (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;
-		COMMENT Returns RenderChunk offset from given RenderChunk in given direction, or null if it can't be seen by player at given BlockPos.
+		COMMENT @return the specified {@code renderChunk} offset in the specified {@code direction}, or {@code null} if it can't be seen by the player at the specified {@code pos}
 		ARG 1 pos
 		ARG 2 renderChunk
 		ARG 3 facing
@@ -137,7 +135,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 pos
 		ARG 3 data
 	METHOD initOutline ()V
-		COMMENT Creates the entity outline shader to be stored in RenderGlobal.entityOutlineShader
 	METHOD lambda$renderLevel$2 (Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
 		ARG 2 renderType
 	METHOD lambda$renderShape$4 (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;DDDFFFFDDDDDD)V
@@ -155,10 +152,12 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 3 pos
 		ARG 4 data
 	METHOD notifyNearbyEntities (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Z)V
-		COMMENT Called when a record starts or stops playing. Used to make parrots start or stop partying.
+		COMMENT Notifies living entities in a 3 block range of the specified {@code pos} that a record is or isn't playing nearby, dependent on the specified {@code playing} parameter.
+		COMMENT <p>
+		COMMENT This is used to make parrots start or stop partying.
 		ARG 1 level
 		ARG 2 pos
-		ARG 3 isPartying
+		ARG 3 playing
 	METHOD onResourceManagerReload (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 1 resourceManager
 	METHOD playStreamingMusic (Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/core/BlockPos;)V
@@ -309,7 +308,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 pos
 		ARG 2 rerenderOnMainThread
 	METHOD setBlocksDirty (IIIIII)V
-		COMMENT On the client, re-renders all blocks in this range, inclusive. On the server, does nothing.
+		COMMENT Re-renders all blocks in the specified range.
 		ARG 1 minX
 		ARG 2 minY
 		ARG 3 minZ
@@ -317,8 +316,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 5 maxY
 		ARG 6 maxZ
 	METHOD setLevel (Lnet/minecraft/client/multiplayer/ClientLevel;)V
-		COMMENT set null to clear
 		ARG 1 level
+			COMMENT the level to set, or {@code null} to clear
 	METHOD setSectionDirty (III)V
 		ARG 1 sectionX
 		ARG 2 sectionY
