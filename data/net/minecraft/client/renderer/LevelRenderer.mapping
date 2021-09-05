@@ -109,7 +109,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD clear ()V
 		COMMENT Deletes all display lists
 	METHOD compileChunksUntil (J)V
-		ARG 1 finishTimeNano
+		ARG 1 finishNanoTime
 	METHOD destroyBlockProgress (ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 breakerId
 		ARG 2 pos
@@ -208,8 +208,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD renderLevel (Lcom/mojang/blaze3d/vertex/PoseStack;FJZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lcom/mojang/math/Matrix4f;)V
 		ARG 1 poseStack
 		ARG 2 partialTicks
-		ARG 3 finishTimeNano
-		ARG 5 drawBlockOutline
+		ARG 3 finishNanoTime
+		ARG 5 renderBlockOutline
 		ARG 6 camera
 		ARG 7 gameRenderer
 		ARG 8 lightTexture
@@ -278,7 +278,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 poseStack
 		ARG 2 projection
 		ARG 3 partialTicks
-		ARG 4 fogRenderer
+		ARG 4 skyFogRenderer
 	METHOD renderSnowAndRain (Lnet/minecraft/client/renderer/LightTexture;FDDD)V
 		ARG 1 lightTexture
 		ARG 2 partialTicks
@@ -351,6 +351,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 5 pos
 		ARG 6 renderChunk
 		ARG 7 chunkSize
+		ARG 8 playerPos
 	CLASS RenderInfoMap
 		METHOD <init> (I)V
 			ARG 1 size
@@ -361,7 +362,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 			ARG 2 info
 	CLASS RenderChunkInfo
 		METHOD <init> (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/core/Direction;I)V
-			ARG 1 renderChunk
+			ARG 1 chunk
 			ARG 2 sourceDirection
 			ARG 3 step
 		METHOD addSourceDirection (Lnet/minecraft/core/Direction;)V
