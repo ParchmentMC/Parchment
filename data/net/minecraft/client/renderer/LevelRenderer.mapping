@@ -2,7 +2,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	FIELD entityEffect Lnet/minecraft/client/renderer/PostChain;
 	FIELD globalBlockEntities Ljava/util/Set;
 		COMMENT Global block entities; these are always rendered, even if off-screen.
-		COMMENT <p>
 		COMMENT Any block entity is added to this if {@link net.minecraft.client.renderer.blockentity.BlockEntityRenderer#shouldRenderOffScreen(net.minecraft.world.level.block.entity.BlockEntity)} returns {@code true}.
 	FIELD playingRecords Ljava/util/Map;
 	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/renderer/RenderBuffers;)V
@@ -42,7 +41,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 12 zSpeed
 	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;ZDDDDDD)V
 		ARG 1 options
-		ARG 2 ignoreRange
+		ARG 2 force
+			COMMENT if {@code true}, the particle will be created regardless of its distance from the camera and the {@linkplain #calculateParticleLevel(boolean) calculated particle level}
 		ARG 3 x
 		ARG 5 y
 		ARG 7 z
@@ -51,8 +51,10 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 13 zSpeed
 	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;ZZDDDDDD)V
 		ARG 1 options
-		ARG 2 ignoreRange
-		ARG 3 minimizeLevel
+		ARG 2 force
+			COMMENT if {@code true}, the particle will be created regardless of its distance from the camera and the {@linkplain #calculateParticleLevel(boolean) calculated particle level}
+		ARG 3 decreased
+			COMMENT @param decreased if {@code true}, and the {@linkplain net.minecraft.client.Options#particles particles option} is set to minimal, attempts to spawn the particle at a decreased level
 		ARG 4 x
 		ARG 6 y
 		ARG 8 z
@@ -61,7 +63,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 14 zSpeed
 	METHOD addParticleInternal (Lnet/minecraft/core/particles/ParticleOptions;ZDDDDDD)Lnet/minecraft/client/particle/Particle;
 		ARG 1 options
-		ARG 2 ignoreRange
+		ARG 2 force
 		ARG 3 x
 		ARG 5 y
 		ARG 7 z
@@ -70,7 +72,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 13 zSpeed
 	METHOD addParticleInternal (Lnet/minecraft/core/particles/ParticleOptions;ZZDDDDDD)Lnet/minecraft/client/particle/Particle;
 		ARG 1 options
-		ARG 2 ignoreRange
+		ARG 2 force
 		ARG 3 decreased
 		ARG 4 x
 		ARG 6 y
@@ -96,15 +98,20 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 0 builder
 		ARG 1 y
 	METHOD calculateParticleLevel (Z)Lnet/minecraft/client/ParticleStatus;
+		COMMENT Calculates the level of particles to use based on the {@linkplain net.minecraft.client.Options#particles particles option} and the specified {@code decreased} parameter. This leads to randomly generating more or less particles than the set option.
 		ARG 1 decreased
+			COMMENT @param decreased if {@code true}, and the {@linkplain net.minecraft.client.Options#particles particles option} is set to minimal, has a 1 in 10 chance to return a decreased level and a further 1 in 3 chance to minimise it
 	METHOD captureFrustum (Lcom/mojang/math/Matrix4f;Lcom/mojang/math/Matrix4f;DDDLnet/minecraft/client/renderer/culling/Frustum;)V
-		ARG 1 projection
-		ARG 2 matrix
-		ARG 3 x
-		ARG 5 y
-		ARG 7 z
+		ARG 1 viewMatrix
+		ARG 2 projectionMatrix
+		ARG 3 camX
+		ARG 5 camY
+		ARG 7 camZ
 		ARG 9 frustum
 	METHOD checkPoseStack (Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		COMMENT Asserts that the specified {@code poseStack} is {@linkplain com.mojang.blaze3d.vertex.PoseStack#clear() clear}.
+		COMMENT
+		COMMENT @throws java.lang.IllegalStateException if the specified {@code poseStack} is not clear
 		ARG 1 poseStack
 	METHOD compileChunksUntil (J)V
 		ARG 1 finishNanoTime
@@ -126,12 +133,15 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 state
 		ARG 2 pos
 	METHOD getRelativeFrom (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;
-		COMMENT @return the specified {@code renderChunk} offset in the specified {@code direction}, or {@code null} if it can't be seen by the player at the specified {@code pos}
-		ARG 1 pos
+		COMMENT @return the specified {@code renderChunk} offset in the specified {@code direction}, or {@code null} if it can't be seen by the camera at the specified {@code cameraChunkPos}
+		ARG 1 cameraChunkPos
+			COMMENT the minimum block position of the chunk the camera is in
 		ARG 2 renderChunk
 		ARG 3 facing
 	METHOD globalLevelEvent (ILnet/minecraft/core/BlockPos;I)V
+		COMMENT Handles a global level event. This includes playing sounds that should be heard by any player, regardless of position and dimension, such as the Wither spawning.
 		ARG 1 type
+			COMMENT the type of level event to handle. This method only handles {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_WITHER_BOSS_SPAWN the wither boss spawn sound}, {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_DRAGON_DEATH the dragon's death sound}, and {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_END_PORTAL_SPAWN the end portal spawn sound}.
 		ARG 2 pos
 		ARG 3 data
 	METHOD initOutline ()V
@@ -153,7 +163,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 4 data
 	METHOD notifyNearbyEntities (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Z)V
 		COMMENT Notifies living entities in a 3 block range of the specified {@code pos} that a record is or isn't playing nearby, dependent on the specified {@code playing} parameter.
-		COMMENT <p>
 		COMMENT This is used to make parrots start or stop partying.
 		ARG 1 level
 		ARG 2 pos
@@ -165,54 +174,54 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 pos
 	METHOD prepareCullFrustum (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/phys/Vec3;Lcom/mojang/math/Matrix4f;)V
 		ARG 1 poseStack
-		ARG 2 position
-		ARG 3 projection
+		ARG 2 cameraPos
+		ARG 3 matrix
 	METHOD removeProgress (Lnet/minecraft/server/level/BlockDestructionProgress;)V
 		ARG 1 progress
 	METHOD renderChunkLayer (Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack;DDDLcom/mojang/math/Matrix4f;)V
 		ARG 1 renderType
 		ARG 2 poseStack
-		ARG 3 x
-		ARG 5 y
-		ARG 7 z
-		ARG 9 projection
+		ARG 3 camX
+		ARG 5 camY
+		ARG 7 camZ
+		ARG 9 projectionMatrix
 	METHOD renderClouds (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/math/Matrix4f;FDDD)V
 		ARG 1 poseStack
-		ARG 2 projection
-		ARG 3 partialTicks
-		ARG 4 x
-		ARG 6 y
-		ARG 8 z
+		ARG 2 projectionMatrix
+		ARG 3 partialTick
+		ARG 4 camX
+		ARG 6 camY
+		ARG 8 camZ
 	METHOD renderDebug (Lnet/minecraft/client/Camera;)V
 		ARG 1 camera
 	METHOD renderEndSky (Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 poseStack
 	METHOD renderEntity (Lnet/minecraft/world/entity/Entity;DDDFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;)V
 		ARG 1 entity
-		ARG 2 x
-		ARG 4 y
-		ARG 6 z
-		ARG 8 partialTicks
+		ARG 2 camX
+		ARG 4 camY
+		ARG 6 camZ
+		ARG 8 partialTick
 		ARG 9 poseStack
 		ARG 10 bufferSource
 	METHOD renderHitOutline (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 poseStack
 		ARG 2 consumer
 		ARG 3 entity
-		ARG 4 x
-		ARG 6 y
-		ARG 8 z
+		ARG 4 camX
+		ARG 6 camY
+		ARG 8 camZ
 		ARG 10 pos
 		ARG 11 state
 	METHOD renderLevel (Lcom/mojang/blaze3d/vertex/PoseStack;FJZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lcom/mojang/math/Matrix4f;)V
 		ARG 1 poseStack
-		ARG 2 partialTicks
+		ARG 2 partialTick
 		ARG 3 finishNanoTime
 		ARG 5 renderBlockOutline
 		ARG 6 camera
 		ARG 7 gameRenderer
 		ARG 8 lightTexture
-		ARG 9 projection
+		ARG 9 projectionMatrix
 	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDDDDFFFF)V
 		ARG 0 poseStack
 		ARG 1 consumer
@@ -245,7 +254,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/AABB;FFFF)V
 		ARG 0 poseStack
 		ARG 1 consumer
-		ARG 2 aabb
+		ARG 2 box
 		ARG 3 red
 		ARG 4 green
 		ARG 5 blue
@@ -275,15 +284,15 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 12 alpha
 	METHOD renderSky (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/math/Matrix4f;FLjava/lang/Runnable;)V
 		ARG 1 poseStack
-		ARG 2 projection
-		ARG 3 partialTicks
-		ARG 4 skyFogRenderer
+		ARG 2 projectionMatrix
+		ARG 3 partialTick
+		ARG 4 skyFogSetup
 	METHOD renderSnowAndRain (Lnet/minecraft/client/renderer/LightTexture;FDDD)V
 		ARG 1 lightTexture
-		ARG 2 partialTicks
-		ARG 3 x
-		ARG 5 y
-		ARG 7 z
+		ARG 2 partialTick
+		ARG 3 camX
+		ARG 5 camY
+		ARG 7 camZ
 	METHOD renderVoxelShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFF)V
 		ARG 0 poseStack
 		ARG 1 consumer
@@ -306,7 +315,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 3 newState
 	METHOD setBlockDirty (Lnet/minecraft/core/BlockPos;Z)V
 		ARG 1 pos
-		ARG 2 rerenderOnMainThread
+		ARG 2 reRenderOnMainThread
 	METHOD setBlocksDirty (IIIIII)V
 		COMMENT Re-renders all blocks in the specified range.
 		ARG 1 minX
@@ -326,7 +335,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 sectionX
 		ARG 2 sectionY
 		ARG 3 sectionZ
-		ARG 4 rerenderOnMainThread
+		ARG 4 reRenderOnMainThread
 	METHOD setSectionDirtyWithNeighbors (III)V
 		ARG 1 sectionX
 		ARG 2 sectionY
@@ -334,9 +343,9 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD setupRender (Lnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/culling/Frustum;ZIZ)V
 		ARG 1 camera
 		ARG 2 frustum
-		ARG 3 cullingFrustum
-		ARG 4 frameCount
-		ARG 5 playerInSpectator
+		ARG 3 hasCapturedFrustum
+		ARG 4 frameId
+		ARG 5 specatator
 	METHOD tickRain (Lnet/minecraft/client/Camera;)V
 		ARG 1 camera
 	METHOD updateGlobalBlockEntities (Ljava/util/Collection;Ljava/util/Collection;)V
@@ -344,13 +353,14 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 blockEntitiesToAdd
 	METHOD updateRenderChunks (Lnet/minecraft/client/renderer/culling/Frustum;IZLnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;ILnet/minecraft/core/BlockPos;)V
 		ARG 1 frustum
-		ARG 2 frameCount
-		ARG 3 playerInSpectator
-		ARG 4 position
-		ARG 5 pos
+		ARG 2 frameId
+		ARG 3 specatator
+		ARG 4 cameraPos
+		ARG 5 cameraBlockPos
 		ARG 6 renderChunk
 		ARG 7 chunkSize
-		ARG 8 playerPos
+		ARG 8 cameraChunkPos
+			COMMENT the minimum block position of the chunk the camera is in
 	CLASS RenderInfoMap
 		METHOD <init> (I)V
 			ARG 1 size

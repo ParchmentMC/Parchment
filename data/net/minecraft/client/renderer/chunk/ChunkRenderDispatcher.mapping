@@ -1,7 +1,7 @@
 CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/client/renderer/LevelRenderer;Ljava/util/concurrent/Executor;ZLnet/minecraft/client/renderer/ChunkBufferBuilderPack;)V
 		ARG 1 level
-		ARG 2 levelRenderer
+		ARG 2 renderer
 		ARG 3 executor
 		ARG 4 is64Bit
 		ARG 5 fixedBuffers
@@ -49,7 +49,7 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 			ARG 1 type
 			ARG 2 dispatcher
 		METHOD setDirty (Z)V
-			ARG 1 immediate
+			ARG 1 reRenderOnMainThread
 		METHOD setFrame (I)Z
 			ARG 1 lastFrame
 		METHOD setOrigin (III)V
@@ -95,8 +95,8 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 				ARG 2 throwable
 	CLASS CompiledChunk
 		METHOD facesCanSeeEachother (Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Z
-			ARG 1 direction
-			ARG 2 other
+			ARG 1 face
+			ARG 2 otherFace
 		METHOD isEmpty (Lnet/minecraft/client/renderer/RenderType;)Z
 			ARG 1 renderType
 		CLASS 1
