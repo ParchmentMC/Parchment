@@ -54,7 +54,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 force
 			COMMENT if {@code true}, the particle will be created regardless of its distance from the camera and the {@linkplain #calculateParticleLevel(boolean) calculated particle level}
 		ARG 3 decreased
-			COMMENT @param decreased if {@code true}, and the {@linkplain net.minecraft.client.Options#particles particles option} is set to minimal, attempts to spawn the particle at a decreased level
+			COMMENT if {@code true}, and the {@linkplain net.minecraft.client.Options#particles particles option} is set to minimal, attempts to spawn the particle at a decreased level
 		ARG 4 x
 		ARG 6 y
 		ARG 8 z
@@ -64,6 +64,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD addParticleInternal (Lnet/minecraft/core/particles/ParticleOptions;ZDDDDDD)Lnet/minecraft/client/particle/Particle;
 		ARG 1 options
 		ARG 2 force
+			COMMENT if {@code true}, the particle will be created regardless of its distance from the camera and the {@linkplain #calculateParticleLevel(boolean) calculated particle level}
 		ARG 3 x
 		ARG 5 y
 		ARG 7 z
@@ -73,7 +74,9 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD addParticleInternal (Lnet/minecraft/core/particles/ParticleOptions;ZZDDDDDD)Lnet/minecraft/client/particle/Particle;
 		ARG 1 options
 		ARG 2 force
+			COMMENT if {@code true}, the particle will be created regardless of its distance from the camera and the {@linkplain #calculateParticleLevel(boolean) calculated particle level}
 		ARG 3 decreased
+			COMMENT if {@code true}, and the {@linkplain net.minecraft.client.Options#particles particles option} is set to minimal, attempts to spawn the particle at a decreased level
 		ARG 4 x
 		ARG 6 y
 		ARG 8 z
@@ -100,7 +103,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD calculateParticleLevel (Z)Lnet/minecraft/client/ParticleStatus;
 		COMMENT Calculates the level of particles to use based on the {@linkplain net.minecraft.client.Options#particles particles option} and the specified {@code decreased} parameter. This leads to randomly generating more or less particles than the set option.
 		ARG 1 decreased
-			COMMENT @param decreased if {@code true}, and the {@linkplain net.minecraft.client.Options#particles particles option} is set to minimal, has a 1 in 10 chance to return a decreased level and a further 1 in 3 chance to minimise it
+			COMMENT if {@code true}, and the {@linkplain net.minecraft.client.Options#particles particles option} is set to minimal, has a 1 in 10 chance to return a decreased level and a further 1 in 3 chance to minimise it
 	METHOD captureFrustum (Lcom/mojang/math/Matrix4f;Lcom/mojang/math/Matrix4f;DDDLnet/minecraft/client/renderer/culling/Frustum;)V
 		ARG 1 viewMatrix
 		ARG 2 projectionMatrix
