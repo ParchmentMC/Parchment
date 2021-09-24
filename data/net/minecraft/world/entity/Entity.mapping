@@ -1,7 +1,4 @@
 CLASS net/minecraft/world/entity/Entity
-	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
-		ARG 1 type
-		ARG 2 world
 	METHOD absMoveTo (DDD)V
 		ARG 1 x
 		ARG 3 y
@@ -49,9 +46,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 pose
 	METHOD canRide (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
-	METHOD causeFallDamage (FF)Z
-		ARG 1 fallDistance
-		ARG 2 multiplier
 	METHOD changeDimension (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 server
 	METHOD checkDespawn ()V
@@ -111,15 +105,8 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Plays the {@link #getSplashSound() splash sound}, and the {@link ParticleType#WATER_BUBBLE} and {@link ParticleType#WATER_SPLASH} particles.
 	METHOD ejectPassengers ()V
 		COMMENT Dismounts all entities riding this entity from this entity.
-	METHOD equals (Ljava/lang/Object;)Z
-		ARG 1 other
 	METHOD fillCrashReportCategory (Lnet/minecraft/CrashReportCategory;)V
 		ARG 1 category
-	METHOD fillIndirectPassengers (ZLjava/util/Set;)V
-		ARG 1 checkPlayer
-		ARG 2 passengers
-	METHOD findDimensionEntryPoint (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/portal/PortalInfo;
-		ARG 1 world
 	METHOD getBlockExplosionResistance (Lnet/minecraft/world/level/Explosion;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/FluidState;F)F
 		COMMENT Explosion resistance of a block relative to this entity
 		ARG 1 explosion
@@ -152,10 +139,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 livingEntity
 	METHOD getEncodeId ()Ljava/lang/String;
 		COMMENT Returns the string that identifies this Entity's class
-	METHOD getExitPortal (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Z)Ljava/util/Optional;
-		ARG 1 world
-		ARG 2 position
-		ARG 3 isNether
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;)F
 		ARG 1 pose
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
@@ -163,10 +146,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 size
 	METHOD getEyePosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
-	METHOD getFluidHeight (Lnet/minecraft/tags/Tag;)D
-		ARG 1 fluidTag
-	METHOD getHorizontalDistanceSqr (Lnet/minecraft/world/phys/Vec3;)D
-		ARG 0 vec3
 	METHOD getInputVector (Lnet/minecraft/world/phys/Vec3;FF)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 relative
 		ARG 1 motionScaler
@@ -191,9 +170,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 scale
 	METHOD getRandomZ (D)D
 		ARG 1 scale
-	METHOD getRelativePortalPosition (Lnet/minecraft/core/Direction$Axis;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/phys/Vec3;
-		ARG 1 direction
-		ARG 2 result
 	METHOD getRopeHoldPosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
 	METHOD getRotationVector ()Lnet/minecraft/world/phys/Vec2;
@@ -232,8 +208,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 pos
 	METHOD hasIndirectPassenger (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
-	METHOD hasPassenger (Ljava/lang/Class;)Z
-		ARG 1 entityType
 	METHOD hasPassenger (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD hasPermissions (I)Z
@@ -263,9 +237,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 team
 	METHOD isAttackable ()Z
 		COMMENT Returns true if it's possible to attack this entity with an item.
-	METHOD isColliding (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 1 position
-		ARG 2 blockState
 	METHOD isEyeInFluid (Lnet/minecraft/tags/Tag;)Z
 		ARG 1 tag
 	METHOD isFree (DDD)Z
@@ -313,21 +284,6 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD killed (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 level
 		ARG 2 killedEntity
-	METHOD lambda$collide$1 (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 0 entity
-	METHOD lambda$findDimensionEntryPoint$4 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/level/portal/PortalInfo;
-		ARG 2 teleportResult
-	METHOD lambda$getDisplayName$9 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-		ARG 1 style
-	METHOD lambda$isInWall$2 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
-		ARG 1 blockState
-		ARG 2 blockPos
-	METHOD lambda$move$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 0 blockState
-	METHOD lambda$null$3 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
-		ARG 2 blockPos
-	METHOD lambda$teleportTo$10 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;)V
-		ARG 1 passenger
 	METHOD lavaHurt ()V
 		COMMENT Called whenever the entity is walking inside of lava.
 	METHOD lerpHeadTo (FI)V
@@ -418,8 +374,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 rayTraceDistance
 		ARG 3 partialTicks
 		ARG 4 rayTraceFluids
-	METHOD playFlySound (F)F
-		ARG 1 currentFlapTime
 	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;FF)V
 		ARG 1 sound
 		ARG 2 volume
@@ -500,8 +454,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 5 z
 	METHOD setDeltaMovement (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 motion
-	METHOD setGlowing (Z)V
-		ARG 1 glowing
 	METHOD setId (I)V
 		ARG 1 id
 	METHOD setInvisible (Z)V
@@ -512,8 +464,6 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD setItemSlot (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 slot
 		ARG 2 stack
-	METHOD setLevel (Lnet/minecraft/world/level/Level;)V
-		ARG 1 world
 	METHOD setNoGravity (Z)V
 		ARG 1 noGravity
 	METHOD setOnGround (Z)V
@@ -522,14 +472,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
-	METHOD setPacketCoordinates (Lnet/minecraft/world/phys/Vec3;)V
-		ARG 1 coordinates
 	METHOD setPos (DDD)V
 		COMMENT Sets the x,y,z of the entity from the given parameters. Also seems to set up a bounding box.
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-	METHOD setPosAndOldPos (DDD)V
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
@@ -558,9 +502,6 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD setSilent (Z)V
 		COMMENT When set to true the entity will not play sounds.
 		ARG 1 isSilent
-	METHOD setSlot (ILnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 slot
-		ARG 2 itemStack
 	METHOD setSprinting (Z)V
 		COMMENT Set sprinting switch for Entity.
 		ARG 1 sprinting
@@ -637,9 +578,3 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD updateFluidHeightAndDoFluidPushing (Lnet/minecraft/tags/Tag;D)Z
 		ARG 1 fluidTag
 		ARG 2 motionScale
-	CLASS MoveFunction
-		METHOD accept (Lnet/minecraft/world/entity/Entity;DDD)V
-			ARG 1 entity
-			ARG 2 x
-			ARG 4 y
-			ARG 6 z
