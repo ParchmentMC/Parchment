@@ -1,5 +1,13 @@
 Parchment Mappings
 ==================
+![Latest release version badge](https://img.shields.io/maven-metadata/v?color=forestgreen&label=release&metadataUrl=https%3A%2F%2Fldtteam.jfrog.io%2Fartifactory%2Fparchmentmc-internal%2Forg%2Fparchmentmc%2Fdata%2Fparchment-1.16.5%2Fmaven-metadata.xml)
+![CI release build status](https://buildsystem.ldtteam.com/app/rest/builds/buildType:(id:ParchmentMC_Mappings_Release),branch:1.16.x/statusIcon)
+&nbsp;
+![Latest nightly version badge](https://img.shields.io/maven-metadata/v?color=orange&label=nightly&metadataUrl=https%3A%2F%2Fldtteam.jfrog.io%2Fartifactory%2Fparchmentmc-snapshots%2Forg%2Fparchmentmc%2Fdata%2Fparchment-1.16.5%2Fmaven-metadata.xml)
+![CI nightly build status](https://buildsystem.ldtteam.com/app/rest/builds/buildType:(id:ParchmentMC_Mappings_Nightly),branch:1.16.x/statusIcon)
+&nbsp;
+![Latest bleeding version badge](https://img.shields.io/maven-metadata/v?color=red&label=bleeding&metadataUrl=https%3A%2F%2Fldtteam.jfrog.io%2Fartifactory%2Fparchmentmc-bleeding%2Forg%2Fparchmentmc%2Fdata%2Fparchment-1.16.5%2Fmaven-metadata.xml)
+![CI bleeding build status](https://buildsystem.ldtteam.com/app/rest/builds/buildType:(id:ParchmentMC_Mappings_Bleeding),branch:1.16.x/statusIcon)
 
 This repository contains all the mappings and data related to making the parchment mappings.
 
