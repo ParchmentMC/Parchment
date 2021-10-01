@@ -1,4 +1,5 @@
 CLASS net/minecraft/world/level/chunk/DataLayer
+	COMMENT A representation of a 16x16x16 cube of nibbles (half-bytes).
 	METHOD <init> (I)V
 		ARG 1 size
 	METHOD <init> ([B)V
@@ -6,21 +7,27 @@ CLASS net/minecraft/world/level/chunk/DataLayer
 	METHOD get (I)I
 		ARG 1 index
 	METHOD get (III)I
-		COMMENT Returns the nibble of data corresponding to the passed in x, y, z. y is at most 6 bits, z is at most 4.
+		COMMENT @return The value of this data layer at the provided position.
+		COMMENT Note all coordinates must be in the range [0, 16), they <strong>are not checked</strong>, and will either silently overrun the array or throw an exception.
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
 	METHOD getByteIndex (I)I
-		ARG 1 index
+		ARG 0 index
 	METHOD getIndex (III)I
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
+		ARG 0 x
+		ARG 1 y
+		ARG 2 z
+	METHOD getNibbleIndex (I)I
+		ARG 0 index
+	METHOD layerToString (I)Ljava/lang/String;
+		ARG 1 unused
 	METHOD set (II)V
 		ARG 1 index
 		ARG 2 value
 	METHOD set (IIII)V
-		COMMENT Arguments are x, y, z, val. Sets the nibble of data at x << 11 | z << 7 | y to val.
+		COMMENT Sets the value of this data layer at the provided position.
+		COMMENT Note all coordinates must be in the range [0, 16), they <strong>are not checked</strong>, and will either silently overrun the array or throw an exception.
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z

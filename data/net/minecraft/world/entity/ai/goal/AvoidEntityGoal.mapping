@@ -1,10 +1,36 @@
 CLASS net/minecraft/world/entity/ai/goal/AvoidEntityGoal
 	FIELD avoidClass Ljava/lang/Class;
 		COMMENT Class of entity this behavior seeks to avoid
+	METHOD <init> (Lnet/minecraft/world/entity/PathfinderMob;Ljava/lang/Class;FDD)V
+		ARG 1 mob
+		ARG 2 entityClassToAvoid
+		ARG 3 maxDistance
+		ARG 4 walkSpeedModifier
+		ARG 6 sprintSpeedModifier
+	METHOD <init> (Lnet/minecraft/world/entity/PathfinderMob;Ljava/lang/Class;FDDLjava/util/function/Predicate;)V
+		ARG 1 mob
+		ARG 2 entityClassToAvoid
+		ARG 3 maxDistance
+		ARG 4 walkSpeedModifier
+		ARG 6 sprintSpeedModifier
+		ARG 8 predicateOnAvoidEntity
+	METHOD <init> (Lnet/minecraft/world/entity/PathfinderMob;Ljava/lang/Class;Ljava/util/function/Predicate;FDDLjava/util/function/Predicate;)V
+		COMMENT Goal that helps mobs avoid mobs of a specific class
+		ARG 1 mob
+		ARG 2 entityClassToAvoid
+		ARG 3 avoidPredicate
+		ARG 4 maxDistance
+		ARG 5 walkSpeedModifier
+		ARG 7 sprintSpeedModifier
+		ARG 9 predicateOnAvoidEntity
 	METHOD canContinueToUse ()Z
 		COMMENT Returns whether an in-progress EntityAIBase should continue executing
 	METHOD canUse ()Z
 		COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
+	METHOD lambda$new$1 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
 	METHOD start ()V
 		COMMENT Execute a one shot task or start executing a continuous task
 	METHOD stop ()V
