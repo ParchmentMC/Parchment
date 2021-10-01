@@ -2,13 +2,16 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 	METHOD <init> (Lnet/minecraft/client/color/block/BlockColors;)V
 		ARG 1 blockColors
 	METHOD calculateShape (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;[ILnet/minecraft/core/Direction;[FLjava/util/BitSet;)V
+		COMMENT Calculates the shape and corresponding flags for the specified {@code direction} and {@code vertices}, storing the resulting shape in the specified {@code shape} array and the shape flags in {@code shapeFlags}.
 		ARG 1 level
 		ARG 2 state
 		ARG 3 pos
 		ARG 4 vertices
-		ARG 5 face
-		ARG 6 quadBounds
-		ARG 7 boundsFlags
+		ARG 5 direction
+		ARG 6 shape
+			COMMENT the array, of length 12, to store the shape bounds in, or {@code null} to only calculate shape flags
+		ARG 7 shapeFlags
+			COMMENT the bit set to store the shape flags in. The first bit will be {@code true} if the shape is flat and on the edge of the block, and the second if the shape is not a full block in width and height.
 	METHOD putQuadData (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lnet/minecraft/client/renderer/block/model/BakedQuad;FFFFIIIII)V
 		ARG 1 level
 		ARG 2 state
@@ -42,21 +45,22 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 4 poseStack
 		ARG 5 consumer
 		ARG 6 quads
-		ARG 7 quadBounds
-		ARG 8 boundsFlags
+		ARG 7 shape
+			COMMENT the array, of length 12, to store the shape bounds in
+		ARG 8 shapeFlags
 		ARG 9 aoFace
 		ARG 10 packedOverlay
 	METHOD renderModelFaceFlat (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;IIZLcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Ljava/util/List;Ljava/util/BitSet;)V
 		ARG 1 level
 		ARG 2 state
 		ARG 3 pos
-		ARG 4 brightness
+		ARG 4 packedLight
 		ARG 5 packedOverlay
-		ARG 6 ownBrightness
+		ARG 6 repackLight
 		ARG 7 poseStack
 		ARG 8 consumer
 		ARG 9 quads
-		ARG 10 vertexFlags
+		ARG 10 shapeFlags
 	METHOD renderQuadList (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFFLjava/util/List;II)V
 		ARG 0 pose
 		ARG 1 consumer
@@ -67,6 +71,7 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 6 packedLight
 		ARG 7 packedOverlay
 	METHOD tesselateBlock (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLjava/util/Random;JI)Z
+		COMMENT @return {@code true} if at least one side was rendered
 		ARG 1 level
 		ARG 2 model
 		ARG 3 state
@@ -74,10 +79,12 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 5 poseStack
 		ARG 6 consumer
 		ARG 7 checkSides
+			COMMENT if {@code true}, only renders each side if {@link net.minecraft.world.level.block.Block#shouldRenderFace(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.BlockPos)} returns {@code true}
 		ARG 8 random
 		ARG 9 seed
 		ARG 11 packedOverlay
 	METHOD tesselateWithAO (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLjava/util/Random;JI)Z
+		COMMENT @return {@code true} if at least one side was rendered
 		ARG 1 level
 		ARG 2 model
 		ARG 3 state
@@ -85,10 +92,12 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 5 poseStack
 		ARG 6 consumer
 		ARG 7 checkSides
+			COMMENT if {@code true}, only renders each side if {@link net.minecraft.world.level.block.Block#shouldRenderFace(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.BlockPos)} returns {@code true}
 		ARG 8 random
 		ARG 9 seed
 		ARG 11 packedOverlay
 	METHOD tesselateWithoutAO (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLjava/util/Random;JI)Z
+		COMMENT @return {@code true} if at least one side was rendered
 		ARG 1 level
 		ARG 2 model
 		ARG 3 state
@@ -96,6 +105,7 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 5 poseStack
 		ARG 6 consumer
 		ARG 7 checkSides
+			COMMENT if {@code true}, only renders each side if {@link net.minecraft.world.level.block.Block#shouldRenderFace(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.BlockPos)} returns {@code true}
 		ARG 8 random
 		ARG 9 seed
 		ARG 11 packedOverlay
@@ -121,8 +131,9 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 	CLASS AdjacencyInfo
 		METHOD <init> (Ljava/lang/String;I[Lnet/minecraft/core/Direction;FZ[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;)V
 			ARG 3 corners
-			ARG 4 brightness
-			ARG 5 doNotCubicWeight
+			ARG 4 shadeBrightness
+				COMMENT the shade brightness for this direction
+			ARG 5 doNonCubicWeight
 			ARG 6 vert0Weights
 			ARG 7 vert1Weights
 			ARG 8 vert2Weights
@@ -143,16 +154,16 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 			ARG 0 byFacing
 	CLASS AmbientOcclusionFace
 		METHOD blend (IIII)I
-			COMMENT @return ambient occlusion brightness
-			ARG 1 brightness0
-			ARG 2 brightness1
-			ARG 3 brightness2
-			ARG 4 brightness3
+			COMMENT @return the ambient occlusion light color
+			ARG 1 lightColor0
+			ARG 2 lightColor1
+			ARG 3 lightColor2
+			ARG 4 lightColor3
 		METHOD blend (IIIIFFFF)I
-			ARG 1 brightness0
-			ARG 2 brightness1
-			ARG 3 brightness2
-			ARG 4 brightness3
+			ARG 1 color0
+			ARG 2 color1
+			ARG 3 color2
+			ARG 4 color3
 			ARG 5 weight0
 			ARG 6 weight1
 			ARG 7 weight2
@@ -162,6 +173,7 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 			ARG 2 state
 			ARG 3 pos
 			ARG 4 direction
-			ARG 5 quadBounds
-			ARG 6 boundsFlags
+			ARG 5 shape
+				COMMENT the array, of length 12, containing the shape bounds
+			ARG 6 shapeFlags
 			ARG 7 shade
