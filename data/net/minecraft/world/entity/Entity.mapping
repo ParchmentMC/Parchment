@@ -109,6 +109,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 object
 	METHOD fillCrashReportCategory (Lnet/minecraft/CrashReportCategory;)V
 		ARG 1 category
+	METHOD fillIndirectPassengers (ZLjava/util/Set;)V
+		ARG 1 onlyPlayers
+		ARG 2 fillTo
 	METHOD findDimensionEntryPoint (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/portal/PortalInfo;
 		ARG 1 destination
 	METHOD gameEvent (Lnet/minecraft/world/level/gameevent/GameEvent;)V
@@ -170,6 +173,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 partialTicks
 	METHOD getFluidHeight (Lnet/minecraft/tags/TagKey;)D
 		ARG 1 fluidTag
+	METHOD getHorizontalDistanceSqr (Lnet/minecraft/world/phys/Vec3;)D
+		ARG 0 vector
 	METHOD getInputVector (Lnet/minecraft/world/phys/Vec3;FF)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 relative
 		ARG 1 motionScaler
@@ -237,6 +242,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 pos
 	METHOD hasIndirectPassenger (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
+	METHOD hasPassenger (Ljava/lang/Class;)Z
+		ARG 1 passengerClass
 	METHOD hasPassenger (Ljava/util/function/Predicate;)Z
 		ARG 1 predicate
 	METHOD hasPassenger (Lnet/minecraft/world/entity/Entity;)Z
@@ -318,8 +325,21 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD killed (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 level
 		ARG 2 killedEntity
+	METHOD lambda$collide$1 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
+	METHOD lambda$findDimensionEntryPoint$4 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/level/portal/PortalInfo;
+		ARG 2 exitPortal
+	METHOD lambda$getDisplayName$9 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 currentStyle
+	METHOD lambda$isInWall$2 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 state
+		ARG 2 pos
 	METHOD lambda$move$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 loadedState
+	METHOD lambda$null$3 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
+		ARG 2 pos
+	METHOD lambda$teleportTo$10 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 currentEntity
 	METHOD lavaHurt ()V
 		COMMENT Called whenever the entity is walking inside of lava.
 	METHOD lerpHeadTo (FI)V
@@ -513,6 +533,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD setItemSlot (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 slot
 		ARG 2 stack
+	METHOD setLevel (Lnet/minecraft/world/level/Level;)V
+		ARG 1 level
 	METHOD setNoGravity (Z)V
 		ARG 1 noGravity
 	METHOD setOnGround (Z)V
@@ -530,6 +552,10 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 5 z
 	METHOD setPos (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 pos
+	METHOD setPosAndOldPos (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD setPosRaw (DDD)V
 		COMMENT Directly updates the {@link #posX}, {@link posY}, and {@link posZ} fields, without performing any collision checks, updating the bounding box position, or sending any packets. In general, this is not what you want and {@link #setPosition} is better, as that handles the bounding box.
 		ARG 1 x
@@ -557,6 +583,9 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD setSilent (Z)V
 		COMMENT When set to true the entity will not play sounds.
 		ARG 1 isSilent
+	METHOD setSlot (ILnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 slotIndex
+		ARG 2 stack
 	METHOD setSprinting (Z)V
 		COMMENT Set sprinting switch for Entity.
 		ARG 1 sprinting
