@@ -1,4 +1,7 @@
 CLASS net/minecraft/world/entity/Entity
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+		ARG 1 type
+		ARG 2 level
 	METHOD absMoveTo (DDD)V
 		ARG 1 x
 		ARG 3 y
@@ -105,8 +108,15 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Plays the {@link #getSplashSound() splash sound}, and the {@link ParticleType#WATER_BUBBLE} and {@link ParticleType#WATER_SPLASH} particles.
 	METHOD ejectPassengers ()V
 		COMMENT Dismounts all entities riding this entity from this entity.
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
 	METHOD fillCrashReportCategory (Lnet/minecraft/CrashReportCategory;)V
 		ARG 1 category
+	METHOD fillIndirectPassengers (ZLjava/util/Set;)V
+		ARG 1 onlyPlayers
+		ARG 2 fillTo
+	METHOD findDimensionEntryPoint (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/portal/PortalInfo;
+		ARG 1 destination
 	METHOD getBlockExplosionResistance (Lnet/minecraft/world/level/Explosion;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/FluidState;F)F
 		COMMENT Explosion resistance of a block relative to this entity
 		ARG 1 explosion
@@ -139,6 +149,11 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 livingEntity
 	METHOD getEncodeId ()Ljava/lang/String;
 		COMMENT Returns the string that identifies this Entity's class
+	METHOD getExitPortal (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Z)Ljava/util/Optional;
+		ARG 1 destination
+		ARG 2 findFrom
+			COMMENT Position where searching starts from
+		ARG 3 isToNether
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;)F
 		ARG 1 pose
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
@@ -146,6 +161,10 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 size
 	METHOD getEyePosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
+	METHOD getFluidHeight (Lnet/minecraft/tags/Tag;)D
+		ARG 1 fluidTag
+	METHOD getHorizontalDistanceSqr (Lnet/minecraft/world/phys/Vec3;)D
+		ARG 0 vector
 	METHOD getInputVector (Lnet/minecraft/world/phys/Vec3;FF)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 relative
 		ARG 1 motionScaler
@@ -170,6 +189,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 scale
 	METHOD getRandomZ (D)D
 		ARG 1 scale
+	METHOD getRelativePortalPosition (Lnet/minecraft/core/Direction$Axis;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 axis
+		ARG 2 portal
 	METHOD getRopeHoldPosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
 	METHOD getRotationVector ()Lnet/minecraft/world/phys/Vec2;
@@ -208,6 +230,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 pos
 	METHOD hasIndirectPassenger (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
+	METHOD hasPassenger (Ljava/lang/Class;)Z
+		ARG 1 passengerClass
 	METHOD hasPassenger (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD hasPermissions (I)Z
@@ -237,6 +261,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 team
 	METHOD isAttackable ()Z
 		COMMENT Returns true if it's possible to attack this entity with an item.
+	METHOD isColliding (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 pos
+		ARG 2 state
 	METHOD isEyeInFluid (Lnet/minecraft/tags/Tag;)Z
 		ARG 1 tag
 	METHOD isFree (DDD)Z
@@ -284,6 +311,21 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD killed (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 level
 		ARG 2 killedEntity
+	METHOD lambda$collide$1 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
+	METHOD lambda$findDimensionEntryPoint$4 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/level/portal/PortalInfo;
+		ARG 2 exitPortal
+	METHOD lambda$getDisplayName$9 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 currentStyle
+	METHOD lambda$isInWall$2 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 state
+		ARG 2 pos
+	METHOD lambda$move$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 0 loadedState
+	METHOD lambda$null$3 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
+		ARG 2 pos
+	METHOD lambda$teleportTo$10 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 currentEntity
 	METHOD lavaHurt ()V
 		COMMENT Called whenever the entity is walking inside of lava.
 	METHOD lerpHeadTo (FI)V
@@ -454,6 +496,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 5 z
 	METHOD setDeltaMovement (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 motion
+	METHOD setGlowing (Z)V
+		ARG 1 glowing
 	METHOD setId (I)V
 		ARG 1 id
 	METHOD setInvisible (Z)V
@@ -464,6 +508,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD setItemSlot (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 slot
 		ARG 2 stack
+	METHOD setLevel (Lnet/minecraft/world/level/Level;)V
+		ARG 1 level
 	METHOD setNoGravity (Z)V
 		ARG 1 noGravity
 	METHOD setOnGround (Z)V
@@ -472,8 +518,14 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
+	METHOD setPacketCoordinates (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 packetCoordinates
 	METHOD setPos (DDD)V
 		COMMENT Sets the x,y,z of the entity from the given parameters. Also seems to set up a bounding box.
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD setPosAndOldPos (DDD)V
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
@@ -502,6 +554,9 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD setSilent (Z)V
 		COMMENT When set to true the entity will not play sounds.
 		ARG 1 isSilent
+	METHOD setSlot (ILnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 slotIndex
+		ARG 2 stack
 	METHOD setSprinting (Z)V
 		COMMENT Set sprinting switch for Entity.
 		ARG 1 sprinting
@@ -578,3 +633,9 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD updateFluidHeightAndDoFluidPushing (Lnet/minecraft/tags/Tag;D)Z
 		ARG 1 fluidTag
 		ARG 2 motionScale
+	CLASS MoveFunction
+		METHOD accept (Lnet/minecraft/world/entity/Entity;DDD)V
+			ARG 1 entity
+			ARG 2 x
+			ARG 4 y
+			ARG 6 z
