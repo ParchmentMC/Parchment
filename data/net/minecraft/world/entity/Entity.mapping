@@ -49,6 +49,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 pose
 	METHOD canRide (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
+	METHOD causeFallDamage (FFLnet/minecraft/world/damagesource/DamageSource;)Z
+		ARG 1 fallDistance
+		ARG 2 multiplier
 	METHOD changeDimension (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 server
 	METHOD checkDespawn ()V
@@ -86,6 +89,10 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD copyPosition (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Sets this entity's location and angles to the location and angles of the passed in entity.
 		ARG 1 entity
+	METHOD dismountTo (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD displayFireAnimation ()Z
 		COMMENT Return whether this entity should be rendered as on fire.
 	METHOD distanceTo (Lnet/minecraft/world/entity/Entity;)F
@@ -142,6 +149,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 livingEntity
 	METHOD getEncodeId ()Ljava/lang/String;
 		COMMENT Returns the string that identifies this Entity's class
+	METHOD getExitPortal (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Z)Ljava/util/Optional;
+		ARG 3 isToNether
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;)F
 		ARG 1 pose
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
@@ -184,6 +193,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD getSharedFlag (I)Z
 		COMMENT Returns true if the flag is active for the entity. Known flags: 0: burning 1: sneaking 2: unused 3: sprinting 4: swimming 5: invisible 6: glowing 7: elytra flying
 		ARG 1 flag
+	METHOD getSlot (I)Lnet/minecraft/world/entity/SlotAccess;
+		ARG 1 slot
 	METHOD getUpVector (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
 	METHOD getVehicle ()Lnet/minecraft/world/entity/Entity;
@@ -457,6 +468,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 5 z
 	METHOD setDeltaMovement (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 motion
+	METHOD setGlowingTag (Z)V
+		ARG 1 glowing
 	METHOD setId (I)V
 		ARG 1 id
 	METHOD setInvisible (Z)V
@@ -464,6 +477,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD setInvulnerable (Z)V
 		COMMENT Sets whether this Entity is invulnerable.
 		ARG 1 isInvulnerable
+	METHOD setIsInPowderSnow (Z)V
+		ARG 1 isInPowderSnow
 	METHOD setItemSlot (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 slot
 		ARG 2 stack
@@ -500,6 +515,8 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Enable or disable a entity flag, see getEntityFlag to read the know flags.
 		ARG 1 flag
 		ARG 2 set
+	METHOD setSharedFlagOnFire (Z)V
+		ARG 1 isOnFire
 	METHOD setShiftKeyDown (Z)V
 		ARG 1 keyDown
 	METHOD setSilent (Z)V
@@ -510,16 +527,22 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 sprinting
 	METHOD setSwimming (Z)V
 		ARG 1 swimming
+	METHOD setTicksFrozen (I)V
+		ARG 1 ticksFrozen
 	METHOD setUUID (Ljava/util/UUID;)V
 		ARG 1 uniqueId
 	METHOD setViewScale (D)V
 		ARG 0 renderDistWeight
+	METHOD setXRot (F)V
+		ARG 1 xrot
 	METHOD setYBodyRot (F)V
 		COMMENT Set the render yaw offset
 		ARG 1 offset
 	METHOD setYHeadRot (F)V
 		COMMENT Sets the head's yaw rotation of the entity.
 		ARG 1 rotation
+	METHOD setYRot (F)V
+		ARG 1 yrot
 	METHOD shouldBlockExplode (Lnet/minecraft/world/level/Explosion;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;F)Z
 		ARG 1 explosion
 		ARG 2 level
@@ -581,3 +604,17 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD updateFluidHeightAndDoFluidPushing (Lnet/minecraft/tags/Tag;D)Z
 		ARG 1 fluidTag
 		ARG 2 motionScale
+	CLASS MoveFunction
+		METHOD accept (Lnet/minecraft/world/entity/Entity;DDD)V
+			ARG 1 entity
+			ARG 2 x
+			ARG 4 y
+			ARG 6 z
+	CLASS RemovalReason
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 shouldDestroy
+			ARG 4 shouldSave
+	CLASS MovementEmission
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 emitsSounds
+			ARG 4 emitsEvents
