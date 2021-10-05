@@ -54,7 +54,7 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 multiplier
 		ARG 3 source
 	METHOD changeDimension (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;
-		ARG 1 server
+		ARG 1 destination
 	METHOD checkDespawn ()V
 		COMMENT Makes the entity despawn if requirements are reached
 	METHOD checkFallDamage (DZLnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)V
@@ -178,6 +178,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 size
 	METHOD getEyePosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
+	METHOD getFluidHeight (Lnet/minecraft/tags/Tag;)D
+		ARG 1 fluidTag
 	METHOD getInputVector (Lnet/minecraft/world/phys/Vec3;FF)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 relative
 		ARG 1 motionScaler
@@ -280,7 +282,7 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 pos
 		ARG 2 state
 	METHOD isEyeInFluid (Lnet/minecraft/tags/Tag;)Z
-		ARG 1 tag
+		ARG 1 fluidTag
 	METHOD isFree (DDD)Z
 		COMMENT Checks if the offset position from the entity's current position is inside of a liquid.
 		ARG 1 x
@@ -326,6 +328,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD killed (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 level
 		ARG 2 killedEntity
+	METHOD lambda$collide$1 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
 	METHOD lambda$findDimensionEntryPoint$6 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
 		ARG 2 pos
 	METHOD lambda$findDimensionEntryPoint$7 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/level/portal/PortalInfo;
@@ -341,6 +345,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 pos
 	METHOD lambda$move$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 loadedState
+	METHOD lambda$refreshDimensions$14 (Lnet/minecraft/world/entity/EntityDimensions;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 2 freePos
 	METHOD lambda$startRiding$3 (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 0 passenger
 	METHOD lambda$startRiding$4 (Lnet/minecraft/world/entity/Entity;)V
