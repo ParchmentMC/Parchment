@@ -1,19 +1,53 @@
 CLASS net/minecraft/client/renderer/texture/Stitcher
+	METHOD <init> (III)V
+		ARG 1 maxWidth
+		ARG 2 maxHeight
+		ARG 3 mipLevel
 	METHOD addToStorage (Lnet/minecraft/client/renderer/texture/Stitcher$Holder;)Z
-		COMMENT Attempts to find space for specified tile
+		COMMENT Attempts to find space for specified {@code holder}.
+		COMMENT
+		COMMENT @return {@code true} if there was space; {@code false} otherwise
 		ARG 1 holder
 	METHOD expand (Lnet/minecraft/client/renderer/texture/Stitcher$Holder;)Z
-		COMMENT Expand stitched texture in order to make space for specified tile
+		COMMENT Attempts to expand stitched texture in order to make space for specified {@code holder}.
+		COMMENT
+		COMMENT @return {@code true} if there was enough space to expand the texture; {@code false} otherwise
 		ARG 1 holder
 	METHOD gatherSprites (Lnet/minecraft/client/renderer/texture/Stitcher$SpriteLoader;)V
-		ARG 1 spriteLoader
+		ARG 1 loader
+	METHOD lambda$gatherSprites$4 (Lnet/minecraft/client/renderer/texture/Stitcher$SpriteLoader;Lnet/minecraft/client/renderer/texture/Stitcher$Region;)V
+		ARG 2 region
+	METHOD lambda$static$0 (Lnet/minecraft/client/renderer/texture/Stitcher$Holder;)Ljava/lang/Integer;
+		ARG 0 holder
+	METHOD lambda$static$1 (Lnet/minecraft/client/renderer/texture/Stitcher$Holder;)Ljava/lang/Integer;
+		ARG 0 holder
+	METHOD lambda$static$2 (Lnet/minecraft/client/renderer/texture/Stitcher$Holder;)Lnet/minecraft/resources/ResourceLocation;
+		ARG 0 holder
+	METHOD lambda$stitch$3 (Lnet/minecraft/client/renderer/texture/Stitcher$Holder;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;
+		ARG 0 holder
 	METHOD registerSprite (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;)V
 		ARG 1 spriteInfo
 	METHOD smallestFittingMinTexel (II)I
 		ARG 0 dimension
-		ARG 1 mipmapLevel
+		ARG 1 mipLevel
+	CLASS Holder
+		METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;I)V
+			ARG 1 spriteInfo
+			ARG 2 mipLevel
 	CLASS Region
+		METHOD <init> (IIII)V
+			ARG 1 originX
+			ARG 2 originY
+			ARG 3 width
+			ARG 4 height
 		METHOD add (Lnet/minecraft/client/renderer/texture/Stitcher$Holder;)Z
 			ARG 1 holder
 		METHOD walk (Ljava/util/function/Consumer;)V
-			ARG 1 slots
+			ARG 1 consumer
+	CLASS SpriteLoader
+		METHOD load (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;IIII)V
+			ARG 1 spriteInfo
+			ARG 2 storageX
+			ARG 3 storageY
+			ARG 4 x
+			ARG 5 y

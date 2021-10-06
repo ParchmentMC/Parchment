@@ -6,24 +6,28 @@ CLASS net/minecraft/client/renderer/block/model/BlockElement
 		ARG 4 rotation
 		ARG 5 shade
 	METHOD uvsByFace (Lnet/minecraft/core/Direction;)[F
-		ARG 1 facing
+		ARG 1 face
 	CLASS Deserializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/client/renderer/block/model/BlockElement;
+			ARG 1 json
+			ARG 2 type
+			ARG 3 context
 		METHOD filterNullFromFaces (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Ljava/util/Map;
 			ARG 1 context
-			ARG 2 object
+			ARG 2 json
 		METHOD getAngle (Lcom/google/gson/JsonObject;)F
-			ARG 1 object
+			ARG 1 json
 		METHOD getAxis (Lcom/google/gson/JsonObject;)Lnet/minecraft/core/Direction$Axis;
-			ARG 1 object
+			ARG 1 json
 		METHOD getFaces (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Ljava/util/Map;
 			ARG 1 context
-			ARG 2 object
+			ARG 2 json
 		METHOD getFacing (Ljava/lang/String;)Lnet/minecraft/core/Direction;
 			ARG 1 name
 		METHOD getFrom (Lcom/google/gson/JsonObject;)Lcom/mojang/math/Vector3f;
 			ARG 1 json
 		METHOD getRotation (Lcom/google/gson/JsonObject;)Lnet/minecraft/client/renderer/block/model/BlockElementRotation;
-			ARG 1 object
+			ARG 1 json
 		METHOD getTo (Lcom/google/gson/JsonObject;)Lcom/mojang/math/Vector3f;
 			ARG 1 json
 		METHOD getVector3f (Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/mojang/math/Vector3f;

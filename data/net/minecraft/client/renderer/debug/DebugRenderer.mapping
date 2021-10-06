@@ -1,22 +1,83 @@
 CLASS net/minecraft/client/renderer/debug/DebugRenderer
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+		ARG 1 minecraft
 	METHOD getTargetedEntity (Lnet/minecraft/world/entity/Entity;I)Ljava/util/Optional;
 		ARG 0 entity
 		ARG 1 distance
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;DDD)V
-		ARG 1 matrixStack
-		ARG 2 buffer
+		ARG 1 poseStack
+		ARG 2 bufferSource
 		ARG 3 camX
 		ARG 5 camY
 		ARG 7 camZ
+	METHOD renderFilledBox (DDDDDDFFFF)V
+		ARG 0 minX
+		ARG 2 minY
+		ARG 4 minZ
+		ARG 6 maxX
+		ARG 8 maxY
+		ARG 10 maxZ
+		ARG 12 red
+		ARG 13 green
+		ARG 14 blue
+		ARG 15 alpha
+	METHOD renderFilledBox (Lnet/minecraft/core/BlockPos;FFFFF)V
+		ARG 0 pos
+		ARG 1 size
+		ARG 2 red
+		ARG 3 green
+		ARG 4 blue
+		ARG 5 alpha
+	METHOD renderFilledBox (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;FFFF)V
+		ARG 0 start
+		ARG 1 end
+		ARG 2 red
+		ARG 3 green
+		ARG 4 blue
+		ARG 5 alpha
+	METHOD renderFilledBox (Lnet/minecraft/world/phys/AABB;FFFF)V
+		ARG 0 box
+		ARG 1 red
+		ARG 2 green
+		ARG 3 blue
+		ARG 4 alpha
+	METHOD renderFloatingText (Ljava/lang/String;DDDI)V
+		ARG 0 text
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 color
+	METHOD renderFloatingText (Ljava/lang/String;DDDIF)V
+		ARG 0 text
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 color
+		ARG 8 scale
 	METHOD renderFloatingText (Ljava/lang/String;DDDIFZFZ)V
 		ARG 0 text
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 		ARG 7 color
+		ARG 8 scale
+		ARG 9 center
+		ARG 10 xOffset
+		ARG 11 transparent
+	METHOD renderFloatingText (Ljava/lang/String;IIII)V
+		ARG 0 text
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 color
 	METHOD switchRenderChunkborder ()Z
-		COMMENT Toggles the debug screen's visibility.
+		COMMENT Toggles the {@link #renderChunkborder} value, effectively toggling the {@link #chunkBorderRenderer} on or off.
+		COMMENT
+		COMMENT @return the new, inverted value
 	CLASS SimpleDebugRenderer
 		METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;DDD)V
-			ARG 1 matrixStack
-			ARG 2 buffer
+			ARG 1 poseStack
+			ARG 2 bufferSource
 			ARG 3 camX
 			ARG 5 camY
 			ARG 7 camZ
