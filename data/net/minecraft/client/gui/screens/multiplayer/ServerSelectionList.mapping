@@ -1,8 +1,20 @@
 CLASS net/minecraft/client/gui/screens/multiplayer/ServerSelectionList
+	METHOD <init> (Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;Lnet/minecraft/client/Minecraft;IIIII)V
+		ARG 1 screen
+		ARG 2 minecraft
+		ARG 3 width
+		ARG 4 height
+		ARG 5 y0
+		ARG 6 y1
+		ARG 7 itemHeight
 	METHOD keyPressed (III)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
+	METHOD lambda$refreshEntries$0 (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList;Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
+		ARG 1 entry
+	METHOD lambda$refreshEntries$1 (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList;Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
+		ARG 1 entry
 	METHOD moveSelection (Lnet/minecraft/client/gui/components/AbstractSelectionList$SelectionDirection;)V
 		ARG 1 ordering
 	METHOD setSelected (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList$Entry;)V
@@ -20,6 +32,14 @@ CLASS net/minecraft/client/gui/screens/multiplayer/ServerSelectionList
 			ARG 9 isMouseOver
 			ARG 10 partialTicks
 	CLASS OnlineServerEntry
+		METHOD <init> (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList;Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;Lnet/minecraft/client/multiplayer/ServerData;)V
+			ARG 2 screen
+			ARG 3 serverData
+		METHOD drawIcon (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/resources/ResourceLocation;)V
+			ARG 1 poseStack
+			ARG 2 x
+			ARG 3 y
+			ARG 4 textureLocation
 		METHOD keyPressed (III)Z
 			ARG 1 keyCode
 			ARG 2 scanCode
@@ -40,6 +60,9 @@ CLASS net/minecraft/client/gui/screens/multiplayer/ServerSelectionList
 			ARG 9 isMouseOver
 			ARG 10 partialTicks
 	CLASS NetworkServerEntry
+		METHOD <init> (Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;Lnet/minecraft/client/server/LanServer;)V
+			ARG 1 screen
+			ARG 2 serverData
 		METHOD mouseClicked (DDI)Z
 			ARG 1 mouseX
 			ARG 3 mouseY
