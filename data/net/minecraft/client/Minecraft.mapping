@@ -23,11 +23,20 @@ CLASS net/minecraft/client/Minecraft
 	METHOD clearResourcePacksOnError (Ljava/lang/Throwable;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 throwable
 		ARG 2 errorMessage
+	METHOD constructProfiler (ZLnet/minecraft/util/profiling/SingleTickProfiler;)Lnet/minecraft/util/profiling/ProfilerFiller;
+		ARG 1 renderFpsPie
 	METHOD continueAttack (Z)V
 		ARG 1 leftClick
 	METHOD crash (Lnet/minecraft/CrashReport;)V
 		COMMENT Wrapper around displayCrashReportInternal
 		ARG 0 report
+	METHOD createClientPackAdapter (Ljava/lang/String;Lnet/minecraft/network/chat/Component;ZLjava/util/function/Supplier;Lnet/minecraft/server/packs/metadata/pack/PackMetadataSection;Lnet/minecraft/server/packs/repository/Pack$Position;Lnet/minecraft/server/packs/repository/PackSource;)Lnet/minecraft/server/packs/repository/Pack;
+		ARG 0 id
+		ARG 1 title
+		ARG 2 required
+		ARG 4 packMetadataSection
+		ARG 5 defaultPosition
+		ARG 6 packSource
 	METHOD createLevel (Ljava/lang/String;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/world/level/levelgen/WorldGenSettings;)V
 		ARG 1 levelName
 		ARG 2 levelSettings
@@ -62,6 +71,20 @@ CLASS net/minecraft/client/Minecraft
 	METHOD fillReport (Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReport;
 		COMMENT adds core server Info (GL version , Texture pack, isModded, type), and the worldInfo to the crash report
 		ARG 1 theCrash
+	METHOD fillReport (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/resources/language/LanguageManager;Ljava/lang/String;Lnet/minecraft/client/Options;Lnet/minecraft/CrashReport;)V
+		ARG 0 minecraft
+		ARG 1 languageManager
+		ARG 2 launchedVersion
+		ARG 3 options
+		ARG 4 report
+	METHOD fillSystemReport (Lnet/minecraft/SystemReport;Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/resources/language/LanguageManager;Ljava/lang/String;Lnet/minecraft/client/Options;)Lnet/minecraft/SystemReport;
+		ARG 0 report
+		ARG 1 minecraft
+		ARG 2 languageManager
+		ARG 3 launchedVersion
+		ARG 4 options
+	METHOD finishProfilers (ZLnet/minecraft/util/profiling/SingleTickProfiler;)V
+		ARG 1 renderFpsPie
 	METHOD forceSetScreen (Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 1 screen
 	METHOD getCurrentSnooperAction ()Ljava/lang/String;
@@ -92,6 +115,13 @@ CLASS net/minecraft/client/Minecraft
 		ARG 1 location
 	METHOD getVersionType ()Ljava/lang/String;
 		COMMENT Gets the type of version that Minecraft was launched under (as specified in the version JSON). Specified via the <code>--versionType</code> flag.
+	METHOD grabHugeScreenshot (Ljava/io/File;IIII)Lnet/minecraft/network/chat/Component;
+		ARG 3 rowHeight
+		ARG 4 width
+		ARG 5 height
+	METHOD grabPanoramixScreenshot (Ljava/io/File;II)Lnet/minecraft/network/chat/Component;
+		ARG 2 width
+		ARG 3 height
 	METHOD hasSingleplayerServer ()Z
 		COMMENT Returns true if there is only one player playing, and the current server is the integrated one.
 	METHOD isBlocked (Ljava/util/UUID;)Z
@@ -100,6 +130,8 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT Return true if the player is connected to a realms server
 	METHOD isDemo ()Z
 		COMMENT Gets whether this is a demo or not.
+	METHOD lambda$grabHugeScreenshot$51 (Ljava/io/File;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 style
 	METHOD loadDataPacks (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;)Lnet/minecraft/world/level/DataPackConfig;
 		ARG 0 levelStorage
 	METHOD loadLevel (Ljava/lang/String;)V
@@ -145,7 +177,7 @@ CLASS net/minecraft/client/Minecraft
 		ARG 1 isConnected
 	METHOD setCurrentServer (Lnet/minecraft/client/multiplayer/ServerData;)V
 		COMMENT Set the current ServerData instance.
-		ARG 1 serverData
+		ARG 1 currentServer
 	METHOD setLevel (Lnet/minecraft/client/multiplayer/ClientLevel;)V
 		COMMENT unloads the current world first
 		ARG 1 levelClient
@@ -177,6 +209,9 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT Returns if ambient occlusion is enabled
 	METHOD wrapRunnable (Ljava/lang/Runnable;)Ljava/lang/Runnable;
 		ARG 1 runnable
+	CLASS ChatStatus
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/network/chat/Component;)V
+			ARG 3 message
 	CLASS ServerStem
 		METHOD <init> (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/ServerResources;Lnet/minecraft/world/level/storage/WorldData;)V
 			ARG 1 packRepository

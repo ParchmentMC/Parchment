@@ -1,8 +1,23 @@
 CLASS net/minecraft/client/MouseHandler
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+		ARG 1 minecraft
 	METHOD grabMouse ()V
 		COMMENT Will set the focus to ingame if the Minecraft window is the active with focus. Also clears any GUI screen currently displayed
 	METHOD isMouseGrabbed ()Z
 		COMMENT Returns true if the mouse is grabbed.
+	METHOD lambda$setup$3 (JDD)V
+		ARG 1 handle
+		ARG 3 xpos
+		ARG 5 ypos
+	METHOD lambda$setup$5 (JIII)V
+		ARG 1 handle
+		ARG 3 button
+		ARG 4 action
+		ARG 5 mods
+	METHOD lambda$setup$7 (JDD)V
+		ARG 1 handle
+		ARG 3 xoffset
+		ARG 5 yoffset
 	METHOD onDrop (JLjava/util/List;)V
 		ARG 1 window
 		ARG 3 paths
@@ -33,4 +48,4 @@ CLASS net/minecraft/client/MouseHandler
 	METHOD releaseMouse ()V
 		COMMENT Resets the player keystate, disables the ingame focus, and ungrabs the mouse cursor.
 	METHOD setup (J)V
-		ARG 1 handle
+		ARG 1 window
