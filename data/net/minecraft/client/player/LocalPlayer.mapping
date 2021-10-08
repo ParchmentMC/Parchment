@@ -13,6 +13,14 @@ CLASS net/minecraft/client/player/LocalPlayer
 		COMMENT The last yaw value which was transmitted to the server, used to determine when the yaw changes and needs to be re-transmitted
 	FIELD zLast D
 		COMMENT The last Z position which was transmitted to the server, used to determine when the Z position changes and needs to be re-transmitted
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/multiplayer/ClientPacketListener;Lnet/minecraft/stats/StatsCounter;Lnet/minecraft/client/ClientRecipeBook;ZZ)V
+		ARG 1 minecraft
+		ARG 2 clientLevel
+		ARG 3 connection
+		ARG 4 stats
+		ARG 5 recipeBook
+		ARG 6 wasShiftKeyDown
+		ARG 7 wasSprinting
 	METHOD actuallyHurt (Lnet/minecraft/world/damagesource/DamageSource;F)V
 		COMMENT Deals damage to the entity. This will take the armor of the entity into consideration before damaging the health bar.
 		ARG 1 damageSrc
@@ -30,6 +38,8 @@ CLASS net/minecraft/client/player/LocalPlayer
 	METHOD displayClientMessage (Lnet/minecraft/network/chat/Component;Z)V
 		ARG 1 chatComponent
 		ARG 2 actionBar
+	METHOD drop (Z)Z
+		ARG 1 fullStack
 	METHOD getRopeHoldPosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
 	METHOD getServerBrand ()Ljava/lang/String;
@@ -106,7 +116,7 @@ CLASS net/minecraft/client/player/LocalPlayer
 		ARG 1 permissionLevel
 	METHOD setServerBrand (Ljava/lang/String;)V
 		COMMENT Sets the brand of the currently connected server. Server brand information is sent over the {@code MC|Brand} plugin channel, and is used to identify modded servers in crash reports.
-		ARG 1 brand
+		ARG 1 serverBrand
 	METHOD setShowDeathScreen (Z)V
 		ARG 1 show
 	METHOD setSprinting (Z)V
