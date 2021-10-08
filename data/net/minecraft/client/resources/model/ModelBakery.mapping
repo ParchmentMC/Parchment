@@ -1,4 +1,9 @@
 CLASS net/minecraft/client/resources/model/ModelBakery
+	METHOD <init> (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/client/color/block/BlockColors;Lnet/minecraft/util/profiling/ProfilerFiller;I)V
+		ARG 1 resourceManager
+		ARG 2 blockColors
+		ARG 3 profiler
+		ARG 4 maxMipmapLevel
 	METHOD bake (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/model/ModelState;)Lnet/minecraft/client/resources/model/BakedModel;
 		ARG 1 location
 		ARG 2 transform
@@ -10,6 +15,8 @@ CLASS net/minecraft/client/resources/model/ModelBakery
 	METHOD getValueHelper (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/String;)Ljava/lang/Comparable;
 		ARG 0 property
 		ARG 1 value
+	METHOD lambda$static$2 (Ljava/util/HashSet;)V
+		ARG 0 set
 	METHOD loadBlockModel (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/block/model/BlockModel;
 		ARG 1 location
 	METHOD loadModel (Lnet/minecraft/resources/ResourceLocation;)V
@@ -25,6 +32,9 @@ CLASS net/minecraft/client/resources/model/ModelBakery
 		ARG 1 resourceManager
 		ARG 2 profiler
 	CLASS ModelGroupKey
+		METHOD <init> (Ljava/util/List;Ljava/util/List;)V
+			ARG 1 models
+			ARG 2 coloringValues
 		METHOD create (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/client/renderer/block/model/multipart/MultiPart;Ljava/util/Collection;)Lnet/minecraft/client/resources/model/ModelBakery$ModelGroupKey;
 			ARG 0 blockState
 			ARG 1 multipart
@@ -33,6 +43,11 @@ CLASS net/minecraft/client/resources/model/ModelBakery
 			ARG 0 blockState
 			ARG 1 model
 			ARG 2 properties
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other
 		METHOD getColoringValues (Lnet/minecraft/world/level/block/state/BlockState;Ljava/util/Collection;)Ljava/util/List;
 			ARG 0 blockState
 			ARG 1 properties
+	CLASS BlockStateDefinitionException
+		METHOD <init> (Ljava/lang/String;)V
+			ARG 1 message
