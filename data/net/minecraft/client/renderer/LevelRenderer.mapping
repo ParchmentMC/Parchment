@@ -1,27 +1,26 @@
 CLASS net/minecraft/client/renderer/LevelRenderer
 	FIELD entityEffect Lnet/minecraft/client/renderer/PostChain;
-		COMMENT Stores the shader group for the entity_outline shader
 	FIELD globalBlockEntities Ljava/util/Set;
-		COMMENT Global tile entities, always rendered (beacon, end teleporter, structures)
+		COMMENT Global block entities; these are always rendered, even if off-screen.
+		COMMENT Any block entity is added to this if {@link net.minecraft.client.renderer.blockentity.BlockEntityRenderer#shouldRenderOffScreen(net.minecraft.world.level.block.entity.BlockEntity)} returns {@code true}.
 	FIELD playingRecords Ljava/util/Map;
-		COMMENT Currently playing sounds. Type: HashMap<ChunkCoordinates, ISound>
 	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/renderer/RenderBuffers;)V
 		ARG 1 minecraft
 		ARG 2 renderBuffers
 	METHOD addChainedFilledBoxVertices (Lcom/mojang/blaze3d/vertex/BufferBuilder;DDDDDDFFFF)V
 		ARG 0 builder
-		ARG 1 x1
-		ARG 3 y1
-		ARG 5 z1
-		ARG 7 x2
-		ARG 9 y2
-		ARG 11 z2
+		ARG 1 minX
+		ARG 3 minY
+		ARG 5 minZ
+		ARG 7 maxX
+		ARG 9 maxY
+		ARG 11 maxZ
 		ARG 13 red
 		ARG 14 green
 		ARG 15 blue
 		ARG 16 alpha
 	METHOD addFrustumQuad (Lcom/mojang/blaze3d/vertex/VertexConsumer;IIIIIII)V
-		ARG 1 buffer
+		ARG 1 consumer
 		ARG 2 vertex1
 		ARG 3 vertex2
 		ARG 4 vertex3
@@ -30,10 +29,10 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 7 green
 		ARG 8 blue
 	METHOD addFrustumVertex (Lcom/mojang/blaze3d/vertex/VertexConsumer;I)V
-		ARG 1 buffer
+		ARG 1 consumer
 		ARG 2 vertex
 	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
-		ARG 1 particleData
+		ARG 1 options
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
@@ -41,8 +40,9 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 ySpeed
 		ARG 12 zSpeed
 	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;ZDDDDDD)V
-		ARG 1 particleData
-		ARG 2 alwaysRender
+		ARG 1 options
+		ARG 2 force
+			COMMENT if {@code true}, the particle will be created regardless of its distance from the camera and the {@linkplain #calculateParticleLevel(boolean) calculated particle level}
 		ARG 3 x
 		ARG 5 y
 		ARG 7 z
@@ -50,9 +50,11 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 11 ySpeed
 		ARG 13 zSpeed
 	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;ZZDDDDDD)V
-		ARG 1 particleData
-		ARG 2 ignoreRange
-		ARG 3 minimizeLevel
+		ARG 1 options
+		ARG 2 force
+			COMMENT if {@code true}, the particle will be created regardless of its distance from the camera and the {@linkplain #calculateParticleLevel(boolean) calculated particle level}
+		ARG 3 decreased
+			COMMENT if {@code true}, and the {@linkplain net.minecraft.client.Options#particles particles option} is set to minimal, attempts to spawn the particle at a decreased level
 		ARG 4 x
 		ARG 6 y
 		ARG 8 z
@@ -60,8 +62,9 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 12 ySpeed
 		ARG 14 zSpeed
 	METHOD addParticleInternal (Lnet/minecraft/core/particles/ParticleOptions;ZDDDDDD)Lnet/minecraft/client/particle/Particle;
-		ARG 1 particleData
-		ARG 2 alwaysRender
+		ARG 1 options
+		ARG 2 force
+			COMMENT if {@code true}, the particle will be created regardless of its distance from the camera and the {@linkplain #calculateParticleLevel(boolean) calculated particle level}
 		ARG 3 x
 		ARG 5 y
 		ARG 7 z
@@ -69,9 +72,11 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 11 ySpeed
 		ARG 13 zSpeed
 	METHOD addParticleInternal (Lnet/minecraft/core/particles/ParticleOptions;ZZDDDDDD)Lnet/minecraft/client/particle/Particle;
-		ARG 1 particleData
-		ARG 2 alwaysRender
-		ARG 3 minimizeLevel
+		ARG 1 options
+		ARG 2 force
+			COMMENT if {@code true}, the particle will be created regardless of its distance from the camera and the {@linkplain #calculateParticleLevel(boolean) calculated particle level}
+		ARG 3 decreased
+			COMMENT if {@code true}, and the {@linkplain net.minecraft.client.Options#particles particles option} is set to minimal, attempts to spawn the particle at a decreased level
 		ARG 4 x
 		ARG 6 y
 		ARG 8 z
@@ -79,7 +84,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 12 ySpeed
 		ARG 14 zSpeed
 	METHOD allChanged ()V
-		COMMENT Loads all the renderers and sets up the basic settings usage
+		COMMENT Loads all renderers and sets up the basic options usage.
 	METHOD blockChanged (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;I)V
 		ARG 1 level
 		ARG 2 pos
@@ -87,100 +92,141 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 4 newState
 		ARG 5 flags
 	METHOD buildClouds (Lcom/mojang/blaze3d/vertex/BufferBuilder;DDDLnet/minecraft/world/phys/Vec3;)V
-		ARG 1 buffer
-		ARG 2 cloudsX
-		ARG 4 cloudsY
-		ARG 6 cloudsZ
-		ARG 8 cloudsColor
+		ARG 1 builder
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 cloudColor
 	METHOD buildSkyDisc (Lcom/mojang/blaze3d/vertex/BufferBuilder;F)V
 		ARG 0 builder
 		ARG 1 y
 	METHOD calculateParticleLevel (Z)Lnet/minecraft/client/ParticleStatus;
-		ARG 1 minimiseLevel
+		COMMENT Calculates the level of particles to use based on the {@linkplain net.minecraft.client.Options#particles particles option} and the specified {@code decreased} parameter. This leads to randomly generating more or less particles than the set option.
+		ARG 1 decreased
+			COMMENT if {@code true}, and the {@linkplain net.minecraft.client.Options#particles particles option} is set to minimal, has a 1 in 10 chance to return a decreased level and a further 1 in 3 chance to minimise it
+	METHOD captureFrustum (Lcom/mojang/math/Matrix4f;Lcom/mojang/math/Matrix4f;DDDLnet/minecraft/client/renderer/culling/Frustum;)V
+		ARG 1 viewMatrix
+		ARG 2 projectionMatrix
+		ARG 3 camX
+		ARG 5 camY
+		ARG 7 camZ
+		ARG 9 frustum
 	METHOD checkPoseStack (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 matrixStack
-	METHOD clear ()V
-		COMMENT Deletes all display lists
+		COMMENT Asserts that the specified {@code poseStack} is {@linkplain com.mojang.blaze3d.vertex.PoseStack#clear() clear}.
+		COMMENT @throws java.lang.IllegalStateException if the specified {@code poseStack} is not clear
+		ARG 1 poseStack
 	METHOD compileChunksUntil (J)V
-		ARG 1 finishTimeNano
+		ARG 1 finishNanoTime
 	METHOD destroyBlockProgress (ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 breakerId
 		ARG 2 pos
 		ARG 3 progress
 	METHOD drawStars (Lcom/mojang/blaze3d/vertex/BufferBuilder;)V
-		ARG 1 bufferBuilder
+		ARG 1 builder
 	METHOD getChunkStatistics ()Ljava/lang/String;
-		COMMENT Gets the render info for use on the Debug screen
+		COMMENT @return chunk rendering statistics to display on the {@linkplain net.minecraft.client.gui.components.DebugScreenOverlay debug overlay}
 	METHOD getEntityStatistics ()Ljava/lang/String;
-		COMMENT Gets the entities info for use on the Debug screen
+		COMMENT @return entity rendering statistics to display on the {@linkplain net.minecraft.client.gui.components.DebugScreenOverlay debug overlay}
 	METHOD getLightColor (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
-		ARG 0 lightReader
-		ARG 1 blockPos
+		ARG 0 level
+		ARG 1 pos
 	METHOD getLightColor (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)I
-		ARG 0 lightReader
-		ARG 1 blockState
-		ARG 2 blockPos
+		ARG 0 level
+		ARG 1 state
+		ARG 2 pos
 	METHOD getRelativeFrom (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;
-		COMMENT Returns RenderChunk offset from given RenderChunk in given direction, or null if it can't be seen by player at given BlockPos.
-		ARG 1 playerPos
-		ARG 2 renderChunkBase
+		COMMENT @return the specified {@code renderChunk} offset in the specified {@code direction}, or {@code null} if it can't be seen by the camera at the specified {@code cameraChunkPos}
+		ARG 1 cameraChunkPos
+			COMMENT the minimum block position of the chunk the camera is in
+		ARG 2 renderChunk
 		ARG 3 facing
 	METHOD globalLevelEvent (ILnet/minecraft/core/BlockPos;I)V
-		ARG 1 soundID
+		COMMENT Handles a global level event. This includes playing sounds that should be heard by any player, regardless of position and dimension, such as the Wither spawning.
+		ARG 1 type
+			COMMENT the type of level event to handle. This method only handles {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_WITHER_BOSS_SPAWN the wither boss spawn sound}, {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_DRAGON_DEATH the dragon's death sound}, and {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_END_PORTAL_SPAWN the end portal spawn sound}.
 		ARG 2 pos
 		ARG 3 data
 	METHOD initOutline ()V
-		COMMENT Creates the entity outline shader to be stored in RenderGlobal.entityOutlineShader
+	METHOD lambda$renderLevel$2 (Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
+		ARG 2 renderType
+	METHOD lambda$renderShape$4 (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;DDDFFFFDDDDDD)V
+		ARG 12 minX
+		ARG 14 minY
+		ARG 16 minZ
+		ARG 18 maxX
+		ARG 20 maxY
+		ARG 22 maxZ
+	METHOD lambda$updateRenderChunks$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;)D
+		ARG 1 renderChunkInfo
 	METHOD levelEvent (Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 player
 		ARG 2 type
-		ARG 3 blockPos
+		ARG 3 pos
 		ARG 4 data
 	METHOD notifyNearbyEntities (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Z)V
-		COMMENT Called when a record starts or stops playing. Used to make parrots start or stop partying.
+		COMMENT Notifies living entities in a 3 block range of the specified {@code pos} that a record is or isn't playing nearby, dependent on the specified {@code playing} parameter.
+		COMMENT This is used to make parrots start or stop partying.
 		ARG 1 level
 		ARG 2 pos
-		ARG 3 isPartying
+		ARG 3 playing
 	METHOD onResourceManagerReload (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 1 resourceManager
 	METHOD playStreamingMusic (Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/core/BlockPos;)V
-		ARG 1 sound
+		ARG 1 soundEvent
 		ARG 2 pos
+	METHOD prepareCullFrustum (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/phys/Vec3;Lcom/mojang/math/Matrix4f;)V
+		ARG 1 poseStack
+		ARG 2 cameraPos
+		ARG 3 projectionMatrix
 	METHOD removeProgress (Lnet/minecraft/server/level/BlockDestructionProgress;)V
 		ARG 1 progress
+	METHOD renderChunkLayer (Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack;DDDLcom/mojang/math/Matrix4f;)V
+		ARG 1 renderType
+		ARG 2 poseStack
+		ARG 3 camX
+		ARG 5 camY
+		ARG 7 camZ
+		ARG 9 projectionMatrix
+	METHOD renderClouds (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/math/Matrix4f;FDDD)V
+		ARG 1 poseStack
+		ARG 2 projectionMatrix
+		ARG 3 partialTick
+		ARG 4 camX
+		ARG 6 camY
+		ARG 8 camZ
 	METHOD renderDebug (Lnet/minecraft/client/Camera;)V
-		ARG 1 activeRenderInfo
+		ARG 1 camera
 	METHOD renderEndSky (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 	METHOD renderEntity (Lnet/minecraft/world/entity/Entity;DDDFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;)V
 		ARG 1 entity
 		ARG 2 camX
 		ARG 4 camY
 		ARG 6 camZ
-		ARG 8 partialTicks
-		ARG 9 matrixStack
-		ARG 10 buffer
+		ARG 8 partialTick
+		ARG 9 poseStack
+		ARG 10 bufferSource
 	METHOD renderHitOutline (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 matrixStack
-		ARG 2 buffer
+		ARG 1 poseStack
+		ARG 2 consumer
 		ARG 3 entity
-		ARG 4 x
-		ARG 6 y
-		ARG 8 z
-		ARG 10 blockPos
-		ARG 11 blockState
+		ARG 4 camX
+		ARG 6 camY
+		ARG 8 camZ
+		ARG 10 pos
+		ARG 11 state
 	METHOD renderLevel (Lcom/mojang/blaze3d/vertex/PoseStack;FJZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lcom/mojang/math/Matrix4f;)V
-		ARG 1 matrixStack
-		ARG 2 partialTicks
-		ARG 3 finishTimeNano
-		ARG 5 drawBlockOutline
-		ARG 6 activeRenderInfo
+		ARG 1 poseStack
+		ARG 2 partialTick
+		ARG 3 finishNanoTime
+		ARG 5 renderBlockOutline
+		ARG 6 camera
 		ARG 7 gameRenderer
-		ARG 8 lightmap
-		ARG 9 projection
+		ARG 8 lightTexture
+		ARG 9 projectionMatrix
 	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDDDDFFFF)V
-		ARG 0 matrixStack
-		ARG 1 buffer
+		ARG 0 poseStack
+		ARG 1 consumer
 		ARG 2 minX
 		ARG 4 minY
 		ARG 6 minZ
@@ -192,8 +238,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 16 blue
 		ARG 17 alpha
 	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDDDDFFFFFFF)V
-		ARG 0 matrixStack
-		ARG 1 buffer
+		ARG 0 poseStack
+		ARG 1 consumer
 		ARG 2 minX
 		ARG 4 minY
 		ARG 6 minZ
@@ -208,16 +254,28 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 19 green2
 		ARG 20 blue2
 	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/AABB;FFFF)V
-		ARG 0 matrixStack
-		ARG 1 buffer
-		ARG 2 aabb
+		ARG 0 poseStack
+		ARG 1 consumer
+		ARG 2 box
 		ARG 3 red
 		ARG 4 green
 		ARG 5 blue
 		ARG 6 alpha
+	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDDDDFFFF)V
+		ARG 0 consumer
+		ARG 1 minX
+		ARG 3 minY
+		ARG 5 minZ
+		ARG 7 maxX
+		ARG 9 maxY
+		ARG 11 maxZ
+		ARG 13 red
+		ARG 14 green
+		ARG 15 blue
+		ARG 16 alpha
 	METHOD renderShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFF)V
-		ARG 0 matrixStack
-		ARG 1 buffer
+		ARG 0 poseStack
+		ARG 1 consumer
 		ARG 2 shape
 		ARG 3 x
 		ARG 5 y
@@ -226,15 +284,20 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 green
 		ARG 11 blue
 		ARG 12 alpha
+	METHOD renderSky (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/math/Matrix4f;FLjava/lang/Runnable;)V
+		ARG 1 poseStack
+		ARG 2 projectionMatrix
+		ARG 3 partialTick
+		ARG 4 skyFogSetup
 	METHOD renderSnowAndRain (Lnet/minecraft/client/renderer/LightTexture;FDDD)V
-		ARG 1 lightmap
-		ARG 2 partialTicks
-		ARG 3 x
-		ARG 5 y
-		ARG 7 z
+		ARG 1 lightTexture
+		ARG 2 partialTick
+		ARG 3 camX
+		ARG 5 camY
+		ARG 7 camZ
 	METHOD renderVoxelShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFF)V
-		ARG 0 matrixStack
-		ARG 1 buffer
+		ARG 0 poseStack
+		ARG 1 consumer
 		ARG 2 shape
 		ARG 3 x
 		ARG 5 y
@@ -243,27 +306,29 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 green
 		ARG 11 blue
 		ARG 12 alpha
+	METHOD renderWorldBorder (Lnet/minecraft/client/Camera;)V
+		ARG 1 camera
 	METHOD resize (II)V
 		ARG 1 width
 		ARG 2 height
 	METHOD setBlockDirty (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 blockPos
+		ARG 1 pos
 		ARG 2 oldState
 		ARG 3 newState
 	METHOD setBlockDirty (Lnet/minecraft/core/BlockPos;Z)V
 		ARG 1 pos
-		ARG 2 rerenderOnMainThread
+		ARG 2 reRenderOnMainThread
 	METHOD setBlocksDirty (IIIIII)V
-		COMMENT On the client, re-renders all blocks in this range, inclusive. On the server, does nothing.
-		ARG 1 x1
-		ARG 2 y1
-		ARG 3 z1
-		ARG 4 x2
-		ARG 5 y2
-		ARG 6 z2
+		COMMENT Re-renders all blocks in the specified range.
+		ARG 1 minX
+		ARG 2 minY
+		ARG 3 minZ
+		ARG 4 maxX
+		ARG 5 maxY
+		ARG 6 maxZ
 	METHOD setLevel (Lnet/minecraft/client/multiplayer/ClientLevel;)V
-		COMMENT set null to clear
-		ARG 1 levelClient
+		ARG 1 level
+			COMMENT the level to set, or {@code null} to clear
 	METHOD setSectionDirty (III)V
 		ARG 1 sectionX
 		ARG 2 sectionY
@@ -272,25 +337,55 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 sectionX
 		ARG 2 sectionY
 		ARG 3 sectionZ
-		ARG 4 rerenderOnMainThread
+		ARG 4 reRenderOnMainThread
 	METHOD setSectionDirtyWithNeighbors (III)V
 		ARG 1 sectionX
 		ARG 2 sectionY
 		ARG 3 sectionZ
 	METHOD setupRender (Lnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/culling/Frustum;ZIZ)V
-		ARG 1 activeRenderInfo
-		ARG 2 camera
-		ARG 3 debugCamera
-		ARG 4 frameCount
-		ARG 5 playerSpectator
+		ARG 1 camera
+		ARG 2 frustum
+		ARG 3 hasCapturedFrustum
+		ARG 4 frameId
+		ARG 5 spectator
 	METHOD tickRain (Lnet/minecraft/client/Camera;)V
-		ARG 1 activeRenderInfo
+		ARG 1 camera
 	METHOD updateGlobalBlockEntities (Ljava/util/Collection;Ljava/util/Collection;)V
-		ARG 1 tileEntitiesToRemove
-		ARG 2 tileEntitiesToAdd
+		ARG 1 blockEntitiesToRemove
+		ARG 2 blockEntitiesToAdd
+	METHOD updateRenderChunks (Lnet/minecraft/client/renderer/culling/Frustum;IZLnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;ILnet/minecraft/core/BlockPos;)V
+		ARG 1 frustum
+		ARG 2 frameId
+		ARG 3 spectator
+		ARG 4 cameraPos
+		ARG 5 cameraBlockPos
+		ARG 6 renderChunk
+		ARG 7 chunkSize
+		ARG 8 cameraChunkPos
+			COMMENT the minimum block position of the chunk the camera is in
+	CLASS RenderInfoMap
+		METHOD <init> (I)V
+			ARG 1 size
+		METHOD get (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;)Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;
+			ARG 1 renderChunk
+		METHOD put (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;)V
+			ARG 1 renderChunk
+			ARG 2 info
 	CLASS RenderChunkInfo
+		METHOD <init> (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/core/Direction;I)V
+			ARG 1 chunk
+			ARG 2 sourceDirection
+			ARG 3 step
+		METHOD addSourceDirection (Lnet/minecraft/core/Direction;)V
+			ARG 1 direction
 		METHOD hasDirection (Lnet/minecraft/core/Direction;)Z
 			ARG 1 facing
+		METHOD hasSourceDirection (I)Z
+			ARG 1 directionIndex
 		METHOD setDirections (BLnet/minecraft/core/Direction;)V
 			ARG 1 dir
 			ARG 2 facing
+	CLASS TransparencyShaderException
+		METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+			ARG 1 message
+			ARG 2 cause

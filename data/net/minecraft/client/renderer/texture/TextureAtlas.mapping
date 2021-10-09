@@ -1,31 +1,48 @@
 CLASS net/minecraft/client/renderer/texture/TextureAtlas
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 location
 	METHOD getBasicSpriteInfos (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/Set;)Ljava/util/Collection;
 		ARG 1 resourceManager
-		ARG 2 spriteLocations
+		ARG 2 spriteNames
 	METHOD getLoadedSprites (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/client/renderer/texture/Stitcher;I)Ljava/util/List;
 		ARG 1 resourceManager
 		ARG 2 stitcher
-		ARG 3 mipmapLevel
+		ARG 3 mipLevel
 	METHOD getResourceLocation (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
-		ARG 1 location
+		ARG 1 spriteName
 	METHOD getSprite (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
-		ARG 1 location
-	METHOD load (Lnet/minecraft/server/packs/resources/ResourceManager;)V
-		ARG 1 manager
+		ARG 1 name
+	METHOD lambda$getLoadedSprites$4 (ILjava/util/Queue;Ljava/util/List;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;IIII)V
+		ARG 5 spriteInfo
+		ARG 6 storageX
+		ARG 7 storageY
+		ARG 8 x
+		ARG 9 y
+	METHOD lambda$prepareToStitch$0 (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 0 spriteName
+	METHOD lambda$prepareToStitch$1 (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;)Ljava/lang/String;
+		ARG 0 spriteInfo
 	METHOD load (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;IIIII)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
 		ARG 1 resourceManager
 		ARG 2 spriteInfo
-		ARG 3 width
-		ARG 4 height
-		ARG 5 mipmapLevel
-		ARG 6 originX
-		ARG 7 originY
+		ARG 3 storageX
+		ARG 4 storageY
+		ARG 5 mipLevel
+		ARG 6 x
+		ARG 7 y
 	METHOD prepareToStitch (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/stream/Stream;Lnet/minecraft/util/profiling/ProfilerFiller;I)Lnet/minecraft/client/renderer/texture/TextureAtlas$Preparations;
 		ARG 1 resourceManager
-		ARG 2 resourceLocations
+		ARG 2 spriteNames
 		ARG 3 profiler
-		ARG 4 maxMipmapLevel
+		ARG 4 mipLevel
 	METHOD reload (Lnet/minecraft/client/renderer/texture/TextureAtlas$Preparations;)V
-		ARG 1 sheetData
+		ARG 1 preparations
 	METHOD updateFilter (Lnet/minecraft/client/renderer/texture/TextureAtlas$Preparations;)V
-		ARG 1 sheetData
+		ARG 1 preparations
+	CLASS Preparations
+		METHOD <init> (Ljava/util/Set;IIILjava/util/List;)V
+			ARG 1 sprites
+			ARG 2 width
+			ARG 3 height
+			ARG 4 mipLevel
+			ARG 5 regions

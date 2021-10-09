@@ -1,30 +1,34 @@
 CLASS net/minecraft/client/renderer/block/BlockRenderDispatcher
+	METHOD <init> (Lnet/minecraft/client/renderer/block/BlockModelShaper;Lnet/minecraft/client/renderer/BlockEntityWithoutLevelRenderer;Lnet/minecraft/client/color/block/BlockColors;)V
+		ARG 1 blockModelShaper
+		ARG 2 blockEntityRenderer
+		ARG 3 blockColors
 	METHOD getBlockModel (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/client/resources/model/BakedModel;
 		ARG 1 state
 	METHOD onResourceManagerReload (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 1 resourceManager
 	METHOD renderBatched (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/BlockAndTintGetter;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLjava/util/Random;)Z
-		ARG 1 blockState
+		ARG 1 state
 		ARG 2 pos
-		ARG 3 lightReader
-		ARG 4 matrixStack
-		ARG 5 vertexBuilder
+		ARG 3 level
+		ARG 4 poseStack
+		ARG 5 consumer
 		ARG 6 checkSides
-		ARG 7 rand
+		ARG 7 random
 	METHOD renderBreakingTexture (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/BlockAndTintGetter;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;)V
-		ARG 1 blockState
+		ARG 1 state
 		ARG 2 pos
-		ARG 3 lightReader
-		ARG 4 matrixStack
-		ARG 5 vertexBuilder
+		ARG 3 level
+		ARG 4 poseStack
+		ARG 5 consumer
 	METHOD renderLiquid (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/BlockAndTintGetter;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/level/material/FluidState;)Z
 		ARG 1 pos
-		ARG 2 lightReader
-		ARG 3 vertexBuilder
+		ARG 2 level
+		ARG 3 consumer
 		ARG 4 fluidState
 	METHOD renderSingleBlock (Lnet/minecraft/world/level/block/state/BlockState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V
-		ARG 1 blockState
-		ARG 2 matrixStack
-		ARG 3 bufferType
-		ARG 4 combinedLight
-		ARG 5 combinedOverlay
+		ARG 1 state
+		ARG 2 poseStack
+		ARG 3 bufferSource
+		ARG 4 packedLight
+		ARG 5 packedOverlay

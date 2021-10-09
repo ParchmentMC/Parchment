@@ -1,8 +1,16 @@
 CLASS net/minecraft/client/renderer/blockentity/BedRenderer
-	METHOD render (Lnet/minecraft/world/level/block/entity/BedBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V
-		ARG 1 blockEntity
-		ARG 2 partialTicks
-		ARG 3 matrixStack
-		ARG 4 buffer
-		ARG 5 combinedLight
-		ARG 6 combinedOverlay
+	METHOD <init> (Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider$Context;)V
+		ARG 1 context
+	METHOD lambda$render$0 (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)Z
+		ARG 0 levelAccessor
+		ARG 1 pos
+	METHOD renderPiece (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/model/geom/ModelPart;Lnet/minecraft/core/Direction;Lnet/minecraft/client/resources/model/Material;IIZ)V
+		ARG 1 poseStack
+		ARG 2 bufferSource
+		ARG 3 modelPart
+		ARG 4 direction
+		ARG 5 material
+		ARG 6 packedLight
+		ARG 7 packedOverlay
+		ARG 8 foot
+			COMMENT {@code true} if piece to render is the foot of the bed, {@code false} otherwise or if being rendered by a {@link net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer}
