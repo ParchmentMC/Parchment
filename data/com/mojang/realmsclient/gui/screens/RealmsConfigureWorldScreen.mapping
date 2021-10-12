@@ -1,10 +1,48 @@
 CLASS com/mojang/realmsclient/gui/screens/RealmsConfigureWorldScreen
+	METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;J)V
+		ARG 1 lastScreen
+		ARG 2 serverId
+	METHOD closeTheWorld (Lnet/minecraft/client/gui/screens/Screen;)V
+		ARG 1 lastScreen
+	METHOD drawClose (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
+		ARG 1 poseStack
+	METHOD drawExpired (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
+		ARG 1 poseStack
+	METHOD drawExpiring (Lcom/mojang/blaze3d/vertex/PoseStack;IIIII)V
+		ARG 1 poseStack
+	METHOD drawOpen (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
+		ARG 1 poseStack
+	METHOD drawServerStatus (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
+		ARG 1 poseStack
+	METHOD fetchServerData (J)V
+		ARG 1 serverId
+	METHOD hide (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD joinRealm (Lcom/mojang/realmsclient/dto/RealmsServer;)V
+		ARG 1 server
 	METHOD keyPressed (III)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
+	METHOD openTheWorld (ZLnet/minecraft/client/gui/screens/Screen;)V
+		ARG 1 join
+		ARG 2 lastScreen
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 matrixStack
 		ARG 2 mouseX
 		ARG 3 mouseY
 		ARG 4 partialTicks
+	METHOD renderMousehoverTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/network/chat/Component;II)V
+		ARG 1 poseStack
+	METHOD saveSlotSettings (Lcom/mojang/realmsclient/dto/RealmsWorldOptions;)V
+		ARG 1 worldOptions
+	METHOD show (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD switchToEmptySlot (ILcom/mojang/realmsclient/dto/RealmsServer;)V
+		ARG 1 slot
+		ARG 2 server
+	METHOD switchToFullSlot (ILcom/mojang/realmsclient/dto/RealmsServer;)V
+		ARG 1 slot
+		ARG 2 server
+	METHOD templateSelectionCallback (Lcom/mojang/realmsclient/dto/WorldTemplate;)V
+		ARG 1 worldTemplate
