@@ -1,12 +1,22 @@
 CLASS com/mojang/math/Transformation
+	METHOD <init> (Lcom/mojang/math/Matrix4f;)V
+		ARG 1 matrix
+	METHOD <init> (Lcom/mojang/math/Vector3f;Lcom/mojang/math/Quaternion;Lcom/mojang/math/Vector3f;Lcom/mojang/math/Quaternion;)V
+		ARG 1 translation
+		ARG 2 leftRotation
+		ARG 3 scale
+		ARG 4 rightRotation
 	METHOD compose (Lcom/mojang/math/Transformation;)Lcom/mojang/math/Transformation;
 		ARG 1 other
 	METHOD compose (Lcom/mojang/math/Vector3f;Lcom/mojang/math/Quaternion;Lcom/mojang/math/Vector3f;Lcom/mojang/math/Quaternion;)Lcom/mojang/math/Matrix4f;
 		ARG 0 translation
-		ARG 1 rotationLeft
+		ARG 1 leftRotation
 		ARG 2 scale
-		ARG 3 rotationRight
+		ARG 3 rightRotation
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
+	METHOD slerp (Lcom/mojang/math/Transformation;F)Lcom/mojang/math/Transformation;
+		ARG 1 transformation
+		ARG 2 delta
 	METHOD toAffine (Lcom/mojang/math/Matrix4f;)Lcom/mojang/datafixers/util/Pair;
 		ARG 0 matrix
