@@ -13,6 +13,11 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		COMMENT Just an ordinary random number generator, used to randomize audio pitch of item/orb pickup and randomize both particlespawn offset and velocity
 	FIELD started Z
 		COMMENT True if the client has finished downloading terrain and may spawn. Set upon receipt of S08PacketPlayerPosLook, reset upon respawning
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/network/Connection;Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 minecraft
+		ARG 2 callbackScreen
+		ARG 3 connection
+		ARG 4 localGameProfile
 	METHOD cleanup ()V
 		COMMENT Clears the WorldClient instance associated with this NetHandlerPlayClient
 	METHOD downloadCallback (Ljava/util/concurrent/CompletableFuture;)V
@@ -230,9 +235,21 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 packet
 	METHOD handleUpdateTags (Lnet/minecraft/network/protocol/game/ClientboundUpdateTagsPacket;)V
 		ARG 1 packet
+	METHOD lambda$handleAddOrRemoveRecipes$4 (Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/world/item/crafting/Recipe;)V
+		ARG 2 recipe
+	METHOD lambda$handleAddOrRemoveRecipes$5 (Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)V
+		ARG 1 recipes
+	METHOD lambda$handleChunkBlocksUpdate$1 (ILnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 2 pos
+		ARG 3 state
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason
+	METHOD readSectionList (IILnet/minecraft/world/level/lighting/LevelLightEngine;Lnet/minecraft/world/level/LightLayer;Ljava/util/BitSet;Ljava/util/BitSet;Ljava/util/Iterator;Z)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 lightEngine
+		ARG 4 lightLayer
 	METHOD send (Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 packet
 	METHOD send (Lnet/minecraft/network/protocol/game/ServerboundResourcePackPacket$Action;)V
