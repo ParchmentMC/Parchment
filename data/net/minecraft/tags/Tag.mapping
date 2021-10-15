@@ -1,44 +1,82 @@
 CLASS net/minecraft/tags/Tag
 	METHOD codec (Ljava/util/function/Supplier;)Lcom/mojang/serialization/Codec;
-		ARG 0 collectionSupplier
+		ARG 0 tagsSupplier
 	METHOD contains (Ljava/lang/Object;)Z
-		ARG 1 element
+		ARG 1 value
 	METHOD fromSet (Ljava/util/Set;)Lnet/minecraft/tags/Tag;
-		ARG 0 elements
+		ARG 0 values
 	METHOD getRandomElement (Ljava/util/Random;)Ljava/lang/Object;
 		ARG 1 random
+	METHOD lambda$codec$1 (Ljava/util/function/Supplier;Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/serialization/DataResult;
+		ARG 1 name
+	METHOD lambda$codec$3 (Ljava/util/function/Supplier;Lnet/minecraft/tags/Tag;)Lcom/mojang/serialization/DataResult;
+		ARG 1 tag
 	CLASS Entry
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
-			ARG 1 resourceTagFunction
-			ARG 2 resourceElementFunction
-			ARG 3 elementConsumer
+			ARG 1 tagFunction
+			ARG 2 valueFunction
+			ARG 3 action
 		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
-			ARG 1 jsonArray
+			ARG 1 json
+		METHOD verifyIfPresent (Ljava/util/function/Predicate;Ljava/util/function/Predicate;)Z
+			ARG 1 registryPredicate
+			ARG 2 builderPredicate
+		METHOD visitOptionalDependencies (Ljava/util/function/Consumer;)V
+			ARG 1 visitor
+		METHOD visitRequiredDependencies (Ljava/util/function/Consumer;)V
+			ARG 1 visitor
 	CLASS Builder
 		METHOD add (Lnet/minecraft/tags/Tag$BuilderEntry;)Lnet/minecraft/tags/Tag$Builder;
-			ARG 1 proxyTag
+			ARG 1 entry
 		METHOD add (Lnet/minecraft/tags/Tag$Entry;Ljava/lang/String;)Lnet/minecraft/tags/Tag$Builder;
-			ARG 1 tagEntry
-			ARG 2 identifier
+			ARG 1 entry
+			ARG 2 source
 		METHOD addElement (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Lnet/minecraft/tags/Tag$Builder;
-			ARG 1 registryName
-			ARG 2 identifier
+			ARG 1 id
+			ARG 2 source
 		METHOD addFromJson (Lcom/google/gson/JsonObject;Ljava/lang/String;)Lnet/minecraft/tags/Tag$Builder;
 			ARG 1 json
-			ARG 2 identifier
+			ARG 2 source
+		METHOD addOptionalElement (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Lnet/minecraft/tags/Tag$Builder;
+			ARG 1 id
+			ARG 2 source
+		METHOD addOptionalTag (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Lnet/minecraft/tags/Tag$Builder;
+			ARG 1 id
+			ARG 2 source
 		METHOD addTag (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Lnet/minecraft/tags/Tag$Builder;
-			ARG 1 tag
-			ARG 2 identifier
+			ARG 1 id
+			ARG 2 source
+		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;)Lcom/mojang/datafixers/util/Either;
+			ARG 1 tagFunction
+			ARG 2 valueFunction
+		METHOD lambda$addFromJson$2 (Ljava/lang/String;Lnet/minecraft/tags/Tag$Entry;)V
+			ARG 2 entry
+		METHOD lambda$visitOptionalDependencies$1 (Ljava/util/function/Consumer;Lnet/minecraft/tags/Tag$BuilderEntry;)V
+			ARG 1 entry
+		METHOD lambda$visitRequiredDependencies$0 (Ljava/util/function/Consumer;Lnet/minecraft/tags/Tag$BuilderEntry;)V
+			ARG 1 entry
 		METHOD parseEntry (Lcom/google/gson/JsonElement;)Lnet/minecraft/tags/Tag$Entry;
 			ARG 0 json
+		METHOD visitOptionalDependencies (Ljava/util/function/Consumer;)V
+			ARG 1 visitor
+		METHOD visitRequiredDependencies (Ljava/util/function/Consumer;)V
+			ARG 1 visitor
 	CLASS TagEntry
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 1 id
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
 			ARG 1 resourceTagFunction
 			ARG 2 resourceElementFunction
 			ARG 3 elementConsumer
 		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
 			ARG 1 jsonArray
+	CLASS BuilderEntry
+		METHOD <init> (Lnet/minecraft/tags/Tag$Entry;Ljava/lang/String;)V
+			ARG 1 entry
+			ARG 2 source
 	CLASS ElementEntry
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 1 id
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
 			ARG 1 resourceTagFunction
 			ARG 2 resourceElementFunction
@@ -46,6 +84,8 @@ CLASS net/minecraft/tags/Tag
 		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
 			ARG 1 jsonArray
 	CLASS OptionalTagEntry
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 1 id
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
 			ARG 1 resourceTagFunction
 			ARG 2 resourceElementFunction
@@ -53,6 +93,8 @@ CLASS net/minecraft/tags/Tag
 		METHOD serializeTo (Lcom/google/gson/JsonArray;)V
 			ARG 1 jsonArray
 	CLASS OptionalElementEntry
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 1 id
 		METHOD build (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
 			ARG 1 resourceTagFunction
 			ARG 2 resourceElementFunction
