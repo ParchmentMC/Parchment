@@ -1,8 +1,13 @@
 CLASS net/minecraft/client/sounds/ChannelAccess
+	METHOD <init> (Lcom/mojang/blaze3d/audio/Library;Ljava/util/concurrent/Executor;)V
+		ARG 1 library
+		ARG 2 executor
 	METHOD createHandle (Lcom/mojang/blaze3d/audio/Library$Pool;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 systemMode
 	METHOD executeOnChannels (Ljava/util/function/Consumer;)V
 		ARG 1 sourceStreamConsumer
 	CLASS ChannelHandle
+		METHOD <init> (Lnet/minecraft/client/sounds/ChannelAccess;Lcom/mojang/blaze3d/audio/Channel;)V
+			ARG 2 channel
 		METHOD execute (Ljava/util/function/Consumer;)V
 			ARG 1 soundConsumer

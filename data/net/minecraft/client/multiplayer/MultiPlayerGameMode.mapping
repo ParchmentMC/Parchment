@@ -1,4 +1,7 @@
 CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/multiplayer/ClientPacketListener;)V
+		ARG 1 minecraft
+		ARG 2 connection
 	METHOD adjustPlayer (Lnet/minecraft/world/entity/player/Player;)V
 		COMMENT Sets player capabilities depending on current gametype. params: player
 		ARG 1 player
@@ -17,6 +20,8 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		ARG 1 level
 		ARG 2 statsManager
 		ARG 3 recipes
+		ARG 4 wasShiftKeyDown
+		ARG 5 wasSprinting
 	METHOD destroyBlock (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD ensureHasSentCarriedItem ()V
@@ -31,18 +36,25 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		ARG 5 successful
 	METHOD handleCreativeModeItemAdd (Lnet/minecraft/world/item/ItemStack;I)V
 		COMMENT Used in PlayerControllerMP to update the server with an ItemStack in a slot.
-		ARG 1 itemStack
+		ARG 1 stack
 		ARG 2 slotId
 	METHOD handleCreativeModeItemDrop (Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Sends a Packet107 to the server to drop the item on the ground
-		ARG 1 itemStack
+		ARG 1 stack
 	METHOD handleInventoryButtonClick (II)V
 		COMMENT GuiEnchantment uses this during multiplayer to tell PlayerControllerMP to send a packet indicating the enchantment action the player has taken.
-		ARG 1 windowID
-		ARG 2 button
+		ARG 1 containerId
+		ARG 2 buttonId
+	METHOD handleInventoryMouseClick (IIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 containerId
+		ARG 2 slotId
+		ARG 3 mouseButton
+		ARG 4 clickType
+		ARG 5 player
 	METHOD handlePickItem (I)V
 		ARG 1 index
 	METHOD handlePlaceRecipe (ILnet/minecraft/world/item/crafting/Recipe;Z)V
+		ARG 1 containerId
 		ARG 2 recipe
 		ARG 3 placeAll
 	METHOD hasFarPickRange ()Z
@@ -77,6 +89,9 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 	METHOD setLocalMode (Lnet/minecraft/world/level/GameType;)V
 		COMMENT Sets the game type for the player.
 		ARG 1 type
+	METHOD setLocalMode (Lnet/minecraft/world/level/GameType;Lnet/minecraft/world/level/GameType;)V
+		ARG 1 localPlayerMode
+		ARG 2 previousLocalPlayerMode
 	METHOD startDestroyBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
 		COMMENT Called when the player is hitting a block with an item.
 		ARG 1 loc
@@ -87,3 +102,8 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		ARG 1 player
 		ARG 2 level
 		ARG 3 hand
+	METHOD useItemOn (Lnet/minecraft/client/player/LocalPlayer;Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 player
+		ARG 2 level
+		ARG 3 hand
+		ARG 4 blockHitResult

@@ -14,10 +14,20 @@ CLASS net/minecraft/client/Options
 		ARG 1 opacity
 	METHOD getSoundSourceVolume (Lnet/minecraft/sounds/SoundSource;)F
 		ARG 1 category
+	METHOD isFalse (Ljava/lang/String;)Z
+		ARG 0 value
+	METHOD isModelPartEnabled (Lnet/minecraft/world/entity/player/PlayerModelPart;)Z
+		ARG 1 playerModelPart
+	METHOD isTrue (Ljava/lang/String;)Z
+		ARG 0 value
+	METHOD lambda$load$5 (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+		ARG 1 option
 	METHOD load ()V
 		COMMENT Loads the options from the options file. It appears that this has replaced the previous 'loadOptions'
 	METHOD loadSelectedResourcePacks (Lnet/minecraft/server/packs/repository/PackRepository;)V
 		ARG 1 resourcePackList
+	METHOD readMainHand (Ljava/lang/String;)Lnet/minecraft/world/entity/HumanoidArm;
+		ARG 0 hand
 	METHOD save ()V
 		COMMENT Saves the options to the options file.
 	METHOD setCameraType (Lnet/minecraft/client/CameraType;)V
@@ -31,5 +41,31 @@ CLASS net/minecraft/client/Options
 	METHOD setSoundCategoryVolume (Lnet/minecraft/sounds/SoundSource;F)V
 		ARG 1 category
 		ARG 2 volume
+	METHOD toggleModelPart (Lnet/minecraft/world/entity/player/PlayerModelPart;Z)V
+		ARG 1 playerModelPart
+		ARG 2 enable
 	METHOD useNativeTransport ()Z
 		COMMENT Return true if the client connect to a server using the native transport system
+	CLASS 3
+		METHOD writePrefix (Ljava/lang/String;)V
+			ARG 1 prefix
+	CLASS FieldAccess
+		METHOD process (Ljava/lang/String;D)D
+			ARG 1 prefix
+			ARG 2 value
+		METHOD process (Ljava/lang/String;F)F
+			ARG 1 prefix
+			ARG 2 value
+		METHOD process (Ljava/lang/String;I)I
+			ARG 1 prefix
+			ARG 2 value
+		METHOD process (Ljava/lang/String;Ljava/lang/Object;Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/lang/Object;
+			ARG 1 prefix
+		METHOD process (Ljava/lang/String;Ljava/lang/Object;Ljava/util/function/IntFunction;Ljava/util/function/ToIntFunction;)Ljava/lang/Object;
+			ARG 1 prefix
+		METHOD process (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+			ARG 1 prefix
+			ARG 2 value
+		METHOD process (Ljava/lang/String;Z)Z
+			ARG 1 prefix
+			ARG 2 value

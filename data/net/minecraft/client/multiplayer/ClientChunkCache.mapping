@@ -1,4 +1,7 @@
 CLASS net/minecraft/client/multiplayer/ClientChunkCache
+	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;I)V
+		ARG 1 level
+		ARG 2 viewDistance
 	METHOD calculateStorageRange (I)I
 		ARG 0 viewDistance
 	METHOD drop (II)V
@@ -25,6 +28,8 @@ CLASS net/minecraft/client/multiplayer/ClientChunkCache
 	METHOD updateViewRadius (I)V
 		ARG 1 viewDistance
 	CLASS Storage
+		METHOD <init> (Lnet/minecraft/client/multiplayer/ClientChunkCache;I)V
+			ARG 2 chunkRadius
 		METHOD getChunk (I)Lnet/minecraft/world/level/chunk/LevelChunk;
 			ARG 1 chunkIndex
 		METHOD getIndex (II)I

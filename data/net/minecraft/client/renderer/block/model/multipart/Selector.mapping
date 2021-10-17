@@ -5,8 +5,12 @@ CLASS net/minecraft/client/renderer/block/model/multipart/Selector
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
 	METHOD getPredicate (Lnet/minecraft/world/level/block/state/StateDefinition;)Ljava/util/function/Predicate;
-		ARG 1 state
+		ARG 1 definition
 	CLASS Deserializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/client/renderer/block/model/multipart/Selector;
+			ARG 1 json
+			ARG 2 type
+			ARG 3 context
 		METHOD getCondition (Lcom/google/gson/JsonObject;)Lnet/minecraft/client/renderer/block/model/multipart/Condition;
 			ARG 0 json
 		METHOD getKeyValueCondition (Ljava/util/Map$Entry;)Lnet/minecraft/client/renderer/block/model/multipart/Condition;
