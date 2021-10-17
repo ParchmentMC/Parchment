@@ -1,17 +1,11 @@
 CLASS net/minecraft/resources/ResourceLocation
 	COMMENT An immutable location of a resource, in terms of a path and namespace.
-	COMMENT
-	COMMENT <p>This is used as an identifier for a resource, usually for those housed in a
-	COMMENT {@link net.minecraft.core.Registry}, such as blocks and items.</p>
-	COMMENT
-	COMMENT <p>{@code minecraft} is always taken as the default namespace for a resource location when
-	COMMENT none is explicitly stated. When using this for registering objects, this namespace
-	COMMENT <b>should</b> only be used for resources added by Minecraft itself.</p>
-	COMMENT
-	COMMENT <p>Generally, and by the implementation of {@link #toString()}, the string representation of
-	COMMENT this class is expressed in the form {@code namespace:path}. The colon is also used as the
-	COMMENT default separator for parsing strings as a {@code ResourceLocation}.</p>
-	COMMENT
+	COMMENT <p>
+	COMMENT This is used as an identifier for a resource, usually for those housed in a {@link net.minecraft.core.Registry}, such as blocks and items.
+	COMMENT <p>
+	COMMENT {@code minecraft} is always taken as the default namespace for a resource location when none is explicitly stated. When using this for registering objects, this namespace <strong>should</strong> only be used for resources added by Minecraft itself.
+	COMMENT <p>
+	COMMENT Generally, and by the implementation of {@link #toString()}, the string representation of this class is expressed in the form {@code namespace:path}. The colon is also used as the default separator for parsing strings as a {@code ResourceLocation}.
 	COMMENT @see net.minecraft.resources.ResourceKey
 	METHOD <init> (Ljava/lang/String;)V
 		ARG 1 location
@@ -37,23 +31,17 @@ CLASS net/minecraft/resources/ResourceLocation
 		ARG 0 path
 	METHOD isValidResourceLocation (Ljava/lang/String;)Z
 		COMMENT Splits the specified {@code location} into a namespace and path by a colon, checking both are valid.
-		COMMENT
-		COMMENT <p>If no colon is present in the {@code location}, the namespace defaults to {@code minecraft}, taking
-		COMMENT the {@code location} as the path.</p>
-		COMMENT
+		COMMENT <p>
+		COMMENT If no colon is present in the {@code location}, the namespace defaults to {@code minecraft}, taking the {@code location} as the path.</p>
 		COMMENT @return {@code true} if both the decomposed namespace and path are valid
 		COMMENT @see #isValidPath(String)
 		COMMENT @see #isValidNamespace(String)
 		ARG 0 location
 	METHOD of (Ljava/lang/String;C)Lnet/minecraft/resources/ResourceLocation;
-		COMMENT Constructs a {@code ResourceLocation} from the specified {@code location}, split into a namespace and
-		COMMENT path by the specified {@code separator} char.
-		COMMENT
-		COMMENT <p>If the {@code separator} char is not present in the {@code location}, the namespace defaults to
-		COMMENT {@code minecraft}, taking the {@code location} as the path.</p>
-		COMMENT
-		COMMENT @throws net.minecraft.ResourceLocationException if there is a non {@code [a-z0-9_.-]} character in the
-		COMMENT decomposed namespace or a non {@code [a-z0-9/._-]} character in the decomposed path.
+		COMMENT Constructs a {@code ResourceLocation} from the specified {@code location}, split into a namespace and path by the specified {@code separator} char.
+		COMMENT <p>
+		COMMENT If the {@code separator} char is not present in the {@code location}, the namespace defaults to {@code minecraft}, taking the {@code location} as the path.
+		COMMENT @throws net.minecraft.ResourceLocationException if there is a non {@code [a-z0-9_.-]} character in the decomposed namespace or a non {@code [a-z0-9/._-]} character in the decomposed path.
 		COMMENT @see #tryParse(String)
 		COMMENT @see #isValidResourceLocation(String)
 		ARG 0 location
@@ -67,12 +55,9 @@ CLASS net/minecraft/resources/ResourceLocation
 	METHOD tryParse (Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
 		COMMENT Attempts to parse the specified {@code location} as a {@code ResourceLocation} by splitting it into a
 		COMMENT namespace and path by a colon.
-		COMMENT
-		COMMENT <p>If no colon is present in the {@code location}, the namespace defaults to {@code minecraft}, taking
-		COMMENT the {@code location} as the path.</p>
-		COMMENT
-		COMMENT @return the parsed resource location; otherwise {@code null} if there is a non {@code [a-z0-9_.-]}
-		COMMENT character in the decomposed namespace or a non {@code [a-z0-9/._-]} character in the decomposed path
+		COMMENT <p>
+		COMMENT If no colon is present in the {@code location}, the namespace defaults to {@code minecraft}, taking the {@code location} as the path.
+		COMMENT @return the parsed resource location; otherwise {@code null} if there is a non {@code [a-z0-9_.-]} character in the decomposed namespace or a non {@code [a-z0-9/._-]} character in the decomposed path
 		COMMENT @see #of(String, char)
 		ARG 0 location
 			COMMENT the location string to try to parse as a {@code ResourceLocation}
@@ -83,9 +68,9 @@ CLASS net/minecraft/resources/ResourceLocation
 	CLASS Serializer
 		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/resources/ResourceLocation;
 			ARG 1 json
-			ARG 2 type
+			ARG 2 typeOfT
 			ARG 3 context
 		METHOD serialize (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
 			ARG 1 resourceLocation
-			ARG 2 type
+			ARG 2 typeOfT
 			ARG 3 context
