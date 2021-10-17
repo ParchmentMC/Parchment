@@ -2,7 +2,7 @@ CLASS net/minecraft/core/RegistryAccess
 	COMMENT The root level registry, essentially a registry of registries. It is also an access point, hence the name, for other dynamic registries.
 	FIELD BUILTIN Lnet/minecraft/core/RegistryAccess$RegistryHolder;
 		COMMENT A registry access containing the builtin registries (excluding the dimension type registry).
-		COMMENT When this class is loaded, this registry holder is initialized, which involves copying all elements from the builtin registries at {@link net.minecraft.data.BuiltinRegistries} into this field, which contains the static, code defined registries such as configured features, etc.}.
+		COMMENT When this class is loaded, this registry holder is initialized, which involves copying all elements from the builtin registries at {@link net.minecraft.data.BuiltinRegistries} into this field, which contains the static, code defined registries such as configured features, etc.
 		COMMENT Early classloading of this class <strong>can cause issues</strong> because this field will not contain any elements registered to the builtin registries after classloading of {@code RegistryAccess}.
 	FIELD REGISTRIES Ljava/util/Map;
 		COMMENT Metadata about all registries. Maps registry keys to a {@link RegistryData} object, which defines the codecs, and if applicable, codecs for synchronization of the registry's elements.
@@ -70,8 +70,7 @@ CLASS net/minecraft/core/RegistryAccess
 		COMMENT The returned registry can not gaurentee that it is writable here, so the return type is widened to {@code Registry<E>} instead.
 		ARG 1 registryKey
 	METHOD registryOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Registry;
-		COMMENT Accesses a given registry by key where the registry is assumed to exist.
-		COMMENT @throws IllegalStateException if the provided registry does not exist.
+		COMMENT A variant of {@link #registry(ResourceKey)} that throws if the registry does not exist.
 		ARG 1 registryKey
 	CLASS RegistryData
 		COMMENT A small record representing metadata about a given registry.
@@ -91,7 +90,7 @@ CLASS net/minecraft/core/RegistryAccess
 		METHOD sendToClient ()Z
 			COMMENT @return {@code true} if this registry should be synchronized with the client.
 	CLASS RegistryHolder
-		COMMENT Creates a new registry holder which includes all default dynamic registries.
+		COMMENT The default implementation of {@link RegistryAccess}, which stores it's registries in a backing map of registry keys to registries.
 		FIELD NETWORK_CODEC Lcom/mojang/serialization/Codec;
 			COMMENT This is the codec used to serialize the entire contents of the builtin registries to send to client. It is built using the metadata information of {@link #REGISTRIES} in order to filter what registries to sync.
 			COMMENT Internally, the codec is built as a wrapper around a {@code Map<ResourceKey<?>, Registry<?>>}.
