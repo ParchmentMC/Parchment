@@ -1,5 +1,7 @@
 CLASS net/minecraft/world/level/BlockGetter
 	METHOD clip (Lnet/minecraft/world/level/ClipContext;)Lnet/minecraft/world/phys/BlockHitResult;
+		COMMENT Checks if there's block between {@code from} and {@code to} of context.
+		COMMENT This uses the collision shape of provided block.
 		ARG 1 context
 	METHOD clipWithInteractionOverride (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/phys/BlockHitResult;
 		ARG 1 startVec
@@ -16,6 +18,7 @@ CLASS net/minecraft/world/level/BlockGetter
 		ARG 1 pos
 	METHOD getBlockFloorHeight (Lnet/minecraft/world/phys/shapes/VoxelShape;Ljava/util/function/Supplier;)D
 		ARG 1 shape
+		ARG 2 belowShapeSupplier
 	METHOD getBlockState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 pos
 	METHOD getBlockStates (Lnet/minecraft/world/phys/AABB;)Ljava/util/stream/Stream;
@@ -26,7 +29,19 @@ CLASS net/minecraft/world/level/BlockGetter
 		ARG 1 pos
 	METHOD isBlockInLine (Lnet/minecraft/world/level/ClipBlockStateContext;)Lnet/minecraft/world/phys/BlockHitResult;
 		ARG 1 context
+	METHOD lambda$clip$2 (Lnet/minecraft/world/level/ClipContext;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/BlockHitResult;
+		ARG 1 traverseContext
+		ARG 2 traversePos
+	METHOD lambda$clip$3 (Lnet/minecraft/world/level/ClipContext;)Lnet/minecraft/world/phys/BlockHitResult;
+		ARG 0 failContext
+	METHOD lambda$isBlockInLine$0 (Lnet/minecraft/world/level/ClipBlockStateContext;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/BlockHitResult;
+		ARG 1 traverseContext
+		ARG 2 traversePos
+	METHOD lambda$isBlockInLine$1 (Lnet/minecraft/world/level/ClipBlockStateContext;)Lnet/minecraft/world/phys/BlockHitResult;
+		ARG 0 failContext
 	METHOD traverseBlocks (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Ljava/lang/Object;Ljava/util/function/BiFunction;Ljava/util/function/Function;)Ljava/lang/Object;
 		ARG 0 from
 		ARG 1 to
 		ARG 2 context
+		ARG 3 tester
+		ARG 4 onFail
