@@ -1,4 +1,5 @@
 CLASS net/minecraft/resources/RegistryWriteOps
+	COMMENT A {@link DelegatingOps} which uses a backing {@link RegistryAccess} to write elements.
 	METHOD <init> (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/core/RegistryAccess;)V
 		ARG 1 delegate
 		ARG 2 registryAccess
@@ -6,7 +7,13 @@ CLASS net/minecraft/resources/RegistryWriteOps
 		ARG 0 delegate
 		ARG 1 registryAccess
 	METHOD encode (Ljava/lang/Object;Ljava/lang/Object;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/DataResult;
+		COMMENT Encodes an element of a given registry.
+		COMMENT Since the registry key needs to be provided in order to know what registry to encode the element into, this cannot override the {@code encode} method in {@link DelegatingOps}.
+		COMMENT Instead, callers that use this ops (such as {@link net.minecraft.resources.RegistryFileCodec}) are forced to {@code instanceof} check if the ops is a {@code RegistryWriteOps} and call the specialized {@code encode} method instead.
 		ARG 1 element
+			COMMENT The object to encode, optionally, an element in a registry
 		ARG 2 prefix
 		ARG 3 registryKey
+			COMMENT The registry in which the element may be found.
 		ARG 4 elementCodec
+			COMMENT A direct codec to serialize an element. If the registry key does not exist in the held {@link #registryAccess}, or the element does not exist in the registry, this will be used as the fallback encoder.

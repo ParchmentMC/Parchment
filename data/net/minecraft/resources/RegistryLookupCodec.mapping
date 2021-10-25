@@ -1,4 +1,7 @@
 CLASS net/minecraft/resources/RegistryLookupCodec
+	COMMENT A codec that provides a registry, by key to the consumer, assuming the ops used is a {@code net.minecraft.resources.RegistryReadOps}.
+	COMMENT No data is encoded or decoded, rather, the registry is looked up in the ops's {@code registryAccess}.
+	COMMENT This provides a read-only view of a registry, and can reference registries owned by the registry access or not.
 	METHOD <init> (Lnet/minecraft/resources/ResourceKey;)V
 		ARG 1 registryKey
 	METHOD create (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/resources/RegistryLookupCodec;
@@ -6,6 +9,8 @@ CLASS net/minecraft/resources/RegistryLookupCodec
 	METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
 		ARG 1 ops
 		ARG 2 input
+	METHOD encode (Lnet/minecraft/core/Registry;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;)Lcom/mojang/serialization/RecordBuilder;
+		ARG 1 registry
 	METHOD encode (Lnet/minecraft/core/Registry;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;)Lcom/mojang/serialization/RecordBuilder;
 		ARG 1 input
 		ARG 2 ops
