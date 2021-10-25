@@ -1,13 +1,32 @@
 CLASS net/minecraft/client/resources/model/SimpleBakedModel
+	METHOD <init> (Ljava/util/List;Ljava/util/Map;ZZZLnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/client/renderer/block/model/ItemTransforms;Lnet/minecraft/client/renderer/block/model/ItemOverrides;)V
+		ARG 1 unculledFaces
+		ARG 2 culledFaces
+		ARG 3 hasAmbientOcclusion
+		ARG 4 usesBlockLight
+		ARG 5 isGui3d
+		ARG 6 particleIcon
+		ARG 7 transforms
+		ARG 8 overrides
 	METHOD getQuads (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Ljava/util/Random;)Ljava/util/List;
 		ARG 1 state
 		ARG 2 side
 		ARG 3 rand
 	CLASS Builder
+		METHOD <init> (Lnet/minecraft/client/renderer/block/model/BlockModel;Lnet/minecraft/client/renderer/block/model/ItemOverrides;Z)V
+			ARG 1 blockModel
+			ARG 2 overrides
+			ARG 3 isGui3d
+		METHOD <init> (ZZZLnet/minecraft/client/renderer/block/model/ItemTransforms;Lnet/minecraft/client/renderer/block/model/ItemOverrides;)V
+			ARG 1 hasAmbientOcclusion
+			ARG 2 usesBlockLight
+			ARG 3 isGui3d
+			ARG 4 transforms
+			ARG 5 overrides
 		METHOD addCulledFace (Lnet/minecraft/core/Direction;Lnet/minecraft/client/renderer/block/model/BakedQuad;)Lnet/minecraft/client/resources/model/SimpleBakedModel$Builder;
 			ARG 1 facing
 			ARG 2 quad
 		METHOD addUnculledFace (Lnet/minecraft/client/renderer/block/model/BakedQuad;)Lnet/minecraft/client/resources/model/SimpleBakedModel$Builder;
 			ARG 1 quad
 		METHOD particle (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Lnet/minecraft/client/resources/model/SimpleBakedModel$Builder;
-			ARG 1 texture
+			ARG 1 particleIcon
