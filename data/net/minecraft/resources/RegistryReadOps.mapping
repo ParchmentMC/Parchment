@@ -1,9 +1,15 @@
 CLASS net/minecraft/resources/RegistryReadOps
+	COMMENT A combination of a {@link DelegatingOps}, to do raw data reading, a {@link net.minecraft.core.RegistryAccess}, to populate, and a {@link RegistryReadOps.ResourceAccess} which represents a organized set of encoded registry data, to decode from.
+	COMMENT In that sense, this ops wraps an entire encoded view of a registry, and it's companion decoding functionality, rather than being a general purpose ops.
 	METHOD <init> (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/resources/RegistryReadOps$ResourceAccess;Lnet/minecraft/core/RegistryAccess;Ljava/util/IdentityHashMap;)V
 		ARG 1 delegate
+			COMMENT The delegate dynamic ops to use for raw data decoding.
 		ARG 2 resources
+			COMMENT The resource access. A view of an encoded set of registry data that this ops can read from.
 		ARG 3 registryAccess
+			COMMENT The destination registry access to load registry elements into, during decoding.
 		ARG 4 readCache
+			COMMENT A map from registry and element key pairs, to cached (optional) decoding results. This is used to optimize reference to registry elements that may have already been decoded.
 	METHOD create (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/resources/RegistryReadOps$ResourceAccess;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/resources/RegistryReadOps;
 		ARG 0 delegate
 		ARG 1 resources
@@ -13,6 +19,8 @@ CLASS net/minecraft/resources/RegistryReadOps
 		ARG 1 resourceManager
 		ARG 2 registryAccess
 	METHOD createAndLoad (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/resources/RegistryReadOps$ResourceAccess;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/resources/RegistryReadOps;
+		COMMENT Creates a new {@link RegistryReadOps} with the provided resources as input. Then, loads the entirety of the resources into the provided {@code registryAccess}.
+		COMMENT The {@link RegistryReadOps} is returned but can be discarded after, as all resources will have been loaded into the {@code registryAccess}.
 		ARG 0 delegate
 		ARG 1 resources
 		ARG 2 registryAccess
@@ -21,14 +29,29 @@ CLASS net/minecraft/resources/RegistryReadOps
 		ARG 1 resourceManager
 		ARG 2 registryAccess
 	METHOD decodeElement (Ljava/lang/Object;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)Lcom/mojang/serialization/DataResult;
+		COMMENT Decodes a single element from the registry {@code registryKey}.
+		COMMENT The {@code registryAccess} must own the registry, as it will be modified.
+		COMMENT If inline definitions are allowed, the element may be encoded as raw data, which will be read using the {@code elementCodec} and returned without mutating the internal {@code registryAccess}.
+		COMMENT In all other cases, this will read the registry element's id as a {@link net.minecraft.resources.ResourceLocation}. A supplier to the registry element will be returned, which accesses the underlying registry, or an error, if the registry element was unable to be decoded here or in previous calls.
 		ARG 1 input
+			COMMENT The input encoded registry element, either a id or an inline definition.
 		ARG 2 registryKey
+			COMMENT The registry the element might belong to.
 		ARG 3 elementCodec
+			COMMENT The codec to decode individual elements from the registry, if inline definitions are supported, or, to decode the element from the resource access.
 		ARG 4 allowInline
+			COMMENT If inline definitions that are not present in any registry are allowed here.
 	METHOD decodeElements (Lnet/minecraft/core/MappedRegistry;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/DataResult;
+		COMMENT Decodes all elements of a given registry as per the semantics of {@link #decodeElement(Object, ResourceKey, Codec, boolean)}.
+		COMMENT Lists resources internally from the resource access, and requires that they be be json files prefixed with the registry name.
+		COMMENT If so, individual elements are read and registered into the registry, accumulating errors in the returned result.
+		COMMENT The partial result will contain all successfully decoded and registered elements.
 		ARG 1 registry
+			COMMENT The (empty) registry to decode elements into.
 		ARG 2 registryKey
+			COMMENT The key of the registry.
 		ARG 3 elementCodec
+			COMMENT A codec used to decode individual registry elements from the resource access.
 	METHOD lambda$decodeElement$1 (Ljava/lang/Object;)Ljava/util/function/Supplier;
 		ARG 0 element
 	METHOD lambda$decodeElement$2 (Lcom/mojang/datafixers/util/Pair;)Lcom/mojang/datafixers/util/Pair;
@@ -54,6 +77,8 @@ CLASS net/minecraft/resources/RegistryReadOps
 		ARG 1 registryKey
 	METHOD registry (Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/DataResult;
 		ARG 1 registryKey
+	CLASS ReadCache
+		COMMENT This is a cheap java version of a type alias. Because {@code ReadCache<E>} is shorter than {@code Map<ResourceKey<E>, DataResult<Supplier<E>>}.
 	CLASS ResourceAccess
 		METHOD forResourceManager (Lnet/minecraft/server/packs/resources/ResourceManager;)Lnet/minecraft/resources/RegistryReadOps$ResourceAccess;
 			ARG 0 manager
@@ -69,9 +94,10 @@ CLASS net/minecraft/resources/RegistryReadOps
 				ARG 0 fileName
 			METHOD lambda$parseElement$1 (Ljava/lang/Object;)Lcom/mojang/datafixers/util/Pair;
 				ARG 0 element
-			METHOD listResources (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Collection;
-				ARG 1 registryKey
 		CLASS MemoryMap
+			COMMENT An in-memory, JSON serialized form of a {@link net.minecraft.core.RegistryAccess}.
+			COMMENT It retains the integer IDs and lifecycles of every registry element, and is used to bridge the gap between {@link RegistryReadOps} and {@link net.minecraft.resources.RegistryWriteOps} when using the pair in conjunction to perform a deep copy of the entire registries.
+			COMMENT This implements {@link ResourceAccess} as it is used as the access for a {@link RegistryReadOps} to read from, when the builtin registries are being initialized.
 			METHOD add (Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Encoder;ILjava/lang/Object;Lcom/mojang/serialization/Lifecycle;)V
 				ARG 1 registryAccess
 				ARG 2 resourceKey
@@ -85,5 +111,3 @@ CLASS net/minecraft/resources/RegistryReadOps
 				ARG 1 resourceKey
 			METHOD lambda$parseElement$2 (Lnet/minecraft/resources/ResourceKey;Ljava/lang/Object;)Lcom/mojang/datafixers/util/Pair;
 				ARG 2 element
-			METHOD listResources (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Collection;
-				ARG 1 registryKey

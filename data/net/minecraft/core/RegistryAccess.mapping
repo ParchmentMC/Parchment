@@ -1,32 +1,119 @@
 CLASS net/minecraft/core/RegistryAccess
+	COMMENT The root level registry, essentially a registry of registries. It is also an access point, hence the name, for other dynamic registries.
+	FIELD BUILTIN Lnet/minecraft/core/RegistryAccess$RegistryHolder;
+		COMMENT A registry access containing the builtin registries (excluding the dimension type registry).
+		COMMENT When this class is loaded, this registry holder is initialized, which involves copying all elements from the builtin registries at {@link net.minecraft.data.BuiltinRegistries} into this field, which contains the static, code defined registries such as configured features, etc.
+		COMMENT Early classloading of this class <strong>can cause issues</strong> because this field will not contain any elements registered to the builtin registries after classloading of {@code RegistryAccess}.
+	FIELD REGISTRIES Ljava/util/Map;
+		COMMENT Metadata about all registries. Maps registry keys to a {@link RegistryData} object, which defines the codecs, and if applicable, codecs for synchronization of the registry's elements.
 	METHOD addBuiltinElements (Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/resources/RegistryReadOps$ResourceAccess$MemoryMap;Lnet/minecraft/core/RegistryAccess$RegistryData;)V
-		ARG 0 registryHolder
+		COMMENT Adds builtin elements from the builtin registries to the {@code destinationRegistryHolder} with several quirks.
+		COMMENT The source for all builtin elements is the {@link #BUILTIN} field, which contains builtin elements of all registries excluding the dimension type registry, as they were at time this class was initialized.
+		COMMENT Then, depending on the registry, one of two things will occur:
+		COMMENT <ul>
+		COMMENT <li>If the registry is the noise generator settings, or dimension type registry, elements will be copied (id, object, name, and lifecycle) directly into the registry of {@code destinationRegistryHolder}</li>
+		COMMENT <li>However, in all other cases, the registry element is <strong>encoded into JSON</strong> and entered into the {@code destinationRegistryAccess}. The registry holder is not modified in these cases.</li>
+		COMMENT </ul>
+		ARG 0 destinationRegistryHolder
+		ARG 1 resourceAccess
+		ARG 2 data
+	METHOD builtin ()Lnet/minecraft/core/RegistryAccess$RegistryHolder;
+		COMMENT Creates a {@link RegistryHolder} containing the builtin vanilla registries.
+		COMMENT The way it does so is a little convoluted.
+		COMMENT <ol>
+		COMMENT <li>It copies the contents of the noise generator settings and dimension types, directly from the {@link #BUILTIN} field. (Note that since {@link #BUILTIN} does not contain entries for dimension types the latter copy is rather pointless)</li>
+		COMMENT <li>All other registry elements are serialized to JSON, and stored (including their registry int ID and lifecycles), in the {@code MemoryMap}.</li>
+		COMMENT <li>A {@link net.minecraft.resources.RegistryReadOps} is created, and stores the {@code MemoryMap} as the ops' {code ResourceAccess}. The ops is then read from, which internally lists resources from the {@code ResourceAccess}, and deserializes all elements from JSON.</li>
+		COMMENT </ol>
+		COMMENT Despite seeming like the worlds worst deep copy, this actually has an explicit purpose: Registry elements are totally unknown to the registry - they do not expose a copy method, they can be of an arbitrary type, and more importantly, <strong>they may reference other registry elements</strong>.
+		COMMENT This is a key reason why registries need to be copied in this serialize, deserialize loop, as opposed to simply copying the elements. References between registry elements need to be maintained, as the registry elements need to still point to valid elements in the overall registries.
 	METHOD copy (Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/core/Registry;)V
-		ARG 0 registryHolder
-		ARG 1 registry
+		COMMENT Copy the values of the {@code sourceRegistry} into the {@code destinationRegistryHolder}
+		ARG 0 destinationRegistryHolder
+		ARG 1 sourceRegistry
 	METHOD copyBuiltin (Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/resources/ResourceKey;)V
-		ARG 0 registryHolder
-		ARG 1 key
+		COMMENT Copy the values of the builtin registry {@code registryKey} into the {@code destinationRegistryHolder} registry holder.
+		ARG 0 destinationRegistryHolder
+		ARG 1 registryKey
+	METHOD lambda$readRegistry$6 (Lcom/mojang/serialization/DataResult$PartialResult;)V
+		ARG 0 error
+	METHOD lambda$static$3 (Lnet/minecraft/resources/ResourceKey;)Z
+		ARG 0 registryKey
+	METHOD lambda$static$4 (Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/resources/ResourceKey;)V
+		ARG 1 registryKey
+	METHOD load (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/resources/RegistryReadOps;)V
+		COMMENT Loads all registries from the {@code ops} into the {@code destinationRegistryAccess}.
+		ARG 0 destinationRegistryAccess
+		ARG 1 ops
 	METHOD ownedRegistry (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+		COMMENT Get the registry owned by this registry access. The returned value, if it exists, will be writable.
+		ARG 1 registryKey
+	METHOD ownedRegistryOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/WritableRegistry;
+		COMMENT A variant of {@link #ownedRegistry(ResourceKey)} that throws if the registry does not exist.
 		ARG 1 registryKey
 	METHOD put (Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)V
+		ARG 0 builder
 		ARG 1 registryKey
-		ARG 2 codec
+		ARG 2 elementCodec
 	METHOD put (Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)V
+		ARG 0 builder
 		ARG 1 registryKey
-		ARG 2 codec
-		ARG 3 codec2
+		ARG 2 elementCodec
+		ARG 3 networkCodec
+	METHOD readRegistry (Lnet/minecraft/resources/RegistryReadOps;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/core/RegistryAccess$RegistryData;)V
+		COMMENT Load, or reads, a single registry from the containing {@code ops}, into the {@code destinationRegistryAccess}.
+		ARG 0 ops
+		ARG 1 destinationRegistryAccess
+		ARG 2 data
+	METHOD registry (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+		COMMENT Get the registry owned by this registry access by the given key. If it doesn't exist, the default registry of registries is queried instead, which contains static registries such as blocks.
+		COMMENT The returned registry can not gaurentee that it is writable here, so the return type is widened to {@code Registry<E>} instead.
+		ARG 1 registryKey
+	METHOD registryOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Registry;
+		COMMENT A variant of {@link #registry(ResourceKey)} that throws if the registry does not exist.
+		ARG 1 registryKey
 	CLASS RegistryData
+		COMMENT A small record representing metadata about a given registry.
 		METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)V
 			ARG 1 key
+				COMMENT The registry key of this registry.
 			ARG 2 codec
+				COMMENT The codec used to serialize this registry's elements internally.
 			ARG 3 networkCodec
+				COMMENT The codec used to serialize this registry's elements when sending them to the client. This being null implies that the contents of this registry are not synchronized to client.
+		METHOD codec ()Lcom/mojang/serialization/Codec;
+			COMMENT @return The codec used to serialize this registry's elements internally.
+		METHOD key ()Lnet/minecraft/resources/ResourceKey;
+			COMMENT @return The registry key of the registry this metadata is describing.
+		METHOD networkCodec ()Lcom/mojang/serialization/Codec;
+			COMMENT @return The codec used to serialize this registry's elements when sending them to the client. Returns {@code null} if this registry should not be synchronized with the client.
+		METHOD sendToClient ()Z
+			COMMENT @return {@code true} if this registry should be synchronized with the client.
 	CLASS RegistryHolder
+		COMMENT The default implementation of {@link RegistryAccess}, which stores it's registries in a backing map of registry keys to registries.
+		FIELD NETWORK_CODEC Lcom/mojang/serialization/Codec;
+			COMMENT This is the codec used to serialize the entire contents of the builtin registries to send to client. It is built using the metadata information of {@link #REGISTRIES} in order to filter what registries to sync.
+			COMMENT Internally, the codec is built as a wrapper around a {@code Map<ResourceKey<?>, Registry<?>>}.
+			COMMENT Each registry that defines a network codec is wrapped with {@link net.minecraft.core.MappedRegistry.networkCodec} to create a codec which preserves id, name and element values.
+		METHOD <init> (Ljava/util/Map;)V
+			ARG 1 registries
 		METHOD captureMap (Lcom/mojang/serialization/codecs/UnboundedMapCodec;)Lcom/mojang/serialization/Codec;
 			ARG 0 unboundedMapCodec
 		METHOD createRegistry (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/MappedRegistry;
 			ARG 0 registryKey
 		METHOD getNetworkCodec (Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/DataResult;
+			ARG 0 registryKey
+		METHOD lambda$captureMap$3 (Ljava/util/Map$Entry;)Z
+			ARG 0 entry
+		METHOD lambda$captureMap$4 (Lnet/minecraft/core/RegistryAccess$RegistryHolder;)Ljava/util/Map;
+			ARG 0 registryHolder
+		METHOD lambda$getNetworkCodec$5 (Lnet/minecraft/core/RegistryAccess$RegistryData;)Lcom/mojang/serialization/Codec;
+			ARG 0 data
+		METHOD lambda$makeNetworkCodec$0 (Lnet/minecraft/core/MappedRegistry;)Lcom/mojang/serialization/DataResult;
+			ARG 0 registry
+		METHOD lambda$makeNetworkCodec$1 (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+			ARG 1 networkCodec
+		METHOD lambda$makeNetworkCodec$2 (Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/DataResult;
 			ARG 0 registryKey
 		METHOD lambda$ownedRegistry$7 (Lnet/minecraft/core/MappedRegistry;)Lnet/minecraft/core/WritableRegistry;
 			ARG 0 registry

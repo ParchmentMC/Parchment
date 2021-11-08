@@ -1,11 +1,15 @@
 CLASS net/minecraft/resources/RegistryFileCodec
+	COMMENT A codec that wraps a single element, or "file", within a registry. Possibly allows inline definitions, and always falls back to the element codec (and thus writing the registry element inline) if it fails to decode from the registry.
 	METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)V
 		ARG 1 registryKey
 		ARG 2 elementCodec
 		ARG 3 allowInline
 	METHOD create (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)Lnet/minecraft/resources/RegistryFileCodec;
+		COMMENT Creates a codec for a single registry element, which is held as an un-resolved {@code Supplier<E>}. Both inline definitions of the object, and references to an existing registry element id are allowed.
 		ARG 0 registryKey
+			COMMENT The registry which elements may belong to.
 		ARG 1 elementCodec
+			COMMENT The codec used to decode either inline definitions, or elements before entering them into the registry.
 	METHOD create (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)Lnet/minecraft/resources/RegistryFileCodec;
 		ARG 0 registryKey
 		ARG 1 elementCodec
@@ -18,9 +22,16 @@ CLASS net/minecraft/resources/RegistryFileCodec
 		ARG 2 ops
 		ARG 3 prefix
 	METHOD homogeneousList (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
-		COMMENT @return a codec for a list of suppliers of a registry object
+		COMMENT Creates a codec of registry elements, represented as un-resolved {@code Supplier<E>}s. This list can consist of either:
+		COMMENT <ol>
+		COMMENT <li>A list of registry element ids, which are resolved by the registry ops and element codec into registered elements.</li>
+		COMMENT <li>A list of inline definitions of registry elements, which are not registered.</li>
+		COMMENT </ol>
+		COMMENT Due to a deficiency of {@link com.mojang.serialization.codecs.EitherCodec}, when the first fails to resolve a single element, this will instead fallback to trying to interpret the list as a list of inline definitions. And will <strong>not report the earlier error</strong>, instead reporting that the list consists of elements that are "Not a JSON object".
 		ARG 0 registryKey
+			COMMENT The registry which elements may belong to.
 		ARG 1 elementCodec
+			COMMENT The codec used to decode either inline definitions, or elements before entering them into the registry.
 	METHOD lambda$decode$6 (Ljava/lang/Object;)Ljava/util/function/Supplier;
 		ARG 0 element
 	METHOD lambda$decode$7 (Lcom/mojang/datafixers/util/Pair;)Lcom/mojang/datafixers/util/Pair;

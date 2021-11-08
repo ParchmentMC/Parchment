@@ -1,12 +1,8 @@
 CLASS net/minecraft/resources/ResourceKey
-	COMMENT An immutable key for a resource, in terms of the name of its parent registry and its location
-	COMMENT in that registry.
-	COMMENT
-	COMMENT <p>{@link net.minecraft.core.Registry} uses this to return resource keys for registry
-	COMMENT objects via {@link net.minecraft.core.Registry#getResourceKey(Object)}. It also uses
-	COMMENT this class to store its name, with the parent registry name set to {@code minecraft:root}.
-	COMMENT When used in this way it is usually referred to as a "registry key".</p>
-	COMMENT
+	COMMENT An immutable key for a resource, in terms of the name of its parent registry and its location in that registry.
+	COMMENT <p>
+	COMMENT {@link net.minecraft.core.Registry} uses this to return resource keys for registry objects via {@link net.minecraft.core.Registry#getResourceKey(Object)}. It also uses this class to store its name, with the parent registry name set to {@code minecraft:root}. When used in this way it is usually referred to as a "registry key".</p>
+	COMMENT <p>
 	COMMENT @param <T> The type of the resource represented by this {@code ResourceKey}, or the type of the registry if it is a registry key.
 	COMMENT @see net.minecraft.resources.ResourceLocation
 	FIELD location Lnet/minecraft/resources/ResourceLocation;
@@ -17,27 +13,22 @@ CLASS net/minecraft/resources/ResourceKey
 		ARG 1 registryName
 		ARG 2 location
 	METHOD create (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceKey;
-		COMMENT Constructs a new {@code ResourceKey} for a resource with the specified
-		COMMENT {@code location} within the registry specified by the given {@code registryKey}.
+		COMMENT Constructs a new {@code ResourceKey} for a resource with the specified {@code location} within the registry specified by the given {@code registryKey}.
 		COMMENT
-		COMMENT @return the created resource key. The registry name is set to the location of the
-		COMMENT specified {@code registryKey} and with the specified {@code location} as the
-		COMMENT location of the resource.
+		COMMENT @return the created resource key. The registry name is set to the location of the specified {@code registryKey} and with the specified {@code location} as the location of the resource.
 		ARG 0 registryKey
 		ARG 1 location
 	METHOD create (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceKey;
 		ARG 0 registryName
 		ARG 1 location
 	METHOD createRegistryKey (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceKey;
-		COMMENT @return the created registry key. The registry name is set to
-		COMMENT {@code minecraft:root} and the location the specified {@code registryName}.
+		COMMENT @return the created registry key. The registry name is set to {@code minecraft:root} and the location the specified {@code registryName}.
 		ARG 0 location
 	METHOD elementKey (Lnet/minecraft/resources/ResourceKey;)Ljava/util/function/Function;
-		COMMENT @return a function that maps a {@link net.minecraft.resources.ResourceLocation} to an
-		COMMENT equivalent child {@code ResourceKey} of the specified {@code registryKey}.
+		COMMENT @return a function that maps a {@link net.minecraft.resources.ResourceLocation} to an equivalent child {@code ResourceKey} of the specified {@code registryKey}.
 		ARG 0 registryKey
 	METHOD isFor (Lnet/minecraft/resources/ResourceKey;)Z
-		COMMENT @return {@code true} if this resource key is a direct child of the specified {@code registryKey}
+		COMMENT @return {@code true} if this resource key is a direct child of the specified {@code registryKey}.
 		ARG 1 registryKey
 	METHOD lambda$create$0 (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Lnet/minecraft/resources/ResourceKey;
 		ARG 2 key

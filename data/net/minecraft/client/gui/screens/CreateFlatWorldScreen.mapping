@@ -5,25 +5,48 @@ CLASS net/minecraft/client/gui/screens/CreateFlatWorldScreen
 		COMMENT The text used to identify the material for a layer
 	FIELD deleteLayerButton Lnet/minecraft/client/gui/components/Button;
 		COMMENT The remove layer button
+	METHOD <init> (Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;Ljava/util/function/Consumer;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)V
+		ARG 1 parent
+		ARG 2 applySettings
+		ARG 3 generator
 	METHOD hasValidSelection ()Z
 		COMMENT Returns whether there is a valid layer selection
+	METHOD lambda$init$1 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$2 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$3 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 mouseX
 		ARG 3 mouseY
-		ARG 4 partialTicks
+		ARG 4 partialTick
+	METHOD setConfig (Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)V
+		ARG 1 generator
 	METHOD updateButtonValidity ()V
 		COMMENT Would update whether or not the edit and remove buttons are enabled, but is currently disabled and always disables the buttons (which are invisible anyways)
 	CLASS DetailsList
 		METHOD setSelected (Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen$DetailsList$Entry;)V
 			ARG 1 entry
 		CLASS Entry
+			METHOD blitSlot (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/world/item/ItemStack;)V
+				ARG 1 poseStack
+				ARG 2 x
+				ARG 3 y
+				ARG 4 stack
+			METHOD blitSlotBg (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
+				ARG 1 poseStack
+				ARG 2 x
+				ARG 3 y
+			METHOD getDisplayItem (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/item/ItemStack;
+				ARG 1 state
 			METHOD mouseClicked (DDI)Z
 				ARG 1 mouseX
 				ARG 3 mouseY
 				ARG 5 button
 			METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIZF)V
-				ARG 1 matrixStack
+				ARG 1 poseStack
 				ARG 2 index
 				ARG 3 top
 				ARG 4 left
@@ -32,4 +55,4 @@ CLASS net/minecraft/client/gui/screens/CreateFlatWorldScreen
 				ARG 7 mouseX
 				ARG 8 mouseY
 				ARG 9 isMouseOver
-				ARG 10 partialTicks
+				ARG 10 partialTick

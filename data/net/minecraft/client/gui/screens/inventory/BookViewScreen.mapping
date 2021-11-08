@@ -3,15 +3,29 @@ CLASS net/minecraft/client/gui/screens/inventory/BookViewScreen
 		COMMENT Holds a copy of the page text, split into page width lines
 	FIELD playTurnSound Z
 		COMMENT Determines if a sound is played when the page is turned
+	METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess;)V
+		ARG 1 bookAccess
+	METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess;Z)V
+		ARG 1 bookAccess
+		ARG 2 playTurnSound
 	METHOD forcePage (I)Z
 		COMMENT I'm not sure why this exists. The function it calls is public and does all of the work
 		ARG 1 pageNum
+	METHOD getClickedComponentStyleAt (DD)Lnet/minecraft/network/chat/Style;
+		ARG 1 mouseX
+		ARG 3 mouseY
 	METHOD handleComponentClicked (Lnet/minecraft/network/chat/Style;)Z
 		ARG 1 style
 	METHOD keyPressed (III)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
+	METHOD lambda$createMenuControls$0 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$createPageControlButtons$1 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$createPageControlButtons$2 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
 	METHOD mouseClicked (DDI)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -21,10 +35,12 @@ CLASS net/minecraft/client/gui/screens/inventory/BookViewScreen
 	METHOD pageForward ()V
 		COMMENT Moves the display forward one page
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 mouseX
 		ARG 3 mouseY
-		ARG 4 partialTicks
+		ARG 4 partialTick
+	METHOD setBookAccess (Lnet/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess;)V
+		ARG 1 bookAccess
 	METHOD setPage (I)Z
 		COMMENT Moves the book to the specified page and returns true if it exists, false otherwise
 		ARG 1 pageNum
@@ -32,11 +48,23 @@ CLASS net/minecraft/client/gui/screens/inventory/BookViewScreen
 		METHOD getPageCount ()I
 			COMMENT Returns the size of the book
 	CLASS BookAccess
+		METHOD fromItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess;
+			ARG 0 stack
 		METHOD getPageCount ()I
 			COMMENT Returns the size of the book
+		METHOD getPageRaw (I)Lnet/minecraft/network/chat/FormattedText;
+			ARG 1 index
 	CLASS WrittenBookAccess
+		METHOD <init> (Lnet/minecraft/world/item/ItemStack;)V
+			ARG 1 writtenBookStack
 		METHOD getPageCount ()I
 			COMMENT Returns the size of the book
+		METHOD readPages (Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;
+			ARG 0 writtenBookStack
 	CLASS WritableBookAccess
+		METHOD <init> (Lnet/minecraft/world/item/ItemStack;)V
+			ARG 1 writtenBookStack
 		METHOD getPageCount ()I
 			COMMENT Returns the size of the book
+		METHOD readPages (Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;
+			ARG 0 writtenBookStack

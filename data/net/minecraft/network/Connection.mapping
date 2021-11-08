@@ -63,8 +63,8 @@ CLASS net/minecraft/network/Connection
 		COMMENT This adds new handlers to this connection's pipeline which handle the decrypting and encrypting.
 		COMMENT This happens as part of the normal network handshake.
 		COMMENT
-		COMMENT @see ClientboundHelloPacket
-		COMMENT @see ServerboundKeyPacket
+		COMMENT @see net.minecraft.network.protocol.login.ClientboundHelloPacket
+		COMMENT @see net.minecraft.network.protocol.login.ServerboundKeyPacket
 		ARG 1 decryptingCipher
 		ARG 2 encryptingCipher
 	METHOD setListener (Lnet/minecraft/network/PacketListener;)V
@@ -79,7 +79,7 @@ CLASS net/minecraft/network/Connection
 		COMMENT Enables or disables compression for this connection. If {@code threshold} is >= 0 then a {@link CompressionDecoder} and {@link CompressionEncoder}
 		COMMENT are installed in the pipeline or updated if they already exists. If {@code threshold} is < 0 then any such codec are removed.
 		COMMENT
-		COMMENT Compression is enabled as part of the connection handshake when the server sends {@link ClientboundLoginCompressionPacket}.
+		COMMENT Compression is enabled as part of the connection handshake when the server sends {@link net.minecraft.network.protocol.login.ClientboundLoginCompressionPacket}.
 		ARG 1 threshold
 		ARG 2 validateDecompressed
 	METHOD tick ()V

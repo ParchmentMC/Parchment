@@ -27,7 +27,7 @@ CLASS net/minecraft/world/level/levelgen/Column
 	METHOD line ()Lnet/minecraft/world/level/levelgen/Column;
 		COMMENT @return A column of the unbounded interval (-infinity, infinity).
 	METHOD scan (Lnet/minecraft/world/level/LevelSimulatedReader;Lnet/minecraft/core/BlockPos;ILjava/util/function/Predicate;Ljava/util/function/Predicate;)Ljava/util/Optional;
-		COMMENT Scans for a column of states matching {@code columnState}, up to a length of {@code maxDistance} from the origin, and ending with {@link tipState}.
+		COMMENT Scans for a column of states satisfying {@code columnPredicate}, up to a length of {@code maxDistance} from the origin, and ending with a state which satisfies {@code tipPredicate}.
 		COMMENT @return A column representing the tips found. The column will be bounded if a tip was reached in the given direction, unbounded otherwise.
 		ARG 0 level
 		ARG 1 pos
