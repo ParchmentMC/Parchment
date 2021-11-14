@@ -33,7 +33,7 @@ CLASS net/minecraft/client/gui/Font
 		ARG 6 matrix
 		ARG 7 buffer
 		ARG 8 transparent
-		ARG 9 colorBackground
+		ARG 9 backgroundColor
 		ARG 10 packedLight
 	METHOD drawInBatch (Ljava/lang/String;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZIIZ)I
 		ARG 1 text
@@ -44,22 +44,11 @@ CLASS net/minecraft/client/gui/Font
 		ARG 6 matrix
 		ARG 7 buffer
 		ARG 8 transparent
-		ARG 9 colorBackground
+		ARG 9 backgroundColor
 		ARG 10 packedLight
 		ARG 11 bidiFlag
 	METHOD drawInBatch (Lnet/minecraft/network/chat/Component;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I
-		ARG 1 component
-		ARG 2 x
-		ARG 3 y
-		ARG 4 color
-		ARG 5 dropShadow
-		ARG 6 matrix
-		ARG 7 bugger
-		ARG 8 transparent
-		ARG 9 colorBackground
-		ARG 10 packedLight
-	METHOD drawInBatch (Lnet/minecraft/util/FormattedCharSequence;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I
-		ARG 1 processor
+		ARG 1 text
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
@@ -67,8 +56,28 @@ CLASS net/minecraft/client/gui/Font
 		ARG 6 matrix
 		ARG 7 buffer
 		ARG 8 transparent
-		ARG 9 colorBackground
+		ARG 9 backgroundColor
 		ARG 10 packedLight
+	METHOD drawInBatch (Lnet/minecraft/util/FormattedCharSequence;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)I
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 dropShadow
+		ARG 6 matrix
+		ARG 7 buffer
+		ARG 8 transparent
+		ARG 9 backgroundColor
+		ARG 10 packedLight
+	METHOD drawInBatch8xOutline (Lnet/minecraft/util/FormattedCharSequence;FFIILcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;I)V
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 backgroundColor
+		ARG 6 matrix
+		ARG 7 buffer
+		ARG 8 packedLightCoords
 	METHOD drawInternal (Ljava/lang/String;FFILcom/mojang/math/Matrix4f;ZZ)I
 		ARG 1 text
 		ARG 2 x
@@ -136,7 +145,7 @@ CLASS net/minecraft/client/gui/Font
 		ARG 1 text
 		ARG 2 x
 		ARG 3 y
-		ARG 4 maxLength
+		ARG 4 maxWidth
 		ARG 5 color
 	METHOD getFontSet (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/gui/font/FontSet;
 		ARG 1 fontLocation
@@ -144,10 +153,10 @@ CLASS net/minecraft/client/gui/Font
 		COMMENT Get bidiFlag that controls if the Unicode Bidirectional Algorithm should be run before rendering any string
 	METHOD plainSubstrByWidth (Ljava/lang/String;I)Ljava/lang/String;
 		ARG 1 text
-		ARG 2 maxLength
+		ARG 2 maxWidth
 	METHOD plainSubstrByWidth (Ljava/lang/String;IZ)Ljava/lang/String;
 		ARG 1 text
-		ARG 2 maxLength
+		ARG 2 maxWidth
 	METHOD renderChar (Lnet/minecraft/client/gui/font/glyphs/BakedGlyph;ZZFFFLcom/mojang/math/Matrix4f;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFFFI)V
 		ARG 1 glyph
 		ARG 2 bold
@@ -175,16 +184,21 @@ CLASS net/minecraft/client/gui/Font
 		ARG 10 packedLight
 	METHOD split (Lnet/minecraft/network/chat/FormattedText;I)Ljava/util/List;
 		ARG 1 text
-		ARG 2 maxLength
+		ARG 2 maxWidth
+	METHOD substrByWidth (Lnet/minecraft/network/chat/FormattedText;I)Lnet/minecraft/network/chat/FormattedText;
+		ARG 1 text
+		ARG 2 maxWidth
 	METHOD width (Ljava/lang/String;)I
 		COMMENT Returns the width of this string. Equivalent of FontMetrics.stringWidth(String s).
 		ARG 1 text
 	METHOD width (Lnet/minecraft/network/chat/FormattedText;)I
-		ARG 1 properties
+		ARG 1 text
+	METHOD width (Lnet/minecraft/util/FormattedCharSequence;)I
+		ARG 1 text
 	METHOD wordWrapHeight (Ljava/lang/String;I)I
 		COMMENT Returns the height (in pixels) of the given string if it is wordwrapped to the given max width.
 		ARG 1 str
-		ARG 2 maxLength
+		ARG 2 maxWidth
 	CLASS StringRenderOutput
 		METHOD <init> (Lnet/minecraft/client/gui/Font;Lnet/minecraft/client/renderer/MultiBufferSource;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/gui/Font$DisplayMode;I)V
 			ARG 2 bufferSource
