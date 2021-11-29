@@ -1,4 +1,6 @@
 CLASS net/minecraft/client/renderer/texture/TextureAtlas
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 location
 	METHOD getBasicSpriteInfos (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/Set;)Ljava/util/Collection;
 		ARG 1 resourceManager
 		ARG 2 spriteLocations
@@ -10,6 +12,8 @@ CLASS net/minecraft/client/renderer/texture/TextureAtlas
 		ARG 1 location
 	METHOD getSprite (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
 		ARG 1 location
+	METHOD lambda$prepareToStitch$0 (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 0 location
 	METHOD load (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 1 manager
 	METHOD load (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;IIIII)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
@@ -29,3 +33,10 @@ CLASS net/minecraft/client/renderer/texture/TextureAtlas
 		ARG 1 sheetData
 	METHOD updateFilter (Lnet/minecraft/client/renderer/texture/TextureAtlas$Preparations;)V
 		ARG 1 sheetData
+	CLASS Preparations
+		METHOD <init> (Ljava/util/Set;IIILjava/util/List;)V
+			ARG 1 sprites
+			ARG 2 width
+			ARG 3 height
+			ARG 4 mipLevel
+			ARG 5 regions

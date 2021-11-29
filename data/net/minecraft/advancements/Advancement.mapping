@@ -1,4 +1,11 @@
 CLASS net/minecraft/advancements/Advancement
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/Advancement;Lnet/minecraft/advancements/DisplayInfo;Lnet/minecraft/advancements/AdvancementRewards;Ljava/util/Map;[[Ljava/lang/String;)V
+		ARG 1 id
+		ARG 2 parent
+		ARG 3 display
+		ARG 4 rewards
+		ARG 5 criteria
+		ARG 6 requirements
 	METHOD addChild (Lnet/minecraft/advancements/Advancement;)V
 		COMMENT Add the given {@code Advancement} as a child of this {@code Advancement}.
 		COMMENT
@@ -6,6 +13,8 @@ CLASS net/minecraft/advancements/Advancement
 		ARG 1 advancement
 	METHOD deconstruct ()Lnet/minecraft/advancements/Advancement$Builder;
 		COMMENT Creates a new advancement builder with the data from this advancement
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
 	METHOD getChatComponent ()Lnet/minecraft/network/chat/Component;
 		COMMENT Returns the {@code ITextComponent} that is shown in the chat message sent after this {@code Advancement} is completed.
 		COMMENT
@@ -37,7 +46,15 @@ CLASS net/minecraft/advancements/Advancement
 		COMMENT Get the {@code Advancement} that is this {@code Advancement}'s parent. This determines the tree structure that appears in the {@linkplain GuiScreenAdvancements GUI}.
 		COMMENT
 		COMMENT @return the parent {@code Advancement} of this {@code Advancement}, or {@code null} to signify that this {@code Advancement} is a root with no parent.
+	METHOD lambda$new$0 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 style
 	CLASS Builder
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/DisplayInfo;Lnet/minecraft/advancements/AdvancementRewards;Ljava/util/Map;[[Ljava/lang/String;)V
+			ARG 1 parentId
+			ARG 2 display
+			ARG 3 rewards
+			ARG 4 criteria
+			ARG 5 requirements
 		METHOD addCriterion (Ljava/lang/String;Lnet/minecraft/advancements/Criterion;)Lnet/minecraft/advancements/Advancement$Builder;
 			COMMENT Adds a criterion to the list of criteria
 			ARG 1 key

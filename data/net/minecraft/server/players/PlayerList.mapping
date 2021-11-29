@@ -1,6 +1,11 @@
 CLASS net/minecraft/server/players/PlayerList
 	FIELD playersByUUID Ljava/util/Map;
 		COMMENT A map containing the key-value pairs for UUIDs and their EntityPlayerMP objects.
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/world/level/storage/PlayerDataStorage;I)V
+		ARG 1 server
+		ARG 2 registryHolder
+		ARG 3 playerIo
+		ARG 4 maxPlayers
 	METHOD broadcast (Lnet/minecraft/world/entity/player/Player;DDDDLnet/minecraft/resources/ResourceKey;Lnet/minecraft/network/protocol/Packet;)V
 		COMMENT params: srcPlayer,x,y,z,r,dimension. The packet is not sent to the srcPlayer, but all other players within the search radius
 		ARG 1 except
@@ -20,6 +25,9 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 2 message
 	METHOD canBypassPlayerLimit (Lcom/mojang/authlib/GameProfile;)Z
 		ARG 1 profile
+	METHOD canPlayerLogin (Ljava/net/SocketAddress;Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/network/chat/Component;
+		ARG 1 address
+		ARG 2 profile
 	METHOD deop (Lcom/mojang/authlib/GameProfile;)V
 		ARG 1 profile
 	METHOD getMaxPlayers ()I
