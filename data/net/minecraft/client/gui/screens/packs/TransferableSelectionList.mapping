@@ -1,16 +1,31 @@
 CLASS net/minecraft/client/gui/screens/packs/TransferableSelectionList
+	METHOD <init> (Lnet/minecraft/client/Minecraft;IILnet/minecraft/network/chat/Component;)V
+		ARG 1 minecraft
+		ARG 2 width
+		ARG 3 height
+		ARG 4 title
 	METHOD renderHeader (Lcom/mojang/blaze3d/vertex/PoseStack;IILcom/mojang/blaze3d/vertex/Tesselator;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 x
 		ARG 3 y
 		ARG 4 tessellator
 	CLASS PackEntry
+		METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/packs/TransferableSelectionList;Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/gui/screens/packs/PackSelectionModel$Entry;)V
+			ARG 1 minecraft
+			ARG 2 parent
+			ARG 3 screen
+			ARG 4 pack
+		METHOD cacheDescription (Lnet/minecraft/client/Minecraft;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/components/MultiLineLabel;
+			ARG 0 minecraft
+		METHOD cacheName (Lnet/minecraft/client/Minecraft;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/util/FormattedCharSequence;
+			ARG 0 minecraft
+			ARG 1 name
 		METHOD mouseClicked (DDI)Z
 			ARG 1 mouseX
 			ARG 3 mouseY
 			ARG 5 button
 		METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIZF)V
-			ARG 1 matrixStack
+			ARG 1 poseStack
 			ARG 2 index
 			ARG 3 top
 			ARG 4 left
@@ -19,4 +34,4 @@ CLASS net/minecraft/client/gui/screens/packs/TransferableSelectionList
 			ARG 7 mouseX
 			ARG 8 mouseY
 			ARG 9 isMouseOver
-			ARG 10 partialTicks
+			ARG 10 partialTick

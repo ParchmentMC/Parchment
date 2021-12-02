@@ -1,6 +1,11 @@
 CLASS net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent
 	METHOD changeFocus (Z)Z
 		ARG 1 focus
+	METHOD init (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;IIIIF)V
+		ARG 1 minecraft
+		ARG 2 collection
+		ARG 3 x
+		ARG 4 y
 	METHOD isMouseOver (DD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -8,20 +13,36 @@ CLASS net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent
 		ARG 1 mouseX
 		ARG 3 mouseY
 		ARG 5 button
+	METHOD nineInchSprite (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIII)V
+		ARG 1 poseStack
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 mouseX
 		ARG 3 mouseY
-		ARG 4 partialTicks
+		ARG 4 partialTick
+	METHOD setVisible (Z)V
+		ARG 1 isVisible
 	CLASS OverlayRecipeButton
+		METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;IILnet/minecraft/world/item/crafting/Recipe;Z)V
+			ARG 2 x
+			ARG 3 y
+			ARG 4 recipe
+			ARG 5 isCraftable
 		METHOD addItemToSlot (Ljava/util/Iterator;IIII)V
 			ARG 1 ingredients
 			ARG 2 slot
 			ARG 3 maxAmount
 			ARG 4 y
 			ARG 5 x
+		METHOD calculateIngredientsPositions (Lnet/minecraft/world/item/crafting/Recipe;)V
+			ARG 1 recipe
 		METHOD renderButton (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
-			ARG 1 matrixStack
+			ARG 1 poseStack
 			ARG 2 mouseX
 			ARG 3 mouseY
-			ARG 4 partialTicks
+			ARG 4 partialTick
+		CLASS Pos
+			METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent$OverlayRecipeButton;II[Lnet/minecraft/world/item/ItemStack;)V
+				ARG 2 x
+				ARG 3 y
+				ARG 4 ingredients

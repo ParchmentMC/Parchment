@@ -6,16 +6,59 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 		COMMENT If cheats are allowed
 	FIELD hardCore Z
 		COMMENT Set to true when "hardcore" is the currently-selected gamemode
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/world/level/DataPackConfig;Lnet/minecraft/client/gui/screens/worldselection/WorldGenSettingsComponent;)V
+		ARG 1 lastScreen
+		ARG 2 dataPacks
+		ARG 3 worldGenSettingsComponent
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldGenSettings;Ljava/nio/file/Path;Lnet/minecraft/world/level/DataPackConfig;Lnet/minecraft/core/RegistryAccess$RegistryHolder;)V
+		ARG 1 lastScreen
+		ARG 2 levelSettings
+		ARG 3 worldGenSettings
+		ARG 4 tempDataPackDir
+		ARG 5 dataPacks
+		ARG 6 registryHolder
 	METHOD addWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
 		ARG 1 listener
+	METHOD create (Lnet/minecraft/client/gui/screens/Screen;)Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;
+		ARG 0 lastScreen
 	METHOD keyPressed (III)Z
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
+	METHOD lambda$init$0 (Ljava/lang/String;)V
+		ARG 1 initName
+	METHOD lambda$init$10 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$11 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$12 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$3 (Lnet/minecraft/client/gui/components/CycleButton;Lnet/minecraft/world/Difficulty;)V
+		ARG 2 difficulty
+	METHOD lambda$init$4 (Lnet/minecraft/client/gui/components/CycleButton;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 modeButton
+	METHOD lambda$init$5 (Lnet/minecraft/client/gui/components/CycleButton;Ljava/lang/Boolean;)V
+		ARG 2 commands
+	METHOD lambda$init$6 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$7 (Lnet/minecraft/world/level/GameRules;)V
+		ARG 1 gameRules
+	METHOD lambda$init$9 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 mouseX
 		ARG 3 mouseY
-		ARG 4 partialTicks
+		ARG 4 partialTick
+	METHOD setGameMode (Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$SelectedGameMode;)V
+		ARG 1 gameMode
+	METHOD setWorldGenSettingsVisible (Z)V
+		ARG 1 worldGenSettingsVisible
+	METHOD tryApplyNewDataPacks (Lnet/minecraft/server/packs/repository/PackRepository;)V
+		ARG 1 repository
 	METHOD updateResultFolder ()V
 		COMMENT Determine a save-directory name from the world name
+	CLASS SelectedGameMode
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/world/level/GameType;)V
+			ARG 3 name
+			ARG 4 gameType
