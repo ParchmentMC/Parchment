@@ -1,18 +1,21 @@
 CLASS com/mojang/math/Matrix3f
 	METHOD <init> (Lcom/mojang/math/Matrix3f;)V
-		COMMENT Copy constructor for this class.
 		ARG 1 other
-			COMMENT The instance to copy from
 	METHOD <init> (Lcom/mojang/math/Matrix4f;)V
 		ARG 1 matrix
 	METHOD <init> (Lcom/mojang/math/Quaternion;)V
 		ARG 1 quaternion
 	METHOD add (Lcom/mojang/math/Matrix3f;)V
 		ARG 1 other
+	METHOD bufferIndex (II)I
+		ARG 0 x
+		ARG 1 y
 	METHOD createScaleMatrix (FFF)Lcom/mojang/math/Matrix3f;
 		ARG 0 m00
 		ARG 1 m11
 		ARG 2 m22
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
 	METHOD load (Lcom/mojang/math/Matrix3f;)V
 		ARG 1 other
 	METHOD load (Ljava/nio/FloatBuffer;)V
@@ -29,7 +32,14 @@ CLASS com/mojang/math/Matrix3f
 	METHOD mul (Lcom/mojang/math/Quaternion;)V
 		ARG 1 quaternion
 	METHOD set (IIF)V
+		ARG 1 x
+		ARG 2 y
 		ARG 3 value
+	METHOD sortSingularValues (Lcom/mojang/math/Matrix3f;Lcom/mojang/math/Quaternion;)V
+		ARG 0 matrix
+		ARG 1 quaternion
+	METHOD stepJacobi (Lcom/mojang/math/Matrix3f;)Lcom/mojang/math/Quaternion;
+		ARG 0 matrix
 	METHOD store (Ljava/nio/FloatBuffer;)V
 		ARG 1 buffer
 	METHOD store (Ljava/nio/FloatBuffer;Z)V
