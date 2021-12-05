@@ -1,13 +1,21 @@
 CLASS net/minecraft/client/model/PlayerModel
+	METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;Z)V
+		ARG 1 root
+		ARG 2 slim
+	METHOD createMesh (Lnet/minecraft/client/model/geom/builders/CubeDeformation;Z)Lnet/minecraft/client/model/geom/builders/MeshDefinition;
+		ARG 0 cubeDeformation
+		ARG 1 slim
 	METHOD getRandomModelPart (Ljava/util/Random;)Lnet/minecraft/client/model/geom/ModelPart;
 		ARG 1 random
+	METHOD lambda$new$0 (Lnet/minecraft/client/model/geom/ModelPart;)Z
+		ARG 0 part
 	METHOD renderCloak (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;II)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 buffer
 		ARG 3 packedLight
 		ARG 4 packedOverlay
 	METHOD renderEars (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;II)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 buffer
 		ARG 3 packedLight
 		ARG 4 packedOverlay
@@ -23,4 +31,4 @@ CLASS net/minecraft/client/model/PlayerModel
 		ARG 6 headPitch
 	METHOD translateToHand (Lnet/minecraft/world/entity/HumanoidArm;Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 side
-		ARG 2 matrixStack
+		ARG 2 poseStack

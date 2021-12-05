@@ -9,12 +9,23 @@ CLASS net/minecraft/client/model/HumanoidModel
 		COMMENT The Biped's Right Arm
 	FIELD rightLeg Lnet/minecraft/client/model/geom/ModelPart;
 		COMMENT The Biped's Right Leg
+	METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;)V
+		ARG 1 root
+	METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;Ljava/util/function/Function;)V
+		ARG 1 root
+		ARG 2 renderType
 	METHOD copyPropertiesTo (Lnet/minecraft/client/model/HumanoidModel;)V
 		ARG 1 model
+	METHOD createMesh (Lnet/minecraft/client/model/geom/builders/CubeDeformation;F)Lnet/minecraft/client/model/geom/builders/MeshDefinition;
+		ARG 0 cubeDeformation
 	METHOD getArm (Lnet/minecraft/world/entity/HumanoidArm;)Lnet/minecraft/client/model/geom/ModelPart;
 		ARG 1 side
 	METHOD getAttackArm (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/entity/HumanoidArm;
 		ARG 1 entity
+	METHOD poseLeftArm (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 livingEntity
+	METHOD poseRightArm (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 livingEntity
 	METHOD prepareMobModel (Lnet/minecraft/world/entity/LivingEntity;FFF)V
 		ARG 1 entity
 		ARG 2 limbSwing
@@ -36,6 +47,12 @@ CLASS net/minecraft/client/model/HumanoidModel
 		ARG 4 ageInTicks
 		ARG 5 netHeadYaw
 		ARG 6 headPitch
+	METHOD setupAttackAnimation (Lnet/minecraft/world/entity/LivingEntity;F)V
+		ARG 1 livingEntity
+		ARG 2 ageInTicks
 	METHOD translateToHand (Lnet/minecraft/world/entity/HumanoidArm;Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 side
-		ARG 2 matrixStack
+		ARG 2 poseStack
+	CLASS ArmPose
+		METHOD <init> (Ljava/lang/String;IZ)V
+			ARG 3 twoHanded

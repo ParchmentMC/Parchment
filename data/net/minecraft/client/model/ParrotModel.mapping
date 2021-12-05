@@ -1,14 +1,31 @@
 CLASS net/minecraft/client/model/ParrotModel
+	METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;)V
+		ARG 1 root
+	METHOD getState (Lnet/minecraft/world/entity/animal/Parrot;)Lnet/minecraft/client/model/ParrotModel$State;
+		ARG 0 parrot
+	METHOD prepare (Lnet/minecraft/client/model/ParrotModel$State;)V
+		ARG 1 state
 	METHOD prepareMobModel (Lnet/minecraft/world/entity/animal/Parrot;FFF)V
 		ARG 1 entity
 		ARG 2 limbSwing
 		ARG 3 limbSwingAmount
 		ARG 4 partialTick
 	METHOD renderOnShoulder (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;IIFFFFI)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 buffer
 		ARG 3 packedLight
 		ARG 4 packedOverlay
+		ARG 5 limbSwing
+		ARG 6 limbSwingAmount
+		ARG 7 netHeadYaw
+		ARG 8 headPitch
+	METHOD setupAnim (Lnet/minecraft/client/model/ParrotModel$State;IFFFFF)V
+		ARG 1 state
+		ARG 3 limbSwing
+		ARG 4 limbSwingAmount
+		ARG 5 ageInTicks
+		ARG 6 netHeadYaw
+		ARG 7 headPitch
 	METHOD setupAnim (Lnet/minecraft/world/entity/animal/Parrot;FFFFF)V
 		COMMENT Sets this entity's model rotation angles
 		ARG 1 entity

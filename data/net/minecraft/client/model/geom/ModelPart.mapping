@@ -46,13 +46,16 @@ CLASS net/minecraft/client/model/geom/ModelPart
 	METHOD visit (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/model/geom/ModelPart$Visitor;)V
 		ARG 1 poseStack
 		ARG 2 visitor
+	METHOD visit (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/model/geom/ModelPart$Visitor;Ljava/lang/String;)V
+		ARG 1 poseStack
+		ARG 2 visitor
 	CLASS Cube
 		METHOD <init> (IIFFFFFFFFFZFF)V
 			ARG 1 texCoordU
 			ARG 2 texCoordV
-			ARG 3 originX
-			ARG 4 originY
-			ARG 5 originZ
+			ARG 3 minX
+			ARG 4 minY
+			ARG 5 minZ
 			ARG 6 dimensionX
 			ARG 7 dimensionY
 			ARG 8 dimensionZ
@@ -68,8 +71,8 @@ CLASS net/minecraft/client/model/geom/ModelPart
 			ARG 3 packedLight
 			ARG 4 packedOverlay
 			ARG 5 red
-			ARG 6 blue
-			ARG 7 green
+			ARG 6 green
+			ARG 7 blue
 			ARG 8 alpha
 	CLASS Vertex
 		METHOD <init> (FFFFF)V
@@ -85,3 +88,7 @@ CLASS net/minecraft/client/model/geom/ModelPart
 		METHOD remap (FF)Lnet/minecraft/client/model/geom/ModelPart$Vertex;
 			ARG 1 u
 			ARG 2 v
+	CLASS Polygon
+		METHOD <init> ([Lnet/minecraft/client/model/geom/ModelPart$Vertex;FFFFFFZLnet/minecraft/core/Direction;)V
+			ARG 1 vertices
+			ARG 9 direction
