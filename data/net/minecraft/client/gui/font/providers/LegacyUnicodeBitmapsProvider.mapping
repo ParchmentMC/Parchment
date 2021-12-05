@@ -1,10 +1,27 @@
 CLASS net/minecraft/client/gui/font/providers/LegacyUnicodeBitmapsProvider
+	METHOD <init> (Lnet/minecraft/server/packs/resources/ResourceManager;[BLjava/lang/String;)V
+		ARG 1 resourceManager
+		ARG 2 sizes
+		ARG 3 texturePattern
 	METHOD getGlyph (I)Lcom/mojang/blaze3d/font/RawGlyph;
 		ARG 1 character
 	CLASS Glyph
+		METHOD <init> (IIIILcom/mojang/blaze3d/platform/NativeImage;)V
+			ARG 1 sourceX
+			ARG 2 sourceY
+			ARG 3 width
+			ARG 4 height
+			ARG 5 source
 		METHOD upload (II)V
 			ARG 1 xOffset
 			ARG 2 yOffset
 	CLASS Builder
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)V
+			ARG 1 metadata
+			ARG 2 texturePattern
 		METHOD create (Lnet/minecraft/server/packs/resources/ResourceManager;)Lcom/mojang/blaze3d/font/GlyphProvider;
 			ARG 1 resourceManager
+		METHOD fromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/client/gui/font/providers/GlyphProviderBuilder;
+			ARG 0 json
+		METHOD getTemplate (Lcom/google/gson/JsonObject;)Ljava/lang/String;
+			ARG 0 json
