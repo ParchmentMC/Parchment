@@ -1,12 +1,116 @@
 CLASS net/minecraft/SharedConstants
-	METHOD filterText (Ljava/lang/String;)Ljava/lang/String;
-		COMMENT Filter a string, keeping only characters for which {@link #isAllowedCharacter(char)} returns true.
+	COMMENT Shared global constants.
+	COMMENT
+	COMMENT <p><strong>Note:</strong> The majority of the fields within this class are {@code public static final} with constant expressions (constants), and are inlined by the Java compiler at all places which reference these constant fields. Therefore, changing the value of these constant fields will have no effect on already compiled code.</p>
+	COMMENT
+	COMMENT <p>In addition, it is presumed that a large portion of these constant fields (such as those prefixed with {@code DEBUG_} are used as 'flags', for manually toggling code meant for use by Mojang developers in debugging. Therefore, optimizing compilers (which include the Java compiler) may omit the code hidden behind disabled flags, and will result in these flags having no apparent use in the code (when in reality, the optimizing compiler has removed the code which uses them).</p>
+	COMMENT
+	COMMENT @see <a href="https://docs.oracle.com/javase/specs/jls/se16/html/jls-15.html#jls-15.29">The Java&reg; Language Specification, Java SE 16 Edition, &sect; 15.29. "Constant Expressions"</a>
+	COMMENT @see <a href="https://docs.oracle.com/javase/specs/jls/se16/html/jls-14.html#jls-14.22">The Java&reg; Language Specification, Java SE 16 Edition, &sect; 14.22. "Unreachable Statements"</a>
+	FIELD DATA_PACK_FORMAT I
+		COMMENT The format of the data packs used by this game version. Data packs contain server-side data such as recipes, loot tables, and tags.
 		COMMENT
-		COMMENT Note that this method strips line breaks, as {@link #isAllowedCharacter(char)} returns false for those.
-		COMMENT @return A filtered version of the input string
+		COMMENT @see com.mojang.bridge.game.GameVersion#getPackVersion(com.mojang.bridge.game.PackType)
+		COMMENT @deprecated Use {@link #getCurrentVersion()}, {@link com.mojang.bridge.game.GameVersion#com.mojang.bridge.game.GameVersion#getPackVersion(com.mojang.bridge.game.PackType)}, and com.mojang.bridge.game.PackType#DATA instead.
+	FIELD DATA_VERSION_TAG Ljava/lang/String;
+		COMMENT The key for the NBT tag which contains the data version of some data, for use in datafixing.
+		COMMENT
+		COMMENT <p>For various objects, their stored data in a {@link net.minecraft.nbt.CompoundTag} will usually contain a {@link net.minecraft.nbt.IntTag} indexed with this key, which stores the data version when the data for that object was written out. This is used by the datafixer system to determine which fixers needs to be applied to the data.</p>
+		COMMENT
+		COMMENT @see com.mojang.bridge.game.GameVersion#getWorldVersion()
+	FIELD DEFAULT_MINECRAFT_PORT I
+		COMMENT The default port used by Minecraft for communication between servers and clients.
+		COMMENT
+		COMMENT <p>This is not a registered port at the Internet Assigned Numbers Authority, and therefore may conflict with existing applications. Minecraft servers may be hosted at other ports, in which case the clients must supply the correct port when connecting to the server.</p>
+		COMMENT
+		COMMENT @see https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?&page=128 Internet Assigned Numbers Authority, Internet Service Name and Transport Protocol Port Number Registry
+	FIELD ILLEGAL_FILE_CHARACTERS [C
+		COMMENT The characters which may not form part of a file's name. Used in various file processing methods to replace these illegal characters with valid characters, such as the underscore "{@code _}".
+		COMMENT
+		COMMENT <p>This collection of characters is a subset of the forbidden characters listed in the documentation for Microsoft Windows, with the addition of the backtick ({@code `}).
+		COMMENT
+		COMMENT @see <a href="https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file">Microsoft Corporation, "Naming Files, Paths, and Namespaces", &sect; Naming Conventions</a>
+	FIELD MAX_CHAT_LENGTH I
+		COMMENT The maximum length of a chat message that can be typed by a player.
+	FIELD MAX_COMMAND_LENGTH I
+		COMMENT The maximum length of a command that can be typed in a command block by a player.
+	FIELD RELEASE_NETWORK_PROTOCOL_VERSION I
+		COMMENT The numeric format number for the networking protocol used by the release target of this game version.
+		COMMENT
+		COMMENT <p>This protocol version is used when this game version is a release version, not a {@linkplain #SNAPSHOT snapshots}. For snapshots, see {@link #SNAPSHOT_NETWORK_PROTOCOL_VERSION}.</p>
+		COMMENT
+		COMMENT @see #getProtocolVersion()
+		COMMENT @deprecated Use {@link #getProtocolVersion()} instead.
+	FIELD RELEASE_TARGET Ljava/lang/String;
+		COMMENT The human readable version target for this game version.
+		COMMENT
+		COMMENT @see com.mojang.bridge.game.GameVersion#getReleaseTarget()
+		COMMENT @deprecated Use {@link #getCurrentVersion()} and {@link com.mojang.bridge.game.GameVersion#getReleaseTarget()} instead.
+	FIELD RESOURCE_PACK_FORMAT I
+		COMMENT The format of the resource packs used by this game version. Resource packs contain client-side assets, such as translation files, models, and textures.
+		COMMENT
+		COMMENT @see com.mojang.bridge.game.GameVersion#getPackVersion(com.mojang.bridge.game.PackType)
+		COMMENT @deprecated Use {@link #getCurrentVersion()}, {@link com.mojang.bridge.game.GameVersion#com.mojang.bridge.game.GameVersion#getPackVersion(com.mojang.bridge.game.PackType)}, and com.mojang.bridge.game.PackType#RESOURCE instead.
+	FIELD SNAPSHOT Z
+		COMMENT Indicates whether the currently running game version is a snapshot version.
+		COMMENT
+		COMMENT @see com.mojang.bridge.game.GameVersion#isStable()
+		COMMENT @deprecated Use {@link #getCurrentVersion()} and {@link com.mojang.bridge.game.GameVersion#isStable()} instead.
+	FIELD SNAPSHOT_NETWORK_PROTOCOL_VERSION I
+		COMMENT The numeric format number for the networking protocol used by the snapshot of this game verison.
+		COMMENT
+		COMMENT <p>This protocol version is used when this game version is a {@linkplain #SNAPSHOT snapshot version}. For releases, see {@link #RELEASE_NETWORK_PROTOCOL_VERSION}.</p>
+		COMMENT
+		COMMENT <p>The actual networking protocol version used in snapshot versions is the combination (bitwise OR) of this number and the bit at the position marked by {@link #SNAPSHOT_PROTOCOL_BIT}.</p>
+		COMMENT
+		COMMENT @see #getProtocolVersion()
+		COMMENT @deprecated Use {@link #getProtocolVersion()} instead.
+	FIELD SNAPSHOT_PROTOCOL_BIT I
+		COMMENT The bit in the networking protocol version for denoting {@linkplain #SNAPSHOT snapshot versions}.
+		COMMENT
+		COMMENT @see #SNAPSHOT_NETWORK_PROTOCOL_VERSION
+	FIELD TICKS_PER_GAME_DAY I
+		COMMENT The amount of game ticks within a game day. A game day is defined as 20 real-life minutes, so this is equal to {@code TICKS_PER_MINUTE * 20}. This falls under the same guarantees and restrictions as {@link #TICKS_PER_SECOND}.
+	FIELD TICKS_PER_MINUTE I
+		COMMENT The amount of game ticks within a real-life minute. This is equal to {@code TICKS_PER_SECOND * 60}, and falls under the same guarantees and restrictions as {@link #TICKS_PER_SECOND}.
+		COMMENT
+		COMMENT @see #TICKS_PER_SECOND
+	FIELD TICKS_PER_SECOND I
+		COMMENT The amount of game ticks within a real-life second.
+		COMMENT
+		COMMENT <p>This is not guaranteed by a running server to be an accurate measurement of real-life seconds. Heavy load on the server may cause the actual tick-to-second ratio to go below this defined ratio.</p>
+	FIELD VERSION_STRING Ljava/lang/String;
+		COMMENT The human readable name of this game version.
+		COMMENT
+		COMMENT @see com.mojang.bridge.game.GameVersion#getName()
+		COMMENT @deprecated Use {@link #getCurrentVersion()} and {@link com.mojang.bridge.game.GameVersion#getName()} instead.
+	FIELD WORLD_VERSION I
+		COMMENT The numeric format number for worlds used by this game version.
+		COMMENT
+		COMMENT @see com.mojang.bridge.game.GameVersion#getWorldVersion()
+		COMMENT @deprecated Use {@link #getCurrentVersion()} and {@link com.mojang.bridge.game.GameVersion#getWorldVersion()} instead.
+	METHOD filterText (Ljava/lang/String;)Ljava/lang/String;
+		COMMENT Filters the string, keeping only characters for which {@link #isAllowedCharacter(char)} returns {@code true}.
+		COMMENT
+		COMMENT <p>Note that this method strips line breaks, as {@link #isAllowedCharacter(char)} returns {@code false} for those.</p>
+		COMMENT
+		COMMENT @return a filtered version of the input string
 		ARG 0 input
+			COMMENT the input string
+	METHOD getCurrentVersion ()Lcom/mojang/bridge/game/GameVersion;
+		COMMENT {@return the {@link com.mojang.bridge.game.GameVersion game version}}
+		COMMENT
+		COMMENT @throws IllegalStateException if a game version has not been set previously
+	METHOD getProtocolVersion ()I
+		COMMENT {@return the networking protocol version in use by this game version}
+		COMMENT
+		COMMENT <p>For releases, this will be equivalent to {@link #RELEASE_NETWORK_PROTOCOL_VERSION}. For snapshot verisons, this will be the combination (bitwise OR) of {@link #SNAPSHOT_NETWORK_PROTOCOL_VERSION} and the bit marked by {@link #SNAPSHOT_PROTOCOL_BIT}.</p>
 	METHOD isAllowedChatCharacter (C)Z
 		COMMENT Checks if the given character is allowed to be put into chat.
 		ARG 0 character
 	METHOD setVersion (Lcom/mojang/bridge/game/GameVersion;)V
+		COMMENT Sets the game version, failing if a different game version is already present.
+		COMMENT
+		COMMENT @throws IllegalStateException if a different game version has already been set previously
 		ARG 0 version
+			COMMENT the game version to set
