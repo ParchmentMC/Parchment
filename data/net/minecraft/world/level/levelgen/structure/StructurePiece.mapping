@@ -18,18 +18,17 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-		ARG 5 boundingBox
+		ARG 5 box
 	METHOD createChest (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 level
-		ARG 2 bounds
+		ARG 2 box
 		ARG 3 random
 		ARG 4 pos
-		ARG 5 resourceLocation
+		ARG 5 lootTable
 		ARG 6 state
 	METHOD createChest (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;IIILnet/minecraft/resources/ResourceLocation;)Z
-		COMMENT Adds chest to the structure and sets its contents
 		ARG 1 level
-		ARG 2 structurebb
+		ARG 2 box
 		ARG 3 random
 		ARG 4 x
 		ARG 5 y
@@ -37,7 +36,7 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 7 loot
 	METHOD createDispenser (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;IIILnet/minecraft/core/Direction;Lnet/minecraft/resources/ResourceLocation;)Z
 		ARG 1 level
-		ARG 2 sbb
+		ARG 2 box
 		ARG 3 random
 		ARG 4 x
 		ARG 5 y
@@ -47,16 +46,15 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 	METHOD createTag (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 level
 	METHOD fillColumnDown (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/block/state/BlockState;IIILnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
-		COMMENT Replaces air and liquid from given position downwards. Stops when hitting anything else than air or liquid
 		ARG 1 level
-		ARG 2 blockstate
+		ARG 2 state
 		ARG 3 x
 		ARG 4 y
 		ARG 5 z
-		ARG 6 boundingbox
+		ARG 6 box
 	METHOD generateAirBox (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIIIII)V
 		ARG 1 level
-		ARG 2 structurebb
+		ARG 2 box
 		ARG 3 minX
 		ARG 4 minY
 		ARG 5 minZ
@@ -66,7 +64,7 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 	METHOD generateBox (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIIIIILnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Z)V
 		COMMENT Fill the given area with the selected blocks
 		ARG 1 level
-		ARG 2 boundingbox
+		ARG 2 box
 		ARG 3 xMin
 		ARG 4 yMin
 		ARG 5 zMin
@@ -78,7 +76,7 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 11 existingOnly
 	METHOD generateBox (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIIIIIZLjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/StructurePiece$BlockSelector;)V
 		ARG 1 level
-		ARG 2 boundingbox
+		ARG 2 box
 		ARG 3 minX
 		ARG 4 minY
 		ARG 5 minZ
@@ -88,6 +86,20 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 9 alwaysReplace
 		ARG 10 random
 		ARG 11 blockselector
+	METHOD generateBox (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Z)V
+		ARG 1 level
+		ARG 2 boundingBox
+		ARG 3 box
+		ARG 4 boundaryBlockState
+		ARG 5 insideBlockState
+		ARG 6 existingOnly
+	METHOD generateBox (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;ZLjava/util/Random;Lnet/minecraft/world/level/levelgen/structure/StructurePiece$BlockSelector;)V
+		ARG 1 level
+		ARG 2 boundingBox
+		ARG 3 box
+		ARG 4 alwaysReplace
+		ARG 5 random
+		ARG 6 selector
 	METHOD generateMaybeBox (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;FIIIIIILnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;ZZ)V
 		ARG 1 level
 		ARG 2 sbb
@@ -105,23 +117,21 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 14 requiredSkylight
 	METHOD generateUpperHalfSphere (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIIIIILnet/minecraft/world/level/block/state/BlockState;Z)V
 		ARG 1 level
-		ARG 2 boundingbox
+		ARG 2 box
 		ARG 3 minX
 		ARG 4 minY
 		ARG 5 minZ
 		ARG 6 maxX
 		ARG 7 maxY
 		ARG 8 maxZ
-		ARG 9 blockstate
+		ARG 9 state
 		ARG 10 excludeAir
 	METHOD getBlock (Lnet/minecraft/world/level/BlockGetter;IIILnet/minecraft/world/level/levelgen/structure/BoundingBox;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 level
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-		ARG 5 boundingbox
-	METHOD getGenDepth ()I
-		COMMENT Returns the component type ID of this component.
+		ARG 5 box
 	METHOD getRandomHorizontalDirection (Ljava/util/Random;)Lnet/minecraft/core/Direction;
 		ARG 0 random
 	METHOD getWorldPos (III)Lnet/minecraft/core/BlockPos$MutableBlockPos;
@@ -144,7 +154,7 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-		ARG 5 boundingbox
+		ARG 5 box
 	METHOD isReplaceableByStructures (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 	METHOD makeBoundingBox (IIILnet/minecraft/core/Direction;III)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
@@ -157,13 +167,13 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 		ARG 6 offsetZ
 	METHOD maybeGenerateBlock (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;FIIILnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 level
-		ARG 2 boundingbox
+		ARG 2 box
 		ARG 3 random
 		ARG 4 chance
 		ARG 5 x
 		ARG 6 y
 		ARG 7 z
-		ARG 8 blockstate
+		ARG 8 state
 	METHOD move (III)V
 		ARG 1 x
 		ARG 2 y
@@ -178,7 +188,7 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 	METHOD postProcess (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 level
 		ARG 2 structureManager
-		ARG 3 chunkGenerator
+		ARG 3 generator
 		ARG 4 random
 		ARG 5 box
 		ARG 6 chunkPos
@@ -186,12 +196,11 @@ CLASS net/minecraft/world/level/levelgen/structure/StructurePiece
 	METHOD reorient (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 0 level
 		ARG 1 pos
-		ARG 2 blockState
+		ARG 2 state
 	METHOD setOrientation (Lnet/minecraft/core/Direction;)V
-		ARG 1 facing
+		ARG 1 orientation
 	CLASS BlockSelector
 		METHOD next (Ljava/util/Random;IIIZ)V
-			COMMENT picks Block Ids and Metadata (Silverfish)
 			ARG 1 random
 			ARG 2 x
 			ARG 3 y

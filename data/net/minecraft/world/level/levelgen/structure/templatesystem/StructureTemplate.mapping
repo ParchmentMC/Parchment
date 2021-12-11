@@ -1,16 +1,18 @@
 CLASS net/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate
 	METHOD addToLists (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate$StructureBlockInfo;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
 		ARG 0 blockInfo
-		ARG 1 specialBlocks
-		ARG 2 blocksWithTag
-		ARG 3 normalBlocks
+		ARG 1 normalBlocks
+		ARG 2 blocksWithNbt
+		ARG 3 blocksWithSpecialShape
 	METHOD buildInfoList (Ljava/util/List;Ljava/util/List;Ljava/util/List;)Ljava/util/List;
-		ARG 0 specialBlocks
-		ARG 1 blocksWithTag
-		ARG 2 normalBlocks
+		ARG 0 normalBlocks
+		ARG 1 blocksWithNbt
+		ARG 2 blocksWithSpecialShape
 	METHOD calculateConnectedPosition (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
 		ARG 1 decorator
+		ARG 2 start
 		ARG 3 settings
+		ARG 4 end
 	METHOD calculateRelativePosition (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
 		ARG 0 decorator
 		ARG 1 pos
@@ -18,14 +20,13 @@ CLASS net/minecraft/world/level/levelgen/structure/templatesystem/StructureTempl
 		ARG 0 level
 		ARG 1 tag
 	METHOD fillEntityList (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)V
-		COMMENT takes blocks from the world and puts the data them into this template
 		ARG 1 level
 		ARG 2 startPos
 		ARG 3 endPos
 	METHOD fillFromWorld (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Vec3i;ZLnet/minecraft/world/level/block/Block;)V
 		ARG 1 level
 		ARG 2 pos
-		ARG 3 vec
+		ARG 3 size
 		ARG 4 withEntities
 		ARG 5 toIgnore
 	METHOD filterBlocks (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Lnet/minecraft/world/level/block/Block;)Ljava/util/List;
@@ -66,8 +67,8 @@ CLASS net/minecraft/world/level/levelgen/structure/templatesystem/StructureTempl
 	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
 	METHOD loadPalette (Lnet/minecraft/nbt/ListTag;Lnet/minecraft/nbt/ListTag;)V
-		ARG 1 palletesNBT
-		ARG 2 blocksNBT
+		ARG 1 paletteTag
+		ARG 2 blocksTag
 	METHOD newDoubleList ([D)Lnet/minecraft/nbt/ListTag;
 		ARG 1 values
 	METHOD newIntegerList ([I)Lnet/minecraft/nbt/ListTag;
@@ -80,13 +81,14 @@ CLASS net/minecraft/world/level/levelgen/structure/templatesystem/StructureTempl
 		ARG 7 withEntities
 	METHOD placeInWorld (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Ljava/util/Random;I)Z
 		ARG 1 serverLevel
+		ARG 2 pos
 		ARG 4 settings
 		ARG 5 random
 		ARG 6 flags
 	METHOD processBlockInfos (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;Ljava/util/List;)Ljava/util/List;
 		ARG 0 level
 		ARG 3 settings
-		ARG 4 blockInfoList
+		ARG 4 blockInfos
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 tag
 	METHOD setAuthor (Ljava/lang/String;)V
@@ -103,7 +105,7 @@ CLASS net/minecraft/world/level/levelgen/structure/templatesystem/StructureTempl
 		ARG 3 centerOffset
 	METHOD updateShapeAtEdge (Lnet/minecraft/world/level/LevelAccessor;ILnet/minecraft/world/phys/shapes/DiscreteVoxelShape;III)V
 		ARG 0 level
-		ARG 2 voxelShapePart
+		ARG 2 shape
 		ARG 3 x
 		ARG 4 y
 		ARG 5 z

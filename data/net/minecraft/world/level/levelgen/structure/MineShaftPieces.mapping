@@ -27,10 +27,6 @@ CLASS net/minecraft/world/level/levelgen/structure/MineShaftPieces
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 level
 			ARG 2 tag
-		METHOD move (III)V
-			ARG 1 x
-			ARG 2 y
-			ARG 3 z
 	CLASS MineShaftPiece
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;ILnet/minecraft/world/level/levelgen/feature/MineshaftFeature$Type;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
 			ARG 1 pieceType
@@ -42,7 +38,7 @@ CLASS net/minecraft/world/level/levelgen/structure/MineShaftPieces
 			ARG 2 box
 		METHOD isSupportingBox (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;IIII)Z
 			ARG 1 level
-			ARG 2 bounds
+			ARG 2 box
 			ARG 3 xStart
 			ARG 4 xEnd
 			ARG 5 y
@@ -86,24 +82,15 @@ CLASS net/minecraft/world/level/levelgen/structure/MineShaftPieces
 			ARG 3 state
 		METHOD canPlaceColumnOnTopOf (Lnet/minecraft/world/level/block/state/BlockState;)Z
 			ARG 1 state
-		METHOD createChest (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;IIILnet/minecraft/resources/ResourceLocation;)Z
-			COMMENT Adds chest to the structure and sets its contents
-			ARG 1 level
-			ARG 2 structurebb
-			ARG 3 random
-			ARG 4 x
-			ARG 5 y
-			ARG 6 z
-			ARG 7 loot
 		METHOD fillColumnBetween (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos$MutableBlockPos;II)V
 			ARG 0 level
-			ARG 1 fillerBlock
+			ARG 1 state
 			ARG 2 pos
 			ARG 3 minY
 			ARG 4 maxY
 		METHOD fillPillarDownOrChainUp (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/block/state/BlockState;IIILnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
 			ARG 1 level
-			ARG 2 defaultBlock
+			ARG 2 state
 			ARG 3 x
 			ARG 4 y
 			ARG 5 z
@@ -121,6 +108,7 @@ CLASS net/minecraft/world/level/levelgen/structure/MineShaftPieces
 			ARG 3 x
 			ARG 4 y
 			ARG 5 z
+			ARG 6 required
 		METHOD maybePlaceCobWeb (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Random;FIII)V
 			ARG 1 level
 			ARG 2 box

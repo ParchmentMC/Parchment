@@ -1,16 +1,4 @@
 CLASS net/minecraft/world/level/levelgen/structure/OceanMonumentPieces
-	CLASS FitSimpleRoom
-		METHOD fits (Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)Z
-			ARG 1 definition
-	CLASS FitDoubleXRoom
-		METHOD fits (Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)Z
-			ARG 1 definition
-	CLASS FitDoubleYRoom
-		METHOD fits (Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)Z
-			ARG 1 definition
-	CLASS FitDoubleZRoom
-		METHOD fits (Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)Z
-			ARG 1 definition
 	CLASS RoomDefinition
 		METHOD <init> (I)V
 			ARG 1 index
@@ -18,16 +6,7 @@ CLASS net/minecraft/world/level/levelgen/structure/OceanMonumentPieces
 			ARG 1 index
 		METHOD setConnection (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)V
 			ARG 1 direction
-			ARG 2 definition
-	CLASS FitDoubleXYRoom
-		METHOD fits (Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)Z
-			ARG 1 definition
-	CLASS FitDoubleYZRoom
-		METHOD fits (Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)Z
-			ARG 1 definition
-	CLASS FitSimpleTopRoom
-		METHOD fits (Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)Z
-			ARG 1 definition
+			ARG 2 connectingRoom
 	CLASS MonumentBuilding
 		METHOD <init> (Ljava/util/Random;IILnet/minecraft/core/Direction;)V
 			ARG 1 random
@@ -64,16 +43,18 @@ CLASS net/minecraft/world/level/levelgen/structure/OceanMonumentPieces
 			ARG 2 random
 			ARG 3 box
 		METHOD generateWing (ZILnet/minecraft/world/level/WorldGenLevel;Ljava/util/Random;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
+			ARG 1 wing
+			ARG 2 x
 			ARG 3 level
 			ARG 4 random
 			ARG 5 box
 	CLASS MonumentRoomFitter
 		METHOD create (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;Ljava/util/Random;)Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$OceanMonumentPiece;
 			ARG 1 direction
-			ARG 2 definition
+			ARG 2 room
 			ARG 3 random
 		METHOD fits (Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)Z
-			ARG 1 definition
+			ARG 1 room
 	CLASS OceanMonumentPiece
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/feature/StructurePieceType;ILnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;III)V
 			ARG 1 type
@@ -119,6 +100,10 @@ CLASS net/minecraft/world/level/levelgen/structure/OceanMonumentPieces
 			ARG 6 x2
 			ARG 7 y2
 			ARG 8 z2
+		METHOD getRoomIndex (III)I
+			ARG 0 x
+			ARG 1 y
+			ARG 2 z
 		METHOD makeBoundingBox (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;III)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
 			ARG 0 direction
 			ARG 1 definition
@@ -134,7 +119,7 @@ CLASS net/minecraft/world/level/levelgen/structure/OceanMonumentPieces
 	CLASS OceanMonumentCoreRoom
 		METHOD <init> (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)V
 			ARG 1 direction
-			ARG 2 definition
+			ARG 2 room
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 level
 			ARG 2 tag
@@ -142,13 +127,14 @@ CLASS net/minecraft/world/level/levelgen/structure/OceanMonumentPieces
 		METHOD <init> (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;I)V
 			ARG 1 direction
 			ARG 2 box
+			ARG 3 flag
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 level
 			ARG 2 tag
 	CLASS OceanMonumentEntryRoom
 		METHOD <init> (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)V
 			ARG 1 direction
-			ARG 2 definition
+			ARG 2 room
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 level
 			ARG 2 tag
@@ -162,7 +148,7 @@ CLASS net/minecraft/world/level/levelgen/structure/OceanMonumentPieces
 	CLASS OceanMonumentSimpleRoom
 		METHOD <init> (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;Ljava/util/Random;)V
 			ARG 1 direction
-			ARG 2 definition
+			ARG 2 room
 			ARG 3 random
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 level
@@ -170,42 +156,42 @@ CLASS net/minecraft/world/level/levelgen/structure/OceanMonumentPieces
 	CLASS OceanMonumentDoubleXRoom
 		METHOD <init> (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)V
 			ARG 1 direction
-			ARG 2 definition
+			ARG 2 room
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 level
 			ARG 2 tag
 	CLASS OceanMonumentDoubleYRoom
 		METHOD <init> (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)V
 			ARG 1 direction
-			ARG 2 definition
+			ARG 2 room
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 level
 			ARG 2 tag
 	CLASS OceanMonumentDoubleZRoom
 		METHOD <init> (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)V
 			ARG 1 direction
-			ARG 2 definition
+			ARG 2 room
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 level
 			ARG 2 tag
 	CLASS OceanMonumentDoubleXYRoom
 		METHOD <init> (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)V
 			ARG 1 direction
-			ARG 2 definition
+			ARG 2 room
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 level
 			ARG 2 tag
 	CLASS OceanMonumentDoubleYZRoom
 		METHOD <init> (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)V
 			ARG 1 direction
-			ARG 2 definition
+			ARG 2 room
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 level
 			ARG 2 tag
 	CLASS OceanMonumentSimpleTopRoom
 		METHOD <init> (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/levelgen/structure/OceanMonumentPieces$RoomDefinition;)V
 			ARG 1 direction
-			ARG 2 definition
+			ARG 2 room
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 level
 			ARG 2 tag
