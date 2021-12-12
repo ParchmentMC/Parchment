@@ -2,10 +2,12 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 	METHOD <init> (IIZ)V
 		ARG 1 width
 		ARG 2 height
+		ARG 3 useCalloc
 	METHOD <init> (Lcom/mojang/blaze3d/platform/NativeImage$Format;IIZ)V
 		ARG 1 format
 		ARG 2 width
 		ARG 3 height
+		ARG 4 useCalloc
 	METHOD <init> (Lcom/mojang/blaze3d/platform/NativeImage$Format;IIZJ)V
 		ARG 1 format
 		ARG 2 width
@@ -56,6 +58,8 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 6 height
 		ARG 7 mirrorX
 		ARG 8 mirrorY
+	METHOD downloadDepthBuffer (F)V
+		ARG 1 unused
 	METHOD downloadTexture (IZ)V
 		ARG 1 level
 		ARG 2 opaque
@@ -175,6 +179,10 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 	CLASS WriteCallback
 		METHOD <init> (Ljava/nio/channels/WritableByteChannel;)V
 			ARG 1 output
+		METHOD invoke (JJI)V
+			ARG 1 unused
+			ARG 3 data
+			ARG 5 size
 	CLASS InternalGlFormat
 		METHOD <init> (Ljava/lang/String;II)V
 			ARG 3 glFormat
