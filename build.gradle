@@ -52,15 +52,15 @@ repositories {
 
 configurations {
     enigma
-    vignette
+    remapper
 }
 
 dependencies {
     // MCPConfig for the SRG intermediate
     mcpconfig 'de.oceanlabs.mcp:mcp_config:1.17.1-20210706.113038'
 
-    // Vignette, for remapping the client JAR
-    vignette 'net.minecraftforge.lex:vignette:0.2.0.16'
+    // ForgeAutoRenamingTool, for remapping the client JAR
+    remapper 'net.minecraftforge:ForgeAutoRenamingTool:0.1.17'
 
     // Enigma, pretty interface for editing mappings
     enigma 'cuchaz:enigma-swing:2.0.0'
@@ -101,6 +101,8 @@ def remapJar = tasks.register('remapJar', RemapJar) {
     mappings = convertObfMap.flatMap { it.outputFile }
     outputJar = project.layout.buildDirectory.dir('remapped')
             .zip(project.compass.version) { d, ver -> d.file("$ver-client.jar") }
+    logFile = project.layout.buildDirectory.dir('remapped')
+            .map { d -> d.file("log.txt") }
 }
 
 tasks.register('enigma', EnigmaExec) {
@@ -207,18 +209,23 @@ abstract class RemapJar extends JavaExec {
     @OutputFile
     abstract RegularFileProperty getOutputJar()
 
+    @Console
+    abstract RegularFileProperty getLogFile()
+
     RemapJar() {
         group 'parchment'
         description 'Remaps the client JAR with the Mojang obfuscation mappings.'
 
-        classpath project.configurations.vignette
-        mainClass.set 'org.cadixdev.vignette.VignetteMain'
+        classpath project.configurations.remapper
+        mainClass.set 'net.minecraftforge.fart.Main'
 
-        args = ['--stable', '--mapping-format', 'tsrg']
+        standardOutput = OutputStream.nullOutputStream() // We have a log file in place
+
         argumentProviders.add({ ->
-            ['--jar-in', inputJar.get().asFile.absolutePath,
-             '--mappings', mappings.get().asFile.absolutePath,
-             '--jar-out', outputJar.get().asFile.absolutePath]
+            ['--input', inputJar.get().asFile.absolutePath,
+             '--map', mappings.get().asFile.absolutePath,
+             '--output', outputJar.get().asFile.absolutePath,
+             '--log', logFile.get().asFile.absolutePath]
         } as CommandLineArgumentProvider)
     }
 }
