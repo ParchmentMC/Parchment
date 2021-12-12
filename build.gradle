@@ -9,7 +9,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 plugins {
-    id 'org.parchmentmc.compass' version '0.5.0'
+    id 'org.parchmentmc.compass' version '0.6.2'
     id 'org.parchmentmc.writtenbooks' version '0.5.+'
     id 'maven-publish'
     id 'java-base'
@@ -86,7 +86,7 @@ def remapJar = tasks.register('remapJar', RemapJar) {
 
     def obfDL = project.plugins.getPlugin(CompassPlugin).obfuscationMapsDownloader
     inputJar = downloadClientJar.flatMap { it.outputFile }
-    mappings = obfDL.getObfuscationMap().flatMap { s -> obfDL.outputDirectory.file('client.txt') }
+    mappings = obfDL.getObfuscationMap().flatMap { s -> obfDL.clientDownloadOutput }
     outputJar = project.layout.buildDirectory.dir('remapped')
             .zip(project.compass.version) { d, ver -> d.file("$ver-client.jar") }
     logFile = project.layout.buildDirectory.dir('remapped')
