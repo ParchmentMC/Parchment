@@ -63,7 +63,7 @@ dependencies {
     vignette 'net.minecraftforge.lex:vignette:0.2.0.16'
 
     // Enigma, pretty interface for editing mappings
-    enigma 'cuchaz:enigma-swing:1.4.6'
+    enigma 'cuchaz:enigma-swing:2.0.0'
 }
 
 afterEvaluate {
@@ -243,11 +243,11 @@ abstract class EnigmaExec extends JavaExec {
              '--mappings', mappings.get().asFile.absolutePath]
         } as CommandLineArgumentProvider)
 
-        // Enigma runs on Java 16. If the Gradle JVM supports Java 16, then we are fine
-        // If not, then we set the java launcher via JVM toolchain so Gradle downloads a Java 16 JVM
-        if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_16)) {
+        // Enigma 2.x runs on Java 17. If the Gradle JVM supports Java 17, then we are fine
+        // If not, then we set the java launcher via JVM toolchain so Gradle downloads a Java 17 JVM
+        if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
             javaLauncher.set project.javaToolchains.launcherFor {
-                languageVersion = JavaLanguageVersion.of(16)
+                languageVersion = JavaLanguageVersion.of(17)
             } as Provider<JavaLauncher>
         }
     }
