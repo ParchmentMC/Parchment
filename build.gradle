@@ -1,6 +1,5 @@
 import org.parchmentmc.compass.CompassPlugin
 import org.parchmentmc.compass.storage.io.MappingIOFormat
-import org.parchmentmc.compass.tasks.ConvertMapping
 import org.parchmentmc.compass.tasks.GenerateExport
 import org.parchmentmc.compass.tasks.GenerateSanitizedExport
 import org.parchmentmc.compass.tasks.VersionDownload
@@ -82,23 +81,12 @@ def downloadClientJar = tasks.register('downloadClientJar', VersionDownload) {
     description 'Downloads the client JAR for the current version set in Compass.'
 }
 
-def convertObfMap = tasks.register('convertObfMap', ConvertMapping) {
-    group 'parchment'
-    description 'Converts and reverses the Mojang obfuscation mappings.'
-
-    def obfDL = project.plugins.getPlugin(CompassPlugin).obfuscationMapsDownloader
-    inputFile = obfDL.getObfuscationMap().flatMap { s -> obfDL.outputDirectory.file('client.txt') }
-    inputFormat = ConvertMapping.Format.PROGUARD
-    outputFile = project.layout.buildDirectory.dir('remapped')
-            .zip(project.compass.version) { d, ver -> d.file("$ver-client.txt") }
-    outputFormat = ConvertMapping.Format.TSRG
-    reverse = true
-}
-
 def remapJar = tasks.register('remapJar', RemapJar) {
     dependsOn downloadClientJar
+
+    def obfDL = project.plugins.getPlugin(CompassPlugin).obfuscationMapsDownloader
     inputJar = downloadClientJar.flatMap { it.outputFile }
-    mappings = convertObfMap.flatMap { it.outputFile }
+    mappings = obfDL.getObfuscationMap().flatMap { s -> obfDL.outputDirectory.file('client.txt') }
     outputJar = project.layout.buildDirectory.dir('remapped')
             .zip(project.compass.version) { d, ver -> d.file("$ver-client.jar") }
     logFile = project.layout.buildDirectory.dir('remapped')
@@ -221,6 +209,7 @@ abstract class RemapJar extends JavaExec {
 
         standardOutput = OutputStream.nullOutputStream() // We have a log file in place
 
+        args = ['--reverse'] // Input mappings is expected to be OBF->MOJ (ProGuard layout)
         argumentProviders.add({ ->
             ['--input', inputJar.get().asFile.absolutePath,
              '--map', mappings.get().asFile.absolutePath,
