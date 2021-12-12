@@ -1,26 +1,4 @@
 CLASS net/minecraft/world/level/chunk/LevelChunk
-	FIELD blockEntities Ljava/util/Map;
-		COMMENT A Map of ChunkPositions to TileEntities in this chunk
-	FIELD inhabitedTime J
-		COMMENT the cumulative number of ticks players have been in this chunk
-	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ProtoChunk;Ljava/util/function/Consumer;)V
-		ARG 1 level
-		ARG 2 chunk
-		ARG 3 postLoad
-	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/ChunkBiomeContainer;)V
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 biomes
-	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/ChunkBiomeContainer;Lnet/minecraft/world/level/chunk/UpgradeData;Lnet/minecraft/world/level/TickList;Lnet/minecraft/world/level/TickList;J[Lnet/minecraft/world/level/chunk/LevelChunkSection;Ljava/util/function/Consumer;)V
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 biomes
-		ARG 4 data
-		ARG 5 blockTicks
-		ARG 6 liquidTicks
-		ARG 7 inhabitedTime
-		ARG 9 sections
-		ARG 10 postLoad
 	METHOD addAndRegisterBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 blockEntity
 	METHOD addGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
@@ -39,16 +17,6 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 3 z
 	METHOD isTicking (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
-	METHOD lambda$registerAllBlockEntitiesAfterLevelLoad$10 (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
-		ARG 1 blockEntity
-	METHOD lambda$unpackTicks$8 (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/Block;
-		ARG 1 pos
-	METHOD lambda$unpackTicks$9 (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/Fluid;
-		ARG 1 pos
-	METHOD onBlockEntityRemove (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
-		ARG 1 blockEntity
-	METHOD packTicks (Lnet/minecraft/server/level/ServerLevel;)V
-		ARG 1 level
 	METHOD promotePendingBlockEntity (Lnet/minecraft/core/BlockPos;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
 		ARG 2 tag
@@ -56,11 +24,6 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 1 pos
 	METHOD removeGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 blockEntity
-	METHOD replaceWithPacketData (Lnet/minecraft/world/level/chunk/ChunkBiomeContainer;Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/nbt/CompoundTag;Ljava/util/BitSet;)V
-		ARG 1 biomes
-		ARG 2 buffer
-		ARG 3 tag
-		ARG 4 data
 	METHOD setFullStatus (Ljava/util/function/Supplier;)V
 		ARG 1 fullStatus
 	METHOD setLoaded (Z)V

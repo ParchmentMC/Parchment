@@ -15,10 +15,6 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 entity
 	METHOD broadcastAndSend (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 entity
-	METHOD checkerboardDistance (Lnet/minecraft/world/level/ChunkPos;II)I
-		ARG 0 chunkPos
-		ARG 1 x
-		ARG 2 y
 	METHOD euclideanDistanceSquared (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/entity/Entity;)D
 		COMMENT Returns the squared distance to the center of the chunk.
 		ARG 0 chunkPos
@@ -27,18 +23,8 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 pos
 	METHOD getChunks ()Ljava/lang/Iterable;
 		COMMENT Gets an unmodifiable iterable of all loaded chunks in the chunk manager
-	METHOD getPlayers (Lnet/minecraft/world/level/ChunkPos;Z)Ljava/util/stream/Stream;
-		COMMENT Returns the players tracking the given chunk.
-		ARG 1 pos
-		ARG 2 boundaryOnly
 	METHOD move (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
-	METHOD noPlayersCloseForSpawning (Lnet/minecraft/world/level/ChunkPos;)Z
-		ARG 1 chunkPos
-	METHOD playerLoadedChunk (Lnet/minecraft/server/level/ServerPlayer;[Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/world/level/chunk/LevelChunk;)V
-		ARG 1 player
-		ARG 2 packetCache
-		ARG 3 chunk
 	METHOD processUnloads (Ljava/util/function/BooleanSupplier;)V
 		ARG 1 hasMoreTime
 	METHOD readChunk (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/nbt/CompoundTag;
@@ -70,13 +56,6 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 4 holder
 			COMMENT The {@link net.minecraft.world.server.ChunkHolder} of the chunk if it is loaded, and null otherwise.
 		ARG 5 oldLevel
-	METHOD updateChunkTracking (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/ChunkPos;[Lnet/minecraft/network/protocol/Packet;ZZ)V
-		COMMENT Sends the chunk to the client, or tells it to unload it.
-		ARG 1 player
-		ARG 2 chunkPos
-		ARG 3 packetCache
-		ARG 4 wasLoaded
-		ARG 5 load
 	METHOD updatePlayerStatus (Lnet/minecraft/server/level/ServerPlayer;Z)V
 		ARG 1 player
 		ARG 2 track

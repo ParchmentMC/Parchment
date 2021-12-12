@@ -1,6 +1,4 @@
 CLASS net/minecraft/world/level/levelgen/WorldgenRandom
-	METHOD <init> (J)V
-		ARG 1 seed
 	METHOD next (I)I
 		ARG 1 bits
 	METHOD seedSlimeChunk (IIJJ)Ljava/util/Random;
@@ -10,18 +8,6 @@ CLASS net/minecraft/world/level/levelgen/WorldgenRandom
 		ARG 2 levelSeed
 		ARG 4 salt
 			COMMENT For vanilla slimes this is always {@code 987234911L}
-	METHOD setBaseChunkSeed (II)J
-		COMMENT Seeds the current random for surface building and bedrock placement. Notably, this does not depend on the level seed and only uses the chunk positions.
-		COMMENT @return The seed.
-		ARG 1 chunkX
-		ARG 2 chunkZ
-	METHOD setBaseStoneSeed (JIII)J
-		COMMENT Seeds the current random for placing the base stone of an area (either stone or deepslate).
-		COMMENT @return The seed.
-		ARG 1 levelSeed
-		ARG 3 x
-		ARG 4 y
-		ARG 5 z
 	METHOD setDecorationSeed (JII)J
 		COMMENT Seeds the current random for chunk decoration, including spawning mobs and for use in feature placement.
 		COMMENT The coordinates correspond to the minimum block position within a given chunk.
@@ -29,30 +15,3 @@ CLASS net/minecraft/world/level/levelgen/WorldgenRandom
 		ARG 1 levelSeed
 		ARG 3 minChunkBlockX
 		ARG 4 minChunkBlockZ
-	METHOD setFeatureSeed (JII)J
-		COMMENT Seeds the current random for placing features.
-		COMMENT Each feature is seeded differently in order to seem more random. However it does not do a good job of this, and issues can arise from the salt being small with features that have the same decoration step and are close together in the feature lists.
-		COMMENT @return The seed.
-		ARG 1 decorationSeed
-			COMMENT The seed computed by {@link #setDecorationSeed(long, int, int)}
-		ARG 3 index
-			COMMENT The cumulative index of the generating feature within the biome's list of features.
-		ARG 4 decorationStep
-			COMMENT The ordinal of the {@link net.minecraft.world.level.levelgen.GenerationStep.Decoration} of the generating feature.
-	METHOD setLargeFeatureSeed (JII)J
-		COMMENT Seeds the current random for placing large features such as caves, strongholds, and mineshafts.
-		COMMENT @return The seed.
-		ARG 1 baseSeed
-			COMMENT This is passed in as the level seed, or in some cases such as carvers, as an offset from the level seed unique to each carver.
-		ARG 3 chunkX
-		ARG 4 chunkZ
-	METHOD setLargeFeatureWithSalt (JIII)J
-		COMMENT Seeds the current random for placing the starts of structure features.
-		COMMENT The region coordinates are the region which the target chunk lies in. For example, witch hut regions are 32x32 chunks, so all chunks within that region would be seeded identically.
-		COMMENT The size of the regions themselves are determined by the {@code spacing} of the structure settings.
-		COMMENT @return The seed.
-		ARG 1 levelSeed
-		ARG 3 regionX
-		ARG 4 regionZ
-		ARG 5 salt
-			COMMENT A salt unique to each structure.

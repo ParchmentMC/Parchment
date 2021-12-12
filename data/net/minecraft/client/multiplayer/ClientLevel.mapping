@@ -1,14 +1,4 @@
 CLASS net/minecraft/client/multiplayer/ClientLevel
-	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientPacketListener;Lnet/minecraft/client/multiplayer/ClientLevel$ClientLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/dimension/DimensionType;ILjava/util/function/Supplier;Lnet/minecraft/client/renderer/LevelRenderer;ZJ)V
-		ARG 1 connection
-		ARG 2 levelData
-		ARG 3 dimension
-		ARG 4 dimensionType
-		ARG 5 viewDistance
-		ARG 6 profiler
-		ARG 7 levelRenderer
-		ARG 8 isDebug
-		ARG 9 biomeZoomSeed
 	METHOD addAlwaysVisibleParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
 		ARG 1 particleData
 		ARG 2 x
@@ -72,13 +62,6 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 		ARG 3 progress
 	METHOD disconnect ()V
 		COMMENT If on MP, sends a quitting packet.
-	METHOD doAnimateTick (IIIILjava/util/Random;Lnet/minecraft/client/multiplayer/ClientLevel$MarkerParticleStatus;Lnet/minecraft/core/BlockPos$MutableBlockPos;)V
-		ARG 1 posX
-		ARG 2 posY
-		ARG 3 posZ
-		ARG 4 range
-		ARG 5 random
-		ARG 7 blockPos
 	METHOD fillReportDetails (Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReportCategory;
 		COMMENT Adds some basic stats of the world to the given crash report.
 		ARG 1 report
@@ -114,10 +97,6 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 	METHOD hasChunk (II)Z
 		ARG 1 chunkX
 		ARG 2 chunkZ
-	METHOD lambda$new$0 (Lit/unimi/dsi/fastutil/objects/Object2ObjectArrayMap;)V
-		ARG 0 map
-	METHOD lambda$tickEntities$1 (Lnet/minecraft/world/entity/Entity;)V
-		ARG 1 entity
 	METHOD levelEvent (Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 player
 		ARG 2 type
@@ -269,7 +248,3 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 		METHOD setZSpawn (I)V
 			COMMENT Set the z spawn position to the passed in value
 			ARG 1 z
-	CLASS MarkerParticleStatus
-		METHOD <init> (Ljava/lang/String;ILnet/minecraft/world/level/block/Block;Lnet/minecraft/core/particles/ParticleOptions;)V
-			ARG 3 block
-			ARG 4 particle

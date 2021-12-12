@@ -13,11 +13,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		COMMENT Just an ordinary random number generator, used to randomize audio pitch of item/orb pickup and randomize both particlespawn offset and velocity
 	FIELD started Z
 		COMMENT True if the client has finished downloading terrain and may spawn. Set upon receipt of S08PacketPlayerPosLook, reset upon respawning
-	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/network/Connection;Lcom/mojang/authlib/GameProfile;)V
-		ARG 1 minecraft
-		ARG 2 callbackScreen
-		ARG 3 connection
-		ARG 4 localGameProfile
 	METHOD cleanup ()V
 		COMMENT Clears the WorldClient instance associated with this NetHandlerPlayClient
 	METHOD downloadCallback (Ljava/util/concurrent/CompletableFuture;)V
@@ -124,12 +119,7 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 packet
 	METHOD handleKeepAlive (Lnet/minecraft/network/protocol/game/ClientboundKeepAlivePacket;)V
 		ARG 1 packet
-	METHOD handleLevelChunk (Lnet/minecraft/network/protocol/game/ClientboundLevelChunkPacket;)V
-		COMMENT Updates the specified chunk with the supplied data, marks it for re-rendering and lighting recalculation
-		ARG 1 packet
 	METHOD handleLevelEvent (Lnet/minecraft/network/protocol/game/ClientboundLevelEventPacket;)V
-		ARG 1 packet
-	METHOD handleLightUpdatePacked (Lnet/minecraft/network/protocol/game/ClientboundLightUpdatePacket;)V
 		ARG 1 packet
 	METHOD handleLogin (Lnet/minecraft/network/protocol/game/ClientboundLoginPacket;)V
 		COMMENT Registers some server properties (gametype,hardcore-mode,terraintype,difficulty,player limit), creates a new WorldClient and sets the player initial dimension
@@ -235,10 +225,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 packet
 	METHOD handleUpdateTags (Lnet/minecraft/network/protocol/game/ClientboundUpdateTagsPacket;)V
 		ARG 1 packet
-	METHOD lambda$handleAddOrRemoveRecipes$4 (Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/world/item/crafting/Recipe;)V
-		ARG 2 recipe
-	METHOD lambda$handleAddOrRemoveRecipes$5 (Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)V
-		ARG 1 recipes
 	METHOD lambda$handleChunkBlocksUpdate$1 (ILnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 2 pos
 		ARG 3 state

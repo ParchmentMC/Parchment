@@ -1,28 +1,11 @@
 CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
-	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/client/renderer/LevelRenderer;Ljava/util/concurrent/Executor;ZLnet/minecraft/client/renderer/ChunkBufferBuilderPack;)V
-		ARG 1 level
-		ARG 2 renderer
-		ARG 3 executor
-		ARG 4 is64Bit
-		ARG 5 fixedBuffers
 	METHOD doUploadChunkLayer (Lcom/mojang/blaze3d/vertex/BufferBuilder;Lcom/mojang/blaze3d/vertex/VertexBuffer;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
 		ARG 2 buffer
-	METHOD lambda$runTask$1 (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk$ChunkCompileTask;Lnet/minecraft/client/renderer/ChunkBufferBuilderPack;Ljava/lang/Void;)Ljava/util/concurrent/CompletionStage;
-		ARG 2 v
-	METHOD lambda$runTask$3 (Lnet/minecraft/client/renderer/ChunkBufferBuilderPack;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkTaskResult;Ljava/lang/Throwable;)V
-		ARG 2 result
-		ARG 3 throwable
-	METHOD lambda$uploadChunkLayer$6 (Lcom/mojang/blaze3d/vertex/BufferBuilder;Lcom/mojang/blaze3d/vertex/VertexBuffer;Ljava/lang/Void;)Ljava/util/concurrent/CompletionStage;
-		ARG 3 v
-	METHOD rebuildChunkSync (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;)V
-		ARG 1 renderChunk
 	METHOD schedule (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk$ChunkCompileTask;)V
 		ARG 1 task
 	METHOD setCamera (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 camera
-	METHOD setLevel (Lnet/minecraft/world/level/Level;)V
-		ARG 1 level
 	METHOD uploadChunkLayer (Lcom/mojang/blaze3d/vertex/BufferBuilder;Lcom/mojang/blaze3d/vertex/VertexBuffer;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
 		ARG 2 buffer
@@ -43,15 +26,11 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 			ARG 0 renderType
 		METHOD lambda$new$2 ([Lnet/minecraft/core/BlockPos$MutableBlockPos;)V
 			ARG 0 positions
-		METHOD rebuildChunkAsync (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher;)V
-			ARG 1 dispatcher
 		METHOD resortTransparency (Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher;)Z
 			ARG 1 type
 			ARG 2 dispatcher
 		METHOD setDirty (Z)V
 			ARG 1 reRenderOnMainThread
-		METHOD setFrame (I)Z
-			ARG 1 lastFrame
 		METHOD setOrigin (III)V
 			ARG 1 x
 			ARG 2 y
@@ -59,9 +38,6 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 		METHOD updateGlobalBlockEntities (Ljava/util/Set;)V
 			ARG 1 blockEntities
 		CLASS RebuildTask
-			METHOD <init> (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;DLnet/minecraft/client/renderer/chunk/RenderChunkRegion;)V
-				ARG 2 distAtCreation
-				ARG 4 region
 			METHOD compile (FFFLnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$CompiledChunk;Lnet/minecraft/client/renderer/ChunkBufferBuilderPack;)Ljava/util/Set;
 				ARG 1 x
 				ARG 2 y
@@ -74,12 +50,7 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 				ARG 3 blockEntity
 			METHOD lambda$doTask$0 (Ljava/util/List;Lnet/minecraft/client/renderer/ChunkBufferBuilderPack;Lnet/minecraft/client/renderer/RenderType;)V
 				ARG 3 renderType
-			METHOD lambda$doTask$1 (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$CompiledChunk;Ljava/util/List;Ljava/lang/Throwable;)Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkTaskResult;
-				ARG 2 voids
-				ARG 3 throwable
 		CLASS ChunkCompileTask
-			METHOD <init> (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;D)V
-				ARG 2 distAtCreation
 			METHOD compareTo (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk$ChunkCompileTask;)I
 				ARG 1 other
 			METHOD doTask (Lnet/minecraft/client/renderer/ChunkBufferBuilderPack;)Ljava/util/concurrent/CompletableFuture;
@@ -90,9 +61,6 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 				ARG 4 compiledChunk
 			METHOD lambda$doTask$0 (Ljava/lang/Void;)Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkTaskResult;
 				ARG 0 v
-			METHOD lambda$doTask$1 (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkTaskResult;Ljava/lang/Throwable;)Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkTaskResult;
-				ARG 1 result
-				ARG 2 throwable
 	CLASS CompiledChunk
 		METHOD facesCanSeeEachother (Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Z
 			ARG 1 face

@@ -65,8 +65,6 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 1 report
 	METHOD onServerExit ()V
 		COMMENT Directly calls System.exit(0), instantly killing the program.
-	METHOD populateSnooper (Lnet/minecraft/world/Snooper;)V
-		ARG 1 snooper
 	METHOD prepareLevels (Lnet/minecraft/server/level/progress/ChunkProgressListener;)V
 		COMMENT Loads the spawn chunks and any forced chunks
 	METHOD publishServer (Lnet/minecraft/world/level/GameType;ZI)Z
@@ -136,17 +134,3 @@ CLASS net/minecraft/server/MinecraftServer
 		COMMENT Runs all pending tasks and waits for more tasks until serverTime is reached.
 	METHOD wrapRunnable (Ljava/lang/Runnable;)Lnet/minecraft/server/TickTask;
 		ARG 1 runnable
-	CLASS 1
-		METHOD progressStage (Lnet/minecraft/network/chat/Component;)V
-			ARG 1 component
-		METHOD progressStagePercentage (I)V
-			COMMENT Updates the progress bar on the loading screen to the specified amount.
-			ARG 1 progress
-		METHOD progressStart (Lnet/minecraft/network/chat/Component;)V
-			ARG 1 component
-		METHOD progressStartNoAbort (Lnet/minecraft/network/chat/Component;)V
-			ARG 1 component
-	CLASS 2
-		METHOD visit (Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Type;)V
-			ARG 1 key
-			ARG 2 type

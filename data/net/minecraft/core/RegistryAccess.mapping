@@ -6,17 +6,6 @@ CLASS net/minecraft/core/RegistryAccess
 		COMMENT Early classloading of this class <strong>can cause issues</strong> because this field will not contain any elements registered to the builtin registries after classloading of {@code RegistryAccess}.
 	FIELD REGISTRIES Ljava/util/Map;
 		COMMENT Metadata about all registries. Maps registry keys to a {@link RegistryData} object, which defines the codecs, and if applicable, codecs for synchronization of the registry's elements.
-	METHOD addBuiltinElements (Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/resources/RegistryReadOps$ResourceAccess$MemoryMap;Lnet/minecraft/core/RegistryAccess$RegistryData;)V
-		COMMENT Adds builtin elements from the builtin registries to the {@code destinationRegistryHolder} with several quirks.
-		COMMENT The source for all builtin elements is the {@link #BUILTIN} field, which contains builtin elements of all registries excluding the dimension type registry, as they were at time this class was initialized.
-		COMMENT Then, depending on the registry, one of two things will occur:
-		COMMENT <ul>
-		COMMENT <li>If the registry is the noise generator settings, or dimension type registry, elements will be copied (id, object, name, and lifecycle) directly into the registry of {@code destinationRegistryHolder}</li>
-		COMMENT <li>However, in all other cases, the registry element is <strong>encoded into JSON</strong> and entered into the {@code destinationRegistryAccess}. The registry holder is not modified in these cases.</li>
-		COMMENT </ul>
-		ARG 0 destinationRegistryHolder
-		ARG 1 resourceAccess
-		ARG 2 data
 	METHOD builtin ()Lnet/minecraft/core/RegistryAccess$RegistryHolder;
 		COMMENT Creates a {@link RegistryHolder} containing the builtin vanilla registries.
 		COMMENT The way it does so is a little convoluted.
@@ -115,5 +104,3 @@ CLASS net/minecraft/core/RegistryAccess
 			ARG 1 networkCodec
 		METHOD lambda$makeNetworkCodec$2 (Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/DataResult;
 			ARG 0 registryKey
-		METHOD lambda$ownedRegistry$7 (Lnet/minecraft/core/MappedRegistry;)Lnet/minecraft/core/WritableRegistry;
-			ARG 0 registry

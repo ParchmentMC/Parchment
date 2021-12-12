@@ -70,23 +70,6 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD collide (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 		COMMENT Given a motion vector, return an updated vector that takes into account restrictions such as collisions (from all directions) and step-up from stepHeight
 		ARG 1 vec
-	METHOD collideBoundingBox (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/phys/shapes/CollisionContext;Lnet/minecraft/util/RewindableStream;)Lnet/minecraft/world/phys/Vec3;
-		ARG 0 vec
-		ARG 1 collisionBox
-		ARG 2 level
-		ARG 3 selectionContext
-		ARG 4 potentialHits
-	METHOD collideBoundingBoxHeuristically (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/shapes/CollisionContext;Lnet/minecraft/util/RewindableStream;)Lnet/minecraft/world/phys/Vec3;
-		ARG 0 entity
-		ARG 1 vec
-		ARG 2 collisionBox
-		ARG 3 level
-		ARG 4 context
-		ARG 5 potentialHits
-	METHOD collideBoundingBoxLegacy (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/util/RewindableStream;)Lnet/minecraft/world/phys/Vec3;
-		ARG 0 vec
-		ARG 1 collisionBox
-		ARG 2 potentialHits
 	METHOD copyPosition (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Sets this entity's location and angles to the location and angles of the passed in entity.
 		ARG 1 entity
@@ -166,11 +149,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 livingEntity
 	METHOD getEncodeId ()Ljava/lang/String;
 		COMMENT Returns the string that identifies this Entity's class
-	METHOD getExitPortal (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Z)Ljava/util/Optional;
-		ARG 1 destination
-		ARG 2 findFrom
-			COMMENT Position where searching starts from
-		ARG 3 isToNether
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;)F
 		ARG 1 pose
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
@@ -328,31 +306,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD killed (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 level
 		ARG 2 killedEntity
-	METHOD lambda$collide$1 (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 0 entity
-	METHOD lambda$findDimensionEntryPoint$6 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
-		ARG 2 pos
-	METHOD lambda$findDimensionEntryPoint$7 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/level/portal/PortalInfo;
-		ARG 2 portal
-	METHOD lambda$getDisplayName$12 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-		ARG 1 style
-	METHOD lambda$hasExactlyOnePlayerPassenger$16 (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 0 currentEntity
-	METHOD lambda$hasIndirectPassenger$17 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 currentEntity
-	METHOD lambda$isInWall$2 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
-		ARG 1 state
-		ARG 2 pos
 	METHOD lambda$move$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 loadedState
-	METHOD lambda$refreshDimensions$14 (Lnet/minecraft/world/entity/EntityDimensions;Lnet/minecraft/world/phys/Vec3;)V
-		ARG 2 freePos
-	METHOD lambda$startRiding$3 (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 0 passenger
-	METHOD lambda$startRiding$4 (Lnet/minecraft/world/entity/Entity;)V
-		ARG 0 playerPassenger
-	METHOD lambda$teleportTo$13 (Lnet/minecraft/world/entity/Entity;)V
-		ARG 0 currentEntity
 	METHOD lavaHurt ()V
 		COMMENT Called whenever the entity is walking inside of lava.
 	METHOD lerpHeadTo (FI)V

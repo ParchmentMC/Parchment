@@ -44,14 +44,9 @@ CLASS net/minecraft/client/Minecraft
 		ARG 4 dimensionGeneratorSettings
 	METHOD createSearchTrees ()V
 		COMMENT Fills {@link #searchTreeManager} with the current item and recipe registry contents.
-	METHOD createSocialInteractions (Lcom/mojang/authlib/yggdrasil/YggdrasilAuthenticationService;Lnet/minecraft/client/main/GameConfig;)Lcom/mojang/authlib/minecraft/SocialInteractionsService;
-		ARG 1 authService
-		ARG 2 gameConfig
 	METHOD debugFpsMeterKeyPress (I)V
 		COMMENT Update debugProfilerName in response to number keys in debug screen
 		ARG 1 keyCount
-	METHOD delayCrash (Lnet/minecraft/CrashReport;)V
-		ARG 1 crash
 	METHOD destroy ()V
 		COMMENT Shuts down the minecraft applet by stopping the resource downloads, and clearing up GL stuff" called when the application (or web page) is exited.
 	METHOD displayExperimentalConfirmationDialog (Lnet/minecraft/client/Minecraft$ExperimentalDialogType;Ljava/lang/String;ZLjava/lang/Runnable;)V
@@ -87,8 +82,6 @@ CLASS net/minecraft/client/Minecraft
 		ARG 1 renderFpsPie
 	METHOD forceSetScreen (Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 1 screen
-	METHOD getCurrentSnooperAction ()Ljava/lang/String;
-		COMMENT Return the current action's name
 	METHOD getFrameTimer ()Lnet/minecraft/util/FrameTimer;
 		COMMENT Return the FrameTimer's instance
 	METHOD getInstance ()Lnet/minecraft/client/Minecraft;
@@ -109,8 +102,6 @@ CLASS net/minecraft/client/Minecraft
 		ARG 1 key
 	METHOD getSingleplayerServer ()Lnet/minecraft/client/server/IntegratedServer;
 		COMMENT Returns the currently running integrated server
-	METHOD getSnooper ()Lnet/minecraft/world/Snooper;
-		COMMENT Returns the PlayerUsageSnooper instance.
 	METHOD getTextureAtlas (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/function/Function;
 		ARG 1 location
 	METHOD getVersionType ()Ljava/lang/String;
@@ -157,10 +148,6 @@ CLASS net/minecraft/client/Minecraft
 		ARG 1 pauseOnly
 	METHOD pickBlock ()V
 		COMMENT Called when user clicked he's mouse middle button (pick block)
-	METHOD populateSnooper (Lnet/minecraft/world/Snooper;)V
-		ARG 1 snooper
-	METHOD populateSnooperWithOpenGL (Lnet/minecraft/world/Snooper;)V
-		ARG 0 snooper
 	METHOD renderFpsMeter (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/util/profiling/ProfileResults;)V
 		ARG 1 poseStack
 		ARG 2 profilerResult
