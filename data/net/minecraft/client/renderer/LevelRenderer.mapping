@@ -81,8 +81,12 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 xSpeed
 		ARG 12 ySpeed
 		ARG 14 zSpeed
+	METHOD addRecentlyCompiledChunk (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;)V
+		ARG 1 chunk
 	METHOD allChanged ()V
 		COMMENT Loads all renderers and sets up the basic options usage.
+	METHOD applyFrustum (Lnet/minecraft/client/renderer/culling/Frustum;)V
+		ARG 1 frustrum
 	METHOD blockChanged (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;I)V
 		ARG 1 level
 		ARG 2 pos
@@ -113,6 +117,9 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		COMMENT Asserts that the specified {@code poseStack} is {@linkplain com.mojang.blaze3d.vertex.PoseStack#clear() clear}.
 		COMMENT @throws java.lang.IllegalStateException if the specified {@code poseStack} is not clear
 		ARG 1 poseStack
+	METHOD closeToBorder (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;)Z
+		ARG 1 pos
+		ARG 2 chunk
 	METHOD destroyBlockProgress (ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 breakerId
 		ARG 2 pos
@@ -142,6 +149,22 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 			COMMENT the type of level event to handle. This method only handles {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_WITHER_BOSS_SPAWN the wither boss spawn sound}, {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_DRAGON_DEATH the dragon's death sound}, and {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_END_PORTAL_SPAWN the end portal spawn sound}.
 		ARG 2 pos
 		ARG 3 data
+	METHOD initializeQueueForFullUpdate (Lnet/minecraft/client/Camera;Ljava/util/Queue;)V
+		ARG 1 camera
+		ARG 2 infoQueue
+	METHOD lambda$destroyBlockProgress$8 (J)Ljava/util/SortedSet;
+		ARG 0 progress
+	METHOD lambda$initializeQueueForFullUpdate$2 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;)D
+		ARG 1 val
+	METHOD lambda$renderLevel$4 (Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
+		ARG 2 type
+	METHOD lambda$renderShape$6 (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;DDDFFFFDDDDDD)V
+		ARG 12 x1
+		ARG 14 y1
+		ARG 16 z1
+		ARG 18 x2
+		ARG 20 y2
+		ARG 22 z2
 	METHOD levelEvent (Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 player
 		ARG 2 type
@@ -328,12 +351,20 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 3 sectionZ
 	METHOD setupRender (Lnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/culling/Frustum;ZZ)V
 		ARG 1 camera
-		ARG 2 frustum
+		ARG 2 frustrum
+		ARG 3 hasCapturedFrustrum
+		ARG 4 isSpectator
 	METHOD tickRain (Lnet/minecraft/client/Camera;)V
 		ARG 1 camera
 	METHOD updateGlobalBlockEntities (Ljava/util/Collection;Ljava/util/Collection;)V
 		ARG 1 blockEntitiesToRemove
 		ARG 2 blockEntitiesToAdd
+	METHOD updateRenderChunks (Ljava/util/LinkedHashSet;Lnet/minecraft/client/renderer/LevelRenderer$RenderInfoMap;Lnet/minecraft/world/phys/Vec3;Ljava/util/Queue;Z)V
+		ARG 1 chunkInfo
+		ARG 2 infoMap
+		ARG 3 viewVector
+		ARG 4 infoQueue
+		ARG 5 shouldCull
 	CLASS RenderInfoMap
 		METHOD <init> (I)V
 			ARG 1 size
@@ -356,6 +387,9 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		METHOD setDirections (BLnet/minecraft/core/Direction;)V
 			ARG 1 dir
 			ARG 2 facing
+	CLASS RenderChunkStorage
+		METHOD <init> (I)V
+			ARG 1 size
 	CLASS TransparencyShaderException
 		METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
 			ARG 1 message

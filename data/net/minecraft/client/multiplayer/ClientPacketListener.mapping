@@ -19,10 +19,18 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 3 connection
 		ARG 4 localGameProfile
 		ARG 5 telemetryManager
+	METHOD applyLightData (IILnet/minecraft/network/protocol/game/ClientboundLightUpdatePacketData;)V
+		ARG 1 x
+		ARG 2 z
+		ARG 3 data
 	METHOD cleanup ()V
 		COMMENT Clears the WorldClient instance associated with this NetHandlerPlayClient
 	METHOD downloadCallback (Ljava/util/concurrent/CompletableFuture;)V
 		ARG 1 future
+	METHOD enableChunkLight (Lnet/minecraft/world/level/chunk/LevelChunk;II)V
+		ARG 1 chunk
+		ARG 2 x
+		ARG 3 z
 	METHOD findTotem (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/item/ItemStack;
 		ARG 0 player
 	METHOD getConnection ()Lnet/minecraft/network/Connection;
@@ -231,20 +239,51 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 packet
 	METHOD handleUpdateTags (Lnet/minecraft/network/protocol/game/ClientboundUpdateTagsPacket;)V
 		ARG 1 packet
+	METHOD lambda$handleAddOrRemoveRecipes$7 (Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/world/item/crafting/Recipe;)V
+		ARG 2 recipe
+	METHOD lambda$handleAddOrRemoveRecipes$8 (Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)V
+		ARG 1 category
+	METHOD lambda$handleBlockEntityData$4 (Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+		ARG 2 entity
 	METHOD lambda$handleChunkBlocksUpdate$1 (ILnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 2 pos
 		ARG 3 state
+	METHOD lambda$handleRemoveEntities$0 (I)V
+		ARG 1 id
+	METHOD lambda$handleResourcePack$9 (Ljava/lang/String;Ljava/lang/String;ZZ)V
+		ARG 4 confirmed
+	METHOD lambda$handleSetEquipment$5 (Lnet/minecraft/world/entity/Entity;Lcom/mojang/datafixers/util/Pair;)V
+		ARG 1 slot
+	METHOD lambda$handleSetPlayerTeamPacket$14 (Lnet/minecraft/world/scores/PlayerTeam;Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Parameters;)V
+		ARG 1 parameters
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason
+	METHOD preparePackPrompt (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/Component;
+		ARG 0 mainMessage
+		ARG 1 confirmationMessage
+	METHOD queueLightUpdate (IILnet/minecraft/network/protocol/game/ClientboundLightUpdatePacketData;)V
+		ARG 1 x
+		ARG 2 z
+		ARG 3 data
+	METHOD queueLightUpdate (Lnet/minecraft/network/protocol/game/ClientboundForgetLevelChunkPacket;)V
+		ARG 1 packet
 	METHOD readSectionList (IILnet/minecraft/world/level/lighting/LevelLightEngine;Lnet/minecraft/world/level/LightLayer;Ljava/util/BitSet;Ljava/util/BitSet;Ljava/util/Iterator;Z)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 lightEngine
 		ARG 4 lightLayer
+		ARG 5 lightSetX
+		ARG 6 lightSetZ
+		ARG 7 layerIterator
+		ARG 8 trusted
 	METHOD send (Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 packet
 	METHOD send (Lnet/minecraft/network/protocol/game/ServerboundResourcePackPacket$Action;)V
 		ARG 1 action
+	METHOD updateLevelChunk (IILnet/minecraft/network/protocol/game/ClientboundLevelChunkPacketData;)V
+		ARG 1 x
+		ARG 2 z
+		ARG 3 data
 	METHOD validateResourcePackUrl (Ljava/lang/String;)Z
 		ARG 1 url

@@ -22,6 +22,12 @@ CLASS net/minecraft/client/multiplayer/ClientChunkCache
 	METHOD onLightUpdate (Lnet/minecraft/world/level/LightLayer;Lnet/minecraft/core/SectionPos;)V
 		ARG 1 type
 		ARG 2 pos
+	METHOD replaceWithPacketData (IILnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/nbt/CompoundTag;Ljava/util/function/Consumer;)Lnet/minecraft/world/level/chunk/LevelChunk;
+		ARG 1 x
+		ARG 2 z
+		ARG 3 friendlyByteBuf
+		ARG 4 tag
+		ARG 5 consumer
 	METHOD updateViewCenter (II)V
 		ARG 1 x
 		ARG 2 z
@@ -30,6 +36,8 @@ CLASS net/minecraft/client/multiplayer/ClientChunkCache
 	CLASS Storage
 		METHOD <init> (Lnet/minecraft/client/multiplayer/ClientChunkCache;I)V
 			ARG 2 chunkRadius
+		METHOD dumpChunks (Ljava/lang/String;)V
+			ARG 1 filePath
 		METHOD getChunk (I)Lnet/minecraft/world/level/chunk/LevelChunk;
 			ARG 1 chunkIndex
 		METHOD getIndex (II)I
