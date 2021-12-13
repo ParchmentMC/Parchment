@@ -1,4 +1,15 @@
 CLASS net/minecraft/client/multiplayer/ClientLevel
+	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientPacketListener;Lnet/minecraft/client/multiplayer/ClientLevel$ClientLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/dimension/DimensionType;IILjava/util/function/Supplier;Lnet/minecraft/client/renderer/LevelRenderer;ZJ)V
+		ARG 1 connection
+		ARG 2 clientLevelData
+		ARG 3 levelData
+		ARG 4 dimensionType
+		ARG 5 viewDistance
+		ARG 6 serverSimulationDistance
+		ARG 7 profiler
+		ARG 8 levelRenderer
+		ARG 9 isDebug
+		ARG 10 biomeZoomSeed
 	METHOD addAlwaysVisibleParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
 		ARG 1 particleData
 		ARG 2 x
@@ -62,6 +73,14 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 		ARG 3 progress
 	METHOD disconnect ()V
 		COMMENT If on MP, sends a quitting packet.
+	METHOD doAnimateTick (IIIILjava/util/Random;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos$MutableBlockPos;)V
+		ARG 1 posX
+		ARG 2 posY
+		ARG 3 posZ
+		ARG 4 randomizerAttempts
+		ARG 5 rand
+		ARG 6 marker
+		ARG 7 position
 	METHOD fillReportDetails (Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReportCategory;
 		COMMENT Adds some basic stats of the world to the given crash report.
 		ARG 1 report
@@ -97,6 +116,28 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 	METHOD hasChunk (II)Z
 		ARG 1 chunkX
 		ARG 2 chunkZ
+	METHOD lambda$clearTintCaches$7 (Lnet/minecraft/world/level/ColorResolver;Lnet/minecraft/client/color/block/BlockTintCache;)V
+		ARG 0 resolver
+		ARG 1 cache
+	METHOD lambda$doAnimateTick$8 (Lnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/world/level/biome/AmbientParticleSettings;)V
+		ARG 2 particle
+	METHOD lambda$getSkyColor$11 (Lnet/minecraft/world/level/biome/BiomeManager;III)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD lambda$new$0 (Lnet/minecraft/core/BlockPos;)I
+		ARG 1 pos
+	METHOD lambda$new$1 (Lnet/minecraft/core/BlockPos;)I
+		ARG 1 pos
+	METHOD lambda$new$2 (Lnet/minecraft/core/BlockPos;)I
+		ARG 1 pos
+	METHOD lambda$new$3 (Lit/unimi/dsi/fastutil/objects/Object2ObjectArrayMap;)V
+		ARG 1 map
+	METHOD lambda$onChunkLoaded$6 (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/ColorResolver;Lnet/minecraft/client/color/block/BlockTintCache;)V
+		ARG 1 resolver
+		ARG 2 cache
+	METHOD lambda$tickEntities$4 (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
 	METHOD levelEvent (Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 player
 		ARG 2 type
@@ -139,6 +180,8 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 	METHOD putNonPlayerEntity (ILnet/minecraft/world/entity/Entity;)V
 		ARG 1 entityId
 		ARG 2 entityToSpawn
+	METHOD queueLightUpdate (Ljava/lang/Runnable;)V
+		ARG 1 executor
 	METHOD removeEntity (ILnet/minecraft/world/entity/Entity$RemovalReason;)V
 		ARG 1 entityId
 		ARG 2 reason
@@ -165,12 +208,17 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 	METHOD setKnownState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 state
+	METHOD setLightReady (II)V
+		ARG 1 x
+		ARG 2 z
 	METHOD setScoreboard (Lnet/minecraft/world/scores/Scoreboard;)V
 		ARG 1 scoreboard
 	METHOD setSectionDirtyWithNeighbors (III)V
 		ARG 1 sectionX
 		ARG 2 sectionY
 		ARG 3 sectionZ
+	METHOD setServerSimulationDistance (I)V
+		ARG 1 serverSimulationDistnace
 	METHOD setSkyFlashTime (I)V
 		ARG 1 timeFlash
 	METHOD spawnFluidParticle (DDDDDLnet/minecraft/core/particles/ParticleOptions;)V

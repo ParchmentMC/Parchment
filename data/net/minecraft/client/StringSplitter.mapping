@@ -21,6 +21,8 @@ CLASS net/minecraft/client/StringSplitter
 		ARG 3 style
 	METHOD getWordPosition (Ljava/lang/String;IIZ)I
 		ARG 0 content
+		ARG 1 messageLength
+		ARG 2 cursorPoint
 	METHOD headByWidth (Lnet/minecraft/network/chat/FormattedText;ILnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/FormattedText;
 		ARG 1 content
 		ARG 2 maxWidth
@@ -36,6 +38,19 @@ CLASS net/minecraft/client/StringSplitter
 		ARG 4 maxWidth
 		ARG 5 style
 		ARG 6 codePoint
+	METHOD lambda$splitLines$6 (Ljava/util/List;Ljava/lang/String;Lnet/minecraft/network/chat/Style;II)V
+		ARG 2 style
+		ARG 3 begin
+		ARG 4 end
+	METHOD lambda$splitLines$7 (Ljava/util/List;Lnet/minecraft/network/chat/FormattedText;Ljava/lang/Boolean;)V
+		ARG 1 text
+		ARG 2 value
+	METHOD lambda$splitLines$8 (Ljava/util/List;Lnet/minecraft/network/chat/FormattedText;Lnet/minecraft/network/chat/FormattedText;Ljava/lang/Boolean;)V
+		ARG 2 message
+		ARG 3 prefix
+	METHOD lambda$splitLines$9 (Ljava/util/List;Lnet/minecraft/network/chat/Style;Ljava/lang/String;)Ljava/util/Optional;
+		ARG 1 style
+		ARG 2 content
 	METHOD lambda$stringWidth$0 (Lorg/apache/commons/lang3/mutable/MutableFloat;ILnet/minecraft/network/chat/Style;I)Z
 		ARG 2 maxWidth
 		ARG 3 style
@@ -68,6 +83,7 @@ CLASS net/minecraft/client/StringSplitter
 		ARG 1 content
 		ARG 2 maxWidth
 		ARG 3 style
+		ARG 4 withNewLines
 		ARG 5 linePos
 	METHOD splitLines (Lnet/minecraft/network/chat/FormattedText;ILnet/minecraft/network/chat/Style;)Ljava/util/List;
 		ARG 1 content
@@ -77,6 +93,12 @@ CLASS net/minecraft/client/StringSplitter
 		ARG 1 content
 		ARG 2 maxWidth
 		ARG 3 style
+		ARG 4 splitifier
+	METHOD splitLines (Lnet/minecraft/network/chat/FormattedText;ILnet/minecraft/network/chat/Style;Lnet/minecraft/network/chat/FormattedText;)Ljava/util/List;
+		ARG 1 content
+		ARG 2 maxWidth
+		ARG 3 style
+		ARG 4 prefix
 	METHOD stringWidth (Ljava/lang/String;)F
 		ARG 1 content
 	METHOD stringWidth (Lnet/minecraft/network/chat/FormattedText;)F
@@ -101,11 +123,17 @@ CLASS net/minecraft/client/StringSplitter
 			ARG 1 parts
 		METHOD charAt (I)C
 			ARG 1 codePoint
+		METHOD lambda$new$0 (Lnet/minecraft/client/StringSplitter$LineComponent;)Ljava/lang/String;
+			ARG 0 part
 		METHOD splitAt (IILnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/FormattedText;
+			ARG 1 begin
+			ARG 2 end
 			ARG 3 style
 	CLASS LineBreakFinder
 		METHOD <init> (Lnet/minecraft/client/StringSplitter;F)V
 			ARG 2 maxWidth
+		METHOD addToOffset (I)V
+			ARG 1 offset
 		METHOD finishIteration (ILnet/minecraft/network/chat/Style;)Z
 			ARG 1 lineBreak
 			ARG 2 lineBreakStyle
