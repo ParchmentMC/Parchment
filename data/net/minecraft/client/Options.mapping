@@ -20,14 +20,27 @@ CLASS net/minecraft/client/Options
 		ARG 1 playerModelPart
 	METHOD isTrue (Ljava/lang/String;)Z
 		ARG 0 value
+	METHOD lambda$dumpOptionsForReport$6 (Lcom/mojang/datafixers/util/Pair;)Ljava/lang/String;
+		ARG 0 value
 	METHOD lambda$load$5 (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
 		ARG 1 option
+	METHOD lambda$processOptions$4 (Lnet/minecraft/client/Options$FieldAccess;Lnet/minecraft/sounds/SoundSource;Ljava/lang/Float;)Ljava/lang/Float;
+		ARG 1 category
+		ARG 2 volume
 	METHOD load ()V
 		COMMENT Loads the options from the options file. It appears that this has replaced the previous 'loadOptions'
 	METHOD loadSelectedResourcePacks (Lnet/minecraft/server/packs/repository/PackRepository;)V
 		ARG 1 resourcePackList
+	METHOD processOptions (Lnet/minecraft/client/Options$FieldAccess;)V
+		ARG 1 accessor
+	METHOD readAmbientOcclusion (Ljava/lang/String;)Lnet/minecraft/client/AmbientOcclusionStatus;
+		ARG 0 name
+	METHOD readCloudStatus (Ljava/lang/String;)Lnet/minecraft/client/CloudStatus;
+		ARG 0 name
 	METHOD readMainHand (Ljava/lang/String;)Lnet/minecraft/world/entity/HumanoidArm;
-		ARG 0 hand
+		ARG 0 arm
+	METHOD readPackList (Ljava/lang/String;)Ljava/util/List;
+		ARG 0 name
 	METHOD save ()V
 		COMMENT Saves the options to the options file.
 	METHOD setCameraType (Lnet/minecraft/client/CameraType;)V
@@ -38,6 +51,8 @@ CLASS net/minecraft/client/Options
 	METHOD setModelPart (Lnet/minecraft/world/entity/player/PlayerModelPart;Z)V
 		ARG 1 modelPart
 		ARG 2 enable
+	METHOD setServerRenderDistance (I)V
+		ARG 1 serverRenderDistance
 	METHOD setSoundCategoryVolume (Lnet/minecraft/sounds/SoundSource;F)V
 		ARG 1 category
 		ARG 2 volume
@@ -46,26 +61,39 @@ CLASS net/minecraft/client/Options
 		ARG 2 enable
 	METHOD useNativeTransport ()Z
 		COMMENT Return true if the client connect to a server using the native transport system
+	METHOD writeCloudStatus (Lnet/minecraft/client/CloudStatus;)Ljava/lang/String;
+		ARG 0 status
+	METHOD writeMainHand (Lnet/minecraft/world/entity/HumanoidArm;)Ljava/lang/String;
+		ARG 0 arm
+	CLASS 2
+		METHOD getValueOrNull (Ljava/lang/String;)Ljava/lang/String;
+			ARG 1 name
 	CLASS 3
 		METHOD writePrefix (Ljava/lang/String;)V
-			ARG 1 prefix
+			ARG 1 name
 	CLASS FieldAccess
 		METHOD process (Ljava/lang/String;D)D
-			ARG 1 prefix
+			ARG 1 name
 			ARG 2 value
 		METHOD process (Ljava/lang/String;F)F
-			ARG 1 prefix
+			ARG 1 name
 			ARG 2 value
 		METHOD process (Ljava/lang/String;I)I
-			ARG 1 prefix
+			ARG 1 name
 			ARG 2 value
 		METHOD process (Ljava/lang/String;Ljava/lang/Object;Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/lang/Object;
-			ARG 1 prefix
+			ARG 1 name
+			ARG 2 value
+			ARG 3 stringValuefier
+			ARG 4 valueStringifier
 		METHOD process (Ljava/lang/String;Ljava/lang/Object;Ljava/util/function/IntFunction;Ljava/util/function/ToIntFunction;)Ljava/lang/Object;
-			ARG 1 prefix
+			ARG 1 name
+			ARG 2 value
+			ARG 3 intValuefier
+			ARG 4 valueIntifier
 		METHOD process (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-			ARG 1 prefix
+			ARG 1 name
 			ARG 2 value
 		METHOD process (Ljava/lang/String;Z)Z
-			ARG 1 prefix
+			ARG 1 name
 			ARG 2 value

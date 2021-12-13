@@ -1,12 +1,17 @@
 CLASS net/minecraft/client/KeyMapping
 	METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 		ARG 1 name
+		ARG 2 keyCode
 		ARG 3 category
 	METHOD <init> (Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILjava/lang/String;)V
 		ARG 1 name
+		ARG 2 type
+		ARG 3 keyCode
 		ARG 4 category
 	METHOD click (Lcom/mojang/blaze3d/platform/InputConstants$Key;)V
 		ARG 0 key
+	METHOD compareTo (Ljava/lang/Object;)I
+		ARG 1 mapping
 	METHOD consumeClick ()Z
 		COMMENT Returns true on the initial key press. For continuous querying use {@link isKeyDown()}. Should be used in key events.
 	METHOD createNameSupplier (Ljava/lang/String;)Ljava/util/function/Supplier;
@@ -16,6 +21,8 @@ CLASS net/minecraft/client/KeyMapping
 		COMMENT Returns true if the keybinding is using the default key and key modifier
 	METHOD isDown ()Z
 		COMMENT Returns true if the key is pressed (used for continuous querying). Should be used in tickers.
+	METHOD lambda$static$0 (Ljava/util/HashMap;)V
+		ARG 0 map
 	METHOD matches (II)Z
 		ARG 1 keysym
 		ARG 2 scancode

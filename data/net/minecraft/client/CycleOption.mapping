@@ -6,23 +6,34 @@ CLASS net/minecraft/client/CycleOption
 		ARG 4 buttonSetup
 	METHOD create (Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/function/BooleanSupplier;Ljava/util/function/Function;Ljava/util/function/Function;Lnet/minecraft/client/CycleOption$OptionSetter;)Lnet/minecraft/client/CycleOption;
 		ARG 0 captionKey
+		ARG 1 defaultList
+		ARG 2 selectedList
+		ARG 3 altListSelector
+		ARG 4 valueStringifier
 		ARG 5 getter
 		ARG 6 setter
 	METHOD create (Ljava/lang/String;Ljava/util/List;Ljava/util/function/Function;Ljava/util/function/Function;Lnet/minecraft/client/CycleOption$OptionSetter;)Lnet/minecraft/client/CycleOption;
 		ARG 0 captionKey
 		ARG 1 values
+		ARG 2 valueStringifier
 		ARG 3 getter
 		ARG 4 setter
 	METHOD create (Ljava/lang/String;Ljava/util/function/Supplier;Ljava/util/function/Function;Ljava/util/function/Function;Lnet/minecraft/client/CycleOption$OptionSetter;)Lnet/minecraft/client/CycleOption;
 		ARG 0 captionKey
+		ARG 1 values
+		ARG 2 valueStringifier
 		ARG 3 getter
 		ARG 4 setter
 	METHOD create (Ljava/lang/String;[Ljava/lang/Object;Ljava/util/function/Function;Ljava/util/function/Function;Lnet/minecraft/client/CycleOption$OptionSetter;)Lnet/minecraft/client/CycleOption;
 		ARG 0 captionKey
+		ARG 1 values
+		ARG 2 valueStringifier
 		ARG 3 getter
 		ARG 4 setter
 	METHOD createBinaryOption (Ljava/lang/String;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;Lnet/minecraft/client/CycleOption$OptionSetter;)Lnet/minecraft/client/CycleOption;
 		ARG 0 captionKey
+		ARG 1 defaultValue
+		ARG 2 selectedValue
 		ARG 3 getter
 		ARG 4 setter
 	METHOD createButton (Lnet/minecraft/client/Options;III)Lnet/minecraft/client/gui/components/AbstractWidget;
@@ -36,7 +47,24 @@ CLASS net/minecraft/client/CycleOption
 		ARG 2 setter
 	METHOD createOnOff (Ljava/lang/String;Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;Lnet/minecraft/client/CycleOption$OptionSetter;)Lnet/minecraft/client/CycleOption;
 		ARG 0 captionKey
+		ARG 1 defaultValue
 		ARG 2 getter
 		ARG 3 setter
+	METHOD lambda$createButton$9 (Lnet/minecraft/client/Options;Lnet/minecraft/client/gui/components/CycleButton;Ljava/lang/Object;)V
+		ARG 2 minecraft
+		ARG 3 value
+	METHOD lambda$createOnOff$7 (Ljava/util/List;Ljava/lang/Boolean;)Ljava/util/List;
+		ARG 1 bool
+	METHOD lambda$createOnOff$8 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/Minecraft;)Lnet/minecraft/client/gui/components/CycleButton$TooltipSupplier;
+		ARG 1 minecraft
+	METHOD lambda$new$0 (Ljava/lang/Object;)Ljava/util/List;
+		ARG 0 supplier
+	METHOD lambda$new$1 (Lnet/minecraft/client/Minecraft;)Lnet/minecraft/client/gui/components/CycleButton$TooltipSupplier;
+		ARG 0 minecraft
 	METHOD setTooltip (Ljava/util/function/Function;)Lnet/minecraft/client/CycleOption;
 		ARG 1 tooltip
+	CLASS OptionSetter
+		METHOD accept (Lnet/minecraft/client/Options;Lnet/minecraft/client/Option;Ljava/lang/Object;)V
+			ARG 1 options
+			ARG 2 option
+			ARG 3 value
