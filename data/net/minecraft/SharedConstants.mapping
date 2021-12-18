@@ -97,6 +97,10 @@ CLASS net/minecraft/SharedConstants
 		COMMENT @return a filtered version of the input string
 		ARG 0 input
 			COMMENT the input string
+	METHOD getCurrentVersion ()Lnet/minecraft/WorldVersion;
+		COMMENT {@return the {@link WorldVersion world version}}
+		COMMENT
+		COMMENT @throws IllegalStateException if a world version has not been set previously
 	METHOD getProtocolVersion ()I
 		COMMENT {@return the networking protocol version in use by this game version}
 		COMMENT
@@ -104,3 +108,9 @@ CLASS net/minecraft/SharedConstants
 	METHOD isAllowedChatCharacter (C)Z
 		COMMENT Checks if the given character is allowed to be put into chat.
 		ARG 0 character
+	METHOD setVersion (Lnet/minecraft/WorldVersion;)V
+		COMMENT Sets the world version, failing if a different world version is already present.
+		COMMENT
+		COMMENT @throws IllegalStateException if a different world version has already been set previously
+		ARG 0 version
+			COMMENT the world version to set

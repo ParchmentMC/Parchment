@@ -70,6 +70,12 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD collide (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 		COMMENT Given a motion vector, return an updated vector that takes into account restrictions such as collisions (from all directions) and step-up from stepHeight
 		ARG 1 vec
+	METHOD collideBoundingBox (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/level/Level;Ljava/util/List;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 entity
+		ARG 1 vec
+		ARG 2 collisionBox
+		ARG 3 level
+		ARG 4 potentialHits
 	METHOD copyPosition (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Sets this entity's location and angles to the location and angles of the passed in entity.
 		ARG 1 entity
@@ -149,6 +155,12 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 livingEntity
 	METHOD getEncodeId ()Ljava/lang/String;
 		COMMENT Returns the string that identifies this Entity's class
+	METHOD getExitPortal (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;ZLnet/minecraft/world/level/border/WorldBorder;)Ljava/util/Optional;
+		ARG 1 destination
+		ARG 2 findFrom
+			COMMENT Position where searching starts from
+		ARG 3 isToNether
+		ARG 4 worldBorder
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;)F
 		ARG 1 pose
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F

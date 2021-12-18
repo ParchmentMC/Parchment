@@ -1,4 +1,15 @@
 CLASS net/minecraft/client/multiplayer/ClientLevel
+	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientPacketListener;Lnet/minecraft/client/multiplayer/ClientLevel$ClientLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/dimension/DimensionType;IILjava/util/function/Supplier;Lnet/minecraft/client/renderer/LevelRenderer;ZJ)V
+		ARG 1 connection
+		ARG 2 clientLevelData
+		ARG 3 dimension
+		ARG 4 dimensionType
+		ARG 5 viewDistance
+		ARG 6 serverSimulationDistance
+		ARG 7 profiler
+		ARG 8 levelRenderer
+		ARG 9 isDebug
+		ARG 10 biomeZoomSeed
 	METHOD addAlwaysVisibleParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
 		ARG 1 particleData
 		ARG 2 x
@@ -62,6 +73,14 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 		ARG 3 progress
 	METHOD disconnect ()V
 		COMMENT If on MP, sends a quitting packet.
+	METHOD doAnimateTick (IIIILjava/util/Random;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos$MutableBlockPos;)V
+		ARG 1 posX
+		ARG 2 posY
+		ARG 3 posZ
+		ARG 4 range
+		ARG 5 random
+		ARG 6 block
+		ARG 7 blockPos
 	METHOD fillReportDetails (Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReportCategory;
 		COMMENT Adds some basic stats of the world to the given crash report.
 		ARG 1 report

@@ -7,6 +7,21 @@ CLASS net/minecraft/world/level/chunk/ChunkGenerator
 	METHOD <init> (Lnet/minecraft/world/level/biome/BiomeSource;Lnet/minecraft/world/level/levelgen/StructureSettings;)V
 		ARG 1 biomeSource
 		ARG 2 settings
+	METHOD applyBiomeDecoration (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/StructureFeatureManager;)V
+		ARG 1 level
+		ARG 2 chunk
+		ARG 3 structureFeatureManager
+	METHOD applyCarvers (Lnet/minecraft/server/level/WorldGenRegion;JLnet/minecraft/world/level/biome/BiomeManager;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)V
+		ARG 1 level
+		ARG 2 seed
+		ARG 4 biomeManager
+		ARG 5 structureFeatureManager
+		ARG 6 chunk
+		ARG 7 step
+	METHOD buildSurface (Lnet/minecraft/server/level/WorldGenRegion;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+		ARG 1 level
+		ARG 2 structureFeatureManager
+		ARG 3 chunk
 	METHOD createReferences (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 		ARG 1 level
 		ARG 2 structureFeatureManager
@@ -17,6 +32,10 @@ CLASS net/minecraft/world/level/chunk/ChunkGenerator
 		ARG 3 chunk
 		ARG 4 structureManager
 		ARG 5 seed
+	METHOD fillFromNoise (Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 executor
+		ARG 3 structureFeatureManager
+		ARG 4 chunk
 	METHOD findNearestMapFeature (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;Lnet/minecraft/core/BlockPos;IZ)Lnet/minecraft/core/BlockPos;
 		ARG 1 level
 		ARG 2 structure

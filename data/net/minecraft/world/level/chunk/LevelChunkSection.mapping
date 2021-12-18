@@ -1,4 +1,11 @@
 CLASS net/minecraft/world/level/chunk/LevelChunkSection
+	METHOD <init> (ILnet/minecraft/core/Registry;)V
+		ARG 1 sectionY
+		ARG 2 biomeRegistry
+	METHOD <init> (ILnet/minecraft/world/level/chunk/PalettedContainer;Lnet/minecraft/world/level/chunk/PalettedContainer;)V
+		ARG 1 sectionY
+		ARG 2 states
+		ARG 3 biomes
 	METHOD bottomBlockY ()I
 		COMMENT @return The lowest y coordinate in this section.
 	METHOD getBlockState (III)Lnet/minecraft/world/level/block/state/BlockState;
@@ -11,6 +18,8 @@ CLASS net/minecraft/world/level/chunk/LevelChunkSection
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+	METHOD hasOnlyAir ()Z
+		COMMENT @return {@code true} if this section consists only of air-like blocks.
 	METHOD isRandomlyTickingBlocks ()Z
 		COMMENT @return {@code true} if this section has any blocks that require random ticks.
 	METHOD isRandomlyTickingFluids ()Z

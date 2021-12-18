@@ -90,6 +90,17 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 			ARG 4 lightEngine
 			ARG 5 task
 			ARG 6 loadingChunk
+	CLASS GenerationTask
+		METHOD doWork (Lnet/minecraft/world/level/chunk/ChunkStatus;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;Z)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 status
+			ARG 2 executor
+			ARG 3 level
+			ARG 4 generator
+			ARG 5 structureManager
+			ARG 6 lightEngine
+			ARG 7 task
+			ARG 8 neighboringChunks
+			ARG 9 chunk
 	CLASS SimpleGenerationTask
 		COMMENT A {@link GenerationTask} which completes all work synchronously.
 		METHOD doWork (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V

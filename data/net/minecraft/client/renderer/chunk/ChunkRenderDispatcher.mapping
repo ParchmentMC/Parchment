@@ -1,4 +1,10 @@
 CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
+	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/renderer/LevelRenderer;Ljava/util/concurrent/Executor;ZLnet/minecraft/client/renderer/ChunkBufferBuilderPack;)V
+		ARG 1 level
+		ARG 2 renderer
+		ARG 3 executor
+		ARG 4 is64Bit
+		ARG 5 fixedBuffers
 	METHOD doUploadChunkLayer (Lcom/mojang/blaze3d/vertex/BufferBuilder;Lcom/mojang/blaze3d/vertex/VertexBuffer;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
 		ARG 2 buffer
@@ -6,6 +12,8 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 		ARG 1 task
 	METHOD setCamera (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 camera
+	METHOD setLevel (Lnet/minecraft/client/multiplayer/ClientLevel;)V
+		ARG 1 level
 	METHOD uploadChunkLayer (Lcom/mojang/blaze3d/vertex/BufferBuilder;Lcom/mojang/blaze3d/vertex/VertexBuffer;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
 		ARG 2 buffer
@@ -26,6 +34,8 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 			ARG 0 renderType
 		METHOD lambda$new$2 ([Lnet/minecraft/core/BlockPos$MutableBlockPos;)V
 			ARG 0 positions
+		METHOD rebuildChunkAsync (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher;Lnet/minecraft/client/renderer/chunk/RenderRegionCache;)V
+			ARG 1 dispatcher
 		METHOD resortTransparency (Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher;)Z
 			ARG 1 type
 			ARG 2 dispatcher
@@ -51,6 +61,9 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 			METHOD lambda$doTask$0 (Ljava/util/List;Lnet/minecraft/client/renderer/ChunkBufferBuilderPack;Lnet/minecraft/client/renderer/RenderType;)V
 				ARG 3 renderType
 		CLASS ChunkCompileTask
+			METHOD <init> (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;DZ)V
+				ARG 2 distAtCreation
+				ARG 4 isHighPriority
 			METHOD compareTo (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk$ChunkCompileTask;)I
 				ARG 1 other
 			METHOD doTask (Lnet/minecraft/client/renderer/ChunkBufferBuilderPack;)Ljava/util/concurrent/CompletableFuture;

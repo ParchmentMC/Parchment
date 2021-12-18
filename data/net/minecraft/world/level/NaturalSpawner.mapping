@@ -6,6 +6,10 @@ CLASS net/minecraft/world/level/NaturalSpawner
 		ARG 3 category
 		ARG 4 data
 		ARG 5 pos
+	METHOD createState (ILjava/lang/Iterable;Lnet/minecraft/world/level/NaturalSpawner$ChunkGetter;Lnet/minecraft/world/level/LocalMobCapCalculator;)Lnet/minecraft/world/level/NaturalSpawner$SpawnState;
+		ARG 0 spawnableChunkCount
+		ARG 1 entities
+		ARG 2 chunkGetter
 	METHOD getMobForSpawn (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/world/entity/Mob;
 		ARG 0 level
 		ARG 1 entityType
@@ -91,6 +95,11 @@ CLASS net/minecraft/world/level/NaturalSpawner
 		ARG 2 chunkPos
 		ARG 3 random
 	CLASS SpawnState
+		METHOD <init> (ILit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;Lnet/minecraft/world/level/PotentialCalculator;Lnet/minecraft/world/level/LocalMobCapCalculator;)V
+			ARG 1 spawnableChunkCount
+			ARG 2 mobCategoryCounts
+			ARG 3 spawnPotential
+			ARG 4 localMobCapCalculator
 		METHOD afterSpawn (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 			ARG 1 mob
 			ARG 2 chunk
@@ -98,6 +107,9 @@ CLASS net/minecraft/world/level/NaturalSpawner
 			ARG 1 entityType
 			ARG 2 pos
 			ARG 3 chunk
+		METHOD canSpawnForCategory (Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/ChunkPos;)Z
+			ARG 1 category
+			ARG 2 pos
 	CLASS SpawnPredicate
 		METHOD test (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
 			ARG 1 entityType
