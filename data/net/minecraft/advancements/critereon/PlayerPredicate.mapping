@@ -15,5 +15,46 @@ CLASS net/minecraft/advancements/critereon/PlayerPredicate
 		ARG 1 id
 	METHOD getStatValueId (Lnet/minecraft/stats/Stat;)Lnet/minecraft/resources/ResourceLocation;
 		ARG 0 stat
+	METHOD lambda$advancementPredicateFromJson$0 (Lit/unimi/dsi/fastutil/objects/Object2BooleanMap;Ljava/util/Map$Entry;)V
+		ARG 0 entry
+	METHOD lambda$matches$1 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
+	METHOD lambda$serializeToJson$2 (Lcom/google/gson/JsonArray;Lnet/minecraft/stats/Stat;Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;)V
+		ARG 1 stat
+		ARG 2 value
+	METHOD lambda$serializeToJson$3 (Lcom/google/gson/JsonObject;Lnet/minecraft/resources/ResourceLocation;Ljava/lang/Boolean;)V
+		ARG 1 recipe
+		ARG 2 unlocked
+	METHOD lambda$serializeToJson$4 (Lcom/google/gson/JsonObject;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/critereon/PlayerPredicate$AdvancementPredicate;)V
+		ARG 1 advancement
+		ARG 2 advancementPredicate
 	METHOD matches (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 player
+	CLASS Builder
+		METHOD addRecipe (Lnet/minecraft/resources/ResourceLocation;Z)Lnet/minecraft/advancements/critereon/PlayerPredicate$Builder;
+			ARG 1 recipe
+			ARG 2 unlocked
+		METHOD addStat (Lnet/minecraft/stats/Stat;Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;)Lnet/minecraft/advancements/critereon/PlayerPredicate$Builder;
+			ARG 1 stat
+			ARG 2 value
+		METHOD checkAdvancementCriterions (Lnet/minecraft/resources/ResourceLocation;Ljava/util/Map;)Lnet/minecraft/advancements/critereon/PlayerPredicate$Builder;
+			ARG 1 advancement
+		METHOD checkAdvancementDone (Lnet/minecraft/resources/ResourceLocation;Z)Lnet/minecraft/advancements/critereon/PlayerPredicate$Builder;
+			ARG 1 advancement
+			ARG 2 done
+		METHOD setGameType (Lnet/minecraft/world/level/GameType;)Lnet/minecraft/advancements/critereon/PlayerPredicate$Builder;
+			ARG 1 gameType
+		METHOD setLevel (Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;)Lnet/minecraft/advancements/critereon/PlayerPredicate$Builder;
+			ARG 1 level
+		METHOD setLookingAt (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/PlayerPredicate$Builder;
+			ARG 1 lookingAt
+	CLASS AdvancementDonePredicate
+		METHOD <init> (Z)V
+			ARG 1 state
+		METHOD test (Ljava/lang/Object;)Z
+			ARG 1 progress
+	CLASS AdvancementCriterionsPredicate
+		METHOD <init> (Lit/unimi/dsi/fastutil/objects/Object2BooleanMap;)V
+			ARG 1 criterions
+		METHOD test (Ljava/lang/Object;)Z
+			ARG 1 progress
