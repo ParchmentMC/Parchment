@@ -15,6 +15,11 @@ CLASS net/minecraft/world/level/block/state/pattern/BlockPattern
 		ARG 2 finger
 		ARG 3 thumb
 		ARG 4 cache
+	METHOD matches (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Lnet/minecraft/world/level/block/state/pattern/BlockPattern$BlockPatternMatch;
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 finger
+		ARG 4 thumb
 	METHOD translateAndRotate (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;III)Lnet/minecraft/core/BlockPos;
 		COMMENT Offsets the position of pos in the direction of finger and thumb facing by offset amounts, follows the right-hand rule for cross products (finger, thumb, palm)
 		COMMENT
@@ -29,6 +34,8 @@ CLASS net/minecraft/world/level/block/state/pattern/BlockPattern
 		METHOD <init> (Lnet/minecraft/world/level/LevelReader;Z)V
 			ARG 1 level
 			ARG 2 loadChunks
+		METHOD load (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;
+			ARG 1 pos
 	CLASS BlockPatternMatch
 		METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;Lcom/google/common/cache/LoadingCache;III)V
 			ARG 1 frontTopLeft
