@@ -21,11 +21,11 @@ CLASS net/minecraft/client/Options
 	METHOD isTrue (Ljava/lang/String;)Z
 		ARG 0 value
 	METHOD lambda$dumpOptionsForReport$6 (Lcom/mojang/datafixers/util/Pair;)Ljava/lang/String;
-		ARG 0 value
+		ARG 0 entry
 	METHOD lambda$load$5 (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
 		ARG 1 option
 	METHOD lambda$processOptions$4 (Lnet/minecraft/client/Options$FieldAccess;Lnet/minecraft/sounds/SoundSource;Ljava/lang/Float;)Ljava/lang/Float;
-		ARG 1 category
+		ARG 1 source
 		ARG 2 volume
 	METHOD load ()V
 		COMMENT Loads the options from the options file. It appears that this has replaced the previous 'loadOptions'
@@ -34,13 +34,13 @@ CLASS net/minecraft/client/Options
 	METHOD processOptions (Lnet/minecraft/client/Options$FieldAccess;)V
 		ARG 1 accessor
 	METHOD readAmbientOcclusion (Ljava/lang/String;)Lnet/minecraft/client/AmbientOcclusionStatus;
-		ARG 0 name
+		ARG 0 status
 	METHOD readCloudStatus (Ljava/lang/String;)Lnet/minecraft/client/CloudStatus;
-		ARG 0 name
+		ARG 0 status
 	METHOD readMainHand (Ljava/lang/String;)Lnet/minecraft/world/entity/HumanoidArm;
 		ARG 0 arm
 	METHOD readPackList (Ljava/lang/String;)Ljava/util/List;
-		ARG 0 name
+		ARG 0 compressedPackList
 	METHOD save ()V
 		COMMENT Saves the options to the options file.
 	METHOD setCameraType (Lnet/minecraft/client/CameraType;)V
@@ -67,7 +67,7 @@ CLASS net/minecraft/client/Options
 		ARG 0 arm
 	CLASS 2
 		METHOD getValueOrNull (Ljava/lang/String;)Ljava/lang/String;
-			ARG 1 name
+			ARG 1 key
 	CLASS 3
 		METHOD writePrefix (Ljava/lang/String;)V
 			ARG 1 name
