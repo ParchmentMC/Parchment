@@ -21,8 +21,9 @@ CLASS net/minecraft/client/StringSplitter
 		ARG 3 style
 	METHOD getWordPosition (Ljava/lang/String;IIZ)I
 		ARG 0 content
-		ARG 1 messageLength
+		ARG 1 skipCount
 		ARG 2 cursorPoint
+		ARG 3 includeWhitespace
 	METHOD headByWidth (Lnet/minecraft/network/chat/FormattedText;ILnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/FormattedText;
 		ARG 1 content
 		ARG 2 maxWidth
@@ -140,7 +141,7 @@ CLASS net/minecraft/client/StringSplitter
 	CLASS LinePosConsumer
 		METHOD accept (Lnet/minecraft/network/chat/Style;II)V
 			ARG 1 style
-			ARG 2 iterations
+			ARG 2 currentPos
 			ARG 3 contentWidth
 	CLASS WidthLimitedCharSink
 		METHOD <init> (Lnet/minecraft/client/StringSplitter;F)V
