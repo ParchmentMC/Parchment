@@ -85,6 +85,9 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 1 neededIndexCount
 	METHOD getShaderTexture (I)I
 		ARG 0 shaderTexture
+	METHOD getString (ILjava/util/function/Consumer;)V
+		ARG 0 name
+		ARG 1 consumer
 	METHOD getTextureId (I)I
 		ARG 0 textureId
 	METHOD glBindBuffer (ILjava/util/function/IntSupplier;)V
@@ -148,6 +151,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD initRenderer (IZ)V
 		ARG 0 debugVerbosity
 		ARG 1 synchronous
+	METHOD lambda$static$0 (Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V
+		ARG 0 consumer
+		ARG 1 index
+	METHOD lambda$static$1 (Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V
+		ARG 0 consumer
+		ARG 1 index
 	METHOD limitDisplayFPS (I)V
 		ARG 0 frameRateLimit
 	METHOD lineWidth (F)V
@@ -173,10 +182,14 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 6 pixels
 	METHOD recordRenderCall (Lcom/mojang/blaze3d/pipeline/RenderCall;)V
 		ARG 0 renderCall
+	METHOD renderCrosshair (I)V
+		ARG 0 lineLength
 	METHOD runAsFancy (Ljava/lang/Runnable;)V
 		ARG 0 fancyRunnable
 	METHOD setErrorCallback (Lorg/lwjgl/glfw/GLFWErrorCallbackI;)V
 		ARG 0 callback
+	METHOD setInverseViewRotationMatrix (Lcom/mojang/math/Matrix3f;)V
+		ARG 0 rotationMatrix
 	METHOD setProjectionMatrix (Lcom/mojang/math/Matrix4f;)V
 		ARG 0 projectionMatrix
 	METHOD setShader (Ljava/util/function/Supplier;)V
@@ -261,3 +274,11 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 			ARG 1 neededIndexCount
 		METHOD intConsumer (Ljava/nio/ByteBuffer;)Lit/unimi/dsi/fastutil/ints/IntConsumer;
 			ARG 1 buffer
+		METHOD lambda$intConsumer$0 (Ljava/nio/ByteBuffer;I)V
+			ARG 1 bytez
+		METHOD lambda$intConsumer$1 (Ljava/nio/ByteBuffer;I)V
+			ARG 1 shortz
+		CLASS IndexGenerator
+			METHOD accept (Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V
+				ARG 1 consumer
+				ARG 2 index

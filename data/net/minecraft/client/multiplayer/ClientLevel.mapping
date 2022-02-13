@@ -116,6 +116,28 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 	METHOD hasChunk (II)Z
 		ARG 1 chunkX
 		ARG 2 chunkZ
+	METHOD lambda$clearTintCaches$7 (Lnet/minecraft/world/level/ColorResolver;Lnet/minecraft/client/color/block/BlockTintCache;)V
+		ARG 0 resolver
+		ARG 1 cache
+	METHOD lambda$doAnimateTick$8 (Lnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/world/level/biome/AmbientParticleSettings;)V
+		ARG 2 particleSettings
+	METHOD lambda$getSkyColor$11 (Lnet/minecraft/world/level/biome/BiomeManager;III)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD lambda$new$0 (Lnet/minecraft/core/BlockPos;)I
+		ARG 1 pos
+	METHOD lambda$new$1 (Lnet/minecraft/core/BlockPos;)I
+		ARG 1 pos
+	METHOD lambda$new$2 (Lnet/minecraft/core/BlockPos;)I
+		ARG 1 pos
+	METHOD lambda$new$3 (Lit/unimi/dsi/fastutil/objects/Object2ObjectArrayMap;)V
+		ARG 1 map
+	METHOD lambda$onChunkLoaded$6 (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/ColorResolver;Lnet/minecraft/client/color/block/BlockTintCache;)V
+		ARG 1 resolver
+		ARG 2 cache
+	METHOD lambda$tickEntities$4 (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
 	METHOD levelEvent (Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 player
 		ARG 2 type
@@ -158,6 +180,8 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 	METHOD putNonPlayerEntity (ILnet/minecraft/world/entity/Entity;)V
 		ARG 1 entityId
 		ARG 2 entityToSpawn
+	METHOD queueLightUpdate (Ljava/lang/Runnable;)V
+		ARG 1 task
 	METHOD removeEntity (ILnet/minecraft/world/entity/Entity$RemovalReason;)V
 		ARG 1 entityId
 		ARG 2 reason
@@ -184,12 +208,17 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 	METHOD setKnownState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 state
+	METHOD setLightReady (II)V
+		ARG 1 x
+		ARG 2 z
 	METHOD setScoreboard (Lnet/minecraft/world/scores/Scoreboard;)V
 		ARG 1 scoreboard
 	METHOD setSectionDirtyWithNeighbors (III)V
 		ARG 1 sectionX
 		ARG 2 sectionY
 		ARG 3 sectionZ
+	METHOD setServerSimulationDistance (I)V
+		ARG 1 serverSimulationDistnace
 	METHOD setSkyFlashTime (I)V
 		ARG 1 timeFlash
 	METHOD spawnFluidParticle (DDDDDLnet/minecraft/core/particles/ParticleOptions;)V
