@@ -1,6 +1,15 @@
 CLASS net/minecraft/world/level/chunk/storage/ChunkSerializer
 	METHOD getChunkTypeFromTag (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/level/chunk/ChunkStatus$ChunkType;
 		ARG 0 chunkNBT
+	METHOD getListOfCompoundsOrNull (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Lnet/minecraft/nbt/ListTag;
+		ARG 0 tag
+		ARG 1 key
+	METHOD logErrors (Lnet/minecraft/world/level/ChunkPos;ILjava/lang/String;)V
+		ARG 0 chunkPos
+		ARG 1 chunkSectionY
+		ARG 2 errorMessage
+	METHOD makeBiomeCodec (Lnet/minecraft/core/Registry;)Lcom/mojang/serialization/Codec;
+		ARG 0 biomeRegistry
 	METHOD packOffsets ([Lit/unimi/dsi/fastutil/shorts/ShortList;)Lnet/minecraft/nbt/ListTag;
 		ARG 0 list
 	METHOD packStructureData (Lnet/minecraft/world/level/levelgen/structure/pieces/StructurePieceSerializationContext;Lnet/minecraft/world/level/ChunkPos;Ljava/util/Map;Ljava/util/Map;)Lnet/minecraft/nbt/CompoundTag;
@@ -16,6 +25,10 @@ CLASS net/minecraft/world/level/chunk/storage/ChunkSerializer
 		ARG 1 poiManager
 		ARG 2 pos
 		ARG 3 tag
+	METHOD saveTicks (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/chunk/ChunkAccess$TicksToSave;)V
+		ARG 0 level
+		ARG 1 tag
+		ARG 2 ticksToSave
 	METHOD unpackStructureReferences (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/nbt/CompoundTag;)Ljava/util/Map;
 		ARG 0 pos
 		ARG 1 tag
