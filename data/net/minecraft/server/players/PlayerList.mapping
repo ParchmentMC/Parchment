@@ -1,6 +1,11 @@
 CLASS net/minecraft/server/players/PlayerList
 	FIELD playersByUUID Ljava/util/Map;
 		COMMENT A map containing the key-value pairs for UUIDs and their EntityPlayerMP objects.
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/world/level/storage/PlayerDataStorage;I)V
+		ARG 1 server
+		ARG 2 registryHolder
+		ARG 3 playerIo
+		ARG 4 maxPlayers
 	METHOD broadcast (Lnet/minecraft/world/entity/player/Player;DDDDLnet/minecraft/resources/ResourceKey;Lnet/minecraft/network/protocol/Packet;)V
 		COMMENT params: srcPlayer,x,y,z,r,dimension. The packet is not sent to the srcPlayer, but all other players within the search radius
 		ARG 1 except
@@ -12,6 +17,13 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 11 packet
 	METHOD broadcastAll (Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 packet
+	METHOD broadcastAll (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/resources/ResourceKey;)V
+		ARG 1 packet
+		ARG 2 dimension
+	METHOD broadcastMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V
+		ARG 1 message
+		ARG 2 chatType
+		ARG 3 senderUuid
 	METHOD broadcastToAllExceptTeam (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 player
 		ARG 2 message
@@ -64,6 +76,9 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 1 player
 	METHOD removeAll ()V
 		COMMENT Kicks everyone with "Server closed" as reason.
+	METHOD respawn (Lnet/minecraft/server/level/ServerPlayer;Z)Lnet/minecraft/server/level/ServerPlayer;
+		ARG 1 player
+		ARG 2 keepEverything
 	METHOD save (Lnet/minecraft/server/level/ServerPlayer;)V
 		COMMENT also stores the NBTTags if this is an intergratedPlayerList
 		ARG 1 player
@@ -83,6 +98,9 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 2 permLevel
 	METHOD setAllowCheatsForAllPlayers (Z)V
 		COMMENT Sets whether all players are allowed to use commands (cheats) on the server.
+		ARG 1 allowCheatsForAllPlayers
+	METHOD setSimulationDistance (I)V
+		ARG 1 simulationDistance
 	METHOD setUsingWhiteList (Z)V
 		ARG 1 whitelistEnabled
 	METHOD setViewDistance (I)V

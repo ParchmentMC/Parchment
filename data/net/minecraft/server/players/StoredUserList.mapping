@@ -1,4 +1,6 @@
 CLASS net/minecraft/server/players/StoredUserList
+	METHOD <init> (Ljava/io/File;)V
+		ARG 1 file
 	METHOD add (Lnet/minecraft/server/players/StoredUserEntry;)V
 		COMMENT Adds an entry to the list
 		ARG 1 entry
@@ -13,5 +15,7 @@ CLASS net/minecraft/server/players/StoredUserList
 		ARG 1 obj
 	METHOD remove (Ljava/lang/Object;)V
 		ARG 1 entry
+	METHOD remove (Lnet/minecraft/server/players/StoredUserEntry;)V
+		ARG 1 user
 	METHOD removeExpired ()V
 		COMMENT Removes expired bans from the list. See {@link BanEntry#hasBanExpired}
