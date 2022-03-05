@@ -20,8 +20,9 @@ CLASS net/minecraft/util/Mth
 		ARG 1 limit
 		ARG 2 stepSize
 	METHOD approachDegrees (FFF)F
-		COMMENT {@link #approach(float, float, float)} for rotations.
-		ARG 0 value
+		COMMENT Changes the angle by stepSize towards the limit in the direction where the distance is smaller.
+		COMMENT {@see #approach(float, float, float)}
+		ARG 0 angle
 		ARG 1 limit
 		ARG 2 stepSize
 	METHOD atan2 (DD)D
@@ -107,12 +108,15 @@ CLASS net/minecraft/util/Mth
 		ARG 1 g
 		ARG 2 b
 	METHOD colorMultiply (IFFF)I
-		COMMENT Multiplies an RGB color with the three floats for red, green and blue that should be in range [0;1].
-		COMMENT Returns the result as an RGB color code.
+		COMMENT Multiplies an RGB color with a color given as three floats
+		COMMENT @return The result as an RGB color code.
 		ARG 0 color
 		ARG 1 red
+			COMMENT The red component of the color in range [0;1].
 		ARG 2 green
+			COMMENT The green component of the color in range [0;1].
 		ARG 3 blue
+			COMMENT The blue component of the color in range [0;1].
 	METHOD colorMultiply (II)I
 		COMMENT Multiplies two RGB colors by multiplying red, green and blue values separately.
 		ARG 0 firstColor
@@ -239,8 +243,8 @@ CLASS net/minecraft/util/Mth
 		ARG 1 mean
 		ARG 2 deviation
 	METHOD positiveCeilDiv (II)I
-		COMMENT Equivalent of {@link java.lang.Math#floorDiv(int, int)} that ceils instead of flooring.
 		COMMENT Returns the smallest (closest to negative infinity) int value that is greater than or equal to the algebraic quotient.
+		COMMENT @see java.lang.Math#floorDiv(int, int)
 		ARG 0 x
 		ARG 1 y
 	METHOD positiveModulo (DD)D
@@ -253,13 +257,13 @@ CLASS net/minecraft/util/Mth
 		ARG 0 x
 		ARG 1 y
 	METHOD quantize (DI)I
-		COMMENT Gets the value closest to zero that is not closer to zero than the given value and is a multiple of factor.
+		COMMENT Gets the value closest to zero that is not closer to zero than the given value and is a multiple of the factor.
 		ARG 0 value
 		ARG 2 factor
 	METHOD randomBetween (Ljava/util/Random;FF)F
 		ARG 0 random
-		ARG 1 min
-		ARG 2 max
+		ARG 1 minInclusive
+		ARG 2 maxExclusive
 	METHOD randomBetweenInclusive (Ljava/util/Random;II)I
 		ARG 0 random
 		ARG 1 minInclusive
@@ -269,8 +273,9 @@ CLASS net/minecraft/util/Mth
 		ARG 1 end
 		ARG 2 boundingBox
 	METHOD rotLerp (FFF)F
-		COMMENT Method for linear interpolation of rotations
+		COMMENT Linearly interpolates an angle between the start between the start and end values given as degrees.
 		ARG 0 delta
+			COMMENT A value between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value)
 		ARG 1 start
 		ARG 2 end
 	METHOD rotateIfNecessary (FFF)F
@@ -282,8 +287,8 @@ CLASS net/minecraft/util/Mth
 		ARG 1 actualRotation
 		ARG 2 maxDifference
 	METHOD roundToward (II)I
-		COMMENT Rounds value up to a multiple of factor.
-		COMMENT Returns the smallest integer multiple of factor that is greater than or equal to value.
+		COMMENT Rounds the given value up to a multiple of factor.
+		COMMENT @return The smallest integer multiple of factor that is greater than or equal to the value
 		ARG 0 value
 		ARG 1 factor
 	METHOD sign (D)I
