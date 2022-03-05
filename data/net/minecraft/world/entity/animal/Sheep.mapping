@@ -3,8 +3,6 @@ CLASS net/minecraft/world/entity/animal/Sheep
 		COMMENT Map from EnumDyeColor to RGB values for passage to GlStateManager.color()
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called every ticks so the entity can update its state as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD ate ()V
 		COMMENT This function applies the benefits of growing back wool and faster growing up to the acting entity. (This function is used in the AIEatGrass)
 	METHOD createSheepColor (Lnet/minecraft/world/item/DyeColor;)[F
@@ -20,9 +18,9 @@ CLASS net/minecraft/world/entity/animal/Sheep
 	METHOD getColorArray (Lnet/minecraft/world/item/DyeColor;)[F
 		ARG 0 dyeColor
 	METHOD getHeadEatAngleScale (F)F
-		ARG 1 partialTicks
+		ARG 1 partialTick
 	METHOD getHeadEatPositionScale (F)F
-		ARG 1 partialTicks
+		ARG 1 partialTick
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getOffspringColor (Lnet/minecraft/world/entity/animal/Animal;Lnet/minecraft/world/entity/animal/Animal;)Lnet/minecraft/world/item/DyeColor;
@@ -35,9 +33,6 @@ CLASS net/minecraft/world/entity/animal/Sheep
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD isSheared ()Z
 		COMMENT returns true if a sheeps wool has been sheared
 	METHOD lambda$getOffspringColor$3 (Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/item/crafting/CraftingRecipe;)Lnet/minecraft/world/item/ItemStack;

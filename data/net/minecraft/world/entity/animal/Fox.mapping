@@ -3,8 +3,6 @@ CLASS net/minecraft/world/entity/animal/Fox
 		ARG 1 compound
 	METHOD addTrustedUUID (Ljava/util/UUID;)V
 		ARG 1 uuid
-	METHOD aiStep ()V
-		COMMENT Called every ticks so the entity can update its state as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD calculateFallDamage (FF)I
 		ARG 1 distance
 		ARG 2 damageMultiplier
@@ -25,21 +23,18 @@ CLASS net/minecraft/world/entity/animal/Fox
 		ARG 4 spawnData
 		ARG 5 dataTag
 	METHOD getCrouchAmount (F)F
-		ARG 1 partialTicks
+		ARG 1 partialTick
 	METHOD getEatingSound (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 itemStack
 	METHOD getFlag (I)Z
 		ARG 1 flagId
 	METHOD getHeadRollAngle (F)F
-		ARG 1 partialTicks
+		ARG 1 partialTick
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
 		ARG 1 stack
@@ -118,7 +113,7 @@ CLASS net/minecraft/world/entity/animal/Fox
 			ARG 4 name
 			ARG 5 biomes
 		METHOD byBiome (Ljava/util/Optional;)Lnet/minecraft/world/entity/animal/Fox$Type;
-			ARG 0 optionalBiome
+			ARG 0 biome
 		METHOD byId (I)Lnet/minecraft/world/entity/animal/Fox$Type;
 			ARG 0 index
 		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/entity/animal/Fox$Type;

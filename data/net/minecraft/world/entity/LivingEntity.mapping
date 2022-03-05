@@ -16,7 +16,7 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD addEffect (Lnet/minecraft/world/effect/MobEffectInstance;)Z
 		ARG 1 effectInstance
 	METHOD aiStep ()V
-		COMMENT Called every ticks so the entity can update its state as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+		COMMENT Called every tick so the entity can update its state as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD animateHurt ()V
 		COMMENT Setups the entity to do the hurt animation. Only used by packets in multiplayer.
 	METHOD areAllEffectsAmbient (Ljava/util/Collection;)Z
@@ -111,7 +111,7 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT counts the amount of arrows stuck in the entity. getting hit by arrows increases this, used in rendering
 	METHOD getAttackAnim (F)F
 		COMMENT Gets the progression of the swing animation, ranges from 0.0 to 1.0.
-		ARG 1 partialTicks
+		ARG 1 partialTick
 	METHOD getAttribute (Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
 		ARG 1 attribute
 	METHOD getAttributeBaseValue (Lnet/minecraft/world/entity/ai/attributes/Attribute;)D
@@ -133,7 +133,7 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD getDamageAfterMagicAbsorb (Lnet/minecraft/world/damagesource/DamageSource;F)F
 		COMMENT Reduces damage, depending on potions
 		ARG 1 damageSource
-		ARG 2 amount
+		ARG 2 damageAmount
 	METHOD getDimensions (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/entity/EntityDimensions;
 		ARG 1 pose
 	METHOD getDrinkingSound (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/sounds/SoundEvent;
@@ -189,9 +189,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 lookingEntity
 	METHOD getVoicePitch ()F
 		COMMENT Gets the pitch of living sounds in living entities.
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD handleEquipmentChanges (Ljava/util/Map;)V
 		ARG 1 equipments
 	METHOD handleHandSwap (Ljava/util/Map;)V

@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/entity/raid/Raider
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD applyRaidBuffs (IZ)V
 		ARG 1 wave
 		ARG 2 unusedFalse
@@ -53,7 +51,7 @@ CLASS net/minecraft/world/entity/raid/Raider
 	CLASS HoldGroundAttackGoal
 		METHOD <init> (Lnet/minecraft/world/entity/raid/Raider;Lnet/minecraft/world/entity/monster/AbstractIllager;F)V
 			ARG 2 mob
-			ARG 3 hostileRadiusSqr
+			ARG 3 hostileRadiusSquare
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD start ()V
