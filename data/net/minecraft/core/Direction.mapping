@@ -49,6 +49,8 @@ CLASS net/minecraft/core/Direction
 		COMMENT @return the index of this Direction (0-5). The order is D-U-N-S-W-E
 	METHOD getClockWise ()Lnet/minecraft/core/Direction;
 		COMMENT Rotate this Direction around the Y axis clockwise (NORTH => EAST => SOUTH => WEST => NORTH)
+	METHOD getClockWise (Lnet/minecraft/core/Direction$Axis;)Lnet/minecraft/core/Direction;
+		ARG 1 axis
 	METHOD getCounterClockWise ()Lnet/minecraft/core/Direction;
 		COMMENT Rotate this Direction around the Y axis counter-clockwise (NORTH => WEST => SOUTH => EAST => NORTH)
 	METHOD getCounterClockWise (Lnet/minecraft/core/Direction$Axis;)Lnet/minecraft/core/Direction;
@@ -92,6 +94,8 @@ CLASS net/minecraft/core/Direction
 	METHOD toYRot ()F
 		COMMENT @return the angle in degrees corresponding to this Direction.
 		COMMENT @see #fromYRot
+	METHOD verifyVertical (Lnet/minecraft/core/Direction;)Lcom/mojang/serialization/DataResult;
+		ARG 0 direction
 	CLASS Axis
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 			ARG 3 name
