@@ -6,10 +6,28 @@ CLASS net/minecraft/util/Mth
 	METHOD abs (I)I
 		COMMENT Returns the unsigned value of an int.
 		ARG 0 value
+	METHOD absFloor (D)I
+		ARG 0 value
 	METHOD absMax (DD)D
 		COMMENT Maximum of the absolute value of two numbers.
 		ARG 0 x
 		ARG 2 y
+	METHOD approach (FFF)F
+		COMMENT Changes value by stepSize towards the limit and returns the result.
+		COMMENT If value is smaller than limit, the result will never be bigger than limit.
+		COMMENT If value is bigger than limit, the result will never be smaller than limit.
+		ARG 0 value
+		ARG 1 limit
+		ARG 2 stepSize
+	METHOD approachDegrees (FFF)F
+		COMMENT Changes the angle by stepSize towards the limit in the direction where the distance is smaller.
+		COMMENT {@see #approach(float, float, float)}
+		ARG 0 angle
+		ARG 1 limit
+		ARG 2 stepSize
+	METHOD atan2 (DD)D
+		ARG 0 y
+		ARG 2 x
 	METHOD average ([J)D
 		ARG 0 values
 	METHOD binarySearch (IILjava/util/function/IntPredicate;)I
@@ -89,6 +107,20 @@ CLASS net/minecraft/util/Mth
 		ARG 0 r
 		ARG 1 g
 		ARG 2 b
+	METHOD colorMultiply (IFFF)I
+		COMMENT Multiplies an RGB color with a color given as three floats
+		COMMENT @return The result as an RGB color code.
+		ARG 0 color
+		ARG 1 red
+			COMMENT The red component of the color in range [0;1].
+		ARG 2 green
+			COMMENT The green component of the color in range [0;1].
+		ARG 3 blue
+			COMMENT The blue component of the color in range [0;1].
+	METHOD colorMultiply (II)I
+		COMMENT Multiplies two RGB colors by multiplying red, green and blue values separately.
+		ARG 0 firstColor
+		ARG 1 secondColor
 	METHOD cos (F)F
 		COMMENT cos looked up in the sin table with the appropriate offset
 		ARG 0 value
@@ -96,6 +128,14 @@ CLASS net/minecraft/util/Mth
 		COMMENT Generates a random UUID using the shared random
 	METHOD createInsecureUUID (Ljava/util/Random;)Ljava/util/UUID;
 		ARG 0 rand
+	METHOD degreesDifference (FF)F
+		COMMENT Gets the difference between two angles in degrees.
+		ARG 0 start
+		ARG 1 end
+	METHOD degreesDifferenceAbs (FF)F
+		COMMENT Gets the absolute of the difference between two angles in degrees.
+		ARG 0 start
+		ARG 1 end
 	METHOD equal (DD)Z
 		ARG 0 x
 		ARG 2 y
@@ -156,6 +196,13 @@ CLASS net/minecraft/util/Mth
 	METHOD isPowerOfTwo (I)Z
 		COMMENT Is the given value a power of two?  (1, 2, 4, 8, 16, ...)
 		ARG 0 value
+	METHOD length (DD)D
+		ARG 0 xDistance
+		ARG 2 yDistance
+	METHOD length (DDD)D
+		ARG 0 xDistance
+		ARG 2 yDistance
+		ARG 4 zDistance
 	METHOD lerp (DDD)D
 		COMMENT Method for linear interpolation of doubles
 		ARG 0 delta
@@ -190,6 +237,16 @@ CLASS net/minecraft/util/Mth
 		ARG 0 random
 		ARG 1 minimum
 		ARG 2 maximum
+	METHOD normal (Ljava/util/Random;FF)F
+		COMMENT Generates a value from a normal distribution with the given mean and deviation.
+		ARG 0 random
+		ARG 1 mean
+		ARG 2 deviation
+	METHOD positiveCeilDiv (II)I
+		COMMENT Returns the smallest (closest to negative infinity) int value that is greater than or equal to the algebraic quotient.
+		COMMENT @see java.lang.Math#floorDiv(int, int)
+		ARG 0 x
+		ARG 1 y
 	METHOD positiveModulo (DD)D
 		ARG 0 numerator
 		ARG 2 denominator
@@ -199,6 +256,41 @@ CLASS net/minecraft/util/Mth
 	METHOD positiveModulo (II)I
 		ARG 0 x
 		ARG 1 y
+	METHOD quantize (DI)I
+		COMMENT Gets the value closest to zero that is not closer to zero than the given value and is a multiple of the factor.
+		ARG 0 value
+		ARG 2 factor
+	METHOD randomBetween (Ljava/util/Random;FF)F
+		ARG 0 random
+		ARG 1 minInclusive
+		ARG 2 maxExclusive
+	METHOD randomBetweenInclusive (Ljava/util/Random;II)I
+		ARG 0 random
+		ARG 1 minInclusive
+		ARG 2 maxInclusive
+	METHOD rayIntersectsAABB (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;)Z
+		ARG 0 start
+		ARG 1 end
+		ARG 2 boundingBox
+	METHOD rotLerp (FFF)F
+		COMMENT Linearly interpolates an angle between the start between the start and end values given as degrees.
+		ARG 0 delta
+			COMMENT A value between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value)
+		ARG 1 start
+		ARG 2 end
+	METHOD rotateIfNecessary (FFF)F
+		COMMENT Takes a rotation and compares it to another rotation.
+		COMMENT If the difference is greater than a given maximum, clamps the original rotation between to have at most the given difference to the actual rotation.
+		COMMENT This is used to match the body rotation of entities to their head rotation.
+		COMMENT @return The new value for the rotation that was adjusted
+		ARG 0 rotationToAdjust
+		ARG 1 actualRotation
+		ARG 2 maxDifference
+	METHOD roundToward (II)I
+		COMMENT Rounds the given value up to a multiple of factor.
+		COMMENT @return The smallest integer multiple of factor that is greater than or equal to the value
+		ARG 0 value
+		ARG 1 factor
 	METHOD sign (D)I
 		ARG 0 x
 	METHOD sin (F)F
@@ -209,7 +301,13 @@ CLASS net/minecraft/util/Mth
 		ARG 0 value
 	METHOD sqrt (F)F
 		ARG 0 value
+	METHOD square (D)D
+		ARG 0 value
 	METHOD square (F)F
+		ARG 0 value
+	METHOD square (I)I
+		ARG 0 value
+	METHOD square (J)J
 		ARG 0 value
 	METHOD wrapDegrees (D)D
 		COMMENT the angle is reduced to an angle between -180 and +180 by mod, and a 360 check
