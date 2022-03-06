@@ -3,6 +3,10 @@ CLASS net/minecraft/server/MinecraftServer
 		COMMENT The texture pack for the server
 	METHOD addTickable (Ljava/lang/Runnable;)V
 		ARG 1 tickable
+	METHOD configurePackRepository (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/DataPackConfig;Z)Lnet/minecraft/world/level/DataPackConfig;
+		ARG 0 packRepository
+		ARG 1 dataPackConfig
+		ARG 2 vanillaOnly
 	METHOD doRunTask (Lnet/minecraft/server/TickTask;)V
 		ARG 1 task
 	METHOD fillServerSystemReport (Lnet/minecraft/SystemReport;)Lnet/minecraft/SystemReport;
@@ -29,6 +33,8 @@ CLASS net/minecraft/server/MinecraftServer
 		COMMENT Gets serverPort.
 	METHOD getProfilePermissions (Lcom/mojang/authlib/GameProfile;)I
 		ARG 1 profile
+	METHOD getSelectedPacks (Lnet/minecraft/server/packs/repository/PackRepository;)Lnet/minecraft/world/level/DataPackConfig;
+		ARG 0 packRepository
 	METHOD getServerVersion ()Ljava/lang/String;
 		COMMENT Returns the server's Minecraft version as string.
 	METHOD getSingleplayerName ()Ljava/lang/String;
@@ -60,6 +66,12 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 3 player
 	METHOD kickUnlistedPlayers (Lnet/minecraft/commands/CommandSourceStack;)V
 		ARG 1 commandSource
+	METHOD lambda$getSelectedPacks$14 (Ljava/util/Collection;Ljava/lang/String;)Z
+		ARG 1 id
+	METHOD lambda$reloadResources$12 (Lcom/google/common/collect/ImmutableList;)Ljava/util/concurrent/CompletionStage;
+		ARG 1 packResourcesList
+	METHOD lambda$reloadResources$13 (Ljava/util/Collection;Lnet/minecraft/server/ServerResources;)V
+		ARG 2 newResources
 	METHOD onServerCrash (Lnet/minecraft/CrashReport;)V
 		COMMENT Called on exit from the main run() loop.
 		ARG 1 report
@@ -71,6 +83,9 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 1 gameMode
 		ARG 2 cheats
 		ARG 3 port
+	METHOD reloadResources (Ljava/util/Collection;)Ljava/util/concurrent/CompletableFuture;
+		COMMENT Replaces currently selected list of datapacks, reloads them, and sends new data to players.
+		ARG 1 selectedIds
 	METHOD saveAllChunks (ZZZ)Z
 		ARG 1 suppressLog
 		ARG 2 flush
