@@ -10,7 +10,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 plugins {
-    id 'org.parchmentmc.compass' version '0.5.0'
+    id 'org.parchmentmc.compass' version '0.7.0'
     id 'org.parchmentmc.writtenbooks' version '0.5.+'
     id 'maven-publish'
     id 'java-base'
@@ -87,7 +87,7 @@ def convertObfMap = tasks.register('convertObfMap', ConvertMapping) {
     description 'Converts and reverses the Mojang obfuscation mappings.'
 
     def obfDL = project.plugins.getPlugin(CompassPlugin).obfuscationMapsDownloader
-    inputFile = obfDL.getObfuscationMap().flatMap { s -> obfDL.outputDirectory.file('client.txt') }
+    inputFile = obfDL.getObfuscationMap().flatMap { s -> obfDL.clientDownloadOutput  }
     inputFormat = ConvertMapping.Format.PROGUARD
     outputFile = project.layout.buildDirectory.dir('remapped')
             .zip(project.compass.version) { d, ver -> d.file("$ver-client.txt") }
