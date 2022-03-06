@@ -1,4 +1,8 @@
 CLASS net/minecraft/server/gui/MinecraftServerGui
+	METHOD <init> (Lnet/minecraft/server/dedicated/DedicatedServer;)V
+		ARG 1 server
+	METHOD addFinalizer (Ljava/lang/Runnable;)V
+		ARG 1 finalizer
 	METHOD buildInfoPanel ()Ljavax/swing/JComponent;
 		COMMENT Generates new StatsComponent and returns it.
 	METHOD buildPlayerPanel ()Ljavax/swing/JComponent;
@@ -7,3 +11,11 @@ CLASS net/minecraft/server/gui/MinecraftServerGui
 		ARG 1 textArea
 		ARG 2 scrollPane
 		ARG 3 line
+	METHOD showFrameFor (Lnet/minecraft/server/dedicated/DedicatedServer;)Lnet/minecraft/server/gui/MinecraftServerGui;
+		ARG 0 server
+	CLASS 1
+		METHOD windowClosing (Ljava/awt/event/WindowEvent;)V
+			ARG 1 event
+	CLASS 2
+		METHOD focusGained (Ljava/awt/event/FocusEvent;)V
+			ARG 1 event
