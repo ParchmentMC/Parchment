@@ -1,8 +1,12 @@
 CLASS net/minecraft/world/entity/animal/Rabbit
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+	METHOD checkRabbitSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
+		ARG 0 rabbit
+		ARG 1 level
+		ARG 2 spawnType
+		ARG 3 pos
+		ARG 4 random
 	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD facePoint (DD)V
@@ -16,12 +20,15 @@ CLASS net/minecraft/world/entity/animal/Rabbit
 		ARG 5 dataTag
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
+	METHOD getJumpCompletion (F)F
+		ARG 1 partialTick
+	METHOD getRandomRabbitType (Lnet/minecraft/world/level/LevelAccessor;)I
+		ARG 1 level
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
 		ARG 1 stack
+	METHOD isTemptingItem (Lnet/minecraft/world/item/Item;)Z
+		ARG 1 item
 	METHOD jumpFromGround ()V
 		COMMENT Causes this entity to do an upwards motion (jumping).
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
@@ -32,10 +39,12 @@ CLASS net/minecraft/world/entity/animal/Rabbit
 	METHOD setRabbitType (I)V
 		ARG 1 rabbitTypeId
 	METHOD setSpeedModifier (D)V
-		ARG 1 newSpeed
+		ARG 1 speedModifier
 	METHOD wantsMoreFood ()Z
 		COMMENT Returns true if {@link net.minecraft.entity.passive.EntityRabbit#carrotTicks carrotTicks} has reached zero
 	CLASS RaidGardenGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;)V
+			ARG 1 rabbit
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
@@ -46,15 +55,25 @@ CLASS net/minecraft/world/entity/animal/Rabbit
 			ARG 2 pos
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
+	CLASS RabbitGroupData
+		METHOD <init> (I)V
+			ARG 1 rabbitType
 	CLASS RabbitPanicGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;D)V
+			ARG 1 rabbit
+			ARG 2 speedModifier
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS RabbitJumpControl
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;Lnet/minecraft/world/entity/animal/Rabbit;)V
+			ARG 2 rabbit
 		METHOD setCanJump (Z)V
 			ARG 1 canJump
 		METHOD tick ()V
 			COMMENT Called to actually make the entity jump if isJumping is true.
 	CLASS RabbitMoveControl
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;)V
+			ARG 1 rabbit
 		METHOD setWantedPosition (DDDD)V
 			COMMENT Sets the speed and location to move to
 			ARG 1 x
@@ -62,8 +81,16 @@ CLASS net/minecraft/world/entity/animal/Rabbit
 			ARG 5 z
 			ARG 7 speed
 	CLASS EvilRabbitAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;)V
+			ARG 1 rabbit
 		METHOD getAttackReachSqr (Lnet/minecraft/world/entity/LivingEntity;)D
 			ARG 1 attackTarget
 	CLASS RabbitAvoidEntityGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;Ljava/lang/Class;FDD)V
+			ARG 1 rabbit
+			ARG 2 entityClassToAvoid
+			ARG 3 maxDist
+			ARG 4 walkSpeedModifier
+			ARG 6 sprintSpeedModifier
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.

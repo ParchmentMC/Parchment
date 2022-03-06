@@ -1,16 +1,20 @@
 CLASS net/minecraft/world/entity/raid/Raids
+	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	METHOD canJoinRaid (Lnet/minecraft/world/entity/raid/Raider;Lnet/minecraft/world/entity/raid/Raid;)Z
 		ARG 0 raider
 		ARG 1 raid
 	METHOD createOrExtendRaid (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/world/entity/raid/Raid;
-		ARG 1 player
+		ARG 1 serverPlayer
 	METHOD get (I)Lnet/minecraft/world/entity/raid/Raid;
 		ARG 1 id
+	METHOD getFileId (Lnet/minecraft/world/level/dimension/DimensionType;)Ljava/lang/String;
+		ARG 0 dimensionType
 	METHOD getNearbyRaid (Lnet/minecraft/core/BlockPos;I)Lnet/minecraft/world/entity/raid/Raid;
 		ARG 1 pos
 		ARG 2 distance
 	METHOD getOrCreateRaid (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/entity/raid/Raid;
-		ARG 1 level
+		ARG 1 serverLevel
 		ARG 2 pos
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 compound

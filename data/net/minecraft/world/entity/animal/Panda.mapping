@@ -7,6 +7,8 @@ CLASS net/minecraft/world/entity/animal/Panda
 		ARG 1 itemstack
 	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
+	METHOD eat (Z)V
+		ARG 1 eating
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
 		ARG 1 level
 		ARG 2 difficulty
@@ -17,6 +19,12 @@ CLASS net/minecraft/world/entity/animal/Panda
 		ARG 1 flagId
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
+	METHOD getLieOnBackAmount (F)F
+		ARG 1 partialTick
+	METHOD getRollAmount (F)F
+		ARG 1 partialTick
+	METHOD getSitAmount (F)F
+		ARG 1 partialTick
 	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
@@ -26,6 +34,8 @@ CLASS net/minecraft/world/entity/animal/Panda
 		ARG 1 stack
 	METHOD isFoodOrCake (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/item/ItemEntity;)Z
+		ARG 0 itemEntity
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
@@ -38,8 +48,13 @@ CLASS net/minecraft/world/entity/animal/Panda
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD roll (Z)V
+		ARG 1 rolling
+	METHOD setEatCounter (I)V
+		ARG 1 eatCounter
 	METHOD setFlag (IZ)V
 		ARG 1 flagId
+		ARG 2 value
 	METHOD setGeneFromParents (Lnet/minecraft/world/entity/animal/Panda;Lnet/minecraft/world/entity/animal/Panda;)V
 		ARG 1 father
 		ARG 2 mother
@@ -47,13 +62,32 @@ CLASS net/minecraft/world/entity/animal/Panda
 		ARG 1 pandaType
 	METHOD setMainGene (Lnet/minecraft/world/entity/animal/Panda$Gene;)V
 		ARG 1 pandaType
+	METHOD setOnBack (Z)V
+		ARG 1 onBack
+	METHOD setSneezeCounter (I)V
+		ARG 1 sneezeCounter
+	METHOD setUnhappyCounter (I)V
+		ARG 1 unhappyCounter
+	METHOD sit (Z)V
+		ARG 1 sitting
+	METHOD sneeze (Z)V
+		ARG 1 sneezing
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
 	CLASS Gene
+		METHOD <init> (Ljava/lang/String;IILjava/lang/String;Z)V
+			ARG 3 id
+			ARG 4 name
+			ARG 5 isRecessive
 		METHOD byId (I)Lnet/minecraft/world/entity/animal/Panda$Gene;
 			ARG 0 index
+		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/entity/animal/Panda$Gene;
+			ARG 0 name
 		METHOD getRandom (Ljava/util/Random;)Lnet/minecraft/world/entity/animal/Panda$Gene;
 			ARG 0 rand
+		METHOD getVariantFromGenes (Lnet/minecraft/world/entity/animal/Panda$Gene;Lnet/minecraft/world/entity/animal/Panda$Gene;)Lnet/minecraft/world/entity/animal/Panda$Gene;
+			ARG 0 mainGene
+			ARG 1 hiddenGene
 	CLASS PandaSitGoal
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
@@ -66,6 +100,8 @@ CLASS net/minecraft/world/entity/animal/Panda
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS PandaRollGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;)V
+			ARG 1 panda
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
@@ -73,27 +109,50 @@ CLASS net/minecraft/world/entity/animal/Panda
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 	CLASS PandaAvoidGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;Ljava/lang/Class;FDD)V
+			ARG 1 panda
+			ARG 2 entityClassToAvoid
+			ARG 3 maxDist
+			ARG 4 walkSpeedModifier
+			ARG 6 sprintSpeedModifier
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS PandaBreedGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;Lnet/minecraft/world/entity/animal/Panda;D)V
+			ARG 2 panda
+			ARG 3 speedModifier
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS PandaPanicGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;D)V
+			ARG 1 panda
+			ARG 2 speedModifier
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS PandaAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;DZ)V
+			ARG 1 panda
+			ARG 2 speedModifier
+			ARG 4 followingTargetEvenIfNotSeen
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS PandaSneezeGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;)V
+			ARG 1 panda
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
+	CLASS PandaMoveControl
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;)V
+			ARG 1 panda
 	CLASS PandaLieOnBackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;)V
+			ARG 1 panda
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
@@ -103,15 +162,24 @@ CLASS net/minecraft/world/entity/animal/Panda
 		METHOD stop ()V
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 	CLASS PandaHurtByTargetGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;[Ljava/lang/Class;)V
+			ARG 1 panda
+			ARG 2 entityClassToIgnoreDamage
 		METHOD alertOther (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/entity/LivingEntity;)V
 			ARG 1 mob
 			ARG 2 target
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 	CLASS PandaLookAtPlayerGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;Ljava/lang/Class;F)V
+			ARG 1 panda
+			ARG 2 lookAtType
+			ARG 3 lookDistance
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD setTarget (Lnet/minecraft/world/entity/LivingEntity;)V
+			ARG 1 lookAt
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started

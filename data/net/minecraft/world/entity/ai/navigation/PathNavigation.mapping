@@ -1,6 +1,9 @@
 CLASS net/minecraft/world/entity/ai/navigation/PathNavigation
 	FIELD reachRange I
 		COMMENT Distance in which a path point counts as target-reaching
+	METHOD <init> (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/Level;)V
+		ARG 1 mob
+		ARG 2 level
 	METHOD canMoveDirectly (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;III)Z
 		COMMENT Checks if the specified entity can safely walk to the specified location.
 		ARG 1 posVec31
@@ -36,6 +39,8 @@ CLASS net/minecraft/world/entity/ai/navigation/PathNavigation
 	METHOD createPath (Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/world/level/pathfinder/Path;
 		COMMENT Returns a path to the given entity or null
 		ARG 1 entity
+	METHOD createPathFinder (I)Lnet/minecraft/world/level/pathfinder/PathFinder;
+		ARG 1 maxVisitedNodes
 	METHOD doStuckDetection (Lnet/minecraft/world/phys/Vec3;)V
 		COMMENT Checks if entity haven't been moved when last checked and if so, clears current {@link net.minecraft.pathfinding.PathEntity}
 		ARG 1 positionVec3

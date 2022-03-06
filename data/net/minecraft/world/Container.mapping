@@ -10,7 +10,7 @@ CLASS net/minecraft/world/Container
 		COMMENT Returns the number of slots in the inventory.
 	METHOD getItem (I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns the stack in the given slot.
-		ARG 1 index
+		ARG 1 slot
 	METHOD getMaxStackSize ()I
 		COMMENT Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended.
 	METHOD hasAnyOf (Ljava/util/Set;)Z
@@ -18,16 +18,16 @@ CLASS net/minecraft/world/Container
 		ARG 1 set
 	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
-		ARG 1 index
-		ARG 2 count
+		ARG 1 slot
+		ARG 2 amount
 	METHOD removeItemNoUpdate (I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Removes a stack from the given slot and returns it.
-		ARG 1 index
+		ARG 1 slot
 	METHOD setChanged ()V
 		COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
 	METHOD setItem (ILnet/minecraft/world/item/ItemStack;)V
 		COMMENT Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
-		ARG 1 index
+		ARG 1 slot
 		ARG 2 stack
 	METHOD startOpen (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player

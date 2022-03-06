@@ -1,18 +1,30 @@
 CLASS net/minecraft/world/entity/decoration/ArmorStand
 	FIELD lastHit J
 		COMMENT After punching the stand, the cooldown before you can punch it again without breaking it.
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDD)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
+	METHOD brokenByAnything (Lnet/minecraft/world/damagesource/DamageSource;)V
+		ARG 1 damageSource
 	METHOD brokenByPlayer (Lnet/minecraft/world/damagesource/DamageSource;)V
-		ARG 1 source
+		ARG 1 damageSource
 	METHOD canTakeItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 itemstack
 	METHOD causeDamage (Lnet/minecraft/world/damagesource/DamageSource;F)V
-		ARG 1 source
+		ARG 1 damageSource
+		ARG 2 amount
 	METHOD doPush (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
+	METHOD getClickedSlot (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/entity/EquipmentSlot;
+		ARG 1 vector
 	METHOD getDimensions (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/entity/EntityDimensions;
 		ARG 1 pose
+	METHOD getDimensionsMarker (Z)Lnet/minecraft/world/entity/EntityDimensions;
+		ARG 1 isMarker
 	METHOD getFallDamageSound (I)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 height
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
@@ -26,9 +38,6 @@ CLASS net/minecraft/world/entity/decoration/ArmorStand
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
@@ -54,44 +63,50 @@ CLASS net/minecraft/world/entity/decoration/ArmorStand
 		COMMENT Returns true if this entity should push and be pushed by other entities when colliding.
 	METHOD kill ()V
 		COMMENT Called by the /kill command.
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
 	METHOD readPose (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 tagCompound
+		ARG 1 compound
+	METHOD setBit (BIZ)B
+		ARG 1 oldBit
+		ARG 2 offset
+		ARG 3 value
 	METHOD setBodyPose (Lnet/minecraft/core/Rotations;)V
-		ARG 1 vec
+		ARG 1 bodyPose
 	METHOD setHeadPose (Lnet/minecraft/core/Rotations;)V
-		ARG 1 vec
+		ARG 1 headPose
 	METHOD setInvisible (Z)V
 		ARG 1 invisible
 	METHOD setItemSlot (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 slot
 		ARG 2 stack
 	METHOD setLeftArmPose (Lnet/minecraft/core/Rotations;)V
-		ARG 1 vec
+		ARG 1 leftArmPose
 	METHOD setLeftLegPose (Lnet/minecraft/core/Rotations;)V
-		ARG 1 vec
+		ARG 1 leftLegPose
 	METHOD setMarker (Z)V
 		COMMENT Marker defines where if true, the size is 0 and will not be rendered or intractable.
 		ARG 1 marker
 	METHOD setNoBasePlate (Z)V
 		ARG 1 noBasePlate
 	METHOD setRightArmPose (Lnet/minecraft/core/Rotations;)V
-		ARG 1 vec
+		ARG 1 rightArmPose
 	METHOD setRightLegPose (Lnet/minecraft/core/Rotations;)V
-		ARG 1 vec
+		ARG 1 rightLegPose
 	METHOD setShowArms (Z)V
 		ARG 1 showArms
 	METHOD setSmall (Z)V
 		ARG 1 small
 	METHOD setYBodyRot (F)V
-		COMMENT Set the render yaw offset
+		COMMENT Set the body Y rotation of the entity.
 		ARG 1 offset
 	METHOD setYHeadRot (F)V
-		COMMENT Sets the head's yaw rotation of the entity.
+		COMMENT Sets the head's Y rotation of the entity.
 		ARG 1 rotation
 	METHOD shouldRenderAtSqrDistance (D)Z
 		COMMENT Checks if the entity is in range to render.

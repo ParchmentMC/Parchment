@@ -3,14 +3,12 @@ CLASS net/minecraft/world/entity/boss/wither/WitherBoss
 		ARG 1 compound
 	METHOD addEffect (Lnet/minecraft/world/effect/MobEffectInstance;)Z
 		ARG 1 effectInstance
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD canBeAffected (Lnet/minecraft/world/effect/MobEffectInstance;)Z
 		ARG 1 potioneffect
 	METHOD canChangeDimensions ()Z
 		COMMENT Returns false if this Entity can't move between dimensions. True if it can.
 	METHOD canDestroy (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 0 block
+		ARG 0 state
 	METHOD canRide (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD checkDespawn ()V
@@ -39,6 +37,8 @@ CLASS net/minecraft/world/entity/boss/wither/WitherBoss
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
 	METHOD makeInvulnerable ()V
 		COMMENT Initializes this Wither's explosion sequence and makes it invulnerable. Called immediately after spawning.
 	METHOD makeStuckInBlock (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/phys/Vec3;)V
@@ -50,7 +50,7 @@ CLASS net/minecraft/world/entity/boss/wither/WitherBoss
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
-		ARG 8 invulnerable
+		ARG 8 isDangerous
 	METHOD performRangedAttack (ILnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 head
 		ARG 2 target
@@ -61,6 +61,8 @@ CLASS net/minecraft/world/entity/boss/wither/WitherBoss
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD rotlerp (FFF)F
+		ARG 1 angle
 	METHOD setAlternativeTarget (II)V
 		COMMENT Updates the target entity ID
 		ARG 1 targetOffset
@@ -68,7 +70,7 @@ CLASS net/minecraft/world/entity/boss/wither/WitherBoss
 	METHOD setCustomName (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 name
 	METHOD setInvulnerableTicks (I)V
-		ARG 1 time
+		ARG 1 invulnerableTicks
 	METHOD startSeenByPlayer (Lnet/minecraft/server/level/ServerPlayer;)V
 		COMMENT Add the given player to the list of players tracking this entity. For instance, a player may track a boss in order to view its associated boss bar.
 		ARG 1 player

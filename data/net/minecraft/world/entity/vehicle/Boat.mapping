@@ -1,4 +1,9 @@
 CLASS net/minecraft/world/entity/vehicle/Boat
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDD)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD animateHurt ()V
@@ -6,6 +11,9 @@ CLASS net/minecraft/world/entity/vehicle/Boat
 	METHOD canAddPassenger (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 passenger
 	METHOD canCollideWith (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD canVehicleCollide (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 vehicle
 		ARG 1 entity
 	METHOD checkFallDamage (DZLnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 y
@@ -81,21 +89,21 @@ CLASS net/minecraft/world/entity/vehicle/Boat
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
 	METHOD setBubbleTime (I)V
-		ARG 1 ticks
+		ARG 1 bubbleTime
 	METHOD setDamage (F)V
 		COMMENT Sets the damage taken from the last hit.
 		ARG 1 damageTaken
 	METHOD setHurtDir (I)V
 		COMMENT Sets the forward direction of the entity.
-		ARG 1 forwardDirection
+		ARG 1 hurtDirection
 	METHOD setHurtTime (I)V
 		COMMENT Sets the time to count down from since the last time entity was hit.
-		ARG 1 timeSinceHit
+		ARG 1 hurtTime
 	METHOD setInput (ZZZZ)V
-		ARG 1 leftInputDown
-		ARG 2 rightInputDown
-		ARG 3 forwardInputDown
-		ARG 4 backInputDown
+		ARG 1 inputLeft
+		ARG 2 inputRight
+		ARG 3 inputUp
+		ARG 4 inputDown
 	METHOD setPaddleState (ZZ)V
 		ARG 1 left
 		ARG 2 right
@@ -104,6 +112,9 @@ CLASS net/minecraft/world/entity/vehicle/Boat
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
 	CLASS Type
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/world/level/block/Block;Ljava/lang/String;)V
+			ARG 3 name
+			ARG 4 planks
 		METHOD byId (I)Lnet/minecraft/world/entity/vehicle/Boat$Type;
 			COMMENT Get a boat type by it's enum ordinal
 			ARG 0 id

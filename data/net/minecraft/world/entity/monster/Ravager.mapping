@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/entity/monster/Ravager
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD applyRaidBuffs (IZ)V
 		ARG 1 wave
 	METHOD blockedByShield (Lnet/minecraft/world/entity/LivingEntity;)V
@@ -22,17 +20,18 @@ CLASS net/minecraft/world/entity/monster/Ravager
 		ARG 1 damageSource
 	METHOD getPassengersRidingOffset ()D
 		COMMENT Returns the Y offset from the entity's position for any entity riding this one.
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD isImmobile ()Z
 		COMMENT Dead and sleeping entities cannot move
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 block
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD strongKnockback (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
 	METHOD updateControlFlags ()V
 		COMMENT Sets MOVE, JUMP, LOOK Goal.Flags depending if entity is riding or been controlled
 	CLASS RavagerNodeEvaluator

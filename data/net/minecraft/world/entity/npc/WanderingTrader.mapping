@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/entity/npc/WanderingTrader
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD getDrinkingSound (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 stack
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
@@ -20,10 +18,14 @@ CLASS net/minecraft/world/entity/npc/WanderingTrader
 	METHOD rewardTradeXp (Lnet/minecraft/world/item/trading/MerchantOffer;)V
 		ARG 1 offer
 	METHOD setDespawnDelay (I)V
-		ARG 1 delay
+		ARG 1 despawnDelay
 	METHOD setWanderTarget (Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
+		ARG 1 wanderTarget
 	CLASS WanderToPositionGoal
+		METHOD <init> (Lnet/minecraft/world/entity/npc/WanderingTrader;Lnet/minecraft/world/entity/npc/WanderingTrader;DD)V
+			ARG 2 trader
+			ARG 3 stopDistance
+			ARG 5 speedModifier
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD isTooFarAway (Lnet/minecraft/core/BlockPos;D)Z

@@ -16,12 +16,20 @@ CLASS net/minecraft/world/entity/animal/Cat
 		COMMENT Get number of ticks, at least during which the living entity will be silent.
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
+	METHOD getLieDownAmount (F)F
+		ARG 1 partialTicks
+	METHOD getLieDownAmountTail (F)F
+		ARG 1 partialTicks
+	METHOD getRelaxStateOneAmount (F)F
+		ARG 1 partialTicks
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
 		ARG 1 stack
+	METHOD lambda$static$0 (Ljava/util/HashMap;)V
+		ARG 0 map
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
@@ -34,23 +42,42 @@ CLASS net/minecraft/world/entity/animal/Cat
 		ARG 1 type
 	METHOD setCollarColor (Lnet/minecraft/world/item/DyeColor;)V
 		ARG 1 color
+	METHOD setLying (Z)V
+		ARG 1 lying
+	METHOD setRelaxStateOne (Z)V
+		ARG 1 relaxStateOne
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
 	CLASS CatTemptGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Cat;DLnet/minecraft/world/item/crafting/Ingredient;Z)V
+			ARG 1 cat
+			ARG 2 speedModifier
+			ARG 4 items
+			ARG 5 canScare
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS CatAvoidEntityGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Cat;Ljava/lang/Class;FDD)V
+			ARG 1 cat
+			ARG 2 entityClassToAvoid
+			ARG 3 maxDist
+			ARG 4 walkSpeedModifier
+			ARG 6 sprintSpeedModifier
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS CatRelaxOnOwnerGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Cat;)V
+			ARG 1 cat
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD lambda$canUse$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos;
+			ARG 1 direction
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V

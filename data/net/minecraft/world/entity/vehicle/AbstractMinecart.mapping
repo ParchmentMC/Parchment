@@ -1,10 +1,16 @@
 CLASS net/minecraft/world/entity/vehicle/AbstractMinecart
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;DDD)V
+		ARG 1 entityType
+		ARG 2 level
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
 	METHOD activateMinecart (IIIZ)V
 		COMMENT Called every tick the minecart is on an activator rail.
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-		ARG 4 receivingPower
+		ARG 4 powered
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD animateHurt ()V
@@ -20,7 +26,7 @@ CLASS net/minecraft/world/entity/vehicle/AbstractMinecart
 		ARG 5 z
 		ARG 7 type
 	METHOD destroy (Lnet/minecraft/world/damagesource/DamageSource;)V
-		ARG 1 source
+		ARG 1 damageSource
 	METHOD exits (Lnet/minecraft/world/level/block/state/properties/RailShape;)Lcom/mojang/datafixers/util/Pair;
 		ARG 0 shape
 	METHOD getBoundingBoxForCulling ()Lnet/minecraft/world/phys/AABB;
@@ -58,6 +64,10 @@ CLASS net/minecraft/world/entity/vehicle/AbstractMinecart
 		COMMENT Returns true if this entity should push and be pushed by other entities when colliding.
 	METHOD isRedstoneConductor (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
+	METHOD lambda$getDismountLocationForPassenger$1 (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 pos
+	METHOD lambda$static$2 (Ljava/util/EnumMap;)V
+		ARG 0 map
 	METHOD lerpMotion (DDD)V
 		COMMENT Updates the entity motion clientside, called by packets from the server
 		ARG 1 x
@@ -82,19 +92,19 @@ CLASS net/minecraft/world/entity/vehicle/AbstractMinecart
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
 	METHOD setCustomDisplay (Z)V
-		ARG 1 showBlock
+		ARG 1 customDisplay
 	METHOD setDamage (F)V
 		COMMENT Sets the current amount of damage the minecart has taken. Decreases over time. The cart breaks when this is over 40.
 		ARG 1 damage
 	METHOD setDisplayBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 displayTile
+		ARG 1 displayState
 	METHOD setDisplayOffset (I)V
-		ARG 1 displayTileOffset
+		ARG 1 displayOffset
 	METHOD setHurtDir (I)V
 		COMMENT Sets the rolling direction the cart rolls while being attacked. Can be 1 or -1.
-		ARG 1 rollingDirection
+		ARG 1 hurtDirection
 	METHOD setHurtTime (I)V
 		COMMENT Sets the rolling amplitude the cart rolls while being attacked.
-		ARG 1 rollingAmplitude
+		ARG 1 hurtTime
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.

@@ -8,9 +8,6 @@ CLASS net/minecraft/world/entity/TamableAnimal
 	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
 		COMMENT Called when the mob's health reaches 0.
 		ARG 1 cause
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD isAlliedTo (Lnet/minecraft/world/entity/Entity;)Z
 		COMMENT Returns whether this Entity is on the same team as the given Entity.
 		ARG 1 entity
@@ -19,11 +16,17 @@ CLASS net/minecraft/world/entity/TamableAnimal
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD setInSittingPose (Z)V
+		ARG 1 sitting
+	METHOD setOrderedToSit (Z)V
+		ARG 1 orderedToSit
+	METHOD setOwnerUUID (Ljava/util/UUID;)V
+		ARG 1 uuid
 	METHOD setTame (Z)V
 		ARG 1 tamed
 	METHOD spawnTamingParticles (Z)V
 		COMMENT Play the taming effect, will either be hearts or smoke depending on status
-		ARG 1 play
+		ARG 1 tamed
 	METHOD tame (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
 	METHOD wantsToAttack (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)Z

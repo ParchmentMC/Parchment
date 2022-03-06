@@ -3,6 +3,10 @@ CLASS net/minecraft/world/entity/npc/Villager
 		COMMENT Mapping between valid food items and their respective efficiency values.
 	FIELD WANTED_ITEMS Ljava/util/Set;
 		COMMENT Defaults items a villager regardless of its profession can pick up.
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/npc/VillagerType;)V
+		ARG 1 entityType
+		ARG 2 level
+		ARG 3 villagerType
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD countFoodPointsInInventory ()I
@@ -19,22 +23,47 @@ CLASS net/minecraft/world/entity/npc/Villager
 		ARG 4 spawnData
 		ARG 5 dataTag
 	METHOD findSpawnPositionForGolemInColumn (Lnet/minecraft/core/BlockPos;DD)Lnet/minecraft/core/BlockPos;
-		ARG 1 pos
-		ARG 2 x
-		ARG 4 z
+		ARG 1 villagerPos
+		ARG 2 offsetX
+		ARG 4 offsetZ
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getPlayerReputation (Lnet/minecraft/world/entity/player/Player;)I
 		ARG 1 player
 	METHOD golemSpawnConditionsMet (J)Z
 		ARG 1 gameTime
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
+	METHOD gossip (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/npc/Villager;J)V
+		ARG 1 serverLevel
+		ARG 2 target
+		ARG 3 gameTime
 	METHOD hasExcessFood ()Z
 		COMMENT Used by {@link net.minecraft.entity.ai.EntityAIVillagerInteract EntityAIVillagerInteract} to check if the villager can give some items from an inventory to another villager.
 	METHOD hasFarmSeeds ()Z
 		COMMENT Returns true if villager has seeds, potatoes or carrots in inventory
+	METHOD lambda$countFoodPointsInInventory$9 (Lnet/minecraft/world/SimpleContainer;Ljava/util/Map$Entry;)I
+		ARG 1 foodEntry
+	METHOD lambda$getPlayerReputation$8 (Lnet/minecraft/world/entity/ai/gossip/GossipType;)Z
+		ARG 0 gossipType
+	METHOD lambda$releasePoi$7 (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/core/GlobalPos;)V
+		ARG 3 globalPos
+	METHOD lambda$spawnGolemIfNeeded$10 (JLnet/minecraft/world/entity/npc/Villager;)Z
+		ARG 2 villager
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/npc/Villager;Lnet/minecraft/world/entity/ai/village/poi/PoiType;)Z
+		ARG 0 villager
+		ARG 1 poiType
+	METHOD lambda$static$1 (Lnet/minecraft/world/entity/npc/Villager;Lnet/minecraft/world/entity/ai/village/poi/PoiType;)Z
+		ARG 0 villager
+		ARG 1 poiType
+	METHOD lambda$static$2 (Lnet/minecraft/world/entity/npc/Villager;Lnet/minecraft/world/entity/ai/village/poi/PoiType;)Z
+		ARG 0 villager
+		ARG 1 poiType
+	METHOD lambda$static$3 (Lnet/minecraft/world/entity/npc/Villager;Lnet/minecraft/world/entity/ai/village/poi/PoiType;)Z
+		ARG 0 villager
+		ARG 1 poiType
+	METHOD lambda$tellWitnessesThatIWasMurdered$5 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
+	METHOD lambda$tellWitnessesThatIWasMurdered$6 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 2 entity
 	METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
 		ARG 1 dynamic
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
@@ -68,8 +97,14 @@ CLASS net/minecraft/world/entity/npc/Villager
 		ARG 1 offers
 	METHOD setTradingPlayer (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
+	METHOD setVillagerData (Lnet/minecraft/world/entity/npc/VillagerData;)V
+		ARG 1 villagerData
 	METHOD setVillagerXp (I)V
-		ARG 1 xp
+		ARG 1 villagerXp
+	METHOD spawnGolemIfNeeded (Lnet/minecraft/server/level/ServerLevel;JI)V
+		ARG 1 serverLevel
+		ARG 2 gameTime
+		ARG 4 minVillagerAmount
 	METHOD startSleeping (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD startTrading (Lnet/minecraft/world/entity/player/Player;)V
@@ -81,6 +116,8 @@ CLASS net/minecraft/world/entity/npc/Villager
 		ARG 2 lightning
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
+	METHOD trySpawnGolem (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/animal/IronGolem;
+		ARG 1 serverLevel
 	METHOD updateSpecialPrices (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
 	METHOD wantsToSpawnGolem (J)Z

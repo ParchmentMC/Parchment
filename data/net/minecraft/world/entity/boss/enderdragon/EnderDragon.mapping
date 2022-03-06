@@ -3,8 +3,6 @@ CLASS net/minecraft/world/entity/boss/enderdragon/EnderDragon
 		ARG 1 compound
 	METHOD addEffect (Lnet/minecraft/world/effect/MobEffectInstance;)Z
 		ARG 1 effectInstance
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD canChangeDimensions ()Z
 		COMMENT Returns false if this Entity can't move between dimensions. True if it can.
 	METHOD canRide (Lnet/minecraft/world/entity/Entity;)Z
@@ -16,6 +14,8 @@ CLASS net/minecraft/world/entity/boss/enderdragon/EnderDragon
 	METHOD checkWalls (Lnet/minecraft/world/phys/AABB;)Z
 		COMMENT Destroys all blocks that aren't associated with 'The End' inside the given bounding box.
 		ARG 1 area
+	METHOD dropExperience (I)V
+		ARG 1 amount
 	METHOD findClosestNode ()I
 		COMMENT Generates values for the fields pathPoints, and neighbors, and then returns the nearest pathPoint to the specified position.
 	METHOD findClosestNode (DDD)I
@@ -27,18 +27,20 @@ CLASS net/minecraft/world/entity/boss/enderdragon/EnderDragon
 		COMMENT Find and return a path among the circles described by pathPoints, or null if the shortest path would just be directly between the start and finish with no intermediate points.
 		COMMENT
 		COMMENT Starting with pathPoint[startIdx], it searches the neighboring points (and their neighboring points, and so on) until it reaches pathPoint[finishIdx], at which point it calls makePath to seal the deal.
-		ARG 1 startIdx
-		ARG 2 finishIdx
+		ARG 1 startIndex
+		ARG 2 finishIndex
 		ARG 3 andThen
 	METHOD getHeadLookVector (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
 	METHOD getHeadPartYOffset (I[D[D)F
+		ARG 1 partIndex
 		ARG 2 spineEndOffsets
 		ARG 3 headPartOffsets
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getLatencyPos (IF)[D
 		COMMENT Returns a double[3] array with movement offsets, used to calculate trailing tail/neck positions. [0] = yaw offset, [1] = y offset, [2] = unused, always 0. Parameters: buffer index offset, partial ticks.
+		ARG 1 bufferIndexOffset
 		ARG 2 partialTicks
 	METHOD getSoundVolume ()F
 		COMMENT Returns the volume for the sounds this mob makes.
@@ -63,7 +65,7 @@ CLASS net/minecraft/world/entity/boss/enderdragon/EnderDragon
 	METHOD onCrystalDestroyed (Lnet/minecraft/world/entity/boss/enderdragon/EndCrystal;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/damagesource/DamageSource;)V
 		ARG 1 crystal
 		ARG 2 pos
-		ARG 3 dmgSrc
+		ARG 3 damageSource
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
@@ -71,7 +73,7 @@ CLASS net/minecraft/world/entity/boss/enderdragon/EnderDragon
 		ARG 1 compound
 	METHOD reallyHurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Provides a way to cause damage to an ender dragon.
-		ARG 1 source
+		ARG 1 damageSource
 		ARG 2 amount
 	METHOD reconstructPath (Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)Lnet/minecraft/world/level/pathfinder/Path;
 		COMMENT Create and return a new PathEntity defining a path from the start to the finish, using the connections already made by the caller, findPath.
