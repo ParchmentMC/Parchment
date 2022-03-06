@@ -1,4 +1,6 @@
 CLASS net/minecraft/client/renderer/texture/SimpleTexture
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 location
 	METHOD doLoad (Lcom/mojang/blaze3d/platform/NativeImage;ZZ)V
 		ARG 1 image
 		ARG 2 blur
@@ -8,6 +10,11 @@ CLASS net/minecraft/client/renderer/texture/SimpleTexture
 	METHOD load (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 1 manager
 	CLASS TextureImage
+		METHOD <init> (Ljava/io/IOException;)V
+			ARG 1 exception
+		METHOD <init> (Lnet/minecraft/client/resources/metadata/texture/TextureMetadataSection;Lcom/mojang/blaze3d/platform/NativeImage;)V
+			ARG 1 metadata
+			ARG 2 image
 		METHOD load (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/texture/SimpleTexture$TextureImage;
 			ARG 0 resourceManager
 			ARG 1 location

@@ -1,6 +1,9 @@
 CLASS net/minecraft/client/gui/screens/OptionsScreen
-	FIELD options Lnet/minecraft/client/Options;
-		COMMENT Reference to the GameSettings object.
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/Options;)V
+		ARG 1 lastScreen
+		ARG 2 options
+	METHOD getDifficultyText (Lnet/minecraft/world/Difficulty;)Lnet/minecraft/network/chat/Component;
+		ARG 1 difficulty
 	METHOD lockCallback (Z)V
 		ARG 1 value
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
@@ -8,3 +11,5 @@ CLASS net/minecraft/client/gui/screens/OptionsScreen
 		ARG 2 mouseX
 		ARG 3 mouseY
 		ARG 4 partialTicks
+	METHOD updatePackList (Lnet/minecraft/server/packs/repository/PackRepository;)V
+		ARG 1 packRepository

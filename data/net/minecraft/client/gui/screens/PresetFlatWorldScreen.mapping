@@ -1,6 +1,10 @@
 CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 	FIELD parent Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen;
 		COMMENT The parent GUI
+	METHOD <init> (Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen;)V
+		ARG 1 parent
+	METHOD fromString (Lnet/minecraft/core/Registry;Ljava/lang/String;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
+		ARG 0 biomeRegistry
 	METHOD mouseScrolled (DDD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -14,6 +18,13 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 		ARG 1 minecraft
 		ARG 2 width
 		ARG 3 height
+	METHOD save (Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Ljava/lang/String;
+		ARG 0 biomeRegistry
+	CLASS PresetInfo
+		METHOD <init> (Lnet/minecraft/world/item/Item;Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;)V
+			ARG 1 icon
+			ARG 2 name
+			ARG 3 settings
 	CLASS PresetsList
 		METHOD keyPressed (III)Z
 			ARG 1 keyCode
@@ -22,6 +33,11 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 		METHOD setSelected (Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList$Entry;)V
 			ARG 1 entry
 		CLASS Entry
+			METHOD blitSlot (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/world/item/Item;)V
+				ARG 1 poseStack
+				ARG 4 item
+			METHOD blitSlotBg (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
+				ARG 1 poseStack
 			METHOD mouseClicked (DDI)Z
 				ARG 1 mouseX
 				ARG 3 mouseY

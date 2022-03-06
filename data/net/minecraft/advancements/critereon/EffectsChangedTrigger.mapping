@@ -3,8 +3,17 @@ CLASS net/minecraft/advancements/critereon/EffectsChangedTrigger
 		ARG 1 json
 		ARG 2 entityPredicate
 		ARG 3 conditionsParser
+	METHOD lambda$trigger$0 (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/advancements/critereon/EffectsChangedTrigger$TriggerInstance;)Z
+		ARG 1 effects
+	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
 	CLASS TriggerInstance
+		METHOD <init> (Lnet/minecraft/advancements/critereon/EntityPredicate$Composite;Lnet/minecraft/advancements/critereon/MobEffectsPredicate;)V
+			ARG 1 player
+			ARG 2 effects
 		METHOD hasEffects (Lnet/minecraft/advancements/critereon/MobEffectsPredicate;)Lnet/minecraft/advancements/critereon/EffectsChangedTrigger$TriggerInstance;
 			ARG 0 effects
+		METHOD matches (Lnet/minecraft/server/level/ServerPlayer;)Z
+			ARG 1 player
 		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
 			ARG 1 conditions

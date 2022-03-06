@@ -1,7 +1,16 @@
 CLASS net/minecraft/client/resources/ClientPackSource
+	METHOD <init> (Ljava/io/File;Lnet/minecraft/client/resources/AssetIndex;)V
+		ARG 1 serverPackDirectory
+		ARG 2 assetIndex
 	METHOD checkHash (Ljava/lang/String;Ljava/io/File;)Z
 		ARG 1 expectedHash
 		ARG 2 file
+	METHOD createProgrammerArtDirPack (Ljava/io/File;)Lnet/minecraft/server/packs/FolderPackResources;
+		ARG 0 file
+	METHOD createProgrammerArtPack (Lnet/minecraft/server/packs/repository/Pack$PackConstructor;Ljava/util/function/Supplier;)Lnet/minecraft/server/packs/repository/Pack;
+		ARG 1 resources
+	METHOD createProgrammerArtZipPack (Ljava/io/File;)Lnet/minecraft/server/packs/PackResources;
+		ARG 0 file
 	METHOD deleteQuietly (Ljava/io/File;)V
 		ARG 0 file
 	METHOD loadPacks (Ljava/util/function/Consumer;Lnet/minecraft/server/packs/repository/Pack$PackConstructor;)V
@@ -9,3 +18,4 @@ CLASS net/minecraft/client/resources/ClientPackSource
 		ARG 2 infoFactory
 	METHOD setServerPack (Ljava/io/File;Lnet/minecraft/server/packs/repository/PackSource;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 file
+		ARG 2 packSource

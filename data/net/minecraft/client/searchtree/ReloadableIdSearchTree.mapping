@@ -1,4 +1,6 @@
 CLASS net/minecraft/client/searchtree/ReloadableIdSearchTree
+	METHOD <init> (Ljava/util/function/Function;)V
+		ARG 1 idGetter
 	METHOD comparePosition (Ljava/lang/Object;Ljava/lang/Object;)I
 		COMMENT Compares two elements. Returns {@code 1} if the first element has more entries, {@code 0} if they have the same number of entries, and {@code -1} if the second element has more enties.
 	METHOD index (Ljava/lang/Object;)V
@@ -12,3 +14,6 @@ CLASS net/minecraft/client/searchtree/ReloadableIdSearchTree
 		COMMENT If the query does not contain a <code>:</code>, then only {@link #byName} is searched" if it does contain a colon, both {@link #byName} and {@link #byId} are searched and the results are merged using a {@link MergingIterator}.
 		COMMENT @return A list of all matching items in this search tree.
 		ARG 1 searchText
+	CLASS IntersectionIterator
+		METHOD <init> (Ljava/util/Iterator;Ljava/util/Iterator;Ljava/util/Comparator;)V
+			ARG 3 orderT

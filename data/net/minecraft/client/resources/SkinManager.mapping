@@ -1,4 +1,8 @@
 CLASS net/minecraft/client/resources/SkinManager
+	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureManager;Ljava/io/File;Lcom/mojang/authlib/minecraft/MinecraftSessionService;)V
+		ARG 1 manager
+		ARG 2 skinsDirectory
+		ARG 3 sessionService
 	METHOD getInsecureSkinInformation (Lcom/mojang/authlib/GameProfile;)Ljava/util/Map;
 		ARG 1 profile
 	METHOD registerSkins (Lcom/mojang/authlib/GameProfile;Lnet/minecraft/client/resources/SkinManager$SkinTextureCallback;Z)V
@@ -14,3 +18,8 @@ CLASS net/minecraft/client/resources/SkinManager
 		ARG 1 profileTexture
 		ARG 2 textureType
 		ARG 3 skinAvailableCallback
+	CLASS SkinTextureCallback
+		METHOD onSkinTextureAvailable (Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;)V
+			ARG 1 skinType
+			ARG 2 location
+			ARG 3 profileTexture

@@ -1,7 +1,12 @@
 CLASS net/minecraft/client/searchtree/ReloadableSearchTree
+	METHOD <init> (Ljava/util/function/Function;Ljava/util/function/Function;)V
+		ARG 1 filler
+		ARG 2 idGetter
 	METHOD index (Ljava/lang/Object;)V
 		COMMENT Directly puts the given item into {@link #byId} and {@link #byName}, applying {@link #nameFunc} and {@link idFunc}.
 		ARG 1 element
+	METHOD lambda$index$0 (Ljava/lang/Object;Ljava/lang/String;)V
+		ARG 2 filler
 	METHOD refresh ()V
 		COMMENT Recalculates the contents of this search tree, reapplying {@link #nameFunc} and {@link #idFunc}. Should be called whenever resources are reloaded (e.g. language changes).
 	METHOD search (Ljava/lang/String;)Ljava/util/List;
@@ -10,3 +15,6 @@ CLASS net/minecraft/client/searchtree/ReloadableSearchTree
 		COMMENT If the query does not contain a <code>:</code>, then only {@link #byName} is searched" if it does contain a colon, both {@link #byName} and {@link #byId} are searched and the results are merged using a {@link MergingIterator}.
 		COMMENT @return A list of all matching items in this search tree.
 		ARG 1 searchText
+	CLASS MergingUniqueIterator
+		METHOD <init> (Ljava/util/Iterator;Ljava/util/Iterator;Ljava/util/Comparator;)V
+			ARG 3 orderT
