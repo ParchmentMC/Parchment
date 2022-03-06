@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/entity/monster/Zoglin
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD blockedByShield (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 entity
 	METHOD canBeLeashed (Lnet/minecraft/world/entity/player/Player;)Z
@@ -13,15 +11,20 @@ CLASS net/minecraft/world/entity/monster/Zoglin
 		ARG 1 damageSource
 	METHOD getPassengersRidingOffset ()D
 		COMMENT Returns the Y offset from the entity's position for any entity riding this one.
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
+	METHOD initCoreActivity (Lnet/minecraft/world/entity/ai/Brain;)V
+		ARG 0 brain
+	METHOD initFightActivity (Lnet/minecraft/world/entity/ai/Brain;)V
+		ARG 0 brain
+	METHOD initIdleActivity (Lnet/minecraft/world/entity/ai/Brain;)V
+		ARG 0 brain
 	METHOD isBaby ()Z
 		COMMENT If Animal, checks if the age timer is negative
+	METHOD isTargetable (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 livingEntity
 	METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
 		ARG 1 dynamic
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
@@ -32,6 +35,8 @@ CLASS net/minecraft/world/entity/monster/Zoglin
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD setAttackTarget (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 target
 	METHOD setBaby (Z)V
 		COMMENT Set whether this zombie is a child.
 		ARG 1 childZombie

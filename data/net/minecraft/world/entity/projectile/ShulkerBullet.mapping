@@ -1,4 +1,17 @@
 CLASS net/minecraft/world/entity/projectile/ShulkerBullet
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDDDDD)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 speedX
+		ARG 10 speedY
+		ARG 12 speedZ
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Direction$Axis;)V
+		ARG 1 level
+		ARG 2 shooter
+		ARG 3 finalTarget
+		ARG 4 axis
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD checkDespawn ()V
@@ -22,6 +35,8 @@ CLASS net/minecraft/world/entity/projectile/ShulkerBullet
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD selectNextMoveDirection (Lnet/minecraft/core/Direction$Axis;)V
+		ARG 1 axis
 	METHOD setMoveDirection (Lnet/minecraft/core/Direction;)V
 		ARG 1 direction
 	METHOD shouldRenderAtSqrDistance (D)Z

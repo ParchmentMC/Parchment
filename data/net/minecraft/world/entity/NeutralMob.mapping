@@ -3,13 +3,27 @@ CLASS net/minecraft/world/entity/NeutralMob
 		ARG 1 nbt
 	METHOD getTarget ()Lnet/minecraft/world/entity/LivingEntity;
 		COMMENT Gets the active target the Task system uses for tracking
+	METHOD isAngryAt (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 1 target
+	METHOD isAngryAtAllPlayers (Lnet/minecraft/world/level/Level;)Z
+		ARG 1 level
+	METHOD playerDied (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player
+	METHOD readPersistentAngerSaveData (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 serverLevel
+		ARG 2 compound
 	METHOD setLastHurtByMob (Lnet/minecraft/world/entity/LivingEntity;)V
 		COMMENT Hint to AI tasks that we were attacked by the passed EntityLivingBase and should retaliate. Is not guaranteed to change our actual active target (for example if we are currently busy attacking someone else)
-		ARG 1 livingBase
+		ARG 1 livingEntity
+	METHOD setLastHurtByPlayer (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player
 	METHOD setPersistentAngerTarget (Ljava/util/UUID;)V
-		ARG 1 target
+		ARG 1 persistentAngerTarget
 	METHOD setRemainingPersistentAngerTime (I)V
-		ARG 1 time
+		ARG 1 remainingPersistentAngerTime
 	METHOD setTarget (Lnet/minecraft/world/entity/LivingEntity;)V
 		COMMENT Sets the active target the Task system uses for tracking
 		ARG 1 livingEntity
+	METHOD updatePersistentAnger (Lnet/minecraft/server/level/ServerLevel;Z)V
+		ARG 1 serverLevel
+		ARG 2 updateAnger

@@ -1,6 +1,4 @@
 CLASS net/minecraft/world/entity/monster/Blaze
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD getBrightness ()F
 		COMMENT Gets how bright this entity is.
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
@@ -8,8 +6,10 @@ CLASS net/minecraft/world/entity/monster/Blaze
 	METHOD isOnFire ()Z
 		COMMENT Returns true if the entity is on fire. Used by render to add the fire effect on rendering.
 	METHOD setCharged (Z)V
-		ARG 1 onFire
+		ARG 1 charged
 	CLASS BlazeAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Blaze;)V
+			ARG 1 blaze
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD start ()V

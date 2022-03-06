@@ -1,11 +1,36 @@
 CLASS net/minecraft/world/entity/projectile/FishingHook
+	METHOD <init> (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;II)V
+		ARG 1 player
+		ARG 2 level
+		ARG 3 luck
+		ARG 4 lureSpeed
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;DDD)V
+		ARG 1 level
+		ARG 2 player
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;II)V
+		ARG 1 level
+		ARG 2 player
+		ARG 3 luck
+		ARG 4 lureSpeed
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
+	METHOD calculateOpenWater (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
 	METHOD canChangeDimensions ()Z
 		COMMENT Returns false if this Entity can't move between dimensions. True if it can.
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
+	METHOD catchingFish (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD getOpenWaterTypeForArea (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
+		ARG 1 firstPos
+		ARG 2 secondPos
+	METHOD getOpenWaterTypeForBlock (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
+		ARG 1 pos
+	METHOD lambda$getOpenWaterTypeForArea$0 (Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;)Lnet/minecraft/world/entity/projectile/FishingHook$OpenWaterType;
+		ARG 0 firstType
+		ARG 1 secondType
 	METHOD lerpTo (DDDFFIZ)V
 		COMMENT Sets a target for the client to interpolate towards over the next few ticks
 		ARG 1 x
@@ -23,8 +48,12 @@ CLASS net/minecraft/world/entity/projectile/FishingHook
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD retrieve (Lnet/minecraft/world/item/ItemStack;)I
+		ARG 1 stack
 	METHOD shouldRenderAtSqrDistance (D)Z
 		COMMENT Checks if the entity is in range to render.
 		ARG 1 distance
+	METHOD shouldStopFishing (Lnet/minecraft/world/entity/player/Player;)Z
+		ARG 1 player
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.

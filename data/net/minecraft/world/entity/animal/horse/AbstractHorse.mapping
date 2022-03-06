@@ -5,8 +5,6 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		COMMENT The higher this value, the more likely the horse is to be tamed next time a player rides it.
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD calculateFallDamage (FF)I
 		ARG 1 distance
 		ARG 2 damageMultiplier
@@ -22,6 +20,9 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 1 invBasic
 	METHOD doPlayerRide (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
+	METHOD fedFood (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 player
+		ARG 2 stack
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
 		ARG 1 level
 		ARG 2 difficulty
@@ -40,21 +41,29 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		COMMENT For vehicles, the first passenger is generally considered the controller and "drives" the vehicle. For example, Pigs, Horses, and Boats are generally "steered" by the controlling passenger.
 	METHOD getDismountLocationForPassenger (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 livingEntity
+	METHOD getDismountLocationInDirection (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 direction
+		ARG 2 passenger
+	METHOD getEatAnim (F)F
+		ARG 1 partialTick
+	METHOD getFlag (I)Z
+		ARG 1 flagId
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getMaxSpawnClusterSize ()I
 		COMMENT Will return how many at most can spawn in a chunk at once.
+	METHOD getMouthAnim (F)F
+		ARG 1 partialTick
 	METHOD getSoundVolume ()F
 		COMMENT Returns the volume for the sounds this mob makes.
+	METHOD getStandAnim (F)F
+		ARG 1 partialTick
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
 	METHOD handleEating (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 player
 		ARG 2 stack
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD handleStartJump (I)V
 		ARG 1 jumpPower
 	METHOD isArmor (Lnet/minecraft/world/item/ItemStack;)Z
@@ -66,6 +75,10 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		COMMENT Dead and sleeping entities cannot move
 	METHOD isPushable ()Z
 		COMMENT Returns true if this entity should push and be pushed by other entities when colliding.
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
+	METHOD modifyTemper (I)I
+		ARG 1 addedTemper
 	METHOD onClimbable ()Z
 		COMMENT Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or for AI reasons)
 	METHOD onLeashDistance (F)V
@@ -73,7 +86,9 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 	METHOD onPlayerJump (I)V
 		ARG 1 jumpPower
 	METHOD openInventory (Lnet/minecraft/world/entity/player/Player;)V
-		ARG 1 playerEntity
+		ARG 1 player
+	METHOD playGallopSound (Lnet/minecraft/world/level/block/SoundType;)V
+		ARG 1 soundType
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 block
@@ -84,18 +99,27 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 1 compound
 	METHOD setBred (Z)V
 		ARG 1 breeding
+	METHOD setEating (Z)V
+		ARG 1 eating
+	METHOD setFlag (IZ)V
+		ARG 1 flagId
+		ARG 2 value
 	METHOD setIsJumping (Z)V
 		ARG 1 jumping
+	METHOD setOffspringAttributes (Lnet/minecraft/world/entity/AgableMob;Lnet/minecraft/world/entity/animal/horse/AbstractHorse;)V
+		ARG 1 mate
+		ARG 2 offspring
 	METHOD setOwnerUUID (Ljava/util/UUID;)V
-		ARG 1 uniqueId
+		ARG 1 uuid
 	METHOD setStanding (Z)V
-		ARG 1 rearing
+		ARG 1 standing
 	METHOD setTamed (Z)V
 		ARG 1 tamed
 	METHOD setTemper (I)V
 		ARG 1 temper
 	METHOD spawnTamingParticles (Z)V
 		COMMENT Spawns particles for the horse entity. par1 tells whether to spawn hearts. If it is false, it spawns smoke."
+		ARG 1 tamed
 	METHOD tameWithName (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 player
 	METHOD tick ()V

@@ -1,12 +1,17 @@
 CLASS net/minecraft/world/entity/AreaEffectCloud
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDD)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD addEffect (Lnet/minecraft/world/effect/MobEffectInstance;)V
-		ARG 1 effect
+		ARG 1 effectInstance
 	METHOD getDimensions (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/entity/EntityDimensions;
 		ARG 1 pose
 	METHOD isWaiting ()Z
-		COMMENT Returns true if the radius should be ignored, and the effect should be shown in a single point instead of an area
+		COMMENT Returns true if the cloud is waiting. While waiting, the radius is ignored and the cloud shows less particles in its area.
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
@@ -19,7 +24,7 @@ CLASS net/minecraft/world/entity/AreaEffectCloud
 	METHOD setOwner (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 owner
 	METHOD setParticle (Lnet/minecraft/core/particles/ParticleOptions;)V
-		ARG 1 particleData
+		ARG 1 particleOption
 	METHOD setPotion (Lnet/minecraft/world/item/alchemy/Potion;)V
 		ARG 1 potion
 	METHOD setRadius (F)V
@@ -31,7 +36,7 @@ CLASS net/minecraft/world/entity/AreaEffectCloud
 	METHOD setWaitTime (I)V
 		ARG 1 waitTime
 	METHOD setWaiting (Z)V
-		COMMENT Sets if the radius should be ignored, and the effect should be shown in a single point instead of an area
-		ARG 1 ignoreRadius
+		COMMENT Sets if the cloud is waiting. While waiting, the radius is ignored and the cloud shows less particles in its area.
+		ARG 1 waiting
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.

@@ -1,10 +1,9 @@
 CLASS net/minecraft/world/entity/raid/Raider
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD applyRaidBuffs (IZ)V
 		ARG 1 wave
+		ARG 2 unusedFalse
 	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
 		COMMENT Called when the mob's health reaches 0.
 		ARG 1 cause
@@ -18,6 +17,8 @@ CLASS net/minecraft/world/entity/raid/Raider
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/item/ItemEntity;)Z
+		ARG 0 itemEntity
 	METHOD pickUpItem (Lnet/minecraft/world/entity/item/ItemEntity;)V
 		COMMENT Tests if this entity should pickup a weapon or an armor. Entity drops current weapon or armor if the new one is better.
 		ARG 1 itemEntity
@@ -27,16 +28,18 @@ CLASS net/minecraft/world/entity/raid/Raider
 	METHOD removeWhenFarAway (D)Z
 		ARG 1 distanceToClosestPlayer
 	METHOD setCanJoinRaid (Z)V
-		ARG 1 canJoin
+		ARG 1 canJoinRaid
 	METHOD setCelebrating (Z)V
-		ARG 1 celebrate
+		ARG 1 celebrating
 	METHOD setCurrentRaid (Lnet/minecraft/world/entity/raid/Raid;)V
 		ARG 1 raid
 	METHOD setTicksOutsideRaid (I)V
-		ARG 1 delay
+		ARG 1 ticksOutsideRaid
 	METHOD setWave (I)V
 		ARG 1 wave
 	CLASS RaiderCelebration
+		METHOD <init> (Lnet/minecraft/world/entity/raid/Raider;Lnet/minecraft/world/entity/raid/Raider;)V
+			ARG 2 mob
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD start ()V
@@ -46,6 +49,9 @@ CLASS net/minecraft/world/entity/raid/Raider
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS HoldGroundAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/raid/Raider;Lnet/minecraft/world/entity/monster/AbstractIllager;F)V
+			ARG 2 mob
+			ARG 3 hostileRadiusSquare
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD start ()V
@@ -55,17 +61,25 @@ CLASS net/minecraft/world/entity/raid/Raider
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS ObtainRaidLeaderBannerGoal
+		METHOD <init> (Lnet/minecraft/world/entity/raid/Raider;Lnet/minecraft/world/entity/raid/Raider;)V
+			ARG 2 mob
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS RaiderMoveThroughVillageGoal
+		METHOD <init> (Lnet/minecraft/world/entity/raid/Raider;DI)V
+			ARG 1 raider
+			ARG 2 speedModifier
+			ARG 4 distanceToPoi
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD hasNotVisited (Lnet/minecraft/core/BlockPos;)Z
 			ARG 1 pos
+		METHOD lambda$hasSuitablePoi$0 (Lnet/minecraft/world/entity/ai/village/poi/PoiType;)Z
+			ARG 0 poiType
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V
