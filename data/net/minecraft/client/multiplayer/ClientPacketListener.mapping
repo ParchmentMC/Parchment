@@ -11,8 +11,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		COMMENT A mapping from player names to their respective GuiPlayerInfo (specifies the clients response time to the server)
 	FIELD random Ljava/util/Random;
 		COMMENT Just an ordinary random number generator, used to randomize audio pitch of item/orb pickup and randomize both particlespawn offset and velocity
-	FIELD started Z
-		COMMENT True if the client has finished downloading terrain and may spawn. Set upon receipt of S08PacketPlayerPosLook, reset upon respawning
 	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/network/Connection;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/client/ClientTelemetryManager;)V
 		ARG 1 minecraft
 		ARG 2 callbackScreen
@@ -239,23 +237,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 packet
 	METHOD handleUpdateTags (Lnet/minecraft/network/protocol/game/ClientboundUpdateTagsPacket;)V
 		ARG 1 packet
-	METHOD lambda$handleAddOrRemoveRecipes$7 (Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/world/item/crafting/Recipe;)V
-		ARG 2 recipe
-	METHOD lambda$handleAddOrRemoveRecipes$8 (Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)V
-		ARG 1 recipeCollection
-	METHOD lambda$handleBlockEntityData$4 (Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;Lnet/minecraft/world/level/block/entity/BlockEntity;)V
-		ARG 2 blockEntity
-	METHOD lambda$handleChunkBlocksUpdate$1 (ILnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 2 pos
-		ARG 3 state
-	METHOD lambda$handleRemoveEntities$0 (I)V
-		ARG 1 id
-	METHOD lambda$handleResourcePack$9 (Ljava/lang/String;Ljava/lang/String;ZZ)V
-		ARG 4 confirmed
-	METHOD lambda$handleSetEquipment$5 (Lnet/minecraft/world/entity/Entity;Lcom/mojang/datafixers/util/Pair;)V
-		ARG 1 slot
-	METHOD lambda$handleSetPlayerTeamPacket$14 (Lnet/minecraft/world/scores/PlayerTeam;Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket$Parameters;)V
-		ARG 1 parameters
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason

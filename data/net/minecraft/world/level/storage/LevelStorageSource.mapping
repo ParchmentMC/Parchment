@@ -8,9 +8,10 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 	METHOD getDataPacks (Ljava/io/File;Lcom/mojang/datafixers/DataFixer;)Lnet/minecraft/world/level/DataPackConfig;
 		ARG 0 levelDat
 		ARG 1 fixer
-	METHOD getLevelData (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/DataPackConfig;)Ljava/util/function/BiFunction;
-		ARG 0 nbt
-		ARG 1 datapackCodec
+	METHOD getLevelData (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/DataPackConfig;Lcom/mojang/serialization/Lifecycle;)Ljava/util/function/BiFunction;
+		ARG 0 ops
+		ARG 1 datapackConfig
+		ARG 2 lifecycle
 	METHOD isNewLevelIdAcceptable (Ljava/lang/String;)Z
 		ARG 1 saveName
 	METHOD levelExists (Ljava/lang/String;)Z
@@ -29,9 +30,10 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		ARG 1 fixer
 		ARG 2 version
 	CLASS LevelStorageAccess
-		METHOD getDataTag (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/DataPackConfig;)Lnet/minecraft/world/level/storage/WorldData;
-			ARG 1 nbt
-			ARG 2 datapackCodec
+		METHOD getDataTag (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/DataPackConfig;Lcom/mojang/serialization/Lifecycle;)Lnet/minecraft/world/level/storage/WorldData;
+			ARG 1 ops
+			ARG 2 dataPackConfig
+			ARG 3 lifecycle
 		METHOD getDimensionPath (Lnet/minecraft/resources/ResourceKey;)Ljava/nio/file/Path;
 			ARG 1 dimensionPath
 		METHOD getLevelPath (Lnet/minecraft/world/level/storage/LevelResource;)Ljava/nio/file/Path;

@@ -1,5 +1,5 @@
 CLASS net/minecraft/world/level/dimension/DimensionType
-	METHOD <init> (Ljava/util/OptionalLong;ZZZZDZZZZIIILnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;F)V
+	METHOD <init> (Ljava/util/OptionalLong;ZZZZDZZZZIIILnet/minecraft/tags/TagKey;Lnet/minecraft/resources/ResourceLocation;F)V
 		ARG 1 fixedTime
 		ARG 2 hasSkylight
 		ARG 3 hasCeiling
@@ -16,7 +16,7 @@ CLASS net/minecraft/world/level/dimension/DimensionType
 		ARG 15 infiniburn
 		ARG 16 effectsLocation
 		ARG 17 ambientLight
-	METHOD <init> (Ljava/util/OptionalLong;ZZZZDZZZZZIIILnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;F)V
+	METHOD <init> (Ljava/util/OptionalLong;ZZZZDZZZZZIIILnet/minecraft/tags/TagKey;Lnet/minecraft/resources/ResourceLocation;F)V
 		ARG 1 fixedTime
 		ARG 2 hasSkylight
 		ARG 3 hasCeiling
@@ -36,14 +36,14 @@ CLASS net/minecraft/world/level/dimension/DimensionType
 		ARG 18 ambientLight
 	METHOD brightness (I)F
 		ARG 1 light
-	METHOD create (Ljava/util/OptionalLong;ZZZZDZZZZZIIILnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;F)Lnet/minecraft/world/level/dimension/DimensionType;
+	METHOD create (Ljava/util/OptionalLong;ZZZZDZZZZZIIILnet/minecraft/tags/TagKey;Lnet/minecraft/resources/ResourceLocation;F)Lnet/minecraft/world/level/dimension/DimensionType;
 		ARG 0 fixedTime
 		ARG 1 hasSkylight
 		ARG 2 hasCeiling
 		ARG 3 ultraWarm
 		ARG 4 natural
 		ARG 5 coordinateScale
-		ARG 7 createDragonScale
+		ARG 7 createDragonFight
 		ARG 8 piglinSafe
 		ARG 9 bedWorks
 		ARG 10 respawnAnchorWorks
@@ -54,11 +54,9 @@ CLASS net/minecraft/world/level/dimension/DimensionType
 		ARG 15 infiniburn
 		ARG 16 effectsLocation
 		ARG 17 ambientLight
-	METHOD defaultDimensions (Lnet/minecraft/core/RegistryAccess;J)Lnet/minecraft/core/MappedRegistry;
+	METHOD defaultDimensions (Lnet/minecraft/core/RegistryAccess;J)Lnet/minecraft/core/Registry;
 		ARG 0 registryAccess
 		ARG 1 seed
-	METHOD equalTo (Lnet/minecraft/world/level/dimension/DimensionType;)Z
-		ARG 1 type
 	METHOD fillBrightnessRamp (F)[F
 		ARG 0 light
 	METHOD getStorageFolder (Lnet/minecraft/resources/ResourceKey;Ljava/nio/file/Path;)Ljava/nio/file/Path;
@@ -73,7 +71,7 @@ CLASS net/minecraft/world/level/dimension/DimensionType
 		ARG 1 dayTime
 	METHOD parseLegacy (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/DataResult;
 		ARG 0 dynamic
-	METHOD registerBuiltin (Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/core/RegistryAccess;
+	METHOD registerBuiltin (Lnet/minecraft/core/RegistryAccess$Writable;)Lnet/minecraft/core/RegistryAccess$Writable;
 		ARG 0 registryAccess
 	METHOD timeOfDay (J)F
 		ARG 1 dayTime

@@ -3,25 +3,28 @@ CLASS net/minecraft/world/level/StructureFeatureManager
 		ARG 1 level
 		ARG 2 worldGenSettings
 		ARG 3 structureCheck
-	METHOD addReferenceForFeature (Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;JLnet/minecraft/world/level/chunk/FeatureAccess;)V
+	METHOD addReferenceForFeature (Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;JLnet/minecraft/world/level/chunk/FeatureAccess;)V
 		ARG 1 sectionPos
 		ARG 2 structure
 		ARG 3 chunkValue
 		ARG 5 reader
 	METHOD forWorldGenRegion (Lnet/minecraft/server/level/WorldGenRegion;)Lnet/minecraft/world/level/StructureFeatureManager;
 		ARG 1 region
-	METHOD getStartForFeature (Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;Lnet/minecraft/world/level/chunk/FeatureAccess;)Lnet/minecraft/world/level/levelgen/structure/StructureStart;
+	METHOD getStartForFeature (Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;Lnet/minecraft/world/level/chunk/FeatureAccess;)Lnet/minecraft/world/level/levelgen/structure/StructureStart;
 		ARG 1 sectionPos
 		ARG 2 structure
 		ARG 3 reader
-	METHOD getStructureAt (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Lnet/minecraft/world/level/levelgen/structure/StructureStart;
+	METHOD getStructureAt (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;)Lnet/minecraft/world/level/levelgen/structure/StructureStart;
 		ARG 1 pos
 		ARG 2 structure
-	METHOD setStartForFeature (Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;Lnet/minecraft/world/level/levelgen/structure/StructureStart;Lnet/minecraft/world/level/chunk/FeatureAccess;)V
+	METHOD setStartForFeature (Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;Lnet/minecraft/world/level/levelgen/structure/StructureStart;Lnet/minecraft/world/level/chunk/FeatureAccess;)V
 		ARG 1 sectionPos
 		ARG 2 structure
 		ARG 3 start
 		ARG 4 reader
-	METHOD startsForFeature (Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Ljava/util/List;
-		ARG 1 pos
+	METHOD startsForFeature (Lnet/minecraft/core/SectionPos;Ljava/util/function/Predicate;)Ljava/util/List;
+		ARG 1 sectionPos
+		ARG 2 structurePredicate
+	METHOD startsForFeature (Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;)Ljava/util/List;
+		ARG 1 sectionPos
 		ARG 2 structure

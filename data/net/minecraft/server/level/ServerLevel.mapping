@@ -50,13 +50,13 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 10 size
 		ARG 11 causesFire
 		ARG 12 mode
-	METHOD findNearestBiome (Lnet/minecraft/world/level/biome/Biome;Lnet/minecraft/core/BlockPos;II)Lnet/minecraft/core/BlockPos;
-		ARG 1 biome
+	METHOD findNearestBiome (Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;II)Lcom/mojang/datafixers/util/Pair;
+		ARG 1 biomePredicate
 		ARG 2 pos
 		ARG 3 radius
 		ARG 4 increment
-	METHOD findNearestMapFeature (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;Lnet/minecraft/core/BlockPos;IZ)Lnet/minecraft/core/BlockPos;
-		ARG 1 structure
+	METHOD findNearestMapFeature (Lnet/minecraft/tags/TagKey;Lnet/minecraft/core/BlockPos;IZ)Lnet/minecraft/core/BlockPos;
+		ARG 1 structureTag
 		ARG 2 pos
 		ARG 3 radius
 		ARG 4 skipExistingChunks
@@ -77,10 +77,6 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 1 pos
 	METHOD getSeed ()J
 		COMMENT gets the random world seed
-	METHOD getUncachedNoiseBiome (III)Lnet/minecraft/world/level/biome/Biome;
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
 	METHOD globalLevelEvent (ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 id
 		ARG 2 pos

@@ -1,12 +1,14 @@
 CLASS net/minecraft/world/level/chunk/ChunkGenerator
-	METHOD <init> (Lnet/minecraft/world/level/biome/BiomeSource;Lnet/minecraft/world/level/biome/BiomeSource;Lnet/minecraft/world/level/levelgen/StructureSettings;J)V
-		ARG 1 biomeSource
-		ARG 2 runtimeBiomeSource
-		ARG 3 settings
-		ARG 4 strongholdSeed
-	METHOD <init> (Lnet/minecraft/world/level/biome/BiomeSource;Lnet/minecraft/world/level/levelgen/StructureSettings;)V
-		ARG 1 biomeSource
-		ARG 2 settings
+	METHOD <init> (Lnet/minecraft/core/Registry;Ljava/util/Optional;Lnet/minecraft/world/level/biome/BiomeSource;)V
+		ARG 1 structureSets
+		ARG 2 structureOverrides
+		ARG 3 biomeSource
+	METHOD <init> (Lnet/minecraft/core/Registry;Ljava/util/Optional;Lnet/minecraft/world/level/biome/BiomeSource;Lnet/minecraft/world/level/biome/BiomeSource;J)V
+		ARG 1 structureSets
+		ARG 2 structureOverrides
+		ARG 3 biomeSource
+		ARG 4 runtimeBiomeSource
+		ARG 5 ringPlacementSeed
 	METHOD applyBiomeDecoration (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/StructureFeatureManager;)V
 		ARG 1 level
 		ARG 2 chunk
@@ -36,9 +38,9 @@ CLASS net/minecraft/world/level/chunk/ChunkGenerator
 		ARG 1 executor
 		ARG 3 structureFeatureManager
 		ARG 4 chunk
-	METHOD findNearestMapFeature (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;Lnet/minecraft/core/BlockPos;IZ)Lnet/minecraft/core/BlockPos;
+	METHOD findNearestMapFeature (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/HolderSet;Lnet/minecraft/core/BlockPos;IZ)Lcom/mojang/datafixers/util/Pair;
 		ARG 1 level
-		ARG 2 structure
+		ARG 2 structureSet
 		ARG 3 pos
 		ARG 4 searchRadius
 		ARG 5 skipKnownStructures
@@ -61,15 +63,13 @@ CLASS net/minecraft/world/level/chunk/ChunkGenerator
 		ARG 2 z
 		ARG 3 type
 		ARG 4 level
-	METHOD getMobsAt (Lnet/minecraft/world/level/biome/Biome;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/util/random/WeightedRandomList;
+	METHOD getMobsAt (Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/util/random/WeightedRandomList;
 		ARG 1 biome
 		ARG 2 structureFeatureManager
 		ARG 3 category
 		ARG 4 pos
 	METHOD getSpawnHeight (Lnet/minecraft/world/level/LevelHeightAccessor;)I
 		ARG 1 level
-	METHOD hasStronghold (Lnet/minecraft/world/level/ChunkPos;)Z
-		ARG 1 pos
 	METHOD spawnOriginalMobs (Lnet/minecraft/server/level/WorldGenRegion;)V
 		ARG 1 level
 	METHOD withSeed (J)Lnet/minecraft/world/level/chunk/ChunkGenerator;

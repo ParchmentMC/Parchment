@@ -2,15 +2,12 @@ CLASS net/minecraft/client/renderer/block/LiquidBlockRenderer
 	METHOD getLightColor (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
 		ARG 1 level
 		ARG 2 pos
-	METHOD getWaterHeight (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/Fluid;)F
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 fluid
-	METHOD isFaceOccludedByNeighbor (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;F)Z
+	METHOD isFaceOccludedByNeighbor (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;FLnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 level
 		ARG 1 pos
-		ARG 2 face
+		ARG 2 side
 		ARG 3 height
+		ARG 4 blockState
 	METHOD isFaceOccludedBySelf (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
 		ARG 0 level
 		ARG 1 pos
@@ -22,22 +19,22 @@ CLASS net/minecraft/client/renderer/block/LiquidBlockRenderer
 		ARG 2 height
 		ARG 3 pos
 		ARG 4 state
-	METHOD isNeighborSameFluid (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/material/FluidState;)Z
-		ARG 0 level
-		ARG 1 pos
-		ARG 2 side
-		ARG 3 state
-	METHOD shouldRenderFace (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
-		ARG 0 level
+	METHOD isNeighborSameFluid (Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/world/level/material/FluidState;)Z
+		ARG 0 firstState
+		ARG 1 secondState
+	METHOD shouldRenderFace (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/material/FluidState;)Z
+		ARG 0 levle
 		ARG 1 pos
 		ARG 2 fluidState
 		ARG 3 blockState
-		ARG 4 face
-	METHOD tesselate (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/level/material/FluidState;)Z
+		ARG 4 side
+		ARG 5 neighborFluid
+	METHOD tesselate (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/FluidState;)Z
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 consumer
-		ARG 4 fluidState
+		ARG 4 blockState
+		ARG 5 fluidState
 	METHOD vertex (Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDFFFFFI)V
 		ARG 1 consumer
 		ARG 2 x

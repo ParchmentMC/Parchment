@@ -3,28 +3,27 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 		COMMENT The parent GUI
 	METHOD <init> (Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen;)V
 		ARG 1 parent
-	METHOD fromString (Lnet/minecraft/core/Registry;Ljava/lang/String;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
-		ARG 0 registry
-		ARG 1 settings
-		ARG 2 levelGeneratorSettings
+	METHOD fromString (Lnet/minecraft/core/Registry;Lnet/minecraft/core/Registry;Ljava/lang/String;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
+		ARG 0 biomeRegistry
+		ARG 1 structureSetRegistry
+		ARG 2 settings
+		ARG 3 layerGenerationSettings
 	METHOD getLayerInfoFromString (Ljava/lang/String;I)Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;
 		ARG 0 layerInfo
 		ARG 1 currentHeight
 	METHOD getLayersInfoFromString (Ljava/lang/String;)Ljava/util/List;
 		ARG 0 layerInfo
-	METHOD lambda$init$2 (Lnet/minecraft/core/Registry;Lnet/minecraft/client/gui/components/Button;)V
-		ARG 2 button
 	METHOD lambda$init$3 (Lnet/minecraft/client/gui/components/Button;)V
 		ARG 1 button
 	METHOD mouseScrolled (DDD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
 		ARG 5 delta
-	METHOD preset (Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/resources/ResourceKey;Ljava/util/List;ZZZ[Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;)V
+	METHOD preset (Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/resources/ResourceKey;Ljava/util/Set;ZZ[Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;)V
 		ARG 0 name
 		ARG 1 icon
+		ARG 2 biome
 		ARG 3 structures
-		ARG 4 withStronghold
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 poseStack
 		ARG 2 mouseX
@@ -34,9 +33,8 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 		ARG 1 minecraft
 		ARG 2 width
 		ARG 3 height
-	METHOD save (Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Ljava/lang/String;
-		ARG 0 registry
-		ARG 1 levelGeneratorSettings
+	METHOD save (Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Ljava/lang/String;
+		ARG 0 levelGeneratorSettings
 	CLASS PresetInfo
 		METHOD <init> (Lnet/minecraft/world/item/Item;Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;)V
 			ARG 1 icon

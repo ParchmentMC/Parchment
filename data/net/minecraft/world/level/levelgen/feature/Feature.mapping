@@ -7,8 +7,6 @@ CLASS net/minecraft/world/level/levelgen/feature/Feature
 			COMMENT An accessor for the adjacent blocks. Essentially {@code level::getBlockState}.
 		ARG 1 pos
 		ARG 2 filter
-	METHOD configured (Lnet/minecraft/world/level/levelgen/feature/configurations/FeatureConfiguration;)Lnet/minecraft/world/level/levelgen/feature/ConfiguredFeature;
-		ARG 1 config
 	METHOD isAdjacentToAir (Ljava/util/function/Function;Lnet/minecraft/core/BlockPos;)Z
 		COMMENT @return {@code true} if any of the six adjacent blocks to the block at {@code pos} are air.
 		ARG 0 adjacentStateAccessor
@@ -22,18 +20,12 @@ CLASS net/minecraft/world/level/levelgen/feature/Feature
 	METHOD isGrassOrDirt (Lnet/minecraft/world/level/LevelSimulatedReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 level
 		ARG 1 pos
-	METHOD isReplaceable (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/function/Predicate;
+	METHOD isReplaceable (Lnet/minecraft/tags/TagKey;)Ljava/util/function/Predicate;
 		ARG 0 blockTag
 	METHOD isStone (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
-	METHOD lambda$isReplaceable$2 (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 0 state
-	METHOD lambda$isReplaceable$3 (Lnet/minecraft/tags/Tag;Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 1 state
 	METHOD lambda$new$0 (Lnet/minecraft/world/level/levelgen/feature/configurations/FeatureConfiguration;)Lnet/minecraft/world/level/levelgen/feature/ConfiguredFeature;
 		ARG 1 config
-	METHOD lambda$new$1 (Lnet/minecraft/world/level/levelgen/feature/ConfiguredFeature;)Lnet/minecraft/world/level/levelgen/feature/configurations/FeatureConfiguration;
-		ARG 0 configuredFeature
 	METHOD markAboveForPostProcessing (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/core/BlockPos;)V
 		COMMENT If the above two blocks are not air, marks them for post processing.
 		COMMENT This is used to prevent floating grass during the generation of features that carve blocks out of the terrain, after other plant-like blocks have generated (such as lake features).

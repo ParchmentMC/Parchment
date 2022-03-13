@@ -4,24 +4,17 @@ CLASS net/minecraft/commands/arguments/item/ItemParser
 	METHOD <init> (Lcom/mojang/brigadier/StringReader;Z)V
 		ARG 1 reader
 		ARG 2 forTesting
-	METHOD fillSuggestions (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
-		COMMENT Create a list of suggestions for the specified builder.
+	METHOD fillSuggestions (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/core/Registry;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
-		ARG 2 tags
+		ARG 2 itemRegistry
 	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
 		ARG 0 itemId
-	METHOD lambda$static$1 (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
-		ARG 0 builder
-		ARG 1 tags
-	METHOD suggestItemIdOrTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
-		COMMENT Builds a list of suggestions based on item tags (if the parser is set to allows tags) and item registry names.
+	METHOD suggestItemIdOrTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/core/Registry;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
-		ARG 2 tags
-	METHOD suggestOpenNbt (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
-		COMMENT Builds a list of suggestions based on item registry names.
+		ARG 2 itemRegistry
+	METHOD suggestOpenNbt (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/core/Registry;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
-		ARG 2 tags
-	METHOD suggestTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/tags/TagCollection;)Ljava/util/concurrent/CompletableFuture;
-		COMMENT Builds a list of suggestions based on item tags.
+		ARG 2 itemRegistry
+	METHOD suggestTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/core/Registry;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
-		ARG 2 tags
+		ARG 2 itemRegistry

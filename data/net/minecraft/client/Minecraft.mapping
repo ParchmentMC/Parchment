@@ -37,7 +37,7 @@ CLASS net/minecraft/client/Minecraft
 		ARG 4 packMetadataSection
 		ARG 5 defaultPosition
 		ARG 6 packSource
-	METHOD createLevel (Ljava/lang/String;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/world/level/levelgen/WorldGenSettings;)V
+	METHOD createLevel (Ljava/lang/String;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/WorldGenSettings;)V
 		ARG 1 levelName
 		ARG 2 levelSettings
 		ARG 3 dynamicRegistries
@@ -56,13 +56,11 @@ CLASS net/minecraft/client/Minecraft
 		ARG 2 levelName
 		ARG 3 customized
 		ARG 4 runnable
-	METHOD doLoadLevel (Ljava/lang/String;Lnet/minecraft/core/RegistryAccess$RegistryHolder;Ljava/util/function/Function;Lcom/mojang/datafixers/util/Function4;ZLnet/minecraft/client/Minecraft$ExperimentalDialogType;)V
+	METHOD doLoadLevel (Ljava/lang/String;Ljava/util/function/Function;Ljava/util/function/Function;ZLnet/minecraft/client/Minecraft$ExperimentalDialogType;)V
 		ARG 1 levelName
-		ARG 2 dynamicRegistries
-		ARG 3 levelSaveToDatapackFunction
-		ARG 4 quadFunction
-		ARG 5 vanillaOnly
-		ARG 6 selectionType
+		ARG 2 levelSaveToDatapackFunction
+		ARG 4 vanillaOnly
+		ARG 5 selectionType
 	METHOD emergencySave ()V
 		COMMENT Attempts to free as much memory as possible, including leaving the world and running the garbage collector.
 	METHOD fillReport (Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReport;
@@ -123,23 +121,8 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT Return true if the player is connected to a realms server
 	METHOD isDemo ()Z
 		COMMENT Gets whether this is a demo or not.
-	METHOD lambda$grabHugeScreenshot$51 (Ljava/io/File;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-		ARG 1 style
-	METHOD loadDataPacks (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;)Lnet/minecraft/world/level/DataPackConfig;
-		ARG 0 levelStorage
 	METHOD loadLevel (Ljava/lang/String;)V
 		ARG 1 levelName
-	METHOD loadWorldData (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/core/RegistryAccess$RegistryHolder;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/world/level/DataPackConfig;)Lnet/minecraft/world/level/storage/WorldData;
-		ARG 0 levelStorage
-		ARG 1 dynamicRegistries
-		ARG 2 resourceManager
-		ARG 3 datapackCodec
-	METHOD makeServerStem (Lnet/minecraft/core/RegistryAccess$RegistryHolder;Ljava/util/function/Function;Lcom/mojang/datafixers/util/Function4;ZLnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;)Lnet/minecraft/client/Minecraft$ServerStem;
-		ARG 1 dynamicRegistries
-		ARG 2 levelStorageToDatapackFunction
-		ARG 3 quadFunction
-		ARG 4 vanillaOnly
-		ARG 5 levelStorage
 	METHOD onFullscreenError (IJ)V
 		ARG 1 error
 		ARG 2 description
@@ -201,8 +184,3 @@ CLASS net/minecraft/client/Minecraft
 	CLASS ChatStatus
 		METHOD <init> (Ljava/lang/String;ILnet/minecraft/network/chat/Component;)V
 			ARG 3 message
-	CLASS ServerStem
-		METHOD <init> (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/ServerResources;Lnet/minecraft/world/level/storage/WorldData;)V
-			ARG 1 packRepository
-			ARG 2 serverResources
-			ARG 3 worldData

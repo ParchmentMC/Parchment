@@ -1,20 +1,9 @@
 CLASS net/minecraft/tags/TagManager
 	METHOD <init> (Lnet/minecraft/core/RegistryAccess;)V
 		ARG 1 registryAccess
-	METHOD createLoader (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;Lnet/minecraft/tags/StaticTagHelper;)Lnet/minecraft/tags/TagManager$LoaderInfo;
+	METHOD createLoader (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;Lnet/minecraft/core/RegistryAccess$RegistryEntry;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 resourceManager
 		ARG 2 backgroundExecutor
-		ARG 3 helper
-	METHOD lambda$reload$0 (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;Ljava/util/List;Lnet/minecraft/tags/StaticTagHelper;)V
-		ARG 4 helper
-	METHOD lambda$reload$1 (Lnet/minecraft/tags/TagManager$LoaderInfo;)Ljava/util/concurrent/CompletableFuture;
-		ARG 0 loaderInfo
-	METHOD lambda$reload$3 (Lnet/minecraft/tags/TagContainer$Builder;Lnet/minecraft/tags/TagManager$LoaderInfo;)V
-		ARG 1 loaderInfo
-	METHOD lambda$reload$4 (Ljava/util/Map$Entry;)Ljava/lang/String;
-		ARG 0 missingTag
-	METHOD lambda$reload$5 (Ljava/util/List;Ljava/lang/Void;)V
-		ARG 2 v
 	METHOD reload (Lnet/minecraft/server/packs/resources/PreparableReloadListener$PreparationBarrier;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;Lnet/minecraft/util/profiling/ProfilerFiller;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 stage
 		ARG 2 resourceManager
@@ -22,9 +11,3 @@ CLASS net/minecraft/tags/TagManager
 		ARG 4 reloadProfiler
 		ARG 5 backgroundExecutor
 		ARG 6 gameExecutor
-	CLASS LoaderInfo
-		METHOD <init> (Lnet/minecraft/tags/StaticTagHelper;Ljava/util/concurrent/CompletableFuture;)V
-			ARG 1 helper
-			ARG 2 pendingLoad
-		METHOD addToBuilder (Lnet/minecraft/tags/TagContainer$Builder;)V
-			ARG 1 builder
