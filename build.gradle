@@ -99,7 +99,7 @@ tasks.register('enigma', EnigmaExec) {
     mappings = project.compass.productionData
 }
 
-tasks.withType(GenerateExport) {
+tasks.withType(GenerateExport).configureEach {
     // Disable blackstone if UPDATING is set.
     // This will ensure cascaded method data does not get mixed into the production data when updating.
     useBlackstone = !Boolean.valueOf(project.findProperty('UPDATING')?.toString())
