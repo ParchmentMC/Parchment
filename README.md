@@ -12,10 +12,13 @@ Parchment Mappings
 [![Latest bleeding version badge](https://img.shields.io/maven-metadata/v?color=red&label=bleeding&metadataUrl=https%3A%2F%2Fldtteam.jfrog.io%2Fartifactory%2Fparchmentmc-bleeding%2Forg%2Fparchmentmc%2Fdata%2Fparchment-1.18.2%2Fmaven-metadata.xml)](#)
 [![CI bleeding build status](https://buildsystem.ldtteam.com/app/rest/builds/buildType:(id:ParchmentMC_Mappings_Bleeding),branch:1.18.x/statusIcon)](#)
 
-This repository contains all the mappings and data related to making the parchment mappings.
+Welcome to the Parchment mappings repository!
 
-> This is a relatively new project, and we need all the help we can get. Please excuse the lack of documentation in 
-> certain areas, they will be filled in and improved over time. Thank you!
+Parchment is an open community-sourced modloader-neutral set of mappings of parameter names and javadocs, to augment
+the official names released by Mojang. This repository contains the files which make up the Parchment mapping set, with
+the build tool to manage the mappings and generate exports for publishing.
+
+### Want to use Parchment in your workspace? See the [Getting Started](https://github.com/ParchmentMC/Parchment/wiki/Getting-Started) page in the repository wiki.
 
 ## Contributing
 See the [`docs/CONTRIBUTING.md` file](docs/CONTRIBUTING.md) for information on contributing. Also look at the 
