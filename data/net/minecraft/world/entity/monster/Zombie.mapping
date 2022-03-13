@@ -24,6 +24,8 @@ CLASS net/minecraft/world/entity/monster/Zombie
 		ARG 1 damageSource
 	METHOD getMyRidingOffset ()D
 		COMMENT Returns the Y Offset of this entity.
+	METHOD getSpawnAsBabyOdds (Ljava/util/Random;)Z
+		ARG 0 rand
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
@@ -57,7 +59,15 @@ CLASS net/minecraft/world/entity/monster/Zombie
 		ARG 1 enabled
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
+	CLASS ZombieGroupData
+		METHOD <init> (ZZ)V
+			ARG 1 isBaby
+			ARG 2 canSpawnJockey
 	CLASS ZombieAttackTurtleEggGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Zombie;Lnet/minecraft/world/entity/PathfinderMob;DI)V
+			ARG 2 mob
+			ARG 3 speedModifier
+			ARG 5 searchRange
 		METHOD playBreakSound (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 			ARG 1 level
 			ARG 2 pos

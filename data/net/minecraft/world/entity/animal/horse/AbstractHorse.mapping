@@ -20,6 +20,9 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 	METHOD containerChanged (Lnet/minecraft/world/Container;)V
 		COMMENT Called by InventoryBasic.onInventoryChanged() on a array that is never filled.
 		ARG 1 invBasic
+	METHOD createEquipmentSlotAccess (ILjava/util/function/Predicate;)Lnet/minecraft/world/entity/SlotAccess;
+		ARG 1 slot
+		ARG 2 accessPredicate
 	METHOD doPlayerRide (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
@@ -40,12 +43,21 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		COMMENT For vehicles, the first passenger is generally considered the controller and "drives" the vehicle. For example, Pigs, Horses, and Boats are generally "steered" by the controlling passenger.
 	METHOD getDismountLocationForPassenger (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 livingEntity
+	METHOD getDismountLocationInDirection (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 pos
+		ARG 2 entity
+	METHOD getEatAnim (F)F
+		ARG 1 partial
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getMaxSpawnClusterSize ()I
 		COMMENT Will return how many at most can spawn in a chunk at once.
+	METHOD getMouthAnim (F)F
+		ARG 1 partial
 	METHOD getSoundVolume ()F
 		COMMENT Returns the volume for the sounds this mob makes.
+	METHOD getStandAnim (F)F
+		ARG 1 partial
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
@@ -57,6 +69,8 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 1 id
 	METHOD handleStartJump (I)V
 		ARG 1 jumpPower
+	METHOD hasInventoryChanged (Lnet/minecraft/world/Container;)Z
+		ARG 1 inventory
 	METHOD isArmor (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
@@ -66,6 +80,10 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		COMMENT Dead and sleeping entities cannot move
 	METHOD isPushable ()Z
 		COMMENT Returns true if this entity should push and be pushed by other entities when colliding.
+	METHOD lambda$getSlot$1 (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 stack
+	METHOD lambda$getSlot$2 (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
 	METHOD onClimbable ()Z
 		COMMENT Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or for AI reasons)
 	METHOD onLeashDistance (F)V
@@ -86,6 +104,9 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 1 breeding
 	METHOD setIsJumping (Z)V
 		ARG 1 jumping
+	METHOD setOffspringAttributes (Lnet/minecraft/world/entity/AgeableMob;Lnet/minecraft/world/entity/animal/horse/AbstractHorse;)V
+		ARG 1 parent
+		ARG 2 child
 	METHOD setOwnerUUID (Ljava/util/UUID;)V
 		ARG 1 uniqueId
 	METHOD setStanding (Z)V
@@ -96,6 +117,7 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 1 temper
 	METHOD spawnTamingParticles (Z)V
 		COMMENT Spawns particles for the horse entity. par1 tells whether to spawn hearts. If it is false, it spawns smoke."
+		ARG 1 success
 	METHOD tameWithName (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 player
 	METHOD tick ()V

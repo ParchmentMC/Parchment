@@ -76,6 +76,10 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 collisionBox
 		ARG 3 level
 		ARG 4 potentialHits
+	METHOD collideWithShapes (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;Ljava/util/List;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 deltaMovement
+		ARG 1 entityBB
+		ARG 2 shapes
 	METHOD copyPosition (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Sets this entity's location and angles to the location and angles of the passed in entity.
 		ARG 1 entity
@@ -170,6 +174,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 partialTicks
 	METHOD getFluidHeight (Lnet/minecraft/tags/TagKey;)D
 		ARG 1 fluidTag
+	METHOD getHandHoldingItemAngle (Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 item
 	METHOD getInputVector (Lnet/minecraft/world/phys/Vec3;FF)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 relative
 		ARG 1 motionScaler
@@ -281,6 +287,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD isFree (Lnet/minecraft/world/phys/AABB;)Z
 		COMMENT Determines if a liquid is present within the specified AxisAlignedBB.
 		ARG 1 bb
+	METHOD isHorizontalCollisionMinor (Lnet/minecraft/world/phys/Vec3;)Z
+		ARG 1 deltaMovement
 	METHOD isIgnoringBlockTriggers ()Z
 		COMMENT Return whether this entity should NOT trigger a pressure plate or a tripwire.
 	METHOD isInWall ()Z
@@ -318,8 +326,30 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD killed (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 level
 		ARG 2 killedEntity
+	METHOD lambda$findDimensionEntryPoint$5 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
+		ARG 2 pos
+	METHOD lambda$findDimensionEntryPoint$6 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/level/portal/PortalInfo;
+		ARG 2 area
+	METHOD lambda$getDisplayName$11 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 style
+	METHOD lambda$hasExactlyOnePlayerPassenger$15 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 passenger
+	METHOD lambda$hasIndirectPassenger$16 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 passenger
+	METHOD lambda$isInWall$1 (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/core/BlockPos;)Z
+		ARG 2 pos
 	METHOD lambda$move$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 loadedState
+	METHOD lambda$refreshDimensions$13 (Lnet/minecraft/world/entity/EntityDimensions;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 2 freePos
+	METHOD lambda$removePassenger$4 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 passenger
+	METHOD lambda$startRiding$2 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 passenger
+	METHOD lambda$startRiding$3 (Lnet/minecraft/world/entity/Entity;)V
+		ARG 0 player
+	METHOD lambda$teleportTo$12 (Lnet/minecraft/world/entity/Entity;)V
+		ARG 0 passenger
 	METHOD lavaHurt ()V
 		COMMENT Called whenever the entity is walking inside of lava.
 	METHOD lerpHeadTo (FI)V
