@@ -25,6 +25,9 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 2 accessPredicate
 	METHOD doPlayerRide (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
+	METHOD fedFood (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 player
+		ARG 2 stack
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
 		ARG 1 level
 		ARG 2 difficulty
@@ -48,6 +51,8 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 2 entity
 	METHOD getEatAnim (F)F
 		ARG 1 partial
+	METHOD getFlag (I)Z
+		ARG 1 flag
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getMaxSpawnClusterSize ()I
@@ -84,6 +89,10 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 0 stack
 	METHOD lambda$getSlot$2 (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
+	METHOD modifyTemper (I)I
+		ARG 1 temper
 	METHOD onClimbable ()Z
 		COMMENT Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or for AI reasons)
 	METHOD onLeashDistance (F)V
@@ -92,6 +101,8 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 1 jumpPower
 	METHOD openInventory (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 playerEntity
+	METHOD playGallopSound (Lnet/minecraft/world/level/block/SoundType;)V
+		ARG 1 soundType
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 block
@@ -102,6 +113,11 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 1 compound
 	METHOD setBred (Z)V
 		ARG 1 breeding
+	METHOD setEating (Z)V
+		ARG 1 eating
+	METHOD setFlag (IZ)V
+		ARG 1 flag
+		ARG 2 data
 	METHOD setIsJumping (Z)V
 		ARG 1 jumping
 	METHOD setOffspringAttributes (Lnet/minecraft/world/entity/AgeableMob;Lnet/minecraft/world/entity/animal/horse/AbstractHorse;)V

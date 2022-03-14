@@ -21,6 +21,8 @@ CLASS net/minecraft/world/entity/animal/Bee
 		ARG 1 flagId
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
+	METHOD getRollAmount (F)F
+		ARG 1 delta
 	METHOD getSoundVolume ()F
 		COMMENT Returns the volume for the sounds this mob makes.
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
@@ -50,14 +52,27 @@ CLASS net/minecraft/world/entity/animal/Bee
 		ARG 1 compound
 	METHOD setFlag (IZ)V
 		ARG 1 flagId
+		ARG 2 data
+	METHOD setHasNectar (Z)V
+		ARG 1 hasNectar
+	METHOD setHasStung (Z)V
+		ARG 1 hasStung
 	METHOD setPersistentAngerTarget (Ljava/util/UUID;)V
 		ARG 1 target
 	METHOD setRemainingPersistentAngerTime (I)V
 		ARG 1 time
+	METHOD setRolling (Z)V
+		ARG 1 rolling
 	METHOD setSavedFlowerPos (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
+	METHOD setStayOutOfHiveCountdown (I)V
+		ARG 1 stayOutOfHiveCountdown
 	METHOD spawnFluidParticle (Lnet/minecraft/world/level/Level;DDDDDLnet/minecraft/core/particles/ParticleOptions;)V
 		ARG 1 level
+		ARG 2 x1
+		ARG 4 x2
+		ARG 6 z1
+		ARG 8 z2
 		ARG 10 posY
 		ARG 12 particleData
 	METHOD tick ()V
@@ -71,6 +86,10 @@ CLASS net/minecraft/world/entity/animal/Bee
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS BeeAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Bee;Lnet/minecraft/world/entity/PathfinderMob;DZ)V
+			ARG 2 pathfinder
+			ARG 3 speedModifier
+			ARG 5 followingTargetEvenIfNotSeen
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
@@ -83,6 +102,8 @@ CLASS net/minecraft/world/entity/animal/Bee
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 	CLASS BeeLookControl
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Bee;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
 		METHOD tick ()V
 			COMMENT Updates look
 	CLASS BeeGoToHiveGoal
@@ -108,7 +129,10 @@ CLASS net/minecraft/world/entity/animal/Bee
 			COMMENT Execute a one shot task or start executing a continuous task
 	CLASS BeePollinateGoal
 		METHOD findNearestBlock (Ljava/util/function/Predicate;D)Ljava/util/Optional;
+			ARG 1 statePredicate
 			ARG 2 distance
+		METHOD lambda$new$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
+			ARG 0 state
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V
@@ -116,9 +140,15 @@ CLASS net/minecraft/world/entity/animal/Bee
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS BeeLocateHiveGoal
+		METHOD lambda$findNearbyHivesWithSpace$0 (Lnet/minecraft/world/entity/ai/village/poi/PoiType;)Z
+			ARG 0 poi
+		METHOD lambda$findNearbyHivesWithSpace$1 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)D
+			ARG 1 pos
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 	CLASS BeeHurtByOtherGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Bee;Lnet/minecraft/world/entity/animal/Bee;)V
+			ARG 2 bee
 		METHOD alertOther (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/entity/LivingEntity;)V
 			ARG 1 mob
 			ARG 2 target
@@ -132,6 +162,8 @@ CLASS net/minecraft/world/entity/animal/Bee
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS BeeBecomeAngryTargetGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Bee;)V
+			ARG 1 bee
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z

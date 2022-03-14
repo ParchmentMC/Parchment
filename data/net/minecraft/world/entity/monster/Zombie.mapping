@@ -1,10 +1,14 @@
 CLASS net/minecraft/world/entity/monster/Zombie
+	METHOD <init> (Lnet/minecraft/world/level/Level;)V
+		ARG 1 level
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD aiStep ()V
 		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD canHoldItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
+	METHOD convertToZombieType (Lnet/minecraft/world/entity/EntityType;)V
+		ARG 1 entityType
 	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD dropCustomDeathLoot (Lnet/minecraft/world/damagesource/DamageSource;IZ)V
@@ -40,6 +44,8 @@ CLASS net/minecraft/world/entity/monster/Zombie
 	METHOD killed (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 level
 		ARG 2 killedEntity
+	METHOD lambda$static$0 (Lnet/minecraft/world/Difficulty;)Z
+		ARG 0 difficulty
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
@@ -57,6 +63,8 @@ CLASS net/minecraft/world/entity/monster/Zombie
 	METHOD setCanBreakDoors (Z)V
 		COMMENT Sets or removes EntityAIBreakDoor task
 		ARG 1 enabled
+	METHOD startUnderWaterConversion (I)V
+		ARG 1 conversionTime
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
 	CLASS ZombieGroupData

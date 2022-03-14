@@ -16,6 +16,10 @@ CLASS net/minecraft/world/entity/monster/EnderMan
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
+	METHOD hurtWithCleanWater (Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/entity/projectile/ThrownPotion;F)Z
+		ARG 1 source
+		ARG 2 potion
+		ARG 3 amount
 	METHOD isLookingAtMe (Lnet/minecraft/world/entity/player/Player;)Z
 		COMMENT Checks to see if this enderman should be attacking this player
 		ARG 1 player
@@ -42,12 +46,24 @@ CLASS net/minecraft/world/entity/monster/EnderMan
 		ARG 5 z
 	METHOD teleportTowards (Lnet/minecraft/world/entity/Entity;)Z
 		COMMENT Teleport the enderman to another entity
+		ARG 1 entity
 	CLASS EndermanTakeBlockGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/EnderMan;)V
+			ARG 1 enderman
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS EndermanLeaveBlockGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/EnderMan;)V
+			ARG 1 enderman
+		METHOD canPlaceBlock (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
+			ARG 1 level
+			ARG 2 pos
+			ARG 3 stateToPlace
+			ARG 4 stateWherePlacing
+			ARG 5 stateToPlaceOn
+			ARG 6 placingOnPos
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD tick ()V
@@ -55,10 +71,15 @@ CLASS net/minecraft/world/entity/monster/EnderMan
 	CLASS EndermanLookForPlayerGoal
 		FIELD pendingTarget Lnet/minecraft/world/entity/player/Player;
 			COMMENT The player
+		METHOD <init> (Lnet/minecraft/world/entity/monster/EnderMan;Ljava/util/function/Predicate;)V
+			ARG 1 enderman
+			ARG 2 targetPredicate
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD lambda$new$0 (Lnet/minecraft/world/entity/monster/EnderMan;Lnet/minecraft/world/entity/LivingEntity;)Z
+			ARG 1 entity
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V
@@ -66,6 +87,8 @@ CLASS net/minecraft/world/entity/monster/EnderMan
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS EndermanFreezeWhenLookedAt
+		METHOD <init> (Lnet/minecraft/world/entity/monster/EnderMan;)V
+			ARG 1 enderman
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD start ()V

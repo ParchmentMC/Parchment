@@ -1,10 +1,28 @@
 CLASS net/minecraft/world/entity/monster/Shulker
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
+	METHOD canStayAt (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 1 pos
+		ARG 2 direction
+	METHOD findAttachableSurface (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/Direction;
+		ARG 1 pos
+	METHOD getClientPeekAmount (F)F
+		ARG 1 delta
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getMaxHeadXRot ()I
 		COMMENT The speed it takes to move the entityliving's rotationPitch through the faceEntity method. This is only currently use in wolves.
+	METHOD getPhysicalPeek (F)F
+		ARG 0 peek
+	METHOD getProgressAabb (Lnet/minecraft/core/Direction;F)Lnet/minecraft/world/phys/AABB;
+		ARG 0 direction
+		ARG 1 delta
+	METHOD getProgressDeltaAabb (Lnet/minecraft/core/Direction;FF)Lnet/minecraft/world/phys/AABB;
+		ARG 0 direction
+		ARG 1 delta
+		ARG 2 deltaO
+	METHOD getRenderPosition (F)Ljava/util/Optional;
+		ARG 1 partial
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
@@ -12,6 +30,8 @@ CLASS net/minecraft/world/entity/monster/Shulker
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
+	METHOD isPositionBlocked (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
 	METHOD lerpTo (DDDFFIZ)V
 		COMMENT Sets a target for the client to interpolate towards over the next few ticks
 		ARG 1 x
@@ -34,6 +54,10 @@ CLASS net/minecraft/world/entity/monster/Shulker
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD setAttachFace (Lnet/minecraft/core/Direction;)V
+		ARG 1 direction
+	METHOD setColor (Lnet/minecraft/world/item/DyeColor;)V
+		ARG 1 dyeColor
 	METHOD setPos (DDD)V
 		COMMENT Sets the x,y,z of the entity from the given parameters. Also seems to set up a bounding box.
 		ARG 1 x
@@ -41,6 +65,7 @@ CLASS net/minecraft/world/entity/monster/Shulker
 		ARG 5 z
 	METHOD setRawPeekAmount (I)V
 		COMMENT Applies or removes armor modifier
+		ARG 1 peekId
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
 	CLASS ShulkerPeekGoal
@@ -63,12 +88,21 @@ CLASS net/minecraft/world/entity/monster/Shulker
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
+	CLASS ShulkerLookControl
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
 	CLASS ShulkerDefenseAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;)V
+			ARG 1 shulker
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;
 			ARG 1 targetDistance
+		METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+			ARG 0 entity
 	CLASS ShulkerNearestAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/monster/Shulker;)V
+			ARG 2 shulker
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;

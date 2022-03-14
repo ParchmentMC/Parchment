@@ -3,6 +3,9 @@ CLASS net/minecraft/world/entity/ai/navigation/PathNavigation
 		COMMENT Whether the path can be changed by {@link net.minecraft.pathfinding.PathNavigate#onUpdateNavigation() onUpdateNavigation()}
 	FIELD reachRange I
 		COMMENT Distance in which a path point counts as target-reaching
+	METHOD <init> (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/Level;)V
+		ARG 1 mob
+		ARG 2 level
 	METHOD canMoveDirectly (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)Z
 		ARG 1 posVec31
 		ARG 2 posVec32
@@ -23,6 +26,12 @@ CLASS net/minecraft/world/entity/ai/navigation/PathNavigation
 		ARG 2 regionOffset
 		ARG 3 offsetUpward
 		ARG 4 accuracy
+	METHOD createPath (Ljava/util/Set;IZIF)Lnet/minecraft/world/level/pathfinder/Path;
+		ARG 1 targets
+		ARG 2 regionOffset
+		ARG 3 offsetUpward
+		ARG 4 accuracy
+		ARG 5 followRange
 	METHOD createPath (Ljava/util/stream/Stream;I)Lnet/minecraft/world/level/pathfinder/Path;
 		COMMENT Returns a path to one of the elements of the stream or null
 		ARG 1 targets
@@ -31,12 +40,21 @@ CLASS net/minecraft/world/entity/ai/navigation/PathNavigation
 		COMMENT Returns path to given BlockPos
 		ARG 1 pos
 		ARG 2 accuracy
+	METHOD createPath (Lnet/minecraft/core/BlockPos;II)Lnet/minecraft/world/level/pathfinder/Path;
+		ARG 1 pos
+		ARG 2 regionOffset
+		ARG 3 accuracy
 	METHOD createPath (Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/world/level/pathfinder/Path;
 		COMMENT Returns a path to the given entity or null
 		ARG 1 entity
+		ARG 2 accuracy
+	METHOD createPathFinder (I)Lnet/minecraft/world/level/pathfinder/PathFinder;
+		ARG 1 maxVisitedNodes
 	METHOD doStuckDetection (Lnet/minecraft/world/phys/Vec3;)V
 		COMMENT Checks if entity haven't been moved when last checked and if so, clears current {@link net.minecraft.pathfinding.PathEntity}
 		ARG 1 positionVec3
+	METHOD getGroundY (Lnet/minecraft/world/phys/Vec3;)D
+		ARG 1 vec
 	METHOD getPath ()Lnet/minecraft/world/level/pathfinder/Path;
 		COMMENT gets the actively used PathEntity
 	METHOD isDone ()Z
@@ -66,6 +84,10 @@ CLASS net/minecraft/world/entity/ai/navigation/PathNavigation
 	METHOD setSpeedModifier (D)V
 		COMMENT Sets the speed
 		ARG 1 speed
+	METHOD shouldRecomputePath (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD shouldTargetNextNodeInDirection (Lnet/minecraft/world/phys/Vec3;)Z
+		ARG 1 vec
 	METHOD stop ()V
 		COMMENT sets active PathEntity to null
 	METHOD trimPath ()V

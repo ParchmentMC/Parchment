@@ -1,13 +1,22 @@
 CLASS net/minecraft/world/entity/projectile/Projectile
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
+	METHOD canHitEntity (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD lambda$checkLeftOwner$0 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
 	METHOD lerpMotion (DDD)V
 		COMMENT Updates the entity motion clientside, called by packets from the server
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
+	METHOD lerpRotation (FF)F
+		ARG 0 xoRot
+		ARG 1 xRot
 	METHOD onHit (Lnet/minecraft/world/phys/HitResult;)V
 		COMMENT Called when this EntityFireball hits a block or entity.
+		ARG 1 result
+	METHOD onHitBlock (Lnet/minecraft/world/phys/BlockHitResult;)V
 		ARG 1 result
 	METHOD onHitEntity (Lnet/minecraft/world/phys/EntityHitResult;)V
 		COMMENT Called when the arrow hits an entity
