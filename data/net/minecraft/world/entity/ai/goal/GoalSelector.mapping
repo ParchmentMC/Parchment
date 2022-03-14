@@ -11,6 +11,12 @@ CLASS net/minecraft/world/entity/ai/goal/GoalSelector
 		ARG 1 flag
 	METHOD enableControlFlag (Lnet/minecraft/world/entity/ai/goal/Goal$Flag;)V
 		ARG 1 flag
+	METHOD goalCanBeReplacedForAllFlags (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;Ljava/util/Map;)Z
+		ARG 0 goal
+		ARG 1 flag
+	METHOD goalContainsAnyFlags (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;Ljava/util/EnumSet;)Z
+		ARG 0 goal
+		ARG 1 flag
 	METHOD lambda$removeGoal$0 (Lnet/minecraft/world/entity/ai/goal/Goal;Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)Z
 		ARG 1 wrappedGoal
 	METHOD lambda$removeGoal$1 (Lnet/minecraft/world/entity/ai/goal/Goal;Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)Z
@@ -26,6 +32,8 @@ CLASS net/minecraft/world/entity/ai/goal/GoalSelector
 	METHOD tick ()V
 		COMMENT Ticks every goal in the selector.
 		COMMENT Attempts to start each goal based on if it can be used, or stop it if it can't.
+	METHOD tickRunningGoals (Z)V
+		ARG 1 forced
 	CLASS 1
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
