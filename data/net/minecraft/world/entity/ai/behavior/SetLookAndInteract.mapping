@@ -1,4 +1,12 @@
 CLASS net/minecraft/world/entity/ai/behavior/SetLookAndInteract
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;I)V
+		ARG 1 type
+		ARG 2 interactionRange
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;ILjava/util/function/Predicate;Ljava/util/function/Predicate;)V
+		ARG 1 type
+		ARG 2 interactionRange
+		ARG 3 selfFilter
+		ARG 4 targetFilter
 	METHOD checkExtraStartConditions (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 1 level
 		ARG 2 owner
@@ -6,6 +14,16 @@ CLASS net/minecraft/world/entity/ai/behavior/SetLookAndInteract
 		ARG 1 livingEntity
 	METHOD isMatchingTarget (Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 1 livingEntity
+	METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 self
+	METHOD lambda$new$1 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 target
+	METHOD lambda$start$2 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 2 entity
+	METHOD lambda$start$3 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/memory/NearestVisibleLivingEntities;)Ljava/util/Optional;
+		ARG 2 visible
+	METHOD lambda$start$4 (Lnet/minecraft/world/entity/ai/Brain;Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 matched
 	METHOD start (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)V
 		ARG 1 level
 		ARG 2 entity
