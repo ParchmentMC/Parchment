@@ -1,10 +1,16 @@
 CLASS net/minecraft/world/inventory/InventoryMenu
+	METHOD <init> (Lnet/minecraft/world/entity/player/Inventory;ZLnet/minecraft/world/entity/player/Player;)V
+		ARG 1 inventory
+		ARG 2 active
+		ARG 3 owner
 	METHOD canTakeItemForPickAll (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z
 		COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
 		ARG 1 stack
 		ARG 2 slot
 	METHOD fillCraftSlotsStackedContents (Lnet/minecraft/world/entity/player/StackedContents;)V
 		ARG 1 itemHelper
+	METHOD isHotbarSlot (I)Z
+		ARG 0 slotId
 	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
 		ARG 1 player
