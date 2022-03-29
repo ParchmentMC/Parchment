@@ -1,12 +1,89 @@
 CLASS net/minecraft/world/level/block/MultifaceBlock
+	METHOD calculateMultifaceShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 0 state
+	METHOD canAttachTo (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/Direction;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 0 level
+		ARG 1 direction
+		ARG 2 pos
+		ARG 3 state
+	METHOD canSpread (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 direction
+	METHOD canSpreadInto (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
+	METHOD canSpreadToFace (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 direction
+	METHOD getDefaultMultifaceState (Lnet/minecraft/world/level/block/state/StateDefinition;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 0 stateDefinition
+	METHOD getFaceProperty (Lnet/minecraft/core/Direction;)Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+		ARG 0 direction
+	METHOD getSpreadFromFaceTowardDirection (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Ljava/util/Optional;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 direction
+		ARG 5 matched
 	METHOD getStateForPlacement (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 currentState
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 lookingDirection
+	METHOD hasAnyFace (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 0 state
+	METHOD hasAnyVacantFace (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 0 state
+	METHOD hasFace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
+		ARG 0 state
+		ARG 1 direction
 	METHOD isFaceSupported (Lnet/minecraft/core/Direction;)Z
 		ARG 1 face
+	METHOD lambda$canSpread$5 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Z
+		ARG 5 matched
 	METHOD lambda$getStateForPlacement$1 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 4 lookingDirection
+	METHOD lambda$hasAnyFace$6 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
+		ARG 1 direction
+	METHOD lambda$hasAnyVacantFace$7 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
+		ARG 1 direction
+	METHOD lambda$spreadFromFaceTowardRandomDirection$4 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;ZLnet/minecraft/core/Direction;)Z
+		ARG 6 matched
+	METHOD lambda$spreadFromRandomFaceTowardRandomDirection$2 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
+		ARG 1 dir
+	METHOD lambda$spreadFromRandomFaceTowardRandomDirection$3 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/Random;Lnet/minecraft/core/Direction;)Z
+		ARG 5 dir
 	METHOD lambda$static$0 (Ljava/util/EnumMap;)V
 		ARG 0 map
+	METHOD mapDirections (Lnet/minecraft/world/level/block/state/BlockState;Ljava/util/function/Function;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 state
+		ARG 2 directionalFunction
+	METHOD removeFace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/properties/BooleanProperty;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 0 state
+		ARG 1 faceProp
+	METHOD spreadFromFaceTowardDirection (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;Z)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 direction
+		ARG 5 matched
+		ARG 6 postProcessing
+	METHOD spreadFromFaceTowardRandomDirection (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Ljava/util/Random;Z)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 direction
+		ARG 5 rand
+		ARG 6 postProcessing
+	METHOD spreadFromRandomFaceTowardRandomDirection (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 rand
+	METHOD spreadToFace (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Z)Z
+		ARG 1 accessor
+		ARG 2 pos
+		ARG 3 direction
+		ARG 4 postProcessing

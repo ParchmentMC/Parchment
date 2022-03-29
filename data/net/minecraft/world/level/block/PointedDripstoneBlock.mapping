@@ -2,13 +2,23 @@ CLASS net/minecraft/world/level/block/PointedDripstoneBlock
 	METHOD calculateDripstoneThickness (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Z)Lnet/minecraft/world/level/block/state/properties/DripstoneThickness;
 		ARG 0 level
 		ARG 1 pos
+		ARG 2 dir
+		ARG 3 isTipMerge
 	METHOD calculateTipDirection (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Lnet/minecraft/core/Direction;
 		ARG 0 level
 		ARG 1 pos
+		ARG 2 dir
 	METHOD canDrip (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
+	METHOD canDripThrough (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
 	METHOD canFillCauldron (Lnet/minecraft/world/level/material/Fluid;)Z
 		ARG 0 fluid
+	METHOD canGrow (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 0 dripstoneState
+		ARG 1 state
 	METHOD canTipGrow (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 state
 		ARG 1 level
@@ -24,6 +34,11 @@ CLASS net/minecraft/world/level/block/PointedDripstoneBlock
 		ARG 2 pos
 	METHOD findBlockVertical (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction$AxisDirection;Ljava/util/function/BiPredicate;Ljava/util/function/Predicate;I)Ljava/util/Optional;
 		ARG 0 level
+		ARG 1 pos
+		ARG 2 axis
+		ARG 3 positionalStatePredicate
+		ARG 4 statePredicate
+		ARG 5 maxIterations
 	METHOD findFillableCauldronBelowStalactiteTip (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/Fluid;)Lnet/minecraft/core/BlockPos;
 		ARG 0 level
 		ARG 1 pos
@@ -31,6 +46,8 @@ CLASS net/minecraft/world/level/block/PointedDripstoneBlock
 	METHOD findRootBlock (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Ljava/util/Optional;
 		ARG 0 level
 		ARG 1 pos
+		ARG 2 state
+		ARG 3 maxIterations
 	METHOD findStalactiteTipAboveCauldron (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
 		ARG 0 level
 		ARG 1 pos
@@ -38,6 +55,8 @@ CLASS net/minecraft/world/level/block/PointedDripstoneBlock
 		ARG 0 state
 		ARG 1 level
 		ARG 2 pos
+		ARG 3 maxIterations
+		ARG 4 isTipMerge
 	METHOD getCauldronFillFluidType (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/Fluid;
 		ARG 0 level
 		ARG 1 pos
@@ -62,6 +81,7 @@ CLASS net/minecraft/world/level/block/PointedDripstoneBlock
 		ARG 1 pos
 	METHOD isPointedDripstoneWithDirection (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
 		ARG 0 state
+		ARG 1 dir
 	METHOD isStalactite (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
 	METHOD isStalactiteStartPos (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
@@ -72,14 +92,45 @@ CLASS net/minecraft/world/level/block/PointedDripstoneBlock
 		ARG 0 state
 	METHOD isTip (Lnet/minecraft/world/level/block/state/BlockState;Z)Z
 		ARG 0 state
+		ARG 1 isTipMerge
 	METHOD isUnmergedTipWithDirection (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
 		ARG 0 state
+		ARG 1 dir
 	METHOD isValidPointedDripstonePlacement (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
 		ARG 0 level
+		ARG 1 pos
+		ARG 2 dir
+	METHOD lambda$animateTick$0 (FLnet/minecraft/world/level/material/Fluid;)Z
+		ARG 1 fluid
+	METHOD lambda$animateTick$1 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/Fluid;)V
+		ARG 3 fluid
+	METHOD lambda$findFillableCauldronBelowStalactiteTip$7 (Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
+	METHOD lambda$findFillableCauldronBelowStalactiteTip$8 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 predPos
+		ARG 2 predState
+	METHOD lambda$findRootBlock$5 (Lnet/minecraft/core/Direction;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 predPos
+		ARG 2 predState
+	METHOD lambda$findRootBlock$6 (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 0 predState
+	METHOD lambda$findStalactiteTipAboveCauldron$9 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 predPos
+		ARG 2 predState
+	METHOD lambda$findTip$3 (Lnet/minecraft/core/Direction;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 predPos
+		ARG 2 predState
+	METHOD lambda$findTip$4 (ZLnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 predState
+	METHOD lambda$getFluidAboveStalactite$10 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/Fluid;
+		ARG 1 pos
+	METHOD lambda$spawnDripParticle$2 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/Fluid;)V
+		ARG 3 fluid
 	METHOD maybeFillCauldron (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;F)V
 		ARG 0 state
 		ARG 1 level
 		ARG 2 pos
+		ARG 3 randChance
 	METHOD spawnDripParticle (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 0 level
 		ARG 1 pos

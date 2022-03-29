@@ -1,6 +1,8 @@
 CLASS net/minecraft/world/level/block/state/StateDefinition
 	METHOD <init> (Ljava/util/function/Function;Ljava/lang/Object;Lnet/minecraft/world/level/block/state/StateDefinition$Factory;Ljava/util/Map;)V
+		ARG 1 stateValueFunction
 		ARG 2 owner
+		ARG 3 valueFunction
 		ARG 4 propertiesByName
 	METHOD getProperty (Ljava/lang/String;)Lnet/minecraft/world/level/block/state/properties/Property;
 		ARG 1 propertyName
@@ -11,3 +13,8 @@ CLASS net/minecraft/world/level/block/state/StateDefinition
 			ARG 1 properties
 		METHOD validateProperty (Lnet/minecraft/world/level/block/state/properties/Property;)V
 			ARG 1 property
+	CLASS Factory
+		METHOD create (Ljava/lang/Object;Lcom/google/common/collect/ImmutableMap;Lcom/mojang/serialization/MapCodec;)Ljava/lang/Object;
+			ARG 1 property
+			ARG 2 propToValueMap
+			ARG 3 propCodec
