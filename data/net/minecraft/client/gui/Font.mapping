@@ -157,6 +157,7 @@ CLASS net/minecraft/client/gui/Font
 	METHOD plainSubstrByWidth (Ljava/lang/String;IZ)Ljava/lang/String;
 		ARG 1 text
 		ARG 2 maxWidth
+		ARG 3 tail
 	METHOD renderChar (Lnet/minecraft/client/gui/font/glyphs/BakedGlyph;ZZFFFLcom/mojang/math/Matrix4f;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFFFI)V
 		ARG 1 glyph
 		ARG 2 bold
@@ -173,6 +174,17 @@ CLASS net/minecraft/client/gui/Font
 		ARG 13 packedLight
 	METHOD renderText (Ljava/lang/String;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)F
 		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 isShadow
+		ARG 6 matrix
+		ARG 7 buffer
+		ARG 8 isTransparent
+		ARG 9 colorBackground
+		ARG 10 packedLight
+	METHOD renderText (Lnet/minecraft/util/FormattedCharSequence;FFIZLcom/mojang/math/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;ZII)F
+		ARG 1 processor
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
@@ -216,6 +228,10 @@ CLASS net/minecraft/client/gui/Font
 			ARG 5 color
 			ARG 6 dropShadow
 			ARG 7 pose
+			ARG 8 seeThrough
 			ARG 9 packedLightCoords
 		METHOD addEffect (Lnet/minecraft/client/gui/font/glyphs/BakedGlyph$Effect;)V
 			ARG 1 effect
+		METHOD finish (IF)F
+			ARG 1 backgroundColor
+			ARG 2 x

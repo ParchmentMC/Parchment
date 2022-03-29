@@ -26,6 +26,11 @@ CLASS net/minecraft/client/gui/screens/inventory/BookViewScreen
 		ARG 1 button
 	METHOD lambda$createPageControlButtons$2 (Lnet/minecraft/client/gui/components/Button;)V
 		ARG 1 button
+	METHOD loadPages (Lnet/minecraft/nbt/CompoundTag;)Ljava/util/List;
+		ARG 0 tag
+	METHOD loadPages (Lnet/minecraft/nbt/CompoundTag;Ljava/util/function/Consumer;)V
+		ARG 0 tag
+		ARG 1 consumer
 	METHOD mouseClicked (DDI)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -50,6 +55,8 @@ CLASS net/minecraft/client/gui/screens/inventory/BookViewScreen
 	CLASS BookAccess
 		METHOD fromItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess;
 			ARG 0 stack
+		METHOD getPage (I)Lnet/minecraft/network/chat/FormattedText;
+			ARG 1 page
 		METHOD getPageCount ()I
 			COMMENT Returns the size of the book
 		METHOD getPageRaw (I)Lnet/minecraft/network/chat/FormattedText;
