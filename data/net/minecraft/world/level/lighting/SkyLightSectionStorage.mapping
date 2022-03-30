@@ -1,11 +1,33 @@
 CLASS net/minecraft/world/level/lighting/SkyLightSectionStorage
+	METHOD <init> (Lnet/minecraft/world/level/chunk/LightChunkGetter;)V
+		ARG 1 chunkSource
 	METHOD createDataLayer (J)Lnet/minecraft/world/level/chunk/DataLayer;
 		ARG 1 sectionPos
 	METHOD getLightValue (J)I
 		ARG 1 levelPos
+	METHOD getLightValue (JZ)I
+		ARG 1 levelPos
+		ARG 3 updateAll
+	METHOD hasSectionsBelow (I)Z
+		ARG 1 y
+	METHOD isAboveData (J)Z
+		ARG 1 sectionPos
+	METHOD lightOnInSection (J)Z
+		ARG 1 sectionPos
 	METHOD markNewInconsistencies (Lnet/minecraft/world/level/lighting/LayerLightEngine;ZZ)V
 		ARG 1 engine
 		ARG 2 updateSkyLight
 		ARG 3 updateBlockLight
 	METHOD onNodeAdded (J)V
 		ARG 1 sectionPos
+	METHOD queueAddSource (J)V
+		ARG 1 sectionPos
+	METHOD queueRemoveSource (J)V
+		ARG 1 sectionPos
+	METHOD repeatFirstLayer (Lnet/minecraft/world/level/chunk/DataLayer;)Lnet/minecraft/world/level/chunk/DataLayer;
+		ARG 0 layer
+	CLASS SkyDataLayerStorageMap
+		METHOD <init> (Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;I)V
+			ARG 1 layers
+			ARG 2 topSections
+			ARG 3 currentLowestY
