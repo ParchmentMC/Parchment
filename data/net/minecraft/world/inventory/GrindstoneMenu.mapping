@@ -1,6 +1,16 @@
 CLASS net/minecraft/world/inventory/GrindstoneMenu
 	FIELD resultSlots Lnet/minecraft/world/Container;
 		COMMENT The inventory slot that stores the output of the crafting recipe.
+	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;)V
+		ARG 1 containerId
+		ARG 2 inventory
+	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
+		ARG 1 containerId
+		ARG 2 Inventory
+		ARG 3 access
+	METHOD lambda$removed$1 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 2 level
+		ARG 3 pos
 	METHOD mergeEnchants (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 copyTo
 		ARG 2 copyFrom
@@ -40,6 +50,9 @@ CLASS net/minecraft/world/inventory/GrindstoneMenu
 		METHOD getExperienceFromItem (Lnet/minecraft/world/item/ItemStack;)I
 			COMMENT Returns the total amount of XP stored in the enchantments of this stack.
 			ARG 1 stack
+		METHOD lambda$onTake$0 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+			ARG 1 level
+			ARG 2 pos
 		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
 			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 			ARG 1 stack

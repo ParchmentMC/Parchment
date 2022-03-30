@@ -12,6 +12,14 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 		ARG 7 loadingTask
 	METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/level/chunk/ChunkStatus;
 		ARG 0 key
+	METHOD generate (Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Ljava/util/List;Z)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 executor
+		ARG 2 level
+		ARG 3 generator
+		ARG 4 structureManager
+		ARG 5 lightEngine
+		ARG 6 task
+		ARG 7 neighbouringChunks
 	METHOD getDistance (Lnet/minecraft/world/level/chunk/ChunkStatus;)I
 		ARG 0 status
 	METHOD getRange ()I
@@ -36,19 +44,128 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 		ARG 2 chunkGenerator
 		ARG 3 neighboringChunks
 		ARG 4 loadingChunk
-	METHOD lambda$static$4 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+	METHOD lambda$static$10 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+		ARG 0 status
+		ARG 1 serverLevel
+		ARG 2 chunkGenerator
+		ARG 3 cache
+		ARG 4 loadingChunk
+	METHOD lambda$static$11 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 		ARG 0 status
 		ARG 1 level
 		ARG 2 chunkGenerator
-		ARG 3 neighboringChunks
+		ARG 3 neighbouringChunks
+		ARG 4 loadingChunk
+	METHOD lambda$static$12 (Lnet/minecraft/world/level/chunk/ChunkStatus;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;Z)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 status
+		ARG 1 executor
+		ARG 2 serverLevel
+		ARG 3 generator
+		ARG 4 structureManager
+		ARG 5 lightEngine
+		ARG 6 task
+		ARG 7 cache
+		ARG 8 chunk
+	METHOD lambda$static$13 (Lnet/minecraft/world/level/chunk/ChunkStatus;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;Z)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 status
+		ARG 1 executor
+		ARG 2 serverLevel
+		ARG 3 generator
+		ARG 4 structureManager
+		ARG 5 lightEngine
+		ARG 6 task
+		ARG 7 neighbouringChunks
+		ARG 8 chunk
+	METHOD lambda$static$14 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 status
+		ARG 1 level
+		ARG 2 structureManager
+		ARG 3 lightEngine
+		ARG 4 task
+		ARG 5 chunk
+	METHOD lambda$static$15 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+		ARG 0 status
+		ARG 1 serverLevel
+		ARG 2 generator
+		ARG 3 cache
+		ARG 4 loadingChunk
+	METHOD lambda$static$16 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+		ARG 0 status
+		ARG 1 serverLevel
+		ARG 2 generator
+		ARG 3 cache
+		ARG 4 loadingChunk
+	METHOD lambda$static$17 (Lnet/minecraft/world/level/chunk/ChunkStatus;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;Z)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 status
+		ARG 1 executor
+		ARG 2 serverLevel
+		ARG 3 generator
+		ARG 4 structureManager
+		ARG 5 lightEngine
+		ARG 6 task
+		ARG 7 neighbouringChunks
+		ARG 8 chunk
+	METHOD lambda$static$18 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 status
+		ARG 1 level
+		ARG 2 structureManager
+		ARG 3 lightEngine
+		ARG 4 task
+		ARG 5 chunk
+	METHOD lambda$static$19 (Lit/unimi/dsi/fastutil/ints/IntArrayList;)V
+		ARG 0 list
+	METHOD lambda$static$2 (Lnet/minecraft/world/level/chunk/ChunkStatus;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;Z)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 status
+		ARG 1 executor
+		ARG 2 level
+		ARG 3 generator
+		ARG 4 structureManager
+		ARG 5 lightEngine
+		ARG 6 task
+		ARG 7 neighbouringChunks
+		ARG 8 chunk
+	METHOD lambda$static$3 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 status
+		ARG 1 level
+		ARG 2 structureManager
+		ARG 3 lightEngine
+		ARG 4 task
+		ARG 5 loadingChunk
+	METHOD lambda$static$4 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+		ARG 0 status
+		ARG 1 serverLevel
+		ARG 2 chunkGenerator
+		ARG 3 cache
 		ARG 4 loadingChunk
 	METHOD lambda$static$5 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/world/level/chunk/ChunkAccess;)Lcom/mojang/datafixers/util/Either;
 		ARG 1 chunk
+	METHOD lambda$static$6 (Lnet/minecraft/world/level/chunk/ChunkStatus;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;Z)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 status
+		ARG 1 executor
+		ARG 2 serverLevel
+		ARG 3 generator
+		ARG 4 structureManager
+		ARG 5 lightEngine
+		ARG 6 task
+		ARG 7 cache
+		ARG 8 chunk
+	METHOD lambda$static$7 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/world/level/chunk/ChunkAccess;)Lcom/mojang/datafixers/util/Either;
+		ARG 1 proto
+	METHOD lambda$static$8 (Lnet/minecraft/world/level/chunk/ChunkStatus;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;Z)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 status
+		ARG 1 executor
+		ARG 2 serverLevel
+		ARG 3 generator
+		ARG 4 structureManager
+		ARG 5 lightEngine
+		ARG 6 task
+		ARG 7 cache
+		ARG 8 chunk
 	METHOD lambda$static$9 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 		ARG 0 status
-		ARG 1 level
+		ARG 1 serverLevel
 		ARG 2 chunkGenerator
-		ARG 3 neighboringChunks
+		ARG 3 cache
 		ARG 4 loadingChunk
 	METHOD lightChunk (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 status
@@ -107,5 +224,5 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 			ARG 1 status
 			ARG 2 level
 			ARG 3 generator
-			ARG 4 chunks
+			ARG 4 cache
 			ARG 5 loadingChunk

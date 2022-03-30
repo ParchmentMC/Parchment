@@ -1,4 +1,9 @@
 CLASS net/minecraft/world/entity/ai/village/poi/PoiManager
+	METHOD <init> (Ljava/nio/file/Path;Lcom/mojang/datafixers/DataFixer;ZLnet/minecraft/world/level/LevelHeightAccessor;)V
+		ARG 1 path
+		ARG 2 fixerUpper
+		ARG 3 sync
+		ARG 4 levelHeightAccessor
 	METHOD add (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/ai/village/poi/PoiType;)V
 		ARG 1 pos
 		ARG 2 poiType
@@ -11,6 +16,7 @@ CLASS net/minecraft/world/entity/ai/village/poi/PoiManager
 		ARG 3 coordinateOffset
 	METHOD exists (Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;)Z
 		ARG 1 pos
+		ARG 2 typePredicate
 	METHOD existsAtPosition (Lnet/minecraft/world/entity/ai/village/poi/PoiType;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 type
 		ARG 2 pos
@@ -26,13 +32,39 @@ CLASS net/minecraft/world/entity/ai/village/poi/PoiManager
 		ARG 3 pos
 		ARG 4 distance
 		ARG 5 status
-	METHOD getCountInRange (Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)J
+	METHOD findAllClosestFirst (Ljava/util/function/Predicate;Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/stream/Stream;
+		ARG 1 typePredicate
+		ARG 2 posPredicate
+		ARG 3 pos
+		ARG 4 distance
+		ARG 5 status
+	METHOD findClosest (Ljava/util/function/Predicate;Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/Optional;
+		ARG 1 typePredicate
+		ARG 2 posPredicate
+		ARG 3 pos
+		ARG 4 distance
+		ARG 5 status
+	METHOD findClosest (Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/Optional;
+		ARG 1 typePredicate
 		ARG 2 pos
 		ARG 3 distance
 		ARG 4 status
+	METHOD getCountInRange (Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)J
+		ARG 1 typePredicate
+		ARG 2 pos
+		ARG 3 distance
+		ARG 4 status
+	METHOD getFreeTickets (Lnet/minecraft/core/BlockPos;)I
+		ARG 1 pos
 	METHOD getInChunk (Ljava/util/function/Predicate;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/stream/Stream;
+		ARG 1 typePredicate
 		ARG 2 posChunk
 		ARG 3 status
+	METHOD getInRange (Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/stream/Stream;
+		ARG 1 typePredicate
+		ARG 2 pos
+		ARG 3 distance
+		ARG 4 status
 	METHOD getInSquare (Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/stream/Stream;
 		ARG 1 typePredicate
 		ARG 2 pos
@@ -47,6 +79,48 @@ CLASS net/minecraft/world/entity/ai/village/poi/PoiManager
 		ARG 6 rand
 	METHOD getType (Lnet/minecraft/core/BlockPos;)Ljava/util/Optional;
 		ARG 1 pos
+	METHOD isVillageCenter (J)Z
+		ARG 1 chunkPos
+	METHOD lambda$checkConsistencyWithBlocks$18 (Lnet/minecraft/world/level/chunk/LevelChunkSection;Lnet/minecraft/core/SectionPos;Ljava/util/function/BiConsumer;)V
+		ARG 3 consumer
+	METHOD lambda$checkConsistencyWithBlocks$19 (Lnet/minecraft/world/level/chunk/LevelChunkSection;Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/entity/ai/village/poi/PoiSection;)V
+		ARG 3 optional
+	METHOD lambda$exists$14 (Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/village/poi/PoiSection;)Ljava/lang/Boolean;
+		ARG 2 optional
+	METHOD lambda$findAllClosestFirst$6 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)D
+		ARG 1 foundPos
+	METHOD lambda$findClosest$7 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)D
+		ARG 1 foundPos
+	METHOD lambda$findClosest$8 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)D
+		ARG 1 foundPos
+	METHOD lambda$getFreeTickets$16 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/ai/village/poi/PoiSection;)Ljava/lang/Integer;
+		ARG 1 optional
+	METHOD lambda$getInChunk$4 (Lnet/minecraft/world/level/ChunkPos;Ljava/lang/Integer;)Ljava/util/Optional;
+		ARG 2 y
+	METHOD lambda$getInChunk$5 (Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;Ljava/util/Optional;)Ljava/util/stream/Stream;
+		ARG 2 section
+	METHOD lambda$getInSquare$1 (Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;Lnet/minecraft/world/level/ChunkPos;)Ljava/util/stream/Stream;
+		ARG 3 pos
+	METHOD lambda$getInSquare$2 (Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiRecord;)Z
+		ARG 2 global
+	METHOD lambda$getRandom$11 (Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/village/poi/PoiRecord;)Z
+		ARG 1 foundPos
+	METHOD lambda$getType$15 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/ai/village/poi/PoiSection;)Ljava/util/Optional;
+		ARG 1 optional
+	METHOD lambda$isVillageCenter$17 (Lnet/minecraft/world/entity/ai/village/poi/PoiSection;)Ljava/lang/Boolean;
+		ARG 0 optional
+	METHOD lambda$release$12 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/ai/village/poi/PoiSection;)Ljava/lang/Boolean;
+		ARG 1 optional
+	METHOD lambda$remove$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/ai/village/poi/PoiSection;)V
+		ARG 1 section
+	METHOD lambda$take$10 (Lnet/minecraft/world/entity/ai/village/poi/PoiRecord;)Lnet/minecraft/core/BlockPos;
+		ARG 0 validPos
+	METHOD lambda$take$9 (Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/village/poi/PoiRecord;)Z
+		ARG 1 foundPos
+	METHOD lambda$updateFromSection$21 (Ljava/util/function/BiConsumer;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/ai/village/poi/PoiType;)V
+		ARG 2 poiType
+	METHOD lambda$updateFromSection$22 (Lnet/minecraft/world/level/chunk/LevelChunkSection;Ljava/util/function/BiConsumer;Lnet/minecraft/core/BlockPos;)V
+		ARG 2 section
 	METHOD mayHavePoi (Lnet/minecraft/world/level/chunk/LevelChunkSection;)Z
 		ARG 0 section
 	METHOD release (Lnet/minecraft/core/BlockPos;)Z
@@ -66,6 +140,11 @@ CLASS net/minecraft/world/entity/ai/village/poi/PoiManager
 		ARG 1 section
 		ARG 2 sectionPos
 		ARG 3 posToTypeConsumer
+	CLASS Occupancy
+		METHOD <init> (Ljava/lang/String;ILjava/util/function/Predicate;)V
+			ARG 3 test
+		METHOD lambda$static$0 (Lnet/minecraft/world/entity/ai/village/poi/PoiRecord;)Z
+			ARG 0 test
 	CLASS DistanceTracker
 		METHOD getLevel (J)I
 			ARG 1 sectionPos

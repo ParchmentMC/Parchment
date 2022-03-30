@@ -3,6 +3,13 @@ CLASS net/minecraft/world/level/biome/BiomeSource
 		ARG 1 possibleBiomes
 	METHOD <init> (Ljava/util/stream/Stream;)V
 		ARG 1 possibleBiomes
+	METHOD addDebugInfo (Ljava/util/List;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/biome/Climate$Sampler;)V
+		ARG 1 info
+		ARG 2 pos
+		ARG 3 sampler
+	METHOD buildFeaturesPerStep (Ljava/util/List;Z)Ljava/util/List;
+		ARG 1 possibleBiomes
+		ARG 2 verify
 	METHOD findBiomeHorizontal (IIIIILjava/util/function/Predicate;Ljava/util/Random;ZLnet/minecraft/world/level/biome/Climate$Sampler;)Lcom/mojang/datafixers/util/Pair;
 		ARG 1 x
 		ARG 2 y
@@ -12,6 +19,7 @@ CLASS net/minecraft/world/level/biome/BiomeSource
 		ARG 6 biomePredicate
 		ARG 7 random
 		ARG 8 findClosest
+		ARG 9 sampler
 	METHOD findBiomeHorizontal (IIIILjava/util/function/Predicate;Ljava/util/Random;Lnet/minecraft/world/level/biome/Climate$Sampler;)Lcom/mojang/datafixers/util/Pair;
 		ARG 1 x
 		ARG 2 y
@@ -19,10 +27,18 @@ CLASS net/minecraft/world/level/biome/BiomeSource
 		ARG 4 radius
 		ARG 5 biomePredicate
 		ARG 6 random
+		ARG 7 sampler
 	METHOD getBiomesWithin (IIIILnet/minecraft/world/level/biome/Climate$Sampler;)Ljava/util/Set;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
 		ARG 4 radius
+		ARG 5 sampler
+	METHOD lambda$buildFeaturesPerStep$1 (Lorg/apache/commons/lang3/mutable/MutableInt;Ljava/lang/Object;)I
+		ARG 1 data
+	METHOD lambda$buildFeaturesPerStep$2 (Ljava/util/Comparator;Lnet/minecraft/world/level/biome/BiomeSource$1FeatureData;)Ljava/util/Set;
+		ARG 1 data
+	METHOD lambda$buildFeaturesPerStep$3 (ILnet/minecraft/world/level/biome/BiomeSource$1FeatureData;)Z
+		ARG 1 placed
 	METHOD withSeed (J)Lnet/minecraft/world/level/biome/BiomeSource;
 		ARG 1 seed

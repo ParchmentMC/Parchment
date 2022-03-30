@@ -5,6 +5,9 @@ CLASS net/minecraft/world/level/levelgen/Aquifer
 	COMMENT Aquifers work by first partitioning a single chunk into a low resolution grid. They then generate, via various noise layers, an {@link NoiseBasedAquifer.AquiferStatus} at each grid point.
 	COMMENT At each point, the grid cell containing that point is calculated, and then of the eight grid corners, the three closest aquifers are found, by square euclidean distance.
 	COMMENT Borders between aquifers are created by comparing nearby aquifers to see if the given point is near-equidistant from them, indicating a border if so, or fluid/air depending on the aquifer height if not.
+	METHOD computeSubstance (Lnet/minecraft/world/level/levelgen/DensityFunction$FunctionContext;D)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context
+		ARG 2 substance
 	METHOD create (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;IILnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;)Lnet/minecraft/world/level/levelgen/Aquifer;
 		COMMENT Creates a standard noise based aquifer. This aquifer will place liquid (both water and lava), air, and stone as described above.
 		ARG 0 chunk
@@ -36,6 +39,8 @@ CLASS net/minecraft/world/level/levelgen/Aquifer
 		METHOD <init> (ILnet/minecraft/world/level/block/state/BlockState;)V
 			ARG 1 fluidLevel
 			ARG 2 fluidType
+		METHOD at (I)Lnet/minecraft/world/level/block/state/BlockState;
+			ARG 1 y
 	CLASS NoiseBasedAquifer
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;IILnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;)V
 			ARG 1 noiseChunk
@@ -48,6 +53,11 @@ CLASS net/minecraft/world/level/levelgen/Aquifer
 			ARG 8 minY
 			ARG 9 height
 			ARG 10 globalFluidPicker
+		METHOD calculatePressure (Lnet/minecraft/world/level/levelgen/DensityFunction$FunctionContext;Lorg/apache/commons/lang3/mutable/MutableDouble;Lnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;Lnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;)D
+			ARG 1 context
+			ARG 2 substance
+			ARG 3 firstFluid
+			ARG 4 secondFluid
 		METHOD computeFluid (III)Lnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;
 			ARG 1 x
 			ARG 2 y

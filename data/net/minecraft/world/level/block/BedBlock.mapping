@@ -2,16 +2,37 @@ CLASS net/minecraft/world/level/block/BedBlock
 	METHOD <init> (Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 		ARG 1 color
 		ARG 2 properties
+	METHOD bedAboveStandUpOffsets (Lnet/minecraft/core/Direction;)[[I
+		ARG 0 dir
+	METHOD bedStandUpOffsets (Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)[[I
+		ARG 0 firstDir
+		ARG 1 secondDir
+	METHOD bedSurroundStandUpOffsets (Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)[[I
+		ARG 0 firstDir
+		ARG 1 secondDir
 	METHOD bounceUp (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD canSetSpawn (Lnet/minecraft/world/level/Level;)Z
 		ARG 0 level
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
+	METHOD findBunkBedStandUpPosition (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/CollisionGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Ljava/util/Optional;
+		ARG 0 entityType
+		ARG 1 collisionGetter
+		ARG 2 pos
+		ARG 3 stateFacing
+		ARG 4 entityFacing
 	METHOD findStandUpPosition (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/CollisionGetter;Lnet/minecraft/core/BlockPos;F)Ljava/util/Optional;
 		ARG 0 entityType
 		ARG 1 level
 		ARG 2 pos
+		ARG 3 yRot
+	METHOD findStandUpPositionAtOffset (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/CollisionGetter;Lnet/minecraft/core/BlockPos;[[IZ)Ljava/util/Optional;
+		ARG 0 entityType
+		ARG 1 collisionGetter
+		ARG 2 pos
+		ARG 3 offsets
+		ARG 4 simulate
 	METHOD getBedOrientation (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/Direction;
 		ARG 0 level
 		ARG 1 pos
@@ -48,6 +69,8 @@ CLASS net/minecraft/world/level/block/BedBlock
 	METHOD kickVillagerOutOfBed (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 level
 		ARG 2 pos
+	METHOD lambda$use$0 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/player/Player$BedSleepingProblem;)V
+		ARG 1 problem
 	METHOD playerWillDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 level
 		ARG 2 pos
