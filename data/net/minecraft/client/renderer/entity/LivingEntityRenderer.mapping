@@ -1,4 +1,8 @@
 CLASS net/minecraft/client/renderer/entity/LivingEntityRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/model/EntityModel;F)V
+		ARG 1 context
+		ARG 2 model
+		ARG 3 shadowRadius
 	METHOD addLayer (Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z
 		ARG 1 layer
 	METHOD getAttackAnim (Lnet/minecraft/world/entity/LivingEntity;F)F
@@ -14,6 +18,11 @@ CLASS net/minecraft/client/renderer/entity/LivingEntityRenderer
 	METHOD getOverlayCoords (Lnet/minecraft/world/entity/LivingEntity;F)I
 		ARG 0 livingEntity
 		ARG 1 u
+	METHOD getRenderType (Lnet/minecraft/world/entity/LivingEntity;ZZZ)Lnet/minecraft/client/renderer/RenderType;
+		ARG 1 livingEntity
+		ARG 2 bodyVisible
+		ARG 3 translucent
+		ARG 4 glowing
 	METHOD getWhiteOverlayProgress (Lnet/minecraft/world/entity/LivingEntity;F)F
 		ARG 1 livingEntity
 		ARG 2 partialTicks
