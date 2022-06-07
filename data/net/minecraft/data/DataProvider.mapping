@@ -1,6 +1,8 @@
 CLASS net/minecraft/data/DataProvider
 	METHOD getName ()Ljava/lang/String;
 		COMMENT Gets a name for this provider, to use in logging.
+	METHOD run (Lnet/minecraft/data/CachedOutput;)V
+		ARG 1 cache
 	METHOD run (Lnet/minecraft/data/HashCache;)V
 		COMMENT Performs this provider's action.
 		ARG 1 cache
@@ -9,3 +11,7 @@ CLASS net/minecraft/data/DataProvider
 		ARG 1 cache
 		ARG 2 jsonElement
 		ARG 3 path
+	METHOD saveStable (Lnet/minecraft/data/CachedOutput;Lcom/google/gson/JsonElement;Ljava/nio/file/Path;)V
+		ARG 0 cache
+		ARG 1 json
+		ARG 2 path

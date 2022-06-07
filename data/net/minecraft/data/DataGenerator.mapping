@@ -2,12 +2,32 @@ CLASS net/minecraft/data/DataGenerator
 	METHOD <init> (Ljava/nio/file/Path;Ljava/util/Collection;)V
 		ARG 1 outputFolder
 		ARG 2 inputFolders
+	METHOD <init> (Ljava/nio/file/Path;Ljava/util/Collection;Lnet/minecraft/WorldVersion;Z)V
+		ARG 1 outputFolder
+		ARG 2 inputFolders
+		ARG 3 version
+		ARG 4 alwaysGenerate
 	METHOD addProvider (Lnet/minecraft/data/DataProvider;)V
 		COMMENT Adds a data provider to the list of providers to run
 		ARG 1 provider
+	METHOD addProvider (ZLnet/minecraft/data/DataProvider;)V
+		ARG 1 run
+		ARG 2 provider
 	METHOD getInputFolders ()Ljava/util/Collection;
 		COMMENT Gets a collection of folders to look for data to convert in
 	METHOD getOutputFolder ()Ljava/nio/file/Path;
 		COMMENT Gets the location to put generated data into
+	METHOD getOutputFolder (Lnet/minecraft/data/DataGenerator$Target;)Ljava/nio/file/Path;
+		ARG 1 target
 	METHOD run ()V
 		COMMENT Runs all the previously registered data providers.
+	CLASS PathProvider
+		METHOD <init> (Lnet/minecraft/data/DataGenerator;Lnet/minecraft/data/DataGenerator$Target;Ljava/lang/String;)V
+			ARG 1 dataGenerator
+			ARG 2 target
+			ARG 3 kind
+		METHOD file (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Ljava/nio/file/Path;
+			ARG 1 resourceLocation
+			ARG 2 extension
+		METHOD json (Lnet/minecraft/resources/ResourceLocation;)Ljava/nio/file/Path;
+			ARG 1 resourceLocation

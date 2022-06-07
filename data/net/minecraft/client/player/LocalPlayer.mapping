@@ -28,8 +28,16 @@ CLASS net/minecraft/client/player/LocalPlayer
 	METHOD chat (Ljava/lang/String;)V
 		COMMENT Sends a chat message from the player.
 		ARG 1 message
+	METHOD chat (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 message
+		ARG 2 chatPreview
 	METHOD closeContainer ()V
 		COMMENT set current crafting inventory back to the 2x2 square
+	METHOD command (Ljava/lang/String;)V
+		ARG 1 command
+	METHOD command (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 command
+		ARG 2 chatPreview
 	METHOD crit (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Called when the entity is dealt a critical hit.
 		ARG 1 entityHit
@@ -98,6 +106,14 @@ CLASS net/minecraft/client/player/LocalPlayer
 		ARG 1 recipe
 	METHOD rideTick ()V
 		COMMENT Handles updating while riding another entity
+	METHOD sendChat (Lnet/minecraft/network/chat/MessageSigner;Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 messageSigner
+		ARG 2 message
+		ARG 3 chatPreview
+	METHOD sendCommand (Lnet/minecraft/network/chat/MessageSigner;Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 messageSigner
+		ARG 2 command
+		ARG 3 chatPreview
 	METHOD sendMessage (Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V
 		COMMENT Send a chat message to the CommandSender
 		ARG 1 component
@@ -119,6 +135,9 @@ CLASS net/minecraft/client/player/LocalPlayer
 	METHOD setSprinting (Z)V
 		COMMENT Set sprinting switch for Entity.
 		ARG 1 sprinting
+	METHOD signMessage (Lnet/minecraft/network/chat/MessageSigner;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MessageSignature;
+		ARG 1 messageSigner
+		ARG 2 component
 	METHOD startRiding (Lnet/minecraft/world/entity/Entity;Z)Z
 		ARG 1 entity
 		ARG 2 force
