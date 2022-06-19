@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/entity/animal/Wolf
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD canBeLeashed (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 player
 	METHOD canMate (Lnet/minecraft/world/entity/animal/Animal;)Z
@@ -32,9 +30,6 @@ CLASS net/minecraft/world/entity/animal/Wolf
 	METHOD getWetShade (F)F
 		COMMENT Used when calculating the amount of shading to apply while the wolf is wet.
 		ARG 1 partialTicks
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
@@ -44,6 +39,8 @@ CLASS net/minecraft/world/entity/animal/Wolf
 		ARG 1 stack
 	METHOD isWet ()Z
 		COMMENT True if the wolf is wet
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
@@ -54,9 +51,9 @@ CLASS net/minecraft/world/entity/animal/Wolf
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
 	METHOD setCollarColor (Lnet/minecraft/world/item/DyeColor;)V
-		ARG 1 collarcolor
+		ARG 1 collarColor
 	METHOD setIsInterested (Z)V
-		ARG 1 beg
+		ARG 1 isInterested
 	METHOD setPersistentAngerTarget (Ljava/util/UUID;)V
 		ARG 1 target
 	METHOD setRemainingPersistentAngerTime (I)V
@@ -69,6 +66,12 @@ CLASS net/minecraft/world/entity/animal/Wolf
 		ARG 1 target
 		ARG 2 owner
 	CLASS WolfAvoidEntityGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Wolf;Lnet/minecraft/world/entity/animal/Wolf;Ljava/lang/Class;FDD)V
+			ARG 2 wolf
+			ARG 3 entityClassToAvoid
+			ARG 4 maxDist
+			ARG 5 walkSpeedModifier
+			ARG 7 sprintSpeedModifier
 		METHOD avoidLlama (Lnet/minecraft/world/entity/animal/horse/Llama;)Z
 			ARG 1 llama
 		METHOD canUse ()Z

@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/entity/animal/horse/TraderLlama
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD doPlayerRide (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
@@ -15,6 +13,8 @@ CLASS net/minecraft/world/entity/animal/horse/TraderLlama
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
 	CLASS TraderLlamaDefendWanderingTraderGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/horse/TraderLlama;Lnet/minecraft/world/entity/animal/horse/Llama;)V
+			ARG 2 llama
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD start ()V

@@ -1,9 +1,11 @@
 CLASS net/minecraft/world/entity/vehicle/MinecartSpawner
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDD)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD onlyOpCanSetNbt ()Z
 		COMMENT Checks if players can use this entity to access operator (permission level 2) commands either directly or indirectly, such as give or setblock. A similar method exists for entities at {@link net.minecraft.tileentity.TileEntity#onlyOpsCanSetNbt()}.<p>For example, {@link net.minecraft.entity.item.EntityMinecartCommandBlock#ignoreItemEntityData() command block minecarts} and {@link net.minecraft.entity.item.EntityMinecartMobSpawner#ignoreItemEntityData() mob spawner minecarts} (spawning command block minecarts or drops) are considered accessible.</p>@return true if this entity offers ways for unauthorized players to use restricted commands
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V

@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/entity/animal/IronGolem
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD canAttackType (Lnet/minecraft/world/entity/EntityType;)Z
 		ARG 1 type
 	METHOD checkSpawnObstruction (Lnet/minecraft/world/level/LevelReader;)Z
@@ -19,18 +17,17 @@ CLASS net/minecraft/world/entity/animal/IronGolem
 		ARG 1 entity
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
+	METHOD lambda$registerGoals$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 entity
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
 	METHOD offerFlower (Z)V
-		ARG 1 holdingRose
+		ARG 1 offeringFlower
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 block
@@ -43,3 +40,10 @@ CLASS net/minecraft/world/entity/animal/IronGolem
 		ARG 1 playerCreated
 	METHOD setRemainingPersistentAngerTime (I)V
 		ARG 1 time
+	CLASS Crackiness
+		METHOD <init> (Ljava/lang/String;IF)V
+			ARG 3 fraction
+		METHOD byFraction (F)Lnet/minecraft/world/entity/animal/IronGolem$Crackiness;
+			ARG 0 fraction
+		METHOD lambda$static$0 (Lnet/minecraft/world/entity/animal/IronGolem$Crackiness;)D
+			ARG 0 crack

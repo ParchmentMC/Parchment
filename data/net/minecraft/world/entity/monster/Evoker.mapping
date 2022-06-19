@@ -13,6 +13,14 @@ CLASS net/minecraft/world/entity/monster/Evoker
 		ARG 1 compound
 	METHOD setWololoTarget (Lnet/minecraft/world/entity/animal/Sheep;)V
 		ARG 1 wololoTarget
+	CLASS EvokerAttackSpellGoal
+		METHOD createSpellEntity (DDDDFI)V
+			ARG 1 x
+			ARG 3 z
+			ARG 5 minY
+			ARG 7 maxY
+			ARG 9 yRot
+			ARG 10 warmupDelay
 	CLASS EvokerSummonSpellGoal
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
@@ -21,6 +29,8 @@ CLASS net/minecraft/world/entity/monster/Evoker
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+			ARG 0 entity
 		METHOD stop ()V
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 	CLASS EvokerCastingSpellGoal

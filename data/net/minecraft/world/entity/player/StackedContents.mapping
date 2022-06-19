@@ -3,37 +3,74 @@ CLASS net/minecraft/world/entity/player/StackedContents
 		ARG 1 stack
 	METHOD accountStack (Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 stack
+	METHOD accountStack (Lnet/minecraft/world/item/ItemStack;I)V
+		ARG 1 stack
+		ARG 2 amount
 	METHOD canCraft (Lnet/minecraft/world/item/crafting/Recipe;Lit/unimi/dsi/fastutil/ints/IntList;)Z
 		ARG 1 recipe
-		ARG 2 packedItemList
+		ARG 2 stackingIndexList
 	METHOD canCraft (Lnet/minecraft/world/item/crafting/Recipe;Lit/unimi/dsi/fastutil/ints/IntList;I)Z
 		ARG 1 recipe
-		ARG 2 packedItemList
-		ARG 3 maxAmount
+		ARG 2 stackingIndexList
+		ARG 3 amount
 	METHOD fromStackingIndex (I)Lnet/minecraft/world/item/ItemStack;
-		ARG 0 packedItem
+		ARG 0 stackingIndex
 	METHOD getBiggestCraftableStack (Lnet/minecraft/world/item/crafting/Recipe;ILit/unimi/dsi/fastutil/ints/IntList;)I
 		ARG 1 recipe
-		ARG 2 maxAmount
-		ARG 3 packedItemList
+		ARG 2 amount
+		ARG 3 stackingIndexList
 	METHOD getBiggestCraftableStack (Lnet/minecraft/world/item/crafting/Recipe;Lit/unimi/dsi/fastutil/ints/IntList;)I
 		ARG 1 recipe
-		ARG 2 packedItemList
+		ARG 2 stackingIndexList
 	METHOD getStackingIndex (Lnet/minecraft/world/item/ItemStack;)I
 		ARG 0 stack
 	METHOD has (I)Z
-		ARG 1 packedItem
+		ARG 1 stackingIndex
 	METHOD put (II)V
-		ARG 1 packedItem
-		ARG 2 amount
+		ARG 1 stackingIndex
+		ARG 2 increment
 	METHOD take (II)I
-		ARG 1 packedItem
-		ARG 2 maximum
+		ARG 1 stackingIndex
+		ARG 2 amount
 	CLASS RecipePicker
+		METHOD <init> (Lnet/minecraft/world/entity/player/StackedContents;Lnet/minecraft/world/item/crafting/Recipe;)V
+			ARG 2 recipe
 		METHOD dfs (I)Z
 			ARG 1 amount
+		METHOD getIndex (ZII)I
+			ARG 1 isIngredientPath
+			ARG 2 stackingIndex
+			ARG 3 pathIndex
+		METHOD getSatisfiedIndex (I)I
+			ARG 1 stackingIndex
+		METHOD getVisitedIndex (ZI)I
+			ARG 1 isIngredientPath
+			ARG 2 pathIndex
+		METHOD hasConnection (ZII)Z
+			ARG 1 isIngredientPath
+			ARG 2 stackingIndex
+			ARG 3 pathIndex
+		METHOD hasResidual (ZII)Z
+			ARG 1 isIngredientPath
+			ARG 2 stackingIndex
+			ARG 3 pathIndex
+		METHOD hasVisited (ZI)Z
+			ARG 1 isIngredientPath
+			ARG 2 pathIndex
+		METHOD isSatisfied (I)Z
+			ARG 1 stackingIndex
+		METHOD setSatisfied (I)V
+			ARG 1 stackingIndex
+		METHOD toggleResidual (ZII)V
+			ARG 1 isIngredientPath
+			ARG 2 stackingIndex
+			ARG 3 pathIndex
 		METHOD tryPick (ILit/unimi/dsi/fastutil/ints/IntList;)Z
-			ARG 1 maxAmount
-			ARG 2 list
+			ARG 1 amount
+			ARG 2 stackingIndexList
 		METHOD tryPickAll (ILit/unimi/dsi/fastutil/ints/IntList;)I
-			ARG 2 list
+			ARG 1 amount
+			ARG 2 stackingIndexList
+		METHOD visit (ZI)V
+			ARG 1 isIngredientPath
+			ARG 2 pathIndex

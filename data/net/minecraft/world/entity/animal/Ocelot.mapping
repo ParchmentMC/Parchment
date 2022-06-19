@@ -1,6 +1,12 @@
 CLASS net/minecraft/world/entity/animal/Ocelot
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
+	METHOD checkOcelotSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
+		ARG 0 ocelot
+		ARG 1 level
+		ARG 2 spawnType
+		ARG 3 pos
+		ARG 4 random
 	METHOD checkSpawnObstruction (Lnet/minecraft/world/level/LevelReader;)Z
 		ARG 1 level
 	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
@@ -15,9 +21,6 @@ CLASS net/minecraft/world/entity/animal/Ocelot
 		COMMENT Get number of ticks, at least during which the living entity will be silent.
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
 		ARG 1 stack
@@ -31,7 +34,21 @@ CLASS net/minecraft/world/entity/animal/Ocelot
 		ARG 1 distanceToClosestPlayer
 	METHOD setTrusting (Z)V
 		ARG 1 trusting
+	METHOD spawnTrustingParticles (Z)V
+		ARG 1 trusting
+	CLASS OcelotTemptGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Ocelot;DLnet/minecraft/world/item/crafting/Ingredient;Z)V
+			ARG 1 ocelot
+			ARG 2 speedModifier
+			ARG 4 items
+			ARG 5 canScare
 	CLASS OcelotAvoidEntityGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Ocelot;Ljava/lang/Class;FDD)V
+			ARG 1 ocelot
+			ARG 2 entityClassToAvoid
+			ARG 3 maxDist
+			ARG 4 walkSpeedModifier
+			ARG 6 sprintSpeedModifier
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z

@@ -1,10 +1,12 @@
 CLASS net/minecraft/world/entity/SpawnPlacements
 	METHOD checkSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
 		ARG 0 entityType
-		ARG 1 level
-		ARG 2 reason
+		ARG 1 serverLevel
+		ARG 2 spawnType
 		ARG 3 pos
-		ARG 4 rand
+		ARG 4 random
+	METHOD getHeightmapType (Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/world/level/levelgen/Heightmap$Types;
+		ARG 0 entityType
 	METHOD getPlacementType (Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/world/entity/SpawnPlacements$Type;
 		ARG 0 entityType
 	METHOD register (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/entity/SpawnPlacements$Type;Lnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/entity/SpawnPlacements$SpawnPredicate;)V
@@ -12,3 +14,15 @@ CLASS net/minecraft/world/entity/SpawnPlacements
 		ARG 1 decoratorType
 		ARG 2 heightMapType
 		ARG 3 decoratorPredicate
+	CLASS Data
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/entity/SpawnPlacements$Type;Lnet/minecraft/world/entity/SpawnPlacements$SpawnPredicate;)V
+			ARG 1 heightMap
+			ARG 2 placement
+			ARG 3 predicate
+	CLASS SpawnPredicate
+		METHOD test (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
+			ARG 1 entityType
+			ARG 2 serverLevel
+			ARG 3 spawnType
+			ARG 4 pos
+			ARG 5 random

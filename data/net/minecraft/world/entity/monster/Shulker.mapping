@@ -1,6 +1,13 @@
 CLASS net/minecraft/world/entity/monster/Shulker
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
+	METHOD canAttachOnBlockFace (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 1 pos
+		ARG 2 direction
+	METHOD findAttachableFace (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/Direction;
+		ARG 1 pos
+	METHOD getClientPeekAmount (F)F
+		ARG 1 partialTick
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getMaxHeadXRot ()I
@@ -34,6 +41,8 @@ CLASS net/minecraft/world/entity/monster/Shulker
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD setAttachPosition (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
 	METHOD setPos (DDD)V
 		COMMENT Sets the x,y,z of the entity from the given parameters. Also seems to set up a bounding box.
 		ARG 1 x
@@ -41,6 +50,7 @@ CLASS net/minecraft/world/entity/monster/Shulker
 		ARG 5 z
 	METHOD setRawPeekAmount (I)V
 		COMMENT Applies or removes armor modifier
+		ARG 1 peekAmount
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
 	CLASS ShulkerPeekGoal
@@ -64,15 +74,23 @@ CLASS net/minecraft/world/entity/monster/Shulker
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS ShulkerDefenseAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;)V
+			ARG 1 shulker
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;
 			ARG 1 targetDistance
+		METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
+			ARG 0 entity
 	CLASS ShulkerNearestAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/monster/Shulker;)V
+			ARG 2 shulker
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;
 			ARG 1 targetDistance
 	CLASS ShulkerBodyRotationControl
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
 		METHOD clientTick ()V
 			COMMENT Update the Head and Body rendenring angles

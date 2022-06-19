@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/entity/monster/Phantom
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD canAttackType (Lnet/minecraft/world/entity/EntityType;)Z
 		ARG 1 type
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
@@ -26,15 +24,20 @@ CLASS net/minecraft/world/entity/monster/Phantom
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
 	METHOD setPhantomSize (I)V
-		ARG 1 size
+		ARG 1 phantomSize
 	METHOD shouldRenderAtSqrDistance (D)Z
 		COMMENT Checks if the entity is in range to render.
 		ARG 1 distance
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
 	CLASS PhantomLookControl
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Phantom;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
 		METHOD tick ()V
 			COMMENT Updates look
+	CLASS PhantomMoveControl
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Phantom;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
 	CLASS PhantomSweepAttackGoal
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
@@ -56,6 +59,8 @@ CLASS net/minecraft/world/entity/monster/Phantom
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS PhantomBodyRotationControl
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Phantom;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
 		METHOD clientTick ()V
 			COMMENT Update the Head and Body rendenring angles
 	CLASS PhantomAttackPlayerTargetGoal
