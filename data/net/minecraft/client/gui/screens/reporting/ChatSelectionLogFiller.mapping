@@ -1,0 +1,20 @@
+CLASS net/minecraft/client/gui/screens/reporting/ChatSelectionLogFiller
+	METHOD <init> (Lnet/minecraft/client/multiplayer/chat/ChatLog;Ljava/util/function/Predicate;)V
+		ARG 1 log
+		ARG 2 canReport
+	METHOD addFoldedMessagesTo (Ljava/util/List;Lnet/minecraft/client/gui/screens/reporting/ChatSelectionLogFiller$Output;)I
+		ARG 0 messages
+		ARG 1 output
+	METHOD fillNextPage (ILnet/minecraft/client/gui/screens/reporting/ChatSelectionLogFiller$Output;)V
+		ARG 1 maxVisibleEntries
+		ARG 2 output
+	METHOD getMessageType (Lnet/minecraft/client/multiplayer/chat/LoggedChat;)Lnet/minecraft/client/gui/screens/reporting/ChatLogSegmenter$MessageType;
+		ARG 1 loggedChat
+	CLASS Output
+		METHOD acceptDivider (Lnet/minecraft/network/chat/Component;)V
+			ARG 1 divider
+		METHOD acceptMessage (ILnet/minecraft/client/multiplayer/chat/LoggedChat;)V
+			ARG 1 id
+			ARG 2 loggedChat
+		METHOD acceptMessages (Ljava/lang/Iterable;)V
+			ARG 1 messages

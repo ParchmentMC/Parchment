@@ -1,0 +1,37 @@
+CLASS net/minecraft/world/level/gameevent/vibrations/VibrationListener
+	CLASS ReceivingEvent
+		METHOD <init> (Lnet/minecraft/world/level/gameevent/GameEvent;FLnet/minecraft/world/phys/Vec3;Ljava/util/UUID;Ljava/util/UUID;)V
+			ARG 1 gameEvent
+			ARG 2 distance
+			ARG 3 pos
+			ARG 4 uuid
+			ARG 5 projectileOwnerUuid
+		METHOD <init> (Lnet/minecraft/world/level/gameevent/GameEvent;FLnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)V
+			ARG 1 gameEvent
+			ARG 2 distance
+			ARG 3 pos
+			ARG 4 entity
+		METHOD getEntity (Lnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
+			ARG 1 level
+		METHOD getProjectileOwner (Lnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
+			ARG 1 level
+		METHOD getProjectileOwner (Lnet/minecraft/world/entity/Entity;)Ljava/util/UUID;
+			ARG 0 entity
+	CLASS VibrationListenerConfig
+		METHOD isValidVibration (Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)Z
+			ARG 1 gameEvent
+			ARG 2 context
+		METHOD onSignalReceive (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/GameEventListener;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;F)V
+			ARG 1 level
+			ARG 2 gameEventListener
+			ARG 3 sourcePos
+			ARG 4 gameEvent
+			ARG 5 sourceEntity
+			ARG 6 projectileOwner
+			ARG 7 receivingDistance
+		METHOD shouldListen (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/GameEventListener;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)Z
+			ARG 1 level
+			ARG 2 gameEventListener
+			ARG 3 sourcePos
+			ARG 4 gameEvent
+			ARG 5 context

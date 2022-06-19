@@ -1,0 +1,12 @@
+CLASS net/minecraft/client/multiplayer/chat/report/AbuseReportSender
+	METHOD create (Lnet/minecraft/client/multiplayer/chat/report/ReportEnvironment;Lcom/mojang/authlib/minecraft/UserApiService;)Lnet/minecraft/client/multiplayer/chat/report/AbuseReportSender;
+		ARG 0 environment
+		ARG 1 userApiService
+	METHOD send (Ljava/util/UUID;Lcom/mojang/authlib/minecraft/report/AbuseReport;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 id
+		ARG 2 report
+	CLASS Services
+		METHOD getErrorDescription (Lcom/mojang/authlib/exceptions/MinecraftClientException;)Lnet/minecraft/network/chat/Component;
+			ARG 1 exception
+		METHOD getHttpErrorDescription (Lcom/mojang/authlib/exceptions/MinecraftClientHttpException;)Lnet/minecraft/network/chat/Component;
+			ARG 1 httpException

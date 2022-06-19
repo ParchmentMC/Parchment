@@ -1,0 +1,43 @@
+CLASS net/minecraft/client/gui/screens/reporting/ChatSelectionScreen
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/multiplayer/chat/report/ReportingContext;Lnet/minecraft/client/multiplayer/chat/report/ChatReportBuilder;Ljava/util/function/Consumer;)V
+		ARG 1 lastScreen
+		ARG 2 reportingContext
+		ARG 3 report
+		ARG 4 onSelected
+	METHOD canReport (Lnet/minecraft/client/multiplayer/chat/LoggedChat;)Z
+		ARG 1 loggedChat
+	METHOD setTooltip (Ljava/util/List;)V
+		ARG 1 tooltip
+	CLASS ChatSelectionList
+		METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen;Lnet/minecraft/client/Minecraft;)V
+			ARG 2 minecraft
+		METHOD moveSelectableSelection (Lnet/minecraft/client/gui/components/AbstractSelectionList$SelectionDirection;)Z
+			ARG 1 ordering
+		METHOD updateHeading (Lnet/minecraft/client/multiplayer/chat/LoggedChat$Player;Z)V
+			ARG 1 loggedPlayerChat
+			ARG 2 canReport
+		CLASS Heading
+			METHOD canCombine (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$Heading;)Z
+				ARG 1 other
+		CLASS DividerEntry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList;Lnet/minecraft/network/chat/Component;)V
+				ARG 2 text
+		CLASS MessageEntry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList;ILnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;ZZ)V
+				ARG 2 chatId
+				ARG 3 text
+				ARG 4 narration
+				ARG 5 canReport
+				ARG 6 playerMessage
+		CLASS MessageHeadingEntry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/network/chat/Component;Z)V
+				ARG 2 profile
+				ARG 3 heading
+				ARG 4 canReport
+			METHOD getSkinLocation (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/resources/ResourceLocation;
+				ARG 1 profile
+			METHOD renderFace (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/resources/ResourceLocation;)V
+				ARG 1 poseStack
+				ARG 2 x
+				ARG 3 y
+				ARG 4 skinLocation
