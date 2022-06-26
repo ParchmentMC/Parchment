@@ -11,6 +11,26 @@ CLASS net/minecraft/server/commands/SpreadPlayersCommand
 		ARG 0 entities
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
+	METHOD setPlayerPositions (Ljava/util/Collection;Lnet/minecraft/server/level/ServerLevel;[Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;IZ)D
+		ARG 0 targets
+		ARG 1 level
+		ARG 3 maxHeight
+		ARG 4 respectTeams
+	METHOD spreadPlayers (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/phys/Vec2;FFIZLjava/util/Collection;)I
+		ARG 0 source
+		ARG 1 center
+		ARG 2 spreadDistance
+		ARG 3 maxRange
+		ARG 4 maxHeight
+		ARG 5 respectTeams
+		ARG 6 targets
+	METHOD spreadPositions (Lnet/minecraft/world/phys/Vec2;DLnet/minecraft/server/level/ServerLevel;Ljava/util/Random;DDDDI[Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;Z)V
+		ARG 0 center
+		ARG 1 spreadDistance
+		ARG 3 level
+		ARG 4 random
+		ARG 13 maxHeight
+		ARG 15 respectTeams
 	CLASS Position
 		METHOD clamp (DDDD)Z
 			ARG 1 minX
@@ -20,6 +40,8 @@ CLASS net/minecraft/server/commands/SpreadPlayersCommand
 		METHOD dist (Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;)D
 			ARG 1 other
 		METHOD getSpawnY (Lnet/minecraft/world/level/BlockGetter;I)I
+			ARG 1 level
+		METHOD isSafe (Lnet/minecraft/world/level/BlockGetter;I)Z
 			ARG 1 level
 		METHOD moveAway (Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;)V
 			ARG 1 other

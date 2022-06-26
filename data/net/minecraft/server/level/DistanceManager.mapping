@@ -1,4 +1,7 @@
 CLASS net/minecraft/server/level/DistanceManager
+	METHOD <init> (Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)V
+		ARG 1 dispatcher
+		ARG 2 mainThreadExecutor
 	METHOD addPlayer (Lnet/minecraft/core/SectionPos;Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 sectionPos
 		ARG 2 player
@@ -69,6 +72,8 @@ CLASS net/minecraft/server/level/DistanceManager
 	CLASS FixedPlayerDistanceChunkTracker
 		FIELD chunks Lit/unimi/dsi/fastutil/longs/Long2ByteMap;
 			COMMENT Chunks that are at most {@link #range} chunks away from the closest player.
+		METHOD <init> (Lnet/minecraft/server/level/DistanceManager;I)V
+			ARG 2 maxDistance
 		METHOD getLevel (J)I
 			ARG 1 sectionPos
 		METHOD getLevelFromSource (J)I

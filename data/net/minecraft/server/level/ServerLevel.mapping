@@ -1,4 +1,13 @@
 CLASS net/minecraft/server/level/ServerLevel
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/world/level/storage/ServerLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Holder;Lnet/minecraft/server/level/progress/ChunkProgressListener;Lnet/minecraft/world/level/chunk/ChunkGenerator;ZJLjava/util/List;Z)V
+		ARG 1 server
+		ARG 4 levelData
+		ARG 5 dimension
+		ARG 6 dimensionType
+		ARG 9 isDebug
+		ARG 10 seed
+		ARG 12 customSpawners
+		ARG 13 tickTime
 	METHOD addDuringCommandTeleport (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
 	METHOD addDuringPortalTeleport (Lnet/minecraft/server/level/ServerPlayer;)V
@@ -124,6 +133,9 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 4 category
 		ARG 5 volume
 		ARG 6 pitch
+	METHOD removePlayerImmediately (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity$RemovalReason;)V
+		ARG 1 player
+		ARG 2 reason
 	METHOD resetEmptyTime ()V
 		COMMENT Resets the updateEntityTick field to 0
 	METHOD save (Lnet/minecraft/util/ProgressListener;ZZ)V
