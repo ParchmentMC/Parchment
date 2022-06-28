@@ -1,4 +1,11 @@
 CLASS net/minecraft/world/level/storage/LevelSummary
+	METHOD <init> (Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/storage/LevelVersion;Ljava/lang/String;ZZLjava/io/File;)V
+		ARG 1 settings
+		ARG 2 levelVersion
+		ARG 3 levelId
+		ARG 4 requiresManualConversion
+		ARG 5 locked
+		ARG 6 icon
 	METHOD getGameMode ()Lnet/minecraft/world/level/GameType;
 		COMMENT Gets the EnumGameType.
 	METHOD getLevelId ()Ljava/lang/String;
@@ -7,3 +14,8 @@ CLASS net/minecraft/world/level/storage/LevelSummary
 		COMMENT return the display name of the save
 	METHOD hasCheats ()Z
 		COMMENT @return {@code true} if cheats are enabled for this world
+	CLASS BackupStatus
+		METHOD <init> (Ljava/lang/String;IZZLjava/lang/String;)V
+			ARG 3 shouldBackup
+			ARG 4 severe
+			ARG 5 translationKey
