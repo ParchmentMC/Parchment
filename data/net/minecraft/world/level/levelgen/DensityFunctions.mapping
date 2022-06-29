@@ -1,0 +1,124 @@
+CLASS net/minecraft/world/level/levelgen/DensityFunctions
+	METHOD blendDensity (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 input
+	METHOD cache2d (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 wrapped
+	METHOD cacheAllInCell (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 wrapped
+	METHOD cacheOnce (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 wrapped
+	METHOD constant (D)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 value
+	METHOD endIslands (J)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 seed
+	METHOD flatCache (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 wrapped
+	METHOD interpolated (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 wrapped
+	METHOD mappedNoise (Lnet/minecraft/core/Holder;DD)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 noiseData
+	METHOD mappedNoise (Lnet/minecraft/core/Holder;DDD)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 noiseData
+		ARG 1 yScale
+	METHOD mappedNoise (Lnet/minecraft/core/Holder;DDDD)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 noiseData
+		ARG 1 xzScale
+		ARG 3 yScale
+	METHOD noise (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 noiseData
+	METHOD noise (Lnet/minecraft/core/Holder;D)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 noiseData
+		ARG 1 yScale
+	METHOD noise (Lnet/minecraft/core/Holder;DD)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 noiseData
+		ARG 1 xzScale
+		ARG 3 yScale
+	METHOD rangeChoice (Lnet/minecraft/world/level/levelgen/DensityFunction;DDLnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 input
+		ARG 1 minInclusive
+		ARG 3 maxExclusive
+		ARG 5 whenInRange
+		ARG 6 whenOutOfRange
+	METHOD shift (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 noiseData
+	METHOD shiftA (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 noiseData
+	METHOD shiftB (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 noiseData
+	METHOD shiftedNoise2d (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;DLnet/minecraft/core/Holder;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 shiftX
+		ARG 1 shiftZ
+		ARG 2 xzScale
+		ARG 4 noiseData
+	METHOD slide (Lnet/minecraft/world/level/levelgen/NoiseSettings;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 settings
+		ARG 1 input
+	METHOD terrainShaperSpline (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunctions$TerrainShaperSpline$SplineType;DD)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 continentalness
+		ARG 1 erosion
+		ARG 2 weirdness
+		ARG 3 spline
+		ARG 4 minValue
+		ARG 6 maxValue
+	METHOD weirdScaledSampler (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/levelgen/DensityFunctions$WeirdScaledSampler$RarityValueMapper;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 input
+		ARG 1 noiseData
+		ARG 2 rarityValueMapper
+	METHOD yClampedGradient (IIDD)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 fromY
+		ARG 1 toY
+		ARG 2 fromValue
+		ARG 4 toValue
+	CLASS Noise
+		METHOD createUnseeded (Lnet/minecraft/core/Holder;DD)Lnet/minecraft/world/level/levelgen/DensityFunctions$Noise;
+			ARG 0 noiseData
+			ARG 1 xzScale
+			ARG 3 yScale
+	CLASS Mapped
+		CLASS Type
+			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+				ARG 3 name
+	CLASS Marker
+		CLASS Type
+			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+				ARG 3 name
+	CLASS ShiftedNoise
+		METHOD createUnseeded (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;DDLnet/minecraft/core/Holder;)Lnet/minecraft/world/level/levelgen/DensityFunctions$ShiftedNoise;
+			ARG 0 shiftX
+			ARG 1 shiftY
+			ARG 2 shiftZ
+			ARG 3 xzScale
+			ARG 5 yScale
+			ARG 7 noiseData
+	CLASS WeirdScaledSampler
+		METHOD createUnseeded (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/levelgen/DensityFunctions$WeirdScaledSampler$RarityValueMapper;)Lnet/minecraft/world/level/levelgen/DensityFunctions$WeirdScaledSampler;
+			ARG 0 input
+			ARG 1 noiseData
+			ARG 2 rarityValueMapper
+		CLASS RarityValueMapper
+			METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lit/unimi/dsi/fastutil/doubles/Double2DoubleFunction;D)V
+				ARG 3 name
+				ARG 4 mapper
+				ARG 5 maxRarity
+	CLASS TerrainShaperSpline
+		METHOD createUnseeded (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunctions$TerrainShaperSpline$SplineType;DD)Lnet/minecraft/world/level/levelgen/DensityFunctions$TerrainShaperSpline;
+			ARG 0 continentalness
+			ARG 1 erosion
+			ARG 2 weirdness
+			ARG 3 spline
+			ARG 4 minValue
+			ARG 6 maxValue
+		CLASS SplineType
+			METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/world/level/levelgen/DensityFunctions$TerrainShaperSpline$Spline;)V
+				ARG 3 name
+				ARG 4 spline
+	CLASS TransformerWithContext
+		METHOD transform (Lnet/minecraft/world/level/levelgen/DensityFunction$FunctionContext;D)D
+			ARG 1 context
+	CLASS EndIslandDensityFunction
+		METHOD <init> (J)V
+			ARG 1 seed
+	CLASS TwoArgumentSimpleFunction
+		CLASS Type
+			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+				ARG 3 name
