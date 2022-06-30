@@ -1,8 +1,12 @@
 CLASS net/minecraft/world/level/storage/CommandStorage
+	METHOD <init> (Lnet/minecraft/world/level/storage/DimensionDataStorage;)V
+		ARG 1 storage
 	METHOD createId (Ljava/lang/String;)Ljava/lang/String;
 		ARG 0 namespace
 	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 id
+	METHOD newStorage (Ljava/lang/String;)Lnet/minecraft/world/level/storage/CommandStorage$Container;
+		ARG 1 namespace
 	METHOD set (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 id
 		ARG 2 nbt
@@ -11,6 +15,8 @@ CLASS net/minecraft/world/level/storage/CommandStorage
 			ARG 1 id
 		METHOD getKeys (Ljava/lang/String;)Ljava/util/stream/Stream;
 			ARG 1 namespace
+		METHOD load (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/level/storage/CommandStorage$Container;
+			ARG 1 compoundTag
 		METHOD put (Ljava/lang/String;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 id
 			ARG 2 nbt

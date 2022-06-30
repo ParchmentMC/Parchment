@@ -1,4 +1,6 @@
 CLASS net/minecraft/server/dedicated/Settings
+	METHOD <init> (Ljava/util/Properties;)V
+		ARG 1 properties
 	METHOD dispatchNumberOrString (Ljava/util/function/IntFunction;Ljava/util/function/Function;)Ljava/util/function/Function;
 		ARG 0 byId
 		ARG 1 byName
@@ -16,3 +18,8 @@ CLASS net/minecraft/server/dedicated/Settings
 		ARG 1 path
 	METHOD wrapNumberDeserializer (Ljava/util/function/Function;)Ljava/util/function/Function;
 		ARG 0 parseFunc
+	CLASS MutableValue
+		METHOD <init> (Lnet/minecraft/server/dedicated/Settings;Ljava/lang/String;Ljava/lang/Object;Ljava/util/function/Function;)V
+			ARG 2 key
+			ARG 3 value
+			ARG 4 serializer
