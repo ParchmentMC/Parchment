@@ -9,6 +9,8 @@ CLASS net/minecraft/core/RegistryAccess
 	METHOD addBuiltinElements (Lnet/minecraft/resources/RegistryResourceAccess$InMemoryStorage;Lnet/minecraft/core/RegistryAccess$RegistryData;)V
 		ARG 0 destinationRegistryHolder
 		ARG 1 data
+	METHOD fromRegistryOfRegistries (Lnet/minecraft/core/Registry;)Lnet/minecraft/core/RegistryAccess$Frozen;
+		ARG 0 registryOfRegistries
 	METHOD ownedRegistry (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
 		COMMENT Get the registry owned by this registry access. The returned value, if it exists, will be writable.
 		ARG 1 registryKey
@@ -28,6 +30,9 @@ CLASS net/minecraft/core/RegistryAccess
 	METHOD registryOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Registry;
 		COMMENT A variant of {@link #registry(ResourceKey)} that throws if the registry does not exist.
 		ARG 1 registryKey
+	CLASS Writable
+		METHOD ownedWritableRegistry (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+			ARG 1 registryKey
 	CLASS RegistryData
 		COMMENT A small record representing metadata about a given registry.
 		METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)V
@@ -45,3 +50,11 @@ CLASS net/minecraft/core/RegistryAccess
 			COMMENT @return The codec used to serialize this registry's elements when sending them to the client. Returns {@code null} if this registry should not be synchronized with the client.
 		METHOD sendToClient ()Z
 			COMMENT @return {@code true} if this registry should be synchronized with the client.
+	CLASS RegistryEntry
+		METHOD fromHolder (Lnet/minecraft/core/Holder$Reference;)Lnet/minecraft/core/RegistryAccess$RegistryEntry;
+			ARG 0 holder
+		METHOD fromMapEntry (Ljava/util/Map$Entry;)Lnet/minecraft/core/RegistryAccess$RegistryEntry;
+			ARG 0 mapEntry
+	CLASS ImmutableRegistryAccess
+		METHOD <init> (Ljava/util/Map;)V
+			ARG 1 registries
