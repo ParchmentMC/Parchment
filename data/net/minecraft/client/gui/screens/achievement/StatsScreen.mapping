@@ -37,6 +37,10 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 	CLASS ItemStatisticsList
 		METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen;Lnet/minecraft/client/Minecraft;)V
 			ARG 2 minecraft
+		METHOD getColumn (I)Lnet/minecraft/stats/StatType;
+			ARG 1 index
+		METHOD getColumnIndex (Lnet/minecraft/stats/StatType;)I
+			ARG 1 type
 		METHOD getString (Lnet/minecraft/world/item/Item;)Lnet/minecraft/network/chat/Component;
 			ARG 1 item
 		METHOD renderBackground (Lcom/mojang/blaze3d/vertex/PoseStack;)V
@@ -65,6 +69,10 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 				ARG 2 stat
 				ARG 3 x
 				ARG 4 y
+		CLASS ItemRowComparator
+			METHOD compare (Lnet/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRow;Lnet/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRow;)I
+				ARG 1 row1
+				ARG 2 row2
 	CLASS MobsStatisticsList
 		METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen;Lnet/minecraft/client/Minecraft;)V
 			ARG 2 minecraft
