@@ -1,4 +1,28 @@
 CLASS com/mojang/realmsclient/client/FileDownload
+	METHOD download (Lcom/mojang/realmsclient/dto/WorldDownload;Ljava/lang/String;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;Lnet/minecraft/world/level/storage/LevelStorageSource;)V
+		ARG 2 worldName
+		ARG 3 downloadStatus
+		ARG 4 levelStorageSource
+	METHOD findAvailableFolderName (Ljava/lang/String;)Ljava/lang/String;
+		COMMENT Modifies a folder name to make sure it is valid to store on disk.
+		COMMENT @return the modified folder name
+		ARG 0 folderName
+			COMMENT The folder name to modify
+	CLASS ProgressListener
+		METHOD <init> (Lcom/mojang/realmsclient/client/FileDownload;Ljava/lang/String;Ljava/io/File;Lnet/minecraft/world/level/storage/LevelStorageSource;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;)V
+			ARG 2 worldName
+			ARG 3 tempFile
+			ARG 4 levelStorageSource
+			ARG 5 downloadStatus
+		METHOD actionPerformed (Ljava/awt/event/ActionEvent;)V
+			ARG 1 action
+	CLASS DownloadCountingOutputStream
+		METHOD <init> (Ljava/io/OutputStream;)V
+			ARG 1 out
+		METHOD afterWrite (I)V
+			ARG 1 bytesWritten
+		METHOD setListener (Ljava/awt/event/ActionListener;)V
+			ARG 1 listener
 	CLASS ResourcePackProgressListener
 		METHOD <init> (Lcom/mojang/realmsclient/client/FileDownload;Ljava/io/File;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;Lcom/mojang/realmsclient/dto/WorldDownload;)V
 			ARG 2 tempFile
