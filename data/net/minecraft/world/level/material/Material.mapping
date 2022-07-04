@@ -5,6 +5,15 @@ CLASS net/minecraft/world/level/material/Material
 		COMMENT The color index used to draw the blocks of this material on maps.
 	FIELD pushReaction Lnet/minecraft/world/level/material/PushReaction;
 		COMMENT Mobility information flag. 0 indicates that this block is normal, 1 indicates that it can't push other blocks, 2 indicates that it can't be pushed.
+	METHOD <init> (Lnet/minecraft/world/level/material/MaterialColor;ZZZZZZLnet/minecraft/world/level/material/PushReaction;)V
+		ARG 1 color
+		ARG 2 liquid
+		ARG 3 solid
+		ARG 4 blocksMotion
+		ARG 5 solidBlocking
+		ARG 6 flammable
+		ARG 7 replaceable
+		ARG 8 pushReaction
 	METHOD blocksMotion ()Z
 		COMMENT Returns if this material is considered solid or not
 	METHOD getColor ()Lnet/minecraft/world/level/material/MaterialColor;
@@ -19,3 +28,6 @@ CLASS net/minecraft/world/level/material/Material
 		COMMENT Returns true if the block is a considered solid. This is true by default.
 	METHOD isSolidBlocking ()Z
 		COMMENT Indicate if the material is opaque
+	CLASS Builder
+		METHOD <init> (Lnet/minecraft/world/level/material/MaterialColor;)V
+			ARG 1 color
