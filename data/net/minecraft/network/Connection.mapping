@@ -16,6 +16,9 @@ CLASS net/minecraft/network/Connection
 		ARG 1 context
 	METHOD channelInactive (Lio/netty/channel/ChannelHandlerContext;)V
 		ARG 1 context
+	METHOD channelRead0 (Lio/netty/channel/ChannelHandlerContext;Lnet/minecraft/network/protocol/Packet;)V
+		ARG 1 context
+		ARG 2 packet
 	METHOD channelRead0 (Lio/netty/channel/ChannelHandlerContext;Lnet/minecraft/network/protocol/packet;)V
 		ARG 1 context
 		ARG 2 packet
@@ -103,6 +106,12 @@ CLASS net/minecraft/network/Connection
 		ARG 2 validateDecompressed
 	METHOD tick ()V
 		COMMENT Checks timeouts and processes all packets received
+	CLASS 1
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channel
+	CLASS 2
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channnel
 	CLASS PacketHolder
 		METHOD <init> (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V
 			ARG 1 packet
