@@ -4,7 +4,12 @@ CLASS net/minecraft/world/entity/monster/Shulker
 	METHOD canAttachOnBlockFace (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
 		ARG 1 pos
 		ARG 2 direction
+	METHOD canStayAt (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 1 pos
+		ARG 2 facing
 	METHOD findAttachableFace (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/Direction;
+		ARG 1 pos
+	METHOD findAttachableSurface (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/Direction;
 		ARG 1 pos
 	METHOD getClientPeekAmount (F)F
 		ARG 1 partialTick
@@ -19,6 +24,8 @@ CLASS net/minecraft/world/entity/monster/Shulker
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
+	METHOD isPositionBlocked (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
 	METHOD lerpTo (DDDFFIZ)V
 		COMMENT Sets a target for the client to interpolate towards over the next few ticks
 		ARG 1 x
@@ -41,8 +48,12 @@ CLASS net/minecraft/world/entity/monster/Shulker
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD setAttachFace (Lnet/minecraft/core/Direction;)V
+		ARG 1 attachFace
 	METHOD setAttachPosition (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
+	METHOD setColor (Lnet/minecraft/world/item/DyeColor;)V
+		ARG 1 color
 	METHOD setPos (DDD)V
 		COMMENT Sets the x,y,z of the entity from the given parameters. Also seems to set up a bounding box.
 		ARG 1 x
@@ -73,6 +84,9 @@ CLASS net/minecraft/world/entity/monster/Shulker
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
+	CLASS ShulkerLookControl
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
 	CLASS ShulkerDefenseAttackGoal
 		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;)V
 			ARG 1 shulker
