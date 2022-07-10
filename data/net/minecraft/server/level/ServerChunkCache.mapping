@@ -24,6 +24,8 @@ CLASS net/minecraft/server/level/ServerChunkCache
 	METHOD broadcastAndSend (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 entity
 		ARG 2 packet
+	METHOD chunkAbsent (Lnet/minecraft/server/level/ChunkHolder;I)Z
+		ARG 1 chunkHolder
 	METHOD gatherStats ()Ljava/lang/String;
 		COMMENT Converts the instance data to a readable string.
 	METHOD getChunk (IILnet/minecraft/world/level/chunk/ChunkStatus;Z)Lnet/minecraft/world/level/chunk/ChunkAccess;
@@ -36,13 +38,23 @@ CLASS net/minecraft/server/level/ServerChunkCache
 	METHOD getChunkForLighting (II)Lnet/minecraft/world/level/BlockGetter;
 		ARG 1 chunkX
 		ARG 2 chunkZ
+	METHOD getChunkFuture (IILnet/minecraft/world/level/chunk/ChunkStatus;Z)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 x
+		ARG 2 y
+	METHOD getChunkFutureMainThread (IILnet/minecraft/world/level/chunk/ChunkStatus;Z)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 x
+		ARG 2 y
 	METHOD getChunkNow (II)Lnet/minecraft/world/level/chunk/LevelChunk;
 		ARG 1 chunkX
 		ARG 2 chunkZ
+	METHOD getFullChunk (JLjava/util/function/Consumer;)V
+		ARG 1 chunkPos
 	METHOD hasChunk (II)Z
 		COMMENT Checks to see if a chunk exists at x, z
 		ARG 1 x
 		ARG 2 z
+	METHOD isPositionTicking (J)Z
+		ARG 1 chunkPos
 	METHOD move (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
 	METHOD onLightUpdate (Lnet/minecraft/world/level/LightLayer;Lnet/minecraft/core/SectionPos;)V
@@ -64,10 +76,16 @@ CLASS net/minecraft/server/level/ServerChunkCache
 		ARG 2 peaceful
 	METHOD setViewDistance (I)V
 		ARG 1 viewDistance
+	METHOD storeInCache (JLnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/chunk/ChunkStatus;)V
+		ARG 1 chunkPos
+		ARG 3 chunk
+		ARG 4 chunkStatus
 	METHOD updateChunkForced (Lnet/minecraft/world/level/ChunkPos;Z)V
 		ARG 1 pos
 		ARG 2 add
 	CLASS MainThreadExecutor
+		METHOD <init> (Lnet/minecraft/server/level/ServerChunkCache;Lnet/minecraft/world/level/Level;)V
+			ARG 2 level
 		METHOD doRunTask (Ljava/lang/Runnable;)V
 			ARG 1 task
 		METHOD shouldRun (Ljava/lang/Runnable;)Z

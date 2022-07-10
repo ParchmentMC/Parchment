@@ -11,8 +11,6 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 		ARG 1 slot
 	METHOD addSlotListener (Lnet/minecraft/world/inventory/ContainerListener;)V
 		ARG 1 listener
-	METHOD backup (Lnet/minecraft/world/entity/player/Inventory;)S
-		ARG 1 playerInventory
 	METHOD broadcastChanges ()V
 		COMMENT Looks for changes made in the container, sends them to every listener.
 	METHOD canDragTo (Lnet/minecraft/world/inventory/Slot;)Z
@@ -36,30 +34,13 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 	METHOD clearContainer (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/Container;)V
 		ARG 1 player
 		ARG 2 container
-	METHOD clearContainer (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/Container;)V
-		ARG 1 player
-		ARG 2 level
-		ARG 3 container
 	METHOD clickMenuButton (Lnet/minecraft/world/entity/player/Player;I)Z
 		COMMENT Handles the given Button-click on the server, currently only used by enchanting. Name is for legacy.
 		ARG 1 player
 		ARG 2 id
-	METHOD clicked (IILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/item/ItemStack;
-		ARG 1 slotId
-		ARG 2 dragType
-		ARG 3 clickType
-		ARG 4 player
 	METHOD clicked (IILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 mouseX
 		ARG 2 mouseY
-		ARG 3 clickType
-		ARG 4 player
-	METHOD consideredTheSameItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 0 stack1
-		ARG 1 stack2
-	METHOD doClick (IILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/item/ItemStack;
-		ARG 1 slotId
-		ARG 2 dragType
 		ARG 3 clickType
 		ARG 4 player
 	METHOD doClick (IILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
@@ -98,8 +79,6 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 		ARG 1 stateId
 		ARG 2 items
 		ARG 3 carried
-	METHOD isSynched (Lnet/minecraft/world/entity/player/Player;)Z
-		ARG 1 player
 	METHOD isValidQuickcraftType (ILnet/minecraft/world/entity/player/Player;)Z
 		ARG 0 dragMode
 		ARG 1 player
@@ -126,8 +105,6 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 		ARG 1 player
 	METHOD resetQuickCraft ()V
 		COMMENT Reset the drag fields
-	METHOD setAll (Ljava/util/List;)V
-		ARG 1 stacks
 	METHOD setCarried (Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 stack
 	METHOD setData (II)V
@@ -146,9 +123,6 @@ CLASS net/minecraft/world/inventory/AbstractContainerMenu
 	METHOD setRemoteSlotNoCopy (ILnet/minecraft/world/item/ItemStack;)V
 		ARG 1 slot
 		ARG 2 stack
-	METHOD setSynched (Lnet/minecraft/world/entity/player/Player;Z)V
-		ARG 1 player
-		ARG 2 isSynched
 	METHOD setSynchronizer (Lnet/minecraft/world/inventory/ContainerSynchronizer;)V
 		ARG 1 syncronizer
 	METHOD slotsChanged (Lnet/minecraft/world/Container;)V
