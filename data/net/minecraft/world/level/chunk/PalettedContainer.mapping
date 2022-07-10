@@ -1,4 +1,16 @@
 CLASS net/minecraft/world/level/chunk/PalettedContainer
+	METHOD <init> (Lnet/minecraft/core/IdMap;Ljava/lang/Object;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;)V
+		ARG 1 registry
+		ARG 3 strategy
+	METHOD <init> (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;Lnet/minecraft/world/level/chunk/PalettedContainer$Configuration;Lnet/minecraft/util/BitStorage;Ljava/util/List;)V
+		ARG 1 registry
+		ARG 2 strategy
+		ARG 3 configuration
+		ARG 4 storage
+	METHOD <init> (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;Lnet/minecraft/world/level/chunk/PalettedContainer$Data;)V
+		ARG 1 registry
+		ARG 2 strategy
+		ARG 3 data
 	METHOD count (Lnet/minecraft/world/level/chunk/PalettedContainer$CountConsumer;)V
 		COMMENT Counts the number of instances of each state in the container.
 		COMMENT The provided consumer is invoked for each state with the number of instances.
@@ -27,6 +39,9 @@ CLASS net/minecraft/world/level/chunk/PalettedContainer
 		ARG 1 objectAdded
 	METHOD maybeHas (Ljava/util/function/Predicate;)Z
 		ARG 1 predicate
+	METHOD read (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;Lnet/minecraft/world/level/chunk/PalettedContainer$DiscData;)Lcom/mojang/serialization/DataResult;
+		ARG 0 registry
+		ARG 1 strategy
 	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
 	METHOD set (IIILjava/lang/Object;)V
@@ -37,8 +52,17 @@ CLASS net/minecraft/world/level/chunk/PalettedContainer
 	METHOD set (ILjava/lang/Object;)V
 		ARG 1 index
 		ARG 2 state
+	METHOD write (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;)Lnet/minecraft/world/level/chunk/PalettedContainer$DiscData;
+		ARG 1 idMap
+		ARG 2 strategy
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
+	CLASS Data
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+	CLASS Strategy
+		METHOD <init> (I)V
+			ARG 1 sizeBits
 	CLASS CountConsumer
 		METHOD accept (Ljava/lang/Object;I)V
 			ARG 1 state
