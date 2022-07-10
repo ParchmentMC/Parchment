@@ -1,13 +1,4 @@
 CLASS net/minecraft/server/level/ServerLevel
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/world/level/storage/ServerLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Holder;Lnet/minecraft/server/level/progress/ChunkProgressListener;Lnet/minecraft/world/level/chunk/ChunkGenerator;ZJLjava/util/List;Z)V
-		ARG 1 server
-		ARG 4 levelData
-		ARG 5 dimension
-		ARG 6 dimensionType
-		ARG 9 isDebug
-		ARG 10 seed
-		ARG 12 customSpawners
-		ARG 13 tickTime
 	METHOD addDuringCommandTeleport (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
 	METHOD addDuringPortalTeleport (Lnet/minecraft/server/level/ServerPlayer;)V
@@ -71,16 +62,6 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 1 pos
 	METHOD findLightningTargetAround (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
 		ARG 1 pos
-	METHOD findNearestBiome (Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;II)Lcom/mojang/datafixers/util/Pair;
-		ARG 1 biomePredicate
-		ARG 2 pos
-		ARG 3 radius
-		ARG 4 increment
-	METHOD findNearestMapFeature (Lnet/minecraft/tags/TagKey;Lnet/minecraft/core/BlockPos;IZ)Lnet/minecraft/core/BlockPos;
-		ARG 1 structureTag
-		ARG 2 pos
-		ARG 3 radius
-		ARG 4 skipExistingChunks
 	METHOD getAllEntities ()Ljava/lang/Iterable;
 		COMMENT Gets an unmodifiable iterator of all loaded entities in the world.
 	METHOD getChunkSource ()Lnet/minecraft/server/level/ServerChunkCache;
@@ -137,22 +118,6 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 3 host
 	METHOD onStructureStartsAvailable (Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 		ARG 1 chunk
-	METHOD playSound (Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
-		ARG 1 player
-		ARG 2 x
-		ARG 4 y
-		ARG 6 z
-		ARG 8 sound
-		ARG 9 category
-		ARG 10 volume
-		ARG 11 pitch
-	METHOD playSound (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
-		ARG 1 player
-		ARG 2 entity
-		ARG 3 event
-		ARG 4 category
-		ARG 5 volume
-		ARG 6 pitch
 	METHOD removePlayerImmediately (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity$RemovalReason;)V
 		ARG 1 player
 		ARG 2 reason

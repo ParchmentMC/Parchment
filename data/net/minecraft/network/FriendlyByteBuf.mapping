@@ -198,13 +198,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Reads a ChunkPos encoded as a long from the buffer.
 		COMMENT
 		COMMENT @see #writeChunkPos
-	METHOD readCollection (Ljava/util/function/IntFunction;Ljava/util/function/Function;)Ljava/util/Collection;
-		COMMENT Read a collection from this buffer. First a new collection is created given the number of elements using {@code collectionFactory}.
-		COMMENT Then every element is read using {@code elementReader}.
-		COMMENT
-		COMMENT @see #writeCollection
-		ARG 1 collectionFactory
-		ARG 2 elementReader
 	METHOD readComponent ()Lnet/minecraft/network/chat/Component;
 		COMMENT Reads a Component encoded as a JSON string from the buffer.
 		COMMENT
@@ -226,12 +219,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Reads an ItemStack from this buffer.
 		COMMENT
 		COMMENT @see #writeItem
-	METHOD readList (Ljava/util/function/Function;)Ljava/util/List;
-		COMMENT Read a List from this buffer. First a new list is created given the number of elements.
-		COMMENT Then every element is read using {@code elementReader}.
-		COMMENT
-		COMMENT @see #writeCollection
-		ARG 1 elementReader
 	METHOD readLongArray ()[J
 		COMMENT Reads a length-prefixed array of longs from the buffer.
 	METHOD readLongArray ([J)[J
@@ -243,21 +230,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Will try to use the given long[] if possible. Note that if an array with the correct size is given, maxLength is ignored.
 		ARG 1 array
 		ARG 2 maxLength
-	METHOD readMap (Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/Map;
-		COMMENT Read a Map from this buffer. First a new HashMap is created.
-		COMMENT Then all keys and values are read using the given {@code keyReader} and {@code valueReader}.
-		COMMENT
-		COMMENT @see #writeMap
-		ARG 1 keyReader
-		ARG 2 valueReader
-	METHOD readMap (Ljava/util/function/IntFunction;Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/Map;
-		COMMENT Read a Map from this buffer. First a new Map is created given the number of elements using {@code mapFactory}.
-		COMMENT Then all keys and values are read using the given {@code keyReader} and {@code valueReader}.
-		COMMENT
-		COMMENT @see #writeMap
-		ARG 1 mapFactory
-		ARG 2 keyReader
-		ARG 3 valueReader
 	METHOD readNbt ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Reads a NBT CompoundTag from this buffer.
 		COMMENT {@code null} is a valid value and may be returned.
@@ -493,12 +465,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #readChunkPos
 		ARG 1 chunkPos
-	METHOD writeCollection (Ljava/util/Collection;Ljava/util/function/BiConsumer;)V
-		COMMENT Write a collection to this buffer. Every element is encoded in order using {@code elementWriter}.
-		COMMENT
-		COMMENT @see #readCollection
-		ARG 1 collection
-		ARG 2 elementWriter
 	METHOD writeComponent (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes a Component encoded as a JSON string to the buffer.
 		COMMENT
@@ -540,14 +506,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 array
 	METHOD writeLongLE (J)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
-	METHOD writeMap (Ljava/util/Map;Ljava/util/function/BiConsumer;Ljava/util/function/BiConsumer;)V
-		COMMENT Write a Map to this buffer. First the size of the map is written as a VarInt.
-		COMMENT Then all keys and values are written using the given {@code keyWriter} and {@code valueWriter}.
-		COMMENT
-		COMMENT @see #readMap
-		ARG 1 map
-		ARG 2 keyWriter
-		ARG 3 valueWriter
 	METHOD writeMedium (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeMediumLE (I)Lio/netty/buffer/ByteBuf;

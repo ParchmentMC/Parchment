@@ -70,8 +70,6 @@ CLASS net/minecraft/core/Direction
 		COMMENT @return the normalized Vector that points in the direction of this Direction.
 	METHOD getOpposite ()Lnet/minecraft/core/Direction;
 		COMMENT @return the opposite Direction (e.g. DOWN => UP)
-	METHOD getRandom (Ljava/util/Random;)Lnet/minecraft/core/Direction;
-		ARG 0 random
 	METHOD getStepX ()I
 		COMMENT @return the offset in the x direction
 	METHOD getStepY ()I
@@ -112,23 +110,14 @@ CLASS net/minecraft/core/Direction
 			ARG 3 z
 		METHOD getPlane ()Lnet/minecraft/core/Direction$Plane;
 			COMMENT @return this Axis' Plane (VERTICAL for Y, HORIZONTAL for X and Z)
-		METHOD getRandom (Ljava/util/Random;)Lnet/minecraft/core/Direction$Axis;
-			ARG 0 random
 		METHOD isHorizontal ()Z
 			COMMENT @return whether this Axis is on the horizontal plane (true for X and Z)
-		METHOD lambda$static$0 (Lnet/minecraft/core/Direction$Axis;)Lnet/minecraft/core/Direction$Axis;
-			ARG 0 axis
 		METHOD test (Lnet/minecraft/core/Direction;)Z
 			ARG 1 direction
 	CLASS Plane
 		METHOD <init> (Ljava/lang/String;I[Lnet/minecraft/core/Direction;[Lnet/minecraft/core/Direction$Axis;)V
 			ARG 3 faces
 			ARG 4 axis
-		METHOD getRandomAxis (Ljava/util/Random;)Lnet/minecraft/core/Direction$Axis;
-			ARG 1 random
-		METHOD getRandomDirection (Ljava/util/Random;)Lnet/minecraft/core/Direction;
-			COMMENT Choose a random Direction from this Plane using the given Random
-			ARG 1 random
 	CLASS AxisDirection
 		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
 			ARG 3 step

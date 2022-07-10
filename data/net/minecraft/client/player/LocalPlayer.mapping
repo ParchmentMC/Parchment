@@ -25,12 +25,6 @@ CLASS net/minecraft/client/player/LocalPlayer
 		COMMENT Deals damage to the entity. This will take the armor of the entity into consideration before damaging the health bar.
 		ARG 1 damageSrc
 		ARG 2 damageAmount
-	METHOD chat (Ljava/lang/String;)V
-		COMMENT Sends a chat message from the player.
-		ARG 1 message
-	METHOD chat (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 message
-		ARG 2 chatPreview
 	METHOD chatSigned (Ljava/lang/String;)V
 		ARG 1 message
 	METHOD chatSigned (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
@@ -38,11 +32,6 @@ CLASS net/minecraft/client/player/LocalPlayer
 		ARG 2 chatPreview
 	METHOD closeContainer ()V
 		COMMENT set current crafting inventory back to the 2x2 square
-	METHOD command (Ljava/lang/String;)V
-		ARG 1 command
-	METHOD command (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 command
-		ARG 2 chatPreview
 	METHOD commandSigned (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 command
 		ARG 2 chatPreview
@@ -77,8 +66,6 @@ CLASS net/minecraft/client/player/LocalPlayer
 		COMMENT Returns whether the entity is in a server world
 	METHOD isLocalPlayer ()Z
 		COMMENT returns true if this is an EntityPlayerSP, or the logged in player.
-	METHOD lambda$updateAutoJump$0 (Lnet/minecraft/world/phys/shapes/VoxelShape;)Ljava/util/stream/Stream;
-		ARG 0 shape
 	METHOD magicCrit (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entityHit
 	METHOD move (Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V
@@ -121,10 +108,6 @@ CLASS net/minecraft/client/player/LocalPlayer
 		ARG 1 messageSigner
 		ARG 2 command
 		ARG 3 chatPreview
-	METHOD sendMessage (Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V
-		COMMENT Send a chat message to the CommandSender
-		ARG 1 component
-		ARG 2 senderUUID
 	METHOD sendPosition ()V
 		COMMENT called every tick when the player is on foot. Performs all the things that normally happen during movement.
 	METHOD setExperienceValues (FII)V

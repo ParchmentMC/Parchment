@@ -17,31 +17,6 @@ CLASS net/minecraft/world/level/levelgen/feature/IcebergFeature
 		ARG 8 ellipseOrigin
 		ARG 9 majorRadius
 		ARG 10 minorRadius
-	METHOD generateCutOut (Ljava/util/Random;Lnet/minecraft/world/level/LevelAccessor;IILnet/minecraft/core/BlockPos;ZIDI)V
-		ARG 1 random
-		ARG 2 level
-		ARG 3 majorAxis
-		ARG 4 height
-		ARG 5 pos
-		ARG 6 elliptical
-		ARG 7 ellipseRadius
-		ARG 8 angle
-		ARG 10 minorAxis
-	METHOD generateIcebergBlock (Lnet/minecraft/world/level/LevelAccessor;Ljava/util/Random;Lnet/minecraft/core/BlockPos;IIIIIIZIDZLnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 level
-		ARG 2 random
-		ARG 3 pos
-		ARG 4 height
-		ARG 5 localX
-		ARG 6 localY
-		ARG 7 localZ
-		ARG 8 radius
-		ARG 9 majorRadius
-		ARG 10 elliptical
-		ARG 11 minorRadius
-		ARG 12 angle
-		ARG 14 placeSnow
-		ARG 15 state
 	METHOD getEllipseC (III)I
 		ARG 1 y
 		ARG 2 height
@@ -55,42 +30,11 @@ CLASS net/minecraft/world/level/levelgen/feature/IcebergFeature
 			COMMENT The maximum height of the iceberg.
 		ARG 3 maxRadius
 			COMMENT The maximum radius of the iceberg, at the horizontal.
-	METHOD heightDependentRadiusRound (Ljava/util/Random;III)I
-		ARG 1 random
-		ARG 2 y
-		ARG 3 height
-		ARG 4 majorAxis
-	METHOD heightDependentRadiusSteep (Ljava/util/Random;III)I
-		COMMENT Given a horizontal projection of an iceberg, defines the three dimensional extrusion by defining a radius at any given y value.
-		COMMENT The radius curve is a linear function, with a slope that is both dependent on the {@code majorAxis} and randomly varies, which results in steep conical icebergs.
-		ARG 1 random
-			COMMENT A random to use to vary the slope of the falloff curve.
-		ARG 2 y
-			COMMENT The y value to calculate a radius at.
-		ARG 3 height
-			COMMENT The maximum height of the iceberg.
-		ARG 4 maxRadius
-			COMMENT The maximum radius radius of the iceberg, at the horizontal.
 	METHOD isIcebergState (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
 	METHOD removeFloatingSnowLayer (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 level
 		ARG 2 pos
-	METHOD setIcebergBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelAccessor;Ljava/util/Random;IIZZLnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 pos
-		ARG 2 level
-		ARG 3 random
-		ARG 4 heightRemaining
-		ARG 5 height
-		ARG 6 elliptical
-		ARG 7 placeSnow
-		ARG 8 state
-	METHOD signedDistanceCircle (IILnet/minecraft/core/BlockPos;ILjava/util/Random;)D
-		ARG 1 x
-		ARG 2 z
-		ARG 3 center
-		ARG 4 radius
-		ARG 5 random
 	METHOD signedDistanceEllipse (IILnet/minecraft/core/BlockPos;IID)D
 		COMMENT Given an ellipse defined by the equation {@code (x/a)^2 + (y/b)^2 = 1}, where {@code a} and {@code b} are the semi-major and semi-minor axies respectively, this computes the distance between an arbitrary point and the ellipse.
 		COMMENT The point (x, y) is within the ellipse if the return value is < 0, outside the ellipse if the return value is > 0 and exactly on the edge of the ellipse if the return value is 0.

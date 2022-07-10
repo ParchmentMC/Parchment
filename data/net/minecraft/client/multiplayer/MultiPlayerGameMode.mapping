@@ -28,12 +28,6 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		COMMENT Syncs the current player item with the server
 	METHOD getPickRange ()F
 		COMMENT player reach distance = 4F
-	METHOD handleBlockBreakAck (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;Z)V
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 block
-		ARG 4 action
-		ARG 5 successful
 	METHOD handleCreativeModeItemAdd (Lnet/minecraft/world/item/ItemStack;I)V
 		COMMENT Used in PlayerControllerMP to update the server with an ItemStack in a slot.
 		ARG 1 stack
@@ -82,10 +76,6 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		ARG 1 player
 	METHOD sameDestroyTarget (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
-	METHOD sendBlockAction (Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)V
-		ARG 1 action
-		ARG 2 pos
-		ARG 3 dir
 	METHOD setLocalMode (Lnet/minecraft/world/level/GameType;)V
 		COMMENT Sets the game type for the player.
 		ARG 1 type
@@ -98,12 +88,3 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		ARG 2 face
 	METHOD stopDestroyBlock ()V
 		COMMENT Resets current block damage
-	METHOD useItem (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
-		ARG 1 player
-		ARG 2 level
-		ARG 3 hand
-	METHOD useItemOn (Lnet/minecraft/client/player/LocalPlayer;Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;
-		ARG 1 player
-		ARG 2 level
-		ARG 3 hand
-		ARG 4 blockHitResult

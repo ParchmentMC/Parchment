@@ -44,16 +44,10 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 	METHOD handleAddExperienceOrb (Lnet/minecraft/network/protocol/game/ClientboundAddExperienceOrbPacket;)V
 		COMMENT Spawns an experience orb and sets its value (amount of XP)
 		ARG 1 packet
-	METHOD handleAddMob (Lnet/minecraft/network/protocol/game/ClientboundAddMobPacket;)V
-		COMMENT Spawns the mob entity at the specified location, with the specified rotation, momentum and type. Updates the entities Datawatchers with the entity metadata specified in the packet
-		ARG 1 packet
 	METHOD handleAddObjective (Lnet/minecraft/network/protocol/game/ClientboundSetObjectivePacket;)V
 		COMMENT May create a scoreboard objective, remove an objective from the scoreboard or update an objectives' displayname
 		ARG 1 packet
 	METHOD handleAddOrRemoveRecipes (Lnet/minecraft/network/protocol/game/ClientboundRecipePacket;)V
-		ARG 1 packet
-	METHOD handleAddPainting (Lnet/minecraft/network/protocol/game/ClientboundAddPaintingPacket;)V
-		COMMENT Handles the spawning of a painting object
 		ARG 1 packet
 	METHOD handleAddPlayer (Lnet/minecraft/network/protocol/game/ClientboundAddPlayerPacket;)V
 		COMMENT Handles the creation of a nearby player entity, sets the position and held item
@@ -63,8 +57,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 packet
 	METHOD handleAwardStats (Lnet/minecraft/network/protocol/game/ClientboundAwardStatsPacket;)V
 		COMMENT Updates the players statistics or achievements
-		ARG 1 packet
-	METHOD handleBlockBreakAck (Lnet/minecraft/network/protocol/game/ClientboundBlockBreakAckPacket;)V
 		ARG 1 packet
 	METHOD handleBlockDestruction (Lnet/minecraft/network/protocol/game/ClientboundBlockDestructionPacket;)V
 		COMMENT Updates all registered IWorldAccess instances with destroyBlockInWorldPartially
@@ -81,9 +73,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 	METHOD handleBossUpdate (Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket;)V
 		ARG 1 packet
 	METHOD handleChangeDifficulty (Lnet/minecraft/network/protocol/game/ClientboundChangeDifficultyPacket;)V
-		ARG 1 packet
-	METHOD handleChat (Lnet/minecraft/network/protocol/game/ClientboundChatPacket;)V
-		COMMENT Prints a chatmessage in the chat GUI
 		ARG 1 packet
 	METHOD handleChunkBlocksUpdate (Lnet/minecraft/network/protocol/game/ClientboundSectionBlocksUpdatePacket;)V
 		COMMENT Received from the servers PlayerManager if between 1 and 64 blocks in a chunk are changed. If only one block requires an update, the server sends S23PacketBlockChange and if 64 or more blocks are changed, the server sends S21PacketChunkData
@@ -266,5 +255,3 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 x
 		ARG 2 z
 		ARG 3 data
-	METHOD validateResourcePackUrl (Ljava/lang/String;)Z
-		ARG 1 url
