@@ -25,6 +25,45 @@ CLASS net/minecraft/world/level/biome/Climate
 	CLASS RTree
 		METHOD <init> (Lnet/minecraft/world/level/biome/Climate$RTree$Node;)V
 			ARG 1 root
+		METHOD bucketize (Ljava/util/List;)Ljava/util/List;
+			ARG 0 nodes
+		METHOD cost ([Lnet/minecraft/world/level/biome/Climate$Parameter;)J
+			ARG 0 parameters
+		METHOD search (Lnet/minecraft/world/level/biome/Climate$TargetPoint;Lnet/minecraft/world/level/biome/Climate$DistanceMetric;)Ljava/lang/Object;
+			ARG 1 targetPoint
+			ARG 2 distanceMetric
+		CLASS Leaf
+			METHOD <init> (Lnet/minecraft/world/level/biome/Climate$ParameterPoint;Ljava/lang/Object;)V
+				ARG 2 value
+		CLASS Node
+			METHOD <init> (Ljava/util/List;)V
+				ARG 1 parameters
+		CLASS SubTree
+			METHOD <init> (Ljava/util/List;Ljava/util/List;)V
+				ARG 1 parameters
+	CLASS Parameter
+		METHOD span (FF)Lnet/minecraft/world/level/biome/Climate$Parameter;
+			ARG 0 min
+			ARG 1 max
+		METHOD span (Lnet/minecraft/world/level/biome/Climate$Parameter;Lnet/minecraft/world/level/biome/Climate$Parameter;)Lnet/minecraft/world/level/biome/Climate$Parameter;
+			ARG 0 min
+			ARG 1 max
+	CLASS SpawnFinder
+		METHOD <init> (Ljava/util/List;Lnet/minecraft/world/level/biome/Climate$Sampler;)V
+			ARG 2 sampler
+		METHOD getSpawnPositionAndFitness (Ljava/util/List;Lnet/minecraft/world/level/biome/Climate$Sampler;II)Lnet/minecraft/world/level/biome/Climate$SpawnFinder$Result;
+			ARG 1 sampler
+		METHOD radialSearch (Ljava/util/List;Lnet/minecraft/world/level/biome/Climate$Sampler;FF)V
+			ARG 2 sampler
 	CLASS ParameterList
 		METHOD <init> (Ljava/util/List;)V
 			ARG 1 values
+		METHOD findValue (Lnet/minecraft/world/level/biome/Climate$TargetPoint;)Ljava/lang/Object;
+			ARG 1 targetPoint
+		METHOD findValueBruteForce (Lnet/minecraft/world/level/biome/Climate$TargetPoint;)Ljava/lang/Object;
+			ARG 1 targetPoint
+		METHOD findValueIndex (Lnet/minecraft/world/level/biome/Climate$TargetPoint;)Ljava/lang/Object;
+			ARG 1 targetPoint
+		METHOD findValueIndex (Lnet/minecraft/world/level/biome/Climate$TargetPoint;Lnet/minecraft/world/level/biome/Climate$DistanceMetric;)Ljava/lang/Object;
+			ARG 1 targetPoint
+			ARG 2 distanceMetric
