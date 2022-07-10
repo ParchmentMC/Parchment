@@ -25,6 +25,9 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 2 messageFactory
 		ARG 3 sender
 		ARG 4 chatTypeKey
+	METHOD broadcastMessageHeader (Lnet/minecraft/network/chat/PlayerChatMessage;Ljava/util/Set;)V
+		ARG 1 message
+		ARG 2 alreadySeen
 	METHOD canBypassPlayerLimit (Lcom/mojang/authlib/GameProfile;)Z
 		ARG 1 profile
 	METHOD canPlayerLogin (Ljava/net/SocketAddress;Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/network/chat/Component;
@@ -102,6 +105,9 @@ CLASS net/minecraft/server/players/PlayerList
 	METHOD updateEntireScoreboard (Lnet/minecraft/server/ServerScoreboard;Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 scoreboard
 		ARG 2 player
+	METHOD verifyChatTrusted (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatSender;)Z
+		ARG 1 message
+		ARG 2 sender
 	CLASS 1
 		METHOD onBorderCenterSet (Lnet/minecraft/world/level/border/WorldBorder;DD)V
 			ARG 1 border

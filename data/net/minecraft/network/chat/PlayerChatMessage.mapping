@@ -1,4 +1,6 @@
 CLASS net/minecraft/network/chat/PlayerChatMessage
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
 	METHOD filteredSigned (Lnet/minecraft/server/network/FilteredText;Lnet/minecraft/server/network/FilteredText;Lnet/minecraft/network/chat/MessageSignature;Z)Lnet/minecraft/server/network/FilteredText;
 		ARG 0 originalText
 		ARG 1 decoratedText
@@ -26,3 +28,5 @@ CLASS net/minecraft/network/chat/PlayerChatMessage
 		ARG 1 content
 	METHOD withUnsignedContent (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/PlayerChatMessage;
 		ARG 1 unsignedContent
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer

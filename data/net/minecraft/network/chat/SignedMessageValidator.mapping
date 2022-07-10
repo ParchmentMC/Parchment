@@ -1,0 +1,15 @@
+CLASS net/minecraft/network/chat/SignedMessageValidator
+	METHOD create (Lnet/minecraft/world/entity/player/ProfilePublicKey;)Lnet/minecraft/network/chat/SignedMessageValidator;
+		ARG 0 profilePublicKey
+	METHOD validateHeader (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)V
+		ARG 1 header
+		ARG 2 headerSignature
+		ARG 3 bodyDigest
+	METHOD validateMessage (Lnet/minecraft/network/chat/PlayerChatMessage;)Z
+		ARG 1 message
+	CLASS KeyBased
+		METHOD <init> (Lnet/minecraft/util/SignatureValidator;)V
+			ARG 1 validator
+		METHOD updateAndValidateChain (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;)Z
+			ARG 1 header
+			ARG 2 headerSignature

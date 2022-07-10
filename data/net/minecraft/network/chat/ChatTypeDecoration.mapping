@@ -2,6 +2,9 @@ CLASS net/minecraft/network/chat/ChatTypeDecoration
 	METHOD decorate (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatSender;)Lnet/minecraft/network/chat/Component;
 		ARG 1 content
 		ARG 2 sender
+	METHOD decorate (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType$Bound;)Lnet/minecraft/network/chat/Component;
+		ARG 1 content
+		ARG 2 boundChatType
 	METHOD incomingDirectMessage (Ljava/lang/String;)Lnet/minecraft/network/chat/ChatTypeDecoration;
 		ARG 0 translationKey
 	METHOD outgoingDirectMessage (Ljava/lang/String;)Lnet/minecraft/network/chat/ChatTypeDecoration;
@@ -9,6 +12,9 @@ CLASS net/minecraft/network/chat/ChatTypeDecoration
 	METHOD resolveParameters (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatSender;)[Lnet/minecraft/network/chat/Component;
 		ARG 1 content
 		ARG 2 sender
+	METHOD resolveParameters (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType$Bound;)[Lnet/minecraft/network/chat/Component;
+		ARG 1 content
+		ARG 2 boundChatType
 	METHOD teamMessage (Ljava/lang/String;)Lnet/minecraft/network/chat/ChatTypeDecoration;
 		ARG 0 translationKey
 	METHOD withSender (Ljava/lang/String;)Lnet/minecraft/network/chat/ChatTypeDecoration;
@@ -20,7 +26,13 @@ CLASS net/minecraft/network/chat/ChatTypeDecoration
 		METHOD select (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatSender;)Lnet/minecraft/network/chat/Component;
 			ARG 1 content
 			ARG 2 sender
+		METHOD select (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType$Bound;)Lnet/minecraft/network/chat/Component;
+			ARG 1 content
+			ARG 2 boundChatType
 		CLASS Selector
 			METHOD select (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatSender;)Lnet/minecraft/network/chat/Component;
 				ARG 1 content
 				ARG 2 chatSender
+			METHOD select (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType$Bound;)Lnet/minecraft/network/chat/Component;
+				ARG 1 content
+				ARG 2 boundChatType
