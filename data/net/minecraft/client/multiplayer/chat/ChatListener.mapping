@@ -5,7 +5,7 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 1 sender
 		ARG 2 message
 		ARG 3 decoratedServerContent
-		ARG 4 playerInfo
+		ARG 4 senderPlayerInfo
 	METHOD guessChatUUID (Lnet/minecraft/network/chat/Component;)Ljava/util/UUID;
 		ARG 1 message
 	METHOD handleChatMessage (Lnet/minecraft/network/chat/ChatType;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatSender;)V
@@ -21,10 +21,26 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 	METHOD logPlayerMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatSender;Lnet/minecraft/client/multiplayer/PlayerInfo;Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;)V
 		ARG 1 message
 		ARG 2 sender
-		ARG 3 playerInfo
+		ARG 3 senderPlayerInfo
 		ARG 4 trustLevel
 	METHOD logSystemMessage (Lnet/minecraft/network/chat/Component;Ljava/time/Instant;)V
 		ARG 1 message
 		ARG 2 timeStamp
+	METHOD narrateChatMessage (Lnet/minecraft/network/chat/ChatType;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatSender;)V
+		ARG 1 chatType
+		ARG 2 message
+		ARG 3 sender
+	METHOD processNonPlayerChatMessage (Lnet/minecraft/network/chat/ChatType;Lnet/minecraft/network/chat/ChatSender;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;)Z
+		ARG 1 chatType
+		ARG 2 sender
+		ARG 3 message
+		ARG 4 decoratedServerContent
+	METHOD processPlayerChatMessage (Lnet/minecraft/network/chat/ChatType;Lnet/minecraft/network/chat/ChatSender;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;)Z
+		ARG 1 chatType
+		ARG 2 sender
+		ARG 3 message
+		ARG 4 decoratedServerContent
+		ARG 5 senderPlayerInfo
+		ARG 6 trustLevel
 	METHOD resolveSenderPlayer (Lnet/minecraft/network/chat/ChatSender;)Lnet/minecraft/client/multiplayer/PlayerInfo;
 		ARG 1 sender

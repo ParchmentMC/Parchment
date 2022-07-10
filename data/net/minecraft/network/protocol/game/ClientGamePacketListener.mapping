@@ -49,6 +49,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleChat (Lnet/minecraft/network/protocol/game/ClientboundChatPacket;)V
 		COMMENT Prints a chatmessage in the chat GUI
 		ARG 1 packet
+	METHOD handleChatPreview (Lnet/minecraft/network/protocol/game/ClientboundChatPreviewPacket;)V
+		ARG 1 packet
 	METHOD handleChunkBlocksUpdate (Lnet/minecraft/network/protocol/game/ClientboundSectionBlocksUpdatePacket;)V
 		COMMENT Received from the servers PlayerManager if between 1 and 64 blocks in a chunk are changed. If only one block requires an update, the server sends S23PacketBlockChange and if 64 or more blocks are changed, the server sends S21PacketChunkData
 		ARG 1 packet
@@ -68,6 +70,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleContainerSetSlot (Lnet/minecraft/network/protocol/game/ClientboundContainerSetSlotPacket;)V
 		COMMENT Handles pickin up an ItemStack or dropping one in your inventory or an open (non-creative) container
+		ARG 1 packet
+	METHOD handleCustomChatCompletions (Lnet/minecraft/network/protocol/game/ClientboundCustomChatCompletionsPacket;)V
 		ARG 1 packet
 	METHOD handleCustomPayload (Lnet/minecraft/network/protocol/game/ClientboundCustomPayloadPacket;)V
 		COMMENT Handles packets that have room for a channel specification. Vanilla implemented channels are "MC|TrList" to acquire a MerchantRecipeList trades for a villager merchant, "MC|Brand" which sets the server brand? on the player instance and finally "MC|RPack" which the server uses to communicate the identifier of the default server resourcepack for the client to load.
@@ -136,6 +140,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handlePlayerAbilities (Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;)V
 		ARG 1 packet
+	METHOD handlePlayerChat (Lnet/minecraft/network/protocol/game/ClientboundPlayerChatPacket;)V
+		ARG 1 packet
 	METHOD handlePlayerCombatEnd (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatEndPacket;)V
 		ARG 1 packet
 	METHOD handlePlayerCombatEnter (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatEnterPacket;)V
@@ -143,6 +149,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handlePlayerCombatKill (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatKillPacket;)V
 		ARG 1 packet
 	METHOD handlePlayerInfo (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket;)V
+		ARG 1 packet
+	METHOD handleRemoveEntities (Lnet/minecraft/network/protocol/game/ClientboundRemoveEntitiesPacket;)V
 		ARG 1 packet
 	METHOD handleRemoveMobEffect (Lnet/minecraft/network/protocol/game/ClientboundRemoveMobEffectPacket;)V
 		ARG 1 packet
@@ -154,6 +162,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		COMMENT Updates the direction in which the specified entity is looking, normally this head rotation is independent of the rotation of the entity itself
 		ARG 1 packet
 	METHOD handleSelectAdvancementsTab (Lnet/minecraft/network/protocol/game/ClientboundSelectAdvancementsTabPacket;)V
+		ARG 1 packet
+	METHOD handleServerData (Lnet/minecraft/network/protocol/game/ClientboundServerDataPacket;)V
 		ARG 1 packet
 	METHOD handleSetBorderCenter (Lnet/minecraft/network/protocol/game/ClientboundSetBorderCenterPacket;)V
 		ARG 1 packet
@@ -206,6 +216,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleSoundEvent (Lnet/minecraft/network/protocol/game/ClientboundSoundPacket;)V
 		ARG 1 packet
 	METHOD handleStopSoundEvent (Lnet/minecraft/network/protocol/game/ClientboundStopSoundPacket;)V
+		ARG 1 packet
+	METHOD handleSystemChat (Lnet/minecraft/network/protocol/game/ClientboundSystemChatPacket;)V
 		ARG 1 packet
 	METHOD handleTabListCustomisation (Lnet/minecraft/network/protocol/game/ClientboundTabListPacket;)V
 		ARG 1 packet
