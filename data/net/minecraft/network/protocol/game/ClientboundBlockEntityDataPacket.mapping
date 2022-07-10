@@ -7,6 +7,11 @@ CLASS net/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket
 		ARG 3 tag
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
+	METHOD create (Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+		ARG 0 blockEntity
+	METHOD create (Lnet/minecraft/world/level/block/entity/BlockEntity;Ljava/util/function/Function;)Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+		ARG 0 blockEntity
+		ARG 1 tagGetter
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler

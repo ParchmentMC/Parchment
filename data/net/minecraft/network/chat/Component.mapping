@@ -14,6 +14,8 @@ CLASS net/minecraft/network/chat/Component
 		ARG 0 text
 	METHOD plainCopy ()Lnet/minecraft/network/chat/MutableComponent;
 		COMMENT Creates a copy of this component, losing any style or siblings.
+	METHOD toFlatList (Lnet/minecraft/network/chat/Style;)Ljava/util/List;
+		ARG 1 style
 	METHOD visit (Lnet/minecraft/network/chat/FormattedText$ContentConsumer;)Ljava/util/Optional;
 		ARG 1 acceptor
 	METHOD visit (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
@@ -25,11 +27,17 @@ CLASS net/minecraft/network/chat/Component
 		ARG 1 consumer
 		ARG 2 style
 	CLASS Serializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/network/chat/MutableComponent;
+			ARG 1 json
+			ARG 2 typeOfT
+			ARG 3 context
 		METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/MutableComponent;
 			ARG 0 json
 		METHOD fromJson (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/network/chat/MutableComponent;
 			ARG 0 reader
 		METHOD fromJson (Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+			ARG 0 json
+		METHOD fromJsonLenient (Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
 			ARG 0 json
 		METHOD getPos (Lcom/google/gson/stream/JsonReader;)I
 			ARG 0 reader
@@ -37,6 +45,14 @@ CLASS net/minecraft/network/chat/Component
 			ARG 1 type
 			ARG 2 jsonContext
 			ARG 3 jsonObject
+		METHOD serialize (Lnet/minecraft/network/chat/Component;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
+			ARG 1 src
+			ARG 2 typeOfSrc
+			ARG 3 context
+		METHOD serializeSeparator (Lcom/google/gson/JsonSerializationContext;Lcom/google/gson/JsonObject;Ljava/util/Optional;)V
+			ARG 1 context
+			ARG 2 json
+			ARG 3 separator
 		METHOD serializeStyle (Lnet/minecraft/network/chat/Style;Lcom/google/gson/JsonObject;Lcom/google/gson/JsonSerializationContext;)V
 			ARG 1 style
 			ARG 2 object
