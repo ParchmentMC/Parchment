@@ -34,6 +34,7 @@ CLASS net/minecraft/client/Minecraft
 		ARG 0 id
 		ARG 1 title
 		ARG 2 required
+		ARG 3 resources
 		ARG 4 packMetadataSection
 		ARG 5 defaultPosition
 		ARG 6 packSource
@@ -88,10 +89,12 @@ CLASS net/minecraft/client/Minecraft
 	METHOD getVersionType ()Ljava/lang/String;
 		COMMENT Gets the type of version that Minecraft was launched under (as specified in the version JSON). Specified via the <code>--versionType</code> flag.
 	METHOD grabHugeScreenshot (Ljava/io/File;IIII)Lnet/minecraft/network/chat/Component;
+		ARG 1 gameDirectory
 		ARG 3 rowHeight
 		ARG 4 width
 		ARG 5 height
 	METHOD grabPanoramixScreenshot (Ljava/io/File;II)Lnet/minecraft/network/chat/Component;
+		ARG 1 gameDirectory
 		ARG 2 width
 		ARG 3 height
 	METHOD hasSingleplayerServer ()Z
@@ -168,3 +171,9 @@ CLASS net/minecraft/client/Minecraft
 	CLASS ChatStatus
 		METHOD <init> (Ljava/lang/String;ILnet/minecraft/network/chat/Component;)V
 			ARG 3 message
+		METHOD isChatAllowed (Z)Z
+			ARG 1 isLocalServer
+		CLASS 4
+			METHOD isChatAllowed (Z)Z
+				COMMENT Checks if this option allows chat.
+				COMMENT if the current Minecraft instance runs a local server
