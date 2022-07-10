@@ -1,6 +1,6 @@
 CLASS net/minecraft/world/level/block/entity/HopperBlockEntity
 	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 worldPosition
+		ARG 1 pos
 		ARG 2 blockState
 	METHOD addItem (Lnet/minecraft/world/Container;Lnet/minecraft/world/Container;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Attempts to place the passed stack in the container, using as many slots as required.
@@ -39,8 +39,12 @@ CLASS net/minecraft/world/level/block/entity/HopperBlockEntity
 		ARG 2 state
 		ARG 3 entity
 		ARG 4 blockEntity
+	METHOD getAttachedContainer (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/Container;
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
 	METHOD getContainerAt (Lnet/minecraft/world/level/Level;DDD)Lnet/minecraft/world/Container;
-		COMMENT @return the container for the given position or null if none was found
+		COMMENT @return the container for the given position or {@code null} if none was found
 		ARG 0 level
 		ARG 1 x
 		ARG 3 y
@@ -48,12 +52,18 @@ CLASS net/minecraft/world/level/block/entity/HopperBlockEntity
 	METHOD getContainerAt (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/Container;
 		ARG 0 level
 		ARG 1 pos
+	METHOD getItemsAtAndAbove (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/entity/Hopper;)Ljava/util/List;
+		ARG 0 level
+		ARG 1 hopper
+	METHOD getSourceContainer (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/entity/Hopper;)Lnet/minecraft/world/Container;
+		ARG 0 level
+		ARG 1 hopper
 	METHOD isEmptyContainer (Lnet/minecraft/world/Container;Lnet/minecraft/core/Direction;)Z
-		COMMENT @return whether the given Container is empty from the given face
+		COMMENT @return whether the given {@link Container} is empty from the given face
 		ARG 0 container
 		ARG 1 direction
 	METHOD isFullContainer (Lnet/minecraft/world/Container;Lnet/minecraft/core/Direction;)Z
-		COMMENT @return false if the container has any room to place items in
+		COMMENT @return false if the {@link Container} has any room to place items in
 		ARG 0 container
 		ARG 1 direction
 	METHOD lambda$isEmptyContainer$2 (Lnet/minecraft/world/Container;I)Z
@@ -86,7 +96,7 @@ CLASS net/minecraft/world/level/block/entity/HopperBlockEntity
 		ARG 3 blockEntity
 	METHOD tryTakeInItemFromSlot (Lnet/minecraft/world/level/block/entity/Hopper;Lnet/minecraft/world/Container;ILnet/minecraft/core/Direction;)Z
 		COMMENT Pulls from the specified slot in the container and places in any available slot in the hopper.
-		COMMENT @return true if the entire stack was moved
+		COMMENT @return {@code true} if the entire stack was moved.
 		ARG 0 hopper
 		ARG 1 container
 		ARG 2 slot
