@@ -6,6 +6,12 @@ CLASS net/minecraft/world/entity/animal/Wolf
 	METHOD canMate (Lnet/minecraft/world/entity/animal/Animal;)Z
 		COMMENT Returns true if the mob is currently able to mate with the specified mob.
 		ARG 1 otherAnimal
+	METHOD checkWolfSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
+		ARG 0 type
+		ARG 1 level
+		ARG 2 spawnType
+		ARG 3 pos
+		ARG 4 random
 	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
 		COMMENT Called when the mob's health reaches 0.
 		ARG 1 cause
@@ -65,6 +71,9 @@ CLASS net/minecraft/world/entity/animal/Wolf
 	METHOD wantsToAttack (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 1 target
 		ARG 2 owner
+	CLASS WolfPanicGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Wolf;D)V
+			ARG 2 speedModifier
 	CLASS WolfAvoidEntityGoal
 		METHOD <init> (Lnet/minecraft/world/entity/animal/Wolf;Lnet/minecraft/world/entity/animal/Wolf;Ljava/lang/Class;FDD)V
 			ARG 2 wolf

@@ -33,7 +33,7 @@ CLASS net/minecraft/world/entity/player/Inventory
 	METHOD findSlotMatchingUnusedItem (Lnet/minecraft/world/item/ItemStack;)I
 		ARG 1 stack
 	METHOD getArmor (I)Lnet/minecraft/world/item/ItemStack;
-		COMMENT returns a player armor item (as itemstack) contained in specified armor slot.
+		COMMENT @return a player armor item (as an {@code ItemStack}) contained in specified armor slot
 		ARG 1 slot
 	METHOD getContainerSize ()I
 		COMMENT Returns the number of slots in the inventory.
@@ -54,14 +54,10 @@ CLASS net/minecraft/world/entity/player/Inventory
 	METHOD hasRemainingSpaceForItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 destination
 		ARG 2 origin
-	METHOD hurtArmor (Lnet/minecraft/world/damagesource/DamageSource;F)V
-		ARG 1 damageSource
-		ARG 2 damageAmount
+	METHOD hurtArmor (Lnet/minecraft/world/damagesource/DamageSource;F[I)V
+		ARG 1 source
 	METHOD isHotbarSlot (I)Z
 		ARG 0 index
-	METHOD isSameItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 destination
-		ARG 2 origin
 	METHOD lambda$hurtArmor$1 (ILnet/minecraft/world/entity/player/Player;)V
 		ARG 1 entity
 	METHOD load (Lnet/minecraft/nbt/ListTag;)V
@@ -69,9 +65,11 @@ CLASS net/minecraft/world/entity/player/Inventory
 		ARG 1 listTag
 	METHOD pickSlot (I)V
 		ARG 1 index
-	METHOD placeItemBackInInventory (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 level
-		ARG 2 stack
+	METHOD placeItemBackInInventory (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 stack
+	METHOD placeItemBackInInventory (Lnet/minecraft/world/item/ItemStack;Z)V
+		ARG 1 stack
+		ARG 2 sendPacket
 	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
 		ARG 1 index
@@ -87,8 +85,6 @@ CLASS net/minecraft/world/entity/player/Inventory
 	METHOD save (Lnet/minecraft/nbt/ListTag;)Lnet/minecraft/nbt/ListTag;
 		COMMENT Writes the inventory out as a list of compound tags. This is where the slot indices are used (+100 for armor, +80 for crafting).
 		ARG 1 listTag
-	METHOD setCarried (Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 carried
 	METHOD setChanged ()V
 		COMMENT For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it hasn't changed and skip it.
 	METHOD setItem (ILnet/minecraft/world/item/ItemStack;)V

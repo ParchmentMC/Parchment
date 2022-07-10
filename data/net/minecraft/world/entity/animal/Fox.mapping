@@ -108,11 +108,10 @@ CLASS net/minecraft/world/entity/animal/Fox
 	METHOD trusts (Ljava/util/UUID;)Z
 		ARG 1 uuid
 	CLASS Type
-		METHOD <init> (Ljava/lang/String;IILjava/lang/String;[Lnet/minecraft/resources/ResourceKey;)V
+		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
 			ARG 3 id
 			ARG 4 name
-			ARG 5 biomes
-		METHOD byBiome (Ljava/util/Optional;)Lnet/minecraft/world/entity/animal/Fox$Type;
+		METHOD byBiome (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/entity/animal/Fox$Type;
 			ARG 0 biome
 		METHOD byId (I)Lnet/minecraft/world/entity/animal/Fox$Type;
 			ARG 0 index
@@ -199,6 +198,10 @@ CLASS net/minecraft/world/entity/animal/Fox
 			COMMENT Return true to set given position as destination
 			ARG 1 level
 			ARG 2 pos
+		METHOD pickGlowBerry (Lnet/minecraft/world/level/block/state/BlockState;)V
+			ARG 1 state
+		METHOD pickSweetBerries (Lnet/minecraft/world/level/block/state/BlockState;)V
+			ARG 1 state
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD tick ()V

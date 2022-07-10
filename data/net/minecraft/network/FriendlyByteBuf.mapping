@@ -119,6 +119,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 0 input
 	METHOD getVarLongSize (J)I
 		COMMENT Calculates the number of bytes ({@code [1-10]} required to fit the supplied long if it were to be read/written using readVarLong / writeVarLong
+		ARG 0 input
 	METHOD indexOf (IIB)I
 		ARG 1 fromIndex
 		ARG 2 toIndex
@@ -438,6 +439,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Write a BitSet as a long[].
 		COMMENT
 		COMMENT @see #readBitSet
+		ARG 1 bitSet
 	METHOD writeBlockHitResult (Lnet/minecraft/world/phys/BlockHitResult;)V
 		COMMENT Write a BlockHitResult.
 		COMMENT
@@ -604,6 +606,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT NBT is used under the hood to write the data.
 		COMMENT
 		COMMENT @see #readWithCodec
+		ARG 1 codec
+		ARG 2 data
 	METHOD writeZero (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
 	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;

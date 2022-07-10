@@ -1,4 +1,8 @@
 CLASS net/minecraft/core/RegistryCodecs
+	METHOD dataPackAwareCodec (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+		ARG 0 registryKey
+		ARG 1 lifecycle
+		ARG 2 elementCodec
 	METHOD dataPackAwareDecoder (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Decoder;Lcom/mojang/serialization/Lifecycle;)Lcom/mojang/serialization/Decoder;
 		ARG 0 registryKey
 		ARG 1 elementCodec
@@ -19,3 +23,10 @@ CLASS net/minecraft/core/RegistryCodecs
 	METHOD homogeneousList (Lnet/minecraft/resources/ResourceKey;Z)Lcom/mojang/serialization/Codec;
 		ARG 0 registryKey
 		ARG 1 disallowInline
+	METHOD networkCodec (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+		ARG 0 registryKey
+		ARG 1 lifecycle
+		ARG 2 elementCodec
+	METHOD withNameAndId (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/MapCodec;)Lcom/mojang/serialization/MapCodec;
+		ARG 0 registryKey
+		ARG 1 elementCodec

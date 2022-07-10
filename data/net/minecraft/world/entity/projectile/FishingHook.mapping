@@ -1,18 +1,12 @@
 CLASS net/minecraft/world/entity/projectile/FishingHook
-	METHOD <init> (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;II)V
-		ARG 1 player
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;II)V
+		ARG 1 entityType
 		ARG 2 level
 		ARG 3 luck
 		ARG 4 lureSpeed
-	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;DDD)V
-		ARG 1 level
-		ARG 2 player
-		ARG 3 x
-		ARG 5 y
-		ARG 7 z
-	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;II)V
-		ARG 1 level
-		ARG 2 player
+	METHOD <init> (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;II)V
+		ARG 1 player
+		ARG 2 level
 		ARG 3 luck
 		ARG 4 lureSpeed
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
@@ -45,11 +39,15 @@ CLASS net/minecraft/world/entity/projectile/FishingHook
 		ARG 1 result
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
+	METHOD pullEntity (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
 	METHOD retrieve (Lnet/minecraft/world/item/ItemStack;)I
 		ARG 1 stack
+	METHOD setHookedEntity (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 hookedEntity
 	METHOD shouldRenderAtSqrDistance (D)Z
 		COMMENT Checks if the entity is in range to render.
 		ARG 1 distance
@@ -57,3 +55,5 @@ CLASS net/minecraft/world/entity/projectile/FishingHook
 		ARG 1 player
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
+	METHOD updateOwnerInfo (Lnet/minecraft/world/entity/projectile/FishingHook;)V
+		ARG 1 fishingHook

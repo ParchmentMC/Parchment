@@ -52,10 +52,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 entityType
 	METHOD canBeAffected (Lnet/minecraft/world/effect/MobEffectInstance;)Z
 		ARG 1 effectInstance
-	METHOD canSee (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 entity
-	METHOD canStandOnFluid (Lnet/minecraft/world/level/material/Fluid;)Z
-		ARG 1 fluid
 	METHOD canTakeItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
 	METHOD checkAutoSpinAttack (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/phys/AABB;)V
@@ -103,8 +99,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 2 food
 	METHOD entityEventForEquipmentBreak (Lnet/minecraft/world/entity/EquipmentSlot;)B
 		ARG 0 slot
-	METHOD forceAddEffect (Lnet/minecraft/world/effect/MobEffectInstance;)V
-		ARG 1 effectInstance
+	METHOD equipEventAndSound (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 equippedItem
 	METHOD getAbsorptionAmount ()F
 		COMMENT Returns the amount of health added by the Absorption effect.
 	METHOD getArmorValue ()I
@@ -145,6 +141,10 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD getEffect (Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;
 		COMMENT returns the PotionEffect for the supplied Potion if it is active, null otherwise.
 		ARG 1 effect
+	METHOD getEquipmentSlot (I)Lnet/minecraft/world/entity/EquipmentSlot;
+		ARG 0 index
+	METHOD getEquipmentSlotForItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/EquipmentSlot;
+		ARG 0 item
 	METHOD getExperienceReward (Lnet/minecraft/world/entity/player/Player;)I
 		COMMENT Get the experience points the entity currently has.
 		ARG 1 player
@@ -204,6 +204,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 effect
 	METHOD hasItemInSlot (Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 slot
+	METHOD hasLineOfSight (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
 	METHOD heal (F)V
 		COMMENT Heal living entity (param: amount of half-hearts)
 		ARG 1 healAmount
@@ -256,27 +258,12 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 fluidTag
 	METHOD kill ()V
 		COMMENT Called by the /kill command.
-	METHOD knockback (FDD)V
-		ARG 1 strength
-		ARG 2 ratioX
-		ARG 4 ratioZ
 	METHOD lambda$addAdditionalSaveData$1 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD lambda$addAdditionalSaveData$2 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
 		ARG 1 inbt
-	METHOD lambda$checkBedExists$8 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
-		ARG 1 pos
-	METHOD lambda$handleEquipmentChanges$6 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 slotType
-		ARG 3 equipedStack
-	METHOD lambda$isHolding$5 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/Item;)Z
-		ARG 1 heldItem
-	METHOD lambda$stopSleeping$10 (Lnet/minecraft/core/BlockPos;)V
-		ARG 1 sleepingBos
 	METHOD lambda$tryAddSoulSpeed$0 (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 0 entity
-	METHOD lambda$updateFallFlying$7 (Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 0 livingEntity
 	METHOD lerpHeadTo (FI)V
 		ARG 1 yaw
 		ARG 2 pitch
@@ -298,13 +285,10 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 pos
 	METHOD onClimbable ()Z
 		COMMENT Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or for AI reasons)
-	METHOD onEffectAdded (Lnet/minecraft/world/effect/MobEffectInstance;)V
-		ARG 1 effectInstancee
 	METHOD onEffectRemoved (Lnet/minecraft/world/effect/MobEffectInstance;)V
 		ARG 1 effectInstance
-	METHOD onEffectUpdated (Lnet/minecraft/world/effect/MobEffectInstance;Z)V
+	METHOD onEffectUpdated (Lnet/minecraft/world/effect/MobEffectInstance;ZLnet/minecraft/world/entity/Entity;)V
 		ARG 1 effectInstance
-		ARG 2 resetAttributes
 	METHOD onEnterCombat ()V
 		COMMENT Sends an ENTER_COMBAT packet to the client
 	METHOD onItemPickup (Lnet/minecraft/world/entity/item/ItemEntity;)V
@@ -317,8 +301,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT sets the dead flag. Used when you fall off the bottom of the world.
 	METHOD playBlockFallSound ()V
 		COMMENT Plays the fall sound for the block landed on
-	METHOD playEquipSound (Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 stack
 	METHOD playHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)V
 		ARG 1 source
 	METHOD push (Lnet/minecraft/world/entity/Entity;)V
@@ -332,6 +314,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD recreateFromPacket (Lnet/minecraft/network/protocol/game/ClientboundAddMobPacket;)V
+		ARG 1 packet
 	METHOD removeEffect (Lnet/minecraft/world/effect/MobEffect;)Z
 		ARG 1 effect
 	METHOD removeEffectNoUpdate (Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;
@@ -348,6 +332,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD setArrowCount (I)V
 		COMMENT sets the amount of arrows stuck in the entity. used for rendering those
 		ARG 1 count
+	METHOD setDiscardFriction (Z)V
+		ARG 1 discardFriction
 	METHOD setHealth (F)V
 		ARG 1 health
 	METHOD setItemInHand (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V
@@ -410,8 +396,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD spawnItemParticles (Lnet/minecraft/world/item/ItemStack;I)V
 		ARG 1 stack
 		ARG 2 amount
-	METHOD startAutoSpinAttack (I)V
-		ARG 1 autoSpinAttackTicks
 	METHOD startSleeping (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD startUsingItem (Lnet/minecraft/world/InteractionHand;)V
@@ -448,3 +432,5 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Clears potion metadata values if the entity has no potion effects. Otherwise, updates potion effect color, ambience, and invisibility metadata values
 	METHOD updateSwingTime ()V
 		COMMENT Updates the arm swing progress counters and animation progress
+	METHOD updateUsingItem (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 usingItem
