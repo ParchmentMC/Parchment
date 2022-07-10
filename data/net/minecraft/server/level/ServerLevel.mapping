@@ -12,11 +12,15 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 1 player
 	METHOD addDuringPortalTeleport (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
+	METHOD addDuringTeleport (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
 	METHOD addEntity (Lnet/minecraft/world/entity/Entity;)Z
 		COMMENT Called when an entity is spawned in the world. This includes players.
 		ARG 1 entity
 	METHOD addFreshEntity (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
+	METHOD addLegacyChunkEntities (Ljava/util/stream/Stream;)V
+		ARG 1 entities
 	METHOD addNewPlayer (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
 	METHOD addPlayer (Lnet/minecraft/server/level/ServerPlayer;)V
@@ -26,6 +30,8 @@ CLASS net/minecraft/server/level/ServerLevel
 	METHOD addWithUUID (Lnet/minecraft/world/entity/Entity;)Z
 		COMMENT Used for "unnatural" ways of entities appearing in the world, e.g. summon command, interdimensional teleports
 		ARG 1 entity
+	METHOD addWorldGenChunkEntities (Ljava/util/stream/Stream;)V
+		ARG 1 entities
 	METHOD blockEvent (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;II)V
 		ARG 1 pos
 		ARG 2 block
@@ -46,6 +52,8 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 3 progress
 	METHOD doBlockEvent (Lnet/minecraft/world/level/BlockEventData;)Z
 		ARG 1 event
+	METHOD dumpBlockEntityTickers (Ljava/io/Writer;)V
+		ARG 1 output
 	METHOD dumpEntities (Ljava/io/Writer;Ljava/lang/Iterable;)V
 		ARG 0 writer
 		ARG 1 entities
@@ -59,6 +67,10 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 10 size
 		ARG 11 causesFire
 		ARG 12 mode
+	METHOD findLightningRod (Lnet/minecraft/core/BlockPos;)Ljava/util/Optional;
+		ARG 1 pos
+	METHOD findLightningTargetAround (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
+		ARG 1 pos
 	METHOD findNearestBiome (Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;II)Lcom/mojang/datafixers/util/Pair;
 		ARG 1 biomePredicate
 		ARG 2 pos
@@ -93,6 +105,12 @@ CLASS net/minecraft/server/level/ServerLevel
 	METHOD isCloseToVillage (Lnet/minecraft/core/BlockPos;I)Z
 		ARG 1 pos
 		ARG 2 sections
+	METHOD isNaturalSpawningAllowed (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD isNaturalSpawningAllowed (Lnet/minecraft/world/level/ChunkPos;)Z
+		ARG 1 chunkPos
+	METHOD isPositionEntityTicking (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
 	METHOD isRaided (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD isVillage (Lnet/minecraft/core/BlockPos;)Z
@@ -117,6 +135,8 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 1 type
 		ARG 2 target
 		ARG 3 host
+	METHOD onStructureStartsAvailable (Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+		ARG 1 chunk
 	METHOD playSound (Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
 		ARG 1 player
 		ARG 2 x
@@ -197,15 +217,25 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 2 weatherTime
 		ARG 3 isRaining
 		ARG 4 isThundering
+	METHOD shouldDiscardEntity (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD startTickingChunk (Lnet/minecraft/world/level/chunk/LevelChunk;)V
+		ARG 1 chunk
 	METHOD tick (Ljava/util/function/BooleanSupplier;)V
 		COMMENT Runs a single tick for the world
 		ARG 1 hasTimeLeft
+	METHOD tickBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V
+		ARG 1 pos
+		ARG 2 block
 	METHOD tickChunk (Lnet/minecraft/world/level/chunk/LevelChunk;I)V
 		ARG 1 chunk
 		ARG 2 randomTickSpeed
 	METHOD tickCustomSpawners (ZZ)V
 		ARG 1 spawnEnemies
 		ARG 2 spawnFriendlies
+	METHOD tickFluid (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/Fluid;)V
+		ARG 1 pos
+		ARG 2 fluid
 	METHOD tickNonPassenger (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD tickPassenger (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)V
