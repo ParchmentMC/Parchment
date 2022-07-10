@@ -3,6 +3,13 @@ CLASS com/mojang/realmsclient/client/Request
 		ARG 1 url
 		ARG 2 connectTimeout
 		ARG 3 readTimeout
+	METHOD cookie (Ljava/lang/String;Ljava/lang/String;)V
+		ARG 1 key
+		ARG 2 value
+	METHOD cookie (Ljava/net/HttpURLConnection;Ljava/lang/String;Ljava/lang/String;)V
+		ARG 0 connection
+		ARG 1 key
+		ARG 2 value
 	METHOD delete (Ljava/lang/String;)Lcom/mojang/realmsclient/client/Request;
 		ARG 0 url
 	METHOD get (Ljava/lang/String;)Lcom/mojang/realmsclient/client/Request;
@@ -11,8 +18,15 @@ CLASS com/mojang/realmsclient/client/Request
 		ARG 0 url
 		ARG 1 connectTimeout
 		ARG 2 readTimeout
+	METHOD getHeader (Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 name
+	METHOD getHeader (Ljava/net/HttpURLConnection;Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 connection
+		ARG 1 name
 	METHOD getRetryAfterHeader (Ljava/net/HttpURLConnection;)I
 		ARG 0 connection
+	METHOD header (Ljava/lang/String;Ljava/lang/String;)Lcom/mojang/realmsclient/client/Request;
+		ARG 1 exception
 	METHOD post (Ljava/lang/String;Ljava/lang/String;)Lcom/mojang/realmsclient/client/Request;
 		ARG 0 url
 		ARG 1 content
