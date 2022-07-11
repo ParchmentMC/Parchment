@@ -20,6 +20,23 @@ CLASS net/minecraft/server/players/PlayerList
 	METHOD broadcastAll (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/resources/ResourceKey;)V
 		ARG 1 packet
 		ARG 2 dimension
+	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatSender;Lnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 message
+		ARG 2 sender
+		ARG 3 boundChatType
+	METHOD broadcastChatMessage (Lnet/minecraft/server/network/FilteredText;Ljava/util/function/Predicate;Lnet/minecraft/network/chat/ChatSender;Lnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 filteredMessage
+		ARG 2 shouldFilterMessageTo
+		ARG 3 sender
+		ARG 4 boundChatType
+	METHOD broadcastChatMessage (Lnet/minecraft/server/network/FilteredText;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 filteredMessage
+		ARG 2 source
+		ARG 3 boundChatType
+	METHOD broadcastChatMessage (Lnet/minecraft/server/network/FilteredText;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 filteredMessage
+		ARG 2 senderPlayer
+		ARG 3 boundChatType
 	METHOD broadcastMessageHeader (Lnet/minecraft/network/chat/PlayerChatMessage;Ljava/util/Set;)V
 		ARG 1 message
 		ARG 2 alreadySeen
