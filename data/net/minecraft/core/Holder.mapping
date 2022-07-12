@@ -3,6 +3,12 @@ CLASS net/minecraft/core/Holder
 		ARG 0 value
 	METHOD is (Ljava/util/function/Predicate;)Z
 		ARG 1 predicate
+	METHOD is (Lnet/minecraft/resources/ResourceKey;)Z
+		ARG 1 resourceKey
+	METHOD is (Lnet/minecraft/resources/ResourceLocation;)Z
+		ARG 1 location
+	METHOD is (Lnet/minecraft/tags/TagKey;)Z
+		ARG 1 tagKey
 	METHOD isValidInRegistry (Lnet/minecraft/core/Registry;)Z
 		ARG 1 registry
 	CLASS Reference
@@ -16,3 +22,9 @@ CLASS net/minecraft/core/Holder
 			ARG 2 value
 		METHOD bindTags (Ljava/util/Collection;)V
 			ARG 1 tags
+		METHOD createIntrusive (Lnet/minecraft/core/Registry;Ljava/lang/Object;)Lnet/minecraft/core/Holder$Reference;
+			ARG 0 registry
+			ARG 1 value
+		METHOD createStandAlone (Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder$Reference;
+			ARG 0 registry
+			ARG 1 key

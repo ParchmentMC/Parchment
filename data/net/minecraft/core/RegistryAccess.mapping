@@ -9,8 +9,16 @@ CLASS net/minecraft/core/RegistryAccess
 	METHOD addBuiltinElements (Lnet/minecraft/resources/RegistryResourceAccess$InMemoryStorage;Lnet/minecraft/core/RegistryAccess$RegistryData;)V
 		ARG 0 destinationRegistryHolder
 		ARG 1 data
+	METHOD captureMap (Lcom/mojang/serialization/codecs/UnboundedMapCodec;)Lcom/mojang/serialization/Codec;
+		ARG 0 codec
+	METHOD createRegistry (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/WritableRegistry;
+		ARG 0 registryKey
 	METHOD fromRegistryOfRegistries (Lnet/minecraft/core/Registry;)Lnet/minecraft/core/RegistryAccess$Frozen;
 		ARG 0 registryOfRegistries
+	METHOD getNetworkCodec (Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/DataResult;
+		ARG 0 key
+	METHOD load (Lnet/minecraft/core/RegistryAccess$Writable;Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/resources/RegistryLoader;)V
+		ARG 2 loader
 	METHOD ownedRegistry (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
 		COMMENT Get the registry owned by this registry access. The returned value, if it exists, will be writable.
 		ARG 1 registryKey
@@ -32,6 +40,8 @@ CLASS net/minecraft/core/RegistryAccess
 		ARG 1 registryKey
 	CLASS Writable
 		METHOD ownedWritableRegistry (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+			ARG 1 registryKey
+		METHOD ownedWritableRegistryOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/WritableRegistry;
 			ARG 1 registryKey
 	CLASS RegistryData
 		COMMENT A small record representing metadata about a given registry.
@@ -55,6 +65,14 @@ CLASS net/minecraft/core/RegistryAccess
 			ARG 0 holder
 		METHOD fromMapEntry (Ljava/util/Map$Entry;)Lnet/minecraft/core/RegistryAccess$RegistryEntry;
 			ARG 0 mapEntry
+		METHOD fromUntyped (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Registry;)Lnet/minecraft/core/RegistryAccess$RegistryEntry;
+			ARG 0 key
+			ARG 1 value
+	CLASS WritableRegistryAccess
+		METHOD <init> (Ljava/util/Map;)V
+			ARG 1 registries
 	CLASS ImmutableRegistryAccess
 		METHOD <init> (Ljava/util/Map;)V
+			ARG 1 registries
+		METHOD <init> (Ljava/util/stream/Stream;)V
 			ARG 1 registries
