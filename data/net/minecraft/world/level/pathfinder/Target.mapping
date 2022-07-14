@@ -1,5 +1,12 @@
 CLASS net/minecraft/world/level/pathfinder/Target
 	FIELD bestNode Lnet/minecraft/world/level/pathfinder/Node;
 		COMMENT The nearest path point of the path that is constructed
+	METHOD <init> (Lnet/minecraft/world/level/pathfinder/Node;)V
+		ARG 1 node
+	METHOD createFromStream (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/level/pathfinder/Target;
+		ARG 0 buffer
 	METHOD getBestNode ()Lnet/minecraft/world/level/pathfinder/Node;
 		COMMENT Gets the nearest path point of the path that is constructed
+	METHOD updateBest (FLnet/minecraft/world/level/pathfinder/Node;)V
+		ARG 1 heuristic
+		ARG 2 node

@@ -1,4 +1,8 @@
 CLASS net/minecraft/world/level/pathfinder/Path
+	METHOD <init> (Ljava/util/List;Lnet/minecraft/core/BlockPos;Z)V
+		ARG 1 nodes
+		ARG 2 target
+		ARG 3 reached
 	METHOD advance ()V
 		COMMENT Directs this path to the next point in its array
 	METHOD createFromStream (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/level/pathfinder/Path;
@@ -10,7 +14,7 @@ CLASS net/minecraft/world/level/pathfinder/Path
 		ARG 1 entity
 		ARG 2 index
 	METHOD getNextEntityPos (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/phys/Vec3;
-		COMMENT returns the current PathEntity target node as Vec3D
+		COMMENT @return the current {@code PathEntity} target node as a {@code Vec3D}
 		ARG 1 entity
 	METHOD getNode (I)Lnet/minecraft/world/level/pathfinder/Node;
 		COMMENT return the PathPoint located at the specified PathIndex, usually the current one
@@ -23,7 +27,13 @@ CLASS net/minecraft/world/level/pathfinder/Path
 	METHOD sameAs (Lnet/minecraft/world/level/pathfinder/Path;)Z
 		COMMENT Returns true if the EntityPath are the same. Non instance related equals.
 		ARG 1 pathentity
+	METHOD setDebug ([Lnet/minecraft/world/level/pathfinder/Node;[Lnet/minecraft/world/level/pathfinder/Node;Ljava/util/Set;)V
+		ARG 1 openSet
+		ARG 2 closedSet
+		ARG 3 targetNodes
 	METHOD setNextNodeIndex (I)V
 		ARG 1 currentPathIndex
 	METHOD truncateNodes (I)V
 		ARG 1 length
+	METHOD writeToStream (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
