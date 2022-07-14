@@ -128,6 +128,8 @@ CLASS net/minecraft/util/Mth
 		COMMENT Generates a random UUID using the shared random
 	METHOD createInsecureUUID (Ljava/util/Random;)Ljava/util/UUID;
 		ARG 0 rand
+	METHOD cumulativeSum ([D)[D
+		ARG 0 values
 	METHOD degreesDifference (FF)F
 		COMMENT Gets the difference between two angles in degrees.
 		ARG 0 start
@@ -211,6 +213,13 @@ CLASS net/minecraft/util/Mth
 		ARG 0 xDistance
 		ARG 2 yDistance
 		ARG 4 zDistance
+	METHOD lengthSquared (DD)D
+		ARG 0 xDistance
+		ARG 2 yDistance
+	METHOD lengthSquared (DDD)D
+		ARG 0 xDistance
+		ARG 2 yDistance
+		ARG 4 zDistance
 	METHOD lerp (DDD)D
 		COMMENT Method for linear interpolation of doubles
 		ARG 0 delta
@@ -286,6 +295,8 @@ CLASS net/minecraft/util/Mth
 			COMMENT A value between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value)
 		ARG 1 start
 		ARG 2 end
+	METHOD rotWrap (D)F
+		ARG 0 value
 	METHOD rotateIfNecessary (FFF)F
 		COMMENT Takes a rotation and compares it to another rotation.
 		COMMENT If the difference is greater than a given maximum, clamps the original rotation between to have at most the given difference to the actual rotation.
@@ -294,6 +305,10 @@ CLASS net/minecraft/util/Mth
 		ARG 0 rotationToAdjust
 		ARG 1 actualRotation
 		ARG 2 maxDifference
+	METHOD rotlerp (FFF)F
+		ARG 0 start
+		ARG 1 end
+		ARG 2 delta
 	METHOD roundToward (II)I
 		COMMENT Rounds the given value up to a multiple of factor.
 		COMMENT @return The smallest integer multiple of factor that is greater than or equal to the value

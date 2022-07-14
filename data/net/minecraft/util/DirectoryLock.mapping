@@ -1,0 +1,14 @@
+CLASS net/minecraft/util/DirectoryLock
+	METHOD <init> (Ljava/nio/channels/FileChannel;Ljava/nio/channels/FileLock;)V
+		ARG 1 lockFile
+		ARG 2 lock
+	METHOD create (Ljava/nio/file/Path;)Lnet/minecraft/util/DirectoryLock;
+		ARG 0 path
+	METHOD isLocked (Ljava/nio/file/Path;)Z
+		ARG 0 path
+	CLASS LockException
+		METHOD <init> (Ljava/nio/file/Path;Ljava/lang/String;)V
+			ARG 1 path
+			ARG 2 message
+		METHOD alreadyLocked (Ljava/nio/file/Path;)Lnet/minecraft/util/DirectoryLock$LockException;
+			ARG 0 path
