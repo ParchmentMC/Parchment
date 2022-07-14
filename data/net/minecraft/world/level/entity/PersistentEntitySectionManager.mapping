@@ -1,5 +1,6 @@
 CLASS net/minecraft/world/level/entity/PersistentEntitySectionManager
 	METHOD <init> (Ljava/lang/Class;Lnet/minecraft/world/level/entity/LevelCallback;Lnet/minecraft/world/level/entity/EntityPersistentStorage;)V
+		ARG 1 entityClass
 		ARG 2 callbacks
 		ARG 3 permanentStorage
 	METHOD addEntity (Lnet/minecraft/world/level/entity/EntityAccess;Z)Z
@@ -40,3 +41,7 @@ CLASS net/minecraft/world/level/entity/PersistentEntitySectionManager
 	METHOD updateChunkStatus (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/entity/Visibility;)V
 		ARG 1 pos
 		ARG 2 visibility
+	CLASS Callback
+		METHOD <init> (Lnet/minecraft/world/level/entity/PersistentEntitySectionManager;Lnet/minecraft/world/level/entity/EntityAccess;JLnet/minecraft/world/level/entity/EntitySection;)V
+			ARG 2 entity
+			ARG 5 currentSection
