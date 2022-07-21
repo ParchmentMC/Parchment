@@ -5,5 +5,19 @@ CLASS net/minecraft/server/network/FilteredText
 	METHOD filter (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/level/ServerPlayer;)Ljava/lang/Object;
 		ARG 1 sender
 		ARG 2 receiver
+	METHOD filteredOrElse (Ljava/lang/Object;)Ljava/lang/Object;
+		ARG 1 orElse
+	METHOD fullyFiltered (Ljava/lang/Object;)Lnet/minecraft/server/network/FilteredText;
+		ARG 0 raw
+	METHOD map (Ljava/util/function/Function;)Lnet/minecraft/server/network/FilteredText;
+		ARG 1 mapper
+	METHOD map (Ljava/util/function/Function;Ljava/util/function/Function;)Lnet/minecraft/server/network/FilteredText;
+		ARG 1 rawMapper
+		ARG 2 filteredMapper
+	METHOD mapWithEquality (Ljava/util/function/Function;Ljava/util/function/Function;)Lnet/minecraft/server/network/FilteredText;
+		ARG 1 rawMapper
+		ARG 2 filteredMapper
+	METHOD passThrough (Ljava/lang/Object;)Lnet/minecraft/server/network/FilteredText;
+		ARG 0 raw
 	METHOD select (Z)Ljava/lang/Object;
 		ARG 1 filter

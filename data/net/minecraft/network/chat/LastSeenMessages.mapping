@@ -1,6 +1,8 @@
-CLASS net/minecraft/commands/arguments/ArgumentSignatures
+CLASS net/minecraft/network/chat/LastSeenMessages
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
+	METHOD updateHash (Ljava/io/DataOutput;)V
+		ARG 1 output
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
 	CLASS Entry
@@ -8,7 +10,8 @@ CLASS net/minecraft/commands/arguments/ArgumentSignatures
 			ARG 1 buffer
 		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 			ARG 1 buffer
-	CLASS Signer
-		METHOD sign (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/network/chat/MessageSignature;
-			ARG 1 argumentName
-			ARG 2 argumentText
+	CLASS Update
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer

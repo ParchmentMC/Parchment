@@ -1,10 +1,11 @@
 CLASS net/minecraft/client/multiplayer/chat/ChatListener
 	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
 		ARG 1 minecraft
-	METHOD evaluateTrustLevel (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;)Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;
+	METHOD evaluateTrustLevel (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;Ljava/time/Instant;)Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;
 		ARG 1 message
 		ARG 2 decoratedServerContent
 		ARG 3 senderPlayerInfo
+		ARG 4 timeStamp
 	METHOD guessChatUUID (Lnet/minecraft/network/chat/Component;)Ljava/util/UUID;
 		ARG 1 message
 	METHOD handleChatHeader (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)V
@@ -45,13 +46,24 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 1 header
 		ARG 2 headerSignature
 		ARG 3 bodyDigest
-	METHOD processPlayerChatMessage (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;)Z
+	METHOD processPlayerChatMessage (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;ZLjava/time/Instant;)Z
 		ARG 1 boundChatType
 		ARG 2 message
 		ARG 3 decoratedServerContent
 		ARG 4 senderPlayerInfo
-		ARG 5 trustLevel
+		ARG 5 onlyShowSecureChat
+		ARG 6 timeStamp
 	METHOD removeFromDelayedMessageQueue (Lnet/minecraft/network/chat/MessageSignature;)Z
 		ARG 1 messageSignature
 	METHOD resolveSenderPlayer (Ljava/util/UUID;)Lnet/minecraft/client/multiplayer/PlayerInfo;
 		ARG 1 profileId
+	METHOD showMessageToPlayer (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;ZLjava/time/Instant;)Z
+		ARG 1 boundChatType
+		ARG 2 message
+		ARG 3 decoratedServerContent
+		ARG 4 senderPlayerInfo
+		ARG 5 onlyShowSecureChat
+		ARG 6 timeStamp
+	CLASS Message
+		METHOD removeIfSignatureMatches (Lnet/minecraft/network/chat/MessageSignature;)Z
+			ARG 1 signature

@@ -10,6 +10,10 @@ CLASS net/minecraft/network/chat/SignedMessageValidator
 	CLASS KeyBased
 		METHOD <init> (Lnet/minecraft/util/SignatureValidator;)V
 			ARG 1 validator
-		METHOD updateAndValidateChain (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;)Z
+		METHOD validateChain (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;)Z
 			ARG 1 header
 			ARG 2 headerSignature
+		METHOD validateContents (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)Z
+			ARG 1 header
+			ARG 2 headerSignature
+			ARG 3 bodyDigest
