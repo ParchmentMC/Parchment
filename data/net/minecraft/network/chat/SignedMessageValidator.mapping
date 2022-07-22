@@ -1,6 +1,9 @@
 CLASS net/minecraft/network/chat/SignedMessageValidator
-	METHOD create (Lnet/minecraft/world/entity/player/ProfilePublicKey;)Lnet/minecraft/network/chat/SignedMessageValidator;
+	METHOD alwaysReturn (Lnet/minecraft/network/chat/SignedMessageValidator$State;)Lnet/minecraft/network/chat/SignedMessageValidator;
+		ARG 0 state
+	METHOD create (Lnet/minecraft/world/entity/player/ProfilePublicKey;Z)Lnet/minecraft/network/chat/SignedMessageValidator;
 		ARG 0 profilePublicKey
+		ARG 1 enforcesSecureChat
 	METHOD validateHeader (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)Lnet/minecraft/network/chat/SignedMessageValidator$State;
 		ARG 1 header
 		ARG 2 headerSignature
