@@ -1,9 +1,14 @@
 CLASS net/minecraft/network/chat/OutgoingPlayerChatMessage
+	METHOD create (Lnet/minecraft/network/chat/PlayerChatMessage;)Lnet/minecraft/network/chat/OutgoingPlayerChatMessage;
+		ARG 0 message
 	METHOD packetForPlayer (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/network/chat/ChatType$Bound;)Lnet/minecraft/network/protocol/game/ClientboundPlayerChatPacket;
 		ARG 1 player
 		ARG 2 boundChatType
 	METHOD sendHeadersToRemainingPlayers (Lnet/minecraft/server/players/PlayerList;)V
 		ARG 1 playerList
-	CLASS Disguised
+	CLASS Tracked
 		METHOD <init> (Lnet/minecraft/network/chat/PlayerChatMessage;)V
-			ARG 1 signedMessage
+			ARG 1 message
+	CLASS NotTracked
+		METHOD <init> (Lnet/minecraft/network/chat/PlayerChatMessage;)V
+			ARG 1 message

@@ -14,10 +14,13 @@ CLASS net/minecraft/server/network/FilteredText
 	METHOD map (Ljava/util/function/Function;Ljava/util/function/Function;)Lnet/minecraft/server/network/FilteredText;
 		ARG 1 rawMapper
 		ARG 2 filteredMapper
-	METHOD mapWithEquality (Ljava/util/function/Function;Ljava/util/function/Function;)Lnet/minecraft/server/network/FilteredText;
-		ARG 1 rawMapper
-		ARG 2 filteredMapper
 	METHOD passThrough (Ljava/lang/Object;)Lnet/minecraft/server/network/FilteredText;
 		ARG 0 raw
+	METHOD rebuildIfNeeded (Ljava/lang/Object;Ljava/util/function/Function;)Lnet/minecraft/server/network/FilteredText;
+		ARG 1 raw
+		ARG 2 filteredMapper
+	METHOD rebuildIfNeededAsync (Ljava/lang/Object;Ljava/util/function/Function;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 raw
+		ARG 2 filteredFutureMapper
 	METHOD select (Z)Ljava/lang/Object;
 		ARG 1 filter

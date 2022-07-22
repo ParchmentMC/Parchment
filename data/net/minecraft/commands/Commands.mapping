@@ -25,7 +25,13 @@ CLASS net/minecraft/commands/Commands
 	METHOD literal (Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
 		COMMENT Creates a new argument. Intended to be imported statically. The benefit of this over the brigadier {@link LiteralArgumentBuilder#literal} method is that it is typed to {@link CommandSource}.
 		ARG 0 name
-	METHOD performCommand (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
+	METHOD performCommand (Lcom/mojang/brigadier/ParseResults;Ljava/lang/String;)I
+		COMMENT Runs a command.
+		COMMENT
+		COMMENT @return The success value of the command, or 0 if an exception occured.
+		ARG 1 parseResults
+		ARG 2 command
+	METHOD performPrefixedCommand (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
 		COMMENT Runs a command.
 		COMMENT
 		COMMENT @return The success value of the command, or 0 if an exception occured.
