@@ -1,11 +1,28 @@
 CLASS net/minecraft/network/chat/PlayerChatMessage
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
+	METHOD filter (Lnet/minecraft/network/chat/FilterMask;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 1 filterMask
+	METHOD filter (Z)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 1 shouldFilter
 	METHOD hasExpiredClient (Ljava/time/Instant;)Z
 		ARG 1 instant
 	METHOD hasExpiredServer (Ljava/time/Instant;)Z
 		ARG 1 instant
-	METHOD hasSignatureFrom (Lnet/minecraft/server/level/ServerPlayer;)Z
-		ARG 1 player
+	METHOD hasSignatureFrom (Ljava/util/UUID;)Z
+		ARG 1 id
+	METHOD system (Lnet/minecraft/network/chat/ChatMessageContent;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 0 chatMessageContent
+	METHOD unsigned (Lnet/minecraft/network/chat/MessageSigner;Lnet/minecraft/network/chat/ChatMessageContent;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 0 messageSigner
+		ARG 1 chatMessageContent
+	METHOD verify (Lnet/minecraft/network/chat/ChatSender;)Z
+		ARG 1 chatSender
+	METHOD verify (Lnet/minecraft/util/SignatureValidator;)Z
+		ARG 1 signatureValidator
+	METHOD verify (Lnet/minecraft/world/entity/player/ProfilePublicKey;)Z
+		ARG 1 profilePublicKey
+	METHOD withUnsignedContent (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 1 unsignedContent
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer

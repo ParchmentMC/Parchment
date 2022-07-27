@@ -1,6 +1,4 @@
 CLASS net/minecraft/network/chat/SignedMessageValidator
-	METHOD alwaysReturn (Lnet/minecraft/network/chat/SignedMessageValidator$State;)Lnet/minecraft/network/chat/SignedMessageValidator;
-		ARG 0 state
 	METHOD create (Lnet/minecraft/world/entity/player/ProfilePublicKey;Z)Lnet/minecraft/network/chat/SignedMessageValidator;
 		ARG 0 profilePublicKey
 		ARG 1 enforcesSecureChat
@@ -13,14 +11,17 @@ CLASS net/minecraft/network/chat/SignedMessageValidator
 	CLASS KeyBased
 		METHOD <init> (Lnet/minecraft/util/SignatureValidator;)V
 			ARG 1 validator
-		METHOD updateAndValidate (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)Lnet/minecraft/network/chat/SignedMessageValidator$State;
+		METHOD updateAndValidate (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[BZ)Lnet/minecraft/network/chat/SignedMessageValidator$State;
 			ARG 1 header
 			ARG 2 headerSignature
 			ARG 3 bodyDigest
-		METHOD validateChain (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;)Z
+		METHOD validateChain (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;Z)Z
 			ARG 1 header
 			ARG 2 headerSignature
-		METHOD validateContents (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)Z
+		METHOD validateContents (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[BZ)Z
 			ARG 1 header
 			ARG 2 headerSignature
 			ARG 3 bodyDigest
+	CLASS Unsigned
+		METHOD <init> (Z)V
+			ARG 1 enforcesSecureChat

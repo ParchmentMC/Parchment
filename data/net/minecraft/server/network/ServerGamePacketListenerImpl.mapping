@@ -7,6 +7,8 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 server
 		ARG 2 connection
 		ARG 3 player
+	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;)V
+		ARG 1 message
 	METHOD clampHorizontal (D)D
 		ARG 0 value
 	METHOD clampVertical (D)D
@@ -20,6 +22,10 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 5 z
 		ARG 7 yaw
 		ARG 8 pitch
+	METHOD filterTextPacket (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 text
+	METHOD filterTextPacket (Ljava/util/List;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 texts
 	METHOD getConnection ()Lnet/minecraft/network/Connection;
 		COMMENT Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient
 	METHOD handleAcceptTeleportPacket (Lnet/minecraft/network/protocol/game/ServerboundAcceptTeleportationPacket;)V
@@ -121,9 +127,9 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason
-	METHOD send (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V
+	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 		ARG 1 packet
-		ARG 2 futureListeners
+		ARG 2 sendListener
 	METHOD teleport (DDDFF)V
 		ARG 1 x
 		ARG 3 y
