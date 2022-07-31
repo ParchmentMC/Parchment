@@ -11,10 +11,16 @@ CLASS net/minecraft/world/level/chunk/PalettedContainer
 		ARG 1 registry
 		ARG 2 strategy
 		ARG 3 data
+	METHOD codec (Lnet/minecraft/core/IdMap;Lcom/mojang/serialization/Codec;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;Ljava/lang/Object;)Lcom/mojang/serialization/Codec;
+		ARG 0 registry
+		ARG 1 codec
+		ARG 2 strategy
 	METHOD count (Lnet/minecraft/world/level/chunk/PalettedContainer$CountConsumer;)V
 		COMMENT Counts the number of instances of each state in the container.
 		COMMENT The provided consumer is invoked for each state with the number of instances.
 		ARG 1 countConsumer
+	METHOD createOrReuseData (Lnet/minecraft/world/level/chunk/PalettedContainer$Data;I)Lnet/minecraft/world/level/chunk/PalettedContainer$Data;
+		ARG 1 data
 	METHOD get (I)Ljava/lang/Object;
 		ARG 1 index
 	METHOD get (III)Ljava/lang/Object;
@@ -63,6 +69,11 @@ CLASS net/minecraft/world/level/chunk/PalettedContainer
 	CLASS Strategy
 		METHOD <init> (I)V
 			ARG 1 sizeBits
+	CLASS Configuration
+		METHOD createData (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PaletteResize;I)Lnet/minecraft/world/level/chunk/PalettedContainer$Data;
+			ARG 1 registry
+			ARG 2 paletteResize
+			ARG 3 size
 	CLASS CountConsumer
 		METHOD accept (Ljava/lang/Object;I)V
 			ARG 1 state

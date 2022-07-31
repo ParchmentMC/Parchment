@@ -9,6 +9,10 @@ CLASS net/minecraft/world/level/pathfinder/Node
 		COMMENT The estimated cost from this path point to the target. Corresponds to the A* h-score.
 	FIELD heapIdx I
 		COMMENT The index in the PathHeap. -1 if not assigned.
+	METHOD <init> (III)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD cloneAndMove (III)Lnet/minecraft/world/level/pathfinder/Node;
 		ARG 1 x
 		ARG 2 y
@@ -19,11 +23,23 @@ CLASS net/minecraft/world/level/pathfinder/Node
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
+	METHOD distanceManhattan (Lnet/minecraft/core/BlockPos;)F
+		ARG 1 pos
+	METHOD distanceManhattan (Lnet/minecraft/world/level/pathfinder/Node;)F
+		ARG 1 pathpoint
+	METHOD distanceTo (Lnet/minecraft/core/BlockPos;)F
+		ARG 1 pos
 	METHOD distanceTo (Lnet/minecraft/world/level/pathfinder/Node;)F
 		COMMENT Returns the linear distance to another path point
 		ARG 1 pathpoint
+	METHOD distanceToSqr (Lnet/minecraft/core/BlockPos;)F
+		ARG 1 pos
 	METHOD distanceToSqr (Lnet/minecraft/world/level/pathfinder/Node;)F
 		COMMENT Returns the squared distance to another path point
 		ARG 1 pathpoint
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
 	METHOD inOpenSet ()Z
 		COMMENT Returns true if this point has already been assigned to a path
+	METHOD writeToStream (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
