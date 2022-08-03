@@ -9,7 +9,7 @@ CLASS net/minecraft/world/level/biome/Climate
 		ARG 3 erosion
 		ARG 4 depth
 		ARG 5 weirdness
-		ARG 6 coord
+		ARG 6 offset
 	METHOD parameters (Lnet/minecraft/world/level/biome/Climate$Parameter;Lnet/minecraft/world/level/biome/Climate$Parameter;Lnet/minecraft/world/level/biome/Climate$Parameter;Lnet/minecraft/world/level/biome/Climate$Parameter;Lnet/minecraft/world/level/biome/Climate$Parameter;Lnet/minecraft/world/level/biome/Climate$Parameter;F)Lnet/minecraft/world/level/biome/Climate$ParameterPoint;
 		ARG 0 temperature
 		ARG 1 humidity
@@ -17,7 +17,7 @@ CLASS net/minecraft/world/level/biome/Climate
 		ARG 3 erosion
 		ARG 4 depth
 		ARG 5 weirdness
-		ARG 6 coord
+		ARG 6 offset
 	METHOD quantizeCoord (F)J
 		ARG 0 coord
 	METHOD target (FFFFFF)Lnet/minecraft/world/level/biome/Climate$TargetPoint;
@@ -33,7 +33,7 @@ CLASS net/minecraft/world/level/biome/Climate
 		METHOD <init> (Lnet/minecraft/world/level/biome/Climate$RTree$Node;)V
 			ARG 1 root
 		METHOD bucketize (Ljava/util/List;)Ljava/util/List;
-			ARG 0 children
+			ARG 0 nodes
 		METHOD build (ILjava/util/List;)Lnet/minecraft/world/level/biome/Climate$RTree$Node;
 			ARG 0 paramSpaceSize
 			ARG 1 children
@@ -55,8 +55,8 @@ CLASS net/minecraft/world/level/biome/Climate
 		METHOD lambda$create$0 (Lcom/mojang/datafixers/util/Pair;)Lnet/minecraft/world/level/biome/Climate$RTree$Leaf;
 			ARG 0 node
 		METHOD search (Lnet/minecraft/world/level/biome/Climate$TargetPoint;Lnet/minecraft/world/level/biome/Climate$DistanceMetric;)Ljava/lang/Object;
-			ARG 1 point
-			ARG 2 metric
+			ARG 1 targetPoint
+			ARG 2 distanceMetric
 		METHOD sort (Ljava/util/List;IIZ)V
 			ARG 0 children
 			ARG 1 paramSpaceSize
@@ -78,26 +78,7 @@ CLASS net/minecraft/world/level/biome/Climate
 		CLASS SubTree
 			METHOD <init> (Ljava/util/List;Ljava/util/List;)V
 				ARG 1 parameters
-				ARG 2 nodes
-	CLASS Sampler
-		METHOD sample (III)Lnet/minecraft/world/level/biome/Climate$TargetPoint;
-			ARG 1 x
-			ARG 2 y
-			ARG 3 z
 	CLASS Parameter
-		METHOD distance (J)J
-			ARG 1 value
-		METHOD distance (Lnet/minecraft/world/level/biome/Climate$Parameter;)J
-			ARG 1 param
-		METHOD lambda$static$0 (Ljava/lang/Float;Ljava/lang/Float;)Lcom/mojang/serialization/DataResult;
-			ARG 0 min
-			ARG 1 max
-		METHOD lambda$static$1 (Lnet/minecraft/world/level/biome/Climate$Parameter;)Ljava/lang/Float;
-			ARG 0 param
-		METHOD lambda$static$2 (Lnet/minecraft/world/level/biome/Climate$Parameter;)Ljava/lang/Float;
-			ARG 0 param
-		METHOD point (F)Lnet/minecraft/world/level/biome/Climate$Parameter;
-			ARG 0 value
 		METHOD span (FF)Lnet/minecraft/world/level/biome/Climate$Parameter;
 			ARG 0 min
 			ARG 1 max
@@ -109,7 +90,7 @@ CLASS net/minecraft/world/level/biome/Climate
 	CLASS SpawnFinder
 		METHOD <init> (Ljava/util/List;Lnet/minecraft/world/level/biome/Climate$Sampler;)V
 			ARG 1 points
-			ARG 2 sample
+			ARG 2 sampler
 		METHOD getSpawnPositionAndFitness (Ljava/util/List;Lnet/minecraft/world/level/biome/Climate$Sampler;II)Lnet/minecraft/world/level/biome/Climate$SpawnFinder$Result;
 			ARG 0 points
 			ARG 1 sampler
@@ -117,21 +98,21 @@ CLASS net/minecraft/world/level/biome/Climate
 			ARG 3 z
 		METHOD radialSearch (Ljava/util/List;Lnet/minecraft/world/level/biome/Climate$Sampler;FF)V
 			ARG 1 point
-			ARG 2 sample
+			ARG 2 sampler
 			ARG 3 max
 			ARG 4 min
 	CLASS ParameterList
 		METHOD <init> (Ljava/util/List;)V
 			ARG 1 values
 		METHOD findValue (Lnet/minecraft/world/level/biome/Climate$TargetPoint;)Ljava/lang/Object;
-			ARG 1 point
+			ARG 1 targetPoint
 		METHOD findValueBruteForce (Lnet/minecraft/world/level/biome/Climate$TargetPoint;)Ljava/lang/Object;
-			ARG 1 point
+			ARG 1 targetPoint
 		METHOD findValueIndex (Lnet/minecraft/world/level/biome/Climate$TargetPoint;)Ljava/lang/Object;
-			ARG 1 point
+			ARG 1 targetPoint
 		METHOD findValueIndex (Lnet/minecraft/world/level/biome/Climate$TargetPoint;Lnet/minecraft/world/level/biome/Climate$DistanceMetric;)Ljava/lang/Object;
-			ARG 1 point
-			ARG 2 metric
+			ARG 1 targetPoint
+			ARG 2 distanceMetric
 	CLASS DistanceMetric
 		METHOD distance (Lnet/minecraft/world/level/biome/Climate$RTree$Node;[J)J
 			ARG 1 node

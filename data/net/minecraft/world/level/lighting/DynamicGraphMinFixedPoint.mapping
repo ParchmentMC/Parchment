@@ -1,10 +1,8 @@
 CLASS net/minecraft/world/level/lighting/DynamicGraphMinFixedPoint
 	METHOD <init> (III)V
-
-		ARG 1 count
-		ARG 2 queuesMax
-		ARG 3 computedMax
-
+		ARG 1 firstQueuedLevel
+		ARG 2 width
+		ARG 3 height
 	METHOD checkEdge (JJIIIZ)V
 		ARG 1 fromPos
 		ARG 3 toPos
@@ -63,9 +61,7 @@ CLASS net/minecraft/world/level/lighting/DynamicGraphMinFixedPoint
 	METHOD removeFromQueue (J)V
 		ARG 1 position
 	METHOD removeIf (Ljava/util/function/LongPredicate;)V
-
-		ARG 1 levelTest
-
+		ARG 1 predicate
 	METHOD runUpdates (I)I
 		ARG 1 toUpdateCount
 	METHOD setLevel (JI)V
@@ -73,9 +69,7 @@ CLASS net/minecraft/world/level/lighting/DynamicGraphMinFixedPoint
 		ARG 3 level
 	CLASS 1
 		METHOD rehash (I)V
-
-			ARG 1 value
+			ARG 1 newSize
 	CLASS 2
 		METHOD rehash (I)V
-			ARG 1 firstQueuedLevel
-
+			ARG 1 newSize

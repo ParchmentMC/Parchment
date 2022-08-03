@@ -1,12 +1,10 @@
 CLASS net/minecraft/world/inventory/SmithingMenu
 	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;)V
 		ARG 1 containerId
-
-		ARG 2 inventory
+		ARG 2 playerInventory
 	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
 		ARG 1 containerId
-		ARG 2 inventory
-
+		ARG 2 playerInventory
 		ARG 3 access
 	METHOD canTakeItemForPickAll (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z
 		COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
@@ -16,8 +14,8 @@ CLASS net/minecraft/world/inventory/SmithingMenu
 		COMMENT called when the Anvil Input Slot changes, calculates the new result and puts it in the output slot
 	METHOD lambda$onTake$0 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 		ARG 0 level
-
-		ARG 1 pos
+		ARG 1 blockPos
+	METHOD lambda$shouldQuickMoveToAdditionalSlot$1 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/crafting/UpgradeRecipe;)Z
+		ARG 1 playerInventory
 	METHOD shrinkStackInSlot (I)V
-		ARG 1 slot
-
+		ARG 1 index

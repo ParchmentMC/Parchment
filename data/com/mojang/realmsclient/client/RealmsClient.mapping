@@ -22,6 +22,8 @@ CLASS com/mojang/realmsclient/client/RealmsClient
 		ARG 3 worldType
 	METHOD getActivity (J)Lcom/mojang/realmsclient/dto/ServerActivityList;
 		ARG 1 worldId
+	METHOD getHttpCodeDescription (I)Ljava/lang/String;
+		ARG 0 httpCode
 	METHOD getOwnWorld (J)Lcom/mojang/realmsclient/dto/RealmsServer;
 		ARG 1 serverId
 	METHOD initializeWorld (JLjava/lang/String;Ljava/lang/String;)V
@@ -30,6 +32,7 @@ CLASS com/mojang/realmsclient/client/RealmsClient
 		ARG 4 description
 	METHOD invite (JLjava/lang/String;)Lcom/mojang/realmsclient/dto/RealmsServer;
 		ARG 1 worldId
+		ARG 3 playerName
 	METHOD isBlocked (Lcom/mojang/realmsclient/dto/PendingInvite;)Z
 		ARG 1 pendingInvite
 	METHOD join (J)Lcom/mojang/realmsclient/dto/RealmsServerAddress;
@@ -79,6 +82,11 @@ CLASS com/mojang/realmsclient/client/RealmsClient
 		ARG 1 worldId
 		ARG 3 slotId
 		ARG 4 worldOptions
+	METHOD url (Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 path
+	METHOD url (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 path
+		ARG 2 query
 	CLASS Environment
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
 			ARG 3 baseUrl

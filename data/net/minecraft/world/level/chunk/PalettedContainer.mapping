@@ -1,18 +1,14 @@
 CLASS net/minecraft/world/level/chunk/PalettedContainer
 	METHOD <init> (Lnet/minecraft/core/IdMap;Ljava/lang/Object;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;)V
 		ARG 1 registry
-
 		ARG 2 palette
-
 		ARG 3 strategy
 	METHOD <init> (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;Lnet/minecraft/world/level/chunk/PalettedContainer$Configuration;Lnet/minecraft/util/BitStorage;Ljava/util/List;)V
 		ARG 1 registry
 		ARG 2 strategy
 		ARG 3 configuration
 		ARG 4 storage
-
 		ARG 5 values
-
 	METHOD <init> (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;Lnet/minecraft/world/level/chunk/PalettedContainer$Data;)V
 		ARG 1 registry
 		ARG 2 strategy
@@ -21,18 +17,14 @@ CLASS net/minecraft/world/level/chunk/PalettedContainer
 		ARG 0 registry
 		ARG 1 codec
 		ARG 2 strategy
-
 		ARG 3 value
-
 	METHOD count (Lnet/minecraft/world/level/chunk/PalettedContainer$CountConsumer;)V
 		COMMENT Counts the number of instances of each state in the container.
 		COMMENT The provided consumer is invoked for each state with the number of instances.
 		ARG 1 countConsumer
 	METHOD createOrReuseData (Lnet/minecraft/world/level/chunk/PalettedContainer$Data;I)Lnet/minecraft/world/level/chunk/PalettedContainer$Data;
 		ARG 1 data
-
 		ARG 2 id
-
 	METHOD get (I)Ljava/lang/Object;
 		ARG 1 index
 	METHOD get (III)Ljava/lang/Object;
@@ -81,9 +73,7 @@ CLASS net/minecraft/world/level/chunk/PalettedContainer
 	METHOD read (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;Lnet/minecraft/world/level/chunk/PalettedContainer$DiscData;)Lcom/mojang/serialization/DataResult;
 		ARG 0 registry
 		ARG 1 strategy
-
 		ARG 2 data
-
 	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
 	METHOD set (IIILjava/lang/Object;)V
@@ -94,23 +84,20 @@ CLASS net/minecraft/world/level/chunk/PalettedContainer
 	METHOD set (ILjava/lang/Object;)V
 		ARG 1 index
 		ARG 2 state
-
 	METHOD swapPalette ([ILjava/util/function/IntUnaryOperator;)V
 		ARG 0 bits
 		ARG 1 operator
 	METHOD write (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;)Lnet/minecraft/world/level/chunk/PalettedContainer$DiscData;
-		ARG 1 registry
-
+		ARG 1 idMap
 		ARG 2 strategy
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
 	CLASS Data
-
 		METHOD copyFrom (Lnet/minecraft/world/level/chunk/Palette;Lnet/minecraft/util/BitStorage;)V
 			ARG 1 palette
 			ARG 2 bitStorage
 		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
-			ARG 1 buf
+			ARG 1 buffer
 	CLASS Strategy
 		METHOD <init> (I)V
 			ARG 1 sizeBits
@@ -127,8 +114,7 @@ CLASS net/minecraft/world/level/chunk/PalettedContainer
 	CLASS Configuration
 		METHOD createData (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PaletteResize;I)Lnet/minecraft/world/level/chunk/PalettedContainer$Data;
 			ARG 1 registry
-			ARG 2 resize
-
+			ARG 2 paletteResize
 			ARG 3 size
 	CLASS CountConsumer
 		METHOD accept (Ljava/lang/Object;I)V

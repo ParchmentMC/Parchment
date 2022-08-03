@@ -2,10 +2,15 @@ CLASS net/minecraft/world/inventory/MenuType
 	METHOD <init> (Lnet/minecraft/world/inventory/MenuType$MenuSupplier;)V
 		ARG 1 constructor
 	METHOD create (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
-
-		ARG 1 windowId
-		ARG 2 inventory
+		ARG 1 containerId
+		ARG 2 playerInventory
 	METHOD lambda$static$0 (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/LecternMenu;
-		ARG 0 windowId
-		ARG 1 inventory
-
+		ARG 0 containerId
+		ARG 1 playerInventory
+	METHOD register (Ljava/lang/String;Lnet/minecraft/world/inventory/MenuType$MenuSupplier;)Lnet/minecraft/world/inventory/MenuType;
+		ARG 0 key
+		ARG 1 factory
+	CLASS MenuSupplier
+		METHOD create (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
+			ARG 1 containerId
+			ARG 2 playerInventory

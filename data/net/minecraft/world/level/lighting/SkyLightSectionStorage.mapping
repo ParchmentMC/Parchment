@@ -6,8 +6,7 @@ CLASS net/minecraft/world/level/lighting/SkyLightSectionStorage
 	METHOD getLightValue (J)I
 		ARG 1 levelPos
 	METHOD getLightValue (JZ)I
-
-		ARG 1 levelPos
+		ARG 1 packedPos
 		ARG 3 updateAll
 	METHOD hasSectionsBelow (I)Z
 		ARG 1 y
@@ -15,13 +14,17 @@ CLASS net/minecraft/world/level/lighting/SkyLightSectionStorage
 		ARG 1 sectionPos
 	METHOD lightOnInSection (J)Z
 		ARG 1 sectionPos
-
 	METHOD markNewInconsistencies (Lnet/minecraft/world/level/lighting/LayerLightEngine;ZZ)V
 		ARG 1 engine
 		ARG 2 updateSkyLight
 		ARG 3 updateBlockLight
 	METHOD onNodeAdded (J)V
 		ARG 1 sectionPos
+	CLASS SkyDataLayerStorageMap
+		METHOD <init> (Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;I)V
+			ARG 1 map
+			ARG 2 topSections
+			ARG 3 currentLowestY
 
 	METHOD queueAddSource (J)V
 		ARG 1 sectionPos

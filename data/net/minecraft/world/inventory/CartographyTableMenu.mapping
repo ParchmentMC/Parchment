@@ -1,22 +1,24 @@
 CLASS net/minecraft/world/inventory/CartographyTableMenu
 	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;)V
 		ARG 1 containerId
-
-		ARG 2 inventory
+		ARG 2 playerInventory
 	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
 		ARG 1 containerId
-		ARG 2 inventory
-
+		ARG 2 playerInventory
 		ARG 3 access
 	METHOD canTakeItemForPickAll (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z
 		COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
 		ARG 1 stack
 		ARG 2 slot
-
+	METHOD lambda$removed$1 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 2 level
+		ARG 3 blockPos
+	METHOD lambda$setupResultSlot$0 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 4 level
+		ARG 5 blockPos
 	METHOD lambda$setupResultSlot$0 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 		ARG 4 level
 		ARG 5 pos
-
 	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
 		ARG 1 player
@@ -25,11 +27,9 @@ CLASS net/minecraft/world/inventory/CartographyTableMenu
 		COMMENT Called when the container is closed.
 		ARG 1 player
 	METHOD setupResultSlot (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
-
 		ARG 1 map
 		ARG 2 firstSlotStack
 		ARG 3 resultOutput
-
 	METHOD slotsChanged (Lnet/minecraft/world/Container;)V
 		COMMENT Callback for when the crafting matrix is changed.
 		ARG 1 inventory
@@ -53,9 +53,7 @@ CLASS net/minecraft/world/inventory/CartographyTableMenu
 	CLASS 5
 		METHOD lambda$onTake$0 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 			ARG 1 level
-
-			ARG 2 pos
-
+			ARG 2 blockPos
 		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
 			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
 			ARG 1 stack

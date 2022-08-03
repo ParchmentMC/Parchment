@@ -5,9 +5,8 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationListener
 		ARG 3 config
 	METHOD isOccluded (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 level
-
-		ARG 2 source
-		ARG 3 desintation
+		ARG 2 from
+		ARG 3 to
 	METHOD isValidVibration (Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 event
 		ARG 2 entity
@@ -16,8 +15,7 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationListener
 	METHOD sendSignal (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 level
 		ARG 2 event
-		ARG 3 source
-
+		ARG 3 origin
 		ARG 4 destination
 	METHOD tick (Lnet/minecraft/world/level/Level;)V
 		ARG 1 level
@@ -25,15 +23,11 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationListener
 		METHOD onSignalReceive (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/gameevent/GameEventListener;Lnet/minecraft/world/level/gameevent/GameEvent;I)V
 			ARG 1 level
 			ARG 2 listener
-
-			ARG 3 event
-			ARG 4 receivingDistance
-
+			ARG 3 gameEvent
+			ARG 4 distance
 		METHOD shouldListen (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/gameevent/GameEventListener;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/entity/Entity;)Z
 			ARG 1 level
 			ARG 2 listener
 			ARG 3 pos
-
-			ARG 4 event
+			ARG 4 gameEvent
 			ARG 5 entity
-
