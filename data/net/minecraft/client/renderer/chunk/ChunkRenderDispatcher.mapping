@@ -8,6 +8,9 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 	METHOD doUploadChunkLayer (Lcom/mojang/blaze3d/vertex/BufferBuilder;Lcom/mojang/blaze3d/vertex/VertexBuffer;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
 		ARG 2 buffer
+	METHOD rebuildChunkSync (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/client/renderer/chunk/RenderRegionCache;)V
+		ARG 1 chunk
+		ARG 2 regionCache
 	METHOD schedule (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk$ChunkCompileTask;)V
 		ARG 1 task
 	METHOD setCamera (Lnet/minecraft/world/phys/Vec3;)V
@@ -51,6 +54,10 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 		METHOD updateGlobalBlockEntities (Ljava/util/Set;)V
 			ARG 1 blockEntities
 		CLASS RebuildTask
+			METHOD <init> (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;DLnet/minecraft/client/renderer/chunk/RenderChunkRegion;Z)V
+				ARG 2 distAtCreation
+				ARG 4 region
+				ARG 5 isHighPriority
 			METHOD compile (FFFLnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$CompiledChunk;Lnet/minecraft/client/renderer/ChunkBufferBuilderPack;)Ljava/util/Set;
 				ARG 1 x
 				ARG 2 y

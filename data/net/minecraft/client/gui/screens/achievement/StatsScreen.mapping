@@ -15,6 +15,8 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 		ARG 3 y
 		ARG 4 uOffset
 		ARG 5 vOffset
+	METHOD getColumnX (I)I
+		ARG 1 index
 	METHOD getTranslationKey (Lnet/minecraft/stats/Stat;)Ljava/lang/String;
 		ARG 0 stat
 	METHOD lambda$initButtons$0 (Lnet/minecraft/client/gui/components/Button;)V
@@ -35,6 +37,10 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 	CLASS ItemStatisticsList
 		METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen;Lnet/minecraft/client/Minecraft;)V
 			ARG 2 minecraft
+		METHOD getColumn (I)Lnet/minecraft/stats/StatType;
+			ARG 1 index
+		METHOD getColumnIndex (Lnet/minecraft/stats/StatType;)I
+			ARG 1 statType
 		METHOD getString (Lnet/minecraft/world/item/Item;)Lnet/minecraft/network/chat/Component;
 			ARG 1 item
 		METHOD renderBackground (Lcom/mojang/blaze3d/vertex/PoseStack;)V
@@ -50,6 +56,9 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 			ARG 4 tessellator
 		METHOD renderMousehoverTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/network/chat/Component;II)V
 			ARG 1 poseStack
+			ARG 2 component
+			ARG 3 mouseX
+			ARG 4 mouseY
 		METHOD sortByColumn (Lnet/minecraft/stats/StatType;)V
 			ARG 1 statType
 		CLASS ItemRow
@@ -60,6 +69,10 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 				ARG 2 stat
 				ARG 3 x
 				ARG 4 y
+		CLASS ItemRowComparator
+			METHOD compare (Lnet/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRow;Lnet/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRow;)I
+				ARG 1 row1
+				ARG 2 row2
 	CLASS MobsStatisticsList
 		METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen;Lnet/minecraft/client/Minecraft;)V
 			ARG 2 minecraft

@@ -5,6 +5,12 @@ CLASS net/minecraft/server/level/ServerPlayer
 		COMMENT the total health of the player, includes actual health and absorption health. Updated every tick.
 	FIELD lastSectionPos Lnet/minecraft/core/SectionPos;
 		COMMENT Player section position as last updated by TicketManager, used by ChunkManager
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/level/ServerLevel;Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 server
+		ARG 2 level
+		ARG 3 profile
+	METHOD acceptsChat (Lnet/minecraft/network/chat/ChatType;)Z
+		ARG 1 type
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
 	METHOD attack (Lnet/minecraft/world/entity/Entity;)V
@@ -18,6 +24,12 @@ CLASS net/minecraft/server/level/ServerPlayer
 		COMMENT Adds a value to a statistic field.
 		ARG 1 stat
 		ARG 2 amount
+	METHOD bedBlocked (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 1 pos
+		ARG 2 direction
+	METHOD bedInRange (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 1 pos
+		ARG 2 direction
 	METHOD broadcastToPlayer (Lnet/minecraft/server/level/ServerPlayer;)Z
 		ARG 1 player
 	METHOD canHarmPlayer (Lnet/minecraft/world/entity/player/Player;)Z
@@ -33,6 +45,9 @@ CLASS net/minecraft/server/level/ServerPlayer
 		COMMENT set current crafting inventory back to the 2x2 square
 	METHOD completeUsingItem ()V
 		COMMENT Used for when item use count runs out, ie: eating completed
+	METHOD createEndPlatform (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 level
+		ARG 2 pos
 	METHOD crit (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Called when the entity is dealt a critical hit.
 		ARG 1 entityHit
@@ -53,6 +68,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 droppedItem
 		ARG 2 dropAround
 		ARG 3 traceItem
+	METHOD fudgeSpawnLocation (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	METHOD getIpAddress ()Ljava/lang/String;
 		COMMENT Gets the player's IP address. Used in /banip.
 	METHOD getTabListDisplayName ()Lnet/minecraft/network/chat/Component;
@@ -64,13 +81,23 @@ CLASS net/minecraft/server/level/ServerPlayer
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
+	METHOD initMenu (Lnet/minecraft/world/inventory/AbstractContainerMenu;)V
+		ARG 1 menu
 	METHOD isInvulnerableTo (Lnet/minecraft/world/damagesource/DamageSource;)Z
 		COMMENT Returns whether this Entity is invulnerable to the given DamageSource.
 		ARG 1 source
 	METHOD isPvpAllowed ()Z
 		COMMENT Returns if other players can attack this player
+	METHOD isReachableBedBlock (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
 	METHOD isSpectator ()Z
 		COMMENT Returns true if the player is in spectator mode.
+	METHOD loadGameTypes (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 tag
+	METHOD lookAt (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)V
+		ARG 1 fromAnchor
+		ARG 2 entity
+		ARG 3 toAnchor
 	METHOD lookAt (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 anchor
 		ARG 2 target
@@ -112,6 +139,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD readPlayerMode (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Lnet/minecraft/world/level/GameType;
+		ARG 0 tag
 	METHOD resetSentInfo ()V
 		COMMENT this function is called when a players inventory is sent to him, lastHealth is updated on any dimension transitions, then reset.
 	METHOD resetStat (Lnet/minecraft/stats/Stat;)V
@@ -128,17 +157,40 @@ CLASS net/minecraft/server/level/ServerPlayer
 		COMMENT Send a chat message to the CommandSender
 		ARG 1 component
 		ARG 2 senderUUID
+	METHOD sendMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V
+		ARG 1 message
+		ARG 2 type
+		ARG 3 sender
+	METHOD sendTexturePack (Ljava/lang/String;Ljava/lang/String;ZLnet/minecraft/network/chat/Component;)V
+		ARG 1 url
+		ARG 2 hash
+		ARG 3 required
+		ARG 4 prompt
 	METHOD setCamera (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entityToSpectate
 	METHOD setExperienceLevels (I)V
 		ARG 1 level
+	METHOD setExperiencePoints (I)V
+		ARG 1 experiencePoints
+	METHOD setGameMode (Lnet/minecraft/world/level/GameType;)Z
+		ARG 1 gameMode
 	METHOD setLastSectionPos (Lnet/minecraft/core/SectionPos;)V
 		ARG 1 sectionPos
+	METHOD setLevel (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	METHOD setPlayerInput (FFZZ)V
 		ARG 1 strafe
 		ARG 2 forward
 		ARG 3 jumping
 		ARG 4 sneaking
+	METHOD setRespawnPosition (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/BlockPos;FZZ)V
+		ARG 1 dimension
+		ARG 2 position
+		ARG 3 angle
+		ARG 4 forced
+		ARG 5 sendMessage
+	METHOD shouldFilterMessageTo (Lnet/minecraft/server/level/ServerPlayer;)Z
+		ARG 1 player
 	METHOD startRiding (Lnet/minecraft/world/entity/Entity;Z)Z
 		ARG 1 entity
 		ARG 2 force
@@ -148,6 +200,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 pos
 	METHOD stopRiding ()V
 		COMMENT Dismounts this entity from the entity it is riding.
+	METHOD storeGameTypes (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 tag
 	METHOD swing (Lnet/minecraft/world/InteractionHand;)V
 		ARG 1 hand
 	METHOD take (Lnet/minecraft/world/entity/Entity;I)V
@@ -168,6 +222,13 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 9 pitch
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
+	METHOD trackChunk (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/network/protocol/Packet;)V
+		ARG 1 chunkPos
+		ARG 2 packet
+	METHOD triggerDimensionChangeTriggers (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
+	METHOD untrackChunk (Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 1 chunkPos
 	METHOD updateInvisibilityStatus ()V
 		COMMENT Clears potion metadata values if the entity has no potion effects. Otherwise, updates potion effect color, ambience, and invisibility metadata values
 	METHOD updateOptions (Lnet/minecraft/network/protocol/game/ServerboundClientInformationPacket;)V
@@ -175,3 +236,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD updateScoreForCriteria (Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;I)V
 		ARG 1 criteria
 		ARG 2 points
+	CLASS 1
+		METHOD broadcastDataValue (Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
+			ARG 1 container
+			ARG 2 id
+			ARG 3 value

@@ -5,23 +5,51 @@ CLASS net/minecraft/server/level/ChunkHolder
 		COMMENT A future that returns the chunk if it is a border chunk, {@link net.minecraft.world.server.ChunkHolder.IChunkLoadingError#UNLOADED} otherwise.
 	FIELD tickingChunkFuture Ljava/util/concurrent/CompletableFuture;
 		COMMENT A future that returns the chunk if it is a ticking chunk, {@link net.minecraft.world.server.ChunkHolder.IChunkLoadingError#UNLOADED} otherwise.
+	METHOD <init> (Lnet/minecraft/world/level/ChunkPos;ILnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/lighting/LevelLightEngine;Lnet/minecraft/server/level/ChunkHolder$LevelChangeListener;Lnet/minecraft/server/level/ChunkHolder$PlayerProvider;)V
+		ARG 1 pos
+		ARG 2 ticketLevel
+		ARG 3 levelHeightAccessor
+		ARG 4 lightEngine
+		ARG 5 onLevelChange
+		ARG 6 playerProvider
+	METHOD blockChanged (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
 	METHOD broadcast (Lnet/minecraft/network/protocol/Packet;Z)V
 		ARG 1 packet
 		ARG 2 boundaryOnly
 	METHOD broadcastBlockEntity (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 level
 		ARG 2 pos
+	METHOD broadcastBlockEntityIfNeeded (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
 	METHOD broadcastChanges (Lnet/minecraft/world/level/chunk/LevelChunk;)V
 		ARG 1 chunk
+	METHOD demoteFullChunk (Lnet/minecraft/server/level/ChunkMap;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
+		ARG 2 fullChunkStatus
 	METHOD getFullChunkStatus (I)Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
 		ARG 0 level
+	METHOD getFutureIfPresent (Lnet/minecraft/world/level/chunk/ChunkStatus;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunkStatus
+	METHOD getFutureIfPresentUnchecked (Lnet/minecraft/world/level/chunk/ChunkStatus;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunkStatus
 	METHOD getStatus (I)Lnet/minecraft/world/level/chunk/ChunkStatus;
 		ARG 0 level
+	METHOD scheduleFullChunkPromotion (Lnet/minecraft/server/level/ChunkMap;Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
+		ARG 4 fullChunkStatus
 	METHOD sectionLightChanged (Lnet/minecraft/world/level/LightLayer;I)V
 		ARG 1 type
 		ARG 2 sectionY
+	METHOD setQueueLevel (I)V
+		ARG 1 queueLevel
 	METHOD setTicketLevel (I)V
 		ARG 1 level
+	CLASS ChunkSaveDebug
+		METHOD <init> (Ljava/lang/Thread;Ljava/util/concurrent/CompletableFuture;Ljava/lang/String;)V
+			ARG 1 thread
+			ARG 2 future
+			ARG 3 source
 	CLASS PlayerProvider
 		METHOD getPlayers (Lnet/minecraft/world/level/ChunkPos;Z)Ljava/util/List;
 			COMMENT Returns the players tracking the given chunk.

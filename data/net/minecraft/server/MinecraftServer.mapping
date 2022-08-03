@@ -1,6 +1,16 @@
 CLASS net/minecraft/server/MinecraftServer
 	FIELD resourcePack Ljava/lang/String;
 		COMMENT The texture pack for the server
+	METHOD <init> (Ljava/lang/Thread;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Ljava/net/Proxy;Lcom/mojang/datafixers/DataFixer;Lcom/mojang/authlib/minecraft/MinecraftSessionService;Lcom/mojang/authlib/GameProfileRepository;Lnet/minecraft/server/players/GameProfileCache;Lnet/minecraft/server/level/progress/ChunkProgressListenerFactory;)V
+		ARG 1 serverThread
+		ARG 2 storageSource
+		ARG 3 packRepository
+		ARG 5 proxy
+		ARG 6 fixerUpper
+		ARG 7 sessionService
+		ARG 8 profileRepository
+		ARG 9 profileCache
+		ARG 10 progressListenerFactory
 	METHOD addTickable (Ljava/lang/Runnable;)V
 		ARG 1 tickable
 	METHOD configurePackRepository (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/DataPackConfig;Z)Lnet/minecraft/world/level/DataPackConfig;
@@ -106,6 +116,11 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 1 allow
 	METHOD setId (Ljava/lang/String;)V
 		ARG 1 serverId
+	METHOD setInitialSpawn (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/storage/ServerLevelData;ZZ)V
+		ARG 0 level
+		ARG 1 levelData
+		ARG 2 generateBonusChest
+		ARG 3 debug
 	METHOD setLocalIp (Ljava/lang/String;)V
 		ARG 1 host
 	METHOD setMotd (Ljava/lang/String;)V

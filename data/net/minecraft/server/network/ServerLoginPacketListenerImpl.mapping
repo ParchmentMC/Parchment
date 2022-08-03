@@ -1,6 +1,9 @@
 CLASS net/minecraft/server/network/ServerLoginPacketListenerImpl
 	FIELD tick I
 		COMMENT How long has player been trying to login into the server.
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;)V
+		ARG 1 server
+		ARG 2 connection
 	METHOD createFakeProfile (Lcom/mojang/authlib/GameProfile;)Lcom/mojang/authlib/GameProfile;
 		ARG 1 original
 	METHOD disconnect (Lnet/minecraft/network/chat/Component;)V
@@ -11,6 +14,8 @@ CLASS net/minecraft/server/network/ServerLoginPacketListenerImpl
 		ARG 1 packet
 	METHOD handleKey (Lnet/minecraft/network/protocol/login/ServerboundKeyPacket;)V
 		ARG 1 packet
+	METHOD isValidUsername (Ljava/lang/String;)Z
+		ARG 0 username
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason

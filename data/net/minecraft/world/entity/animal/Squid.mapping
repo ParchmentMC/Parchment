@@ -1,6 +1,4 @@
 CLASS net/minecraft/world/entity/animal/Squid
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getSoundVolume ()F
@@ -8,19 +6,16 @@ CLASS net/minecraft/world/entity/animal/Squid
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
-	METHOD handleEntityEvent (B)V
-		COMMENT Handler for {@link World#setEntityState}
-		ARG 1 id
 	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
 	METHOD rotateVector (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
-		ARG 1 rotation
+		ARG 1 vector
 	METHOD setMovementVector (FFF)V
-		ARG 1 randomMotionVecX
-		ARG 2 randomMotionVecY
-		ARG 3 randomMotionVecZ
+		ARG 1 tx
+		ARG 2 ty
+		ARG 3 tz
 	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 travelVector
 	CLASS SquidFleeGoal

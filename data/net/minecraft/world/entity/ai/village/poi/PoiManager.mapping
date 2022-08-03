@@ -1,6 +1,6 @@
 CLASS net/minecraft/world/entity/ai/village/poi/PoiManager
 	METHOD <init> (Ljava/nio/file/Path;Lcom/mojang/datafixers/DataFixer;ZLnet/minecraft/world/level/LevelHeightAccessor;)V
-		ARG 1 path
+		ARG 1 folder
 		ARG 2 fixerUpper
 		ARG 3 sync
 		ARG 4 levelHeightAccessor
@@ -35,9 +35,9 @@ CLASS net/minecraft/world/entity/ai/village/poi/PoiManager
 	METHOD findAllClosestFirst (Ljava/util/function/Predicate;Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/stream/Stream;
 		ARG 1 typePredicate
 		ARG 2 posPredicate
-		ARG 3 pos
+		ARG 3 entityPos
 		ARG 4 distance
-		ARG 5 status
+		ARG 5 occupancy
 	METHOD findClosest (Ljava/util/function/Predicate;Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/Optional;
 		ARG 1 typePredicate
 		ARG 2 posPredicate
@@ -45,6 +45,11 @@ CLASS net/minecraft/world/entity/ai/village/poi/PoiManager
 		ARG 4 distance
 		ARG 5 status
 	METHOD findClosest (Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)Ljava/util/Optional;
+		ARG 1 typePredicate
+		ARG 2 pos
+		ARG 3 distance
+		ARG 4 status
+	METHOD getCountInRange (Ljava/util/function/Predicate;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/entity/ai/village/poi/PoiManager$Occupancy;)J
 		ARG 1 typePredicate
 		ARG 2 pos
 		ARG 3 distance

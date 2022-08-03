@@ -1,10 +1,10 @@
 CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
 	METHOD <init> (Lnet/minecraft/world/entity/ai/village/poi/PoiType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLjava/util/Optional;)V
 		ARG 1 poiType
-		ARG 2 pos
+		ARG 2 memoryKey
 		ARG 3 memoryToAcquire
 		ARG 4 onlyIfAdult
-		ARG 5 onPoiAcquisitionEvent
+		ARG 5 onPoiAcquistitionEvent
 	METHOD <init> (Lnet/minecraft/world/entity/ai/village/poi/PoiType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLjava/util/Optional;)V
 		ARG 1 poiType
 		ARG 2 pos
@@ -14,8 +14,8 @@ CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
 		ARG 1 level
 		ARG 2 owner
 	METHOD constructEntryConditionMap (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Lcom/google/common/collect/ImmutableMap;
-		ARG 0 pos
-		ARG 1 other
+		ARG 0 memoryKey
+		ARG 1 memoryToAcquire
 	METHOD lambda$start$0 (JLit/unimi/dsi/fastutil/longs/Long2ObjectMap$Entry;)Z
 		ARG 2 jitter
 	METHOD lambda$start$1 (JLnet/minecraft/core/BlockPos;)Z
@@ -35,10 +35,10 @@ CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
 	CLASS JitteredLinearRetry
 		METHOD <init> (Ljava/util/Random;J)V
 			ARG 1 random
-			ARG 2 markAttempt
+			ARG 2 timestamp
 		METHOD isStillValid (J)Z
-			ARG 1 attempt
+			ARG 1 timestamp
 		METHOD markAttempt (J)V
-			ARG 1 attempt
+			ARG 1 timestamp
 		METHOD shouldRetry (J)Z
-			ARG 1 attempt
+			ARG 1 timestamp

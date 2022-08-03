@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/entity/animal/AbstractFish
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD createNavigation (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/ai/navigation/PathNavigation;
 		ARG 1 level
 	METHOD getMaxSpawnClusterSize ()I
@@ -21,6 +19,10 @@ CLASS net/minecraft/world/entity/animal/AbstractFish
 		ARG 1 compound
 	METHOD removeWhenFarAway (D)Z
 		ARG 1 distanceToClosestPlayer
+	METHOD saveToBucketTag (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 bucketStack
+	METHOD setFromBucket (Z)V
+		ARG 1 fromBucket
 	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 travelVector
 	CLASS FishSwimGoal

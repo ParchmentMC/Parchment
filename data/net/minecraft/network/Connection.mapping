@@ -10,6 +10,15 @@ CLASS net/minecraft/network/Connection
 	FIELD queue Ljava/util/Queue;
 		COMMENT The queue for packets that get sent before the channel is connected.
 		COMMENT Every tick or whenever a new packet is sent the connection will try to flush this queue, if the channel has since finished connecting.
+	METHOD <init> (Lnet/minecraft/network/protocol/PacketFlow;)V
+		ARG 1 receiving
+	METHOD channelActive (Lio/netty/channel/ChannelHandlerContext;)V
+		ARG 1 context
+	METHOD channelInactive (Lio/netty/channel/ChannelHandlerContext;)V
+		ARG 1 context
+	METHOD channelRead0 (Lio/netty/channel/ChannelHandlerContext;Lnet/minecraft/network/protocol/Packet;)V
+		ARG 1 context
+		ARG 2 packet
 	METHOD connectToLocalServer (Ljava/net/SocketAddress;)Lnet/minecraft/network/Connection;
 		COMMENT Prepares a clientside Connection for a local in-memory connection ("single player").
 		COMMENT Establishes a connection to the socket supplied and configures the channel pipeline (only the packet handler is necessary,
@@ -28,8 +37,17 @@ CLASS net/minecraft/network/Connection
 		COMMENT
 		COMMENT Closing the channel this way does not send any disconnection packets, it simply terminates the underlying netty channel.
 		ARG 1 message
+	METHOD doSendPacket (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/ConnectionProtocol;)V
+		ARG 1 packet
+		ARG 3 protocol
+	METHOD exceptionCaught (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Throwable;)V
+		ARG 1 context
+		ARG 2 exception
 	METHOD flushQueue ()V
 		COMMENT Will iterate through the outboundPacketQueue and dispatch all Packets
+	METHOD genericsFtw (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketListener;)V
+		ARG 0 packet
+		ARG 1 listener
 	METHOD getDisconnectedReason ()Lnet/minecraft/network/chat/Component;
 		COMMENT If this channel is closed, returns the exit message, null otherwise.
 	METHOD getPacketListener ()Lnet/minecraft/network/PacketListener;
@@ -54,6 +72,7 @@ CLASS net/minecraft/network/Connection
 		ARG 1 packet
 	METHOD send (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V
 		ARG 1 packet
+		ARG 2 listener
 	METHOD sendPacket (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V
 		COMMENT Will commit the packet to the channel. If the current thread 'owns' the channel it will write and flush the packet, otherwise it will add a task for the channel eventloop thread to do that.
 		ARG 1 inPacket
@@ -84,3 +103,13 @@ CLASS net/minecraft/network/Connection
 		ARG 2 validateDecompressed
 	METHOD tick ()V
 		COMMENT Checks timeouts and processes all packets received
+	CLASS 1
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channel
+	CLASS 2
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channnel
+	CLASS PacketHolder
+		METHOD <init> (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V
+			ARG 1 packet
+			ARG 2 listener

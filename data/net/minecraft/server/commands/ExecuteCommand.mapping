@@ -13,9 +13,15 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 1 literal
 		ARG 2 isIf
 		ARG 3 isMasked
+	METHOD checkCustomPredicate (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Z
+		ARG 0 source
+		ARG 1 predicate
 	METHOD checkIfRegions (Lcom/mojang/brigadier/context/CommandContext;Z)I
 		ARG 0 context
 		ARG 1 isMasked
+	METHOD checkMatchingData (Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;)I
+		ARG 0 accessor
+		ARG 1 path
 	METHOD checkRegions (Lcom/mojang/brigadier/context/CommandContext;Z)Ljava/util/OptionalInt;
 		ARG 0 context
 		ARG 1 isMasked
@@ -61,3 +67,9 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 0 parent
 		ARG 1 literal
 		ARG 2 storingResult
+	CLASS CommandPredicate
+		METHOD test (Lcom/mojang/brigadier/context/CommandContext;)Z
+			ARG 1 context
+	CLASS CommandNumericPredicate
+		METHOD test (Lcom/mojang/brigadier/context/CommandContext;)I
+			ARG 1 context

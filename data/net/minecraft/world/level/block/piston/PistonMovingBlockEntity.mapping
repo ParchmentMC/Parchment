@@ -1,25 +1,27 @@
 CLASS net/minecraft/world/level/block/piston/PistonMovingBlockEntity
 	FIELD extending Z
-		COMMENT Whether this piston is extending
+		COMMENT Whether this piston is extending.
 	FIELD progressO F
 		COMMENT The extension / retraction progress
 	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 worldPosition
+		ARG 1 pos
 		ARG 2 blockState
 	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;ZZ)V
-		ARG 1 worldPosition
+		ARG 1 pos
 		ARG 2 blockState
 		ARG 3 movedState
 		ARG 4 direction
 		ARG 5 extending
 		ARG 6 isSourcePiston
 	METHOD finalTick ()V
+
 		COMMENT Removes the piston's BlockEntity and stops any movement
 	METHOD fixEntityWithinPistonBase (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Direction;D)V
 		ARG 0 pos
 		ARG 1 entity
 		ARG 2 dir
 		ARG 3 progress
+
 	METHOD getCollisionShape (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 level
 		ARG 2 pos
@@ -45,6 +47,7 @@ CLASS net/minecraft/world/level/block/piston/PistonMovingBlockEntity
 	METHOD matchesStickyCritera (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 0 shape
 		ARG 1 entity
+
 	METHOD moveByPositionAndProgress (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/level/block/piston/PistonMovingBlockEntity;)Lnet/minecraft/world/phys/AABB;
 		ARG 0 pos
 		ARG 1 bounds
@@ -53,16 +56,7 @@ CLASS net/minecraft/world/level/block/piston/PistonMovingBlockEntity
 		ARG 0 level
 		ARG 1 pos
 		ARG 2 delta
-		ARG 3 piston
-	METHOD moveEntityByPiston (Lnet/minecraft/core/Direction;Lnet/minecraft/world/entity/Entity;DLnet/minecraft/core/Direction;)V
-		ARG 0 direction
-		ARG 1 entity
-		ARG 2 progress
-		ARG 4 oppositeDir
-	METHOD moveStuckEntities (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;FLnet/minecraft/world/level/block/piston/PistonMovingBlockEntity;)V
-		ARG 0 level
-		ARG 1 pos
-		ARG 2 delta
+
 		ARG 3 piston
 	METHOD tick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/piston/PistonMovingBlockEntity;)V
 		ARG 0 level

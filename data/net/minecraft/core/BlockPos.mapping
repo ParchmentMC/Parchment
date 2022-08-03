@@ -89,12 +89,16 @@ CLASS net/minecraft/core/BlockPos
 	METHOD randomInCube (Ljava/util/Random;ILnet/minecraft/core/BlockPos;I)Ljava/lang/Iterable;
 		ARG 0 random
 		ARG 1 amount
+		ARG 2 center
+		ARG 3 radius
 	METHOD relative (Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos;
 		ARG 1 direction
 	METHOD rotate (Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/core/BlockPos;
 		ARG 1 rotation
 	METHOD south (I)Lnet/minecraft/core/BlockPos;
 		ARG 1 distance
+	METHOD spiralAround (Lnet/minecraft/core/BlockPos;ILnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Ljava/lang/Iterable;
+		ARG 0 pos
 	METHOD subtract (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/BlockPos;
 		ARG 1 vector
 	METHOD withinManhattan (Lnet/minecraft/core/BlockPos;III)Ljava/lang/Iterable;
@@ -122,6 +126,8 @@ CLASS net/minecraft/core/BlockPos
 		METHOD move (Lnet/minecraft/core/Direction;I)Lnet/minecraft/core/BlockPos$MutableBlockPos;
 			ARG 1 direction
 			ARG 2 n
+		METHOD move (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/BlockPos$MutableBlockPos;
+			ARG 1 offset
 		METHOD set (DDD)Lnet/minecraft/core/BlockPos$MutableBlockPos;
 			ARG 1 x
 			ARG 3 y
@@ -147,3 +153,6 @@ CLASS net/minecraft/core/BlockPos
 		METHOD setWithOffset (Lnet/minecraft/core/Vec3i;Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos$MutableBlockPos;
 			ARG 1 pos
 			ARG 2 direction
+		METHOD setWithOffset (Lnet/minecraft/core/Vec3i;Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/BlockPos$MutableBlockPos;
+			ARG 1 pos
+			ARG 2 offset

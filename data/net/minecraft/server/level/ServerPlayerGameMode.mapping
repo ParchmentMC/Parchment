@@ -1,9 +1,27 @@
 CLASS net/minecraft/server/level/ServerPlayerGameMode
+	METHOD <init> (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD changeGameModeForPlayer (Lnet/minecraft/world/level/GameType;)Z
+		ARG 1 gameModeForPlayer
+	METHOD destroyAndAck (Lnet/minecraft/core/BlockPos;Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;Ljava/lang/String;)V
+		ARG 1 pos
+		ARG 2 action
+		ARG 3 reason
 	METHOD destroyBlock (Lnet/minecraft/core/BlockPos;)Z
 		COMMENT Attempts to harvest a block
 		ARG 1 pos
+	METHOD handleBlockBreakAction (Lnet/minecraft/core/BlockPos;Lnet/minecraft/network/protocol/game/ServerboundPlayerActionPacket$Action;Lnet/minecraft/core/Direction;I)V
+		ARG 1 pos
+		ARG 2 action
+		ARG 3 direction
+	METHOD incrementDestroyProgress (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;I)F
+		ARG 1 state
+		ARG 2 pos
 	METHOD isCreative ()Z
 		COMMENT Get if we are in creative game mode.
+	METHOD setGameModeForPlayer (Lnet/minecraft/world/level/GameType;Lnet/minecraft/world/level/GameType;)V
+		ARG 1 gameModeForPlayer
+		ARG 2 previousGameModeForPlayer
 	METHOD setLevel (Lnet/minecraft/server/level/ServerLevel;)V
 		COMMENT Sets the world instance.
 		ARG 1 serverLevel
@@ -12,3 +30,9 @@ CLASS net/minecraft/server/level/ServerPlayerGameMode
 		ARG 2 level
 		ARG 3 stack
 		ARG 4 hand
+	METHOD useItemOn (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 player
+		ARG 2 level
+		ARG 3 stack
+		ARG 4 hand
+		ARG 5 hitResult

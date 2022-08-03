@@ -3,8 +3,6 @@ CLASS net/minecraft/world/entity/monster/Zombie
 		ARG 1 level
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
-	METHOD aiStep ()V
-		COMMENT Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD canHoldItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
 	METHOD convertToZombieType (Lnet/minecraft/world/entity/EntityType;)V
@@ -29,7 +27,7 @@ CLASS net/minecraft/world/entity/monster/Zombie
 	METHOD getMyRidingOffset ()D
 		COMMENT Returns the Y Offset of this entity.
 	METHOD getSpawnAsBabyOdds (Ljava/util/Random;)Z
-		ARG 0 rand
+		ARG 0 random
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
@@ -62,7 +60,7 @@ CLASS net/minecraft/world/entity/monster/Zombie
 		ARG 1 childZombie
 	METHOD setCanBreakDoors (Z)V
 		COMMENT Sets or removes EntityAIBreakDoor task
-		ARG 1 enabled
+		ARG 1 canBreakDoors
 	METHOD startUnderWaterConversion (I)V
 		ARG 1 conversionTime
 	METHOD tick ()V
@@ -75,7 +73,7 @@ CLASS net/minecraft/world/entity/monster/Zombie
 		METHOD <init> (Lnet/minecraft/world/entity/monster/Zombie;Lnet/minecraft/world/entity/PathfinderMob;DI)V
 			ARG 2 mob
 			ARG 3 speedModifier
-			ARG 5 searchRange
+			ARG 5 verticalSearchRange
 		METHOD playBreakSound (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 			ARG 1 level
 			ARG 2 pos

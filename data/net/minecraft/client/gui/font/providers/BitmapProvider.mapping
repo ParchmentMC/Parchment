@@ -5,10 +5,24 @@ CLASS net/minecraft/client/gui/font/providers/BitmapProvider
 	METHOD getGlyph (I)Lcom/mojang/blaze3d/font/RawGlyph;
 		ARG 1 character
 	CLASS Glyph
+		METHOD <init> (FLcom/mojang/blaze3d/platform/NativeImage;IIIIII)V
+			ARG 1 sacle
+			ARG 2 image
+			ARG 3 offsetX
+			ARG 4 offsetY
+			ARG 5 width
+			ARG 6 height
+			ARG 7 advance
+			ARG 8 ascent
 		METHOD upload (II)V
 			ARG 1 xOffset
 			ARG 2 yOffset
 	CLASS Builder
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;IILjava/util/List;)V
+			ARG 1 texture
+			ARG 2 height
+			ARG 3 ascent
+			ARG 4 chars
 		METHOD create (Lnet/minecraft/server/packs/resources/ResourceManager;)Lcom/mojang/blaze3d/font/GlyphProvider;
 			ARG 1 resourceManager
 		METHOD fromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/client/gui/font/providers/BitmapProvider$Builder;

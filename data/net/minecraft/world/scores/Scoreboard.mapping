@@ -1,8 +1,20 @@
 CLASS net/minecraft/world/scores/Scoreboard
+	METHOD addObjective (Ljava/lang/String;Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/scores/criteria/ObjectiveCriteria$RenderType;)Lnet/minecraft/world/scores/Objective;
+		ARG 1 name
+		ARG 2 criteria
+		ARG 3 displayName
+		ARG 4 renderType
 	METHOD addPlayerTeam (Ljava/lang/String;)Lnet/minecraft/world/scores/PlayerTeam;
 		ARG 1 name
+	METHOD addPlayerToTeam (Ljava/lang/String;Lnet/minecraft/world/scores/PlayerTeam;)Z
+		ARG 1 playerName
+		ARG 2 team
 	METHOD entityRemoved (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
+	METHOD forAllObjectives (Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;Ljava/lang/String;Ljava/util/function/Consumer;)V
+		ARG 1 criteria
+		ARG 2 scoreboardName
+		ARG 3 points
 	METHOD getDisplayObjective (I)Lnet/minecraft/world/scores/Objective;
 		COMMENT 0 is tab menu, 1 is sidebar, 2 is below name
 		ARG 1 slot
@@ -15,6 +27,8 @@ CLASS net/minecraft/world/scores/Scoreboard
 	METHOD getObjective (Ljava/lang/String;)Lnet/minecraft/world/scores/Objective;
 		COMMENT Returns a ScoreObjective for the objective name
 		ARG 1 name
+	METHOD getOrCreateObjective (Ljava/lang/String;)Lnet/minecraft/world/scores/Objective;
+		ARG 1 objective
 	METHOD getOrCreatePlayerScore (Ljava/lang/String;Lnet/minecraft/world/scores/Objective;)Lnet/minecraft/world/scores/Score;
 		COMMENT Get a player's score or create it if it does not exist
 		ARG 1 username
@@ -35,10 +49,14 @@ CLASS net/minecraft/world/scores/Scoreboard
 		ARG 1 username
 	METHOD getTeamNames ()Ljava/util/Collection;
 		COMMENT Retrieve all registered ScorePlayerTeam names
+	METHOD hasObjective (Ljava/lang/String;)Z
+		ARG 1 objective
 	METHOD hasPlayerScore (Ljava/lang/String;Lnet/minecraft/world/scores/Objective;)Z
 		COMMENT Returns if the entity has the given ScoreObjective
 		ARG 1 name
 		ARG 2 objective
+	METHOD loadPlayerScores (Lnet/minecraft/nbt/ListTag;)V
+		ARG 1 tag
 	METHOD onObjectiveAdded (Lnet/minecraft/world/scores/Objective;)V
 		ARG 1 objective
 	METHOD onObjectiveChanged (Lnet/minecraft/world/scores/Objective;)V

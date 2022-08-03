@@ -1,4 +1,8 @@
 CLASS net/minecraft/util/FormattedCharSink
 	METHOD accept (ILnet/minecraft/network/chat/Style;I)Z
-		ARG 2 lastSpaceStyle
+		COMMENT Accepts a single code point from from a {@link net.minecraft.util.FormattedCharSequence}.
+		COMMENT @return {@code true} to accept more characters, {@code false} to stop traversing the sequence.
+		ARG 1 positionInCurrentSequence
+			COMMENT Contains the relative position of the character in the current sub-sequence. If multiple formatted char sequences have been combined, this value will reset to {@code 0} after each sequence has been fully consumed.
+		ARG 2 style
 		ARG 3 codePoint
