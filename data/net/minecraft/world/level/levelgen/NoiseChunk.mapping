@@ -2,14 +2,32 @@ CLASS net/minecraft/world/level/levelgen/NoiseChunk
 	METHOD <init> (IIILnet/minecraft/world/level/levelgen/NoiseRouter;IILnet/minecraft/world/level/levelgen/DensityFunctions$BeardifierOrMarker;Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;Lnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;Lnet/minecraft/world/level/levelgen/blending/Blender;)V
 		ARG 1 cellCountXZ
 		ARG 2 cellCountY
-		ARG 3 ceelNoiseMinY
+		ARG 3 cellNoiseMinY
+		ARG 4 noiseRouter
+		ARG 5 firstCellX
+		ARG 6 firstCellY
 		ARG 7 beardifier
 		ARG 8 noiseSettings
+		ARG 9 fluidPicker
 		ARG 10 blender
 	METHOD cachedClimateSampler (Lnet/minecraft/world/level/levelgen/NoiseRouter;)Lnet/minecraft/world/level/biome/Climate$Sampler;
 		ARG 1 noiseRouter
 	METHOD computePreliminarySurfaceLevel (J)I
 		ARG 1 packedChunkPos
+	METHOD forChunk (Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/NoiseRouter;Ljava/util/function/Supplier;Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;Lnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;Lnet/minecraft/world/level/levelgen/blending/Blender;)Lnet/minecraft/world/level/levelgen/NoiseChunk;
+		ARG 0 chunk
+		ARG 1 noiseRouter
+		ARG 3 noiseSettings
+		ARG 4 fluidPicker
+		ARG 5 blender
+	METHOD forColumn (IIIILnet/minecraft/world/level/levelgen/NoiseRouter;Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;Lnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;)Lnet/minecraft/world/level/levelgen/NoiseChunk;
+		ARG 0 firstCellX
+		ARG 1 firstCellY
+		ARG 2 cellNoiseMinY
+		ARG 3 cellCountY
+		ARG 4 noiseRouter
+		ARG 5 noiseSettings
+		ARG 6 fluidPicker
 	METHOD getOrComputeBlendingOutput (II)Lnet/minecraft/world/level/levelgen/blending/Blender$BlendingOutput;
 		ARG 1 chunkX
 		ARG 2 chunkZ

@@ -1,9 +1,21 @@
 CLASS net/minecraft/util/GsonHelper
+	METHOD convertToBigDecimal (Lcom/google/gson/JsonElement;Ljava/lang/String;)Ljava/math/BigDecimal;
+		ARG 0 json
+		ARG 1 memberName
+	METHOD convertToBigInteger (Lcom/google/gson/JsonElement;Ljava/lang/String;)Ljava/math/BigInteger;
+		ARG 0 json
+		ARG 1 memberName
 	METHOD convertToBoolean (Lcom/google/gson/JsonElement;Ljava/lang/String;)Z
 		COMMENT Gets the boolean value of the given JsonElement.  Expects the second parameter to be the name of the element's field if an error message needs to be thrown.
 		ARG 0 json
 		ARG 1 memberName
 	METHOD convertToByte (Lcom/google/gson/JsonElement;Ljava/lang/String;)B
+		ARG 0 json
+		ARG 1 memberName
+	METHOD convertToCharacter (Lcom/google/gson/JsonElement;Ljava/lang/String;)C
+		ARG 0 json
+		ARG 1 memberName
+	METHOD convertToDouble (Lcom/google/gson/JsonElement;Ljava/lang/String;)D
 		ARG 0 json
 		ARG 1 memberName
 	METHOD convertToFloat (Lcom/google/gson/JsonElement;Ljava/lang/String;)F
@@ -34,6 +46,9 @@ CLASS net/minecraft/util/GsonHelper
 		ARG 1 memberName
 		ARG 2 context
 		ARG 3 adapter
+	METHOD convertToShort (Lcom/google/gson/JsonElement;Ljava/lang/String;)S
+		ARG 0 json
+		ARG 1 memberName
 	METHOD convertToString (Lcom/google/gson/JsonElement;Ljava/lang/String;)Ljava/lang/String;
 		COMMENT Gets the string value of the given JsonElement.  Expects the second parameter to be the name of the element's field if an error message needs to be thrown.
 		ARG 0 json
@@ -74,6 +89,20 @@ CLASS net/minecraft/util/GsonHelper
 		ARG 1 json
 		ARG 2 adapter
 		ARG 3 lenient
+	METHOD getAsBigDecimal (Lcom/google/gson/JsonObject;Ljava/lang/String;)Ljava/math/BigDecimal;
+		ARG 0 json
+		ARG 1 memberName
+	METHOD getAsBigDecimal (Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/math/BigDecimal;)Ljava/math/BigDecimal;
+		ARG 0 json
+		ARG 1 memberName
+		ARG 2 fallback
+	METHOD getAsBigInteger (Lcom/google/gson/JsonObject;Ljava/lang/String;)Ljava/math/BigInteger;
+		ARG 0 json
+		ARG 1 memberName
+	METHOD getAsBigInteger (Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/math/BigInteger;)Ljava/math/BigInteger;
+		ARG 0 json
+		ARG 1 memberName
+		ARG 2 fallback
 	METHOD getAsBoolean (Lcom/google/gson/JsonObject;Ljava/lang/String;)Z
 		COMMENT Gets the boolean value of the field on the JsonObject with the given name.
 		ARG 0 json
@@ -83,7 +112,24 @@ CLASS net/minecraft/util/GsonHelper
 		ARG 0 json
 		ARG 1 memberName
 		ARG 2 fallback
+	METHOD getAsByte (Lcom/google/gson/JsonObject;Ljava/lang/String;)B
+		ARG 0 json
+		ARG 1 memberName
 	METHOD getAsByte (Lcom/google/gson/JsonObject;Ljava/lang/String;B)B
+		ARG 0 json
+		ARG 1 memberName
+		ARG 2 fallback
+	METHOD getAsCharacter (Lcom/google/gson/JsonObject;Ljava/lang/String;)C
+		ARG 0 json
+		ARG 1 memberName
+	METHOD getAsCharacter (Lcom/google/gson/JsonObject;Ljava/lang/String;C)C
+		ARG 0 json
+		ARG 1 memberName
+		ARG 2 fallback
+	METHOD getAsDouble (Lcom/google/gson/JsonObject;Ljava/lang/String;)D
+		ARG 0 json
+		ARG 1 memberName
+	METHOD getAsDouble (Lcom/google/gson/JsonObject;Ljava/lang/String;D)D
 		ARG 0 json
 		ARG 1 memberName
 		ARG 2 fallback
@@ -108,6 +154,10 @@ CLASS net/minecraft/util/GsonHelper
 	METHOD getAsItem (Lcom/google/gson/JsonObject;Ljava/lang/String;)Lnet/minecraft/world/item/Item;
 		ARG 0 json
 		ARG 1 memberName
+	METHOD getAsItem (Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/item/Item;
+		ARG 0 json
+		ARG 1 memberName
+		ARG 2 fallback
 	METHOD getAsJsonArray (Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
 		COMMENT Gets the JsonArray field on the JsonObject with the given name.
 		ARG 0 json
@@ -144,6 +194,13 @@ CLASS net/minecraft/util/GsonHelper
 		ARG 2 fallback
 		ARG 3 context
 		ARG 4 adapter
+	METHOD getAsShort (Lcom/google/gson/JsonObject;Ljava/lang/String;)S
+		ARG 0 json
+		ARG 1 memberName
+	METHOD getAsShort (Lcom/google/gson/JsonObject;Ljava/lang/String;S)S
+		ARG 0 json
+		ARG 1 memberName
+		ARG 2 fallback
 	METHOD getAsString (Lcom/google/gson/JsonObject;Ljava/lang/String;)Ljava/lang/String;
 		COMMENT Gets the string value of the field on the JsonObject with the given name.
 		ARG 0 json
@@ -160,11 +217,19 @@ CLASS net/minecraft/util/GsonHelper
 		COMMENT Does the given JsonObject contain an array field with the given name?
 		ARG 0 json
 		ARG 1 memberName
+	METHOD isBooleanValue (Lcom/google/gson/JsonElement;)Z
+		ARG 0 json
 	METHOD isBooleanValue (Lcom/google/gson/JsonObject;Ljava/lang/String;)Z
 		ARG 0 json
 		ARG 1 memberName
 	METHOD isNumberValue (Lcom/google/gson/JsonElement;)Z
 		ARG 0 json
+	METHOD isNumberValue (Lcom/google/gson/JsonObject;Ljava/lang/String;)Z
+		ARG 0 json
+		ARG 1 memberName
+	METHOD isObjectNode (Lcom/google/gson/JsonObject;Ljava/lang/String;)Z
+		ARG 0 json
+		ARG 1 memberName
 	METHOD isStringValue (Lcom/google/gson/JsonElement;)Z
 		COMMENT Is the given JsonElement a string?
 		ARG 0 json
@@ -190,3 +255,5 @@ CLASS net/minecraft/util/GsonHelper
 	METHOD parse (Ljava/lang/String;Z)Lcom/google/gson/JsonObject;
 		ARG 0 json
 		ARG 1 lenient
+	METHOD parseArray (Ljava/io/Reader;)Lcom/google/gson/JsonArray;
+		ARG 0 reader

@@ -1,15 +1,19 @@
 CLASS net/minecraft/world/level/chunk/ProtoChunk
 	METHOD <init> (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/UpgradeData;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/blending/BlendingData;)V
-		ARG 1 pos
+		ARG 1 chunkPos
 		ARG 2 upgradeData
 		ARG 3 levelHeightAccessor
+		ARG 4 biomeRegistry
+		ARG 5 blendingData
 	METHOD <init> (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/UpgradeData;[Lnet/minecraft/world/level/chunk/LevelChunkSection;Lnet/minecraft/world/ticks/ProtoChunkTicks;Lnet/minecraft/world/ticks/ProtoChunkTicks;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/blending/BlendingData;)V
-		ARG 1 pos
-		ARG 2 data
+		ARG 1 chunkPos
+		ARG 2 upgradeData
 		ARG 3 sections
 		ARG 4 blockTicks
 		ARG 5 liquidTicks
 		ARG 6 levelHeightAccessor
+		ARG 7 biomeRegistry
+		ARG 8 blendingData
 	METHOD addEntity (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
 	METHOD addLight (Lnet/minecraft/core/BlockPos;)V
@@ -23,6 +27,8 @@ CLASS net/minecraft/world/level/chunk/ProtoChunk
 		ARG 1 step
 	METHOD packOffsetCoordinates (Lnet/minecraft/core/BlockPos;)S
 		ARG 0 pos
+	METHOD setBelowZeroRetrogen (Lnet/minecraft/world/level/levelgen/BelowZeroRetrogen;)V
+		ARG 1 belowZeroRetrogen
 	METHOD setCarvingMask (Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;Lnet/minecraft/world/level/chunk/CarvingMask;)V
 		ARG 1 step
 		ARG 2 carvingMask
@@ -34,3 +40,5 @@ CLASS net/minecraft/world/level/chunk/ProtoChunk
 		ARG 0 packedPos
 		ARG 1 yOffset
 		ARG 2 chunkPos
+	METHOD unpackTicks (Lnet/minecraft/world/ticks/ProtoChunkTicks;)Lnet/minecraft/world/ticks/LevelChunkTicks;
+		ARG 0 ticks
