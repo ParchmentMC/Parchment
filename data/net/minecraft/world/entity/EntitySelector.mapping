@@ -1,6 +1,16 @@
 CLASS net/minecraft/world/entity/EntitySelector
+	FIELD CAN_BE_COLLIDED_WITH Ljava/util/function/Predicate;
+		COMMENT Selects entities which are collidable with and aren't spectators
+	FIELD CONTAINER_ENTITY_SELECTOR Ljava/util/function/Predicate;
+		COMMENT Selects only entities which are container entities
 	FIELD ENTITY_NOT_BEING_RIDDEN Ljava/util/function/Predicate;
 		COMMENT Selects only entities which are neither ridden by anything nor ride on anything
+	FIELD ENTITY_STILL_ALIVE Ljava/util/function/Predicate;
+		COMMENT Selects only entities which are alive
+	FIELD LIVING_ENTITY_STILL_ALIVE Ljava/util/function/Predicate;
+		COMMENT Selects only entities which are LivingEntities and alive
+	FIELD NO_CREATIVE_OR_SPECTATOR Ljava/util/function/Predicate;
+		COMMENT Selects entities which are neither creative-mode players nor spectator-players
 	FIELD NO_SPECTATORS Ljava/util/function/Predicate;
 		COMMENT Selects entities which are either not players or players that are not spectating
 	METHOD lambda$notRiding$7 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
@@ -31,3 +41,5 @@ CLASS net/minecraft/world/entity/EntitySelector
 	CLASS MobCanWearArmorEntitySelector
 		METHOD <init> (Lnet/minecraft/world/item/ItemStack;)V
 			ARG 1 stack
+		METHOD test (Lnet/minecraft/world/entity/Entity;)Z
+			ARG 1 entity

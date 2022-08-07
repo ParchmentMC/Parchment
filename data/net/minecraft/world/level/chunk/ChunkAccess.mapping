@@ -5,6 +5,7 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 		ARG 3 levelHeightAccessor
 		ARG 4 biomeRegistry
 		ARG 5 inhabitedTime
+		ARG 7 sections
 		ARG 8 blendingData
 	METHOD addEntity (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
@@ -14,6 +15,7 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 	METHOD carverBiome (Ljava/util/function/Supplier;)Lnet/minecraft/core/Holder;
 		ARG 1 carverBiome
 	METHOD fillBiomesFromNoise (Lnet/minecraft/world/level/biome/BiomeResolver;Lnet/minecraft/world/level/biome/Climate$Sampler;)V
+		ARG 1 resolver
 		ARG 2 sampler
 	METHOD getBlockEntityNbt (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 pos
@@ -29,6 +31,7 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 		ARG 1 type
 	METHOD getOrCreateNoiseChunk (Lnet/minecraft/world/level/levelgen/NoiseRouter;Ljava/util/function/Supplier;Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;Lnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;Lnet/minecraft/world/level/levelgen/blending/Blender;)Lnet/minecraft/world/level/levelgen/NoiseChunk;
 		ARG 1 noiseRouter
+		ARG 2 beardifier
 		ARG 3 noiseSettings
 		ARG 4 fluidPicker
 		ARG 5 blender
@@ -44,6 +47,10 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 	METHOD isYSpaceEmpty (II)Z
 		ARG 1 startY
 		ARG 2 endY
+	METHOD lambda$addReferenceForFeature$1 (Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;)Lit/unimi/dsi/fastutil/longs/LongSet;
+		ARG 0 refences
+	METHOD lambda$getOrCreateHeightmapUnprimed$0 (Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/world/level/levelgen/Heightmap;
+		ARG 1 absentType
 	METHOD markPosForPostprocessing (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD removeBlockEntity (Lnet/minecraft/core/BlockPos;)V

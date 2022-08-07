@@ -7,6 +7,7 @@ CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
 		ARG 5 onPoiAcquistitionEvent
 	METHOD <init> (Lnet/minecraft/world/entity/ai/village/poi/PoiType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLjava/util/Optional;)V
 		ARG 1 poiType
+		ARG 2 pos
 		ARG 3 onlyIfAdult
 		ARG 4 onPoiAcquisitionEvent
 	METHOD checkExtraStartConditions (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/PathfinderMob;)Z
@@ -15,6 +16,18 @@ CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
 	METHOD constructEntryConditionMap (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Lcom/google/common/collect/ImmutableMap;
 		ARG 0 memoryKey
 		ARG 1 memoryToAcquire
+	METHOD lambda$start$0 (JLit/unimi/dsi/fastutil/longs/Long2ObjectMap$Entry;)Z
+		ARG 2 jitter
+	METHOD lambda$start$1 (JLnet/minecraft/core/BlockPos;)Z
+		ARG 3 pos
+	METHOD lambda$start$2 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD lambda$start$3 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/PathfinderMob;Ljava/lang/Byte;)V
+		ARG 2 event
+	METHOD lambda$start$4 (Lnet/minecraft/world/entity/ai/village/poi/PoiManager;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/PathfinderMob;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/ai/village/poi/PoiType;)V
+		ARG 5 type
+	METHOD lambda$start$5 (Lnet/minecraft/world/entity/PathfinderMob;JJ)Lnet/minecraft/world/entity/ai/behavior/AcquirePoi$JitteredLinearRetry;
+		ARG 3 key
 	METHOD start (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/PathfinderMob;J)V
 		ARG 1 level
 		ARG 2 entity

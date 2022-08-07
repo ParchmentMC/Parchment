@@ -14,7 +14,12 @@ CLASS net/minecraft/world/level/block/piston/PistonMovingBlockEntity
 		ARG 5 extending
 		ARG 6 isSourcePiston
 	METHOD finalTick ()V
-		COMMENT Removes the piston's block entity and stops any movement.
+		COMMENT Removes the piston's BlockEntity and stops any movement
+	METHOD fixEntityWithinPistonBase (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Direction;D)V
+		ARG 0 pos
+		ARG 1 entity
+		ARG 2 dir
+		ARG 3 progress
 	METHOD getCollisionShape (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 level
 		ARG 2 pos
@@ -35,6 +40,8 @@ CLASS net/minecraft/world/level/block/piston/PistonMovingBlockEntity
 		ARG 1 partialTicks
 	METHOD isExtending ()Z
 		COMMENT @return whether this piston is extending
+	METHOD lambda$moveStuckEntities$1 (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
 	METHOD matchesStickyCritera (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 0 shape
 		ARG 1 entity

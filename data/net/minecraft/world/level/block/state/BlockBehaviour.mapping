@@ -252,6 +252,31 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 1 jumpFactor
 		METHOD lambda$color$7 (Lnet/minecraft/world/level/material/MaterialColor;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/MaterialColor;
 			ARG 1 state
+		METHOD lambda$new$0 (Lnet/minecraft/world/level/block/state/BlockState;)I
+			ARG 0 state
+		METHOD lambda$new$1 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/EntityType;)Z
+			ARG 0 state
+			ARG 1 level
+			ARG 2 pos
+			ARG 3 type
+		METHOD lambda$new$2 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
+			ARG 0 state
+			ARG 1 level
+			ARG 2 pos
+		METHOD lambda$new$3 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
+			ARG 1 state
+			ARG 2 level
+			ARG 3 pos
+		METHOD lambda$new$4 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
+			ARG 0 state
+			ARG 1 level
+			ARG 2 pos
+		METHOD lambda$new$5 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
+			ARG 0 state
+			ARG 1 level
+			ARG 2 pos
+		METHOD lambda$new$6 (Lnet/minecraft/world/level/material/MaterialColor;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/MaterialColor;
+			ARG 1 state
 		METHOD lightLevel (Ljava/util/function/ToIntFunction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
 			ARG 1 lightEmission
 		METHOD of (Lnet/minecraft/world/level/material/Material;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
@@ -381,6 +406,8 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		METHOD hasPostProcess (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
 			ARG 1 level
 			ARG 2 pos
+		METHOD is (Lnet/minecraft/core/HolderSet;)Z
+			ARG 1 holder
 		METHOD is (Lnet/minecraft/tags/TagKey;)Z
 			ARG 1 tag
 		METHOD is (Lnet/minecraft/tags/TagKey;Ljava/util/function/Predicate;)Z
@@ -501,9 +528,24 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 3 hand
 			ARG 4 result
 		CLASS Cache
+			METHOD <init> (Lnet/minecraft/world/level/block/state/BlockState;)V
+				ARG 1 state
 			METHOD getFaceSupportIndex (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/SupportType;)I
 				ARG 0 direction
 				ARG 1 supportType
 			METHOD isFaceSturdy (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/SupportType;)Z
 				ARG 1 direction
 				ARG 2 supportType
+			METHOD lambda$new$0 (Lnet/minecraft/core/Direction$Axis;)Z
+				ARG 1 dir
+	CLASS StatePredicate
+		METHOD test (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
+			ARG 1 state
+			ARG 2 level
+			ARG 3 pos
+	CLASS StateArgumentPredicate
+		METHOD test (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Ljava/lang/Object;)Z
+			ARG 1 state
+			ARG 2 level
+			ARG 3 pos
+			ARG 4 value
