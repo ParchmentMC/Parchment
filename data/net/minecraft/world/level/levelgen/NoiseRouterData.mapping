@@ -7,6 +7,8 @@ CLASS net/minecraft/world/level/levelgen/NoiseRouterData
 		ARG 0 noiseSettings
 	METHOD end (Lnet/minecraft/world/level/levelgen/NoiseSettings;)Lnet/minecraft/world/level/levelgen/NoiseRouterWithOnlyNoises;
 		ARG 0 noiseSettings
+	METHOD getNoise (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder;
+		ARG 0 key
 	METHOD nether (Lnet/minecraft/world/level/levelgen/NoiseSettings;)Lnet/minecraft/world/level/levelgen/NoiseRouterWithOnlyNoises;
 		ARG 0 noiseSettings
 	METHOD noNewCaves (Lnet/minecraft/world/level/levelgen/NoiseSettings;)Lnet/minecraft/world/level/levelgen/NoiseRouterWithOnlyNoises;
@@ -22,5 +24,20 @@ CLASS net/minecraft/world/level/levelgen/NoiseRouterData
 	METHOD postProcess (Lnet/minecraft/world/level/levelgen/NoiseSettings;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 noiseSettings
 		ARG 1 densityFunction
+	METHOD register (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 resourceKey
+	METHOD splineWithBlending (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunctions$TerrainShaperSpline$SplineType;DDLnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 continentalness
+		ARG 1 erosion
+		ARG 2 weirdness
+		ARG 3 spline
+		ARG 4 minValue
+		ARG 6 maxValue
 	METHOD underground (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 densityFunction
+	METHOD yLimitedInterpolatable (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;III)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 input
+		ARG 1 whenInRange
+		ARG 2 minInclusive
+		ARG 3 maxInclusive
+		ARG 4 whenOutOfRange
