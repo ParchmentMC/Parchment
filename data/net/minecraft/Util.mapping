@@ -41,15 +41,18 @@ CLASS net/minecraft/Util
 	METHOD getPropertyName (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Object;)Ljava/lang/String;
 		ARG 0 property
 		ARG 1 value
-	METHOD getRandom (Ljava/util/List;Ljava/util/Random;)Ljava/lang/Object;
+	METHOD getRandom (Ljava/util/List;Lnet/minecraft/util/RandomSource;)Ljava/lang/Object;
 		ARG 0 selections
 		ARG 1 random
-	METHOD getRandom ([ILjava/util/Random;)I
+	METHOD getRandom ([ILnet/minecraft/util/RandomSource;)I
 		ARG 0 selections
-		ARG 1 rand
-	METHOD getRandom ([Ljava/lang/Object;Ljava/util/Random;)Ljava/lang/Object;
+		ARG 1 random
+	METHOD getRandom ([Ljava/lang/Object;Lnet/minecraft/util/RandomSource;)Ljava/lang/Object;
 		ARG 0 selections
-		ARG 1 rand
+		ARG 1 random
+	METHOD getRandomSafe (Ljava/util/List;Lnet/minecraft/util/RandomSource;)Ljava/util/Optional;
+		ARG 0 selections
+		ARG 1 random
 	METHOD ifElse (Ljava/util/Optional;Ljava/util/function/Consumer;Ljava/lang/Runnable;)Ljava/util/Optional;
 		ARG 0 opt
 		ARG 1 consumer
@@ -125,10 +128,10 @@ CLASS net/minecraft/Util
 	CLASS 2
 		METHOD onTermination (Ljava/lang/Throwable;)V
 			ARG 1 throwOnTermination
-	CLASS 9
+	CLASS 10
 		METHOD apply (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 key
-	CLASS 10
+	CLASS 11
 		METHOD apply (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 key1
 			ARG 2 key2
@@ -145,12 +148,6 @@ CLASS net/minecraft/Util
 			ARG 1 uri
 		METHOD openUrl (Ljava/net/URL;)V
 			ARG 1 url
-		CLASS 1
-			METHOD getOpenUrlArguments (Ljava/net/URL;)[Ljava/lang/String;
-				ARG 1 url
-		CLASS 2
-			METHOD getOpenUrlArguments (Ljava/net/URL;)[Ljava/lang/String;
-				ARG 1 url
 	CLASS IdentityStrategy
 		METHOD equals (Ljava/lang/Object;Ljava/lang/Object;)Z
 			ARG 1 thiz

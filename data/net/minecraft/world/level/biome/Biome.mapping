@@ -1,14 +1,11 @@
 CLASS net/minecraft/world/level/biome/Biome
-	METHOD <init> (Lnet/minecraft/world/level/biome/Biome$ClimateSettings;Lnet/minecraft/world/level/biome/Biome$BiomeCategory;Lnet/minecraft/world/level/biome/BiomeSpecialEffects;Lnet/minecraft/world/level/biome/BiomeGenerationSettings;Lnet/minecraft/world/level/biome/MobSpawnSettings;)V
+	METHOD <init> (Lnet/minecraft/world/level/biome/Biome$ClimateSettings;Lnet/minecraft/world/level/biome/BiomeSpecialEffects;Lnet/minecraft/world/level/biome/BiomeGenerationSettings;Lnet/minecraft/world/level/biome/MobSpawnSettings;)V
 		ARG 1 climateSettings
-		ARG 2 biomeCategory
-		ARG 3 specialEffects
-		ARG 4 generationSettings
-		ARG 5 mobSettings
+		ARG 2 specialEffects
+		ARG 3 generationSettings
+		ARG 4 mobSettings
 	METHOD coldEnoughToSnow (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
-	METHOD getBiomeCategory (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		ARG 0 holder
 	METHOD getDownfall ()F
 		COMMENT Gets a floating point representation of this biome's rainfall
 	METHOD getGrassColor (DD)I
@@ -22,28 +19,6 @@ CLASS net/minecraft/world/level/biome/Biome
 		COMMENT Checks to see if the rainfall level of the biome is extremely high
 	METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/Biome$ClimateSettings;
 		ARG 0 settings
-	METHOD lambda$static$1 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		ARG 0 settings
-	METHOD lambda$static$10 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-		ARG 0 codec
-	METHOD lambda$static$2 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/BiomeSpecialEffects;
-		ARG 0 settings
-	METHOD lambda$static$3 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/BiomeGenerationSettings;
-		ARG 0 settings
-	METHOD lambda$static$4 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/MobSpawnSettings;
-		ARG 0 settings
-	METHOD lambda$static$5 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-		ARG 0 codec
-	METHOD lambda$static$6 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/Biome$ClimateSettings;
-		ARG 0 settings
-	METHOD lambda$static$7 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-		ARG 0 settings
-	METHOD lambda$static$8 (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/BiomeSpecialEffects;
-		ARG 0 settings
-	METHOD lambda$static$9 (Lnet/minecraft/world/level/biome/Biome$ClimateSettings;Lnet/minecraft/world/level/biome/Biome$BiomeCategory;Lnet/minecraft/world/level/biome/BiomeSpecialEffects;)Lnet/minecraft/world/level/biome/Biome;
-		ARG 0 settings
-		ARG 1 category
-		ARG 2 effects
 	METHOD shouldFreeze (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 level
 		ARG 2 pos
@@ -60,16 +35,9 @@ CLASS net/minecraft/world/level/biome/Biome
 		ARG 1 pos
 	METHOD warmEnoughToRain (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
-	CLASS 1
-		METHOD rehash (I)V
-			ARG 1 hash
 	CLASS BiomeBuilder
-		METHOD biomeCategory (Lnet/minecraft/world/level/biome/Biome$BiomeCategory;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
-			ARG 1 biomeCategory
 		METHOD downfall (F)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
 			ARG 1 downfall
-		METHOD from (Lnet/minecraft/world/level/biome/Biome;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
-			ARG 0 biome
 		METHOD generationSettings (Lnet/minecraft/world/level/biome/BiomeGenerationSettings;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
 			ARG 1 generationSettings
 		METHOD mobSpawnSettings (Lnet/minecraft/world/level/biome/MobSpawnSettings;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
@@ -82,20 +50,9 @@ CLASS net/minecraft/world/level/biome/Biome
 			ARG 1 temperature
 		METHOD temperatureAdjustment (Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;)Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
 			ARG 1 temperatureSettings
-	CLASS BiomeCategory
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
-			ARG 3 name
-		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-			ARG 0 name
-		METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/Biome$BiomeCategory;)Lnet/minecraft/world/level/biome/Biome$BiomeCategory;
-			ARG 0 name
 	CLASS Precipitation
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 			ARG 3 name
-		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$Precipitation;
-			ARG 0 name
-		METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/Biome$Precipitation;)Lnet/minecraft/world/level/biome/Biome$Precipitation;
-			ARG 0 name
 	CLASS ClimateSettings
 		METHOD <init> (Lnet/minecraft/world/level/biome/Biome$Precipitation;FLnet/minecraft/world/level/biome/Biome$TemperatureModifier;F)V
 			ARG 1 precipitation
@@ -115,10 +72,6 @@ CLASS net/minecraft/world/level/biome/Biome
 	CLASS TemperatureModifier
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 			ARG 3 name
-		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
-			ARG 0 name
-		METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;)Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;
-			ARG 0 name
 		METHOD modifyTemperature (Lnet/minecraft/core/BlockPos;F)F
 			ARG 1 pos
 			ARG 2 temperature

@@ -1,20 +1,31 @@
 CLASS net/minecraft/commands/arguments/item/ItemParser
-	FIELD suggestions Ljava/util/function/BiFunction;
+	FIELD suggestions Ljava/util/function/Function;
 		COMMENT Builder to be used when creating a list of suggestions
-	METHOD <init> (Lcom/mojang/brigadier/StringReader;Z)V
-		ARG 1 reader
-		ARG 2 forTesting
-	METHOD fillSuggestions (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/core/Registry;)Ljava/util/concurrent/CompletableFuture;
+	METHOD <init> (Lnet/minecraft/core/HolderLookup;Lcom/mojang/brigadier/StringReader;Z)V
+		ARG 1 items
+		ARG 2 reader
+		ARG 3 allowTags
+	METHOD fillSuggestions (Lnet/minecraft/core/HolderLookup;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Z)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 lookup
 		ARG 1 builder
-		ARG 2 itemRegistry
+		ARG 2 allowTags
+	METHOD lambda$parseForTesting$3 (Lnet/minecraft/commands/arguments/item/ItemParser;Lnet/minecraft/core/Holder;)Lnet/minecraft/commands/arguments/item/ItemParser$ItemResult;
+		ARG 1 holder
+	METHOD lambda$parseForTesting$4 (Lnet/minecraft/commands/arguments/item/ItemParser;Lnet/minecraft/core/HolderSet;)Lnet/minecraft/commands/arguments/item/ItemParser$TagResult;
+		ARG 1 holderSet
 	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
 		ARG 0 itemId
-	METHOD suggestItemIdOrTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/core/Registry;)Ljava/util/concurrent/CompletableFuture;
+	METHOD parseForItem (Lnet/minecraft/core/HolderLookup;Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/item/ItemParser$ItemResult;
+		ARG 0 lookup
+		ARG 1 reader
+	METHOD parseForTesting (Lnet/minecraft/core/HolderLookup;Lcom/mojang/brigadier/StringReader;)Lcom/mojang/datafixers/util/Either;
+		ARG 0 lookup
+		ARG 1 reader
+	METHOD suggestItem (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
-		ARG 2 itemRegistry
-	METHOD suggestOpenNbt (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/core/Registry;)Ljava/util/concurrent/CompletableFuture;
+	METHOD suggestItemIdOrTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
-		ARG 2 itemRegistry
-	METHOD suggestTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/core/Registry;)Ljava/util/concurrent/CompletableFuture;
+	METHOD suggestOpenNbt (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 builder
-		ARG 2 itemRegistry
+	METHOD suggestTag (Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 builder

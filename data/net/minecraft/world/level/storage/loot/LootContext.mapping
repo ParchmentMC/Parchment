@@ -1,7 +1,7 @@
 CLASS net/minecraft/world/level/storage/loot/LootContext
 	COMMENT LootContext stores various context information for loot generation.
 	COMMENT This includes the Level as well as any known {@link LootContextParam}s.
-	METHOD <init> (Ljava/util/Random;FLnet/minecraft/server/level/ServerLevel;Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/Map;Ljava/util/Map;)V
+	METHOD <init> (Lnet/minecraft/util/RandomSource;FLnet/minecraft/server/level/ServerLevel;Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/Map;Ljava/util/Map;)V
 		ARG 1 random
 		ARG 2 luck
 		ARG 3 level
@@ -64,13 +64,13 @@ CLASS net/minecraft/world/level/storage/loot/LootContext
 			ARG 2 value
 		METHOD withOptionalRandomSeed (J)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
 			ARG 1 seed
-		METHOD withOptionalRandomSeed (JLjava/util/Random;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
+		METHOD withOptionalRandomSeed (JLnet/minecraft/util/RandomSource;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
 			ARG 1 seed
 			ARG 3 random
 		METHOD withParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;Ljava/lang/Object;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
 			ARG 1 parameter
 			ARG 2 value
-		METHOD withRandom (Ljava/util/Random;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
+		METHOD withRandom (Lnet/minecraft/util/RandomSource;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
 			ARG 1 random
 	CLASS DynamicDrop
 		COMMENT DynamicDrop allows a loot generating object (e.g. a Block or Entity) to provide dynamic drops to a loot table.

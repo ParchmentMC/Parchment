@@ -3,176 +3,162 @@ CLASS net/minecraft/world/level/chunk/ChunkGenerator
 		ARG 1 structureSets
 		ARG 2 structureOverrides
 		ARG 3 biomeSource
-	METHOD <init> (Lnet/minecraft/core/Registry;Ljava/util/Optional;Lnet/minecraft/world/level/biome/BiomeSource;Lnet/minecraft/world/level/biome/BiomeSource;J)V
+	METHOD <init> (Lnet/minecraft/core/Registry;Ljava/util/Optional;Lnet/minecraft/world/level/biome/BiomeSource;Ljava/util/function/Function;)V
 		ARG 1 structureSets
 		ARG 2 structureOverrides
 		ARG 3 biomeSource
-		ARG 4 runtimeBiomeSource
-		ARG 5 ringPlacementSeed
-	METHOD addDebugScreenInfo (Ljava/util/List;Lnet/minecraft/core/BlockPos;)V
+		ARG 4 generationSettingsGetter
+	METHOD addDebugScreenInfo (Ljava/util/List;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 info
-		ARG 2 pos
-	METHOD adjustBiome (Lnet/minecraft/core/Holder;)Lnet/minecraft/core/Holder;
-		ARG 1 biome
-	METHOD allConfigurations (Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/feature/StructureFeature;)Ljava/util/stream/Stream;
-		ARG 0 registry
-		ARG 1 feature
-	METHOD applyBiomeDecoration (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/StructureFeatureManager;)V
+		ARG 2 random
+		ARG 3 pos
+	METHOD applyBiomeDecoration (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/StructureManager;)V
 		ARG 1 level
 		ARG 2 chunk
-		ARG 3 structureFeatureManager
-	METHOD applyCarvers (Lnet/minecraft/server/level/WorldGenRegion;JLnet/minecraft/world/level/biome/BiomeManager;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)V
+		ARG 3 structureManager
+	METHOD applyCarvers (Lnet/minecraft/server/level/WorldGenRegion;JLnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/biome/BiomeManager;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/GenerationStep$Carving;)V
 		ARG 1 level
 		ARG 2 seed
-		ARG 4 biomeManager
-		ARG 5 structureFeatureManager
-		ARG 6 chunk
-		ARG 7 step
-	METHOD buildSurface (Lnet/minecraft/server/level/WorldGenRegion;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+		ARG 4 random
+		ARG 5 biomeManager
+		ARG 6 structureManager
+		ARG 7 chunk
+		ARG 8 step
+	METHOD buildSurface (Lnet/minecraft/server/level/WorldGenRegion;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 		ARG 1 level
-		ARG 2 structureFeatureManager
-		ARG 3 chunk
+		ARG 2 structureManager
+		ARG 3 random
+		ARG 4 chunk
 	METHOD commonCodec (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/Products$P1;
 		ARG 0 instance
-	METHOD createBiomes (Lnet/minecraft/core/Registry;Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
+	METHOD createBiomes (Lnet/minecraft/core/Registry;Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 biomeRegistry
 		ARG 2 executor
-		ARG 3 blender
-		ARG 4 manager
-		ARG 5 access
-	METHOD createReferences (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+		ARG 3 random
+		ARG 4 blender
+		ARG 5 structureManager
+		ARG 6 chunk
+	METHOD createReferences (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 		ARG 1 level
-		ARG 2 structureFeatureManager
+		ARG 2 structureManager
 		ARG 3 chunk
-	METHOD createStructures (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;J)V
+	METHOD createStructures (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;J)V
 		ARG 1 registryAccess
-		ARG 2 structureFeatureManager
-		ARG 3 chunk
-		ARG 4 structureManager
-		ARG 5 seed
-	METHOD fetchReferences (Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;)I
-		ARG 0 featureManager
+		ARG 2 random
+		ARG 3 structureManager
+		ARG 4 chunk
+		ARG 5 structureTemplateManager
+		ARG 6 seed
+	METHOD ensureStructuresGenerated (Lnet/minecraft/world/level/levelgen/RandomState;)V
+		ARG 1 random
+	METHOD fetchReferences (Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/structure/Structure;)I
+		ARG 0 structureManager
 		ARG 1 chunk
-		ARG 2 pos
-		ARG 3 feature
-	METHOD fillFromNoise (Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
+		ARG 2 sectionPos
+		ARG 3 structure
+	METHOD fillFromNoise (Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 executor
 		ARG 2 blender
-		ARG 3 structureFeatureManager
-		ARG 4 chunk
-	METHOD findNearestMapFeature (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/HolderSet;Lnet/minecraft/core/BlockPos;IZ)Lcom/mojang/datafixers/util/Pair;
-		ARG 1 level
-		ARG 2 structureSet
+		ARG 3 random
+		ARG 4 structureManager
+		ARG 5 chunk
+	METHOD findNearestMapStructure (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/HolderSet;Lnet/minecraft/core/BlockPos;IZ)Lcom/mojang/datafixers/util/Pair;
+		ARG 1 leve
+		ARG 2 structure
 		ARG 3 pos
 		ARG 4 searchRadius
 		ARG 5 skipKnownStructures
-	METHOD generateRingPositions (Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/levelgen/structure/placement/ConcentricRingsStructurePlacement;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 setHolder
-		ARG 2 placement
-	METHOD getBaseColumn (IILnet/minecraft/world/level/LevelHeightAccessor;)Lnet/minecraft/world/level/NoiseColumn;
+	METHOD generatePositions (Lnet/minecraft/world/level/levelgen/RandomState;)V
+		ARG 1 random
+	METHOD generateRingPositions (Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/levelgen/structure/placement/ConcentricRingsStructurePlacement;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 structureSet
+		ARG 2 random
+		ARG 3 placement
+	METHOD getBaseColumn (IILnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/levelgen/RandomState;)Lnet/minecraft/world/level/NoiseColumn;
 		ARG 1 x
 		ARG 2 z
-		ARG 3 level
-	METHOD getBaseHeight (IILnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/level/LevelHeightAccessor;)I
-		ARG 1 x
-		ARG 2 z
-		ARG 3 type
-		ARG 4 level
-	METHOD getFirstFreeHeight (IILnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/level/LevelHeightAccessor;)I
-		ARG 1 x
-		ARG 2 z
-		ARG 3 type
-		ARG 4 level
-	METHOD getFirstOccupiedHeight (IILnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/level/LevelHeightAccessor;)I
+		ARG 3 height
+		ARG 4 random
+	METHOD getBaseHeight (IILnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/levelgen/RandomState;)I
 		ARG 1 x
 		ARG 2 z
 		ARG 3 type
 		ARG 4 level
-	METHOD getMobsAt (Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/util/random/WeightedRandomList;
+		ARG 5 random
+	METHOD getBiomeGenerationSettings (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/level/biome/BiomeGenerationSettings;
 		ARG 1 biome
-		ARG 2 structureFeatureManager
+	METHOD getFirstFreeHeight (IILnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/levelgen/RandomState;)I
+		ARG 1 x
+		ARG 2 z
+		ARG 3 type
+		ARG 4 level
+		ARG 5 random
+	METHOD getFirstOccupiedHeight (IILnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/levelgen/RandomState;)I
+		ARG 1 x
+		ARG 2 z
+		ARG 3 types
+		ARG 4 level
+		ARG 5 random
+	METHOD getMobsAt (Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/util/random/WeightedRandomList;
+		ARG 1 biome
+		ARG 2 structureManager
 		ARG 3 category
 		ARG 4 pos
-	METHOD getNearestGeneratedStructure (Ljava/util/Set;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/level/StructureFeatureManager;IIIZJLnet/minecraft/world/level/levelgen/structure/placement/RandomSpreadStructurePlacement;)Lcom/mojang/datafixers/util/Pair;
-		ARG 0 holderSet
-		ARG 1 reader
-		ARG 2 manager
+	METHOD getNearestGeneratedStructure (Ljava/util/Set;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/core/BlockPos;ZLnet/minecraft/world/level/levelgen/structure/placement/ConcentricRingsStructurePlacement;)Lcom/mojang/datafixers/util/Pair;
+		ARG 1 structureHoldersSet
+		ARG 2 level
+		ARG 3 structureManager
+		ARG 4 pos
+		ARG 5 skipKnownStructures
+		ARG 6 placement
+	METHOD getNearestGeneratedStructure (Ljava/util/Set;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/level/StructureManager;IIIZJLnet/minecraft/world/level/levelgen/structure/placement/RandomSpreadStructurePlacement;)Lcom/mojang/datafixers/util/Pair;
+		ARG 0 structureHoldersSet
+		ARG 1 level
+		ARG 2 structureManager
 		ARG 3 x
 		ARG 4 y
 		ARG 5 z
 		ARG 6 skipKnownStructures
 		ARG 7 seed
 		ARG 9 spreadPlacement
-	METHOD getNearestGeneratedStructure (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/placement/ConcentricRingsStructurePlacement;)Lnet/minecraft/core/BlockPos;
-		ARG 1 pos
-		ARG 2 placement
-	METHOD getPlacementsForFeature (Lnet/minecraft/core/Holder;)Ljava/util/List;
-		ARG 1 featureHolder
-	METHOD getRingPositionsFor (Lnet/minecraft/world/level/levelgen/structure/placement/ConcentricRingsStructurePlacement;)Ljava/util/List;
+	METHOD getPlacementsForStructure (Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/levelgen/RandomState;)Ljava/util/List;
+		ARG 1 structure
+		ARG 2 random
+	METHOD getRingPositionsFor (Lnet/minecraft/world/level/levelgen/structure/placement/ConcentricRingsStructurePlacement;Lnet/minecraft/world/level/levelgen/RandomState;)Ljava/util/List;
 		ARG 1 placement
+		ARG 2 random
 	METHOD getSpawnHeight (Lnet/minecraft/world/level/LevelHeightAccessor;)I
 		ARG 1 level
+	METHOD getStructureGeneratingAt (Ljava/util/Set;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/level/StructureManager;ZLnet/minecraft/world/level/levelgen/structure/placement/StructurePlacement;Lnet/minecraft/world/level/ChunkPos;)Lcom/mojang/datafixers/util/Pair;
+		ARG 0 structureHoldersSet
+		ARG 1 level
+		ARG 2 structureManager
+		ARG 3 skipKnownStructures
+		ARG 4 placement
+		ARG 5 chunkPos
 	METHOD getWritableArea (Lnet/minecraft/world/level/chunk/ChunkAccess;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
 		ARG 0 chunk
-	METHOD hasFeatureChunkInRange (Lnet/minecraft/resources/ResourceKey;JIII)Z
-		ARG 1 key
-		ARG 2 seed
-		ARG 4 x
-		ARG 5 z
-		ARG 6 offset
-	METHOD lambda$allConfigurations$19 (Lnet/minecraft/world/level/levelgen/feature/StructureFeature;Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;)Z
-		ARG 1 feature
-	METHOD lambda$applyBiomeDecoration$10 (Ljava/util/Set;Lnet/minecraft/core/Holder;)V
-		ARG 1 holder
-	METHOD lambda$applyBiomeDecoration$11 (Lnet/minecraft/world/level/WorldGenLevel;Ljava/util/Set;Lnet/minecraft/world/level/ChunkPos;)V
-		ARG 0 level
-		ARG 1 set
-		ARG 2 chunkPos
-	METHOD lambda$applyBiomeDecoration$13 (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/levelgen/WorldgenRandom;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/structure/StructureStart;)V
-		ARG 6 feature
-	METHOD lambda$applyBiomeDecoration$14 (Lit/unimi/dsi/fastutil/ints/IntSet;Lnet/minecraft/world/level/biome/BiomeSource$StepFeatureData;Lnet/minecraft/world/level/levelgen/placement/PlacedFeature;)V
-		ARG 0 placed
-		ARG 1 data
-		ARG 2 placedFeature
-	METHOD lambda$applyBiomeDecoration$9 (Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;)Ljava/lang/Integer;
-		ARG 0 value
+	METHOD hasStructureChunkInRange (Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/levelgen/RandomState;JIII)Z
+		ARG 1 structureSet
+		ARG 2 random
+		ARG 3 seed
+		ARG 5 x
+		ARG 6 z
+		ARG 7 offset
 	METHOD lambda$commonCodec$0 (Lnet/minecraft/world/level/chunk/ChunkGenerator;)Lnet/minecraft/core/Registry;
 		ARG 0 generator
-	METHOD lambda$createReferences$22 (Lnet/minecraft/world/level/levelgen/structure/StructureStart;Lnet/minecraft/core/Registry;)Ljava/lang/String;
-		ARG 1 registry
-	METHOD lambda$createStructures$20 (Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/chunk/ChunkAccess;JLnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/core/Holder;)V
-		ARG 9 set
-	METHOD lambda$findNearestMapFeature$7 (Lnet/minecraft/core/Holder;)Ljava/util/stream/Stream;
-		ARG 0 set
-	METHOD lambda$findNearestMapFeature$8 (Lnet/minecraft/world/level/levelgen/structure/placement/StructurePlacement;)Ljava/util/Set;
-		ARG 0 placement
-	METHOD lambda$generatePositions$1 (Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;)Ljava/util/List;
-		ARG 0 placements
-	METHOD lambda$generatePositions$2 (Ljava/util/Set;Lnet/minecraft/world/level/levelgen/structure/StructureSet$StructureSelectionEntry;)Z
-		ARG 1 structure
-	METHOD lambda$generatePositions$3 (Ljava/util/Set;Lnet/minecraft/core/Holder;)V
-		ARG 2 structureSet
-	METHOD lambda$generateRingPositions$4 (Lnet/minecraft/world/level/levelgen/structure/StructureSet$StructureSelectionEntry;)Ljava/util/stream/Stream;
-		ARG 0 structureSet
-	METHOD lambda$getMobsAt$16 (Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/StructureStart;)Z
-		ARG 2 start
-	METHOD lambda$getMobsAt$17 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/StructureStart;)Z
-		ARG 1 start
-	METHOD lambda$getMobsAt$18 (Lorg/apache/commons/lang3/mutable/MutableBoolean;Ljava/util/function/Predicate;Lnet/minecraft/world/level/levelgen/structure/StructureStart;)V
-		ARG 2 start
-	METHOD lambda$tryGenerateStructure$21 (Lnet/minecraft/core/HolderSet;Lnet/minecraft/core/Holder;)Z
-		ARG 1 holderSet
-		ARG 2 holder
 	METHOD spawnOriginalMobs (Lnet/minecraft/server/level/WorldGenRegion;)V
 		ARG 1 level
-	METHOD tryGenerateStructure (Lnet/minecraft/world/level/levelgen/structure/StructureSet$StructureSelectionEntry;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;JLnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/SectionPos;)Z
+	METHOD tryAddReference (Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/levelgen/structure/StructureStart;)Z
+		ARG 0 structureManager
+		ARG 1 structureStrart
+	METHOD tryGenerateStructure (Lnet/minecraft/world/level/levelgen/structure/StructureSet$StructureSelectionEntry;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;JLnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/core/SectionPos;)Z
 		ARG 1 structureSelectionEntry
-		ARG 2 featureManager
-		ARG 3 registry
-		ARG 4 structureManager
-		ARG 5 seed
-		ARG 7 chunk
-		ARG 8 chunkPos
-		ARG 9 sectionPos
-	METHOD withSeed (J)Lnet/minecraft/world/level/chunk/ChunkGenerator;
-		ARG 1 seed
+		ARG 2 structureManager
+		ARG 3 registryAccess
+		ARG 4 random
+		ARG 5 structureTemplateManager
+		ARG 6 seed
+		ARG 8 chunk
+		ARG 9 chunkPos
+		ARG 10 sectionPos

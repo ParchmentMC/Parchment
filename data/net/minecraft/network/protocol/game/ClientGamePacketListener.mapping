@@ -6,21 +6,13 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleAddExperienceOrb (Lnet/minecraft/network/protocol/game/ClientboundAddExperienceOrbPacket;)V
 		COMMENT Spawns an experience orb and sets its value (amount of XP)
 		ARG 1 packet
-	METHOD handleAddMob (Lnet/minecraft/network/protocol/game/ClientboundAddMobPacket;)V
-		COMMENT Spawns the mob entity at the specified location, with the specified rotation, momentum and type. Updates the entities Datawatchers with the entity metadata specified in the packet
-		ARG 1 packet
 	METHOD handleAddObjective (Lnet/minecraft/network/protocol/game/ClientboundSetObjectivePacket;)V
 		COMMENT May create a scoreboard objective, remove an objective from the scoreboard or update an objectives' displayname
 		ARG 1 packet
 	METHOD handleAddOrRemoveRecipes (Lnet/minecraft/network/protocol/game/ClientboundRecipePacket;)V
 		ARG 1 packet
-	METHOD handleAddPainting (Lnet/minecraft/network/protocol/game/ClientboundAddPaintingPacket;)V
-		COMMENT Handles the spawning of a painting object
-		ARG 1 packet
 	METHOD handleAddPlayer (Lnet/minecraft/network/protocol/game/ClientboundAddPlayerPacket;)V
 		COMMENT Handles the creation of a nearby player entity, sets the position and held item
-		ARG 1 packet
-	METHOD handleAddVibrationSignal (Lnet/minecraft/network/protocol/game/ClientboundAddVibrationSignalPacket;)V
 		ARG 1 packet
 	METHOD handleAnimate (Lnet/minecraft/network/protocol/game/ClientboundAnimatePacket;)V
 		COMMENT Renders a specified animation: Waking up a player, a living entity swinging its currently held item, being hurt or receiving a critical hit by normal or magical means
@@ -28,7 +20,7 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleAwardStats (Lnet/minecraft/network/protocol/game/ClientboundAwardStatsPacket;)V
 		COMMENT Updates the players statistics or achievements
 		ARG 1 packet
-	METHOD handleBlockBreakAck (Lnet/minecraft/network/protocol/game/ClientboundBlockBreakAckPacket;)V
+	METHOD handleBlockChangedAck (Lnet/minecraft/network/protocol/game/ClientboundBlockChangedAckPacket;)V
 		ARG 1 packet
 	METHOD handleBlockDestruction (Lnet/minecraft/network/protocol/game/ClientboundBlockDestructionPacket;)V
 		COMMENT Updates all registered IWorldAccess instances with destroyBlockInWorldPartially
@@ -46,8 +38,7 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleChangeDifficulty (Lnet/minecraft/network/protocol/game/ClientboundChangeDifficultyPacket;)V
 		ARG 1 packet
-	METHOD handleChat (Lnet/minecraft/network/protocol/game/ClientboundChatPacket;)V
-		COMMENT Prints a chatmessage in the chat GUI
+	METHOD handleChatPreview (Lnet/minecraft/network/protocol/game/ClientboundChatPreviewPacket;)V
 		ARG 1 packet
 	METHOD handleChunkBlocksUpdate (Lnet/minecraft/network/protocol/game/ClientboundSectionBlocksUpdatePacket;)V
 		COMMENT Received from the servers PlayerManager if between 1 and 64 blocks in a chunk are changed. If only one block requires an update, the server sends S23PacketBlockChange and if 64 or more blocks are changed, the server sends S21PacketChunkData
@@ -69,10 +60,14 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleContainerSetSlot (Lnet/minecraft/network/protocol/game/ClientboundContainerSetSlotPacket;)V
 		COMMENT Handles pickin up an ItemStack or dropping one in your inventory or an open (non-creative) container
 		ARG 1 packet
+	METHOD handleCustomChatCompletions (Lnet/minecraft/network/protocol/game/ClientboundCustomChatCompletionsPacket;)V
+		ARG 1 packet
 	METHOD handleCustomPayload (Lnet/minecraft/network/protocol/game/ClientboundCustomPayloadPacket;)V
 		COMMENT Handles packets that have room for a channel specification. Vanilla implemented channels are "MC|TrList" to acquire a MerchantRecipeList trades for a villager merchant, "MC|Brand" which sets the server brand? on the player instance and finally "MC|RPack" which the server uses to communicate the identifier of the default server resourcepack for the client to load.
 		ARG 1 packet
 	METHOD handleCustomSoundEvent (Lnet/minecraft/network/protocol/game/ClientboundCustomSoundPacket;)V
+		ARG 1 packet
+	METHOD handleDeleteChat (Lnet/minecraft/network/protocol/game/ClientboundDeleteChatPacket;)V
 		ARG 1 packet
 	METHOD handleDisconnect (Lnet/minecraft/network/protocol/game/ClientboundDisconnectPacket;)V
 		COMMENT Closes the network channel
@@ -136,6 +131,10 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handlePlayerAbilities (Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;)V
 		ARG 1 packet
+	METHOD handlePlayerChat (Lnet/minecraft/network/protocol/game/ClientboundPlayerChatPacket;)V
+		ARG 1 packet
+	METHOD handlePlayerChatHeader (Lnet/minecraft/network/protocol/game/ClientboundPlayerChatHeaderPacket;)V
+		ARG 1 packet
 	METHOD handlePlayerCombatEnd (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatEndPacket;)V
 		ARG 1 packet
 	METHOD handlePlayerCombatEnter (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatEnterPacket;)V
@@ -157,6 +156,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleSelectAdvancementsTab (Lnet/minecraft/network/protocol/game/ClientboundSelectAdvancementsTabPacket;)V
 		ARG 1 packet
+	METHOD handleServerData (Lnet/minecraft/network/protocol/game/ClientboundServerDataPacket;)V
+		ARG 1 packet
 	METHOD handleSetBorderCenter (Lnet/minecraft/network/protocol/game/ClientboundSetBorderCenterPacket;)V
 		ARG 1 packet
 	METHOD handleSetBorderLerpSize (Lnet/minecraft/network/protocol/game/ClientboundSetBorderLerpSizePacket;)V
@@ -175,6 +176,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleSetChunkCacheCenter (Lnet/minecraft/network/protocol/game/ClientboundSetChunkCacheCenterPacket;)V
 		ARG 1 packet
 	METHOD handleSetChunkCacheRadius (Lnet/minecraft/network/protocol/game/ClientboundSetChunkCacheRadiusPacket;)V
+		ARG 1 packet
+	METHOD handleSetDisplayChatPreview (Lnet/minecraft/network/protocol/game/ClientboundSetDisplayChatPreviewPacket;)V
 		ARG 1 packet
 	METHOD handleSetDisplayObjective (Lnet/minecraft/network/protocol/game/ClientboundSetDisplayObjectivePacket;)V
 		COMMENT Removes or sets the ScoreObjective to be displayed at a particular scoreboard position (list, sidebar, below name)
@@ -210,6 +213,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleSoundEvent (Lnet/minecraft/network/protocol/game/ClientboundSoundPacket;)V
 		ARG 1 packet
 	METHOD handleStopSoundEvent (Lnet/minecraft/network/protocol/game/ClientboundStopSoundPacket;)V
+		ARG 1 packet
+	METHOD handleSystemChat (Lnet/minecraft/network/protocol/game/ClientboundSystemChatPacket;)V
 		ARG 1 packet
 	METHOD handleTabListCustomisation (Lnet/minecraft/network/protocol/game/ClientboundTabListPacket;)V
 		ARG 1 packet

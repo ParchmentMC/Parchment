@@ -1,6 +1,32 @@
 CLASS net/minecraft/world/level/levelgen/structure/placement/StructurePlacement
-	METHOD isFeatureChunk (Lnet/minecraft/world/level/chunk/ChunkGenerator;JII)Z
+	METHOD <init> (Lnet/minecraft/core/Vec3i;Lnet/minecraft/world/level/levelgen/structure/placement/StructurePlacement$FrequencyReductionMethod;FILjava/util/Optional;)V
+		ARG 1 locateOffset
+		ARG 2 frequencyReductionMethod
+		ARG 3 frequency
+		ARG 4 salt
+		ARG 5 exclusionZone
+	METHOD getLocatePos (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/core/BlockPos;
+		ARG 1 chunkPos
+	METHOD isPlacementChunk (Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/RandomState;JII)Z
 		ARG 1 generator
-		ARG 2 seed
-		ARG 4 x
-		ARG 5 z
+		ARG 2 randomState
+		ARG 3 seed
+		ARG 5 x
+		ARG 6 y
+	METHOD isStructureChunk (Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/RandomState;JII)Z
+		ARG 1 generator
+		ARG 2 randomState
+		ARG 3 seed
+		ARG 5 x
+		ARG 6 z
+	CLASS ExclusionZone
+		METHOD isPlacementForbidden (Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/RandomState;JII)Z
+			ARG 1 generator
+			ARG 2 randomState
+			ARG 3 seed
+			ARG 5 x
+			ARG 6 z
+	CLASS FrequencyReductionMethod
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/world/level/levelgen/structure/placement/StructurePlacement$FrequencyReducer;)V
+			ARG 3 name
+			ARG 4 reducer

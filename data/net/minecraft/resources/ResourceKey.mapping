@@ -12,6 +12,10 @@ CLASS net/minecraft/resources/ResourceKey
 	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 registryName
 		ARG 2 location
+	METHOD cast (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+		ARG 1 registryKey
+	METHOD codec (Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/Codec;
+		ARG 0 registryKey
 	METHOD create (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceKey;
 		COMMENT Constructs a new {@code ResourceKey} for a resource with the specified {@code location} within the registry specified by the given {@code registryKey}.
 		COMMENT
@@ -24,9 +28,6 @@ CLASS net/minecraft/resources/ResourceKey
 	METHOD createRegistryKey (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceKey;
 		COMMENT @return the created registry key. The registry name is set to {@code minecraft:root} and the location the specified {@code registryName}.
 		ARG 0 location
-	METHOD elementKey (Lnet/minecraft/resources/ResourceKey;)Ljava/util/function/Function;
-		COMMENT @return a function that maps a {@link net.minecraft.resources.ResourceLocation} to an equivalent child {@code ResourceKey} of the specified {@code registryKey}.
-		ARG 0 registryKey
 	METHOD isFor (Lnet/minecraft/resources/ResourceKey;)Z
 		COMMENT @return {@code true} if this resource key is a direct child of the specified {@code registryKey}.
 		ARG 1 registryKey

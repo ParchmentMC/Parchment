@@ -73,8 +73,6 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
-	METHOD getOffsetType ()Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;
-		COMMENT Get the OffsetType for this Block. Determines if the model is rendered slightly offset.
 	METHOD getPistonPushReaction (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/PushReaction;
 		COMMENT @deprecated call via {@link net.minecraft.world.level.block.state.BlockBehavior.BlockStateBase#getPistonPushReaction} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
@@ -151,7 +149,7 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 3 pos
 		ARG 4 newState
 		ARG 5 isMoving
-	METHOD randomTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
+	METHOD randomTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)V
 		COMMENT Performs a random tick on a block.
 		ARG 1 state
 		ARG 2 level
@@ -166,13 +164,13 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 1 state
 		ARG 2 adjacentBlockState
 		ARG 3 direction
-	METHOD spawnAfterBreak (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
+	METHOD spawnAfterBreak (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;Z)V
 		COMMENT Perform side-effects from block dropping, such as creating silverfish
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 stack
-	METHOD tick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
+	METHOD tick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)V
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
@@ -250,7 +248,7 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 1 isViewBlocking
 		METHOD jumpFactor (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
 			ARG 1 jumpFactor
-		METHOD lambda$color$7 (Lnet/minecraft/world/level/material/MaterialColor;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/MaterialColor;
+		METHOD lambda$color$8 (Lnet/minecraft/world/level/material/MaterialColor;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/MaterialColor;
 			ARG 1 state
 		METHOD lambda$new$0 (Lnet/minecraft/world/level/block/state/BlockState;)I
 			ARG 0 state
@@ -275,7 +273,11 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 0 state
 			ARG 1 level
 			ARG 2 pos
-		METHOD lambda$new$6 (Lnet/minecraft/world/level/material/MaterialColor;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/MaterialColor;
+		METHOD lambda$new$6 (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;
+			ARG 0 state
+		METHOD lambda$new$7 (Lnet/minecraft/world/level/material/MaterialColor;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/MaterialColor;
+			ARG 1 state
+		METHOD lambda$offsetType$9 (Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;
 			ARG 1 state
 		METHOD lightLevel (Ljava/util/function/ToIntFunction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
 			ARG 1 lightEmission
@@ -290,6 +292,10 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		METHOD of (Lnet/minecraft/world/level/material/Material;Lnet/minecraft/world/level/material/MaterialColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
 			ARG 0 material
 			ARG 1 materialColor
+		METHOD offsetType (Ljava/util/function/Function;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 offsetType
+		METHOD offsetType (Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 1 offsetType
 		METHOD sound (Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
 			ARG 1 soundType
 		METHOD speedFactor (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
@@ -380,6 +386,8 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		METHOD getOffset (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/Vec3;
 			ARG 1 level
 			ARG 2 pos
+		METHOD getOffsetType ()Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;
+			COMMENT Get the OffsetType for this Block. Determines if the model is rendered slightly offset.
 		METHOD getSeed (Lnet/minecraft/core/BlockPos;)J
 			ARG 1 pos
 		METHOD getShadeBrightness (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)F
@@ -474,7 +482,7 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		METHOD propagatesSkylightDown (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
 			ARG 1 level
 			ARG 2 pos
-		METHOD randomTick (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
+		METHOD randomTick (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)V
 			ARG 1 level
 			ARG 2 pos
 			ARG 3 random
@@ -484,11 +492,11 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		METHOD skipRendering (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
 			ARG 1 state
 			ARG 2 face
-		METHOD spawnAfterBreak (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
+		METHOD spawnAfterBreak (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;Z)V
 			ARG 1 level
 			ARG 2 pos
 			ARG 3 stack
-		METHOD tick (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
+		METHOD tick (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)V
 			ARG 1 level
 			ARG 2 pos
 			ARG 3 random

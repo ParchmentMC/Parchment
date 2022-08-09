@@ -37,9 +37,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD handleClientInformation (Lnet/minecraft/network/protocol/game/ServerboundClientInformationPacket;)V
 		COMMENT Updates serverside copy of client settings: language, render distance, chat visibility, chat colours, difficulty, and whether to show the cape
 		ARG 1 packet
-	METHOD handleCommand (Ljava/lang/String;)V
-		COMMENT Handle commands that start with a /
-		ARG 1 command
 	METHOD handleContainerButtonClick (Lnet/minecraft/network/protocol/game/ServerboundContainerButtonClickPacket;)V
 		COMMENT Enchants the item identified by the packet given some convoluted conditions (matching window, which should/shouldn't be in use?)
 		ARG 1 packet
@@ -124,9 +121,9 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason
-	METHOD send (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V
+	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 		ARG 1 packet
-		ARG 2 futureListeners
+		ARG 2 listener
 	METHOD teleport (DDDFF)V
 		ARG 1 x
 		ARG 3 y
@@ -154,3 +151,4 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	CLASS 1
 		METHOD performInteraction (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/server/network/ServerGamePacketListenerImpl$EntityInteraction;)V
 			ARG 1 hand
+			ARG 2 entityInteraction

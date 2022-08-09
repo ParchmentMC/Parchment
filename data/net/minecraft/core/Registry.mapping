@@ -31,13 +31,15 @@ CLASS net/minecraft/core/Registry
 		ARG 1 registryKey
 	METHOD getOptional (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
 		ARG 1 name
-	METHOD getOrCreateHolder (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder;
+	METHOD getOrCreateHolder (Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/DataResult;
+		ARG 1 key
+	METHOD getOrCreateHolderOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder;
 		ARG 1 key
 	METHOD getOrCreateTag (Lnet/minecraft/tags/TagKey;)Lnet/minecraft/core/HolderSet$Named;
 		ARG 1 key
 	METHOD getOrThrow (Lnet/minecraft/resources/ResourceKey;)Ljava/lang/Object;
 		ARG 1 key
-	METHOD getRandom (Ljava/util/Random;)Ljava/util/Optional;
+	METHOD getRandom (Lnet/minecraft/util/RandomSource;)Ljava/util/Optional;
 		ARG 1 random
 	METHOD getResourceKey (Ljava/lang/Object;)Ljava/util/Optional;
 		ARG 1 value
@@ -56,9 +58,6 @@ CLASS net/minecraft/core/Registry
 		COMMENT @return all keys in this registry
 	METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
 		ARG 1 ops
-	METHOD lambda$static$54 (Lnet/minecraft/resources/ResourceLocation;Ljava/util/function/Supplier;)V
-		ARG 0 registryKey
-		ARG 1 registry
 	METHOD lifecycle (Ljava/lang/Object;)Lcom/mojang/serialization/Lifecycle;
 		ARG 1 value
 	METHOD register (Lnet/minecraft/core/Registry;Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
@@ -78,6 +77,7 @@ CLASS net/minecraft/core/Registry
 		ARG 1 defaultName
 		ARG 2 elementsLifecycle
 		ARG 3 customHolderProvider
+		ARG 4 bootstrap
 	METHOD registerDefaulted (Lnet/minecraft/resources/ResourceKey;Ljava/lang/String;Lcom/mojang/serialization/Lifecycle;Lnet/minecraft/core/Registry$RegistryBootstrap;)Lnet/minecraft/core/DefaultedRegistry;
 		ARG 0 registryKey
 		ARG 1 defaultValueName
@@ -87,6 +87,7 @@ CLASS net/minecraft/core/Registry
 		ARG 0 registryKey
 		ARG 1 defaultValueName
 		ARG 2 customHolderProvider
+		ARG 3 bootstrap
 	METHOD registerDefaulted (Lnet/minecraft/resources/ResourceKey;Ljava/lang/String;Lnet/minecraft/core/Registry$RegistryBootstrap;)Lnet/minecraft/core/DefaultedRegistry;
 		ARG 0 registryKey
 		ARG 1 defaultValueName
@@ -100,6 +101,7 @@ CLASS net/minecraft/core/Registry
 		ARG 0 key
 		ARG 1 lifecycle
 		ARG 2 customHolderProvider
+		ARG 3 bootstrap
 	METHOD registerSimple (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Lnet/minecraft/core/Registry$RegistryBootstrap;)Lnet/minecraft/core/Registry;
 		COMMENT Makes a simple registry and registers it
 		ARG 0 registryKey
@@ -109,9 +111,6 @@ CLASS net/minecraft/core/Registry
 		COMMENT Makes a simple registry with the default lifecycle of "experimental" and registers it
 		ARG 0 registryKey
 		ARG 1 loader
-	CLASS 1
-		METHOD lambda$iterator$0 (Lnet/minecraft/core/Holder$Reference;)Lnet/minecraft/core/Holder;
-			ARG 0 reference
 	CLASS RegistryBootstrap
 		METHOD run (Lnet/minecraft/core/Registry;)Ljava/lang/Object;
 			ARG 1 registry

@@ -10,15 +10,12 @@ CLASS net/minecraft/world/level/levelgen/WorldGenSettings
 		ARG 4 generateBonusChest
 		ARG 5 dimensions
 		ARG 6 legacyCustomOptions
-	METHOD create (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/server/dedicated/DedicatedServerProperties$WorldGenProperties;)Lnet/minecraft/world/level/levelgen/WorldGenSettings;
+	METHOD parseSeed (Ljava/lang/String;)Ljava/util/OptionalLong;
+		ARG 0 seed
+	METHOD replaceOverworldGenerator (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/WorldGenSettings;Lnet/minecraft/world/level/chunk/ChunkGenerator;)Lnet/minecraft/world/level/levelgen/WorldGenSettings;
 		ARG 0 registryAccess
-		ARG 1 properties
-	METHOD demoSettings (Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/level/levelgen/WorldGenSettings;
-		ARG 0 registryAccess
-	METHOD makeDefault (Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/level/levelgen/WorldGenSettings;
-		ARG 0 registryAccess
-	METHOD makeOverworld (Lnet/minecraft/core/RegistryAccess;JLnet/minecraft/resources/ResourceKey;Z)Lnet/minecraft/world/level/levelgen/NoiseBasedChunkGenerator;
-		ARG 0 registryAccess
+		ARG 1 worldGenSettings
+		ARG 2 generator
 	METHOD withOverworld (Lnet/minecraft/core/Registry;Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/chunk/ChunkGenerator;)Lnet/minecraft/core/Registry;
 		ARG 0 dimensions
 		ARG 1 dimensionType

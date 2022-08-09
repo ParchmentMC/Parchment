@@ -1,8 +1,8 @@
 CLASS net/minecraft/network/chat/Component
+	METHOD contains (Lnet/minecraft/network/chat/Component;)Z
+		ARG 1 other
 	METHOD copy ()Lnet/minecraft/network/chat/MutableComponent;
 		COMMENT Creates a copy of this component and also copies the style and siblings. Note that the siblings are copied shallowly, meaning the siblings themselves are not copied.
-	METHOD getContents ()Ljava/lang/String;
-		COMMENT Gets the raw content of this component if possible. For special components (like {@link TranslatableComponent} this usually returns the empty string.
 	METHOD getSiblings ()Ljava/util/List;
 		COMMENT Gets the sibling components of this one.
 	METHOD getString (I)Ljava/lang/String;
@@ -10,23 +10,42 @@ CLASS net/minecraft/network/chat/Component
 		ARG 1 maxLength
 	METHOD getStyle ()Lnet/minecraft/network/chat/Style;
 		COMMENT Gets the style of this component.
+	METHOD keybind (Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 name
+	METHOD literal (Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 text
+	METHOD nbt (Ljava/lang/String;ZLjava/util/Optional;Lnet/minecraft/network/chat/contents/DataSource;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 nbtPathPattern
+		ARG 1 interpreting
+		ARG 2 separator
+		ARG 3 dataSource
 	METHOD nullToEmpty (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
 		ARG 0 text
 	METHOD plainCopy ()Lnet/minecraft/network/chat/MutableComponent;
 		COMMENT Creates a copy of this component, losing any style or siblings.
+	METHOD score (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 name
+		ARG 1 objective
+	METHOD selector (Ljava/lang/String;Ljava/util/Optional;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 pattern
+		ARG 1 separator
 	METHOD toFlatList (Lnet/minecraft/network/chat/Style;)Ljava/util/List;
 		ARG 1 style
+	METHOD translatable (Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 jey
+	METHOD translatable (Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 key
+		ARG 1 args
 	METHOD visit (Lnet/minecraft/network/chat/FormattedText$ContentConsumer;)Ljava/util/Optional;
 		ARG 1 acceptor
 	METHOD visit (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
 		ARG 1 acceptor
 		ARG 2 style
-	METHOD visitSelf (Lnet/minecraft/network/chat/FormattedText$ContentConsumer;)Ljava/util/Optional;
-		ARG 1 consumer
-	METHOD visitSelf (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
-		ARG 1 consumer
-		ARG 2 style
 	CLASS Serializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+			ARG 1 jsonElement
+			ARG 2 type
+			ARG 3 jsonContext
 		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/network/chat/MutableComponent;
 			ARG 1 json
 			ARG 2 typeOfT
@@ -45,6 +64,10 @@ CLASS net/minecraft/network/chat/Component
 			ARG 1 type
 			ARG 2 jsonContext
 			ARG 3 jsonObject
+		METHOD serialize (Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
+			ARG 1 component
+			ARG 2 type
+			ARG 3 jsonContext
 		METHOD serialize (Lnet/minecraft/network/chat/Component;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
 			ARG 1 src
 			ARG 2 typeOfSrc
@@ -62,3 +85,7 @@ CLASS net/minecraft/network/chat/Component
 			ARG 0 component
 		METHOD toJsonTree (Lnet/minecraft/network/chat/Component;)Lcom/google/gson/JsonElement;
 			ARG 0 component
+		METHOD toStableJson (Lnet/minecraft/network/chat/Component;)Ljava/lang/String;
+			ARG 0 component
+		METHOD unwrapTextArgument (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 0 object

@@ -37,9 +37,9 @@ CLASS net/minecraft/network/Connection
 		COMMENT
 		COMMENT Closing the channel this way does not send any disconnection packets, it simply terminates the underlying netty channel.
 		ARG 1 message
-	METHOD doSendPacket (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/ConnectionProtocol;)V
+	METHOD doSendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/ConnectionProtocol;)V
 		ARG 1 packet
-		ARG 3 protocol
+		ARG 2 listener
 	METHOD exceptionCaught (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Throwable;)V
 		ARG 1 context
 		ARG 2 exception
@@ -70,13 +70,13 @@ CLASS net/minecraft/network/Connection
 		COMMENT True if this NetworkManager uses a memory connection (single player game). False may imply both an active TCP connection or simply no active connection at all
 	METHOD send (Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 packet
-	METHOD send (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V
+	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 		ARG 1 packet
 		ARG 2 listener
-	METHOD sendPacket (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V
+	METHOD sendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 		COMMENT Will commit the packet to the channel. If the current thread 'owns' the channel it will write and flush the packet, otherwise it will add a task for the channel eventloop thread to do that.
-		ARG 1 inPacket
-		ARG 2 futureListeners
+		ARG 1 packet
+		ARG 2 listener
 	METHOD setEncryptionKey (Ljavax/crypto/Cipher;Ljavax/crypto/Cipher;)V
 		COMMENT Enables encryption for this connection using the given decrypting and encrypting ciphers.
 		COMMENT This adds new handlers to this connection's pipeline which handle the decrypting and encrypting.
@@ -108,8 +108,8 @@ CLASS net/minecraft/network/Connection
 			ARG 1 channel
 	CLASS 2
 		METHOD initChannel (Lio/netty/channel/Channel;)V
-			ARG 1 channnel
+			ARG 1 channel
 	CLASS PacketHolder
-		METHOD <init> (Lnet/minecraft/network/protocol/Packet;Lio/netty/util/concurrent/GenericFutureListener;)V
+		METHOD <init> (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 			ARG 1 packet
 			ARG 2 listener

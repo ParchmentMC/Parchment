@@ -1,13 +1,13 @@
 CLASS net/minecraft/server/dedicated/DedicatedServer
-	METHOD <init> (Ljava/lang/Thread;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Lnet/minecraft/server/dedicated/DedicatedServerSettings;Lcom/mojang/datafixers/DataFixer;Lcom/mojang/authlib/minecraft/MinecraftSessionService;Lcom/mojang/authlib/GameProfileRepository;Lnet/minecraft/server/players/GameProfileCache;Lnet/minecraft/server/level/progress/ChunkProgressListenerFactory;)V
+	METHOD <init> (Ljava/lang/Thread;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Lnet/minecraft/server/dedicated/DedicatedServerSettings;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/server/Services;Lnet/minecraft/server/level/progress/ChunkProgressListenerFactory;)V
 		ARG 1 serverThread
 		ARG 2 storageSource
 		ARG 3 packRepository
+		ARG 4 worldStem
+		ARG 5 settings
 		ARG 6 fixerUpper
-		ARG 7 sessionService
-		ARG 8 profileRepository
-		ARG 9 profileCache
-		ARG 10 progressListenerFactory
+		ARG 7 services
+		ARG 8 progressListenerFactory
 	METHOD getCompressionThreshold ()I
 		COMMENT The compression treshold. If the packet is larger than the specified amount of bytes, it will be compressed
 	METHOD getPluginNames ()Ljava/lang/String;

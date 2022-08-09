@@ -1,12 +1,17 @@
 CLASS net/minecraft/world/level/levelgen/SurfaceSystem
-	METHOD <init> (Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/block/state/BlockState;IJLnet/minecraft/world/level/levelgen/WorldgenRandom$Algorithm;)V
-		ARG 1 noises
+	METHOD <init> (Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/block/state/BlockState;ILnet/minecraft/world/level/levelgen/PositionalRandomFactory;)V
+		ARG 1 randomState
 		ARG 2 defaultBlock
 		ARG 3 seaLevel
-	METHOD getOrCreateNoise (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/levelgen/synth/NormalNoise;
-		ARG 1 paramaters
-	METHOD getOrCreateRandomFactory (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;
-		ARG 1 location
+		ARG 4 noiseRandom
+	METHOD buildSurface (Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/biome/BiomeManager;Lnet/minecraft/core/Registry;ZLnet/minecraft/world/level/levelgen/WorldGenerationContext;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/levelgen/SurfaceRules$RuleSource;)V
+		ARG 1 randomState
+		ARG 2 biomeManager
+		ARG 3 biomes
+		ARG 5 context
+		ARG 6 chunk
+		ARG 7 noiseChunk
+		ARG 8 ruleSource
 	METHOD isStone (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 	METHOD topMaterial (Lnet/minecraft/world/level/levelgen/SurfaceRules$RuleSource;Lnet/minecraft/world/level/levelgen/carver/CarvingContext;Ljava/util/function/Function;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/core/BlockPos;Z)Ljava/util/Optional;

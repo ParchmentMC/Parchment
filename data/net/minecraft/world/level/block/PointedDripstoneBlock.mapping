@@ -57,7 +57,7 @@ CLASS net/minecraft/world/level/block/PointedDripstoneBlock
 		ARG 2 pos
 		ARG 3 maxIterations
 		ARG 4 isTipMerge
-	METHOD getCauldronFillFluidType (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/Fluid;
+	METHOD getCauldronFillFluidType (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/Fluid;
 		ARG 0 level
 		ARG 1 pos
 	METHOD getDripFluid (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/material/Fluid;)Lnet/minecraft/world/level/material/Fluid;
@@ -71,7 +71,7 @@ CLASS net/minecraft/world/level/block/PointedDripstoneBlock
 		ARG 0 server
 		ARG 1 pos
 		ARG 2 direction
-	METHOD growStalactiteOrStalagmiteIfPossible (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)V
+	METHOD growStalactiteOrStalagmiteIfPossible (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)V
 		ARG 0 state
 		ARG 1 level
 		ARG 2 pos
@@ -100,10 +100,6 @@ CLASS net/minecraft/world/level/block/PointedDripstoneBlock
 		ARG 0 level
 		ARG 1 pos
 		ARG 2 dir
-	METHOD lambda$animateTick$0 (FLnet/minecraft/world/level/material/Fluid;)Z
-		ARG 1 fluid
-	METHOD lambda$animateTick$1 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/Fluid;)V
-		ARG 3 fluid
 	METHOD lambda$findFillableCauldronBelowStalactiteTip$7 (Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 	METHOD lambda$findFillableCauldronBelowStalactiteTip$8 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
@@ -122,11 +118,7 @@ CLASS net/minecraft/world/level/block/PointedDripstoneBlock
 		ARG 2 predState
 	METHOD lambda$findTip$4 (ZLnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 predState
-	METHOD lambda$getFluidAboveStalactite$10 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/Fluid;
-		ARG 1 pos
-	METHOD lambda$spawnDripParticle$2 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/Fluid;)V
-		ARG 3 fluid
-	METHOD maybeFillCauldron (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;F)V
+	METHOD maybeTransferFluid (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;F)V
 		ARG 0 state
 		ARG 1 level
 		ARG 2 pos

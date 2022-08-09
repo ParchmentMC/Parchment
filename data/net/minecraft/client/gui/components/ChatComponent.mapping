@@ -9,13 +9,6 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 		ARG 1 minecraft
 	METHOD addMessage (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 chatComponent
-	METHOD addMessage (Lnet/minecraft/network/chat/Component;I)V
-		COMMENT prints the ChatComponent to Chat. If the ID is not 0, deletes an existing Chat Line of that ID from the GUI
-		ARG 1 chatComponent
-		ARG 2 chatLineId
-	METHOD addMessage (Lnet/minecraft/network/chat/Component;IIZ)V
-		ARG 1 message
-		ARG 2 chatLineId
 	METHOD addRecentChat (Ljava/lang/String;)V
 		COMMENT Adds this string to the list of sent messages, for recall using the up/down arrow keys
 		ARG 1 message
@@ -23,8 +16,6 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 		COMMENT Clears the chat.
 		ARG 1 clearSentMsgHistory
 			COMMENT Whether or not to clear the user's sent message history
-	METHOD enqueueMessage (Lnet/minecraft/network/chat/Component;)V
-		ARG 1 message
 	METHOD getClickedComponentStyleAt (DD)Lnet/minecraft/network/chat/Style;
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -41,13 +32,6 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 		ARG 3 mouseY
 	METHOD isChatFocused ()Z
 		COMMENT Returns true if the chat GUI is open
-	METHOD lambda$removeById$0 (ILnet/minecraft/client/GuiMessage;)Z
-		ARG 1 guiMessage
-	METHOD lambda$removeById$1 (ILnet/minecraft/client/GuiMessage;)Z
-		ARG 1 guiMessage
-	METHOD removeById (I)V
-		COMMENT finds and deletes a Chat line by ID
-		ARG 1 id
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;I)V
 		ARG 1 poseStack
 		ARG 2 tickCount

@@ -18,8 +18,9 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 10 blendingData
 	METHOD addAndRegisterBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 blockEntity
-	METHOD addGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+	METHOD addGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 1 blockEntity
+		ARG 2 level
 	METHOD createBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
 	METHOD createTicker (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/level/block/entity/BlockEntityTicker;)Lnet/minecraft/world/level/block/entity/TickingBlockEntity;
@@ -36,8 +37,6 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 1 pos
 	METHOD lambda$clearAllBlockEntities$5 (Lnet/minecraft/world/level/chunk/LevelChunk$RebindableTickingBlockEntityWrapper;)V
 		ARG 0 ticker
-	METHOD lambda$getEventDispatcher$0 (I)Lnet/minecraft/world/level/gameevent/GameEventDispatcher;
-		ARG 1 section
 	METHOD lambda$registerAllBlockEntitiesAfterLevelLoad$6 (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 blockEnttiy
 	METHOD lambda$replaceWithPacketData$3 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/nbt/CompoundTag;)V
@@ -54,8 +53,9 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 1 level
 	METHOD removeBlockEntityTicker (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
-	METHOD removeGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+	METHOD removeGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 1 blockEntity
+		ARG 2 level
 	METHOD replaceWithPacketData (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/nbt/CompoundTag;Ljava/util/function/Consumer;)V
 		ARG 1 buffer
 		ARG 2 tag

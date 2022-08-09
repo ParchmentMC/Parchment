@@ -17,6 +17,8 @@ CLASS net/minecraft/core/Direction
 		ARG 7 axisDirection
 		ARG 8 axis
 		ARG 9 normal
+	METHOD allShuffled (Lnet/minecraft/util/RandomSource;)Ljava/util/Collection;
+		ARG 0 random
 	METHOD byName (Ljava/lang/String;)Lnet/minecraft/core/Direction;
 		COMMENT @return the Direction specified by the given name or null if no such Direction exists
 		ARG 0 name
@@ -70,7 +72,7 @@ CLASS net/minecraft/core/Direction
 		COMMENT @return the normalized Vector that points in the direction of this Direction.
 	METHOD getOpposite ()Lnet/minecraft/core/Direction;
 		COMMENT @return the opposite Direction (e.g. DOWN => UP)
-	METHOD getRandom (Ljava/util/Random;)Lnet/minecraft/core/Direction;
+	METHOD getRandom (Lnet/minecraft/util/RandomSource;)Lnet/minecraft/core/Direction;
 		ARG 0 random
 	METHOD getStepX ()I
 		COMMENT @return the offset in the x direction
@@ -112,23 +114,24 @@ CLASS net/minecraft/core/Direction
 			ARG 3 z
 		METHOD getPlane ()Lnet/minecraft/core/Direction$Plane;
 			COMMENT @return this Axis' Plane (VERTICAL for Y, HORIZONTAL for X and Z)
-		METHOD getRandom (Ljava/util/Random;)Lnet/minecraft/core/Direction$Axis;
+		METHOD getRandom (Lnet/minecraft/util/RandomSource;)Lnet/minecraft/core/Direction$Axis;
 			ARG 0 random
 		METHOD isHorizontal ()Z
 			COMMENT @return whether this Axis is on the horizontal plane (true for X and Z)
-		METHOD lambda$static$0 (Lnet/minecraft/core/Direction$Axis;)Lnet/minecraft/core/Direction$Axis;
-			ARG 0 axis
 		METHOD test (Lnet/minecraft/core/Direction;)Z
 			ARG 1 direction
 	CLASS Plane
 		METHOD <init> (Ljava/lang/String;I[Lnet/minecraft/core/Direction;[Lnet/minecraft/core/Direction$Axis;)V
 			ARG 3 faces
 			ARG 4 axis
-		METHOD getRandomAxis (Ljava/util/Random;)Lnet/minecraft/core/Direction$Axis;
+		METHOD getRandomAxis (Lnet/minecraft/util/RandomSource;)Lnet/minecraft/core/Direction$Axis;
 			ARG 1 random
-		METHOD getRandomDirection (Ljava/util/Random;)Lnet/minecraft/core/Direction;
-			COMMENT Choose a random Direction from this Plane using the given Random
+		METHOD getRandomDirection (Lnet/minecraft/util/RandomSource;)Lnet/minecraft/core/Direction;
 			ARG 1 random
+		METHOD shuffledCopy (Lnet/minecraft/util/RandomSource;)Ljava/util/List;
+			ARG 1 random
+		METHOD test (Ljava/lang/Object;)Z
+			ARG 1 direction
 	CLASS AxisDirection
 		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
 			ARG 3 step

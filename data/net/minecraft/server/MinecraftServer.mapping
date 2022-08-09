@@ -1,16 +1,13 @@
 CLASS net/minecraft/server/MinecraftServer
-	FIELD resourcePack Ljava/lang/String;
-		COMMENT The texture pack for the server
-	METHOD <init> (Ljava/lang/Thread;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Ljava/net/Proxy;Lcom/mojang/datafixers/DataFixer;Lcom/mojang/authlib/minecraft/MinecraftSessionService;Lcom/mojang/authlib/GameProfileRepository;Lnet/minecraft/server/players/GameProfileCache;Lnet/minecraft/server/level/progress/ChunkProgressListenerFactory;)V
+	METHOD <init> (Ljava/lang/Thread;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Ljava/net/Proxy;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/server/Services;Lnet/minecraft/server/level/progress/ChunkProgressListenerFactory;)V
 		ARG 1 serverThread
 		ARG 2 storageSource
 		ARG 3 packRepository
+		ARG 4 worldStem
 		ARG 5 proxy
 		ARG 6 fixerUpper
-		ARG 7 sessionService
-		ARG 8 profileRepository
-		ARG 9 profileCache
-		ARG 10 progressListenerFactory
+		ARG 7 services
+		ARG 8 progressListenerFactory
 	METHOD addTickable (Ljava/lang/Runnable;)V
 		ARG 1 tickable
 	METHOD configurePackRepository (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/DataPackConfig;Z)Lnet/minecraft/world/level/DataPackConfig;
@@ -47,8 +44,6 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 0 packRepository
 	METHOD getServerVersion ()Ljava/lang/String;
 		COMMENT Returns the server's Minecraft version as string.
-	METHOD getSingleplayerName ()Ljava/lang/String;
-		COMMENT Returns the username of the server owner (for integrated servers)
 	METHOD getSpawnProtectionRadius ()I
 		COMMENT Return the spawn protection area's size.
 	METHOD getSpawnRadius (Lnet/minecraft/server/level/ServerLevel;)I
@@ -96,10 +91,6 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 3 forced
 	METHOD sendDifficultyUpdate (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
-	METHOD sendMessage (Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V
-		COMMENT Send a chat message to the CommandSender
-		ARG 1 component
-		ARG 2 senderUUID
 	METHOD setDefaultGameType (Lnet/minecraft/world/level/GameType;)V
 		COMMENT Sets the game type for all worlds.
 		ARG 1 gameMode
@@ -133,12 +124,8 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 1 port
 	METHOD setPvpAllowed (Z)V
 		ARG 1 allowPvp
-	METHOD setResourcePack (Ljava/lang/String;Ljava/lang/String;)V
-		ARG 1 url
-		ARG 2 hash
-	METHOD setSingleplayerName (Ljava/lang/String;)V
-		COMMENT Sets the username of the owner of this server (in the case of an integrated server)
-		ARG 1 owner
+	METHOD setSingleplayerProfile (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 singleplayerProfile
 	METHOD setUsesAuthentication (Z)V
 		ARG 1 online
 	METHOD shouldRun (Lnet/minecraft/server/TickTask;)Z

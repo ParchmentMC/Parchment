@@ -8,18 +8,15 @@ CLASS net/minecraft/world/level/levelgen/Aquifer
 	METHOD computeSubstance (Lnet/minecraft/world/level/levelgen/DensityFunction$FunctionContext;D)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 context
 		ARG 2 substance
-	METHOD create (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;IILnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;)Lnet/minecraft/world/level/levelgen/Aquifer;
+	METHOD create (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/NoiseRouter;Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;IILnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;)Lnet/minecraft/world/level/levelgen/Aquifer;
 		COMMENT Creates a standard noise based aquifer. This aquifer will place liquid (both water and lava), air, and stone as described above.
 		ARG 0 chunk
 		ARG 1 chunkPos
-		ARG 2 barrierNoise
-		ARG 3 fluidLevelFloodedNoise
-		ARG 4 fluidLevelSpreadNoise
-		ARG 5 lavaNoise
-		ARG 6 positionalRandomFactory
-		ARG 7 minY
-		ARG 8 height
-		ARG 9 globalFluidPicker
+		ARG 2 noiseRouter
+		ARG 3 positionalRandomFactory
+		ARG 4 minY
+		ARG 5 height
+		ARG 6 globalFluidPicker
 	METHOD createDisabled (Lnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;)Lnet/minecraft/world/level/levelgen/Aquifer;
 		COMMENT reates a disabled, or no-op aquifer. This will fill any open areas below sea level with the default fluid.
 		ARG 0 defaultFluid
@@ -42,17 +39,14 @@ CLASS net/minecraft/world/level/levelgen/Aquifer
 		METHOD at (I)Lnet/minecraft/world/level/block/state/BlockState;
 			ARG 1 y
 	CLASS NoiseBasedAquifer
-		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;IILnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;)V
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/NoiseRouter;Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;IILnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;)V
 			ARG 1 noiseChunk
-			ARG 2 pos
-			ARG 3 barrierNoise
-			ARG 4 fluidLevelFloodedNoise
-			ARG 5 fluidLevelSpreadNoise
-			ARG 6 lavaNoise
-			ARG 7 positionalRandomFactory
-			ARG 8 minY
-			ARG 9 height
-			ARG 10 globalFluidPicker
+			ARG 2 chunkPos
+			ARG 3 noiseRouter
+			ARG 4 positionalRandomFactory
+			ARG 5 minY
+			ARG 6 height
+			ARG 7 globalFluidPicker
 		METHOD calculatePressure (Lnet/minecraft/world/level/levelgen/DensityFunction$FunctionContext;Lorg/apache/commons/lang3/mutable/MutableDouble;Lnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;Lnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;)D
 			ARG 1 context
 			ARG 2 substance

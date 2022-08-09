@@ -126,8 +126,8 @@ CLASS net/minecraft/util/Mth
 		ARG 0 value
 	METHOD createInsecureUUID ()Ljava/util/UUID;
 		COMMENT Generates a random UUID using the shared random
-	METHOD createInsecureUUID (Ljava/util/Random;)Ljava/util/UUID;
-		ARG 0 rand
+	METHOD createInsecureUUID (Lnet/minecraft/util/RandomSource;)Ljava/util/UUID;
+		ARG 0 random
 	METHOD cumulativeSum ([D)[D
 		ARG 0 values
 	METHOD degreesDifference (FF)F
@@ -181,6 +181,8 @@ CLASS net/minecraft/util/Mth
 		ARG 0 value
 		ARG 1 defaultValue
 		ARG 2 max
+	METHOD getRandomForDistributionIntegral (Lnet/minecraft/util/RandomSource;[D)I
+		ARG 0 random
 	METHOD getSeed (III)J
 		ARG 0 x
 		ARG 1 y
@@ -242,19 +244,19 @@ CLASS net/minecraft/util/Mth
 	METHOD log2 (I)I
 		COMMENT Efficiently calculates the floor of the base-2 log of an integer value.  This is effectively the index of the highest bit that is set.  For example, if the number in binary is 0...100101, this will return 5.
 		ARG 0 value
-	METHOD nextDouble (Ljava/util/Random;DD)D
+	METHOD nextDouble (Lnet/minecraft/util/RandomSource;DD)D
 		ARG 0 random
 		ARG 1 minimum
 		ARG 3 maximum
-	METHOD nextFloat (Ljava/util/Random;FF)F
+	METHOD nextFloat (Lnet/minecraft/util/RandomSource;FF)F
 		ARG 0 random
 		ARG 1 minimum
 		ARG 2 maximum
-	METHOD nextInt (Ljava/util/Random;II)I
-		ARG 0 random
+	METHOD nextInt (Lnet/minecraft/util/RandomSource;II)I
+		ARG 0 rabdin
 		ARG 1 minimum
 		ARG 2 maximum
-	METHOD normal (Ljava/util/Random;FF)F
+	METHOD normal (Lnet/minecraft/util/RandomSource;FF)F
 		COMMENT Generates a value from a normal distribution with the given mean and deviation.
 		ARG 0 random
 		ARG 1 mean
@@ -277,11 +279,11 @@ CLASS net/minecraft/util/Mth
 		COMMENT Gets the value closest to zero that is not closer to zero than the given value and is a multiple of the factor.
 		ARG 0 value
 		ARG 2 factor
-	METHOD randomBetween (Ljava/util/Random;FF)F
+	METHOD randomBetween (Lnet/minecraft/util/RandomSource;FF)F
 		ARG 0 random
 		ARG 1 minInclusive
 		ARG 2 maxExclusive
-	METHOD randomBetweenInclusive (Ljava/util/Random;II)I
+	METHOD randomBetweenInclusive (Lnet/minecraft/util/RandomSource;II)I
 		ARG 0 random
 		ARG 1 minInclusive
 		ARG 2 maxInclusive

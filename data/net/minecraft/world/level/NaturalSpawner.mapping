@@ -1,5 +1,5 @@
 CLASS net/minecraft/world/level/NaturalSpawner
-	METHOD canSpawnMobAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/biome/MobSpawnSettings$SpawnerData;Lnet/minecraft/core/BlockPos;)Z
+	METHOD canSpawnMobAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/biome/MobSpawnSettings$SpawnerData;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 level
 		ARG 1 structureManager
 		ARG 2 generator
@@ -17,8 +17,8 @@ CLASS net/minecraft/world/level/NaturalSpawner
 	METHOD getRandomPosWithin (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/chunk/LevelChunk;)Lnet/minecraft/core/BlockPos;
 		ARG 0 level
 		ARG 1 chunk
-	METHOD getRandomSpawnMobAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Ljava/util/Random;Lnet/minecraft/core/BlockPos;)Ljava/util/Optional;
-		ARG 0 level
+	METHOD getRandomSpawnMobAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/BlockPos;)Ljava/util/Optional;
+		ARG 0 levle
 		ARG 1 structureManager
 		ARG 2 generator
 		ARG 3 category
@@ -32,11 +32,11 @@ CLASS net/minecraft/world/level/NaturalSpawner
 		ARG 1 entityType
 		ARG 2 x
 		ARG 3 z
-	METHOD isInNetherFortressBounds (Lnet/minecraft/core/BlockPos;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/StructureFeatureManager;)Z
+	METHOD isInNetherFortressBounds (Lnet/minecraft/core/BlockPos;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/StructureManager;)Z
 		ARG 0 pos
 		ARG 1 level
 		ARG 2 category
-		ARG 3 manager
+		ARG 3 structureManager
 	METHOD isRightDistanceToPlayerAndSpawnPoint (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/core/BlockPos$MutableBlockPos;D)Z
 		ARG 0 level
 		ARG 1 chunk
@@ -57,7 +57,7 @@ CLASS net/minecraft/world/level/NaturalSpawner
 		ARG 0 level
 		ARG 1 mob
 		ARG 2 distance
-	METHOD isValidSpawnPostitionForType (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/biome/MobSpawnSettings$SpawnerData;Lnet/minecraft/core/BlockPos$MutableBlockPos;D)Z
+	METHOD isValidSpawnPostitionForType (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/biome/MobSpawnSettings$SpawnerData;Lnet/minecraft/core/BlockPos$MutableBlockPos;D)Z
 		ARG 0 level
 		ARG 1 category
 		ARG 2 structureManager
@@ -76,7 +76,7 @@ CLASS net/minecraft/world/level/NaturalSpawner
 		ARG 1 chunk
 	METHOD lambda$static$0 (Lnet/minecraft/world/entity/MobCategory;)Z
 		ARG 0 category
-	METHOD mobsAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureFeatureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Holder;)Lnet/minecraft/util/random/WeightedRandomList;
+	METHOD mobsAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Holder;)Lnet/minecraft/util/random/WeightedRandomList;
 		ARG 0 level
 		ARG 1 structureManager
 		ARG 2 generator
@@ -107,8 +107,8 @@ CLASS net/minecraft/world/level/NaturalSpawner
 		ARG 3 spawnFriendlies
 		ARG 4 spawnMonsters
 		ARG 5 forcedDespawn
-	METHOD spawnMobsForChunkGeneration (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/ChunkPos;Ljava/util/Random;)V
-		ARG 0 level
+	METHOD spawnMobsForChunkGeneration (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/util/RandomSource;)V
+		ARG 0 levelAccessor
 		ARG 1 biome
 		ARG 2 chunkPos
 		ARG 3 random

@@ -1,19 +1,25 @@
 CLASS net/minecraft/commands/arguments/blocks/BlockPredicateArgument
+	METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
+		ARG 1 context
+	METHOD blockPredicate (Lnet/minecraft/commands/CommandBuildContext;)Lnet/minecraft/commands/arguments/blocks/BlockPredicateArgument;
+		ARG 0 context
 	METHOD getBlockPredicate (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/function/Predicate;
 		ARG 0 context
 		ARG 1 name
-	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
-		ARG 0 tag
+	METHOD lambda$parse$0 (Lnet/minecraft/commands/arguments/blocks/BlockStateParser$BlockResult;)Lnet/minecraft/commands/arguments/blocks/BlockPredicateArgument$Result;
+		ARG 0 blockResult
+	METHOD lambda$parse$1 (Lnet/minecraft/commands/arguments/blocks/BlockStateParser$TagResult;)Lnet/minecraft/commands/arguments/blocks/BlockPredicateArgument$Result;
+		ARG 0 tagResult
 	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 context
 		ARG 2 builder
 	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/blocks/BlockPredicateArgument$Result;
 		ARG 1 reader
-	CLASS Result
-		METHOD create (Lnet/minecraft/core/Registry;)Ljava/util/function/Predicate;
-			ARG 1 blockRegistry
+	METHOD parse (Lnet/minecraft/core/HolderLookup;Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/blocks/BlockPredicateArgument$Result;
+		ARG 0 lookup
+		ARG 1 reader
 	CLASS TagPredicate
-		METHOD <init> (Lnet/minecraft/tags/TagKey;Ljava/util/Map;Lnet/minecraft/nbt/CompoundTag;)V
+		METHOD <init> (Lnet/minecraft/core/HolderSet;Ljava/util/Map;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 tag
 			ARG 2 vagueProperties
 			ARG 3 nbt
