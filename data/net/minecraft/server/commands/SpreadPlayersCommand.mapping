@@ -1,5 +1,5 @@
 CLASS net/minecraft/server/commands/SpreadPlayersCommand
-	METHOD createInitialPositions (Ljava/util/Random;IDDDD)[Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;
+	METHOD createInitialPositions (Lnet/minecraft/util/RandomSource;IDDDD)[Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;
 		ARG 0 random
 		ARG 1 count
 		ARG 2 minX
@@ -14,6 +14,7 @@ CLASS net/minecraft/server/commands/SpreadPlayersCommand
 	METHOD setPlayerPositions (Ljava/util/Collection;Lnet/minecraft/server/level/ServerLevel;[Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;IZ)D
 		ARG 0 targets
 		ARG 1 level
+		ARG 2 positions
 		ARG 3 maxHeight
 		ARG 4 respectTeams
 	METHOD spreadPlayers (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/phys/Vec2;FFIZLjava/util/Collection;)I
@@ -24,7 +25,7 @@ CLASS net/minecraft/server/commands/SpreadPlayersCommand
 		ARG 4 maxHeight
 		ARG 5 respectTeams
 		ARG 6 targets
-	METHOD spreadPositions (Lnet/minecraft/world/phys/Vec2;DLnet/minecraft/server/level/ServerLevel;Ljava/util/Random;DDDDI[Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;Z)V
+	METHOD spreadPositions (Lnet/minecraft/world/phys/Vec2;DLnet/minecraft/server/level/ServerLevel;Lnet/minecraft/util/RandomSource;DDDDI[Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;Z)V
 		ARG 0 center
 		ARG 1 spreadDistance
 		ARG 3 level
@@ -52,7 +53,7 @@ CLASS net/minecraft/server/commands/SpreadPlayersCommand
 			ARG 2 y
 		METHOD moveAway (Lnet/minecraft/server/commands/SpreadPlayersCommand$Position;)V
 			ARG 1 other
-		METHOD randomize (Ljava/util/Random;DDDD)V
+		METHOD randomize (Lnet/minecraft/util/RandomSource;DDDD)V
 			ARG 1 random
 			ARG 2 minX
 			ARG 4 minZ

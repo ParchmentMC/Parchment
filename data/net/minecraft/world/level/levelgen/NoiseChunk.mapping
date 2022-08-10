@@ -1,18 +1,42 @@
 CLASS net/minecraft/world/level/levelgen/NoiseChunk
-	METHOD <init> (IIILnet/minecraft/world/level/levelgen/NoiseRouter;IILnet/minecraft/world/level/levelgen/DensityFunctions$BeardifierOrMarker;Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;Lnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;Lnet/minecraft/world/level/levelgen/blending/Blender;)V
+	METHOD <init> (ILnet/minecraft/world/level/levelgen/RandomState;IILnet/minecraft/world/level/levelgen/NoiseSettings;Lnet/minecraft/world/level/levelgen/DensityFunctions$BeardifierOrMarker;Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;Lnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;Lnet/minecraft/world/level/levelgen/blending/Blender;)V
 		ARG 1 cellCountXZ
-		ARG 2 cellCountY
-		ARG 3 ceelNoiseMinY
-		ARG 7 beardifier
-		ARG 8 noiseSettings
-		ARG 10 blender
-	METHOD cachedClimateSampler (Lnet/minecraft/world/level/levelgen/NoiseRouter;)Lnet/minecraft/world/level/biome/Climate$Sampler;
+		ARG 2 random
+		ARG 5 noiseSettings
+		ARG 6 beardifier
+		ARG 7 noiseGeneratorSettings
+		ARG 8 fluidPicker
+		ARG 9 blendifier
+	METHOD advanceCellX (I)V
+		ARG 1 increment
+	METHOD cachedClimateSampler (Lnet/minecraft/world/level/levelgen/NoiseRouter;Ljava/util/List;)Lnet/minecraft/world/level/biome/Climate$Sampler;
 		ARG 1 noiseRouter
+		ARG 2 points
 	METHOD computePreliminarySurfaceLevel (J)I
 		ARG 1 packedChunkPos
+	METHOD fillSlice (ZI)V
+		ARG 1 isSlice0
+		ARG 2 start
+	METHOD forChunk (Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/levelgen/DensityFunctions$BeardifierOrMarker;Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;Lnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;Lnet/minecraft/world/level/levelgen/blending/Blender;)Lnet/minecraft/world/level/levelgen/NoiseChunk;
+		ARG 0 chunk
+		ARG 1 state
+		ARG 2 beardifierOrMarker
+		ARG 3 noiseGeneratorSettings
+		ARG 4 fluidPicke
+		ARG 5 blender
 	METHOD getOrComputeBlendingOutput (II)Lnet/minecraft/world/level/levelgen/blending/Blender$BlendingOutput;
 		ARG 1 chunkX
 		ARG 2 chunkZ
+	METHOD lambda$new$0 (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction$FunctionContext;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 2 context
+	METHOD preliminarySurfaceLevel (II)I
+		ARG 1 x
+		ARG 2 z
+	METHOD selectCellYZ (II)V
+		ARG 1 y
+		ARG 2 z
+	METHOD updateForY (ID)V
+		ARG 1 cellEndBlockY
 	CLASS Cache2D
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/DensityFunction;)V
 			ARG 1 function
@@ -22,6 +46,9 @@ CLASS net/minecraft/world/level/levelgen/NoiseChunk
 	CLASS CacheAllInCell
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/levelgen/DensityFunction;)V
 			ARG 2 noiseFilter
+	CLASS BlockStateFiller
+		METHOD calculate (Lnet/minecraft/world/level/levelgen/DensityFunction$FunctionContext;)Lnet/minecraft/world/level/block/state/BlockState;
+			ARG 1 context
 	CLASS NoiseInterpolator
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/levelgen/DensityFunction;)V
 			ARG 2 noiseFilter

@@ -1,19 +1,9 @@
 CLASS net/minecraft/data/models/ModelProvider
 	METHOD <init> (Lnet/minecraft/data/DataGenerator;)V
 		ARG 1 generator
-	METHOD createBlockStatePath (Ljava/nio/file/Path;Lnet/minecraft/world/level/block/Block;)Ljava/nio/file/Path;
-		ARG 0 rootPath
-		ARG 1 block
-	METHOD createModelPath (Ljava/nio/file/Path;Lnet/minecraft/resources/ResourceLocation;)Ljava/nio/file/Path;
-		ARG 0 rootPath
-		ARG 1 modelLocation
 	METHOD getName ()Ljava/lang/String;
 		COMMENT Gets a name for this provider, to use in logging.
-	METHOD run (Lnet/minecraft/data/HashCache;)V
-		COMMENT Performs this provider's action.
-		ARG 1 cache
-	METHOD saveCollection (Lnet/minecraft/data/HashCache;Ljava/nio/file/Path;Ljava/util/Map;Ljava/util/function/BiFunction;)V
-		ARG 1 cache
-		ARG 2 rootPath
-		ARG 3 objectToJsonMap
-		ARG 4 resolveObjectPath
+	METHOD saveCollection (Lnet/minecraft/data/CachedOutput;Ljava/util/Map;Ljava/util/function/Function;)V
+		ARG 1 output
+		ARG 2 objectToJsonMap
+		ARG 3 resolveObjectPath

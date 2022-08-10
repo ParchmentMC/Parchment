@@ -10,7 +10,7 @@ CLASS net/minecraft/world/entity/monster/piglin/Piglin
 	METHOD canReplaceCurrentItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 candidate
 		ARG 2 existing
-	METHOD checkPiglinSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Ljava/util/Random;)Z
+	METHOD checkPiglinSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)Z
 		ARG 0 piglin
 		ARG 1 level
 		ARG 2 spawnType
@@ -26,9 +26,6 @@ CLASS net/minecraft/world/entity/monster/piglin/Piglin
 		ARG 3 reason
 		ARG 4 spawnData
 		ARG 5 dataTag
-	METHOD getExperienceReward (Lnet/minecraft/world/entity/player/Player;)I
-		COMMENT Get the experience points the entity currently has.
-		ARG 1 player
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getPassengersRidingOffset ()D
@@ -51,9 +48,10 @@ CLASS net/minecraft/world/entity/monster/piglin/Piglin
 		COMMENT If Animal, checks if the age timer is negative
 	METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
 		ARG 1 dynamic
-	METHOD maybeWearArmor (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
+	METHOD maybeWearArmor (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/util/RandomSource;)V
 		ARG 1 slot
 		ARG 2 stack
+		ARG 3 random
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
@@ -66,14 +64,11 @@ CLASS net/minecraft/world/entity/monster/piglin/Piglin
 	METHOD pickUpItem (Lnet/minecraft/world/entity/item/ItemEntity;)V
 		COMMENT Tests if this entity should pickup a weapon or an armor. Entity drops current weapon or armor if the new one is better.
 		ARG 1 itemEntity
-	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;)V
-		ARG 1 sound
+	METHOD playSoundEvent (Lnet/minecraft/sounds/SoundEvent;)V
+		ARG 1 soundEvent
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 block
-	METHOD populateDefaultEquipmentSlots (Lnet/minecraft/world/DifficultyInstance;)V
-		COMMENT Gives armor or weapon for entity based on given DifficultyInstance
-		ARG 1 difficulty
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound

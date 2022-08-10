@@ -1,16 +1,21 @@
 CLASS net/minecraft/world/level/levelgen/structure/StructureCheck
-	METHOD <init> (Lnet/minecraft/world/level/chunk/storage/ChunkScanAccess;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/biome/BiomeSource;JLcom/mojang/datafixers/DataFixer;)V
+	METHOD <init> (Lnet/minecraft/world/level/chunk/storage/ChunkScanAccess;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/biome/BiomeSource;JLcom/mojang/datafixers/DataFixer;)V
 		ARG 1 storageAccess
 		ARG 2 registryAccess
-		ARG 3 structureManager
+		ARG 3 structureTemplateManager
 		ARG 4 dimension
 		ARG 5 chunkGenerator
-		ARG 6 heightAccessor
-		ARG 7 biomeSource
-		ARG 8 seed
-		ARG 10 fixerUpper
-	METHOD checkStart (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/feature/ConfiguredStructureFeature;Z)Lnet/minecraft/world/level/levelgen/structure/StructureCheckResult;
+		ARG 6 randomState
+		ARG 7 heightAccessor
+		ARG 8 biomeSource
+		ARG 9 seed
+		ARG 11 fixerUpper
+	METHOD canCreateStructure (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/structure/Structure;)Z
 		ARG 1 chunkPos
-		ARG 2 feature
+		ARG 2 structure
+	METHOD checkStart (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/structure/Structure;Z)Lnet/minecraft/world/level/levelgen/structure/StructureCheckResult;
+		ARG 1 chunkPos
+		ARG 2 structure
+		ARG 3 skipKnownStructures
 	METHOD loadStructures (Lnet/minecraft/nbt/CompoundTag;)Lit/unimi/dsi/fastutil/objects/Object2IntMap;
 		ARG 1 tag

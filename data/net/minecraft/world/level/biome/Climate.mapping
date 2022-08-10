@@ -1,4 +1,7 @@
 CLASS net/minecraft/world/level/biome/Climate
+	METHOD findSpawnPosition (Ljava/util/List;Lnet/minecraft/world/level/biome/Climate$Sampler;)Lnet/minecraft/core/BlockPos;
+		ARG 0 points
+		ARG 1 sampler
 	METHOD parameters (FFFFFFF)Lnet/minecraft/world/level/biome/Climate$ParameterPoint;
 		ARG 0 temperature
 		ARG 1 humidity
@@ -15,6 +18,8 @@ CLASS net/minecraft/world/level/biome/Climate
 		ARG 4 depth
 		ARG 5 weirdness
 		ARG 6 offset
+	METHOD quantizeCoord (F)J
+		ARG 0 coord
 	METHOD target (FFFFFF)Lnet/minecraft/world/level/biome/Climate$TargetPoint;
 		ARG 0 temperature
 		ARG 1 humidity
@@ -22,22 +27,54 @@ CLASS net/minecraft/world/level/biome/Climate
 		ARG 3 erosion
 		ARG 4 depth
 		ARG 5 weirdness
+	METHOD unquantizeCoord (J)F
+		ARG 0 coord
 	CLASS RTree
 		METHOD <init> (Lnet/minecraft/world/level/biome/Climate$RTree$Node;)V
 			ARG 1 root
 		METHOD bucketize (Ljava/util/List;)Ljava/util/List;
 			ARG 0 nodes
+		METHOD build (ILjava/util/List;)Lnet/minecraft/world/level/biome/Climate$RTree$Node;
+			ARG 0 paramSpaceSize
+			ARG 1 children
+		METHOD buildParameterSpace (Ljava/util/List;)Ljava/util/List;
+			ARG 0 children
+		METHOD comparator (IZ)Ljava/util/Comparator;
+			ARG 0 size
+			ARG 1 absolute
 		METHOD cost ([Lnet/minecraft/world/level/biome/Climate$Parameter;)J
 			ARG 0 parameters
+		METHOD create (Ljava/util/List;)Lnet/minecraft/world/level/biome/Climate$RTree;
+			ARG 0 nodes
+		METHOD lambda$build$1 (ILnet/minecraft/world/level/biome/Climate$RTree$Node;)J
+			ARG 1 child
+		METHOD lambda$build$2 (ILnet/minecraft/world/level/biome/Climate$RTree$SubTree;)Lnet/minecraft/world/level/biome/Climate$RTree$Node;
+			ARG 1 subTree
+		METHOD lambda$comparator$3 (IZLnet/minecraft/world/level/biome/Climate$RTree$Node;)J
+			ARG 2 node
+		METHOD lambda$create$0 (Lcom/mojang/datafixers/util/Pair;)Lnet/minecraft/world/level/biome/Climate$RTree$Leaf;
+			ARG 0 node
 		METHOD search (Lnet/minecraft/world/level/biome/Climate$TargetPoint;Lnet/minecraft/world/level/biome/Climate$DistanceMetric;)Ljava/lang/Object;
 			ARG 1 targetPoint
 			ARG 2 distanceMetric
+		METHOD sort (Ljava/util/List;IIZ)V
+			ARG 0 children
+			ARG 1 paramSpaceSize
+			ARG 2 size
+			ARG 3 absolute
 		CLASS Leaf
 			METHOD <init> (Lnet/minecraft/world/level/biome/Climate$ParameterPoint;Ljava/lang/Object;)V
+				ARG 1 point
 				ARG 2 value
 		CLASS Node
 			METHOD <init> (Ljava/util/List;)V
 				ARG 1 parameters
+			METHOD distance ([J)J
+				ARG 1 values
+			METHOD search ([JLnet/minecraft/world/level/biome/Climate$RTree$Leaf;Lnet/minecraft/world/level/biome/Climate$DistanceMetric;)Lnet/minecraft/world/level/biome/Climate$RTree$Leaf;
+				ARG 1 searchedValues
+				ARG 2 leaf
+				ARG 3 metric
 		CLASS SubTree
 			METHOD <init> (Ljava/util/List;Ljava/util/List;)V
 				ARG 1 parameters
@@ -45,16 +82,25 @@ CLASS net/minecraft/world/level/biome/Climate
 		METHOD span (FF)Lnet/minecraft/world/level/biome/Climate$Parameter;
 			ARG 0 min
 			ARG 1 max
+		METHOD span (Lnet/minecraft/world/level/biome/Climate$Parameter;)Lnet/minecraft/world/level/biome/Climate$Parameter;
+			ARG 1 param
 		METHOD span (Lnet/minecraft/world/level/biome/Climate$Parameter;Lnet/minecraft/world/level/biome/Climate$Parameter;)Lnet/minecraft/world/level/biome/Climate$Parameter;
 			ARG 0 min
 			ARG 1 max
 	CLASS SpawnFinder
 		METHOD <init> (Ljava/util/List;Lnet/minecraft/world/level/biome/Climate$Sampler;)V
+			ARG 1 points
 			ARG 2 sampler
 		METHOD getSpawnPositionAndFitness (Ljava/util/List;Lnet/minecraft/world/level/biome/Climate$Sampler;II)Lnet/minecraft/world/level/biome/Climate$SpawnFinder$Result;
+			ARG 0 points
 			ARG 1 sampler
+			ARG 2 x
+			ARG 3 z
 		METHOD radialSearch (Ljava/util/List;Lnet/minecraft/world/level/biome/Climate$Sampler;FF)V
+			ARG 1 point
 			ARG 2 sampler
+			ARG 3 max
+			ARG 4 min
 	CLASS ParameterList
 		METHOD <init> (Ljava/util/List;)V
 			ARG 1 values
@@ -67,3 +113,26 @@ CLASS net/minecraft/world/level/biome/Climate
 		METHOD findValueIndex (Lnet/minecraft/world/level/biome/Climate$TargetPoint;Lnet/minecraft/world/level/biome/Climate$DistanceMetric;)Ljava/lang/Object;
 			ARG 1 targetPoint
 			ARG 2 distanceMetric
+	CLASS DistanceMetric
+		METHOD distance (Lnet/minecraft/world/level/biome/Climate$RTree$Node;[J)J
+			ARG 1 node
+			ARG 2 searchedValues
+	CLASS ParameterPoint
+		METHOD fitness (Lnet/minecraft/world/level/biome/Climate$TargetPoint;)J
+			ARG 1 point
+		METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/Climate$ParameterPoint;)Lnet/minecraft/world/level/biome/Climate$Parameter;
+			ARG 0 point
+		METHOD lambda$static$1 (Lnet/minecraft/world/level/biome/Climate$ParameterPoint;)Lnet/minecraft/world/level/biome/Climate$Parameter;
+			ARG 0 point
+		METHOD lambda$static$2 (Lnet/minecraft/world/level/biome/Climate$ParameterPoint;)Lnet/minecraft/world/level/biome/Climate$Parameter;
+			ARG 0 point
+		METHOD lambda$static$3 (Lnet/minecraft/world/level/biome/Climate$ParameterPoint;)Lnet/minecraft/world/level/biome/Climate$Parameter;
+			ARG 0 point
+		METHOD lambda$static$4 (Lnet/minecraft/world/level/biome/Climate$ParameterPoint;)Lnet/minecraft/world/level/biome/Climate$Parameter;
+			ARG 0 point
+		METHOD lambda$static$5 (Lnet/minecraft/world/level/biome/Climate$ParameterPoint;)Lnet/minecraft/world/level/biome/Climate$Parameter;
+			ARG 0 point
+		METHOD lambda$static$6 (Lnet/minecraft/world/level/biome/Climate$ParameterPoint;)Ljava/lang/Long;
+			ARG 0 point
+		METHOD lambda$static$7 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 codec

@@ -15,10 +15,12 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 6 inhabitedTime
 		ARG 8 sections
 		ARG 9 postLoad
+		ARG 10 blendingData
 	METHOD addAndRegisterBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 blockEntity
-	METHOD addGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+	METHOD addGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 1 blockEntity
+		ARG 2 level
 	METHOD createBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
 	METHOD createTicker (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/level/block/entity/BlockEntityTicker;)Lnet/minecraft/world/level/block/entity/TickingBlockEntity;
@@ -33,22 +35,46 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 3 z
 	METHOD isTicking (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
+	METHOD lambda$clearAllBlockEntities$5 (Lnet/minecraft/world/level/chunk/LevelChunk$RebindableTickingBlockEntityWrapper;)V
+		ARG 0 ticker
+	METHOD lambda$registerAllBlockEntitiesAfterLevelLoad$6 (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+		ARG 1 blockEnttiy
+	METHOD lambda$replaceWithPacketData$3 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 pos
+		ARG 2 type
+		ARG 3 tag
+	METHOD lambda$updateBlockEntityTicker$7 (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/level/block/entity/BlockEntityTicker;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/LevelChunk$RebindableTickingBlockEntityWrapper;)Lnet/minecraft/world/level/chunk/LevelChunk$RebindableTickingBlockEntityWrapper;
+		ARG 3 entityType
+		ARG 4 ticker
 	METHOD promotePendingBlockEntity (Lnet/minecraft/core/BlockPos;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
 		ARG 2 tag
+	METHOD registerTickContainerInLevel (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	METHOD removeBlockEntityTicker (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
-	METHOD removeGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+	METHOD removeGameEventListener (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 1 blockEntity
+		ARG 2 level
 	METHOD replaceWithPacketData (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/nbt/CompoundTag;Ljava/util/function/Consumer;)V
 		ARG 1 buffer
 		ARG 2 tag
+		ARG 3 outputTagConsumer
+	METHOD setClientLightReady (Z)V
+		ARG 1 clientLightReady
 	METHOD setFullStatus (Ljava/util/function/Supplier;)V
 		ARG 1 fullStatus
 	METHOD setLoaded (Z)V
 		ARG 1 loaded
+	METHOD unpackTicks (J)V
+		ARG 1 pos
+	METHOD unregisterTickContainerFromLevel (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	METHOD updateBlockEntityTicker (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 blockEntity
+	CLASS PostLoadProcessor
+		METHOD run (Lnet/minecraft/world/level/chunk/LevelChunk;)V
+			ARG 1 chunk
 	CLASS BoundTickingBlockEntity
 		METHOD <init> (Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/level/block/entity/BlockEntityTicker;)V
 			ARG 2 blockEntity

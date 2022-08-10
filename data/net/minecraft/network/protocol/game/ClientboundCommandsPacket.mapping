@@ -3,32 +3,44 @@ CLASS net/minecraft/network/protocol/game/ClientboundCommandsPacket
 		ARG 1 root
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
-	METHOD createBuilder (Lnet/minecraft/network/FriendlyByteBuf;B)Lcom/mojang/brigadier/builder/ArgumentBuilder;
-		ARG 0 buffer
-		ARG 1 flags
 	METHOD enumerateNodes (Lcom/mojang/brigadier/tree/RootCommandNode;)Lit/unimi/dsi/fastutil/objects/Object2IntMap;
 		ARG 0 rootNode
-	METHOD getNodesInIdOrder (Lit/unimi/dsi/fastutil/objects/Object2IntMap;)Ljava/util/List;
-		ARG 0 nodeToIdMap
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
 	METHOD readNode (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$Entry;
 		ARG 0 buffer
-	METHOD resolveEntries (Ljava/util/List;)V
+	METHOD validateEntries (Ljava/util/List;)V
 		ARG 0 entries
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buffer
-	METHOD writeNode (Lnet/minecraft/network/FriendlyByteBuf;Lcom/mojang/brigadier/tree/CommandNode;Ljava/util/Map;)V
-		ARG 0 buffer
-		ARG 1 node
-		ARG 2 nodeIds
 	CLASS Entry
-		METHOD <init> (Lcom/mojang/brigadier/builder/ArgumentBuilder;BI[I)V
-			ARG 1 builder
+		METHOD <init> (Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$NodeStub;II[I)V
+			ARG 1 stub
 			ARG 2 flags
 			ARG 3 redirect
 			ARG 4 children
-		METHOD build (Ljava/util/List;)Z
-			ARG 1 entries
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+	CLASS NodeStub
+		METHOD build (Lnet/minecraft/commands/CommandBuildContext;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+			ARG 1 context
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+	CLASS ArgumentNodeStub
+		METHOD <init> (Lcom/mojang/brigadier/tree/ArgumentCommandNode;)V
+			ARG 1 argumentNode
+		METHOD <init> (Ljava/lang/String;Lnet/minecraft/commands/synchronization/ArgumentTypeInfo$Template;Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 1 id
+			ARG 2 argumentType
+			ARG 3 suggestionId
+		METHOD getSuggestionId (Lcom/mojang/brigadier/suggestion/SuggestionProvider;)Lnet/minecraft/resources/ResourceLocation;
+			ARG 0 provider
+		METHOD serializeCap (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/commands/synchronization/ArgumentTypeInfo$Template;)V
+			ARG 0 buffer
+			ARG 1 argumentInfoTemplate
+		METHOD serializeCap (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/commands/synchronization/ArgumentTypeInfo;Lnet/minecraft/commands/synchronization/ArgumentTypeInfo$Template;)V
+			ARG 0 buffer
+			ARG 1 argumentInfo
+			ARG 2 argumentInfoTemplate

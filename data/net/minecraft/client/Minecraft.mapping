@@ -38,30 +38,17 @@ CLASS net/minecraft/client/Minecraft
 		ARG 4 packMetadataSection
 		ARG 5 defaultPosition
 		ARG 6 packSource
-	METHOD createLevel (Ljava/lang/String;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/levelgen/WorldGenSettings;)V
-		ARG 1 levelName
-		ARG 2 levelSettings
-		ARG 3 dynamicRegistries
-		ARG 4 dimensionGeneratorSettings
 	METHOD createSearchTrees ()V
 		COMMENT Fills {@link #searchTreeManager} with the current item and recipe registry contents.
 	METHOD debugFpsMeterKeyPress (I)V
 		COMMENT Update debugProfilerName in response to number keys in debug screen
 		ARG 1 keyCount
-	METHOD delayCrash (Ljava/util/function/Supplier;)V
-		ARG 1 delayedCrash
+	METHOD delayCrash (Lnet/minecraft/CrashReport;)V
+		ARG 1 report
+	METHOD delayCrashRaw (Lnet/minecraft/CrashReport;)V
+		ARG 1 report
 	METHOD destroy ()V
 		COMMENT Shuts down the minecraft applet by stopping the resource downloads, and clearing up GL stuff" called when the application (or web page) is exited.
-	METHOD displayExperimentalConfirmationDialog (Lnet/minecraft/client/Minecraft$ExperimentalDialogType;Ljava/lang/String;ZLjava/lang/Runnable;)V
-		ARG 1 selectionType
-		ARG 2 levelName
-		ARG 3 customized
-		ARG 4 runnable
-	METHOD doLoadLevel (Ljava/lang/String;Ljava/util/function/Function;Ljava/util/function/Function;ZLnet/minecraft/client/Minecraft$ExperimentalDialogType;)V
-		ARG 1 levelName
-		ARG 2 levelSaveToDatapackFunction
-		ARG 4 vanillaOnly
-		ARG 5 selectionType
 	METHOD emergencySave ()V
 		COMMENT Attempts to free as much memory as possible, including leaving the world and running the garbage collector.
 	METHOD fillReport (Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReport;
@@ -99,7 +86,7 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT Gets the sprite uploader used for paintings.
 	METHOD getProfileProperties ()Lcom/mojang/authlib/properties/PropertyMap;
 		COMMENT Return the player's GameProfile properties
-	METHOD getSearchTree (Lnet/minecraft/client/searchtree/SearchRegistry$Key;)Lnet/minecraft/client/searchtree/MutableSearchTree;
+	METHOD getSearchTree (Lnet/minecraft/client/searchtree/SearchRegistry$Key;)Lnet/minecraft/client/searchtree/SearchTree;
 		ARG 1 key
 	METHOD getSingleplayerServer ()Lnet/minecraft/client/server/IntegratedServer;
 		COMMENT Returns the currently running integrated server
@@ -124,8 +111,6 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT Return true if the player is connected to a realms server
 	METHOD isDemo ()Z
 		COMMENT Gets whether this is a demo or not.
-	METHOD loadLevel (Ljava/lang/String;)V
-		ARG 1 levelName
 	METHOD onFullscreenError (IJ)V
 		ARG 1 error
 		ARG 2 description
@@ -194,7 +179,3 @@ CLASS net/minecraft/client/Minecraft
 			ARG 3 message
 		METHOD isChatAllowed (Z)Z
 			ARG 1 isLocalServer
-		CLASS 4
-			METHOD isChatAllowed (Z)Z
-				COMMENT Checks if this option allows chat.
-				COMMENT if the current Minecraft instance runs a local server

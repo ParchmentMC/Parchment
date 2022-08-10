@@ -3,12 +3,18 @@ CLASS net/minecraft/core/SectionPos
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
+		ARG 3 consumer
 	METHOD aroundAndAtBlockPos (JLit/unimi/dsi/fastutil/longs/LongConsumer;)V
 		ARG 0 pos
+		ARG 2 consumer
 	METHOD aroundAndAtBlockPos (Lnet/minecraft/core/BlockPos;Lit/unimi/dsi/fastutil/longs/LongConsumer;)V
 		ARG 0 pos
+		ARG 1 consumer
 	METHOD aroundChunk (Lnet/minecraft/world/level/ChunkPos;III)Ljava/util/stream/Stream;
 		ARG 0 chunkPos
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD asLong (III)J
 		ARG 0 x
 		ARG 1 y
@@ -24,6 +30,8 @@ CLASS net/minecraft/core/SectionPos
 		ARG 5 z2
 	METHOD blockToSection (J)J
 		ARG 0 levelPos
+	METHOD blockToSectionCoord (D)I
+		ARG 0 coord
 	METHOD blockToSectionCoord (I)I
 		ARG 0 blockCoord
 	METHOD bottomOf (Lnet/minecraft/world/level/chunk/ChunkAccess;)Lnet/minecraft/core/SectionPos;
@@ -31,6 +39,8 @@ CLASS net/minecraft/core/SectionPos
 	METHOD cube (Lnet/minecraft/core/SectionPos;I)Ljava/util/stream/Stream;
 		ARG 0 center
 		ARG 1 radius
+	METHOD getZeroNode (J)J
+		ARG 0 pos
 	METHOD of (III)Lnet/minecraft/core/SectionPos;
 		ARG 0 chunkX
 		ARG 1 chunkY
@@ -39,11 +49,13 @@ CLASS net/minecraft/core/SectionPos
 		ARG 0 packed
 	METHOD of (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/SectionPos;
 		ARG 0 pos
-	METHOD of (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/core/SectionPos;
-		ARG 0 entity
+	METHOD of (Lnet/minecraft/core/Position;)Lnet/minecraft/core/SectionPos;
+		ARG 0 position
 	METHOD of (Lnet/minecraft/world/level/ChunkPos;I)Lnet/minecraft/core/SectionPos;
 		ARG 0 chunkPos
 		ARG 1 y
+	METHOD of (Lnet/minecraft/world/level/entity/EntityAccess;)Lnet/minecraft/core/SectionPos;
+		ARG 0 entity
 	METHOD offset (JIII)J
 		ARG 0 packed
 		ARG 2 dx
@@ -52,13 +64,37 @@ CLASS net/minecraft/core/SectionPos
 	METHOD offset (JLnet/minecraft/core/Direction;)J
 		ARG 0 packed
 		ARG 2 direction
+	METHOD posToSectionCoord (D)I
+		ARG 0 pos
+	METHOD relativeToBlockPos (S)Lnet/minecraft/core/BlockPos;
+		ARG 1 pos
+	METHOD relativeToBlockX (S)I
+		ARG 1 x
+	METHOD relativeToBlockY (S)I
+		ARG 1 y
+	METHOD relativeToBlockZ (S)I
+		ARG 1 z
+	METHOD sectionRelative (I)I
+		ARG 0 rel
 	METHOD sectionRelativePos (Lnet/minecraft/core/BlockPos;)S
 		ARG 0 pos
+	METHOD sectionRelativeX (S)I
+		ARG 0 x
+	METHOD sectionRelativeY (S)I
+		ARG 0 y
+	METHOD sectionRelativeZ (S)I
+		ARG 0 z
 	METHOD sectionToBlockCoord (I)I
 		ARG 0 sectionCoord
+	METHOD sectionToBlockCoord (II)I
+		ARG 0 pos
+		ARG 1 offset
 	METHOD x (J)I
 		ARG 0 packed
 	METHOD y (J)I
 		ARG 0 packed
 	METHOD z (J)I
 		ARG 0 packed
+	CLASS 1
+		METHOD tryAdvance (Ljava/util/function/Consumer;)Z
+			ARG 1 consumer

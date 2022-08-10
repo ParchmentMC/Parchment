@@ -6,21 +6,13 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleAddExperienceOrb (Lnet/minecraft/network/protocol/game/ClientboundAddExperienceOrbPacket;)V
 		COMMENT Spawns an experience orb and sets its value (amount of XP)
 		ARG 1 packet
-	METHOD handleAddMob (Lnet/minecraft/network/protocol/game/ClientboundAddMobPacket;)V
-		COMMENT Spawns the mob entity at the specified location, with the specified rotation, momentum and type. Updates the entities Datawatchers with the entity metadata specified in the packet
-		ARG 1 packet
 	METHOD handleAddObjective (Lnet/minecraft/network/protocol/game/ClientboundSetObjectivePacket;)V
 		COMMENT May create a scoreboard objective, remove an objective from the scoreboard or update an objectives' displayname
 		ARG 1 packet
 	METHOD handleAddOrRemoveRecipes (Lnet/minecraft/network/protocol/game/ClientboundRecipePacket;)V
 		ARG 1 packet
-	METHOD handleAddPainting (Lnet/minecraft/network/protocol/game/ClientboundAddPaintingPacket;)V
-		COMMENT Handles the spawning of a painting object
-		ARG 1 packet
 	METHOD handleAddPlayer (Lnet/minecraft/network/protocol/game/ClientboundAddPlayerPacket;)V
 		COMMENT Handles the creation of a nearby player entity, sets the position and held item
-		ARG 1 packet
-	METHOD handleAddVibrationSignal (Lnet/minecraft/network/protocol/game/ClientboundAddVibrationSignalPacket;)V
 		ARG 1 packet
 	METHOD handleAnimate (Lnet/minecraft/network/protocol/game/ClientboundAnimatePacket;)V
 		COMMENT Renders a specified animation: Waking up a player, a living entity swinging its currently held item, being hurt or receiving a critical hit by normal or magical means
@@ -28,7 +20,7 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleAwardStats (Lnet/minecraft/network/protocol/game/ClientboundAwardStatsPacket;)V
 		COMMENT Updates the players statistics or achievements
 		ARG 1 packet
-	METHOD handleBlockBreakAck (Lnet/minecraft/network/protocol/game/ClientboundBlockBreakAckPacket;)V
+	METHOD handleBlockChangedAck (Lnet/minecraft/network/protocol/game/ClientboundBlockChangedAckPacket;)V
 		ARG 1 packet
 	METHOD handleBlockDestruction (Lnet/minecraft/network/protocol/game/ClientboundBlockDestructionPacket;)V
 		COMMENT Updates all registered IWorldAccess instances with destroyBlockInWorldPartially
@@ -46,8 +38,7 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleChangeDifficulty (Lnet/minecraft/network/protocol/game/ClientboundChangeDifficultyPacket;)V
 		ARG 1 packet
-	METHOD handleChat (Lnet/minecraft/network/protocol/game/ClientboundChatPacket;)V
-		COMMENT Prints a chatmessage in the chat GUI
+	METHOD handleChatPreview (Lnet/minecraft/network/protocol/game/ClientboundChatPreviewPacket;)V
 		ARG 1 packet
 	METHOD handleChatPreview (Lnet/minecraft/network/protocol/game/ClientboundChatPreviewPacket;)V
 		ARG 1 packet

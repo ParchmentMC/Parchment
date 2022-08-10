@@ -20,16 +20,9 @@ CLASS net/minecraft/world/inventory/BeaconMenu
 	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
 		COMMENT Determines whether supplied player can use this container
 		ARG 1 player
-	METHOD updateEffects (II)V
-		ARG 1 primaryEffectStrength
-		ARG 2 secondaryEffectStrength
-	CLASS 1
-		METHOD canPlaceItem (ILnet/minecraft/world/item/ItemStack;)Z
-			COMMENT Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot. For guis use Slot.isItemValid
-			ARG 1 index
-			ARG 2 stack
-		METHOD getMaxStackSize ()I
-			COMMENT Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended.
+	METHOD updateEffects (Ljava/util/Optional;Ljava/util/Optional;)V
+		ARG 1 primaryEffect
+		ARG 2 secondaryEffect
 	CLASS PaymentSlot
 		METHOD <init> (Lnet/minecraft/world/inventory/BeaconMenu;Lnet/minecraft/world/Container;III)V
 			ARG 2 container

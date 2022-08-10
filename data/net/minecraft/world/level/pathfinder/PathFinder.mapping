@@ -1,4 +1,14 @@
 CLASS net/minecraft/world/level/pathfinder/PathFinder
+	METHOD <init> (Lnet/minecraft/world/level/pathfinder/NodeEvaluator;I)V
+		ARG 1 nodeEvaluator
+		ARG 2 maxVisitedNodes
+	METHOD findPath (Lnet/minecraft/util/profiling/ProfilerFiller;Lnet/minecraft/world/level/pathfinder/Node;Ljava/util/Map;FIF)Lnet/minecraft/world/level/pathfinder/Path;
+		ARG 1 profiler
+		ARG 2 node
+		ARG 3 targetPos
+		ARG 4 maxRange
+		ARG 5 accuracy
+		ARG 6 searchDepthMultiplier
 	METHOD findPath (Lnet/minecraft/world/level/PathNavigationRegion;Lnet/minecraft/world/entity/Mob;Ljava/util/Set;FIF)Lnet/minecraft/world/level/pathfinder/Path;
 		COMMENT Finds a path to one of the specified positions and post-processes it or returns null if no path could be found within given accuracy
 		ARG 1 region
@@ -7,6 +17,15 @@ CLASS net/minecraft/world/level/pathfinder/PathFinder
 		ARG 4 maxRange
 		ARG 5 accuracy
 		ARG 6 searchDepthMultiplier
+	METHOD getBestH (Lnet/minecraft/world/level/pathfinder/Node;Ljava/util/Set;)F
+		ARG 1 node
+		ARG 2 targets
+	METHOD lambda$findPath$0 (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/Target;
+		ARG 1 pos
+	METHOD lambda$findPath$1 (Ljava/util/Map;Lnet/minecraft/world/level/pathfinder/Target;)Lnet/minecraft/world/level/pathfinder/Path;
+		ARG 2 pathfinder
+	METHOD lambda$findPath$2 (Ljava/util/Map;Lnet/minecraft/world/level/pathfinder/Target;)Lnet/minecraft/world/level/pathfinder/Path;
+		ARG 2 pathfinder
 	METHOD reconstructPath (Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/core/BlockPos;Z)Lnet/minecraft/world/level/pathfinder/Path;
 		COMMENT Converts a recursive path point structure into a path
 		ARG 1 point

@@ -1,11 +1,12 @@
 CLASS net/minecraft/world/level/levelgen/feature/TreeFeature
-	METHOD doPlace (Lnet/minecraft/world/level/WorldGenLevel;Ljava/util/Random;Lnet/minecraft/core/BlockPos;Ljava/util/function/BiConsumer;Ljava/util/function/BiConsumer;Lnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration;)Z
+	METHOD doPlace (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/BlockPos;Ljava/util/function/BiConsumer;Ljava/util/function/BiConsumer;Ljava/util/function/BiConsumer;Lnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration;)Z
 		ARG 1 level
 		ARG 2 random
 		ARG 3 pos
-		ARG 4 trunkBlockSetter
-		ARG 5 foliageBlockSetter
-		ARG 6 config
+		ARG 4 rootBlockSetter
+		ARG 5 trunkBlockSetter
+		ARG 6 foliageBlockSetter
+		ARG 7 config
 	METHOD getMaxFreeTreeHeight (Lnet/minecraft/world/level/LevelSimulatedReader;ILnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration;)I
 		ARG 1 level
 		ARG 2 trunkHeight
@@ -17,27 +18,12 @@ CLASS net/minecraft/world/level/levelgen/feature/TreeFeature
 	METHOD isBlockWater (Lnet/minecraft/world/level/LevelSimulatedReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 level
 		ARG 1 pos
-	METHOD isFree (Lnet/minecraft/world/level/LevelSimulatedReader;Lnet/minecraft/core/BlockPos;)Z
-		ARG 0 level
-		ARG 1 pos
 	METHOD isReplaceablePlant (Lnet/minecraft/world/level/LevelSimulatedReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 level
 		ARG 1 pos
 	METHOD isVine (Lnet/minecraft/world/level/LevelSimulatedReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 level
 		ARG 1 pos
-	METHOD lambda$doPlace$5 (Lnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration;Lnet/minecraft/world/level/WorldGenLevel;Ljava/util/function/BiConsumer;Ljava/util/Random;IIILnet/minecraft/world/level/levelgen/feature/foliageplacers/FoliagePlacer$FoliageAttachment;)V
-		ARG 7 attachment
-	METHOD lambda$isAirOrLeaves$3 (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 0 state
-	METHOD lambda$isBlockWater$2 (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 0 state
-	METHOD lambda$isFree$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 0 state
-	METHOD lambda$isReplaceablePlant$4 (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 0 state
-	METHOD lambda$isVine$1 (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 0 state
 	METHOD setBlock (Lnet/minecraft/world/level/LevelWriter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 level
 		ARG 2 pos
@@ -46,11 +32,12 @@ CLASS net/minecraft/world/level/levelgen/feature/TreeFeature
 		ARG 0 level
 		ARG 1 pos
 		ARG 2 state
-	METHOD updateLeaves (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Set;Ljava/util/Set;)Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;
+	METHOD updateLeaves (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;)Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;
 		ARG 0 level
-		ARG 1 boundingBox
-		ARG 2 logPositions
-		ARG 3 foliagePositions
+		ARG 1 box
+		ARG 2 rootPositions
+		ARG 3 trunkPositions
+		ARG 4 foliagePositions
 	METHOD validTreePos (Lnet/minecraft/world/level/LevelSimulatedReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 level
 		ARG 1 pos

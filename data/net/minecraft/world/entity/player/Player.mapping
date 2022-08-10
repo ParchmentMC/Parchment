@@ -1,11 +1,12 @@
 CLASS net/minecraft/world/entity/player/Player
 	FIELD gameProfile Lcom/mojang/authlib/GameProfile;
 		COMMENT The player's unique game profile
-	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;FLcom/mojang/authlib/GameProfile;)V
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;FLcom/mojang/authlib/GameProfile;Lnet/minecraft/world/entity/player/ProfilePublicKey;)V
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 yRot
 		ARG 4 gameProfile
+		ARG 5 profilePublicKey
 	METHOD actuallyHurt (Lnet/minecraft/world/damagesource/DamageSource;F)V
 		COMMENT Deals damage to the entity. This will take the armor of the entity into consideration before damaging the health bar.
 		ARG 1 damageSrc
@@ -62,11 +63,6 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 5 distanceZ
 	METHOD closeContainer ()V
 		COMMENT set current crafting inventory back to the 2x2 square
-	METHOD createPlayerUUID (Lcom/mojang/authlib/GameProfile;)Ljava/util/UUID;
-		COMMENT Gets a players UUID given their GameProfie
-		ARG 0 profile
-	METHOD createPlayerUUID (Ljava/lang/String;)Ljava/util/UUID;
-		ARG 0 username
 	METHOD crit (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Called when the entity is dealt a critical hit.
 		ARG 1 entityHit
@@ -112,9 +108,6 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 1 pose
 	METHOD getEnderChestInventory ()Lnet/minecraft/world/inventory/PlayerEnderChestContainer;
 		COMMENT Returns the InventoryEnderChest of this player.
-	METHOD getExperienceReward (Lnet/minecraft/world/entity/player/Player;)I
-		COMMENT Get the experience points the entity currently has.
-		ARG 1 player
 	METHOD getFoodData ()Lnet/minecraft/world/food/FoodData;
 		COMMENT Returns the player's FoodStats object.
 	METHOD getGameProfile ()Lcom/mojang/authlib/GameProfile;
@@ -183,19 +176,8 @@ CLASS net/minecraft/world/entity/player/Player
 		COMMENT Returns true if the player is in spectator mode.
 	METHOD jumpFromGround ()V
 		COMMENT Causes this entity to do an upwards motion (jumping).
-	METHOD killed (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 1 level
-		ARG 2 killedEntity
-	METHOD lambda$decorateDisplayNameComponent$4 (Ljava/lang/String;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-		ARG 2 style
-	METHOD lambda$hurtCurrentlyUsedShield$2 (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/entity/player/Player;)V
-		ARG 1 player
 	METHOD lambda$playShoulderEntityAmbientSound$0 (Lnet/minecraft/world/entity/EntityType;)Z
 		ARG 0 entityType
-	METHOD lambda$playShoulderEntityAmbientSound$1 (Lnet/minecraft/world/entity/EntityType;)V
-		ARG 1 entityType
-	METHOD lambda$respawnEntityOnShoulder$3 (Lnet/minecraft/world/entity/Entity;)V
-		ARG 1 entity
 	METHOD magicCrit (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entityHit
 	METHOD makeStuckInBlock (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/phys/Vec3;)V

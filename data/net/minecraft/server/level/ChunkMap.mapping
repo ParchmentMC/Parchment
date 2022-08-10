@@ -9,13 +9,14 @@ CLASS net/minecraft/server/level/ChunkMap
 		COMMENT Chunks in memory. This should only ever be manipulated by the main thread.
 	FIELD visibleChunkMap Lit/unimi/dsi/fastutil/longs/Long2ObjectLinkedOpenHashMap;
 		COMMENT Same as {@link #loadedChunks}, but immutable for access from other threads. <em>This should never be mutated.</em>
-	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureManager;Ljava/util/concurrent/Executor;Lnet/minecraft/util/thread/BlockableEventLoop;Lnet/minecraft/world/level/chunk/LightChunkGetter;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/server/level/progress/ChunkProgressListener;Lnet/minecraft/world/level/entity/ChunkStatusUpdateListener;Ljava/util/function/Supplier;IZ)V
+	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Ljava/util/concurrent/Executor;Lnet/minecraft/util/thread/BlockableEventLoop;Lnet/minecraft/world/level/chunk/LightChunkGetter;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/server/level/progress/ChunkProgressListener;Lnet/minecraft/world/level/entity/ChunkStatusUpdateListener;Ljava/util/function/Supplier;IZ)V
 		ARG 1 level
 		ARG 2 levelStorageAccess
 		ARG 3 fixerUpper
 		ARG 4 structureManager
 		ARG 5 dispatcher
 		ARG 6 mainThreadExecutor
+		ARG 7 lightChunk
 		ARG 8 generator
 		ARG 9 progressListener
 		ARG 10 chunkStatusListener
@@ -67,7 +68,7 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 holder
 	METHOD processUnloads (Ljava/util/function/BooleanSupplier;)V
 		ARG 1 hasMoreTime
-	METHOD readChunk (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/nbt/CompoundTag;
+	METHOD readChunk (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 pos
 	METHOD releaseLightTicket (Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 chunkPos

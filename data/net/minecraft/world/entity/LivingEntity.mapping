@@ -17,6 +17,7 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 effectInstance
 	METHOD addEffect (Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 effectInstance
+		ARG 2 entity
 	METHOD aiStep ()V
 		COMMENT Called every tick so the entity can update its state as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD animateHurt ()V
@@ -99,8 +100,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 2 food
 	METHOD entityEventForEquipmentBreak (Lnet/minecraft/world/entity/EquipmentSlot;)B
 		ARG 0 slot
-	METHOD equipEventAndSound (Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 equippedItem
+	METHOD forceAddEffect (Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 instance
+		ARG 2 entity
 	METHOD getAbsorptionAmount ()F
 		COMMENT Returns the amount of health added by the Absorption effect.
 	METHOD getArmorValue ()I
@@ -145,9 +147,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 0 index
 	METHOD getEquipmentSlotForItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/EquipmentSlot;
 		ARG 0 item
-	METHOD getExperienceReward (Lnet/minecraft/world/entity/player/Player;)I
-		COMMENT Get the experience points the entity currently has.
-		ARG 1 player
 	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
@@ -191,6 +190,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 lookingEntity
 	METHOD getVoicePitch ()F
 		COMMENT Gets the pitch of living sounds in living entities.
+	METHOD handleEntityEvent (B)V
+		COMMENT Handler for {@link World#setEntityState}
+		ARG 1 id
 	METHOD handleEquipmentChanges (Ljava/util/Map;)V
 		ARG 1 equipments
 	METHOD handleHandSwap (Ljava/util/Map;)V
@@ -258,11 +260,22 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 fluidTag
 	METHOD kill ()V
 		COMMENT Called by the /kill command.
+	METHOD knockback (DDD)V
+		ARG 1 strength
+		ARG 3 x
+		ARG 5 z
 	METHOD lambda$addAdditionalSaveData$1 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD lambda$addAdditionalSaveData$2 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
-		ARG 1 inbt
+		ARG 1 nbt
+	METHOD lambda$handleEquipmentChanges$5 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 2 slot
+		ARG 3 stack
+	METHOD lambda$isHolding$4 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
 	METHOD lambda$tryAddSoulSpeed$0 (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 0 entity
+	METHOD lambda$updateFallFlying$6 (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 0 entity
 	METHOD lerpHeadTo (FI)V
 		ARG 1 yaw
@@ -285,10 +298,15 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 pos
 	METHOD onClimbable ()Z
 		COMMENT Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or for AI reasons)
+	METHOD onEffectAdded (Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 instance
+		ARG 2 entity
 	METHOD onEffectRemoved (Lnet/minecraft/world/effect/MobEffectInstance;)V
 		ARG 1 effectInstance
 	METHOD onEffectUpdated (Lnet/minecraft/world/effect/MobEffectInstance;ZLnet/minecraft/world/entity/Entity;)V
 		ARG 1 effectInstance
+		ARG 2 forced
+		ARG 3 entity
 	METHOD onEnterCombat ()V
 		COMMENT Sends an ENTER_COMBAT packet to the client
 	METHOD onItemPickup (Lnet/minecraft/world/entity/item/ItemEntity;)V
@@ -314,8 +332,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
-	METHOD recreateFromPacket (Lnet/minecraft/network/protocol/game/ClientboundAddMobPacket;)V
-		ARG 1 packet
 	METHOD removeEffect (Lnet/minecraft/world/effect/MobEffect;)Z
 		ARG 1 effect
 	METHOD removeEffectNoUpdate (Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;
@@ -380,7 +396,7 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Set sprinting switch for Entity.
 		ARG 1 sprinting
 	METHOD setStingerCount (I)V
-		ARG 1 count
+		ARG 1 stingerCount
 	METHOD setYBodyRot (F)V
 		COMMENT Set the render yaw offset
 		ARG 1 offset
@@ -434,3 +450,5 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Updates the arm swing progress counters and animation progress
 	METHOD updateUsingItem (Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 usingItem
+	METHOD verifyEquippedItem (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 stack

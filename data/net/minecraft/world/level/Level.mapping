@@ -1,7 +1,7 @@
 CLASS net/minecraft/world/level/Level
 	FIELD randValue I
 		COMMENT Contains the current Linear Congruential Generator seed for block updates. Used with an A value of 3 and a C value of 0x3c6ef35f, producing a highly planar series of values ill-suited for choosing random blocks in a 16x128x16 field.
-	METHOD <init> (Lnet/minecraft/world/level/storage/WritableLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Holder;Ljava/util/function/Supplier;ZZJ)V
+	METHOD <init> (Lnet/minecraft/world/level/storage/WritableLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Holder;Ljava/util/function/Supplier;ZZJI)V
 		ARG 1 levelData
 		ARG 2 dimension
 		ARG 3 dimensionTypeRegistration
@@ -9,6 +9,7 @@ CLASS net/minecraft/world/level/Level
 		ARG 5 isClientSide
 		ARG 6 isDebug
 		ARG 7 biomeZoomSeed
+		ARG 9 maxChainedNeighborUpdates
 	METHOD addAlwaysVisibleParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
 		ARG 1 particleData
 		ARG 2 x
@@ -206,6 +207,10 @@ CLASS net/minecraft/world/level/Level
 		ARG 2 state
 	METHOD isThundering ()Z
 		COMMENT Returns true if the current thunder strength (weighted with the rain strength) is greater than 0.9
+	METHOD lambda$getEntities$1 (Lnet/minecraft/world/entity/Entity;Ljava/util/function/Predicate;Ljava/util/List;Lnet/minecraft/world/entity/Entity;)V
+		ARG 3 entity
+	METHOD lambda$getEntities$2 (Ljava/util/function/Predicate;Ljava/util/List;Lnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/entity/Entity;)V
+		ARG 3 entity
 	METHOD loadedAndEntityCanStandOn (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 pos
 		ARG 2 entity
@@ -238,16 +243,16 @@ CLASS net/minecraft/world/level/Level
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
-		ARG 8 sound
-		ARG 9 source
+		ARG 8 soundEvent
+		ARG 9 soundSource
 		ARG 10 volume
 		ARG 11 pitch
 		ARG 12 seed
 	METHOD playSeededSound (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFJ)V
 		ARG 1 player
 		ARG 2 entity
-		ARG 3 sound
-		ARG 4 source
+		ARG 3 soundEvent
+		ARG 4 soundSource
 		ARG 5 volume
 		ARG 6 pitch
 		ARG 7 seed
@@ -275,11 +280,6 @@ CLASS net/minecraft/world/level/Level
 		ARG 4 category
 		ARG 5 volume
 		ARG 6 pitch
-	METHOD postGameEventInRadius (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;I)V
-		ARG 1 entity
-		ARG 2 gameEvent
-		ARG 3 pos
-		ARG 4 notificationRadius
 	METHOD prepareWeather ()V
 		COMMENT Called from World constructor to set rainingStrength and thunderingStrength
 	METHOD removeBlock (Lnet/minecraft/core/BlockPos;Z)Z

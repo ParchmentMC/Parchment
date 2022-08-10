@@ -2,12 +2,26 @@ CLASS net/minecraft/world/level/block/entity/StructureBlockEntity
 	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 blockState
-	METHOD createRandom (J)Ljava/util/Random;
+	METHOD calculateEnclosingBoundingBox (Lnet/minecraft/core/BlockPos;Ljava/util/stream/Stream;)Ljava/util/Optional;
+		ARG 0 pos
+		ARG 1 relatedCorners
+	METHOD createRandom (J)Lnet/minecraft/util/RandomSource;
 		ARG 0 seed
 	METHOD createdBy (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 author
+	METHOD getRelatedCorners (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Ljava/util/stream/Stream;
+		ARG 1 minPos
+		ARG 2 maxPos
 	METHOD lambda$detectSize$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
 		ARG 2 boundingBox
+	METHOD lambda$getRelatedCorners$1 (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD lambda$getRelatedCorners$2 (Lnet/minecraft/world/level/block/entity/BlockEntity;)Z
+		ARG 0 blockEntity
+	METHOD lambda$getRelatedCorners$3 (Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/world/level/block/entity/StructureBlockEntity;
+		ARG 0 blockEntity
+	METHOD lambda$getRelatedCorners$4 (Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)Z
+		ARG 1 blockEntity
 	METHOD loadStructure (Lnet/minecraft/server/level/ServerLevel;)Z
 		ARG 1 level
 	METHOD loadStructure (Lnet/minecraft/server/level/ServerLevel;Z)Z

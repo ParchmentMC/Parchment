@@ -1,7 +1,7 @@
 CLASS net/minecraft/world/inventory/Slot
 	METHOD <init> (Lnet/minecraft/world/Container;III)V
 		ARG 1 container
-		ARG 2 index
+		ARG 2 slot
 		ARG 3 x
 		ARG 4 y
 	METHOD allowModification (Lnet/minecraft/world/entity/player/Player;)Z
@@ -19,6 +19,8 @@ CLASS net/minecraft/world/inventory/Slot
 		COMMENT Returns if this slot contains a stack.
 	METHOD isActive ()Z
 		COMMENT Actualy only call when we want to render the white square effect over the slots. Return always True, except for the armor slot of the Donkey/Mule (we can't interact with the Undead and Skeleton horses)
+	METHOD lambda$safeTake$0 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 2 stack
 	METHOD mayPickup (Lnet/minecraft/world/entity/player/Player;)Z
 		COMMENT Return whether this slot's stack can be taken from this slot.
 		ARG 1 player
@@ -45,9 +47,17 @@ CLASS net/minecraft/world/inventory/Slot
 		ARG 1 stack
 	METHOD safeInsert (Lnet/minecraft/world/item/ItemStack;I)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
-		ARG 2 count
+		ARG 2 increment
+	METHOD safeTake (IILnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 count
+		ARG 2 decrement
+		ARG 3 player
 	METHOD set (Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Helper method to put a stack in the slot.
 		ARG 1 stack
 	METHOD setChanged ()V
 		COMMENT Called when the stack in a Slot changes
+	METHOD tryRemove (IILnet/minecraft/world/entity/player/Player;)Ljava/util/Optional;
+		ARG 1 count
+		ARG 2 decrement
+		ARG 3 player

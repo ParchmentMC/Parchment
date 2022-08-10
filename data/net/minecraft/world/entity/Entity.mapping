@@ -76,6 +76,10 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 collisionBox
 		ARG 3 level
 		ARG 4 potentialHits
+	METHOD collideWithShapes (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;Ljava/util/List;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 deltaMovement
+		ARG 1 entityBB
+		ARG 2 shapes
 	METHOD copyPosition (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Sets this entity's location and angles to the location and angles of the passed in entity.
 		ARG 1 entity
@@ -113,16 +117,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 destination
 	METHOD gameEvent (Lnet/minecraft/world/level/gameevent/GameEvent;)V
 		ARG 1 event
-	METHOD gameEvent (Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;)V
-		ARG 1 event
-		ARG 2 pos
 	METHOD gameEvent (Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 event
 		ARG 2 entity
-	METHOD gameEvent (Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/BlockPos;)V
-		ARG 1 event
-		ARG 2 entity
-		ARG 3 pos
 	METHOD getBlockExplosionResistance (Lnet/minecraft/world/level/Explosion;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/FluidState;F)F
 		COMMENT Explosion resistance of a block relative to this entity
 		ARG 1 explosion
@@ -135,8 +132,6 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Gets the bounding box of this Entity, adjusted to take auxiliary entities into account (e.g. the tile contained by a minecart, such as a command block).
 	METHOD getBoundingBoxForPose (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/phys/AABB;
 		ARG 1 pose
-	METHOD getBrightness ()F
-		COMMENT Gets how bright this entity is.
 	METHOD getCollisionHorizontalEscapeVector (DDF)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 vehicleWidth
 		ARG 2 passengerWidth
@@ -170,6 +165,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 partialTicks
 	METHOD getFluidHeight (Lnet/minecraft/tags/TagKey;)D
 		ARG 1 fluidTag
+	METHOD getHandHoldingItemAngle (Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 item
 	METHOD getInputVector (Lnet/minecraft/world/phys/Vec3;FF)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 relative
 		ARG 1 motionScaler
@@ -281,6 +278,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD isFree (Lnet/minecraft/world/phys/AABB;)Z
 		COMMENT Determines if the entity has no collision with a block or a liquid within the specified bounding box.
 		ARG 1 box
+	METHOD isHorizontalCollisionMinor (Lnet/minecraft/world/phys/Vec3;)Z
+		ARG 1 deltaMovement
 	METHOD isIgnoringBlockTriggers ()Z
 		COMMENT Return whether this entity should NOT trigger a pressure plate or a tripwire.
 	METHOD isInWall ()Z
@@ -315,11 +314,30 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT If at least 1 entity is riding this one
 	METHOD kill ()V
 		COMMENT Called by the /kill command.
-	METHOD killed (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 1 level
-		ARG 2 killedEntity
+	METHOD lambda$findDimensionEntryPoint$5 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
+		ARG 2 pos
+	METHOD lambda$findDimensionEntryPoint$6 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/level/portal/PortalInfo;
+		ARG 2 area
+	METHOD lambda$getDisplayName$11 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 style
+	METHOD lambda$hasExactlyOnePlayerPassenger$15 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 passenger
+	METHOD lambda$hasIndirectPassenger$16 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 passenger
+	METHOD lambda$isInWall$1 (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/core/BlockPos;)Z
+		ARG 2 pos
 	METHOD lambda$move$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 loadedState
+	METHOD lambda$refreshDimensions$13 (Lnet/minecraft/world/entity/EntityDimensions;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 2 freePos
+	METHOD lambda$removePassenger$4 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 passenger
+	METHOD lambda$startRiding$2 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 passenger
+	METHOD lambda$startRiding$3 (Lnet/minecraft/world/entity/Entity;)V
+		ARG 0 player
+	METHOD lambda$teleportTo$12 (Lnet/minecraft/world/entity/Entity;)V
+		ARG 0 passenger
 	METHOD lavaHurt ()V
 		COMMENT Called whenever the entity is walking inside of lava.
 	METHOD lerpHeadTo (FI)V
@@ -481,10 +499,6 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD saveWithoutId (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Writes this entity, including passengers, to NBT, regardless as to whether or not it is removed or a passenger. Does <b>not</b> include the entity's type ID, so the NBT is insufficient to recreate the entity using {@link AnvilChunkLoader#readWorldEntity}. Use {@link #writeUnlessPassenger} for that purpose.
 		ARG 1 compound
-	METHOD sendMessage (Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V
-		COMMENT Send a chat message to the CommandSender
-		ARG 1 component
-		ARG 2 senderUUID
 	METHOD setAirSupply (I)V
 		ARG 1 air
 	METHOD setBoundingBox (Lnet/minecraft/world/phys/AABB;)V
@@ -517,12 +531,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 noGravity
 	METHOD setOnGround (Z)V
 		ARG 1 onGround
-	METHOD setPacketCoordinates (DDD)V
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-	METHOD setPacketCoordinates (Lnet/minecraft/world/phys/Vec3;)V
-		ARG 1 packetCoordinates
 	METHOD setPos (DDD)V
 		COMMENT Sets the x,y,z of the entity from the given parameters. Also seems to set up a bounding box.
 		ARG 1 x
@@ -618,6 +626,10 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD stopSeenByPlayer (Lnet/minecraft/server/level/ServerPlayer;)V
 		COMMENT Removes the given player from the list of players tracking this entity. See {@link Entity#addTrackingPlayer} for more information on tracking.
 		ARG 1 serverPlayer
+	METHOD syncPacketPositionCodec (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
 	METHOD teleportTo (DDD)V
 		COMMENT Sets the position of the entity and updates the 'last' variables
 		ARG 1 x

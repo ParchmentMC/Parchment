@@ -1,9 +1,22 @@
 CLASS net/minecraft/world/level/chunk/ChunkAccess
+	METHOD <init> (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/UpgradeData;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/core/Registry;J[Lnet/minecraft/world/level/chunk/LevelChunkSection;Lnet/minecraft/world/level/levelgen/blending/BlendingData;)V
+		ARG 1 chunkPos
+		ARG 2 upgradeData
+		ARG 3 levelHeightAccessor
+		ARG 4 biomeRegistry
+		ARG 5 inhabitedTime
+		ARG 7 sections
+		ARG 8 blendingData
 	METHOD addEntity (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD addPackedPostProcess (SI)V
 		ARG 1 packedPosition
 		ARG 2 index
+	METHOD carverBiome (Ljava/util/function/Supplier;)Lnet/minecraft/world/level/biome/BiomeGenerationSettings;
+		ARG 1 caverBiomeSettingsSupplier
+	METHOD fillBiomesFromNoise (Lnet/minecraft/world/level/biome/BiomeResolver;Lnet/minecraft/world/level/biome/Climate$Sampler;)V
+		ARG 1 resolver
+		ARG 2 sampler
 	METHOD getBlockEntityNbt (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 pos
 	METHOD getBlockEntityNbtForSaving (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/nbt/CompoundTag;
@@ -16,18 +29,34 @@ CLASS net/minecraft/world/level/chunk/ChunkAccess
 		ARG 3 z
 	METHOD getOrCreateHeightmapUnprimed (Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/world/level/levelgen/Heightmap;
 		ARG 1 type
+	METHOD getOrCreateNoiseChunk (Ljava/util/function/Function;)Lnet/minecraft/world/level/levelgen/NoiseChunk;
+		ARG 1 noiseChunkCreator
 	METHOD getOrCreateOffsetList ([Lit/unimi/dsi/fastutil/shorts/ShortList;I)Lit/unimi/dsi/fastutil/shorts/ShortList;
 		ARG 0 packedPositions
 		ARG 1 index
+	METHOD getSection (I)Lnet/minecraft/world/level/chunk/LevelChunkSection;
+		ARG 1 index
+	METHOD hasPrimedHeightmap (Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Z
+		ARG 1 type
+	METHOD incrementInhabitedTime (J)V
+		ARG 1 amount
 	METHOD isYSpaceEmpty (II)Z
 		ARG 1 startY
 		ARG 2 endY
+	METHOD lambda$getOrCreateHeightmapUnprimed$0 (Lnet/minecraft/world/level/levelgen/Heightmap$Types;)Lnet/minecraft/world/level/levelgen/Heightmap;
+		ARG 1 absentType
 	METHOD markPosForPostprocessing (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD removeBlockEntity (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
+	METHOD replaceMissingSections (Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/core/Registry;[Lnet/minecraft/world/level/chunk/LevelChunkSection;)V
+		ARG 0 levelHeightAccessor
+		ARG 1 biomeRegistry
+		ARG 2 sections
 	METHOD setAllStarts (Ljava/util/Map;)V
 		ARG 1 structureStarts
+	METHOD setBlendingData (Lnet/minecraft/world/level/levelgen/blending/BlendingData;)V
+		ARG 1 blendingData
 	METHOD setBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 blockEntity
 	METHOD setBlockEntityNbt (Lnet/minecraft/nbt/CompoundTag;)V

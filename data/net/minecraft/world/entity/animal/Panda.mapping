@@ -16,7 +16,7 @@ CLASS net/minecraft/world/entity/animal/Panda
 		ARG 4 spawnData
 		ARG 5 dataTag
 	METHOD getFlag (I)Z
-		ARG 1 flagId
+		ARG 1 flag
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getLieOnBackAmount (F)F
@@ -34,8 +34,6 @@ CLASS net/minecraft/world/entity/animal/Panda
 		ARG 1 stack
 	METHOD isFoodOrCake (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
-	METHOD lambda$static$0 (Lnet/minecraft/world/entity/item/ItemEntity;)Z
-		ARG 0 itemEntity
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
@@ -83,8 +81,8 @@ CLASS net/minecraft/world/entity/animal/Panda
 			ARG 0 index
 		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/entity/animal/Panda$Gene;
 			ARG 0 name
-		METHOD getRandom (Ljava/util/Random;)Lnet/minecraft/world/entity/animal/Panda$Gene;
-			ARG 0 rand
+		METHOD getRandom (Lnet/minecraft/util/RandomSource;)Lnet/minecraft/world/entity/animal/Panda$Gene;
+			ARG 0 random
 		METHOD getVariantFromGenes (Lnet/minecraft/world/entity/animal/Panda$Gene;Lnet/minecraft/world/entity/animal/Panda$Gene;)Lnet/minecraft/world/entity/animal/Panda$Gene;
 			ARG 0 mainGene
 			ARG 1 hiddenGene
@@ -118,6 +116,9 @@ CLASS net/minecraft/world/entity/animal/Panda
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS PandaBreedGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Panda;D)V
+			ARG 1 panda
+			ARG 2 speedModifier
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 	CLASS PandaPanicGoal

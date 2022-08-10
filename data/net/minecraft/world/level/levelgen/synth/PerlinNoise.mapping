@@ -1,26 +1,31 @@
 CLASS net/minecraft/world/level/levelgen/synth/PerlinNoise
 	COMMENT This class generates multiple octaves of perlin noise. Each individual octave is an instance of {@link net.minecraft.world.level.levelgen.synth.ImprovedNoise}.
 	COMMENT Mojang uses the term 'Perlin' to describe octaves or fBm (Fractal Brownian Motion) noise.
-	METHOD <init> (Lnet/minecraft/world/level/levelgen/RandomSource;Lcom/mojang/datafixers/util/Pair;Z)V
-		ARG 1 randomSource
+	METHOD <init> (Lnet/minecraft/util/RandomSource;Lcom/mojang/datafixers/util/Pair;Z)V
+		ARG 1 random
+		ARG 2 octavesAndAmplitudes
+	METHOD create (Lnet/minecraft/util/RandomSource;ID[D)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
+		ARG 0 random
+		ARG 1 firstOctave
+		ARG 2 firstAmplitude
+		ARG 4 amplitudes
+	METHOD create (Lnet/minecraft/util/RandomSource;ILit/unimi/dsi/fastutil/doubles/DoubleList;)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
+		ARG 0 random
+		ARG 1 firstOctave
 		ARG 2 amplitudes
-	METHOD create (Lnet/minecraft/world/level/levelgen/RandomSource;ID[D)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
-		ARG 0 randomSource
-	METHOD create (Lnet/minecraft/world/level/levelgen/RandomSource;ILit/unimi/dsi/fastutil/doubles/DoubleList;)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
-		ARG 0 randomSource
+	METHOD create (Lnet/minecraft/util/RandomSource;Ljava/util/List;)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
+		ARG 0 random
 		ARG 1 octaves
+	METHOD create (Lnet/minecraft/util/RandomSource;Ljava/util/stream/IntStream;)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
+		ARG 0 random
+		ARG 1 octaves
+	METHOD createLegacyForBlendedNoise (Lnet/minecraft/util/RandomSource;Ljava/util/stream/IntStream;)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
+		ARG 0 random
+		ARG 1 octaves
+	METHOD createLegacyForLegacyNetherBiome (Lnet/minecraft/util/RandomSource;ILit/unimi/dsi/fastutil/doubles/DoubleList;)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
+		ARG 0 random
+		ARG 1 firstOctave
 		ARG 2 amplitudes
-	METHOD create (Lnet/minecraft/world/level/levelgen/RandomSource;Ljava/util/List;)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
-		ARG 0 randomSource
-		ARG 1 octaves
-	METHOD create (Lnet/minecraft/world/level/levelgen/RandomSource;Ljava/util/stream/IntStream;)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
-		ARG 0 randomSource
-		ARG 1 octaves
-	METHOD createLegacyForBlendedNoise (Lnet/minecraft/world/level/levelgen/RandomSource;Ljava/util/stream/IntStream;)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
-		ARG 0 randomSource
-		ARG 1 octaves
-	METHOD createLegacyForLegacyNetherBiome (Lnet/minecraft/world/level/levelgen/RandomSource;ILit/unimi/dsi/fastutil/doubles/DoubleList;)Lnet/minecraft/world/level/levelgen/synth/PerlinNoise;
-		ARG 0 randomSource
 	METHOD getOctaveNoise (I)Lnet/minecraft/world/level/levelgen/synth/ImprovedNoise;
 		COMMENT @return A single octave of Perlin noise.
 		ARG 1 octave
@@ -37,7 +42,7 @@ CLASS net/minecraft/world/level/levelgen/synth/PerlinNoise
 		ARG 11 useFixedY
 	METHOD makeAmplitudes (Lit/unimi/dsi/fastutil/ints/IntSortedSet;)Lcom/mojang/datafixers/util/Pair;
 		ARG 0 octaves
-	METHOD skipOctave (Lnet/minecraft/world/level/levelgen/RandomSource;)V
-		ARG 0 randomSource
+	METHOD skipOctave (Lnet/minecraft/util/RandomSource;)V
+		ARG 0 random
 	METHOD wrap (D)D
 		ARG 0 value

@@ -4,10 +4,27 @@ CLASS net/minecraft/world/entity/ai/behavior/GateBehavior
 		ARG 2 exitErasedMemories
 		ARG 3 orderPolicy
 		ARG 4 runningPolicy
+		ARG 5 durations
 	METHOD canStillUse (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)Z
 		ARG 1 level
 		ARG 2 entity
 		ARG 3 gameTime
+	METHOD lambda$canStillUse$1 (Lnet/minecraft/world/entity/ai/behavior/Behavior;)Z
+		ARG 0 behaviour
+	METHOD lambda$canStillUse$2 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;JLnet/minecraft/world/entity/ai/behavior/Behavior;)Z
+		ARG 4 behaviour
+	METHOD lambda$new$0 (Lcom/mojang/datafixers/util/Pair;)V
+		ARG 1 pair
+	METHOD lambda$stop$5 (Lnet/minecraft/world/entity/ai/behavior/Behavior;)Z
+		ARG 0 behaviour
+	METHOD lambda$stop$6 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;JLnet/minecraft/world/entity/ai/behavior/Behavior;)V
+		ARG 4 behaviour
+	METHOD lambda$tick$3 (Lnet/minecraft/world/entity/ai/behavior/Behavior;)Z
+		ARG 0 behaviour
+	METHOD lambda$tick$4 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;JLnet/minecraft/world/entity/ai/behavior/Behavior;)V
+		ARG 4 behaviour
+	METHOD lambda$toString$7 (Lnet/minecraft/world/entity/ai/behavior/Behavior;)Z
+		ARG 0 behaviour
 	METHOD start (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)V
 		ARG 1 level
 		ARG 2 entity
@@ -25,6 +42,10 @@ CLASS net/minecraft/world/entity/ai/behavior/GateBehavior
 	CLASS OrderPolicy
 		METHOD <init> (Ljava/lang/String;ILjava/util/function/Consumer;)V
 			ARG 3 consumer
+		METHOD apply (Lnet/minecraft/world/entity/ai/behavior/ShufflingList;)V
+			ARG 1 list
+		METHOD lambda$static$0 (Lnet/minecraft/world/entity/ai/behavior/ShufflingList;)V
+			ARG 0 consumer
 	CLASS RunningPolicy
 		METHOD apply (Ljava/util/stream/Stream;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)V
 			ARG 1 behaviors

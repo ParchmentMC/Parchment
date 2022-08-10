@@ -1,12 +1,12 @@
 CLASS net/minecraft/client/gui/components/OptionsList
-	METHOD addBig (Lnet/minecraft/client/Option;)I
+	METHOD addBig (Lnet/minecraft/client/OptionInstance;)I
 		ARG 1 option
-	METHOD addSmall (Lnet/minecraft/client/Option;Lnet/minecraft/client/Option;)V
+	METHOD addSmall (Lnet/minecraft/client/OptionInstance;Lnet/minecraft/client/OptionInstance;)V
 		ARG 1 leftOption
 		ARG 2 rightOption
-	METHOD addSmall ([Lnet/minecraft/client/Option;)V
+	METHOD addSmall ([Lnet/minecraft/client/OptionInstance;)V
 		ARG 1 options
-	METHOD findOption (Lnet/minecraft/client/Option;)Lnet/minecraft/client/gui/components/AbstractWidget;
+	METHOD findOption (Lnet/minecraft/client/OptionInstance;)Lnet/minecraft/client/gui/components/AbstractWidget;
 		ARG 1 option
 	METHOD getMouseOver (DD)Ljava/util/Optional;
 		ARG 1 mouseX
@@ -14,9 +14,8 @@ CLASS net/minecraft/client/gui/components/OptionsList
 	CLASS Entry
 		METHOD <init> (Ljava/util/Map;)V
 			ARG 1 options
-		METHOD big (Lnet/minecraft/client/Options;ILnet/minecraft/client/Option;)Lnet/minecraft/client/gui/components/OptionsList$Entry;
-			COMMENT Creates an options row with button for the specified option
-			ARG 0 settings
+		METHOD big (Lnet/minecraft/client/Options;ILnet/minecraft/client/OptionInstance;)Lnet/minecraft/client/gui/components/OptionsList$Entry;
+			ARG 0 options
 			ARG 1 guiWidth
 			ARG 2 option
 		METHOD lambda$render$0 (ILcom/mojang/blaze3d/vertex/PoseStack;IIFLnet/minecraft/client/gui/components/AbstractWidget;)V
@@ -32,9 +31,8 @@ CLASS net/minecraft/client/gui/components/OptionsList
 			ARG 8 mouseY
 			ARG 9 isMouseOver
 			ARG 10 partialTick
-		METHOD small (Lnet/minecraft/client/Options;ILnet/minecraft/client/Option;Lnet/minecraft/client/Option;)Lnet/minecraft/client/gui/components/OptionsList$Entry;
-			COMMENT Creates an options row with 1 or 2 buttons for specified options
-			ARG 0 settings
+		METHOD small (Lnet/minecraft/client/Options;ILnet/minecraft/client/OptionInstance;Lnet/minecraft/client/OptionInstance;)Lnet/minecraft/client/gui/components/OptionsList$Entry;
+			ARG 0 options
 			ARG 1 guiWidth
 			ARG 2 leftOption
 			ARG 3 rightOption

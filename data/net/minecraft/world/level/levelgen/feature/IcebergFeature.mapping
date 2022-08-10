@@ -17,7 +17,7 @@ CLASS net/minecraft/world/level/levelgen/feature/IcebergFeature
 		ARG 8 ellipseOrigin
 		ARG 9 majorRadius
 		ARG 10 minorRadius
-	METHOD generateCutOut (Ljava/util/Random;Lnet/minecraft/world/level/LevelAccessor;IILnet/minecraft/core/BlockPos;ZIDI)V
+	METHOD generateCutOut (Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/level/LevelAccessor;IILnet/minecraft/core/BlockPos;ZIDI)V
 		ARG 1 random
 		ARG 2 level
 		ARG 3 majorAxis
@@ -27,7 +27,7 @@ CLASS net/minecraft/world/level/levelgen/feature/IcebergFeature
 		ARG 7 ellipseRadius
 		ARG 8 angle
 		ARG 10 minorAxis
-	METHOD generateIcebergBlock (Lnet/minecraft/world/level/LevelAccessor;Ljava/util/Random;Lnet/minecraft/core/BlockPos;IIIIIIZIDZLnet/minecraft/world/level/block/state/BlockState;)V
+	METHOD generateIcebergBlock (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/BlockPos;IIIIIIZIDZLnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 level
 		ARG 2 random
 		ARG 3 pos
@@ -55,12 +55,12 @@ CLASS net/minecraft/world/level/levelgen/feature/IcebergFeature
 			COMMENT The maximum height of the iceberg.
 		ARG 3 maxRadius
 			COMMENT The maximum radius of the iceberg, at the horizontal.
-	METHOD heightDependentRadiusRound (Ljava/util/Random;III)I
+	METHOD heightDependentRadiusRound (Lnet/minecraft/util/RandomSource;III)I
 		ARG 1 random
 		ARG 2 y
 		ARG 3 height
 		ARG 4 majorAxis
-	METHOD heightDependentRadiusSteep (Ljava/util/Random;III)I
+	METHOD heightDependentRadiusSteep (Lnet/minecraft/util/RandomSource;III)I
 		COMMENT Given a horizontal projection of an iceberg, defines the three dimensional extrusion by defining a radius at any given y value.
 		COMMENT The radius curve is a linear function, with a slope that is both dependent on the {@code majorAxis} and randomly varies, which results in steep conical icebergs.
 		ARG 1 random
@@ -76,7 +76,7 @@ CLASS net/minecraft/world/level/levelgen/feature/IcebergFeature
 	METHOD removeFloatingSnowLayer (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 level
 		ARG 2 pos
-	METHOD setIcebergBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelAccessor;Ljava/util/Random;IIZZLnet/minecraft/world/level/block/state/BlockState;)V
+	METHOD setIcebergBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/util/RandomSource;IIZZLnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 level
 		ARG 3 random
@@ -85,7 +85,7 @@ CLASS net/minecraft/world/level/levelgen/feature/IcebergFeature
 		ARG 6 elliptical
 		ARG 7 placeSnow
 		ARG 8 state
-	METHOD signedDistanceCircle (IILnet/minecraft/core/BlockPos;ILjava/util/Random;)D
+	METHOD signedDistanceCircle (IILnet/minecraft/core/BlockPos;ILnet/minecraft/util/RandomSource;)D
 		ARG 1 x
 		ARG 2 z
 		ARG 3 center

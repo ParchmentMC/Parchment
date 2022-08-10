@@ -15,9 +15,6 @@ CLASS net/minecraft/world/entity/EntityType
 	METHOD byString (Ljava/lang/String;)Ljava/util/Optional;
 		COMMENT Tries to get the entity type assosiated by the key.
 		ARG 0 key
-	METHOD create (ILnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/Entity;
-		ARG 0 id
-		ARG 1 level
 	METHOD create (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
 		ARG 0 compound
 		ARG 1 level
@@ -32,9 +29,6 @@ CLASS net/minecraft/world/entity/EntityType
 		ARG 8 shouldOffsetYMore
 	METHOD create (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 level
-	METHOD create (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/world/entity/Entity;
-		ARG 0 level
-		ARG 1 type
 	METHOD getAABB (DDD)Lnet/minecraft/world/phys/AABB;
 		ARG 1 x
 		ARG 3 y
@@ -51,6 +45,15 @@ CLASS net/minecraft/world/entity/EntityType
 		ARG 1 tag
 	METHOD isBlockDangerous (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
+	METHOD lambda$create$0 (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/world/entity/Entity;
+		ARG 1 entityType
+	METHOD lambda$create$1 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD lambda$loadEntityRecursive$3 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/Level;Ljava/util/function/Function;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/entity/Entity;
+		ARG 3 entity
+	METHOD loadEntitiesRecursive (Ljava/util/List;Lnet/minecraft/world/level/Level;)Ljava/util/stream/Stream;
+		ARG 0 tags
+		ARG 1 level
 	METHOD loadEntityRecursive (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/Level;Ljava/util/function/Function;)Lnet/minecraft/world/entity/Entity;
 		ARG 0 compound
 		ARG 1 level
@@ -83,6 +86,9 @@ CLASS net/minecraft/world/entity/EntityType
 		ARG 1 player
 		ARG 2 spawnedEntity
 		ARG 3 itemNBT
+	CLASS 1
+		METHOD tryAdvance (Ljava/util/function/Consumer;)Z
+			ARG 1 consumer
 	CLASS Builder
 		METHOD <init> (Lnet/minecraft/world/entity/EntityType$EntityFactory;Lnet/minecraft/world/entity/MobCategory;)V
 			ARG 1 factory

@@ -1,6 +1,5 @@
 import com.google.common.io.ByteStreams
 import org.parchmentmc.compass.CompassPlugin
-import org.parchmentmc.compass.storage.io.MappingIOFormat
 import org.parchmentmc.compass.tasks.GenerateExport
 import org.parchmentmc.compass.tasks.GenerateSanitizedExport
 import org.parchmentmc.compass.tasks.VersionDownload
@@ -10,7 +9,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 plugins {
-    id 'org.parchmentmc.compass' version '0.8.0'
+    id 'org.parchmentmc.compass' version '0.8.1'
     id 'org.parchmentmc.writtenbooks' version '0.5.+'
     id 'maven-publish'
     id 'java-base'
@@ -34,9 +33,7 @@ writtenbooks {
 }
 
 compass {
-    version = '1.18.2'
-    productionDataFormat = MappingIOFormat.ENIGMA_EXPLODED
-    stagingDataFormat = MappingIOFormat.ENIGMA_EXPLODED
+    version = '1.19.2'
 }
 
 repositories {
@@ -57,13 +54,13 @@ configurations {
 
 dependencies {
     // MCPConfig for the SRG intermediate
-    mcpconfig 'de.oceanlabs.mcp:mcp_config:1.18.2-20220228.144236'
+    mcpconfig 'de.oceanlabs.mcp:mcp_config:1.19.2-20220805.130853'
 
     // ForgeAutoRenamingTool, for remapping the client JAR
-    remapper 'net.minecraftforge:ForgeAutoRenamingTool:0.1.21'
+    remapper 'net.minecraftforge:ForgeAutoRenamingTool:0.1.24'
 
     // Enigma, pretty interface for editing mappings
-    enigma 'cuchaz:enigma-swing:2.0.0'
+    enigma 'cuchaz:enigma-swing:2.1.0'
 }
 
 afterEvaluate {
