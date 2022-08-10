@@ -25,14 +25,6 @@ CLASS net/minecraft/client/player/LocalPlayer
 		COMMENT Deals damage to the entity. This will take the armor of the entity into consideration before damaging the health bar.
 		ARG 1 damageSrc
 		ARG 2 damageAmount
-	METHOD chat (Ljava/lang/String;)V
-		COMMENT Sends a chat message from the player.
-		ARG 1 message
-	METHOD chat (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 message
-		ARG 2 chatPreview
-	METHOD chatSigned (Ljava/lang/String;)V
-		ARG 1 message
 	METHOD buildSignedContent (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/ChatMessageContent;
 		ARG 1 plain
 		ARG 2 decorated
@@ -41,11 +33,6 @@ CLASS net/minecraft/client/player/LocalPlayer
 		ARG 2 chatPreview
 	METHOD closeContainer ()V
 		COMMENT set current crafting inventory back to the 2x2 square
-	METHOD command (Ljava/lang/String;)V
-		ARG 1 command
-	METHOD command (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 command
-		ARG 2 chatPreview
 	METHOD commandSigned (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 command
 		ARG 2 chatPreview
@@ -117,21 +104,9 @@ CLASS net/minecraft/client/player/LocalPlayer
 	METHOD sendChat (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 message
 		ARG 2 chatPreview
-	METHOD sendChat (Lnet/minecraft/network/chat/MessageSigner;Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 messageSigner
-		ARG 2 message
-		ARG 3 chatPreview
 	METHOD sendCommand (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 command
 		ARG 2 chatPreview
-	METHOD sendCommand (Lnet/minecraft/network/chat/MessageSigner;Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 messageSigner
-		ARG 2 command
-		ARG 3 chatPreview
-	METHOD sendMessage (Lnet/minecraft/network/chat/Component;Ljava/util/UUID;)V
-		COMMENT Send a chat message to the CommandSender
-		ARG 1 component
-		ARG 2 senderUUID
 	METHOD sendPosition ()V
 		COMMENT called every tick when the player is on foot. Performs all the things that normally happen during movement.
 	METHOD setExperienceValues (FII)V
