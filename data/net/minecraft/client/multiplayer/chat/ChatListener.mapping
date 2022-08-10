@@ -1,6 +1,11 @@
 CLASS net/minecraft/client/multiplayer/chat/ChatListener
 	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
 		ARG 1 minecraft
+	METHOD evaluateTrustLevel (Lnet/minecraft/network/chat/ChatSender;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;)Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;
+		ARG 1 sender
+		ARG 2 message
+		ARG 3 decoratedServerContent
+		ARG 4 senderPlayerInfo
 	METHOD evaluateTrustLevel (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;Ljava/time/Instant;)Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;
 		ARG 1 message
 		ARG 2 decoratedServerContent
@@ -12,6 +17,11 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 1 header
 		ARG 2 headerSignature
 		ARG 3 bodyDigest
+	METHOD handleChatMessage (Lnet/minecraft/network/chat/ChatType;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatSender;)V
+		COMMENT Called whenever a player chat message is received from the server.
+		ARG 1 chatType
+		ARG 2 message
+		ARG 3 sender
 	METHOD handleChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatType$Bound;)V
 		COMMENT Called whenever a player chat message is received from the server.
 		ARG 1 message
@@ -23,10 +33,17 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 2 actionBar
 	METHOD isSenderLocalPlayer (Ljava/util/UUID;)Z
 		ARG 1 profileId
+	METHOD isSenderLocalPlayer (Lnet/minecraft/network/chat/ChatSender;)Z
+		ARG 1 sender
 	METHOD logPlayerHeader (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)V
 		ARG 1 header
 		ARG 2 headerSignature
 		ARG 3 bodyDigest
+	METHOD logPlayerMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatSender;Lnet/minecraft/client/multiplayer/PlayerInfo;Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;)V
+		ARG 1 message
+		ARG 2 sender
+		ARG 3 senderPlayerInfo
+		ARG 4 trustLevel
 	METHOD logPlayerMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/client/multiplayer/PlayerInfo;Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;)V
 		ARG 1 message
 		ARG 2 boundChatType
@@ -38,10 +55,19 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 	METHOD narrateChatMessage (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 boundChatType
 		ARG 2 message
+	METHOD narrateChatMessage (Lnet/minecraft/network/chat/ChatType;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatSender;)V
+		ARG 1 chatType
+		ARG 2 message
+		ARG 3 sender
 	METHOD processNonPlayerChatMessage (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;)Z
 		ARG 1 boundChatType
 		ARG 2 message
 		ARG 3 decoratedServerContent
+	METHOD processNonPlayerChatMessage (Lnet/minecraft/network/chat/ChatType;Lnet/minecraft/network/chat/ChatSender;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;)Z
+		ARG 1 chatType
+		ARG 2 sender
+		ARG 3 message
+		ARG 4 decoratedServerContent
 	METHOD processPlayerChatHeader (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)Z
 		ARG 1 header
 		ARG 2 headerSignature
@@ -53,10 +79,19 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 4 senderPlayerInfo
 		ARG 5 onlyShowSecureChat
 		ARG 6 timeStamp
+	METHOD processPlayerChatMessage (Lnet/minecraft/network/chat/ChatType;Lnet/minecraft/network/chat/ChatSender;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;)Z
+		ARG 1 chatType
+		ARG 2 sender
+		ARG 3 message
+		ARG 4 decoratedServerContent
+		ARG 5 senderPlayerInfo
+		ARG 6 trustLevel
 	METHOD removeFromDelayedMessageQueue (Lnet/minecraft/network/chat/MessageSignature;)Z
 		ARG 1 messageSignature
 	METHOD resolveSenderPlayer (Ljava/util/UUID;)Lnet/minecraft/client/multiplayer/PlayerInfo;
 		ARG 1 profileId
+	METHOD resolveSenderPlayer (Lnet/minecraft/network/chat/ChatSender;)Lnet/minecraft/client/multiplayer/PlayerInfo;
+		ARG 1 sender
 	METHOD showMessageToPlayer (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;ZLjava/time/Instant;)Z
 		ARG 1 boundChatType
 		ARG 2 message

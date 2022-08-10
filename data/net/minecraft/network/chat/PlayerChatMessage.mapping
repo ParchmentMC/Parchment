@@ -5,6 +5,11 @@ CLASS net/minecraft/network/chat/PlayerChatMessage
 		ARG 1 filterMask
 	METHOD filter (Z)Lnet/minecraft/network/chat/PlayerChatMessage;
 		ARG 1 shouldFilter
+	METHOD filteredSigned (Lnet/minecraft/server/network/FilteredText;Lnet/minecraft/server/network/FilteredText;Lnet/minecraft/network/chat/MessageSignature;Z)Lnet/minecraft/server/network/FilteredText;
+		ARG 0 originalText
+		ARG 1 decoratedText
+		ARG 2 messageSignature
+		ARG 3 signedPreview
 	METHOD hasExpiredClient (Ljava/time/Instant;)Z
 		ARG 1 instant
 	METHOD hasExpiredServer (Ljava/time/Instant;)Z
@@ -22,6 +27,24 @@ CLASS net/minecraft/network/chat/PlayerChatMessage
 		ARG 1 signatureValidator
 	METHOD verify (Lnet/minecraft/world/entity/player/ProfilePublicKey;)Z
 		ARG 1 profilePublicKey
+	METHOD withUnsignedContent (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 1 unsignedContent
+	METHOD isSignedBy (Lnet/minecraft/network/chat/ChatSender;)Z
+		ARG 1 sender
+	METHOD signed (Ljava/lang/String;Lnet/minecraft/network/chat/MessageSignature;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 0 content
+		ARG 1 signature
+	METHOD signed (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Z)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 0 originalComponent
+		ARG 1 decoratedComponent
+		ARG 2 signature
+		ARG 3 signedPreview
+	METHOD signed (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 0 content
+		ARG 1 signature
+	METHOD unsigned (Ljava/util/UUID;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 0 sender
+		ARG 1 content
 	METHOD withUnsignedContent (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/PlayerChatMessage;
 		ARG 1 unsignedContent
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
