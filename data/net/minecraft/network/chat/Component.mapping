@@ -3,6 +3,8 @@ CLASS net/minecraft/network/chat/Component
 		ARG 1 other
 	METHOD copy ()Lnet/minecraft/network/chat/MutableComponent;
 		COMMENT Creates a copy of this component and also copies the style and siblings. Note that the siblings are copied shallowly, meaning the siblings themselves are not copied.
+	METHOD getContents ()Ljava/lang/String;
+		COMMENT Gets the raw content of this component if possible. For special components (like {@link TranslatableComponent} this usually returns the empty string.
 	METHOD getSiblings ()Ljava/util/List;
 		COMMENT Gets the sibling components of this one.
 	METHOD getString (I)Ljava/lang/String;
@@ -20,6 +22,11 @@ CLASS net/minecraft/network/chat/Component
 		ARG 1 acceptor
 	METHOD visit (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
 		ARG 1 acceptor
+		ARG 2 style
+	METHOD visitSelf (Lnet/minecraft/network/chat/FormattedText$ContentConsumer;)Ljava/util/Optional;
+		ARG 1 consumer
+	METHOD visitSelf (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
+		ARG 1 consumer
 		ARG 2 style
 	CLASS Serializer
 		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/network/chat/MutableComponent;

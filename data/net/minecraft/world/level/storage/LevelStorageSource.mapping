@@ -9,6 +9,9 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		ARG 0 savesDir
 	METHOD getBackupPath ()Ljava/nio/file/Path;
 		COMMENT Gets the folder where backups are stored
+	METHOD getDataPacks (Ljava/io/File;Lcom/mojang/datafixers/DataFixer;)Lnet/minecraft/world/level/DataPackConfig;
+		ARG 0 levelDat
+		ARG 1 fixer
 	METHOD getLevelData (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/DataPackConfig;Lcom/mojang/serialization/Lifecycle;)Ljava/util/function/BiFunction;
 		ARG 0 ops
 		ARG 1 datapackConfig
@@ -18,8 +21,14 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 	METHOD levelExists (Ljava/lang/String;)Z
 		COMMENT Return whether the given world can be loaded.
 		ARG 1 saveName
+	METHOD levelSummaryReader (Ljava/io/File;Z)Ljava/util/function/BiFunction;
+		ARG 1 saveDir
+		ARG 2 locked
 	METHOD readDataPackConfig (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/level/DataPackConfig;
 		ARG 0 nbt
+	METHOD readLevelData (Ljava/io/File;Ljava/util/function/BiFunction;)Ljava/lang/Object;
+		ARG 1 saveDir
+		ARG 2 levelDatReader
 	METHOD readWorldGenSettings (Lcom/mojang/serialization/Dynamic;Lcom/mojang/datafixers/DataFixer;I)Lcom/mojang/datafixers/util/Pair;
 		ARG 0 nbt
 		ARG 1 fixer

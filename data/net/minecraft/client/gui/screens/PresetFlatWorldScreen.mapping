@@ -19,6 +19,11 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 		ARG 1 mouseX
 		ARG 3 mouseY
 		ARG 5 delta
+	METHOD preset (Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/resources/ResourceKey;Ljava/util/Set;ZZ[Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;)V
+		ARG 0 name
+		ARG 1 icon
+		ARG 2 biome
+		ARG 3 structures
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 poseStack
 		ARG 2 mouseX
@@ -32,6 +37,11 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 		ARG 0 levelGeneratorSettings
 	METHOD updateButtonValidity (Z)V
 		ARG 1 valid
+	CLASS PresetInfo
+		METHOD <init> (Lnet/minecraft/world/item/Item;Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;)V
+			ARG 1 icon
+			ARG 2 name
+			ARG 3 settings
 	CLASS PresetsList
 		METHOD keyPressed (III)Z
 			ARG 1 keyCode
@@ -40,6 +50,8 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 		METHOD setSelected (Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList$Entry;)V
 			ARG 1 entry
 		CLASS Entry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList;Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetInfo;)V
+				ARG 2 preset
 			METHOD blitSlot (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/world/item/Item;)V
 				ARG 1 poseStack
 				ARG 2 x

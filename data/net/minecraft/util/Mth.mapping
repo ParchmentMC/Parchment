@@ -126,6 +126,8 @@ CLASS net/minecraft/util/Mth
 		ARG 0 value
 	METHOD createInsecureUUID ()Ljava/util/UUID;
 		COMMENT Generates a random UUID using the shared random
+	METHOD createInsecureUUID (Ljava/util/Random;)Ljava/util/UUID;
+		ARG 0 rand
 	METHOD degreesDifference (FF)F
 		COMMENT Gets the difference between two angles in degrees.
 		ARG 0 start
@@ -231,6 +233,23 @@ CLASS net/minecraft/util/Mth
 	METHOD log2 (I)I
 		COMMENT Efficiently calculates the floor of the base-2 log of an integer value.  This is effectively the index of the highest bit that is set.  For example, if the number in binary is 0...100101, this will return 5.
 		ARG 0 value
+	METHOD nextDouble (Ljava/util/Random;DD)D
+		ARG 0 random
+		ARG 1 minimum
+		ARG 3 maximum
+	METHOD nextFloat (Ljava/util/Random;FF)F
+		ARG 0 random
+		ARG 1 minimum
+		ARG 2 maximum
+	METHOD nextInt (Ljava/util/Random;II)I
+		ARG 0 random
+		ARG 1 minimum
+		ARG 2 maximum
+	METHOD normal (Ljava/util/Random;FF)F
+		COMMENT Generates a value from a normal distribution with the given mean and deviation.
+		ARG 0 random
+		ARG 1 mean
+		ARG 2 deviation
 	METHOD positiveCeilDiv (II)I
 		COMMENT Returns the smallest (closest to negative infinity) int value that is greater than or equal to the algebraic quotient.
 		COMMENT @see java.lang.Math#floorDiv(int, int)
@@ -249,6 +268,14 @@ CLASS net/minecraft/util/Mth
 		COMMENT Gets the value closest to zero that is not closer to zero than the given value and is a multiple of the factor.
 		ARG 0 value
 		ARG 2 factor
+	METHOD randomBetween (Ljava/util/Random;FF)F
+		ARG 0 random
+		ARG 1 minInclusive
+		ARG 2 maxExclusive
+	METHOD randomBetweenInclusive (Ljava/util/Random;II)I
+		ARG 0 random
+		ARG 1 minInclusive
+		ARG 2 maxInclusive
 	METHOD rayIntersectsAABB (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;)Z
 		ARG 0 start
 		ARG 1 end

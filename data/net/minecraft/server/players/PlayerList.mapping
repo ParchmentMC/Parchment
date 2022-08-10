@@ -25,6 +25,16 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 2 messageFactory
 		ARG 3 sender
 		ARG 4 chatTypeKey
+	METHOD broadcastMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V
+		ARG 1 message
+		ARG 2 chatType
+		ARG 3 senderUuid
+	METHOD broadcastToAllExceptTeam (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 player
+		ARG 2 message
+	METHOD broadcastToTeam (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 player
+		ARG 2 message
 	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Ljava/util/function/Predicate;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/network/chat/ChatSender;Lnet/minecraft/network/chat/ChatType$Bound;)V
 		ARG 1 message
 		ARG 2 shouldFilterMessageTo
@@ -58,6 +68,9 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 1 username
 	METHOD getPlayerCount ()I
 		COMMENT Returns the number of players currently on the server.
+	METHOD getPlayerForLogin (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/server/level/ServerPlayer;
+		COMMENT also checks for multiple logins across servers
+		ARG 1 profile
 	METHOD getPlayerNamesArray ()[Ljava/lang/String;
 		COMMENT Returns an array of the usernames of all the connected players.
 	METHOD getPlayerStats (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/stats/ServerStatsCounter;

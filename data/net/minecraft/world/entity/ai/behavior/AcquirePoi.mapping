@@ -1,4 +1,14 @@
 CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
+	METHOD <init> (Lnet/minecraft/world/entity/ai/village/poi/PoiType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLjava/util/Optional;)V
+		ARG 1 poiType
+		ARG 2 memoryKey
+		ARG 3 memoryToAcquire
+		ARG 4 onlyIfAdult
+		ARG 5 onPoiAcquistitionEvent
+	METHOD <init> (Lnet/minecraft/world/entity/ai/village/poi/PoiType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLjava/util/Optional;)V
+		ARG 1 poiType
+		ARG 3 onlyIfAdult
+		ARG 4 onPoiAcquisitionEvent
 	METHOD checkExtraStartConditions (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/PathfinderMob;)Z
 		ARG 1 level
 		ARG 2 owner
@@ -10,6 +20,9 @@ CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
 		ARG 2 entity
 		ARG 3 gameTime
 	CLASS JitteredLinearRetry
+		METHOD <init> (Ljava/util/Random;J)V
+			ARG 1 random
+			ARG 2 timestamp
 		METHOD isStillValid (J)Z
 			ARG 1 timestamp
 		METHOD markAttempt (J)V

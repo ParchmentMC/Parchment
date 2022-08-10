@@ -19,10 +19,15 @@ CLASS net/minecraft/world/entity/monster/Zombie
 		ARG 3 reason
 		ARG 4 spawnData
 		ARG 5 dataTag
+	METHOD getExperienceReward (Lnet/minecraft/world/entity/player/Player;)I
+		COMMENT Get the experience points the entity currently has.
+		ARG 1 player
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getMyRidingOffset ()D
 		COMMENT Returns the Y Offset of this entity.
+	METHOD getSpawnAsBabyOdds (Ljava/util/Random;)Z
+		ARG 0 random
 	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
 		ARG 1 pose
 		ARG 2 size
@@ -34,6 +39,9 @@ CLASS net/minecraft/world/entity/monster/Zombie
 		ARG 2 amount
 	METHOD isBaby ()Z
 		COMMENT If Animal, checks if the age timer is negative
+	METHOD killed (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 level
+		ARG 2 killedEntity
 	METHOD lambda$static$0 (Lnet/minecraft/world/Difficulty;)Z
 		ARG 0 difficulty
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
@@ -41,6 +49,9 @@ CLASS net/minecraft/world/entity/monster/Zombie
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 block
+	METHOD populateDefaultEquipmentSlots (Lnet/minecraft/world/DifficultyInstance;)V
+		COMMENT Gives armor or weapon for entity based on given DifficultyInstance
+		ARG 1 difficulty
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound

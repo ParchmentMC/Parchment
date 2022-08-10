@@ -2,6 +2,9 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	FIELD globalBlockEntities Ljava/util/Set;
 		COMMENT Global block entities; these are always rendered, even if off-screen.
 		COMMENT Any block entity is added to this if {@link net.minecraft.client.renderer.blockentity.BlockEntityRenderer#shouldRenderOffScreen(net.minecraft.world.level.block.entity.BlockEntity)} returns {@code true}.
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/renderer/RenderBuffers;)V
+		ARG 1 minecraft
+		ARG 2 renderBuffers
 	METHOD addChainedFilledBoxVertices (Lcom/mojang/blaze3d/vertex/BufferBuilder;DDDDDDFFFF)V
 		ARG 0 builder
 		ARG 1 minX
@@ -90,6 +93,15 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 3 oldState
 		ARG 4 newState
 		ARG 5 flags
+	METHOD buildClouds (Lcom/mojang/blaze3d/vertex/BufferBuilder;DDDLnet/minecraft/world/phys/Vec3;)V
+		ARG 1 builder
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 cloudColor
+	METHOD buildSkyDisc (Lcom/mojang/blaze3d/vertex/BufferBuilder;F)V
+		ARG 0 builder
+		ARG 1 y
 	METHOD calculateParticleLevel (Z)Lnet/minecraft/client/ParticleStatus;
 		COMMENT Calculates the level of particles to use based on the {@linkplain net.minecraft.client.Options#particles particles option} and the specified {@code decreased} parameter. This leads to randomly generating more or less particles than the set option.
 		ARG 1 decreased
@@ -112,6 +124,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 breakerId
 		ARG 2 pos
 		ARG 3 progress
+	METHOD drawStars (Lcom/mojang/blaze3d/vertex/BufferBuilder;)V
+		ARG 1 builder
 	METHOD getChunkStatistics ()Ljava/lang/String;
 		COMMENT @return chunk rendering statistics to display on the {@linkplain net.minecraft.client.gui.components.DebugScreenOverlay debug overlay}
 	METHOD getEntityStatistics ()Ljava/lang/String;

@@ -1,0 +1,19 @@
+CLASS net/minecraft/network/chat/BaseComponent
+	FIELD siblings Ljava/util/List;
+		COMMENT The later siblings of this component. If this component turns the text bold, that will apply to all the siblings until a later sibling turns the text something else.
+	METHOD append (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 1 sibling
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD getContents ()Ljava/lang/String;
+		COMMENT Gets the raw content of this component (but not its sibling components), without any formatting codes. For example, this is the raw text in a {@link TextComponentString}, but it's the translated text for a {@link TextComponentTranslation} and it's the score value for a {@link TextComponentScore}.
+	METHOD getSiblings ()Ljava/util/List;
+		COMMENT Gets the sibling components of this one.
+	METHOD getStyle ()Lnet/minecraft/network/chat/Style;
+		COMMENT Gets the style of this component. Returns a direct reference" changes to this style will modify the style of this component (IE, there is no need to call {@link #setStyle(Style)} again after modifying it).
+		COMMENT
+		COMMENT If this component's style is currently <code>null</code>, it will be initialized to the default style, and the parent style of all sibling components will be set to that style. (IE, changes to this style will also be reflected in sibling components.)
+		COMMENT
+		COMMENT This method never returns <code>null</code>.
+	METHOD setStyle (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 1 style

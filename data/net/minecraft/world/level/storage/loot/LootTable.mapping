@@ -10,8 +10,14 @@ CLASS net/minecraft/world/level/storage/loot/LootTable
 		COMMENT Fill the given container with random items from this loot table.
 		ARG 1 container
 		ARG 2 context
+	METHOD getAvailableSlots (Lnet/minecraft/world/Container;Ljava/util/Random;)Ljava/util/List;
+		ARG 1 inventory
+		ARG 2 rand
 	METHOD getParamSet ()Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;
 		COMMENT Get the parameter set for this LootTable.
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootContext;)Ljava/util/List;
+		COMMENT Generate random items to a List.
+		ARG 1 context
 	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
 		COMMENT Generate random items to the given Consumer, ensuring they do not exeed their maximum stack size.
 		ARG 1 contextData
@@ -20,6 +26,11 @@ CLASS net/minecraft/world/level/storage/loot/LootTable
 		COMMENT Generate items to the given Consumer, ignoring maximum stack size.
 		ARG 1 context
 		ARG 2 stacksOut
+	METHOD shuffleAndSplitItems (Ljava/util/List;ILjava/util/Random;)V
+		COMMENT shuffles items by changing their order and splitting stacks
+		ARG 1 stacks
+		ARG 2 emptySlotsCount
+		ARG 3 rand
 	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V
 		COMMENT Validate this LootTable using the given ValidationContext.
 		ARG 1 validator
