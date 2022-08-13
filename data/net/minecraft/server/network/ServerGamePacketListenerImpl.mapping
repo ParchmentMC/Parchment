@@ -7,10 +7,17 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 server
 		ARG 2 connection
 		ARG 3 player
+	METHOD addPendingMessage (Lnet/minecraft/network/chat/PlayerChatMessage;)V
+		ARG 1 message
+	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;)V
+		ARG 1 message
 	METHOD clampHorizontal (D)D
 		ARG 0 value
 	METHOD clampVertical (D)D
 		ARG 0 value
+	METHOD collectSignedArguments (Lnet/minecraft/network/protocol/game/ServerboundChatCommandPacket;Lnet/minecraft/network/chat/PreviewableCommand;)Ljava/util/Map;
+		ARG 1 packet
+		ARG 2 command
 	METHOD disconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Disconnect the player with a specified reason
 		ARG 1 textComponent
@@ -22,6 +29,13 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 8 pitch
 	METHOD getConnection ()Lnet/minecraft/network/Connection;
 		COMMENT Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient
+	METHOD getPreviewedArgument (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/network/chat/PreviewableCommand;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 source
+		ARG 2 command
+	METHOD getSignedContent (Lnet/minecraft/network/protocol/game/ServerboundChatPacket;)Lnet/minecraft/network/chat/ChatMessageContent;
+		ARG 1 packet
+	METHOD getSignedMessage (Lnet/minecraft/network/protocol/game/ServerboundChatPacket;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 1 packet
 	METHOD handleAcceptTeleportPacket (Lnet/minecraft/network/protocol/game/ServerboundAcceptTeleportationPacket;)V
 		ARG 1 packet
 	METHOD handleAnimate (Lnet/minecraft/network/protocol/game/ServerboundSwingPacket;)V
@@ -118,12 +132,35 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 packet
 	METHOD handleUseItemOn (Lnet/minecraft/network/protocol/game/ServerboundUseItemOnPacket;)V
 		ARG 1 packet
+	METHOD handleValidationFailure (Ljava/util/Set;)V
+		ARG 1 errorConditions
+	METHOD isChatMessageIllegal (Ljava/lang/String;)Z
+		ARG 0 message
+	METHOD noBlocksAround (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason
+	METHOD parseCommand (Ljava/lang/String;)Lcom/mojang/brigadier/ParseResults;
+		ARG 1 command
+	METHOD performChatCommand (Lnet/minecraft/network/protocol/game/ServerboundChatCommandPacket;)V
+		ARG 1 packet
+	METHOD queryChatPreview (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 message
+	METHOD queryCommandPreview (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 command
+	METHOD queryPreview (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 message
 	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 		ARG 1 packet
 		ARG 2 listener
+	METHOD sendPreviewResponse (ILnet/minecraft/network/chat/Component;)V
+		ARG 1 queryId
+		ARG 2 preview
+	METHOD signBook (Lnet/minecraft/server/network/FilteredText;Ljava/util/List;I)V
+		ARG 1 title
+		ARG 2 pages
+		ARG 3 index
 	METHOD teleport (DDDFF)V
 		ARG 1 x
 		ARG 3 y
@@ -146,8 +183,17 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 8 pitch
 		ARG 9 relativeSet
 		ARG 10 dismountVehicle
+	METHOD tryHandleChat (Ljava/lang/String;Ljava/time/Instant;Lnet/minecraft/network/chat/LastSeenMessages$Update;)Z
+		ARG 2 timestamp
+	METHOD updateChatOrder (Ljava/time/Instant;)Z
+		ARG 1 timestamp
 	METHOD updateSignText (Lnet/minecraft/network/protocol/game/ServerboundSignUpdatePacket;Ljava/util/List;)V
 		ARG 1 packet
+	METHOD verifyChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;)Z
+		ARG 1 message
+	METHOD wasBlockPlacementAttempt (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 player
+		ARG 1 stack
 	CLASS 1
 		METHOD performInteraction (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/server/network/ServerGamePacketListenerImpl$EntityInteraction;)V
 			ARG 1 hand
