@@ -1,5 +1,9 @@
 CLASS net/minecraft/network/chat/MutableComponent
 	COMMENT A Component which can have its Style and siblings modified.
+	METHOD <init> (Lnet/minecraft/network/chat/ComponentContents;Ljava/util/List;Lnet/minecraft/network/chat/Style;)V
+		ARG 1 contents
+		ARG 2 siblings
+		ARG 3 style
 	METHOD append (Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
 		COMMENT Add the given text to this component's siblings.
 		COMMENT
@@ -10,6 +14,10 @@ CLASS net/minecraft/network/chat/MutableComponent
 		COMMENT
 		COMMENT Note: If this component turns the text bold, that will apply to all the siblings until a later sibling turns the text something else.
 		ARG 1 sibling
+	METHOD create (Lnet/minecraft/network/chat/ComponentContents;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 0 contents
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
 	METHOD setStyle (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/MutableComponent;
 		COMMENT Sets the style for this component and returns the component itself.
 		ARG 1 style
