@@ -45,8 +45,16 @@ CLASS net/minecraft/world/level/levelgen/NoiseChunk
 	METHOD selectCellYZ (II)V
 		ARG 1 y
 		ARG 2 z
+	METHOD updateForX (ID)V
+		ARG 1 cellEndBlockX
 	METHOD updateForY (ID)V
 		ARG 1 cellEndBlockY
+	METHOD updateForZ (ID)V
+		ARG 1 cellEndBlockZ
+	METHOD wrap (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 1 function
+	METHOD wrapNew (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 1 function
 	CLASS Cache2D
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/DensityFunction;)V
 			ARG 1 function
@@ -62,3 +70,6 @@ CLASS net/minecraft/world/level/levelgen/NoiseChunk
 	CLASS NoiseInterpolator
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/levelgen/DensityFunction;)V
 			ARG 2 noiseFilter
+		METHOD selectCellYZ (II)V
+			ARG 1 y
+			ARG 2 z
