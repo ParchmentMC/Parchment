@@ -13,7 +13,7 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 2 signature
 	METHOD handleChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatType$Bound;)V
 		ARG 1 chatMessage
-		ARG 2 bound
+		ARG 2 boundChatType
 	METHOD handleMessage (Lnet/minecraft/client/multiplayer/chat/ChatListener$Message;)V
 		ARG 1 message
 	METHOD handleSystemMessage (Lnet/minecraft/network/chat/Component;Z)V
@@ -27,14 +27,14 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 3 bodyDigest
 	METHOD logPlayerMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/client/multiplayer/PlayerInfo;Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;)V
 		ARG 1 message
-		ARG 2 bound
+		ARG 2 boundChatType
 		ARG 3 playerInfo
 		ARG 4 trustLevel
 	METHOD logSystemMessage (Lnet/minecraft/network/chat/Component;Ljava/time/Instant;)V
 		ARG 1 message
-		ARG 2 timeStamp
+		ARG 2 timestamp
 	METHOD processNonPlayerChatMessage (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;)Z
-		ARG 1 bound
+		ARG 1 boundChatType
 		ARG 2 chatMessage
 		ARG 3 message
 	METHOD processPlayerChatHeader (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)Z
@@ -42,7 +42,7 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 2 headerSignature
 		ARG 3 bodyDigest
 	METHOD processPlayerChatMessage (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;ZLjava/time/Instant;)Z
-		ARG 1 bound
+		ARG 1 boundChatType
 		ARG 2 chatMessage
 		ARG 3 message
 		ARG 4 playerInfo
@@ -54,7 +54,7 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 	METHOD setMessageDelay (D)V
 		ARG 1 delaySeconds
 	METHOD showMessageToPlayer (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;ZLjava/time/Instant;)Z
-		ARG 1 bound
+		ARG 1 boundChatType
 		ARG 2 chatMessage
 		ARG 3 message
 		ARG 4 playerInfo
