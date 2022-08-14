@@ -1,0 +1,49 @@
+CLASS net/minecraft/client/gui/screens/reporting/ChatSelectionScreen
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/multiplayer/chat/report/ReportingContext;Lnet/minecraft/client/multiplayer/chat/report/ChatReportBuilder;Ljava/util/function/Consumer;)V
+		ARG 1 lastScreen
+		ARG 2 reportingContext
+		ARG 3 report
+		ARG 4 onSelected
+	METHOD canReport (Lnet/minecraft/client/multiplayer/chat/LoggedChatMessage;)Z
+		ARG 1 message
+	METHOD setTooltip (Ljava/util/List;)V
+		ARG 1 tooltip
+	CLASS ChatSelectionList
+		METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen;Lnet/minecraft/client/Minecraft;I)V
+			ARG 2 minecraft
+		METHOD moveSelectableSelection (Lnet/minecraft/client/gui/components/AbstractSelectionList$SelectionDirection;)Z
+			ARG 1 direction
+		METHOD shouldHighlightEntry (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$Entry;)Z
+			ARG 1 entry
+		METHOD updateHeading (Lnet/minecraft/client/multiplayer/chat/LoggedChatMessage$Player;Z)V
+			ARG 1 player
+			ARG 2 canReport
+		CLASS Heading
+			METHOD canCombine (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$Heading;)Z
+				ARG 1 other
+		CLASS DividerEntry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList;Lnet/minecraft/network/chat/Component;)V
+				ARG 2 text
+		CLASS MessageEntry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList;ILnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/GuiMessageTag;ZZ)V
+				ARG 2 chatId
+				ARG 3 text
+				ARG 4 narration
+				ARG 6 canReport
+				ARG 7 playerMessage
+			METHOD renderSelectedCheckmark (Lcom/mojang/blaze3d/vertex/PoseStack;III)V
+				ARG 1 poseStack
+			METHOD renderTag (Lcom/mojang/blaze3d/vertex/PoseStack;IIIII)V
+				ARG 1 poseStack
+				ARG 2 x
+				ARG 3 y
+		CLASS MessageHeadingEntry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/network/chat/Component;Z)V
+				ARG 2 profile
+				ARG 3 heading
+				ARG 4 canReport
+			METHOD renderFace (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/resources/ResourceLocation;)V
+				ARG 1 poseStack
+				ARG 2 x
+				ARG 3 y
+				ARG 4 textureId
