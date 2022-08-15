@@ -1,0 +1,18 @@
+CLASS net/minecraft/world/entity/player/ProfilePublicKey
+	METHOD createValidated (Lnet/minecraft/util/SignatureValidator;Ljava/util/UUID;Lnet/minecraft/world/entity/player/ProfilePublicKey$Data;Ljava/time/Duration;)Lnet/minecraft/world/entity/player/ProfilePublicKey;
+		ARG 0 validator
+		ARG 1 uuid
+		ARG 2 data
+		ARG 3 timestamp
+	CLASS Data
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+		METHOD hasExpired (Ljava/time/Duration;)Z
+			ARG 1 duration
+		METHOD signedPayload (Ljava/util/UUID;)[B
+			ARG 1 uuid
+		METHOD validateSignature (Lnet/minecraft/util/SignatureValidator;Ljava/util/UUID;)Z
+			ARG 1 validator
+			ARG 2 uuid
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
