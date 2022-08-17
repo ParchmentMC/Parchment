@@ -1,5 +1,10 @@
+<p align="center">
+  <img src="https://parchmentmc.org/assets/img/logo.png" \>
+</p>
+
 Parchment Mappings
 ==================
+
 [![Discord server badge](https://img.shields.io/discord/851855518398152725?color=5865F2&label=discord&logo=discord&logoColor=white)](https://discord.parchmentmc.org/)
 [![Minecraft version badge](https://img.shields.io/badge/mc%20version-1.19.2-3b8526)](#)
 &nbsp;
@@ -18,12 +23,19 @@ Parchment is an open community-sourced modloader-neutral set of mappings of para
 the official names released by Mojang. This repository contains the files which make up the Parchment mapping set, with
 the build tool to manage the mappings and generate exports for publishing.
 
-### Want to use Parchment in your workspace? See the [Getting Started](https://github.com/ParchmentMC/Parchment/wiki/Getting-Started) page in the repository wiki.
+## Usage
+To use Parchment in your workspace please see the [Getting Started](https://github.com/ParchmentMC/Parchment/wiki/Getting-Started) page in the repository wiki.
 
 ## Contributing
 See the [`docs/CONTRIBUTING.md` file](docs/CONTRIBUTING.md) for information on contributing. Also look at the 
 [repository wiki](https://github.com/ParchmentMC/Parchment/wiki) for more information, such as links to the mapping 
 standards and PR review process documents.
+
+__**Contributors:**__ 
+
+<a href="https://github.com/parchmentmc/parchment/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=parchmentmc/parchment" />
+</a>
 
 ## Tools and Libraries
 Our mappings system makes use of the following open-source tools and libraries:
