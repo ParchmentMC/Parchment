@@ -1,0 +1,19 @@
+CLASS net/minecraft/client/multiplayer/prediction/BlockStatePredictionHandler
+	METHOD endPredictionsUpTo (ILnet/minecraft/client/multiplayer/ClientLevel;)V
+		ARG 2 level
+	METHOD retainKnownServerState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/client/player/LocalPlayer;)V
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 player
+	METHOD updateKnownServerState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 pos
+		ARG 2 state
+	CLASS ServerVerifiedState
+		METHOD <init> (ILnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/phys/Vec3;)V
+			ARG 1 sequence
+			ARG 2 blockState
+			ARG 3 playerPos
+		METHOD setBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
+			ARG 1 blockState
+		METHOD setSequence (I)Lnet/minecraft/client/multiplayer/prediction/BlockStatePredictionHandler$ServerVerifiedState;
+			ARG 1 sequence

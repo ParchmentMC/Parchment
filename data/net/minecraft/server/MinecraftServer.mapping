@@ -14,12 +14,30 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 0 packRepository
 		ARG 1 dataPackConfig
 		ARG 2 vanillaOnly
+	METHOD constructOrExtractCrashReport (Ljava/lang/Throwable;)Lnet/minecraft/CrashReport;
+		ARG 0 cause
+	METHOD createGameModeForPlayer (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/server/level/ServerPlayerGameMode;
+		ARG 1 player
 	METHOD createTextFilterForPlayer (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/server/network/TextFilter;
 		ARG 1 player
 	METHOD doRunTask (Lnet/minecraft/server/TickTask;)V
 		ARG 1 task
+	METHOD dumpClasspath (Ljava/nio/file/Path;)V
+		ARG 1 path
+	METHOD dumpGameRules (Ljava/nio/file/Path;)V
+		ARG 1 path
+	METHOD dumpMiscStats (Ljava/nio/file/Path;)V
+		ARG 1 path
+	METHOD dumpNativeModules (Ljava/nio/file/Path;)V
+		ARG 1 path
+	METHOD dumpServerProperties (Ljava/nio/file/Path;)V
+		ARG 1 path
+	METHOD dumpThreads (Ljava/nio/file/Path;)V
+		ARG 1 path
 	METHOD fillServerSystemReport (Lnet/minecraft/SystemReport;)Lnet/minecraft/SystemReport;
 		ARG 1 report
+	METHOD fillSystemReport (Lnet/minecraft/SystemReport;)Lnet/minecraft/SystemReport;
+		ARG 1 systemReport
 	METHOD getCompressionThreshold ()I
 		COMMENT The compression treshold. If the packet is larger than the specified amount of bytes, it will be compressed
 	METHOD getFile (Ljava/lang/String;)Ljava/io/File;
@@ -50,6 +68,8 @@ CLASS net/minecraft/server/MinecraftServer
 		COMMENT Return the spawn protection area's size.
 	METHOD getSpawnRadius (Lnet/minecraft/server/level/ServerLevel;)I
 		ARG 1 level
+	METHOD getWorldPath (Lnet/minecraft/world/level/storage/LevelResource;)Ljava/nio/file/Path;
+		ARG 1 levelResource
 	METHOD halt (Z)V
 		COMMENT Sets the serverRunning variable to false, in order to get the server to shut down.
 		ARG 1 waitForServer
@@ -74,9 +94,9 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD kickUnlistedPlayers (Lnet/minecraft/commands/CommandSourceStack;)V
 		ARG 1 commandSource
 	METHOD logChatMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType$Bound;Ljava/lang/String;)V
-		ARG 1 content
+		ARG 1 message
 		ARG 2 boundChatType
-		ARG 3 header
+		ARG 3 sender
 	METHOD onServerCrash (Lnet/minecraft/CrashReport;)V
 		COMMENT Called on exit from the main run() loop.
 		ARG 1 report
@@ -84,14 +104,23 @@ CLASS net/minecraft/server/MinecraftServer
 		COMMENT Directly calls System.exit(0), instantly killing the program.
 	METHOD prepareLevels (Lnet/minecraft/server/level/progress/ChunkProgressListener;)V
 		COMMENT Loads the spawn chunks and any forced chunks
+		ARG 1 listener
 	METHOD publishServer (Lnet/minecraft/world/level/GameType;ZI)Z
 		ARG 1 gameMode
 		ARG 2 cheats
 		ARG 3 port
+	METHOD readScoreboard (Lnet/minecraft/world/level/storage/DimensionDataStorage;)V
+		ARG 1 dataStorage
 	METHOD reloadResources (Ljava/util/Collection;)Ljava/util/concurrent/CompletableFuture;
 		COMMENT Replaces currently selected list of datapacks, reloads them, and sends new data to players.
 		ARG 1 selectedIds
 	METHOD saveAllChunks (ZZZ)Z
+		ARG 1 suppressLog
+		ARG 2 flush
+		ARG 3 forced
+	METHOD saveDebugReport (Ljava/nio/file/Path;)V
+		ARG 1 path
+	METHOD saveEverything (ZZZ)Z
 		ARG 1 suppressLog
 		ARG 2 flush
 		ARG 3 forced
@@ -105,6 +134,7 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 1 demo
 	METHOD setDifficulty (Lnet/minecraft/world/Difficulty;Z)V
 		ARG 1 difficulty
+		ARG 2 forced
 	METHOD setDifficultyLocked (Z)V
 		ARG 1 locked
 	METHOD setEnforceWhitelist (Z)V
@@ -128,12 +158,16 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 1 list
 	METHOD setPort (I)V
 		ARG 1 port
+	METHOD setPreventProxyConnections (Z)V
+		ARG 1 preventProxyConnections
 	METHOD setPvpAllowed (Z)V
 		ARG 1 allowPvp
 	METHOD setSingleplayerProfile (Lcom/mojang/authlib/GameProfile;)V
 		ARG 1 singleplayerProfile
 	METHOD setUsesAuthentication (Z)V
 		ARG 1 online
+	METHOD setupDebugLevel (Lnet/minecraft/world/level/storage/WorldData;)V
+		ARG 1 worldData
 	METHOD shouldRun (Lnet/minecraft/server/TickTask;)Z
 		ARG 1 runnable
 	METHOD spin (Ljava/util/function/Function;)Lnet/minecraft/server/MinecraftServer;
@@ -151,3 +185,7 @@ CLASS net/minecraft/server/MinecraftServer
 		COMMENT Runs all pending tasks and waits for more tasks until serverTime is reached.
 	METHOD wrapRunnable (Ljava/lang/Runnable;)Lnet/minecraft/server/TickTask;
 		ARG 1 runnable
+	CLASS TimeProfiler
+		METHOD <init> (JI)V
+			ARG 1 startNanos
+			ARG 3 startTick

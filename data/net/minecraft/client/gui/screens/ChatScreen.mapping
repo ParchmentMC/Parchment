@@ -7,9 +7,11 @@ CLASS net/minecraft/client/gui/screens/ChatScreen
 		COMMENT Chat entry field
 	METHOD <init> (Ljava/lang/String;)V
 		ARG 1 initial
+	METHOD chatPreviewTop (I)I
+		ARG 1 height
 	METHOD handleChatInput (Ljava/lang/String;Z)Z
-		ARG 1 input
-		ARG 2 addToRecentChat
+		ARG 1 message
+		ARG 2 addToChat
 	METHOD insertText (Ljava/lang/String;Z)V
 		ARG 1 text
 		ARG 2 overwrite
@@ -28,6 +30,8 @@ CLASS net/minecraft/client/gui/screens/ChatScreen
 	METHOD moveInHistory (I)V
 		COMMENT input is relative and is applied directly to the sentHistoryCursor so -1 is the previous message, 1 is the next message from the current cursor position
 		ARG 1 msgPos
+	METHOD normalizeChatMessage (Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 message
 	METHOD onEdited (Ljava/lang/String;)V
 		ARG 1 value
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
@@ -37,7 +41,7 @@ CLASS net/minecraft/client/gui/screens/ChatScreen
 		ARG 4 partialTick
 	METHOD renderChatPreview (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/network/chat/Component;FZ)V
 		ARG 1 poseStack
-		ARG 2 preview
+		ARG 2 message
 		ARG 3 alpha
 		ARG 4 canSign
 	METHOD renderChatPreviewHighlights (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/util/FormattedCharSequence;II)V
@@ -45,6 +49,8 @@ CLASS net/minecraft/client/gui/screens/ChatScreen
 		ARG 2 sequence
 		ARG 3 minY
 		ARG 4 chatOpacity
+	METHOD requestPreview (Ljava/lang/String;)V
+		ARG 1 message
 	METHOD resize (Lnet/minecraft/client/Minecraft;II)V
 		ARG 1 minecraft
 		ARG 2 width
@@ -52,4 +58,4 @@ CLASS net/minecraft/client/gui/screens/ChatScreen
 	METHOD setChatLine (Ljava/lang/String;)V
 		ARG 1 chatLine
 	METHOD splitChatPreview (Lnet/minecraft/network/chat/Component;)Ljava/util/List;
-		ARG 1 preview
+		ARG 1 message
