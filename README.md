@@ -31,12 +31,6 @@ See the [`docs/CONTRIBUTING.md` file](docs/CONTRIBUTING.md) for information on c
 [repository wiki](https://github.com/ParchmentMC/Parchment/wiki) for more information, such as links to the mapping 
 standards and PR review process documents.
 
-__**Contributors:**__ 
-
-<a href="https://github.com/parchmentmc/parchment/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=parchmentmc/parchment" />
-</a>
-
 ## Tools and Libraries
 Our mappings system makes use of the following open-source tools and libraries:
 - [Compass](https://github.com/ParchmentMC/Compass), the Gradle plugin powering the validation and input systems.
