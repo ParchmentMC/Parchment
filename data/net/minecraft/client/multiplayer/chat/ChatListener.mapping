@@ -3,14 +3,14 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 1 minecraft
 	METHOD evaluateTrustLevel (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;Ljava/time/Instant;)Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;
 		ARG 1 chatMessage
-		ARG 2 decoratedServerContent
+		ARG 2 message
 		ARG 3 playerInfo
 		ARG 4 timestamp
 	METHOD guessChatUUID (Lnet/minecraft/network/chat/Component;)Ljava/util/UUID;
 		ARG 1 message
 	METHOD handleChatHeader (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)V
 		ARG 1 header
-		ARG 2 headerSignature
+		ARG 2 signature
 		ARG 3 bodyDigest
 	METHOD handleChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatType$Bound;)V
 		COMMENT Called whenever a player chat message is received from the server.
@@ -25,7 +25,7 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 1 sender
 	METHOD logPlayerHeader (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)V
 		ARG 1 header
-		ARG 2 headerSignature
+		ARG 2 headSignature
 		ARG 3 bodyDigest
 	METHOD logPlayerMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/client/multiplayer/PlayerInfo;Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;)V
 		ARG 1 message
@@ -49,7 +49,7 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 	METHOD processPlayerChatMessage (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;ZLjava/time/Instant;)Z
 		ARG 1 boundChatType
 		ARG 2 chatMessage
-		ARG 3 message
+		ARG 3 decoratedServerContent
 		ARG 4 playerInfo
 		ARG 5 onlyShowSecureChat
 		ARG 6 timestamp
@@ -62,7 +62,7 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 	METHOD showMessageToPlayer (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;ZLjava/time/Instant;)Z
 		ARG 1 boundChatType
 		ARG 2 chatMessage
-		ARG 3 message
+		ARG 3 decoratedServerContent
 		ARG 4 playerInfo
 		ARG 5 onlyShowSecureChat
 		ARG 6 timestamp
