@@ -1,4 +1,8 @@
 CLASS net/minecraft/client/renderer/FogRenderer
+	METHOD getPriorityFogFunction (Lnet/minecraft/world/entity/Entity;F)Lnet/minecraft/client/renderer/FogRenderer$MobEffectFogFunction;
+		ARG 0 entity
+	METHOD lambda$getPriorityFogFunction$1 (Lnet/minecraft/world/entity/LivingEntity;FLnet/minecraft/client/renderer/FogRenderer$MobEffectFogFunction;)Z
+		ARG 2 effect
 	METHOD lambda$setupColor$0 (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/world/level/biome/BiomeManager;FIII)Lnet/minecraft/world/phys/Vec3;
 		ARG 3 x
 		ARG 4 y
@@ -13,3 +17,16 @@ CLASS net/minecraft/client/renderer/FogRenderer
 		ARG 0 camera
 		ARG 1 fogMode
 		ARG 2 farPlaneDistance
+	CLASS FogData
+		METHOD <init> (Lnet/minecraft/client/renderer/FogRenderer$FogMode;)V
+			ARG 1 mode
+	CLASS MobEffectFogFunction
+		METHOD getModifiedVoidDarkness (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/effect/MobEffectInstance;FF)F
+			ARG 1 entity
+			ARG 2 effectInstance
+		METHOD isEnabled (Lnet/minecraft/world/entity/LivingEntity;F)Z
+			ARG 1 entity
+		METHOD setupFog (Lnet/minecraft/client/renderer/FogRenderer$FogData;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/effect/MobEffectInstance;FF)V
+			ARG 1 fogData
+			ARG 2 entity
+			ARG 3 effectInstance
