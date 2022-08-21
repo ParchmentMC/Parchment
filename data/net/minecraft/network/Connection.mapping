@@ -39,7 +39,9 @@ CLASS net/minecraft/network/Connection
 		ARG 1 message
 	METHOD doSendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/ConnectionProtocol;)V
 		ARG 1 packet
-		ARG 2 listener
+		ARG 2 sendListener
+		ARG 3 newProtocol
+		ARG 4 currentProtocol
 	METHOD exceptionCaught (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Throwable;)V
 		ARG 1 context
 		ARG 2 exception
@@ -72,11 +74,11 @@ CLASS net/minecraft/network/Connection
 		ARG 1 packet
 	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 		ARG 1 packet
-		ARG 2 listener
+		ARG 2 sendListener
 	METHOD sendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 		COMMENT Will commit the packet to the channel. If the current thread 'owns' the channel it will write and flush the packet, otherwise it will add a task for the channel eventloop thread to do that.
 		ARG 1 packet
-		ARG 2 listener
+		ARG 2 sendListener
 	METHOD setEncryptionKey (Ljavax/crypto/Cipher;Ljavax/crypto/Cipher;)V
 		COMMENT Enables encryption for this connection using the given decrypting and encrypting ciphers.
 		COMMENT This adds new handlers to this connection's pipeline which handle the decrypting and encrypting.

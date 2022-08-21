@@ -53,9 +53,6 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
 		COMMENT Called when the mob's health reaches 0.
 		ARG 1 cause
-	METHOD displayClientMessage (Lnet/minecraft/network/chat/Component;Z)V
-		ARG 1 chatComponent
-		ARG 2 actionBar
 	METHOD doCheckFallDamage (DZ)V
 		COMMENT process player falling based on movement packet
 		ARG 1 y
@@ -147,6 +144,14 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD restoreFrom (Lnet/minecraft/server/level/ServerPlayer;Z)V
 		ARG 1 that
 		ARG 2 keepEverything
+	METHOD sendChatHeader (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)V
+		ARG 1 header
+		ARG 2 headerSignature
+		ARG 3 bodyDigest
+	METHOD sendChatMessage (Lnet/minecraft/network/chat/OutgoingPlayerChatMessage;ZLnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 message
+		ARG 2 shouldFilter
+		ARG 3 boundChatType
 	METHOD sendMerchantOffers (ILnet/minecraft/world/item/trading/MerchantOffers;IIZZ)V
 		ARG 1 containerId
 		ARG 2 offers
