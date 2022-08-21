@@ -9,6 +9,16 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 		ARG 1 minecraft
 	METHOD addMessage (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 chatComponent
+	METHOD addMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;ILnet/minecraft/client/GuiMessageTag;Z)V
+		ARG 1 chatComponent
+		ARG 2 headerSignature
+		ARG 3 addedTime
+		ARG 4 tag
+		ARG 5 onlyTrim
+	METHOD addMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/GuiMessageTag;)V
+		ARG 1 chatComponent
+		ARG 2 headerSignature
+		ARG 3 tag
 	METHOD addRecentChat (Ljava/lang/String;)V
 		COMMENT Adds this string to the list of sent messages, for recall using the up/down arrow keys
 		ARG 1 message
@@ -16,13 +26,27 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 		COMMENT Clears the chat.
 		ARG 1 clearSentMsgHistory
 			COMMENT Whether or not to clear the user's sent message history
+	METHOD deleteMessage (Lnet/minecraft/network/chat/MessageSignature;)V
+		ARG 1 messageSignature
+	METHOD drawTagIcon (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/client/GuiMessageTag$Icon;)V
+		ARG 1 poseStack
+		ARG 2 left
+		ARG 3 bottom
+		ARG 4 tagIcon
 	METHOD getClickedComponentStyleAt (DD)Lnet/minecraft/network/chat/Style;
 		ARG 1 mouseX
 		ARG 3 mouseY
 	METHOD getHeight (D)I
 		ARG 0 height
+	METHOD getMessageIndexAt (D)I
+		ARG 1 chatY
+	METHOD getMessageTagAt (DD)Lnet/minecraft/client/GuiMessageTag;
+		ARG 1 mouseX
+		ARG 3 mouseY
 	METHOD getRecentChat ()Ljava/util/List;
 		COMMENT Gets the list of messages previously sent through the chat GUI
+	METHOD getTagIconLeft (Lnet/minecraft/client/GuiMessage$Line;)I
+		ARG 1 line
 	METHOD getTimeFactor (I)D
 		ARG 0 counter
 	METHOD getWidth (D)I
@@ -32,10 +56,17 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 		ARG 3 mouseY
 	METHOD isChatFocused ()Z
 		COMMENT Returns true if the chat GUI is open
+	METHOD logChatMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/GuiMessageTag;)V
+		ARG 1 chatComponent
+		ARG 2 tag
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;I)V
 		ARG 1 poseStack
 		ARG 2 tickCount
 	METHOD resetChatScroll ()V
 		COMMENT Resets the chat scroll (executed when the GUI is closed, among others)
+	METHOD screenToChatX (D)D
+		ARG 1 x
+	METHOD screenToChatY (D)D
+		ARG 1 y
 	METHOD scrollChat (I)V
 		ARG 1 posInc

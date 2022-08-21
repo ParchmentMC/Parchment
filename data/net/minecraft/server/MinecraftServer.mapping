@@ -18,6 +18,8 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 0 cause
 	METHOD createGameModeForPlayer (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/server/level/ServerPlayerGameMode;
 		ARG 1 player
+	METHOD createTextFilterForPlayer (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/server/network/TextFilter;
+		ARG 1 player
 	METHOD doRunTask (Lnet/minecraft/server/TickTask;)V
 		ARG 1 task
 	METHOD dumpClasspath (Ljava/nio/file/Path;)V
@@ -92,9 +94,9 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD kickUnlistedPlayers (Lnet/minecraft/commands/CommandSourceStack;)V
 		ARG 1 commandSource
 	METHOD logChatMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType$Bound;Ljava/lang/String;)V
-		ARG 1 message
+		ARG 1 content
 		ARG 2 boundChatType
-		ARG 3 sender
+		ARG 3 header
 	METHOD onServerCrash (Lnet/minecraft/CrashReport;)V
 		COMMENT Called on exit from the main run() loop.
 		ARG 1 report
