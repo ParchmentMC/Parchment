@@ -1,8 +1,8 @@
 CLASS net/minecraft/client/multiplayer/ClientPacketListener
 	FIELD callbackScreen Lnet/minecraft/client/gui/screens/Screen;
-		COMMENT Seems to be either null (integrated server) or an instance of either GuiMultiplayer (when connecting to a server) or GuiScreenReamlsTOS (when connecting to MCO server)
+		COMMENT Seems to be either null (integrated server) or an instance of either GuiMultiplayer (when connecting to a server) or GuiScreenRealmsTOS (when connecting to MCO server)
 	FIELD connection Lnet/minecraft/network/Connection;
-		COMMENT The NetworkManager instance used to communicate with the server, used to respond to various packets (primarilly movement and plugin channel related ones) and check the status of the network connection externally
+		COMMENT The NetworkManager instance used to communicate with the server, used to respond to various packets (primarily movement and plugin channel related ones) and check the status of the network connection externally
 	FIELD level Lnet/minecraft/client/multiplayer/ClientLevel;
 		COMMENT Reference to the current ClientWorld instance, which many handler methods operate on
 	FIELD minecraft Lnet/minecraft/client/Minecraft;
@@ -92,7 +92,7 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		COMMENT Sets the progressbar of the opened window to the specified value
 		ARG 1 packet
 	METHOD handleContainerSetSlot (Lnet/minecraft/network/protocol/game/ClientboundContainerSetSlotPacket;)V
-		COMMENT Handles pickin up an ItemStack or dropping one in your inventory or an open (non-creative) container
+		COMMENT Handles picking up an ItemStack or dropping one in your inventory or an open (non-creative) container
 		ARG 1 packet
 	METHOD handleCustomPayload (Lnet/minecraft/network/protocol/game/ClientboundCustomPayloadPacket;)V
 		COMMENT Handles packets that have room for a channel specification. Vanilla implemented channels are "MC|TrList" to acquire a MerchantRecipeList trades for a villager merchant, "MC|Brand" which sets the server brand? on the player instance and finally "MC|RPack" which the server uses to communicate the identifier of the default server resourcepack for the client to load.
@@ -218,7 +218,7 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 	METHOD handleUpdateAdvancementsPacket (Lnet/minecraft/network/protocol/game/ClientboundUpdateAdvancementsPacket;)V
 		ARG 1 packet
 	METHOD handleUpdateAttributes (Lnet/minecraft/network/protocol/game/ClientboundUpdateAttributesPacket;)V
-		COMMENT Updates en entity's attributes and their respective modifiers, which are used for speed bonusses (player sprinting, animals fleeing, baby speed), weapon/tool attackDamage, hostiles followRange randomization, zombie maxHealth and knockback resistance as well as reinforcement spawning chance.
+		COMMENT Updates en entity's attributes and their respective modifiers, which are used for speed bonuses (player sprinting, animals fleeing, baby speed), weapon/tool attackDamage, hostiles followRange randomization, zombie maxHealth and knockback resistance as well as reinforcement spawning chance.
 		ARG 1 packet
 	METHOD handleUpdateMobEffect (Lnet/minecraft/network/protocol/game/ClientboundUpdateMobEffectPacket;)V
 		ARG 1 packet
@@ -230,7 +230,7 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 entityId
 	METHOD markMessageAsProcessed (Lnet/minecraft/network/chat/PlayerChatMessage;Z)V
 		ARG 1 chatMessage
-		ARG 2 acknowledeged
+		ARG 2 acknowledged
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason
