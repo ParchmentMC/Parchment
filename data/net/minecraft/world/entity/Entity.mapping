@@ -227,7 +227,7 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD getZ (D)D
 		ARG 1 scale
 	METHOD handleEntityEvent (B)V
-		COMMENT Handles an entity event fired from {@link net.minecraft.world.level.Level#broadcastEntityEvent}.
+		COMMENT Handles an entity event received from a {@link net.minecraft.network.protocol.game.ClientboundEntityEventPacket}.
 		ARG 1 id
 	METHOD handleInsidePortal (Lnet/minecraft/core/BlockPos;)V
 		COMMENT Marks the entity as being inside a portal, activating teleportation logic in onEntityUpdate() in the following tick(s).
@@ -424,7 +424,7 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
 	METHOD onlyOpCanSetNbt ()Z
-		COMMENT Checks if players can use this entity to access operator (permission level 2) commands either directly or indirectly, such as give or setblock. A similar method exists for entities at {@link net.minecraft.tileentity.TileEntity#onlyOpsCanSetNbt()}.<p>For example, {@link net.minecraft.entity.item.EntityMinecartCommandBlock#ignoreItemEntityData() command block minecarts} and {@link net.minecraft.entity.item.EntityMinecartMobSpawner#ignoreItemEntityData() mob spawner minecarts} (spawning command block minecarts or drops) are considered accessible.</p>@return true if this entity offers ways for unauthorized players to use restricted commands
+		COMMENT Checks if players can use this entity to access operator (permission level 2) commands either directly or indirectly, such as give or setblock. A similar method exists for entities at {@link net.minecraft.world.entity.Entity#onlyOpCanSetNbt()}.<p>For example, {@link net.minecraft.world.entity.vehicle.MinecartCommandBlock#onlyOpCanSetNbt() command block minecarts} and {@link net.minecraft.world.entity.vehicle.MinecartSpawner#onlyOpCanSetNbt() mob spawner minecarts} (spawning command block minecarts or drops) are considered accessible.</p>@return true if this entity offers ways for unauthorized players to use restricted commands
 	METHOD outOfWorld ()V
 		COMMENT sets the dead flag. Used when you fall off the bottom of the world.
 	METHOD pick (DFZ)Lnet/minecraft/world/phys/HitResult;
