@@ -9,7 +9,6 @@ CLASS net/minecraft/server/players/PlayerList
 	METHOD addWorldborderListener (Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 1 level
 	METHOD broadcast (Lnet/minecraft/world/entity/player/Player;DDDDLnet/minecraft/resources/ResourceKey;Lnet/minecraft/network/protocol/Packet;)V
-		COMMENT params: srcPlayer,x,y,z,r,dimension. The packet is not sent to the srcPlayer, but all other players within the search radius
 		ARG 1 except
 		ARG 2 x
 		ARG 4 y
@@ -86,7 +85,7 @@ CLASS net/minecraft/server/players/PlayerList
 	METHOD isWhiteListed (Lcom/mojang/authlib/GameProfile;)Z
 		ARG 1 profile
 	METHOD load (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/nbt/CompoundTag;
-		COMMENT called during player login. reads the player information from disk.
+		COMMENT Called during player login. Reads the player information from disk.
 		ARG 1 player
 	METHOD op (Lcom/mojang/authlib/GameProfile;)V
 		ARG 1 profile
@@ -102,12 +101,12 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 1 player
 		ARG 2 keepEverything
 	METHOD save (Lnet/minecraft/server/level/ServerPlayer;)V
-		COMMENT also stores the NBTTags if this is an integratedPlayerList
+		COMMENT Also stores the NBTTags if this is an IntegratedPlayerList.
 		ARG 1 player
 	METHOD saveAll ()V
 		COMMENT Saves all of the players' current states.
 	METHOD sendAllPlayerInfo (Lnet/minecraft/server/level/ServerPlayer;)V
-		COMMENT sends the players inventory to himself
+		COMMENT Sends the players inventory to himself.
 		ARG 1 player
 	METHOD sendLevelInfo (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/level/ServerLevel;)V
 		COMMENT Updates the time and weather for the given player to those of the given world
