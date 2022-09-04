@@ -11,6 +11,10 @@ CLASS net/minecraft/server/packs/resources/FallbackResourceManager
 		ARG 0 location
 	METHOD isValidLocation (Lnet/minecraft/resources/ResourceLocation;)Z
 		ARG 1 location
+	METHOD listPackResources (Lnet/minecraft/server/packs/resources/FallbackResourceManager$PackEntry;Ljava/lang/String;Ljava/util/function/Predicate;Ljava/util/Map;)V
+		ARG 1 entry
+		ARG 2 path
+		ARG 3 filter
 	METHOD push (Lnet/minecraft/server/packs/PackResources;)V
 		ARG 1 resources
 	METHOD push (Lnet/minecraft/server/packs/PackResources;Ljava/util/function/Predicate;)V
@@ -23,6 +27,11 @@ CLASS net/minecraft/server/packs/resources/FallbackResourceManager
 		ARG 1 name
 		ARG 2 resources
 		ARG 3 filter
+	CLASS PackEntry
+		METHOD filterAll (Ljava/util/Collection;)V
+			ARG 1 locations
+		METHOD isFiltered (Lnet/minecraft/resources/ResourceLocation;)Z
+			ARG 1 location
 	CLASS SinglePackResourceThunkSupplier
 		METHOD <init> (Lnet/minecraft/server/packs/resources/FallbackResourceManager;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/PackResources;)V
 			ARG 2 location

@@ -5,6 +5,10 @@ CLASS net/minecraft/server/ServerFunctionManager
 	METHOD execute (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;)I
 		ARG 1 functionObject
 		ARG 2 source
+	METHOD execute (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/ServerFunctionManager$TraceCallbacks;)I
+		ARG 1 functionObject
+		ARG 2 source
+		ARG 3 traceCallbacks
 	METHOD executeTagFunctions (Ljava/util/Collection;Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 functionObjects
 		ARG 2 identifier
@@ -16,3 +20,19 @@ CLASS net/minecraft/server/ServerFunctionManager
 		ARG 1 reloader
 	METHOD replaceLibrary (Lnet/minecraft/server/ServerFunctionLibrary;)V
 		ARG 1 reloader
+	CLASS QueuedCommand
+		METHOD <init> (Lnet/minecraft/commands/CommandSourceStack;ILnet/minecraft/commands/CommandFunction$Entry;)V
+			ARG 1 sender
+			ARG 2 depth
+			ARG 3 entry
+	CLASS ExecutionContext
+		METHOD <init> (Lnet/minecraft/server/ServerFunctionManager;Lnet/minecraft/server/ServerFunctionManager$TraceCallbacks;)V
+			ARG 2 tracer
+		METHOD delayFunctionCall (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;)V
+			ARG 1 function
+			ARG 2 sender
+		METHOD reportError (Ljava/lang/String;)V
+			ARG 1 error
+		METHOD runTopCommand (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;)I
+			ARG 1 function
+			ARG 2 source

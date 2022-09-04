@@ -18,16 +18,31 @@ CLASS net/minecraft/server/players/GameProfileCache
 	METHOD lookupGameProfile (Lcom/mojang/authlib/GameProfileRepository;Ljava/lang/String;)Ljava/util/Optional;
 		ARG 0 profileRepo
 		ARG 1 name
+	METHOD safeAdd (Lnet/minecraft/server/players/GameProfileCache$GameProfileInfo;)V
+		ARG 1 profile
 	METHOD save ()V
 		COMMENT Save the cached profiles to disk
+	METHOD setExecutor (Ljava/util/concurrent/Executor;)V
+		ARG 1 exectutor
 	METHOD setUsesAuthentication (Z)V
 		ARG 0 onlineMode
+	CLASS 1
+		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
+			ARG 1 profile
+			ARG 2 exception
+		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
+			ARG 1 profile
 	CLASS GameProfileInfo
 		FIELD expirationDate Ljava/util/Date;
 			COMMENT The date that this entry will expire
 		FIELD profile Lcom/mojang/authlib/GameProfile;
 			COMMENT The player's GameProfile
+		METHOD <init> (Lcom/mojang/authlib/GameProfile;Ljava/util/Date;)V
+			ARG 1 profile
+			ARG 2 expirationDate
 		METHOD getExpirationDate ()Ljava/util/Date;
 			COMMENT Get the date that this entry will expire
 		METHOD getProfile ()Lcom/mojang/authlib/GameProfile;
 			COMMENT Get the player's GameProfile
+		METHOD setLastAccess (J)V
+			ARG 1 lastAccess
