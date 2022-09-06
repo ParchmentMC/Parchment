@@ -65,11 +65,11 @@ CLASS net/minecraft/network/Connection
 		COMMENT by notifying the current packet listener, which will handle things like removing the player from the world (serverside) or
 		COMMENT showing the disconnection screen (clientside).
 	METHOD isConnected ()Z
-		COMMENT Returns {@code true} if this NetworkManager has an active channel, false otherwise
+		COMMENT Returns {@code true} if this {@code NetworkManager} has an active channel, {@code false} otherwise.
 	METHOD isConnecting ()Z
 		COMMENT Returns {@code true} while this connection is still connecting, i.e. {@link #channelActive} has not fired yet.
 	METHOD isMemoryConnection ()Z
-		COMMENT True if this NetworkManager uses a memory connection (single player game). False may imply both an active TCP connection or simply no active connection at all
+		COMMENT True if this {@code NetworkManager} uses a memory connection (single player game). False may imply both an active TCP connection or simply no active connection at all
 	METHOD send (Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 packet
 	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
@@ -89,7 +89,7 @@ CLASS net/minecraft/network/Connection
 		ARG 1 decryptingCipher
 		ARG 2 encryptingCipher
 	METHOD setListener (Lnet/minecraft/network/PacketListener;)V
-		COMMENT Sets the NetHandler for this NetworkManager, no checks are made if this handler is suitable for the particular connection state (protocol)
+		COMMENT Sets the {@code PacketListener} for this {@code NetworkManager}, no checks are made if this listener is suitable for the particular connection state (protocol)
 		ARG 1 handler
 	METHOD setProtocol (Lnet/minecraft/network/ConnectionProtocol;)V
 		COMMENT Sets the new connection state and registers which packets this channel may send and receive
