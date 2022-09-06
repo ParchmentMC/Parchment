@@ -47,7 +47,7 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
 		COMMENT Get a ChatComponent for this Item's display name that shows this Item on hover
 	METHOD getEntityRepresentation ()Lnet/minecraft/world/entity/Entity;
-		COMMENT For example, it'll return a ItemFrameEntity if it is in an itemframe
+		COMMENT For example, it'll return an {@code ItemFrameEntity} if it is in an itemframe.
 	METHOD getFrame ()Lnet/minecraft/world/entity/decoration/ItemFrame;
 		COMMENT Return the item frame this stack is on. Returns null if not on an item frame.
 	METHOD getItem ()Lnet/minecraft/world/item/Item;
@@ -74,13 +74,13 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 1 blockRegistry
 		ARG 2 block
 	METHOD hasCustomHoverName ()Z
-		COMMENT Returns true if the itemstack has a display name
+		COMMENT Returns {@code true} if the itemstack has a display name
 	METHOD hasTag ()Z
-		COMMENT Returns true if the ItemStack has an NBTTagCompound. Currently used to store enchantments.
+		COMMENT Returns {@code true} if the ItemStack has an NBTTagCompound. Currently used to store enchantments.
 	METHOD hideTooltipPart (Lnet/minecraft/world/item/ItemStack$TooltipPart;)V
 		ARG 1 part
 	METHOD hurt (ILnet/minecraft/util/RandomSource;Lnet/minecraft/server/level/ServerPlayer;)Z
-		COMMENT Attempts to damage the ItemStack with par1 amount of damage, If the ItemStack has the Unbreaking enchantment there is a chance for each point of damage to be negated. Returns true if it takes more damage than getMaxDamage(). Returns false otherwise or if the ItemStack can't be damaged or if all points of damage are negated.
+		COMMENT Attempts to damage the ItemStack with par1 amount of damage, If the ItemStack has the Unbreaking enchantment there is a chance for each point of damage to be negated. Returns {@code true} if it takes more damage than getMaxDamage(). Returns false otherwise or if the ItemStack can't be damaged or if all points of damage are negated.
 		ARG 1 amount
 		ARG 2 random
 		ARG 3 user
@@ -97,7 +97,7 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 2 entity
 		ARG 3 usedHand
 	METHOD inventoryTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;IZ)V
-		COMMENT Called each tick as long the ItemStack in on player inventory. Used to progress the pickup animation and update maps.
+		COMMENT Called each tick as long the {@code ItemStack} in in player's inventory. Used to progress the pickup animation and update maps.
 		ARG 1 level
 		ARG 2 entity
 		ARG 3 inventorySlot
@@ -110,9 +110,9 @@ CLASS net/minecraft/world/item/ItemStack
 		COMMENT Check whether the given Block can be harvested using this ItemStack.
 		ARG 1 state
 	METHOD isDamageableItem ()Z
-		COMMENT true if this itemStack is damageable.
+		COMMENT Returns {@code true} if this {@code ItemStack} is damageable.
 	METHOD isDamaged ()Z
-		COMMENT Returns true when a damageable item is damaged.
+		COMMENT Returns {@code true} when a damageable item is damaged.
 	METHOD isEnchantable ()Z
 		COMMENT True if it is a tool and has no enchantments to begin with
 	METHOD isEnchanted ()Z
@@ -130,7 +130,7 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 0 stack
 		ARG 1 other
 	METHOD isStackable ()Z
-		COMMENT Returns true if the ItemStack can hold 2 or more units of the item.
+		COMMENT Returns {@code true} if the ItemStack can hold 2 or more units of the item.
 	METHOD lambda$appendEnchantmentNames$5 (Ljava/util/List;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/item/enchantment/Enchantment;)V
 		ARG 2 enchantment
 	METHOD lambda$static$0 (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/Item;
@@ -144,10 +144,10 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD lambda$static$4 (Ljava/text/DecimalFormat;)V
 		ARG 0 format
 	METHOD matches (Lnet/minecraft/world/item/ItemStack;)Z
-		COMMENT Compares ItemStack argument to the instance ItemStack, returns true if both ItemStacks are equal.
+		COMMENT Compares the {@code ItemStack} argument to this {@code ItemStack}, returns {@code true} if both {@code ItemStacks} are equal.
 		ARG 1 other
 	METHOD matches (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
-		COMMENT Compares ItemStack argument1 with ItemStack argument2, returns true if both ItemStacks are equal.
+		COMMENT Compares both {@code ItemStacks}, returns {@code true} if both {@code ItemStacks} are equal.
 		ARG 0 stack
 		ARG 1 other
 	METHOD mineBlock (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)V
@@ -189,7 +189,7 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD resetHoverName ()V
 		COMMENT Clear any custom name set for this ItemStack
 	METHOD sameItem (Lnet/minecraft/world/item/ItemStack;)Z
-		COMMENT Compares ItemStack argument to the instance ItemStack, returns true if the Items contained in both ItemStacks are equal.
+		COMMENT Compares the {@code ItemStack} argument to this {@code ItemStack}, returns {@code true} if the {@code Items} contained in both {@code ItemStacks} are equal.
 		ARG 1 other
 	METHOD sameItemStackIgnoreDurability (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
@@ -224,7 +224,7 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 0 stack
 		ARG 1 other
 	METHOD use (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
-		COMMENT Called when the item stack is equipped and right-clicked. Replaces the item stack with the return value.
+		COMMENT Called when the {@code ItemStack} is equipped and right-clicked. Replaces the {@code ItemStack} with the return value.
 		ARG 1 level
 		ARG 2 player
 		ARG 3 usedHand

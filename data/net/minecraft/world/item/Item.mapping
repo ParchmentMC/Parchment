@@ -21,7 +21,7 @@ CLASS net/minecraft/world/item/Item
 	METHOD canBeHurtBy (Lnet/minecraft/world/damagesource/DamageSource;)Z
 		ARG 1 damageSource
 	METHOD fillItemCategory (Lnet/minecraft/world/item/CreativeModeTab;Lnet/minecraft/core/NonNullList;)V
-		COMMENT Adds some ItemStacks to the given list for display in the creative tab.
+		COMMENT Adds some {@code ItemStacks} to the given list for display in the creative tab.
 		ARG 1 category
 		ARG 2 items
 	METHOD finishUsingItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/item/ItemStack;
@@ -49,7 +49,7 @@ CLASS net/minecraft/world/item/Item
 	METHOD getId (Lnet/minecraft/world/item/Item;)I
 		ARG 0 item
 	METHOD getItemCategory ()Lnet/minecraft/world/item/CreativeModeTab;
-		COMMENT Gets the ItemGroup this item is displayed on.
+		COMMENT Gets the {@link net.minecraft.world.item.CreativeModeTab} this item is displayed on.
 	METHOD getMaxDamage ()I
 		COMMENT Returns the maximum damage an item can take.
 	METHOD getMaxStackSize ()I
@@ -79,13 +79,13 @@ CLASS net/minecraft/world/item/Item
 		ARG 2 target
 		ARG 3 attacker
 	METHOD interactLivingEntity (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
-		COMMENT Returns true if the item can be used on the given entity, e.g. shears on sheep.
+		COMMENT Returns {@code true} if the item can be used on the given entity, e.g. shears on sheep.
 		ARG 1 stack
 		ARG 2 player
 		ARG 3 interactionTarget
 		ARG 4 usedHand
 	METHOD inventoryTick (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;IZ)V
-		COMMENT Called each tick as long the item is on a players inventory. Uses by maps to check if it's on a players hand and update its contents.
+		COMMENT Called each tick as long the item is in a player's inventory. Used by maps to check if it's in a player's hand and update its contents.
 		ARG 1 stack
 		ARG 2 level
 		ARG 3 entity
@@ -102,7 +102,7 @@ CLASS net/minecraft/world/item/Item
 		COMMENT Checks isDamagable and if it cannot be stacked
 		ARG 1 stack
 	METHOD isFoil (Lnet/minecraft/world/item/ItemStack;)Z
-		COMMENT Returns true if this item has an enchantment glint. By default, this returns {@code stack.isEnchanted()}, but other items can override it (for instance, written books always return true).
+		COMMENT Returns {@code true} if this item has an enchantment glint. By default, this returns {@code stack.isEnchanted()}, but other items can override it (for instance, written books always return true).
 		COMMENT
 		COMMENT Note that if you override this method, you generally want to also call the super version (on {@link Item}) to get the glint for enchanted items. Of course, that is unnecessary if the overwritten version always returns true.
 		ARG 1 stack

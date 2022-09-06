@@ -57,7 +57,7 @@ CLASS net/minecraft/world/level/Level
 		ARG 3 eventID
 		ARG 4 eventParam
 	METHOD broadcastEntityEvent (Lnet/minecraft/world/entity/Entity;B)V
-		COMMENT Sends a Packet 38 (Entity Status) to all tracked players of that entity.
+		COMMENT Sends a {@link net.minecraft.network.protocol.game.ClientboundEntityEventPacket} to all tracked players of that entity.
 		ARG 1 entity
 		ARG 2 state
 	METHOD createFireworks (DDDDDDLnet/minecraft/nbt/CompoundTag;)V
@@ -198,7 +198,7 @@ CLASS net/minecraft/world/level/Level
 	METHOD isOutsideSpawnableHeight (I)Z
 		ARG 0 y
 	METHOD isRaining ()Z
-		COMMENT Returns true if the current rain strength is greater than 0.2
+		COMMENT Returns {@code true} if the current rain strength is greater than 0.2
 	METHOD isRainingAt (Lnet/minecraft/core/BlockPos;)Z
 		COMMENT Check if precipitation is currently happening at a position
 		ARG 1 position
@@ -206,7 +206,7 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 pos
 		ARG 2 state
 	METHOD isThundering ()Z
-		COMMENT Returns true if the current thunder strength (weighted with the rain strength) is greater than 0.9
+		COMMENT Returns {@code true} if the current thunder strength (weighted with the rain strength) is greater than 0.9
 	METHOD lambda$getEntities$1 (Lnet/minecraft/world/entity/Entity;Ljava/util/function/Predicate;Ljava/util/List;Lnet/minecraft/world/entity/Entity;)V
 		ARG 3 entity
 	METHOD lambda$getEntities$2 (Ljava/util/function/Predicate;Ljava/util/List;Lnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/entity/Entity;)V
@@ -353,4 +353,4 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 pos
 		ARG 2 block
 	METHOD updateSkyBrightness ()V
-		COMMENT Called on construction of the Level class to set up the initial skylight values.
+		COMMENT Called on the construction of the {@code Level} class to set up the initial skylight values.
