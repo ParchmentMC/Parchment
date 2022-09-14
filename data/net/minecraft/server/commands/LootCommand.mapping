@@ -8,28 +8,47 @@ CLASS net/minecraft/server/commands/LootCommand
 		ARG 4 items
 	METHOD callback (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/List;)V
 		ARG 0 source
+		ARG 1 items
 	METHOD callback (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/List;Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 0 source
+		ARG 1 items
+		ARG 2 lootTable
+	METHOD canMergeItems (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 first
+		ARG 1 second
 	METHOD distributeToContainer (Lnet/minecraft/world/Container;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 container
 		ARG 1 item
 	METHOD drop (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)I
 		ARG 0 context
+		ARG 1 lootTable
+		ARG 2 lootContext
+		ARG 3 dropConsumer
 	METHOD dropBlockLoot (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)I
 		ARG 0 context
+		ARG 1 pos
+		ARG 3 dropConsumer
 	METHOD dropChestLoot (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)I
 		ARG 0 context
+		ARG 1 lootTable
+		ARG 2 dropConsumer
 	METHOD dropFishingLoot (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)I
 		ARG 0 context
+		ARG 1 lootTable
+		ARG 4 dropConsumer
 	METHOD dropInWorld (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/phys/Vec3;Ljava/util/List;Lnet/minecraft/server/commands/LootCommand$Callback;)I
 		ARG 0 source
 		ARG 1 pos
 		ARG 2 items
+		ARG 3 callback
 	METHOD dropKillLoot (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)I
 		ARG 0 context
+		ARG 1 entity
+		ARG 2 dropConsumer
 	METHOD entityReplace (Ljava/util/Collection;IILjava/util/List;Lnet/minecraft/server/commands/LootCommand$Callback;)I
 		ARG 0 targets
 		ARG 3 items
+		ARG 4 callback
 	METHOD getContainer (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/Container;
 		ARG 0 source
 		ARG 1 pos
@@ -38,6 +57,10 @@ CLASS net/minecraft/server/commands/LootCommand
 		ARG 1 slot
 	METHOD lambda$dropInWorld$22 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 itemStack
+	METHOD playerGive (Ljava/util/Collection;Ljava/util/List;Lnet/minecraft/server/commands/LootCommand$Callback;)I
+		ARG 0 targets
+		ARG 1 items
+		ARG 2 callback
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandBuildContext;)V
 		ARG 0 dispatcher
 		ARG 1 context
@@ -46,3 +69,5 @@ CLASS net/minecraft/server/commands/LootCommand
 	CLASS DropConsumer
 		METHOD accept (Lcom/mojang/brigadier/context/CommandContext;Ljava/util/List;Lnet/minecraft/server/commands/LootCommand$Callback;)I
 			ARG 1 context
+			ARG 2 items
+			ARG 3 callback
