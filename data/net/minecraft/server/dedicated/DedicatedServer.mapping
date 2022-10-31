@@ -3,6 +3,8 @@ CLASS net/minecraft/server/dedicated/DedicatedServer
 		ARG 1 serverThread
 		ARG 2 storageSource
 		ARG 3 packRepository
+		ARG 4 worldStem
+		ARG 5 settings
 		ARG 6 fixerUpper
 		ARG 7 sessionService
 		ARG 8 profileRepository
@@ -38,6 +40,8 @@ CLASS net/minecraft/server/dedicated/DedicatedServer
 		ARG 3 player
 	METHOD onServerExit ()V
 		COMMENT Directly calls System.exit(0), instantly killing the program.
+	METHOD parseResourcePackPrompt (Lnet/minecraft/server/dedicated/DedicatedServerSettings;)Lnet/minecraft/network/chat/Component;
+		ARG 0 settings
 	METHOD runCommand (Ljava/lang/String;)Ljava/lang/String;
 		COMMENT Handle a command received by an RCon instance
 		ARG 1 command
