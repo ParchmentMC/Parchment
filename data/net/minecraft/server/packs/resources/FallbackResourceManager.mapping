@@ -1,4 +1,7 @@
 CLASS net/minecraft/server/packs/resources/FallbackResourceManager
+	METHOD <init> (Lnet/minecraft/server/packs/PackType;Ljava/lang/String;)V
+		ARG 1 type
+		ARG 2 namespace
 	METHOD add (Lnet/minecraft/server/packs/PackResources;)V
 		ARG 1 resourcePack
 	METHOD getMetadataLocation (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
@@ -10,8 +13,15 @@ CLASS net/minecraft/server/packs/resources/FallbackResourceManager
 		ARG 2 resourcePack
 	METHOD hasResource (Lnet/minecraft/resources/ResourceLocation;)Z
 		ARG 1 path
+	METHOD isValidLocation (Lnet/minecraft/resources/ResourceLocation;)Z
+		ARG 1 location
 	METHOD listResources (Ljava/lang/String;Ljava/util/function/Predicate;)Ljava/util/Collection;
 		ARG 1 path
 		ARG 2 filter
 	METHOD validateLocation (Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 location
+	CLASS LeakedResourceWarningInputStream
+		METHOD <init> (Ljava/io/InputStream;Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)V
+			ARG 1 inputStream
+			ARG 2 resourceLocation
+			ARG 3 resourcePack

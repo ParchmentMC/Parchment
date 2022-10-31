@@ -1,4 +1,6 @@
 CLASS net/minecraft/server/packs/FolderPackResources
+	METHOD getFile (Ljava/lang/String;)Ljava/io/File;
+		ARG 1 path
 	METHOD getNamespaces (Lnet/minecraft/server/packs/PackType;)Ljava/util/Set;
 		ARG 1 type
 	METHOD getResource (Ljava/lang/String;)Ljava/io/InputStream;
@@ -11,6 +13,13 @@ CLASS net/minecraft/server/packs/FolderPackResources
 		ARG 5 filter
 	METHOD hasResource (Ljava/lang/String;)Z
 		ARG 1 resourcePath
+	METHOD listResources (Ljava/io/File;ILjava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/util/function/Predicate;)V
+		ARG 1 directory
+		ARG 2 maxDepth
+		ARG 3 namespace
+		ARG 4 resources
+		ARG 5 resourcePrefix
+		ARG 6 filter
 	METHOD validatePath (Ljava/io/File;Ljava/lang/String;)Z
 		ARG 0 file
 		ARG 1 path
