@@ -3,6 +3,9 @@ CLASS net/minecraft/server/players/GameProfileCache
 		COMMENT A map between player usernames and
 	FIELD profilesByUUID Ljava/util/Map;
 		COMMENT A map between and
+	METHOD <init> (Lcom/mojang/authlib/GameProfileRepository;Ljava/io/File;)V
+		ARG 1 profileRepository
+		ARG 2 file
 	METHOD add (Lcom/mojang/authlib/GameProfile;)V
 		COMMENT Add an entry to this cache
 		ARG 1 gameProfile
@@ -12,19 +15,36 @@ CLASS net/minecraft/server/players/GameProfileCache
 	METHOD get (Ljava/util/UUID;)Ljava/util/Optional;
 		ARG 1 uuid
 			COMMENT Get a player's {@link GameProfile} given their UUID
+	METHOD getTopMRUProfiles (I)Ljava/util/stream/Stream;
+		ARG 1 limit
 	METHOD lookupGameProfile (Lcom/mojang/authlib/GameProfileRepository;Ljava/lang/String;)Ljava/util/Optional;
 		ARG 0 profileRepo
 		ARG 1 name
+	METHOD readGameProfile (Lcom/google/gson/JsonElement;Ljava/text/DateFormat;)Ljava/util/Optional;
+		ARG 0 jsonElement
+		ARG 1 dateFormat
+	METHOD safeAdd (Lnet/minecraft/server/players/GameProfileCache$GameProfileInfo;)V
+		ARG 1 gameProfileInfo
 	METHOD save ()V
 		COMMENT Save the cached profiles to disk
+	METHOD setExecutor (Ljava/util/concurrent/Executor;)V
+		ARG 1 executor
 	METHOD setUsesAuthentication (Z)V
 		ARG 0 onlineMode
+	METHOD writeGameProfile (Lnet/minecraft/server/players/GameProfileCache$GameProfileInfo;Ljava/text/DateFormat;)Lcom/google/gson/JsonElement;
+		ARG 0 gameProfileInfo
+		ARG 1 dateFormat
 	CLASS GameProfileInfo
 		FIELD expirationDate Ljava/util/Date;
 			COMMENT The date that this entry will expire
 		FIELD profile Lcom/mojang/authlib/GameProfile;
 			COMMENT The player's GameProfile
+		METHOD <init> (Lcom/mojang/authlib/GameProfile;Ljava/util/Date;)V
+			ARG 1 profile
+			ARG 2 expirationDate
 		METHOD getExpirationDate ()Ljava/util/Date;
 			COMMENT Get the date that this entry will expire
 		METHOD getProfile ()Lcom/mojang/authlib/GameProfile;
 			COMMENT Get the player's GameProfile
+		METHOD setLastAccess (J)V
+			ARG 1 lastAccess

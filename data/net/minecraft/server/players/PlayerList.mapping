@@ -6,6 +6,8 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 2 frozen
 		ARG 3 playerIo
 		ARG 4 maxPlayers
+	METHOD addWorldborderListener (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	METHOD broadcast (Lnet/minecraft/world/entity/player/Player;DDDDLnet/minecraft/resources/ResourceKey;Lnet/minecraft/network/protocol/Packet;)V
 		COMMENT params: srcPlayer,x,y,z,r,dimension. The packet is not sent to the srcPlayer, but all other players within the search radius
 		ARG 1 except
@@ -20,6 +22,11 @@ CLASS net/minecraft/server/players/PlayerList
 	METHOD broadcastAll (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/resources/ResourceKey;)V
 		ARG 1 packet
 		ARG 2 dimension
+	METHOD broadcastMessage (Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V
+		ARG 1 message
+		ARG 2 filter
+		ARG 3 chatType
+		ARG 4 senderUuid
 	METHOD broadcastMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V
 		ARG 1 message
 		ARG 2 chatType
@@ -42,6 +49,8 @@ CLASS net/minecraft/server/players/PlayerList
 	METHOD getPlayer (Ljava/util/UUID;)Lnet/minecraft/server/level/ServerPlayer;
 		COMMENT Get's the EntityPlayerMP object representing the player with the UUID.
 		ARG 1 playerUUID
+	METHOD getPlayerAdvancements (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/server/PlayerAdvancements;
+		ARG 1 player
 	METHOD getPlayerByName (Ljava/lang/String;)Lnet/minecraft/server/level/ServerPlayer;
 		ARG 1 username
 	METHOD getPlayerCount ()I

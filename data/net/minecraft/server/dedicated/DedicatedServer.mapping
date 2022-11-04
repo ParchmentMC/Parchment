@@ -3,6 +3,8 @@ CLASS net/minecraft/server/dedicated/DedicatedServer
 		ARG 1 serverThread
 		ARG 2 storageSource
 		ARG 3 packRepository
+		ARG 4 worldStem
+		ARG 5 settings
 		ARG 6 fixerUpper
 		ARG 7 sessionService
 		ARG 8 profileRepository
@@ -20,6 +22,9 @@ CLASS net/minecraft/server/dedicated/DedicatedServer
 		COMMENT Never used, but "getServerPort" is already taken.
 	METHOD getSpawnProtectionRadius ()I
 		COMMENT Return the spawn protection area's size.
+	METHOD handleConsoleInput (Ljava/lang/String;Lnet/minecraft/commands/CommandSourceStack;)V
+		ARG 1 msg
+		ARG 2 source
 	METHOD initServer ()Z
 		COMMENT Initialises the server and starts it.
 	METHOD isCommandBlockEnabled ()Z
@@ -38,6 +43,8 @@ CLASS net/minecraft/server/dedicated/DedicatedServer
 		ARG 3 player
 	METHOD onServerExit ()V
 		COMMENT Directly calls System.exit(0), instantly killing the program.
+	METHOD parseResourcePackPrompt (Lnet/minecraft/server/dedicated/DedicatedServerSettings;)Lnet/minecraft/network/chat/Component;
+		ARG 0 settings
 	METHOD runCommand (Ljava/lang/String;)Ljava/lang/String;
 		COMMENT Handle a command received by an RCon instance
 		ARG 1 command
@@ -45,5 +52,7 @@ CLASS net/minecraft/server/dedicated/DedicatedServer
 		ARG 1 idleTimeout
 	METHOD stopServer ()V
 		COMMENT Saves all necessary data as preparation for stopping the server.
+	METHOD storeUsingWhiteList (Z)V
+		ARG 1 value
 	METHOD tickChildren (Ljava/util/function/BooleanSupplier;)V
 		ARG 1 hasTimeLeft

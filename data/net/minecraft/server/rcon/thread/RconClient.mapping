@@ -1,4 +1,8 @@
 CLASS net/minecraft/server/rcon/thread/RconClient
+	METHOD <init> (Lnet/minecraft/server/ServerInterface;Ljava/lang/String;Ljava/net/Socket;)V
+		ARG 1 serverInterface
+		ARG 2 rconPassword
+		ARG 3 client
 	METHOD closeSocket ()V
 		COMMENT Closes the client socket
 	METHOD send (IILjava/lang/String;)V
@@ -8,3 +12,4 @@ CLASS net/minecraft/server/rcon/thread/RconClient
 		COMMENT Sends the standard RCon 'authorization failed' response packet
 	METHOD sendCmdResponse (ILjava/lang/String;)V
 		COMMENT Splits the response message into individual packets and sends each one
+		ARG 1 id

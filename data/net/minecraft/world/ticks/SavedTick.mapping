@@ -1,3 +1,17 @@
 CLASS net/minecraft/world/ticks/SavedTick
+	METHOD loadTick (Lnet/minecraft/nbt/CompoundTag;Ljava/util/function/Function;)Ljava/util/Optional;
+		ARG 0 tag
 	METHOD loadTickList (Lnet/minecraft/nbt/ListTag;Ljava/util/function/Function;Lnet/minecraft/world/level/ChunkPos;Ljava/util/function/Consumer;)V
 		ARG 0 tag
+	METHOD probe (Ljava/lang/Object;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/ticks/SavedTick;
+		ARG 0 type
+		ARG 1 pos
+	METHOD saveTick (Ljava/lang/String;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/ticks/TickPriority;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 id
+		ARG 1 pos
+		ARG 2 delay
+		ARG 3 priority
+	METHOD saveTick (Lnet/minecraft/world/ticks/ScheduledTick;Ljava/util/function/Function;J)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 tick
+	METHOD unpack (JJ)Lnet/minecraft/world/ticks/ScheduledTick;
+		ARG 3 subTickOrder
