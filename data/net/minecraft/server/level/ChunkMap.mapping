@@ -33,6 +33,8 @@ CLASS net/minecraft/server/level/ChunkMap
 	METHOD broadcastAndSend (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 entity
 		ARG 2 packet
+	METHOD createEmptyChunk (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/world/level/chunk/ChunkAccess;
+		ARG 1 chunkPos
 	METHOD euclideanDistanceSquared (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/entity/Entity;)D
 		COMMENT Returns the squared distance to the center of the chunk.
 		ARG 0 chunkPos
@@ -43,12 +45,22 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 chunkPos
 	METHOD getChunks ()Ljava/lang/Iterable;
 		COMMENT Gets an unmodifiable iterable of all loaded chunks in the chunk manager
+	METHOD getDependencyStatus (Lnet/minecraft/world/level/chunk/ChunkStatus;I)Lnet/minecraft/world/level/chunk/ChunkStatus;
+		ARG 1 chunkStatus
 	METHOD getPlayersCloseForSpawning (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/List;
 		ARG 1 chunkPos
+	METHOD handleChunkLoadFailure (Ljava/lang/Throwable;Lnet/minecraft/world/level/ChunkPos;)Lcom/mojang/datafixers/util/Either;
+		ARG 1 exception
+		ARG 2 chunkPos
+	METHOD isChunkDataValid (Lnet/minecraft/nbt/CompoundTag;)Z
+		ARG 0 tag
 	METHOD isExistingChunkFull (Lnet/minecraft/world/level/ChunkPos;)Z
 		ARG 1 chunkPos
 	METHOD lambda$debugReloadGenerator$1 (Lnet/minecraft/world/level/chunk/ChunkGenerator;)V
 		ARG 1 generator
+	METHOD markPosition (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/ChunkStatus$ChunkType;)B
+		ARG 1 chunkPos
+		ARG 2 chunkType
 	METHOD markPositionReplaceable (Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 chunkPos
 	METHOD move (Lnet/minecraft/server/level/ServerPlayer;)V
@@ -56,6 +68,9 @@ CLASS net/minecraft/server/level/ChunkMap
 	METHOD onFullChunkStatusChange (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
 		ARG 1 pos
 		ARG 2 fullChunkStatus
+	METHOD playerIsCloseEnoughForSpawning (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/ChunkPos;)Z
+		ARG 1 player
+		ARG 2 chunkPos
 	METHOD playerLoadedChunk (Lnet/minecraft/server/level/ServerPlayer;Lorg/apache/commons/lang3/mutable/MutableObject;Lnet/minecraft/world/level/chunk/LevelChunk;)V
 		ARG 1 player
 		ARG 2 packetCache
@@ -116,6 +131,8 @@ CLASS net/minecraft/server/level/ChunkMap
 	METHOD updatePlayerStatus (Lnet/minecraft/server/level/ServerPlayer;Z)V
 		ARG 1 player
 		ARG 2 track
+	METHOD upgradeChunkTag (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 tag
 	CLASS TrackedEntity
 		METHOD <init> (Lnet/minecraft/server/level/ChunkMap;Lnet/minecraft/world/entity/Entity;IIZ)V
 			ARG 2 entity

@@ -18,6 +18,8 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 0 cause
 	METHOD createGameModeForPlayer (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/server/level/ServerPlayerGameMode;
 		ARG 1 player
+	METHOD createLevels (Lnet/minecraft/server/level/progress/ChunkProgressListener;)V
+		ARG 1 listener
 	METHOD createTextFilterForPlayer (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/server/network/TextFilter;
 		ARG 1 player
 	METHOD doRunTask (Lnet/minecraft/server/TickTask;)V
@@ -172,6 +174,8 @@ CLASS net/minecraft/server/MinecraftServer
 		ARG 1 runnable
 	METHOD spin (Ljava/util/function/Function;)Lnet/minecraft/server/MinecraftServer;
 		ARG 0 threadFunction
+	METHOD startRecordingMetrics (Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V
+		ARG 2 onMetricsRecordingFinished
 	METHOD stopServer ()V
 		COMMENT Saves all necessary data as preparation for stopping the server.
 	METHOD tickChildren (Ljava/util/function/BooleanSupplier;)V

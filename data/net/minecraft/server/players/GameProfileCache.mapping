@@ -15,9 +15,14 @@ CLASS net/minecraft/server/players/GameProfileCache
 	METHOD get (Ljava/util/UUID;)Ljava/util/Optional;
 		ARG 1 uuid
 			COMMENT Get a player's {@link GameProfile} given their UUID
+	METHOD getTopMRUProfiles (I)Ljava/util/stream/Stream;
+		ARG 1 limit
 	METHOD lookupGameProfile (Lcom/mojang/authlib/GameProfileRepository;Ljava/lang/String;)Ljava/util/Optional;
 		ARG 0 profileRepo
 		ARG 1 name
+	METHOD readGameProfile (Lcom/google/gson/JsonElement;Ljava/text/DateFormat;)Ljava/util/Optional;
+		ARG 0 json
+		ARG 1 dateFormat
 	METHOD safeAdd (Lnet/minecraft/server/players/GameProfileCache$GameProfileInfo;)V
 		ARG 1 profile
 	METHOD save ()V
@@ -26,6 +31,9 @@ CLASS net/minecraft/server/players/GameProfileCache
 		ARG 1 exectutor
 	METHOD setUsesAuthentication (Z)V
 		ARG 0 onlineMode
+	METHOD writeGameProfile (Lnet/minecraft/server/players/GameProfileCache$GameProfileInfo;Ljava/text/DateFormat;)Lcom/google/gson/JsonElement;
+		ARG 0 profileInfo
+		ARG 1 dateFormat
 	CLASS 1
 		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
 			ARG 1 profile
