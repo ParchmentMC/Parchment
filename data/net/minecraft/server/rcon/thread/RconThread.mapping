@@ -1,3 +1,11 @@
 CLASS net/minecraft/server/rcon/thread/RconThread
+	METHOD <init> (Lnet/minecraft/server/ServerInterface;Ljava/net/ServerSocket;Ljava/lang/String;)V
+		ARG 1 serverInterface
+		ARG 2 socket
+		ARG 3 rconPassword
 	METHOD clearClients ()V
 		COMMENT Cleans up the clientThreads map by removing client Threads that are not running
+	METHOD closeSocket (Ljava/net/ServerSocket;)V
+		ARG 1 socket
+	METHOD create (Lnet/minecraft/server/ServerInterface;)Lnet/minecraft/server/rcon/thread/RconThread;
+		ARG 0 serverInterface

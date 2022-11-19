@@ -29,6 +29,9 @@ CLASS net/minecraft/server/dedicated/Settings
 		ARG 3 value
 	METHOD get (Ljava/lang/String;Z)Z
 		ARG 1 key
+		ARG 2 value
+	METHOD getLegacy (Ljava/lang/String;Ljava/util/function/Function;)Ljava/lang/Object;
+		ARG 1 key
 	METHOD getLegacyBoolean (Ljava/lang/String;)Ljava/lang/Boolean;
 		ARG 1 key
 	METHOD getMutable (Ljava/lang/String;I)Lnet/minecraft/server/dedicated/Settings$MutableValue;
@@ -48,6 +51,9 @@ CLASS net/minecraft/server/dedicated/Settings
 		ARG 1 key
 	METHOD loadFromFile (Ljava/nio/file/Path;)Ljava/util/Properties;
 		ARG 0 path
+	METHOD reload (Lnet/minecraft/core/RegistryAccess;Ljava/util/Properties;)Lnet/minecraft/server/dedicated/Settings;
+		ARG 1 registryAccess
+		ARG 2 properties
 	METHOD store (Ljava/nio/file/Path;)V
 		ARG 1 path
 	METHOD wrapNumberDeserializer (Ljava/util/function/Function;)Ljava/util/function/Function;
