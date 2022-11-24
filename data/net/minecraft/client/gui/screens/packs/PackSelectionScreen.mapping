@@ -5,6 +5,12 @@ CLASS net/minecraft/client/gui/screens/packs/PackSelectionScreen
 		ARG 3 output
 		ARG 4 packDir
 		ARG 5 title
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/server/packs/repository/PackRepository;Ljava/util/function/Consumer;Ljava/nio/file/Path;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 lastScreen
+		ARG 2 repository
+		ARG 3 output
+		ARG 4 packDir
+		ARG 5 title
 	METHOD copyPacks (Lnet/minecraft/client/Minecraft;Ljava/util/List;Ljava/nio/file/Path;)V
 		ARG 0 minecraft
 		ARG 1 packs
@@ -39,7 +45,11 @@ CLASS net/minecraft/client/gui/screens/packs/PackSelectionScreen
 	CLASS Watcher
 		METHOD <init> (Ljava/io/File;)V
 			ARG 1 packPath
+		METHOD <init> (Ljava/nio/file/Path;)V
+			ARG 1 packPath
 		METHOD create (Ljava/io/File;)Lnet/minecraft/client/gui/screens/packs/PackSelectionScreen$Watcher;
+			ARG 0 packPath
+		METHOD create (Ljava/nio/file/Path;)Lnet/minecraft/client/gui/screens/packs/PackSelectionScreen$Watcher;
 			ARG 0 packPath
 		METHOD watchDir (Ljava/nio/file/Path;)V
 			ARG 1 path

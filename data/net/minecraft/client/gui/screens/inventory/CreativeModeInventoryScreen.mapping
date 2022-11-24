@@ -9,6 +9,10 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		COMMENT Currently selected creative inventory tab index.
 	METHOD <init> (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
+	METHOD <init> (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/flag/FeatureFlagSet;Z)V
+		ARG 1 player
+		ARG 2 enabledFeatures
+		ARG 3 displayOperatorCreativeTab
 	METHOD canScroll ()Z
 		COMMENT Returns (if you are not on the inventoryTab) and (the flag isn't set) and (you have more than 1 page of items).
 	METHOD charTyped (CI)Z
@@ -25,6 +29,10 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		ARG 4 mouseY
 	METHOD getSelectedTab ()I
 		COMMENT Returns the index of the currently selected tab.
+	METHOD getTabX (Lnet/minecraft/world/item/CreativeModeTab;)I
+		ARG 1 tab
+	METHOD getTabY (Lnet/minecraft/world/item/CreativeModeTab;)I
+		ARG 1 tab
 	METHOD handleHotbarLoadOrSave (Lnet/minecraft/client/Minecraft;IZZ)V
 		ARG 0 client
 		ARG 1 index
@@ -36,6 +44,8 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		ARG 5 guiLeft
 		ARG 6 guiTop
 		ARG 7 mouseButton
+	METHOD hasPermissions (Lnet/minecraft/world/entity/player/Player;)Z
+		ARG 1 player
 	METHOD insideScrollbar (DD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -67,6 +77,8 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		ARG 1 mouseX
 		ARG 3 mouseY
 		ARG 5 delta
+	METHOD refreshCurrentTabContents (Ljava/util/Collection;)V
+		ARG 1 items
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 poseStack
 		ARG 2 mouseX
@@ -102,6 +114,9 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		ARG 2 slotId
 		ARG 3 mouseButton
 		ARG 4 type
+	METHOD tryRefreshInvalidatedTabs (Lnet/minecraft/world/flag/FeatureFlagSet;Z)V
+		ARG 1 enabledFeatures
+		ARG 2 displayOperatorCreativeTab
 	METHOD updateVisibleTags (Ljava/lang/String;)V
 		ARG 1 search
 	CLASS SlotWrapper

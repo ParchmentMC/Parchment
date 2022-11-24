@@ -2,6 +2,21 @@ CLASS net/minecraft/world/item/CreativeModeTab
 	METHOD <init> (ILjava/lang/String;)V
 		ARG 1 id
 		ARG 2 langId
+	METHOD <init> (Lnet/minecraft/world/item/CreativeModeTab$Row;ILnet/minecraft/world/item/CreativeModeTab$Type;Lnet/minecraft/network/chat/Component;Ljava/util/function/Supplier;Lnet/minecraft/world/item/CreativeModeTab$DisplayItemsGenerator;)V
+		ARG 1 row
+		ARG 2 column
+		ARG 3 type
+		ARG 4 displayName
+		ARG 5 iconGenerator
+		ARG 6 displayItemGenerator
+	METHOD buildContents (Lnet/minecraft/world/flag/FeatureFlagSet;Z)V
+		ARG 1 enabledFeatures
+		ARG 2 displayOperatorCreativeTab
+	METHOD builder (Lnet/minecraft/world/item/CreativeModeTab$Row;I)Lnet/minecraft/world/item/CreativeModeTab$Builder;
+		ARG 0 row
+		ARG 1 column
+	METHOD contains (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 item
 	METHOD fillItemList (Lnet/minecraft/core/NonNullList;)V
 		COMMENT Fills {@code items} with all items that are in this group.
 		ARG 1 items
@@ -22,3 +37,43 @@ CLASS net/minecraft/world/item/CreativeModeTab
 		ARG 1 enchantmentCategories
 	METHOD setRecipeFolderName (Ljava/lang/String;)Lnet/minecraft/world/item/CreativeModeTab;
 		ARG 1 recipeFolderName
+	METHOD setSearchTreeBuilder (Ljava/util/function/Consumer;)V
+		ARG 1 searchTreeBuilder
+	CLASS Output
+		METHOD accept (Lnet/minecraft/world/item/ItemStack;)V
+			ARG 1 stack
+		METHOD accept (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;)V
+			ARG 1 stack
+			ARG 2 tabVisibility
+		METHOD accept (Lnet/minecraft/world/level/ItemLike;)V
+			ARG 1 item
+		METHOD accept (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;)V
+			ARG 1 item
+			ARG 2 tabVisibility
+		METHOD acceptAll (Ljava/util/Collection;)V
+			ARG 1 items
+		METHOD acceptAll (Ljava/util/Collection;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;)V
+			ARG 1 items
+			ARG 2 tabVisibility
+	CLASS Builder
+		METHOD <init> (Lnet/minecraft/world/item/CreativeModeTab$Row;I)V
+			ARG 1 row
+			ARG 2 column
+		METHOD backgroundSuffix (Ljava/lang/String;)Lnet/minecraft/world/item/CreativeModeTab$Builder;
+			ARG 1 backgroundSuffix
+		METHOD displayItems (Lnet/minecraft/world/item/CreativeModeTab$DisplayItemsGenerator;)Lnet/minecraft/world/item/CreativeModeTab$Builder;
+			ARG 1 displayItemsGenerator
+		METHOD icon (Ljava/util/function/Supplier;)Lnet/minecraft/world/item/CreativeModeTab$Builder;
+			ARG 1 icon
+		METHOD title (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/world/item/CreativeModeTab$Builder;
+			ARG 1 title
+		METHOD type (Lnet/minecraft/world/item/CreativeModeTab$Type;)Lnet/minecraft/world/item/CreativeModeTab$Builder;
+			ARG 1 type
+	CLASS ItemDisplayBuilder
+		METHOD <init> (Lnet/minecraft/world/item/CreativeModeTab;Lnet/minecraft/world/flag/FeatureFlagSet;)V
+			ARG 1 tab
+			ARG 2 featureFlagSet
+	CLASS DisplayItemsGenerator
+		METHOD accept (Lnet/minecraft/world/flag/FeatureFlagSet;Lnet/minecraft/world/item/CreativeModeTab$Output;Z)V
+			ARG 1 enabledFeatures
+			ARG 2 output
