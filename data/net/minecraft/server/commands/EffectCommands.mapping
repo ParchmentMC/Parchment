@@ -1,4 +1,8 @@
 CLASS net/minecraft/server/commands/EffectCommands
+	METHOD clearEffect (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/core/Holder;)I
+		ARG 0 source
+		ARG 1 targets
+		ARG 2 effect
 	METHOD clearEffect (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/world/effect/MobEffect;)I
 		ARG 0 source
 		ARG 1 targets
@@ -6,6 +10,13 @@ CLASS net/minecraft/server/commands/EffectCommands
 	METHOD clearEffects (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;)I
 		ARG 0 source
 		ARG 1 targets
+	METHOD giveEffect (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/core/Holder;Ljava/lang/Integer;IZ)I
+		ARG 0 source
+		ARG 1 targets
+		ARG 2 effect
+		ARG 3 seconds
+		ARG 4 amplifier
+		ARG 5 showParticles
 	METHOD giveEffect (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/world/effect/MobEffect;Ljava/lang/Integer;IZ)I
 		ARG 0 source
 		ARG 1 targets
@@ -15,3 +26,6 @@ CLASS net/minecraft/server/commands/EffectCommands
 		ARG 5 showParticles
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandBuildContext;)V
+		ARG 0 dispatcher
+		ARG 1 context

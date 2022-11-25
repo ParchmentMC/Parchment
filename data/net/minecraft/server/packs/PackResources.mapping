@@ -6,6 +6,9 @@ CLASS net/minecraft/server/packs/PackResources
 	METHOD getResource (Lnet/minecraft/server/packs/PackType;Lnet/minecraft/resources/ResourceLocation;)Ljava/io/InputStream;
 		ARG 1 type
 		ARG 2 location
+	METHOD getResource (Lnet/minecraft/server/packs/PackType;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/server/packs/resources/IoSupplier;
+		ARG 1 packType
+		ARG 2 location
 	METHOD getResources (Lnet/minecraft/server/packs/PackType;Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Predicate;)Ljava/util/Collection;
 		ARG 1 type
 		ARG 2 namespace
@@ -13,6 +16,10 @@ CLASS net/minecraft/server/packs/PackResources
 		ARG 4 filter
 	METHOD getRootResource (Ljava/lang/String;)Ljava/io/InputStream;
 		ARG 1 fileName
+	METHOD getRootResource ([Ljava/lang/String;)Lnet/minecraft/server/packs/resources/IoSupplier;
+		ARG 1 elements
 	METHOD hasResource (Lnet/minecraft/server/packs/PackType;Lnet/minecraft/resources/ResourceLocation;)Z
 		ARG 1 type
 		ARG 2 location
+	METHOD listResources (Lnet/minecraft/server/packs/PackType;Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/server/packs/PackResources$ResourceOutput;)V
+		ARG 1 packType

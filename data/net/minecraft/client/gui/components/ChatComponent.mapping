@@ -26,7 +26,11 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 		COMMENT Clears the chat.
 		ARG 1 clearSentMsgHistory
 			COMMENT Whether to clear the user's sent message history
+	METHOD createDeletedMarker (Lnet/minecraft/client/GuiMessage;)Lnet/minecraft/client/GuiMessage;
+		ARG 1 message
 	METHOD deleteMessage (Lnet/minecraft/network/chat/MessageSignature;)V
+		ARG 1 messageSignature
+	METHOD deleteMessageOrDelay (Lnet/minecraft/network/chat/MessageSignature;)Lnet/minecraft/client/gui/components/ChatComponent$DelayedMessageDeletion;
 		ARG 1 messageSignature
 	METHOD drawTagIcon (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/client/GuiMessageTag$Icon;)V
 		ARG 1 poseStack
@@ -38,8 +42,14 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 		ARG 3 mouseY
 	METHOD getHeight (D)I
 		ARG 0 height
+	METHOD getMessageEndIndexAt (DD)I
+		ARG 1 mouseX
+		ARG 3 mouseY
 	METHOD getMessageIndexAt (D)I
 		ARG 1 chatY
+	METHOD getMessageLineIndexAt (DD)I
+		ARG 1 mouseX
+		ARG 3 mouseY
 	METHOD getMessageTagAt (DD)Lnet/minecraft/client/GuiMessageTag;
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -62,6 +72,8 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;I)V
 		ARG 1 poseStack
 		ARG 2 tickCount
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;III)V
+		ARG 1 poseStack
 	METHOD resetChatScroll ()V
 		COMMENT Resets the chat scroll (executed when the GUI is closed, among others)
 	METHOD screenToChatX (D)D

@@ -20,6 +20,14 @@ CLASS net/minecraft/client/gui/components/PlayerTabOverlay
 		ARG 1 poseStack
 		ARG 4 y
 		ARG 5 playerInfo
+	METHOD renderTablistHearts (IIILjava/util/UUID;Lcom/mojang/blaze3d/vertex/PoseStack;I)V
+		ARG 4 playerUuid
+		ARG 5 poseStack
+	METHOD renderTablistScore (Lnet/minecraft/world/scores/Objective;ILjava/lang/String;IILjava/util/UUID;Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 objective
+		ARG 3 username
+		ARG 6 playerUuid
+		ARG 7 poseStack
 	METHOD renderTablistScore (Lnet/minecraft/world/scores/Objective;ILjava/lang/String;IILnet/minecraft/client/multiplayer/PlayerInfo;Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 objective
 		ARG 2 y
@@ -32,3 +40,6 @@ CLASS net/minecraft/client/gui/components/PlayerTabOverlay
 	METHOD setVisible (Z)V
 		COMMENT Called by GuiIngame to update the information stored in the playerlist, does not actually render the list, however.
 		ARG 1 visible
+	CLASS HealthState
+		METHOD <init> (I)V
+			ARG 1 displayedValue

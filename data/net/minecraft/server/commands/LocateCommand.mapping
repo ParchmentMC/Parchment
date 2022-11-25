@@ -4,17 +4,46 @@ CLASS net/minecraft/server/commands/LocateCommand
 		ARG 1 z1
 		ARG 2 x2
 		ARG 3 z2
+	METHOD getHolders (Lnet/minecraft/commands/arguments/ResourceOrTagKeyArgument$Result;Lnet/minecraft/core/Registry;)Ljava/util/Optional;
+		ARG 0 structure
+		ARG 1 structureRegistry
+	METHOD locateBiome (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/commands/arguments/ResourceOrTagArgument$Result;)I
+		ARG 0 source
+		ARG 1 biome
 	METHOD locateBiome (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/commands/arguments/ResourceOrTagLocationArgument$Result;)I
 		ARG 0 source
 		ARG 1 biome
+	METHOD locatePoi (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/commands/arguments/ResourceOrTagArgument$Result;)I
+		ARG 0 source
+		ARG 1 poiType
 	METHOD locatePoi (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/commands/arguments/ResourceOrTagLocationArgument$Result;)I
 		ARG 0 source
 		ARG 1 poiType
+	METHOD locateStructure (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/commands/arguments/ResourceOrTagKeyArgument$Result;)I
+		ARG 0 source
+		ARG 1 structure
 	METHOD locateStructure (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/commands/arguments/ResourceOrTagLocationArgument$Result;)I
 		ARG 0 source
 		ARG 1 structure
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandBuildContext;)V
+		ARG 0 dispatcher
+		ARG 1 context
+	METHOD showLocateResult (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/commands/arguments/ResourceOrTagArgument$Result;Lnet/minecraft/core/BlockPos;Lcom/mojang/datafixers/util/Pair;Ljava/lang/String;ZLjava/time/Duration;)I
+		ARG 0 source
+		ARG 1 result
+		ARG 2 sourcePosition
+		ARG 3 resultWithoutPosition
+		ARG 4 translationKey
+		ARG 5 absoluteY
+	METHOD showLocateResult (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/commands/arguments/ResourceOrTagKeyArgument$Result;Lnet/minecraft/core/BlockPos;Lcom/mojang/datafixers/util/Pair;Ljava/lang/String;ZLjava/time/Duration;)I
+		ARG 0 source
+		ARG 1 result
+		ARG 2 sourcePosition
+		ARG 3 resultWithoutPosition
+		ARG 4 translationKey
+		ARG 5 absoluteY
 	METHOD showLocateResult (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/commands/arguments/ResourceOrTagLocationArgument$Result;Lnet/minecraft/core/BlockPos;Lcom/mojang/datafixers/util/Pair;Ljava/lang/String;Z)I
 		ARG 0 source
 		ARG 1 result
@@ -22,3 +51,9 @@ CLASS net/minecraft/server/commands/LocateCommand
 		ARG 3 resultWithPosition
 		ARG 4 translationKey
 		ARG 5 absoluteY
+	METHOD showLocateResult (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/BlockPos;Lcom/mojang/datafixers/util/Pair;Ljava/lang/String;ZLjava/lang/String;Ljava/time/Duration;)I
+		ARG 0 source
+		ARG 1 sourcePosition
+		ARG 2 resultWithoutPosition
+		ARG 3 translationKey
+		ARG 4 absoluteY

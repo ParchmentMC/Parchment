@@ -1,6 +1,10 @@
 CLASS net/minecraft/client/multiplayer/chat/ChatListener
 	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
 		ARG 1 minecraft
+	METHOD evaluateTrustLevel (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Ljava/time/Instant;)Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;
+		ARG 1 chatMessage
+		ARG 2 decoratedServerContent
+		ARG 3 timestamp
 	METHOD evaluateTrustLevel (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;Ljava/time/Instant;)Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;
 		ARG 1 chatMessage
 		ARG 2 decoratedServerContent
@@ -16,8 +20,18 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		COMMENT Called whenever a player chat message is received from the server.
 		ARG 1 chatMessage
 		ARG 2 boundChatType
+	METHOD handleDisguisedChatMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 message
+		ARG 2 boundChatType
 	METHOD handleMessage (Lnet/minecraft/client/multiplayer/chat/ChatListener$Message;)V
 		ARG 1 message
+	METHOD handleMessage (Lnet/minecraft/network/chat/MessageSignature;Ljava/util/function/BooleanSupplier;)V
+		ARG 1 signature
+		ARG 2 handler
+	METHOD handlePlayerChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 chatMessage
+		ARG 2 gameProfile
+		ARG 3 boundChatType
 	METHOD handleSystemMessage (Lnet/minecraft/network/chat/Component;Z)V
 		ARG 1 message
 		ARG 2 isOverlay
@@ -27,6 +41,11 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 1 header
 		ARG 2 headerSignature
 		ARG 3 bodyDigest
+	METHOD logPlayerMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatType$Bound;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;)V
+		ARG 1 message
+		ARG 2 boundChatType
+		ARG 3 gameProfile
+		ARG 4 trustLevel
 	METHOD logPlayerMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/client/multiplayer/PlayerInfo;Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;)V
 		ARG 1 message
 		ARG 2 boundChatType
@@ -59,6 +78,13 @@ CLASS net/minecraft/client/multiplayer/chat/ChatListener
 		ARG 1 sender
 	METHOD setMessageDelay (D)V
 		ARG 1 delaySeconds
+	METHOD showMessageToPlayer (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lcom/mojang/authlib/GameProfile;ZLjava/time/Instant;)Z
+		ARG 1 boundChatType
+		ARG 2 chatMessage
+		ARG 3 decoratedServerContent
+		ARG 4 gameProfile
+		ARG 5 onlyShowSecureChat
+		ARG 6 timestamp
 	METHOD showMessageToPlayer (Lnet/minecraft/network/chat/ChatType$Bound;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;ZLjava/time/Instant;)Z
 		ARG 1 boundChatType
 		ARG 2 chatMessage

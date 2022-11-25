@@ -1,8 +1,17 @@
 CLASS net/minecraft/client/multiplayer/chat/ChatTrustLevel
+	METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+		ARG 3 serializedName
 	METHOD createTag (Lnet/minecraft/network/chat/PlayerChatMessage;)Lnet/minecraft/client/GuiMessageTag;
 		ARG 1 chatMessage
+	METHOD evaluate (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Ljava/time/Instant;)Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;
+		ARG 0 chatMessage
+		ARG 1 decoratedServerContent
+		ARG 2 timestamp
 	METHOD evaluate (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/PlayerInfo;Ljava/time/Instant;)Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;
 		ARG 0 chatMessage
 		ARG 1 decoratedServerContent
 		ARG 2 playerInfo
 		ARG 3 timestamp
+	METHOD isModified (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;)Z
+		ARG 0 chatMessage
+		ARG 1 decoratedServerContent

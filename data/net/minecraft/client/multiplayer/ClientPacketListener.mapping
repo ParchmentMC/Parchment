@@ -17,10 +17,21 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 3 connection
 		ARG 4 localGameProfile
 		ARG 5 telemetryManager
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/network/Connection;Lnet/minecraft/client/multiplayer/ServerData;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/client/telemetry/WorldSessionTelemetryManager;)V
+		ARG 1 minecraft
+		ARG 2 callbackScreen
+		ARG 3 connection
+		ARG 4 serverData
+		ARG 5 localGameProfile
+		ARG 6 telemetryManager
 	METHOD applyLightData (IILnet/minecraft/network/protocol/game/ClientboundLightUpdatePacketData;)V
 		ARG 1 x
 		ARG 2 z
 		ARG 3 data
+	METHOD applyPlayerInfoUpdate (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoUpdatePacket$Action;Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoUpdatePacket$Entry;Lnet/minecraft/client/multiplayer/PlayerInfo;)V
+		ARG 1 action
+		ARG 2 entry
+		ARG 3 playerInfo
 	METHOD cleanup ()V
 		COMMENT Clears the WorldClient instance associated with this NetHandlerPlayClient
 	METHOD downloadCallback (Ljava/util/concurrent/CompletableFuture;)V
@@ -226,6 +237,11 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 packet
 	METHOD handleUpdateTags (Lnet/minecraft/network/protocol/game/ClientboundUpdateTagsPacket;)V
 		ARG 1 packet
+	METHOD initializeChatSession (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoUpdatePacket$Entry;Lnet/minecraft/client/multiplayer/PlayerInfo;)V
+		ARG 1 entry
+		ARG 2 playerInfo
+	METHOD isFeatureEnabled (Lnet/minecraft/world/flag/FeatureFlagSet;)Z
+		ARG 1 enabledFeatures
 	METHOD lambda$handleRemoveEntities$1 (I)V
 		ARG 1 entityId
 	METHOD markMessageAsProcessed (Lnet/minecraft/network/chat/PlayerChatMessage;Z)V
@@ -234,8 +250,12 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason
+	METHOD parseCommand (Ljava/lang/String;)Lcom/mojang/brigadier/ParseResults;
+		ARG 1 command
 	METHOD parseResourcePackUrl (Ljava/lang/String;)Ljava/net/URL;
 		ARG 0 resourcePackUrl
+	METHOD postAddEntitySoundInstance (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
 	METHOD preparePackPrompt (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/Component;
 		ARG 0 mainMessage
 		ARG 1 confirmationMessage
@@ -258,7 +278,18 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 packet
 	METHOD send (Lnet/minecraft/network/protocol/game/ServerboundResourcePackPacket$Action;)V
 		ARG 1 action
+	METHOD sendChat (Ljava/lang/String;)V
+		ARG 1 message
+	METHOD sendCommand (Ljava/lang/String;)V
+		ARG 1 command
+	METHOD sendUnsignedCommand (Ljava/lang/String;)Z
+		ARG 1 command
+	METHOD setKeyPair (Lnet/minecraft/world/entity/player/ProfileKeyPair;)V
+		ARG 1 keyPair
 	METHOD updateLevelChunk (IILnet/minecraft/network/protocol/game/ClientboundLevelChunkPacketData;)V
 		ARG 1 x
 		ARG 2 z
 		ARG 3 data
+	METHOD updateTagsForRegistry (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/tags/TagNetworkSerialization$NetworkPayload;)V
+		ARG 1 registry
+		ARG 2 networkPayload

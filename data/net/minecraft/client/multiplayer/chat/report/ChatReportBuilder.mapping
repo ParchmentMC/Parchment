@@ -7,6 +7,9 @@ CLASS net/minecraft/client/multiplayer/chat/report/ChatReportBuilder
 		ARG 2 createdAt
 		ARG 3 reportedProfileId
 		ARG 4 limits
+	METHOD <init> (Lnet/minecraft/client/multiplayer/chat/report/ChatReportBuilder$ChatReport;Lcom/mojang/authlib/minecraft/report/AbuseReportLimits;)V
+		ARG 1 report
+		ARG 2 limits
 	METHOD build (Lnet/minecraft/client/multiplayer/chat/report/ReportingContext;)Lcom/mojang/datafixers/util/Either;
 		ARG 1 context
 	METHOD buildEvidence (Lnet/minecraft/client/multiplayer/chat/ChatLog;)Lcom/mojang/authlib/minecraft/report/ReportEvidence;
@@ -14,6 +17,8 @@ CLASS net/minecraft/client/multiplayer/chat/report/ChatReportBuilder
 	METHOD buildReportedChatMessage (ILnet/minecraft/client/multiplayer/chat/LoggedChatMessage$Player;)Lcom/mojang/authlib/minecraft/report/ReportChatMessage;
 		ARG 1 chatId
 		ARG 2 loggedPlayerChatMessage
+	METHOD buildReportedChatMessage (Lnet/minecraft/client/multiplayer/chat/LoggedChatMessage$Player;Z)Lcom/mojang/authlib/minecraft/report/ReportChatMessage;
+		ARG 1 player
 	METHOD chainForPlayer (Lnet/minecraft/client/multiplayer/chat/ChatLog;Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;Ljava/util/UUID;)Ljava/util/stream/Stream;
 		ARG 1 chatLog
 	METHOD collectReferencedContext (Lnet/minecraft/client/multiplayer/chat/ChatLog;ILcom/mojang/authlib/minecraft/report/AbuseReportLimits;)Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
@@ -35,3 +40,12 @@ CLASS net/minecraft/client/multiplayer/chat/report/ChatReportBuilder
 	METHOD walkMessageReferenceGraph (Lnet/minecraft/client/multiplayer/chat/ChatLog;ILnet/minecraft/client/multiplayer/chat/report/ChatReportBuilder$ReferencedMessageVisitor;)V
 		ARG 0 chatLog
 		ARG 2 visitor
+	CLASS ChatReport
+		METHOD <init> (Lnet/minecraft/client/multiplayer/chat/report/ChatReportBuilder;Ljava/util/UUID;Ljava/time/Instant;Ljava/util/UUID;)V
+			ARG 2 reportId
+			ARG 3 createdAt
+			ARG 4 reportedProfileId
+		METHOD isReportedPlayer (Ljava/util/UUID;)Z
+			ARG 1 uuid
+		METHOD toggleReported (ILcom/mojang/authlib/minecraft/report/AbuseReportLimits;)V
+			ARG 2 reportLimits

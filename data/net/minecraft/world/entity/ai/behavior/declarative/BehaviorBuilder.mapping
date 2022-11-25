@@ -3,5 +3,13 @@ CLASS net/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder
 		ARG 1 trigger
 	METHOD create (Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$TriggerWithResult;)Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder;
 		ARG 0 trigger
+	METHOD triggerIf (Ljava/util/function/BiPredicate;)Lnet/minecraft/world/entity/ai/behavior/OneShot;
+		ARG 0 predicate
 	METHOD triggerIf (Ljava/util/function/Predicate;)Lnet/minecraft/world/entity/ai/behavior/OneShot;
 		ARG 0 predicate
+	METHOD triggerIf (Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/behavior/OneShot;)Lnet/minecraft/world/entity/ai/behavior/OneShot;
+		ARG 0 predicate
+	CLASS TriggerWithResult
+		METHOD tryTrigger (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)Ljava/lang/Object;
+			ARG 1 level
+			ARG 2 entity
