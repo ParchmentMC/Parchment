@@ -67,6 +67,10 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD closerThan (Lnet/minecraft/world/entity/Entity;D)Z
 		ARG 1 entity
 		ARG 2 distance
+	METHOD closerThan (Lnet/minecraft/world/entity/Entity;DD)Z
+		ARG 1 entity
+		ARG 2 horizontalDistance
+		ARG 4 verticalDistance
 	METHOD collide (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 		COMMENT Given a motion vector, return an updated vector that takes into account restrictions such as collisions (from all directions) and step-up from stepHeight
 		ARG 1 vec
@@ -181,6 +185,8 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Gets the horizontal facing direction of this Entity, adjusted to take specially-treated entity types into account.
 	METHOD getMyRidingOffset ()D
 		COMMENT Returns the Y Offset of this entity.
+	METHOD getOnPos (F)Lnet/minecraft/core/BlockPos;
+		ARG 1 yOffset
 	METHOD getPassengersRidingOffset ()D
 		COMMENT Returns the Y offset from the entity's position for any entity riding this one.
 	METHOD getPortalWaitTime ()I
@@ -433,6 +439,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 4 hitFluids
 	METHOD playAmethystStepSound (Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 state
+	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;)V
+		ARG 1 sound
 	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;FF)V
 		ARG 1 sound
 		ARG 2 volume
@@ -653,6 +661,11 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD updateFluidHeightAndDoFluidPushing (Lnet/minecraft/tags/TagKey;D)Z
 		ARG 1 fluidTag
 		ARG 2 motionScale
+	METHOD wasKilled (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Z
+		COMMENT Called when this entity kills another entity.
+		ARG 1 level
+		ARG 2 entity
+			COMMENT The entity killed
 	CLASS MoveFunction
 		METHOD accept (Lnet/minecraft/world/entity/Entity;DDD)V
 			ARG 1 entity
