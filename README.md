@@ -18,7 +18,7 @@ Parchment is an open community-sourced modloader-neutral set of mappings of para
 the official names released by Mojang. This repository contains the files which make up the Parchment mapping set, with
 the build tool to manage the mappings and generate exports for publishing.
 
-### Want to use Parchment in your workspace? See the [Getting Started](https://github.com/ParchmentMC/Parchment/wiki/Getting-Started) page in the repository wiki.
+### Want to use Parchment in your workspace? See the [Getting Started](https://parchmentmc.org/docs/getting-started) page at the website.
 
 ## Contributing
 See the [`docs/CONTRIBUTING.md` file](docs/CONTRIBUTING.md) for information on contributing. Also look at the 
