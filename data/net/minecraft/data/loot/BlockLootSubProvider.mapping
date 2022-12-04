@@ -2,9 +2,15 @@ CLASS net/minecraft/data/loot/BlockLootSubProvider
 	METHOD <init> (Ljava/util/Set;Lnet/minecraft/world/flag/FeatureFlagSet;)V
 		ARG 1 explosionResistant
 		ARG 2 enabledFeatures
+	METHOD add (Lnet/minecraft/world/level/block/Block;Ljava/util/function/Function;)V
+		ARG 1 block
+		ARG 2 factory
 	METHOD add (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/storage/loot/LootTable$Builder;)V
 		ARG 1 block
 		ARG 2 builder
+	METHOD addNetherVinesDropTable (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
+		ARG 1 vines
+		ARG 2 plant
 	METHOD applyExplosionCondition (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/storage/loot/predicates/ConditionUserBuilder;)Lnet/minecraft/world/level/storage/loot/predicates/ConditionUserBuilder;
 		ARG 1 item
 	METHOD applyExplosionDecay (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/storage/loot/functions/FunctionUserBuilder;)Lnet/minecraft/world/level/storage/loot/functions/FunctionUserBuilder;
@@ -18,14 +24,37 @@ CLASS net/minecraft/data/loot/BlockLootSubProvider
 		ARG 0 block
 	METHOD createBeeNestDrop (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 0 block
+	METHOD createCandleCakeDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		ARG 0 candleCakeBlock
+	METHOD createCandleDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		ARG 1 candleBlock
 	METHOD createCaveVinesDrop (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 0 block
 	METHOD createCopperOreDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
+	METHOD createCropDrops (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/Item;Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		COMMENT If {@code dropGrownCropCondition} fails (i.e. crop is not ready), drops 1 {@code seedsItem}.
+		COMMENT If {@code dropGrownCropCondition} succeeds (i.e. crop is ready), drops 1 {@code grownCropItem}, and 0-3 {@code seedsItem} with fortune applied.
+		ARG 1 cropBlock
+		ARG 2 grownCropItem
+		ARG 3 seedsItem
+		ARG 4 dropGrownCropCondition
+	METHOD createDoorTable (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		ARG 1 doorBlock
+	METHOD createDoublePlantShearsDrop (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		ARG 0 sheared
+	METHOD createDoublePlantWithSeedDrops (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		ARG 1 block
+		ARG 2 sheared
 	METHOD createGrassDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
 	METHOD createLapisOreDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
+	METHOD createLeavesDrops (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;[F)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		COMMENT Used for all leaves, drops self with silk touch, otherwise drops the second Block param with the passed chances for fortune levels, adding in sticks.
+		ARG 1 leavesBlock
+		ARG 2 saplingBlock
+		ARG 3 chances
 	METHOD createMangroveLeavesDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
 	METHOD createMultifaceBlockDrops (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
@@ -36,6 +65,11 @@ CLASS net/minecraft/data/loot/BlockLootSubProvider
 		ARG 2 item
 	METHOD createNameableBlockEntityTable (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
+	METHOD createOakLeavesDrops (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;[F)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		COMMENT Used for oak and dark oak, same as droppingWithChancesAndSticks but adding in apples.
+		ARG 1 oakLeavesBlock
+		ARG 2 saplingBlock
+		ARG 3 chances
 	METHOD createOreDrop (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
 		ARG 2 item
@@ -73,6 +107,8 @@ CLASS net/minecraft/data/loot/BlockLootSubProvider
 		ARG 1 block
 		ARG 2 item
 		ARG 3 count
+	METHOD createSinglePropConditionTable (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		ARG 1 block
 	METHOD createSlabItemTable (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
 	METHOD createStemDrops (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
@@ -81,6 +117,8 @@ CLASS net/minecraft/data/loot/BlockLootSubProvider
 	METHOD dropOther (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/ItemLike;)V
 		ARG 1 block
 		ARG 2 item
+	METHOD dropPottedContents (Lnet/minecraft/world/level/block/Block;)V
+		ARG 1 flowerPot
 	METHOD dropSelf (Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 block
 	METHOD dropWhenSilkTouch (Lnet/minecraft/world/level/block/Block;)V

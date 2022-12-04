@@ -27,6 +27,8 @@ CLASS net/minecraft/world/entity/animal/TropicalFish
 		ARG 0 variantId
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
+	METHOD getPattern (I)Lnet/minecraft/world/entity/animal/TropicalFish$Pattern;
+		ARG 0 variantId
 	METHOD getPatternColor (I)Lnet/minecraft/world/item/DyeColor;
 		ARG 0 variantId
 	METHOD getPatternColorIdx (I)I
@@ -37,15 +39,27 @@ CLASS net/minecraft/world/entity/animal/TropicalFish
 		ARG 0 variantId
 	METHOD isMaxGroupSizeReached (I)Z
 		ARG 1 size
+	METHOD packVariant (Lnet/minecraft/world/entity/animal/TropicalFish$Pattern;Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/world/item/DyeColor;)I
+		ARG 0 pattern
+		ARG 1 baseColor
+		ARG 2 patternColor
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD setPackedVariant (I)V
+		ARG 1 packedVariant
 	METHOD setVariant (I)V
 		ARG 1 variantId
+	CLASS Base
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 id
 	CLASS Pattern
 		METHOD <init> (Ljava/lang/String;III)V
 			ARG 3 base
 			ARG 4 index
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/world/entity/animal/TropicalFish$Base;I)V
+			ARG 3 name
+			ARG 4 base
 		METHOD getPatternName (II)Ljava/lang/String;
 			ARG 0 baseVariant
 			ARG 1 patternVariant
@@ -56,3 +70,6 @@ CLASS net/minecraft/world/entity/animal/TropicalFish
 			ARG 3 pattern
 			ARG 4 baseColor
 			ARG 5 patternColor
+		METHOD <init> (Lnet/minecraft/world/entity/animal/TropicalFish;Lnet/minecraft/world/entity/animal/TropicalFish$Variant;)V
+			ARG 1 leader
+			ARG 2 variant

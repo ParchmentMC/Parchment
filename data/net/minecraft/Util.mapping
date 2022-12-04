@@ -105,6 +105,14 @@ CLASS net/minecraft/Util
 		ARG 0 current
 		ARG 1 latest
 		ARG 2 oldBackup
+	METHOD safeReplaceOrMoveFile (Ljava/io/File;Ljava/io/File;Ljava/io/File;Z)V
+		ARG 0 current
+		ARG 1 latest
+		ARG 2 oldBackup
+	METHOD safeReplaceOrMoveFile (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/nio/file/Path;Z)V
+		ARG 0 current
+		ARG 1 latest
+		ARG 2 oldBackup
 	METHOD sanitizeName (Ljava/lang/String;Lnet/minecraft/CharPredicate;)Ljava/lang/String;
 		ARG 0 fileName
 		ARG 1 characterValidator
@@ -115,10 +123,22 @@ CLASS net/minecraft/Util
 		ARG 0 completableFutures
 	METHOD setPause (Ljava/util/function/Consumer;)V
 		ARG 0 thePauser
+	METHOD shuffle (Lit/unimi/dsi/fastutil/objects/ObjectArrayList;Lnet/minecraft/util/RandomSource;)V
+		ARG 0 list
+		ARG 1 random
+	METHOD shuffledCopy (Lit/unimi/dsi/fastutil/objects/ObjectArrayList;Lnet/minecraft/util/RandomSource;)Ljava/util/List;
+		ARG 0 list
+		ARG 1 random
 	METHOD shutdownExecutor (Ljava/util/concurrent/ExecutorService;)V
 		ARG 0 service
 	METHOD throwAsRuntime (Ljava/lang/Throwable;)V
 		ARG 0 throwable
+	METHOD toShuffledList (Ljava/util/stream/IntStream;Lnet/minecraft/util/RandomSource;)Lit/unimi/dsi/fastutil/ints/IntArrayList;
+		ARG 0 stream
+		ARG 1 random
+	METHOD toShuffledList (Ljava/util/stream/Stream;Lnet/minecraft/util/RandomSource;)Ljava/util/List;
+		ARG 0 stream
+		ARG 1 random
 	METHOD wrapThreadWithTaskName (Ljava/lang/String;Ljava/lang/Runnable;)Ljava/lang/Runnable;
 		ARG 0 name
 		ARG 1 task

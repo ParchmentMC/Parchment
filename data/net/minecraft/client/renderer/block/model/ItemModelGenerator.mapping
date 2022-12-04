@@ -1,4 +1,9 @@
 CLASS net/minecraft/client/renderer/block/model/ItemModelGenerator
+	METHOD checkTransition (Lnet/minecraft/client/renderer/block/model/ItemModelGenerator$SpanFacing;Ljava/util/List;Lnet/minecraft/client/renderer/texture/SpriteContents;IIIIIZ)V
+		ARG 1 spanFacing
+		ARG 2 listSpans
+		ARG 5 pixelX
+		ARG 6 pixelY
 	METHOD checkTransition (Lnet/minecraft/client/renderer/block/model/ItemModelGenerator$SpanFacing;Ljava/util/List;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;IIIIIZ)V
 		ARG 1 spanFacing
 		ARG 2 listSpans
@@ -14,6 +19,10 @@ CLASS net/minecraft/client/renderer/block/model/ItemModelGenerator
 		ARG 2 spanFacing
 		ARG 3 pixelX
 		ARG 4 pixelY
+	METHOD createSideElements (Lnet/minecraft/client/renderer/texture/SpriteContents;Ljava/lang/String;I)Ljava/util/List;
+		ARG 1 sprite
+		ARG 2 texture
+		ARG 3 tintIndex
 	METHOD createSideElements (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Ljava/lang/String;I)Ljava/util/List;
 		ARG 1 sprite
 		ARG 2 texture
@@ -21,8 +30,17 @@ CLASS net/minecraft/client/renderer/block/model/ItemModelGenerator
 	METHOD generateBlockModel (Ljava/util/function/Function;Lnet/minecraft/client/renderer/block/model/BlockModel;)Lnet/minecraft/client/renderer/block/model/BlockModel;
 		ARG 1 spriteGetter
 		ARG 2 model
+	METHOD getSpans (Lnet/minecraft/client/renderer/texture/SpriteContents;)Ljava/util/List;
+		ARG 1 sprite
 	METHOD getSpans (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Ljava/util/List;
 		ARG 1 sprite
+	METHOD isTransparent (Lnet/minecraft/client/renderer/texture/SpriteContents;IIIII)Z
+		ARG 1 sprite
+		ARG 2 frameIndex
+		ARG 3 pixelX
+		ARG 4 pixelY
+		ARG 5 spriteWidth
+		ARG 6 spriteHeight
 	METHOD isTransparent (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;IIIII)Z
 		ARG 1 sprite
 		ARG 2 frameIndex
@@ -32,6 +50,10 @@ CLASS net/minecraft/client/renderer/block/model/ItemModelGenerator
 		ARG 6 spriteHeight
 	METHOD lambda$getSpans$0 (IILnet/minecraft/client/renderer/texture/TextureAtlasSprite;Ljava/util/List;I)V
 		ARG 5 frame
+	METHOD processFrames (ILjava/lang/String;Lnet/minecraft/client/renderer/texture/SpriteContents;)Ljava/util/List;
+		ARG 1 tintIndex
+		ARG 2 texture
+		ARG 3 sprite
 	METHOD processFrames (ILjava/lang/String;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Ljava/util/List;
 		ARG 1 tintIndex
 		ARG 2 texture

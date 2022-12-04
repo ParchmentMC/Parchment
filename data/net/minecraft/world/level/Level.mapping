@@ -86,6 +86,13 @@ CLASS net/minecraft/world/level/Level
 		ARG 6 z
 		ARG 8 explosionRadius
 		ARG 9 mode
+	METHOD explode (Lnet/minecraft/world/entity/Entity;DDDFLnet/minecraft/world/level/Level$ExplosionInteraction;)Lnet/minecraft/world/level/Explosion;
+		ARG 1 source
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 radius
+		ARG 9 explosionInteraction
 	METHOD explode (Lnet/minecraft/world/entity/Entity;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;)Lnet/minecraft/world/level/Explosion;
 		ARG 1 entity
 		ARG 2 x
@@ -94,6 +101,14 @@ CLASS net/minecraft/world/level/Level
 		ARG 8 explosionRadius
 		ARG 9 causesFire
 		ARG 10 mode
+	METHOD explode (Lnet/minecraft/world/entity/Entity;DDDFZLnet/minecraft/world/level/Level$ExplosionInteraction;)Lnet/minecraft/world/level/Explosion;
+		ARG 1 source
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 radius
+		ARG 9 fire
+		ARG 10 explosionInteraction
 	METHOD explode (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;)Lnet/minecraft/world/level/Explosion;
 		ARG 1 exploder
 		ARG 2 damageSource
@@ -104,6 +119,35 @@ CLASS net/minecraft/world/level/Level
 		ARG 10 size
 		ARG 11 causesFire
 		ARG 12 mode
+	METHOD explode (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Level$ExplosionInteraction;)Lnet/minecraft/world/level/Explosion;
+		ARG 1 source
+		ARG 2 damageSource
+		ARG 3 damageCalculator
+		ARG 4 x
+		ARG 6 y
+		ARG 8 z
+		ARG 10 radius
+		ARG 11 fire
+		ARG 12 explosionInteraction
+	METHOD explode (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Level$ExplosionInteraction;Z)Lnet/minecraft/world/level/Explosion;
+		ARG 1 source
+		ARG 2 damageSource
+		ARG 3 damageCalculator
+		ARG 4 x
+		ARG 6 y
+		ARG 8 z
+		ARG 10 radius
+		ARG 11 fire
+		ARG 12 explosionInteraction
+		ARG 13 spawnParticles
+	METHOD explode (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;Lnet/minecraft/world/phys/Vec3;FZLnet/minecraft/world/level/Level$ExplosionInteraction;)Lnet/minecraft/world/level/Explosion;
+		ARG 1 source
+		ARG 2 damageSource
+		ARG 3 damageCalculator
+		ARG 4 pos
+		ARG 5 radius
+		ARG 6 fire
+		ARG 7 explosionInteraction
 	METHOD fillReportDetails (Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReportCategory;
 		COMMENT Adds some basic stats of the world to the given crash report.
 		ARG 1 report
@@ -225,6 +269,12 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 pos
 		ARG 2 block
 		ARG 3 fromPos
+	METHOD neighborChanged (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos;Z)V
+		ARG 1 state
+		ARG 2 pos
+		ARG 3 block
+		ARG 4 fromPos
+		ARG 5 isMoving
 	METHOD onBlockStateChange (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 blockState
@@ -358,6 +408,8 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 strength
 	METHOD shouldTickBlocksAt (J)Z
 		ARG 1 chunkPos
+	METHOD shouldTickBlocksAt (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
 	METHOD shouldTickDeath (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD updateNeighborsAt (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V

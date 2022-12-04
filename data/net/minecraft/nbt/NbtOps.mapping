@@ -1,7 +1,37 @@
 CLASS net/minecraft/nbt/NbtOps
+	METHOD createBoolean (Z)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createByte (B)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createByteList (Ljava/nio/ByteBuffer;)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createCollector (Lnet/minecraft/nbt/Tag;)Ljava/util/Optional;
+		ARG 0 tag
+	METHOD createDouble (D)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createFloat (F)Ljava/lang/Object;
+		ARG 1 data
 	METHOD createGenericList (BB)Lnet/minecraft/nbt/CollectionTag;
 		ARG 0 collectionElementId
 		ARG 1 newElementId
+	METHOD createInt (I)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createIntList (Ljava/util/stream/IntStream;)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createList (Ljava/util/stream/Stream;)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createLong (J)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createLongList (Ljava/util/stream/LongStream;)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createMap (Ljava/util/stream/Stream;)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createNumeric (Ljava/lang/Number;)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createShort (S)Ljava/lang/Object;
+		ARG 1 data
+	METHOD createString (Ljava/lang/String;)Ljava/lang/Object;
+		ARG 1 data
 	METHOD fillMany (Lnet/minecraft/nbt/CollectionTag;Lnet/minecraft/nbt/Tag;Ljava/util/List;)V
 		ARG 0 collectionTag
 		ARG 1 mergingCollectionTag
@@ -10,6 +40,18 @@ CLASS net/minecraft/nbt/NbtOps
 		ARG 0 collectionTag
 		ARG 1 mergingCollectionTag
 		ARG 2 elementTag
+	METHOD getByteBuffer (Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 tag
+	METHOD getIntStream (Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 tag
+	METHOD getList (Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 tag
+	METHOD getLongStream (Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 tag
+	METHOD getStream (Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 tag
+	METHOD getStringValue (Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 tag
 	METHOD lambda$createList$11 (Lnet/minecraft/nbt/Tag;)Ljava/lang/Byte;
 		ARG 0 byteTag
 	METHOD lambda$createList$12 (Lnet/minecraft/nbt/Tag;)Ljava/lang/Integer;
@@ -42,6 +84,13 @@ CLASS net/minecraft/nbt/NbtOps
 		ARG 1 compoundTagKey
 	METHOD lambda$remove$15 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
 		ARG 2 compoundTagKey
+	METHOD mergeToMap (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 2 key
+	METHOD remove (Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+		ARG 1 tag
+		ARG 2 key
+	METHOD tryUnwrap (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/Tag;
+		ARG 0 tag
 	METHOD typesMatch (BBB)Z
 		COMMENT Returns {@code true} if {@code collectionElementId} is the same type as the {@code newCollectionElementId} and the {@code newElementId} being added is either the same type as those entries in the collection or is an {@link EndTag}.
 		ARG 0 collectionElementId
@@ -50,3 +99,31 @@ CLASS net/minecraft/nbt/NbtOps
 	CLASS 1
 		METHOD lambda$entries$0 (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Lcom/mojang/datafixers/util/Pair;
 			ARG 2 key
+	CLASS ListCollector
+		METHOD accept (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/NbtOps$ListCollector;
+			ARG 1 tag
+	CLASS IntListCollector
+		METHOD <init> (I)V
+			ARG 1 value
+		METHOD <init> ([I)V
+			ARG 1 values
+	CLASS NbtRecordBuilder
+		METHOD append (Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 key
+			ARG 2 value
+			ARG 3 tag
+	CLASS ByteListCollector
+		METHOD <init> (B)V
+			ARG 1 value
+		METHOD <init> ([B)V
+			ARG 1 values
+	CLASS LongListCollector
+		METHOD <init> (J)V
+			ARG 1 value
+		METHOD <init> ([J)V
+			ARG 1 values
+	CLASS HomogenousListCollector
+		METHOD <init> (Lnet/minecraft/nbt/ListTag;)V
+			ARG 1 values
+		METHOD <init> (Lnet/minecraft/nbt/Tag;)V
+			ARG 1 value

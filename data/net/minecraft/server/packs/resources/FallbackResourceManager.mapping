@@ -2,6 +2,9 @@ CLASS net/minecraft/server/packs/resources/FallbackResourceManager
 	METHOD <init> (Lnet/minecraft/server/packs/PackType;Ljava/lang/String;)V
 		ARG 1 type
 		ARG 2 namespace
+	METHOD createResource (Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/IoSupplier;Lnet/minecraft/server/packs/resources/IoSupplier;)Lnet/minecraft/server/packs/resources/Resource;
+		ARG 0 source
+		ARG 3 metadataSupplier
 	METHOD createResourceGetter (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/PackResources;)Lnet/minecraft/server/packs/resources/Resource$IoSupplier;
 		ARG 1 location
 		ARG 2 resources
@@ -9,6 +12,10 @@ CLASS net/minecraft/server/packs/resources/FallbackResourceManager
 		ARG 1 location
 	METHOD getMetadataLocation (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
 		ARG 0 location
+	METHOD getResourceLocationFromMetadata (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+		ARG 0 metadataResourceLocation
+	METHOD isMetadata (Lnet/minecraft/resources/ResourceLocation;)Z
+		ARG 0 resourceLocation
 	METHOD isValidLocation (Lnet/minecraft/resources/ResourceLocation;)Z
 		ARG 1 location
 	METHOD listPackResources (Lnet/minecraft/server/packs/resources/FallbackResourceManager$PackEntry;Ljava/lang/String;Ljava/util/function/Predicate;Ljava/util/Map;)V
