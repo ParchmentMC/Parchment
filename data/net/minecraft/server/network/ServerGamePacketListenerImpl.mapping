@@ -15,9 +15,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 0 value
 	METHOD clampVertical (D)D
 		ARG 0 value
-	METHOD collectSignedArguments (Lnet/minecraft/network/protocol/game/ServerboundChatCommandPacket;Lnet/minecraft/network/chat/PreviewableCommand;)Ljava/util/Map;
-		ARG 1 packet
-		ARG 2 command
 	METHOD collectSignedArguments (Lnet/minecraft/network/protocol/game/ServerboundChatCommandPacket;Lnet/minecraft/network/chat/SignableCommand;Lnet/minecraft/network/chat/LastSeenMessages;)Ljava/util/Map;
 		ARG 1 packet
 		ARG 2 command
@@ -37,13 +34,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 texts
 	METHOD getConnection ()Lnet/minecraft/network/Connection;
 		COMMENT Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient
-	METHOD getPreviewedArgument (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/network/chat/PreviewableCommand;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 source
-		ARG 2 command
-	METHOD getSignedContent (Lnet/minecraft/network/protocol/game/ServerboundChatPacket;)Lnet/minecraft/network/chat/ChatMessageContent;
-		ARG 1 packet
-	METHOD getSignedMessage (Lnet/minecraft/network/protocol/game/ServerboundChatPacket;)Lnet/minecraft/network/chat/PlayerChatMessage;
-		ARG 1 packet
 	METHOD getSignedMessage (Lnet/minecraft/network/protocol/game/ServerboundChatPacket;Lnet/minecraft/network/chat/LastSeenMessages;)Lnet/minecraft/network/chat/PlayerChatMessage;
 		ARG 1 packet
 		ARG 2 lastSeenMessages
@@ -145,8 +135,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 packet
 	METHOD handleUseItemOn (Lnet/minecraft/network/protocol/game/ServerboundUseItemOnPacket;)V
 		ARG 1 packet
-	METHOD handleValidationFailure (Ljava/util/Set;)V
-		ARG 1 errorConditions
 	METHOD isChatMessageIllegal (Ljava/lang/String;)Z
 		ARG 0 message
 	METHOD isPlayerCollidingWithAnythingNew (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/phys/AABB;)Z
@@ -159,17 +147,9 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 reason
 	METHOD parseCommand (Ljava/lang/String;)Lcom/mojang/brigadier/ParseResults;
 		ARG 1 command
-	METHOD performChatCommand (Lnet/minecraft/network/protocol/game/ServerboundChatCommandPacket;)V
-		ARG 1 packet
 	METHOD performChatCommand (Lnet/minecraft/network/protocol/game/ServerboundChatCommandPacket;Lnet/minecraft/network/chat/LastSeenMessages;)V
 		ARG 1 packet
 		ARG 2 lastSeenMessages
-	METHOD queryChatPreview (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 message
-	METHOD queryCommandPreview (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 command
-	METHOD queryPreview (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 message
 	METHOD resetPlayerChatState (Lnet/minecraft/network/chat/RemoteChatSession;)V
 		ARG 1 chatSession
 	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
@@ -181,9 +161,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD sendPlayerChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatType$Bound;)V
 		ARG 1 chatMessage
 		ARG 2 boundType
-	METHOD sendPreviewResponse (ILnet/minecraft/network/chat/Component;)V
-		ARG 1 queryId
-		ARG 2 preview
 	METHOD signBook (Lnet/minecraft/server/network/FilteredText;Ljava/util/List;I)V
 		ARG 1 title
 		ARG 2 pages
@@ -214,8 +191,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 message
 		ARG 2 timestamp
 		ARG 3 update
-	METHOD tryHandleChat (Ljava/lang/String;Ljava/time/Instant;Lnet/minecraft/network/chat/LastSeenMessages$Update;)Z
-		ARG 2 timestamp
 	METHOD unpackAndApplyLastSeen (Lnet/minecraft/network/chat/LastSeenMessages$Update;)Ljava/util/Optional;
 		ARG 1 update
 	METHOD updateBookContents (Ljava/util/List;I)V
@@ -229,8 +204,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD updateSignText (Lnet/minecraft/network/protocol/game/ServerboundSignUpdatePacket;Ljava/util/List;)V
 		ARG 1 packet
 		ARG 2 filteredText
-	METHOD verifyChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;)Z
-		ARG 1 message
 	METHOD wasBlockPlacementAttempt (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 player
 		ARG 1 stack

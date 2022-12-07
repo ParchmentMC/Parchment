@@ -25,21 +25,8 @@ CLASS net/minecraft/client/player/LocalPlayer
 		COMMENT Deals damage to the entity. This will take the armor of the entity into consideration before damaging the health bar.
 		ARG 1 damageSrc
 		ARG 2 damageAmount
-	METHOD buildSignedContent (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/ChatMessageContent;
-		ARG 1 plain
-		ARG 2 decorated
-	METHOD chatSigned (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 plain
-		ARG 2 decorated
 	METHOD closeContainer ()V
 		COMMENT Sets the current crafting inventory back to the 2x2 square.
-	METHOD commandHasSignableArguments (Ljava/lang/String;)Z
-		ARG 1 command
-	METHOD commandSigned (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 plain
-		ARG 2 decorated
-	METHOD commandUnsigned (Ljava/lang/String;)Z
-		ARG 1 command
 	METHOD crit (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Called when the entity is dealt a critical hit.
 		ARG 1 entityHit
@@ -104,12 +91,6 @@ CLASS net/minecraft/client/player/LocalPlayer
 		ARG 1 recipe
 	METHOD rideTick ()V
 		COMMENT Handles updating while riding another entity
-	METHOD sendChat (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 plain
-		ARG 2 decorated
-	METHOD sendCommand (Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 plain
-		ARG 2 decorated
 	METHOD sendPosition ()V
 		COMMENT Called every tick when the player is on foot. Performs all the things that normally happen during movement.
 	METHOD setExperienceValues (FII)V
@@ -127,13 +108,6 @@ CLASS net/minecraft/client/player/LocalPlayer
 	METHOD setSprinting (Z)V
 		COMMENT Set sprinting switch for Entity.
 		ARG 1 sprinting
-	METHOD signCommandArguments (Lnet/minecraft/network/chat/MessageSigner;Lcom/mojang/brigadier/ParseResults;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/LastSeenMessages;)Lnet/minecraft/commands/arguments/ArgumentSignatures;
-		ARG 1 signer
-		ARG 2 parseResults
-	METHOD signMessage (Lnet/minecraft/network/chat/MessageSigner;Lnet/minecraft/network/chat/ChatMessageContent;Lnet/minecraft/network/chat/LastSeenMessages;)Lnet/minecraft/network/chat/MessageSignature;
-		ARG 1 signer
-		ARG 2 messageContent
-		ARG 3 lastSeenMessages
 	METHOD startRiding (Lnet/minecraft/world/entity/Entity;Z)Z
 		ARG 1 entity
 		ARG 2 force

@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/effect/MobEffectInstance
 	FIELD hiddenEffect Lnet/minecraft/world/effect/MobEffectInstance;
 		COMMENT A hidden effect which is not shown to the player.
-	FIELD noCounter Z
-		COMMENT True if potion effect duration is at maximum, {@code false} otherwise.
 	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;)V
 		ARG 1 effect
 	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;I)V
@@ -44,8 +42,6 @@ CLASS net/minecraft/world/effect/MobEffectInstance
 		ARG 1 other
 	METHOD isAmbient ()Z
 		COMMENT Gets whether this potion effect originated from a beacon
-	METHOD isNoCounter ()Z
-		COMMENT Get the value of the isPotionDurationMax field.
 	METHOD isVisible ()Z
 		COMMENT Gets whether this potion effect will show ambient particles or not.
 	METHOD load (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/effect/MobEffectInstance;
@@ -59,9 +55,6 @@ CLASS net/minecraft/world/effect/MobEffectInstance
 		ARG 1 nbt
 	METHOD setDetailsFrom (Lnet/minecraft/world/effect/MobEffectInstance;)V
 		ARG 1 effectInstance
-	METHOD setNoCounter (Z)V
-		COMMENT Toggle the isPotionDurationMax field.
-		ARG 1 maxDuration
 	METHOD tick (Lnet/minecraft/world/entity/LivingEntity;Ljava/lang/Runnable;)Z
 		ARG 1 entity
 		ARG 2 onExpirationRunnable

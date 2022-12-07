@@ -1,34 +1,4 @@
 CLASS net/minecraft/world/level/storage/PrimaryLevelData
-	METHOD <init> (Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundTag;ZIIIFJJIIIZIZZZLnet/minecraft/world/level/border/WorldBorder$Settings;IILjava/util/UUID;Ljava/util/Set;Lnet/minecraft/world/level/timers/TimerQueue;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldGenSettings;Lcom/mojang/serialization/Lifecycle;)V
-		ARG 1 fixerUpper
-		ARG 2 playerDataVersion
-		ARG 3 loadedPlayerTag
-		ARG 4 wasModded
-		ARG 5 xSpawn
-		ARG 6 ySpawn
-		ARG 7 zSpawn
-		ARG 8 spawnAngle
-		ARG 9 gameTime
-		ARG 11 dayTime
-		ARG 13 version
-		ARG 14 clearWeatherTime
-		ARG 15 rainTime
-		ARG 16 raining
-		ARG 17 thunderTime
-		ARG 18 thundering
-		ARG 19 initialized
-		ARG 20 difficultyLocked
-		ARG 21 worldBorder
-		ARG 22 wanderingTraderSpawnDelay
-		ARG 23 wanderingTraderSpawnChance
-		ARG 24 wanderingTraderId
-		ARG 25 knownServerBrands
-		ARG 26 scheduledEvents
-		ARG 27 customBossEvents
-		ARG 28 endDragonFightData
-		ARG 29 settings
-		ARG 30 worldGenSettings
-		ARG 31 worldGenSettingsLifecycle
 	METHOD <init> (Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundTag;ZIIIFJJIIIZIZZZLnet/minecraft/world/level/border/WorldBorder$Settings;IILjava/util/UUID;Ljava/util/Set;Lnet/minecraft/world/level/timers/TimerQueue;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldOptions;Lnet/minecraft/world/level/storage/PrimaryLevelData$SpecialWorldProperty;Lcom/mojang/serialization/Lifecycle;)V
 		ARG 1 fixerUpper
 		ARG 2 playerDataVersion
@@ -60,10 +30,6 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 		ARG 30 worldOptions
 		ARG 31 specialWorldProperty
 		ARG 32 worldGenSettingsLifecycle
-	METHOD <init> (Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldGenSettings;Lcom/mojang/serialization/Lifecycle;)V
-		ARG 1 levelSettings
-		ARG 2 worldGenSettings
-		ARG 3 worldGenSettingsLifecycle
 	METHOD <init> (Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldOptions;Lnet/minecraft/world/level/storage/PrimaryLevelData$SpecialWorldProperty;Lcom/mojang/serialization/Lifecycle;)V
 		ARG 1 settings
 		ARG 2 worldOptions
@@ -100,15 +66,6 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 		COMMENT Returns {@code true} if it is raining, {@code false} otherwise.
 	METHOD isThundering ()Z
 		COMMENT Returns {@code true} if it is thundering, {@code false} otherwise.
-	METHOD parse (Lcom/mojang/serialization/Dynamic;Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/storage/LevelVersion;Lnet/minecraft/world/level/levelgen/WorldGenSettings;Lcom/mojang/serialization/Lifecycle;)Lnet/minecraft/world/level/storage/PrimaryLevelData;
-		ARG 0 dynamic
-		ARG 1 dataFixer
-		ARG 2 version
-		ARG 3 playerNBT
-		ARG 4 levelSettings
-		ARG 5 versionData
-		ARG 6 generatorSettings
-		ARG 7 lifecycle
 	METHOD parse (Lcom/mojang/serialization/Dynamic;Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/storage/LevelVersion;Lnet/minecraft/world/level/storage/PrimaryLevelData$SpecialWorldProperty;Lnet/minecraft/world/level/levelgen/WorldOptions;Lcom/mojang/serialization/Lifecycle;)Lnet/minecraft/world/level/storage/PrimaryLevelData;
 		ARG 1 fixerUpper
 		ARG 2 playerDataVersion
@@ -121,8 +78,6 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 		ARG 1 time
 	METHOD setCustomBossEvents (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 nbt
-	METHOD setDataPackConfig (Lnet/minecraft/world/level/DataPackConfig;)V
-		ARG 1 codec
 	METHOD setDayTime (J)V
 		COMMENT Set current world time
 		ARG 1 time

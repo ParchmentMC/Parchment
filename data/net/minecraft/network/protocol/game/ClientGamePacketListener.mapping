@@ -38,8 +38,6 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleChangeDifficulty (Lnet/minecraft/network/protocol/game/ClientboundChangeDifficultyPacket;)V
 		ARG 1 packet
-	METHOD handleChatPreview (Lnet/minecraft/network/protocol/game/ClientboundChatPreviewPacket;)V
-		ARG 1 packet
 	METHOD handleChunkBlocksUpdate (Lnet/minecraft/network/protocol/game/ClientboundSectionBlocksUpdatePacket;)V
 		COMMENT Received from the servers PlayerManager if between 1 and 64 blocks in a chunk are changed. If only one block requires an update, the server sends S23PacketBlockChange and if 64 or more blocks are changed, the server sends S21PacketChunkData
 		ARG 1 packet
@@ -64,8 +62,6 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleCustomPayload (Lnet/minecraft/network/protocol/game/ClientboundCustomPayloadPacket;)V
 		COMMENT Handles packets that have room for a channel specification. Vanilla implemented channels are "MC|TrList" to acquire a MerchantRecipeList trades for a villager merchant, "MC|Brand" which sets the server brand? on the player instance and finally "MC|RPack" which the server uses to communicate the identifier of the default server resourcepack for the client to load.
-		ARG 1 packet
-	METHOD handleCustomSoundEvent (Lnet/minecraft/network/protocol/game/ClientboundCustomSoundPacket;)V
 		ARG 1 packet
 	METHOD handleDeleteChat (Lnet/minecraft/network/protocol/game/ClientboundDeleteChatPacket;)V
 		ARG 1 packet
@@ -137,15 +133,11 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handlePlayerChat (Lnet/minecraft/network/protocol/game/ClientboundPlayerChatPacket;)V
 		ARG 1 packet
-	METHOD handlePlayerChatHeader (Lnet/minecraft/network/protocol/game/ClientboundPlayerChatHeaderPacket;)V
-		ARG 1 packet
 	METHOD handlePlayerCombatEnd (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatEndPacket;)V
 		ARG 1 packet
 	METHOD handlePlayerCombatEnter (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatEnterPacket;)V
 		ARG 1 packet
 	METHOD handlePlayerCombatKill (Lnet/minecraft/network/protocol/game/ClientboundPlayerCombatKillPacket;)V
-		ARG 1 packet
-	METHOD handlePlayerInfo (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket;)V
 		ARG 1 packet
 	METHOD handlePlayerInfoRemove (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoRemovePacket;)V
 		ARG 1 packet
@@ -184,8 +176,6 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleSetChunkCacheCenter (Lnet/minecraft/network/protocol/game/ClientboundSetChunkCacheCenterPacket;)V
 		ARG 1 packet
 	METHOD handleSetChunkCacheRadius (Lnet/minecraft/network/protocol/game/ClientboundSetChunkCacheRadiusPacket;)V
-		ARG 1 packet
-	METHOD handleSetDisplayChatPreview (Lnet/minecraft/network/protocol/game/ClientboundSetDisplayChatPreviewPacket;)V
 		ARG 1 packet
 	METHOD handleSetDisplayObjective (Lnet/minecraft/network/protocol/game/ClientboundSetDisplayObjectivePacket;)V
 		COMMENT Removes or sets the ScoreObjective to be displayed at a particular scoreboard position (list, sidebar, below name)

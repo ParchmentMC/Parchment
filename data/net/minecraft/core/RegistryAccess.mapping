@@ -1,36 +1,7 @@
 CLASS net/minecraft/core/RegistryAccess
 	COMMENT The root level registry, essentially a registry of registries. It is also an access point, hence the name, for other dynamic registries.
-	FIELD BUILTIN Ljava/util/function/Supplier;
-		COMMENT A registry access containing the builtin registries (excluding the dimension type registry).
-		COMMENT When this class is loaded, this registry holder is initialized, which involves copying all elements from the builtin registries at {@link net.minecraft.data.BuiltinRegistries} into this field, which contains the static, code defined registries such as configured features, etc.
-		COMMENT Early classloading of this class <strong>can cause issues</strong> because this field will not contain any elements registered to the builtin registries after classloading of {@code RegistryAccess}.
-	FIELD REGISTRIES Ljava/util/Map;
-		COMMENT Metadata about all registries. Maps registry keys to a {@link RegistryData} object, which defines the codecs, and if applicable, codecs for synchronization of the registry's elements.
-	METHOD addBuiltinElements (Lnet/minecraft/resources/RegistryResourceAccess$InMemoryStorage;Lnet/minecraft/core/RegistryAccess$RegistryData;)V
-		ARG 0 destinationRegistryHolder
-		ARG 1 data
-	METHOD captureMap (Lcom/mojang/serialization/codecs/UnboundedMapCodec;)Lcom/mojang/serialization/Codec;
-		ARG 0 codec
-	METHOD createRegistry (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/WritableRegistry;
-		ARG 0 registryKey
 	METHOD fromRegistryOfRegistries (Lnet/minecraft/core/Registry;)Lnet/minecraft/core/RegistryAccess$Frozen;
 		ARG 0 registryOfRegistries
-	METHOD getNetworkCodec (Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/DataResult;
-		ARG 0 key
-	METHOD load (Lnet/minecraft/core/RegistryAccess$Writable;Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/resources/RegistryLoader;)V
-		ARG 2 loader
-	METHOD ownedRegistry (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
-		COMMENT Get the registry owned by this registry access. The returned value, if it exists, will be writable.
-		ARG 1 registryKey
-	METHOD put (Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)V
-		ARG 0 builder
-		ARG 1 registryKey
-		ARG 2 elementCodec
-	METHOD put (Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)V
-		ARG 0 builder
-		ARG 1 registryKey
-		ARG 2 elementCodec
-		ARG 3 networkCodec
 	METHOD registry (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
 		COMMENT Get the registry owned by this registry access by the given key. If it doesn't exist, the default registry of registries is queried instead, which contains static registries such as blocks.
 		COMMENT The returned registry can not guarantee that it is writable here, so the return type is widened to {@code Registry<E>} instead.
@@ -38,39 +9,12 @@ CLASS net/minecraft/core/RegistryAccess
 	METHOD registryOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Registry;
 		COMMENT A variant of {@link #registry(ResourceKey)} that throws if the registry does not exist.
 		ARG 1 registryKey
-	CLASS Writable
-		METHOD ownedWritableRegistry (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
-			ARG 1 registryKey
-		METHOD ownedWritableRegistryOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/WritableRegistry;
-			ARG 1 registryKey
-	CLASS RegistryData
-		COMMENT A small record representing metadata about a given registry.
-		METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)V
-			ARG 1 key
-				COMMENT The registry key of this registry.
-			ARG 2 codec
-				COMMENT The codec used to serialize this registry's elements internally.
-			ARG 3 networkCodec
-				COMMENT The codec used to serialize this registry's elements when sending them to the client. This being null implies that the contents of this registry are not synchronized to client.
-		METHOD codec ()Lcom/mojang/serialization/Codec;
-			COMMENT @return The codec used to serialize this registry's elements internally.
-		METHOD key ()Lnet/minecraft/resources/ResourceKey;
-			COMMENT @return The registry key of the registry this metadata is describing.
-		METHOD networkCodec ()Lcom/mojang/serialization/Codec;
-			COMMENT @return The codec used to serialize this registry's elements when sending them to the client. Returns {@code null} if this registry should not be synchronized with the client.
-		METHOD sendToClient ()Z
-			COMMENT @return {@code true} if this registry should be synchronized with the client.
 	CLASS RegistryEntry
-		METHOD fromHolder (Lnet/minecraft/core/Holder$Reference;)Lnet/minecraft/core/RegistryAccess$RegistryEntry;
-			ARG 0 holder
 		METHOD fromMapEntry (Ljava/util/Map$Entry;)Lnet/minecraft/core/RegistryAccess$RegistryEntry;
 			ARG 0 mapEntry
 		METHOD fromUntyped (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Registry;)Lnet/minecraft/core/RegistryAccess$RegistryEntry;
 			ARG 0 key
 			ARG 1 value
-	CLASS WritableRegistryAccess
-		METHOD <init> (Ljava/util/Map;)V
-			ARG 1 registries
 	CLASS ImmutableRegistryAccess
 		METHOD <init> (Ljava/util/Map;)V
 			ARG 1 registries

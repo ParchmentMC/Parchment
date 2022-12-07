@@ -11,12 +11,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		COMMENT A mapping from player names to their respective GuiPlayerInfo (specifies the clients response time to the server)
 	FIELD random Lnet/minecraft/util/RandomSource;
 		COMMENT Just an ordinary random number generator, used to randomize audio pitch of item/orb pickup and randomize both particlespawn offset and velocity
-	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/network/Connection;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/client/ClientTelemetryManager;)V
-		ARG 1 minecraft
-		ARG 2 callbackScreen
-		ARG 3 connection
-		ARG 4 localGameProfile
-		ARG 5 telemetryManager
 	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/network/Connection;Lnet/minecraft/client/multiplayer/ServerData;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/client/telemetry/WorldSessionTelemetryManager;)V
 		ARG 1 minecraft
 		ARG 2 callbackScreen
@@ -32,8 +26,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 1 action
 		ARG 2 entry
 		ARG 3 playerInfo
-	METHOD cleanup ()V
-		COMMENT Clears the WorldClient instance associated with this NetHandlerPlayClient
 	METHOD downloadCallback (Ljava/util/concurrent/CompletableFuture;)V
 		ARG 1 future
 	METHOD enableChunkLight (Lnet/minecraft/world/level/chunk/LevelChunk;II)V
@@ -108,8 +100,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 	METHOD handleCustomPayload (Lnet/minecraft/network/protocol/game/ClientboundCustomPayloadPacket;)V
 		COMMENT Handles packets that have room for a channel specification. Vanilla implemented channels are "MC|TrList" to acquire a MerchantRecipeList trades for a villager merchant, "MC|Brand" which sets the server brand on the player instance and finally "MC|RPack" which the server uses to communicate the identifier of the default server resourcepack for the client to load.
 		ARG 1 packet
-	METHOD handleCustomSoundEvent (Lnet/minecraft/network/protocol/game/ClientboundCustomSoundPacket;)V
-		ARG 1 packet
 	METHOD handleDisconnect (Lnet/minecraft/network/protocol/game/ClientboundDisconnectPacket;)V
 		COMMENT Closes the network channel
 		ARG 1 packet
@@ -163,8 +153,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 	METHOD handlePlaceRecipe (Lnet/minecraft/network/protocol/game/ClientboundPlaceGhostRecipePacket;)V
 		ARG 1 packet
 	METHOD handlePlayerAbilities (Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;)V
-		ARG 1 packet
-	METHOD handlePlayerInfo (Lnet/minecraft/network/protocol/game/ClientboundPlayerInfoPacket;)V
 		ARG 1 packet
 	METHOD handleRemoveMobEffect (Lnet/minecraft/network/protocol/game/ClientboundRemoveMobEffectPacket;)V
 		ARG 1 packet
@@ -242,8 +230,6 @@ CLASS net/minecraft/client/multiplayer/ClientPacketListener
 		ARG 2 playerInfo
 	METHOD isFeatureEnabled (Lnet/minecraft/world/flag/FeatureFlagSet;)Z
 		ARG 1 enabledFeatures
-	METHOD lambda$handleRemoveEntities$1 (I)V
-		ARG 1 entityId
 	METHOD markMessageAsProcessed (Lnet/minecraft/network/chat/PlayerChatMessage;Z)V
 		ARG 1 chatMessage
 		ARG 2 acknowledged

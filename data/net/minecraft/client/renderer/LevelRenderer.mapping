@@ -108,13 +108,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		COMMENT Calculates the level of particles to use based on the {@linkplain net.minecraft.client.Options#particles particles option} and the specified {@code decreased} parameter. This leads to randomly generating more or less particles than the set option.
 		ARG 1 decreased
 			COMMENT if {@code true}, and the {@linkplain net.minecraft.client.Options#particles particles option} is set to minimal, has a 1 in 10 chance to return a decreased level and a further 1 in 3 chance to minimise it
-	METHOD captureFrustum (Lcom/mojang/math/Matrix4f;Lcom/mojang/math/Matrix4f;DDDLnet/minecraft/client/renderer/culling/Frustum;)V
-		ARG 1 viewMatrix
-		ARG 2 projectionMatrix
-		ARG 3 camX
-		ARG 5 camY
-		ARG 7 camZ
-		ARG 9 frustum
 	METHOD captureFrustum (Lorg/joml/Matrix4f;Lorg/joml/Matrix4f;DDDLnet/minecraft/client/renderer/culling/Frustum;)V
 		ARG 9 capturedFrustrum
 	METHOD checkPoseStack (Lcom/mojang/blaze3d/vertex/PoseStack;)V
@@ -179,29 +172,11 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD playStreamingMusic (Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 soundEvent
 		ARG 2 pos
-	METHOD prepareCullFrustum (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/phys/Vec3;Lcom/mojang/math/Matrix4f;)V
-		ARG 1 poseStack
-		ARG 2 cameraPos
-		ARG 3 projectionMatrix
 	METHOD removeProgress (Lnet/minecraft/server/level/BlockDestructionProgress;)V
 		ARG 1 progress
-	METHOD renderChunkLayer (Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack;DDDLcom/mojang/math/Matrix4f;)V
-		ARG 1 renderType
-		ARG 2 poseStack
-		ARG 3 camX
-		ARG 5 camY
-		ARG 7 camZ
-		ARG 9 projectionMatrix
 	METHOD renderChunkLayer (Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack;DDDLorg/joml/Matrix4f;)V
 		ARG 1 renderType
 		ARG 2 poseStack
-	METHOD renderClouds (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/math/Matrix4f;FDDD)V
-		ARG 1 poseStack
-		ARG 2 projectionMatrix
-		ARG 3 partialTick
-		ARG 4 camX
-		ARG 6 camY
-		ARG 8 camZ
 	METHOD renderClouds (Lcom/mojang/blaze3d/vertex/PoseStack;Lorg/joml/Matrix4f;FDDD)V
 		ARG 1 poseStack
 		ARG 3 partialTicks
@@ -226,15 +201,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 8 camZ
 		ARG 10 pos
 		ARG 11 state
-	METHOD renderLevel (Lcom/mojang/blaze3d/vertex/PoseStack;FJZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lcom/mojang/math/Matrix4f;)V
-		ARG 1 poseStack
-		ARG 2 partialTick
-		ARG 3 finishNanoTime
-		ARG 5 renderBlockOutline
-		ARG 6 camera
-		ARG 7 gameRenderer
-		ARG 8 lightTexture
-		ARG 9 projectionMatrix
 	METHOD renderLevel (Lcom/mojang/blaze3d/vertex/PoseStack;FJZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lorg/joml/Matrix4f;)V
 		ARG 1 poseStack
 	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDDDDFFFF)V
@@ -297,12 +263,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 green
 		ARG 11 blue
 		ARG 12 alpha
-	METHOD renderSky (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/math/Matrix4f;FLnet/minecraft/client/Camera;ZLjava/lang/Runnable;)V
-		ARG 1 poseStack
-		ARG 2 projectionMatrix
-		ARG 3 partialTick
-		ARG 4 camera
-		ARG 6 skyFogSetup
 	METHOD renderSky (Lcom/mojang/blaze3d/vertex/PoseStack;Lorg/joml/Matrix4f;FLnet/minecraft/client/Camera;ZLjava/lang/Runnable;)V
 		ARG 1 poseStack
 		ARG 3 partialTicks

@@ -1,20 +1,4 @@
 CLASS net/minecraft/client/renderer/texture/TextureAtlasSprite
-	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureAtlas;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;IIIIILcom/mojang/blaze3d/platform/NativeImage;)V
-		ARG 1 atlas
-		ARG 2 spriteInfo
-		ARG 3 mipLevel
-		ARG 4 storageX
-		ARG 5 storageY
-		ARG 6 x
-		ARG 7 y
-		ARG 8 image
-	METHOD createTicker (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;III)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$AnimatedTexture;
-		ARG 1 spriteInfo
-		ARG 2 imageWidth
-		ARG 3 imageHeight
-		ARG 4 mipLevel
-	METHOD getHeight ()I
-		COMMENT @return the height of this sprite, in pixels
 	METHOD getU (D)F
 		COMMENT @return the specified {@code u} coordinate relative to this sprite
 		ARG 1 u
@@ -33,61 +17,5 @@ CLASS net/minecraft/client/renderer/texture/TextureAtlasSprite
 		COMMENT @return the maximum V coordinate to use when rendering this sprite
 	METHOD getVOffset (F)F
 		ARG 1 offset
-	METHOD getWidth ()I
-		COMMENT @return the width of this sprite, in pixels
-	METHOD isTransparent (III)Z
-		ARG 1 frameIndex
-		ARG 2 pixelX
-		ARG 3 pixelY
-	METHOD lambda$createTicker$3 (Ljava/util/List;II)V
-		ARG 1 index
-		ARG 2 time
-	METHOD lambda$createTicker$4 (Lit/unimi/dsi/fastutil/ints/IntSet;I)Z
-		ARG 0 index
-	METHOD upload (II[Lcom/mojang/blaze3d/platform/NativeImage;)V
-		ARG 1 xOffset
-		ARG 2 yOffset
-		ARG 3 frames
 	METHOD wrap (Lcom/mojang/blaze3d/vertex/VertexConsumer;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
 		ARG 1 consumer
-	CLASS Info
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;IILnet/minecraft/client/resources/metadata/animation/AnimationMetadataSection;)V
-			ARG 1 name
-			ARG 2 width
-			ARG 3 height
-			ARG 4 metadata
-	CLASS FrameInfo
-		METHOD <init> (II)V
-			ARG 1 index
-			ARG 2 time
-	CLASS AnimatedTexture
-		METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Ljava/util/List;ILnet/minecraft/client/renderer/texture/TextureAtlasSprite$InterpolationData;)V
-			ARG 2 frames
-			ARG 3 frameRowSize
-			ARG 4 interpolationData
-		METHOD getFrameX (I)I
-			ARG 1 frameIndex
-		METHOD getFrameY (I)I
-			ARG 1 frameIndex
-		METHOD lambda$getUniqueFrames$1 (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$FrameInfo;)I
-			ARG 0 frame
-		METHOD uploadFrame (I)V
-			ARG 1 frameIndex
-	CLASS InterpolationData
-		METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$Info;I)V
-			ARG 2 spriteInfo
-			ARG 3 mipLevel
-		METHOD getPixel (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$AnimatedTexture;IIII)I
-			ARG 1 texture
-			ARG 2 frameIndex
-			ARG 3 mipLevel
-			ARG 4 x
-			ARG 5 y
-		METHOD mix (DII)I
-			COMMENT Mixes the {@code first} and {@code second} numbers in the {@code ratio}. Used to mix the colors of two pixels from adjacent frames in order to calculate the interpolated color value.
-			COMMENT This is done by multiplying {@code first} by the ratio, {@code second} by the inverse of the ratio, and summing the results.
-			ARG 1 ratio
-			ARG 3 first
-			ARG 4 second
-		METHOD uploadInterpolatedFrame (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite$AnimatedTexture;)V
-			ARG 1 texture

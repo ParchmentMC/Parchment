@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/item/Item
 	METHOD <init> (Lnet/minecraft/world/item/Item$Properties;)V
 		ARG 1 properties
-	METHOD allowedIn (Lnet/minecraft/world/item/CreativeModeTab;)Z
-		ARG 1 category
 	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
 		COMMENT Allows items to add custom lines of information to the mouseover description.
 		ARG 1 stack
@@ -20,10 +18,6 @@ CLASS net/minecraft/world/item/Item
 		ARG 4 player
 	METHOD canBeHurtBy (Lnet/minecraft/world/damagesource/DamageSource;)Z
 		ARG 1 damageSource
-	METHOD fillItemCategory (Lnet/minecraft/world/item/CreativeModeTab;Lnet/minecraft/core/NonNullList;)V
-		COMMENT Adds some {@code ItemStacks} to the given list for display in the creative tab.
-		ARG 1 category
-		ARG 2 items
 	METHOD finishUsingItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Called when the player finishes using this Item (E.g. finishes eating.). Not called when the player stops using the Item before the action is complete.
 		ARG 1 stack
@@ -48,8 +42,6 @@ CLASS net/minecraft/world/item/Item
 		COMMENT Return the enchantability factor of the item, most of the time is based on material.
 	METHOD getId (Lnet/minecraft/world/item/Item;)I
 		ARG 0 item
-	METHOD getItemCategory ()Lnet/minecraft/world/item/CreativeModeTab;
-		COMMENT Gets the {@link net.minecraft.world.item.CreativeModeTab} this item is displayed on.
 	METHOD getMaxDamage ()I
 		COMMENT Returns the maximum damage an item can take.
 	METHOD getMaxStackSize ()I
@@ -180,5 +172,3 @@ CLASS net/minecraft/world/item/Item
 			ARG 1 requiredFeatures
 		METHOD stacksTo (I)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 maxStackSize
-		METHOD tab (Lnet/minecraft/world/item/CreativeModeTab;)Lnet/minecraft/world/item/Item$Properties;
-			ARG 1 category

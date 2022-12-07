@@ -6,17 +6,12 @@ CLASS net/minecraft/network/syncher/SynchedEntityData
 	COMMENT Use {@link #define} during {@link Entity#defineSynchedData} to set the default value for a given parameter.
 	METHOD <init> (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
-	METHOD assignValue (Lnet/minecraft/network/syncher/SynchedEntityData$DataItem;Lnet/minecraft/network/syncher/SynchedEntityData$DataItem;)V
-		ARG 1 target
-		ARG 2 source
 	METHOD assignValue (Lnet/minecraft/network/syncher/SynchedEntityData$DataItem;Lnet/minecraft/network/syncher/SynchedEntityData$DataValue;)V
 		ARG 1 target
 		ARG 2 entry
 	METHOD assignValues (Ljava/util/List;)V
 		COMMENT Updates the data using the given entries. Used on the client when the update packet is received.
 		ARG 1 entries
-	METHOD clearDirty ()V
-		COMMENT Clears the dirty flag, marking all entries as unchanged.
 	METHOD createDataItem (Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
 		ARG 1 key
 		ARG 2 value
@@ -29,35 +24,19 @@ CLASS net/minecraft/network/syncher/SynchedEntityData
 		COMMENT This method must be called during a static initializer of an entity class and the first parameter of this method must be that entity class.
 		ARG 0 clazz
 		ARG 1 serializer
-	METHOD genericHelper (Lnet/minecraft/network/FriendlyByteBuf;ILnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/SynchedEntityData$DataItem;
-		ARG 0 buffer
-		ARG 1 id
-		ARG 2 serializer
 	METHOD get (Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
 		COMMENT Get the value of the given key for this entity.
 		ARG 1 key
-	METHOD getAll ()Ljava/util/List;
-		COMMENT Get all values from the data entries.
 	METHOD getItem (Lnet/minecraft/network/syncher/EntityDataAccessor;)Lnet/minecraft/network/syncher/SynchedEntityData$DataItem;
 		ARG 1 key
 	METHOD isDirty ()Z
 		COMMENT Whether any keys have changed since the last synchronization packet to the client.
-	METHOD pack (Ljava/util/List;Lnet/minecraft/network/FriendlyByteBuf;)V
-		COMMENT Encode the given data entries into the buffer.
-		ARG 0 entries
-		ARG 1 buffer
 	METHOD packDirty ()Ljava/util/List;
 		COMMENT Gets all data entries which have changed since the last check and clears their dirty flag.
 	METHOD set (Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
 		COMMENT Set the value of the given key for this entity.
 		ARG 1 key
 		ARG 2 value
-	METHOD unpack (Lnet/minecraft/network/FriendlyByteBuf;)Ljava/util/List;
-		COMMENT Decode the data written by {@link #pack}.
-		ARG 0 buffer
-	METHOD writeDataItem (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/syncher/SynchedEntityData$DataItem;)V
-		ARG 0 buffer
-		ARG 1 entry
 	CLASS DataItem
 		METHOD <init> (Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
 			ARG 1 accessor

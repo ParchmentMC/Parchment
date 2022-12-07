@@ -10,13 +10,6 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationListener
 		ARG 4 currentVibration
 		ARG 5 selectionStrategy
 		ARG 6 travelTimeInTicks
-	METHOD <init> (Lnet/minecraft/world/level/gameevent/PositionSource;ILnet/minecraft/world/level/gameevent/vibrations/VibrationListener$VibrationListenerConfig;Lnet/minecraft/world/level/gameevent/vibrations/VibrationListener$ReceivingEvent;FI)V
-		ARG 1 listenerSource
-		ARG 2 listenerRange
-		ARG 3 config
-		ARG 4 receivingEvent
-		ARG 5 receivingDistance
-		ARG 6 travelTimeInTicks
 	METHOD forceGameEvent (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 level
 		ARG 2 gameEvent
@@ -28,12 +21,6 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationListener
 		ARG 0 level
 		ARG 1 from
 		ARG 2 to
-	METHOD scheduleSignal (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
-		ARG 1 level
-		ARG 2 event
-		ARG 3 context
-		ARG 4 origin
-		ARG 5 destination
 	METHOD scheduleVibration (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 level
 		ARG 2 gameEvent
@@ -42,24 +29,6 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationListener
 		ARG 5 endPos
 	METHOD tick (Lnet/minecraft/world/level/Level;)V
 		ARG 1 level
-	CLASS ReceivingEvent
-		METHOD <init> (Lnet/minecraft/world/level/gameevent/GameEvent;FLnet/minecraft/world/phys/Vec3;Ljava/util/UUID;Ljava/util/UUID;)V
-			ARG 1 gameEvent
-			ARG 2 distance
-			ARG 3 pos
-			ARG 4 uuid
-			ARG 5 projectileOwnerUuid
-		METHOD <init> (Lnet/minecraft/world/level/gameevent/GameEvent;FLnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)V
-			ARG 1 gameEvent
-			ARG 2 distance
-			ARG 3 pos
-			ARG 4 entity
-		METHOD getEntity (Lnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
-			ARG 1 level
-		METHOD getProjectileOwner (Lnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
-			ARG 1 level
-		METHOD getProjectileOwner (Lnet/minecraft/world/entity/Entity;)Ljava/util/UUID;
-			ARG 0 projectile
 	CLASS VibrationListenerConfig
 		METHOD isValidVibration (Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)Z
 			ARG 1 gameEvent

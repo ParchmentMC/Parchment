@@ -5,11 +5,6 @@ CLASS net/minecraft/server/level/ServerPlayer
 		COMMENT the total health of the player, includes actual health and absorption health. Updated every tick.
 	FIELD lastSectionPos Lnet/minecraft/core/SectionPos;
 		COMMENT Player section position as last updated by TicketManager, used by ChunkManager
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/level/ServerLevel;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/world/entity/player/ProfilePublicKey;)V
-		ARG 1 server
-		ARG 2 level
-		ARG 3 profile
-		ARG 4 profilePublicKey
 	METHOD acceptsSystemMessages (Z)Z
 		ARG 1 bypassHiddenChat
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
@@ -146,18 +141,10 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD restoreFrom (Lnet/minecraft/server/level/ServerPlayer;Z)V
 		ARG 1 that
 		ARG 2 keepEverything
-	METHOD sendChatHeader (Lnet/minecraft/network/chat/SignedMessageHeader;Lnet/minecraft/network/chat/MessageSignature;[B)V
-		ARG 1 header
-		ARG 2 headerSignature
-		ARG 3 bodyDigest
 	METHOD sendChatMessage (Lnet/minecraft/network/chat/OutgoingChatMessage;ZLnet/minecraft/network/chat/ChatType$Bound;)V
 		ARG 1 message
 		ARG 2 filtered
 		ARG 3 boundType
-	METHOD sendChatMessage (Lnet/minecraft/network/chat/OutgoingPlayerChatMessage;ZLnet/minecraft/network/chat/ChatType$Bound;)V
-		ARG 1 message
-		ARG 2 shouldFilter
-		ARG 3 boundChatType
 	METHOD sendMerchantOffers (ILnet/minecraft/world/item/trading/MerchantOffers;IIZZ)V
 		ARG 1 containerId
 		ARG 2 offers

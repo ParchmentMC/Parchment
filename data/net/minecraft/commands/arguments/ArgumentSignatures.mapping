@@ -1,18 +1,8 @@
 CLASS net/minecraft/commands/arguments/ArgumentSignatures
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
-	METHOD collectPlainSignableArguments (Lnet/minecraft/network/chat/PreviewableCommand;)Ljava/util/List;
-		ARG 0 command
 	METHOD get (Ljava/lang/String;)Lnet/minecraft/network/chat/MessageSignature;
 		ARG 1 key
-	METHOD getSignableText (Lnet/minecraft/commands/arguments/SignedArgument;Lcom/mojang/brigadier/context/ParsedArgument;)Ljava/lang/String;
-		ARG 0 signedArgument
-		ARG 1 parsedArgument
-	METHOD hasSignableArguments (Lnet/minecraft/network/chat/PreviewableCommand;)Z
-		ARG 0 command
-	METHOD signCommand (Lnet/minecraft/network/chat/PreviewableCommand;Lnet/minecraft/commands/arguments/ArgumentSignatures$Signer;)Lnet/minecraft/commands/arguments/ArgumentSignatures;
-		ARG 0 command
-		ARG 1 signer
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
 	CLASS Entry
@@ -20,7 +10,3 @@ CLASS net/minecraft/commands/arguments/ArgumentSignatures
 			ARG 1 buffer
 		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 			ARG 1 buffer
-	CLASS Signer
-		METHOD sign (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/network/chat/MessageSignature;
-			ARG 1 argumentName
-			ARG 2 argumentText
