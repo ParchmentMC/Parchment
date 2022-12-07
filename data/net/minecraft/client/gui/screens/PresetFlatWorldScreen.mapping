@@ -3,6 +3,9 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 		COMMENT The parent GUI
 	METHOD <init> (Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen;)V
 		ARG 1 parent
+	METHOD fromString (Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Ljava/lang/String;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
+		ARG 4 settings
+		ARG 5 layerGenerationSettings
 	METHOD fromString (Lnet/minecraft/core/Registry;Lnet/minecraft/core/Registry;Ljava/lang/String;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
 		ARG 0 biomeRegistry
 		ARG 1 structureSetRegistry
@@ -11,8 +14,13 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 	METHOD getLayerInfoFromString (Ljava/lang/String;I)Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;
 		ARG 0 layerInfo
 		ARG 1 currentHeight
+	METHOD getLayerInfoFromString (Lnet/minecraft/core/HolderGetter;Ljava/lang/String;I)Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;
+		ARG 1 layerInfo
+		ARG 2 currentHeight
 	METHOD getLayersInfoFromString (Ljava/lang/String;)Ljava/util/List;
 		ARG 0 layerInfo
+	METHOD getLayersInfoFromString (Lnet/minecraft/core/HolderGetter;Ljava/lang/String;)Ljava/util/List;
+		ARG 1 layerInfo
 	METHOD lambda$init$3 (Lnet/minecraft/client/gui/components/Button;)V
 		ARG 1 button
 	METHOD mouseScrolled (DDD)Z

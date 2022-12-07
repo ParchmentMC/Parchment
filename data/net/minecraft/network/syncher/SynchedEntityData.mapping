@@ -9,6 +9,9 @@ CLASS net/minecraft/network/syncher/SynchedEntityData
 	METHOD assignValue (Lnet/minecraft/network/syncher/SynchedEntityData$DataItem;Lnet/minecraft/network/syncher/SynchedEntityData$DataItem;)V
 		ARG 1 target
 		ARG 2 source
+	METHOD assignValue (Lnet/minecraft/network/syncher/SynchedEntityData$DataItem;Lnet/minecraft/network/syncher/SynchedEntityData$DataValue;)V
+		ARG 1 target
+		ARG 2 entry
 	METHOD assignValues (Ljava/util/List;)V
 		COMMENT Updates the data using the given entries. Used on the client when the update packet is received.
 		ARG 1 entries
@@ -63,3 +66,16 @@ CLASS net/minecraft/network/syncher/SynchedEntityData
 			ARG 1 dirty
 		METHOD setValue (Ljava/lang/Object;)V
 			ARG 1 value
+	CLASS DataValue
+		METHOD create (Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)Lnet/minecraft/network/syncher/SynchedEntityData$DataValue;
+			ARG 0 dataAccessor
+			ARG 1 value
+		METHOD read (Lnet/minecraft/network/FriendlyByteBuf;I)Lnet/minecraft/network/syncher/SynchedEntityData$DataValue;
+			ARG 0 buffer
+			ARG 1 id
+		METHOD read (Lnet/minecraft/network/FriendlyByteBuf;ILnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/SynchedEntityData$DataValue;
+			ARG 0 buffer
+			ARG 1 id
+			ARG 2 serializer
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer

@@ -8,6 +8,8 @@ CLASS net/minecraft/client/renderer/blockentity/SignRenderer
 		ARG 0 blockEntity
 	METHOD getSignMaterial (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/client/resources/model/Material;
 		ARG 1 woodType
+	METHOD getTextOffset (F)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 scale
 	METHOD getWoodType (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/block/state/properties/WoodType;
 		ARG 0 block
 	METHOD isOutlineVisible (Lnet/minecraft/world/level/block/entity/SignBlockEntity;I)Z
@@ -19,11 +21,26 @@ CLASS net/minecraft/client/renderer/blockentity/SignRenderer
 		ARG 1 woodType
 	METHOD lambda$render$2 (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/util/FormattedCharSequence;
 		ARG 1 message
+	METHOD renderSign (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IIFLnet/minecraft/world/level/block/state/properties/WoodType;Lnet/minecraft/client/model/Model;)V
+		ARG 1 poseStack
+		ARG 2 bufferSource
+		ARG 3 packedLight
+		ARG 4 packedOverlay
+		ARG 5 scale
+		ARG 6 woodType
+		ARG 7 model
 	METHOD renderSignModel (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/client/model/Model;Lcom/mojang/blaze3d/vertex/VertexConsumer;)V
 		ARG 1 poseStack
 		ARG 2 packedLight
 		ARG 3 packedOverlay
+		ARG 4 model
 		ARG 5 vertexConsumer
+	METHOD renderSignText (Lnet/minecraft/world/level/block/entity/SignBlockEntity;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IF)V
+		ARG 1 blockEntity
+		ARG 2 poseStack
+		ARG 3 bufferSource
+		ARG 4 packedLight
+		ARG 5 scale
 	CLASS SignModel
 		METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;)V
 			ARG 1 root
