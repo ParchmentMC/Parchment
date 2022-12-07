@@ -18,6 +18,10 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD collectSignedArguments (Lnet/minecraft/network/protocol/game/ServerboundChatCommandPacket;Lnet/minecraft/network/chat/PreviewableCommand;)Ljava/util/Map;
 		ARG 1 packet
 		ARG 2 command
+	METHOD collectSignedArguments (Lnet/minecraft/network/protocol/game/ServerboundChatCommandPacket;Lnet/minecraft/network/chat/SignableCommand;Lnet/minecraft/network/chat/LastSeenMessages;)Ljava/util/Map;
+		ARG 1 packet
+		ARG 2 command
+		ARG 3 lastSeenMessages
 	METHOD disconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Disconnect the player with a specified reason
 		ARG 1 textComponent
@@ -40,6 +44,9 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 packet
 	METHOD getSignedMessage (Lnet/minecraft/network/protocol/game/ServerboundChatPacket;)Lnet/minecraft/network/chat/PlayerChatMessage;
 		ARG 1 packet
+	METHOD getSignedMessage (Lnet/minecraft/network/protocol/game/ServerboundChatPacket;Lnet/minecraft/network/chat/LastSeenMessages;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 1 packet
+		ARG 2 lastSeenMessages
 	METHOD handleAcceptTeleportPacket (Lnet/minecraft/network/protocol/game/ServerboundAcceptTeleportationPacket;)V
 		ARG 1 packet
 	METHOD handleAnimate (Lnet/minecraft/network/protocol/game/ServerboundSwingPacket;)V
@@ -80,6 +87,8 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD handleKeepAlive (Lnet/minecraft/network/protocol/game/ServerboundKeepAlivePacket;)V
 		COMMENT Updates a players' ping statistics
 		ARG 1 packet
+	METHOD handleMessageDecodeFailure (Lnet/minecraft/network/chat/SignedMessageChain$DecodeException;)V
+		ARG 1 exception
 	METHOD handleMovePlayer (Lnet/minecraft/network/protocol/game/ServerboundMovePlayerPacket;)V
 		COMMENT Processes clients perspective on player positioning and/or orientation
 		ARG 1 packet
@@ -140,6 +149,9 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 errorConditions
 	METHOD isChatMessageIllegal (Ljava/lang/String;)Z
 		ARG 0 message
+	METHOD isPlayerCollidingWithAnythingNew (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/phys/AABB;)Z
+		ARG 1 level
+		ARG 2 boundingBox
 	METHOD noBlocksAround (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
@@ -149,15 +161,26 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 command
 	METHOD performChatCommand (Lnet/minecraft/network/protocol/game/ServerboundChatCommandPacket;)V
 		ARG 1 packet
+	METHOD performChatCommand (Lnet/minecraft/network/protocol/game/ServerboundChatCommandPacket;Lnet/minecraft/network/chat/LastSeenMessages;)V
+		ARG 1 packet
+		ARG 2 lastSeenMessages
 	METHOD queryChatPreview (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 message
 	METHOD queryCommandPreview (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 command
 	METHOD queryPreview (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 message
+	METHOD resetPlayerChatState (Lnet/minecraft/network/chat/RemoteChatSession;)V
+		ARG 1 chatSession
 	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 		ARG 1 packet
 		ARG 2 listener
+	METHOD sendDisguisedChatMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 message
+		ARG 2 boundType
+	METHOD sendPlayerChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 chatMessage
+		ARG 2 boundType
 	METHOD sendPreviewResponse (ILnet/minecraft/network/chat/Component;)V
 		ARG 1 queryId
 		ARG 2 preview
@@ -187,12 +210,25 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 8 pitch
 		ARG 9 relativeSet
 		ARG 10 dismountVehicle
+	METHOD tryHandleChat (Ljava/lang/String;Ljava/time/Instant;Lnet/minecraft/network/chat/LastSeenMessages$Update;)Ljava/util/Optional;
+		ARG 1 message
+		ARG 2 timestamp
+		ARG 3 update
 	METHOD tryHandleChat (Ljava/lang/String;Ljava/time/Instant;Lnet/minecraft/network/chat/LastSeenMessages$Update;)Z
 		ARG 2 timestamp
+	METHOD unpackAndApplyLastSeen (Lnet/minecraft/network/chat/LastSeenMessages$Update;)Ljava/util/Optional;
+		ARG 1 update
+	METHOD updateBookContents (Ljava/util/List;I)V
+		ARG 1 pages
+		ARG 2 index
+	METHOD updateBookPages (Ljava/util/List;Ljava/util/function/UnaryOperator;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 pages
+		ARG 3 book
 	METHOD updateChatOrder (Ljava/time/Instant;)Z
 		ARG 1 timestamp
 	METHOD updateSignText (Lnet/minecraft/network/protocol/game/ServerboundSignUpdatePacket;Ljava/util/List;)V
 		ARG 1 packet
+		ARG 2 filteredText
 	METHOD verifyChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;)Z
 		ARG 1 message
 	METHOD wasBlockPlacementAttempt (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/ItemStack;)Z
@@ -202,3 +238,8 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		METHOD performInteraction (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/server/network/ServerGamePacketListenerImpl$EntityInteraction;)V
 			ARG 1 hand
 			ARG 2 entityInteraction
+	CLASS EntityInteraction
+		METHOD run (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+			ARG 1 player
+			ARG 2 entity
+			ARG 3 hand
