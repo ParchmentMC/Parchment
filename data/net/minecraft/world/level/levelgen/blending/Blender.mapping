@@ -1,8 +1,51 @@
 CLASS net/minecraft/world/level/levelgen/blending/Blender
 	METHOD <init> (Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;)V
-		ARG 1 blendingData
-		ARG 2 blendingDataForDensityBlending
+		ARG 1 heightAndBiomeBlendingData
+		ARG 2 densityBlendingData
+	METHOD addAroundOldChunksCarvingMaskFilter (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/chunk/ProtoChunk;)V
+		ARG 0 level
+		ARG 1 chunk
+	METHOD blendBiome (III)Lnet/minecraft/core/Holder;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD blendDensity (Lnet/minecraft/world/level/levelgen/DensityFunction$FunctionContext;D)D
 		ARG 1 context
+		ARG 2 density
+	METHOD blendOffsetAndFactor (II)Lnet/minecraft/world/level/levelgen/blending/Blender$BlendingOutput;
+		ARG 1 x
+		ARG 2 z
+	METHOD distanceToCube (DDDDDD)D
+		ARG 0 x
+		ARG 2 y
+		ARG 4 z
+		ARG 6 halfSizeX
+		ARG 8 halfSizeY
+		ARG 10 halfSizeZ
+	METHOD generateBorderTick (Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/core/BlockPos;)V
+		ARG 0 chunk
+		ARG 1 pos
+	METHOD generateBorderTicks (Lnet/minecraft/server/level/WorldGenRegion;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+		ARG 0 world
+		ARG 1 chunk
+	METHOD getBiomeResolver (Lnet/minecraft/world/level/biome/BiomeResolver;)Lnet/minecraft/world/level/biome/BiomeResolver;
+		ARG 1 resolver
+	METHOD getBlendingDataValue (IIILnet/minecraft/world/level/levelgen/blending/Blender$CellValueGetter;)D
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 getter
+	METHOD getBlendingDataValue (Lnet/minecraft/world/level/levelgen/blending/Blender$CellValueGetter;IIIII)D
+		ARG 1 getter
+		ARG 2 chunkX
+		ARG 3 chunkZ
+		ARG 4 x
+		ARG 5 y
+		ARG 6 z
 	METHOD heightToOffset (D)D
 		ARG 0 height
+	METHOD makeOffsetOldChunkDistanceGetter (Lnet/minecraft/core/Direction8;Lnet/minecraft/world/level/levelgen/blending/BlendingData;)Lnet/minecraft/world/level/levelgen/blending/Blender$DistanceGetter;
+		ARG 0 direction
+		ARG 1 blendingData
+	METHOD of (Lnet/minecraft/server/level/WorldGenRegion;)Lnet/minecraft/world/level/levelgen/blending/Blender;
+		ARG 0 region

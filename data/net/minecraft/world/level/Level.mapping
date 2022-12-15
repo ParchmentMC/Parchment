@@ -155,6 +155,8 @@ CLASS net/minecraft/world/level/Level
 		ARG 2 chunkZ
 	METHOD getCurrentDifficultyAt (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/DifficultyInstance;
 		ARG 1 pos
+	METHOD getDestroyType (Lnet/minecraft/world/level/GameRules$Key;)Lnet/minecraft/world/level/Explosion$BlockInteraction;
+		ARG 1 gameRule
 	METHOD getDirectSignalTo (Lnet/minecraft/core/BlockPos;)I
 		COMMENT Returns the single highest strong power out of all directions using getStrongPower(BlockPos, EnumFacing)
 		ARG 1 pos
@@ -163,6 +165,17 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 entity
 		ARG 2 boundingBox
 		ARG 3 predicate
+	METHOD getEntities (Lnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;Ljava/util/List;)V
+		ARG 1 entityTypeTest
+		ARG 2 aabb
+		ARG 3 predicate
+		ARG 4 output
+	METHOD getEntities (Lnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;Ljava/util/List;I)V
+		ARG 1 entityTypeTest
+		ARG 2 aabb
+		ARG 3 predicate
+		ARG 4 output
+		ARG 5 maxResults
 	METHOD getEntity (I)Lnet/minecraft/world/entity/Entity;
 		COMMENT Returns the Entity with the given ID, or null if it doesn't exist in this World.
 		ARG 1 id
@@ -261,6 +274,13 @@ CLASS net/minecraft/world/level/Level
 		ARG 9 volume
 		ARG 10 pitch
 		ARG 11 distanceDelay
+	METHOD playLocalSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFZ)V
+		ARG 1 pos
+		ARG 2 sound
+		ARG 3 category
+		ARG 4 volume
+		ARG 5 pitch
+		ARG 6 distanceDelay
 	METHOD playSeededSound (Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/core/Holder;Lnet/minecraft/sounds/SoundSource;FFJ)V
 		ARG 1 player
 		ARG 2 x
@@ -289,6 +309,13 @@ CLASS net/minecraft/world/level/Level
 		ARG 5 volume
 		ARG 6 pitch
 		ARG 7 seed
+	METHOD playSound (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+		ARG 1 entity
+		ARG 2 pos
+		ARG 3 sound
+		ARG 4 category
+		ARG 5 volume
+		ARG 6 pitch
 	METHOD playSound (Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
 		ARG 1 player
 		ARG 2 x

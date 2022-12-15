@@ -1,4 +1,10 @@
 CLASS net/minecraft/client/renderer/block/model/BlockElement
+	METHOD <init> (Lorg/joml/Vector3f;Lorg/joml/Vector3f;Ljava/util/Map;Lnet/minecraft/client/renderer/block/model/BlockElementRotation;Z)V
+		ARG 1 from
+		ARG 2 to
+		ARG 3 faces
+		ARG 4 rotation
+		ARG 5 shade
 	METHOD uvsByFace (Lnet/minecraft/core/Direction;)[F
 		ARG 1 face
 	CLASS Deserializer
@@ -18,5 +24,12 @@ CLASS net/minecraft/client/renderer/block/model/BlockElement
 			ARG 2 json
 		METHOD getFacing (Ljava/lang/String;)Lnet/minecraft/core/Direction;
 			ARG 1 name
+		METHOD getFrom (Lcom/google/gson/JsonObject;)Lorg/joml/Vector3f;
+			ARG 1 json
 		METHOD getRotation (Lcom/google/gson/JsonObject;)Lnet/minecraft/client/renderer/block/model/BlockElementRotation;
 			ARG 1 json
+		METHOD getTo (Lcom/google/gson/JsonObject;)Lorg/joml/Vector3f;
+			ARG 1 json
+		METHOD getVector3f (Lcom/google/gson/JsonObject;Ljava/lang/String;)Lorg/joml/Vector3f;
+			ARG 1 json
+			ARG 2 memberName

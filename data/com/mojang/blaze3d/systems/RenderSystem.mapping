@@ -11,6 +11,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 3 alpha
 	METHOD _setShaderFogEnd (F)V
 		ARG 0 shaderFogEnd
+	METHOD _setShaderFogShape (Lcom/mojang/blaze3d/shaders/FogShape;)V
+		ARG 0 shaderFogShape
 	METHOD _setShaderFogStart (F)V
 		ARG 0 shaderFogStart
 	METHOD _setShaderTexture (II)V
@@ -184,6 +186,10 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 fancyRunnable
 	METHOD setErrorCallback (Lorg/lwjgl/glfw/GLFWErrorCallbackI;)V
 		ARG 0 callback
+	METHOD setInverseViewRotationMatrix (Lorg/joml/Matrix3f;)V
+		ARG 0 inverseViewRotationMatrix
+	METHOD setProjectionMatrix (Lorg/joml/Matrix4f;)V
+		ARG 0 projectionMatrix
 	METHOD setShader (Ljava/util/function/Supplier;)V
 		ARG 0 shaderSupplier
 	METHOD setShaderColor (FFFF)V
@@ -202,6 +208,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 3 alpha
 	METHOD setShaderFogEnd (F)V
 		ARG 0 shaderFogEnd
+	METHOD setShaderFogShape (Lcom/mojang/blaze3d/shaders/FogShape;)V
+		ARG 0 shaderFogShape
 	METHOD setShaderFogStart (F)V
 		ARG 0 shaderFogStart
 	METHOD setShaderGameTime (JF)V
@@ -213,12 +221,22 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD setShaderTexture (ILnet/minecraft/resources/ResourceLocation;)V
 		ARG 0 shaderTexture
 		ARG 1 textureId
+	METHOD setTextureMatrix (Lorg/joml/Matrix4f;)V
+		ARG 0 textureMatrix
 	METHOD setupDefaultState (IIII)V
 		ARG 0 x
 		ARG 1 y
 		ARG 2 width
 		ARG 3 height
+	METHOD setupGui3DDiffuseLighting (Lorg/joml/Vector3f;Lorg/joml/Vector3f;)V
+		ARG 0 ambientLightColor
+		ARG 1 diffuseLightColor
+	METHOD setupGuiFlatDiffuseLighting (Lorg/joml/Vector3f;Lorg/joml/Vector3f;)V
+		ARG 0 ambientLightColor
+		ARG 1 diffuseLightColor
 	METHOD setupLevelDiffuseLighting (Lorg/joml/Vector3f;Lorg/joml/Vector3f;Lorg/joml/Matrix4f;)V
+		ARG 0 ambientLightColor
+		ARG 1 diffuseLightColor
 		ARG 2 matrix
 	METHOD setupOverlayColor (Ljava/util/function/IntSupplier;I)V
 		ARG 0 textureId
@@ -249,8 +267,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 			ARG 1 vertexStride
 			ARG 2 indexStride
 			ARG 3 generator
+		METHOD bind (I)V
+			ARG 1 index
 		METHOD ensureStorage (I)V
 			ARG 1 neededIndexCount
+		METHOD hasStorage (I)Z
+			ARG 1 index
 		METHOD intConsumer (Ljava/nio/ByteBuffer;)Lit/unimi/dsi/fastutil/ints/IntConsumer;
 			ARG 1 buffer
 		METHOD lambda$intConsumer$0 (Ljava/nio/ByteBuffer;I)V

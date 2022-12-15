@@ -1,4 +1,9 @@
 CLASS net/minecraft/world/level/chunk/ChunkGenerator
+	METHOD <init> (Lnet/minecraft/world/level/biome/BiomeSource;)V
+		ARG 1 biomeSource
+	METHOD <init> (Lnet/minecraft/world/level/biome/BiomeSource;Ljava/util/function/Function;)V
+		ARG 1 biomeSource
+		ARG 2 generationSettingsGetter
 	METHOD addDebugScreenInfo (Ljava/util/List;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 info
 		ARG 2 random
@@ -20,10 +25,23 @@ CLASS net/minecraft/world/level/chunk/ChunkGenerator
 		ARG 2 structureManager
 		ARG 3 random
 		ARG 4 chunk
+	METHOD createBiomes (Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
+		ARG 2 randomState
+		ARG 3 blender
 	METHOD createReferences (Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 		ARG 1 level
 		ARG 2 structureManager
 		ARG 3 chunk
+	METHOD createState (Lnet/minecraft/core/HolderLookup;Lnet/minecraft/world/level/levelgen/RandomState;J)Lnet/minecraft/world/level/chunk/ChunkGeneratorStructureState;
+		ARG 1 structures
+		ARG 2 randomState
+		ARG 3 seed
+	METHOD createStructures (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/chunk/ChunkGeneratorStructureState;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;)V
+		ARG 1 registry
+		ARG 2 structureState
+		ARG 3 structureManager
+		ARG 4 chunk
+		ARG 5 structureTemplateManager
 	METHOD fetchReferences (Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/levelgen/structure/Structure;)I
 		ARG 0 structureManager
 		ARG 1 chunk

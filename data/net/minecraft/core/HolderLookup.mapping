@@ -1,0 +1,14 @@
+CLASS net/minecraft/core/HolderLookup
+	METHOD filterElements (Ljava/util/function/Predicate;)Lnet/minecraft/core/HolderLookup;
+		ARG 1 predicate
+	CLASS Delegate
+		METHOD <init> (Lnet/minecraft/core/HolderLookup;)V
+			ARG 1 parent
+	CLASS Provider
+		METHOD create (Ljava/util/stream/Stream;)Lnet/minecraft/core/HolderLookup$Provider;
+			ARG 0 lookupStream
+		METHOD lookup (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+			ARG 1 registryKey
+	CLASS RegistryLookup
+		METHOD filterFeatures (Lnet/minecraft/world/flag/FeatureFlagSet;)Lnet/minecraft/core/HolderLookup;
+			ARG 1 features

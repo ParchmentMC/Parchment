@@ -1,4 +1,6 @@
 CLASS net/minecraft/client/sounds/SoundManager
+	METHOD <init> (Lnet/minecraft/client/Options;)V
+		ARG 1 options
 	METHOD addListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
 		ARG 1 listener
 	METHOD apply (Lnet/minecraft/client/sounds/SoundManager$Preparations;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
@@ -36,3 +38,13 @@ CLASS net/minecraft/client/sounds/SoundManager
 	METHOD updateSourceVolume (Lnet/minecraft/sounds/SoundSource;F)V
 		ARG 1 category
 		ARG 2 volume
+	METHOD validateSoundResource (Lnet/minecraft/client/resources/sounds/Sound;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/ResourceProvider;)Z
+		ARG 0 sound
+		ARG 1 location
+		ARG 2 provider
+	CLASS Preparations
+		METHOD handleRegistration (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/sounds/SoundEventRegistration;)V
+			ARG 1 location
+			ARG 2 soundEventRegistration
+		METHOD listResources (Lnet/minecraft/server/packs/resources/ResourceManager;)V
+			ARG 1 resourceManager

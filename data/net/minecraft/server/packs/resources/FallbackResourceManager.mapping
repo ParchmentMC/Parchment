@@ -4,7 +4,11 @@ CLASS net/minecraft/server/packs/resources/FallbackResourceManager
 		ARG 2 namespace
 	METHOD createResource (Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/IoSupplier;Lnet/minecraft/server/packs/resources/IoSupplier;)Lnet/minecraft/server/packs/resources/Resource;
 		ARG 0 source
+		ARG 1 location
 		ARG 3 metadataSupplier
+	METHOD createStackMetadataFinder (Lnet/minecraft/resources/ResourceLocation;I)Lnet/minecraft/server/packs/resources/IoSupplier;
+		ARG 1 location
+		ARG 2 index
 	METHOD getMetadataLocation (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
 		ARG 0 location
 	METHOD getResourceLocationFromMetadata (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
@@ -27,11 +31,17 @@ CLASS net/minecraft/server/packs/resources/FallbackResourceManager
 		ARG 1 name
 		ARG 2 resources
 		ARG 3 filter
+	METHOD wrapForDebug (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/server/packs/resources/IoSupplier;)Lnet/minecraft/server/packs/resources/IoSupplier;
+		ARG 0 location
+		ARG 1 source
 	CLASS PackEntry
 		METHOD filterAll (Ljava/util/Collection;)V
 			ARG 1 locations
 		METHOD isFiltered (Lnet/minecraft/resources/ResourceLocation;)Z
 			ARG 1 location
+	CLASS EntryStack
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 1 fileLocation
 	CLASS LeakedResourceWarningInputStream
 		METHOD <init> (Ljava/io/InputStream;Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)V
 			ARG 1 inputStream

@@ -3,9 +3,26 @@ CLASS net/minecraft/client/renderer/texture/SpriteContents
 		ARG 1 name
 		ARG 2 frameSize
 		ARG 3 originalImage
+	METHOD createAnimatedTexture (Lnet/minecraft/client/resources/metadata/animation/FrameSize;IILnet/minecraft/client/resources/metadata/animation/AnimationMetadataSection;)Lnet/minecraft/client/renderer/texture/SpriteContents$AnimatedTexture;
+		ARG 1 frameSize
+		ARG 2 width
+		ARG 3 height
+		ARG 4 metadata
+	METHOD increaseMipLevel (I)V
+		ARG 1 mipmapCount
 	METHOD isTransparent (III)Z
+		ARG 1 frameIndex
 		ARG 2 x
 		ARG 3 y
+	METHOD upload (IIII[Lcom/mojang/blaze3d/platform/NativeImage;)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 width
+		ARG 4 height
+		ARG 5 atlasData
+	METHOD uploadFirstFrame (II)V
+		ARG 1 x
+		ARG 2 y
 	CLASS Ticker
 		METHOD <init> (Lnet/minecraft/client/renderer/texture/SpriteContents;Lnet/minecraft/client/renderer/texture/SpriteContents$AnimatedTexture;Lnet/minecraft/client/renderer/texture/SpriteContents$InterpolationData;)V
 			ARG 2 animationInfo
@@ -19,3 +36,29 @@ CLASS net/minecraft/client/renderer/texture/SpriteContents
 			ARG 2 frames
 			ARG 3 frameRowSize
 			ARG 4 interpolateFrames
+		METHOD getFrameX (I)I
+			ARG 1 frameIndex
+		METHOD getFrameY (I)I
+			ARG 1 frameIndex
+		METHOD uploadFirstFrame (II)V
+			ARG 1 x
+			ARG 2 y
+		METHOD uploadFrame (III)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 frameIndex
+	CLASS InterpolationData
+		METHOD getPixel (Lnet/minecraft/client/renderer/texture/SpriteContents$AnimatedTexture;IIII)I
+			ARG 1 animatedTexture
+			ARG 2 frameIndex
+			ARG 3 mipmapLevel
+			ARG 4 x
+			ARG 5 y
+		METHOD mix (DII)I
+			ARG 1 delta
+			ARG 3 color1
+			ARG 4 color2
+		METHOD uploadInterpolatedFrame (IILnet/minecraft/client/renderer/texture/SpriteContents$Ticker;)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 ticker
