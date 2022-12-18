@@ -1,19 +1,20 @@
 CLASS net/minecraft/world/entity/ai/behavior/MoveToSkySeeingSpot
-	METHOD <init> (F)V
-		ARG 1 speedModifier
-	METHOD checkExtraStartConditions (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Z
-		ARG 1 level
-		ARG 2 owner
+	METHOD create (F)Lnet/minecraft/world/entity/ai/behavior/OneShot;
+		ARG 0 speedModifier
 	METHOD getOutdoorPosition (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;
-		ARG 1 level
-		ARG 2 walker
+		ARG 0 level
+		ARG 1 entity
 	METHOD hasNoBlocksAbove (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 level
 		ARG 1 entity
 		ARG 2 pos
-	METHOD lambda$start$0 (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/entity/ai/memory/WalkTarget;
-		ARG 1 pos
-	METHOD start (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)V
-		ARG 1 level
-		ARG 2 entity
-		ARG 3 gameTime
+	METHOD lambda$create$0 (Lnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;FLnet/minecraft/world/phys/Vec3;)V
+		ARG 2 outdoorPos
+	METHOD lambda$create$1 (Lnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;FLnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)Z
+		ARG 2 level
+		ARG 3 entity
+		ARG 4 gameTime
+	METHOD lambda$create$2 (FLnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;)Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;
+		ARG 1 walkTarget
+	METHOD lambda$create$3 (FLnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 1 instance

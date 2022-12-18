@@ -1,0 +1,24 @@
+CLASS net/minecraft/client/telemetry/TelemetryEventType
+	METHOD <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Z)V
+		ARG 1 id
+		ARG 2 exportKey
+		ARG 3 properties
+		ARG 4 isOptIn
+	METHOD builder (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/client/telemetry/TelemetryEventType$Builder;
+		ARG 0 id
+		ARG 1 exportKey
+	METHOD contains (Lnet/minecraft/client/telemetry/TelemetryProperty;)Z
+		ARG 1 property
+	METHOD export (Lcom/mojang/authlib/minecraft/TelemetrySession;Lnet/minecraft/client/telemetry/TelemetryPropertyMap;)Lcom/mojang/authlib/minecraft/TelemetryEvent;
+		ARG 1 session
+		ARG 2 propertyMap
+	METHOD makeTranslation (Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+		ARG 1 key
+	CLASS Builder
+		METHOD <init> (Ljava/lang/String;Ljava/lang/String;)V
+			ARG 1 id
+			ARG 2 exportKey
+		METHOD define (Lnet/minecraft/client/telemetry/TelemetryProperty;)Lnet/minecraft/client/telemetry/TelemetryEventType$Builder;
+			ARG 1 property
+		METHOD defineAll (Ljava/util/List;)Lnet/minecraft/client/telemetry/TelemetryEventType$Builder;
+			ARG 1 properties

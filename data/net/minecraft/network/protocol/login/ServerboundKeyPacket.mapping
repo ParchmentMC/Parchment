@@ -2,7 +2,7 @@ CLASS net/minecraft/network/protocol/login/ServerboundKeyPacket
 	METHOD <init> (Ljavax/crypto/SecretKey;Ljava/security/PublicKey;[B)V
 		ARG 1 secretKey
 		ARG 2 publicKey
-		ARG 3 nonce
+		ARG 3 challenge
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
 	METHOD getSecretKey (Ljava/security/PrivateKey;)Ljavax/crypto/SecretKey;
@@ -10,9 +10,6 @@ CLASS net/minecraft/network/protocol/login/ServerboundKeyPacket
 	METHOD handle (Lnet/minecraft/network/protocol/login/ServerLoginPacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
-	METHOD isNonceValid ([BLjava/security/PrivateKey;)Z
-		ARG 1 nonce
-		ARG 2 key
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buffer

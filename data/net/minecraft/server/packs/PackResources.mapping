@@ -3,16 +3,13 @@ CLASS net/minecraft/server/packs/PackResources
 		ARG 1 deserializer
 	METHOD getNamespaces (Lnet/minecraft/server/packs/PackType;)Ljava/util/Set;
 		ARG 1 type
-	METHOD getResource (Lnet/minecraft/server/packs/PackType;Lnet/minecraft/resources/ResourceLocation;)Ljava/io/InputStream;
-		ARG 1 type
+	METHOD getResource (Lnet/minecraft/server/packs/PackType;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/server/packs/resources/IoSupplier;
+		ARG 1 packType
 		ARG 2 location
-	METHOD getResources (Lnet/minecraft/server/packs/PackType;Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Predicate;)Ljava/util/Collection;
-		ARG 1 type
+	METHOD getRootResource ([Ljava/lang/String;)Lnet/minecraft/server/packs/resources/IoSupplier;
+		ARG 1 elements
+	METHOD listResources (Lnet/minecraft/server/packs/PackType;Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/server/packs/PackResources$ResourceOutput;)V
+		ARG 1 packType
 		ARG 2 namespace
 		ARG 3 path
-		ARG 4 filter
-	METHOD getRootResource (Ljava/lang/String;)Ljava/io/InputStream;
-		ARG 1 fileName
-	METHOD hasResource (Lnet/minecraft/server/packs/PackType;Lnet/minecraft/resources/ResourceLocation;)Z
-		ARG 1 type
-		ARG 2 location
+		ARG 4 resourceOutput

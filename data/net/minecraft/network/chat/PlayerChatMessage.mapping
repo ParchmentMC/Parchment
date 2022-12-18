@@ -1,6 +1,4 @@
 CLASS net/minecraft/network/chat/PlayerChatMessage
-	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
-		ARG 1 buffer
 	METHOD filter (Lnet/minecraft/network/chat/FilterMask;)Lnet/minecraft/network/chat/PlayerChatMessage;
 		ARG 1 mask
 	METHOD filter (Z)Lnet/minecraft/network/chat/PlayerChatMessage;
@@ -11,18 +9,16 @@ CLASS net/minecraft/network/chat/PlayerChatMessage
 		ARG 1 timestamp
 	METHOD hasSignatureFrom (Ljava/util/UUID;)Z
 		ARG 1 uuid
-	METHOD system (Lnet/minecraft/network/chat/ChatMessageContent;)Lnet/minecraft/network/chat/PlayerChatMessage;
+	METHOD system (Ljava/lang/String;)Lnet/minecraft/network/chat/PlayerChatMessage;
 		ARG 0 content
-	METHOD unsigned (Lnet/minecraft/network/chat/MessageSigner;Lnet/minecraft/network/chat/ChatMessageContent;)Lnet/minecraft/network/chat/PlayerChatMessage;
-		ARG 0 signer
+	METHOD unsigned (Ljava/util/UUID;Ljava/lang/String;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 0 sender
 		ARG 1 content
-	METHOD verify (Lnet/minecraft/network/chat/ChatSender;)Z
-		ARG 1 sender
+	METHOD updateSignature (Lnet/minecraft/util/SignatureUpdater$Output;Lnet/minecraft/network/chat/SignedMessageLink;Lnet/minecraft/network/chat/SignedMessageBody;)V
+		ARG 0 output
+		ARG 1 link
+		ARG 2 body
 	METHOD verify (Lnet/minecraft/util/SignatureValidator;)Z
 		ARG 1 validator
-	METHOD verify (Lnet/minecraft/world/entity/player/ProfilePublicKey;)Z
-		ARG 1 publicKey
 	METHOD withUnsignedContent (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/PlayerChatMessage;
 		ARG 1 message
-	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
-		ARG 1 buffer

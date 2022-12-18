@@ -9,13 +9,14 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		ARG 0 savesDir
 	METHOD getBackupPath ()Ljava/nio/file/Path;
 		COMMENT Gets the folder where backups are stored
-	METHOD getDataPacks (Ljava/nio/file/Path;Lcom/mojang/datafixers/DataFixer;)Lnet/minecraft/world/level/DataPackConfig;
-		ARG 0 levelDat
-		ARG 1 fixerUpper
-	METHOD getLevelData (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/DataPackConfig;Lcom/mojang/serialization/Lifecycle;)Ljava/util/function/BiFunction;
+	METHOD getDataConfiguration (Ljava/nio/file/Path;Lcom/mojang/datafixers/DataFixer;)Lnet/minecraft/world/level/WorldDataConfiguration;
+		ARG 0 dataFile
+		ARG 1 fixer
+	METHOD getLevelData (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/WorldDataConfiguration;Lnet/minecraft/core/Registry;Lcom/mojang/serialization/Lifecycle;)Ljava/util/function/BiFunction;
 		ARG 0 ops
-		ARG 1 datapackConfig
-		ARG 2 lifecycle
+		ARG 1 dataConfiguration
+		ARG 2 levelStemRegistry
+		ARG 3 lifecycle
 	METHOD isNewLevelIdAcceptable (Ljava/lang/String;)Z
 		ARG 1 saveName
 	METHOD levelExists (Ljava/lang/String;)Z
@@ -26,22 +27,30 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		ARG 2 locked
 	METHOD loadLevelSummaries (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelCandidates;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 candidates
-	METHOD readDataPackConfig (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/level/DataPackConfig;
-		ARG 0 nbt
+	METHOD parseFeatureFlagsFromSummary (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/flag/FeatureFlagSet;
+		ARG 0 dynamic
+	METHOD readDataConfig (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/level/WorldDataConfiguration;
+		ARG 0 dynamic
 	METHOD readLevelData (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelDirectory;Ljava/util/function/BiFunction;)Ljava/lang/Object;
 		ARG 1 levelDirectory
 		ARG 2 levelDatReader
-	METHOD readWorldGenSettings (Lcom/mojang/serialization/Dynamic;Lcom/mojang/datafixers/DataFixer;I)Lcom/mojang/datafixers/util/Pair;
-		ARG 0 nbt
+	METHOD readWorldGenSettings (Lcom/mojang/serialization/Dynamic;Lcom/mojang/datafixers/DataFixer;I)Lcom/mojang/serialization/DataResult;
+		ARG 0 dynamic
 		ARG 1 fixer
 		ARG 2 version
+	CLASS LevelDirectory
+		METHOD corruptedDataFile (Ljava/time/LocalDateTime;)Ljava/nio/file/Path;
+			ARG 1 dateTime
+		METHOD resourcePath (Lnet/minecraft/world/level/storage/LevelResource;)Ljava/nio/file/Path;
+			ARG 1 resource
 	CLASS LevelStorageAccess
 		METHOD <init> (Lnet/minecraft/world/level/storage/LevelStorageSource;Ljava/lang/String;)V
 			ARG 2 levelId
-		METHOD getDataTag (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/DataPackConfig;Lcom/mojang/serialization/Lifecycle;)Lnet/minecraft/world/level/storage/WorldData;
+		METHOD getDataTag (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/WorldDataConfiguration;Lnet/minecraft/core/Registry;Lcom/mojang/serialization/Lifecycle;)Lcom/mojang/datafixers/util/Pair;
 			ARG 1 ops
-			ARG 2 dataPackConfig
-			ARG 3 lifecycle
+			ARG 2 dataConfiguration
+			ARG 3 levelStemRegistry
+			ARG 4 lifecycle
 		METHOD getDimensionPath (Lnet/minecraft/resources/ResourceKey;)Ljava/nio/file/Path;
 			ARG 1 dimensionPath
 		METHOD getLevelPath (Lnet/minecraft/world/level/storage/LevelResource;)Ljava/nio/file/Path;

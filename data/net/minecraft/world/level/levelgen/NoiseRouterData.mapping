@@ -1,13 +1,29 @@
 CLASS net/minecraft/world/level/levelgen/NoiseRouterData
-	METHOD bootstrap (Lnet/minecraft/core/Registry;)Lnet/minecraft/core/Holder;
-		ARG 0 registry
+	METHOD bootstrap (Lnet/minecraft/data/worldgen/BootstapContext;)Lnet/minecraft/core/Holder;
+		ARG 0 context
 	METHOD createKey (Ljava/lang/String;)Lnet/minecraft/resources/ResourceKey;
 		ARG 0 location
-	METHOD register (Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/core/Holder;
-		ARG 0 registry
+	METHOD getFunction (Lnet/minecraft/core/HolderGetter;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 desnityFunctionGetter
+		ARG 1 key
+	METHOD overworld (Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;ZZ)Lnet/minecraft/world/level/levelgen/NoiseRouter;
+		ARG 0 densityFunctionGetter
+		ARG 1 noiseParametersGetter
+		ARG 2 large
+		ARG 3 amplified
+	METHOD registerAndWrap (Lnet/minecraft/data/worldgen/BootstapContext;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 context
 		ARG 1 key
 		ARG 2 densityFunction
-	METHOD registerAndWrap (Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
-		ARG 0 registry
-		ARG 1 key
-		ARG 2 densityFunction
+	METHOD registerTerrainNoises (Lnet/minecraft/data/worldgen/BootstapContext;Lnet/minecraft/core/HolderGetter;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;Z)V
+		ARG 0 context
+		ARG 1 densityFunctionGetter
+		ARG 2 jaggedNoise
+		ARG 3 continents
+		ARG 4 erosion
+		ARG 5 offsetKey
+		ARG 6 factorKey
+		ARG 7 jaggednessKey
+		ARG 8 depthKey
+		ARG 9 slopedCheeseKey
+		ARG 10 amplified

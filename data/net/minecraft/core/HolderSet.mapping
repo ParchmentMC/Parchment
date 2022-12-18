@@ -1,4 +1,6 @@
 CLASS net/minecraft/core/HolderSet
+	METHOD canSerializeIn (Lnet/minecraft/core/HolderOwner;)Z
+		ARG 1 owner
 	METHOD contains (Lnet/minecraft/core/Holder;)Z
 		ARG 1 holder
 	METHOD direct (Ljava/util/List;)Lnet/minecraft/core/HolderSet$Direct;
@@ -11,15 +13,16 @@ CLASS net/minecraft/core/HolderSet
 		ARG 1 values
 	METHOD direct ([Lnet/minecraft/core/Holder;)Lnet/minecraft/core/HolderSet$Direct;
 		ARG 0 contents
+	METHOD emptyNamed (Lnet/minecraft/core/HolderOwner;Lnet/minecraft/tags/TagKey;)Lnet/minecraft/core/HolderSet$Named;
+		ARG 0 owner
+		ARG 1 key
 	METHOD get (I)Lnet/minecraft/core/Holder;
 		ARG 1 index
 	METHOD getRandomElement (Lnet/minecraft/util/RandomSource;)Ljava/util/Optional;
 		ARG 1 random
-	METHOD isValidInRegistry (Lnet/minecraft/core/Registry;)Z
-		ARG 1 registry
 	CLASS Named
-		METHOD <init> (Lnet/minecraft/core/Registry;Lnet/minecraft/tags/TagKey;)V
-			ARG 1 registry
+		METHOD <init> (Lnet/minecraft/core/HolderOwner;Lnet/minecraft/tags/TagKey;)V
+			ARG 1 owner
 			ARG 2 key
 		METHOD bind (Ljava/util/List;)V
 			ARG 1 contents

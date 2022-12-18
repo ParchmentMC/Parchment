@@ -1,7 +1,8 @@
 CLASS net/minecraft/data/recipes/ShapedRecipeBuilder
-	METHOD <init> (Lnet/minecraft/world/level/ItemLike;I)V
-		ARG 1 result
-		ARG 2 count
+	METHOD <init> (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;I)V
+		ARG 1 category
+		ARG 2 result
+		ARG 3 count
 	METHOD define (Ljava/lang/Character;Lnet/minecraft/tags/TagKey;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
 		COMMENT Adds a key to the recipe pattern.
 		ARG 1 symbol
@@ -20,23 +21,26 @@ CLASS net/minecraft/data/recipes/ShapedRecipeBuilder
 	METHOD pattern (Ljava/lang/String;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
 		COMMENT Adds a new entry to the patterns for this recipe.
 		ARG 1 pattern
-	METHOD shaped (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+	METHOD shaped (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
 		COMMENT Creates a new builder for a shaped recipe.
-		ARG 0 result
-	METHOD shaped (Lnet/minecraft/world/level/ItemLike;I)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
+		ARG 0 category
+		ARG 1 result
+	METHOD shaped (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;I)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
 		COMMENT Creates a new builder for a shaped recipe.
-		ARG 0 result
-		ARG 1 count
+		ARG 0 category
+		ARG 1 result
+		ARG 2 count
 	CLASS Result
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/Item;ILjava/lang/String;Ljava/util/List;Ljava/util/Map;Lnet/minecraft/advancements/Advancement$Builder;Lnet/minecraft/resources/ResourceLocation;)V
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/Item;ILjava/lang/String;Lnet/minecraft/world/item/crafting/CraftingBookCategory;Ljava/util/List;Ljava/util/Map;Lnet/minecraft/advancements/Advancement$Builder;Lnet/minecraft/resources/ResourceLocation;)V
 			ARG 1 id
 			ARG 2 result
 			ARG 3 count
 			ARG 4 group
-			ARG 5 pattern
-			ARG 6 key
-			ARG 7 advancement
-			ARG 8 advancementId
+			ARG 5 category
+			ARG 6 pattern
+			ARG 7 key
+			ARG 8 advancement
+			ARG 9 advancementId
 		METHOD getAdvancementId ()Lnet/minecraft/resources/ResourceLocation;
 			COMMENT Gets the ID for the advancement associated with this recipe. Should not be null if {@link #getAdvancementJson} is non-null.
 		METHOD getId ()Lnet/minecraft/resources/ResourceLocation;

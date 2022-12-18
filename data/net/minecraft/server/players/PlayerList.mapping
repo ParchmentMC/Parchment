@@ -1,9 +1,9 @@
 CLASS net/minecraft/server/players/PlayerList
 	FIELD playersByUUID Ljava/util/Map;
 		COMMENT A map containing the key-value pairs for UUIDs and their EntityPlayerMP objects.
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/core/RegistryAccess$Frozen;Lnet/minecraft/world/level/storage/PlayerDataStorage;I)V
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/world/level/storage/PlayerDataStorage;I)V
 		ARG 1 server
-		ARG 2 frozen
+		ARG 2 registries
 		ARG 3 playerIo
 		ARG 4 maxPlayers
 	METHOD addWorldborderListener (Lnet/minecraft/server/level/ServerLevel;)V
@@ -21,12 +21,11 @@ CLASS net/minecraft/server/players/PlayerList
 	METHOD broadcastAll (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/resources/ResourceKey;)V
 		ARG 1 packet
 		ARG 2 dimension
-	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Ljava/util/function/Predicate;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/network/chat/ChatSender;Lnet/minecraft/network/chat/ChatType$Bound;)V
+	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Ljava/util/function/Predicate;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/network/chat/ChatType$Bound;)V
 		ARG 1 message
 		ARG 2 shouldFilterMessageTo
-		ARG 3 senderPlayer
-		ARG 4 chatSender
-		ARG 5 boundChatType
+		ARG 3 sender
+		ARG 4 boundChatType
 	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/network/chat/ChatType$Bound;)V
 		ARG 1 message
 		ARG 2 sender
@@ -35,9 +34,6 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 1 message
 		ARG 2 sender
 		ARG 3 boundChatType
-	METHOD broadcastMessageHeader (Lnet/minecraft/network/chat/PlayerChatMessage;Ljava/util/Set;)V
-		ARG 1 message
-		ARG 2 alreadySeen
 	METHOD broadcastSystemMessage (Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;Z)V
 		ARG 1 serverMessage
 		ARG 2 playerMessageFactory
@@ -69,9 +65,8 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 1 username
 	METHOD getPlayerCount ()I
 		COMMENT Returns the number of players currently on the server.
-	METHOD getPlayerForLogin (Lcom/mojang/authlib/GameProfile;Lnet/minecraft/world/entity/player/ProfilePublicKey;)Lnet/minecraft/server/level/ServerPlayer;
+	METHOD getPlayerForLogin (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/server/level/ServerPlayer;
 		ARG 1 profile
-		ARG 2 profileKey
 	METHOD getPlayerNamesArray ()[Ljava/lang/String;
 		COMMENT Returns an array of the usernames of all the connected players.
 	METHOD getPlayerStats (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/stats/ServerStatsCounter;
@@ -131,6 +126,5 @@ CLASS net/minecraft/server/players/PlayerList
 	METHOD updateEntireScoreboard (Lnet/minecraft/server/ServerScoreboard;Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 scoreboard
 		ARG 2 player
-	METHOD verifyChatTrusted (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/ChatSender;)Z
+	METHOD verifyChatTrusted (Lnet/minecraft/network/chat/PlayerChatMessage;)Z
 		ARG 1 message
-		ARG 2 sender

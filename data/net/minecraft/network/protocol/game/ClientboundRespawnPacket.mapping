@@ -3,7 +3,7 @@ CLASS net/minecraft/network/protocol/game/ClientboundRespawnPacket
 		COMMENT First 8 bytes of the SHA-256 hash of the world's seed
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
-	METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;JLnet/minecraft/world/level/GameType;Lnet/minecraft/world/level/GameType;ZZZLjava/util/Optional;)V
+	METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;JLnet/minecraft/world/level/GameType;Lnet/minecraft/world/level/GameType;ZZBLjava/util/Optional;)V
 		ARG 1 dimensionType
 		ARG 2 dimension
 		ARG 3 seed
@@ -11,11 +11,13 @@ CLASS net/minecraft/network/protocol/game/ClientboundRespawnPacket
 		ARG 6 previousPlayerGameType
 		ARG 7 isDebug
 		ARG 8 isFlat
-		ARG 9 keepAllPlayerData
+		ARG 9 dataToKeep
 		ARG 10 lastDeathLocation
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
+	METHOD shouldKeep (B)Z
+		ARG 1 data
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buffer

@@ -3,18 +3,18 @@ CLASS net/minecraft/client/resources/model/ModelManager
 		ARG 1 textureManager
 		ARG 2 blockColors
 		ARG 3 maxMipmapLevels
-	METHOD apply (Lnet/minecraft/client/resources/model/ModelBakery;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
-		ARG 1 object
-		ARG 2 resourceManager
-		ARG 3 profiler
+	METHOD apply (Lnet/minecraft/client/resources/model/ModelManager$ReloadState;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+		ARG 1 reloadState
+		ARG 2 profilerFiller
 	METHOD getAtlas (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlas;
 		ARG 1 location
 	METHOD getModel (Lnet/minecraft/client/resources/model/ModelResourceLocation;)Lnet/minecraft/client/resources/model/BakedModel;
 		ARG 1 modelLocation
-	METHOD prepare (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Lnet/minecraft/client/resources/model/ModelBakery;
-		COMMENT Performs any reloading that can be done off-thread, such as file IO
-		ARG 1 resourceManager
-		ARG 2 profiler
+	METHOD loadBlockStates (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 resourceManager
+	METHOD loadModels (Lnet/minecraft/util/profiling/ProfilerFiller;Ljava/util/Map;Lnet/minecraft/client/resources/model/ModelBakery;)Lnet/minecraft/client/resources/model/ModelManager$ReloadState;
+		ARG 1 profilerFiller
+		ARG 3 modelBakery
 	METHOD requiresRender (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 oldState
 		ARG 2 newState

@@ -24,7 +24,7 @@ CLASS net/minecraft/client/renderer/GameRenderer
 	METHOD getNightVisionScale (Lnet/minecraft/world/entity/LivingEntity;F)F
 		ARG 0 livingEntity
 		ARG 1 nanoTime
-	METHOD getProjectionMatrix (D)Lcom/mojang/math/Matrix4f;
+	METHOD getProjectionMatrix (D)Lorg/joml/Matrix4f;
 		ARG 1 fov
 	METHOD getShader (Ljava/lang/String;)Lnet/minecraft/client/renderer/ShaderInstance;
 		ARG 1 name
@@ -144,8 +144,6 @@ CLASS net/minecraft/client/renderer/GameRenderer
 		ARG 1 file
 	METHOD loadEffect (Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 resourceLocation
-	METHOD onResourceManagerReload (Lnet/minecraft/server/packs/resources/ResourceManager;)V
-		ARG 1 resourceManager
 	METHOD pick (F)V
 		COMMENT Gets the block or object that is being moused over.
 		ARG 1 partialTicks
@@ -155,8 +153,8 @@ CLASS net/minecraft/client/renderer/GameRenderer
 		ARG 3 format
 	METHOD preloadUiShader (Lnet/minecraft/server/packs/resources/ResourceProvider;)V
 		ARG 1 resourceProvider
-	METHOD reloadShaders (Lnet/minecraft/server/packs/resources/ResourceManager;)V
-		ARG 1 resourceManager
+	METHOD reloadShaders (Lnet/minecraft/server/packs/resources/ResourceProvider;)V
+		ARG 1 resourceProvider
 	METHOD render (FJZ)V
 		ARG 1 partialTicks
 		ARG 2 nanoTime
@@ -179,7 +177,7 @@ CLASS net/minecraft/client/renderer/GameRenderer
 		ARG 1 zoom
 		ARG 2 zoomX
 		ARG 3 zoomY
-	METHOD resetProjectionMatrix (Lcom/mojang/math/Matrix4f;)V
+	METHOD resetProjectionMatrix (Lorg/joml/Matrix4f;)V
 		ARG 1 matrix
 	METHOD resize (II)V
 		ARG 1 width

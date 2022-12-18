@@ -11,13 +11,9 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT The player's GameProfile properties
 	METHOD <init> (Lnet/minecraft/client/main/GameConfig;)V
 		ARG 1 gameConfig
-	METHOD adaptV3 (Ljava/util/function/Supplier;)Ljava/util/function/Supplier;
-		ARG 0 resourcePackSupplier
-	METHOD adaptV4 (Ljava/util/function/Supplier;)Ljava/util/function/Supplier;
-		ARG 0 resourcePackSupplier
-	METHOD addCustomNbtData (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/world/item/ItemStack;
+	METHOD addCustomNbtData (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 stack
-		ARG 2 te
+		ARG 2 be
 	METHOD clearLevel (Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 1 screen
 	METHOD clearResourcePacksOnError (Ljava/lang/Throwable;Lnet/minecraft/network/chat/Component;)V
@@ -30,14 +26,6 @@ CLASS net/minecraft/client/Minecraft
 	METHOD crash (Lnet/minecraft/CrashReport;)V
 		COMMENT Wrapper around displayCrashReportInternal
 		ARG 0 report
-	METHOD createClientPackAdapter (Ljava/lang/String;Lnet/minecraft/network/chat/Component;ZLjava/util/function/Supplier;Lnet/minecraft/server/packs/metadata/pack/PackMetadataSection;Lnet/minecraft/server/packs/repository/Pack$Position;Lnet/minecraft/server/packs/repository/PackSource;)Lnet/minecraft/server/packs/repository/Pack;
-		ARG 0 id
-		ARG 1 title
-		ARG 2 required
-		ARG 3 resources
-		ARG 4 packMetadataSection
-		ARG 5 defaultPosition
-		ARG 6 packSource
 	METHOD createSearchTrees ()V
 		COMMENT Fills {@link #searchTreeManager} with the current item and recipe registry contents.
 	METHOD debugFpsMeterKeyPress (I)V
@@ -135,12 +123,6 @@ CLASS net/minecraft/client/Minecraft
 	METHOD setConnectedToRealms (Z)V
 		COMMENT Set if the player is connected to a realms server
 		ARG 1 isConnected
-	METHOD setCurrentServer (Lcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/String;)V
-		ARG 1 realmsServer
-		ARG 2 ip
-	METHOD setCurrentServer (Lnet/minecraft/client/multiplayer/ServerData;)V
-		COMMENT Set the current ServerData instance.
-		ARG 1 currentServer
 	METHOD setLevel (Lnet/minecraft/client/multiplayer/ClientLevel;)V
 		COMMENT Unloads the current world first.
 		ARG 1 levelClient

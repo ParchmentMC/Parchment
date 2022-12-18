@@ -1,45 +1,48 @@
 CLASS net/minecraft/server/commands/AttributeCommand
-	METHOD addModifier (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/ai/attributes/Attribute;Ljava/util/UUID;Ljava/lang/String;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)I
+	METHOD addModifier (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;Ljava/util/UUID;Ljava/lang/String;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)I
 		ARG 0 source
-		ARG 1 target
+		ARG 1 entity
 		ARG 2 attribute
 		ARG 3 uuid
 		ARG 4 name
-		ARG 5 value
+		ARG 5 amount
 		ARG 7 operation
-	METHOD getAttributeBase (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/ai/attributes/Attribute;D)I
+	METHOD getAttributeBase (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;D)I
 		ARG 0 source
-		ARG 1 target
+		ARG 1 entity
 		ARG 2 attribute
 		ARG 3 scale
-	METHOD getAttributeInstance (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
-		ARG 0 target
+	METHOD getAttributeDescription (Lnet/minecraft/core/Holder;)Lnet/minecraft/network/chat/Component;
+		ARG 0 attribute
+	METHOD getAttributeInstance (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
+		ARG 0 entity
 		ARG 1 attribute
-	METHOD getAttributeModifier (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/ai/attributes/Attribute;Ljava/util/UUID;D)I
+	METHOD getAttributeModifier (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;Ljava/util/UUID;D)I
 		ARG 0 source
-		ARG 1 target
+		ARG 1 entity
 		ARG 2 attribute
 		ARG 3 uuid
 		ARG 4 scale
-	METHOD getAttributeValue (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/ai/attributes/Attribute;D)I
+	METHOD getAttributeValue (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;D)I
 		ARG 0 source
-		ARG 1 target
+		ARG 1 entity
 		ARG 2 attribute
 		ARG 3 scale
-	METHOD getEntityWithAttribute (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/LivingEntity;
-		ARG 0 target
+	METHOD getEntityWithAttribute (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;)Lnet/minecraft/world/entity/LivingEntity;
+		ARG 0 entity
 		ARG 1 attribute
 	METHOD getLivingEntity (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/entity/LivingEntity;
 		ARG 0 target
-	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandBuildContext;)V
 		ARG 0 dispatcher
-	METHOD removeModifier (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/ai/attributes/Attribute;Ljava/util/UUID;)I
+		ARG 1 context
+	METHOD removeModifier (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;Ljava/util/UUID;)I
 		ARG 0 source
-		ARG 1 target
+		ARG 1 entity
 		ARG 2 attribute
 		ARG 3 uuid
-	METHOD setAttributeBase (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/ai/attributes/Attribute;D)I
+	METHOD setAttributeBase (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;D)I
 		ARG 0 source
-		ARG 1 target
+		ARG 1 entity
 		ARG 2 attribute
 		ARG 3 value

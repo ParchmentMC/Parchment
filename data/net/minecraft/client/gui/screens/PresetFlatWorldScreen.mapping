@@ -3,18 +3,20 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 		COMMENT The parent GUI
 	METHOD <init> (Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen;)V
 		ARG 1 parent
-	METHOD fromString (Lnet/minecraft/core/Registry;Lnet/minecraft/core/Registry;Ljava/lang/String;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
-		ARG 0 biomeRegistry
-		ARG 1 structureSetRegistry
-		ARG 2 settings
-		ARG 3 layerGenerationSettings
-	METHOD getLayerInfoFromString (Ljava/lang/String;I)Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;
-		ARG 0 layerInfo
-		ARG 1 currentHeight
-	METHOD getLayersInfoFromString (Ljava/lang/String;)Ljava/util/List;
-		ARG 0 layerInfo
-	METHOD lambda$init$3 (Lnet/minecraft/client/gui/components/Button;)V
-		ARG 1 button
+	METHOD fromString (Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Ljava/lang/String;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
+		ARG 0 blockGetter
+		ARG 1 biomeGetter
+		ARG 2 structureSetGetter
+		ARG 3 placedFeatureGetter
+		ARG 4 settings
+		ARG 5 layerGenerationSettings
+	METHOD getLayerInfoFromString (Lnet/minecraft/core/HolderGetter;Ljava/lang/String;I)Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;
+		ARG 0 blockGetter
+		ARG 1 layerInfo
+		ARG 2 currentHeight
+	METHOD getLayersInfoFromString (Lnet/minecraft/core/HolderGetter;Ljava/lang/String;)Ljava/util/List;
+		ARG 0 blockGetter
+		ARG 1 layerInfo
 	METHOD mouseScrolled (DDD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -33,8 +35,9 @@ CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
 	METHOD updateButtonValidity (Z)V
 		ARG 1 valid
 	CLASS PresetsList
-		METHOD <init> (Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen;Lnet/minecraft/core/RegistryAccess;)V
+		METHOD <init> (Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/flag/FeatureFlagSet;)V
 			ARG 2 registryAccess
+			ARG 3 flags
 		METHOD keyPressed (III)Z
 			ARG 1 keyCode
 			ARG 2 scanCode

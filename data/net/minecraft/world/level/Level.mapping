@@ -79,31 +79,50 @@ CLASS net/minecraft/world/level/Level
 		ARG 3 progress
 	METHOD disconnect ()V
 		COMMENT If on MP, sends a quitting packet.
-	METHOD explode (Lnet/minecraft/world/entity/Entity;DDDFLnet/minecraft/world/level/Explosion$BlockInteraction;)Lnet/minecraft/world/level/Explosion;
-		ARG 1 entity
+	METHOD explode (Lnet/minecraft/world/entity/Entity;DDDFLnet/minecraft/world/level/Level$ExplosionInteraction;)Lnet/minecraft/world/level/Explosion;
+		ARG 1 source
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
-		ARG 8 explosionRadius
-		ARG 9 mode
-	METHOD explode (Lnet/minecraft/world/entity/Entity;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;)Lnet/minecraft/world/level/Explosion;
-		ARG 1 entity
+		ARG 8 radius
+		ARG 9 explosionInteraction
+	METHOD explode (Lnet/minecraft/world/entity/Entity;DDDFZLnet/minecraft/world/level/Level$ExplosionInteraction;)Lnet/minecraft/world/level/Explosion;
+		ARG 1 source
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
-		ARG 8 explosionRadius
-		ARG 9 causesFire
-		ARG 10 mode
-	METHOD explode (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;)Lnet/minecraft/world/level/Explosion;
-		ARG 1 exploder
+		ARG 8 radius
+		ARG 9 fire
+		ARG 10 explosionInteraction
+	METHOD explode (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Level$ExplosionInteraction;)Lnet/minecraft/world/level/Explosion;
+		ARG 1 source
 		ARG 2 damageSource
-		ARG 3 context
+		ARG 3 damageCalculator
 		ARG 4 x
 		ARG 6 y
 		ARG 8 z
-		ARG 10 size
-		ARG 11 causesFire
-		ARG 12 mode
+		ARG 10 radius
+		ARG 11 fire
+		ARG 12 explosionInteraction
+	METHOD explode (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Level$ExplosionInteraction;Z)Lnet/minecraft/world/level/Explosion;
+		ARG 1 source
+		ARG 2 damageSource
+		ARG 3 damageCalculator
+		ARG 4 x
+		ARG 6 y
+		ARG 8 z
+		ARG 10 radius
+		ARG 11 fire
+		ARG 12 explosionInteraction
+		ARG 13 spawnParticles
+	METHOD explode (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;Lnet/minecraft/world/phys/Vec3;FZLnet/minecraft/world/level/Level$ExplosionInteraction;)Lnet/minecraft/world/level/Explosion;
+		ARG 1 source
+		ARG 2 damageSource
+		ARG 3 damageCalculator
+		ARG 4 pos
+		ARG 5 radius
+		ARG 6 fire
+		ARG 7 explosionInteraction
 	METHOD fillReportDetails (Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReportCategory;
 		COMMENT Adds some basic stats of the world to the given crash report.
 		ARG 1 report
@@ -209,8 +228,6 @@ CLASS net/minecraft/world/level/Level
 		COMMENT Returns {@code true} if the current thunder strength (weighted with the rain strength) is greater than 0.9
 	METHOD lambda$getEntities$1 (Lnet/minecraft/world/entity/Entity;Ljava/util/function/Predicate;Ljava/util/List;Lnet/minecraft/world/entity/Entity;)V
 		ARG 3 entity
-	METHOD lambda$getEntities$2 (Ljava/util/function/Predicate;Ljava/util/List;Lnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/entity/Entity;)V
-		ARG 3 entity
 	METHOD loadedAndEntityCanStandOn (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 pos
 		ARG 2 entity
@@ -225,6 +242,12 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 pos
 		ARG 2 block
 		ARG 3 fromPos
+	METHOD neighborChanged (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos;Z)V
+		ARG 1 state
+		ARG 2 pos
+		ARG 3 block
+		ARG 4 fromPos
+		ARG 5 isMoving
 	METHOD onBlockStateChange (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 blockState
@@ -238,21 +261,31 @@ CLASS net/minecraft/world/level/Level
 		ARG 9 volume
 		ARG 10 pitch
 		ARG 11 distanceDelay
+	METHOD playSeededSound (Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/core/Holder;Lnet/minecraft/sounds/SoundSource;FFJ)V
+		ARG 1 player
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 sound
+		ARG 9 source
+		ARG 10 volume
+		ARG 11 pitch
+		ARG 12 seed
 	METHOD playSeededSound (Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFJ)V
 		ARG 1 player
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
-		ARG 8 soundEvent
-		ARG 9 soundSource
+		ARG 8 sound
+		ARG 9 source
 		ARG 10 volume
 		ARG 11 pitch
 		ARG 12 seed
-	METHOD playSeededSound (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFJ)V
+	METHOD playSeededSound (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;Lnet/minecraft/sounds/SoundSource;FFJ)V
 		ARG 1 player
 		ARG 2 entity
-		ARG 3 soundEvent
-		ARG 4 soundSource
+		ARG 3 sound
+		ARG 4 category
 		ARG 5 volume
 		ARG 6 pitch
 		ARG 7 seed
@@ -324,7 +357,7 @@ CLASS net/minecraft/world/level/Level
 		ARG 2 oldState
 		ARG 3 newState
 	METHOD setMapData (Ljava/lang/String;Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
-		ARG 1 mapId
+		ARG 1 mapName
 		ARG 2 data
 	METHOD setRainLevel (F)V
 		COMMENT Sets the strength of the rain.
@@ -340,6 +373,8 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 strength
 	METHOD shouldTickBlocksAt (J)Z
 		ARG 1 chunkPos
+	METHOD shouldTickBlocksAt (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
 	METHOD shouldTickDeath (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD updateNeighborsAt (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V

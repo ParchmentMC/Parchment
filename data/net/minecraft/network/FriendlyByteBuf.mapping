@@ -12,6 +12,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 3 value
 	METHOD capacity (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 newCapacity
+	METHOD compareTo (Lio/netty/buffer/ByteBuf;)I
+		ARG 1 other
 	METHOD copy (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 length
@@ -213,11 +215,16 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Read a timestamp as milliseconds since the unix epoch.
 		COMMENT
 		COMMENT @see #writeDate
+	METHOD readEither (Lnet/minecraft/network/FriendlyByteBuf$Reader;Lnet/minecraft/network/FriendlyByteBuf$Reader;)Lcom/mojang/datafixers/util/Either;
+		ARG 1 leftReader
+		ARG 2 rightReader
 	METHOD readEnum (Ljava/lang/Class;)Ljava/lang/Enum;
 		COMMENT Reads an enum of the given type T using the ordinal encoded as a VarInt from the buffer.
 		COMMENT
 		COMMENT @see #writeEnum
 		ARG 1 enumClass
+	METHOD readFixedBitSet (I)Ljava/util/BitSet;
+		ARG 1 size
 	METHOD readIntIdList ()Lit/unimi/dsi/fastutil/ints/IntList;
 		COMMENT Read an IntList of VarInts from this buffer.
 		COMMENT
@@ -276,6 +283,10 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT @see #writeNbt
 		COMMENT @see #readNbt()
 		COMMENT @see #readAnySizeNbt
+	METHOD readNullable (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/lang/Object;
+		ARG 1 reader
+	METHOD readOptional (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/util/Optional;
+		ARG 1 reader
 	METHOD readResourceLocation ()Lnet/minecraft/resources/ResourceLocation;
 		COMMENT Read a ResourceLocation using its String representation.
 		COMMENT
@@ -511,13 +522,28 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 time
 	METHOD writeDouble (D)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
+	METHOD writeEither (Lcom/mojang/datafixers/util/Either;Lnet/minecraft/network/FriendlyByteBuf$Writer;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
+		ARG 1 value
+		ARG 2 leftWriter
+		ARG 3 rightWriter
 	METHOD writeEnum (Ljava/lang/Enum;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes an enum of the given type T using the ordinal encoded as a VarInt to the buffer.
 		COMMENT
 		COMMENT @see #readEnum
 		ARG 1 value
+	METHOD writeFixedBitSet (Ljava/util/BitSet;I)V
+		ARG 1 bitSet
+		ARG 2 size
 	METHOD writeFloat (F)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
+	METHOD writeGameProfile (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 gameProfile
+	METHOD writeGameProfileProperties (Lcom/mojang/authlib/properties/PropertyMap;)V
+		ARG 1 gameProfileProperties
+	METHOD writeGlobalPos (Lnet/minecraft/core/GlobalPos;)V
+		ARG 1 pos
+	METHOD writeInstant (Ljava/time/Instant;)V
+		ARG 1 instant
 	METHOD writeInt (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeIntIdList (Lit/unimi/dsi/fastutil/ints/IntList;)V
@@ -560,6 +586,18 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT @see #readAnySizeNbt
 		COMMENT @see #readNbt(NbtAccounter)
 		ARG 1 nbt
+	METHOD writeNullable (Ljava/lang/Object;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
+		ARG 1 value
+		ARG 2 writer
+	METHOD writeOptional (Ljava/util/Optional;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
+		ARG 1 optional
+		ARG 2 writer
+	METHOD writeProperty (Lcom/mojang/authlib/properties/Property;)V
+		ARG 1 property
+	METHOD writePublicKey (Ljava/security/PublicKey;)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 publicKey
+	METHOD writeResourceKey (Lnet/minecraft/resources/ResourceKey;)V
+		ARG 1 resourceKey
 	METHOD writeResourceLocation (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Write a ResourceLocation using its String representation.
 		COMMENT

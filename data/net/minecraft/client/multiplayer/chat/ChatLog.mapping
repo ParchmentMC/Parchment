@@ -1,30 +1,16 @@
 CLASS net/minecraft/client/multiplayer/chat/ChatLog
-	METHOD after (I)I
-		ARG 1 id
-	METHOD before (I)I
-		ARG 1 id
-	METHOD contains (I)Z
-		ARG 1 id
+	METHOD <init> (I)V
+		ARG 1 size
+	METHOD <init> (ILjava/util/List;)V
+		ARG 1 size
+		ARG 2 events
+	METHOD codec (I)Lcom/mojang/serialization/Codec;
+		ARG 0 size
+	METHOD index (I)I
+		ARG 1 index
+	METHOD lambda$codec$0 (ILjava/util/List;)Lcom/mojang/serialization/DataResult;
+		ARG 1 events
 	METHOD lookup (I)Lnet/minecraft/client/multiplayer/chat/LoggedChatEvent;
 		ARG 1 id
-	METHOD lookupEntry (I)Lnet/minecraft/client/multiplayer/chat/ChatLog$Entry;
-		ARG 1 id
-	METHOD offset (II)I
-		ARG 1 id
-		ARG 2 offset
 	METHOD push (Lnet/minecraft/client/multiplayer/chat/LoggedChatEvent;)V
 		ARG 1 event
-	METHOD selectAfter (I)Lnet/minecraft/client/multiplayer/chat/ChatLog$Selection;
-		ARG 1 id
-	METHOD selectBefore (I)Lnet/minecraft/client/multiplayer/chat/ChatLog$Selection;
-		ARG 1 id
-	METHOD selectBetween (II)Lnet/minecraft/client/multiplayer/chat/ChatLog$Selection;
-		ARG 1 startId
-		ARG 2 endId
-	METHOD selectSequence (ILjava/util/function/IntUnaryOperator;)Lnet/minecraft/client/multiplayer/chat/ChatLog$Selection;
-		ARG 1 id
-		ARG 2 nextIdSelector
-	CLASS Selection
-		METHOD <init> (Lnet/minecraft/client/multiplayer/chat/ChatLog;Ljava/util/PrimitiveIterator$OfInt;)V
-			ARG 1 log
-			ARG 2 ids
