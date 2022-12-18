@@ -35,6 +35,8 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 1 entity
 	METHOD addWorldGenChunkEntities (Ljava/util/stream/Stream;)V
 		ARG 1 entities
+	METHOD areEntitiesLoaded (J)Z
+		ARG 1 chunkPos
 	METHOD blockEvent (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;II)V
 		ARG 1 pos
 		ARG 2 block
@@ -76,15 +78,32 @@ CLASS net/minecraft/server/level/ServerLevel
 		COMMENT Gets an unmodifiable iterator of all loaded entities in the world.
 	METHOD getChunkSource ()Lnet/minecraft/server/level/ServerChunkCache;
 		COMMENT Gets the world's chunk provider
+	METHOD getEntities (Lnet/minecraft/world/level/entity/EntityTypeTest;Ljava/util/function/Predicate;)Ljava/util/List;
+		ARG 1 typeTest
+		ARG 2 predicate
+	METHOD getEntities (Lnet/minecraft/world/level/entity/EntityTypeTest;Ljava/util/function/Predicate;Ljava/util/List;)V
+		ARG 1 typeTest
+		ARG 2 predicate
+		ARG 3 output
+	METHOD getEntities (Lnet/minecraft/world/level/entity/EntityTypeTest;Ljava/util/function/Predicate;Ljava/util/List;I)V
+		ARG 1 typeTest
+		ARG 2 predicate
+		ARG 3 output
+		ARG 4 maxResults
 	METHOD getEntity (I)Lnet/minecraft/world/entity/Entity;
 		COMMENT Returns the Entity with the given ID, or null if it doesn't exist in this World.
 		ARG 1 id
 	METHOD getEntity (Ljava/util/UUID;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 uniqueId
+	METHOD getEntityOrPart (I)Lnet/minecraft/world/entity/Entity;
+		ARG 1 id
 	METHOD getMapData (Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
 		ARG 1 mapName
 	METHOD getPlayers (Ljava/util/function/Predicate;)Ljava/util/List;
 		ARG 1 predicate
+	METHOD getPlayers (Ljava/util/function/Predicate;I)Ljava/util/List;
+		ARG 1 predicate
+		ARG 2 maxResults
 	METHOD getRaidAt (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/entity/raid/Raid;
 		ARG 1 pos
 	METHOD getSeed ()J
@@ -102,6 +121,8 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 1 chunkPos
 	METHOD isPositionEntityTicking (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
+	METHOD isPositionTickingWithEntitiesLoaded (J)Z
+		ARG 1 chunkPos
 	METHOD isRaided (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD isVillage (Lnet/minecraft/core/BlockPos;)Z

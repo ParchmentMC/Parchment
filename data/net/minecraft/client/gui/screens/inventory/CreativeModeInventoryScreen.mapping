@@ -157,6 +157,10 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 			COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
 			ARG 1 stack
 			ARG 2 slot
+		METHOD getRowIndexForScroll (F)I
+			ARG 1 scrollPosition
+		METHOD getScrollForRowIndex (I)F
+			ARG 1 rowIndex
 		METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
 			COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
 			ARG 1 player
@@ -167,6 +171,9 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
 			COMMENT Determines whether supplied player can use this container
 			ARG 1 player
+		METHOD subtractInputFromScroll (FD)F
+			ARG 1 scrollPosition
+			ARG 2 input
 	CLASS CustomCreativeSlot
 		METHOD mayPickup (Lnet/minecraft/world/entity/player/Player;)Z
 			COMMENT Return whether this slot's stack can be taken from this slot.

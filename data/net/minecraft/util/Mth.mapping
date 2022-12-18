@@ -30,10 +30,42 @@ CLASS net/minecraft/util/Mth
 		ARG 2 x
 	METHOD average ([J)D
 		ARG 0 values
+	METHOD binBiModalNormalDistribution (DDDDDDII)[D
+		ARG 0 firstPeakHeight
+		ARG 2 firstStandardDeviation
+		ARG 4 firstMean
+		ARG 6 secondPeakHeight
+		ARG 8 secondStandardDeviation
+		ARG 10 secondMean
+		ARG 12 lowerBound
+		ARG 13 upperBound
+	METHOD binLogDistribution (DDII)[D
+		ARG 0 slope
+		ARG 2 yIntercept
+		ARG 4 lowerBound
+		ARG 5 upperBound
+	METHOD binNormalDistribution (DDDII)[D
+		ARG 0 peakHeight
+		ARG 2 standardDeviation
+		ARG 4 mean
+		ARG 6 lowerBound
+		ARG 7 upperBound
 	METHOD binarySearch (IILjava/util/function/IntPredicate;)I
 		ARG 0 min
 		ARG 1 max
 		ARG 2 isTargetBeforeOrAt
+	METHOD catmullRomSplinePos (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;D)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 controlPoint1
+		ARG 1 controlPoint2
+		ARG 2 controlPoint3
+		ARG 3 controlPoint4
+		ARG 4 splineParameter
+	METHOD catmullrom (FFFFF)F
+		ARG 0 delta
+		ARG 1 controlPoint1
+		ARG 2 controlPoint2
+		ARG 3 controlPoint3
+		ARG 4 controlPoint4
 	METHOD ceil (D)I
 		ARG 0 value
 	METHOD ceil (F)I
@@ -97,6 +129,18 @@ CLASS net/minecraft/util/Mth
 			COMMENT End value for the lerp.
 		ARG 2 delta
 			COMMENT A value between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value) If the value is not between 0 and 1, it is clamped.
+	METHOD clampedMap (DDDDD)D
+		ARG 0 input
+		ARG 2 inputMin
+		ARG 4 inputMax
+		ARG 6 ouputMin
+		ARG 8 outputMax
+	METHOD clampedMap (FFFFF)F
+		ARG 0 input
+		ARG 1 inputMin
+		ARG 2 inputMax
+		ARG 3 outputMin
+		ARG 4 outputMax
 	METHOD color (FFF)I
 		COMMENT Makes an integer color from the given red, green, and blue float values
 		ARG 0 r
@@ -128,6 +172,8 @@ CLASS net/minecraft/util/Mth
 		COMMENT Generates a random UUID using the shared random
 	METHOD createInsecureUUID (Lnet/minecraft/util/RandomSource;)Ljava/util/UUID;
 		ARG 0 random
+	METHOD cube (F)F
+		ARG 0 value
 	METHOD cumulativeSum ([D)[D
 		ARG 0 values
 	METHOD degreesDifference (FF)F
@@ -138,6 +184,10 @@ CLASS net/minecraft/util/Mth
 		COMMENT Gets the absolute of the difference between two angles in degrees.
 		ARG 0 start
 		ARG 1 end
+	METHOD diffuseLight (FFF)F
+		ARG 0 light1
+		ARG 1 light2
+		ARG 2 light3
 	METHOD equal (DD)Z
 		ARG 0 x
 		ARG 2 y
@@ -183,6 +233,7 @@ CLASS net/minecraft/util/Mth
 		ARG 2 max
 	METHOD getRandomForDistributionIntegral (Lnet/minecraft/util/RandomSource;[D)I
 		ARG 0 random
+		ARG 1 distribution
 	METHOD getSeed (III)J
 		ARG 0 x
 		ARG 1 y
@@ -205,6 +256,9 @@ CLASS net/minecraft/util/Mth
 		ARG 0 delta
 		ARG 1 start
 		ARG 2 end
+	METHOD isDivisionInteger (II)Z
+		ARG 0 numerator
+		ARG 1 demoninator
 	METHOD isPowerOfTwo (I)Z
 		COMMENT Is the given value a power of two?  (1, 2, 4, 8, 16, ...)
 		ARG 0 value
@@ -238,12 +292,47 @@ CLASS net/minecraft/util/Mth
 			COMMENT Start value for the lerp
 		ARG 2 end
 			COMMENT End value for the lerp
+	METHOD lerp2 (DDDDDD)D
+		ARG 0 delta
+		ARG 2 delta2
+		ARG 4 start
+		ARG 6 end
+		ARG 8 start2
+		ARG 10 end2
+	METHOD lerp3 (DDDDDDDDDDD)D
+		ARG 0 delta
+		ARG 2 delta2
+		ARG 4 delta3
+		ARG 6 start
+		ARG 8 end
+		ARG 10 start2
+		ARG 12 end2
+		ARG 14 start3
+		ARG 16 end3
+		ARG 18 start4
+		ARG 20 end4
 	METHOD lfloor (D)J
 		COMMENT Long version of floor()
 		ARG 0 value
 	METHOD log2 (I)I
 		COMMENT Efficiently calculates the floor of the base-2 log of an integer value.  This is effectively the index of the highest bit that is set.  For example, if the number in binary is 0...100101, this will return 5.
 		ARG 0 value
+	METHOD map (DDDDD)D
+		ARG 0 input
+		ARG 2 inputMin
+		ARG 4 inputMax
+		ARG 6 outputMin
+		ARG 8 outputMax
+	METHOD map (FFFFF)F
+		ARG 0 input
+		ARG 1 inputMin
+		ARG 2 inputMax
+		ARG 3 outputMin
+		ARG 4 outputMax
+	METHOD murmurHash3Mixer (I)I
+		ARG 0 input
+	METHOD murmurHash3Mixer (J)J
+		ARG 0 input
 	METHOD nextDouble (Lnet/minecraft/util/RandomSource;DD)D
 		ARG 0 random
 		ARG 1 minimum
@@ -261,6 +350,15 @@ CLASS net/minecraft/util/Mth
 		ARG 0 random
 		ARG 1 mean
 		ARG 2 deviation
+	METHOD outFromOrigin (III)Ljava/util/stream/IntStream;
+		ARG 0 input
+		ARG 1 lowerBound
+		ARG 2 upperBound
+	METHOD outFromOrigin (IIII)Ljava/util/stream/IntStream;
+		ARG 0 input
+		ARG 1 lowerBound
+		ARG 2 upperBound
+		ARG 3 steps
 	METHOD positiveCeilDiv (II)I
 		COMMENT Returns the smallest (closest to negative infinity) int value that is greater than or equal to the algebraic quotient.
 		COMMENT @see java.lang.Math#floorDiv(int, int)
@@ -324,6 +422,10 @@ CLASS net/minecraft/util/Mth
 	METHOD smallestEncompassingPowerOfTwo (I)I
 		COMMENT Returns the input value rounded up to the next highest power of two.
 		ARG 0 value
+	METHOD smoothstep (D)D
+		ARG 0 input
+	METHOD smoothstepDerivative (D)D
+		ARG 0 input
 	METHOD sqrt (F)F
 		ARG 0 value
 	METHOD square (D)D
@@ -334,6 +436,14 @@ CLASS net/minecraft/util/Mth
 		ARG 0 value
 	METHOD square (J)J
 		ARG 0 value
+	METHOD triangleWave (FF)F
+		ARG 0 input
+		ARG 1 period
+	METHOD truncate (FF)F
+		ARG 0 value
+		ARG 1 decimalPlaces
+	METHOD wobble (D)D
+		ARG 0 input
 	METHOD wrapDegrees (D)D
 		COMMENT The angle is reduced to an angle between -180 and +180 by mod, and a 360 check.
 		ARG 0 value
