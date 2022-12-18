@@ -7,6 +7,30 @@ CLASS net/minecraft/world/entity/ai/behavior/RandomStroll
 		ARG 2 yRange
 	METHOD getTargetSwimPos (Lnet/minecraft/world/entity/PathfinderMob;)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 mob
+	METHOD lambda$fly$5 (Lnet/minecraft/world/entity/PathfinderMob;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 mob
+	METHOD lambda$fly$6 (Lnet/minecraft/world/entity/PathfinderMob;)Z
+		ARG 0 mob
+	METHOD lambda$stroll$0 (Lnet/minecraft/world/entity/PathfinderMob;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 mob
+	METHOD lambda$stroll$1 (Lnet/minecraft/world/entity/PathfinderMob;)Z
+		ARG 0 mob
+	METHOD lambda$stroll$2 (Lnet/minecraft/world/entity/PathfinderMob;)Z
+		ARG 0 mob
+	METHOD lambda$stroll$3 (IILnet/minecraft/world/entity/PathfinderMob;)Lnet/minecraft/world/phys/Vec3;
+		ARG 2 mob
+	METHOD lambda$stroll$4 (Lnet/minecraft/world/entity/PathfinderMob;)Z
+		ARG 0 mob
+	METHOD lambda$strollFlyOrSwim$10 (Ljava/util/function/Predicate;Ljava/util/function/Function;FLnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 3 instance
+	METHOD lambda$strollFlyOrSwim$7 (FLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/entity/ai/memory/WalkTarget;
+		ARG 1 targetPos
+	METHOD lambda$strollFlyOrSwim$8 (Ljava/util/function/Predicate;Ljava/util/function/Function;Lnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;FLnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/PathfinderMob;J)Z
+		ARG 4 level
+		ARG 5 mob
+		ARG 6 gameTime
+	METHOD lambda$strollFlyOrSwim$9 (Ljava/util/function/Predicate;Ljava/util/function/Function;FLnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;)Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;
+		ARG 3 walkTarget
 	METHOD stroll (F)Lnet/minecraft/world/entity/ai/behavior/OneShot;
 		ARG 0 speedModifier
 	METHOD stroll (FII)Lnet/minecraft/world/entity/ai/behavior/BehaviorControl;
@@ -15,7 +39,10 @@ CLASS net/minecraft/world/entity/ai/behavior/RandomStroll
 		ARG 2 maxVerticalDistance
 	METHOD stroll (FZ)Lnet/minecraft/world/entity/ai/behavior/OneShot;
 		ARG 0 speedModifier
+		ARG 1 mayStrollFromWater
 	METHOD strollFlyOrSwim (FLjava/util/function/Function;Ljava/util/function/Predicate;)Lnet/minecraft/world/entity/ai/behavior/OneShot;
 		ARG 0 speedModifier
+		ARG 1 target
+		ARG 2 canStroll
 	METHOD swim (F)Lnet/minecraft/world/entity/ai/behavior/BehaviorControl;
 		ARG 0 speedModifier

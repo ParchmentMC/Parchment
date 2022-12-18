@@ -21,9 +21,17 @@ CLASS net/minecraft/client/renderer/texture/Stitcher
 		ARG 0 holder
 	METHOD lambda$static$2 (Lnet/minecraft/client/renderer/texture/Stitcher$Holder;)Lnet/minecraft/resources/ResourceLocation;
 		ARG 0 holder
+	METHOD lambda$stitch$3 (Lnet/minecraft/client/renderer/texture/Stitcher$Holder;)Lnet/minecraft/client/renderer/texture/Stitcher$Entry;
+		ARG 0 stitcherHolder
+	METHOD registerSprite (Lnet/minecraft/client/renderer/texture/Stitcher$Entry;)V
+		ARG 1 stitcherEntry
 	METHOD smallestFittingMinTexel (II)I
 		ARG 0 dimension
 		ARG 1 mipLevel
+	CLASS Holder
+		METHOD <init> (Lnet/minecraft/client/renderer/texture/Stitcher$Entry;I)V
+			ARG 1 entry
+			ARG 2 mipLevel
 	CLASS Region
 		METHOD <init> (IIII)V
 			ARG 1 originX
@@ -32,3 +40,10 @@ CLASS net/minecraft/client/renderer/texture/Stitcher
 			ARG 4 height
 		METHOD add (Lnet/minecraft/client/renderer/texture/Stitcher$Holder;)Z
 			ARG 1 holder
+		METHOD walk (Lnet/minecraft/client/renderer/texture/Stitcher$SpriteLoader;)V
+			ARG 1 spriteLoader
+	CLASS SpriteLoader
+		METHOD load (Lnet/minecraft/client/renderer/texture/Stitcher$Entry;II)V
+			ARG 1 entry
+			ARG 2 x
+			ARG 3 y

@@ -1,9 +1,24 @@
 CLASS net/minecraft/commands/arguments/MessageArgument
+	METHOD filterPlainText (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/network/chat/PlayerChatMessage;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 source
+		ARG 1 message
 	METHOD getMessage (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
 		ARG 0 context
 		ARG 1 name
 	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/MessageArgument$Message;
 		ARG 1 reader
+	METHOD resolveChatMessage (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;Ljava/util/function/Consumer;)V
+		ARG 0 context
+		ARG 1 key
+		ARG 2 callback
+	METHOD resolveDisguisedMessage (Ljava/util/function/Consumer;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/network/chat/PlayerChatMessage;)V
+		ARG 0 callback
+		ARG 1 source
+		ARG 2 message
+	METHOD resolveSignedMessage (Ljava/util/function/Consumer;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/network/chat/PlayerChatMessage;)V
+		ARG 0 callback
+		ARG 1 source
+		ARG 2 message
 	CLASS Part
 		METHOD <init> (IILnet/minecraft/commands/arguments/selector/EntitySelector;)V
 			ARG 1 start

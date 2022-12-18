@@ -1,4 +1,6 @@
 CLASS net/minecraft/core/Holder
+	METHOD canSerializeIn (Lnet/minecraft/core/HolderOwner;)Z
+		ARG 1 owner
 	METHOD direct (Ljava/lang/Object;)Lnet/minecraft/core/Holder;
 		ARG 0 value
 	METHOD is (Ljava/util/function/Predicate;)Z
@@ -10,5 +12,20 @@ CLASS net/minecraft/core/Holder
 	METHOD is (Lnet/minecraft/tags/TagKey;)Z
 		ARG 1 tagKey
 	CLASS Reference
+		METHOD <init> (Lnet/minecraft/core/Holder$Reference$Type;Lnet/minecraft/core/HolderOwner;Lnet/minecraft/resources/ResourceKey;Ljava/lang/Object;)V
+			ARG 1 type
+			ARG 2 owner
+			ARG 3 key
+			ARG 4 value
+		METHOD bindKey (Lnet/minecraft/resources/ResourceKey;)V
+			ARG 1 key
 		METHOD bindTags (Ljava/util/Collection;)V
 			ARG 1 tags
+		METHOD bindValue (Ljava/lang/Object;)V
+			ARG 1 value
+		METHOD createIntrusive (Lnet/minecraft/core/HolderOwner;Ljava/lang/Object;)Lnet/minecraft/core/Holder$Reference;
+			ARG 0 owner
+			ARG 1 value
+		METHOD createStandAlone (Lnet/minecraft/core/HolderOwner;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder$Reference;
+			ARG 0 owner
+			ARG 1 key

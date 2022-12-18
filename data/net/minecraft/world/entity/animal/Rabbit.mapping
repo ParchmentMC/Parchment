@@ -24,6 +24,9 @@ CLASS net/minecraft/world/entity/animal/Rabbit
 		ARG 1 damageSource
 	METHOD getJumpCompletion (F)F
 		ARG 1 partialTick
+	METHOD getRandomRabbitVariant (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/entity/animal/Rabbit$Variant;
+		ARG 0 level
+		ARG 1 pos
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
 		ARG 1 stack
@@ -53,6 +56,9 @@ CLASS net/minecraft/world/entity/animal/Rabbit
 			ARG 2 pos
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
+	CLASS RabbitGroupData
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit$Variant;)V
+			ARG 1 variant
 	CLASS RabbitPanicGoal
 		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;D)V
 			ARG 1 rabbit

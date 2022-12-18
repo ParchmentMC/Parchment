@@ -1,4 +1,10 @@
 CLASS net/minecraft/client/gui/screens/inventory/AbstractSignEditScreen
+	FIELD frame I
+		COMMENT Counts the number of screen updates.
+	FIELD line I
+		COMMENT The index of the line that is being edited.
+	FIELD sign Lnet/minecraft/world/level/block/entity/SignBlockEntity;
+		COMMENT Reference to the sign object.
 	METHOD <init> (Lnet/minecraft/world/level/block/entity/SignBlockEntity;Z)V
 		ARG 1 sign
 		ARG 2 isTextFilteringEnabled
@@ -6,6 +12,8 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractSignEditScreen
 		ARG 1 sign
 		ARG 2 isTextFilteringEnabled
 		ARG 3 title
+	METHOD lambda$new$0 (Lnet/minecraft/world/level/block/entity/SignBlockEntity;ZI)Lnet/minecraft/network/chat/Component;
+		ARG 2 lineIndex
 	METHOD offsetSign (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 poseStack
 		ARG 2 state

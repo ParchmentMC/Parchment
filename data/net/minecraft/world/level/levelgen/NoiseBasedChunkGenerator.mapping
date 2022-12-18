@@ -1,4 +1,7 @@
 CLASS net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
+	METHOD <init> (Lnet/minecraft/world/level/biome/BiomeSource;Lnet/minecraft/core/Holder;)V
+		ARG 1 biomeSource
+		ARG 2 settings
 	METHOD buildSurface (Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/levelgen/WorldGenerationContext;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/biome/BiomeManager;Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/blending/Blender;)V
 		ARG 1 chunk
 		ARG 2 context
@@ -7,6 +10,8 @@ CLASS net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
 		ARG 5 biomeManager
 		ARG 6 biomes
 		ARG 7 blender
+	METHOD createFluidPicker (Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;)Lnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;
+		ARG 0 settings
 	METHOD createNoiseChunk (Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/levelgen/RandomState;)Lnet/minecraft/world/level/levelgen/NoiseChunk;
 		ARG 1 chunk
 		ARG 2 structureManager
@@ -37,5 +42,11 @@ CLASS net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
 		ARG 4 z
 		ARG 5 column
 		ARG 6 stoppingState
+	METHOD lambda$static$0 (Lnet/minecraft/world/level/levelgen/NoiseBasedChunkGenerator;)Lnet/minecraft/world/level/biome/BiomeSource;
+		ARG 0 generator
+	METHOD lambda$static$1 (Lnet/minecraft/world/level/levelgen/NoiseBasedChunkGenerator;)Lnet/minecraft/core/Holder;
+		ARG 0 generator
+	METHOD lambda$static$2 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
 	METHOD stable (Lnet/minecraft/resources/ResourceKey;)Z
 		ARG 1 settings

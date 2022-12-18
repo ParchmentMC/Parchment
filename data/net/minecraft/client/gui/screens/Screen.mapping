@@ -1,6 +1,8 @@
 CLASS net/minecraft/client/gui/screens/Screen
 	METHOD <init> (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 title
+	METHOD addRenderableOnly (Lnet/minecraft/client/gui/components/Renderable;)Lnet/minecraft/client/gui/components/Renderable;
+		ARG 1 renderable
 	METHOD addRenderableWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
 		ARG 1 widget
 	METHOD addWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
@@ -85,6 +87,9 @@ CLASS net/minecraft/client/gui/screens/Screen
 		ARG 5 mouseY
 	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/screens/Screen$DeferredTooltipRendering;II)V
 		ARG 1 poseStack
+		ARG 2 deferredTooltip
+		ARG 3 mouseX
+		ARG 4 mouseY
 	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/network/chat/Component;II)V
 		ARG 1 poseStack
 		ARG 2 text
@@ -98,6 +103,8 @@ CLASS net/minecraft/client/gui/screens/Screen
 	METHOD renderTooltipInternal (Lcom/mojang/blaze3d/vertex/PoseStack;Ljava/util/List;IILnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;)V
 		ARG 1 poseStack
 		ARG 2 components
+		ARG 3 mouseX
+		ARG 4 mouseY
 		ARG 5 positioner
 	METHOD renderWithTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 poseStack
@@ -111,6 +118,8 @@ CLASS net/minecraft/client/gui/screens/Screen
 	METHOD scheduleNarration (JZ)V
 		ARG 1 delay
 		ARG 3 stopSuppression
+	METHOD setTooltipForNextRenderPass (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 tooltip
 	METHOD suppressNarration (J)V
 		ARG 1 time
 	METHOD updateNarratedWidget (Lnet/minecraft/client/gui/narration/NarrationElementOutput;)V

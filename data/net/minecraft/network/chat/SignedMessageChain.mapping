@@ -2,3 +2,35 @@ CLASS net/minecraft/network/chat/SignedMessageChain
 	METHOD <init> (Ljava/util/UUID;Ljava/util/UUID;)V
 		ARG 1 sender
 		ARG 2 sessionId
+	METHOD decoder (Lnet/minecraft/world/entity/player/ProfilePublicKey;)Lnet/minecraft/network/chat/SignedMessageChain$Decoder;
+		ARG 1 publicKey
+	METHOD encoder (Lnet/minecraft/util/Signer;)Lnet/minecraft/network/chat/SignedMessageChain$Encoder;
+		ARG 1 signer
+	METHOD lambda$decoder$2 (Lnet/minecraft/world/entity/player/ProfilePublicKey;Lnet/minecraft/util/SignatureValidator;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/network/chat/SignedMessageBody;)Lnet/minecraft/network/chat/PlayerChatMessage;
+		ARG 3 signature
+		ARG 4 body
+	METHOD lambda$encoder$0 (Lnet/minecraft/network/chat/SignedMessageLink;Lnet/minecraft/network/chat/SignedMessageBody;Lnet/minecraft/util/SignatureUpdater$Output;)V
+		ARG 2 output
+	METHOD lambda$encoder$1 (Lnet/minecraft/util/Signer;Lnet/minecraft/network/chat/SignedMessageBody;)Lnet/minecraft/network/chat/MessageSignature;
+		ARG 2 body
+	CLASS Decoder
+		METHOD lambda$static$0 (Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/network/chat/SignedMessageBody;)Lnet/minecraft/network/chat/PlayerChatMessage;
+			ARG 0 signature
+			ARG 1 body
+		METHOD lambda$unsigned$1 (Ljava/util/UUID;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/network/chat/SignedMessageBody;)Lnet/minecraft/network/chat/PlayerChatMessage;
+			ARG 1 signature
+			ARG 2 body
+		METHOD unpack (Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/network/chat/SignedMessageBody;)Lnet/minecraft/network/chat/PlayerChatMessage;
+			ARG 1 signature
+			ARG 2 body
+		METHOD unsigned (Ljava/util/UUID;)Lnet/minecraft/network/chat/SignedMessageChain$Decoder;
+			ARG 0 sender
+	CLASS Encoder
+		METHOD lambda$static$0 (Lnet/minecraft/network/chat/SignedMessageBody;)Lnet/minecraft/network/chat/MessageSignature;
+			ARG 0 body
+		METHOD pack (Lnet/minecraft/network/chat/SignedMessageBody;)Lnet/minecraft/network/chat/MessageSignature;
+			ARG 1 body
+	CLASS DecodeException
+		METHOD <init> (Lnet/minecraft/network/chat/Component;Z)V
+			ARG 1 component
+			ARG 2 shouldDisconnect

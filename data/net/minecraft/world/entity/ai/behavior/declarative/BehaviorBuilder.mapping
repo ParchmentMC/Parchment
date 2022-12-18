@@ -1,15 +1,72 @@
 CLASS net/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder
 	METHOD <init> (Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$TriggerWithResult;)V
 		ARG 1 trigger
+	METHOD create (Ljava/util/function/Function;)Lnet/minecraft/world/entity/ai/behavior/OneShot;
+		ARG 0 initializer
 	METHOD create (Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$TriggerWithResult;)Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder;
 		ARG 0 trigger
+	METHOD get (Lcom/mojang/datafixers/kinds/App;)Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$TriggerWithResult;
+		ARG 0 app
+	METHOD lambda$sequence$0 (Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;Lcom/mojang/datafixers/util/Unit;)Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;
+		ARG 1 unit
+	METHOD lambda$sequence$1 (Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 2 instance
+	METHOD lambda$triggerIf$2 (Ljava/util/function/Predicate;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)Z
+		ARG 1 level
+		ARG 2 entity
+		ARG 3 gameTime
+	METHOD lambda$triggerIf$3 (Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 1 instance
+	METHOD lambda$triggerIf$4 (Ljava/util/function/BiPredicate;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)Z
+		ARG 1 level
+		ARG 2 entity
+		ARG 3 gameTime
+	METHOD lambda$triggerIf$5 (Ljava/util/function/BiPredicate;Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 1 instance
+	METHOD sequence (Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;)Lnet/minecraft/world/entity/ai/behavior/OneShot;
+		ARG 0 predicateTrigger
+		ARG 1 trigger
 	METHOD triggerIf (Ljava/util/function/BiPredicate;)Lnet/minecraft/world/entity/ai/behavior/OneShot;
 		ARG 0 predicate
 	METHOD triggerIf (Ljava/util/function/Predicate;)Lnet/minecraft/world/entity/ai/behavior/OneShot;
 		ARG 0 predicate
 	METHOD triggerIf (Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/behavior/OneShot;)Lnet/minecraft/world/entity/ai/behavior/OneShot;
 		ARG 0 predicate
+		ARG 1 trigger
+	METHOD unbox (Lcom/mojang/datafixers/kinds/App;)Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder;
+		ARG 0 app
+	CLASS Constant
+		METHOD <init> (Ljava/lang/Object;)V
+			ARG 1 value
+		METHOD <init> (Ljava/lang/Object;Ljava/util/function/Supplier;)V
+			ARG 1 value
+			ARG 2 name
+	CLASS Instance
+		METHOD absent (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder;
+			ARG 1 memoryType
+		METHOD get (Lnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;)Ljava/lang/Object;
+			ARG 1 memory
+		METHOD ifTriggered (Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;)Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder;
+			ARG 1 trigger
+		METHOD point (Ljava/lang/Object;)Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder;
+			ARG 1 value
+		METHOD point (Ljava/util/function/Supplier;Ljava/lang/Object;)Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder;
+			ARG 1 name
+			ARG 2 value
+		METHOD present (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder;
+			ARG 1 memoryType
+		METHOD registered (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;)Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder;
+			ARG 1 memoryType
+		METHOD tryGet (Lnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;)Ljava/util/Optional;
+			ARG 1 memory
+	CLASS PureMemory
+		METHOD <init> (Lnet/minecraft/world/entity/ai/behavior/declarative/MemoryCondition;)V
+			ARG 1 memoryCondition
+	CLASS TriggerWrapper
+		METHOD <init> (Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;)V
+			ARG 1 trigger
 	CLASS TriggerWithResult
 		METHOD tryTrigger (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;J)Ljava/lang/Object;
 			ARG 1 level
 			ARG 2 entity
+			ARG 3 gameTime

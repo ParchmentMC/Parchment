@@ -13,8 +13,10 @@ CLASS net/minecraft/data/loot/BlockLootSubProvider
 		ARG 2 plant
 	METHOD applyExplosionCondition (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/storage/loot/predicates/ConditionUserBuilder;)Lnet/minecraft/world/level/storage/loot/predicates/ConditionUserBuilder;
 		ARG 1 item
+		ARG 2 conditionBuilder
 	METHOD applyExplosionDecay (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/storage/loot/functions/FunctionUserBuilder;)Lnet/minecraft/world/level/storage/loot/functions/FunctionUserBuilder;
 		ARG 1 item
+		ARG 2 functionBuilder
 	METHOD createAttachedStemDrops (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
 		ARG 2 item
@@ -78,9 +80,14 @@ CLASS net/minecraft/data/loot/BlockLootSubProvider
 	METHOD createRedstoneOreDrops (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
 	METHOD createSelfDropDispatchTable (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		COMMENT If the condition from {@code conditionBuilder} succeeds, drops 1 {@code block}.
+		COMMENT Otherwise, drops loot specified by {@code alternativeBuilder}.
 		ARG 0 block
-		ARG 1 builder
+		ARG 1 conditionBuilder
+		ARG 2 alternativeBuilder
 	METHOD createShearsDispatchTable (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		COMMENT If the block is mined with Shears, drops 1 {@code block}.
+		COMMENT Otherwise, drops loot specified by {@code builder}.
 		ARG 0 block
 		ARG 1 builder
 	METHOD createShearsOnlyDrop (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
@@ -88,11 +95,15 @@ CLASS net/minecraft/data/loot/BlockLootSubProvider
 	METHOD createShulkerBoxDrop (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
 	METHOD createSilkTouchDispatchTable (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		COMMENT If the block is mined with Silk Touch, drops 1 {@code block}.
+		COMMENT Otherwise, drops loot specified by {@code builder}.
 		ARG 0 block
 		ARG 1 builder
 	METHOD createSilkTouchOnlyTable (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 0 item
 	METHOD createSilkTouchOrShearsDispatchTable (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		COMMENT If the block is mined either with Silk Touch or Shears, drops 1 {@code block}.
+		COMMENT Otherwise, drops loot specified by {@code builder}.
 		ARG 0 block
 		ARG 1 builder
 	METHOD createSingleItemTable (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
@@ -109,9 +120,12 @@ CLASS net/minecraft/data/loot/BlockLootSubProvider
 		ARG 3 count
 	METHOD createSinglePropConditionTable (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
+		ARG 2 property
+		ARG 3 value
 	METHOD createSlabItemTable (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 		ARG 1 block
 	METHOD createStemDrops (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+		COMMENT Creates a builder that drops the given IItemProvider in amounts between 0 and 3, based on the AGE property. Only used in vanilla for pumpkin and melon stems.
 		ARG 1 block
 		ARG 2 item
 	METHOD dropOther (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/ItemLike;)V

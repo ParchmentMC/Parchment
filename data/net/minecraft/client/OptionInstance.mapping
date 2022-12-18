@@ -2,27 +2,30 @@ CLASS net/minecraft/client/OptionInstance
 	METHOD <init> (Ljava/lang/String;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Lnet/minecraft/client/OptionInstance$CaptionBasedToString;Lnet/minecraft/client/OptionInstance$ValueSet;Lcom/mojang/serialization/Codec;Ljava/lang/Object;Ljava/util/function/Consumer;)V
 		ARG 1 caption
 		ARG 2 tooltip
+		ARG 3 valueStringifier
 		ARG 4 values
 		ARG 5 codec
-		ARG 6 initalValue
+		ARG 6 initialValue
 		ARG 7 onValueUpdate
 	METHOD <init> (Ljava/lang/String;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Lnet/minecraft/client/OptionInstance$CaptionBasedToString;Lnet/minecraft/client/OptionInstance$ValueSet;Ljava/lang/Object;Ljava/util/function/Consumer;)V
 		ARG 1 caption
 		ARG 2 tooltip
+		ARG 3 valueStringifier
 		ARG 4 values
-		ARG 5 initalValue
+		ARG 5 initialValue
 		ARG 6 onValueUpdate
 	METHOD cachedConstantTooltip (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/client/OptionInstance$TooltipSupplier;
 		ARG 0 message
 	METHOD createBoolean (Ljava/lang/String;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Lnet/minecraft/client/OptionInstance$CaptionBasedToString;ZLjava/util/function/Consumer;)Lnet/minecraft/client/OptionInstance;
 		ARG 0 caption
 		ARG 1 tooltip
+		ARG 2 valueStringifier
 		ARG 3 initialValue
 		ARG 4 onValueUpdate
 	METHOD createBoolean (Ljava/lang/String;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Z)Lnet/minecraft/client/OptionInstance;
 		ARG 0 caption
 		ARG 1 tooltip
-		ARG 2 initalValue
+		ARG 2 initialValue
 	METHOD createBoolean (Ljava/lang/String;Lnet/minecraft/client/OptionInstance$TooltipSupplier;ZLjava/util/function/Consumer;)Lnet/minecraft/client/OptionInstance;
 		ARG 0 caption
 		ARG 1 tooltip
@@ -46,6 +49,16 @@ CLASS net/minecraft/client/OptionInstance
 		ARG 3 y
 		ARG 4 width
 		ARG 5 onValueChanged
+	METHOD lambda$cachedConstantTooltip$5 (Lnet/minecraft/network/chat/Component;Ljava/lang/Object;)Lnet/minecraft/client/gui/components/Tooltip;
+		ARG 1 value
+	METHOD lambda$createBoolean$1 (Ljava/lang/Boolean;)V
+		ARG 0 value
+	METHOD lambda$createBoolean$2 (Ljava/lang/Boolean;)V
+		ARG 0 value
+	METHOD lambda$new$3 (Lnet/minecraft/client/OptionInstance$CaptionBasedToString;Ljava/lang/Object;)Lnet/minecraft/network/chat/Component;
+		ARG 2 value
+	METHOD lambda$noTooltip$4 (Ljava/lang/Object;)Lnet/minecraft/client/gui/components/Tooltip;
+		ARG 0 value
 	CLASS ValueSet
 		METHOD createButton (Lnet/minecraft/client/OptionInstance$TooltipSupplier;Lnet/minecraft/client/Options;IIILjava/util/function/Consumer;)Ljava/util/function/Function;
 			ARG 1 tooltipSupplier

@@ -1,4 +1,7 @@
 CLASS net/minecraft/nbt/NbtOps
+	METHOD convertTo (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/nbt/Tag;)Ljava/lang/Object;
+		ARG 1 ops
+		ARG 2 tag
 	METHOD createBoolean (Z)Lnet/minecraft/nbt/Tag;
 		ARG 1 data
 	METHOD createByte (B)Lnet/minecraft/nbt/Tag;
@@ -37,17 +40,54 @@ CLASS net/minecraft/nbt/NbtOps
 		ARG 1 tag
 	METHOD getLongStream (Lnet/minecraft/nbt/Tag;)Lcom/mojang/serialization/DataResult;
 		ARG 1 tag
+	METHOD getMap (Lnet/minecraft/nbt/Tag;)Lcom/mojang/serialization/DataResult;
+		ARG 1 map
+	METHOD getMapEntries (Lnet/minecraft/nbt/Tag;)Lcom/mojang/serialization/DataResult;
+		ARG 1 map
+	METHOD getMapValues (Lnet/minecraft/nbt/Tag;)Lcom/mojang/serialization/DataResult;
+		ARG 1 map
+	METHOD getNumberValue (Lnet/minecraft/nbt/Tag;)Lcom/mojang/serialization/DataResult;
+		ARG 1 tag
 	METHOD getStream (Lnet/minecraft/nbt/Tag;)Lcom/mojang/serialization/DataResult;
 		ARG 1 tag
 	METHOD getStringValue (Lnet/minecraft/nbt/Tag;)Lcom/mojang/serialization/DataResult;
 		ARG 1 tag
+	METHOD lambda$getMapEntries$8 (Ljava/util/function/BiConsumer;Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+		ARG 3 key
+	METHOD lambda$getMapEntries$9 (Lnet/minecraft/nbt/CompoundTag;Ljava/util/function/BiConsumer;)V
+		ARG 2 consumer
+	METHOD lambda$getMapValues$7 (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Lcom/mojang/datafixers/util/Pair;
+		ARG 2 key
+	METHOD lambda$getStream$11 (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+		ARG 0 compoundTag
+	METHOD lambda$getStream$12 (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+		ARG 0 element
 	METHOD lambda$mergeToMap$4 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
 		ARG 2 compoundTagKey
+	METHOD lambda$mergeToMap$5 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+		ARG 2 key
+	METHOD lambda$mergeToMap$6 (Ljava/util/List;Lnet/minecraft/nbt/CompoundTag;Lcom/mojang/datafixers/util/Pair;)V
+		ARG 2 entry
+	METHOD lambda$remove$15 (Ljava/lang/String;Ljava/lang/String;)Z
+		ARG 1 key
+	METHOD lambda$remove$16 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+		ARG 2 key
+	METHOD mergeToList (Lnet/minecraft/nbt/Tag;Ljava/util/List;)Lcom/mojang/serialization/DataResult;
+		ARG 1 list
+		ARG 2 tags
+	METHOD mergeToList (Lnet/minecraft/nbt/Tag;Lnet/minecraft/nbt/Tag;)Lcom/mojang/serialization/DataResult;
+		ARG 1 list
+		ARG 2 tag
+	METHOD mergeToMap (Lnet/minecraft/nbt/Tag;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
+		ARG 1 map
+		ARG 2 otherMap
 	METHOD mergeToMap (Lnet/minecraft/nbt/Tag;Lnet/minecraft/nbt/Tag;Lnet/minecraft/nbt/Tag;)Lcom/mojang/serialization/DataResult;
+		ARG 1 map
 		ARG 2 key
+		ARG 3 value
 	METHOD remove (Lnet/minecraft/nbt/Tag;Ljava/lang/String;)Lnet/minecraft/nbt/Tag;
-		ARG 1 tag
-		ARG 2 key
+		ARG 1 map
+		ARG 2 removeKey
 	METHOD tryUnwrap (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/Tag;
 		ARG 0 tag
 	CLASS 1
