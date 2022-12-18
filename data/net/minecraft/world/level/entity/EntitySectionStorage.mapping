@@ -4,11 +4,21 @@ CLASS net/minecraft/world/level/entity/EntitySectionStorage
 		ARG 2 initialSectionVisibility
 	METHOD createSection (J)Lnet/minecraft/world/level/entity/EntitySection;
 		ARG 1 sectionPos
+	METHOD forEachAccessibleNonEmptySection (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/util/AbortableIterationConsumer;)V
+		ARG 1 boundingBox
+		ARG 2 consumer
 	METHOD getChunkKeyFromSectionKey (J)J
 		ARG 0 pos
 	METHOD getChunkSections (II)Lit/unimi/dsi/fastutil/longs/LongSortedSet;
 		ARG 1 x
 		ARG 2 z
+	METHOD getEntities (Lnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/util/AbortableIterationConsumer;)V
+		ARG 1 test
+		ARG 2 bounds
+		ARG 3 consumer
+	METHOD getEntities (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/util/AbortableIterationConsumer;)V
+		ARG 1 bounds
+		ARG 2 consumer
 	METHOD getExistingSectionPositionsInChunk (J)Ljava/util/stream/LongStream;
 		ARG 1 pos
 	METHOD getExistingSectionsInChunk (J)Ljava/util/stream/Stream;
@@ -20,5 +30,9 @@ CLASS net/minecraft/world/level/entity/EntitySectionStorage
 	METHOD lambda$getAllChunksWithExistingSections$0 (Lit/unimi/dsi/fastutil/longs/LongSet;J)V
 		ARG 0 section
 		ARG 1 sectionId
+	METHOD lambda$getEntities$1 (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/util/AbortableIterationConsumer;Lnet/minecraft/world/level/entity/EntitySection;)Lnet/minecraft/util/AbortableIterationConsumer$Continuation;
+		ARG 2 section
+	METHOD lambda$getEntities$2 (Lnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/util/AbortableIterationConsumer;Lnet/minecraft/world/level/entity/EntitySection;)Lnet/minecraft/util/AbortableIterationConsumer$Continuation;
+		ARG 3 section
 	METHOD remove (J)V
 		ARG 1 sectionId

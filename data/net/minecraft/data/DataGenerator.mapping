@@ -1,3 +1,19 @@
 CLASS net/minecraft/data/DataGenerator
+	METHOD <init> (Ljava/nio/file/Path;Lnet/minecraft/WorldVersion;Z)V
+		ARG 1 rootOutputFolder
+		ARG 2 version
+		ARG 3 alwaysGenerate
+	METHOD getBuiltinDatapack (ZLjava/lang/String;)Lnet/minecraft/data/DataGenerator$PackGenerator;
+		ARG 1 toRun
+		ARG 2 providerPrefix
+	METHOD getVanillaPack (Z)Lnet/minecraft/data/DataGenerator$PackGenerator;
+		ARG 1 toRun
 	METHOD run ()V
 		COMMENT Runs all the previously registered data providers.
+	CLASS PackGenerator
+		METHOD <init> (Lnet/minecraft/data/DataGenerator;ZLjava/lang/String;Lnet/minecraft/data/PackOutput;)V
+			ARG 2 toRun
+			ARG 3 providerPrefix
+			ARG 4 output
+		METHOD addProvider (Lnet/minecraft/data/DataProvider$Factory;)Lnet/minecraft/data/DataProvider;
+			ARG 1 factory

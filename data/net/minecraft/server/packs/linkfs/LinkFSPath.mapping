@@ -17,6 +17,10 @@ CLASS net/minecraft/server/packs/linkfs/LinkFSPath
 		ARG 1 index
 	METHOD isRelativeOrMissing (Lnet/minecraft/server/packs/linkfs/PathContents;)Z
 		ARG 0 pathContents
+	METHOD register (Ljava/nio/file/WatchService;[Ljava/nio/file/WatchEvent$Kind;[Ljava/nio/file/WatchEvent$Modifier;)Ljava/nio/file/WatchKey;
+		ARG 1 watcher
+		ARG 2 events
+		ARG 3 modifiers
 	METHOD relativize (Ljava/nio/file/Path;)Lnet/minecraft/server/packs/linkfs/LinkFSPath;
 		ARG 1 path
 	METHOD resolve (Ljava/nio/file/Path;)Lnet/minecraft/server/packs/linkfs/LinkFSPath;
@@ -32,3 +36,10 @@ CLASS net/minecraft/server/packs/linkfs/LinkFSPath
 		ARG 2 end
 	METHOD toLinkPath (Ljava/nio/file/Path;)Lnet/minecraft/server/packs/linkfs/LinkFSPath;
 		ARG 1 path
+	METHOD toRealPath ([Ljava/nio/file/LinkOption;)Lnet/minecraft/server/packs/linkfs/LinkFSPath;
+		ARG 1 options
+	CLASS 3
+		METHOD setTimes (Ljava/nio/file/attribute/FileTime;Ljava/nio/file/attribute/FileTime;Ljava/nio/file/attribute/FileTime;)V
+			ARG 1 lastModifiedTime
+			ARG 2 lastAccessTime
+			ARG 3 createTime

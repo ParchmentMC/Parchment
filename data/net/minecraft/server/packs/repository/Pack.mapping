@@ -24,6 +24,8 @@ CLASS net/minecraft/server/packs/repository/Pack
 	METHOD getChatLink (Z)Lnet/minecraft/network/chat/Component;
 		ARG 1 green
 			COMMENT used to indicate either a successful operation or datapack enabled status
+	METHOD lambda$getChatLink$0 (ZLnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 2 styke
 	METHOD readMetaAndCreate (Ljava/lang/String;Lnet/minecraft/network/chat/Component;ZLnet/minecraft/server/packs/repository/Pack$ResourcesSupplier;Lnet/minecraft/server/packs/PackType;Lnet/minecraft/server/packs/repository/Pack$Position;Lnet/minecraft/server/packs/repository/PackSource;)Lnet/minecraft/server/packs/repository/Pack;
 		ARG 0 id
 		ARG 1 title
@@ -38,3 +40,12 @@ CLASS net/minecraft/server/packs/repository/Pack
 	CLASS Info
 		METHOD compatibility (Lnet/minecraft/server/packs/PackType;)Lnet/minecraft/server/packs/repository/PackCompatibility;
 			ARG 1 packType
+	CLASS Position
+		METHOD insert (Ljava/util/List;Ljava/lang/Object;Ljava/util/function/Function;Z)I
+			ARG 1 list
+			ARG 2 element
+			ARG 3 packFactory
+			ARG 4 flipPosition
+	CLASS ResourcesSupplier
+		METHOD open (Ljava/lang/String;)Lnet/minecraft/server/packs/PackResources;
+			ARG 1 id

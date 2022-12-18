@@ -6,6 +6,8 @@ CLASS net/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings
 		ARG 4 decoration
 		ARG 5 biome
 		ARG 6 defaultBiome
+		ARG 7 lavaUnderground
+		ARG 8 lavaSurface
 	METHOD <init> (Ljava/util/Optional;Lnet/minecraft/core/Holder;Ljava/util/List;)V
 		ARG 1 structureOverrides
 		ARG 2 biome
@@ -13,7 +15,7 @@ CLASS net/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings
 	METHOD adjustGenerationSettings (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/level/biome/BiomeGenerationSettings;
 		ARG 1 biome
 	METHOD createLakesList (Lnet/minecraft/core/HolderGetter;)Ljava/util/List;
-		ARG 0 placedFeatures
+		ARG 0 placedFEatureGetter
 	METHOD getBiome ()Lnet/minecraft/core/Holder;
 		COMMENT Return the biome used on this preset.
 	METHOD getBiome (Ljava/util/Optional;Lnet/minecraft/core/Holder;)Lnet/minecraft/core/Holder;
@@ -21,15 +23,17 @@ CLASS net/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings
 		ARG 1 defaultBiome
 	METHOD getDefault (Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
 		ARG 0 biomes
-		ARG 1 structureSets
-		ARG 2 placedFeatures
+		ARG 1 structureSetGetter
+		ARG 2 placedFeatureGetter
 	METHOD getDefaultBiome (Lnet/minecraft/core/HolderGetter;)Lnet/minecraft/core/Holder;
 		ARG 0 biomes
 	METHOD getLayersInfo ()Ljava/util/List;
 		COMMENT Return the list of layers on this preset.
+	METHOD lambda$static$4 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
 	METHOD validateHeight (Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Lcom/mojang/serialization/DataResult;
 		ARG 0 flatSettings
 	METHOD withBiomeAndLayers (Ljava/util/List;Ljava/util/Optional;Lnet/minecraft/core/Holder;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
-		ARG 1 layersInfo
-		ARG 2 structureOverrides
+		ARG 1 layerInfos
+		ARG 2 structureSets
 		ARG 3 biome
