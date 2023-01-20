@@ -1,7 +1,32 @@
 CLASS net/minecraft/core/RegistrySetBuilder
+	METHOD add (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Lnet/minecraft/core/RegistrySetBuilder$RegistryBootstrap;)Lnet/minecraft/core/RegistrySetBuilder;
+		ARG 1 key
+		ARG 2 lifecycle
+		ARG 3 bootstrap
+	METHOD add (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/RegistrySetBuilder$RegistryBootstrap;)Lnet/minecraft/core/RegistrySetBuilder;
+		ARG 1 key
+		ARG 2 bootstrap
+	METHOD build (Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/core/HolderLookup$Provider;
+		ARG 1 registryAccess
+	METHOD buildPatch (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/core/HolderLookup$Provider;
+		ARG 1 registryAccess
+		ARG 2 original
+	METHOD createState (Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/core/RegistrySetBuilder$BuildState;
+		ARG 1 registryAccess
+	CLASS BuildState
+		METHOD addOwner (Lnet/minecraft/core/HolderOwner;)V
+			ARG 1 owner
+		METHOD fillMissingHolders (Lnet/minecraft/core/HolderLookup$Provider;)V
+			ARG 1 originial
 	CLASS CompositeOwner
 		METHOD add (Lnet/minecraft/core/HolderOwner;)V
 			ARG 1 owner
 	CLASS EmptyTagLookup
 		METHOD <init> (Lnet/minecraft/core/HolderOwner;)V
 			ARG 1 owner
+	CLASS UniversalLookup
+		METHOD getOrCreate (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder$Reference;
+			ARG 1 key
+	CLASS RegistryBootstrap
+		METHOD run (Lnet/minecraft/data/worldgen/BootstapContext;)V
+			ARG 1 context

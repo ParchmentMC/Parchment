@@ -3,6 +3,8 @@ CLASS net/minecraft/world/level/portal/PortalShape
 		ARG 1 level
 		ARG 2 bottomLeft
 		ARG 3 axis
+	METHOD calculateBottomLeft (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
+		ARG 1 pos
 	METHOD createPortalInfo (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/BlockUtil$FoundRectangle;Lnet/minecraft/core/Direction$Axis;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/Vec3;FF)Lnet/minecraft/world/level/portal/PortalInfo;
 		ARG 0 level
 		ARG 1 portalPos
@@ -12,6 +14,11 @@ CLASS net/minecraft/world/level/portal/PortalShape
 		ARG 5 velocity
 		ARG 6 yRot
 		ARG 7 xRot
+	METHOD findCollisionFreePosition (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/EntityDimensions;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 pos
+		ARG 1 level
+		ARG 2 entity
+		ARG 3 dimensions
 	METHOD findEmptyPortalShape (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction$Axis;)Ljava/util/Optional;
 		ARG 0 level
 		ARG 1 bottomLeft
@@ -26,5 +33,9 @@ CLASS net/minecraft/world/level/portal/PortalShape
 		ARG 2 direction
 	METHOD getDistanceUntilTop (Lnet/minecraft/core/BlockPos$MutableBlockPos;)I
 		ARG 1 pos
+	METHOD getRelativePosition (Lnet/minecraft/BlockUtil$FoundRectangle;Lnet/minecraft/core/Direction$Axis;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/EntityDimensions;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 foundRectangle
+		ARG 1 axis
+		ARG 3 entityDimensions
 	METHOD isEmpty (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
