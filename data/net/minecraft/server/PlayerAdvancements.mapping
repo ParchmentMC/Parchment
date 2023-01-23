@@ -1,4 +1,10 @@
 CLASS net/minecraft/server/PlayerAdvancements
+	METHOD <init> (Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/server/players/PlayerList;Lnet/minecraft/server/ServerAdvancementManager;Ljava/nio/file/Path;Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 dataFixer
+		ARG 2 playerList
+		ARG 3 manager
+		ARG 4 playerSavePath
+		ARG 5 player
 	METHOD award (Lnet/minecraft/advancements/Advancement;Ljava/lang/String;)Z
 		ARG 1 advancement
 		ARG 2 criterionKey
@@ -14,6 +20,8 @@ CLASS net/minecraft/server/PlayerAdvancements
 		ARG 1 advancement
 	METHOD load (Lnet/minecraft/server/ServerAdvancementManager;)V
 		ARG 1 manager
+	METHOD markForVisibilityUpdate (Lnet/minecraft/advancements/Advancement;)V
+		ARG 1 advancement
 	METHOD registerListeners (Lnet/minecraft/advancements/Advancement;)V
 		ARG 1 advancement
 	METHOD registerListeners (Lnet/minecraft/server/ServerAdvancementManager;)V

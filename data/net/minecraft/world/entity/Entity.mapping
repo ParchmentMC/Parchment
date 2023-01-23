@@ -19,12 +19,16 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 addend
 	METHOD addPassenger (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 passenger
+	METHOD addPassenger (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 passenger
 	METHOD addTag (Ljava/lang/String;)Z
 		ARG 1 tag
 	METHOD allowsDismounting (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD animateHurt ()V
 		COMMENT Setups the entity to do the hurt animation. Only used by packets in multiplayer.
+	METHOD animateHurt (F)V
+		ARG 1 yaw
 	METHOD applyPistonMovementRestriction (Lnet/minecraft/core/Direction$Axis;D)D
 		ARG 1 axis
 		ARG 2 distance
@@ -655,6 +659,14 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
+	METHOD teleportTo (Lnet/minecraft/server/level/ServerLevel;DDDLjava/util/Set;FF)Z
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 relativeMovements
+		ARG 9 yRot
+		ARG 10 xRot
 	METHOD teleportToWithTicket (DDD)V
 		COMMENT Teleports the entity, forcing the destination to stay loaded for a short time
 		ARG 1 x

@@ -1,4 +1,6 @@
 CLASS net/minecraft/server/commands/CloneCommands
+	METHOD beginEndDestinationAndModeSuffix (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 buildContext
 	METHOD clone (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;Lnet/minecraft/server/commands/CloneCommands$Mode;)I
 		ARG 0 source
 		ARG 1 beginPos
@@ -8,6 +10,17 @@ CLASS net/minecraft/server/commands/CloneCommands
 		ARG 5 cloneMode
 	METHOD clone (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;Ljava/util/function/Predicate;Lnet/minecraft/server/commands/CloneCommands$Mode;)I
 		ARG 0 source
+		ARG 1 begin
+		ARG 2 end
+		ARG 3 target
+		ARG 4 filter
+		ARG 5 mode
+	METHOD destinationAndModeSuffix (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 buildContext
+	METHOD getLoadedDimensionAndPosition (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/server/level/ServerLevel;Ljava/lang/String;)Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;
+		ARG 0 context
+		ARG 1 level
+		ARG 2 name
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandBuildContext;)V
 		ARG 0 dispatcher
 		ARG 1 context
