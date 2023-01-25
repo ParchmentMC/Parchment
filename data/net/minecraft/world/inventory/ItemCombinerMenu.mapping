@@ -4,8 +4,16 @@ CLASS net/minecraft/world/inventory/ItemCombinerMenu
 		ARG 2 containerId
 		ARG 3 playerInventory
 		ARG 4 access
+	METHOD canMoveIntoInputSlots (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
+	METHOD createContainer (I)Lnet/minecraft/world/SimpleContainer;
+		ARG 1 size
+	METHOD createInventorySlots (Lnet/minecraft/world/entity/player/Inventory;)V
+		ARG 1 inventory
 	METHOD createResult ()V
 		COMMENT Called when the Anvil Input Slot changes, calculates the new result and puts it in the output slot.
+	METHOD getSlotToQuickMoveTo (Lnet/minecraft/world/item/ItemStack;)I
+		ARG 1 stack
 	METHOD isValidBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 	METHOD lambda$removed$0 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
@@ -17,6 +25,9 @@ CLASS net/minecraft/world/inventory/ItemCombinerMenu
 	METHOD mayPickup (Lnet/minecraft/world/entity/player/Player;Z)Z
 		ARG 1 player
 		ARG 2 hasStack
+	METHOD onTake (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 player
+		ARG 2 stack
 	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
 		ARG 1 player

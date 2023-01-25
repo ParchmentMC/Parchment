@@ -133,6 +133,14 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 size
 	METHOD isWritable (I)Z
 		ARG 1 size
+	METHOD lambda$limitValue$2 (ILjava/util/function/IntFunction;I)Ljava/lang/Object;
+		ARG 2 value
+	METHOD lambda$writeMap$3 (Lnet/minecraft/network/FriendlyByteBuf$Writer;Lnet/minecraft/network/FriendlyByteBuf$Writer;Ljava/lang/Object;Ljava/lang/Object;)V
+		ARG 3 key
+		ARG 4 value
+	METHOD limitValue (Ljava/util/function/IntFunction;I)Ljava/util/function/IntFunction;
+		ARG 0 function
+		ARG 1 limit
 	METHOD nioBuffer (II)Ljava/nio/ByteBuffer;
 		ARG 1 index
 		ARG 2 length
@@ -162,6 +170,11 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Reads a BlockPos encoded as a long from the buffer.
 		COMMENT
 		COMMENT @see #writeBlockPos
+	METHOD readById (Lnet/minecraft/core/IdMap;)Ljava/lang/Object;
+		ARG 1 idMap
+	METHOD readById (Lnet/minecraft/core/IdMap;Lnet/minecraft/network/FriendlyByteBuf$Reader;)Lnet/minecraft/core/Holder;
+		ARG 1 idMap
+		ARG 2 reader
 	METHOD readByteArray (I)[B
 		ARG 1 maxLength
 	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
@@ -223,6 +236,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #writeEnum
 		ARG 1 enumClass
+	METHOD readEnumSet (Ljava/lang/Class;)Ljava/util/EnumSet;
+		ARG 1 enumClass
 	METHOD readFixedBitSet (I)Ljava/util/BitSet;
 		ARG 1 size
 	METHOD readIntIdList ()Lit/unimi/dsi/fastutil/ints/IntList;
@@ -283,10 +298,13 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT @see #writeNbt
 		COMMENT @see #readNbt()
 		COMMENT @see #readAnySizeNbt
+		ARG 1 nbtAccounter
 	METHOD readNullable (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/lang/Object;
 		ARG 1 reader
 	METHOD readOptional (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/util/Optional;
 		ARG 1 reader
+	METHOD readResourceKey (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/resources/ResourceKey;
+		ARG 1 registryKey
 	METHOD readResourceLocation ()Lnet/minecraft/resources/ResourceLocation;
 		COMMENT Read a ResourceLocation using its String representation.
 		COMMENT
@@ -336,6 +354,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #writeWithCodec
 		ARG 1 codec
+	METHOD readWithCodec (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
+		ARG 2 codec
 	METHOD readWithCount (Ljava/util/function/Consumer;)V
 		COMMENT Read a VarInt N from this buffer, then reads N values by calling {@code reader}.
 		ARG 1 reader
@@ -531,6 +551,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #readEnum
 		ARG 1 value
+	METHOD writeEnumSet (Ljava/util/EnumSet;Ljava/lang/Class;)V
+		ARG 1 enumSet
+		ARG 2 enumClass
 	METHOD writeFixedBitSet (Ljava/util/BitSet;I)V
 		ARG 1 bitSet
 		ARG 2 size
@@ -542,6 +565,13 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 gameProfileProperties
 	METHOD writeGlobalPos (Lnet/minecraft/core/GlobalPos;)V
 		ARG 1 pos
+	METHOD writeId (Lnet/minecraft/core/IdMap;Ljava/lang/Object;)V
+		ARG 1 idMap
+		ARG 2 value
+	METHOD writeId (Lnet/minecraft/core/IdMap;Lnet/minecraft/core/Holder;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
+		ARG 1 idMap
+		ARG 2 value
+		ARG 3 writer
 	METHOD writeInstant (Ljava/time/Instant;)V
 		ARG 1 instant
 	METHOD writeInt (I)Lio/netty/buffer/ByteBuf;
@@ -550,6 +580,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Write an IntList to this buffer. Every element is encoded as a VarInt.
 		COMMENT
 		COMMENT @see #readIntIdList
+		ARG 1 itIdList
 	METHOD writeIntLE (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/FriendlyByteBuf;
@@ -646,6 +677,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT @see #readWithCodec
 		ARG 1 codec
 		ARG 2 data
+	METHOD writeWithCodec (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
+		ARG 2 codec
+		ARG 3 value
 	METHOD writeZero (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
 	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;
