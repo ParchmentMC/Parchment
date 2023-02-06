@@ -39,13 +39,19 @@ CLASS net/minecraft/world/level/levelgen/DensityFunctions
 		ARG 3 toY
 	METHOD mappedNoise (Lnet/minecraft/core/Holder;DD)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 noiseData
+		ARG 1 fromY
+		ARG 3 toY
 	METHOD mappedNoise (Lnet/minecraft/core/Holder;DDD)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 noiseData
 		ARG 1 yScale
+		ARG 3 fromY
+		ARG 5 toY
 	METHOD mappedNoise (Lnet/minecraft/core/Holder;DDDD)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 noiseData
 		ARG 1 xzScale
 		ARG 3 yScale
+		ARG 5 fromY
+		ARG 7 toY
 	METHOD max (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 argument1
 		ARG 1 argument2
@@ -89,6 +95,8 @@ CLASS net/minecraft/world/level/levelgen/DensityFunctions
 		ARG 0 codec
 		ARG 1 fromFunction
 		ARG 2 toFunction
+	METHOD spline (Lnet/minecraft/util/CubicSpline;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 spline
 	METHOD weirdScaledSampler (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/levelgen/DensityFunctions$WeirdScaledSampler$RarityValueMapper;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 input
 		ARG 1 noiseData
@@ -122,6 +130,10 @@ CLASS net/minecraft/world/level/levelgen/DensityFunctions
 				ARG 3 name
 			METHOD lambda$new$0 (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunctions$MarkerOrMarked;
 				ARG 1 function
+	CLASS Spline
+		CLASS Coordinate
+			METHOD mapAll (Lnet/minecraft/world/level/levelgen/DensityFunction$Visitor;)Lnet/minecraft/world/level/levelgen/DensityFunctions$Spline$Coordinate;
+				ARG 1 visitor
 	CLASS ShiftNoise
 		METHOD compute (DDD)D
 			ARG 1 x
