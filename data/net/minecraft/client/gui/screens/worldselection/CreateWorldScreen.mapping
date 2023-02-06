@@ -12,10 +12,16 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 		ARG 3 worldGenSettingsComponent
 	METHOD addWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
 		ARG 1 listener
+	METHOD applyNewPackConfig (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/WorldDataConfiguration;)V
+		ARG 1 packRepository
+		ARG 2 initialDataConfig
 	METHOD copyBetweenDirs (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/nio/file/Path;)V
 		ARG 0 fromDir
 		ARG 1 toDir
 		ARG 2 filePath
+	METHOD createDefaultLoadConfig (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/WorldDataConfiguration;)Lnet/minecraft/server/WorldLoader$InitConfig;
+		ARG 0 packRepository
+		ARG 1 initialDataConfig
 	METHOD createFromExisting (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationContext;Ljava/nio/file/Path;)Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;
 		ARG 0 lastScreen
 		ARG 1 levelSettings
@@ -23,6 +29,9 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 		ARG 3 tempDataPackDir
 	METHOD createLevelSettings (Z)Lnet/minecraft/world/level/LevelSettings;
 		ARG 1 debug
+	METHOD createNewWorld (Lnet/minecraft/world/level/storage/PrimaryLevelData$SpecialWorldProperty;Lnet/minecraft/core/LayeredRegistryAccess;Lcom/mojang/serialization/Lifecycle;)V
+		ARG 1 specialWorldProperty
+		ARG 3 worldGenSettingsLifecycle
 	METHOD createTempDataPackDirFromExistingWorld (Ljava/nio/file/Path;Lnet/minecraft/client/Minecraft;)Ljava/nio/file/Path;
 		ARG 0 datapackDir
 		ARG 1 minecraft
