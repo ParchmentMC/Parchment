@@ -1,3 +1,13 @@
 CLASS net/minecraft/util/datafix/fixes/StructuresBecomeConfiguredFix
 	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;)V
 		ARG 1 outputSchema
+	METHOD fix (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
+		ARG 1 dynamic
+	METHOD guessConfiguration (Lcom/mojang/serialization/Dynamic;Lnet/minecraft/util/datafix/fixes/StructuresBecomeConfiguredFix$Conversion;)Ljava/util/Optional;
+		ARG 1 dynamic
+		ARG 2 conversion
+	CLASS Conversion
+		METHOD biomeMapped (Ljava/util/Map;Ljava/lang/String;)Lnet/minecraft/util/datafix/fixes/StructuresBecomeConfiguredFix$Conversion;
+			ARG 1 fallback
+		METHOD trivial (Ljava/lang/String;)Lnet/minecraft/util/datafix/fixes/StructuresBecomeConfiguredFix$Conversion;
+			ARG 0 fallback

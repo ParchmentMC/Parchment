@@ -1,3 +1,24 @@
 CLASS net/minecraft/util/datafix/fixes/EntityProjectileOwnerFix
 	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;)V
 		ARG 1 outputSchema
+	METHOD createUUIDArray (JJ)[I
+		ARG 0 uuidMost
+		ARG 2 uuidLeast
+	METHOD setUUID (Lcom/mojang/serialization/Dynamic;JJ)Lcom/mojang/serialization/Dynamic;
+		ARG 1 dynamic
+		ARG 2 uuidMost
+		ARG 4 uuidLeast
+	METHOD updateEntity (Lcom/mojang/datafixers/Typed;Ljava/lang/String;Ljava/util/function/Function;)Lcom/mojang/datafixers/Typed;
+		ARG 1 typed
+		ARG 2 choiceName
+		ARG 3 updater
+	METHOD updateItemPotion (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
+		ARG 1 itemPotionTag
+	METHOD updateOwnerArrow (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
+		ARG 1 arrowTag
+	METHOD updateOwnerLlamaSpit (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
+		ARG 1 llamaSpitTag
+	METHOD updateOwnerThrowable (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
+		ARG 1 throwableTag
+	METHOD updateProjectiles (Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;
+		ARG 1 typed
