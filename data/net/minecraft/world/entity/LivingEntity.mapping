@@ -53,6 +53,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 entityType
 	METHOD canBeAffected (Lnet/minecraft/world/effect/MobEffectInstance;)Z
 		ARG 1 effectInstance
+	METHOD canStandOnFluid (Lnet/minecraft/world/level/material/FluidState;)Z
+		ARG 1 fluidState
 	METHOD canTakeItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
 	METHOD checkAutoSpinAttack (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/phys/AABB;)V
@@ -67,6 +69,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 damageSource
 	METHOD completeUsingItem ()V
 		COMMENT Used for when item use count runs out, ie: eating completed
+	METHOD createEquipmentSlotAccess (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/entity/SlotAccess;
+		ARG 0 entity
+		ARG 1 slot
 	METHOD createLootContext (ZLnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
 		ARG 1 hitByPlayer
 		ARG 2 damageSource
@@ -102,6 +107,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 2 food
 	METHOD entityEventForEquipmentBreak (Lnet/minecraft/world/entity/EquipmentSlot;)B
 		ARG 0 slot
+	METHOD equipmentHasChanged (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 oldItem
+		ARG 2 newItem
 	METHOD forceAddEffect (Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 instance
 		ARG 2 entity
@@ -116,7 +124,11 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 partialTick
 	METHOD getAttribute (Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
 		ARG 1 attribute
+	METHOD getAttributeBaseValue (Lnet/minecraft/core/Holder;)D
+		ARG 1 attribute
 	METHOD getAttributeBaseValue (Lnet/minecraft/world/entity/ai/attributes/Attribute;)D
+		ARG 1 attribute
+	METHOD getAttributeValue (Lnet/minecraft/core/Holder;)D
 		ARG 1 attribute
 	METHOD getAttributeValue (Lnet/minecraft/world/entity/ai/attributes/Attribute;)D
 		ARG 1 attribute
@@ -311,6 +323,10 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 3 entity
 	METHOD onEnterCombat ()V
 		COMMENT Sends an ENTER_COMBAT packet to the client
+	METHOD onEquipItem (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 slot
+		ARG 2 oldItem
+		ARG 3 newItem
 	METHOD onItemPickup (Lnet/minecraft/world/entity/item/ItemEntity;)V
 		ARG 1 itemEntity
 	METHOD onLeaveCombat ()V
@@ -452,5 +468,7 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Updates the arm swing progress counters and animation progress
 	METHOD updateUsingItem (Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 usingItem
+	METHOD updateWalkAnimation (F)V
+		ARG 1 partialTick
 	METHOD verifyEquippedItem (Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 stack

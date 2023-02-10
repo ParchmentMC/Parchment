@@ -6,6 +6,11 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 		COMMENT If cheats are allowed
 	FIELD hardCore Z
 		COMMENT Set to true when "hardcore" is the currently-selected gamemode
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationContext;Ljava/util/Optional;Ljava/util/OptionalLong;)V
+		ARG 1 lastScreen
+		ARG 2 settings
+		ARG 3 preset
+		ARG 4 seed
 	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/world/level/WorldDataConfiguration;Lnet/minecraft/client/gui/screens/worldselection/WorldGenSettingsComponent;)V
 		ARG 1 lastScreen
 		ARG 2 dataConfiguration
@@ -15,6 +20,9 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 	METHOD applyNewPackConfig (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/WorldDataConfiguration;)V
 		ARG 1 packRepository
 		ARG 2 initialDataConfig
+	METHOD applyNewPackConfig (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/WorldDataConfiguration;Ljava/util/function/Consumer;)V
+		ARG 1 packRepository
+		ARG 2 worldDataConfiguration
 	METHOD copyBetweenDirs (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/nio/file/Path;)V
 		ARG 0 fromDir
 		ARG 1 toDir
@@ -43,6 +51,10 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 		ARG 1 button
 	METHOD lambda$init$12 (Lnet/minecraft/client/gui/components/Button;)V
 		ARG 1 button
+	METHOD openDataPackSelectionScreen (Lnet/minecraft/world/level/WorldDataConfiguration;)V
+		ARG 1 worldDataConfiguration
+	METHOD openExperimentsScreen (Lnet/minecraft/world/level/WorldDataConfiguration;)V
+		ARG 1 worldDataConfiguration
 	METHOD openFresh (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 0 minecraft
 		ARG 1 lastScreen
@@ -60,8 +72,13 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 		ARG 1 worldGenSettingsVisible
 	METHOD tryApplyNewDataPacks (Lnet/minecraft/server/packs/repository/PackRepository;)V
 		ARG 1 repository
+	METHOD tryApplyNewDataPacks (Lnet/minecraft/server/packs/repository/PackRepository;ZLjava/util/function/Consumer;)V
+		ARG 1 packRepository
+		ARG 2 shouldConfirm
 	METHOD updateResultFolder ()V
 		COMMENT Determine a save-directory name from the world name
+	METHOD updateResultFolder (Ljava/lang/String;)V
+		ARG 1 worldName
 	CLASS SelectedGameMode
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/world/level/GameType;)V
 			ARG 3 name

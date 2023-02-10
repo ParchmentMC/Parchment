@@ -9,6 +9,8 @@ CLASS net/minecraft/world/item/CreativeModeTab
 	METHOD buildContents (Lnet/minecraft/world/flag/FeatureFlagSet;Z)V
 		ARG 1 enabledFeatures
 		ARG 2 displayOperatorCreativeTab
+	METHOD buildContents (Lnet/minecraft/world/item/CreativeModeTab$ItemDisplayParameters;)V
+		ARG 1 parameters
 	METHOD builder (Lnet/minecraft/world/item/CreativeModeTab$Row;I)Lnet/minecraft/world/item/CreativeModeTab$Builder;
 		ARG 0 row
 		ARG 1 column
@@ -48,6 +50,9 @@ CLASS net/minecraft/world/item/CreativeModeTab
 			ARG 0 enabledFeatures
 			ARG 1 output
 			ARG 2 displayOperatorCreativeTab
+		METHOD lambda$static$0 (Lnet/minecraft/world/item/CreativeModeTab$ItemDisplayParameters;Lnet/minecraft/world/item/CreativeModeTab$Output;)V
+			ARG 0 parameters
+			ARG 1 output
 		METHOD title (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/world/item/CreativeModeTab$Builder;
 			ARG 1 title
 		METHOD type (Lnet/minecraft/world/item/CreativeModeTab$Type;)Lnet/minecraft/world/item/CreativeModeTab$Builder;
@@ -61,3 +66,11 @@ CLASS net/minecraft/world/item/CreativeModeTab
 			ARG 1 enabledFeatures
 			ARG 2 output
 			ARG 3 displayOperatorCreativeTab
+		METHOD accept (Lnet/minecraft/world/item/CreativeModeTab$ItemDisplayParameters;Lnet/minecraft/world/item/CreativeModeTab$Output;)V
+			ARG 1 parameters
+			ARG 2 output
+	CLASS ItemDisplayParameters
+		METHOD needsUpdate (Lnet/minecraft/world/flag/FeatureFlagSet;ZLnet/minecraft/core/HolderLookup$Provider;)Z
+			ARG 1 enabledFeatures
+			ARG 2 hasPermissions
+			ARG 3 holders

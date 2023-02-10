@@ -3,6 +3,23 @@ CLASS net/minecraft/world/damagesource/DamageSource
 		COMMENT Whether the damage ignores modification by potion effects or enchantments.
 	METHOD <init> (Ljava/lang/String;)V
 		ARG 1 msgId
+	METHOD <init> (Lnet/minecraft/core/Holder;)V
+		ARG 1 type
+	METHOD <init> (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 type
+		ARG 2 entity
+	METHOD <init> (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 type
+		ARG 2 causingEntity
+		ARG 3 directEntity
+	METHOD <init> (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 type
+		ARG 2 directEntity
+		ARG 3 causingEntity
+		ARG 4 damageSourcePosition
+	METHOD <init> (Lnet/minecraft/core/Holder;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 type
+		ARG 2 damageSourcePosition
 	METHOD arrow (Lnet/minecraft/world/entity/projectile/AbstractArrow;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/damagesource/DamageSource;
 		COMMENT Returns the {@link net.minecraft.world.damagesource.IndirectEntityDamageSource} of an arrow.
 		ARG 0 arrow
@@ -39,6 +56,8 @@ CLASS net/minecraft/world/damagesource/DamageSource
 	METHOD indirectMobAttack (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/damagesource/DamageSource;
 		ARG 0 source
 		ARG 1 indirectEntity
+	METHOD is (Lnet/minecraft/tags/TagKey;)Z
+		ARG 1 damageTypeKey
 	METHOD isBypassMagic ()Z
 		COMMENT Whether the damage ignores modification by potion effects or enchantments.
 	METHOD isFire ()Z
