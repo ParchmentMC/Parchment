@@ -25,6 +25,10 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 			ARG 5 z
 		METHOD beginLayer (Lcom/mojang/blaze3d/vertex/BufferBuilder;)V
 			ARG 1 builder
+		METHOD compileSync (Lnet/minecraft/client/renderer/chunk/RenderRegionCache;)V
+			ARG 1 regionCache
+		METHOD createCompileTask (Lnet/minecraft/client/renderer/chunk/RenderRegionCache;)Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk$ChunkCompileTask;
+			ARG 1 regionCache
 		METHOD doesChunkExistAt (Lnet/minecraft/core/BlockPos;)Z
 			ARG 1 pos
 		METHOD getBuffer (Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexBuffer;
@@ -39,6 +43,7 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 			ARG 0 positions
 		METHOD rebuildChunkAsync (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher;Lnet/minecraft/client/renderer/chunk/RenderRegionCache;)V
 			ARG 1 dispatcher
+			ARG 2 regionCache
 		METHOD resortTransparency (Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher;)Z
 			ARG 1 type
 			ARG 2 dispatcher
@@ -59,6 +64,7 @@ CLASS net/minecraft/client/renderer/chunk/ChunkRenderDispatcher
 				ARG 1 x
 				ARG 2 y
 				ARG 3 z
+				ARG 4 chunkBufferBuilderPack
 			METHOD handleBlockEntity (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk$RebuildTask$CompileResults;Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 				ARG 1 compileResults
 				ARG 2 blockEntity
