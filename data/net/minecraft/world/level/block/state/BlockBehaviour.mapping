@@ -111,6 +111,10 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
+	METHOD isOcclusionShapeFullBlock (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
 	METHOD isPathfindable (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/pathfinder/PathComputationType;)Z
 		ARG 1 state
 		ARG 2 level
@@ -278,8 +282,16 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 0 state
 		METHOD lambda$new$7 (Lnet/minecraft/world/level/material/MaterialColor;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/MaterialColor;
 			ARG 1 state
+		METHOD lambda$offsetType$8 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/Vec3;
+			ARG 0 state
+			ARG 1 level
+			ARG 2 pos
 		METHOD lambda$offsetType$9 (Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;
 			ARG 1 state
+		METHOD lambda$offsetType$9 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/Vec3;
+			ARG 0 state
+			ARG 1 level
+			ARG 2 pos
 		METHOD lightLevel (Ljava/util/function/ToIntFunction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
 			ARG 1 lightEmission
 		METHOD of (Lnet/minecraft/world/level/material/Material;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
@@ -499,6 +511,7 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 1 level
 			ARG 2 pos
 			ARG 3 stack
+			ARG 4 dropExperience
 		METHOD tick (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)V
 			ARG 1 level
 			ARG 2 pos
@@ -549,6 +562,11 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 				ARG 2 supportType
 			METHOD lambda$new$0 (Lnet/minecraft/core/Direction$Axis;)Z
 				ARG 1 dir
+	CLASS OffsetFunction
+		METHOD evaluate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/Vec3;
+			ARG 1 state
+			ARG 2 level
+			ARG 3 pos
 	CLASS StatePredicate
 		METHOD test (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
 			ARG 1 state

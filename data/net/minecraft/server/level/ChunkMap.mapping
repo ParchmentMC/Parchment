@@ -35,6 +35,11 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 2 packet
 	METHOD createEmptyChunk (Lnet/minecraft/world/level/ChunkPos;)Lnet/minecraft/world/level/chunk/ChunkAccess;
 		ARG 1 chunkPos
+	METHOD debugFuturesAndCreateReportedException (Ljava/lang/IllegalStateException;Ljava/lang/String;)Lnet/minecraft/ReportedException;
+		ARG 1 exception
+		ARG 2 details
+	METHOD dumpChunks (Ljava/io/Writer;)V
+		ARG 1 writer
 	METHOD euclideanDistanceSquared (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/entity/Entity;)D
 		COMMENT Returns the squared distance to the center of the chunk.
 		ARG 0 chunkPos
@@ -77,18 +82,27 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 3 chunk
 	METHOD postLoadProtoChunk (Lnet/minecraft/server/level/ServerLevel;Ljava/util/List;)V
 		ARG 0 level
+		ARG 1 tags
 	METHOD prepareAccessibleChunk (Lnet/minecraft/server/level/ChunkHolder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 holder
+	METHOD prepareEntityTickingChunk (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunkPos
 	METHOD prepareTickingChunk (Lnet/minecraft/server/level/ChunkHolder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 holder
+	METHOD printFuture (Ljava/util/concurrent/CompletableFuture;)Ljava/lang/String;
+		ARG 0 future
 	METHOD processUnloads (Ljava/util/function/BooleanSupplier;)V
 		ARG 1 hasMoreTime
+	METHOD protoChunkToFullChunk (Lnet/minecraft/server/level/ChunkHolder;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 holder
 	METHOD readChunk (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 pos
 	METHOD releaseLightTicket (Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 chunkPos
 	METHOD removeEntity (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
+	METHOD resendChunk (Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+		ARG 1 chunk
 	METHOD save (Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
 		ARG 1 chunk
 	METHOD saveAllChunks (Z)V

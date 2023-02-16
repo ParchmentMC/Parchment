@@ -3,17 +3,23 @@ CLASS net/minecraft/client/renderer/ItemInHandRenderer
 		ARG 1 minecraft
 		ARG 2 entityRenderDispatcher
 		ARG 3 itemRenderer
+	METHOD applyBrushTransform (Lcom/mojang/blaze3d/vertex/PoseStack;FLnet/minecraft/world/entity/HumanoidArm;Lnet/minecraft/world/item/ItemStack;F)V
+		ARG 1 poseStack
+		ARG 2 partialTick
+		ARG 3 hand
+		ARG 4 stack
+		ARG 5 equippedProg
 	METHOD applyEatTransform (Lcom/mojang/blaze3d/vertex/PoseStack;FLnet/minecraft/world/entity/HumanoidArm;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 matrixStack
 		ARG 2 partialTicks
 		ARG 3 hand
 		ARG 4 stack
 	METHOD applyItemArmAttackTransform (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/entity/HumanoidArm;F)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 hand
 		ARG 3 swingProgress
 	METHOD applyItemArmTransform (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/entity/HumanoidArm;F)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 hand
 		ARG 3 equippedProg
 	METHOD calculateMapTilt (F)F
@@ -33,12 +39,12 @@ CLASS net/minecraft/client/renderer/ItemInHandRenderer
 		ARG 5 swingProgress
 		ARG 6 stack
 		ARG 7 equippedProgress
-		ARG 8 matrixStack
+		ARG 8 poseStack
 		ARG 9 buffer
 		ARG 10 combinedLight
 	METHOD renderHandsWithItems (FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lnet/minecraft/client/player/LocalPlayer;I)V
 		ARG 1 partialTicks
-		ARG 2 matrixStack
+		ARG 2 poseStack
 		ARG 3 buffer
 		ARG 4 playerEntity
 		ARG 5 combinedLight
@@ -59,17 +65,17 @@ CLASS net/minecraft/client/renderer/ItemInHandRenderer
 		ARG 6 buffer
 		ARG 7 seed
 	METHOD renderMap (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/item/ItemStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 buffer
 		ARG 3 combinedLight
 		ARG 4 stack
 	METHOD renderMapHand (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/HumanoidArm;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 buffer
 		ARG 3 combinedLight
 		ARG 4 side
 	METHOD renderOneHandedMap (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IFLnet/minecraft/world/entity/HumanoidArm;FLnet/minecraft/world/item/ItemStack;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 buffer
 		ARG 3 combinedLight
 		ARG 4 equippedProgress
@@ -77,14 +83,14 @@ CLASS net/minecraft/client/renderer/ItemInHandRenderer
 		ARG 6 swingProgress
 		ARG 7 stack
 	METHOD renderPlayerArm (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IFFLnet/minecraft/world/entity/HumanoidArm;)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 buffer
 		ARG 3 combinedLight
 		ARG 4 equippedProgress
 		ARG 5 swingProgress
 		ARG 6 side
 	METHOD renderTwoHandedMap (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IFFF)V
-		ARG 1 matrixStack
+		ARG 1 poseStack
 		ARG 2 buffer
 		ARG 3 combinedLight
 		ARG 4 pitch

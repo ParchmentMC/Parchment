@@ -19,8 +19,17 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 	METHOD createEquipmentSlotAccess (ILjava/util/function/Predicate;)Lnet/minecraft/world/entity/SlotAccess;
 		ARG 1 slot
 		ARG 2 stackFilter
+	METHOD createOffspringAttribute (DDDDLnet/minecraft/util/RandomSource;)D
+		ARG 0 value1
+		ARG 2 value2
+		ARG 4 min
+		ARG 6 max
+		ARG 8 random
 	METHOD doPlayerRide (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
+	METHOD equipArmor (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 player
+		ARG 2 armor
 	METHOD executeRidersJump (FFF)V
 		ARG 1 riderJumpScale
 	METHOD fedFood (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/InteractionResult;
@@ -32,12 +41,18 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 3 reason
 		ARG 4 spawnData
 		ARG 5 dataTag
+	METHOD generateJumpStrength (Ljava/util/function/DoubleSupplier;)D
+		ARG 0 supplier
+	METHOD generateMaxHealth (Ljava/util/function/IntUnaryOperator;)F
+		ARG 0 operator
 	METHOD generateRandomJumpStrength (Lnet/minecraft/util/RandomSource;)D
 		ARG 1 random
 	METHOD generateRandomMaxHealth (Lnet/minecraft/util/RandomSource;)F
 		ARG 1 random
 	METHOD generateRandomSpeed (Lnet/minecraft/util/RandomSource;)D
 		ARG 1 random
+	METHOD generateSpeed (Ljava/util/function/DoubleSupplier;)D
+		ARG 0 supplier
 	METHOD getAmbientSoundInterval ()I
 		COMMENT Get number of ticks, at least during which the living entity will be silent.
 	METHOD getControllingPassenger ()Lnet/minecraft/world/entity/LivingEntity;
@@ -117,6 +132,12 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 2 value
 	METHOD setIsJumping (Z)V
 		ARG 1 jumping
+	METHOD setOffspringAttribute (Lnet/minecraft/world/entity/AgeableMob;Lnet/minecraft/world/entity/animal/horse/AbstractHorse;Lnet/minecraft/world/entity/ai/attributes/Attribute;DD)V
+		ARG 1 otherParent
+		ARG 2 child
+		ARG 3 attribute
+		ARG 4 min
+		ARG 6 max
 	METHOD setOffspringAttributes (Lnet/minecraft/world/entity/AgeableMob;Lnet/minecraft/world/entity/animal/horse/AbstractHorse;)V
 		ARG 1 parent
 		ARG 2 child

@@ -17,8 +17,16 @@ CLASS net/minecraft/client/model/geom/ModelPart
 		ARG 1 name
 	METHOD getRandomCube (Lnet/minecraft/util/RandomSource;)Lnet/minecraft/client/model/geom/ModelPart$Cube;
 		ARG 1 random
+	METHOD hasChild (Ljava/lang/String;)Z
+		ARG 1 name
 	METHOD loadPose (Lnet/minecraft/client/model/geom/PartPose;)V
 		ARG 1 partPose
+	METHOD offsetPos (Lorg/joml/Vector3f;)V
+		ARG 1 offset
+	METHOD offsetRotation (Lorg/joml/Vector3f;)V
+		ARG 1 offset
+	METHOD offsetScale (Lorg/joml/Vector3f;)V
+		ARG 1 offset
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;II)V
 		ARG 1 poseStack
 		ARG 2 vertexConsumer
@@ -51,6 +59,7 @@ CLASS net/minecraft/client/model/geom/ModelPart
 	METHOD visit (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/model/geom/ModelPart$Visitor;Ljava/lang/String;)V
 		ARG 1 poseStack
 		ARG 2 visitor
+		ARG 3 path
 	CLASS Cube
 		METHOD <init> (IIFFFFFFFFFZFF)V
 			ARG 1 texCoordU
@@ -67,6 +76,22 @@ CLASS net/minecraft/client/model/geom/ModelPart
 			ARG 12 mirror
 			ARG 13 texWidthScaled
 			ARG 14 texHeightScaled
+		METHOD <init> (IIFFFFFFFFFZFFLjava/util/Set;)V
+			ARG 1 texCoordU
+			ARG 2 texCoordV
+			ARG 3 originX
+			ARG 4 originY
+			ARG 5 originZ
+			ARG 6 dimensionX
+			ARG 7 dimensionY
+			ARG 8 dimensionZ
+			ARG 9 gtowX
+			ARG 10 growY
+			ARG 11 growZ
+			ARG 12 mirror
+			ARG 13 texScaleU
+			ARG 14 texScaleV
+			ARG 15 visibleFaces
 		METHOD compile (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lcom/mojang/blaze3d/vertex/VertexConsumer;IIFFFF)V
 			ARG 1 pose
 			ARG 2 vertexConsumer

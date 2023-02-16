@@ -3,6 +3,14 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 		ARG 1 blockStateOutput
 		ARG 2 modelOutput
 		ARG 3 skippedAutoModelsOutput
+	METHOD addBookSlotModel (Lnet/minecraft/data/models/blockstates/MultiPartGenerator;Lnet/minecraft/data/models/blockstates/Condition$TerminalCondition;Lnet/minecraft/data/models/blockstates/VariantProperties$Rotation;Lnet/minecraft/world/level/block/state/properties/BooleanProperty;Lnet/minecraft/data/models/model/ModelTemplate;Z)V
+		ARG 1 generator
+		ARG 2 condition
+		ARG 3 rotation
+	METHOD addSlotStateAndRotationVariants (Lnet/minecraft/data/models/blockstates/MultiPartGenerator;Lnet/minecraft/data/models/blockstates/Condition$TerminalCondition;Lnet/minecraft/data/models/blockstates/VariantProperties$Rotation;)V
+		ARG 1 generator
+		ARG 2 condition
+		ARG 3 rotation
 	METHOD applyRotation (Lnet/minecraft/core/FrontAndTop;Lnet/minecraft/data/models/blockstates/Variant;)Lnet/minecraft/data/models/blockstates/Variant;
 		ARG 1 frontAndTop
 		ARG 2 variant
@@ -94,6 +102,9 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 		ARG 1 crossBlock
 		ARG 2 tintState
 		ARG 3 textureMapping
+	METHOD createCrossBlock (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/data/models/BlockModelGenerators$TintState;Lnet/minecraft/world/level/block/state/properties/Property;[I)V
+		ARG 1 crossBlock
+		ARG 2 tintState
 	METHOD createCrossBlockWithDefaultItem (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/data/models/BlockModelGenerators$TintState;)V
 		ARG 1 crossBlock
 		ARG 2 tintState
@@ -101,6 +112,13 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 		ARG 1 crossBlock
 		ARG 2 tintState
 		ARG 3 textureMapping
+	METHOD createCustomFence (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/data/models/blockstates/BlockStateGenerator;
+		ARG 0 customFenceBlock
+		ARG 1 postModelId
+		ARG 2 northModelId
+		ARG 3 eastModelId
+		ARG 4 southModelId
+		ARG 5 westModelId
 	METHOD createDispenserBlock (Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 dispenserBlock
 	METHOD createDoor (Lnet/minecraft/world/level/block/Block;)V
@@ -132,6 +150,8 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 		ARG 5 uvLock
 	METHOD createFloorFireModels (Lnet/minecraft/world/level/block/Block;)Ljava/util/List;
 		ARG 1 fireBlock
+	METHOD createFlowerBed (Lnet/minecraft/world/level/block/Block;)V
+		ARG 1 flowerBedBlock
 	METHOD createFullAndCarpetBlocks (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 fullBlock
 		ARG 2 carpetBlock
@@ -341,6 +361,8 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 			ARG 2 logMapping
 		METHOD log (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$WoodProvider;
 			ARG 1 logBlock
+		METHOD logUVLocked (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$WoodProvider;
+			ARG 1 logBlock
 		METHOD logWithHorizontal (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$WoodProvider;
 			ARG 1 logBlock
 		METHOD wood (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$WoodProvider;
@@ -350,6 +372,8 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 			ARG 2 mapping
 		METHOD button (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;
 			ARG 1 buttonBlock
+		METHOD customFence (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;
+			ARG 1 fenceBlock
 		METHOD customFenceGate (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;
 			ARG 1 customFenceGateBlock
 		METHOD door (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;

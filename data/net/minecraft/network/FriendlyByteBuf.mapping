@@ -94,6 +94,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 index
 	METHOD getLongLE (I)J
 		ARG 1 index
+	METHOD getMaxEncodedUtfLength (I)I
+		ARG 0 maxLength
 	METHOD getMedium (I)I
 		ARG 1 index
 	METHOD getMediumLE (I)I
@@ -248,6 +250,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Reads an ItemStack from this buffer.
 		COMMENT
 		COMMENT @see #writeItem
+	METHOD readJsonWithCodec (Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
+		ARG 1 codec
 	METHOD readList (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/util/List;
 		COMMENT Read a List from this buffer. First a new list is created given the number of elements.
 		COMMENT Then every element is read using {@code elementReader}.
@@ -589,6 +593,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #readItem
 		ARG 1 stack
+	METHOD writeJsonWithCodec (Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
+		ARG 1 codec
+		ARG 2 value
 	METHOD writeLong (J)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeLongArray ([J)Lnet/minecraft/network/FriendlyByteBuf;

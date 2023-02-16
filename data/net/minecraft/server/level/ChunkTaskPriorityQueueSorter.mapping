@@ -1,7 +1,14 @@
 CLASS net/minecraft/server/level/ChunkTaskPriorityQueueSorter
 	METHOD <init> (Ljava/util/List;Ljava/util/concurrent/Executor;I)V
+		ARG 1 queues
 		ARG 2 task
 		ARG 3 maxTasks
+	METHOD getProcessor (Lnet/minecraft/util/thread/ProcessorHandle;Z)Lnet/minecraft/util/thread/ProcessorHandle;
+		ARG 1 processor
+	METHOD getQueue (Lnet/minecraft/util/thread/ProcessorHandle;)Lnet/minecraft/server/level/ChunkTaskPriorityQueue;
+		ARG 1 processor
+	METHOD getReleaseProcessor (Lnet/minecraft/util/thread/ProcessorHandle;)Lnet/minecraft/util/thread/ProcessorHandle;
+		ARG 1 processor
 	METHOD message (Ljava/lang/Runnable;JLjava/util/function/IntSupplier;)Lnet/minecraft/server/level/ChunkTaskPriorityQueueSorter$Message;
 		ARG 0 task
 		ARG 1 pos
@@ -21,9 +28,11 @@ CLASS net/minecraft/server/level/ChunkTaskPriorityQueueSorter
 		ARG 1 pos
 		ARG 3 clearQueue
 	METHOD release (Lnet/minecraft/util/thread/ProcessorHandle;JLjava/lang/Runnable;Z)V
+		ARG 1 processor
 		ARG 2 chunkPos
 		ARG 5 fullClear
 	METHOD submit (Lnet/minecraft/util/thread/ProcessorHandle;Ljava/util/function/Function;JLjava/util/function/IntSupplier;Z)V
+		ARG 1 processor
 		ARG 2 task
 		ARG 3 chunkPos
 	CLASS Message

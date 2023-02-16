@@ -3,6 +3,10 @@ CLASS net/minecraft/world/Container
 		COMMENT Returns {@code true} if automation is allowed to insert the given stack (ignoring stack size) into the given slot. For guis use Slot.isItemValid
 		ARG 1 index
 		ARG 2 stack
+	METHOD canTakeItem (Lnet/minecraft/world/Container;ILnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 container
+		ARG 2 index
+		ARG 3 stack
 	METHOD countItem (Lnet/minecraft/world/item/Item;)I
 		COMMENT Returns the total amount of the specified item in this inventory. This method does not check for nbt.
 		ARG 1 item
@@ -13,9 +17,13 @@ CLASS net/minecraft/world/Container
 		ARG 1 slot
 	METHOD getMaxStackSize ()I
 		COMMENT Returns the maximum stack size for an inventory slot. Seems to always be 64, possibly will be extended.
+	METHOD hasAnyMatching (Ljava/util/function/Predicate;)Z
+		ARG 1 predicate
 	METHOD hasAnyOf (Ljava/util/Set;)Z
 		COMMENT Returns {@code true} if any item from the passed set exists in this inventory.
 		ARG 1 set
+	METHOD lambda$hasAnyOf$0 (Ljava/util/Set;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 item
 	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
 		ARG 1 slot
@@ -34,5 +42,12 @@ CLASS net/minecraft/world/Container
 	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
 		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
 		ARG 1 player
+	METHOD stillValidBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/player/Player;)Z
+		ARG 0 blockEntity
+		ARG 1 player
+	METHOD stillValidBlockEntity (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/player/Player;I)Z
+		ARG 0 blockEntity
+		ARG 1 player
+		ARG 2 maxDistance
 	METHOD stopOpen (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
