@@ -3,12 +3,18 @@ CLASS net/minecraft/util/StringRepresentable
 		ARG 0 elementsSupplier
 	METHOD keys ([Lnet/minecraft/util/StringRepresentable;)Lcom/mojang/serialization/Keyable;
 		ARG 0 serializables
+	CLASS 1
+		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
+			ARG 1 ops
 	CLASS EnumCodec
 		METHOD <init> ([Ljava/lang/Enum;Ljava/util/function/Function;)V
 			ARG 1 values
 			ARG 2 resolver
 		METHOD byName (Ljava/lang/String;)Ljava/lang/Enum;
 			ARG 1 name
+		METHOD byName (Ljava/lang/String;Ljava/lang/Enum;)Ljava/lang/Enum;
+			ARG 1 name
+			ARG 2 defaultValue
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
 			ARG 2 input
@@ -16,3 +22,6 @@ CLASS net/minecraft/util/StringRepresentable
 			ARG 1 input
 			ARG 2 ops
 			ARG 3 prefix
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 element
+			ARG 3 input

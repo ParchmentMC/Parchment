@@ -1,0 +1,21 @@
+CLASS com/mojang/realmsclient/dto/RealmsNotification
+	METHOD <init> (Ljava/util/UUID;ZZLjava/lang/String;)V
+		ARG 1 uuid
+		ARG 2 dismissable
+		ARG 3 seen
+		ARG 4 type
+	METHOD parse (Lcom/google/gson/JsonObject;)Lcom/mojang/realmsclient/dto/RealmsNotification;
+		ARG 0 json
+	METHOD parseList (Ljava/lang/String;)Ljava/util/List;
+		ARG 0 json
+	CLASS VisitUrl
+		METHOD <init> (Lcom/mojang/realmsclient/dto/RealmsNotification;Ljava/lang/String;Lcom/mojang/realmsclient/dto/RealmsText;Lcom/mojang/realmsclient/dto/RealmsText;)V
+			ARG 1 notification
+			ARG 2 url
+			ARG 3 buttonText
+			ARG 4 message
+		METHOD buildOpenLinkButton (Lnet/minecraft/client/gui/screens/Screen;)Lnet/minecraft/client/gui/components/Button;
+			ARG 1 lastScreen
+		METHOD parse (Lcom/mojang/realmsclient/dto/RealmsNotification;Lcom/google/gson/JsonObject;)Lcom/mojang/realmsclient/dto/RealmsNotification$VisitUrl;
+			ARG 0 notification
+			ARG 1 json

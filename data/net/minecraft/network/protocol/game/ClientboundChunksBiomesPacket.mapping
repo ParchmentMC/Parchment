@@ -1,0 +1,17 @@
+CLASS net/minecraft/network/protocol/game/ClientboundChunksBiomesPacket
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD forChunks (Ljava/util/List;)Lnet/minecraft/network/protocol/game/ClientboundChunksBiomesPacket;
+		ARG 0 chunks
+	CLASS ChunkBiomeData
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+		METHOD <init> (Lnet/minecraft/world/level/chunk/LevelChunk;)V
+			ARG 1 chunk
+		METHOD calculateChunkSize (Lnet/minecraft/world/level/chunk/LevelChunk;)I
+			ARG 0 chunk
+		METHOD extractChunkData (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/level/chunk/LevelChunk;)V
+			ARG 0 buffer
+			ARG 1 chunk
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer

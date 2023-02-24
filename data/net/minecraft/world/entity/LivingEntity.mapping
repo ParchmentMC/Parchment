@@ -188,6 +188,11 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Returns the maximum health of the entity (what it is able to regenerate up to, what it spawned with, etc.)
 	METHOD getProjectile (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 weaponStack
+	METHOD getRiddenInput (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 entity
+		ARG 2 travelVector
+	METHOD getRiddenSpeed (Lnet/minecraft/world/entity/LivingEntity;)F
+		ARG 1 entity
 	METHOD getSoundVolume ()F
 		COMMENT Returns the volume for the sounds this mob makes.
 	METHOD getSpeed ()F
@@ -452,11 +457,17 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD tickHeadTurn (FF)F
 		ARG 1 yRot
 		ARG 2 animStep
+	METHOD tickRidden (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 entity
+		ARG 2 travelVector
 	METHOD trapdoorUsableAsLadder (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 pos
 		ARG 2 state
 	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 travelVector
+	METHOD travelRidden (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 entity
+		ARG 2 travelVector
 	METHOD triggerItemUseEffects (Lnet/minecraft/world/item/ItemStack;I)V
 		ARG 1 stack
 		ARG 2 amount
