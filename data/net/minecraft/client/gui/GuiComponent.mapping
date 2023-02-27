@@ -1,4 +1,6 @@
 CLASS net/minecraft/client/gui/GuiComponent
+	METHOD applyScissor (Lnet/minecraft/client/gui/navigation/ScreenRectangle;)V
+		ARG 0 rectangle
 	METHOD blit (Lcom/mojang/blaze3d/vertex/PoseStack;IIFFIIII)V
 		ARG 0 poseStack
 		ARG 1 x
@@ -79,11 +81,23 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 2 targetY
 		ARG 3 targetWidth
 		ARG 4 targetHeight
-		ARG 5 slice
+		ARG 5 sliceSize
 		ARG 6 sourceWidth
 		ARG 7 sourceHeight
 		ARG 8 sourceX
 		ARG 9 sourceY
+	METHOD blitNineSliced (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIIII)V
+		ARG 0 poseStack
+		ARG 1 targetX
+		ARG 2 targetY
+		ARG 3 targetWidth
+		ARG 4 targetHeight
+		ARG 5 sliceWidth
+		ARG 6 sliceHeight
+		ARG 7 sourceWidth
+		ARG 8 sourceHeight
+		ARG 9 sourceX
+		ARG 10 sourceY
 	METHOD blitNineSliced (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIIIIII)V
 		ARG 0 poseStack
 		ARG 1 targetX
@@ -276,3 +290,6 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 2 minY
 		ARG 3 maxY
 		ARG 4 color
+	CLASS ScissorStack
+		METHOD push (Lnet/minecraft/client/gui/navigation/ScreenRectangle;)Lnet/minecraft/client/gui/navigation/ScreenRectangle;
+			ARG 1 rectangle
