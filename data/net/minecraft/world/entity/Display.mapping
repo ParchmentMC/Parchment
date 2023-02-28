@@ -48,6 +48,7 @@ CLASS net/minecraft/world/entity/Display
 			ARG 1 partialTick
 		METHOD loadFlag (BLnet/minecraft/nbt/CompoundTag;Ljava/lang/String;B)B
 			ARG 1 tag
+			ARG 2 flag
 		METHOD setBackgroundColor (I)V
 			ARG 1 backgroundColor
 		METHOD setFlags (B)V
@@ -58,6 +59,9 @@ CLASS net/minecraft/world/entity/Display
 			ARG 1 text
 		METHOD setTextOpacity (B)V
 			ARG 1 textOpacity
+		METHOD storeFlag (BLnet/minecraft/nbt/CompoundTag;Ljava/lang/String;B)V
+			ARG 1 tag
+			ARG 2 flag
 		CLASS Align
 			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 				ARG 3 name
@@ -65,6 +69,9 @@ CLASS net/minecraft/world/entity/Display
 			METHOD split (Lnet/minecraft/network/chat/Component;I)Lnet/minecraft/world/entity/Display$TextDisplay$CachedInfo;
 				ARG 1 text
 				ARG 2 maxWidth
+	CLASS BlockDisplay
+		METHOD setBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
+			ARG 1 blockState
 	CLASS Interpolator
 		METHOD <init> (Ljava/lang/Object;)V
 			ARG 1 currentValue
@@ -86,6 +93,8 @@ CLASS net/minecraft/world/entity/Display
 		METHOD addEntry (Lnet/minecraft/network/syncher/EntityDataAccessor;Lnet/minecraft/world/entity/Display$Interpolator;)V
 			ARG 1 dataAccessor
 			ARG 2 interpolator
+		METHOD shouldTriggerUpdate (I)Z
+			ARG 1 id
 		METHOD updateValues (Lnet/minecraft/network/syncher/SynchedEntityData;)V
 			ARG 1 data
 	CLASS FloatInterpolator

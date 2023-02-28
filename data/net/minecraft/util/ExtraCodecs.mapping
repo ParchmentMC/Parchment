@@ -1,17 +1,74 @@
 CLASS net/minecraft/util/ExtraCodecs
+	METHOD catchDecoderException (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+		ARG 0 codec
 	METHOD checkRangeWithMessage (Ljava/lang/Number;Ljava/lang/Number;Ljava/util/function/Function;)Ljava/util/function/Function;
 		ARG 0 min
 		ARG 1 max
 		ARG 2 errorMessage
+	METHOD floatRangeMinExclusiveWithMessage (FFLjava/util/function/Function;)Lcom/mojang/serialization/Codec;
+		ARG 0 min
+		ARG 1 max
+		ARG 2 errorMessage
+	METHOD instantCodec (Ljava/time/format/DateTimeFormatter;)Lcom/mojang/serialization/Codec;
+		ARG 0 dateTimeFormatter
+	METHOD intRange (II)Lcom/mojang/serialization/Codec;
+		ARG 0 min
+		ARG 1 max
 	METHOD intRangeWithMessage (IILjava/util/function/Function;)Lcom/mojang/serialization/Codec;
 		ARG 0 min
 		ARG 1 max
 		ARG 2 errorMessage
+	METHOD lazyInitializedCodec (Ljava/util/function/Supplier;)Lcom/mojang/serialization/Codec;
+		ARG 0 delegate
+	METHOD mapGameProfileToIdName (Lcom/mojang/authlib/GameProfile;)Lcom/mojang/serialization/DataResult;
+		ARG 0 gameProfile
+	METHOD mapIdNameToGameProfile (Lcom/mojang/datafixers/util/Pair;)Lcom/mojang/serialization/DataResult;
+		ARG 0 idName
+	METHOD nonEmptyHolderSet (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+		ARG 0 codec
 	METHOD nonEmptyList (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+		ARG 0 codec
+	METHOD orCompressed (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+		ARG 0 first
+		ARG 1 second
+	METHOD sizeLimitedString (II)Lcom/mojang/serialization/Codec;
+		ARG 0 minSize
+		ARG 1 maxSize
+	METHOD validate (Lcom/mojang/serialization/Codec;Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
 		ARG 0 codec
 	METHOD xor (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
 		ARG 0 first
 		ARG 1 second
+	CLASS 1
+		METHOD apply (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;Lcom/mojang/serialization/DataResult;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+			ARG 3 a
+		METHOD coApply (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;Lcom/mojang/serialization/DataResult;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+			ARG 3 t
+	CLASS 2
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 input
+			ARG 2 ops
+			ARG 3 prefix
+	CLASS 3
+		METHOD apply (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;Lcom/mojang/serialization/DataResult;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+			ARG 3 a
+		METHOD coApply (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;Lcom/mojang/serialization/DataResult;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+			ARG 3 t
+	CLASS 4
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
 	CLASS XorCodec
 		METHOD <init> (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)V
 			ARG 1 first
@@ -29,3 +86,32 @@ CLASS net/minecraft/util/ExtraCodecs
 		METHOD <init> (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)V
 			ARG 1 first
 			ARG 2 second
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 input
+			ARG 2 ops
+			ARG 3 prefix
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other
+	CLASS LazyInitializedCodec
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 input
+			ARG 2 ops
+			ARG 3 prefix
+	CLASS 1ContextRetrievalCodec
+		METHOD <init> (Ljava/util/function/Function;)V
+			ARG 1 valGetter
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;)Lcom/mojang/serialization/RecordBuilder;
+			ARG 1 input
+			ARG 2 ops
+			ARG 3 prefix
+		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
+			ARG 1 ops

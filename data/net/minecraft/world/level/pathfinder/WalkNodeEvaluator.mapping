@@ -23,6 +23,8 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+		ARG 7 direction
+		ARG 8 pathType
 	METHOD getBlockPathType (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		COMMENT Returns a significant cached path node type for specified position or calculates it
 		ARG 1 entityliving
@@ -68,6 +70,15 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 		ARG 12 pos
 	METHOD getBlockPathTypes (Lnet/minecraft/world/level/BlockGetter;IIILjava/util/EnumSet;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		ARG 1 level
+		ARG 2 xOffset
+		ARG 3 yOffset
+		ARG 4 zOffset
+		ARG 5 output
+		ARG 7 pos
+	METHOD getBlockedNode (III)Lnet/minecraft/world/level/pathfinder/Node;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD getCachedBlockType (Lnet/minecraft/world/entity/Mob;III)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		COMMENT Returns a cached path node type for specified position or calculates it
 		ARG 1 entity
@@ -79,8 +90,19 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 	METHOD getFloorLevel (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)D
 		ARG 0 level
 		ARG 1 pos
+	METHOD getNodeAndUpdateCostToMax (IIILnet/minecraft/world/level/pathfinder/BlockPathTypes;F)Lnet/minecraft/world/level/pathfinder/Node;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 type
+		ARG 5 costMalus
+	METHOD getStartNode (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/Node;
+		ARG 1 pos
 	METHOD hasCollisions (Lnet/minecraft/world/phys/AABB;)Z
 		ARG 1 boundingBox
 	METHOD isBurningBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		COMMENT Checks whether the specified block state can cause burn damage
 		ARG 0 state
+	METHOD isNeighborValid (Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)Z
+		ARG 1 neighbor
+		ARG 2 node
