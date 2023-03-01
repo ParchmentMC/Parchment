@@ -2,10 +2,19 @@ CLASS net/minecraft/client/renderer/texture/SpriteLoader
 	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;I)V
 		ARG 1 location
 		ARG 2 maxSupportedTextureSize
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;III)V
+		ARG 1 location
+		ARG 2 maxSupportedTextureSize
+		ARG 3 minWidth
+		ARG 4 minHeight
 	METHOD create (Lnet/minecraft/client/renderer/texture/TextureAtlas;)Lnet/minecraft/client/renderer/texture/SpriteLoader;
 		ARG 0 atlas
 	METHOD getStitchedSprites (Lnet/minecraft/client/renderer/texture/Stitcher;)Ljava/util/Map;
 		ARG 1 stitcher
+	METHOD getStitchedSprites (Lnet/minecraft/client/renderer/texture/Stitcher;II)Ljava/util/Map;
+		ARG 1 stitcher
+		ARG 2 x
+		ARG 3 y
 	METHOD lambda$loadAndStitch$7 (ILjava/util/concurrent/Executor;Ljava/util/List;)Lnet/minecraft/client/renderer/texture/SpriteLoader$Preparations;
 		ARG 3 contents
 	METHOD loadAndStitch (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/ResourceLocation;ILjava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
