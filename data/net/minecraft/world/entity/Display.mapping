@@ -75,6 +75,9 @@ CLASS net/minecraft/world/entity/Display
 	CLASS Interpolator
 		METHOD <init> (Ljava/lang/Object;)V
 			ARG 1 currentValue
+		METHOD updateValue (FLjava/lang/Object;)V
+			ARG 1 partialTick
+			ARG 2 value
 		METHOD updateValue (Ljava/lang/Object;)V
 			ARG 1 newValue
 	CLASS IntInterpolator
@@ -90,11 +93,17 @@ CLASS net/minecraft/world/entity/Display
 		METHOD addEntry (Ljava/util/Set;Ljava/util/function/Consumer;)V
 			ARG 1 dataAccessors
 			ARG 2 entityDataConsumer
+		METHOD addEntry (Ljava/util/Set;Lnet/minecraft/world/entity/Display$IntepolatorUpdater;)V
+			ARG 1 accessors
+			ARG 2 updater
 		METHOD addEntry (Lnet/minecraft/network/syncher/EntityDataAccessor;Lnet/minecraft/world/entity/Display$Interpolator;)V
 			ARG 1 dataAccessor
 			ARG 2 interpolator
 		METHOD shouldTriggerUpdate (I)Z
 			ARG 1 id
+		METHOD updateValues (FLnet/minecraft/network/syncher/SynchedEntityData;)V
+			ARG 1 partialTick
+			ARG 2 entityData
 		METHOD updateValues (Lnet/minecraft/network/syncher/SynchedEntityData;)V
 			ARG 1 data
 	CLASS FloatInterpolator
@@ -106,6 +115,10 @@ CLASS net/minecraft/world/entity/Display
 			ARG 1 delta
 			ARG 2 min
 			ARG 3 max
+	CLASS IntepolatorUpdater
+		METHOD update (FLnet/minecraft/network/syncher/SynchedEntityData;)V
+			ARG 1 partialTick
+			ARG 2 entityData
 	CLASS GenericInterpolator
 		METHOD get (F)Ljava/lang/Object;
 			ARG 1 partialTick
