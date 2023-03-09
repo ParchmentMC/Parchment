@@ -63,6 +63,8 @@ CLASS net/minecraft/server/MinecraftServer
 		COMMENT Gets serverPort.
 	METHOD getProfilePermissions (Lcom/mojang/authlib/GameProfile;)I
 		ARG 1 profile
+	METHOD getScaledTrackingDistance (I)I
+		ARG 1 trackingDistance
 	METHOD getSelectedPacks (Lnet/minecraft/server/packs/repository/PackRepository;)Lnet/minecraft/world/level/DataPackConfig;
 		ARG 0 packRepository
 	METHOD getServerVersion ()Ljava/lang/String;
@@ -176,9 +178,12 @@ CLASS net/minecraft/server/MinecraftServer
 	METHOD spin (Ljava/util/function/Function;)Lnet/minecraft/server/MinecraftServer;
 		ARG 0 threadFunction
 	METHOD startRecordingMetrics (Ljava/util/function/Consumer;Ljava/util/function/Consumer;)V
+		ARG 1 output
 		ARG 2 onMetricsRecordingFinished
 	METHOD stopServer ()V
 		COMMENT Saves all necessary data as preparation for stopping the server.
+	METHOD synchronizeTime (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	METHOD tickChildren (Ljava/util/function/BooleanSupplier;)V
 		ARG 1 hasTimeLeft
 	METHOD tickServer (Ljava/util/function/BooleanSupplier;)V
@@ -194,3 +199,6 @@ CLASS net/minecraft/server/MinecraftServer
 		METHOD <init> (JI)V
 			ARG 1 startNanos
 			ARG 3 startTick
+		METHOD stop (JI)Lnet/minecraft/util/profiling/ProfileResults;
+			ARG 1 endTimeNano
+			ARG 3 endTimeTicks
