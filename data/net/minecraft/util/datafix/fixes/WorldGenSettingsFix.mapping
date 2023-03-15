@@ -1,3 +1,38 @@
 CLASS net/minecraft/util/datafix/fixes/WorldGenSettingsFix
 	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;)V
 		ARG 1 outputSchema
+	METHOD defaultOverworld (Lcom/mojang/serialization/Dynamic;J)Lcom/mojang/serialization/Dynamic;
+		ARG 0 dynamic
+		ARG 1 seed
+	METHOD fix (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
+		ARG 0 dynamic
+	METHOD fixFlatStructures (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/OptionalDynamic;)Ljava/util/Map;
+		ARG 0 ops
+	METHOD getInt (Ljava/lang/String;I)I
+		ARG 0 string
+		ARG 1 defaultValue
+	METHOD getInt (Ljava/lang/String;II)I
+		ARG 0 string
+		ARG 1 defaultValue
+		ARG 2 minValue
+	METHOD noise (JLcom/mojang/serialization/DynamicLike;Lcom/mojang/serialization/Dynamic;Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
+		ARG 0 seed
+		ARG 2 dynamic
+		ARG 3 settings
+		ARG 4 biomeNoise
+	METHOD vanillaBiomeSource (Lcom/mojang/serialization/Dynamic;JZZ)Lcom/mojang/serialization/Dynamic;
+		ARG 0 dynamic
+		ARG 1 seed
+		ARG 3 legacyBiomeInitLayer
+		ARG 4 largeBiomes
+	METHOD vanillaLevels (Lcom/mojang/serialization/Dynamic;JLcom/mojang/serialization/Dynamic;Z)Ljava/lang/Object;
+		ARG 0 dynamic
+		ARG 1 seed
+		ARG 4 caves
+	CLASS StructureFeatureConfiguration
+		METHOD <init> (III)V
+			ARG 1 sapcing
+			ARG 2 separation
+			ARG 3 salt
+		METHOD serialize (Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/Dynamic;
+			ARG 1 ops

@@ -2,6 +2,9 @@ CLASS net/minecraft/util/datafix/schemas/V704
 	METHOD <init> (ILcom/mojang/datafixers/schemas/Schema;)V
 		ARG 1 versionKey
 		ARG 2 parent
+	METHOD getChoiceType (Lcom/mojang/datafixers/DSL$TypeReference;Ljava/lang/String;)Lcom/mojang/datafixers/types/Type;
+		ARG 1 type
+		ARG 2 choiceName
 	METHOD registerBlockEntities (Lcom/mojang/datafixers/schemas/Schema;)Ljava/util/Map;
 		ARG 1 schema
 	METHOD registerInventory (Lcom/mojang/datafixers/schemas/Schema;Ljava/util/Map;Ljava/lang/String;)V
@@ -12,3 +15,7 @@ CLASS net/minecraft/util/datafix/schemas/V704
 		ARG 1 schema
 		ARG 2 entityTypes
 		ARG 3 blockEntityTypes
+	CLASS 1
+		METHOD apply (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 ops
+			ARG 2 value

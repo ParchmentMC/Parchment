@@ -2,3 +2,32 @@ CLASS net/minecraft/util/datafix/fixes/AbstractUUIDFix
 	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;Lcom/mojang/datafixers/DSL$TypeReference;)V
 		ARG 1 outputSchema
 		ARG 2 typeReference
+	METHOD createUUIDFromLongs (Lcom/mojang/serialization/Dynamic;Ljava/lang/String;Ljava/lang/String;)Ljava/util/Optional;
+		ARG 0 dynamic
+		ARG 1 mostKey
+		ARG 2 leastKey
+	METHOD createUUIDFromML (Lcom/mojang/serialization/Dynamic;)Ljava/util/Optional;
+		ARG 0 dynamic
+	METHOD createUUIDFromString (Lcom/mojang/serialization/Dynamic;Ljava/lang/String;)Ljava/util/Optional;
+		ARG 0 dynamic
+		ARG 1 uuidKey
+	METHOD createUUIDTag (Lcom/mojang/serialization/Dynamic;JJ)Ljava/util/Optional;
+		ARG 0 dynamic
+		ARG 1 most
+		ARG 3 least
+	METHOD replaceUUIDLeastMost (Lcom/mojang/serialization/Dynamic;Ljava/lang/String;Ljava/lang/String;)Ljava/util/Optional;
+		ARG 0 dynamic
+		ARG 1 oldKey
+		ARG 2 newKey
+	METHOD replaceUUIDMLTag (Lcom/mojang/serialization/Dynamic;Ljava/lang/String;Ljava/lang/String;)Ljava/util/Optional;
+		ARG 0 dynamic
+		ARG 1 oldKey
+		ARG 2 newKey
+	METHOD replaceUUIDString (Lcom/mojang/serialization/Dynamic;Ljava/lang/String;Ljava/lang/String;)Ljava/util/Optional;
+		ARG 0 dynamic
+		ARG 1 oldKey
+		ARG 2 newKey
+	METHOD updateNamedChoice (Lcom/mojang/datafixers/Typed;Ljava/lang/String;Ljava/util/function/Function;)Lcom/mojang/datafixers/Typed;
+		ARG 1 typed
+		ARG 2 choiceName
+		ARG 3 updater
