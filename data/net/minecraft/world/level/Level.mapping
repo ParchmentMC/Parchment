@@ -1,15 +1,6 @@
 CLASS net/minecraft/world/level/Level
 	FIELD randValue I
 		COMMENT Contains the current Linear Congruential Generator seed for block updates. Used with an A value of 3 and a C value of 0x3c6ef35f, producing a highly planar series of values ill-suited for choosing random blocks in a 16x128x16 field.
-	METHOD <init> (Lnet/minecraft/world/level/storage/WritableLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Holder;Ljava/util/function/Supplier;ZZJI)V
-		ARG 1 levelData
-		ARG 2 dimension
-		ARG 3 dimensionTypeRegistration
-		ARG 4 profiler
-		ARG 5 isClientSide
-		ARG 6 isDebug
-		ARG 7 biomeZoomSeed
-		ARG 9 maxChainedNeighborUpdates
 	METHOD <init> (Lnet/minecraft/world/level/storage/WritableLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/core/Holder;Ljava/util/function/Supplier;ZZJI)V
 		ARG 1 levelData
 		ARG 2 dimension
@@ -229,8 +220,6 @@ CLASS net/minecraft/world/level/Level
 		ARG 2 side
 	METHOD isDay ()Z
 		COMMENT Checks whether its daytime by seeing if the light subtracted from the skylight is less than 4. Always returns true on the client because vanilla has no need for it on the client, therefore it is not synced to the client
-	METHOD isHumidAt (Lnet/minecraft/core/BlockPos;)Z
-		ARG 1 pos
 	METHOD isInSpawnableBounds (Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 pos
 	METHOD isInWorldBounds (Lnet/minecraft/core/BlockPos;)Z

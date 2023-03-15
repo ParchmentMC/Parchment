@@ -16,9 +16,6 @@ CLASS net/minecraft/world/item/crafting/ShapedRecipe
 		ARG 6 recipeItems
 		ARG 7 result
 		ARG 8 showNotification
-	METHOD assemble (Lnet/minecraft/world/inventory/CraftingContainer;)Lnet/minecraft/world/item/ItemStack;
-		COMMENT Returns an Item that is the result of this recipe
-		ARG 1 inv
 	METHOD canCraftInDimensions (II)Z
 		COMMENT Used to determine if this recipe can fit in a grid of the given width/height
 		ARG 1 width
@@ -32,8 +29,6 @@ CLASS net/minecraft/world/item/crafting/ShapedRecipe
 		ARG 0 entry
 	METHOD getGroup ()Ljava/lang/String;
 		COMMENT Recipes with equal group are combined into one button in the recipe book
-	METHOD getResultItem ()Lnet/minecraft/world/item/ItemStack;
-		COMMENT Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
 	METHOD itemFromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/Item;
 		ARG 0 itemObject
 	METHOD itemStackFromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/ItemStack;

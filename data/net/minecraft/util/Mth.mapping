@@ -6,8 +6,6 @@ CLASS net/minecraft/util/Mth
 	METHOD abs (I)I
 		COMMENT Returns the unsigned value of an int.
 		ARG 0 value
-	METHOD absFloor (D)I
-		ARG 0 value
 	METHOD absMax (DD)D
 		COMMENT Maximum of the absolute value of two numbers.
 		ARG 0 x
@@ -28,37 +26,10 @@ CLASS net/minecraft/util/Mth
 	METHOD atan2 (DD)D
 		ARG 0 y
 		ARG 2 x
-	METHOD average ([J)D
-		ARG 0 values
-	METHOD binBiModalNormalDistribution (DDDDDDII)[D
-		ARG 0 firstPeakHeight
-		ARG 2 firstStandardDeviation
-		ARG 4 firstMean
-		ARG 6 secondPeakHeight
-		ARG 8 secondStandardDeviation
-		ARG 10 secondMean
-		ARG 12 lowerBound
-		ARG 13 upperBound
-	METHOD binLogDistribution (DDII)[D
-		ARG 0 slope
-		ARG 4 lowerBound
-		ARG 5 upperBound
-	METHOD binNormalDistribution (DDDII)[D
-		ARG 0 peakHeight
-		ARG 2 standardDeviation
-		ARG 4 mean
-		ARG 6 lowerBound
-		ARG 7 upperBound
 	METHOD binarySearch (IILjava/util/function/IntPredicate;)I
 		ARG 0 min
 		ARG 1 max
 		ARG 2 isTargetBeforeOrAt
-	METHOD catmullRomSplinePos (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;D)Lnet/minecraft/world/phys/Vec3;
-		ARG 0 controlPoint1
-		ARG 1 controlPoint2
-		ARG 2 controlPoint3
-		ARG 3 controlPoint4
-		ARG 4 splineParameter
 	METHOD catmullrom (FFFFF)F
 		ARG 0 delta
 		ARG 1 controlPoint1
@@ -72,14 +43,6 @@ CLASS net/minecraft/util/Mth
 	METHOD ceillog2 (I)I
 		COMMENT Uses a B(2, 5) De Bruijn sequence and a lookup table to efficiently calculate the log-base-two of the given value. Optimized for cases where the input value is a power-of-two. If the input value is not a power-of-two, then subtract 1 from the return value.
 		ARG 0 value
-	METHOD clamp (BBB)B
-		COMMENT Returns the given value if between the lower and the upper bound. If the value is less than the lower bound, returns the lower bound. If the value is greater than the upper bound, returns the upper bound.
-		ARG 0 value
-			COMMENT The value that is clamped.
-		ARG 1 min
-			COMMENT The lower bound for the clamp.
-		ARG 2 max
-			COMMENT The upper bound for the clamp.
 	METHOD clamp (DDD)D
 		COMMENT Returns the given value if between the lower and the upper bound. If the value is less than the lower bound, returns the lower bound. If the value is greater than the upper bound, returns the upper bound.
 		ARG 0 value
@@ -103,14 +66,6 @@ CLASS net/minecraft/util/Mth
 		ARG 1 min
 			COMMENT The lower bound for the clamp.
 		ARG 2 max
-			COMMENT The upper bound for the clamp.
-	METHOD clamp (JJJ)J
-		COMMENT Returns the given value if between the lower and the upper bound. If the value is less than the lower bound, returns the lower bound. If the value is greater than the upper bound, returns the upper bound.
-		ARG 0 value
-			COMMENT The value that is clamped.
-		ARG 2 min
-			COMMENT The lower bound for the clamp.
-		ARG 4 max
 			COMMENT The upper bound for the clamp.
 	METHOD clampedLerp (DDD)D
 		COMMENT Method for linear interpolation of doubles.
@@ -145,25 +100,6 @@ CLASS net/minecraft/util/Mth
 		ARG 0 r
 		ARG 1 g
 		ARG 2 b
-	METHOD color (III)I
-		COMMENT Makes a single int color with the given red, green, and blue values.
-		ARG 0 r
-		ARG 1 g
-		ARG 2 b
-	METHOD colorMultiply (IFFF)I
-		COMMENT Multiplies an RGB color with a color given as three floats
-		COMMENT @return The result as an RGB color code.
-		ARG 0 color
-		ARG 1 red
-			COMMENT The red component of the color in range [0;1].
-		ARG 2 green
-			COMMENT The green component of the color in range [0;1].
-		ARG 3 blue
-			COMMENT The blue component of the color in range [0;1].
-	METHOD colorMultiply (II)I
-		COMMENT Multiplies two RGB colors by multiplying red, green and blue values separately.
-		ARG 0 firstColor
-		ARG 1 secondColor
 	METHOD cos (F)F
 		COMMENT cos looked up in the sin table with the appropriate offset
 		ARG 0 value
@@ -171,10 +107,6 @@ CLASS net/minecraft/util/Mth
 		COMMENT Generates a random UUID using the shared random
 	METHOD createInsecureUUID (Lnet/minecraft/util/RandomSource;)Ljava/util/UUID;
 		ARG 0 random
-	METHOD cube (F)F
-		ARG 0 value
-	METHOD cumulativeSum ([D)[D
-		ARG 0 values
 	METHOD degreesDifference (FF)F
 		COMMENT Gets the difference between two angles in degrees.
 		ARG 0 start
@@ -183,22 +115,16 @@ CLASS net/minecraft/util/Mth
 		COMMENT Gets the absolute of the difference between two angles in degrees.
 		ARG 0 start
 		ARG 1 end
-	METHOD diffuseLight (FFF)F
 	METHOD equal (DD)Z
 		ARG 0 x
 		ARG 2 y
 	METHOD equal (FF)Z
 		ARG 0 x
 		ARG 1 y
-	METHOD fastFloor (D)I
-		COMMENT Returns {@code value} cast as an int, and no greater than {@code Integer.MAX_VALUE - 1024}
-		ARG 0 value
 	METHOD fastInvCubeRoot (F)F
 		ARG 0 number
 	METHOD fastInvSqrt (D)D
 		COMMENT Computes 1/sqrt(n) using <a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root">the fast inverse square root</a> with a constant of 0x5FE6EB50C7B537AA.
-		ARG 0 number
-	METHOD fastInvSqrt (F)F
 		ARG 0 number
 	METHOD floor (D)I
 		COMMENT Returns the greatest integer less than or equal to the double argument
@@ -214,25 +140,10 @@ CLASS net/minecraft/util/Mth
 		ARG 0 number
 	METHOD frac (F)F
 		ARG 0 number
-	METHOD getDouble (Ljava/lang/String;D)D
-		ARG 0 value
-		ARG 1 defaultValue
-	METHOD getDouble (Ljava/lang/String;DD)D
-		ARG 0 value
-		ARG 1 defaultValue
-		ARG 3 max
 	METHOD getInt (Ljava/lang/String;I)I
 		COMMENT Parses the string as an integer or returns the second parameter if it fails.
 		ARG 0 value
 		ARG 1 defaultValue
-	METHOD getInt (Ljava/lang/String;II)I
-		COMMENT Parses the string as an integer or returns the second parameter if it fails. This value is capped to {@code max}.
-		ARG 0 value
-		ARG 1 defaultValue
-		ARG 2 max
-	METHOD getRandomForDistributionIntegral (Lnet/minecraft/util/RandomSource;[D)I
-		ARG 0 random
-		ARG 1 distribution
 	METHOD getSeed (III)J
 		ARG 0 x
 		ARG 1 y
@@ -243,10 +154,6 @@ CLASS net/minecraft/util/Mth
 		ARG 0 hue
 		ARG 1 saturation
 		ARG 2 value
-	METHOD intFloorDiv (II)I
-		COMMENT Buckets an integer with specified bucket sizes.
-		ARG 0 x
-		ARG 1 y
 	METHOD invSqrt (D)D
 		ARG 0 number
 	METHOD invSqrt (F)F
@@ -259,9 +166,6 @@ CLASS net/minecraft/util/Mth
 		ARG 0 delta
 		ARG 1 start
 		ARG 2 end
-	METHOD isDivisionInteger (II)Z
-		ARG 0 numerator
-		ARG 1 demoninator
 	METHOD isMultipleOf (II)Z
 		ARG 0 number
 		ARG 1 multiple
@@ -339,8 +243,6 @@ CLASS net/minecraft/util/Mth
 		ARG 4 outputMax
 	METHOD murmurHash3Mixer (I)I
 		ARG 0 input
-	METHOD murmurHash3Mixer (J)J
-		ARG 0 input
 	METHOD nextDouble (Lnet/minecraft/util/RandomSource;DD)D
 		ARG 0 random
 		ARG 1 minimum
@@ -403,8 +305,6 @@ CLASS net/minecraft/util/Mth
 			COMMENT A value between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value)
 		ARG 1 start
 		ARG 2 end
-	METHOD rotWrap (D)F
-		ARG 0 value
 	METHOD rotateIfNecessary (FFF)F
 		COMMENT Takes a rotation and compares it to another rotation.
 		COMMENT If the difference is greater than a given maximum, clamps the original rotation between to have at most the given difference to the actual rotation.
@@ -413,10 +313,6 @@ CLASS net/minecraft/util/Mth
 		ARG 0 rotationToAdjust
 		ARG 1 actualRotation
 		ARG 2 maxDifference
-	METHOD rotlerp (FFF)F
-		ARG 0 start
-		ARG 1 end
-		ARG 2 delta
 	METHOD roundToward (II)I
 		COMMENT Rounds the given value up to a multiple of factor.
 		COMMENT @return The smallest integer multiple of factor that is greater than or equal to the value
@@ -447,9 +343,6 @@ CLASS net/minecraft/util/Mth
 	METHOD triangleWave (FF)F
 		ARG 0 input
 		ARG 1 period
-	METHOD truncate (FF)F
-		ARG 0 value
-		ARG 1 decimalPlaces
 	METHOD wobble (D)D
 		ARG 0 input
 	METHOD wrapDegrees (D)D

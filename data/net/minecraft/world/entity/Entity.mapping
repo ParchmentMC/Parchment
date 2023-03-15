@@ -19,14 +19,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 addend
 	METHOD addPassenger (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 passenger
-	METHOD addPassenger (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 passenger
 	METHOD addTag (Ljava/lang/String;)Z
 		ARG 1 tag
-	METHOD allowsDismounting (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 entity
-	METHOD animateHurt ()V
-		COMMENT Setups the entity to do the hurt animation. Only used by packets in multiplayer.
 	METHOD animateHurt (F)V
 		ARG 1 yaw
 	METHOD applyPistonMovementRestriction (Lnet/minecraft/core/Direction$Axis;D)D
@@ -150,8 +144,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 4 yRot
 	METHOD getCommandSenderWorld ()Lnet/minecraft/world/level/Level;
 		COMMENT Get the world, if available. <b>{@code null} is not allowed!</b> If you are not an entity in the world, return the overworld
-	METHOD getControllingPassenger ()Lnet/minecraft/world/entity/Entity;
-		COMMENT For vehicles, the first passenger is generally considered the controller and "drives" the vehicle. For example, Pigs, Horses, and Boats are generally "steered" by the controlling passenger.
 	METHOD getDimensionChangingDelay ()I
 		COMMENT Return the amount of cooldown before this entity can use a portal again.
 	METHOD getDimensions (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/entity/EntityDimensions;
@@ -342,8 +334,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 style
 	METHOD lambda$hasExactlyOnePlayerPassenger$15 (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 0 passenger
-	METHOD lambda$hasIndirectPassenger$16 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 passenger
 	METHOD lambda$isInWall$1 (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/core/BlockPos;)Z
 		ARG 2 pos
 	METHOD lambda$move$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z

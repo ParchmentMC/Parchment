@@ -20,8 +20,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 2 entity
 	METHOD aiStep ()V
 		COMMENT Called every tick so the entity can update its state as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
-	METHOD animateHurt ()V
-		COMMENT Setups the entity to do the hurt animation. Only used by packets in multiplayer.
 	METHOD areAllEffectsAmbient (Ljava/util/Collection;)Z
 		COMMENT Returns {@code true} if all the potion effects in the specified collection are ambient.
 		ARG 0 potionEffects
@@ -38,9 +36,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 hand
 	METHOD broadcastBreakEvent (Lnet/minecraft/world/entity/EquipmentSlot;)V
 		ARG 1 slot
-	METHOD calculateEntityAnimation (Lnet/minecraft/world/entity/LivingEntity;Z)V
-		ARG 1 livingEntity
-		ARG 2 isFlying
 	METHOD calculateFallDamage (FF)I
 		ARG 1 fallDistance
 		ARG 2 damageMultiplier
@@ -255,8 +250,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD isDamageSourceBlocked (Lnet/minecraft/world/damagesource/DamageSource;)Z
 		COMMENT Determines whether the entity can block the damage source based on the damage source's location, whether the damage source is blockable, and whether the entity is blocking.
 		ARG 1 damageSource
-	METHOD isEffectiveAi ()Z
-		COMMENT Returns whether the entity is in a server world
 	METHOD isHolding (Ljava/util/function/Predicate;)Z
 		ARG 1 predicate
 	METHOD isHolding (Lnet/minecraft/world/item/Item;)Z

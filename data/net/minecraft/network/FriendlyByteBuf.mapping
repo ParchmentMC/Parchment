@@ -135,11 +135,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 size
 	METHOD isWritable (I)Z
 		ARG 1 size
-	METHOD lambda$limitValue$2 (ILjava/util/function/IntFunction;I)Ljava/lang/Object;
-		ARG 2 value
-	METHOD lambda$writeMap$3 (Lnet/minecraft/network/FriendlyByteBuf$Writer;Lnet/minecraft/network/FriendlyByteBuf$Writer;Ljava/lang/Object;Ljava/lang/Object;)V
-		ARG 3 key
-		ARG 4 value
 	METHOD limitValue (Ljava/util/function/IntFunction;I)Ljava/util/function/IntFunction;
 		ARG 0 function
 		ARG 1 limit
@@ -352,12 +347,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Reads a compressed long from the buffer. To do so it maximally reads 10 byte-sized chunks whose most significant bit dictates whether another byte should be read.
 		COMMENT
 		COMMENT @see #writeVarLong
-	METHOD readWithCodec (Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
-		COMMENT Read a value of type {@code T} from this buffer using the given Codec.
-		COMMENT NBT is used under the hood to read the data.
-		COMMENT
-		COMMENT @see #writeWithCodec
-		ARG 1 codec
 	METHOD readWithCodec (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
 		ARG 1 ops
 		ARG 2 codec
@@ -682,13 +671,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 value
 	METHOD writeVector3f (Lorg/joml/Vector3f;)V
 		ARG 1 vector3f
-	METHOD writeWithCodec (Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
-		COMMENT Write a value of type {@code T} to this buffer using the given Codec.
-		COMMENT NBT is used under the hood to write the data.
-		COMMENT
-		COMMENT @see #readWithCodec
-		ARG 1 codec
-		ARG 2 data
 	METHOD writeWithCodec (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
 		ARG 1 ops
 		ARG 2 codec

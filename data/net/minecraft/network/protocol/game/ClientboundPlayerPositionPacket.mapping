@@ -7,15 +7,6 @@ CLASS net/minecraft/network/protocol/game/ClientboundPlayerPositionPacket
 		ARG 8 xRot
 		ARG 9 relativeArguments
 		ARG 10 id
-	METHOD <init> (DDDFFLjava/util/Set;IZ)V
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-		ARG 7 yRot
-		ARG 8 xRot
-		ARG 9 relativeArguments
-		ARG 10 id
-		ARG 11 dismountVehicle
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
 	METHOD getRelativeArguments ()Ljava/util/Set;
@@ -26,13 +17,3 @@ CLASS net/minecraft/network/protocol/game/ClientboundPlayerPositionPacket
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buffer
-	CLASS RelativeArgument
-		METHOD <init> (Ljava/lang/String;II)V
-			ARG 3 bit
-		METHOD isSet (I)Z
-			COMMENT Checks if this flag is set within the given set of flags.
-			ARG 1 flags
-		METHOD pack (Ljava/util/Set;)I
-			ARG 0 flags
-		METHOD unpack (I)Ljava/util/Set;
-			ARG 0 flags

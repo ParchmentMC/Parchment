@@ -1,9 +1,6 @@
 CLASS net/minecraft/world/entity/Display
 	METHOD calculateInterpolationProgress (F)F
 		ARG 1 partialTick
-	METHOD calculateInterpolationProgress (JF)F
-		ARG 1 currentTick
-		ARG 3 partialTick
 	METHOD createTransformation (Lnet/minecraft/network/syncher/SynchedEntityData;)Lcom/mojang/math/Transformation;
 		ARG 0 synchedEntityData
 	METHOD getShadowRadius (F)F
@@ -22,8 +19,6 @@ CLASS net/minecraft/world/entity/Display
 		ARG 1 interpolationDelay
 	METHOD setInterpolationDuration (I)V
 		ARG 1 interpolationDuration
-	METHOD setInterpolationStartTick (J)V
-		ARG 1 interpolationStartTick
 	METHOD setShadowRadius (F)V
 		ARG 1 shadowRadius
 	METHOD setShadowStrength (F)V
@@ -82,8 +77,6 @@ CLASS net/minecraft/world/entity/Display
 		METHOD updateValue (FLjava/lang/Object;)V
 			ARG 1 partialTick
 			ARG 2 value
-		METHOD updateValue (Ljava/lang/Object;)V
-			ARG 1 newValue
 	CLASS IntInterpolator
 		METHOD <init> (I)V
 			ARG 1 currentValue
@@ -94,9 +87,6 @@ CLASS net/minecraft/world/entity/Display
 			ARG 2 min
 			ARG 3 max
 	CLASS InterpolatorSet
-		METHOD addEntry (Ljava/util/Set;Ljava/util/function/Consumer;)V
-			ARG 1 dataAccessors
-			ARG 2 entityDataConsumer
 		METHOD addEntry (Ljava/util/Set;Lnet/minecraft/world/entity/Display$IntepolatorUpdater;)V
 			ARG 1 accessors
 			ARG 2 updater
@@ -108,8 +98,6 @@ CLASS net/minecraft/world/entity/Display
 		METHOD updateValues (FLnet/minecraft/network/syncher/SynchedEntityData;)V
 			ARG 1 partialTick
 			ARG 2 entityData
-		METHOD updateValues (Lnet/minecraft/network/syncher/SynchedEntityData;)V
-			ARG 1 data
 	CLASS FloatInterpolator
 		METHOD <init> (F)V
 			ARG 1 defaultValue
