@@ -1,6 +1,9 @@
 CLASS net/minecraft/world/entity/Display
 	METHOD calculateInterpolationProgress (F)F
 		ARG 1 partialTick
+	METHOD createInterpolatedRenderState (Lnet/minecraft/world/entity/Display$RenderState;F)Lnet/minecraft/world/entity/Display$RenderState;
+		ARG 1 renderState
+		ARG 2 partialTick
 	METHOD createTransformation (Lnet/minecraft/network/syncher/SynchedEntityData;)Lcom/mojang/math/Transformation;
 		ARG 0 synchedEntityData
 	METHOD getShadowRadius (F)F
@@ -31,6 +34,9 @@ CLASS net/minecraft/world/entity/Display
 		ARG 1 width
 	METHOD transformation (F)Lcom/mojang/math/Transformation;
 		ARG 1 delta
+	METHOD updateRenderSubState (ZF)V
+		ARG 1 interpolate
+		ARG 2 partialTick
 	CLASS ItemDisplay
 		METHOD setItemStack (Lnet/minecraft/world/item/ItemStack;)V
 			ARG 1 itemStack
@@ -39,6 +45,9 @@ CLASS net/minecraft/world/entity/Display
 	CLASS TextDisplay
 		METHOD cacheDisplay (Lnet/minecraft/world/entity/Display$TextDisplay$LineSplitter;)Lnet/minecraft/world/entity/Display$TextDisplay$CachedInfo;
 			ARG 1 splitter
+		METHOD createInterpolatedTextRenderState (Lnet/minecraft/world/entity/Display$TextDisplay$TextRenderState;F)Lnet/minecraft/world/entity/Display$TextDisplay$TextRenderState;
+			ARG 1 renderState
+			ARG 2 partialTick
 		METHOD getBackgroundColor (F)I
 			ARG 1 partialTick
 		METHOD getTextOpacity (F)B
@@ -80,6 +89,8 @@ CLASS net/minecraft/world/entity/Display
 	CLASS IntInterpolator
 		METHOD <init> (I)V
 			ARG 1 currentValue
+		METHOD constant (I)Lnet/minecraft/world/entity/Display$IntInterpolator;
+			ARG 0 value
 		METHOD get (F)I
 			ARG 1 partialTick
 		METHOD interpolate (FII)I
@@ -101,6 +112,8 @@ CLASS net/minecraft/world/entity/Display
 	CLASS FloatInterpolator
 		METHOD <init> (F)V
 			ARG 1 defaultValue
+		METHOD constant (F)Lnet/minecraft/world/entity/Display$FloatInterpolator;
+			ARG 0 value
 		METHOD get (F)F
 			ARG 1 partialTick
 		METHOD interpolate (FFF)F
@@ -112,6 +125,8 @@ CLASS net/minecraft/world/entity/Display
 			ARG 1 partialTick
 			ARG 2 entityData
 	CLASS GenericInterpolator
+		METHOD constant (Ljava/lang/Object;)Lnet/minecraft/world/entity/Display$GenericInterpolator;
+			ARG 0 value
 		METHOD get (F)Ljava/lang/Object;
 			ARG 1 partialTick
 		METHOD interpolate (FLjava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;

@@ -195,6 +195,8 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Return the amount of time this entity should stay in a portal before being transported.
 	METHOD getPosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
+	METHOD getPrimaryStepSoundBlockPos (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
+		ARG 1 pos
 	METHOD getRandomX (D)D
 		ARG 1 scale
 	METHOD getRandomZ (D)D
@@ -242,6 +244,9 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD handleInsidePortal (Lnet/minecraft/core/BlockPos;)V
 		COMMENT Marks the entity as being inside a portal, activating teleportation logic in onEntityUpdate() in the following tick(s).
 		ARG 1 pos
+	METHOD handleStepSounds (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 state
 	METHOD hasIndirectPassenger (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD hasPassenger (Ljava/util/function/Predicate;)Z
@@ -445,6 +450,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 4 hitFluids
 	METHOD playAmethystStepSound (Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 state
+	METHOD playCombinationStepSounds (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 primaryState
+		ARG 2 secondaryState
 	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;)V
 		ARG 1 sound
 	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;FF)V
@@ -608,6 +616,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 3 pos
 		ARG 4 blockState
 		ARG 5 explosionPower
+	METHOD shouldPlayAmethystStepSound (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
 	METHOD shouldRender (DDD)Z
 		ARG 1 x
 		ARG 3 y

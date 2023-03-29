@@ -7,6 +7,9 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 		ARG 1 generator
 		ARG 2 condition
 		ARG 3 rotation
+		ARG 4 hasBookProperty
+		ARG 5 template
+		ARG 6 hasBook
 	METHOD addSlotStateAndRotationVariants (Lnet/minecraft/data/models/blockstates/MultiPartGenerator;Lnet/minecraft/data/models/blockstates/Condition$TerminalCondition;Lnet/minecraft/data/models/blockstates/VariantProperties$Rotation;)V
 		ARG 1 generator
 		ARG 2 condition
@@ -20,6 +23,13 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 	METHOD blockEntityModels (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$BlockEntityModelGenerator;
 		ARG 1 entityBlockBaseModel
 		ARG 2 particleBlock
+	METHOD configureDoorHalf (Lnet/minecraft/data/models/blockstates/PropertyDispatch$C4;Lnet/minecraft/world/level/block/state/properties/DoubleBlockHalf;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/data/models/blockstates/PropertyDispatch$C4;
+		ARG 0 properties
+		ARG 1 half
+		ARG 2 leftModelLocation
+		ARG 3 leftOpenModelLocation
+		ARG 4 rightModelLocation
+		ARG 5 rightOpenModelLocation
 	METHOD copyModel (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 sourceBlock
 		ARG 2 targetBlock
@@ -58,6 +68,8 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 		ARG 0 property
 		ARG 1 trueModelLocation
 		ARG 2 falseModelLocation
+	METHOD createBrushableBlock (Lnet/minecraft/world/level/block/Block;)V
+		ARG 1 block
 	METHOD createButton (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/data/models/blockstates/BlockStateGenerator;
 		ARG 0 buttonBlock
 		ARG 1 unpoweredModelLocation
@@ -125,6 +137,14 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 		ARG 1 doorBlock
 	METHOD createDoor (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/data/models/blockstates/BlockStateGenerator;
 		ARG 0 doorBlock
+		ARG 1 topLeftModelLocation
+		ARG 2 topLeftOpenModelLocation
+		ARG 3 topRightModelLocation
+		ARG 4 topRightOpenModelLocation
+		ARG 5 bottomLeftModelLocation
+		ARG 6 bottomLeftOpenModelLocation
+		ARG 7 bottomRightModelLocation
+		ARG 8 bottomRightOpenModelLocation
 	METHOD createDoubleBlock (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 doubleBlock
 		ARG 2 topHalfModelLocation

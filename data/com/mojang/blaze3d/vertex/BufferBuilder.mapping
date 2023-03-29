@@ -6,6 +6,8 @@ CLASS com/mojang/blaze3d/vertex/BufferBuilder
 		ARG 2 format
 	METHOD ensureCapacity (I)V
 		ARG 1 increaseAmount
+	METHOD intConsumer (ILcom/mojang/blaze3d/vertex/VertexFormat$IndexType;)Lit/unimi/dsi/fastutil/ints/IntConsumer;
+		ARG 2 indexType
 	METHOD lambda$putSortedQuadIndices$3 ([FII)I
 		ARG 1 index1
 		ARG 2 index2
@@ -19,6 +21,8 @@ CLASS com/mojang/blaze3d/vertex/BufferBuilder
 		ARG 1 sortX
 		ARG 2 sortY
 		ARG 3 sortZ
+	METHOD setQuadSorting (Lcom/mojang/blaze3d/vertex/VertexSorting;)V
+		ARG 1 quadSorting
 	METHOD switchFormat (Lcom/mojang/blaze3d/vertex/VertexFormat;)V
 		ARG 1 format
 	CLASS DrawState
@@ -38,3 +42,12 @@ CLASS com/mojang/blaze3d/vertex/BufferBuilder
 			ARG 4 sortX
 			ARG 5 sortY
 			ARG 6 sortZ
+		METHOD <init> (Lcom/mojang/blaze3d/vertex/VertexFormat$Mode;I[Lorg/joml/Vector3f;Lcom/mojang/blaze3d/vertex/VertexSorting;)V
+			ARG 1 mode
+			ARG 2 vertices
+			ARG 3 sortingPoints
+			ARG 4 sorting
+	CLASS RenderedBuffer
+		METHOD <init> (Lcom/mojang/blaze3d/vertex/BufferBuilder;ILcom/mojang/blaze3d/vertex/BufferBuilder$DrawState;)V
+			ARG 2 pointer
+			ARG 3 drawState

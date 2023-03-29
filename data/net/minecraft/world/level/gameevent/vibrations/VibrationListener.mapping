@@ -10,6 +10,17 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationListener
 		ARG 4 currentVibration
 		ARG 5 selectionStrategy
 		ARG 6 travelTimeInTicks
+	METHOD <init> (Lnet/minecraft/world/level/gameevent/PositionSource;Lnet/minecraft/world/level/gameevent/vibrations/VibrationListener$Config;)V
+		ARG 1 listenerSource
+		ARG 2 config
+	METHOD <init> (Lnet/minecraft/world/level/gameevent/PositionSource;Lnet/minecraft/world/level/gameevent/vibrations/VibrationListener$Config;Lnet/minecraft/world/level/gameevent/vibrations/VibrationInfo;Lnet/minecraft/world/level/gameevent/vibrations/VibrationSelector;I)V
+		ARG 1 listenerSource
+		ARG 2 config
+		ARG 3 currentVibration
+		ARG 4 selectionStrategy
+		ARG 5 travelTimeInTicks
+	METHOD codec (Lnet/minecraft/world/level/gameevent/vibrations/VibrationListener$Config;)Lcom/mojang/serialization/Codec;
+		ARG 0 config
 	METHOD forceGameEvent (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 level
 		ARG 2 gameEvent
@@ -17,6 +28,8 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationListener
 		ARG 4 pos
 	METHOD getGameEventFrequency (Lnet/minecraft/world/level/gameevent/GameEvent;)I
 		ARG 0 gameEvent
+	METHOD getResonanceEventByFrequency (I)Lnet/minecraft/world/level/gameevent/GameEvent;
+		ARG 0 frequency
 	METHOD isOccluded (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)Z
 		ARG 0 level
 		ARG 1 from
@@ -29,6 +42,22 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationListener
 		ARG 5 endPos
 	METHOD tick (Lnet/minecraft/world/level/Level;)V
 		ARG 1 level
+	CLASS Config
+		METHOD isValidVibration (Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)Z
+			ARG 1 gameEvent
+			ARG 2 context
+		METHOD onSignalReceive (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/GameEventListener;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;F)V
+			ARG 1 level
+			ARG 2 gameEventListener
+			ARG 3 pos
+			ARG 4 gameEvent
+			ARG 7 distance
+		METHOD shouldListen (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/GameEventListener;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)Z
+			ARG 1 level
+			ARG 2 gameEventListener
+			ARG 3 pos
+			ARG 4 event
+			ARG 5 context
 	CLASS VibrationListenerConfig
 		METHOD isValidVibration (Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)Z
 			ARG 1 gameEvent
