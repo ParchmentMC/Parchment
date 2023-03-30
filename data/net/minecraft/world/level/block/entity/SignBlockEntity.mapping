@@ -2,16 +2,28 @@ CLASS net/minecraft/world/level/block/entity/SignBlockEntity
 	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 blockState
+	METHOD canExecuteClickCommands (ZLnet/minecraft/world/entity/player/Player;)Z
+		ARG 1 isFrontText
+		ARG 2 player
 	METHOD clearInvalidPlayerWhoMayEdit (Lnet/minecraft/world/level/block/entity/SignBlockEntity;Lnet/minecraft/world/level/Level;Ljava/util/UUID;)V
 		ARG 1 sign
 		ARG 2 level
 		ARG 3 uuid
 	METHOD createCommandSourceStack (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 player
+	METHOD createCommandSourceStack (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/commands/CommandSourceStack;
+		ARG 0 player
+		ARG 1 level
+		ARG 2 pos
 	METHOD deserializeTextSafe (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
 		ARG 1 text
 	METHOD executeClickCommands (Lnet/minecraft/server/level/ServerPlayer;)Z
 		ARG 1 level
+	METHOD executeClickCommandsIfPresent (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Z)Z
+		ARG 1 player
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 isFrontText
 	METHOD getMessage (IZ)Lnet/minecraft/network/chat/Component;
 		ARG 1 line
 		ARG 2 filtered
@@ -30,6 +42,10 @@ CLASS net/minecraft/world/level/block/entity/SignBlockEntity
 		ARG 1 player
 	METHOD loadLine (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
 		ARG 1 line
+	METHOD loadLine (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/Component;
+		ARG 1 lineText
+	METHOD loadLines (Lnet/minecraft/world/level/block/entity/SignText;)Lnet/minecraft/world/level/block/entity/SignText;
+		ARG 1 text
 	METHOD playerIsTooFarAwayToEdit (Ljava/util/UUID;)Z
 		ARG 1 uuid
 	METHOD setAllowedPlayerEditor (Ljava/util/UUID;)V

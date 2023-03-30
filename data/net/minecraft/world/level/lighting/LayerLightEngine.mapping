@@ -3,6 +3,9 @@ CLASS net/minecraft/world/level/lighting/LayerLightEngine
 		ARG 1 chunkSource
 		ARG 2 layer
 		ARG 3 storage
+	METHOD <init> (Lnet/minecraft/world/level/chunk/LightChunkGetter;Lnet/minecraft/world/level/lighting/LayerLightSectionStorage;)V
+		ARG 1 chunkSource
+		ARG 2 storage
 	METHOD checkNode (J)V
 		ARG 1 levelPos
 	METHOD computeLevelFromNeighbor (JJI)I
@@ -20,6 +23,9 @@ CLASS net/minecraft/world/level/lighting/LayerLightEngine
 		ARG 5 level
 	METHOD getDebugData (J)Ljava/lang/String;
 		ARG 1 sectionPos
+	METHOD getDirection (JJ)Lnet/minecraft/core/Direction;
+		ARG 0 pos1
+		ARG 2 pos2
 	METHOD getLevel (J)I
 		ARG 1 sectionPos
 	METHOD getLevel (Lnet/minecraft/world/level/chunk/DataLayer;J)I
@@ -35,10 +41,15 @@ CLASS net/minecraft/world/level/lighting/LayerLightEngine
 		ARG 6 defaultValue
 	METHOD getLightValue (Lnet/minecraft/core/BlockPos;)I
 		ARG 1 levelPos
+	METHOD getOpacity (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)I
+		ARG 1 state
+		ARG 2 pos
 	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;JLnet/minecraft/core/Direction;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 blockState
 		ARG 2 levelPos
 		ARG 4 direction
+	METHOD getState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 pos
 	METHOD getStateAndOpacity (JLorg/apache/commons/lang3/mutable/MutableInt;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 pos
 		ARG 3 opacityOut
@@ -54,6 +65,12 @@ CLASS net/minecraft/world/level/lighting/LayerLightEngine
 	METHOD setLevel (JI)V
 		ARG 1 sectionPos
 		ARG 3 level
+	METHOD shapeOccludes (JLnet/minecraft/world/level/block/state/BlockState;JLnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
+		ARG 1 pos1
+		ARG 3 state1
+		ARG 4 pos2
+		ARG 6 state2
+		ARG 7 direction
 	METHOD updateSectionStatus (Lnet/minecraft/core/SectionPos;Z)V
 		ARG 1 pos
 		ARG 2 isEmpty

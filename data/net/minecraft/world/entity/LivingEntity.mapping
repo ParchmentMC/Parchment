@@ -36,6 +36,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 hand
 	METHOD broadcastBreakEvent (Lnet/minecraft/world/entity/EquipmentSlot;)V
 		ARG 1 slot
+	METHOD calculateEntityAnimation (Z)V
+		ARG 1 includeHeight
 	METHOD calculateFallDamage (FF)I
 		ARG 1 fallDistance
 		ARG 2 damageMultiplier
@@ -186,8 +188,13 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD getRiddenInput (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 entity
 		ARG 2 travelVector
+	METHOD getRiddenInput (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 player
+		ARG 2 travelVector
 	METHOD getRiddenSpeed (Lnet/minecraft/world/entity/LivingEntity;)F
 		ARG 1 entity
+	METHOD getRiddenSpeed (Lnet/minecraft/world/entity/player/Player;)F
+		ARG 1 player
 	METHOD getSoundVolume ()F
 		COMMENT Returns the volume for the sounds this mob makes.
 	METHOD getSpeed ()F
@@ -453,6 +460,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD tickRidden (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 entity
 		ARG 2 travelVector
+	METHOD tickRidden (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 player
+		ARG 2 travelVector
 	METHOD trapdoorUsableAsLadder (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 pos
 		ARG 2 state
@@ -460,6 +470,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 travelVector
 	METHOD travelRidden (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 entity
+		ARG 2 travelVector
+	METHOD travelRidden (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 player
 		ARG 2 travelVector
 	METHOD triggerItemUseEffects (Lnet/minecraft/world/item/ItemStack;I)V
 		ARG 1 stack
