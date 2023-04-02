@@ -26,13 +26,15 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 3 pos
 		ARG 4 entity
 	METHOD getAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)I
+		COMMENT Returns the analog signal this block emits. This is the signal a comparator can read from it.
+		COMMENT
 		COMMENT @deprecated call via {@link net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase#getAnalogOutputSignal} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
 	METHOD getBlockSupportShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 state
-		ARG 2 reader
+		ARG 2 level
 		ARG 3 pos
 	METHOD getCollisionShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 1 state
@@ -47,6 +49,12 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 3 level
 		ARG 4 pos
 	METHOD getDirectSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
+		COMMENT Returns the direct signal this block emits in the given direction.
+		COMMENT
+		COMMENT <p>
+		COMMENT NOTE: directions in redstone signal related methods are backwards, so this method
+		COMMENT checks for the signal emitted in the <i>opposite</i> direction of the one given.
+		COMMENT
 		COMMENT @deprecated call via {@link net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase#getDirectSignal} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 		ARG 2 level
@@ -94,6 +102,12 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 3 pos
 		ARG 4 context
 	METHOD getSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
+		COMMENT Returns the signal this block emits in the given direction.
+		COMMENT
+		COMMENT <p>
+		COMMENT NOTE: directions in redstone signal related methods are backwards, so this method
+		COMMENT checks for the signal emitted in the <i>opposite</i> direction of the one given.
+		COMMENT
 		COMMENT @deprecated call via {@link net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase#getSignal} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 		ARG 2 level
@@ -121,7 +135,8 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 3 pos
 		ARG 4 type
 	METHOD isSignalSource (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		COMMENT Can this block provide power. Only wire currently seems to have this change based on its state.
+		COMMENT Returns whether this block is capable of emitting redstone signals.
+		COMMENT
 		COMMENT @deprecated call via {@link net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase#isSignalSource} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
@@ -133,15 +148,15 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
-		ARG 4 block
-		ARG 5 fromPos
-		ARG 6 isMoving
+		ARG 4 neighborBlock
+		ARG 5 neighborPos
+		ARG 6 movedByPiston
 	METHOD onPlace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 oldState
-		ARG 5 isMoving
+		ARG 5 movedByPiston
 	METHOD onProjectileHit (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/phys/BlockHitResult;Lnet/minecraft/world/entity/projectile/Projectile;)V
 		ARG 1 level
 		ARG 2 state
@@ -152,7 +167,7 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 newState
-		ARG 5 isMoving
+		ARG 5 movedByPiston
 	METHOD randomTick (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)V
 		COMMENT Performs a random tick on a block.
 		ARG 1 state
@@ -166,7 +181,7 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 2 rotation
 	METHOD skipRendering (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
 		ARG 1 state
-		ARG 2 adjacentBlockState
+		ARG 2 adjacentState
 		ARG 3 direction
 	METHOD spawnAfterBreak (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;Z)V
 		COMMENT Perform side-effects from block dropping, such as creating silverfish
@@ -189,8 +204,14 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 4 id
 		ARG 5 param
 	METHOD updateIndirectNeighbourShapes (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;II)V
-		COMMENT Performs updates on diagonal neighbors of the target position and passes in the flags.
-		COMMENT The flags are equivalent to {@link net.minecraft.world.level.Level#setBlock}.
+		COMMENT Updates the shapes of indirect neighbors of this block. This method is analogous to
+		COMMENT {@link net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase#updateNeighbourShapes}
+		COMMENT but where that method affects the 6 direct neighbors of this block, this method affects
+		COMMENT indirect the neighbors, if any.
+		COMMENT
+		COMMENT <p>
+		COMMENT Currently the only implementation of this method is {@link net.minecraft.world.level.block.RedStoneWireBlock#updateIndirectNeighbourShapes}
+		COMMENT where it is used to validate diagonal connections of redstone wire blocks.
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
@@ -204,7 +225,7 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 2 direction
 		ARG 3 neighborState
 		ARG 4 level
-		ARG 5 currentPos
+		ARG 5 pos
 		ARG 6 neighborPos
 	METHOD use (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 state
@@ -468,14 +489,14 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		METHOD neighborChanged (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos;Z)V
 			ARG 1 level
 			ARG 2 pos
-			ARG 3 block
-			ARG 4 fromPos
-			ARG 5 isMoving
+			ARG 3 neighborBlock
+			ARG 4 neighborPos
+			ARG 5 movedByPiston
 		METHOD onPlace (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
 			ARG 1 level
 			ARG 2 pos
 			ARG 3 oldState
-			ARG 4 isMoving
+			ARG 4 movedByPiston
 		METHOD onProjectileHit (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/phys/BlockHitResult;Lnet/minecraft/world/entity/projectile/Projectile;)V
 			ARG 1 level
 			ARG 2 state
@@ -485,7 +506,7 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 1 level
 			ARG 2 pos
 			ARG 3 newState
-			ARG 4 isMoving
+			ARG 4 movedByPiston
 		METHOD propagatesSkylightDown (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
 			ARG 1 level
 			ARG 2 pos
@@ -514,7 +535,6 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 3 id
 			ARG 4 param
 		METHOD updateIndirectNeighbourShapes (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;I)V
-			COMMENT Performs validations on the block state and possibly neighboring blocks to validate whether the incoming state is valid to stay in the world. Currently used only by redstone wire to update itself if neighboring blocks have changed and to possibly break itself.
 			ARG 1 level
 			ARG 2 pos
 			ARG 3 flags
@@ -526,11 +546,12 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		METHOD updateNeighbourShapes (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;I)V
 			ARG 1 level
 			ARG 2 pos
-			ARG 3 flag
+			ARG 3 flags
 		METHOD updateNeighbourShapes (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;II)V
+			COMMENT Updates the shapes of the 6 direct neighbors of this block.
 			ARG 1 level
 			ARG 2 pos
-			ARG 3 flag
+			ARG 3 flags
 			ARG 4 recursionLeft
 		METHOD updateShape (Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
 			ARG 1 direction
