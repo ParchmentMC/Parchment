@@ -9,6 +9,13 @@ CLASS net/minecraft/world/level/storage/loot/LootContext
 		ARG 5 conditions
 		ARG 6 params
 		ARG 7 dynamicDrops
+	METHOD <init> (Lnet/minecraft/util/RandomSource;FLnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/storage/loot/LootDataResolver;Ljava/util/Map;Ljava/util/Map;)V
+		ARG 1 random
+		ARG 2 luck
+		ARG 3 level
+		ARG 4 lootDataResolver
+		ARG 5 params
+		ARG 6 dynamicDrops
 	METHOD addDynamicDrops (Lnet/minecraft/resources/ResourceLocation;Ljava/util/function/Consumer;)V
 		COMMENT Add the dynamic drops for the given dynamic drops name to the given consumer.
 		COMMENT If no dynamic drops provider for the given name has been registered to this LootContext, nothing is generated.
@@ -20,6 +27,12 @@ CLASS net/minecraft/world/level/storage/loot/LootContext
 		ARG 1 condition
 	METHOD addVisitedTable (Lnet/minecraft/world/level/storage/loot/LootTable;)Z
 		ARG 1 lootTable
+	METHOD createVisitedEntry (Lnet/minecraft/world/level/storage/loot/LootTable;)Lnet/minecraft/world/level/storage/loot/LootContext$VisitedEntry;
+		ARG 0 lootTable
+	METHOD createVisitedEntry (Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/LootContext$VisitedEntry;
+		ARG 0 modifier
+	METHOD createVisitedEntry (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/LootContext$VisitedEntry;
+		ARG 0 predicate
 	METHOD getCondition (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
 		ARG 1 conditionId
 	METHOD getLootTable (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/LootTable;
@@ -38,6 +51,12 @@ CLASS net/minecraft/world/level/storage/loot/LootContext
 	METHOD hasParam (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;)Z
 		COMMENT Check whether the given parameter is present in this context.
 		ARG 1 parameter
+	METHOD hasVisitedElement (Lnet/minecraft/world/level/storage/loot/LootContext$VisitedEntry;)Z
+		ARG 1 element
+	METHOD popVisitedElement (Lnet/minecraft/world/level/storage/loot/LootContext$VisitedEntry;)V
+		ARG 1 element
+	METHOD pushVisitedElement (Lnet/minecraft/world/level/storage/loot/LootContext$VisitedEntry;)Z
+		ARG 1 element
 	METHOD removeVisitedCondition (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
 		ARG 1 condition
 	METHOD removeVisitedTable (Lnet/minecraft/world/level/storage/loot/LootTable;)V

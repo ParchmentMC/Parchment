@@ -1,6 +1,9 @@
 CLASS net/minecraft/client/gui/screens/ConnectScreen
 	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 1 parent
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 parent
+		ARG 2 connectFailedTitle
 	METHOD connect (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/multiplayer/resolver/ServerAddress;Lnet/minecraft/client/multiplayer/ServerData;)V
 		ARG 1 minecraft
 		ARG 2 serverAddress
@@ -15,5 +18,11 @@ CLASS net/minecraft/client/gui/screens/ConnectScreen
 		ARG 1 minecraft
 		ARG 2 serverAddress
 		ARG 3 serverData
+	METHOD startConnecting (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/multiplayer/resolver/ServerAddress;Lnet/minecraft/client/multiplayer/ServerData;Z)V
+		ARG 0 parent
+		ARG 1 minecraft
+		ARG 2 serverAddress
+		ARG 3 serverData
+		ARG 4 isQuickPlay
 	METHOD updateStatus (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 status

@@ -91,6 +91,8 @@ CLASS net/minecraft/world/level/block/Block
 		COMMENT @return how much this block resists an explosion
 	METHOD getId (Lnet/minecraft/world/level/block/state/BlockState;)I
 		ARG 0 state
+	METHOD getShapeForEachState (Ljava/util/function/Function;)Lcom/google/common/collect/ImmutableMap;
+		ARG 1 shapeGetter
 	METHOD getSoundType (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/SoundType;
 		ARG 1 state
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
@@ -107,6 +109,8 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 1 face
 	METHOD isPossibleToRespawnInThis ()Z
 		COMMENT @return true if an entity can be spawned inside this block
+	METHOD isPossibleToRespawnInThis (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
 	METHOD isRandomlyTicking (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		COMMENT @return whether this block needs random ticking.
 		ARG 1 state
