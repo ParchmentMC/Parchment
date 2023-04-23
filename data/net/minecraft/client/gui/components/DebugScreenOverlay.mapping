@@ -12,10 +12,18 @@ CLASS net/minecraft/client/gui/components/DebugScreenOverlay
 		ARG 2 frameTimer
 		ARG 5 drawForFps
 			COMMENT If set to true, will draw debugChart for FPS. If set to false, will draw for TPS.
+	METHOD drawChart (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/util/FrameTimer;IIZ)V
+		ARG 1 guiGraphics
+		ARG 2 drawTimer
+		ARG 5 drawForFps
 	METHOD drawGameInformation (Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 poseStack
+	METHOD drawGameInformation (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
 	METHOD drawSystemInformation (Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 poseStack
+	METHOD drawSystemInformation (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
 	METHOD getPropertyValueString (Ljava/util/Map$Entry;)Ljava/lang/String;
 		ARG 1 entry
 	METHOD getSampleColor (IIII)I
@@ -37,3 +45,8 @@ CLASS net/minecraft/client/gui/components/DebugScreenOverlay
 		ARG 0 biomeHolder
 	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 poseStack
+	METHOD render (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	CLASS AllocationRateCalculator
+		METHOD bytesAllocatedPerSecond (J)J
+			ARG 1 heapUsage

@@ -17,6 +17,8 @@ CLASS net/minecraft/client/gui/components/AbstractSelectionList
 	METHOD clickedHeader (II)V
 		ARG 1 mouseX
 		ARG 2 mouseY
+	METHOD enableScissor (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
 	METHOD ensureVisible (Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;)V
 		ARG 1 entry
 	METHOD getEntry (I)Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
@@ -75,16 +77,36 @@ CLASS net/minecraft/client/gui/components/AbstractSelectionList
 		ARG 4 partialTick
 	METHOD renderBackground (Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 poseStack
+	METHOD renderBackground (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
 	METHOD renderDecorations (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
 		ARG 1 poseStack
+		ARG 2 mouseX
+		ARG 3 mouseY
+	METHOD renderDecorations (Lnet/minecraft/client/gui/GuiGraphics;II)V
+		ARG 1 guiGraphics
 		ARG 2 mouseX
 		ARG 3 mouseY
 	METHOD renderHeader (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
 		ARG 1 posStack
 		ARG 2 x
 		ARG 3 y
+	METHOD renderHeader (Lnet/minecraft/client/gui/GuiGraphics;II)V
+		ARG 1 guiGraphics
+		ARG 2 x
+		ARG 3 y
 	METHOD renderItem (Lcom/mojang/blaze3d/vertex/PoseStack;IIFIIIII)V
 		ARG 1 poseStack
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 partialTick
+		ARG 5 index
+		ARG 6 left
+		ARG 7 top
+		ARG 8 width
+		ARG 9 height
+	METHOD renderItem (Lnet/minecraft/client/gui/GuiGraphics;IIFIIIII)V
+		ARG 1 guiGraphics
 		ARG 2 mouseX
 		ARG 3 mouseY
 		ARG 4 partialTick
@@ -98,8 +120,20 @@ CLASS net/minecraft/client/gui/components/AbstractSelectionList
 		ARG 2 mouseX
 		ARG 3 mouseY
 		ARG 4 partialTick
+	METHOD renderList (Lnet/minecraft/client/gui/GuiGraphics;IIF)V
+		ARG 1 guiGraphics
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 partialTick
 	METHOD renderSelection (Lcom/mojang/blaze3d/vertex/PoseStack;IIIII)V
 		ARG 1 poseStack
+		ARG 2 top
+		ARG 3 width
+		ARG 4 height
+		ARG 5 outerColor
+		ARG 6 innerColor
+	METHOD renderSelection (Lnet/minecraft/client/gui/GuiGraphics;IIIII)V
+		ARG 1 guiGraphics
 		ARG 2 top
 		ARG 3 width
 		ARG 4 height
@@ -148,8 +182,29 @@ CLASS net/minecraft/client/gui/components/AbstractSelectionList
 			ARG 8 mouseY
 			ARG 9 isMouseOver
 			ARG 10 partialTick
+		METHOD render (Lnet/minecraft/client/gui/GuiGraphics;IIIIIIIZF)V
+			ARG 1 guiGraphics
+			ARG 2 index
+			ARG 3 top
+			ARG 4 left
+			ARG 5 width
+			ARG 6 height
+			ARG 7 mouseX
+			ARG 8 mouseY
+			ARG 10 partialTick
 		METHOD renderBack (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIZF)V
 			ARG 1 poseStack
+			ARG 2 index
+			ARG 3 top
+			ARG 4 left
+			ARG 5 width
+			ARG 6 height
+			ARG 7 mouseX
+			ARG 8 mouseY
+			ARG 9 isMouseOver
+			ARG 10 partialTick
+		METHOD renderBack (Lnet/minecraft/client/gui/GuiGraphics;IIIIIIIZF)V
+			ARG 1 guiGraphics
 			ARG 2 index
 			ARG 3 top
 			ARG 4 left

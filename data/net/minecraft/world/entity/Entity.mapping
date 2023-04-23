@@ -331,6 +331,9 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT If at least 1 entity is riding this one
 	METHOD kill ()V
 		COMMENT Called by the /kill command.
+	METHOD killedEntity (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 1 level
+		ARG 2 entity
 	METHOD lambda$findDimensionEntryPoint$5 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
 		ARG 2 pos
 	METHOD lambda$findDimensionEntryPoint$6 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/level/portal/PortalInfo;
@@ -453,6 +456,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD playCombinationStepSounds (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 primaryState
 		ARG 2 secondaryState
+	METHOD playMuffledStepSound (Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 state
 	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;)V
 		ARG 1 sound
 	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;FF)V
@@ -691,6 +696,12 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD updateFluidHeightAndDoFluidPushing (Lnet/minecraft/tags/TagKey;D)Z
 		ARG 1 fluidTag
 		ARG 2 motionScale
+	METHOD walkingOnBlock (ZLnet/minecraft/world/phys/Vec3;)Z
+		ARG 1 onGround
+		ARG 2 pos
+	METHOD walkingStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 state
 	METHOD wasKilled (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Z
 		COMMENT Called when this entity kills another entity.
 		ARG 1 level
