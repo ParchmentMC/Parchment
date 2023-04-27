@@ -1,11 +1,18 @@
 CLASS net/minecraft/util/SignatureValidator
 	METHOD from (Lcom/mojang/authlib/yggdrasil/ServicesKeyInfo;)Lnet/minecraft/util/SignatureValidator;
 		ARG 0 servicesKeyInfo
+	METHOD from (Lcom/mojang/authlib/yggdrasil/ServicesKeySet;Lcom/mojang/authlib/yggdrasil/ServicesKeyType;)Lnet/minecraft/util/SignatureValidator;
+		ARG 0 serviceKeySet
+		ARG 1 serviceKeyType
 	METHOD from (Ljava/security/PublicKey;Ljava/lang/String;)Lnet/minecraft/util/SignatureValidator;
 		ARG 0 publicKey
 		ARG 1 algorithm
 	METHOD validate (Lnet/minecraft/util/SignatureUpdater;[B)Z
 		ARG 1 updater
+		ARG 2 signature
+	METHOD validate ([B[B)Z
+		ARG 2 signature
 	METHOD verifySignature (Lnet/minecraft/util/SignatureUpdater;[BLjava/security/Signature;)Z
 		ARG 0 updater
+		ARG 1 signatureBytes
 		ARG 2 signature

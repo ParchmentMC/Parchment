@@ -1,0 +1,58 @@
+CLASS net/minecraft/client/gui/font/providers/UnihexProvider
+	METHOD <init> (Lnet/minecraft/client/gui/font/CodepointMap;)V
+		ARG 1 glyph
+	METHOD copyUntil (Ljava/io/InputStream;Lit/unimi/dsi/fastutil/bytes/ByteList;I)Z
+		ARG 0 stream
+		ARG 1 byteList
+	METHOD decodeHex (IB)I
+		ARG 0 lineNumber
+		ARG 1 data
+	METHOD decodeHex (ILit/unimi/dsi/fastutil/bytes/ByteList;I)I
+		ARG 0 lineNumber
+		ARG 1 byteList
+		ARG 2 index
+	METHOD readFromStream (Ljava/io/InputStream;Lnet/minecraft/client/gui/font/providers/UnihexProvider$ReaderOutput;)V
+		ARG 0 stream
+		ARG 1 output
+	METHOD unpackBitsToBytes (Ljava/nio/IntBuffer;III)V
+		ARG 0 buffer
+		ARG 1 lineData
+	METHOD unpackBitsToBytes (Ljava/nio/IntBuffer;Lnet/minecraft/client/gui/font/providers/UnihexProvider$LineData;II)V
+		ARG 0 buffer
+		ARG 1 lineData
+	CLASS Builder
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Ljava/util/List;)V
+			ARG 1 hexFile
+			ARG 2 sizeOverrides
+		METHOD fromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/client/gui/font/providers/GlyphProviderBuilder;
+			ARG 0 json
+		METHOD load (Lnet/minecraft/server/packs/resources/ResourceManager;)Lcom/mojang/blaze3d/font/GlyphProvider;
+			ARG 1 resourceManager
+		METHOD loadData (Ljava/io/InputStream;)Lnet/minecraft/client/gui/font/providers/UnihexProvider;
+			ARG 1 stream
+	CLASS LineData
+		METHOD line (I)I
+			ARG 1 index
+	CLASS Dimensions
+		METHOD left (I)I
+			ARG 0 packedDimensions
+		METHOD pack (II)I
+			ARG 0 left
+			ARG 1 right
+		METHOD right (I)I
+			ARG 0 packedDimensions
+	CLASS IntContents
+		METHOD read24 (ILit/unimi/dsi/fastutil/bytes/ByteList;)Lnet/minecraft/client/gui/font/providers/UnihexProvider$LineData;
+			ARG 0 index
+			ARG 1 byteList
+		METHOD read32 (ILit/unimi/dsi/fastutil/bytes/ByteList;)Lnet/minecraft/client/gui/font/providers/UnihexProvider$LineData;
+			ARG 0 index
+			ARG 1 byteList
+	CLASS ByteContents
+		METHOD read (ILit/unimi/dsi/fastutil/bytes/ByteList;)Lnet/minecraft/client/gui/font/providers/UnihexProvider$LineData;
+			ARG 0 index
+			ARG 1 byteList
+	CLASS ShortContents
+		METHOD read (ILit/unimi/dsi/fastutil/bytes/ByteList;)Lnet/minecraft/client/gui/font/providers/UnihexProvider$LineData;
+			ARG 0 index
+			ARG 1 byteList

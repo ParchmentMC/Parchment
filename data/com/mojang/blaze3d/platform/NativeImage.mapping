@@ -26,6 +26,8 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 9 clamp
 		ARG 10 mipmap
 		ARG 11 autoClose
+	METHOD applyToAllPixels (Ljava/util/function/IntUnaryOperator;)V
+		ARG 1 function
 	METHOD blendPixel (III)V
 		ARG 1 x
 		ARG 2 y
@@ -53,6 +55,16 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 6 height
 		ARG 7 mirrorX
 		ARG 8 mirrorY
+	METHOD copyRect (Lcom/mojang/blaze3d/platform/NativeImage;IIIIIIZZ)V
+		ARG 1 source
+		ARG 2 xFrom
+		ARG 3 yFrom
+		ARG 4 xTo
+		ARG 5 yTo
+		ARG 6 width
+		ARG 7 height
+		ARG 8 mirrorX
+		ARG 9 mirrorY
 	METHOD downloadDepthBuffer (F)V
 		ARG 1 unused
 	METHOD downloadTexture (IZ)V
@@ -82,6 +94,8 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 	METHOD isOutsideBounds (II)Z
 		ARG 1 x
 		ARG 2 y
+	METHOD mappedCopy (Ljava/util/function/IntUnaryOperator;)Lcom/mojang/blaze3d/platform/NativeImage;
+		ARG 1 function
 	METHOD read (Lcom/mojang/blaze3d/platform/NativeImage$Format;Ljava/io/InputStream;)Lcom/mojang/blaze3d/platform/NativeImage;
 		ARG 0 format
 		ARG 1 textureStream

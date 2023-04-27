@@ -42,6 +42,11 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 		COMMENT Distance in chunks between the edge of the center chunk and the edge of the chunk region needed for the task. The task will only affect the center chunk, only reading from the chunks in the margin.
 	METHOD getStatusAroundFullChunk (I)Lnet/minecraft/world/level/chunk/ChunkStatus;
 		ARG 0 radius
+	METHOD initializeLight (Lnet/minecraft/server/level/ThreadedLevelLightEngine;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 lightEngine
+		ARG 1 chunk
+	METHOD isLighted (Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
+		ARG 0 chunk
 	METHOD isLighted (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
 		ARG 0 status
 		ARG 1 chunk
@@ -87,6 +92,9 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 		ARG 2 chunkGenerator
 		ARG 3 cache
 		ARG 4 loadingChunk
+	METHOD lightChunk (Lnet/minecraft/server/level/ThreadedLevelLightEngine;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 lightEngine
+		ARG 1 chunk
 	METHOD lightChunk (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 status
 		ARG 1 lightEngine

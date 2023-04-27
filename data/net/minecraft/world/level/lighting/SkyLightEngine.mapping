@@ -15,6 +15,10 @@ CLASS net/minecraft/world/level/lighting/SkyLightEngine
 		ARG 1 startPos
 		ARG 3 endPos
 		ARG 5 startLevel
+	METHOD countEmptySectionsBelowIfAtBorder (J)I
+		ARG 1 packedPos
+	METHOD crossedSectionEdge (Lnet/minecraft/core/Direction;II)Z
+		ARG 0 direction
 	METHOD getComputedLevel (JJI)I
 		COMMENT Computes level propagated from neighbors of specified position with given existing level, excluding the given source position.
 		ARG 1 pos
@@ -22,3 +26,8 @@ CLASS net/minecraft/world/level/lighting/SkyLightEngine
 		ARG 5 level
 	METHOD getDebugData (J)Ljava/lang/String;
 		ARG 1 sectionPos
+	METHOD isSourceLevel (I)Z
+		ARG 0 level
+	METHOD propagateFromEmptySections (JLnet/minecraft/core/Direction;IZI)V
+		ARG 1 packedPos
+		ARG 3 direction

@@ -28,6 +28,10 @@ CLASS net/minecraft/world/level/lighting/LayerLightSectionStorage
 		ARG 2 sectionPos
 	METHOD getDataLayerData (J)Lnet/minecraft/world/level/chunk/DataLayer;
 		ARG 1 sectionPos
+	METHOD getDataLayerToWrite (J)Lnet/minecraft/world/level/chunk/DataLayer;
+		ARG 1 sectionPos
+	METHOD getDebugSectionType (J)Lnet/minecraft/world/level/lighting/LayerLightSectionStorage$SectionType;
+		ARG 1 sectionPos
 	METHOD getLevel (J)I
 		ARG 1 sectionPos
 	METHOD getLevelFromSource (J)I
@@ -36,26 +40,45 @@ CLASS net/minecraft/world/level/lighting/LayerLightSectionStorage
 		ARG 1 levelPos
 	METHOD getStoredLevel (J)I
 		ARG 1 levelPos
+	METHOD initializeSection (J)V
+		ARG 1 sectionPos
 	METHOD lambda$clearQueuedSectionBlocks$0 (JJ)Z
 		ARG 2 pos
+	METHOD lightOnInSection (J)Z
+		ARG 1 sectionPos
 	METHOD markNewInconsistencies (Lnet/minecraft/world/level/lighting/LayerLightEngine;ZZ)V
 		ARG 1 engine
 		ARG 2 updateSkyLight
 		ARG 3 updateBlockLight
+	METHOD markNewInconsistencies (Lnet/minecraft/world/level/lighting/LightEngine;)V
+		ARG 1 lightEngine
+	METHOD markSectionAndNeighborsAsAffected (J)V
+		ARG 1 sectionPos
 	METHOD onNodeAdded (J)V
 		ARG 1 sectionPos
 	METHOD onNodeRemoved (J)V
 		ARG 1 sectionPos
+	METHOD putSectionState (JB)V
+		ARG 1 sectionPos
+		ARG 3 sectionState
+	METHOD queueSectionData (JLnet/minecraft/world/level/chunk/DataLayer;)V
+		ARG 1 sectionPos
+		ARG 3 data
 	METHOD queueSectionData (JLnet/minecraft/world/level/chunk/DataLayer;Z)V
 		ARG 1 sectionPos
 		ARG 3 array
 		ARG 4 isTrusted
+	METHOD removeSection (J)V
+		ARG 1 sectionPos
 	METHOD retainData (JZ)V
 		ARG 1 sectionColumnPos
 		ARG 3 retain
 	METHOD setLevel (JI)V
 		ARG 1 sectionPos
 		ARG 3 level
+	METHOD setLightEnabled (JZ)V
+		ARG 1 sectionPos
+		ARG 3 lightEnabled
 	METHOD setStoredLevel (JI)V
 		ARG 1 levelPos
 		ARG 3 lightLevel
@@ -64,3 +87,19 @@ CLASS net/minecraft/world/level/lighting/LayerLightSectionStorage
 	METHOD updateSectionStatus (JZ)V
 		ARG 1 sectionPos
 		ARG 3 isEmpty
+	CLASS SectionType
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 display
+	CLASS SectionState
+		METHOD hasData (B)Z
+			ARG 0 sectionState
+		METHOD hasData (BZ)B
+			ARG 0 sectionState
+			ARG 1 hasData
+		METHOD neighborCount (B)I
+			ARG 0 sectionState
+		METHOD neighborCount (BI)B
+			ARG 0 sectionState
+			ARG 1 neighborCount
+		METHOD type (B)Lnet/minecraft/world/level/lighting/LayerLightSectionStorage$SectionType;
+			ARG 0 sectionState

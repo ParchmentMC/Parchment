@@ -32,6 +32,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 2 direction
 	METHOD broadcastToPlayer (Lnet/minecraft/server/level/ServerPlayer;)Z
 		ARG 1 player
+	METHOD calculateGameModeForNewPlayer (Lnet/minecraft/world/level/GameType;)Lnet/minecraft/world/level/GameType;
+		ARG 1 gameType
 	METHOD canHarmPlayer (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 other
 	METHOD changeDimension (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;
@@ -76,6 +78,10 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD giveExperienceLevels (I)V
 		COMMENT Add experience levels to this player.
 		ARG 1 levels
+	METHOD handleTeamKill (Ljava/lang/String;Ljava/lang/String;[Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;)V
+		ARG 1 scoreboardName
+		ARG 2 username
+		ARG 3 criteria
 	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
@@ -166,6 +172,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 4 prompt
 	METHOD setCamera (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entityToSpectate
+	METHOD setChatSession (Lnet/minecraft/network/chat/RemoteChatSession;)V
+		ARG 1 chatSession
 	METHOD setExperienceLevels (I)V
 		ARG 1 level
 	METHOD setExperiencePoints (I)V
@@ -187,6 +195,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 3 angle
 		ARG 4 forced
 		ARG 5 sendMessage
+	METHOD setServerLevel (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	METHOD shouldFilterMessageTo (Lnet/minecraft/server/level/ServerPlayer;)Z
 		ARG 1 player
 	METHOD startSleepInBed (Lnet/minecraft/core/BlockPos;)Lcom/mojang/datafixers/util/Either;
