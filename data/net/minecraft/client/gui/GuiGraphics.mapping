@@ -8,6 +8,7 @@ CLASS net/minecraft/client/gui/GuiGraphics
 		ARG 2 bufferSource
 	METHOD applyScissor (Lnet/minecraft/client/gui/navigation/ScreenRectangle;)V
 		ARG 0 scissor
+		ARG 1 rectangle
 	METHOD blit (IIIIILnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
 		ARG 1 x
 		ARG 2 y
@@ -149,6 +150,8 @@ CLASS net/minecraft/client/gui/GuiGraphics
 		ARG 3 x
 		ARG 4 y
 		ARG 5 color
+	METHOD drawManaged (Ljava/lang/Runnable;)V
+		ARG 1 runnable
 	METHOD drawString (Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)I
 		ARG 1 font
 		ARG 2 text
@@ -213,6 +216,21 @@ CLASS net/minecraft/client/gui/GuiGraphics
 		ARG 4 maxY
 		ARG 5 z
 		ARG 6 color
+	METHOD fill (Lnet/minecraft/client/renderer/RenderType;IIIII)V
+		ARG 1 renderType
+		ARG 2 minX
+		ARG 3 minY
+		ARG 4 maxX
+		ARG 5 maxY
+		ARG 6 color
+	METHOD fill (Lnet/minecraft/client/renderer/RenderType;IIIIII)V
+		ARG 1 renderType
+		ARG 2 minX
+		ARG 3 minY
+		ARG 4 maxX
+		ARG 5 maxY
+		ARG 6 z
+		ARG 7 color
 	METHOD fillGradient (IIIIII)V
 		ARG 1 x1
 		ARG 2 y1
@@ -237,11 +255,35 @@ CLASS net/minecraft/client/gui/GuiGraphics
 		ARG 6 z
 		ARG 7 colorFrom
 		ARG 8 colorTo
+	METHOD fillGradient (Lcom/mojang/blaze3d/vertex/VertexConsumer;IIIIIII)V
+		ARG 1 consumer
+		ARG 2 x1
+		ARG 3 y1
+		ARG 4 x2
+		ARG 5 y2
+		ARG 6 z
+		ARG 7 colorFrom
+		ARG 8 colorTo
+	METHOD fillGradient (Lnet/minecraft/client/renderer/RenderType;IIIIIII)V
+		ARG 1 renderType
+		ARG 2 x1
+		ARG 3 y1
+		ARG 4 x2
+		ARG 5 y2
+		ARG 6 colorFrom
+		ARG 7 colorTo
+		ARG 8 z
 	METHOD hLine (IIII)V
 		ARG 1 minX
 		ARG 2 maxX
 		ARG 3 y
 		ARG 4 color
+	METHOD hLine (Lnet/minecraft/client/renderer/RenderType;IIII)V
+		ARG 1 renderType
+		ARG 2 minX
+		ARG 3 maxX
+		ARG 4 y
+		ARG 5 color
 	METHOD innerBlit (Lnet/minecraft/resources/ResourceLocation;IIIIIFFFF)V
 		ARG 1 atlasLocation
 		ARG 2 x1
@@ -376,6 +418,12 @@ CLASS net/minecraft/client/gui/GuiGraphics
 		ARG 2 minY
 		ARG 3 maxY
 		ARG 4 color
+	METHOD vLine (Lnet/minecraft/client/renderer/RenderType;IIII)V
+		ARG 1 renderType
+		ARG 2 x
+		ARG 3 minY
+		ARG 4 maxY
+		ARG 5 color
 	CLASS ScissorStack
 		METHOD push (Lnet/minecraft/client/gui/navigation/ScreenRectangle;)Lnet/minecraft/client/gui/navigation/ScreenRectangle;
 			ARG 1 sciccor

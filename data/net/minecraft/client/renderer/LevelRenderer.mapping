@@ -182,6 +182,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 type
 		ARG 2 pos
 		ARG 3 data
+	METHOD mixColor (F)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 hue
 	METHOD notifyNearbyEntities (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Z)V
 		COMMENT Notifies living entities in a 3 block range of the specified {@code pos} that a record is or isn't playing nearby, dependent on the specified {@code playing} parameter.
 		COMMENT This is used to make parrots start or stop partying.
@@ -329,6 +331,17 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 green
 		ARG 11 blue
 		ARG 12 alpha
+	METHOD renderVoxelShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFFZ)V
+		ARG 0 poseStack
+		ARG 1 consumer
+		ARG 2 shape
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
+		ARG 9 red
+		ARG 10 green
+		ARG 11 blue
+		ARG 12 alpha
 	METHOD renderWorldBorder (Lnet/minecraft/client/Camera;)V
 		ARG 1 camera
 	METHOD resize (II)V
@@ -370,6 +383,11 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 frustum
 		ARG 3 hasCapturedFrustum
 		ARG 4 isSpectator
+	METHOD shiftHue (FFFF)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 red
+		ARG 1 green
+		ARG 2 blue
+		ARG 3 hue
 	METHOD tickRain (Lnet/minecraft/client/Camera;)V
 		ARG 1 camera
 	METHOD updateGlobalBlockEntities (Ljava/util/Collection;Ljava/util/Collection;)V

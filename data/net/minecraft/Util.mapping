@@ -1,4 +1,6 @@
 CLASS net/minecraft/Util
+	METHOD blockUntilDone (Ljava/util/function/Function;Ljava/util/function/Predicate;)Ljava/lang/Object;
+		ARG 1 donePredicate
 	METHOD copyBetweenDirs (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/nio/file/Path;)V
 		ARG 0 fromDirectory
 		ARG 1 toDirectory
@@ -9,6 +11,10 @@ CLASS net/minecraft/Util
 		ARG 0 filePath
 	METHOD createFileDeletedCheck (Ljava/nio/file/Path;)Ljava/util/function/BooleanSupplier;
 		ARG 0 filePath
+	METHOD createIndexLookup (Ljava/util/List;)Ljava/util/function/ToIntFunction;
+		ARG 0 list
+	METHOD createIndexLookup (Ljava/util/List;Ljava/util/function/IntFunction;)Ljava/util/function/ToIntFunction;
+		ARG 0 list
 	METHOD createRenamer (Ljava/nio/file/Path;Ljava/nio/file/Path;)Ljava/util/function/BooleanSupplier;
 		ARG 0 filePath
 		ARG 1 newName
@@ -21,6 +27,9 @@ CLASS net/minecraft/Util
 		ARG 0 msg
 	METHOD executeInSequence ([Ljava/util/function/BooleanSupplier;)Z
 		ARG 0 suppliers
+	METHOD fallibleSequence (Ljava/util/List;Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 completableFutures
+		ARG 1 throwableConsumer
 	METHOD fetchChoiceType (Lcom/mojang/datafixers/DSL$TypeReference;Ljava/lang/String;)Lcom/mojang/datafixers/types/Type;
 		ARG 0 type
 		ARG 1 choiceName
@@ -36,6 +45,9 @@ CLASS net/minecraft/Util
 	METHOD fixedSize (Ljava/util/stream/IntStream;I)Lcom/mojang/serialization/DataResult;
 		ARG 0 stream
 		ARG 1 size
+	METHOD getOrThrow (Lcom/mojang/serialization/DataResult;Ljava/util/function/Function;)Ljava/lang/Object;
+		ARG 0 dataResult
+		ARG 1 exceptionGetter
 	METHOD getPropertyName (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Object;)Ljava/lang/String;
 		ARG 0 property
 		ARG 1 value

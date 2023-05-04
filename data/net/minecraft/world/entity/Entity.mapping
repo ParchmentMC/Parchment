@@ -327,6 +327,8 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Returns {@code true} if the player is in spectator mode.
 	METHOD isSprinting ()Z
 		COMMENT Get if the Entity is sprinting.
+	METHOD isStateClimbable (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
 	METHOD isVehicle ()Z
 		COMMENT If at least 1 entity is riding this one
 	METHOD kill ()V
@@ -698,6 +700,11 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD updateFluidHeightAndDoFluidPushing (Lnet/minecraft/tags/TagKey;D)Z
 		ARG 1 fluidTag
 		ARG 2 motionScale
+	METHOD vibrationAndSoundEffectsFromBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;ZZLnet/minecraft/world/phys/Vec3;)Z
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 playStepSound
+		ARG 4 broadcastGameEvent
 	METHOD walkingOnBlock (ZLnet/minecraft/world/phys/Vec3;)Z
 		ARG 1 onGround
 		ARG 2 pos

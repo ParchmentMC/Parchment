@@ -27,8 +27,20 @@ CLASS net/minecraft/advancements/critereon/EntityPredicate
 	METHOD createContext (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/level/storage/loot/LootContext;
 		ARG 0 player
 		ARG 1 entity
+	METHOD fromElement (Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/ContextAwarePredicate;
+		ARG 0 id
+		ARG 1 context
+		ARG 2 element
 	METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/EntityPredicate;
 		ARG 0 json
+	METHOD fromJson (Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/ContextAwarePredicate;
+		ARG 0 json
+		ARG 1 id
+		ARG 2 context
+	METHOD fromJsonArray (Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;)[Lnet/minecraft/advancements/critereon/ContextAwarePredicate;
+		ARG 0 json
+		ARG 1 id
+		ARG 2 context
 	METHOD lambda$matches$0 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 3 passenger
 	METHOD matches (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
@@ -38,6 +50,8 @@ CLASS net/minecraft/advancements/critereon/EntityPredicate
 	METHOD matches (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 player
 		ARG 2 entity
+	METHOD wrap (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/ContextAwarePredicate;
+		ARG 0 predicate
 	CLASS Builder
 		METHOD distance (Lnet/minecraft/advancements/critereon/DistancePredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 distanceToPlayer

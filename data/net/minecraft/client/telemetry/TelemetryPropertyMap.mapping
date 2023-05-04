@@ -6,6 +6,8 @@ CLASS net/minecraft/client/telemetry/TelemetryPropertyMap
 	METHOD get (Lnet/minecraft/client/telemetry/TelemetryProperty;)Ljava/lang/Object;
 		ARG 1 key
 	CLASS 1
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
 		METHOD encode (Lnet/minecraft/client/telemetry/TelemetryPropertyMap;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;)Lcom/mojang/serialization/RecordBuilder;
 			ARG 1 map
 			ARG 2 ops
@@ -20,3 +22,6 @@ CLASS net/minecraft/client/telemetry/TelemetryPropertyMap
 			ARG 2 value
 		METHOD putAll (Lnet/minecraft/client/telemetry/TelemetryPropertyMap;)Lnet/minecraft/client/telemetry/TelemetryPropertyMap$Builder;
 			ARG 1 propertyMap
+		METHOD putIfNotNull (Lnet/minecraft/client/telemetry/TelemetryProperty;Ljava/lang/Object;)Lnet/minecraft/client/telemetry/TelemetryPropertyMap$Builder;
+			ARG 1 key
+			ARG 2 value
