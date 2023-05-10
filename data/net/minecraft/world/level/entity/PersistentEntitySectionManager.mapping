@@ -14,11 +14,17 @@ CLASS net/minecraft/world/level/entity/PersistentEntitySectionManager
 		ARG 1 entity
 	METHOD addWorldGenChunkEntities (Ljava/util/stream/Stream;)V
 		ARG 1 entities
+	METHOD canPositionTick (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD canPositionTick (Lnet/minecraft/world/level/ChunkPos;)Z
+		ARG 1 chunkPos
 	METHOD ensureChunkQueuedForLoad (J)V
 		ARG 1 chunkPosValue
 	METHOD getEffectiveStatus (Lnet/minecraft/world/level/entity/EntityAccess;Lnet/minecraft/world/level/entity/Visibility;)Lnet/minecraft/world/level/entity/Visibility;
 		ARG 0 entity
 		ARG 1 visibility
+	METHOD isLoaded (Ljava/util/UUID;)Z
+		ARG 1 uuid
 	METHOD lambda$addLegacyChunkEntities$0 (Lnet/minecraft/world/level/entity/EntityAccess;)V
 		ARG 1 entity
 	METHOD lambda$addWorldGenChunkEntities$1 (Lnet/minecraft/world/level/entity/EntityAccess;)V
@@ -43,10 +49,14 @@ CLASS net/minecraft/world/level/entity/PersistentEntitySectionManager
 	METHOD updateChunkStatus (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
 		ARG 1 pos
 		ARG 2 status
+	METHOD updateChunkStatus (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/server/level/FullChunkStatus;)V
+		ARG 1 chunkPos
+		ARG 2 fullChunkStatus
 	METHOD updateChunkStatus (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/entity/Visibility;)V
 		ARG 1 pos
 		ARG 2 visibility
 	CLASS Callback
 		METHOD <init> (Lnet/minecraft/world/level/entity/PersistentEntitySectionManager;Lnet/minecraft/world/level/entity/EntityAccess;JLnet/minecraft/world/level/entity/EntitySection;)V
 			ARG 2 entity
+			ARG 3 currentSectionKey
 			ARG 5 currentSection

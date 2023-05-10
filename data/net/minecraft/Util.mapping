@@ -45,6 +45,9 @@ CLASS net/minecraft/Util
 	METHOD fixedSize (Ljava/util/stream/IntStream;I)Lcom/mojang/serialization/DataResult;
 		ARG 0 stream
 		ARG 1 size
+	METHOD fixedSize (Ljava/util/stream/LongStream;I)Lcom/mojang/serialization/DataResult;
+		ARG 0 stream
+		ARG 1 expectedSize
 	METHOD getOrThrow (Lcom/mojang/serialization/DataResult;Ljava/util/function/Function;)Ljava/lang/Object;
 		ARG 0 dataResult
 		ARG 1 exceptionGetter
@@ -102,7 +105,7 @@ CLASS net/minecraft/Util
 		ARG 0 throwable
 	METHOD prefix (Ljava/lang/String;Ljava/util/function/Consumer;)Ljava/util/function/Consumer;
 		ARG 0 prefix
-		ARG 1 consumer
+		ARG 1 expectedSize
 	METHOD runWithRetries (ILjava/lang/String;[Ljava/util/function/BooleanSupplier;)Z
 		ARG 0 maxTries
 		ARG 1 actionName

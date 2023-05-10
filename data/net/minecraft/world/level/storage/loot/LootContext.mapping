@@ -16,6 +16,10 @@ CLASS net/minecraft/world/level/storage/loot/LootContext
 		ARG 4 lootDataResolver
 		ARG 5 params
 		ARG 6 dynamicDrops
+	METHOD <init> (Lnet/minecraft/world/level/storage/loot/LootParams;Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/level/storage/loot/LootDataResolver;)V
+		ARG 1 params
+		ARG 2 random
+		ARG 3 lootDataResolver
 	METHOD addDynamicDrops (Lnet/minecraft/resources/ResourceLocation;Ljava/util/function/Consumer;)V
 		COMMENT Add the dynamic drops for the given dynamic drops name to the given consumer.
 		COMMENT If no dynamic drops provider for the given name has been registered to this LootContext, nothing is generated.
@@ -64,6 +68,10 @@ CLASS net/minecraft/world/level/storage/loot/LootContext
 	CLASS Builder
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;)V
 			ARG 1 level
+		METHOD <init> (Lnet/minecraft/world/level/storage/loot/LootParams;)V
+			ARG 1 params
+		METHOD create (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/LootContext;
+			ARG 1 location
 		METHOD create (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;)Lnet/minecraft/world/level/storage/loot/LootContext;
 			ARG 1 parameterSet
 		METHOD getOptionalParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;)Ljava/lang/Object;

@@ -1,10 +1,10 @@
 CLASS net/minecraft/server/level/ChunkHolder
 	FIELD entityTickingChunkFuture Ljava/util/concurrent/CompletableFuture;
-		COMMENT A future that returns the chunk if it is an entity ticking chunk, {@link net.minecraft.world.server.ChunkHolder.IChunkLoadingError#UNLOADED} otherwise.
+		COMMENT A future that returns the chunk if it is an entity ticking chunk, {@link net.minecraft.world.server.ChunkHolder.ChunkLoadingFailure#UNLOADED} otherwise.
 	FIELD fullChunkFuture Ljava/util/concurrent/CompletableFuture;
-		COMMENT A future that returns the chunk if it is a border chunk, {@link net.minecraft.world.server.ChunkHolder.IChunkLoadingError#UNLOADED} otherwise.
+		COMMENT A future that returns the chunk if it is a border chunk, {@link net.minecraft.world.server.ChunkHolder.ChunkLoadingFailure#UNLOADED} otherwise.
 	FIELD tickingChunkFuture Ljava/util/concurrent/CompletableFuture;
-		COMMENT A future that returns the chunk if it is a ticking chunk, {@link net.minecraft.world.server.ChunkHolder.IChunkLoadingError#UNLOADED} otherwise.
+		COMMENT A future that returns the chunk if it is a ticking chunk, {@link net.minecraft.world.server.ChunkHolder.ChunkLoadingFailure#UNLOADED} otherwise.
 	METHOD <init> (Lnet/minecraft/world/level/ChunkPos;ILnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/lighting/LevelLightEngine;Lnet/minecraft/server/level/ChunkHolder$LevelChangeListener;Lnet/minecraft/server/level/ChunkHolder$PlayerProvider;)V
 		ARG 1 pos
 		ARG 2 ticketLevel
@@ -32,6 +32,9 @@ CLASS net/minecraft/server/level/ChunkHolder
 	METHOD demoteFullChunk (Lnet/minecraft/server/level/ChunkMap;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
 		ARG 1 chunkMap
 		ARG 2 fullChunkStatus
+	METHOD demoteFullChunk (Lnet/minecraft/server/level/ChunkMap;Lnet/minecraft/server/level/FullChunkStatus;)V
+		ARG 1 chunkMap
+		ARG 2 fullChunkStatus
 	METHOD getFullChunkStatus (I)Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
 		ARG 0 level
 	METHOD getFutureIfPresent (Lnet/minecraft/world/level/chunk/ChunkStatus;)Ljava/util/concurrent/CompletableFuture;
@@ -43,7 +46,14 @@ CLASS net/minecraft/server/level/ChunkHolder
 		ARG 2 map
 	METHOD getStatus (I)Lnet/minecraft/world/level/chunk/ChunkStatus;
 		ARG 0 level
+	METHOD replaceProtoChunk (Lnet/minecraft/world/level/chunk/ImposterProtoChunk;)V
+		ARG 1 imposter
 	METHOD scheduleFullChunkPromotion (Lnet/minecraft/server/level/ChunkMap;Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
+		ARG 1 chunkMap
+		ARG 2 future
+		ARG 3 executor
+		ARG 4 fullChunkStatus
+	METHOD scheduleFullChunkPromotion (Lnet/minecraft/server/level/ChunkMap;Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/FullChunkStatus;)V
 		ARG 1 chunkMap
 		ARG 2 future
 		ARG 3 executor

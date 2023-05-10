@@ -1,8 +1,16 @@
 CLASS net/minecraft/world/level/storage/loot/LootTable
+	METHOD <init> (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;Lnet/minecraft/resources/ResourceLocation;[Lnet/minecraft/world/level/storage/loot/LootPool;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
+		ARG 1 paramSet
+		ARG 2 randomSequence
+		ARG 3 pools
+		ARG 4 functions
 	METHOD <init> (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;[Lnet/minecraft/world/level/storage/loot/LootPool;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
 		ARG 1 paramSet
 		ARG 2 pools
 		ARG 3 functions
+	METHOD createStackSplitter (Lnet/minecraft/server/level/ServerLevel;Ljava/util/function/Consumer;)Ljava/util/function/Consumer;
+		ARG 0 level
+		ARG 1 output
 	METHOD createStackSplitter (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)Ljava/util/function/Consumer;
 		COMMENT Create a wrapped {@link Consumer} which will split stacks according to their maximum stack size before passing them on to the given {@code stackConsumer}.
 		ARG 0 context
@@ -11,6 +19,10 @@ CLASS net/minecraft/world/level/storage/loot/LootTable
 		COMMENT Fill the given container with random items from this loot table.
 		ARG 1 container
 		ARG 2 context
+	METHOD fill (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/storage/loot/LootParams;J)V
+		ARG 1 container
+		ARG 2 params
+		ARG 3 seed
 	METHOD getAvailableSlots (Lnet/minecraft/world/Container;Lnet/minecraft/util/RandomSource;)Ljava/util/List;
 		ARG 1 inventory
 		ARG 2 random
@@ -22,11 +34,26 @@ CLASS net/minecraft/world/level/storage/loot/LootTable
 	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
 		COMMENT Generate random items to the given Consumer, ensuring they do not exceed their maximum stack size.
 		ARG 1 contextData
-		ARG 2 stacksOut
+		ARG 2 output
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootParams;)Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+		ARG 1 params
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootParams;J)Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+		ARG 1 params
+		ARG 2 seed
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootParams;JLjava/util/function/Consumer;)V
+		ARG 1 params
+		ARG 2 seed
+		ARG 4 output
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootParams;Ljava/util/function/Consumer;)V
+		ARG 1 params
+		ARG 2 output
 	METHOD getRandomItemsRaw (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
 		COMMENT Generate items to the given Consumer, ignoring maximum stack size.
 		ARG 1 context
-		ARG 2 stacksOut
+		ARG 2 output
+	METHOD getRandomItemsRaw (Lnet/minecraft/world/level/storage/loot/LootParams;Ljava/util/function/Consumer;)V
+		ARG 1 params
+		ARG 2 output
 	METHOD shuffleAndSplitItems (Lit/unimi/dsi/fastutil/objects/ObjectArrayList;ILnet/minecraft/util/RandomSource;)V
 		COMMENT Shuffles items by changing their order and splitting stacks
 		ARG 1 stacks
@@ -38,5 +65,16 @@ CLASS net/minecraft/world/level/storage/loot/LootTable
 	CLASS Builder
 		METHOD setParamSet (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 			ARG 1 parameterSet
+		METHOD setRandomSequence (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+			ARG 1 randomSequence
 		METHOD withPool (Lnet/minecraft/world/level/storage/loot/LootPool$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 			ARG 1 lootPool
+	CLASS Serializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+			ARG 1 json
+			ARG 2 typeOfT
+			ARG 3 context
+		METHOD serialize (Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
+			ARG 1 src
+			ARG 2 typeOfSrc
+			ARG 3 context
