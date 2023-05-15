@@ -4,6 +4,9 @@ CLASS net/minecraft/client/gui/font/FontManager
 	METHOD apply (Lnet/minecraft/client/gui/font/FontManager$Preparation;Lnet/minecraft/util/profiling/ProfilerFiller;)V
 		ARG 1 preperation
 		ARG 2 profiler
+	METHOD finalizeProviderLoading (Ljava/util/List;Lcom/mojang/blaze3d/font/GlyphProvider;)V
+		ARG 1 providers
+		ARG 2 missingProvider
 	METHOD getActualId (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
 		ARG 1 id
 	METHOD loadResourceStack (Ljava/util/List;Lnet/minecraft/resources/ResourceLocation;)Ljava/util/List;
@@ -23,14 +26,20 @@ CLASS net/minecraft/client/gui/font/FontManager
 		ARG 4 executor
 	METHOD setRenames (Ljava/util/Map;)V
 		ARG 1 unicodeForcedMap
+	CLASS BuilderResult
+		METHOD resolve (Ljava/util/function/Function;)Ljava/util/Optional;
+			ARG 1 providerResolver
 	CLASS UnresolvedBuilderBundle
 		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
 			ARG 1 fontId
 		METHOD add (Lnet/minecraft/client/gui/font/FontManager$BuilderId;Ljava/util/concurrent/CompletableFuture;)V
 			ARG 1 id
+			ARG 2 providerFuture
 		METHOD add (Lnet/minecraft/client/gui/font/FontManager$BuilderId;Lnet/minecraft/client/gui/font/providers/GlyphProviderBuilder$Reference;)V
 			ARG 1 id
 			ARG 2 reference
 		METHOD add (Lnet/minecraft/client/gui/font/FontManager$BuilderId;Lnet/minecraft/client/gui/font/providers/GlyphProviderDefinition$Reference;)V
 			ARG 1 builderId
 			ARG 2 reference
+		METHOD resolve (Ljava/util/function/Function;)Ljava/util/Optional;
+			ARG 1 providerResolver

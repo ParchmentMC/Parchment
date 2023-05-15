@@ -1,7 +1,22 @@
 CLASS net/minecraft/util/DependencySorter
+	METHOD addDependencyIfNotCyclic (Lcom/google/common/collect/Multimap;Ljava/lang/Object;Ljava/lang/Object;)V
+		ARG 0 dependencies
+		ARG 1 source
+		ARG 2 target
 	METHOD addEntry (Ljava/lang/Object;Lnet/minecraft/util/DependencySorter$Entry;)Lnet/minecraft/util/DependencySorter;
 		ARG 1 key
 		ARG 2 value
+	METHOD isCyclic (Lcom/google/common/collect/Multimap;Ljava/lang/Object;Ljava/lang/Object;)Z
+		ARG 0 dependencies
+		ARG 1 source
+		ARG 2 target
+	METHOD orderByDependencies (Ljava/util/function/BiConsumer;)V
+		ARG 1 action
+	METHOD visitDependenciesAndElement (Lcom/google/common/collect/Multimap;Ljava/util/Set;Ljava/lang/Object;Ljava/util/function/BiConsumer;)V
+		ARG 1 dependencies
+		ARG 2 visited
+		ARG 3 element
+		ARG 4 action
 	CLASS Entry
 		METHOD visitOptionalDependencies (Ljava/util/function/Consumer;)V
 			ARG 1 visitor
