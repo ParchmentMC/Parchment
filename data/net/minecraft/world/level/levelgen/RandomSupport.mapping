@@ -1,5 +1,13 @@
 CLASS net/minecraft/world/level/levelgen/RandomSupport
 	METHOD mixStafford13 (J)J
 		ARG 0 seed
+	METHOD seedFromHashOf (Ljava/lang/String;)Lnet/minecraft/world/level/levelgen/RandomSupport$Seed128bit;
+		ARG 0 string
 	METHOD upgradeSeedTo128bit (J)Lnet/minecraft/world/level/levelgen/RandomSupport$Seed128bit;
 		ARG 0 seed
+	CLASS Seed128bit
+		METHOD xor (JJ)Lnet/minecraft/world/level/levelgen/RandomSupport$Seed128bit;
+			ARG 1 seedLo
+			ARG 3 seedHi
+		METHOD xor (Lnet/minecraft/world/level/levelgen/RandomSupport$Seed128bit;)Lnet/minecraft/world/level/levelgen/RandomSupport$Seed128bit;
+			ARG 1 seed
