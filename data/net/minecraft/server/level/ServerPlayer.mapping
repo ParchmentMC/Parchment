@@ -56,6 +56,11 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
 		COMMENT Called when the mob's health reaches 0.
 		ARG 1 cause
+	METHOD doCheckFallDamage (DDDZ)V
+		ARG 1 movementX
+		ARG 3 movementY
+		ARG 5 movementZ
+		ARG 7 onGround
 	METHOD doCheckFallDamage (DZ)V
 		COMMENT Process player falling based on movement packet.
 		ARG 1 y
@@ -97,6 +102,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 pos
 	METHOD isSpectator ()Z
 		COMMENT Returns {@code true} if the player is in spectator mode.
+	METHOD lambda$readAdditionalSaveData$0 (Lnet/minecraft/world/entity/monster/warden/WardenSpawnTracker;)V
+		ARG 1 wardenSpawnTracker
 	METHOD loadGameTypes (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
 	METHOD lookAt (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)V
@@ -144,6 +151,7 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 compound
 	METHOD readPlayerMode (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Lnet/minecraft/world/level/GameType;
 		ARG 0 tag
+		ARG 1 key
 	METHOD resetSentInfo ()V
 		COMMENT This function is called when a player's inventory is sent to him, {@code lastHealth} is updated on any dimension transitions, then reset.
 	METHOD resetStat (Lnet/minecraft/stats/Stat;)V
