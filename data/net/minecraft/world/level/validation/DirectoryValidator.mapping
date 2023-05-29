@@ -1,0 +1,18 @@
+CLASS net/minecraft/world/level/validation/DirectoryValidator
+	METHOD <init> (Lnet/minecraft/world/level/validation/PathAllowList;)V
+		ARG 1 symlinkTargetAllowList
+	METHOD validateSave (Ljava/nio/file/Path;Z)Ljava/util/List;
+		ARG 1 path
+	METHOD validateSymlink (Ljava/nio/file/Path;Ljava/util/List;)V
+		ARG 1 directory
+		ARG 2 entries
+	CLASS 1
+		METHOD preVisitDirectory (Ljava/lang/Object;Ljava/nio/file/attribute/BasicFileAttributes;)Ljava/nio/file/FileVisitResult;
+			ARG 1 path
+			ARG 2 attributes
+		METHOD validateSymlink (Ljava/nio/file/Path;Ljava/nio/file/attribute/BasicFileAttributes;)V
+			ARG 1 path
+			ARG 2 attributes
+		METHOD visitFile (Ljava/lang/Object;Ljava/nio/file/attribute/BasicFileAttributes;)Ljava/nio/file/FileVisitResult;
+			ARG 1 path
+			ARG 2 attributes

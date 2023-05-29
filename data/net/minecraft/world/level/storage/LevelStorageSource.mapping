@@ -3,6 +3,11 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		ARG 1 baseDir
 		ARG 2 backupDir
 		ARG 3 fixerUpper
+	METHOD <init> (Ljava/nio/file/Path;Ljava/nio/file/Path;Lnet/minecraft/world/level/validation/DirectoryValidator;Lcom/mojang/datafixers/DataFixer;)V
+		ARG 1 baseDir
+		ARG 2 backupDir
+		ARG 3 worldDirValidator
+		ARG 4 fixerUpper
 	METHOD createAccess (Ljava/lang/String;)Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;
 		ARG 1 saveName
 	METHOD createDefault (Ljava/nio/file/Path;)Lnet/minecraft/world/level/storage/LevelStorageSource;
@@ -17,6 +22,8 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		ARG 1 dataConfiguration
 		ARG 2 levelStemRegistry
 		ARG 3 lifecycle
+	METHOD getLevelPath (Ljava/lang/String;)Ljava/nio/file/Path;
+		ARG 1 saveName
 	METHOD isNewLevelIdAcceptable (Ljava/lang/String;)Z
 		ARG 1 saveName
 	METHOD levelExists (Ljava/lang/String;)Z
@@ -29,6 +36,8 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		ARG 1 candidates
 	METHOD parseFeatureFlagsFromSummary (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/flag/FeatureFlagSet;
 		ARG 0 dynamic
+	METHOD parseValidator (Ljava/nio/file/Path;)Lnet/minecraft/world/level/validation/DirectoryValidator;
+		ARG 0 validator
 	METHOD readDataConfig (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/level/WorldDataConfiguration;
 		ARG 0 dynamic
 	METHOD readLevelData (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelDirectory;Ljava/util/function/BiFunction;)Ljava/lang/Object;
@@ -38,6 +47,8 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		ARG 0 dynamic
 		ARG 1 fixer
 		ARG 2 version
+	METHOD validateAndCreateAccess (Ljava/lang/String;)Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;
+		ARG 1 saveName
 	CLASS LevelDirectory
 		METHOD corruptedDataFile (Ljava/time/LocalDateTime;)Ljava/nio/file/Path;
 			ARG 1 dateTime
@@ -46,6 +57,9 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 	CLASS LevelStorageAccess
 		METHOD <init> (Lnet/minecraft/world/level/storage/LevelStorageSource;Ljava/lang/String;)V
 			ARG 2 levelId
+		METHOD <init> (Lnet/minecraft/world/level/storage/LevelStorageSource;Ljava/lang/String;Ljava/nio/file/Path;)V
+			ARG 2 levelId
+			ARG 3 levelDir
 		METHOD getDataTag (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/WorldDataConfiguration;Lnet/minecraft/core/Registry;Lcom/mojang/serialization/Lifecycle;)Lcom/mojang/datafixers/util/Pair;
 			ARG 1 ops
 			ARG 2 dataConfiguration
