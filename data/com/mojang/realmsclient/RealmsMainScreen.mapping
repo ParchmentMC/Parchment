@@ -11,20 +11,8 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 1 realmsServer
 	METHOD dismissNotification (Ljava/util/UUID;)V
 		ARG 1 uuid
-	METHOD drawClose (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
-		ARG 1 poseStack
-		ARG 2 x
-		ARG 3 y
-		ARG 4 mouseX
-		ARG 5 mouseY
 	METHOD drawClose (Lnet/minecraft/client/gui/GuiGraphics;IIII)V
 		ARG 1 guiGraphics
-		ARG 2 x
-		ARG 3 y
-		ARG 4 mouseX
-		ARG 5 mouseY
-	METHOD drawExpired (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
-		ARG 1 poseStack
 		ARG 2 x
 		ARG 3 y
 		ARG 4 mouseX
@@ -35,13 +23,6 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 3 y
 		ARG 4 mouseX
 		ARG 5 mouseY
-	METHOD drawExpiring (Lcom/mojang/blaze3d/vertex/PoseStack;IIIII)V
-		ARG 1 poseStack
-		ARG 2 x
-		ARG 3 y
-		ARG 4 mouseX
-		ARG 5 mouseY
-		ARG 6 daysLeft
 	METHOD drawExpiring (Lnet/minecraft/client/gui/GuiGraphics;IIIII)V
 		ARG 1 guiGraphics
 		ARG 2 x
@@ -49,37 +30,14 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 4 mouseX
 		ARG 5 mouseY
 		ARG 6 daysLeft
-	METHOD drawInvitationPendingIcon (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIZZ)V
-		ARG 1 poseStack
-		ARG 2 mouseX
-		ARG 3 mouseY
-		ARG 4 x
-		ARG 5 y
-		ARG 6 isHoveredOrFocused
-		ARG 7 active
-	METHOD drawOpen (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
-		ARG 1 poseStack
-		ARG 2 x
-		ARG 3 y
-		ARG 4 mouseX
-		ARG 5 mouseY
 	METHOD drawOpen (Lnet/minecraft/client/gui/GuiGraphics;IIII)V
 		ARG 1 guiGraphics
 		ARG 2 x
 		ARG 3 y
 		ARG 4 mouseX
 		ARG 5 mouseY
-	METHOD drawPopup (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
 	METHOD drawPopup (Lnet/minecraft/client/gui/GuiGraphics;)V
 		ARG 1 guiGraphics
-	METHOD drawRealmsLogo (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
-		ARG 1 poseStack
-		ARG 2 x
-		ARG 3 y
-	METHOD inPendingInvitationArea (DD)Z
-		ARG 1 mouseX
-		ARG 3 mouseY
 	METHOD initDataFetcher (Lcom/mojang/realmsclient/gui/RealmsDataFetcher;)Lcom/mojang/realmsclient/gui/task/DataFetcher$Subscription;
 		ARG 1 dataFetcher
 	METHOD isOutsidePopup (DD)Z
@@ -96,26 +54,13 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 2 server
 	METHOD onRenew (Lcom/mojang/realmsclient/dto/RealmsServer;)V
 		ARG 1 realmsServer
-	METHOD pendingButtonPress (Lnet/minecraft/client/gui/components/Button;)V
-		ARG 1 button
 	METHOD play (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 1 realmsServer
 		ARG 2 lastScreen
 	METHOD removeServer (Lcom/mojang/realmsclient/dto/RealmsServer;)V
 		ARG 1 server
-	METHOD renderLocal (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
 	METHOD renderLocal (Lnet/minecraft/client/gui/GuiGraphics;)V
 		ARG 1 guiGraphics
-	METHOD renderNews (Lcom/mojang/blaze3d/vertex/PoseStack;IIZIIZZ)V
-		ARG 1 poseStack
-		ARG 2 mouseX
-		ARG 3 mouseY
-		ARG 4 hasUnreadNews
-		ARG 5 x
-		ARG 6 y
-		ARG 7 isHoveredOrFocused
-		ARG 8 active
 	METHOD renderNews (Lnet/minecraft/client/gui/GuiGraphics;IIZIIZZ)V
 		ARG 1 guiGraphics
 		ARG 2 mouseX
@@ -125,8 +70,6 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 6 y
 		ARG 7 isHoveredOrFocused
 		ARG 8 active
-	METHOD renderStage (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
 	METHOD renderStage (Lnet/minecraft/client/gui/GuiGraphics;)V
 		ARG 1 guiGraphics
 	METHOD setCreatedTrial (Z)V
@@ -144,13 +87,6 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 	METHOD updateTeaserImages (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 0 resourceManager
 	CLASS TrialEntry
-		METHOD renderTrialItem (Lcom/mojang/blaze3d/vertex/PoseStack;IIIII)V
-			ARG 1 poseStack
-			ARG 2 index
-			ARG 3 left
-			ARG 4 top
-			ARG 5 mouseX
-			ARG 6 mouseY
 		METHOD renderTrialItem (Lnet/minecraft/client/gui/GuiGraphics;IIIII)V
 			ARG 1 guiGraphics
 			ARG 2 index
@@ -173,13 +109,6 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 	CLASS ServerEntry
 		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/dto/RealmsServer;)V
 			ARG 2 serverData
-		METHOD renderLegacy (Lcom/mojang/realmsclient/dto/RealmsServer;Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
-			ARG 1 realmsServer
-			ARG 2 poseStack
-			ARG 3 x
-			ARG 4 y
-			ARG 5 mouseX
-			ARG 6 mouseY
 		METHOD renderLegacy (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/GuiGraphics;IIII)V
 			ARG 1 realmsServer
 			ARG 2 guiGraphics
@@ -187,23 +116,9 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 			ARG 4 y
 			ARG 5 mouseX
 			ARG 6 mouseY
-		METHOD renderMcoServerItem (Lcom/mojang/realmsclient/dto/RealmsServer;Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
-			ARG 1 realmsServer
-			ARG 2 poseStack
-			ARG 3 x
-			ARG 4 y
-			ARG 5 mouseX
-			ARG 6 mouseY
 		METHOD renderMcoServerItem (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/GuiGraphics;IIII)V
 			ARG 1 realmsServer
 			ARG 2 guiGraphics
-			ARG 3 x
-			ARG 4 y
-			ARG 5 mouseX
-			ARG 6 mouseY
-		METHOD renderStatusLights (Lcom/mojang/realmsclient/dto/RealmsServer;Lcom/mojang/blaze3d/vertex/PoseStack;IIIIII)V
-			ARG 1 server
-			ARG 2 poseStack
 			ARG 3 x
 			ARG 4 y
 			ARG 5 mouseX

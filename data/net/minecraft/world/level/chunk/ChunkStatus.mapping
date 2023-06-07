@@ -2,23 +2,6 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 	COMMENT The statuses that chunks go through during different phases of generation and loading.
 	COMMENT Each status has an asynchronous task that is completed to generate a chunk, and one to load a chunk up to that status.
 	COMMENT Chunks are generated in sequential stages, some of which rely on nearby chunks from the previous stage. To this respect, tasks define a "range" that they require chunks to be generated up to the previous stage. This is responsible for the concentric squares seen in the chunk loading screen.
-	METHOD <init> (Ljava/lang/String;Lnet/minecraft/world/level/chunk/ChunkStatus;ILjava/util/EnumSet;Lnet/minecraft/world/level/chunk/ChunkStatus$ChunkType;Lnet/minecraft/world/level/chunk/ChunkStatus$GenerationTask;Lnet/minecraft/world/level/chunk/ChunkStatus$LoadingTask;)V
-		ARG 1 name
-		ARG 2 parent
-		ARG 3 range
-		ARG 4 heightmapsAfter
-		ARG 5 chunkType
-		ARG 6 generationTask
-		ARG 7 loadingTask
-	METHOD <init> (Ljava/lang/String;Lnet/minecraft/world/level/chunk/ChunkStatus;IZLjava/util/EnumSet;Lnet/minecraft/world/level/chunk/ChunkStatus$ChunkType;Lnet/minecraft/world/level/chunk/ChunkStatus$GenerationTask;Lnet/minecraft/world/level/chunk/ChunkStatus$LoadingTask;)V
-		ARG 1 name
-		ARG 2 parent
-		ARG 3 range
-		ARG 4 hasLoadDependencies
-		ARG 5 heightmapsAfter
-		ARG 6 chunkType
-		ARG 7 generationTask
-		ARG 8 loadingTask
 	METHOD <init> (Lnet/minecraft/world/level/chunk/ChunkStatus;IZLjava/util/EnumSet;Lnet/minecraft/world/level/chunk/ChunkStatus$ChunkType;Lnet/minecraft/world/level/chunk/ChunkStatus$GenerationTask;Lnet/minecraft/world/level/chunk/ChunkStatus$LoadingTask;)V
 		ARG 1 parent
 		ARG 2 range
@@ -36,14 +19,6 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 		ARG 4 structureTemplateManager
 		ARG 5 lightEngine
 		ARG 6 task
-	METHOD generate (Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Ljava/util/List;Z)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 executor
-		ARG 2 level
-		ARG 3 generator
-		ARG 4 structureTemplateManager
-		ARG 5 lightEngine
-		ARG 6 task
-		ARG 7 neighboringChunks
 	METHOD getDistance (Lnet/minecraft/world/level/chunk/ChunkStatus;)I
 		ARG 0 status
 	METHOD getRange ()I
@@ -55,9 +30,6 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 		ARG 1 chunk
 	METHOD isLighted (Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
 		ARG 0 chunk
-	METHOD isLighted (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
-		ARG 0 status
-		ARG 1 chunk
 	METHOD isOrAfter (Lnet/minecraft/world/level/chunk/ChunkStatus;)Z
 		ARG 1 status
 	METHOD lambda$static$1 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
@@ -90,10 +62,6 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 		ARG 2 chunkGenerator
 		ARG 3 cache
 		ARG 4 loadingChunk
-	METHOD lambda$static$5 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/world/level/chunk/ChunkAccess;)Lcom/mojang/datafixers/util/Either;
-		ARG 1 chunk
-	METHOD lambda$static$7 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/world/level/chunk/ChunkAccess;)Lcom/mojang/datafixers/util/Either;
-		ARG 1 proto
 	METHOD lambda$static$9 (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
 		ARG 0 status
 		ARG 1 serverLevel
@@ -103,10 +71,6 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 	METHOD lightChunk (Lnet/minecraft/server/level/ThreadedLevelLightEngine;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 lightEngine
 		ARG 1 chunk
-	METHOD lightChunk (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
-		ARG 0 status
-		ARG 1 lightEngine
-		ARG 2 chunk
 	METHOD load (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Lnet/minecraft/world/level/chunk/ChunkAccess;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 level
 		ARG 2 structureTemplateManager
@@ -120,14 +84,6 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 		ARG 3 heightmaps
 		ARG 4 type
 		ARG 5 generationTask
-	METHOD register (Ljava/lang/String;Lnet/minecraft/world/level/chunk/ChunkStatus;ILjava/util/EnumSet;Lnet/minecraft/world/level/chunk/ChunkStatus$ChunkType;Lnet/minecraft/world/level/chunk/ChunkStatus$GenerationTask;Lnet/minecraft/world/level/chunk/ChunkStatus$LoadingTask;)Lnet/minecraft/world/level/chunk/ChunkStatus;
-		ARG 0 key
-		ARG 1 parent
-		ARG 2 taskRange
-		ARG 3 heightmaps
-		ARG 4 type
-		ARG 5 generationTask
-		ARG 6 loadingTask
 	METHOD register (Ljava/lang/String;Lnet/minecraft/world/level/chunk/ChunkStatus;IZLjava/util/EnumSet;Lnet/minecraft/world/level/chunk/ChunkStatus$ChunkType;Lnet/minecraft/world/level/chunk/ChunkStatus$GenerationTask;Lnet/minecraft/world/level/chunk/ChunkStatus$LoadingTask;)Lnet/minecraft/world/level/chunk/ChunkStatus;
 		ARG 0 key
 		ARG 1 parent
@@ -161,16 +117,6 @@ CLASS net/minecraft/world/level/chunk/ChunkStatus
 			ARG 5 structureTemplateManager
 			ARG 6 lightEngine
 			ARG 7 task
-		METHOD doWork (Lnet/minecraft/world/level/chunk/ChunkStatus;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Lnet/minecraft/server/level/ThreadedLevelLightEngine;Ljava/util/function/Function;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;Z)Ljava/util/concurrent/CompletableFuture;
-			ARG 1 status
-			ARG 2 executor
-			ARG 3 level
-			ARG 4 generator
-			ARG 5 structureTemplateManager
-			ARG 6 lightEngine
-			ARG 7 task
-			ARG 8 neighboringChunks
-			ARG 9 chunk
 	CLASS SimpleGenerationTask
 		COMMENT A {@link GenerationTask} which completes all work synchronously.
 		METHOD doWork (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/List;Lnet/minecraft/world/level/chunk/ChunkAccess;)V

@@ -132,9 +132,6 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 report
 	METHOD gatherChunkSourceStats ()Ljava/lang/String;
 		COMMENT Returns the name of the current chunk provider, by calling chunkprovider.makeString()
-	METHOD getBestNeighborSignal (Lnet/minecraft/core/BlockPos;)I
-		COMMENT Checks if the specified block or its neighbors are powered by a neighboring block. Used by blocks like TNT and Doors.
-		ARG 1 pos
 	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
 	METHOD getBlockRandomPos (IIII)Lnet/minecraft/core/BlockPos;
@@ -161,9 +158,6 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 pos
 	METHOD getDestroyType (Lnet/minecraft/world/level/GameRules$Key;)Lnet/minecraft/world/level/Explosion$BlockInteraction;
 		ARG 1 gameRule
-	METHOD getDirectSignalTo (Lnet/minecraft/core/BlockPos;)I
-		COMMENT Returns the single highest strong power out of all directions using getStrongPower(BlockPos, EnumFacing)
-		ARG 1 pos
 	METHOD getEntities (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
 		COMMENT Gets all entities within the specified AABB excluding the one passed into it.
 		ARG 1 entity
@@ -198,9 +192,6 @@ CLASS net/minecraft/world/level/Level
 	METHOD getRainLevel (F)F
 		COMMENT Returns rain strength.
 		ARG 1 delta
-	METHOD getSignal (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
-		ARG 1 pos
-		ARG 2 facing
 	METHOD getSunAngle (F)F
 		COMMENT Return getCelestialAngle()*2*PI
 		ARG 1 partialTicks
@@ -213,11 +204,6 @@ CLASS net/minecraft/world/level/Level
 	METHOD guardEntityTick (Ljava/util/function/Consumer;Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 consumerEntity
 		ARG 2 entity
-	METHOD hasNeighborSignal (Lnet/minecraft/core/BlockPos;)Z
-		ARG 1 pos
-	METHOD hasSignal (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
-		ARG 1 pos
-		ARG 2 side
 	METHOD isDay ()Z
 		COMMENT Checks whether its daytime by seeing if the light subtracted from the skylight is less than 4. Always returns true on the client because vanilla has no need for it on the client, therefore it is not synced to the client
 	METHOD isInSpawnableBounds (Lnet/minecraft/core/BlockPos;)Z

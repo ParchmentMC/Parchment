@@ -4,21 +4,9 @@ CLASS net/minecraft/world/level/storage/loot/LootTable
 		ARG 2 randomSequence
 		ARG 3 pools
 		ARG 4 functions
-	METHOD <init> (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;[Lnet/minecraft/world/level/storage/loot/LootPool;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
-		ARG 1 paramSet
-		ARG 2 pools
-		ARG 3 functions
 	METHOD createStackSplitter (Lnet/minecraft/server/level/ServerLevel;Ljava/util/function/Consumer;)Ljava/util/function/Consumer;
 		ARG 0 level
 		ARG 1 output
-	METHOD createStackSplitter (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)Ljava/util/function/Consumer;
-		COMMENT Create a wrapped {@link Consumer} which will split stacks according to their maximum stack size before passing them on to the given {@code stackConsumer}.
-		ARG 0 context
-		ARG 1 stackConsumer
-	METHOD fill (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/storage/loot/LootContext;)V
-		COMMENT Fill the given container with random items from this loot table.
-		ARG 1 container
-		ARG 2 context
 	METHOD fill (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/storage/loot/LootParams;J)V
 		ARG 1 container
 		ARG 2 params
@@ -70,11 +58,11 @@ CLASS net/minecraft/world/level/storage/loot/LootTable
 		METHOD withPool (Lnet/minecraft/world/level/storage/loot/LootPool$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 			ARG 1 lootPool
 	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Ljava/lang/Object;
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/world/level/storage/loot/LootTable;
 			ARG 1 json
 			ARG 2 typeOfT
 			ARG 3 context
-		METHOD serialize (Ljava/lang/Object;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
+		METHOD serialize (Lnet/minecraft/world/level/storage/loot/LootTable;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
 			ARG 1 src
 			ARG 2 typeOfSrc
 			ARG 3 context

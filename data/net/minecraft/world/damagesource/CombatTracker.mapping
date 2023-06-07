@@ -3,8 +3,6 @@ CLASS net/minecraft/world/damagesource/CombatTracker
 		ARG 1 mob
 	METHOD getDisplayName (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/network/chat/Component;
 		ARG 0 entity
-	METHOD getFallLocation (Lnet/minecraft/world/damagesource/CombatEntry;)Ljava/lang/String;
-		ARG 1 entry
 	METHOD getFallMessage (Lnet/minecraft/world/damagesource/CombatEntry;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/network/chat/Component;
 		ARG 1 combatEntry
 		ARG 2 entity
@@ -13,17 +11,10 @@ CLASS net/minecraft/world/damagesource/CombatTracker
 		ARG 2 entityDisplayName
 		ARG 3 hasWeaponTranslationKey
 		ARG 4 noWeaponTranslationKey
-	METHOD getMob ()Lnet/minecraft/world/entity/LivingEntity;
-		COMMENT Returns EntityLivingBase assigned for this CombatTracker
 	METHOD recheckStatus ()V
 		COMMENT Resets this trackers list of combat entries
 	METHOD recordDamage (Lnet/minecraft/world/damagesource/DamageSource;F)V
 		ARG 1 source
 		ARG 2 damage
-	METHOD recordDamage (Lnet/minecraft/world/damagesource/DamageSource;FF)V
-		COMMENT Adds an entry for the combat tracker
-		ARG 1 damageSource
-		ARG 2 health
-		ARG 3 damageAmount
 	METHOD shouldEnterCombat (Lnet/minecraft/world/damagesource/DamageSource;)Z
 		ARG 0 source

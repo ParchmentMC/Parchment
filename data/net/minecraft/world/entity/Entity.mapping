@@ -64,8 +64,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 3 onGround
 		ARG 4 state
 		ARG 5 pos
-	METHOD checkSupportingBlock (Z)V
-		ARG 1 onGround
 	METHOD checkSupportingBlock (ZLnet/minecraft/world/phys/Vec3;)V
 		ARG 1 onGround
 		ARG 2 movement
@@ -249,9 +247,6 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD handleInsidePortal (Lnet/minecraft/core/BlockPos;)V
 		COMMENT Marks the entity as being inside a portal, activating teleportation logic in onEntityUpdate() in the following tick(s).
 		ARG 1 pos
-	METHOD handleStepSounds (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 pos
-		ARG 2 state
 	METHOD hasIndirectPassenger (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD hasPassenger (Ljava/util/function/Predicate;)Z
@@ -343,28 +338,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD killedEntity (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 1 level
 		ARG 2 entity
-	METHOD lambda$findDimensionEntryPoint$5 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
-		ARG 2 pos
-	METHOD lambda$findDimensionEntryPoint$6 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/level/portal/PortalInfo;
-		ARG 2 area
-	METHOD lambda$getDisplayName$11 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-		ARG 1 style
-	METHOD lambda$hasExactlyOnePlayerPassenger$15 (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 0 passenger
-	METHOD lambda$isInWall$1 (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/core/BlockPos;)Z
-		ARG 2 pos
 	METHOD lambda$move$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 loadedState
-	METHOD lambda$refreshDimensions$13 (Lnet/minecraft/world/entity/EntityDimensions;Lnet/minecraft/world/phys/Vec3;)V
-		ARG 2 freePos
-	METHOD lambda$removePassenger$4 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 passenger
-	METHOD lambda$startRiding$2 (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 0 passenger
-	METHOD lambda$startRiding$3 (Lnet/minecraft/world/entity/Entity;)V
-		ARG 0 player
-	METHOD lambda$teleportTo$12 (Lnet/minecraft/world/entity/Entity;)V
-		ARG 0 passenger
 	METHOD lavaHurt ()V
 		COMMENT Called whenever the entity is walking inside of lava.
 	METHOD lerpHeadTo (FI)V
@@ -454,14 +429,10 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 key
 	METHOD onlyOpCanSetNbt ()Z
 		COMMENT Checks if players can use this entity to access operator (permission level 2) commands either directly or indirectly, such as give or setblock. A similar method exists for entities at {@link net.minecraft.world.entity.Entity#onlyOpCanSetNbt()}.<p>For example, {@link net.minecraft.world.entity.vehicle.MinecartCommandBlock#onlyOpCanSetNbt() command block minecarts} and {@link net.minecraft.world.entity.vehicle.MinecartSpawner#onlyOpCanSetNbt() mob spawner minecarts} (spawning command block minecarts or drops) are considered accessible.</p>@return true if this entity offers ways for unauthorized players to use restricted commands
-	METHOD outOfWorld ()V
-		COMMENT Sets the dead flag. Used when you fall off the bottom of the world.
 	METHOD pick (DFZ)Lnet/minecraft/world/phys/HitResult;
 		ARG 1 hitDistance
 		ARG 3 partialTicks
 		ARG 4 hitFluids
-	METHOD playAmethystStepSound (Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 state
 	METHOD playCombinationStepSounds (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 primaryState
 		ARG 2 secondaryState
@@ -717,17 +688,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 state
 		ARG 3 playStepSound
 		ARG 4 broadcastGameEvent
-	METHOD walkingOnBlock (ZLnet/minecraft/world/phys/Vec3;)Z
-		ARG 1 onGround
-		ARG 2 pos
 	METHOD walkingStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 state
-	METHOD wasKilled (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Z
-		COMMENT Called when this entity kills another entity.
-		ARG 1 level
-		ARG 2 entity
-			COMMENT The entity killed
 	CLASS MoveFunction
 		METHOD accept (Lnet/minecraft/world/entity/Entity;DDD)V
 			ARG 1 entity

@@ -69,9 +69,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD createEquipmentSlotAccess (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/entity/SlotAccess;
 		ARG 0 entity
 		ARG 1 slot
-	METHOD createLootContext (ZLnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
-		ARG 1 hitByPlayer
-		ARG 2 damageSource
 	METHOD createWitherRose (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 entitySource
 	METHOD decreaseAirSupply (I)I
@@ -185,14 +182,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Returns the maximum health of the entity (what it is able to regenerate up to, what it spawned with, etc.)
 	METHOD getProjectile (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 weaponStack
-	METHOD getRiddenInput (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
-		ARG 1 entity
-		ARG 2 travelVector
 	METHOD getRiddenInput (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 player
 		ARG 2 travelVector
-	METHOD getRiddenSpeed (Lnet/minecraft/world/entity/LivingEntity;)F
-		ARG 1 entity
 	METHOD getRiddenSpeed (Lnet/minecraft/world/entity/player/Player;)F
 		ARG 1 player
 	METHOD getSoundVolume ()F
@@ -338,8 +330,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Sends an END_COMBAT packet to the client
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
-	METHOD outOfWorld ()V
-		COMMENT Sets the dead flag. Used when you fall off the bottom of the world.
 	METHOD playBlockFallSound ()V
 		COMMENT Plays the fall sound for the block landed on
 	METHOD playHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)V
@@ -368,8 +358,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Handles updating while riding another entity
 	METHOD sendEffectToPassengers (Lnet/minecraft/world/effect/MobEffectInstance;)V
 		ARG 1 effectInstance
-	METHOD sendEffectToRider (Lnet/minecraft/world/effect/MobEffectInstance;)V
-		ARG 1 effect
 	METHOD setAbsorptionAmount (F)V
 		ARG 1 absorptionAmount
 	METHOD setArrowCount (I)V
@@ -405,8 +393,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 2 value
 	METHOD setNoActionTime (I)V
 		ARG 1 idleTime
-	METHOD setOnGround (Z)V
-		ARG 1 grounded
 	METHOD setPosToBed (Lnet/minecraft/core/BlockPos;)V
 		COMMENT Sets entity position to a supplied BlockPos plus a little offset
 		ARG 1 pos
@@ -461,9 +447,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD tickHeadTurn (FF)F
 		ARG 1 yRot
 		ARG 2 animStep
-	METHOD tickRidden (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/Vec3;)V
-		ARG 1 entity
-		ARG 2 travelVector
 	METHOD tickRidden (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 player
 		ARG 2 travelVector
@@ -472,9 +455,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 2 state
 	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 travelVector
-	METHOD travelRidden (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/Vec3;)V
-		ARG 1 entity
-		ARG 2 travelVector
 	METHOD travelRidden (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 player
 		ARG 2 travelVector

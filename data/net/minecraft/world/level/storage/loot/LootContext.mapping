@@ -1,21 +1,6 @@
 CLASS net/minecraft/world/level/storage/loot/LootContext
 	COMMENT LootContext stores various context information for loot generation.
 	COMMENT This includes the Level as well as any known {@link LootContextParam}s.
-	METHOD <init> (Lnet/minecraft/util/RandomSource;FLnet/minecraft/server/level/ServerLevel;Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/Map;Ljava/util/Map;)V
-		ARG 1 random
-		ARG 2 luck
-		ARG 3 level
-		ARG 4 lootTables
-		ARG 5 conditions
-		ARG 6 params
-		ARG 7 dynamicDrops
-	METHOD <init> (Lnet/minecraft/util/RandomSource;FLnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/storage/loot/LootDataResolver;Ljava/util/Map;Ljava/util/Map;)V
-		ARG 1 random
-		ARG 2 luck
-		ARG 3 level
-		ARG 4 lootDataResolver
-		ARG 5 params
-		ARG 6 dynamicDrops
 	METHOD <init> (Lnet/minecraft/world/level/storage/loot/LootParams;Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/level/storage/loot/LootDataResolver;)V
 		ARG 1 params
 		ARG 2 random
@@ -27,20 +12,12 @@ CLASS net/minecraft/world/level/storage/loot/LootContext
 		COMMENT @see DynamicDrops
 		ARG 1 name
 		ARG 2 consumer
-	METHOD addVisitedCondition (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Z
-		ARG 1 condition
-	METHOD addVisitedTable (Lnet/minecraft/world/level/storage/loot/LootTable;)Z
-		ARG 1 lootTable
 	METHOD createVisitedEntry (Lnet/minecraft/world/level/storage/loot/LootTable;)Lnet/minecraft/world/level/storage/loot/LootContext$VisitedEntry;
 		ARG 0 lootTable
 	METHOD createVisitedEntry (Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/LootContext$VisitedEntry;
 		ARG 0 modifier
 	METHOD createVisitedEntry (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/LootContext$VisitedEntry;
 		ARG 0 predicate
-	METHOD getCondition (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
-		ARG 1 conditionId
-	METHOD getLootTable (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/LootTable;
-		ARG 1 tableId
 	METHOD getLuck ()F
 		COMMENT The luck value for this loot context. This is usually just the player's {@linkplain Attributes#LUCK luck value}, however it may be modified depending on the context of the looting.
 		COMMENT When fishing for example it is increased based on the Luck of the Sea enchantment.
@@ -61,53 +38,13 @@ CLASS net/minecraft/world/level/storage/loot/LootContext
 		ARG 1 element
 	METHOD pushVisitedElement (Lnet/minecraft/world/level/storage/loot/LootContext$VisitedEntry;)Z
 		ARG 1 element
-	METHOD removeVisitedCondition (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
-		ARG 1 condition
-	METHOD removeVisitedTable (Lnet/minecraft/world/level/storage/loot/LootTable;)V
-		ARG 1 lootTable
 	CLASS Builder
-		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;)V
-			ARG 1 level
 		METHOD <init> (Lnet/minecraft/world/level/storage/loot/LootParams;)V
 			ARG 1 params
 		METHOD create (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/LootContext;
 			ARG 1 location
-		METHOD create (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;)Lnet/minecraft/world/level/storage/loot/LootContext;
-			ARG 1 parameterSet
-		METHOD getOptionalParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;)Ljava/lang/Object;
-			ARG 1 parameter
-		METHOD getParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;)Ljava/lang/Object;
-			ARG 1 parameter
-		METHOD withDynamicDrop (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/storage/loot/LootContext$DynamicDrop;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
-			COMMENT Registers a DynamicDrop to the LootContext.
-			COMMENT
-			COMMENT @see LootContext.DynamicDrop
-			ARG 1 dynamicDropId
-			ARG 2 dynamicDrop
-		METHOD withLuck (F)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
-			ARG 1 luck
-		METHOD withOptionalParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;Ljava/lang/Object;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
-			ARG 1 parameter
-			ARG 2 value
 		METHOD withOptionalRandomSeed (J)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
 			ARG 1 seed
-		METHOD withOptionalRandomSeed (JLnet/minecraft/util/RandomSource;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
-			ARG 1 seed
-			ARG 3 random
-		METHOD withParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;Ljava/lang/Object;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
-			ARG 1 parameter
-			ARG 2 value
-		METHOD withRandom (Lnet/minecraft/util/RandomSource;)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
-			ARG 1 random
-	CLASS DynamicDrop
-		COMMENT DynamicDrop allows a loot generating object (e.g. a Block or Entity) to provide dynamic drops to a loot table.
-		COMMENT An example of this are shulker boxes, which provide their contents as a dynamic drop source.
-		COMMENT Dynamic drops are registered with a name using {@link LootContext.Builder#withDynamicDrop}.
-		COMMENT
-		COMMENT These dynamic drops can then be referenced from a loot table using {@link DynamicLoot}.
-		METHOD add (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
-			ARG 1 lootContext
-			ARG 2 stackConsumer
 	CLASS EntityTarget
 		COMMENT Represents a type of entity that can be looked up in a {@link LootContext} using a {@link LootContextParam}.
 		FIELD DIRECT_KILLER Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;
