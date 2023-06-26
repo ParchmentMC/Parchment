@@ -4,6 +4,7 @@ CLASS net/minecraft/world/level/block/DiodeBlock
 		ARG 2 level
 		ARG 3 pos
 	METHOD checkTickOnNeighbor (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		COMMENT Check the output signal of this diode and schedule a new block tick if it should change.
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
@@ -41,6 +42,7 @@ CLASS net/minecraft/world/level/block/DiodeBlock
 	METHOD isDiode (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
 	METHOD isLocked (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		COMMENT Check if neighboring blocks are locking this diode.
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
@@ -72,6 +74,12 @@ CLASS net/minecraft/world/level/block/DiodeBlock
 		ARG 4 placer
 		ARG 5 stack
 	METHOD shouldPrioritize (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		COMMENT Check if this diode should have a higher tick priority than default.
+		COMMENT
+		COMMENT <p>
+		COMMENT Both repeaters and comparators use this method to increase their tick priorities
+		COMMENT when facing other diodes. This makes certain monostable circuits based on the repeater locking
+		COMMENT mechanic more reliable.
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
