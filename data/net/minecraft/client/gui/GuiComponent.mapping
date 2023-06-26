@@ -1,4 +1,6 @@
 CLASS net/minecraft/client/gui/GuiComponent
+	METHOD applyScissor (Lnet/minecraft/client/gui/navigation/ScreenRectangle;)V
+		ARG 0 rectangle
 	METHOD blit (Lcom/mojang/blaze3d/vertex/PoseStack;IIFFIIII)V
 		ARG 0 poseStack
 		ARG 1 x
@@ -33,13 +35,26 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 9 textureWidth
 		ARG 10 textureHeight
 	METHOD blit (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIII)V
-		ARG 1 poseStack
-		ARG 2 x
-		ARG 3 y
-		ARG 4 uOffset
-		ARG 5 vOffset
+		ARG 0 poseStack
+		ARG 1 x
+		ARG 2 y
+		ARG 3 uOffset
+		ARG 4 vOffset
+		ARG 5 uWidth
+		ARG 6 vHeight
+	METHOD blit (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIFFII)V
+		ARG 0 poseStack
+		ARG 1 x1
+		ARG 2 x2
+		ARG 3 y1
+		ARG 4 y2
+		ARG 5 blitOffset
 		ARG 6 uWidth
 		ARG 7 vHeight
+		ARG 8 uOffset
+		ARG 9 vOffset
+		ARG 10 textureWidth
+		ARG 11 textureHeight
 	METHOD blit (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIILnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
 		ARG 0 poseStack
 		ARG 1 x
@@ -48,10 +63,69 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 4 width
 		ARG 5 height
 		ARG 6 sprite
+	METHOD blit (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIILnet/minecraft/client/renderer/texture/TextureAtlasSprite;FFFF)V
+		ARG 0 poseStack
+		ARG 1 x
+		ARG 2 y
+		ARG 3 blitOffset
+		ARG 4 width
+		ARG 5 height
+		ARG 6 sprite
+		ARG 7 red
+		ARG 8 green
+		ARG 9 blue
+		ARG 10 alpha
+	METHOD blitNineSliced (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIII)V
+		ARG 0 poseStack
+		ARG 1 targetX
+		ARG 2 targetY
+		ARG 3 targetWidth
+		ARG 4 targetHeight
+		ARG 5 sliceSize
+		ARG 6 sourceWidth
+		ARG 7 sourceHeight
+		ARG 8 sourceX
+		ARG 9 sourceY
+	METHOD blitNineSliced (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIIII)V
+		ARG 0 poseStack
+		ARG 1 targetX
+		ARG 2 targetY
+		ARG 3 targetWidth
+		ARG 4 targetHeight
+		ARG 5 sliceWidth
+		ARG 6 sliceHeight
+		ARG 7 sourceWidth
+		ARG 8 sourceHeight
+		ARG 9 sourceX
+		ARG 10 sourceY
+	METHOD blitNineSliced (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIIIIII)V
+		ARG 0 poseStack
+		ARG 1 targetX
+		ARG 2 targetY
+		ARG 3 targetWidth
+		ARG 4 targetHeight
+		ARG 5 cornerWidth
+		ARG 6 cornerHeight
+		ARG 7 edgeWidth
+		ARG 8 edgeHeight
+		ARG 9 sourceWidth
+		ARG 10 sourceHeight
+		ARG 11 sourceX
+		ARG 12 sourceY
 	METHOD blitOutlineBlack (IILjava/util/function/BiConsumer;)V
-		ARG 1 width
-		ARG 2 height
-		ARG 3 boxXYConsumer
+		ARG 0 width
+		ARG 1 height
+		ARG 2 boxXYConsumer
+	METHOD blitRepeating (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIII)V
+		ARG 0 poseStack
+		ARG 1 targetX
+		ARG 2 targetY
+		ARG 3 targetWidth
+		ARG 4 targetHeight
+		ARG 5 sourceX
+		ARG 6 sourceY
+		ARG 7 sourceWidth
+		ARG 8 sourceHeight
 	METHOD drawCenteredString (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V
 		ARG 0 poseStack
 		ARG 1 font
@@ -94,6 +168,11 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 3 x
 		ARG 4 y
 		ARG 5 color
+	METHOD enableScissor (IIII)V
+		ARG 0 minX
+		ARG 1 minY
+		ARG 2 maxX
+		ARG 3 maxY
 	METHOD fill (Lcom/mojang/blaze3d/vertex/PoseStack;IIIII)V
 		ARG 0 poseStack
 		ARG 1 minX
@@ -101,14 +180,22 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 3 maxX
 		ARG 4 maxY
 		ARG 5 color
+	METHOD fill (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIII)V
+		ARG 0 poseStack
+		ARG 1 minX
+		ARG 2 minY
+		ARG 3 maxX
+		ARG 4 maxY
+		ARG 5 z
+		ARG 6 color
 	METHOD fillGradient (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIII)V
-		ARG 1 poseStack
-		ARG 2 x1
-		ARG 3 y1
-		ARG 4 x2
-		ARG 5 y2
-		ARG 6 colorFrom
-		ARG 7 colorTo
+		ARG 0 poseStack
+		ARG 1 x1
+		ARG 2 y1
+		ARG 3 x2
+		ARG 4 y2
+		ARG 5 colorFrom
+		ARG 6 colorTo
 	METHOD fillGradient (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIII)V
 		ARG 0 poseStack
 		ARG 1 x1
@@ -129,24 +216,11 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 7 colorA
 		ARG 8 colorB
 	METHOD hLine (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
-		ARG 1 poseStack
-		ARG 2 minX
-		ARG 3 maxX
-		ARG 4 y
-		ARG 5 color
-	METHOD innerBlit (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIFFII)V
 		ARG 0 poseStack
-		ARG 1 x1
-		ARG 2 x2
-		ARG 3 y1
-		ARG 4 y2
-		ARG 5 blitOffset
-		ARG 6 uWidth
-		ARG 7 vHeight
-		ARG 8 uOffset
-		ARG 9 vOffset
-		ARG 10 textureWidth
-		ARG 11 textureHeight
+		ARG 1 minX
+		ARG 2 maxX
+		ARG 3 y
+		ARG 4 color
 	METHOD innerBlit (Lorg/joml/Matrix4f;IIIIIFFFF)V
 		ARG 0 matrix
 		ARG 1 x1
@@ -158,18 +232,34 @@ CLASS net/minecraft/client/gui/GuiComponent
 		ARG 7 maxU
 		ARG 8 minV
 		ARG 9 maxV
-	METHOD innerFill (Lorg/joml/Matrix4f;IIIII)V
+	METHOD innerBlit (Lorg/joml/Matrix4f;IIIIIFFFFFFFF)V
 		ARG 0 matrix
-		ARG 1 minX
-		ARG 2 minY
-		ARG 3 maxX
-		ARG 4 maxY
+		ARG 1 x1
+		ARG 2 x2
+		ARG 3 y1
+		ARG 4 y2
+		ARG 5 blitOffset
+		ARG 6 minU
+		ARG 7 maxU
+		ARG 8 minV
+		ARG 9 maxV
+		ARG 10 red
+		ARG 11 green
+		ARG 12 blue
+		ARG 13 alpha
+	METHOD renderOutline (Lcom/mojang/blaze3d/vertex/PoseStack;IIIII)V
+		ARG 0 poseStack
+		ARG 1 x
+		ARG 2 y
+		ARG 3 width
+		ARG 4 height
 		ARG 5 color
-	METHOD setBlitOffset (I)V
-		ARG 1 blitOffset
 	METHOD vLine (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
-		ARG 1 poseStack
-		ARG 2 x
-		ARG 3 minY
-		ARG 4 maxY
-		ARG 5 color
+		ARG 0 poseStack
+		ARG 1 x
+		ARG 2 minY
+		ARG 3 maxY
+		ARG 4 color
+	CLASS ScissorStack
+		METHOD push (Lnet/minecraft/client/gui/navigation/ScreenRectangle;)Lnet/minecraft/client/gui/navigation/ScreenRectangle;
+			ARG 1 rectangle

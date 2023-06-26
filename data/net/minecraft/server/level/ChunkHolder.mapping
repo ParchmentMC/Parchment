@@ -12,6 +12,9 @@ CLASS net/minecraft/server/level/ChunkHolder
 		ARG 4 lightEngine
 		ARG 5 onLevelChange
 		ARG 6 playerProvider
+	METHOD addSaveDependency (Ljava/lang/String;Ljava/util/concurrent/CompletableFuture;)V
+		ARG 1 source
+		ARG 2 future
 	METHOD blockChanged (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD broadcast (Lnet/minecraft/network/protocol/Packet;Z)V
@@ -27,6 +30,7 @@ CLASS net/minecraft/server/level/ChunkHolder
 	METHOD broadcastChanges (Lnet/minecraft/world/level/chunk/LevelChunk;)V
 		ARG 1 chunk
 	METHOD demoteFullChunk (Lnet/minecraft/server/level/ChunkMap;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
+		ARG 1 chunkMap
 		ARG 2 fullChunkStatus
 	METHOD getFullChunkStatus (I)Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;
 		ARG 0 level
@@ -34,9 +38,15 @@ CLASS net/minecraft/server/level/ChunkHolder
 		ARG 1 chunkStatus
 	METHOD getFutureIfPresentUnchecked (Lnet/minecraft/world/level/chunk/ChunkStatus;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 chunkStatus
+	METHOD getOrScheduleFuture (Lnet/minecraft/world/level/chunk/ChunkStatus;Lnet/minecraft/server/level/ChunkMap;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 status
+		ARG 2 map
 	METHOD getStatus (I)Lnet/minecraft/world/level/chunk/ChunkStatus;
 		ARG 0 level
 	METHOD scheduleFullChunkPromotion (Lnet/minecraft/server/level/ChunkMap;Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/Executor;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
+		ARG 1 chunkMap
+		ARG 2 future
+		ARG 3 executor
 		ARG 4 fullChunkStatus
 	METHOD sectionLightChanged (Lnet/minecraft/world/level/LightLayer;I)V
 		ARG 1 type
@@ -45,6 +55,12 @@ CLASS net/minecraft/server/level/ChunkHolder
 		ARG 1 queueLevel
 	METHOD setTicketLevel (I)V
 		ARG 1 level
+	METHOD updateChunkToSave (Ljava/util/concurrent/CompletableFuture;Ljava/lang/String;)V
+		ARG 1 feature
+		ARG 2 source
+	METHOD updateFutures (Lnet/minecraft/server/level/ChunkMap;Ljava/util/concurrent/Executor;)V
+		ARG 1 chunkMap
+		ARG 2 executor
 	CLASS ChunkSaveDebug
 		METHOD <init> (Ljava/lang/Thread;Ljava/util/concurrent/CompletableFuture;Ljava/lang/String;)V
 			ARG 1 thread
@@ -58,3 +74,6 @@ CLASS net/minecraft/server/level/ChunkHolder
 	CLASS FullChunkStatus
 		METHOD isOrAfter (Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)Z
 			ARG 1 type
+	CLASS LevelChangeListener
+		METHOD onLevelChange (Lnet/minecraft/world/level/ChunkPos;Ljava/util/function/IntSupplier;ILjava/util/function/IntConsumer;)V
+			ARG 1 chunkPos

@@ -5,11 +5,7 @@ CLASS net/minecraft/core/BlockPos
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
-	METHOD <init> (Lnet/minecraft/core/Position;)V
-		ARG 1 pos
 	METHOD <init> (Lnet/minecraft/core/Vec3i;)V
-		ARG 1 vector
-	METHOD <init> (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 vector
 	METHOD asLong (III)J
 		ARG 0 x
@@ -47,6 +43,12 @@ CLASS net/minecraft/core/BlockPos
 		ARG 0 box
 	METHOD betweenClosedStream (Lnet/minecraft/world/phys/AABB;)Ljava/util/stream/Stream;
 		ARG 0 aabb
+	METHOD containing (DDD)Lnet/minecraft/core/BlockPos;
+		ARG 0 x
+		ARG 2 y
+		ARG 4 z
+	METHOD containing (Lnet/minecraft/core/Position;)Lnet/minecraft/core/BlockPos;
+		ARG 0 position
 	METHOD cross (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/core/BlockPos;
 		ARG 1 vector
 	METHOD findClosestMatch (Lnet/minecraft/core/BlockPos;IILjava/util/function/Predicate;)Ljava/util/Optional;
@@ -113,6 +115,10 @@ CLASS net/minecraft/core/BlockPos
 		ARG 2 ySize
 		ARG 3 zSize
 	CLASS MutableBlockPos
+		METHOD <init> (DDD)V
+			ARG 1 x
+			ARG 3 y
+			ARG 5 z
 		METHOD clamp (Lnet/minecraft/core/Direction$Axis;II)Lnet/minecraft/core/BlockPos$MutableBlockPos;
 			ARG 1 axis
 			ARG 2 min

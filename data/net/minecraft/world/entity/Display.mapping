@@ -1,0 +1,124 @@
+CLASS net/minecraft/world/entity/Display
+	METHOD calculateInterpolationProgress (F)F
+		ARG 1 partialTick
+	METHOD createTransformation (Lnet/minecraft/network/syncher/SynchedEntityData;)Lcom/mojang/math/Transformation;
+		ARG 0 synchedEntityData
+	METHOD getShadowRadius (F)F
+		ARG 1 partialTick
+	METHOD getShadowStrength (F)F
+		ARG 1 partialTick
+	METHOD setBillboardConstraints (Lnet/minecraft/world/entity/Display$BillboardConstraints;)V
+		ARG 1 billboardConstraints
+	METHOD setBrightnessOverride (Lnet/minecraft/util/Brightness;)V
+		ARG 1 brightnessOverride
+	METHOD setGlowColorOverride (I)V
+		ARG 1 glowColorOverride
+	METHOD setHeight (F)V
+		ARG 1 height
+	METHOD setInterpolationDelay (I)V
+		ARG 1 interpolationDelay
+	METHOD setInterpolationDuration (I)V
+		ARG 1 interpolationDuration
+	METHOD setShadowRadius (F)V
+		ARG 1 shadowRadius
+	METHOD setShadowStrength (F)V
+		ARG 1 shadowStrength
+	METHOD setTransformation (Lcom/mojang/math/Transformation;)V
+		ARG 1 transformation
+	METHOD setViewRange (F)V
+		ARG 1 viewRange
+	METHOD setWidth (F)V
+		ARG 1 width
+	METHOD transformation (F)Lcom/mojang/math/Transformation;
+		ARG 1 delta
+	CLASS ItemDisplay
+		METHOD setItemStack (Lnet/minecraft/world/item/ItemStack;)V
+			ARG 1 itemStack
+		METHOD setItemTransform (Lnet/minecraft/world/item/ItemDisplayContext;)V
+			ARG 1 itemTransform
+	CLASS TextDisplay
+		METHOD cacheDisplay (Lnet/minecraft/world/entity/Display$TextDisplay$LineSplitter;)Lnet/minecraft/world/entity/Display$TextDisplay$CachedInfo;
+			ARG 1 splitter
+		METHOD getBackgroundColor (F)I
+			ARG 1 partialTick
+		METHOD getTextOpacity (F)B
+			ARG 1 partialTick
+		METHOD loadFlag (BLnet/minecraft/nbt/CompoundTag;Ljava/lang/String;B)B
+			ARG 1 tag
+			ARG 2 flag
+		METHOD setBackgroundColor (I)V
+			ARG 1 backgroundColor
+		METHOD setFlags (B)V
+			ARG 1 flags
+		METHOD setLineWidth (I)V
+			ARG 1 lineWidth
+		METHOD setText (Lnet/minecraft/network/chat/Component;)V
+			ARG 1 text
+		METHOD setTextOpacity (B)V
+			ARG 1 textOpacity
+		METHOD storeFlag (BLnet/minecraft/nbt/CompoundTag;Ljava/lang/String;B)V
+			ARG 1 tag
+			ARG 2 flag
+		CLASS Align
+			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+				ARG 3 name
+		CLASS LineSplitter
+			METHOD split (Lnet/minecraft/network/chat/Component;I)Lnet/minecraft/world/entity/Display$TextDisplay$CachedInfo;
+				ARG 1 text
+				ARG 2 maxWidth
+	CLASS BlockDisplay
+		METHOD setBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
+			ARG 1 blockState
+	CLASS Interpolator
+		METHOD <init> (Ljava/lang/Object;)V
+			ARG 1 currentValue
+		METHOD getGeneric (F)Ljava/lang/Object;
+			ARG 1 partialTick
+		METHOD updateValue (FLjava/lang/Object;)V
+			ARG 1 partialTick
+			ARG 2 value
+	CLASS IntInterpolator
+		METHOD <init> (I)V
+			ARG 1 currentValue
+		METHOD get (F)I
+			ARG 1 partialTick
+		METHOD interpolate (FII)I
+			ARG 1 delta
+			ARG 2 min
+			ARG 3 max
+	CLASS InterpolatorSet
+		METHOD addEntry (Ljava/util/Set;Lnet/minecraft/world/entity/Display$IntepolatorUpdater;)V
+			ARG 1 accessors
+			ARG 2 updater
+		METHOD addEntry (Lnet/minecraft/network/syncher/EntityDataAccessor;Lnet/minecraft/world/entity/Display$Interpolator;)V
+			ARG 1 dataAccessor
+			ARG 2 interpolator
+		METHOD shouldTriggerUpdate (I)Z
+			ARG 1 id
+		METHOD updateValues (FLnet/minecraft/network/syncher/SynchedEntityData;)V
+			ARG 1 partialTick
+			ARG 2 entityData
+	CLASS FloatInterpolator
+		METHOD <init> (F)V
+			ARG 1 defaultValue
+		METHOD get (F)F
+			ARG 1 partialTick
+		METHOD interpolate (FFF)F
+			ARG 1 delta
+			ARG 2 min
+			ARG 3 max
+	CLASS IntepolatorUpdater
+		METHOD update (FLnet/minecraft/network/syncher/SynchedEntityData;)V
+			ARG 1 partialTick
+			ARG 2 entityData
+	CLASS GenericInterpolator
+		METHOD get (F)Ljava/lang/Object;
+			ARG 1 partialTick
+		METHOD interpolate (FLjava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 delta
+			ARG 2 min
+			ARG 3 max
+	CLASS BillboardConstraints
+		METHOD <init> (Ljava/lang/String;IBLjava/lang/String;)V
+			ARG 3 id
+			ARG 4 name

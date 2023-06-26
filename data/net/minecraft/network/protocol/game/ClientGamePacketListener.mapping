@@ -36,10 +36,14 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleBossUpdate (Lnet/minecraft/network/protocol/game/ClientboundBossEventPacket;)V
 		ARG 1 packet
+	METHOD handleBundlePacket (Lnet/minecraft/network/protocol/game/ClientboundBundlePacket;)V
+		ARG 1 packet
 	METHOD handleChangeDifficulty (Lnet/minecraft/network/protocol/game/ClientboundChangeDifficultyPacket;)V
 		ARG 1 packet
 	METHOD handleChunkBlocksUpdate (Lnet/minecraft/network/protocol/game/ClientboundSectionBlocksUpdatePacket;)V
 		COMMENT Received from the servers PlayerManager if between 1 and 64 blocks in a chunk are changed. If only one block requires an update, the server sends S23PacketBlockChange and if 64 or more blocks are changed, the server sends S21PacketChunkData
+		ARG 1 packet
+	METHOD handleChunksBiomes (Lnet/minecraft/network/protocol/game/ClientboundChunksBiomesPacket;)V
 		ARG 1 packet
 	METHOD handleCommandSuggestions (Lnet/minecraft/network/protocol/game/ClientboundCommandSuggestionsPacket;)V
 		COMMENT This method is only called for manual tab-completion (the {@link net.minecraft.commands.synchronization.SuggestionProviders#ASK_SERVER minecraft:ask_server} suggestion provider).
@@ -63,6 +67,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleCustomPayload (Lnet/minecraft/network/protocol/game/ClientboundCustomPayloadPacket;)V
 		COMMENT Handles packets that have room for a channel specification. Vanilla implemented channels are "MC|TrList" to acquire a MerchantRecipeList trades for a villager merchant, "MC|Brand" which sets the server brand? on the player instance and finally "MC|RPack" which the server uses to communicate the identifier of the default server resourcepack for the client to load.
 		ARG 1 packet
+	METHOD handleDamageEvent (Lnet/minecraft/network/protocol/game/ClientboundDamageEventPacket;)V
+		ARG 1 packet
 	METHOD handleDeleteChat (Lnet/minecraft/network/protocol/game/ClientboundDeleteChatPacket;)V
 		ARG 1 packet
 	METHOD handleDisconnect (Lnet/minecraft/network/protocol/game/ClientboundDisconnectPacket;)V
@@ -85,6 +91,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleGameEvent (Lnet/minecraft/network/protocol/game/ClientboundGameEventPacket;)V
 		ARG 1 packet
 	METHOD handleHorseScreenOpen (Lnet/minecraft/network/protocol/game/ClientboundHorseScreenOpenPacket;)V
+		ARG 1 packet
+	METHOD handleHurtAnimation (Lnet/minecraft/network/protocol/game/ClientboundHurtAnimationPacket;)V
 		ARG 1 packet
 	METHOD handleInitializeBorder (Lnet/minecraft/network/protocol/game/ClientboundInitializeBorderPacket;)V
 		ARG 1 packet

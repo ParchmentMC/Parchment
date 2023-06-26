@@ -7,30 +7,46 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 entityRenderDispatcher
 		ARG 3 blockEntityRenderDispatcher
 		ARG 4 renderBuffers
-	METHOD addChainedFilledBoxVertices (Lcom/mojang/blaze3d/vertex/BufferBuilder;DDDDDDFFFF)V
-		ARG 0 builder
-		ARG 1 minX
+	METHOD addChainedFilledBoxVertices (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDDDDFFFF)V
+		ARG 0 poseStack
+		ARG 1 consumer
+		ARG 2 minX
+		ARG 4 minY
+		ARG 6 minZ
+		ARG 8 maxX
+		ARG 10 maxY
+		ARG 12 maxZ
+		ARG 14 red
+		ARG 15 green
+		ARG 16 blue
+		ARG 17 alpha
+	METHOD addChainedFilledBoxVertices (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFFFFFFFFF)V
+		ARG 0 poseStack
+		ARG 1 consumer
+		ARG 2 minX
 		ARG 3 minY
-		ARG 5 minZ
-		ARG 7 maxX
-		ARG 9 maxY
-		ARG 11 maxZ
-		ARG 13 red
-		ARG 14 green
-		ARG 15 blue
-		ARG 16 alpha
-	METHOD addFrustumQuad (Lcom/mojang/blaze3d/vertex/VertexConsumer;IIIIIII)V
+		ARG 4 minZ
+		ARG 5 maxX
+		ARG 6 maxY
+		ARG 7 maxZ
+		ARG 8 red
+		ARG 9 green
+		ARG 10 blue
+		ARG 11 alpha
+	METHOD addFrustumQuad (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lorg/joml/Matrix4f;IIIIIII)V
 		ARG 1 consumer
-		ARG 2 vertex1
-		ARG 3 vertex2
-		ARG 4 vertex3
-		ARG 5 vertex4
-		ARG 6 red
-		ARG 7 green
-		ARG 8 blue
-	METHOD addFrustumVertex (Lcom/mojang/blaze3d/vertex/VertexConsumer;I)V
+		ARG 2 matrix
+		ARG 3 index1
+		ARG 4 index2
+		ARG 5 index3
+		ARG 6 index4
+		ARG 7 red
+		ARG 8 green
+		ARG 9 blue
+	METHOD addFrustumVertex (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lorg/joml/Matrix4f;I)V
 		ARG 1 consumer
-		ARG 2 vertex
+		ARG 2 matrix
+		ARG 3 vertexIndex
 	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
 		ARG 1 options
 		ARG 2 x
@@ -197,8 +213,10 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 4 camX
 		ARG 6 camY
 		ARG 8 camZ
-	METHOD renderDebug (Lnet/minecraft/client/Camera;)V
-		ARG 1 camera
+	METHOD renderDebug (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/Camera;)V
+		ARG 1 poseStack
+		ARG 2 buffer
+		ARG 3 camera
 	METHOD renderEndSky (Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 poseStack
 	METHOD renderEntity (Lnet/minecraft/world/entity/Entity;DDDFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;)V
@@ -384,6 +402,10 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 			ARG 1 facing
 		METHOD hasSourceDirection (I)Z
 			ARG 1 directionIndex
+		METHOD isAxisAlignedWith (III)Z
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
 		METHOD setDirections (BLnet/minecraft/core/Direction;)V
 			ARG 1 dir
 			ARG 2 facing

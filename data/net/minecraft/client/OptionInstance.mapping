@@ -59,6 +59,8 @@ CLASS net/minecraft/client/OptionInstance
 		ARG 2 value
 	METHOD lambda$noTooltip$4 (Ljava/lang/Object;)Lnet/minecraft/client/gui/components/Tooltip;
 		ARG 0 value
+	METHOD set (Ljava/lang/Object;)V
+		ARG 1 value
 	CLASS ValueSet
 		METHOD createButton (Lnet/minecraft/client/OptionInstance$TooltipSupplier;Lnet/minecraft/client/Options;IIILjava/util/function/Consumer;)Ljava/util/function/Function;
 			ARG 1 tooltipSupplier
@@ -69,6 +71,11 @@ CLASS net/minecraft/client/OptionInstance
 			ARG 6 onValueChanged
 		METHOD validateValue (Ljava/lang/Object;)Ljava/util/Optional;
 			ARG 1 value
+	CLASS CycleableValueSet
+		CLASS ValueSetter
+			METHOD set (Lnet/minecraft/client/OptionInstance;Ljava/lang/Object;)V
+				ARG 1 instance
+				ARG 2 value
 	CLASS SliderableValueSet
 		METHOD fromSliderValue (D)Ljava/lang/Object;
 			ARG 1 value
@@ -79,6 +86,7 @@ CLASS net/minecraft/client/OptionInstance
 	CLASS CaptionBasedToString
 		METHOD toString (Lnet/minecraft/network/chat/Component;Ljava/lang/Object;)Lnet/minecraft/network/chat/Component;
 			ARG 1 caption
+			ARG 2 value
 	CLASS OptionInstanceSliderButton
 		METHOD <init> (Lnet/minecraft/client/Options;IIIILnet/minecraft/client/OptionInstance;Lnet/minecraft/client/OptionInstance$SliderableValueSet;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Ljava/util/function/Consumer;)V
 			ARG 1 options

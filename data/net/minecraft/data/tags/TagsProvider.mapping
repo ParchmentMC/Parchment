@@ -3,12 +3,20 @@ CLASS net/minecraft/data/tags/TagsProvider
 		ARG 1 output
 		ARG 2 registryKey
 		ARG 3 lookupProvider
+	METHOD <init> (Lnet/minecraft/data/PackOutput;Lnet/minecraft/resources/ResourceKey;Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/CompletableFuture;)V
+		ARG 1 output
+		ARG 2 registryKey
+		ARG 3 lookupProvider
+		ARG 4 parentProvider
 	METHOD addTags (Lnet/minecraft/core/HolderLookup$Provider;)V
 		ARG 1 provider
 	METHOD getOrCreateRawBuilder (Lnet/minecraft/tags/TagKey;)Lnet/minecraft/tags/TagBuilder;
 		ARG 1 tag
 	METHOD tag (Lnet/minecraft/tags/TagKey;)Lnet/minecraft/data/tags/TagsProvider$TagAppender;
 		ARG 1 tag
+	CLASS TagLookup
+		METHOD contains (Lnet/minecraft/tags/TagKey;)Z
+			ARG 1 key
 	CLASS TagAppender
 		METHOD <init> (Lnet/minecraft/tags/TagBuilder;)V
 			ARG 1 builder

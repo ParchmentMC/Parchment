@@ -4,8 +4,20 @@ CLASS net/minecraft/world/inventory/ItemCombinerMenu
 		ARG 2 containerId
 		ARG 3 playerInventory
 		ARG 4 access
+	METHOD canMoveIntoInputSlots (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
+	METHOD createContainer (I)Lnet/minecraft/world/SimpleContainer;
+		ARG 1 size
+	METHOD createInputSlots (Lnet/minecraft/world/inventory/ItemCombinerMenuSlotDefinition;)V
+		ARG 1 slotDefinition
+	METHOD createInventorySlots (Lnet/minecraft/world/entity/player/Inventory;)V
+		ARG 1 inventory
 	METHOD createResult ()V
 		COMMENT Called when the Anvil Input Slot changes, calculates the new result and puts it in the output slot.
+	METHOD createResultSlot (Lnet/minecraft/world/inventory/ItemCombinerMenuSlotDefinition;)V
+		ARG 1 slotDefinition
+	METHOD getSlotToQuickMoveTo (Lnet/minecraft/world/item/ItemStack;)I
+		ARG 1 stack
 	METHOD isValidBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 	METHOD lambda$removed$0 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
@@ -27,8 +39,6 @@ CLASS net/minecraft/world/inventory/ItemCombinerMenu
 	METHOD removed (Lnet/minecraft/world/entity/player/Player;)V
 		COMMENT Called when the container is closed.
 		ARG 1 player
-	METHOD shouldQuickMoveToAdditionalSlot (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
 	METHOD slotsChanged (Lnet/minecraft/world/Container;)V
 		COMMENT Callback for when the crafting matrix is changed.
 		ARG 1 inventory

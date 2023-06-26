@@ -3,3 +3,22 @@ CLASS com/mojang/realmsclient/gui/task/DataFetcher
 		ARG 1 executor
 		ARG 2 resolution
 		ARG 3 timeSource
+	METHOD createTask (Ljava/lang/String;Ljava/util/concurrent/Callable;Ljava/time/Duration;Lcom/mojang/realmsclient/gui/task/RepeatedDelayStrategy;)Lcom/mojang/realmsclient/gui/task/DataFetcher$Task;
+		ARG 1 id
+		ARG 2 updater
+		ARG 3 period
+		ARG 4 repeatStrategy
+	CLASS Task
+		METHOD <init> (Lcom/mojang/realmsclient/gui/task/DataFetcher;Ljava/lang/String;Ljava/util/concurrent/Callable;JLcom/mojang/realmsclient/gui/task/RepeatedDelayStrategy;)V
+			ARG 2 id
+			ARG 3 updater
+			ARG 4 period
+			ARG 6 repeatStrategy
+	CLASS Subscription
+		METHOD subscribe (Lcom/mojang/realmsclient/gui/task/DataFetcher$Task;Ljava/util/function/Consumer;)V
+			ARG 1 task
+			ARG 2 output
+	CLASS SubscribedTask
+		METHOD <init> (Lcom/mojang/realmsclient/gui/task/DataFetcher;Lcom/mojang/realmsclient/gui/task/DataFetcher$Task;Ljava/util/function/Consumer;)V
+			ARG 2 task
+			ARG 3 output

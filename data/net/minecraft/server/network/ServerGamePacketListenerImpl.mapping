@@ -28,12 +28,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD disconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Disconnect the player with a specified reason
 		ARG 1 textComponent
-	METHOD dismount (DDDFF)V
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-		ARG 7 yaw
-		ARG 8 pitch
 	METHOD filterTextPacket (Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 message
 		ARG 2 processor
@@ -41,8 +35,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 text
 	METHOD filterTextPacket (Ljava/util/List;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 texts
-	METHOD getConnection ()Lnet/minecraft/network/Connection;
-		COMMENT Returns this the NetworkManager instance registered with this NetworkHandlerPlayClient
 	METHOD getSignedMessage (Lnet/minecraft/network/protocol/game/ServerboundChatPacket;Lnet/minecraft/network/chat/LastSeenMessages;)Lnet/minecraft/network/chat/PlayerChatMessage;
 		ARG 1 packet
 		ARG 2 lastSeenMessages
@@ -188,14 +180,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 7 yaw
 		ARG 8 pitch
 		ARG 9 relativeSet
-	METHOD teleport (DDDFFLjava/util/Set;Z)V
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-		ARG 7 yaw
-		ARG 8 pitch
-		ARG 9 relativeSet
-		ARG 10 dismountVehicle
 	METHOD tryHandleChat (Ljava/lang/String;Ljava/time/Instant;Lnet/minecraft/network/chat/LastSeenMessages$Update;)Ljava/util/Optional;
 		ARG 1 message
 		ARG 2 timestamp

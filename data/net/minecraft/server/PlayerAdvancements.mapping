@@ -1,19 +1,23 @@
 CLASS net/minecraft/server/PlayerAdvancements
+	METHOD <init> (Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/server/players/PlayerList;Lnet/minecraft/server/ServerAdvancementManager;Ljava/nio/file/Path;Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 dataFixer
+		ARG 2 playerList
+		ARG 3 manager
+		ARG 4 playerSavePath
+		ARG 5 player
 	METHOD award (Lnet/minecraft/advancements/Advancement;Ljava/lang/String;)Z
 		ARG 1 advancement
 		ARG 2 criterionKey
 	METHOD checkForAutomaticTriggers (Lnet/minecraft/server/ServerAdvancementManager;)V
 		ARG 1 manager
-	METHOD ensureVisibility (Lnet/minecraft/advancements/Advancement;)V
-		ARG 1 advancement
 	METHOD flushDirty (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 serverPlayer
 	METHOD getOrStartProgress (Lnet/minecraft/advancements/Advancement;)Lnet/minecraft/advancements/AdvancementProgress;
 		ARG 1 advancement
-	METHOD hasCompletedChildrenOrSelf (Lnet/minecraft/advancements/Advancement;)Z
-		ARG 1 advancement
 	METHOD load (Lnet/minecraft/server/ServerAdvancementManager;)V
 		ARG 1 manager
+	METHOD markForVisibilityUpdate (Lnet/minecraft/advancements/Advancement;)V
+		ARG 1 advancement
 	METHOD registerListeners (Lnet/minecraft/advancements/Advancement;)V
 		ARG 1 advancement
 	METHOD registerListeners (Lnet/minecraft/server/ServerAdvancementManager;)V
@@ -27,10 +31,10 @@ CLASS net/minecraft/server/PlayerAdvancements
 		ARG 1 player
 	METHOD setSelectedTab (Lnet/minecraft/advancements/Advancement;)V
 		ARG 1 advancement
-	METHOD shouldBeVisible (Lnet/minecraft/advancements/Advancement;)Z
-		ARG 1 advancement
 	METHOD startProgress (Lnet/minecraft/advancements/Advancement;Lnet/minecraft/advancements/AdvancementProgress;)V
 		ARG 1 advancement
 		ARG 2 progress
 	METHOD unregisterListeners (Lnet/minecraft/advancements/Advancement;)V
+		ARG 1 advancement
+	METHOD updateTreeVisibility (Lnet/minecraft/advancements/Advancement;Ljava/util/Set;Ljava/util/Set;)V
 		ARG 1 advancement

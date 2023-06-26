@@ -2,9 +2,11 @@ CLASS net/minecraft/world/level/levelgen/presets/WorldPresets
 	METHOD bootstrap (Lnet/minecraft/data/worldgen/BootstapContext;)V
 		ARG 0 context
 	METHOD createNormalWorldDimensions (Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/level/levelgen/WorldDimensions;
-		ARG 0 registryAccess
+		ARG 0 registry
+	METHOD fromSettings (Lnet/minecraft/core/Registry;)Ljava/util/Optional;
+		ARG 0 registry
 	METHOD getNormalOverworld (Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/level/dimension/LevelStem;
-		ARG 0 registryAccess
+		ARG 0 registry
 	METHOD register (Ljava/lang/String;)Lnet/minecraft/resources/ResourceKey;
 		ARG 0 name
 	CLASS Bootstrap
@@ -20,3 +22,5 @@ CLASS net/minecraft/world/level/levelgen/presets/WorldPresets
 		METHOD registerCustomOverworldPreset (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/dimension/LevelStem;)V
 			ARG 1 dimensionKey
 			ARG 2 levelStem
+		METHOD registerOverworlds (Lnet/minecraft/world/level/biome/BiomeSource;)V
+			ARG 1 biomeSource

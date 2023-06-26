@@ -5,15 +5,11 @@ CLASS net/minecraft/client/gui/components/AbstractWidget
 		ARG 3 width
 		ARG 4 height
 		ARG 5 message
-	METHOD changeFocus (Z)Z
-		ARG 1 focus
 	METHOD clicked (DD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
 	METHOD defaultButtonNarrationText (Lnet/minecraft/client/gui/narration/NarrationElementOutput;)V
 		ARG 1 narrationElementOutput
-	METHOD getYImage (Z)I
-		ARG 1 isHovered
 	METHOD isMouseOver (DD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -41,8 +37,6 @@ CLASS net/minecraft/client/gui/components/AbstractWidget
 		ARG 3 mouseY
 		ARG 5 dragX
 		ARG 7 dragY
-	METHOD onFocusedChanged (Z)V
-		ARG 1 focused
 	METHOD onRelease (DD)V
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -53,12 +47,31 @@ CLASS net/minecraft/client/gui/components/AbstractWidget
 		ARG 2 mouseX
 		ARG 3 mouseY
 		ARG 4 partialTick
-	METHOD renderBg (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/Minecraft;II)V
+	METHOD renderScrollingString (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;II)V
 		ARG 1 poseStack
-		ARG 2 minecraft
-		ARG 3 mouseX
-		ARG 4 mouseY
-	METHOD renderButton (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
+		ARG 2 font
+		ARG 4 color
+	METHOD renderScrollingString (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IIIII)V
+		ARG 0 poseStack
+		ARG 1 font
+		ARG 2 text
+		ARG 3 minX
+		ARG 4 minY
+		ARG 5 maxX
+		ARG 6 maxY
+		ARG 7 color
+	METHOD renderTexture (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/resources/ResourceLocation;IIIIIIIII)V
+		ARG 1 poseStack
+		ARG 2 texture
+		ARG 3 x
+		ARG 4 y
+		ARG 5 uOffset
+		ARG 6 vOffset
+		ARG 8 width
+		ARG 9 height
+		ARG 10 textureWidth
+		ARG 11 textureHeight
+	METHOD renderWidget (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
 		ARG 1 poseStack
 		ARG 2 mouseX
 		ARG 3 mouseY
@@ -69,9 +82,8 @@ CLASS net/minecraft/client/gui/components/AbstractWidget
 		ARG 1 focused
 	METHOD setMessage (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 message
-	METHOD setPosition (II)V
-		ARG 1 x
-		ARG 2 y
+	METHOD setTabOrderGroup (I)V
+		ARG 1 tabOrderGroup
 	METHOD setTooltip (Lnet/minecraft/client/gui/components/Tooltip;)V
 		ARG 1 tooltip
 	METHOD setTooltipDelay (I)V

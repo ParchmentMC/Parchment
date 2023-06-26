@@ -7,12 +7,8 @@ CLASS net/minecraft/world/entity/monster/Ravager
 		ARG 1 entity
 	METHOD checkSpawnObstruction (Lnet/minecraft/world/level/LevelReader;)Z
 		ARG 1 level
-	METHOD createNavigation (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/ai/navigation/PathNavigation;
-		ARG 1 level
 	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
-	METHOD getControllingPassenger ()Lnet/minecraft/world/entity/Entity;
-		COMMENT For vehicles, the first passenger is generally considered the controller and "drives" the vehicle. For example, Pigs, Horses, and Boats are generally "steered" by the controlling passenger.
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getPassengersRidingOffset ()D
@@ -33,14 +29,6 @@ CLASS net/minecraft/world/entity/monster/Ravager
 		ARG 1 entity
 	METHOD updateControlFlags ()V
 		COMMENT Sets MOVE, JUMP, LOOK Goal.Flags depending if entity is riding or been controlled
-	CLASS RavagerNodeEvaluator
-		METHOD evaluateBlockPathType (Lnet/minecraft/world/level/BlockGetter;ZZLnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
-			COMMENT Returns the exact path node type according to abilities and settings of the entity
-			ARG 1 level
-			ARG 2 canOpenDoors
-			ARG 3 canEnterDoors
-			ARG 4 pos
-			ARG 5 nodeType
 	CLASS RavagerMeleeAttackGoal
 		METHOD getAttackReachSqr (Lnet/minecraft/world/entity/LivingEntity;)D
 			ARG 1 attackTarget

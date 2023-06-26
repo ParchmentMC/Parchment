@@ -1,4 +1,6 @@
 CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
+	METHOD canReachWithoutCollision (Lnet/minecraft/world/level/pathfinder/Node;)Z
+		ARG 1 node
 	METHOD checkNeighbourBlocks (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		COMMENT Returns possible dangers in a 3x3 cube, otherwise nodeType
 		ARG 0 level
@@ -6,17 +8,16 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 		ARG 2 nodeType
 	METHOD done ()V
 		COMMENT This method is called when all nodes have been processed and PathEntity is created.
-	METHOD evaluateBlockPathType (Lnet/minecraft/world/level/BlockGetter;ZZLnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
-		COMMENT Returns the exact path node type according to abilities and settings of the entity
+	METHOD evaluateBlockPathType (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		ARG 1 level
-		ARG 2 canOpenDoors
-		ARG 3 canEnterDoors
-		ARG 4 pos
-		ARG 5 nodeType
+		ARG 2 pos
+		ARG 3 pathTypes
 	METHOD findAcceptedNode (IIIIDLnet/minecraft/core/Direction;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Lnet/minecraft/world/level/pathfinder/Node;
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+		ARG 7 direction
+		ARG 8 pathType
 	METHOD getBlockPathType (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		COMMENT Returns a significant cached path node type for specified position or calculates it
 		ARG 1 entityliving
@@ -27,18 +28,6 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD getBlockPathType (Lnet/minecraft/world/level/BlockGetter;IIILnet/minecraft/world/entity/Mob;IIIZZ)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
-		COMMENT Returns the significant (e.g. {@code LAVA} if the entity were half in lava) node type at the location taking the surroundings and the entity size in account
-		ARG 1 blockaccess
-		ARG 2 x
-		ARG 3 y
-		ARG 4 z
-		ARG 5 entityliving
-		ARG 6 xSize
-		ARG 7 ySize
-		ARG 8 zSize
-		ARG 9 canBreakDoors
-		ARG 10 canEnterDoors
 	METHOD getBlockPathTypeRaw (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		ARG 0 level
 		ARG 1 pos
@@ -46,20 +35,17 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 		COMMENT Returns the node type at the specified postion taking the block below into account
 		ARG 0 level
 		ARG 1 pos
-	METHOD getBlockPathTypes (Lnet/minecraft/world/level/BlockGetter;IIIIIIZZLjava/util/EnumSet;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
-		COMMENT Populates the nodeTypeEnum with all the surrounding node types and returns the center one
+	METHOD getBlockPathTypes (Lnet/minecraft/world/level/BlockGetter;IIILjava/util/EnumSet;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		ARG 1 level
-		ARG 2 x
-		ARG 3 y
-		ARG 4 z
-		ARG 5 xSize
-		ARG 6 ySize
-		ARG 7 zSize
-		ARG 8 canOpenDoors
-		ARG 9 canEnterDoors
-		ARG 10 nodeTypeEnum
-		ARG 11 nodeType
-		ARG 12 pos
+		ARG 2 xOffset
+		ARG 3 yOffset
+		ARG 4 zOffset
+		ARG 5 output
+		ARG 7 pos
+	METHOD getBlockedNode (III)Lnet/minecraft/world/level/pathfinder/Node;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 	METHOD getCachedBlockType (Lnet/minecraft/world/entity/Mob;III)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		COMMENT Returns a cached path node type for specified position or calculates it
 		ARG 1 entity
@@ -71,6 +57,19 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 	METHOD getFloorLevel (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)D
 		ARG 0 level
 		ARG 1 pos
+	METHOD getNodeAndUpdateCostToMax (IIILnet/minecraft/world/level/pathfinder/BlockPathTypes;F)Lnet/minecraft/world/level/pathfinder/Node;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 type
+		ARG 5 costMalus
+	METHOD getStartNode (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/Node;
+		ARG 1 pos
+	METHOD hasCollisions (Lnet/minecraft/world/phys/AABB;)Z
+		ARG 1 boundingBox
 	METHOD isBurningBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		COMMENT Checks whether the specified block state can cause burn damage
 		ARG 0 state
+	METHOD isNeighborValid (Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)Z
+		ARG 1 neighbor
+		ARG 2 node

@@ -1,6 +1,7 @@
 CLASS net/minecraft/world/inventory/MenuType
-	METHOD <init> (Lnet/minecraft/world/inventory/MenuType$MenuSupplier;)V
+	METHOD <init> (Lnet/minecraft/world/inventory/MenuType$MenuSupplier;Lnet/minecraft/world/flag/FeatureFlagSet;)V
 		ARG 1 constructor
+		ARG 2 requiredFeatures
 	METHOD create (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
 		ARG 1 containerId
 		ARG 2 playerInventory
@@ -10,6 +11,10 @@ CLASS net/minecraft/world/inventory/MenuType
 	METHOD register (Ljava/lang/String;Lnet/minecraft/world/inventory/MenuType$MenuSupplier;)Lnet/minecraft/world/inventory/MenuType;
 		ARG 0 key
 		ARG 1 factory
+	METHOD register (Ljava/lang/String;Lnet/minecraft/world/inventory/MenuType$MenuSupplier;[Lnet/minecraft/world/flag/FeatureFlag;)Lnet/minecraft/world/inventory/MenuType;
+		ARG 0 key
+		ARG 1 factory
+		ARG 2 requiredFeatures
 	CLASS MenuSupplier
 		METHOD create (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
 			ARG 1 containerId

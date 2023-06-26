@@ -4,14 +4,25 @@ CLASS net/minecraft/client/Options
 		ARG 2 gameDirectory
 	METHOD broadcastOptions ()V
 		COMMENT Send a client info packet with settings information to the server
+	METHOD createSoundSliderOptionInstance (Ljava/lang/String;Lnet/minecraft/sounds/SoundSource;)Lnet/minecraft/client/OptionInstance;
+		ARG 1 text
+		ARG 2 soundSource
 	METHOD dataFix (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 nbt
+	METHOD genericValueLabel (Lnet/minecraft/network/chat/Component;I)Lnet/minecraft/network/chat/Component;
+		ARG 0 text
+		ARG 1 value
+	METHOD genericValueLabel (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/Component;
+		ARG 0 text
+		ARG 1 value
 	METHOD getBackgroundColor (F)I
 		ARG 1 opacity
 	METHOD getBackgroundColor (I)I
 		ARG 1 chatColor
 	METHOD getBackgroundOpacity (F)F
 		ARG 1 opacity
+	METHOD getSoundSourceOptionInstance (Lnet/minecraft/sounds/SoundSource;)Lnet/minecraft/client/OptionInstance;
+		ARG 1 soundSource
 	METHOD getSoundSourceVolume (Lnet/minecraft/sounds/SoundSource;)F
 		ARG 1 category
 	METHOD isFalse (Ljava/lang/String;)Z
@@ -24,6 +35,12 @@ CLASS net/minecraft/client/Options
 		COMMENT Loads the options from the options file. It appears that this has replaced the previous 'loadOptions'
 	METHOD loadSelectedResourcePacks (Lnet/minecraft/server/packs/repository/PackRepository;)V
 		ARG 1 resourcePackList
+	METHOD percentValueLabel (Lnet/minecraft/network/chat/Component;D)Lnet/minecraft/network/chat/Component;
+		ARG 0 text
+		ARG 1 value
+	METHOD pixelValueLabel (Lnet/minecraft/network/chat/Component;I)Lnet/minecraft/network/chat/Component;
+		ARG 0 text
+		ARG 1 value
 	METHOD processOptions (Lnet/minecraft/client/Options$FieldAccess;)V
 		ARG 1 accessor
 	METHOD readPackList (Ljava/lang/String;)Ljava/util/List;
@@ -43,8 +60,16 @@ CLASS net/minecraft/client/Options
 	METHOD toggleModelPart (Lnet/minecraft/world/entity/player/PlayerModelPart;Z)V
 		ARG 1 playerModelPart
 		ARG 2 enable
+	METHOD updateResourcePacks (Lnet/minecraft/server/packs/repository/PackRepository;)V
+		ARG 1 packRepository
 	METHOD useNativeTransport ()Z
 		COMMENT Returns {@code true} if the client connect to a server using the native transport system.
+	CLASS 2
+		METHOD getValueOrNull (Ljava/lang/String;)Ljava/lang/String;
+			ARG 1 name
+	CLASS 3
+		METHOD writePrefix (Ljava/lang/String;)V
+			ARG 1 prefix
 	CLASS FieldAccess
 		METHOD process (Ljava/lang/String;F)F
 			ARG 1 name

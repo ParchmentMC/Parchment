@@ -7,22 +7,19 @@ CLASS net/minecraft/world/level/pathfinder/NodeEvaluator
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-	METHOD getBlockPathType (Lnet/minecraft/world/level/BlockGetter;IIILnet/minecraft/world/entity/Mob;IIIZZ)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
-		COMMENT Returns the significant (e.g. {@code LAVA} if the entity were half in lava) node type at the location taking the surroundings and the entity size in account
-		ARG 1 blockaccess
+	METHOD getBlockPathType (Lnet/minecraft/world/level/BlockGetter;IIILnet/minecraft/world/entity/Mob;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
+		ARG 1 level
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
-		ARG 5 entityliving
-		ARG 6 xSize
-		ARG 7 ySize
-		ARG 8 zSize
-		ARG 9 canBreakDoors
-		ARG 10 canEnterDoors
+		ARG 5 mob
 	METHOD getGoal (DDD)Lnet/minecraft/world/level/pathfinder/Target;
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
+	METHOD getNeighbors ([Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)I
+		ARG 1 outputArray
+		ARG 2 node
 	METHOD getNode (III)Lnet/minecraft/world/level/pathfinder/Node;
 		COMMENT Returns a mapped point or creates and adds one
 		ARG 1 x
@@ -30,12 +27,16 @@ CLASS net/minecraft/world/level/pathfinder/NodeEvaluator
 		ARG 3 z
 	METHOD getNode (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/Node;
 		ARG 1 pos
+	METHOD getTargetFromNode (Lnet/minecraft/world/level/pathfinder/Node;)Lnet/minecraft/world/level/pathfinder/Target;
+		ARG 1 node
 	METHOD prepare (Lnet/minecraft/world/level/PathNavigationRegion;Lnet/minecraft/world/entity/Mob;)V
 		ARG 1 level
 		ARG 2 mob
 	METHOD setCanFloat (Z)V
-		ARG 1 canSwim
+		ARG 1 canFloat
 	METHOD setCanOpenDoors (Z)V
 		ARG 1 canOpenDoors
 	METHOD setCanPassDoors (Z)V
 		ARG 1 canEnterDoors
+	METHOD setCanWalkOverFences (Z)V
+		ARG 1 canWalkOverFences

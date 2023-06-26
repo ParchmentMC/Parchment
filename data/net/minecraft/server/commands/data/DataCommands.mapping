@@ -1,4 +1,6 @@
 CLASS net/minecraft/server/commands/data/DataCommands
+	METHOD getAsText (Lnet/minecraft/nbt/Tag;)Ljava/lang/String;
+		ARG 0 tag
 	METHOD getData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;)I
 		COMMENT Gets all NBT on the object, and applies syntax highlighting.
 		COMMENT
@@ -23,8 +25,14 @@ CLASS net/minecraft/server/commands/data/DataCommands
 	METHOD getSingleTag (Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Lnet/minecraft/server/commands/data/DataAccessor;)Lnet/minecraft/nbt/Tag;
 		ARG 0 path
 		ARG 1 accessor
+	METHOD getSingletonSource (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;)Ljava/util/List;
+		ARG 0 context
+		ARG 1 dataProvider
 	METHOD manipulateData (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;Lnet/minecraft/server/commands/data/DataCommands$DataManipulator;Ljava/util/List;)I
 		ARG 0 source
+		ARG 1 dataProvider
+		ARG 2 dataManipulator
+		ARG 3 tags
 	METHOD mergeData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/nbt/CompoundTag;)I
 		COMMENT Merges the given NBT into the targeted object's NBT.
 		COMMENT
@@ -41,6 +49,11 @@ CLASS net/minecraft/server/commands/data/DataCommands
 		ARG 0 source
 		ARG 1 accessor
 		ARG 2 path
+	METHOD resolveSourcePath (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;)Ljava/util/List;
+		ARG 0 context
+		ARG 1 dataProvider
+	METHOD stringifyTagList (Ljava/util/List;Ljava/util/function/Function;)Ljava/util/List;
+		ARG 0 tagLIst
 	CLASS DataProvider
 		METHOD access (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/commands/data/DataAccessor;
 			COMMENT Creates an accessor based on the command context. This should only refer to arguments registered in {@link createArgument}.
@@ -52,3 +65,9 @@ CLASS net/minecraft/server/commands/data/DataCommands
 	CLASS DataManipulator
 		METHOD modify (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/List;)I
 			ARG 1 context
+			ARG 2 nbt
+			ARG 3 nbtPath
+			ARG 4 tags
+	CLASS DataManipulatorDecorator
+		METHOD create (Lnet/minecraft/server/commands/data/DataCommands$DataManipulator;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+			ARG 1 dataManipulator

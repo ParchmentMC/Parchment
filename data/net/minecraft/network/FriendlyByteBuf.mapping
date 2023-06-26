@@ -94,6 +94,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 index
 	METHOD getLongLE (I)J
 		ARG 1 index
+	METHOD getMaxEncodedUtfLength (I)I
+		ARG 0 maxLength
 	METHOD getMedium (I)I
 		ARG 1 index
 	METHOD getMediumLE (I)I
@@ -133,6 +135,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 size
 	METHOD isWritable (I)Z
 		ARG 1 size
+	METHOD limitValue (Ljava/util/function/IntFunction;I)Ljava/util/function/IntFunction;
+		ARG 0 function
+		ARG 1 limit
 	METHOD nioBuffer (II)Ljava/nio/ByteBuffer;
 		ARG 1 index
 		ARG 2 length
@@ -162,6 +167,11 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Reads a BlockPos encoded as a long from the buffer.
 		COMMENT
 		COMMENT @see #writeBlockPos
+	METHOD readById (Lnet/minecraft/core/IdMap;)Ljava/lang/Object;
+		ARG 1 idMap
+	METHOD readById (Lnet/minecraft/core/IdMap;Lnet/minecraft/network/FriendlyByteBuf$Reader;)Lnet/minecraft/core/Holder;
+		ARG 1 idMap
+		ARG 2 reader
 	METHOD readByteArray (I)[B
 		ARG 1 maxLength
 	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
@@ -223,6 +233,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #writeEnum
 		ARG 1 enumClass
+	METHOD readEnumSet (Ljava/lang/Class;)Ljava/util/EnumSet;
+		ARG 1 enumClass
 	METHOD readFixedBitSet (I)Ljava/util/BitSet;
 		ARG 1 size
 	METHOD readIntIdList ()Lit/unimi/dsi/fastutil/ints/IntList;
@@ -233,6 +245,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Reads an ItemStack from this buffer.
 		COMMENT
 		COMMENT @see #writeItem
+	METHOD readJsonWithCodec (Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
+		ARG 1 codec
 	METHOD readList (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/util/List;
 		COMMENT Read a List from this buffer. First a new list is created given the number of elements.
 		COMMENT Then every element is read using {@code elementReader}.
@@ -283,10 +297,13 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT @see #writeNbt
 		COMMENT @see #readNbt()
 		COMMENT @see #readAnySizeNbt
+		ARG 1 nbtAccounter
 	METHOD readNullable (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/lang/Object;
 		ARG 1 reader
 	METHOD readOptional (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/util/Optional;
 		ARG 1 reader
+	METHOD readResourceKey (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/resources/ResourceKey;
+		ARG 1 registryKey
 	METHOD readResourceLocation ()Lnet/minecraft/resources/ResourceLocation;
 		COMMENT Read a ResourceLocation using its String representation.
 		COMMENT
@@ -330,12 +347,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Reads a compressed long from the buffer. To do so it maximally reads 10 byte-sized chunks whose most significant bit dictates whether another byte should be read.
 		COMMENT
 		COMMENT @see #writeVarLong
-	METHOD readWithCodec (Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
-		COMMENT Read a value of type {@code T} from this buffer using the given Codec.
-		COMMENT NBT is used under the hood to read the data.
-		COMMENT
-		COMMENT @see #writeWithCodec
-		ARG 1 codec
+	METHOD readWithCodec (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
+		ARG 1 ops
+		ARG 2 codec
 	METHOD readWithCount (Ljava/util/function/Consumer;)V
 		COMMENT Read a VarInt N from this buffer, then reads N values by calling {@code reader}.
 		ARG 1 reader
@@ -531,6 +545,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #readEnum
 		ARG 1 value
+	METHOD writeEnumSet (Ljava/util/EnumSet;Ljava/lang/Class;)V
+		ARG 1 enumSet
+		ARG 2 enumClass
 	METHOD writeFixedBitSet (Ljava/util/BitSet;I)V
 		ARG 1 bitSet
 		ARG 2 size
@@ -542,6 +559,13 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 gameProfileProperties
 	METHOD writeGlobalPos (Lnet/minecraft/core/GlobalPos;)V
 		ARG 1 pos
+	METHOD writeId (Lnet/minecraft/core/IdMap;Ljava/lang/Object;)V
+		ARG 1 idMap
+		ARG 2 value
+	METHOD writeId (Lnet/minecraft/core/IdMap;Lnet/minecraft/core/Holder;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
+		ARG 1 idMap
+		ARG 2 value
+		ARG 3 writer
 	METHOD writeInstant (Ljava/time/Instant;)V
 		ARG 1 instant
 	METHOD writeInt (I)Lio/netty/buffer/ByteBuf;
@@ -550,6 +574,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Write an IntList to this buffer. Every element is encoded as a VarInt.
 		COMMENT
 		COMMENT @see #readIntIdList
+		ARG 1 itIdList
 	METHOD writeIntLE (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/FriendlyByteBuf;
@@ -557,6 +582,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #readItem
 		ARG 1 stack
+	METHOD writeJsonWithCodec (Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
+		ARG 1 codec
+		ARG 2 value
 	METHOD writeLong (J)Lio/netty/buffer/ByteBuf;
 		ARG 1 value
 	METHOD writeLongArray ([J)Lnet/minecraft/network/FriendlyByteBuf;
@@ -596,6 +624,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 property
 	METHOD writePublicKey (Ljava/security/PublicKey;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 publicKey
+	METHOD writeQuaternion (Lorg/joml/Quaternionf;)V
+		ARG 1 quaternion
 	METHOD writeResourceKey (Lnet/minecraft/resources/ResourceKey;)V
 		ARG 1 resourceKey
 	METHOD writeResourceLocation (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/network/FriendlyByteBuf;
@@ -639,13 +669,12 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD writeVarLong (J)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes a compressed long to the buffer. The smallest number of bytes to fit the passed long will be written. Of each such byte only 7 bits will be used to describe the actual value since its most significant bit dictates whether the next byte is part of that same long. Micro-optimization for long values that are usually small.
 		ARG 1 value
-	METHOD writeWithCodec (Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
-		COMMENT Write a value of type {@code T} to this buffer using the given Codec.
-		COMMENT NBT is used under the hood to write the data.
-		COMMENT
-		COMMENT @see #readWithCodec
-		ARG 1 codec
-		ARG 2 data
+	METHOD writeVector3f (Lorg/joml/Vector3f;)V
+		ARG 1 vector3f
+	METHOD writeWithCodec (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
+		ARG 1 ops
+		ARG 2 codec
+		ARG 3 value
 	METHOD writeZero (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
 	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;
