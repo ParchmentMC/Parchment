@@ -16,6 +16,9 @@ CLASS net/minecraft/client/Minecraft
 		ARG 2 be
 	METHOD addResourcePackLoadFailToast (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 message
+	METHOD archiveProfilingReport (Lnet/minecraft/SystemReport;Ljava/util/List;)Ljava/nio/file/Path;
+		ARG 1 report
+		ARG 2 paths
 	METHOD clearLevel (Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 1 screen
 	METHOD clearResourcePacksOnError (Ljava/lang/Throwable;Lnet/minecraft/network/chat/Component;)V
@@ -23,6 +26,7 @@ CLASS net/minecraft/client/Minecraft
 		ARG 2 errorMessage
 	METHOD constructProfiler (ZLnet/minecraft/util/profiling/SingleTickProfiler;)Lnet/minecraft/util/profiling/ProfilerFiller;
 		ARG 1 renderFpsPie
+		ARG 2 singleTickProfiler
 	METHOD continueAttack (Z)V
 		ARG 1 leftClick
 	METHOD crash (Lnet/minecraft/CrashReport;)V
@@ -72,8 +76,6 @@ CLASS net/minecraft/client/Minecraft
 		ARG 1 screen
 	METHOD getFrameTimer ()Lnet/minecraft/util/FrameTimer;
 		COMMENT Return the FrameTimer's instance
-	METHOD getIconFile ([Ljava/lang/String;)Lnet/minecraft/server/packs/resources/IoSupplier;
-		ARG 1 path
 	METHOD getInstance ()Lnet/minecraft/client/Minecraft;
 		COMMENT Return the singleton Minecraft instance for the game
 	METHOD getLaunchedVersion ()Ljava/lang/String;
@@ -98,6 +100,7 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT Gets the type of version that Minecraft was launched under (as specified in the version JSON). Specified via the <code>--versionType</code> flag.
 	METHOD grabHugeScreenshot (Ljava/io/File;IIII)Lnet/minecraft/network/chat/Component;
 		ARG 1 gameDirectory
+		ARG 2 columnWidth
 		ARG 3 rowHeight
 		ARG 4 width
 		ARG 5 height
@@ -126,9 +129,9 @@ CLASS net/minecraft/client/Minecraft
 	METHOD populateSearchTree (Lnet/minecraft/client/searchtree/SearchRegistry$Key;Ljava/util/List;)V
 		ARG 1 key
 		ARG 2 values
-	METHOD renderFpsMeter (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/util/profiling/ProfileResults;)V
-		ARG 1 poseStack
-		ARG 2 profilerResult
+	METHOD renderFpsMeter (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/util/profiling/ProfileResults;)V
+		ARG 1 guiGraphics
+		ARG 2 profileResults
 	METHOD rollbackResourcePacks (Ljava/lang/Throwable;)V
 		ARG 1 throwable
 	METHOD runTick (Z)V
@@ -140,6 +143,10 @@ CLASS net/minecraft/client/Minecraft
 	METHOD setConnectedToRealms (Z)V
 		COMMENT Set if the player is connected to a realms server
 		ARG 1 isConnected
+	METHOD setInitialScreen (Lcom/mojang/realmsclient/client/RealmsClient;Lnet/minecraft/server/packs/resources/ReloadInstance;Lnet/minecraft/client/main/GameConfig$QuickPlayData;)V
+		ARG 1 realmsClient
+		ARG 2 reloadInstance
+		ARG 3 quickPlayData
 	METHOD setLastInputType (Lnet/minecraft/client/InputType;)V
 		ARG 1 lastInputType
 	METHOD setLevel (Lnet/minecraft/client/multiplayer/ClientLevel;)V

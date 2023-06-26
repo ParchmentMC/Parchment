@@ -132,9 +132,6 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 report
 	METHOD gatherChunkSourceStats ()Ljava/lang/String;
 		COMMENT Returns the name of the current chunk provider, by calling chunkprovider.makeString()
-	METHOD getBestNeighborSignal (Lnet/minecraft/core/BlockPos;)I
-		COMMENT Returns the highest redstone signal the given position receives from neighboring blocks.
-		ARG 1 pos
 	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
 	METHOD getBlockRandomPos (IIII)Lnet/minecraft/core/BlockPos;
@@ -161,9 +158,6 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 pos
 	METHOD getDestroyType (Lnet/minecraft/world/level/GameRules$Key;)Lnet/minecraft/world/level/Explosion$BlockInteraction;
 		ARG 1 gameRule
-	METHOD getDirectSignalTo (Lnet/minecraft/core/BlockPos;)I
-		COMMENT Returns the direct redstone signal the given position receives from neighboring blocks.
-		ARG 1 pos
 	METHOD getEntities (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
 		COMMENT Gets all entities within the specified AABB excluding the one passed into it.
 		ARG 1 entity
@@ -181,7 +175,7 @@ CLASS net/minecraft/world/level/Level
 		ARG 4 output
 		ARG 5 maxResults
 	METHOD getEntity (I)Lnet/minecraft/world/entity/Entity;
-		COMMENT Returns the Entity with the given ID, or null if it doesn't exist in this Level.
+		COMMENT Returns the Entity with the given ID, or null if it doesn't exist in this World.
 		ARG 1 id
 	METHOD getFluidState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;
 		ARG 1 pos
@@ -198,16 +192,6 @@ CLASS net/minecraft/world/level/Level
 	METHOD getRainLevel (F)F
 		COMMENT Returns rain strength.
 		ARG 1 delta
-	METHOD getSignal (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
-		COMMENT Returns the redstone signal emitted from the given position in the given direction.
-		COMMENT This is the highest value between the signal emitted by the block itself, and the direct signal
-		COMMENT received from neighboring blocks if the block is a redstone conductor.
-		COMMENT
-		COMMENT <p>
-		COMMENT NOTE: directions in redstone signal related methods are backwards, so this method
-		COMMENT checks for the signal emitted in the <i>opposite</i> direction of the one given.
-		ARG 1 pos
-		ARG 2 direction
 	METHOD getSunAngle (F)F
 		COMMENT Return getCelestialAngle()*2*PI
 		ARG 1 partialTicks
@@ -220,17 +204,6 @@ CLASS net/minecraft/world/level/Level
 	METHOD guardEntityTick (Ljava/util/function/Consumer;Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 consumerEntity
 		ARG 2 entity
-	METHOD hasNeighborSignal (Lnet/minecraft/core/BlockPos;)Z
-		COMMENT Returns whether the given position receives any redstone signal from neighboring blocks.
-		ARG 1 pos
-	METHOD hasSignal (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
-		COMMENT Returns whether a redstone signal is emitted from the given position in the given direction.
-		COMMENT
-		COMMENT <p>
-		COMMENT NOTE: directions in redstone signal related methods are backwards, so this method
-		COMMENT checks for the signal emitted in the <i>opposite</i> direction of the one given.
-		ARG 1 pos
-		ARG 2 direction
 	METHOD isDay ()Z
 		COMMENT Checks whether its daytime by seeing if the light subtracted from the skylight is less than 4. Always returns true on the client because vanilla has no need for it on the client, therefore it is not synced to the client
 	METHOD isInSpawnableBounds (Lnet/minecraft/core/BlockPos;)Z
@@ -248,7 +221,7 @@ CLASS net/minecraft/world/level/Level
 		COMMENT Returns {@code true} if the current rain strength is greater than 0.2
 	METHOD isRainingAt (Lnet/minecraft/core/BlockPos;)Z
 		COMMENT Check if precipitation is currently happening at a position
-		ARG 1 pos
+		ARG 1 position
 	METHOD isStateAtPosition (Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;)Z
 		ARG 1 pos
 		ARG 2 state
@@ -374,7 +347,7 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 packet
 	METHOD setBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z
 		COMMENT Sets a block state into this world.Flags are as follows:
-		COMMENT 1 will notify neighboring blocks through {@link net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase#neighborChanged neighborChanged} updates.
+		COMMENT 1 will cause a block update.
 		COMMENT 2 will send the change to clients.
 		COMMENT 4 will prevent the block from being re-rendered.
 		COMMENT 8 will force any re-renders to run on the main thread instead

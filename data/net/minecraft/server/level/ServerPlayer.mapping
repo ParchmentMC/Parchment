@@ -32,6 +32,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 2 direction
 	METHOD broadcastToPlayer (Lnet/minecraft/server/level/ServerPlayer;)Z
 		ARG 1 player
+	METHOD calculateGameModeForNewPlayer (Lnet/minecraft/world/level/GameType;)Lnet/minecraft/world/level/GameType;
+		ARG 1 gameType
 	METHOD canHarmPlayer (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 other
 	METHOD changeDimension (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;
@@ -54,10 +56,11 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
 		COMMENT Called when the mob's health reaches 0.
 		ARG 1 cause
-	METHOD doCheckFallDamage (DZ)V
-		COMMENT Process player falling based on movement packet.
-		ARG 1 y
-		ARG 3 onGround
+	METHOD doCheckFallDamage (DDDZ)V
+		ARG 1 movementX
+		ARG 3 movementY
+		ARG 5 movementZ
+		ARG 7 onGround
 	METHOD doCloseContainer ()V
 		COMMENT Closes the container the player currently has open.
 	METHOD drop (Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;
@@ -76,6 +79,10 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD giveExperienceLevels (I)V
 		COMMENT Add experience levels to this player.
 		ARG 1 levels
+	METHOD handleTeamKill (Ljava/lang/String;Ljava/lang/String;[Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;)V
+		ARG 1 scoreboardName
+		ARG 2 username
+		ARG 3 criteria
 	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
@@ -91,6 +98,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 pos
 	METHOD isSpectator ()Z
 		COMMENT Returns {@code true} if the player is in spectator mode.
+	METHOD lambda$readAdditionalSaveData$0 (Lnet/minecraft/world/entity/monster/warden/WardenSpawnTracker;)V
+		ARG 1 wardenSpawnTracker
 	METHOD loadGameTypes (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
 	METHOD lookAt (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)V
@@ -138,6 +147,7 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 compound
 	METHOD readPlayerMode (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Lnet/minecraft/world/level/GameType;
 		ARG 0 tag
+		ARG 1 key
 	METHOD resetSentInfo ()V
 		COMMENT This function is called when a player's inventory is sent to him, {@code lastHealth} is updated on any dimension transitions, then reset.
 	METHOD resetStat (Lnet/minecraft/stats/Stat;)V
@@ -166,6 +176,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 4 prompt
 	METHOD setCamera (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entityToSpectate
+	METHOD setChatSession (Lnet/minecraft/network/chat/RemoteChatSession;)V
+		ARG 1 chatSession
 	METHOD setExperienceLevels (I)V
 		ARG 1 level
 	METHOD setExperiencePoints (I)V
@@ -174,8 +186,6 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 gameMode
 	METHOD setLastSectionPos (Lnet/minecraft/core/SectionPos;)V
 		ARG 1 sectionPos
-	METHOD setLevel (Lnet/minecraft/server/level/ServerLevel;)V
-		ARG 1 level
 	METHOD setPlayerInput (FFZZ)V
 		ARG 1 strafe
 		ARG 2 forward
@@ -187,6 +197,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 3 angle
 		ARG 4 forced
 		ARG 5 sendMessage
+	METHOD setServerLevel (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	METHOD shouldFilterMessageTo (Lnet/minecraft/server/level/ServerPlayer;)Z
 		ARG 1 player
 	METHOD startSleepInBed (Lnet/minecraft/core/BlockPos;)Lcom/mojang/datafixers/util/Either;

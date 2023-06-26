@@ -22,15 +22,14 @@ CLASS net/minecraft/client/gui/Gui
 		ARG 2 itemRenderer
 	METHOD canRenderCrosshairForSpectator (Lnet/minecraft/world/phys/HitResult;)Z
 		ARG 1 rayTrace
-	METHOD displayScoreboardSidebar (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/scores/Objective;)V
-		ARG 1 poseStack
+	METHOD displayScoreboardSidebar (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/scores/Objective;)V
+		ARG 1 guiGraphics
 		ARG 2 objective
-	METHOD drawBackdrop (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;III)V
-		ARG 1 poseStack
+	METHOD drawBackdrop (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Font;III)V
+		ARG 1 guiGraphics
 		ARG 2 font
-		ARG 3 heightOffset
-		ARG 4 messageWidth
-		ARG 5 color
+		ARG 4 width
+		ARG 5 height
 	METHOD getBossOverlay ()Lnet/minecraft/client/gui/components/BossHealthOverlay;
 		COMMENT Accessor for the GuiBossOverlay
 	METHOD getChat ()Lnet/minecraft/client/gui/components/ChatComponent;
@@ -43,28 +42,28 @@ CLASS net/minecraft/client/gui/Gui
 		ARG 0 score
 	METHOD onDisconnected ()V
 		COMMENT Reset the GuiPlayerTabOverlay's message header and footer
-	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;F)V
-		ARG 1 poseStack
+	METHOD render (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
 		ARG 2 partialTick
-	METHOD renderCrosshair (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
-	METHOD renderDemoOverlay (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
-	METHOD renderEffects (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
-	METHOD renderExperienceBar (Lcom/mojang/blaze3d/vertex/PoseStack;I)V
-		ARG 1 poseStack
-		ARG 2 xPos
-	METHOD renderHeart (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Gui$HeartType;IIIZZ)V
-		ARG 1 poseStack
+	METHOD renderCrosshair (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderDemoOverlay (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderEffects (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderExperienceBar (Lnet/minecraft/client/gui/GuiGraphics;I)V
+		ARG 1 guiGraphics
+		ARG 2 x
+	METHOD renderHeart (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Gui$HeartType;IIIZZ)V
+		ARG 1 guiGraphics
 		ARG 2 heartType
 		ARG 3 x
 		ARG 4 y
-		ARG 5 vOffset
+		ARG 5 yOffset
 		ARG 6 renderHighlight
 		ARG 7 halfHeart
-	METHOD renderHearts (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/entity/player/Player;IIIIFIIIZ)V
-		ARG 1 poseStack
+	METHOD renderHearts (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/entity/player/Player;IIIIFIIIZ)V
+		ARG 1 guiGraphics
 		ARG 2 player
 		ARG 3 x
 		ARG 4 y
@@ -75,41 +74,41 @@ CLASS net/minecraft/client/gui/Gui
 		ARG 9 displayHealth
 		ARG 10 absorptionAmount
 		ARG 11 renderHighlight
-	METHOD renderHotbar (FLcom/mojang/blaze3d/vertex/PoseStack;)V
+	METHOD renderHotbar (FLnet/minecraft/client/gui/GuiGraphics;)V
 		ARG 1 partialTick
-		ARG 2 poseStack
-	METHOD renderJumpMeter (Lnet/minecraft/world/entity/PlayerRideableJumping;Lcom/mojang/blaze3d/vertex/PoseStack;I)V
+		ARG 2 guiGraphics
+	METHOD renderJumpMeter (Lnet/minecraft/world/entity/PlayerRideableJumping;Lnet/minecraft/client/gui/GuiGraphics;I)V
 		ARG 1 rideable
-		ARG 2 poseStack
+		ARG 2 guiGraphics
 		ARG 3 x
-	METHOD renderPlayerHealth (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
-	METHOD renderPortalOverlay (Lcom/mojang/blaze3d/vertex/PoseStack;F)V
-		ARG 1 poseStack
+	METHOD renderPlayerHealth (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderPortalOverlay (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
 		ARG 2 alpha
-	METHOD renderSavingIndicator (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
-	METHOD renderSelectedItemName (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
-	METHOD renderSlot (Lcom/mojang/blaze3d/vertex/PoseStack;IIFLnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;I)V
-		ARG 1 poseStack
+	METHOD renderSavingIndicator (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderSelectedItemName (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderSlot (Lnet/minecraft/client/gui/GuiGraphics;IIFLnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;I)V
+		ARG 1 guiGraphics
 		ARG 2 x
 		ARG 3 y
 		ARG 4 partialTick
 		ARG 5 player
 		ARG 6 stack
 		ARG 7 seed
-	METHOD renderSpyglassOverlay (Lcom/mojang/blaze3d/vertex/PoseStack;F)V
-		ARG 1 poseStack
+	METHOD renderSpyglassOverlay (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
 		ARG 2 scopeScale
-	METHOD renderTextureOverlay (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/resources/ResourceLocation;F)V
-		ARG 1 poseStack
+	METHOD renderTextureOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/resources/ResourceLocation;F)V
+		ARG 1 guiGraphics
 		ARG 2 shaderLocation
 		ARG 3 alpha
-	METHOD renderVehicleHealth (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
-	METHOD renderVignette (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/entity/Entity;)V
-		ARG 1 poseStack
+	METHOD renderVehicleHealth (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderVignette (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 guiGraphics
 		ARG 2 entity
 	METHOD resetTitleTimes ()V
 		COMMENT Set the different times for the titles to their default values
@@ -140,3 +139,6 @@ CLASS net/minecraft/client/gui/Gui
 			ARG 4 canBlink
 		METHOD forPlayer (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/client/gui/Gui$HeartType;
 			ARG 0 player
+		METHOD getX (ZZ)I
+			ARG 1 halfHeart
+			ARG 2 renderHighlight

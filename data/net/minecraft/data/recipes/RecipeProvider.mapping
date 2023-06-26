@@ -9,10 +9,6 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 0 finishedRecipeConsumer
 		ARG 1 bed
 		ARG 2 wool
-	METHOD bedFromWhiteBedAndDye (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
-		ARG 1 dyedBed
-		ARG 2 dye
 	METHOD buildAdvancement (Lnet/minecraft/data/CachedOutput;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/Advancement$Builder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 output
 		ARG 2 advancementOutputDir
@@ -43,17 +39,14 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 0 category
 		ARG 1 chiseledResult
 		ARG 2 material
-	METHOD coloredCarpetFromWhiteCarpetAndDye (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+	METHOD colorBlockWithDye (Ljava/util/function/Consumer;Ljava/util/List;Ljava/util/List;Ljava/lang/String;)V
 		ARG 0 finishedRecipeConsumer
-		ARG 1 dyedCarpet
-		ARG 2 dye
+		ARG 1 dyes
+		ARG 2 dyeableItems
+		ARG 3 group
 	METHOD coloredTerracottaFromTerracottaAndDye (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
 		ARG 0 finishedRecipeConsumer
 		ARG 1 coloredTerracotta
-		ARG 2 dye
-	METHOD coloredWoolFromWhiteWoolAndDye (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
-		ARG 1 dyedWool
 		ARG 2 dye
 	METHOD concretePowder (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
 		ARG 0 finishedRecipeConsumer
@@ -133,11 +126,6 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 	METHOD inventoryTrigger ([Lnet/minecraft/advancements/critereon/ItemPredicate;)Lnet/minecraft/advancements/critereon/InventoryChangeTrigger$TriggerInstance;
 		COMMENT Creates a new {@link InventoryChangeTrigger} that checks for a player having a certain item.
 		ARG 0 predicates
-	METHOD legacyNetheriteSmithing (Ljava/util/function/Consumer;Lnet/minecraft/world/item/Item;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/item/Item;)V
-		ARG 0 finishedRecipeConsumer
-		ARG 1 ingredientItem
-		ARG 2 category
-		ARG 3 reultItem
 	METHOD mosaicBuilder (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
 		ARG 0 finishedRecipeConsumer
 		ARG 1 category
@@ -308,9 +296,10 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 	METHOD trapdoorBuilder (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
 		ARG 0 trapdoor
 		ARG 1 material
-	METHOD trimSmithing (Ljava/util/function/Consumer;Lnet/minecraft/world/item/Item;)V
+	METHOD trimSmithing (Ljava/util/function/Consumer;Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 0 finishedRecipeConsumer
-		ARG 1 template
+		ARG 1 ingredientItem
+		ARG 2 location
 	METHOD twoByTwoPacker (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
 		ARG 0 finishedRecipeConsumer
 		ARG 1 category

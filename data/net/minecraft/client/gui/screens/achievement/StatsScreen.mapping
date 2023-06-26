@@ -4,13 +4,13 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/stats/StatsCounter;)V
 		ARG 1 lastScreen
 		ARG 2 stats
-	METHOD blitSlot (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/world/item/Item;)V
-		ARG 1 poseStack
+	METHOD blitSlot (Lnet/minecraft/client/gui/GuiGraphics;IILnet/minecraft/world/item/Item;)V
+		ARG 1 guiGraphics
 		ARG 2 x
 		ARG 3 y
 		ARG 4 item
-	METHOD blitSlotIcon (Lcom/mojang/blaze3d/vertex/PoseStack;IIII)V
-		ARG 1 poseStack
+	METHOD blitSlotIcon (Lnet/minecraft/client/gui/GuiGraphics;IIII)V
+		ARG 1 guiGraphics
 		ARG 2 x
 		ARG 3 y
 		ARG 4 uOffset
@@ -27,11 +27,6 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 		ARG 1 button
 	METHOD lambda$initButtons$3 (Lnet/minecraft/client/gui/components/Button;)V
 		ARG 1 button
-	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
-		ARG 1 poseStack
-		ARG 2 mouseX
-		ARG 3 mouseY
-		ARG 4 partialTick
 	METHOD setActiveList (Lnet/minecraft/client/gui/components/ObjectSelectionList;)V
 		ARG 1 activeList
 	CLASS ItemStatisticsList
@@ -43,15 +38,9 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 			ARG 1 statType
 		METHOD getString (Lnet/minecraft/world/item/Item;)Lnet/minecraft/network/chat/Component;
 			ARG 1 item
-		METHOD renderBackground (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-			ARG 1 poseStack
-		METHOD renderDecorations (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
-			ARG 1 poseStack
-			ARG 2 mouseX
-			ARG 3 mouseY
-		METHOD renderMousehoverTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/network/chat/Component;II)V
-			ARG 1 poseStack
-			ARG 2 component
+		METHOD renderMousehoverTooltip (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/network/chat/Component;II)V
+			ARG 1 guiGraphics
+			ARG 2 tooltip
 			ARG 3 mouseX
 			ARG 4 mouseY
 		METHOD sortByColumn (Lnet/minecraft/stats/StatType;)V
@@ -59,8 +48,8 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 		CLASS ItemRow
 			METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList;Lnet/minecraft/world/item/Item;)V
 				ARG 2 item
-			METHOD renderStat (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/stats/Stat;IIZ)V
-				ARG 1 poseStack
+			METHOD renderStat (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/stats/Stat;IIZ)V
+				ARG 1 guiGraphics
 				ARG 2 stat
 				ARG 3 x
 				ARG 4 y
@@ -71,8 +60,6 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 	CLASS MobsStatisticsList
 		METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen;Lnet/minecraft/client/Minecraft;)V
 			ARG 2 minecraft
-		METHOD renderBackground (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-			ARG 1 poseStack
 		CLASS MobRow
 			METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen$MobsStatisticsList;Lnet/minecraft/world/entity/EntityType;)V
 				ARG 2 entityType
@@ -81,19 +68,6 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 			ARG 2 minecraft
 		METHOD lambda$new$0 (Lnet/minecraft/stats/Stat;)Ljava/lang/String;
 			ARG 0 stat
-		METHOD renderBackground (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-			ARG 1 poseStack
 		CLASS Entry
 			METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen$GeneralStatisticsList;Lnet/minecraft/stats/Stat;)V
 				ARG 2 stat
-			METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIIIIZF)V
-				ARG 1 poseStack
-				ARG 2 index
-				ARG 3 top
-				ARG 4 left
-				ARG 5 width
-				ARG 6 height
-				ARG 7 mouseX
-				ARG 8 mouseY
-				ARG 9 isMouseOver
-				ARG 10 partialTick

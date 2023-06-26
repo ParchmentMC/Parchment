@@ -62,6 +62,7 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 	METHOD assertEntityData (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/EntityType;Ljava/util/function/Function;Ljava/lang/Object;)V
 		ARG 1 pos
 		ARG 2 type
+		ARG 3 entityDataGetter
 		ARG 4 testEntityData
 	METHOD assertEntityInstancePresent (Lnet/minecraft/world/entity/Entity;III)V
 		ARG 1 entity
@@ -114,6 +115,7 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 3 endPos
 	METHOD assertEntityProperty (Lnet/minecraft/world/entity/Entity;Ljava/util/function/Function;Ljava/lang/String;Ljava/lang/Object;)V
 		ARG 1 entity
+		ARG 2 entityPropertyGetter
 		ARG 3 valueName
 		ARG 4 testEntityProperty
 	METHOD assertEntityProperty (Lnet/minecraft/world/entity/Entity;Ljava/util/function/Predicate;Ljava/lang/String;)V
@@ -125,6 +127,9 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
+	METHOD assertFalse (ZLjava/lang/String;)V
+		ARG 1 condition
+		ARG 2 failureMessage
 	METHOD assertItemEntityCountIs (Lnet/minecraft/world/item/Item;Lnet/minecraft/core/BlockPos;DI)V
 		ARG 1 item
 		ARG 2 pos
@@ -138,6 +143,11 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 1 item
 		ARG 2 pos
 		ARG 3 expansionAmount
+	METHOD assertRedstoneSignal (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Ljava/util/function/IntPredicate;Ljava/util/function/Supplier;)V
+		ARG 1 pos
+		ARG 2 direction
+		ARG 3 signalStrengthPredicate
+		ARG 4 exceptionMessage
 	METHOD assertSameBlockState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 testPos
 		ARG 2 comparisonPos
@@ -147,10 +157,6 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 	METHOD assertTrue (ZLjava/lang/String;)V
 		ARG 1 condition
 		ARG 2 failureMessage
-	METHOD continuouslyUse (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/BlockHitResult;)V
-		ARG 1 pos
-		ARG 2 player
-		ARG 3 result
 	METHOD destroyBlock (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD fail (Ljava/lang/String;)V
@@ -179,12 +185,12 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 1 heightmapType
 		ARG 2 x
 		ARG 3 z
+	METHOD killAllEntitiesOfClass (Ljava/lang/Class;)V
+		ARG 1 entityClass
 	METHOD lambda$assertBlock$9 (Ljava/util/function/Predicate;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 	METHOD lambda$failIfEver$25 (Ljava/lang/Runnable;J)V
 		ARG 2 timeoutTick
-	METHOD lambda$killAllEntities$0 (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 0 entity
 	METHOD lambda$onEachTick$26 (Ljava/lang/Runnable;J)V
 		ARG 2 timeoutTick
 	METHOD lambda$pressButton$2 (Lnet/minecraft/world/level/block/state/BlockState;)Z
@@ -301,6 +307,7 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 	METHOD succeedWhenEntityData (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/EntityType;Ljava/util/function/Function;Ljava/lang/Object;)V
 		ARG 1 pos
 		ARG 2 type
+		ARG 3 entityDataGetter
 		ARG 4 testEntityData
 	METHOD succeedWhenEntityNotPresent (Lnet/minecraft/world/entity/EntityType;III)V
 		ARG 1 type
@@ -331,3 +338,5 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 1 mob
 		ARG 2 pos
 		ARG 3 speed
+	METHOD withLowHealth (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/entity/LivingEntity;
+		ARG 1 entity

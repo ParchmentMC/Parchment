@@ -33,6 +33,8 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 	METHOD findSlot (DD)Lnet/minecraft/world/inventory/Slot;
 		ARG 1 mouseX
 		ARG 3 mouseY
+	METHOD getTooltipFromContainerItem (Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;
+		ARG 1 stack
 	METHOD hasClickedOutside (DDIII)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -68,36 +70,31 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 		ARG 1 mouseX
 		ARG 3 mouseY
 		ARG 5 button
-	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
-		ARG 1 poseStack
-		ARG 2 mouseX
-		ARG 3 mouseY
-		ARG 4 partialTick
-	METHOD renderBg (Lcom/mojang/blaze3d/vertex/PoseStack;FII)V
-		ARG 1 poseStack
+	METHOD renderBg (Lnet/minecraft/client/gui/GuiGraphics;FII)V
+		ARG 1 guiGraphics
 		ARG 2 partialTick
 		ARG 3 mouseX
 		ARG 4 mouseY
-	METHOD renderFloatingItem (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V
-		ARG 1 poseStack
+	METHOD renderFloatingItem (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V
+		ARG 1 guiGraphics
 		ARG 2 stack
 		ARG 3 x
 		ARG 4 y
 		ARG 5 text
-	METHOD renderLabels (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
-		ARG 1 poseStack
+	METHOD renderLabels (Lnet/minecraft/client/gui/GuiGraphics;II)V
+		ARG 1 guiGraphics
 		ARG 2 mouseX
 		ARG 3 mouseY
-	METHOD renderSlot (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/inventory/Slot;)V
-		ARG 1 poseStack
+	METHOD renderSlot (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/inventory/Slot;)V
+		ARG 1 guiGraphics
 		ARG 2 slot
-	METHOD renderSlotHighlight (Lcom/mojang/blaze3d/vertex/PoseStack;III)V
-		ARG 0 poseStack
+	METHOD renderSlotHighlight (Lnet/minecraft/client/gui/GuiGraphics;III)V
+		ARG 0 guiGraphics
 		ARG 1 x
 		ARG 2 y
 		ARG 3 blitOffset
-	METHOD renderTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;II)V
-		ARG 1 poseStack
+	METHOD renderTooltip (Lnet/minecraft/client/gui/GuiGraphics;II)V
+		ARG 1 guiGraphics
 		ARG 2 x
 		ARG 3 y
 	METHOD slotClicked (Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ClickType;)V

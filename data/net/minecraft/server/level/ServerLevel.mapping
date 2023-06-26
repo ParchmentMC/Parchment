@@ -1,16 +1,17 @@
 CLASS net/minecraft/server/level/ServerLevel
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/world/level/storage/ServerLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/dimension/LevelStem;Lnet/minecraft/server/level/progress/ChunkProgressListener;ZJLjava/util/List;Z)V
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/world/level/storage/ServerLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/dimension/LevelStem;Lnet/minecraft/server/level/progress/ChunkProgressListener;ZJLjava/util/List;ZLnet/minecraft/world/RandomSequences;)V
 		ARG 1 server
 		ARG 2 dispatcher
 		ARG 3 levelStorageAccess
 		ARG 4 serverLevelData
-		ARG 5 dimensionKey
+		ARG 5 dimension
 		ARG 6 levelStem
 		ARG 7 progressListener
 		ARG 8 isDebug
-		ARG 9 seed
+		ARG 9 biomeZoomSeed
 		ARG 11 customSpawners
 		ARG 12 tickTime
+		ARG 13 randomSequences
 	METHOD addDuringCommandTeleport (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
 	METHOD addDuringPortalTeleport (Lnet/minecraft/server/level/ServerPlayer;)V
@@ -106,6 +107,8 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 2 maxResults
 	METHOD getRaidAt (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/entity/raid/Raid;
 		ARG 1 pos
+	METHOD getRandomSequence (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/util/RandomSource;
+		ARG 1 location
 	METHOD getSeed ()J
 		COMMENT Gets the random world seed.
 	METHOD globalLevelEvent (ILnet/minecraft/core/BlockPos;I)V
@@ -208,6 +211,8 @@ CLASS net/minecraft/server/level/ServerLevel
 	METHOD setDefaultSpawnPos (Lnet/minecraft/core/BlockPos;F)V
 		ARG 1 pos
 		ARG 2 angle
+	METHOD setDragonFight (Lnet/minecraft/world/level/dimension/end/EndDragonFight;)V
+		ARG 1 dragonFight
 	METHOD setWeatherParameters (IIZZ)V
 		ARG 1 clearTime
 		ARG 2 weatherTime

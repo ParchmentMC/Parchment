@@ -1,11 +1,12 @@
 CLASS net/minecraft/advancements/Advancement
-	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/Advancement;Lnet/minecraft/advancements/DisplayInfo;Lnet/minecraft/advancements/AdvancementRewards;Ljava/util/Map;[[Ljava/lang/String;)V
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/Advancement;Lnet/minecraft/advancements/DisplayInfo;Lnet/minecraft/advancements/AdvancementRewards;Ljava/util/Map;[[Ljava/lang/String;Z)V
 		ARG 1 id
 		ARG 2 parent
 		ARG 3 display
 		ARG 4 rewards
 		ARG 5 criteria
 		ARG 6 requirements
+		ARG 7 sendsTelemetryEvent
 	METHOD addChild (Lnet/minecraft/advancements/Advancement;)V
 		COMMENT Add the provided {@code child} as a child of this advancement.
 		ARG 1 child
@@ -32,12 +33,15 @@ CLASS net/minecraft/advancements/Advancement
 	METHOD lambda$new$0 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
 		ARG 1 style
 	CLASS Builder
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/DisplayInfo;Lnet/minecraft/advancements/AdvancementRewards;Ljava/util/Map;[[Ljava/lang/String;)V
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/DisplayInfo;Lnet/minecraft/advancements/AdvancementRewards;Ljava/util/Map;[[Ljava/lang/String;Z)V
 			ARG 1 parentId
 			ARG 2 display
 			ARG 3 rewards
 			ARG 4 criteria
 			ARG 5 requirements
+			ARG 6 sendsTelemetryEvent
+		METHOD <init> (Z)V
+			ARG 1 sendsTelemetryEvent
 		METHOD addCriterion (Ljava/lang/String;Lnet/minecraft/advancements/Criterion;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 key
 			ARG 2 criterion

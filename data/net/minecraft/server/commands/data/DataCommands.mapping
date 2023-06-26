@@ -22,6 +22,9 @@ CLASS net/minecraft/server/commands/data/DataCommands
 		ARG 1 accessor
 		ARG 2 path
 		ARG 3 scale
+	METHOD getOffset (II)I
+		ARG 0 index
+		ARG 1 length
 	METHOD getSingleTag (Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Lnet/minecraft/server/commands/data/DataAccessor;)Lnet/minecraft/nbt/Tag;
 		ARG 0 path
 		ARG 1 accessor
@@ -52,8 +55,13 @@ CLASS net/minecraft/server/commands/data/DataCommands
 	METHOD resolveSourcePath (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;)Ljava/util/List;
 		ARG 0 context
 		ARG 1 dataProvider
-	METHOD stringifyTagList (Ljava/util/List;Ljava/util/function/Function;)Ljava/util/List;
-		ARG 0 tagLIst
+	METHOD substring (Ljava/lang/String;I)Ljava/lang/String;
+		ARG 0 source
+		ARG 1 start
+	METHOD substring (Ljava/lang/String;II)Ljava/lang/String;
+		ARG 0 source
+		ARG 1 start
+		ARG 2 end
 	CLASS DataProvider
 		METHOD access (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/commands/data/DataAccessor;
 			COMMENT Creates an accessor based on the command context. This should only refer to arguments registered in {@link createArgument}.

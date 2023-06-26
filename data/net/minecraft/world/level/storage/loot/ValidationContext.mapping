@@ -1,43 +1,27 @@
 CLASS net/minecraft/world/level/storage/loot/ValidationContext
 	COMMENT Context for validating loot tables. Loot tables are validated recursively by checking that all functions, conditions, etc. (implementing {@link LootContextUser}) are valid according to their LootTable's {@link LootContextParamSet}.
-	METHOD <init> (Lcom/google/common/collect/Multimap;Ljava/util/function/Supplier;Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;Ljava/util/function/Function;Ljava/util/Set;Ljava/util/function/Function;Ljava/util/Set;)V
+	METHOD <init> (Lcom/google/common/collect/Multimap;Ljava/util/function/Supplier;Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;Lnet/minecraft/world/level/storage/loot/LootDataResolver;Ljava/util/Set;)V
 		ARG 1 problems
 		ARG 2 context
 		ARG 3 params
-		ARG 4 conditionResolver
-		ARG 5 visitedConditions
-		ARG 6 tableResolver
-		ARG 7 visitedTables
-	METHOD <init> (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;Ljava/util/function/Function;Ljava/util/function/Function;)V
+		ARG 4 resolver
+		ARG 5 visitedElements
+	METHOD <init> (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;Lnet/minecraft/world/level/storage/loot/LootDataResolver;)V
 		ARG 1 params
-		ARG 2 conditionResolver
-		ARG 3 tableResolver
-	METHOD enterCondition (Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
-		COMMENT Create a new ValidationContext for validating a given LootItemCondition.
-		ARG 1 contextName
-		ARG 2 conditionId
-	METHOD enterTable (Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
-		COMMENT Create a new ValidationContext for validating a given LootTable
-		ARG 1 contextName
-		ARG 2 lootTableId
+		ARG 2 resolver
+	METHOD enterElement (Ljava/lang/String;Lnet/minecraft/world/level/storage/loot/LootDataId;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
+		ARG 1 childName
+		ARG 2 element
 	METHOD forChild (Ljava/lang/String;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
 		COMMENT Create a new ValidationContext with {@code childName} being added to the context.
 		ARG 1 childName
 	METHOD getProblems ()Lcom/google/common/collect/Multimap;
 		COMMENT Get all problems that have been recorded. The resulting Multimap maps the {@linkplain #getContext context} at the time the problem occurred to the problems.
-	METHOD hasVisitedCondition (Lnet/minecraft/resources/ResourceLocation;)Z
-		COMMENT Check whether a loot condition with the given ID has been validated by this context.
-		ARG 1 conditionId
-	METHOD hasVisitedTable (Lnet/minecraft/resources/ResourceLocation;)Z
-		COMMENT Check whether a LootTable with the given ID has been validated with this context.
-		ARG 1 lootTableId
+	METHOD hasVisitedElement (Lnet/minecraft/world/level/storage/loot/LootDataId;)Z
+		ARG 1 element
 	METHOD reportProblem (Ljava/lang/String;)V
 		COMMENT Report a problem to this ValidationContext.
 		ARG 1 problem
-	METHOD resolveCondition (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
-		ARG 1 conditionId
-	METHOD resolveLootTable (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/LootTable;
-		ARG 1 lootTableId
 	METHOD setParams (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
 		COMMENT Create a new ValidationContext with the given LootContextParamSet.
 		ARG 1 params

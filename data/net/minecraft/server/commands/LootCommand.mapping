@@ -23,10 +23,10 @@ CLASS net/minecraft/server/commands/LootCommand
 	METHOD distributeToContainer (Lnet/minecraft/world/Container;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 container
 		ARG 1 item
-	METHOD drop (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)I
+	METHOD drop (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/storage/loot/LootParams;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)I
 		ARG 0 context
 		ARG 1 lootTable
-		ARG 2 lootContext
+		ARG 2 params
 		ARG 3 dropConsumer
 	METHOD dropBlockLoot (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)I
 		ARG 0 context
@@ -51,6 +51,7 @@ CLASS net/minecraft/server/commands/LootCommand
 		ARG 2 dropConsumer
 	METHOD entityReplace (Ljava/util/Collection;IILjava/util/List;Lnet/minecraft/server/commands/LootCommand$Callback;)I
 		ARG 0 targets
+		ARG 1 startSlot
 		ARG 3 items
 		ARG 4 callback
 	METHOD getContainer (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/Container;
@@ -80,3 +81,6 @@ CLASS net/minecraft/server/commands/LootCommand
 			ARG 1 context
 			ARG 2 items
 			ARG 3 callback
+	CLASS TailProvider
+		METHOD construct (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+			ARG 2 dropConsumer

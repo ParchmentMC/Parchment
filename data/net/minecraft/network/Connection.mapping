@@ -22,6 +22,10 @@ CLASS net/minecraft/network/Connection
 	METHOD configureSerialization (Lio/netty/channel/ChannelPipeline;Lnet/minecraft/network/protocol/PacketFlow;)V
 		ARG 0 pipeline
 		ARG 1 flow
+	METHOD connect (Ljava/net/InetSocketAddress;ZLnet/minecraft/network/Connection;)Lio/netty/channel/ChannelFuture;
+		ARG 0 address
+		ARG 1 useEpollIfAvailable
+		ARG 2 connection
 	METHOD connectToLocalServer (Ljava/net/SocketAddress;)Lnet/minecraft/network/Connection;
 		COMMENT Prepares a clientside Connection for a local in-memory connection ("single player").
 		COMMENT Establishes a connection to the socket supplied and configures the channel pipeline (only the packet handler is necessary,

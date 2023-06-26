@@ -7,6 +7,8 @@ CLASS net/minecraft/client/multiplayer/ServerList
 	METHOD get (I)Lnet/minecraft/client/multiplayer/ServerData;
 		COMMENT Gets the ServerData instance stored for the given index in the list.
 		ARG 1 index
+	METHOD get (Ljava/lang/String;)Lnet/minecraft/client/multiplayer/ServerData;
+		ARG 1 ip
 	METHOD load ()V
 		COMMENT Loads a list of servers from servers.dat, by running ServerData.getServerDataFromNBTCompound on each NBT compound found in the "servers" tag list.
 	METHOD remove (Lnet/minecraft/client/multiplayer/ServerData;)V
@@ -24,3 +26,5 @@ CLASS net/minecraft/client/multiplayer/ServerList
 		COMMENT Takes two list indexes, and swaps their order around.
 		ARG 1 pos1
 		ARG 2 pos2
+	METHOD unhide (Ljava/lang/String;)Lnet/minecraft/client/multiplayer/ServerData;
+		ARG 1 ip

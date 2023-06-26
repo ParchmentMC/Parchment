@@ -32,8 +32,8 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 		ARG 1 messageSignature
 	METHOD deleteMessageOrDelay (Lnet/minecraft/network/chat/MessageSignature;)Lnet/minecraft/client/gui/components/ChatComponent$DelayedMessageDeletion;
 		ARG 1 messageSignature
-	METHOD drawTagIcon (Lcom/mojang/blaze3d/vertex/PoseStack;IILnet/minecraft/client/GuiMessageTag$Icon;)V
-		ARG 1 poseStack
+	METHOD drawTagIcon (Lnet/minecraft/client/gui/GuiGraphics;IILnet/minecraft/client/GuiMessageTag$Icon;)V
+		ARG 1 guiGraphics
 		ARG 2 left
 		ARG 3 bottom
 		ARG 4 tagIcon
@@ -62,13 +62,16 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 	METHOD handleChatQueueClicked (DD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
+	METHOD hasSelectedMessageTag (DLnet/minecraft/client/GuiMessage$Line;Lnet/minecraft/client/GuiMessageTag;)Z
+		ARG 3 line
+		ARG 4 tag
 	METHOD isChatFocused ()Z
 		COMMENT Returns {@code true} if the chat GUI is open
 	METHOD logChatMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/GuiMessageTag;)V
 		ARG 1 chatComponent
 		ARG 2 tag
-	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;III)V
-		ARG 1 poseStack
+	METHOD render (Lnet/minecraft/client/gui/GuiGraphics;III)V
+		ARG 1 guiGraphics
 		ARG 2 tickCount
 		ARG 3 mouseX
 		ARG 4 mouseY

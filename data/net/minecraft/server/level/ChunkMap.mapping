@@ -46,8 +46,6 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 entity
 	METHOD getChunkDebugData (Lnet/minecraft/world/level/ChunkPos;)Ljava/lang/String;
 		ARG 1 pos
-	METHOD getChunkRangeFuture (Lnet/minecraft/world/level/ChunkPos;ILjava/util/function/IntFunction;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 chunkPos
 	METHOD getChunks ()Ljava/lang/Iterable;
 		COMMENT Gets an unmodifiable iterable of all loaded chunks in the chunk manager
 	METHOD getDependencyStatus (Lnet/minecraft/world/level/chunk/ChunkStatus;I)Lnet/minecraft/world/level/chunk/ChunkStatus;
@@ -59,6 +57,8 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 2 chunkPos
 	METHOD isChunkDataValid (Lnet/minecraft/nbt/CompoundTag;)Z
 		ARG 0 tag
+	METHOD isChunkInRange (IIIII)Z
+		ARG 4 maxDistance
 	METHOD isExistingChunkFull (Lnet/minecraft/world/level/ChunkPos;)Z
 		ARG 1 chunkPos
 	METHOD lambda$debugReloadGenerator$1 (Lnet/minecraft/world/level/chunk/ChunkGenerator;)V
@@ -70,9 +70,6 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 chunkPos
 	METHOD move (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
-	METHOD onFullChunkStatusChange (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/server/level/ChunkHolder$FullChunkStatus;)V
-		ARG 1 pos
-		ARG 2 fullChunkStatus
 	METHOD playerIsCloseEnoughForSpawning (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/ChunkPos;)Z
 		ARG 1 player
 		ARG 2 chunkPos
@@ -85,8 +82,8 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 tags
 	METHOD prepareAccessibleChunk (Lnet/minecraft/server/level/ChunkHolder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 holder
-	METHOD prepareEntityTickingChunk (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 chunkPos
+	METHOD prepareEntityTickingChunk (Lnet/minecraft/server/level/ChunkHolder;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunk
 	METHOD prepareTickingChunk (Lnet/minecraft/server/level/ChunkHolder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 holder
 	METHOD printFuture (Ljava/util/concurrent/CompletableFuture;)Ljava/lang/String;

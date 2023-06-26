@@ -8,15 +8,23 @@ CLASS com/mojang/realmsclient/gui/RealmsWorldSlotButton
 		ARG 6 toolTipSetter
 		ARG 7 slotIndex
 		ARG 8 onPress
-	METHOD drawSlotFrame (Lcom/mojang/blaze3d/vertex/PoseStack;IIIIZLjava/lang/String;IJLjava/lang/String;ZZLcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 poseStack
+	METHOD drawSlotFrame (Lnet/minecraft/client/gui/GuiGraphics;IIIIZLjava/lang/String;IJLjava/lang/String;ZZLcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 guiGraphics
 		ARG 2 x
 		ARG 3 y
+		ARG 4 mouseX
+		ARG 5 mouseY
+		ARG 6 isSelected
 		ARG 7 text
+		ARG 15 tooltip
 	METHOD getAction (Lcom/mojang/realmsclient/dto/RealmsServer;ZZ)Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
 		ARG 0 realmsServer
 	METHOD getTooltipAndNarration (Lcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/String;ZZLcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;)Lcom/mojang/datafixers/util/Pair;
 		ARG 1 realmsServer
+	METHOD renderCheckMark (Lnet/minecraft/client/gui/GuiGraphics;II)V
+		ARG 1 guiGraphics
+		ARG 2 x
+		ARG 3 y
 	CLASS State
 		METHOD <init> (ZLjava/lang/String;JLjava/lang/String;ZZLcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;Lnet/minecraft/network/chat/Component;)V
 			ARG 1 isCurrentlyActiveSlot

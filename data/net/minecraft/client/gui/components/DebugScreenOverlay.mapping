@@ -7,15 +7,14 @@ CLASS net/minecraft/client/gui/components/DebugScreenOverlay
 		ARG 1 col1
 		ARG 2 col2
 		ARG 3 factor
-	METHOD drawChart (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/util/FrameTimer;IIZ)V
-		ARG 1 poseStack
-		ARG 2 frameTimer
+	METHOD drawChart (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/util/FrameTimer;IIZ)V
+		ARG 1 guiGraphics
+		ARG 2 drawTimer
 		ARG 5 drawForFps
-			COMMENT If set to true, will draw debugChart for FPS. If set to false, will draw for TPS.
-	METHOD drawGameInformation (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
-	METHOD drawSystemInformation (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
+	METHOD drawGameInformation (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD drawSystemInformation (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
 	METHOD getPropertyValueString (Ljava/util/Map$Entry;)Ljava/lang/String;
 		ARG 1 entry
 	METHOD getSampleColor (IIII)I
@@ -23,17 +22,16 @@ CLASS net/minecraft/client/gui/components/DebugScreenOverlay
 		ARG 2 heightMin
 		ARG 3 heightMid
 		ARG 4 heightMax
-	METHOD lambda$getGameInformation$1 (Lit/unimi/dsi/fastutil/objects/Object2IntMap;Lnet/minecraft/world/entity/MobCategory;)Ljava/lang/String;
-		ARG 1 mobCategory
-	METHOD lambda$getLevel$4 (Lnet/minecraft/client/server/IntegratedServer;)Ljava/util/Optional;
-		ARG 1 integratedServer
-	METHOD lambda$printBiome$2 (Lnet/minecraft/resources/ResourceKey;)Ljava/lang/String;
-		ARG 0 biomeKey
-	METHOD lambda$printBiome$3 (Lnet/minecraft/world/level/biome/Biome;)Ljava/lang/String;
-		ARG 0 biome
 	METHOD lambda$static$0 (Ljava/util/EnumMap;)V
 		ARG 0 enumMap
 	METHOD printBiome (Lnet/minecraft/core/Holder;)Ljava/lang/String;
 		ARG 0 biomeHolder
-	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;)V
-		ARG 1 poseStack
+	METHOD render (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderLines (Lnet/minecraft/client/gui/GuiGraphics;Ljava/util/List;Z)V
+		ARG 1 guiGraphics
+		ARG 2 lines
+		ARG 3 leftSide
+	CLASS AllocationRateCalculator
+		METHOD bytesAllocatedPerSecond (J)J
+			ARG 1 heapUsage

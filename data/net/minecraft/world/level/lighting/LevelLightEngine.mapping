@@ -1,7 +1,12 @@
 CLASS net/minecraft/world/level/lighting/LevelLightEngine
 	METHOD <init> (Lnet/minecraft/world/level/chunk/LightChunkGetter;ZZ)V
 		ARG 1 lightChunkGetter
+		ARG 2 blockLight
+		ARG 3 skyLight
 	METHOD getDebugData (Lnet/minecraft/world/level/LightLayer;Lnet/minecraft/core/SectionPos;)Ljava/lang/String;
+		ARG 1 lightLayer
+		ARG 2 sectionPos
+	METHOD getDebugSectionType (Lnet/minecraft/world/level/LightLayer;Lnet/minecraft/core/SectionPos;)Lnet/minecraft/world/level/lighting/LayerLightSectionStorage$SectionType;
 		ARG 1 lightLayer
 		ARG 2 sectionPos
 	METHOD getLayerListener (Lnet/minecraft/world/level/LightLayer;)Lnet/minecraft/world/level/lighting/LayerLightEventListener;
@@ -9,11 +14,12 @@ CLASS net/minecraft/world/level/lighting/LevelLightEngine
 	METHOD getRawBrightness (Lnet/minecraft/core/BlockPos;I)I
 		ARG 1 blockPos
 		ARG 2 amount
-	METHOD queueSectionData (Lnet/minecraft/world/level/LightLayer;Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/chunk/DataLayer;Z)V
-		ARG 1 type
-		ARG 2 pos
-		ARG 3 array
-		ARG 4 isQueueEmpty
+	METHOD lightOnInSection (Lnet/minecraft/core/SectionPos;)Z
+		ARG 1 sectionPos
+	METHOD queueSectionData (Lnet/minecraft/world/level/LightLayer;Lnet/minecraft/core/SectionPos;Lnet/minecraft/world/level/chunk/DataLayer;)V
+		ARG 1 lightLayer
+		ARG 2 sectionPos
+		ARG 3 dataLayer
 	METHOD retainData (Lnet/minecraft/world/level/ChunkPos;Z)V
 		ARG 1 pos
 		ARG 2 retain

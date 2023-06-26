@@ -1,13 +1,14 @@
 CLASS com/mojang/realmsclient/gui/screens/RealmsPendingInvitesScreen
-	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;)V
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 lastScreen
+		ARG 2 title
 	METHOD accept (I)V
 		ARG 1 index
 	METHOD reject (I)V
 		ARG 1 index
-	METHOD renderMousehoverTooltip (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/network/chat/Component;II)V
-		ARG 1 poseStack
-		ARG 2 toolTip
+	METHOD renderMousehoverTooltip (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/network/chat/Component;II)V
+		ARG 1 guiGraphics
+		ARG 2 tooltip
 		ARG 3 mouseX
 		ARG 4 mouseY
 	METHOD updateList (I)V
@@ -15,11 +16,15 @@ CLASS com/mojang/realmsclient/gui/screens/RealmsPendingInvitesScreen
 	CLASS Entry
 		METHOD <init> (Lcom/mojang/realmsclient/gui/screens/RealmsPendingInvitesScreen;Lcom/mojang/realmsclient/dto/PendingInvite;)V
 			ARG 2 pendingInvite
-		METHOD renderPendingInvitationItem (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/realmsclient/dto/PendingInvite;IIII)V
-			ARG 1 poseStack
+		METHOD renderPendingInvitationItem (Lnet/minecraft/client/gui/GuiGraphics;Lcom/mojang/realmsclient/dto/PendingInvite;IIII)V
+			ARG 1 guiGraphics
 			ARG 2 pendingInvite
 			ARG 3 x
 			ARG 4 y
+			ARG 5 mouseX
+			ARG 6 mouseY
 	CLASS PendingInvitationSelectionList
 		METHOD removeAtIndex (I)V
+			ARG 1 index
+		METHOD selectInviteListItem (I)V
 			ARG 1 index

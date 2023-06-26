@@ -3,40 +3,28 @@ CLASS net/minecraft/client/gui/screens/debug/GameModeSwitcherScreen
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
-	METHOD lambda$render$0 (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/screens/debug/GameModeSwitcherScreen$GameModeIcon;)V
-		ARG 2 icon
-	METHOD lambda$render$1 (Lnet/minecraft/client/gui/screens/debug/GameModeSwitcherScreen$GameModeSlot;Lnet/minecraft/client/gui/screens/debug/GameModeSwitcherScreen$GameModeIcon;)V
-		ARG 1 icon
-	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V
-		ARG 1 poseStack
-		ARG 2 mouseX
-		ARG 3 mouseY
-		ARG 4 partialTick
-	METHOD switchToHoveredGameMode (Lnet/minecraft/client/Minecraft;Ljava/util/Optional;)V
+	METHOD switchToHoveredGameMode (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/debug/GameModeSwitcherScreen$GameModeIcon;)V
 		ARG 0 minecraft
-		ARG 1 icon
+		ARG 1 gameModeIcon
 	CLASS GameModeIcon
 		METHOD <init> (Ljava/lang/String;ILnet/minecraft/network/chat/Component;Ljava/lang/String;Lnet/minecraft/world/item/ItemStack;)V
 			ARG 3 name
 			ARG 4 command
 			ARG 5 renderStack
-		METHOD drawIcon (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/entity/ItemRenderer;II)V
-			ARG 1 poseStack
-			ARG 2 itemRenderer
-			ARG 3 x
-			ARG 4 y
-		METHOD getFromGameType (Lnet/minecraft/world/level/GameType;)Ljava/util/Optional;
+		METHOD drawIcon (Lnet/minecraft/client/gui/GuiGraphics;II)V
+			ARG 1 guiGraphics
+			ARG 2 x
+			ARG 3 y
+		METHOD getFromGameType (Lnet/minecraft/world/level/GameType;)Lnet/minecraft/client/gui/screens/debug/GameModeSwitcherScreen$GameModeIcon;
 			ARG 0 gameType
 	CLASS GameModeSlot
 		METHOD <init> (Lnet/minecraft/client/gui/screens/debug/GameModeSwitcherScreen;Lnet/minecraft/client/gui/screens/debug/GameModeSwitcherScreen$GameModeIcon;II)V
 			ARG 2 icon
 			ARG 3 x
 			ARG 4 y
-		METHOD drawSelection (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/texture/TextureManager;)V
-			ARG 1 poseStack
-			ARG 2 textureManager
-		METHOD drawSlot (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/texture/TextureManager;)V
-			ARG 1 poseStack
-			ARG 2 textureManager
+		METHOD drawSelection (Lnet/minecraft/client/gui/GuiGraphics;)V
+			ARG 1 guiGraphics
+		METHOD drawSlot (Lnet/minecraft/client/gui/GuiGraphics;)V
+			ARG 1 guiGraphics
 		METHOD setSelected (Z)V
 			ARG 1 isSelected

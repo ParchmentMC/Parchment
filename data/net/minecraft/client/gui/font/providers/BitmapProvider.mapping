@@ -1,5 +1,5 @@
 CLASS net/minecraft/client/gui/font/providers/BitmapProvider
-	METHOD <init> (Lcom/mojang/blaze3d/platform/NativeImage;Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;)V
+	METHOD <init> (Lcom/mojang/blaze3d/platform/NativeImage;Lnet/minecraft/client/gui/font/CodepointMap;)V
 		ARG 1 image
 		ARG 2 glyphs
 	CLASS Glyph
@@ -12,19 +12,16 @@ CLASS net/minecraft/client/gui/font/providers/BitmapProvider
 			ARG 6 height
 			ARG 7 advance
 			ARG 8 ascent
-	CLASS Builder
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;IILjava/util/List;)V
-			ARG 1 texture
-			ARG 2 height
-			ARG 3 ascent
-			ARG 4 chars
-		METHOD create (Lnet/minecraft/server/packs/resources/ResourceManager;)Lcom/mojang/blaze3d/font/GlyphProvider;
-			ARG 1 resourceManager
-		METHOD fromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/client/gui/font/providers/BitmapProvider$Builder;
-			ARG 0 json
+	CLASS Definition
 		METHOD getActualGlyphWidth (Lcom/mojang/blaze3d/platform/NativeImage;IIII)I
-			ARG 1 nativeImage
-			ARG 2 charWidth
-			ARG 3 charHeightInsp
-			ARG 4 column
-			ARG 5 row
+			ARG 1 image
+			ARG 2 width
+			ARG 3 height
+			ARG 4 x
+			ARG 5 y
+		METHOD load (Lnet/minecraft/server/packs/resources/ResourceManager;)Lcom/mojang/blaze3d/font/GlyphProvider;
+			ARG 1 resoureManager
+		METHOD validate (Lnet/minecraft/client/gui/font/providers/BitmapProvider$Definition;)Lcom/mojang/serialization/DataResult;
+			ARG 0 definition
+		METHOD validateDimensions ([[I)Lcom/mojang/serialization/DataResult;
+			ARG 0 dimensions

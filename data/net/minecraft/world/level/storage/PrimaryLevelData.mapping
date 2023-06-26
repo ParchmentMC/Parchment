@@ -1,5 +1,5 @@
 CLASS net/minecraft/world/level/storage/PrimaryLevelData
-	METHOD <init> (Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundTag;ZIIIFJJIIIZIZZZLnet/minecraft/world/level/border/WorldBorder$Settings;IILjava/util/UUID;Ljava/util/Set;Lnet/minecraft/world/level/timers/TimerQueue;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldOptions;Lnet/minecraft/world/level/storage/PrimaryLevelData$SpecialWorldProperty;Lcom/mojang/serialization/Lifecycle;)V
+	METHOD <init> (Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundTag;ZIIIFJJIIIZIZZZLnet/minecraft/world/level/border/WorldBorder$Settings;IILjava/util/UUID;Ljava/util/Set;Ljava/util/Set;Lnet/minecraft/world/level/timers/TimerQueue;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/dimension/end/EndDragonFight$Data;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldOptions;Lnet/minecraft/world/level/storage/PrimaryLevelData$SpecialWorldProperty;Lcom/mojang/serialization/Lifecycle;)V
 		ARG 1 fixerUpper
 		ARG 2 playerDataVersion
 		ARG 3 loadedPlayerTag
@@ -23,13 +23,14 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 		ARG 23 wanderingTraderSpawnChance
 		ARG 24 wanderingTraderId
 		ARG 25 knownServerBrands
-		ARG 26 scheduledEvents
-		ARG 27 customBossEvents
-		ARG 28 endDragonFightData
-		ARG 29 settings
-		ARG 30 worldOptions
-		ARG 31 specialWorldProperty
-		ARG 32 worldGenSettingsLifecycle
+		ARG 26 removeFeatureFlags
+		ARG 27 scheduledEvents
+		ARG 28 customBossEvents
+		ARG 29 endDragonFightData
+		ARG 30 settings
+		ARG 31 worldOptions
+		ARG 32 specialWorldProperty
+		ARG 33 worldGenSettingsLifecycle
 	METHOD <init> (Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldOptions;Lnet/minecraft/world/level/storage/PrimaryLevelData$SpecialWorldProperty;Lcom/mojang/serialization/Lifecycle;)V
 		ARG 1 settings
 		ARG 2 worldOptions
@@ -87,8 +88,6 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 		ARG 1 difficulty
 	METHOD setDifficultyLocked (Z)V
 		ARG 1 locked
-	METHOD setEndDragonFightData (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 nbt
 	METHOD setGameTime (J)V
 		ARG 1 time
 	METHOD setGameType (Lnet/minecraft/world/level/GameType;)V
@@ -137,3 +136,5 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 	METHOD setZSpawn (I)V
 		COMMENT Set the z spawn position to the passed in value
 		ARG 1 z
+	METHOD stringCollectionToTag (Ljava/util/Set;)Lnet/minecraft/nbt/ListTag;
+		ARG 0 stringCollection

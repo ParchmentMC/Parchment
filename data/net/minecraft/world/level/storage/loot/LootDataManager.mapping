@@ -1,0 +1,25 @@
+CLASS net/minecraft/world/level/storage/loot/LootDataManager
+	METHOD castAndValidate (Lnet/minecraft/world/level/storage/loot/ValidationContext;Lnet/minecraft/world/level/storage/loot/LootDataId;Ljava/lang/Object;)V
+		ARG 0 context
+		ARG 1 id
+	METHOD createComposite ([Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		ARG 0 functions
+	METHOD createComposite ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
+		ARG 0 terms
+	METHOD getKeys (Lnet/minecraft/world/level/storage/loot/LootDataType;)Ljava/util/Collection;
+		ARG 1 type
+	METHOD scheduleElementParse (Lnet/minecraft/world/level/storage/loot/LootDataType;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;Ljava/util/Map;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 lootDataType
+		ARG 1 resourceManager
+		ARG 2 backgroundExecutor
+	CLASS FunctionSequence
+		METHOD <init> ([Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
+			ARG 1 functions
+		METHOD apply (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
+			ARG 1 stack
+			ARG 2 context
+	CLASS CompositePredicate
+		METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
+			ARG 1 terms
+		METHOD test (Lnet/minecraft/world/level/storage/loot/LootContext;)Z
+			ARG 1 context

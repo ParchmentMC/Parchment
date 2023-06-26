@@ -64,6 +64,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 3 onGround
 		ARG 4 state
 		ARG 5 pos
+	METHOD checkSupportingBlock (ZLnet/minecraft/world/phys/Vec3;)V
+		ARG 1 onGround
+		ARG 2 movement
 	METHOD clearFire ()V
 		COMMENT Removes fire from entity.
 	METHOD closerThan (Lnet/minecraft/world/entity/Entity;D)Z
@@ -195,6 +198,8 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Return the amount of time this entity should stay in a portal before being transported.
 	METHOD getPosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
+	METHOD getPrimaryStepSoundBlockPos (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
+		ARG 1 pos
 	METHOD getRandomX (D)D
 		ARG 1 scale
 	METHOD getRandomZ (D)D
@@ -322,32 +327,19 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Returns {@code true} if the player is in spectator mode.
 	METHOD isSprinting ()Z
 		COMMENT Get if the Entity is sprinting.
+	METHOD isStateClimbable (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
+	METHOD isSupportedBy (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
 	METHOD isVehicle ()Z
 		COMMENT If at least 1 entity is riding this one
 	METHOD kill ()V
 		COMMENT Called by the /kill command.
-	METHOD lambda$findDimensionEntryPoint$5 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Z
-		ARG 2 pos
-	METHOD lambda$findDimensionEntryPoint$6 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/level/portal/PortalInfo;
-		ARG 2 area
-	METHOD lambda$getDisplayName$11 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-		ARG 1 style
-	METHOD lambda$hasExactlyOnePlayerPassenger$15 (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 0 passenger
-	METHOD lambda$isInWall$1 (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/core/BlockPos;)Z
-		ARG 2 pos
+	METHOD killedEntity (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 1 level
+		ARG 2 entity
 	METHOD lambda$move$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 loadedState
-	METHOD lambda$refreshDimensions$13 (Lnet/minecraft/world/entity/EntityDimensions;Lnet/minecraft/world/phys/Vec3;)V
-		ARG 2 freePos
-	METHOD lambda$removePassenger$4 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 passenger
-	METHOD lambda$startRiding$2 (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 0 passenger
-	METHOD lambda$startRiding$3 (Lnet/minecraft/world/entity/Entity;)V
-		ARG 0 player
-	METHOD lambda$teleportTo$12 (Lnet/minecraft/world/entity/Entity;)V
-		ARG 0 passenger
 	METHOD lavaHurt ()V
 		COMMENT Called whenever the entity is walking inside of lava.
 	METHOD lerpHeadTo (FI)V
@@ -437,13 +429,14 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 key
 	METHOD onlyOpCanSetNbt ()Z
 		COMMENT Checks if players can use this entity to access operator (permission level 2) commands either directly or indirectly, such as give or setblock. A similar method exists for entities at {@link net.minecraft.world.entity.Entity#onlyOpCanSetNbt()}.<p>For example, {@link net.minecraft.world.entity.vehicle.MinecartCommandBlock#onlyOpCanSetNbt() command block minecarts} and {@link net.minecraft.world.entity.vehicle.MinecartSpawner#onlyOpCanSetNbt() mob spawner minecarts} (spawning command block minecarts or drops) are considered accessible.</p>@return true if this entity offers ways for unauthorized players to use restricted commands
-	METHOD outOfWorld ()V
-		COMMENT Sets the dead flag. Used when you fall off the bottom of the world.
 	METHOD pick (DFZ)Lnet/minecraft/world/phys/HitResult;
 		ARG 1 hitDistance
 		ARG 3 partialTicks
 		ARG 4 hitFluids
-	METHOD playAmethystStepSound (Lnet/minecraft/world/level/block/state/BlockState;)V
+	METHOD playCombinationStepSounds (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 primaryState
+		ARG 2 secondaryState
+	METHOD playMuffledStepSound (Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 state
 	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;)V
 		ARG 1 sound
@@ -541,12 +534,19 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD setItemSlot (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 slot
 		ARG 2 stack
+	METHOD setLevel (Lnet/minecraft/world/level/Level;)V
+		ARG 1 level
 	METHOD setMaxUpStep (F)V
 		ARG 1 maxUpStep
 	METHOD setNoGravity (Z)V
 		ARG 1 noGravity
 	METHOD setOnGround (Z)V
 		ARG 1 onGround
+	METHOD setOnGroundWithKnownMovement (ZLnet/minecraft/world/phys/Vec3;)V
+		ARG 1 onGround
+		ARG 2 movement
+	METHOD setPortalCooldown (I)V
+		ARG 1 portalCooldown
 	METHOD setPos (DDD)V
 		COMMENT Sets the x,y,z of the entity from the given parameters. Also seems to set up a bounding box.
 		ARG 1 x
@@ -608,6 +608,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 3 pos
 		ARG 4 blockState
 		ARG 5 explosionPower
+	METHOD shouldPlayAmethystStepSound (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
 	METHOD shouldRender (DDD)Z
 		ARG 1 x
 		ARG 3 y
@@ -681,11 +683,14 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD updateFluidHeightAndDoFluidPushing (Lnet/minecraft/tags/TagKey;D)Z
 		ARG 1 fluidTag
 		ARG 2 motionScale
-	METHOD wasKilled (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Z
-		COMMENT Called when this entity kills another entity.
-		ARG 1 level
-		ARG 2 entity
-			COMMENT The entity killed
+	METHOD vibrationAndSoundEffectsFromBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;ZZLnet/minecraft/world/phys/Vec3;)Z
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 playStepSound
+		ARG 4 broadcastGameEvent
+	METHOD walkingStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 state
 	CLASS MoveFunction
 		METHOD accept (Lnet/minecraft/world/entity/Entity;DDD)V
 			ARG 1 entity
