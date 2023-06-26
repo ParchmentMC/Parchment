@@ -1,7 +1,13 @@
 CLASS net/minecraft/network/chat/LastSeenMessages
+	METHOD pack (Lnet/minecraft/network/chat/MessageSignatureCache;)Lnet/minecraft/network/chat/LastSeenMessages$Packed;
+		ARG 1 signatureCache
+	METHOD updateSignature (Lnet/minecraft/util/SignatureUpdater$Output;)V
+		ARG 1 updaterOutput
 	CLASS Packed
 		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 			ARG 1 buffer
+		METHOD unpack (Lnet/minecraft/network/chat/MessageSignatureCache;)Ljava/util/Optional;
+			ARG 1 signatureCache
 		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 			ARG 1 buffer
 	CLASS Update

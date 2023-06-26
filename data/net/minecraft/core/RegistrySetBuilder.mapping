@@ -18,8 +18,16 @@ CLASS net/minecraft/core/RegistrySetBuilder
 	CLASS BuildState
 		METHOD addOwner (Lnet/minecraft/core/HolderOwner;)V
 			ARG 1 owner
+		METHOD create (Lnet/minecraft/core/RegistryAccess;Ljava/util/stream/Stream;)Lnet/minecraft/core/RegistrySetBuilder$BuildState;
+			ARG 0 registryAccess
+			ARG 1 registries
 		METHOD fillMissingHolders (Lnet/minecraft/core/HolderLookup$Provider;)V
 			ARG 1 originial
+	CLASS RegistryStub
+		METHOD apply (Lnet/minecraft/core/RegistrySetBuilder$BuildState;)V
+			ARG 1 state
+		METHOD collectChanges (Lnet/minecraft/core/RegistrySetBuilder$BuildState;)Lnet/minecraft/core/RegistrySetBuilder$RegistryContents;
+			ARG 1 state
 	CLASS CompositeOwner
 		METHOD add (Lnet/minecraft/core/HolderOwner;)V
 			ARG 1 owner
