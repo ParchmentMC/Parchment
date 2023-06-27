@@ -9,20 +9,20 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 plugins {
+    id 'java-base'
+    id 'maven-publish'
     id 'org.parchmentmc.compass' version '0.8.1'
     id 'org.parchmentmc.writtenbooks' version '0.5.+'
-    id 'maven-publish'
-    id 'java-base'
 }
 
 group = 'org.parchmentmc.data'
-def releaseType = project.findProperty('releaseType') ?: "local"
-def date = OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern('yyyy.MM.dd'))
-def isRelease = releaseType.toString() == "release"
+final releaseType = project.findProperty('releaseType') ?: 'local'
+final date = OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern('yyyy.MM.dd'))
+final isRelease = releaseType.toString() == 'release'
 version = date + (isRelease ? '' : "-${releaseType}-SNAPSHOT")
-def isBleeding = releaseType.toString() == "bleeding"
+final isBleeding = releaseType.toString() == 'bleeding'
 if (isBleeding) {
-    version = "BLEEDING-SNAPSHOT"
+    version = 'BLEEDING-SNAPSHOT'
 }
 println("Version: $version")
 
@@ -64,9 +64,9 @@ dependencies {
 }
 
 afterEvaluate {
-    def isCI = Boolean.parseBoolean(project.findProperty('isCI') as String)
+    final isCI = Boolean.parseBoolean(project.findProperty('isCI') as String)
     if (isCI) {
-        println("Running on CI.")
+        println('Running on CI.')
         println("##teamcity[setParameter name='env.CI_VERSION' value='$version']")
         println("##teamcity[setParameter name='env.CI_GROUP' value='$group']")
         println("##teamcity[setParameter name='env.CI_ARTIFACT' value='parchment-${project.compass.version.get()}']")
@@ -74,21 +74,21 @@ afterEvaluate {
     }
 }
 
-def downloadClientJar = tasks.register('downloadClientJar', VersionDownload) {
+final downloadClientJar = tasks.register('downloadClientJar', VersionDownload) {
     group 'parchment'
     description 'Downloads the client JAR for the current version set in Compass.'
 }
 
-def remapJar = tasks.register('remapJar', RemapJar) {
+final remapJar = tasks.register('remapJar', RemapJar) {
     dependsOn downloadClientJar
 
-    def obfDL = project.plugins.getPlugin(CompassPlugin).obfuscationMapsDownloader
+    final obfDL = project.plugins.getPlugin(CompassPlugin).obfuscationMapsDownloader
     inputJar = downloadClientJar.flatMap { it.outputFile }
     mappings = obfDL.getObfuscationMap().flatMap { s -> obfDL.clientDownloadOutput }
     outputJar = project.layout.buildDirectory.dir('remapped')
             .zip(project.compass.version) { d, ver -> d.file("$ver-client.jar") }
     logFile = project.layout.buildDirectory.dir('remapped')
-            .map { d -> d.file("log.txt") }
+            .map { d -> d.file('log.txt') }
 }
 
 tasks.register('enigma', EnigmaExec) {
@@ -110,27 +110,27 @@ tasks.register('generateSanitizedExport', GenerateSanitizedExport) {
 }
 
 tasks.register('officialExportZip', Zip) {
-    group = "build"
+    group = 'build'
     description = "Creates a ZIP archive containing the export produced by the 'official' intermediate provider and production data."
     from(tasks.named('generateOfficialExport', GenerateExport).flatMap { it.output })
     archiveBaseName = 'officialExport'
 }
 
 tasks.register('officialSanitizedExportZip', Zip) {
-    group = "build"
+    group = 'build'
     description = "Creates a ZIP archive containing the sanitized export produced by the 'official' intermediate provider and production data."
     from(tasks.named('generateSanitizedExport', GenerateExport).flatMap { it.output })
     archiveBaseName = 'officialSanitizedExport'
 }
 
 tasks.register('officialStagingExportZip', Zip) {
-    group = "build"
+    group = 'build'
     description = "Creates a ZIP archive containing the export produced by the 'official' intermediate provider and staging data."
     from(tasks.named('generateOfficialStagingExport', GenerateExport).flatMap { it.output })
     archiveBaseName = 'officialStagingExport'
 }
 
-tasks.withType(Zip).matching { it.name.startsWith "official" }.configureEach {
+tasks.withType(Zip).matching { it.name.startsWith 'official' }.configureEach {
     rename { 'parchment.json' }
     reproducibleFileOrder = true
     preserveFileTimestamps = false
@@ -148,8 +148,8 @@ publishing {
             }
             licenses {
                 license {
-                    name = "CC0-1.0"
-                    url = "https://creativecommons.org/publicdomain/zero/1.0/legalcode"
+                    name = 'CC0-1.0'
+                    url = 'https://creativecommons.org/publicdomain/zero/1.0/legalcode'
                 }
             }
         }
@@ -158,15 +158,15 @@ publishing {
             p.pom.properties['minecraft_version'] = project.compass.version
         }
     }
-    publications.create('export', MavenPublication) { p ->
-        p.artifact tasks.named("officialExportZip", Zip)
-        p.artifact(tasks.named("officialSanitizedExportZip", Zip)) {
+    publications.register('export', MavenPublication) { p ->
+        p.artifact tasks.named('officialExportZip', Zip)
+        p.artifact(tasks.named('officialSanitizedExportZip', Zip)) {
             classifier = 'checked'
         }
     }
-    publications.create('staging', MavenPublication) { p ->
-        p.artifact tasks.named("officialStagingExportZip", Zip)
-        p.version = "staging-SNAPSHOT"
+    publications.register('staging', MavenPublication) { p ->
+        p.artifact tasks.named('officialStagingExportZip', Zip)
+        p.version = 'staging-SNAPSHOT'
     }
     repositories {
         maven {
@@ -176,7 +176,7 @@ publishing {
     }
 }
 
-tasks.register("publishExport") {
+tasks.register('publishExport') {
     group = PublishingPlugin.PUBLISH_TASK_GROUP
     description = "Publishes the 'export' Maven publication."
 
