@@ -1,4 +1,18 @@
 CLASS com/mojang/blaze3d/audio/SoundBuffer
+	COMMENT The SoundBuffer class represents an audio buffer containing audio data in a particular format.
+	COMMENT
+	COMMENT The audio data can be used to create an OpenAL buffer, which can be played in a 3D audio environment.
 	METHOD <init> (Ljava/nio/ByteBuffer;Ljavax/sound/sampled/AudioFormat;)V
 		ARG 1 data
 		ARG 2 format
+	METHOD discardAlBuffer ()V
+		COMMENT Deletes the OpenAL buffer associated with this SoundBuffer, if it exists.
+	METHOD getAlBuffer ()Ljava/util/OptionalInt;
+		COMMENT Returns an OptionalInt containing the OpenAL buffer handle for this SoundBuffer.
+		COMMENT If the buffer has not been created yet, creates the buffer and returns the handle.
+		COMMENT If the buffer cannot be created, returns an empty OptionalInt.
+		COMMENT @return An OptionalInt containing the OpenAL buffer handle, or an empty OptionalInt if the buffer cannot be created.
+	METHOD releaseAlBuffer ()Ljava/util/OptionalInt;
+		COMMENT Releases the OpenAL buffer associated with this SoundBuffer and returns it as an OptionalInt.
+		COMMENT If no buffer has been created yet, returns an empty OptionalInt.
+		COMMENT @return an {@linkplain OptionalInt} containing the OpenAL buffer handle, or an empty one, if the buffer has not been created

@@ -1,12 +1,30 @@
 CLASS com/mojang/blaze3d/audio/OpenAlUtil
+	COMMENT The OpenALUtil class provides utility functions for working with OpenAL audio.
 	METHOD alErrorToString (I)Ljava/lang/String;
+		COMMENT Converts an OpenAL error code to a human-readable error message.
+		COMMENT @return A String representing the error message for the given error code.
 		ARG 0 errorCode
+			COMMENT The OpenAL error code to convert
 	METHOD alcErrorToString (I)Ljava/lang/String;
+		COMMENT Converts an ALC error code to a human-readable error message.
+		COMMENT @return A String representing the error message for the given error code.
 		ARG 0 errorCode
+			COMMENT The ALC error code to convert
 	METHOD audioFormatToOpenAl (Ljavax/sound/sampled/AudioFormat;)I
+		COMMENT Converts an AudioFormat object to the corresponding OpenAL audio format code.
+		COMMENT @return An integer representing the corresponding OpenAL audio format code.
+		COMMENT @throws IllegalArgumentException if the given AudioFormat is not a supported format.
 		ARG 0 format
+			COMMENT The AudioFormat object to convert
 	METHOD checkALCError (JLjava/lang/String;)Z
+		COMMENT Checks for an ALC error and logs an error message if one is found.
+		COMMENT @return true if an ALC error was found, false otherwise.
 		ARG 0 deviceHandle
+			COMMENT The handle of the device to check for errors on
 		ARG 2 operationState
+			COMMENT A String describing the operation being performed when the error occurred
 	METHOD checkALError (Ljava/lang/String;)Z
+		COMMENT Checks for an OpenAL error and logs an error message if one is found.
+		COMMENT @return true if an OpenAL error was found, false otherwise.
 		ARG 0 operationState
+			COMMENT A String describing the operation being performed when the error occurred
