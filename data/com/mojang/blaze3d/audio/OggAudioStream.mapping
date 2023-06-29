@@ -14,54 +14,37 @@ CLASS com/mojang/blaze3d/audio/OggAudioStream
 		ARG 1 input
 	METHOD close ()V
 		COMMENT Closes the audio stream. This method frees any resources associated with the stream, such as the handle for the Ogg Vorbis stream and the memory used to store the input buffer.
-		COMMENT
 		COMMENT @throws IOException if an I/O error occurs while closing the stream
 	METHOD convertMono (Ljava/nio/FloatBuffer;Lcom/mojang/blaze3d/audio/OggAudioStream$OutputConcat;)V
 		COMMENT Converts mono audio data from the specified channel to a byte buffer and appends it to the specified output buffer.
 		COMMENT The method reads samples from the channel and adds them to the output buffer until there are no more samples remaining in the channel.
-		COMMENT
-		COMMENT @param channel the channel containing the mono audio data to convert
-		COMMENT @param output the output buffer to which the converted audio data should be appended
 		ARG 1 channel
+			COMMENT the channel containing the mono audio data to convert
 		ARG 2 output
+			COMMENT the output buffer to which the converted audio data should be appended
 	METHOD convertStereo (Ljava/nio/FloatBuffer;Ljava/nio/FloatBuffer;Lcom/mojang/blaze3d/audio/OggAudioStream$OutputConcat;)V
 		COMMENT Converts stereo audio data from the specified left and right channels to a byte buffer and appends it to the specified output buffer. The method reads samples from both channels and interleaves them in the output buffer until there are no more samples remaining in either channel.
-		COMMENT
-		COMMENT @param leftChannel the channel containing the left audio data to convert
-		COMMENT @param rightChannel the channel containing the right audio data to convert
-		COMMENT @param output the output buffer to which the converted audio data should be appended
 		ARG 1 leftChannel
+			COMMENT the channel containing the left audio data to convert
 		ARG 2 rightChannel
+			COMMENT the channel containing the right audio data to convert
 		ARG 3 output
+			COMMENT the output buffer to which the converted audio data should be appended
 	METHOD forwardBuffer ()V
 		COMMENT Forwards the buffer to the next Ogg packet boundary.
-	METHOD getFormat ()Ljavax/sound/sampled/AudioFormat;
-		COMMENT Returns the audio format of the stream.
-		COMMENT
-		COMMENT @return the audio format of the stream
-	METHOD read (I)Ljava/nio/ByteBuffer;
-		COMMENT Reads audio data from the stream and returns a byte buffer containing at most the specified number of bytes.
-		COMMENT The method reads audio frames from the stream and adds them to the output buffer until the buffer contains at least the specified number of bytes or the end of the stream is reached.
-		COMMENT
-		COMMENT @param size the maximum number of bytes to read
-		COMMENT @return a byte buffer containing at most the specified number of bytes
-		COMMENT @throws IOException if an I/O error occurs while reading the audio data
 	METHOD readAll ()Ljava/nio/ByteBuffer;
 		COMMENT Reads all of the audio data from the stream and returns a byte buffer containing the entire audio data.
 		COMMENT The method reads audio frames from the stream and adds them to the output buffer until the end of the stream is reached.
-		COMMENT
 		COMMENT @return a byte buffer containing the entire audio data
 		COMMENT @throws IOException if an I/O error occurs while reading the audio data
 	METHOD readFrame (Lcom/mojang/blaze3d/audio/OggAudioStream$OutputConcat;)Z
 		COMMENT Reads the next audio frame from the Ogg Vorbis stream.
-		COMMENT
-		COMMENT @param output the output buffer to which the audio data should be written
 		COMMENT @return {@code true} if an audio frame was successfully read, {@code false} if the end of the stream was reached
 		COMMENT @throws IOException if an I/O error occurs while reading the audio data
 		ARG 1 output
+			COMMENT the output buffer to which the audio data should be written
 	METHOD refillFromStream ()Z
 		COMMENT Refills the buffer with data from the input stream.
-		COMMENT
 		COMMENT @return {@code true} if the buffer was successfully refilled, {@code false} if the end of the input stream was reached
 		COMMENT @throws IOException if an I/O error occurs while reading the data from the input stream
 	CLASS OutputConcat
@@ -74,10 +57,8 @@ CLASS com/mojang/blaze3d/audio/OggAudioStream
 			COMMENT Creates a new buffer and sets it as the current buffer.
 		METHOD get ()Ljava/nio/ByteBuffer;
 			COMMENT Returns a single byte buffer containing all of the data from the list of buffers.
-			COMMENT
 			COMMENT @return a single byte buffer containing all of the data from the list of buffers
 		METHOD put (F)V
 			COMMENT Adds a sample to the current buffer. If the buffer is full, the buffer is added to the list of buffers and a new buffer is created.
-			COMMENT
-			COMMENT @param sample the audio sample to add to the buffer
 			ARG 1 sample
+				COMMENT the audio sample to add to the buffer
