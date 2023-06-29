@@ -2,13 +2,58 @@ CLASS com/mojang/blaze3d/audio/Library
 	METHOD acquireChannel (Lcom/mojang/blaze3d/audio/Library$Pool;)Lcom/mojang/blaze3d/audio/Channel;
 		COMMENT Acquires a sound channel based on the given mode.
 		ARG 1 pool
+	METHOD cleanup ()V
+		COMMENT Cleans up all resources used by the library.
+	METHOD getAvailableSoundDevices ()Ljava/util/List;
+		COMMENT Returns a list of available sound devices.
+		COMMENT
+		COMMENT @return A list of strings representing the names of available sound devices, or an empty list if no devices are available.
+	METHOD getChannelCount ()I
+		COMMENT Retrieves the number of channels available for sound playback.
+		COMMENT
+		COMMENT @return The number of channels.
+	METHOD getCurrentDeviceName ()Ljava/lang/String;
+		COMMENT Retrieves the name of the currently selected audio device.
+		COMMENT
+		COMMENT @return The name of the currently selected audio device.
+	METHOD getDefaultDeviceName ()Ljava/lang/String;
+		COMMENT Retrieves the name of the default audio device, or null if it cannot be determined.
+		COMMENT
+		COMMENT @return The name of the default audio device, or null.
+	METHOD hasDefaultDeviceChanged ()Z
+		COMMENT Checks if the default audio device has changed since the last time this method was called.
+		COMMENT If the default device has changed, updates the stored default device name accordingly.
+		COMMENT
+		COMMENT @return true if the default device has changed since the last time this method was called, false otherwise.
 	METHOD init (Ljava/lang/String;Z)V
+		COMMENT Initializes the OpenAL device and context.
+		COMMENT
+		COMMENT @param deviceSpecifier A string specifying the name of the audio device to use, or null to use the default device.
+		COMMENT @param enableHrtf Whether to enable HRTF (head-related transfer function) for spatial audio.
+		COMMENT @throws IllegalStateException if an error occurs during initialization.
 		ARG 1 deviceSpecifier
 	METHOD openDeviceOrFallback (Ljava/lang/String;)J
+		COMMENT Opens the specified audio device, or the default device if the specifier is null.
+		COMMENT
+		COMMENT @param deviceSpecifier The name of the audio device to open, or null to open the default device.
+		COMMENT @return The handle of the opened device.
+		COMMENT @throws IllegalStateException if the device cannot be opened.
 		ARG 0 deviceSpecifier
 	METHOD releaseChannel (Lcom/mojang/blaze3d/audio/Channel;)V
+		COMMENT Releases a channel.
+		COMMENT
+		COMMENT @param channel The channel to release.
+		COMMENT @return Whether the channel was successfully released.
 		ARG 1 channel
+	METHOD setHrtf (Z)V
+		COMMENT Sets the HRTF (head-related transfer function) for spatial audio, if it is supported by the current device.
+		COMMENT
+		COMMENT @param enable Whether to enable HRTF.
 	METHOD tryOpenDevice (Ljava/lang/String;)Ljava/util/OptionalLong;
+		COMMENT Attempts to open the specified audio device.
+		COMMENT
+		COMMENT @param deviceSpecifier A string specifying the name of the audio device to open, or null to use the default device.
+		COMMENT @return An {@code OptionalLong} containing the handle of the opened device if successful, or empty if the device could not be opened.
 		ARG 0 deviceSpecifier
 	CLASS ChannelPool
 		METHOD release (Lcom/mojang/blaze3d/audio/Channel;)Z
