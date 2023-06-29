@@ -7,6 +7,9 @@ CLASS com/mojang/realmsclient/client/FileUpload
 		ARG 6 user
 		ARG 7 clientVersion
 		ARG 8 uploadStatus
+	METHOD cleanup (Lorg/apache/http/client/methods/HttpPost;Lorg/apache/http/impl/client/CloseableHttpClient;)V
+		ARG 1 post
+		ARG 2 httpClient
 	METHOD getRetryDelaySeconds (Lorg/apache/http/HttpResponse;)J
 		ARG 1 httpResponse
 	METHOD handleResponse (Lorg/apache/http/HttpResponse;Lcom/mojang/realmsclient/gui/screens/UploadResult$Builder;)V
@@ -18,10 +21,16 @@ CLASS com/mojang/realmsclient/client/FileUpload
 	METHOD retryUploadAfter (JI)Lcom/mojang/realmsclient/gui/screens/UploadResult;
 		ARG 1 seconds
 		ARG 3 retries
+	METHOD setupRequest (Lorg/apache/http/client/methods/HttpPost;)V
+		ARG 1 post
 	METHOD shouldRetry (JI)Z
 		ARG 3 retries
+	METHOD upload (Ljava/util/function/Consumer;)V
+		ARG 1 resultConsumer
 	CLASS CustomInputStreamEntity
 		METHOD <init> (Ljava/io/InputStream;JLcom/mojang/realmsclient/client/UploadStatus;)V
 			ARG 1 content
 			ARG 2 length
 			ARG 4 uploadStatus
+		METHOD writeTo (Ljava/io/OutputStream;)V
+			ARG 1 out
