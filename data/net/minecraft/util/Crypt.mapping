@@ -1,4 +1,6 @@
 CLASS net/minecraft/util/Crypt
+	METHOD byteToPrivateKey ([B)Ljava/security/PrivateKey;
+		ARG 0 keyBytes
 	METHOD byteToPublicKey ([B)Ljava/security/PublicKey;
 		COMMENT Create a new PublicKey from encoded X.509 data
 		ARG 0 encodedKey
@@ -34,8 +36,26 @@ CLASS net/minecraft/util/Crypt
 		COMMENT Creates a Cipher instance using the AES/CFB8/NoPadding algorithm. Used for protocol encryption.
 		ARG 0 opMode
 		ARG 1 key
+	METHOD rsaPublicKeyToString (Ljava/security/PublicKey;)Ljava/lang/String;
+		ARG 0 key
+	METHOD rsaStringToKey (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/util/Crypt$ByteArrayToKeyFunction;)Ljava/security/Key;
+		ARG 0 keyBase64
+		ARG 3 keyFunction
 	METHOD setupCipher (ILjava/lang/String;Ljava/security/Key;)Ljavax/crypto/Cipher;
 		COMMENT Creates the Cipher Instance.
 		ARG 0 opMode
 		ARG 1 transformation
 		ARG 2 key
+	METHOD stringToPemRsaPrivateKey (Ljava/lang/String;)Ljava/security/PrivateKey;
+		ARG 0 keyBase64
+	METHOD stringToRsaPublicKey (Ljava/lang/String;)Ljava/security/PublicKey;
+		ARG 0 keyBase64
+	CLASS SaltSignaturePair
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/util/Crypt$SaltSignaturePair;)V
+			ARG 0 buffer
+			ARG 1 signaturePair
+	CLASS ByteArrayToKeyFunction
+		METHOD apply ([B)Ljava/security/Key;
+			ARG 1 bytes

@@ -1,6 +1,7 @@
 CLASS net/minecraft/util/SpawnUtil
 	METHOD moveToPossibleSpawnPosition (Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/util/SpawnUtil$Strategy;)Z
 		ARG 0 level
+		ARG 2 pos
 		ARG 3 strategy
 	METHOD trySpawnMob (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;IIILnet/minecraft/util/SpawnUtil$Strategy;)Ljava/util/Optional;
 		ARG 0 entityType
@@ -9,3 +10,6 @@ CLASS net/minecraft/util/SpawnUtil
 		ARG 3 pos
 		ARG 4 attempts
 		ARG 7 strategy
+	CLASS Strategy
+		METHOD canSpawnOn (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+			ARG 1 level
