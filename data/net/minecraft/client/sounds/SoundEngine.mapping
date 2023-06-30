@@ -1,4 +1,5 @@
 CLASS net/minecraft/client/sounds/SoundEngine
+	COMMENT The {@code SoundEngine} class handles the management and playback of sounds in the game.
 	FIELD MARKER Lorg/slf4j/Marker;
 		COMMENT The marker used for logging
 	FIELD loaded Z
@@ -20,6 +21,7 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		ARG 2 options
 		ARG 3 resourceManager
 	METHOD addEventListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
+		COMMENT Adds a new {@code SoundEventListener}
 		ARG 1 listener
 	METHOD calculatePitch (Lnet/minecraft/client/resources/sounds/SoundInstance;)F
 		ARG 1 sound
@@ -28,6 +30,7 @@ CLASS net/minecraft/client/sounds/SoundEngine
 	METHOD destroy ()V
 		COMMENT Cleans up the Sound System
 	METHOD getVolume (Lnet/minecraft/sounds/SoundSource;)F
+		COMMENT {@return Returns the volume value pinned between 0.0f and 1.0f for a given {@code SoundSource} category}
 		ARG 1 category
 	METHOD isActive (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
 		ARG 1 sound
@@ -35,18 +38,44 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		ARG 1 instance
 		ARG 2 source
 	METHOD loadLibrary ()V
-		COMMENT Tries to add the paulscode library and the relevant codecs. If it fails, the master volume will be set to zero.
+		COMMENT Loads the sound library if it has not been loaded already.
+		COMMENT <p>
+		COMMENT If loading is successful, the library is initialized, and the sound engine is started.
+		COMMENT <p>
+		COMMENT Otherwise, an error message is logged, and sounds and music are turned off.
 	METHOD pause ()V
 		COMMENT Pauses all currently playing sounds
 	METHOD play (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
+		COMMENT Plays a given sound instance.
+		COMMENT <p>
+		COMMENT If the sound engine is not loaded or the sound instance cannot be played, the method returns early.
+		COMMENT <p>
+		COMMENT The method fulfills the following parts:
+		COMMENT <ol>
+		COMMENT   <li>Performs a series of checks to determine if it can play a sound</li>
+		COMMENT   <li>Handles the playing of instances of {@code SoundInstance}</li>
+		COMMENT   <li>Logs potential errors that may have occured</li>
+		COMMENT   <li>Handles mapping instances of {@code SoundInstance} to specific audio channels</li>
+		COMMENT   <li>Handles deletion times for active instances of {@code SoundInstance}</li>
+		COMMENT   <li>Calculates and handles various sound properties such as volume, pitch, attenuation, looping, position and relative, </li>
+		COMMENT </ol>
+		COMMENT <p>
+		COMMENT @implNote This method assumes proper synchronization or thread confinement mechanisms are in place.
 		ARG 1 sound
+			COMMENT The sound instance to be played.
 	METHOD playDelayed (Lnet/minecraft/client/resources/sounds/SoundInstance;I)V
 		COMMENT Adds a sound to play in n tick
 		ARG 1 sound
 		ARG 2 delay
 	METHOD queueTickingSound (Lnet/minecraft/client/resources/sounds/TickableSoundInstance;)V
 		ARG 1 tickableSound
+	METHOD reload ()V
+		COMMENT Reloads the sound engine.
+		COMMENT <p>
+		COMMENT This method clears the warning set, checks for missing sound events, destroys the current sound system,
+		COMMENT and reloads the library.
 	METHOD removeEventListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
+		COMMENT Removes a specific {@code SoundEventListener}
 		ARG 1 listener
 	METHOD requestPreload (Lnet/minecraft/client/resources/sounds/Sound;)V
 		ARG 1 sound
@@ -54,20 +83,68 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		ARG 0 sound
 	METHOD resume ()V
 		COMMENT Resumes playing all currently playing sounds (after pauseAllSounds)
+	METHOD shouldChangeDevice ()Z
+		COMMENT Checks if a change in the audio device should occur.
+		COMMENT <p>
+		COMMENT If the current audio device is disconnected, it logs an information message and returns true to indicate a change is needed.
+		COMMENT Otherwise, it checks if enough time has elapsed since the last device check.
+		COMMENT <p>
+		COMMENT If the elapsed time is greater than or equal to 1000 milliseconds, it performs the device check.
+		COMMENT During the device check, it compares the current device state with the preferred sound device specified in the options.
+		COMMENT <p>
+		COMMENT If the preferred sound device is an empty string and the system default audio device has changed, it logs an information message
+		COMMENT and sets the device pool state to indicate a change has been detected.
+		COMMENT <p>
+		COMMENT If the preferred sound device is not an empty string, it checks if the current device name is different from the preferred device name
+		COMMENT and if the preferred device is available in the list of available sound devices.
+		COMMENT <p>
+		COMMENT If both conditions are true, it logs an information message and sets the device pool state to indicate a change has been detected.
+		COMMENT <p>
+		COMMENT Finally, it sets the device pool state to indicate that the device check is complete.
+		COMMENT
+		COMMENT @return {@code true} if a change in the audio device is needed, {@code false} otherwise.
 	METHOD shouldLoopAutomatically (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
 		ARG 0 sound
 	METHOD shouldLoopManually (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
 		ARG 0 sound
 	METHOD stop (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
+		COMMENT Stops the provided {@code SoundInstace} from continuing playing.
 		ARG 1 sound
 	METHOD stop (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/sounds/SoundSource;)V
 		ARG 1 soundName
 		ARG 2 category
 	METHOD stopAll ()V
-		COMMENT Stops all currently playing sounds
+		COMMENT Stops all currently playing instances of {@code SoundInstance}
 	METHOD tick (Z)V
+		COMMENT Ticks all active instances of  {@code TickableSoundInstance}
 		ARG 1 isGamePaused
+	METHOD tickNonPaused ()V
+		COMMENT Executes a single tick for non-paused sounds.
+		COMMENT <p>
+		COMMENT The following steps are taken as part of this method:
+		COMMENT <ul>
+		COMMENT   <li>Increment the tick count.</li>
+		COMMENT   <li>Clears the queued tickable sounds list.</li>
+		COMMENT   <li>Updates and handles tickable sounds currently playing.</li>
+		COMMENT   <li>Updates volume, pitch, and position for each tickable sound.</li>
+		COMMENT   <li>Removes stopped or expired tickable sounds from the instance-to-channel mapping.</li>
+		COMMENT   <li>Removes stopped tickable sounds from the ticking sounds list.</li>
+		COMMENT   <li>Handles queued sounds that are ready to be played.</li>
+		COMMENT </ul>
+		COMMENT <p>
+		COMMENT Note: This method assumes that it is being called within a tick loop.
+		COMMENT @implNote This method assumes proper synchronization or thread confinement mechanisms are in place.
 	METHOD updateCategoryVolume (Lnet/minecraft/sounds/SoundSource;F)V
+		COMMENT Updates the volume for a specific sound category.
+		COMMENT <p>
+		COMMENT If the sound engine has not been loaded, the method returns without performing any action.
+		COMMENT <p>
+		COMMENT If the category is the "MASTER" category, the overall listener gain (volume) is set to the specified value.
+		COMMENT <p>
+		COMMENT For other categories, the volume is updated for each sound instance associated with the category.
+		COMMENT <p>
+		COMMENT If the calculated volume for an instance is less than or equal to 0.0, the instance is stopped.
+		COMMENT Otherwise, the volume of the instance is set to the calculated value.
 		ARG 1 category
 		ARG 2 volume
 	METHOD updateSource (Lnet/minecraft/client/Camera;)V
