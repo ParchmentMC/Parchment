@@ -1,8 +1,10 @@
 CLASS net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement
 	METHOD addPieces (Lnet/minecraft/world/level/levelgen/RandomState;IZLnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;Ljava/util/List;Lnet/minecraft/world/phys/shapes/VoxelShape;)V
+		ARG 0 randomState
 		ARG 1 maxDepth
 		ARG 3 chunkGenerator
 		ARG 4 structureTemplateManager
+		ARG 5 level
 		ARG 6 random
 		ARG 7 pools
 		ARG 9 pieces
@@ -10,6 +12,11 @@ CLASS net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement
 		ARG 0 context
 	METHOD generateJigsaw (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/Holder;Lnet/minecraft/resources/ResourceLocation;ILnet/minecraft/core/BlockPos;Z)Z
 		ARG 0 level
+	METHOD getRandomNamedJigsaw (Lnet/minecraft/world/level/levelgen/structure/pools/StructurePoolElement;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Lnet/minecraft/world/level/levelgen/WorldgenRandom;)Ljava/util/Optional;
+		ARG 2 pos
+		ARG 3 rotation
+		ARG 4 structureTemplateManager
+		ARG 5 random
 	CLASS Placer
 		METHOD <init> (Lnet/minecraft/core/Registry;ILnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Ljava/util/List;Lnet/minecraft/util/RandomSource;)V
 			ARG 1 pools
@@ -22,7 +29,10 @@ CLASS net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement
 			ARG 0 structureBlockInfo
 		METHOD tryPlacingChildren (Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;Lorg/apache/commons/lang3/mutable/MutableObject;IZLnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/levelgen/RandomState;)V
 			ARG 1 piece
+			ARG 2 free
 			ARG 3 depth
+			ARG 5 level
+			ARG 6 randomState
 	CLASS PieceState
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;Lorg/apache/commons/lang3/mutable/MutableObject;I)V
 			ARG 1 piece

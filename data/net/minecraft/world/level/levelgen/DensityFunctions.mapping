@@ -24,10 +24,14 @@ CLASS net/minecraft/world/level/levelgen/DensityFunctions
 		ARG 0 wrapped
 	METHOD interpolated (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 wrapped
+	METHOD lerp (Lnet/minecraft/world/level/levelgen/DensityFunction;DLnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 deltaFunction
+		ARG 1 min
+		ARG 3 maxFunction
 	METHOD lerp (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
-		ARG 0 minFunction
-		ARG 1 maxFunction
-		ARG 2 deltaFunction
+		ARG 0 deltaFunction
+		ARG 1 minFunction
+		ARG 2 maxFunction
 	METHOD makeCodec (Lcom/mojang/serialization/MapCodec;)Lnet/minecraft/util/KeyDispatchDataCodec;
 		ARG 0 mapCodec
 	METHOD map (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunctions$Mapped$Type;)Lnet/minecraft/world/level/levelgen/DensityFunction;
@@ -95,6 +99,9 @@ CLASS net/minecraft/world/level/levelgen/DensityFunctions
 		ARG 0 codec
 		ARG 1 fromFunction
 		ARG 2 toFunction
+	METHOD singleFunctionArgumentCodec (Ljava/util/function/Function;Ljava/util/function/Function;)Lnet/minecraft/util/KeyDispatchDataCodec;
+		ARG 0 fromFunction
+		ARG 1 toFunction
 	METHOD spline (Lnet/minecraft/util/CubicSpline;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 spline
 	METHOD weirdScaledSampler (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/levelgen/DensityFunctions$WeirdScaledSampler$RarityValueMapper;)Lnet/minecraft/world/level/levelgen/DensityFunction;
@@ -166,6 +173,10 @@ CLASS net/minecraft/world/level/levelgen/DensityFunctions
 	CLASS EndIslandDensityFunction
 		METHOD <init> (J)V
 			ARG 1 seed
+		METHOD getHeightValue (Lnet/minecraft/world/level/levelgen/synth/SimplexNoise;II)F
+			ARG 0 noise
+			ARG 1 x
+			ARG 2 z
 	CLASS TwoArgumentSimpleFunction
 		METHOD create (Lnet/minecraft/world/level/levelgen/DensityFunctions$TwoArgumentSimpleFunction$Type;Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunctions$TwoArgumentSimpleFunction;
 			ARG 0 type
