@@ -1,11 +1,15 @@
 CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 	METHOD canReachWithoutCollision (Lnet/minecraft/world/level/pathfinder/Node;)Z
 		ARG 1 node
+	METHOD canStartAt (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
 	METHOD checkNeighbourBlocks (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
 		COMMENT Returns possible dangers in a 3x3 cube, otherwise nodeType
 		ARG 0 level
 		ARG 1 centerPos
 		ARG 2 nodeType
+	METHOD doesBlockHavePartialCollision (Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Z
+		ARG 0 blockPathType
 	METHOD done ()V
 		COMMENT This method is called when all nodes have been processed and PathEntity is created.
 	METHOD evaluateBlockPathType (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;

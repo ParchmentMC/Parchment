@@ -18,7 +18,7 @@ CLASS net/minecraft/world/level/pathfinder/Node
 		ARG 2 y
 		ARG 3 z
 	METHOD createFromStream (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/level/pathfinder/Node;
-		ARG 0 buf
+		ARG 0 buffer
 	METHOD createHash (III)I
 		ARG 0 x
 		ARG 1 y
@@ -37,9 +37,14 @@ CLASS net/minecraft/world/level/pathfinder/Node
 	METHOD distanceToSqr (Lnet/minecraft/world/level/pathfinder/Node;)F
 		COMMENT Returns the squared distance to another path point
 		ARG 1 pathpoint
+	METHOD distanceToXZ (Lnet/minecraft/world/level/pathfinder/Node;)F
+		ARG 1 pathpoint
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
 	METHOD inOpenSet ()Z
 		COMMENT Returns {@code true} if this point has already been assigned to a path
+	METHOD readContents (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/level/pathfinder/Node;)V
+		ARG 0 buffer
+		ARG 1 node
 	METHOD writeToStream (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer

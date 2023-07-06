@@ -3,8 +3,17 @@ CLASS net/minecraft/world/level/chunk/storage/IOWorker
 		ARG 1 folder
 		ARG 2 sync
 		ARG 3 workerName
+	METHOD createOldDataForRegion (II)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunkX
+		ARG 2 chunkZ
+	METHOD getOrCreateOldDataForRegion (II)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunkX
+		ARG 2 chunkZ
+	METHOD isOldChunk (Lnet/minecraft/nbt/CompoundTag;)Z
+		ARG 1 chunkData
 	METHOD isOldChunkAround (Lnet/minecraft/world/level/ChunkPos;I)Z
 		ARG 1 chunkPos
+		ARG 2 radius
 	METHOD lambda$synchronize$9 (Ljava/lang/Void;)Ljava/util/concurrent/CompletionStage;
 		ARG 1 executor
 	METHOD loadAsync (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/concurrent/CompletableFuture;
