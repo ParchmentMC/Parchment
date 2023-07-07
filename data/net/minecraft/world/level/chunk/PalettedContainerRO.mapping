@@ -1,0 +1,21 @@
+CLASS net/minecraft/world/level/chunk/PalettedContainerRO
+	METHOD count (Lnet/minecraft/world/level/chunk/PalettedContainer$CountConsumer;)V
+		ARG 1 countConsumer
+	METHOD get (III)Ljava/lang/Object;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD getAll (Ljava/util/function/Consumer;)V
+		ARG 1 consumer
+	METHOD maybeHas (Ljava/util/function/Predicate;)Z
+		ARG 1 filter
+	METHOD pack (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;)Lnet/minecraft/world/level/chunk/PalettedContainerRO$PackedData;
+		ARG 1 registry
+		ARG 2 strategy
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	CLASS Unpacker
+		METHOD read (Lnet/minecraft/core/IdMap;Lnet/minecraft/world/level/chunk/PalettedContainer$Strategy;Lnet/minecraft/world/level/chunk/PalettedContainerRO$PackedData;)Lcom/mojang/serialization/DataResult;
+			ARG 1 registry
+			ARG 2 strategy
+			ARG 3 packedData

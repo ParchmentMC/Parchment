@@ -35,11 +35,15 @@ CLASS net/minecraft/world/level/LevelReader
 	METHOD getHeightmapPos (Lnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
 		ARG 1 heightmapType
 		ARG 2 pos
+	METHOD getLightLevelDependentMagicValue (Lnet/minecraft/core/BlockPos;)F
+		ARG 1 pos
 	METHOD getMaxLocalRawBrightness (Lnet/minecraft/core/BlockPos;)I
 		ARG 1 pos
 	METHOD getMaxLocalRawBrightness (Lnet/minecraft/core/BlockPos;I)I
 		ARG 1 pos
 		ARG 2 amount
+	METHOD getPathfindingCostFromLightLevels (Lnet/minecraft/core/BlockPos;)F
+		ARG 1 pos
 	METHOD getUncachedNoiseBiome (III)Lnet/minecraft/core/Holder;
 		ARG 1 x
 		ARG 2 y
@@ -67,6 +71,8 @@ CLASS net/minecraft/world/level/LevelReader
 	METHOD hasChunksAt (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 from
 		ARG 2 to
+	METHOD holderLookup (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/HolderLookup;
+		ARG 1 registryKey
 	METHOD isEmptyBlock (Lnet/minecraft/core/BlockPos;)Z
 		COMMENT Checks to see if an air block exists at the provided location. Note that this only checks to see if the blocks material is set to air, meaning it is possible for non-vanilla blocks to still pass this check.
 		ARG 1 pos

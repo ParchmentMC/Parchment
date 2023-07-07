@@ -14,10 +14,14 @@ CLASS net/minecraft/world/level/entity/PersistentEntitySectionManager
 		ARG 1 entity
 	METHOD addWorldGenChunkEntities (Ljava/util/stream/Stream;)V
 		ARG 1 entities
+	METHOD areEntitiesLoaded (J)Z
+		ARG 1 chunkPos
 	METHOD canPositionTick (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD canPositionTick (Lnet/minecraft/world/level/ChunkPos;)Z
 		ARG 1 chunkPos
+	METHOD dumpSections (Ljava/io/Writer;)V
+		ARG 1 writer
 	METHOD ensureChunkQueuedForLoad (J)V
 		ARG 1 chunkPosValue
 	METHOD getEffectiveStatus (Lnet/minecraft/world/level/entity/EntityAccess;Lnet/minecraft/world/level/entity/Visibility;)Lnet/minecraft/world/level/entity/Visibility;
@@ -44,6 +48,8 @@ CLASS net/minecraft/world/level/entity/PersistentEntitySectionManager
 		ARG 1 entity
 	METHOD stopTracking (Lnet/minecraft/world/level/entity/EntityAccess;)V
 		ARG 1 entity
+	METHOD storeChunkSections (JLjava/util/function/Consumer;)Z
+		ARG 1 chunkPosValue
 	METHOD unloadEntity (Lnet/minecraft/world/level/entity/EntityAccess;)V
 		ARG 1 entity
 	METHOD updateChunkStatus (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/server/level/FullChunkStatus;)V
