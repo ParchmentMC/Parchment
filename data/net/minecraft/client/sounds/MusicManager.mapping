@@ -1,9 +1,26 @@
 CLASS net/minecraft/client/sounds/MusicManager
+	COMMENT The MusicManager class manages the playing of music in Minecraft.
+	FIELD STARTING_DELAY I
+		COMMENT The delay before starting to play the next song.
+	FIELD nextSongDelay I
+		COMMENT The delay until the next song starts.
 	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
 		ARG 1 minecraft
 	METHOD isPlayingMusic (Lnet/minecraft/sounds/Music;)Z
+		COMMENT Returns whether the specified Music selector is currently playing.
+		COMMENT <p>
+		COMMENT @return true if the Music selector is currently playing, false otherwise
 		ARG 1 selector
+			COMMENT the Music selector to check for
 	METHOD startPlaying (Lnet/minecraft/sounds/Music;)V
+		COMMENT Starts playing the specified Music selector.
 		ARG 1 selector
+			COMMENT the Music selector to play
+	METHOD stopPlaying ()V
+		COMMENT Stops playing the current Music selector.
 	METHOD stopPlaying (Lnet/minecraft/sounds/Music;)V
+		COMMENT Stops playing the specified Music selector.
 		ARG 1 music
+			COMMENT the Music selector to stop playing
+	METHOD tick ()V
+		COMMENT Called every tick to manage the playing of music.

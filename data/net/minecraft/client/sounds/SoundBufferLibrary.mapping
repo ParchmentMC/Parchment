@@ -1,14 +1,34 @@
 CLASS net/minecraft/client/sounds/SoundBufferLibrary
+	COMMENT The SoundBufferLibrary class provides a cache of SoundBuffers and AudioStreams for use in Minecraft sound handling.
+	FIELD resourceManager Lnet/minecraft/server/packs/resources/ResourceProvider;
+		COMMENT The ResourceProvider used for loading sound resources.
 	METHOD <init> (Lnet/minecraft/server/packs/resources/ResourceProvider;)V
 		ARG 1 resourceManager
+	METHOD clear ()V
+		COMMENT Clears the cache of SoundBuffers.
 	METHOD getCompleteBuffer (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/concurrent/CompletableFuture;
+		COMMENT Returns a CompletableFuture containing the complete SoundBuffer for the specified sound resource.
+		COMMENT The SoundBuffer is loaded asynchronously and cached for future use.
+		COMMENT <p>
+		COMMENT @return a CompletableFuture containing the complete SoundBuffer
 		ARG 1 soundID
+			COMMENT the ResourceLocation of the sound
 	METHOD getStream (Lnet/minecraft/resources/ResourceLocation;Z)Ljava/util/concurrent/CompletableFuture;
+		COMMENT Returns a CompletableFuture containing the AudioStream for the specified sound resource.
+		COMMENT The AudioStream is loaded asynchronously.
+		COMMENT <p>
+		COMMENT @return a CompletableFuture containing the AudioStream
 		ARG 1 resourceLocation
+			COMMENT the ResourceLocation of the sound
 		ARG 2 isWrapper
+			COMMENT whether the AudioStream should be a LoopingAudioStream
 	METHOD lambda$clear$3 (Ljava/util/concurrent/CompletableFuture;)V
 		ARG 0 buffer
 	METHOD lambda$preload$4 (Lnet/minecraft/client/resources/sounds/Sound;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 sound
 	METHOD preload (Ljava/util/Collection;)Ljava/util/concurrent/CompletableFuture;
+		COMMENT Preloads the SoundBuffers for the specified collection of sounds.
+		COMMENT <p>
+		COMMENT @return a CompletableFuture representing the completion of the preload operation
 		ARG 1 sounds
+			COMMENT the collection of sounds to preload
