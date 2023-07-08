@@ -104,24 +104,20 @@ CLASS net/minecraft/client/sounds/SoundEngine
 	METHOD resume ()V
 		COMMENT Resumes playing all currently playing sounds (after pauseAllSounds)
 	METHOD shouldChangeDevice ()Z
-		COMMENT Checks if a change in the audio device should occur.
+		COMMENT The audio device change is checked by this method.
+		COMMENT <p
+		COMMENT If the current audio device is disconnected, an informational message is logged, and this method returns {@code true} to indicate a change is needed.
 		COMMENT <p>
-		COMMENT If the current audio device is disconnected, it logs an information message and returns true to indicate a change is needed.
-		COMMENT Otherwise, it checks if enough time has elapsed since the last device check.
+		COMMENT Otherwise, the elapsed time since the last device check is examined.
+		COMMENT If the elapsed time is greater than or equal to 1000 milliseconds, the device check is performed.
 		COMMENT <p>
-		COMMENT If the elapsed time is greater than or equal to 1000 milliseconds, it performs the device check.
-		COMMENT During the device check, it compares the current device state with the preferred sound device specified in the options.
+		COMMENT During the device check, the current device state is compared with the preferred sound device specified in the options.
+		COMMENT If the preferred sound device is an empty string and the system default audio device has changed, an informational message is logged, and the device pool state is set to indicate a change has been detected.
+		COMMENT If the preferred sound device is not an empty string, it is checked whether the current device name is different from the preferred device name and if the preferred device is available in the list of available sound devices.
+		COMMENT If both conditions are true, an informational message is logged, and the device pool state is set to indicate a change has been detected.
 		COMMENT <p>
-		COMMENT If the preferred sound device is an empty string and the system default audio device has changed, it logs an information message
-		COMMENT and sets the device pool state to indicate a change has been detected.
+		COMMENT Finally, the device pool state is set to indicate that the device check is complete.
 		COMMENT <p>
-		COMMENT If the preferred sound device is not an empty string, it checks if the current device name is different from the preferred device name
-		COMMENT and if the preferred device is available in the list of available sound devices.
-		COMMENT <p>
-		COMMENT If both conditions are true, it logs an information message and sets the device pool state to indicate a change has been detected.
-		COMMENT <p>
-		COMMENT Finally, it sets the device pool state to indicate that the device check is complete.
-		COMMENT
 		COMMENT @return {@code true} if a change in the audio device is needed, {@code false} otherwise.
 	METHOD shouldLoopAutomatically (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
 		COMMENT @return Returns {@code true} if the SoundInstance should loop automatically, {@code false} otherwise
