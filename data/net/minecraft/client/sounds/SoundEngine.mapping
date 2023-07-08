@@ -23,7 +23,7 @@ CLASS net/minecraft/client/sounds/SoundEngine
 	FIELD tickCount I
 		COMMENT A counter for how long the sound manager has been running
 	FIELD tickingSounds Ljava/util/List;
-		COMMENT A subset of playingSounds, this contains only ITickableSounds
+		COMMENT A subset of playingSounds, this contains only {@linkplain TickableSoundInstance}
 	METHOD <init> (Lnet/minecraft/client/sounds/SoundManager;Lnet/minecraft/client/Options;Lnet/minecraft/server/packs/resources/ResourceProvider;)V
 		ARG 1 soundManager
 		ARG 2 options
@@ -33,17 +33,17 @@ CLASS net/minecraft/client/sounds/SoundEngine
 	METHOD calculatePitch (Lnet/minecraft/client/resources/sounds/SoundInstance;)F
 		COMMENT Calculates the pitch of the sound being played.
 		COMMENT <p>
-		COMMENT Clamping the sound between 0.5f and 2.0f.
+		COMMENT Clamps the sound between 0.5f and 2.0f.
 		ARG 1 sound
 			COMMENT the {@linkplain SoundInstance} being played
 	METHOD calculateVolume (FLnet/minecraft/sounds/SoundSource;)F
 		COMMENT Calculates the volume of the sound being played.
 		COMMENT <p>
-		COMMENT Clamping the sound between 0.0f and 1.0f.
+		COMMENT Clamps the sound between 0.0f and 1.0f.
 	METHOD calculateVolume (Lnet/minecraft/client/resources/sounds/SoundInstance;)F
 		COMMENT Calculates the volume for the sound being played.
 		COMMENT <p>
-		COMMENT Delegating to {@code #calculateVolume(float, SoundSource)}
+		COMMENT Delegates to {@code #calculateVolume(float, SoundSource)}
 		ARG 1 sound
 	METHOD destroy ()V
 		COMMENT Cleans up the Sound System
@@ -51,20 +51,15 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		COMMENT {@return the volume value pinned between 0.0f and 1.0f for a given {@linkplain SoundSource} category}
 		ARG 1 category
 	METHOD isActive (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
-		COMMENT Checks if a SoundInstance is active.
-		COMMENT <p>
-		COMMENT @return true if the SoundInstance is active, false otherwise
+		COMMENT {@return {@code true} if the {@linkplain SoundInstance} is active, {@code false} otherwise}
 		ARG 1 sound
-			COMMENT The SoundInstance to check
+			COMMENT the SoundInstance to check
 	METHOD lambda$updateCategoryVolume$1 (Lnet/minecraft/client/resources/sounds/SoundInstance;Lnet/minecraft/client/sounds/ChannelAccess$ChannelHandle;)V
 		ARG 1 instance
 		ARG 2 source
 	METHOD loadLibrary ()V
 		COMMENT Loads the sound library if it has not been loaded already.
-		COMMENT <p>
-		COMMENT If loading is successful, the library is initialized, and the sound engine is started.
-		COMMENT <p>
-		COMMENT Otherwise, an error message is logged, and sounds and music are turned off.
+		COMMENT If loading is successful, the library is initialized, and the sound engine is started, otherwise, an error message is logged, and sounds and music are turned off.
 	METHOD pause ()V
 		COMMENT Pauses all currently playing sounds
 	METHOD play (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
@@ -73,18 +68,18 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		COMMENT If the sound engine is not loaded or the sound instance cannot be played, the method returns early.
 		COMMENT <p>
 		COMMENT The method fulfills the following parts:
-		COMMENT <ol>
+		COMMENT <ul>
 		COMMENT   <li>Performs a series of checks to determine if it can play a sound</li>
 		COMMENT   <li>Handles the playing of instances of {@code SoundInstance}</li>
 		COMMENT   <li>Logs potential errors that may have occured</li>
 		COMMENT   <li>Handles mapping instances of {@code SoundInstance} to specific audio channels</li>
 		COMMENT   <li>Handles deletion times for active instances of {@code SoundInstance}</li>
 		COMMENT   <li>Calculates and handles various sound properties such as volume, pitch, attenuation, looping, position and relative, </li>
-		COMMENT </ol>
+		COMMENT </ul>
 		COMMENT <p>
-		COMMENT @implNote This method assumes proper synchronization or thread confinement mechanisms are in place.
+		COMMENT @implNote This method assumes proper synchronization or that thread confinement mechanisms are in place.
 		ARG 1 sound
-			COMMENT The sound instance to be played.
+			COMMENT the sound instance to be played.
 	METHOD playDelayed (Lnet/minecraft/client/resources/sounds/SoundInstance;I)V
 		COMMENT Adds a sound to play in n tick
 		ARG 1 sound
@@ -92,23 +87,20 @@ CLASS net/minecraft/client/sounds/SoundEngine
 	METHOD queueTickingSound (Lnet/minecraft/client/resources/sounds/TickableSoundInstance;)V
 		COMMENT Queues a new {@linkplain TickingCodeInstance}
 		ARG 1 tickableSound
-			COMMENT the {@linkplain TickableSoundInstance} to add
+			COMMENT the {@linkplain TickableSoundInstance} to queue
 	METHOD reload ()V
 		COMMENT Reloads the sound engine.
 		COMMENT <p>
-		COMMENT This method clears the warning set, checks for missing sound events, destroys the current sound system,
-		COMMENT and reloads the library.
+		COMMENT This method clears the warning set, checks for missing sound events, destroys the current sound system, and reloads the library.
 	METHOD removeEventListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
 		ARG 1 listener
 	METHOD requestPreload (Lnet/minecraft/client/resources/sounds/Sound;)V
-		COMMENT Requests to preload a specific {@linkplain Sound} instance
+		COMMENT Requests a specific {@linkplain Sound} instance to be preloaded.
 		ARG 1 sound
 	METHOD requiresManualLooping (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
-		COMMENT Checks if a SoundInstance requires manual looping.
-		COMMENT <p>
-		COMMENT @return true if the SoundInstance requires manual looping, false otherwise
+		COMMENT {@return Returns {@code true} if the SoundInstance requires manual looping, {@code false} otherwise
 		ARG 0 sound
-			COMMENT The SoundInstance to check
+			COMMENT the SoundInstance to check
 	METHOD resume ()V
 		COMMENT Resumes playing all currently playing sounds (after pauseAllSounds)
 	METHOD shouldChangeDevice ()Z
@@ -132,15 +124,11 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		COMMENT
 		COMMENT @return {@code true} if a change in the audio device is needed, {@code false} otherwise.
 	METHOD shouldLoopAutomatically (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
-		COMMENT Checks if a SoundInstance should loop automatically.
-		COMMENT <p>
-		COMMENT @return true if the SoundInstance should loop automatically, false otherwise
+		COMMENT @return Returns {@code true} if the SoundInstance should loop automatically, {@code false} otherwise
 		ARG 0 sound
 			COMMENT The SoundInstance to check
 	METHOD shouldLoopManually (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
-		COMMENT Checks if a SoundInstance should loop manually.
-		COMMENT <p>
-		COMMENT @return true if the SoundInstance should loop manually, false otherwise
+		COMMENT @return Returns {@code true} if the SoundInstance should loop manually, {@code false} otherwise
 		ARG 0 sound
 			COMMENT The SoundInstance to check
 	METHOD stop (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
