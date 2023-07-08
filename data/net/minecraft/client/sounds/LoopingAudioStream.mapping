@@ -1,12 +1,29 @@
 CLASS net/minecraft/client/sounds/LoopingAudioStream
+	COMMENT The LoopingAudioStream class provides an AudioStream that loops indefinitely over the provided InputStream.
 	METHOD <init> (Lnet/minecraft/client/sounds/LoopingAudioStream$AudioStreamProvider;Ljava/io/InputStream;)V
 		ARG 1 provider
 		ARG 2 inputStream
+	METHOD close ()V
+		COMMENT Closes the current {@linkplain AudioStream} and {@linkplain BufferedInputStream}.
+		COMMENT @throws IOException if an I/O error occurs while closing the {@linkplain AudioStream} or {@linkplain BufferedInputStream}
+	METHOD getFormat ()Ljavax/sound/sampled/AudioFormat;
+		COMMENT {@return the {@linkplain AudioFormat} of the stream}
 	METHOD read (I)Ljava/nio/ByteBuffer;
+		COMMENT Reads audio data from the stream and returns a byte buffer containing at most the specified number of bytes.
+		COMMENT The method reads audio frames from the stream and adds them to the output buffer until the buffer contains at least the specified number of bytes or the end fo the stream is reached.
+		COMMENT @return a byte buffer containing at most the specified number of bytes to read
+		COMMENT @throws IOException if an I/O error occurs while reading the audio data
 		ARG 1 size
+			COMMENT the maximum number of bytes to read
 	CLASS NoCloseBuffer
+		COMMENT A {@linkplain FilterInputStream} that does not close the underlying {@linkplain InputStream}.
 		METHOD <init> (Ljava/io/InputStream;)V
 			ARG 1 inputStream
 	CLASS AudioStreamProvider
+		COMMENT A functional interface for providing an {@linkplain AudioStream} from an {@linkplain InputStream}.
 		METHOD create (Ljava/io/InputStream;)Lnet/minecraft/client/sounds/AudioStream;
+			COMMENT Creates an {@linkplain AudioStream} from the specified {@linkplain InputStream}.
+			COMMENT @return the created {@linkplain AudioStream}
+			COMMENT @throws IOException if an I/O error occurs while creating the {@linkplain AudioStream}
 			ARG 1 inputStream
+				COMMENT the input stream to create the {@linkplain AudioStream} from

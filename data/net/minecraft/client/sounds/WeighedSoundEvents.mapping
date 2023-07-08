@@ -1,8 +1,30 @@
 CLASS net/minecraft/client/sounds/WeighedSoundEvents
+	COMMENT The WeighedSoundEvents class represents a collection of weighted sound events.
+	COMMENT It implements the Weighted interface to provide weighted selection of sounds.
 	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)V
 		ARG 1 location
+			COMMENT The resource location of the sound events
 		ARG 2 subtitleKey
+			COMMENT The key for the subtitle translation component, or null if no subtitle is provided
 	METHOD addSound (Lnet/minecraft/client/sounds/Weighted;)V
+		COMMENT Adds a sound event to the collection.
 		ARG 1 accessor
+			COMMENT The weighted accessor for the sound event to be added
+	METHOD getSound (Lnet/minecraft/util/RandomSource;)Lnet/minecraft/client/resources/sounds/Sound;
+		COMMENT Retrieves a randomly selected sound from the sound events based on their weights.
+		COMMENT The selection is performed using the provided random source.
+		COMMENT <p>
+		COMMENT @return A randomly selected sound from the sound events
+			COMMENT The random source used for sound selection
+	METHOD getSubtitle ()Lnet/minecraft/network/chat/Component;
+		COMMENT {@return The subtitle component, or {@code null} if no subtitle is provided}
+	METHOD getWeight ()I
+		COMMENT Retrieves the total weight of the sound events.
+		COMMENT The weight is calculated as the sum of the weights of all the individual sound events.
+		COMMENT <p>
+		COMMENT @return The total weight of the sound events
 	METHOD preloadIfRequired (Lnet/minecraft/client/sounds/SoundEngine;)V
+		COMMENT Preloads the sound events into the sound engine if required.
+		COMMENT This method is called to preload the sounds associated with the sound events into the sound engine, ensuring they are ready for playback.
 		ARG 1 engine
+			COMMENT The sound engine used for sound preloading

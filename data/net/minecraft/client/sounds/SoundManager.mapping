@@ -1,52 +1,94 @@
 CLASS net/minecraft/client/sounds/SoundManager
+	COMMENT The SoundManager class is responsible for managing sound events and playing sounds.
+	COMMENT It handles sound event registrations, caching of sound resources, and sound playback.
 	METHOD <init> (Lnet/minecraft/client/Options;)V
 		ARG 1 options
 	METHOD addListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
 		ARG 1 listener
 	METHOD apply (Lnet/minecraft/client/sounds/SoundManager$Preparations;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+		COMMENT Applies the prepared sound event registrations and caches to the sound manager.
 		ARG 1 object
+			COMMENT The prepared sound event registrations and caches
 		ARG 2 resourceManager
+			COMMENT The resource manager
 		ARG 3 profiler
+			COMMENT The profiler
+	METHOD getAvailableSoundDevices ()Ljava/util/List;
+		COMMENT Retrieves a list of available sound devices.
+	METHOD getAvailableSounds ()Ljava/util/Collection;
+		COMMENT {@return The collection of available sound event locations}
 	METHOD getSoundEvent (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/sounds/WeighedSoundEvents;
+		COMMENT {@return The sound event associated with the specific {@linkplain ResourceLocation}, or {@code null} if not found}
 		ARG 1 location
+			COMMENT The location of the sound event
 	METHOD isActive (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
+		COMMENT Checks if the specified sound is active (playing or scheduled to be played).
+		COMMENT @return {@code true} if the sound is active, {@code false} otherwise
 		ARG 1 sound
+			COMMENT The sound instance to check
 	METHOD play (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
 		COMMENT Play a sound
 		ARG 1 sound
 	METHOD playDelayed (Lnet/minecraft/client/resources/sounds/SoundInstance;I)V
-		COMMENT Plays the sound in n ticks
+		COMMENT Plays a sound with a delay in ticks.
 		ARG 1 sound
+			COMMENT The sound instance to play
 		ARG 2 delay
+			COMMENT The delay in ticks before playing the sound
 	METHOD prepare (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Lnet/minecraft/client/sounds/SoundManager$Preparations;
 		COMMENT Performs any reloading that can be done off-thread, such as file IO
 		ARG 1 resourceManager
+			COMMENT The resource manager in-charge of loading sound files
 		ARG 2 profiler
+			COMMENT The sound profiler
 	METHOD queueTickingSound (Lnet/minecraft/client/resources/sounds/TickableSoundInstance;)V
+		COMMENT Queues a ticking sound to be played.
 		ARG 1 tickableSound
+			COMMENT The ticking sound instance
 	METHOD removeListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
 		ARG 1 listener
 	METHOD stop (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
 		ARG 1 sound
 	METHOD stop (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/sounds/SoundSource;)V
+		COMMENT Stops all sounds associated with the specified ID and category.
 		ARG 1 id
+			COMMENT The ID of the sounds to stop, or null to stop all sounds
 		ARG 2 category
+			COMMENT The category of the sounds to stop, or null to stop sounds from all categories
 	METHOD tick (Z)V
+		COMMENT Updates the sound manager's tick state.
 		ARG 1 isGamePaused
+			COMMENT {@code true} if the game is paused, {@code false} otherwise
 	METHOD updateSource (Lnet/minecraft/client/Camera;)V
+		COMMENT Updates the sound source position based on the active render info.
 		ARG 1 activeRenderInfo
+			COMMENT The active render info
 	METHOD updateSourceVolume (Lnet/minecraft/sounds/SoundSource;F)V
+		COMMENT Updates the volume of the specified sound source category.
 		ARG 1 category
+			COMMENT The sound source category
 		ARG 2 volume
+			COMMENT The new volume
 	METHOD validateSoundResource (Lnet/minecraft/client/resources/sounds/Sound;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/ResourceProvider;)Z
+		COMMENT Validates a sound resource
+		COMMENT <p>
+		COMMENT @return {@code true} if the sound resource is valid, {@code false} otherwise
 		ARG 0 sound
+			COMMENT The sound to validate
 		ARG 1 location
+			COMMENT The location of the sound event
 		ARG 2 resourceProvider
+			COMMENT The resource provider
 	CLASS Preparations
+		COMMENT The Preparations class represents the prepared sound event registrations and caches for applying to the sound manager.
 		METHOD apply (Ljava/util/Map;Ljava/util/Map;Lnet/minecraft/client/sounds/SoundEngine;)V
+			COMMENT Applies the prepared sound event registrations and caches to the sound manager.
 			ARG 1 soundRegistry
+				COMMENT The sound registry to apply to
 			ARG 2 cache
+				COMMENT The sound cache to apply to
 			ARG 3 soundEngine
+				COMMENT The sound engine to apply to
 		METHOD handleRegistration (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/sounds/SoundEventRegistration;)V
 			ARG 1 location
 			ARG 2 registration
