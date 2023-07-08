@@ -5,7 +5,39 @@ CLASS net/minecraft/world/ticks/LevelTicks
 	METHOD addContainer (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/ticks/LevelChunkTicks;)V
 		ARG 1 chunkPos
 		ARG 2 chunkTicks
+	METHOD canScheduleMoreTicks (I)Z
+		ARG 1 maxAllowedTicks
+	METHOD clearArea (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)V
+		ARG 1 area
+	METHOD collectTicks (JILnet/minecraft/util/profiling/ProfilerFiller;)V
+		ARG 1 gameTime
+		ARG 3 maxAllowedTicks
+		ARG 4 profiler
+	METHOD copyArea (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Vec3i;)V
+		ARG 1 area
+	METHOD copyAreaFrom (Lnet/minecraft/world/ticks/LevelTicks;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/Vec3i;)V
+		ARG 1 levelTicks
+		ARG 2 area
+	METHOD drainContainers (JI)V
+		ARG 1 gameTime
+		ARG 3 maxAllowedTicks
+	METHOD drainFromCurrentContainer (Ljava/util/Queue;Lnet/minecraft/world/ticks/LevelChunkTicks;JI)V
+		ARG 1 containersToTick
+		ARG 2 levelChunkTicks
+		ARG 3 gameTime
+		ARG 5 maxAllowedTicks
+	METHOD forContainersInArea (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/ticks/LevelTicks$PosAndContainerConsumer;)V
+		ARG 1 area
+		ARG 2 action
 	METHOD removeContainer (Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 chunkPos
+	METHOD runCollectedTicks (Ljava/util/function/BiConsumer;)V
+		ARG 1 ticker
 	METHOD scheduleForThisTick (Lnet/minecraft/world/ticks/ScheduledTick;)V
 		ARG 1 tick
+	METHOD sortContainersToTick (J)V
+		ARG 1 gameTime
+	METHOD tick (JILjava/util/function/BiConsumer;)V
+		ARG 1 gameTime
+		ARG 3 maxAllowedTicks
+		ARG 4 ticker

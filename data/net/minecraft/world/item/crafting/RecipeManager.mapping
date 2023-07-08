@@ -7,6 +7,8 @@ CLASS net/minecraft/world/item/crafting/RecipeManager
 		ARG 1 recipeId
 	METHOD byType (Lnet/minecraft/world/item/crafting/RecipeType;)Ljava/util/Map;
 		ARG 1 recipeType
+	METHOD createCheck (Lnet/minecraft/world/item/crafting/RecipeType;)Lnet/minecraft/world/item/crafting/RecipeManager$CachedCheck;
+		ARG 0 recipeType
 	METHOD fromJson (Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/Recipe;
 		COMMENT Deserializes a recipe object from json data.
 		ARG 0 recipeId
@@ -17,6 +19,11 @@ CLASS net/minecraft/world/item/crafting/RecipeManager
 		ARG 1 recipeType
 		ARG 2 inventory
 		ARG 3 level
+	METHOD getRecipeFor (Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+		ARG 1 recipeType
+		ARG 2 inventory
+		ARG 3 level
+		ARG 4 lastRecipe
 	METHOD getRecipesFor (Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/List;
 		ARG 1 recipeType
 		ARG 2 inventory
@@ -31,3 +38,7 @@ CLASS net/minecraft/world/item/crafting/RecipeManager
 		ARG 0 entry
 	METHOD replaceRecipes (Ljava/lang/Iterable;)V
 		ARG 1 recipes
+	CLASS CachedCheck
+		METHOD getRecipeFor (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
+			ARG 1 container
+			ARG 2 level
