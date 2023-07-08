@@ -89,6 +89,8 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 1 entity
 	METHOD getPathfindingMalus (Lnet/minecraft/world/level/pathfinder/BlockPathTypes;)F
 		ARG 1 nodeType
+	METHOD getPerceivedTargetDistanceSquareForMeleeAttack (Lnet/minecraft/world/entity/LivingEntity;)D
+		ARG 1 entity
 	METHOD getTarget ()Lnet/minecraft/world/entity/LivingEntity;
 		COMMENT Gets the active target the Goal system uses for tracking
 	METHOD interact (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
@@ -145,6 +147,8 @@ CLASS net/minecraft/world/entity/Mob
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
+	METHOD removeAllGoals (Ljava/util/function/Predicate;)V
+		ARG 1 filter
 	METHOD removeWhenFarAway (D)Z
 		ARG 1 distanceToClosestPlayer
 	METHOD restrictTo (Lnet/minecraft/core/BlockPos;I)V
