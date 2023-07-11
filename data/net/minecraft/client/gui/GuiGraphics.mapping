@@ -7,7 +7,9 @@ CLASS net/minecraft/client/gui/GuiGraphics
 		ARG 1 minecraft
 		ARG 2 bufferSource
 	METHOD applyScissor (Lnet/minecraft/client/gui/navigation/ScreenRectangle;)V
+		COMMENT Applies scissoring based on the provided screen rectangle.
 		ARG 1 rectangle
+			COMMENT The screen rectangle to apply scissoring with. Can be null to disable scissoring.
 	METHOD blit (IIIIILnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
 		COMMENT Blits a portion of the specified texture atlas sprite onto the screen at the given coordinates.
 		ARG 1 x
@@ -243,120 +245,249 @@ CLASS net/minecraft/client/gui/GuiGraphics
 			COMMENT The width of the source texture.
 		ARG 9 sourceHeight
 			COMMENT The height of the source texture.
+	METHOD bufferSource ()Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;
+		COMMENT {@return returns the buffer source for rendering.}
+	METHOD disableScissor ()V
+		COMMENT Disables scissoring.
 	METHOD drawCenteredString (Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V
+		COMMENT Draws a centered string at the specified coordinates using the given font, text, and color.
 		ARG 1 font
+			COMMENT The font to use for rendering.
 		ARG 2 text
+			COMMENT The text to draw.
 		ARG 3 x
+			COMMENT The x-coordinate of the center of the string.
 		ARG 4 y
+			COMMENT The y-coordinate of the string.
 		ARG 5 color
+			COMMENT The color of the string.
 	METHOD drawCenteredString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V
+		COMMENT Draws a centered string at the specified coordinates using the given font, text component, and color.
 		ARG 1 font
+			COMMENT The font to use for rendering.
 		ARG 2 text
+			COMMENT The text component to draw.
 		ARG 3 x
+			COMMENT The x-coordinate of the center of the string.
 		ARG 4 y
+			COMMENT The y-coordinate of the string.
 		ARG 5 color
+			COMMENT The color of the string.
 	METHOD drawCenteredString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/util/FormattedCharSequence;III)V
+		COMMENT Draws a centered string at the specified coordinates using the given font, formatted character sequence, and color.
 		ARG 1 font
+			COMMENT The font to use for rendering.
 		ARG 2 text
+			COMMENT The formatted character sequence to draw.
 		ARG 3 x
+			COMMENT The x-coordinate of the center of the string.
 		ARG 4 y
+			COMMENT The y-coordinate of the string.
 		ARG 5 color
+			COMMENT The color of the string.
 	METHOD drawManaged (Ljava/lang/Runnable;)V
+		COMMENT Executes a runnable while managing the render state. The render state is flushed before and after executing the runnable.
 		ARG 1 runnable
+			COMMENT The runnable to execute.
 	METHOD drawString (Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)I
+		COMMENT Draws a string at the specified coordinates using the given font, text, and color. Returns the width of the drawn string.
+		COMMENT <p>
+		COMMENT @return the width of the drawn string.
 		ARG 1 font
+			COMMENT The font to use for rendering.
 		ARG 2 text
+			COMMENT The text to draw.
 		ARG 3 x
+			COMMENT The x-coordinate of the string.
 		ARG 4 y
+			COMMENT The y-coordinate of the string.
 		ARG 5 color
+			COMMENT The color of the string.
 	METHOD drawString (Lnet/minecraft/client/gui/Font;Ljava/lang/String;IIIZ)I
+		COMMENT Draws a string at the specified coordinates using the given font, text, color, and drop shadow. Returns the width of the drawn string.
+		COMMENT <p>
+		COMMENT @return the width of the drawn string.
 		ARG 1 font
+			COMMENT The font to use for rendering.
 		ARG 2 text
+			COMMENT The text to draw.
 		ARG 3 x
+			COMMENT The x-coordinate of the string.
 		ARG 4 y
+			COMMENT The y-coordinate of the string.
 		ARG 5 color
+			COMMENT The color of the string.
 		ARG 6 dropShadow
+			COMMENT Whether to apply a drop shadow to the string.
 	METHOD drawString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)I
+		COMMENT Draws a component's visual order text at the specified coordinates using the given font, text component, and color.
+		COMMENT <p>
+		COMMENT @return the width of the drawn string.
 		ARG 1 font
+			COMMENT The font to use for rendering.
 		ARG 2 text
+			COMMENT The text component to draw.
 		ARG 3 x
+			COMMENT The x-coordinate of the string.
 		ARG 4 y
+			COMMENT The y-coordinate of the string.
 		ARG 5 color
+			COMMENT The color of the string.
 	METHOD drawString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IIIZ)I
+		COMMENT Draws a component's visual order text at the specified coordinates using the given font, text component, color, and drop shadow.
+		COMMENT <p>
+		COMMENT @return the width of the drawn string.
 		ARG 1 font
+			COMMENT The font to use for rendering.
 		ARG 2 text
+			COMMENT The text component to draw.
 		ARG 3 x
+			COMMENT The x-coordinate of the string.
 		ARG 4 y
+			COMMENT The y-coordinate of the string.
 		ARG 5 color
+			COMMENT The color of the string.
 		ARG 6 dropShadow
+			COMMENT Whether to apply a drop shadow to the string.
 	METHOD drawString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/util/FormattedCharSequence;III)I
+		COMMENT Draws a formatted character sequence at the specified coordinates using the given font, text, and color. Returns the width of the drawn string.
+		COMMENT <p>
+		COMMENT @return the width of the drawn string.
 		ARG 1 font
+			COMMENT The font to use for rendering.
 		ARG 2 text
+			COMMENT The formatted character sequence to draw.
 		ARG 3 x
+			COMMENT The x-coordinate of the string.
 		ARG 4 y
+			COMMENT The y-coordinate of the string.
 		ARG 5 color
 	METHOD drawString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/util/FormattedCharSequence;IIIZ)I
+		COMMENT Draws a formatted character sequence at the specified coordinates using the given font, text, color, and drop shadow. Returns the width of the drawn string.
+		COMMENT <p>
+		COMMENT @return returns the width of the drawn string.
 		ARG 1 font
+			COMMENT The font to use for rendering.
 		ARG 2 text
+			COMMENT The formatted character sequence to draw.
 		ARG 3 x
+			COMMENT The x-coordinate of the string.
 		ARG 4 y
+			COMMENT The y-coordinate of the string.
 		ARG 5 color
+			COMMENT The color of the string.
 		ARG 6 dropShadow
+			COMMENT Whether to apply a drop shadow to the string.
 	METHOD drawWordWrap (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/FormattedText;IIII)V
+		COMMENT Draws a formatted text with word wrapping at the specified coordinates using the given font, text, line width, and color.
 		ARG 1 font
+			COMMENT The font to use for rendering.
 		ARG 2 text
+			COMMENT The formatted text to draw.
 		ARG 3 x
+			COMMENT The x-coordinate of the starting position.
 		ARG 4 y
+			COMMENT The y-coordinate of the starting position.
 		ARG 5 lineWidth
+			COMMENT The maximum width of each line before wrapping.
 		ARG 6 color
+			COMMENT The color of the text.
 	METHOD enableScissor (IIII)V
+		COMMENT Enables scissoring with the specified screen coordinates.
 		ARG 1 minX
+			COMMENT The minimum x-coordinate of the scissor region.
 		ARG 2 minY
+			COMMENT The minimum y-coordinate of the scissor region.
 		ARG 3 maxX
+			COMMENT The maximum x-coordinate of the scissor region.
 		ARG 4 maxY
+			COMMENT The maximum y-coordinate of the scissor region.
 	METHOD fill (IIIII)V
+		COMMENT Fills a rectangle with the specified color using the given coordinates as the boundaries.
 		ARG 1 minX
+			COMMENT The minimum x-coordinate of the rectangle.
 		ARG 2 minY
+			COMMENT The minimum y-coordinate of the rectangle.
 		ARG 3 maxX
+			COMMENT The maximum x-coordinate of the rectangle.
 		ARG 4 maxY
+			COMMENT The maximum y-coordinate of the rectangle.
 		ARG 5 color
+			COMMENT The color to fill the rectangle with.
 	METHOD fill (IIIIII)V
+		COMMENT Fills a rectangle with the specified color and z-level using the given coordinates as the boundaries.
 		ARG 1 minX
+			COMMENT The minimum x-coordinate of the rectangle.
 		ARG 2 minY
+			COMMENT The minimum y-coordinate of the rectangle.
 		ARG 3 maxX
+			COMMENT The maximum x-coordinate of the rectangle.
 		ARG 4 maxY
+			COMMENT The maximum y-coordinate of the rectangle.
 		ARG 5 z
+			COMMENT The z-level of the rectangle.
 		ARG 6 color
+			COMMENT The color to fill the rectangle with.
 	METHOD fill (Lnet/minecraft/client/renderer/RenderType;IIIII)V
+		COMMENT Fills a rectangle with the specified color using the given render type and coordinates as the boundaries.
 		ARG 1 renderType
+			COMMENT The render type to use.
 		ARG 2 minX
+			COMMENT The minimum x-coordinate of the rectangle.
 		ARG 3 minY
+			COMMENT The minimum y-coordinate of the rectangle.
 		ARG 4 maxX
+			COMMENT The maximum x-coordinate of the rectangle.
 		ARG 5 maxY
+			COMMENT The maximum y-coordinate of the rectangle.
 		ARG 6 color
+			COMMENT The color to fill the rectangle with.
 	METHOD fill (Lnet/minecraft/client/renderer/RenderType;IIIIII)V
+		COMMENT Fills a rectangle with the specified color and z-level using the given render type and coordinates as the boundaries.
 		ARG 1 renderType
+			COMMENT The render type to use.
 		ARG 2 minX
+			COMMENT The minimum x-coordinate of the rectangle.
 		ARG 3 minY
+			COMMENT The minimum y-coordinate of the rectangle.
 		ARG 4 maxX
+			COMMENT The maximum x-coordinate of the rectangle.
 		ARG 5 maxY
+			COMMENT The maximum y-coordinate of the rectangle.
 		ARG 6 z
+			COMMENT The z-level of the rectangle.
 		ARG 7 color
+			COMMENT The color to fill the rectangle with.
 	METHOD fillGradient (IIIIII)V
+		COMMENT Fills a rectangle with a gradient color from colorFrom to colorTo using the given coordinates as the boundaries.
 		ARG 1 x1
+			COMMENT The x-coordinate of the first corner of the rectangle.
 		ARG 2 y1
+			COMMENT The y-coordinate of the first corner of the rectangle.
 		ARG 3 x2
+			COMMENT The x-coordinate of the second corner of the rectangle.
 		ARG 4 y2
+			COMMENT The y-coordinate of the second corner of the rectangle.
 		ARG 5 colorFrom
+			COMMENT The starting color of the gradient.
 		ARG 6 colorTo
+			COMMENT The ending color of the gradient.
 	METHOD fillGradient (IIIIIII)V
+		COMMENT Fills a rectangle with a gradient color from colorFrom to colorTo at the specified z-level using the given coordinates as the boundaries.
 		ARG 1 x1
+			COMMENT The x-coordinate of the first corner of the rectangle.
 		ARG 2 y1
+			COMMENT The y-coordinate of the first corner of the rectangle.
 		ARG 3 x2
+			COMMENT The x-coordinate of the second corner of the rectangle.
 		ARG 4 y2
+			COMMENT The y-coordinate of the second corner of the rectangle.
 		ARG 5 z
+			COMMENT The z-level of the rectangle.
 		ARG 6 colorFrom
+			COMMENT The starting color of the gradient.
 		ARG 7 colorTo
+			COMMENT The ending color of the gradient.
 	METHOD fillGradient (Lcom/mojang/blaze3d/vertex/VertexConsumer;IIIIIII)V
 		ARG 1 consumer
 		ARG 2 x1
@@ -367,25 +498,57 @@ CLASS net/minecraft/client/gui/GuiGraphics
 		ARG 7 colorFrom
 		ARG 8 colorTo
 	METHOD fillGradient (Lnet/minecraft/client/renderer/RenderType;IIIIIII)V
+		COMMENT Fills a rectangle with a gradient color from colorFrom to colorTo at the specified z-level using the given render type and coordinates as the boundaries.
 		ARG 1 renderType
+			COMMENT The render type to use.
 		ARG 2 x1
+			COMMENT The x-coordinate of the first corner of the rectangle.
 		ARG 3 y1
+			COMMENT The y-coordinate of the first corner of the rectangle.
 		ARG 4 x2
+			COMMENT The x-coordinate of the second corner of the rectangle.
 		ARG 5 y2
+			COMMENT The y-coordinate of the second corner of the rectangle.
 		ARG 6 colorFrom
+			COMMENT The starting color of the gradient.
 		ARG 7 colorTo
+			COMMENT The ending color of the gradient.
 		ARG 8 z
+			COMMENT The z-level of the rectangle.
+	METHOD flush ()V
+		COMMENT Flushes the render state, ending the current batch and enabling depth testing.
+	METHOD flushIfManaged ()V
+		COMMENT Flushes the render state if it is managed.
+		COMMENT @deprecated This method is deprecated.
+	METHOD flushIfUnmanaged ()V
+		COMMENT Flushes the render state if it is not managed.
+		COMMENT @deprecated This method is deprecated.
+	METHOD guiHeight ()I
+		COMMENT {@return returns the height of the GUI screen in pixels}
+	METHOD guiWidth ()I
+		COMMENT {@return returns the width of the GUI screen in pixels}
 	METHOD hLine (IIII)V
+		COMMENT Draws a horizontal line from minX to maxX at the specified y-coordinate with the given color.
 		ARG 1 minX
+			COMMENT The x-coordinate of the start point.
 		ARG 2 maxX
+			COMMENT The x-coordinate of the end point.
 		ARG 3 y
+			COMMENT The y-coordinate of the line.
 		ARG 4 color
+			COMMENT The color of the line.
 	METHOD hLine (Lnet/minecraft/client/renderer/RenderType;IIII)V
+		COMMENT Draws a horizontal line from minX to maxX at the specified y-coordinate with the given color using the specified render type.
 		ARG 1 renderType
+			COMMENT The render type to use.
 		ARG 2 minX
+			COMMENT The x-coordinate of the start point.
 		ARG 3 maxX
+			COMMENT The x-coordinate of the end point.
 		ARG 4 y
+			COMMENT The y-coordinate of the line.
 		ARG 5 color
+			COMMENT The color of the line.
 	METHOD innerBlit (Lnet/minecraft/resources/ResourceLocation;IIIIIFFFF)V
 		COMMENT Performs the inner blit operation for rendering a texture with the specified coordinates and texture coordinates without color tinting.
 		ARG 1 atlasLocation
@@ -438,65 +601,130 @@ CLASS net/minecraft/client/gui/GuiGraphics
 			COMMENT The blue component of the color tint.
 		ARG 14 alpha
 			COMMENT The alpha component of the color tint.
+	METHOD pose ()Lcom/mojang/blaze3d/vertex/PoseStack;
+		COMMENT {@return returns the PoseStack used for transformations and rendering.}
 	METHOD renderComponentHoverEffect (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Style;II)V
+		COMMENT Renders a hover effect for a text component at the specified mouse coordinates.
 		ARG 1 font
+			COMMENT The font used for rendering text.
 		ARG 2 style
+			COMMENT The style of the text component. Can be null.
 		ARG 3 mouseX
+			COMMENT The x-coordinate of the mouse position.
 		ARG 4 mouseY
+			COMMENT The y-coordinate of the mouse position.
 	METHOD renderComponentTooltip (Lnet/minecraft/client/gui/Font;Ljava/util/List;II)V
+		COMMENT Renders a tooltip with multiple lines of component-based text at the specified mouse coordinates.
 		ARG 1 font
+			COMMENT The font used for rendering text.
 		ARG 2 tooltipLines
+			COMMENT The lines of the tooltip as components.
 		ARG 3 mouseX
+			COMMENT The x-coordinate of the mouse position.
 		ARG 4 mouseY
+			COMMENT The y-coordinate of the mouse position.
 	METHOD renderFakeItem (Lnet/minecraft/world/item/ItemStack;II)V
+		COMMENT Renders a fake item stack at the specified coordinates.
 		ARG 1 stack
+			COMMENT The fake item stack to render.
 		ARG 2 x
+			COMMENT The x-coordinate of the rendering position.
 		ARG 3 y
+			COMMENT The y-coordinate of the rendering position.
 	METHOD renderItem (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;III)V
+		COMMENT Renders an item stack for a living entity at the specified coordinates with a random seed.
 		ARG 1 entity
+			COMMENT The living entity.
 		ARG 2 stack
+			COMMENT The item stack to render.
 		ARG 3 x
+			COMMENT The x-coordinate of the rendering position.
 		ARG 4 y
+			COMMENT The y-coordinate of the rendering position.
 		ARG 5 seed
+			COMMENT The random seed.
 	METHOD renderItem (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;III)V
+		COMMENT Renders an item stack for a living entity in a specific level at the specified coordinates with a random seed.
 		ARG 1 entity
+			COMMENT The living entity. Can be null.
 		ARG 2 level
+			COMMENT The level in which the rendering occurs. Can be null.
 		ARG 3 stack
+			COMMENT The item stack to render.
 		ARG 4 x
+			COMMENT The x-coordinate of the rendering position.
 		ARG 5 y
+			COMMENT The y-coordinate of the rendering position.
 		ARG 6 seed
+			COMMENT The random seed.
 	METHOD renderItem (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;IIII)V
+		COMMENT Renders an item stack for a living entity in a specific level at the specified coordinates with a random seed and a custom GUI offset.
 		ARG 1 entity
+			COMMENT The living entity. Can be null.
 		ARG 2 level
+			COMMENT The level in which the rendering occurs. Can be null.
 		ARG 3 stack
+			COMMENT The item stack to render.
 		ARG 4 x
+			COMMENT The x-coordinate of the rendering position.
 		ARG 5 y
+			COMMENT The y-coordinate of the rendering position.
 		ARG 6 seed
+			COMMENT The random seed.
+		ARG 7 guiOffset
+			COMMENT The GUI offset value.
 	METHOD renderItem (Lnet/minecraft/world/item/ItemStack;II)V
+		COMMENT Renders an item stack at the specified coordinates.
 		ARG 1 stack
+			COMMENT The item stack to render.
 		ARG 2 x
+			COMMENT The x-coordinate of the rendering position.
 		ARG 3 y
+			COMMENT The y-coordinate of the rendering position.
 	METHOD renderItem (Lnet/minecraft/world/item/ItemStack;III)V
+		COMMENT Renders an item stack at the specified coordinates with a random seed.
 		ARG 1 stack
+			COMMENT The item stack to render.
 		ARG 2 x
+			COMMENT The x-coordinate of the rendering position.
 		ARG 3 y
+			COMMENT The y-coordinate of the rendering position.
 		ARG 4 seed
+			COMMENT The random seed.
 	METHOD renderItem (Lnet/minecraft/world/item/ItemStack;IIII)V
+		COMMENT Renders an item stack at the specified coordinates with a random seed and a custom value.
 		ARG 1 stack
+			COMMENT The item stack to render.
 		ARG 2 x
+			COMMENT The x-coordinate of the rendering position.
 		ARG 3 y
+			COMMENT The y-coordinate of the rendering position.
 		ARG 4 seed
+			COMMENT The random seed.
+		ARG 5 guiOffset
+			COMMENT The GUI offset.
 	METHOD renderItemDecorations (Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;II)V
+		COMMENT Renders additional decorations for an item stack at the specified coordinates.
 		ARG 1 font
+			COMMENT The font used for rendering text.
 		ARG 2 stack
+			COMMENT The item stack to decorate.
 		ARG 3 x
+			COMMENT The x-coordinate of the rendering position.
 		ARG 4 y
+			COMMENT The y-coordinate of the rendering position.
 	METHOD renderItemDecorations (Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V
+		COMMENT Renders additional decorations for an item stack at the specified coordinates with optional custom text.
 		ARG 1 font
+			COMMENT The font used for rendering text.
 		ARG 2 stack
+			COMMENT The item stack to decorate.
 		ARG 3 x
+			COMMENT The x-coordinate of the rendering position.
 		ARG 4 y
+			COMMENT The y-coordinate of the rendering position.
 		ARG 5 text
+			COMMENT The custom text to display. Can be null.
 	METHOD renderOutline (IIIII)V
 		COMMENT Renders an outline rectangle on the screen with the specified color.
 		ARG 1 x
@@ -510,54 +738,121 @@ CLASS net/minecraft/client/gui/GuiGraphics
 		ARG 5 color
 			COMMENT The color of the outline.
 	METHOD renderTooltip (Lnet/minecraft/client/gui/Font;Ljava/util/List;II)V
+		COMMENT Renders a tooltip with multiple lines of formatted text at the specified mouse coordinates.
 		ARG 1 font
+			COMMENT The font used for rendering text.
 		ARG 2 tooltipLines
+			COMMENT The lines of the tooltip as formatted character sequences.
 		ARG 3 mouseX
+			COMMENT The x-coordinate of the mouse position.
 		ARG 4 mouseY
+			COMMENT The y-coordinate of the mouse position.
 	METHOD renderTooltip (Lnet/minecraft/client/gui/Font;Ljava/util/List;Ljava/util/Optional;II)V
+		COMMENT Renders a tooltip with customizable components at the specified mouse coordinates.
 		ARG 1 font
+			COMMENT The font used for rendering text.
 		ARG 2 tooltipLines
+			COMMENT The lines of the tooltip.
 		ARG 3 visualTooltipComponent
+			COMMENT The visual tooltip component. Can be empty.
 		ARG 4 mouseX
+			COMMENT The x-coordinate of the mouse position.
 		ARG 5 mouseY
+			COMMENT The y-coordinate of the mouse position.
 	METHOD renderTooltip (Lnet/minecraft/client/gui/Font;Ljava/util/List;Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;II)V
+		COMMENT Renders a tooltip with multiple lines of formatted text using a custom tooltip positioner at the specified mouse coordinates.
 		ARG 1 font
+			COMMENT The font used for rendering text.
 		ARG 2 tooltipLines
+			COMMENT The lines of the tooltip as formatted character sequences.
 		ARG 3 tooltipPositioner
+			COMMENT The positioner to determine the tooltip's position.
 		ARG 4 mouseX
+			COMMENT The x-coordinate of the mouse position.
 		ARG 5 mouseY
+			COMMENT The y-coordinate of the mouse position.
 	METHOD renderTooltip (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;II)V
+		COMMENT Renders a tooltip with a single line of text at the specified mouse coordinates.
 		ARG 1 font
+			COMMENT The font used for rendering text.
 		ARG 2 text
+			COMMENT The text to display in the tooltip.
 		ARG 3 mouseX
+			COMMENT The x-coordinate of the mouse position.
 		ARG 4 mouseY
+			COMMENT The y-coordinate of the mouse position.
 	METHOD renderTooltip (Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;II)V
+		COMMENT Renders a tooltip for an item stack at the specified mouse coordinates.
 		ARG 1 font
+			COMMENT The font used for rendering text.
 		ARG 2 stack
+			COMMENT The item stack to display the tooltip for.
 		ARG 3 mouseX
+			COMMENT The x-coordinate of the mouse position.
 		ARG 4 mouseY
+			COMMENT The y-coordinate of the mouse position.
 	METHOD renderTooltipInternal (Lnet/minecraft/client/gui/Font;Ljava/util/List;IILnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;)V
+		COMMENT Renders an internal tooltip with customizable tooltip components at the specified mouse coordinates using a tooltip positioner.
 		ARG 1 font
+			COMMENT The font used for rendering text.
 		ARG 2 components
+			COMMENT The tooltip components to render.
 		ARG 3 mouseX
+			COMMENT The x-coordinate of the mouse position.
 		ARG 4 mouseY
+			COMMENT The y-coordinate of the mouse position.
 		ARG 5 tooltipPositioner
+			COMMENT The positioner to determine the tooltip's position.
 	METHOD setColor (FFFF)V
+		COMMENT Sets the current rendering color.
 		ARG 1 red
+			COMMENT The red component of the color.
 		ARG 2 green
+			COMMENT The green component of the color.
 		ARG 3 blue
+			COMMENT The blue component of the color.
 		ARG 4 alpha
+			COMMENT The alpha component of the color.
+	METHOD slices (II)Lit/unimi/dsi/fastutil/ints/IntIterator;
+		COMMENT Returns an iterator for dividing a value into slices of a specified size.
+		COMMENT <p>
+		COMMENT @return An iterator for iterating over the slices.
+		ARG 0 numerator
+			COMMENT The value to be divided.
+		ARG 1 sliceSize
+			COMMENT The size of each slice.
 	METHOD vLine (IIII)V
+		COMMENT Draws a vertical line from minY to maxY at the specified x-coordinate with the given color.
 		ARG 1 x
+			COMMENT The x-coordinate of the line.
 		ARG 2 minY
+			COMMENT The y-coordinate of the start point.
 		ARG 3 maxY
+			COMMENT The y-coordinate of the end point.
 		ARG 4 color
+			COMMENT The color of the line.
 	METHOD vLine (Lnet/minecraft/client/renderer/RenderType;IIII)V
+		COMMENT Draws a vertical line from minY to maxY at the specified x-coordinate with the given color using the specified render type.
 		ARG 1 renderType
+			COMMENT The render type to use.
 		ARG 2 x
+			COMMENT The x-coordinate of the line.
 		ARG 3 minY
+			COMMENT The y-coordinate of the start point.
 		ARG 4 maxY
+			COMMENT The y-coordinate of the end point.
 		ARG 5 color
+			COMMENT The color of the line.
 	CLASS ScissorStack
+		COMMENT A utility class for managing a stack of screen rectangles for scissoring.
+		METHOD pop ()Lnet/minecraft/client/gui/navigation/ScreenRectangle;
+			COMMENT Pops the top screen rectangle from the scissor stack.
+			COMMENT <p>
+			COMMENT @return The new top screen rectangle after the pop operation, or null if the stack is empty.
+			COMMENT @throws IllegalStateException if the stack is empty.
 		METHOD push (Lnet/minecraft/client/gui/navigation/ScreenRectangle;)Lnet/minecraft/client/gui/navigation/ScreenRectangle;
-			ARG 1 sciccor
+			COMMENT Pushes a screen rectangle onto the scissor stack.
+			COMMENT <p>
+			COMMENT @return The resulting intersection of the pushed rectangle with the previous top rectangle on the stack, or the pushed rectangle if the stack is empty.
+			ARG 1 scissor
+				COMMENT The screen rectangle to push.
