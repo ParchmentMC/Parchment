@@ -109,6 +109,8 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 		ARG 1 id
 		ARG 2 pos
 		ARG 3 data
+	METHOD handleBlockChangedAck (I)V
+		ARG 1 sequence
 	METHOD hasChunk (II)Z
 		ARG 1 chunkX
 		ARG 2 chunkZ
@@ -202,6 +204,7 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 	METHOD setServerVerifiedBlockState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)V
 		ARG 1 pos
 		ARG 2 state
+		ARG 3 flags
 	METHOD setSkyFlashTime (I)V
 		ARG 1 timeFlash
 	METHOD spawnFluidParticle (DDDDDLnet/minecraft/core/particles/ParticleOptions;)V
@@ -219,6 +222,7 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 	METHOD syncBlockState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 pos
 		ARG 2 state
+		ARG 3 playerPos
 	METHOD tick (Ljava/util/function/BooleanSupplier;)V
 		COMMENT Runs a single tick for the world
 		ARG 1 hasTimeLeft
