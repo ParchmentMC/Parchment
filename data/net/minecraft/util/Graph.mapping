@@ -1,0 +1,11 @@
+CLASS net/minecraft/util/Graph
+	METHOD depthFirstSearch (Ljava/util/Map;Ljava/util/Set;Ljava/util/Set;Ljava/util/function/Consumer;Ljava/lang/Object;)Z
+		COMMENT Detects if a cycle is present in the given graph, via a depth first search, and returns {@code true} if a cycle was found.
+		ARG 0 graph
+		ARG 1 nonCyclicalNodes
+			COMMENT Nodes that are verified to have no cycles involving them.
+		ARG 2 pathSet
+			COMMENT The current collection of seen nodes. When invoked not recursively, this should be an empty set.
+		ARG 3 onNonCyclicalNodeFound
+			COMMENT Invoked on each node as we prove that no cycles can be reached starting from this node.
+		ARG 4 currentNode
