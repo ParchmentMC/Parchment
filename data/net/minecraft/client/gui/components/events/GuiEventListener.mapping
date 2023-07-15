@@ -1,40 +1,105 @@
 CLASS net/minecraft/client/gui/components/events/GuiEventListener
+	COMMENT The `GuiEventListener` interface represents a listener for GUI events.
+	COMMENT It extends the `TabOrderedElement` interface, providing tab order functionality for GUI components.
 	METHOD charTyped (CI)Z
+		COMMENT Called when a character is typed within the GUI element.
+		COMMENT <p>
+		COMMENT @return {@code true} if the event is consumed, {@code false} otherwise.
 		ARG 1 codePoint
+			COMMENT The code point of the typed character.
 		ARG 2 modifiers
+			COMMENT The keyboard modifiers.
+	METHOD getCurrentFocusPath ()Lnet/minecraft/client/gui/ComponentPath;
+		COMMENT {@return The current focus path as a ComponentPath, or {@code null} if there is no current focus path.}
+	METHOD getRectangle ()Lnet/minecraft/client/gui/navigation/ScreenRectangle;
+		COMMENT {@return The screen rectangle occupied by the GUI element.}
+	METHOD isFocused ()Z
+		COMMENT {@return {@code true} if the GUI element is focused, {@code false} otherwise.
 	METHOD isMouseOver (DD)Z
+		COMMENT Checks if the given mouse coordinates are over the GUI element.
+		COMMENT <p>
+		COMMENT @return {@code true} if the mouse is over the GUI element, {@code false} otherwise.
 		ARG 1 mouseX
+			COMMENT The X coordinate of the mouse.
 		ARG 3 mouseY
+			COMMENT The Y coordinate of the mouse.
 	METHOD keyPressed (III)Z
+		COMMENT Called when a keyboard key is pressed within the GUI element.
+		COMMENT <p>
+		COMMENT @return {@code true} if the event is consumed, {@code false} otherwise.
 		ARG 1 keyCode
+			COMMENT The key code of the pressed key.
 		ARG 2 scanCode
+			COMMENT The scan code of the pressed key.
 		ARG 3 modifiers
+			COMMENT The keyboard modifiers.
 	METHOD keyReleased (III)Z
+		COMMENT Called when a keyboard key is released within the GUI element.
+		COMMENT <p>
+		COMMENT @return {@code true} if the event is consumed, {@code false} otherwise.
 		ARG 1 keyCode
+			COMMENT The key code of the released key.
 		ARG 2 scanCode
+			COMMENT The scan code of the released key.
 		ARG 3 modifiers
+			COMMENT The keyboard modifiers.
 	METHOD mouseClicked (DDI)Z
+		COMMENT Called when a mouse button is clicked within the GUI element.
+		COMMENT <p>
+		COMMENT @return {@code true} if the event is consumed, {@code false} otherwise.
 		ARG 1 mouseX
+			COMMENT The X coordinate of the mouse.
 		ARG 3 mouseY
+			COMMENT The Y coordinate of the mouse.
 		ARG 5 button
+			COMMENT The button that was clicked.
 	METHOD mouseDragged (DDIDD)Z
+		COMMENT Called when the mouse is dragged within the GUI element.
+		COMMENT <p>
+		COMMENT @return {@code true} if the event is consumed, {@code false} otherwise.
 		ARG 1 mouseX
+			COMMENT The X coordinate of the mouse.
 		ARG 3 mouseY
+			COMMENT The Y coordinate of the mouse.
 		ARG 5 button
+			COMMENT The button that is being dragged.
 		ARG 6 dragX
+			COMMENT The X distance of the drag.
 		ARG 8 dragY
+			COMMENT The Y distance of the drag.
 	METHOD mouseMoved (DD)V
+		COMMENT Called when the mouse is moved within the GUI element.
 		ARG 1 mouseX
+			COMMENT The X coordinate of the mouse.
 		ARG 3 mouseY
+			COMMENT The Y coordinate of the mouse.
 	METHOD mouseReleased (DDI)Z
+		COMMENT Called when a mouse button is released within the GUI element.
+		COMMENT <p>
+		COMMENT @return {@code true} if the event is consumed, {@code false} otherwise.
 		ARG 1 mouseX
+			COMMENT The X coordinate of the mouse.
 		ARG 3 mouseY
+			COMMENT The Y coordinate of the mouse.
 		ARG 5 button
+			COMMENT The button that was released.
 	METHOD mouseScrolled (DDD)Z
+		COMMENT Called when the mouse wheel is scrolled within the GUI element.
+		COMMENT <p>
+		COMMENT @return {@code true} if the event is consumed, {@code false} otherwise.
 		ARG 1 mouseX
+			COMMENT The X coordinate of the mouse.
 		ARG 3 mouseY
+			COMMENT The Y coordinate of the mouse.
 		ARG 5 delta
+			COMMENT The scrolling delta.
 	METHOD nextFocusPath (Lnet/minecraft/client/gui/navigation/FocusNavigationEvent;)Lnet/minecraft/client/gui/ComponentPath;
+		COMMENT Retrieves the next focus path based on the given focus navigation event.
+		COMMENT <p>
+		COMMENT @return The next focus path as a ComponentPath, or `null` if there is no next focus path.
 		ARG 1 event
+			COMMENT The focus navigation event.
 	METHOD setFocused (Z)V
+		COMMENT Sets the focus state of the GUI element.
 		ARG 1 focused
+			COMMENT The focus state.
