@@ -18,6 +18,9 @@ CLASS net/minecraft/util/CubicSpline
 		METHOD <init> (Lnet/minecraft/util/ToFloatFunction;Lnet/minecraft/util/ToFloatFunction;)V
 			ARG 1 coordinate
 			ARG 2 valueTransformer
+		METHOD addPoint (FF)Lnet/minecraft/util/CubicSpline$Builder;
+			ARG 1 location
+			ARG 2 value
 		METHOD addPoint (FFF)Lnet/minecraft/util/CubicSpline$Builder;
 			ARG 1 location
 			ARG 2 value
@@ -29,6 +32,24 @@ CLASS net/minecraft/util/CubicSpline
 			ARG 1 location
 			ARG 2 value
 			ARG 3 derivative
+	CLASS Multipoint
+		METHOD create (Lnet/minecraft/util/ToFloatFunction;[FLjava/util/List;[F)Lnet/minecraft/util/CubicSpline$Multipoint;
+			ARG 0 coordinate
+			ARG 1 locations
+			ARG 2 values
+			ARG 3 derivatives
+		METHOD findIntervalStart ([FF)I
+			ARG 0 locations
+			ARG 1 start
+		METHOD linearExtend (F[FF[FI)F
+			ARG 1 locations
+			ARG 3 derivatives
+		METHOD toString ([F)Ljava/lang/String;
+			ARG 1 locations
+		METHOD validateSizes ([FLjava/util/List;[F)V
+			ARG 0 locations
+			ARG 1 values
+			ARG 2 derivatives
 	CLASS CoordinateVisitor
 		METHOD visit (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 coordinate
