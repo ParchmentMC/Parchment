@@ -20,5 +20,27 @@ CLASS net/minecraft/util/datafix/fixes/LeavesFix
 	METHOD lambda$static$0 (Lit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;)V
 		ARG 0 map
 	CLASS Section
+		METHOD <init> (Lcom/mojang/datafixers/Typed;Lcom/mojang/datafixers/schemas/Schema;)V
+			ARG 2 schema
 		METHOD getBlock (I)I
 			ARG 1 index
+		METHOD getStateId (Ljava/lang/String;ZI)I
+			ARG 1 name
+			ARG 2 persistent
+			ARG 3 distance
+		METHOD readStorage (Lcom/mojang/serialization/Dynamic;)V
+			ARG 1 dynamic
+	CLASS LeavesSection
+		METHOD isLeaf (I)Z
+			ARG 1 id
+		METHOD isLog (I)Z
+			ARG 1 id
+		METHOD makeLeafTag (Lcom/mojang/serialization/Dynamic;Ljava/lang/String;ZI)Lcom/mojang/serialization/Dynamic;
+			ARG 1 dynamic
+			ARG 2 name
+			ARG 3 persistent
+			ARG 4 distance
+		METHOD setDistance (III)V
+			ARG 1 index
+			ARG 2 block
+			ARG 3 distance

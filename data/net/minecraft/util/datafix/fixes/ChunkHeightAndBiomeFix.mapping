@@ -3,25 +3,39 @@ CLASS net/minecraft/util/datafix/fixes/ChunkHeightAndBiomeFix
 		ARG 1 outputSchema
 	METHOD addPaddingEntries (Lcom/mojang/serialization/Dynamic;Ljava/lang/String;)Lcom/mojang/serialization/Dynamic;
 		ARG 0 dynamic
+	METHOD ceillog2 (I)I
+		ARG 0 value
 	METHOD getBiomeContainers (Lcom/mojang/serialization/Dynamic;ZILorg/apache/commons/lang3/mutable/MutableBoolean;)[Lcom/mojang/serialization/Dynamic;
 		ARG 0 dynamic
+		ARG 1 overworld
 	METHOD getFixedHeightmap (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
 		ARG 0 dynamic
+	METHOD getOldBiome ([II)I
+		ARG 0 biomes
+		ARG 1 index
 	METHOD makeBiomeContainer (Lcom/mojang/serialization/Dynamic;Lit/unimi/dsi/fastutil/ints/Int2IntFunction;)Lcom/mojang/serialization/Dynamic;
 		ARG 0 dynamic
 	METHOD makeOptimizedPalettedContainer (Lcom/mojang/serialization/Dynamic;Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
-		ARG 0 dynamic
+		ARG 0 palette
+		ARG 1 blockStates
 	METHOD makePalettedContainer (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
-		ARG 0 dynamic
+		ARG 0 palette
 	METHOD makePalettedContainer (Lcom/mojang/serialization/Dynamic;Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
-		ARG 0 dynamic
+		ARG 0 palette
+		ARG 1 blockStates
+	METHOD padPaletteEntries (Lcom/mojang/serialization/Dynamic;Lcom/mojang/serialization/Dynamic;Ljava/util/List;)Lcom/mojang/serialization/Dynamic;
+		ARG 0 palette
+		ARG 1 blockStates
 	METHOD predictChunkStatusBeforeSurface (Lcom/mojang/serialization/Dynamic;Ljava/util/Set;)Lcom/mojang/serialization/Dynamic;
 		ARG 1 dynamic
+		ARG 2 blockPalette
 	METHOD shiftUpgradeData (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
 		ARG 0 dynamic
 	METHOD updateCarvingMasks (Lcom/mojang/serialization/Dynamic;II)Lcom/mojang/serialization/Dynamic;
 		ARG 0 dynamic
 	METHOD updateChunkTag (Lcom/mojang/serialization/Dynamic;ZZZLjava/util/function/Supplier;)Lcom/mojang/serialization/Dynamic;
 		ARG 0 chunkTag
+		ARG 1 overworld
+		ARG 3 isNoiseGenerator
 	METHOD updateHeightmaps (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
 		ARG 0 dynamic
