@@ -2,6 +2,11 @@ CLASS net/minecraft/server/packs/resources/FallbackResourceManager
 	METHOD <init> (Lnet/minecraft/server/packs/PackType;Ljava/lang/String;)V
 		ARG 1 type
 		ARG 2 namespace
+	METHOD applyPackFiltersToExistingResources (Lnet/minecraft/server/packs/resources/FallbackResourceManager$PackEntry;Ljava/util/Map;)V
+		ARG 0 packEntry
+		ARG 1 resources
+	METHOD convertToMetadata (Lnet/minecraft/server/packs/resources/IoSupplier;)Lnet/minecraft/server/packs/resources/IoSupplier;
+		ARG 0 streamSupplier
 	METHOD createResource (Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/IoSupplier;Lnet/minecraft/server/packs/resources/IoSupplier;)Lnet/minecraft/server/packs/resources/Resource;
 		ARG 0 source
 		ARG 1 location
@@ -20,6 +25,9 @@ CLASS net/minecraft/server/packs/resources/FallbackResourceManager
 		ARG 1 entry
 		ARG 2 path
 		ARG 3 filter
+		ARG 4 output
+	METHOD parseMetadata (Lnet/minecraft/server/packs/resources/IoSupplier;)Lnet/minecraft/server/packs/resources/ResourceMetadata;
+		ARG 0 streamSupplier
 	METHOD push (Lnet/minecraft/server/packs/PackResources;)V
 		ARG 1 resources
 	METHOD push (Lnet/minecraft/server/packs/PackResources;Ljava/util/function/Predicate;)V

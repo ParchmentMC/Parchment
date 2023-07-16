@@ -11,6 +11,7 @@ CLASS net/minecraft/server/commands/LootCommand
 		ARG 0 source
 		ARG 1 pos
 		ARG 2 slot
+		ARG 3 numSlots
 		ARG 4 items
 		ARG 5 callback
 	METHOD callback (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/List;)V
@@ -34,6 +35,7 @@ CLASS net/minecraft/server/commands/LootCommand
 	METHOD dropBlockLoot (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)I
 		ARG 0 context
 		ARG 1 pos
+		ARG 2 tool
 		ARG 3 dropConsumer
 	METHOD dropChestLoot (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)I
 		ARG 0 context
@@ -42,6 +44,8 @@ CLASS net/minecraft/server/commands/LootCommand
 	METHOD dropFishingLoot (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/server/commands/LootCommand$DropConsumer;)I
 		ARG 0 context
 		ARG 1 lootTable
+		ARG 2 pos
+		ARG 3 tool
 		ARG 4 dropConsumer
 	METHOD dropInWorld (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/phys/Vec3;Ljava/util/List;Lnet/minecraft/server/commands/LootCommand$Callback;)I
 		ARG 0 source
@@ -55,6 +59,7 @@ CLASS net/minecraft/server/commands/LootCommand
 	METHOD entityReplace (Ljava/util/Collection;IILjava/util/List;Lnet/minecraft/server/commands/LootCommand$Callback;)I
 		ARG 0 targets
 		ARG 1 startSlot
+		ARG 2 numSlots
 		ARG 3 items
 		ARG 4 callback
 	METHOD getContainer (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/Container;
@@ -76,6 +81,8 @@ CLASS net/minecraft/server/commands/LootCommand
 		ARG 0 target
 		ARG 1 items
 		ARG 2 startSlot
+		ARG 3 numSlots
+		ARG 4 setItems
 	CLASS Callback
 		METHOD accept (Ljava/util/List;)V
 			ARG 1 items

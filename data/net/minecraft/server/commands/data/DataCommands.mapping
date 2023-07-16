@@ -1,4 +1,6 @@
 CLASS net/minecraft/server/commands/data/DataCommands
+	METHOD decorateModification (Ljava/util/function/BiConsumer;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 decorator
 	METHOD getAsText (Lnet/minecraft/nbt/Tag;)Ljava/lang/String;
 		ARG 0 tag
 	METHOD getData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;)I
@@ -55,10 +57,17 @@ CLASS net/minecraft/server/commands/data/DataCommands
 	METHOD resolveSourcePath (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;)Ljava/util/List;
 		ARG 0 context
 		ARG 1 dataProvider
+	METHOD stringifyTagList (Ljava/util/List;Lnet/minecraft/server/commands/data/DataCommands$StringProcessor;)Ljava/util/List;
+		ARG 0 tagList
+		ARG 1 processor
 	METHOD substring (Ljava/lang/String;I)Ljava/lang/String;
 		ARG 0 source
 		ARG 1 start
 	METHOD substring (Ljava/lang/String;II)Ljava/lang/String;
+		ARG 0 source
+		ARG 1 start
+		ARG 2 end
+	METHOD validatedSubstring (Ljava/lang/String;II)Ljava/lang/String;
 		ARG 0 source
 		ARG 1 start
 		ARG 2 end
@@ -76,6 +85,9 @@ CLASS net/minecraft/server/commands/data/DataCommands
 			ARG 2 nbt
 			ARG 3 nbtPath
 			ARG 4 tags
+	CLASS StringProcessor
+		METHOD process (Ljava/lang/String;)Ljava/lang/String;
+			ARG 1 input
 	CLASS DataManipulatorDecorator
 		METHOD create (Lnet/minecraft/server/commands/data/DataCommands$DataManipulator;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
 			ARG 1 dataManipulator

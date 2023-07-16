@@ -42,6 +42,7 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 0 context
 		ARG 1 isMasked
 	METHOD createNumericConditionalHandler (ZLnet/minecraft/server/commands/ExecuteCommand$CommandNumericPredicate;)Lcom/mojang/brigadier/Command;
+		ARG 0 isIf
 		ARG 1 predicate
 	METHOD createRelationOperations (Lcom/mojang/brigadier/tree/CommandNode;Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
 		ARG 0 node
@@ -61,6 +62,9 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandBuildContext;)V
 		ARG 0 dispatcher
 		ARG 1 context
+	METHOD spawnEntityAndRedirect (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/Holder$Reference;)Lnet/minecraft/commands/CommandSourceStack;
+		ARG 0 source
+		ARG 1 entityType
 	METHOD storeData (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/data/DataAccessor;Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Ljava/util/function/IntFunction;Z)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 0 source
 		ARG 1 accessor
