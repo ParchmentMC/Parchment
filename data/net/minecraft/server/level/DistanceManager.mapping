@@ -24,10 +24,18 @@ CLASS net/minecraft/server/level/DistanceManager
 		ARG 1 chunkPos
 	METHOD getNaturalSpawnChunkCount ()I
 		COMMENT Returns the number of chunks taken into account when calculating the mob cap
+	METHOD getTicketDebugString (J)Ljava/lang/String;
+		ARG 1 chunkPos
 	METHOD getTicketLevelAt (Lnet/minecraft/util/SortedArraySet;)I
 		COMMENT Gets the {@linkplain net.minecraft.server.level.Ticket#getTicketLevel level} of the ticket.
 		ARG 0 tickets
+	METHOD getTickets (J)Lnet/minecraft/util/SortedArraySet;
+		ARG 1 chunkPos
 	METHOD hasPlayersNearby (J)Z
+		ARG 1 chunkPos
+	METHOD inBlockTickingRange (J)Z
+		ARG 1 chunkPos
+	METHOD inEntityTickingRange (J)Z
 		ARG 1 chunkPos
 	METHOD isChunkToRemove (J)Z
 		ARG 1 chunkPos
@@ -72,6 +80,8 @@ CLASS net/minecraft/server/level/DistanceManager
 			ARG 1 sectionPos
 			ARG 3 level
 	CLASS PlayerTicketTracker
+		METHOD haveTicketFor (I)Z
+			ARG 1 level
 		METHOD onLevelChange (JII)V
 			COMMENT Called after {@link PlayerChunkTracker#setLevel(long, int)} puts/removes chunk into/from {@link #chunksInRange}.
 			ARG 1 chunkPos
