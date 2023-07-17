@@ -8,6 +8,10 @@ CLASS net/minecraft/network/chat/FilterMask
 		ARG 2 type
 	METHOD apply (Ljava/lang/String;)Ljava/lang/String;
 		ARG 1 text
+	METHOD applyWithFormatting (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
+		ARG 1 text
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
 	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/chat/FilterMask;
 		ARG 0 buffer
 	METHOD setFiltered (I)V
@@ -15,3 +19,7 @@ CLASS net/minecraft/network/chat/FilterMask
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/network/chat/FilterMask;)V
 		ARG 0 buffer
 		ARG 1 mask
+	CLASS Type
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Ljava/util/function/Supplier;)V
+			ARG 3 serializedName
+			ARG 4 codec
