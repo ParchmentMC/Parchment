@@ -19,6 +19,12 @@ CLASS net/minecraft/server/network/ServerConnectionListener
 		COMMENT Shuts down all open endpoints (with immediate effect?)
 	METHOD tick ()V
 		COMMENT Will try to process the packets received by each NetworkManager, gracefully manage processing failures and cleans up dead connections
+	CLASS 1
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channel
+	CLASS 2
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channel
 	CLASS LatencySimulator
 		METHOD <init> (II)V
 			ARG 1 delay
@@ -29,6 +35,8 @@ CLASS net/minecraft/server/network/ServerConnectionListener
 		METHOD delayDownstream (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
 			ARG 1 ctx
 			ARG 2 msg
+		METHOD onTimeout (Lio/netty/util/Timeout;)V
+			ARG 1 timeout
 		CLASS DelayedMessage
 			METHOD <init> (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
 				ARG 1 ctx
