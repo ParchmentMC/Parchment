@@ -1,0 +1,16 @@
+CLASS net/minecraft/tags/TagNetworkSerialization
+	METHOD deserializeTagsFromNetwork (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Registry;Lnet/minecraft/tags/TagNetworkSerialization$NetworkPayload;Lnet/minecraft/tags/TagNetworkSerialization$TagOutput;)V
+		ARG 0 registryKey
+		ARG 2 networkPayload
+		ARG 3 output
+	METHOD serializeTagsToNetwork (Lnet/minecraft/core/LayeredRegistryAccess;)Ljava/util/Map;
+		ARG 0 registryAccess
+	METHOD serializeToNetwork (Lnet/minecraft/core/Registry;)Lnet/minecraft/tags/TagNetworkSerialization$NetworkPayload;
+		ARG 0 registry
+	CLASS NetworkPayload
+		METHOD <init> (Ljava/util/Map;)V
+			ARG 1 tags
+		METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/tags/TagNetworkSerialization$NetworkPayload;
+			ARG 0 buffer
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
