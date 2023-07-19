@@ -1,7 +1,7 @@
 CLASS net/minecraft/core/RegistryCodecs
 	COMMENT Utility class containing static methods to create and work with codecs for Minecraft registries.
 	METHOD fullCodec (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
-		COMMENT Creates a codec for serializing and deserializing registries with a fixed element codec.
+		COMMENT Creates a codec for serializing and deserializing a registry, as a map of resource keys to values encoded with the provided element codec.
 		COMMENT <p>
 		COMMENT @return a codec for the specified registry.
 		ARG 0 registryKey
@@ -11,9 +11,9 @@ CLASS net/minecraft/core/RegistryCodecs
 		ARG 2 elementCodec
 			COMMENT the codec for serializing and deserializing the individual elements.
 	METHOD homogeneousList (Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/Codec;
-		COMMENT Creates a codec for serializing and deserializing holder sets with a homogeneous element list.
+		COMMENT Creates a codec for serializing and deserializing a {@code HolderSet<T>}. The set may be represented as a tag, or a homogeneous list of resource keys denoting elements in the provided registry.
 		COMMENT <p>
-		COMMENT @return a codec for holder sets with a homogeneous element list.
+		COMMENT @return a codec for a {@code HolderSet<T>}
 		ARG 0 registryKey
 			COMMENT the resource key of the registry to be used for serialization and deserialization.
 	METHOD homogeneousList (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
@@ -25,9 +25,9 @@ CLASS net/minecraft/core/RegistryCodecs
 		ARG 1 elementCodec
 			COMMENT the codec for serializing and deserializing the individual elements.
 	METHOD homogeneousList (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)Lcom/mojang/serialization/Codec;
-		COMMENT Creates a codec for serializing and deserializing holder sets with a homogeneous element list.
+		COMMENT Creates a codec for serializing and deserializing a {@code HolderSet<T>}. The set may be represented as a tag, or a homogeneous list of resource keys, or inline elements encoded with the provided {@code elementCodec}.
 		COMMENT <p>
-		COMMENT @return a codec for holder sets with a homogeneous element list.
+		COMMENT @return a codec for a {@code HolderSet<T>}
 		ARG 0 registryKey
 			COMMENT the resource key of the registry to be used for serialization and deserialization.
 		ARG 1 elementCodec
@@ -61,4 +61,4 @@ CLASS net/minecraft/core/RegistryCodecs
 		ARG 1 elementCodec
 			COMMENT the codec for serializing and deserializing the individual elements.
 	CLASS RegistryEntry
-		COMMENT Private record class representing a registry entry with a name, id, and value.
+		COMMENT Represents an encoded registry entry with a name, id, and value.
