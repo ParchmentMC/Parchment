@@ -84,29 +84,75 @@ CLASS net/minecraft/util/ExtraCodecs
 			ARG 1 input
 			ARG 2 ops
 			ARG 3 prefix
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 either
+			ARG 2 dOps
+			ARG 3 input
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other
 	CLASS EitherCodec
+		COMMENT A codec implementation for handling the Either data type, which represents a value that can be either of two alternative types, F or S.
+		COMMENT <p>
+		COMMENT This codec combines two existing codecs for the two alternatives and handles decoding and encoding based on the actual data type encountered during serialization and deserialization.
+		FIELD first Lcom/mojang/serialization/Codec;
+			COMMENT The codec for the first alternative.
+		FIELD second Lcom/mojang/serialization/Codec;
+			COMMENT The codec for the second alternative.
 		METHOD <init> (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)V
 			ARG 1 first
 			ARG 2 second
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			COMMENT Decodes the input data using either the first or second codec based on the actual data type encountered.
+			COMMENT <p>
+			COMMENT @return a {@linkplain DataResult} containing the decoded value as an Either<F, S> and the remaining input data.
 			ARG 1 ops
+				COMMENT the dynamic ops used for decoding.
 			ARG 2 input
+				COMMENT the input data to decode.
 		METHOD encode (Lcom/mojang/datafixers/util/Either;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			COMMENT Encodes the {@linkplain Either} value using either the first or second codec based on the actual data type in the {@linkplain Either}.
+			COMMENT <p>
+			COMMENT @return a {@linkplain DataResult} containing the encoded input data with the {@linkplain Either} value.
 			ARG 1 input
+				COMMENT the {@linkplain Either} value to encode.
 			ARG 2 ops
+				COMMENT the dynamic ops used for encoding.
 			ARG 3 prefix
+				COMMENT the input data used as a prefix for encoding.
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 either
+			ARG 2 dOps
+			ARG 3 input
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other
 	CLASS LazyInitializedCodec
+		COMMENT A lazy-initialized codec that wraps another codec.
+		COMMENT <p>
+		COMMENT The delegate codec is not initialized until it is actually used for encoding or decoding.
+		COMMENT This helps avoid unnecessary initialization of the delegate codec when it might not be needed during serialization or deserialization.
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			COMMENT Decodes the input data using the delegate codec.
+			COMMENT <p>
+			COMMENT @return a {@linkplain DataResult} containing the decoded value of type A and the remaining input data.
 			ARG 1 ops
+				COMMENT the dynamic ops used for decoding.
 			ARG 2 input
+				COMMENT the input data to decode.
 		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			COMMENT Encodes the value using the delegate codec.
+			COMMENT <p>
+			COMMENT a {@linkplain DataResult} containing the encoded input data with the value.
 			ARG 1 input
+				COMMENT the value to encode.
 			ARG 2 ops
+				COMMENT the dynamic ops used for encoding.
 			ARG 3 prefix
+				COMMENT the input data used as a prefix for encoding.
+	CLASS TagOrElementLocation
+		METHOD decoratedId ()Ljava/lang/String;
+			COMMENT Private method to construct a decorated string representation of the record instance.
+			COMMENT <p>
+			COMMENT @return the decorated string representation of the record instance.
 	CLASS 1ContextRetrievalCodec
 		METHOD <init> (Ljava/util/function/Function;)V
 			ARG 1 valGetter

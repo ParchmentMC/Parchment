@@ -5,19 +5,42 @@ CLASS net/minecraft/resources/RegistryFileCodec
 		ARG 2 elementCodec
 		ARG 3 allowInline
 	METHOD create (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)Lnet/minecraft/resources/RegistryFileCodec;
-		COMMENT Creates a codec for a single registry element, which is held as an un-resolved {@code Supplier<E>}. Both inline definitions of the object, and references to an existing registry element id are allowed.
+		COMMENT Creates a new RegistryFileCodec instance with the specified registry key, element codec, and inline option set to true.
+		COMMENT <p>
+		COMMENT @return a new RegistryFileCodec instance with inline option set to true.
 		ARG 0 registryKey
-			COMMENT The registry which elements may belong to.
+			COMMENT the resource key of the registry to be used for serialization and deserialization.
 		ARG 1 elementCodec
-			COMMENT The codec used to decode either inline definitions, or elements before entering them into the registry.
+			COMMENT the codec used for serializing and deserializing individual elements.
 	METHOD create (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)Lnet/minecraft/resources/RegistryFileCodec;
+		COMMENT Creates a new RegistryFileCodec instance with the specified registry key, element codec, and inline option.
+		COMMENT <p>
+		COMMENT @return a new RegistryFileCodec instance with the specified inline option.
 		ARG 0 registryKey
+			COMMENT the resource key of the registry to be used for serialization and deserialization.
 		ARG 1 elementCodec
+			COMMENT the codec used for serializing and deserializing individual elements.
 		ARG 2 allowInline
+			COMMENT if {@code true}, allows inline definitions during decoding.
 	METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		COMMENT Decodes the dynamic value using the specified dynamic ops into a data result containing a pair of element holder and the remaining value.
+		COMMENT <p>
+		COMMENT @return a data result containing the decoded element holder and the remaining value or an error if the decoding fails.
 		ARG 1 ops
+			COMMENT the dynamic ops used for decoding.
 		ARG 2 input
+			COMMENT the dynamic value to be decoded.
+	METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 holder
+		ARG 2 dops
+		ARG 3 value
 	METHOD encode (Lnet/minecraft/core/Holder;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		COMMENT Encodes the provided element holder into a data result using the specified dynamic ops.
+		COMMENT <p>
+		COMMENT @return a data result containing the encoded value or an error if the encoding fails.
 		ARG 1 input
+			COMMENT the element holder to be encoded.
 		ARG 2 ops
+			COMMENT the dynamic ops used for encoding.
 		ARG 3 prefix
+			COMMENT the dynamic value to be encoded into.

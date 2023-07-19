@@ -1,12 +1,37 @@
 CLASS net/minecraft/resources/RegistryFixedCodec
+	COMMENT A codec for serializing and deserializing elements from a fixed registry in Minecraft.
+	COMMENT <p>
+	COMMENT @param <E> the type of elements stored in the registry.
 	METHOD <init> (Lnet/minecraft/resources/ResourceKey;)V
 		ARG 1 registryKey
 	METHOD create (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/resources/RegistryFixedCodec;
+		COMMENT Creates a new {@linkplain RegistryFixedCodec} instance with the specified registry key.
+		COMMENT <p>
+		COMMENT @return a new {@linkplain RegistryFixedCodec} instance.
 		ARG 0 registryKey
+			COMMENT the resource key of the fixed registry to be used for serialization and deserialization.
 	METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		COMMENT Decodes the dynamic value using the specified dynamic ops into a data result containing a pair of element holder and the remaining value.
+		COMMENT <p>
+		COMMENT @return a data result containing the decoded element holder and the remaining value or an error if the decoding fails.
 		ARG 1 ops
+			COMMENT The dynamic ops used for decoding.
 		ARG 2 value
+			COMMENT the dynamic value to be decoded.
+	METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 elementHolder
+			COMMENT the element holder to be encoded.
+		ARG 2 dOps
+			COMMENT the dynamic ops used for encoding.
+		ARG 3 valueType
+			COMMENT the dynamic value to be encoded into.
 	METHOD encode (Lnet/minecraft/core/Holder;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		COMMENT Encodes the provided element holder into a data result using the specified dynamic ops.
+		COMMENT <p>
+		COMMENT @return a data result containing the encoded value or an error if the encoding fails.
 		ARG 1 holder
+			COMMENT the element holder to be encoded.
 		ARG 2 ops
+			COMMENT the dynamic ops used for encoding.
 		ARG 3 value
+			COMMENT the dynamic value to be encoded into.
