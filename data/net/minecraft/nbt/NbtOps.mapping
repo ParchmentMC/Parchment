@@ -76,6 +76,10 @@ CLASS net/minecraft/nbt/NbtOps
 	CLASS ListCollector
 		METHOD accept (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/NbtOps$ListCollector;
 			ARG 1 tag
+		METHOD acceptAll (Ljava/lang/Iterable;)Lnet/minecraft/nbt/NbtOps$ListCollector;
+			ARG 1 tags
+		METHOD acceptAll (Ljava/util/stream/Stream;)Lnet/minecraft/nbt/NbtOps$ListCollector;
+			ARG 1 tags
 	CLASS IntListCollector
 		METHOD <init> (I)V
 			ARG 1 value
@@ -101,3 +105,18 @@ CLASS net/minecraft/nbt/NbtOps
 			ARG 1 values
 		METHOD <init> (Lnet/minecraft/nbt/Tag;)V
 			ARG 1 value
+	CLASS HeterogenousListCollector
+		METHOD <init> (Lit/unimi/dsi/fastutil/bytes/ByteArrayList;)V
+			ARG 1 data
+		METHOD <init> (Lit/unimi/dsi/fastutil/ints/IntArrayList;)V
+			ARG 1 data
+		METHOD <init> (Lit/unimi/dsi/fastutil/longs/LongArrayList;)V
+			ARG 1 data
+		METHOD <init> (Ljava/util/Collection;)V
+			ARG 1 tags
+		METHOD isWrapper (Lnet/minecraft/nbt/CompoundTag;)Z
+			ARG 0 tag
+		METHOD wrapElement (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/CompoundTag;
+			ARG 0 tag
+		METHOD wrapIfNeeded (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+			ARG 0 tag

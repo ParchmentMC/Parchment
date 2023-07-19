@@ -1,5 +1,8 @@
 CLASS net/minecraft/Util
+	METHOD blockUntilDone (Ljava/util/function/Function;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 task
 	METHOD blockUntilDone (Ljava/util/function/Function;Ljava/util/function/Predicate;)Ljava/lang/Object;
+		ARG 0 task
 		ARG 1 donePredicate
 	METHOD copyBetweenDirs (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/nio/file/Path;)V
 		ARG 0 fromDirectory
@@ -15,6 +18,7 @@ CLASS net/minecraft/Util
 		ARG 0 list
 	METHOD createIndexLookup (Ljava/util/List;Ljava/util/function/IntFunction;)Ljava/util/function/ToIntFunction;
 		ARG 0 list
+		ARG 1 hashmap
 	METHOD createRenamer (Ljava/nio/file/Path;Ljava/nio/file/Path;)Ljava/util/function/BooleanSupplier;
 		ARG 0 filePath
 		ARG 1 newName
@@ -96,8 +100,11 @@ CLASS net/minecraft/Util
 	METHOD memoize (Ljava/util/function/Function;)Ljava/util/function/Function;
 		ARG 0 memoFunction
 	METHOD name (Ljava/lang/Runnable;Ljava/util/function/Supplier;)Ljava/lang/Runnable;
-		ARG 0 runnable
-		ARG 1 supplier
+		ARG 0 item
+		ARG 1 nameSupplier
+	METHOD name (Ljava/util/function/Supplier;Ljava/util/function/Supplier;)Ljava/util/function/Supplier;
+		ARG 0 item
+		ARG 1 nameSupplier
 	METHOD offsetByCodepoints (Ljava/lang/String;II)I
 		ARG 0 text
 		ARG 1 cursorPos
