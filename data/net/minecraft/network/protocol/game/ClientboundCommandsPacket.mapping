@@ -3,8 +3,11 @@ CLASS net/minecraft/network/protocol/game/ClientboundCommandsPacket
 		ARG 1 root
 	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
+	METHOD createEntries (Lit/unimi/dsi/fastutil/objects/Object2IntMap;)Ljava/util/List;
+		ARG 0 nodes
 	METHOD createEntry (Lcom/mojang/brigadier/tree/CommandNode;Lit/unimi/dsi/fastutil/objects/Object2IntMap;)Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$Entry;
 		ARG 0 node
+		ARG 1 nodes
 	METHOD enumerateNodes (Lcom/mojang/brigadier/tree/RootCommandNode;)Lit/unimi/dsi/fastutil/objects/Object2IntMap;
 		ARG 0 rootNode
 	METHOD getRoot (Lnet/minecraft/commands/CommandBuildContext;)Lcom/mojang/brigadier/tree/RootCommandNode;
@@ -18,6 +21,9 @@ CLASS net/minecraft/network/protocol/game/ClientboundCommandsPacket
 		ARG 0 buffer
 	METHOD validateEntries (Ljava/util/List;)V
 		ARG 0 entries
+	METHOD validateEntries (Ljava/util/List;Ljava/util/function/BiPredicate;)V
+		ARG 0 entries
+		ARG 1 validator
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buffer
