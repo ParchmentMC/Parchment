@@ -1,8 +1,26 @@
 CLASS net/minecraft/resources/HolderSetCodec
+	METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)V
+		ARG 1 registryKey
+		ARG 2 elementCodec
+		ARG 3 disallowInline
 	METHOD create (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)Lcom/mojang/serialization/Codec;
 		ARG 0 registryKey
 		ARG 1 holderCodec
 		ARG 2 disallowInline
+	METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 ops
+		ARG 2 input
+	METHOD decodeWithoutRegistry (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 ops
+		ARG 2 input
+	METHOD encode (Lnet/minecraft/core/HolderSet;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 input
+		ARG 2 ops
+		ARG 3 prefix
+	METHOD encodeWithoutRegistry (Lnet/minecraft/core/HolderSet;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 input
+		ARG 2 ops
+		ARG 3 prefix
 	METHOD homogenousList (Lcom/mojang/serialization/Codec;Z)Lcom/mojang/serialization/Codec;
 		ARG 0 holderCodec
 		ARG 1 disallowInline
