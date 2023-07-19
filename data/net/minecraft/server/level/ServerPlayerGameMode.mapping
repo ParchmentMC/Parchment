@@ -3,8 +3,14 @@ CLASS net/minecraft/server/level/ServerPlayerGameMode
 		ARG 1 player
 	METHOD changeGameModeForPlayer (Lnet/minecraft/world/level/GameType;)Z
 		ARG 1 gameModeForPlayer
+	METHOD debugLogging (Lnet/minecraft/core/BlockPos;ZILjava/lang/String;)V
+		ARG 1 pos
+		ARG 3 sequence
+		ARG 4 message
 	METHOD destroyAndAck (Lnet/minecraft/core/BlockPos;ILjava/lang/String;)V
 		ARG 1 pos
+		ARG 2 sequence
+		ARG 3 message
 	METHOD destroyBlock (Lnet/minecraft/core/BlockPos;)Z
 		COMMENT Attempts to harvest a block
 		ARG 1 pos
@@ -17,6 +23,7 @@ CLASS net/minecraft/server/level/ServerPlayerGameMode
 	METHOD incrementDestroyProgress (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;I)F
 		ARG 1 state
 		ARG 2 pos
+		ARG 3 startTick
 	METHOD isCreative ()Z
 		COMMENT Get if we are in creative game mode.
 	METHOD setGameModeForPlayer (Lnet/minecraft/world/level/GameType;Lnet/minecraft/world/level/GameType;)V

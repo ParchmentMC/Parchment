@@ -46,11 +46,21 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 entity
 	METHOD getChunkDebugData (Lnet/minecraft/world/level/ChunkPos;)Ljava/lang/String;
 		ARG 1 pos
+	METHOD getChunkQueueLevel (J)Ljava/util/function/IntSupplier;
+		ARG 1 chunkPos
+	METHOD getChunkRangeFuture (Lnet/minecraft/server/level/ChunkHolder;ILjava/util/function/IntFunction;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunkHolder
+		ARG 2 range
+		ARG 3 statusGetter
 	METHOD getChunks ()Ljava/lang/Iterable;
 		COMMENT Gets an unmodifiable iterable of all loaded chunks in the chunk manager
 	METHOD getDependencyStatus (Lnet/minecraft/world/level/chunk/ChunkStatus;I)Lnet/minecraft/world/level/chunk/ChunkStatus;
 		ARG 1 chunkStatus
 	METHOD getPlayersCloseForSpawning (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/List;
+		ARG 1 chunkPos
+	METHOD getUpdatingChunkIfPresent (J)Lnet/minecraft/server/level/ChunkHolder;
+		ARG 1 chunkPos
+	METHOD getVisibleChunkIfPresent (J)Lnet/minecraft/server/level/ChunkHolder;
 		ARG 1 chunkPos
 	METHOD handleChunkLoadFailure (Ljava/lang/Throwable;Lnet/minecraft/world/level/ChunkPos;)Lcom/mojang/datafixers/util/Either;
 		ARG 1 exception
@@ -58,6 +68,16 @@ CLASS net/minecraft/server/level/ChunkMap
 	METHOD isChunkDataValid (Lnet/minecraft/nbt/CompoundTag;)Z
 		ARG 0 tag
 	METHOD isChunkInRange (IIIII)Z
+		ARG 0 x1
+		ARG 1 z1
+		ARG 2 x2
+		ARG 3 z2
+		ARG 4 maxDistance
+	METHOD isChunkOnRangeBorder (IIIII)Z
+		ARG 0 x1
+		ARG 1 z1
+		ARG 2 x2
+		ARG 3 z2
 		ARG 4 maxDistance
 	METHOD isExistingChunkFull (Lnet/minecraft/world/level/ChunkPos;)Z
 		ARG 1 chunkPos
@@ -70,6 +90,9 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 chunkPos
 	METHOD move (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
+	METHOD onFullChunkStatusChange (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/server/level/FullChunkStatus;)V
+		ARG 1 chunkPos
+		ARG 2 fullChunkStatus
 	METHOD playerIsCloseEnoughForSpawning (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/ChunkPos;)Z
 		ARG 1 player
 		ARG 2 chunkPos
@@ -98,6 +121,8 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 chunkPos
 	METHOD removeEntity (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
+	METHOD resendBiomesForChunks (Ljava/util/List;)V
+		ARG 1 chunks
 	METHOD save (Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
 		ARG 1 chunk
 	METHOD saveAllChunks (Z)V
@@ -156,6 +181,8 @@ CLASS net/minecraft/server/level/ChunkMap
 			ARG 1 other
 		METHOD removePlayer (Lnet/minecraft/server/level/ServerPlayer;)V
 			ARG 1 player
+		METHOD scaledRange (I)I
+			ARG 1 trackingDistance
 		METHOD updatePlayer (Lnet/minecraft/server/level/ServerPlayer;)V
 			ARG 1 player
 		METHOD updatePlayers (Ljava/util/List;)V
