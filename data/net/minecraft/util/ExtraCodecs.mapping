@@ -84,10 +84,6 @@ CLASS net/minecraft/util/ExtraCodecs
 			ARG 1 input
 			ARG 2 ops
 			ARG 3 prefix
-		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
-			ARG 1 either
-			ARG 2 dOps
-			ARG 3 input
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other
 	CLASS EitherCodec
@@ -117,10 +113,6 @@ CLASS net/minecraft/util/ExtraCodecs
 				COMMENT the dynamic ops used for encoding.
 			ARG 3 prefix
 				COMMENT the input data used as a prefix for encoding.
-		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
-				COMMENT the {@linkplain Either} value to encode.
-				COMMENT the dynamic ops used for encoding.
-				COMMENT the input data used as a prefix for encoding.
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other
 	CLASS LazyInitializedCodec
@@ -132,14 +124,19 @@ CLASS net/minecraft/util/ExtraCodecs
 			COMMENT Decodes the input data using the delegate codec.
 			COMMENT <p>
 			COMMENT @return a {@linkplain DataResult} containing the decoded value of type A and the remaining input data.
+			ARG 1 ops
 				COMMENT the dynamic ops used for decoding.
+			ARG 2 input
 				COMMENT the input data to decode.
 		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
 			COMMENT Encodes the value using the delegate codec.
 			COMMENT <p>
 			COMMENT a {@linkplain DataResult} containing the encoded input data with the value.
+			ARG 1 input
 				COMMENT the value to encode.
+			ARG 2 ops
 				COMMENT the dynamic ops used for encoding.
+			ARG 3 prefix
 				COMMENT the input data used as a prefix for encoding.
 	CLASS TagOrElementLocation
 		METHOD decoratedId ()Ljava/lang/String;
