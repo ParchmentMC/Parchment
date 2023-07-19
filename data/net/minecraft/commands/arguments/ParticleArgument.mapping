@@ -1,4 +1,6 @@
 CLASS net/minecraft/commands/arguments/ParticleArgument
+	METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
+		ARG 1 buildContext
 	METHOD getParticle (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/core/particles/ParticleOptions;
 		ARG 0 context
 		ARG 1 name
@@ -9,6 +11,8 @@ CLASS net/minecraft/commands/arguments/ParticleArgument
 		ARG 2 builder
 	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/core/particles/ParticleOptions;
 		ARG 1 reader
+	METHOD particle (Lnet/minecraft/commands/CommandBuildContext;)Lnet/minecraft/commands/arguments/ParticleArgument;
+		ARG 0 buildContext
 	METHOD readParticle (Lcom/mojang/brigadier/StringReader;Lnet/minecraft/core/HolderLookup;)Lnet/minecraft/core/particles/ParticleOptions;
 		ARG 0 reader
 		ARG 1 particleTypeLookup

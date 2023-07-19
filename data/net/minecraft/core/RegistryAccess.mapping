@@ -9,6 +9,9 @@ CLASS net/minecraft/core/RegistryAccess
 	METHOD registryOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Registry;
 		COMMENT A variant of {@link #registry(ResourceKey)} that throws if the registry does not exist.
 		ARG 1 registryKey
+	CLASS 1FrozenAccess
+		METHOD <init> (Lnet/minecraft/core/RegistryAccess;Ljava/util/stream/Stream;)V
+			ARG 2 registries
 	CLASS RegistryEntry
 		METHOD fromMapEntry (Ljava/util/Map$Entry;)Lnet/minecraft/core/RegistryAccess$RegistryEntry;
 			ARG 0 mapEntry
@@ -16,6 +19,8 @@ CLASS net/minecraft/core/RegistryAccess
 			ARG 0 key
 			ARG 1 value
 	CLASS ImmutableRegistryAccess
+		METHOD <init> (Ljava/util/List;)V
+			ARG 1 registries
 		METHOD <init> (Ljava/util/Map;)V
 			ARG 1 registries
 		METHOD <init> (Ljava/util/stream/Stream;)V
