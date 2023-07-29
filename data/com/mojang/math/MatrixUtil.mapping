@@ -1,6 +1,17 @@
 CLASS com/mojang/math/MatrixUtil
+	METHOD eigenvalueJacobi (Lorg/joml/Matrix3f;I)Lorg/joml/Quaternionf;
+		ARG 0 input
+		ARG 1 iterations
 	METHOD mulComponentWise (Lorg/joml/Matrix4f;F)Lorg/joml/Matrix4f;
 		ARG 0 matrix
 		ARG 1 scalar
+	METHOD similarityTransform (Lorg/joml/Matrix3f;Lorg/joml/Matrix3f;)V
+		ARG 0 input
+		ARG 1 tempStorage
+	METHOD stepJacobi (Lorg/joml/Matrix3f;Lorg/joml/Matrix3f;Lorg/joml/Quaternionf;Lorg/joml/Quaternionf;)V
+		ARG 0 input
+		ARG 1 tempStorage
+		ARG 2 resultEigenvector
+		ARG 3 resultEigenvalue
 	METHOD svdDecompose (Lorg/joml/Matrix3f;)Lorg/apache/commons/lang3/tuple/Triple;
 		ARG 0 matrix
