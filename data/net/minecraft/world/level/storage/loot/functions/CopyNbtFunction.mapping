@@ -12,6 +12,8 @@ CLASS net/minecraft/world/level/storage/loot/functions/CopyNbtFunction
 	METHOD copyData (Lnet/minecraft/world/level/storage/loot/providers/nbt/NbtProvider;)Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$Builder;
 		COMMENT Create a builder that copies data from the given NbtProvider.
 		ARG 0 nbtSource
+	METHOD lambda$run$0 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/nbt/Tag;Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction$CopyOperation;)V
+		ARG 2 operation
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
@@ -26,6 +28,11 @@ CLASS net/minecraft/world/level/storage/loot/functions/CopyNbtFunction
 			ARG 2 targetPath
 			ARG 3 copyAction
 	CLASS Serializer
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction;Lcom/google/gson/JsonSerializationContext;)V
+			COMMENT Serialize the {@link CopyNbtFunction} by putting its data into the JsonObject.
+			ARG 1 json
+			ARG 2 copyNbtFunction
+			ARG 3 serializationContext
 		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/CopyNbtFunction;
 			ARG 1 object
 			ARG 2 deserializationContext
@@ -49,3 +56,13 @@ CLASS net/minecraft/world/level/storage/loot/functions/CopyNbtFunction
 			ARG 1 targetNbt
 			ARG 2 nbtPath
 			ARG 3 sourceNbt
+		CLASS 2
+			METHOD lambda$merge$0 (Lnet/minecraft/nbt/Tag;Lnet/minecraft/nbt/Tag;)V
+				ARG 1 tag
+			METHOD lambda$merge$1 (Ljava/util/List;Lnet/minecraft/nbt/Tag;)V
+				ARG 1 listTag
+		CLASS 3
+			METHOD lambda$merge$0 (Lnet/minecraft/nbt/Tag;Lnet/minecraft/nbt/Tag;)V
+				ARG 1 tag
+			METHOD lambda$merge$1 (Ljava/util/List;Lnet/minecraft/nbt/Tag;)V
+				ARG 1 compoundTag
