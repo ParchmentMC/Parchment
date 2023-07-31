@@ -1,17 +1,42 @@
 CLASS net/minecraft/world/level/storage/loot/LootDataManager
+	METHOD apply (Ljava/util/Map;)V
+		ARG 1 collectedElements
 	METHOD castAndValidate (Lnet/minecraft/world/level/storage/loot/ValidationContext;Lnet/minecraft/world/level/storage/loot/LootDataId;Ljava/lang/Object;)V
 		ARG 0 context
 		ARG 1 id
+		ARG 2 element
 	METHOD createComposite ([Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
 		ARG 0 functions
 	METHOD createComposite ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
 		ARG 0 terms
 	METHOD getKeys (Lnet/minecraft/world/level/storage/loot/LootDataType;)Ljava/util/Collection;
 		ARG 1 type
+	METHOD lambda$apply$6 (Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/world/level/storage/loot/LootDataType;Lcom/google/common/collect/ImmutableMultimap$Builder;Lnet/minecraft/resources/ResourceLocation;Ljava/lang/Object;)V
+		ARG 3 elementName
+		ARG 4 element
+	METHOD lambda$apply$7 (Lcom/google/common/collect/ImmutableMap$Builder;Lcom/google/common/collect/ImmutableMultimap$Builder;Lnet/minecraft/world/level/storage/loot/LootDataType;Ljava/util/Map;)V
+		ARG 2 lootDataType
+		ARG 3 elements
+	METHOD lambda$apply$8 (Lnet/minecraft/world/level/storage/loot/ValidationContext;Lnet/minecraft/world/level/storage/loot/LootDataId;Ljava/lang/Object;)V
+		ARG 1 id
+		ARG 2 element
+	METHOD lambda$apply$9 (Ljava/lang/String;Ljava/lang/String;)V
+		ARG 0 errorOwner
+		ARG 1 errorMessage
+	METHOD lambda$reload$0 (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;Ljava/util/Map;Lnet/minecraft/world/level/storage/loot/LootDataType;)Ljava/util/concurrent/CompletableFuture;
+		ARG 3 lootDataType
+	METHOD lambda$reload$2 (Ljava/util/Map;Ljava/lang/Void;)V
+		ARG 2 ignored
+	METHOD lambda$scheduleElementParse$3 (Ljava/util/Map;Lnet/minecraft/resources/ResourceLocation;Ljava/lang/Object;)V
+		ARG 2 element
+	METHOD lambda$scheduleElementParse$4 (Lnet/minecraft/world/level/storage/loot/LootDataType;Ljava/util/Map;Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonElement;)V
+		ARG 2 elementName
+		ARG 3 elementJson
 	METHOD scheduleElementParse (Lnet/minecraft/world/level/storage/loot/LootDataType;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;Ljava/util/Map;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 lootDataType
 		ARG 1 resourceManager
 		ARG 2 backgroundExecutor
+		ARG 3 elementCollector
 	CLASS FunctionSequence
 		METHOD <init> ([Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
 			ARG 1 functions
