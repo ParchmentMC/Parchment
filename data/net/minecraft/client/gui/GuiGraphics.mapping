@@ -156,6 +156,7 @@ CLASS net/minecraft/client/gui/GuiGraphics
 			COMMENT the height of the texture.
 	METHOD blitNineSliced (Lnet/minecraft/resources/ResourceLocation;IIIIIIIII)V
 		COMMENT Blits a nine-sliced portion of the texture specified by the atlas location onto the screen.
+		COMMENT @see #blitNineSliced(ResourceLocation, int, int, int, int, int, int, int, int, int, int, int, int)
 		ARG 1 atlasLocation
 			COMMENT the location of the texture atlas.
 		ARG 2 x
@@ -178,6 +179,7 @@ CLASS net/minecraft/client/gui/GuiGraphics
 			COMMENT the height of the source texture.
 	METHOD blitNineSliced (Lnet/minecraft/resources/ResourceLocation;IIIIIIIIII)V
 		COMMENT Blits a nine-sliced portion of the texture specified by the atlas location onto the screen.
+		COMMENT @see #blitNineSliced(ResourceLocation, int, int, int, int, int, int, int, int, int, int, int, int)
 		ARG 1 atlasLocation
 			COMMENT the location of the texture atlas.
 		ARG 2 x
@@ -202,6 +204,13 @@ CLASS net/minecraft/client/gui/GuiGraphics
 			COMMENT the y-coordinate of the top-left corner of the source position.
 	METHOD blitNineSliced (Lnet/minecraft/resources/ResourceLocation;IIIIIIIIIIII)V
 		COMMENT Blits a nine-sliced portion of the texture specified by the atlas location onto the screen.
+		COMMENT <p>
+		COMMENT 9-slicing is a 2D technique which allows you to reuse an image at various sizes without needing to prepare multiple assets.
+		COMMENT It involves splitting the image into nine portions, so that when you re-size the sprite, the different portions scale or tile (that is, repeat in a grid formation) in different ways to keep the sprite in proportion.
+		COMMENT <p>
+		COMMENT This is useful when creating patterns or textures, such as walls or floors in a 2D environment.
+		COMMENT <p>
+		COMMENT This method is mainly used for GUI and Button rendering, to create scaleable/tileable assets.
 		ARG 1 atlasLocation
 			COMMENT the location of the texture atlas.
 		ARG 2 x
@@ -617,7 +626,7 @@ CLASS net/minecraft/client/gui/GuiGraphics
 		ARG 14 alpha
 			COMMENT the alpha component of the color tint.
 	METHOD pose ()Lcom/mojang/blaze3d/vertex/PoseStack;
-		COMMENT {@return the PoseStack used for transformations and rendering}
+		COMMENT {@return returns the PoseStack used for transformations and rendering.}
 	METHOD renderComponentHoverEffect (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Style;II)V
 		COMMENT Renders a hover effect for a text component at the specified mouse coordinates.
 		ARG 1 font
