@@ -21,124 +21,265 @@ CLASS net/minecraft/client/gui/Gui
 		ARG 1 minecraft
 		ARG 2 itemRenderer
 	METHOD canRenderCrosshairForSpectator (Lnet/minecraft/world/phys/HitResult;)Z
+		COMMENT Checks if the crosshair can be rendered for a spectator based on the provided {@link HitResult}.
+		COMMENT <p>
+		COMMENT @return {@code true} if the crosshair can be rendered for a spectator, {@code false} otherwise.
 		ARG 1 rayTrace
+			COMMENT the result of a ray trace operation.
+	METHOD clear ()V
+		COMMENT Clears the title and subtitle, resetting the title display time.
+	METHOD clearCache ()V
+		COMMENT Clears the chunk cache in the debug screen.
 	METHOD displayScoreboardSidebar (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/scores/Objective;)V
+		COMMENT Displays the scoreboard sidebar on the screen using the provided GuiGraphics object and objective.
 		ARG 1 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
 		ARG 2 objective
+			COMMENT the objective representing the scoreboard sidebar.
 	METHOD drawBackdrop (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Font;III)V
+		COMMENT Draws a backdrop for text with the provided GuiGraphics object, font, and dimensions, at the specified y-coordinate.
 		ARG 1 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
 		ARG 2 font
+			COMMENT the Font used for calculating the height of the backdrop.
+		ARG 3 yPosition
+			COMMENT the vertical position (Y-coordinate) of the backdrop.
 		ARG 4 width
+			COMMENT the width of the backdrop.
 		ARG 5 height
+			COMMENT the height of the backdrop.
 	METHOD getBossOverlay ()Lnet/minecraft/client/gui/components/BossHealthOverlay;
-		COMMENT Accessor for the GuiBossOverlay
+		COMMENT {@return the {@link BossHealthOverlay} instance associated with the client}
+	METHOD getCameraPlayer ()Lnet/minecraft/world/entity/player/Player;
+		COMMENT Retrieves the player entity that the camera is currently focused on.
+		COMMENT <p>
+		COMMENT @return the player entity that the camera is focused on, or null if the camera is not focused on a player.
 	METHOD getChat ()Lnet/minecraft/client/gui/components/ChatComponent;
-		COMMENT Returns a pointer to the persistent Chat GUI, containing all previous chat messages and such.
+		COMMENT {@return a pointer to the persistent Chat GUI, containing all previous chat messages and such}
+	METHOD getFont ()Lnet/minecraft/client/gui/Font;
+		COMMENT {@return the {@link Font} used for rendering text in the GUI}
+	METHOD getGuiTicks ()I
+		COMMENT {@return the number of GUI ticks elapsed}
+	METHOD getPlayerVehicleWithHealth ()Lnet/minecraft/world/entity/LivingEntity;
+		COMMENT Retrieves the living entity representing the player's vehicle with health, if any.
+		COMMENT <p>
+		COMMENT @return the living entity representing the player's vehicle with health, or null if the player is not in a vehicle or the vehicle does not have health.
+	METHOD getSpectatorGui ()Lnet/minecraft/client/gui/components/spectator/SpectatorGui;
+		COMMENT {@return the {@link SpectatorGui} instance}
+	METHOD getTabList ()Lnet/minecraft/client/gui/components/PlayerTabOverlay;
+		COMMENT {@return the {@link PlayerTabOverlay} overlay}
 	METHOD getVehicleMaxHearts (Lnet/minecraft/world/entity/LivingEntity;)I
-		ARG 1 mountEntity
+		COMMENT Retrieves the maximum number of hearts representing the vehicle's health for the given mount entity.
+		COMMENT <p>
+		COMMENT @return the maximum number of hearts representing the vehicle's health, or 0 if the mount entity is null or does not show vehicle health.
+		ARG 1 vehicle
+			COMMENT the living entity representing the vehicle.
 	METHOD getVisibleVehicleHeartRows (I)I
-		ARG 1 mountHealth
+		COMMENT Retrieves the number of rows of visible hearts needed to represent the given mount health.
+		COMMENT <p>
+		COMMENT @return the number of rows of visible hearts needed to represent the mount health.
+		ARG 1 vehicleHealth
+			COMMENT the health of the mount entity.
+	METHOD isShowingChatDisabledByPlayer ()Z
+		COMMENT {@return {@code true} if the chat disabled message is being shown, {@code false} otherwise}
 	METHOD lambda$displayScoreboardSidebar$1 (Lnet/minecraft/world/scores/Score;)Z
 		ARG 0 score
 	METHOD onDisconnected ()V
-		COMMENT Reset the GuiPlayerTabOverlay's message header and footer
+		COMMENT Called when the player is disconnected from the server.
+		COMMENT Resets various UI elements and clears messages.
 	METHOD render (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		COMMENT Renders the GUI using the provided GuiGraphics object and partial tick value.
 		ARG 1 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
 		ARG 2 partialTick
+			COMMENT the partial tick value for smooth animations.
 	METHOD renderCrosshair (Lnet/minecraft/client/gui/GuiGraphics;)V
+		COMMENT Renders the Crosshair element of the base gui.
 		ARG 1 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
 	METHOD renderDemoOverlay (Lnet/minecraft/client/gui/GuiGraphics;)V
+		COMMENT Renders the demo overlay on the screen using the provided GuiGraphics object.
 		ARG 1 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
 	METHOD renderEffects (Lnet/minecraft/client/gui/GuiGraphics;)V
+		COMMENT Renders the active effects on the screen using the provided GuiGraphics object.
 		ARG 1 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
 	METHOD renderExperienceBar (Lnet/minecraft/client/gui/GuiGraphics;I)V
+		COMMENT Renders the experience bar on the screen using the provided GuiGraphics object and x-coordinate.
 		ARG 1 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
 		ARG 2 x
+			COMMENT the x-coordinate for rendering the experience bar.
 	METHOD renderHeart (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Gui$HeartType;IIIZZ)V
+		COMMENT Renders a single heart icon on the screen.
 		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
 		ARG 2 heartType
+			COMMENT the type of heart icon to render.
 		ARG 3 x
+			COMMENT the x-coordinate of the heart's position.
 		ARG 4 y
+			COMMENT the y-coordinate of the heart's position.
 		ARG 5 yOffset
+			COMMENT the y-offset of the heart.
 		ARG 6 renderHighlight
+			COMMENT determines whether to render the heart as highlighted.
 		ARG 7 halfHeart
+			COMMENT determines whether to render the heart as a half-heart.
 	METHOD renderHearts (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/entity/player/Player;IIIIFIIIZ)V
+		COMMENT Renders the player's hearts, including health, absorption, and highlight hearts, on the screen.
 		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
 		ARG 2 player
+			COMMENT the player entity.
 		ARG 3 x
+			COMMENT the x-coordinate of the hearts' position.
 		ARG 4 y
+			COMMENT the y-coordinate of the hearts' position.
 		ARG 5 height
+			COMMENT the height of each heart.
 		ARG 6 offsetHeartIndex
+			COMMENT the index of the offset heart.
 		ARG 7 maxHealth
+			COMMENT the maximum health of the player.
 		ARG 8 currentHealth
+			COMMENT the current health of the player.
 		ARG 9 displayHealth
+			COMMENT the displayed health of the player.
 		ARG 10 absorptionAmount
+			COMMENT the absorption amount of the player.
 		ARG 11 renderHighlight
+			COMMENT determines whether to render the highlight hearts.
 	METHOD renderHotbar (FLnet/minecraft/client/gui/GuiGraphics;)V
+		COMMENT Renders the hotbar on the screen using the provided partial tick value and GuiGraphics object.
 		ARG 1 partialTick
+			COMMENT the partial tick value for smooth animations.
 		ARG 2 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
 	METHOD renderJumpMeter (Lnet/minecraft/world/entity/PlayerRideableJumping;Lnet/minecraft/client/gui/GuiGraphics;I)V
+		COMMENT Renders the jump meter for a rideable entity on the screen using the provided rideable object, GuiGraphics object, and x-coordinate.
 		ARG 1 rideable
+			COMMENT the PlayerRideableJumping object representing the rideable entity.
 		ARG 2 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
 		ARG 3 x
+			COMMENT the x-coordinate for rendering the jump meter.
 	METHOD renderPlayerHealth (Lnet/minecraft/client/gui/GuiGraphics;)V
+		COMMENT Renders the player's health, armor, food, and air bars on the screen.
 		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
 	METHOD renderPortalOverlay (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		COMMENT Renders the portal overlay effect on the screen with the specified alpha value.
 		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
 		ARG 2 alpha
+			COMMENT the alpha value of the overlay.
 	METHOD renderSavingIndicator (Lnet/minecraft/client/gui/GuiGraphics;)V
+		COMMENT Renders the autosave indicator on the screen.
 		ARG 1 guiGraphics
+			COMMENT the {@link GuiGraphics} instance used for rendering.
 	METHOD renderSelectedItemName (Lnet/minecraft/client/gui/GuiGraphics;)V
+		COMMENT Renders the name of the selected item on the screen using the provided GuiGraphics object.
 		ARG 1 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
 	METHOD renderSlot (Lnet/minecraft/client/gui/GuiGraphics;IIFLnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;I)V
+		COMMENT Renders a slot with the specified item stack at the given position on the screen.
 		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
 		ARG 2 x
+			COMMENT the x-coordinate of the slot.
 		ARG 3 y
+			COMMENT the y-coordinate of the slot.
 		ARG 4 partialTick
+			COMMENT the partial tick value for smooth animation.
 		ARG 5 player
+			COMMENT the player associated with the slot.
 		ARG 6 stack
+			COMMENT the item stack to render in the slot.
 		ARG 7 seed
+			COMMENT the seed value used for random rendering variations.
 	METHOD renderSpyglassOverlay (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		COMMENT Renders the overlay for the spyglass effect.
 		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
 		ARG 2 scopeScale
+			COMMENT the scale factor for the spyglass scope.
 	METHOD renderTextureOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/resources/ResourceLocation;F)V
+		COMMENT Renders a texture overlay on the screen with the specified shader location and alpha value.
 		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
 		ARG 2 shaderLocation
+			COMMENT the location of the shader texture.
 		ARG 3 alpha
+			COMMENT the alpha value to apply to the overlay.
 	METHOD renderVehicleHealth (Lnet/minecraft/client/gui/GuiGraphics;)V
+		COMMENT Renders the health of the player's vehicle on the screen.
 		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
 	METHOD renderVignette (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Renders the vignette effect on the screen based on the distance to the world border and the entity's position.
 		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
 		ARG 2 entity
+			COMMENT the entity used to determine the distance to the world border.
 	METHOD resetTitleTimes ()V
 		COMMENT Set the different times for the titles to their default values
 	METHOD setChatDisabledByPlayerShown (Z)V
+		COMMENT {@return {@code true} if the chat is disabled, {@code false} if chat is enabled}
 		ARG 1 chatDisabledByPlayerShown
 	METHOD setNowPlaying (Lnet/minecraft/network/chat/Component;)V
+		COMMENT Sets the currently playing record display name and updates the overlay message.
 		ARG 1 displayName
+			COMMENT the display name of the currently playing record.
 	METHOD setOverlayMessage (Lnet/minecraft/network/chat/Component;Z)V
+		COMMENT Sets the overlay message to be displayed on the screen.
 		ARG 1 component
+			COMMENT the {@link Component} representing the overlay message.
 		ARG 2 animateColor
+			COMMENT a boolean indicating whether to animate the color of the overlay message.
 	METHOD setSubtitle (Lnet/minecraft/network/chat/Component;)V
+		COMMENT Sets the subtitle to be displayed in the title screen.
 		ARG 1 subtitle
+			COMMENT the subtitle {@link Component} to be displayed.
 	METHOD setTimes (III)V
+		COMMENT Sets the fade-in, stay, and fade-out times for the title display.
 		ARG 1 titleFadeInTime
+			COMMENT the fade-in time for the title message in ticks.
 		ARG 2 titleStayTime
+			COMMENT the stay time for the title message in ticks.
 		ARG 3 titleFadeOutTime
+			COMMENT the fade-out time for the title message in ticks.
 	METHOD setTitle (Lnet/minecraft/network/chat/Component;)V
+		COMMENT Sets the title to be displayed in the title screen.
 		ARG 1 title
+			COMMENT the title {@link Component} to be displayed.
 	METHOD tick ()V
-		COMMENT The update tick for the ingame UI
+		COMMENT Advances the tick for various elements and updates their state.
 	METHOD tick (Z)V
+		COMMENT Advances the tick for the autosave indicator and optionally ticks the object if not paused.
 		ARG 1 pause
+	METHOD tickAutosaveIndicator ()V
+		COMMENT Updates the autosave indicator state.
 	METHOD updateVignetteBrightness (Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Updates the brightness of the vignette effect based on the brightness of the given entity's position.
 		ARG 1 entity
+			COMMENT the entity used to determine the brightness.
 	CLASS HeartType
 		METHOD <init> (Ljava/lang/String;IIZ)V
 			ARG 3 index
 			ARG 4 canBlink
 		METHOD forPlayer (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/client/gui/Gui$HeartType;
+			COMMENT Returns the {@link HeartType} based on the player's status effects.
+			COMMENT <p>
+			COMMENT @return the {@link HeartType} based on the player's status effects.
 			ARG 0 player
+				COMMENT the player for which to determine the HeartType.
 		METHOD getX (ZZ)I
+			COMMENT Returns the x-coordinate for rendering a heart icon.
+			COMMENT <p>
+			COMMENT @return the x-coordinate for rendering the heart icon.
 			ARG 1 halfHeart
+				COMMENT specifies whether it's a half-heart or a full-heart.
 			ARG 2 renderHighlight
+				COMMENT specifies whether to render the heart with a highlight.
