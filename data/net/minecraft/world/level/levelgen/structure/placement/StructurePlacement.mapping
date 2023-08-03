@@ -20,11 +20,18 @@ CLASS net/minecraft/world/level/levelgen/structure/placement/StructurePlacement
 		ARG 3 regionX
 		ARG 4 regionZ
 		ARG 5 probability
+	METHOD legacyPillagerOutpostReducer (JIIIF)Z
+		ARG 0 levelSeed
+		ARG 3 regionX
+		ARG 4 regionZ
+		ARG 5 probability
 	METHOD legacyProbabilityReducerWithDouble (JIIIF)Z
 		ARG 0 baseSeed
 		ARG 3 chunkX
 		ARG 4 chunkZ
 		ARG 5 probability
+	METHOD placementCodec (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/Products$P5;
+		ARG 0 codecBuilder
 	METHOD probabilityReducer (JIIIF)Z
 		ARG 0 levelSeed
 		ARG 2 regionX
@@ -36,7 +43,18 @@ CLASS net/minecraft/world/level/levelgen/structure/placement/StructurePlacement
 			ARG 1 structureState
 			ARG 2 x
 			ARG 3 z
+	CLASS FrequencyReducer
+		METHOD shouldGenerate (JIIIF)Z
+			ARG 1 levelSeed
+			ARG 4 regionX
+			ARG 5 regionZ
+			ARG 6 probability
 	CLASS FrequencyReductionMethod
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/world/level/levelgen/structure/placement/StructurePlacement$FrequencyReducer;)V
 			ARG 3 name
 			ARG 4 reducer
+		METHOD shouldGenerate (JIIIF)Z
+			ARG 1 levelSeed
+			ARG 4 regionX
+			ARG 5 regionZ
+			ARG 6 probability
