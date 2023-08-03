@@ -3,6 +3,13 @@ CLASS net/minecraft/world/level/timers/TimerQueue
 		ARG 1 callbacksRegistry
 	METHOD <init> (Lnet/minecraft/world/level/timers/TimerCallbacks;Ljava/util/stream/Stream;)V
 		ARG 1 callbacksRegistry
+		ARG 2 scheduledEventsDynamic
+	METHOD lambda$createComparator$0 (Lnet/minecraft/world/level/timers/TimerQueue$Event;)J
+		ARG 0 event
+	METHOD lambda$createComparator$1 (Lnet/minecraft/world/level/timers/TimerQueue$Event;)Lcom/google/common/primitives/UnsignedLong;
+		ARG 0 event
+	METHOD lambda$new$2 (Lcom/mojang/serialization/Dynamic;)V
+		ARG 1 scheduledEventDynamic
 	METHOD loadEvent (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
 	METHOD remove (Ljava/lang/String;)I
@@ -14,6 +21,7 @@ CLASS net/minecraft/world/level/timers/TimerQueue
 	METHOD storeEvent (Lnet/minecraft/world/level/timers/TimerQueue$Event;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 event
 	METHOD tick (Ljava/lang/Object;J)V
+		ARG 1 obj
 		ARG 2 gameTime
 	CLASS Event
 		METHOD <init> (JLcom/google/common/primitives/UnsignedLong;Ljava/lang/String;Lnet/minecraft/world/level/timers/TimerCallback;)V
