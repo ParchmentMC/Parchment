@@ -3,6 +3,8 @@ CLASS net/minecraft/world/level/storage/loot/functions/LimitCount
 	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/level/storage/loot/IntRange;)V
 		ARG 1 conditions
 		ARG 2 countLimit
+	METHOD lambda$limitCount$0 (Lnet/minecraft/world/level/storage/loot/IntRange;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		ARG 1 conditions
 	METHOD limitCount (Lnet/minecraft/world/level/storage/loot/IntRange;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
 		ARG 0 countLimit
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
@@ -13,3 +15,8 @@ CLASS net/minecraft/world/level/storage/loot/functions/LimitCount
 			ARG 1 object
 			ARG 2 deserializationContext
 			ARG 3 conditions
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/LimitCount;Lcom/google/gson/JsonSerializationContext;)V
+			COMMENT Serialize the {@link LimitCount} by putting its data into the JsonObject.
+			ARG 1 json
+			ARG 2 limitCount
+			ARG 3 serializationContext

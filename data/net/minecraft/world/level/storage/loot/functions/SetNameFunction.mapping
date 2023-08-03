@@ -10,6 +10,14 @@ CLASS net/minecraft/world/level/storage/loot/functions/SetNameFunction
 		COMMENT This will replace for example score components.
 		ARG 0 lootContext
 		ARG 1 resolutionContext
+	METHOD lambda$createResolver$0 (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/Component;
+		ARG 2 component
+	METHOD lambda$createResolver$1 (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/Component;
+		ARG 0 component
+	METHOD lambda$setName$2 (Lnet/minecraft/network/chat/Component;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		ARG 1 conditions
+	METHOD lambda$setName$3 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		ARG 2 conditions
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
@@ -23,3 +31,8 @@ CLASS net/minecraft/world/level/storage/loot/functions/SetNameFunction
 			ARG 1 object
 			ARG 2 deserializationContext
 			ARG 3 conditions
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/SetNameFunction;Lcom/google/gson/JsonSerializationContext;)V
+			COMMENT Serialize the {@link SetNameFunction} by putting its data into the JsonObject.
+			ARG 1 json
+			ARG 2 setNameFunction
+			ARG 3 serializationContext

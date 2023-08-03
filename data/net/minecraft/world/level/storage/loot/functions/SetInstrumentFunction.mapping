@@ -2,5 +2,17 @@ CLASS net/minecraft/world/level/storage/loot/functions/SetInstrumentFunction
 	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/tags/TagKey;)V
 		ARG 1 predicates
 		ARG 2 options
+	METHOD lambda$setInstrumentOptions$0 (Lnet/minecraft/tags/TagKey;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		ARG 1 conditions
 	METHOD setInstrumentOptions (Lnet/minecraft/tags/TagKey;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
 		ARG 0 instrumentOptions
+	CLASS Serializer
+		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetInstrumentFunction;
+			ARG 1 object
+			ARG 2 deserializationContext
+			ARG 3 conditions
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/SetInstrumentFunction;Lcom/google/gson/JsonSerializationContext;)V
+			COMMENT Serialize the {@link SetInstrumentFunction} by putting its data into the JsonObject.
+			ARG 1 json
+			ARG 2 setInstrumentFunction
+			ARG 3 serializationContext
