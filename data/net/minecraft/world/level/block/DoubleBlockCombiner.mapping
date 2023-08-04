@@ -1,9 +1,13 @@
 CLASS net/minecraft/world/level/block/DoubleBlockCombiner
 	METHOD combineWithNeigbour (Lnet/minecraft/world/level/block/entity/BlockEntityType;Ljava/util/function/Function;Ljava/util/function/Function;Lnet/minecraft/world/level/block/state/properties/DirectionProperty;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Ljava/util/function/BiPredicate;)Lnet/minecraft/world/level/block/DoubleBlockCombiner$NeighborCombineResult;
 		ARG 0 blockEntityType
+		ARG 1 doubleBlockTypeGetter
+		ARG 2 directionGetter
+		ARG 3 directionProperty
 		ARG 4 state
 		ARG 5 level
 		ARG 6 pos
+		ARG 7 blockedChestTest
 	CLASS Combiner
 		METHOD acceptDouble (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 first
@@ -11,6 +15,8 @@ CLASS net/minecraft/world/level/block/DoubleBlockCombiner
 		METHOD acceptSingle (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 single
 	CLASS NeighborCombineResult
+		METHOD apply (Lnet/minecraft/world/level/block/DoubleBlockCombiner$Combiner;)Ljava/lang/Object;
+			ARG 1 combiner
 		CLASS Double
 			METHOD <init> (Ljava/lang/Object;Ljava/lang/Object;)V
 				ARG 1 first
