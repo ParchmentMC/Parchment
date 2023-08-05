@@ -3,8 +3,13 @@ CLASS net/minecraft/client/renderer/debug/BeeDebugRenderer
 		ARG 1 minecraft
 	METHOD addOrUpdateBeeInfo (Lnet/minecraft/client/renderer/debug/BeeDebugRenderer$BeeInfo;)V
 		ARG 1 beeInfo
+	METHOD addOrUpdateBeeInfo (Lnet/minecraft/network/protocol/common/custom/BeeDebugPayload$BeeInfo;)V
+		ARG 1 beeInfo
 	METHOD addOrUpdateHiveInfo (Lnet/minecraft/client/renderer/debug/BeeDebugRenderer$HiveInfo;)V
 		ARG 1 hiveInfo
+	METHOD addOrUpdateHiveInfo (Lnet/minecraft/network/protocol/common/custom/HiveDebugPayload$HiveInfo;J)V
+		ARG 1 hiveInfo
+		ARG 2 lastSeen
 	METHOD doRender (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;)V
 		ARG 1 poseStack
 		ARG 2 buffer
@@ -12,9 +17,14 @@ CLASS net/minecraft/client/renderer/debug/BeeDebugRenderer
 		ARG 0 beeUuids
 	METHOD getHiveMemberNames (Lnet/minecraft/client/renderer/debug/BeeDebugRenderer$HiveInfo;)Ljava/util/Set;
 		ARG 1 hiveInfo
+	METHOD getHiveMemberNames (Lnet/minecraft/network/protocol/common/custom/HiveDebugPayload$HiveInfo;)Ljava/util/Set;
+		ARG 1 hiveInfo
 	METHOD getHiveMembers (Lnet/minecraft/core/BlockPos;)Ljava/util/Collection;
 		ARG 1 pos
 	METHOD getPosDescription (Lnet/minecraft/client/renderer/debug/BeeDebugRenderer$BeeInfo;Lnet/minecraft/core/BlockPos;)Ljava/lang/String;
+		ARG 1 beeInfo
+		ARG 2 pos
+	METHOD getPosDescription (Lnet/minecraft/network/protocol/common/custom/BeeDebugPayload$BeeInfo;Lnet/minecraft/core/BlockPos;)Ljava/lang/String;
 		ARG 1 beeInfo
 		ARG 2 pos
 	METHOD highlightHive (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/core/BlockPos;)V
@@ -23,7 +33,11 @@ CLASS net/minecraft/client/renderer/debug/BeeDebugRenderer
 		ARG 2 hivePos
 	METHOD isBeeSelected (Lnet/minecraft/client/renderer/debug/BeeDebugRenderer$BeeInfo;)Z
 		ARG 1 beeInfo
+	METHOD isBeeSelected (Lnet/minecraft/network/protocol/common/custom/BeeDebugPayload$BeeInfo;)Z
+		ARG 1 beeInfo
 	METHOD isPlayerCloseEnoughToMob (Lnet/minecraft/client/renderer/debug/BeeDebugRenderer$BeeInfo;)Z
+		ARG 1 beeInfo
+	METHOD isPlayerCloseEnoughToMob (Lnet/minecraft/network/protocol/common/custom/BeeDebugPayload$BeeInfo;)Z
 		ARG 1 beeInfo
 	METHOD lambda$clearRemovedBees$1 (Ljava/util/Map$Entry;)Z
 		ARG 1 beeInfo
@@ -53,6 +67,10 @@ CLASS net/minecraft/client/renderer/debug/BeeDebugRenderer
 		ARG 1 poseStack
 		ARG 2 buffer
 		ARG 3 beeInfo
+	METHOD renderBeeInfo (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/network/protocol/common/custom/BeeDebugPayload$BeeInfo;)V
+		ARG 1 poseStack
+		ARG 2 buffer
+		ARG 3 beeInfo
 	METHOD renderFlowerInfos (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;)V
 		ARG 1 poseStack
 		ARG 2 buffer
@@ -65,11 +83,27 @@ CLASS net/minecraft/client/renderer/debug/BeeDebugRenderer
 		ARG 2 buffer
 		ARG 3 hiveInfo
 		ARG 4 beeUuids
+	METHOD renderHiveInfo (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/network/protocol/common/custom/HiveDebugPayload$HiveInfo;Ljava/util/Collection;)V
+		ARG 1 poseStack
+		ARG 2 buffer
+		ARG 3 hiveInfo
+		ARG 4 beeUuids
 	METHOD renderPath (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/debug/BeeDebugRenderer$BeeInfo;)V
 		ARG 1 poseStack
 		ARG 2 buffer
 		ARG 3 beeInfo
+	METHOD renderPath (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/network/protocol/common/custom/BeeDebugPayload$BeeInfo;)V
+		ARG 1 poseStack
+		ARG 2 buffer
+		ARG 3 beeInfo
 	METHOD renderTextOverHive (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Ljava/lang/String;Lnet/minecraft/client/renderer/debug/BeeDebugRenderer$HiveInfo;II)V
+		ARG 0 poseStack
+		ARG 1 buffer
+		ARG 2 text
+		ARG 3 hiveInfo
+		ARG 4 layer
+		ARG 5 color
+	METHOD renderTextOverHive (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Ljava/lang/String;Lnet/minecraft/network/protocol/common/custom/HiveDebugPayload$HiveInfo;II)V
 		ARG 0 poseStack
 		ARG 1 buffer
 		ARG 2 text

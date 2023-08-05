@@ -20,12 +20,20 @@ CLASS net/minecraft/nbt/NbtIo
 		ARG 1 accounter
 	METHOD read (Ljava/io/File;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 0 file
+	METHOD readAnyTag (Ljava/io/DataInput;Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/Tag;
+		ARG 0 input
+		ARG 1 nbtAccounter
 	METHOD readCompressed (Ljava/io/File;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 0 file
 	METHOD readCompressed (Ljava/io/InputStream;)Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Reads a compressed compound tag from a GNU zipped file.
 		COMMENT @see #readCompressed(File)
 		ARG 0 zippedStream
+	METHOD readTagSafe (Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;B)Lnet/minecraft/nbt/Tag;
+		ARG 0 input
+		ARG 1 depth
+		ARG 2 accounter
+		ARG 3 type
 	METHOD readUnnamedTag (Ljava/io/DataInput;ILnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/Tag;
 		ARG 0 input
 		ARG 1 depth
@@ -36,6 +44,9 @@ CLASS net/minecraft/nbt/NbtIo
 	METHOD write (Lnet/minecraft/nbt/CompoundTag;Ljava/io/File;)V
 		ARG 0 compoundTag
 		ARG 1 file
+	METHOD writeAnyTag (Lnet/minecraft/nbt/Tag;Ljava/io/DataOutput;)V
+		ARG 0 tag
+		ARG 1 output
 	METHOD writeCompressed (Lnet/minecraft/nbt/CompoundTag;Ljava/io/File;)V
 		ARG 0 compoundTag
 		ARG 1 file

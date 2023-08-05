@@ -14,6 +14,9 @@ CLASS net/minecraft/world/effect/MobEffect
 		ARG 1 livingEntity
 		ARG 2 attributeMap
 		ARG 3 amplifier
+	METHOD addAttributeModifiers (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;I)V
+		ARG 1 attrubuteMap
+		ARG 2 amplifier
 	METHOD applyEffectTick (Lnet/minecraft/world/entity/LivingEntity;I)V
 		ARG 1 livingEntity
 		ARG 2 amplifier
@@ -46,9 +49,22 @@ CLASS net/minecraft/world/effect/MobEffect
 		ARG 2 amplifier
 	METHOD isInstantenous ()Z
 		COMMENT Returns {@code true} if the potion has an instant effect instead of a continuous one (e.g. Harming)
+	METHOD onEffectStarted (Lnet/minecraft/world/entity/LivingEntity;I)V
+		ARG 1 livingEntity
+		ARG 2 amplifier
 	METHOD removeAttributeModifiers (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/attributes/AttributeMap;I)V
 		ARG 1 livingEntity
 		ARG 2 attributeMap
 		ARG 3 amplifier
+	METHOD removeAttributeModifiers (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;)V
+		ARG 1 attributeMap
 	METHOD setFactorDataFactory (Ljava/util/function/Supplier;)Lnet/minecraft/world/effect/MobEffect;
 		ARG 1 factorDataFactory
+	METHOD shouldApplyEffectTickThisTick (II)Z
+		ARG 1 duration
+		ARG 2 amplifier
+	CLASS MobEffectAttributeModifierTemplate
+		METHOD <init> (Lnet/minecraft/world/effect/MobEffect;Ljava/util/UUID;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)V
+			ARG 2 id
+			ARG 3 amount
+			ARG 5 operation

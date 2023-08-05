@@ -19,6 +19,12 @@ CLASS net/minecraft/network/Connection
 	METHOD channelRead0 (Lio/netty/channel/ChannelHandlerContext;Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 context
 		ARG 2 packet
+	METHOD configureInMemoryPacketValidation (Lio/netty/channel/ChannelPipeline;Lnet/minecraft/network/protocol/PacketFlow;)V
+		ARG 0 pipeline
+		ARG 1 flow
+	METHOD configureInMemoryPipeline (Lio/netty/channel/ChannelPipeline;Lnet/minecraft/network/protocol/PacketFlow;)V
+		ARG 0 pipeline
+		ARG 1 flow
 	METHOD configureSerialization (Lio/netty/channel/ChannelPipeline;Lnet/minecraft/network/protocol/PacketFlow;)V
 		ARG 0 pipeline
 		ARG 1 flow
@@ -49,6 +55,10 @@ CLASS net/minecraft/network/Connection
 		ARG 2 sendListener
 		ARG 3 newProtocol
 		ARG 4 currentProtocol
+	METHOD doSendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Z)V
+		ARG 1 packet
+		ARG 2 sendListener
+		ARG 3 flush
 	METHOD exceptionCaught (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Throwable;)V
 		ARG 1 context
 		ARG 2 exception
@@ -59,8 +69,12 @@ CLASS net/minecraft/network/Connection
 		ARG 1 listener
 	METHOD getDisconnectedReason ()Lnet/minecraft/network/chat/Component;
 		COMMENT If this channel is closed, returns the exit message, null otherwise.
+	METHOD getLoggableAddress (Z)Ljava/lang/String;
+		ARG 1 logIps
 	METHOD getPacketListener ()Lnet/minecraft/network/PacketListener;
 		COMMENT Gets the current handler for processing packets
+	METHOD getProtocolKey (Lnet/minecraft/network/protocol/PacketFlow;)Lio/netty/util/AttributeKey;
+		ARG 0 packetFlow
 	METHOD getReceiving ()Lnet/minecraft/network/protocol/PacketFlow;
 		COMMENT The receiving packet direction (i.e. SERVERBOUND on the server and CLIENTBOUND on the client).
 	METHOD getRemoteAddress ()Ljava/net/SocketAddress;
@@ -71,21 +85,53 @@ CLASS net/minecraft/network/Connection
 		COMMENT Checks if the channel is no longer active and if so, processes the disconnection
 		COMMENT by notifying the current packet listener, which will handle things like removing the player from the world (serverside) or
 		COMMENT showing the disconnection screen (clientside).
+	METHOD initiateServerboundConnection (Ljava/lang/String;ILnet/minecraft/network/PacketListener;Lnet/minecraft/network/protocol/handshake/ClientIntent;)V
+		ARG 1 hostName
+		ARG 2 port
+		ARG 3 disconnectListener
+		ARG 4 intention
+	METHOD initiateServerboundPlayConnection (Ljava/lang/String;ILnet/minecraft/network/protocol/login/ClientLoginPacketListener;)V
+		ARG 1 hostName
+		ARG 2 port
+		ARG 3 disconnectListener
+	METHOD initiateServerboundStatusConnection (Ljava/lang/String;ILnet/minecraft/network/protocol/status/ClientStatusPacketListener;)V
+		ARG 1 hostName
+		ARG 2 port
+		ARG 3 disconnectListener
 	METHOD isConnected ()Z
 		COMMENT Returns {@code true} if this {@code Connection} has an active channel, {@code false} otherwise.
 	METHOD isConnecting ()Z
 		COMMENT Returns {@code true} while this connection is still connecting, i.e. {@link #channelActive} has not fired yet.
 	METHOD isMemoryConnection ()Z
 		COMMENT True if this {@code Connection} uses a memory connection (single player game). False may imply both an active TCP connection or simply no active connection at all
+	METHOD lambda$initiateServerboundConnection$7 (Lnet/minecraft/network/protocol/handshake/ClientIntent;Lnet/minecraft/network/PacketListener;Ljava/lang/String;ILnet/minecraft/network/Connection;)V
+		ARG 5 connection
+	METHOD runOnceConnected (Ljava/util/function/Consumer;)V
+		ARG 1 action
 	METHOD send (Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 packet
 	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
+		ARG 1 packet
+		ARG 2 sendListener
+	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Z)V
+		ARG 1 packet
+		ARG 2 listener
+		ARG 3 flush
+	METHOD sendNoFlush (Lnet/minecraft/network/protocol/Packet;)V
+		ARG 1 packet
+	METHOD sendNoFlush (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 		ARG 1 packet
 		ARG 2 sendListener
 	METHOD sendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 		COMMENT Will commit the packet to the channel. If the current thread 'owns' the channel it will write and flush the packet, otherwise it will add a task for the channel eventloop thread to do that.
 		ARG 1 packet
 		ARG 2 sendListener
+	METHOD sendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Z)V
+		ARG 1 packet
+		ARG 2 sendListener
+		ARG 3 flush
+	METHOD setClientboundProtocolAfterHandshake (Lnet/minecraft/network/protocol/handshake/ClientIntent;)V
+		ARG 1 intention
 	METHOD setEncryptionKey (Ljavax/crypto/Cipher;Ljavax/crypto/Cipher;)V
 		COMMENT Enables encryption for this connection using the given decrypting and encrypting ciphers.
 		COMMENT This adds new handlers to this connection's pipeline which handle the decrypting and encrypting.
@@ -95,9 +141,13 @@ CLASS net/minecraft/network/Connection
 		COMMENT @see net.minecraft.network.protocol.login.ServerboundKeyPacket
 		ARG 1 decryptingCipher
 		ARG 2 encryptingCipher
+	METHOD setInitialProtocolAttributes (Lio/netty/channel/Channel;)V
+		ARG 0 channel
 	METHOD setListener (Lnet/minecraft/network/PacketListener;)V
 		COMMENT Sets the {@link net.minecraft.network.PacketListener} for this {@code Connection}, no checks are made if this listener is suitable for the particular connection state (protocol)
 		ARG 1 handler
+	METHOD setListenerForServerboundHandshake (Lnet/minecraft/network/PacketListener;)V
+		ARG 1 packetListener
 	METHOD setProtocol (Lnet/minecraft/network/ConnectionProtocol;)V
 		COMMENT Sets the new connection state and registers which packets this channel may send and receive
 		ARG 1 newState

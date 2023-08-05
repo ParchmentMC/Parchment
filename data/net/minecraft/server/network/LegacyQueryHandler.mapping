@@ -1,11 +1,23 @@
 CLASS net/minecraft/server/network/LegacyQueryHandler
+	METHOD <init> (Lnet/minecraft/server/ServerInfo;)V
+		ARG 1 server
 	METHOD <init> (Lnet/minecraft/server/network/ServerConnectionListener;)V
 		ARG 1 serverConnectionListener
 	METHOD channelRead (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
 		ARG 1 context
 		ARG 2 message
+	METHOD createLegacyDisconnectPacket (Lio/netty/buffer/ByteBufAllocator;Ljava/lang/String;)Lio/netty/buffer/ByteBuf;
+		ARG 0 bufferAllocator
+		ARG 1 reason
 	METHOD createReply (Ljava/lang/String;)Lio/netty/buffer/ByteBuf;
 		ARG 1 string
+	METHOD createVersion0Response (Lnet/minecraft/server/ServerInfo;)Ljava/lang/String;
+		ARG 0 server
+	METHOD createVersion1Response (Lnet/minecraft/server/ServerInfo;)Ljava/lang/String;
+		ARG 0 server
+	METHOD readCustomPayloadPacket (Lio/netty/buffer/ByteBuf;)Z
+		ARG 0 buffer
 	METHOD sendFlushAndClose (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;)V
-		ARG 1 context
+		ARG 0 context
+		ARG 1 buffer
 		ARG 2 data

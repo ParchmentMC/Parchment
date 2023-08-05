@@ -26,6 +26,11 @@ CLASS net/minecraft/client/gui/components/EditBox
 		ARG 4 width
 		ARG 5 height
 		ARG 6 message
+	METHOD <init> (Lnet/minecraft/client/gui/Font;IILnet/minecraft/network/chat/Component;)V
+		ARG 1 font
+		ARG 2 width
+		ARG 3 height
+		ARG 4 message
 	METHOD charTyped (CI)Z
 		ARG 1 codePoint
 		ARG 2 modifiers
@@ -80,13 +85,23 @@ CLASS net/minecraft/client/gui/components/EditBox
 	METHOD moveCursor (I)V
 		COMMENT Moves the text cursor by a specified number of characters and clears the selection
 		ARG 1 delta
+	METHOD moveCursor (IZ)V
+		ARG 1 delta
+		ARG 2 select
 	METHOD moveCursorTo (I)V
 		COMMENT Sets the current position of the cursor.
 		ARG 1 pos
+	METHOD moveCursorTo (IZ)V
+		ARG 1 delta
+		ARG 2 select
 	METHOD moveCursorToEnd ()V
 		COMMENT Moves the cursor to the very end of this text box.
+	METHOD moveCursorToEnd (Z)V
+		ARG 1 select
 	METHOD moveCursorToStart ()V
 		COMMENT Moves the cursor to the very start of this text box.
+	METHOD moveCursorToStart (Z)V
+		ARG 1 select
 	METHOD onValueChange (Ljava/lang/String;)V
 		ARG 1 newText
 	METHOD renderHighlight (Lnet/minecraft/client/gui/GuiGraphics;IIII)V
@@ -95,6 +110,8 @@ CLASS net/minecraft/client/gui/components/EditBox
 		ARG 3 minY
 		ARG 4 maxX
 		ARG 5 maxY
+	METHOD scrollTo (I)V
+		ARG 1 position
 	METHOD setBordered (Z)V
 		COMMENT Sets whether the background and outline of this text box should be drawn.
 		ARG 1 enableBackgroundDrawing

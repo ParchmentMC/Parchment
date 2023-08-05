@@ -23,6 +23,8 @@ CLASS net/minecraft/world/level/pathfinder/Path
 		ARG 1 index
 	METHOD isDone ()Z
 		COMMENT Returns {@code true} if this path has reached the end
+	METHOD readNodeArray (Lnet/minecraft/network/FriendlyByteBuf;)[Lnet/minecraft/world/level/pathfinder/Node;
+		ARG 0 buffer
 	METHOD replaceNode (ILnet/minecraft/world/level/pathfinder/Node;)V
 		ARG 1 index
 		ARG 2 point
@@ -37,5 +39,13 @@ CLASS net/minecraft/world/level/pathfinder/Path
 		ARG 1 currentPathIndex
 	METHOD truncateNodes (I)V
 		ARG 1 length
+	METHOD writeNodeArray (Lnet/minecraft/network/FriendlyByteBuf;[Lnet/minecraft/world/level/pathfinder/Node;)V
+		ARG 0 buffer
+		ARG 1 nodeArray
 	METHOD writeToStream (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
+	CLASS DebugData
+		METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/level/pathfinder/Path$DebugData;
+			ARG 0 buffer
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer

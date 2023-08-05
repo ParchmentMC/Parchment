@@ -6,8 +6,12 @@ CLASS net/minecraft/server/network/ServerLoginPacketListenerImpl
 		ARG 2 connection
 	METHOD createFakeProfile (Lcom/mojang/authlib/GameProfile;)Lcom/mojang/authlib/GameProfile;
 		ARG 1 original
+	METHOD createOfflineProfile (Ljava/lang/String;)Lcom/mojang/authlib/GameProfile;
+		ARG 0 username
 	METHOD disconnect (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 reason
+	METHOD finishLoginAndWaitForClient (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 profile
 	METHOD handleHello (Lnet/minecraft/network/protocol/login/ServerboundHelloPacket;)V
 		ARG 1 packet
 	METHOD handleKey (Lnet/minecraft/network/protocol/login/ServerboundKeyPacket;)V
@@ -17,3 +21,7 @@ CLASS net/minecraft/server/network/ServerLoginPacketListenerImpl
 	METHOD onDisconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Invoked when disconnecting, the parameter is a ChatComponent describing the reason for termination
 		ARG 1 reason
+	METHOD startClientVerification (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 authenticatedProfile
+	METHOD verifyLoginAndFinishConnectionSetup (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 profile

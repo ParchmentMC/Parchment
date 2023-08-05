@@ -1,6 +1,10 @@
 CLASS net/minecraft/world/entity/npc/VillagerTrades
+	METHOD commonBooks (I)Lnet/minecraft/world/entity/npc/VillagerTrades$ItemListing;
+		ARG 0 villagerXp
 	METHOD lambda$static$0 (Ljava/util/HashMap;)V
 		ARG 0 map
+	METHOD potion (Lnet/minecraft/world/item/alchemy/Potion;)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 potion
 	METHOD toIntMap (Lcom/google/common/collect/ImmutableMap;)Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
 		ARG 0 map
 	CLASS ItemListing
@@ -8,11 +12,22 @@ CLASS net/minecraft/world/entity/npc/VillagerTrades
 			ARG 1 trader
 			ARG 2 random
 	CLASS EmeraldForItems
+		METHOD <init> (Lnet/minecraft/world/item/ItemStack;III)V
+			ARG 1 item
+			ARG 2 maxUses
+			ARG 3 villagerXp
+			ARG 4 emeraldAmount
 		METHOD <init> (Lnet/minecraft/world/level/ItemLike;III)V
 			ARG 1 item
 			ARG 2 cost
 			ARG 3 maxUses
 			ARG 4 villagerXp
+		METHOD <init> (Lnet/minecraft/world/level/ItemLike;IIII)V
+			ARG 1 item
+			ARG 2 cost
+			ARG 3 maxUses
+			ARG 4 villagerXp
+			ARG 5 emeraldAmount
 	CLASS ItemsForEmeralds
 		METHOD <init> (Lnet/minecraft/world/item/Item;III)V
 			ARG 1 item
@@ -44,6 +59,9 @@ CLASS net/minecraft/world/entity/npc/VillagerTrades
 			ARG 3 numberOfItems
 			ARG 4 maxUses
 			ARG 5 villagerXp
+	CLASS TypeSpecificTrade
+		METHOD <init> (Ljava/util/Map;)V
+			ARG 1 trades
 	CLASS DyedArmorForEmeralds
 		METHOD <init> (Lnet/minecraft/world/item/Item;I)V
 			ARG 1 item
@@ -58,6 +76,14 @@ CLASS net/minecraft/world/entity/npc/VillagerTrades
 	CLASS EnchantBookForEmeralds
 		METHOD <init> (I)V
 			ARG 1 villagerXp
+		METHOD <init> (III[Lnet/minecraft/world/item/enchantment/Enchantment;)V
+			ARG 1 villagerXp
+			ARG 2 minLevel
+			ARG 3 maxLevel
+			ARG 4 tradeableEnchantments
+		METHOD <init> (I[Lnet/minecraft/world/item/enchantment/Enchantment;)V
+			ARG 1 villagerXp
+			ARG 2 tradeableEnchantments
 	CLASS TreasureMapForEmeralds
 		METHOD <init> (ILnet/minecraft/tags/TagKey;Ljava/lang/String;Lnet/minecraft/world/level/saveddata/maps/MapDecoration$Type;II)V
 			ARG 1 emeraldCost

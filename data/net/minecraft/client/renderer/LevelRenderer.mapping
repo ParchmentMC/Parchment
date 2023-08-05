@@ -101,6 +101,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 14 zSpeed
 	METHOD addRecentlyCompiledChunk (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;)V
 		ARG 1 renderChunk
+	METHOD addRecentlyCompiledSection (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
+		ARG 1 renderSection
 	METHOD allChanged ()V
 		COMMENT Loads all renderers and sets up the basic options usage.
 	METHOD applyFrustum (Lnet/minecraft/client/renderer/culling/Frustum;)V
@@ -140,6 +142,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 chunk
 	METHOD compileChunks (Lnet/minecraft/client/Camera;)V
 		ARG 1 camera
+	METHOD compileSections (Lnet/minecraft/client/Camera;)V
+		ARG 1 camera
 	METHOD destroyBlockProgress (ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 breakerId
 		ARG 2 pos
@@ -176,6 +180,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 2 infoQueue
 	METHOD isChunkCompiled (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
+	METHOD isSectionCompiled (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
 	METHOD lambda$initTransparency$0 (Lnet/minecraft/server/packs/PackResources;)Lnet/minecraft/network/chat/MutableComponent;
 		ARG 0 levelRenderer
 	METHOD levelEvent (ILnet/minecraft/core/BlockPos;I)V
@@ -190,6 +196,10 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 playing
+	METHOD offsetFrustum (Lnet/minecraft/client/renderer/culling/Frustum;)Lnet/minecraft/client/renderer/culling/Frustum;
+		ARG 0 frustum
+	METHOD onChunkLoaded (Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 1 chunkPos
 	METHOD onResourceManagerReload (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 1 resourceManager
 	METHOD playStreamingMusic (Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/core/BlockPos;)V
@@ -296,6 +306,13 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 14 green
 		ARG 15 blue
 		ARG 16 alpha
+	METHOD renderSectionLayer (Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack;DDDLorg/joml/Matrix4f;)V
+		ARG 1 renderType
+		ARG 2 poseStack
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
+		ARG 9 projectionMatrix
 	METHOD renderShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFF)V
 		ARG 0 poseStack
 		ARG 1 consumer

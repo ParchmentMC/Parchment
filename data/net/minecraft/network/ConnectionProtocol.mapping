@@ -17,6 +17,11 @@ CLASS net/minecraft/network/ConnectionProtocol
 	METHOD <init> (Ljava/lang/String;IILnet/minecraft/network/ConnectionProtocol$ProtocolBuilder;)V
 		ARG 3 id
 		ARG 4 protocolBuilder
+	METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/network/ConnectionProtocol$ProtocolBuilder;)V
+		ARG 3 id
+		ARG 4 builder
+	METHOD codec (Lnet/minecraft/network/protocol/PacketFlow;)Lnet/minecraft/network/ConnectionProtocol$CodecData;
+		ARG 1 flow
 	METHOD createPacket (Lnet/minecraft/network/protocol/PacketFlow;ILnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/Packet;
 		COMMENT Create a packet for this protocol using the given direction, packetId and data.
 		COMMENT Returns null if the packetId is not valid for this protocol/direction.
@@ -36,6 +41,18 @@ CLASS net/minecraft/network/ConnectionProtocol
 	METHOD getProtocolForPacket (Lnet/minecraft/network/protocol/Packet;)Lnet/minecraft/network/ConnectionProtocol;
 		COMMENT Look up the protocol that uses the given packet.
 		ARG 0 packet
+	CLASS CodecData
+		METHOD <init> (Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/protocol/PacketFlow;Lnet/minecraft/network/ConnectionProtocol$PacketSet;)V
+			ARG 1 protocol
+			ARG 2 flow
+			ARG 3 packetSet
+		METHOD createPacket (ILnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/Packet;
+			ARG 1 packetId
+			ARG 2 buffer
+		METHOD isValidPacketType (Lnet/minecraft/network/protocol/Packet;)Z
+			ARG 1 packet
+		METHOD packetId (Lnet/minecraft/network/protocol/Packet;)I
+			ARG 1 packet
 	CLASS PacketSet
 		METHOD addPacket (Ljava/lang/Class;Ljava/util/function/Function;)Lnet/minecraft/network/ConnectionProtocol$PacketSet;
 			ARG 1 packetClass
@@ -44,6 +61,8 @@ CLASS net/minecraft/network/ConnectionProtocol
 			ARG 1 packetId
 			ARG 2 buffer
 		METHOD getId (Ljava/lang/Class;)I
+			ARG 1 packetClass
+		METHOD isKnownPacket (Ljava/lang/Class;)Z
 			ARG 1 packetClass
 		METHOD listAllPackets (Ljava/util/function/Consumer;)V
 			ARG 1 consumer
@@ -54,3 +73,5 @@ CLASS net/minecraft/network/ConnectionProtocol
 		METHOD addFlow (Lnet/minecraft/network/protocol/PacketFlow;Lnet/minecraft/network/ConnectionProtocol$PacketSet;)Lnet/minecraft/network/ConnectionProtocol$ProtocolBuilder;
 			ARG 1 packetFlow
 			ARG 2 packetSet
+		METHOD buildCodecs (Lnet/minecraft/network/ConnectionProtocol;)Ljava/util/Map;
+			ARG 1 protocol

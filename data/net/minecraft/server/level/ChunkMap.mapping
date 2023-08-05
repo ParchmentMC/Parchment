@@ -27,6 +27,9 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 entity
 	METHOD anyPlayerCloseEnoughForSpawning (Lnet/minecraft/world/level/ChunkPos;)Z
 		ARG 1 chunkPos
+	METHOD applyChunkTrackingView (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/level/ChunkTrackingView;)V
+		ARG 1 player
+		ARG 2 chunkTrackingView
 	METHOD broadcast (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 entity
 		ARG 2 packet
@@ -38,6 +41,9 @@ CLASS net/minecraft/server/level/ChunkMap
 	METHOD debugFuturesAndCreateReportedException (Ljava/lang/IllegalStateException;Ljava/lang/String;)Lnet/minecraft/ReportedException;
 		ARG 1 exception
 		ARG 2 details
+	METHOD dropChunk (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 0 player
+		ARG 1 chunkPos
 	METHOD dumpChunks (Ljava/io/Writer;)V
 		ARG 1 writer
 	METHOD euclideanDistanceSquared (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/entity/Entity;)D
@@ -56,6 +62,8 @@ CLASS net/minecraft/server/level/ChunkMap
 		COMMENT Gets an unmodifiable iterable of all loaded chunks in the chunk manager
 	METHOD getDependencyStatus (Lnet/minecraft/world/level/chunk/ChunkStatus;I)Lnet/minecraft/world/level/chunk/ChunkStatus;
 		ARG 1 chunkStatus
+	METHOD getPlayerViewDistance (Lnet/minecraft/server/level/ServerPlayer;)I
+		ARG 1 player
 	METHOD getPlayersCloseForSpawning (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/List;
 		ARG 1 chunkPos
 	METHOD getUpdatingChunkIfPresent (J)Lnet/minecraft/server/level/ChunkHolder;
@@ -79,10 +87,24 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 2 x2
 		ARG 3 z2
 		ARG 4 maxDistance
+	METHOD isChunkOnTrackedBorder (Lnet/minecraft/server/level/ServerPlayer;II)Z
+		ARG 1 player
+		ARG 2 x
+		ARG 3 z
+	METHOD isChunkTracked (Lnet/minecraft/server/level/ServerPlayer;II)Z
+		ARG 1 player
+		ARG 2 x
+		ARG 3 z
 	METHOD isExistingChunkFull (Lnet/minecraft/world/level/ChunkPos;)Z
 		ARG 1 chunkPos
 	METHOD lambda$debugReloadGenerator$1 (Lnet/minecraft/world/level/chunk/ChunkGenerator;)V
 		ARG 1 generator
+	METHOD markChunkPendingToSend (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 1 player
+		ARG 2 chunkPos
+	METHOD markChunkPendingToSend (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/chunk/LevelChunk;)V
+		ARG 0 player
+		ARG 1 chunk
 	METHOD markPosition (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/ChunkStatus$ChunkType;)B
 		ARG 1 chunkPos
 		ARG 2 chunkType
@@ -140,6 +162,8 @@ CLASS net/minecraft/server/level/ChunkMap
 	METHOD scheduleUnload (JLnet/minecraft/server/level/ChunkHolder;)V
 		ARG 1 chunkPos
 		ARG 3 chunkHolder
+	METHOD setServerViewDistance (I)V
+		ARG 1 viewDistance
 	METHOD setViewDistance (I)V
 		ARG 1 viewDistance
 	METHOD skipPlayer (Lnet/minecraft/server/level/ServerPlayer;)Z
@@ -153,6 +177,8 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 4 holder
 			COMMENT The {@link net.minecraft.server.level.ChunkHolder} of the chunk if it is loaded, and null otherwise.
 		ARG 5 oldLevel
+	METHOD updateChunkTracking (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
 	METHOD updateChunkTracking (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/ChunkPos;Lorg/apache/commons/lang3/mutable/MutableObject;ZZ)V
 		COMMENT Sends the chunk to the client, or tells it to unload it.
 		ARG 1 player
@@ -161,6 +187,8 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 4 wasLoaded
 		ARG 5 load
 	METHOD updatePlayerPos (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/core/SectionPos;
+		ARG 1 player
+	METHOD updatePlayerPos (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
 	METHOD updatePlayerStatus (Lnet/minecraft/server/level/ServerPlayer;Z)V
 		ARG 1 player

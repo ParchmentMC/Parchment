@@ -7,14 +7,27 @@ CLASS net/minecraft/world/level/block/entity/SkullBlockEntity
 		ARG 1 pos
 		ARG 2 state
 		ARG 3 blockEntity
+	METHOD fetchGameProfile (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 profileName
+	METHOD fillProfileTextures (Lcom/mojang/authlib/GameProfile;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 profile
 	METHOD getAnimation (F)F
 		ARG 1 partialTick
+	METHOD getOrResolveGameProfile (Lnet/minecraft/nbt/CompoundTag;)Lcom/mojang/authlib/GameProfile;
+		ARG 0 tag
+	METHOD hasTextures (Lcom/mojang/authlib/GameProfile;)Z
+		ARG 0 profile
 	METHOD lambda$updateGameprofile$2 (Ljava/util/function/Consumer;Lcom/mojang/authlib/GameProfile;)V
 		ARG 1 optionalProfile
 	METHOD lambda$updateGameprofile$6 (Ljava/util/function/Consumer;Lcom/mojang/authlib/GameProfile;Ljava/util/Optional;)V
 		ARG 2 optional
 	METHOD lambda$updateOwnerProfile$0 (Lcom/mojang/authlib/GameProfile;)V
 		ARG 1 owner
+	METHOD resolveGameProfile (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 0 tag
+	METHOD resolveGameProfile (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+		ARG 0 tag
+		ARG 1 profileName
 	METHOD setOwner (Lcom/mojang/authlib/GameProfile;)V
 		ARG 1 owner
 	METHOD setup (Lnet/minecraft/server/Services;Ljava/util/concurrent/Executor;)V

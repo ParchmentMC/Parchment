@@ -1,8 +1,39 @@
 CLASS net/minecraft/world/RandomSequences
 	METHOD <init> (J)V
 		ARG 1 seed
+	METHOD createSequence (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/RandomSequence;
+		ARG 1 location
+	METHOD createSequence (Lnet/minecraft/resources/ResourceLocation;IZZ)Lnet/minecraft/world/RandomSequence;
+		ARG 1 location
+		ARG 2 salt
+		ARG 3 includeWorldSeed
+		ARG 4 includeSequenceId
+	METHOD factory (J)Lnet/minecraft/world/level/saveddata/SavedData$Factory;
+		ARG 0 seed
+	METHOD forAllSequences (Ljava/util/function/BiConsumer;)V
+		ARG 1 action
 	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/util/RandomSource;
 		ARG 1 location
+	METHOD getBooleanWithDefault (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;Z)Z
+		ARG 0 tag
+		ARG 1 key
+		ARG 2 defaultValue
 	METHOD load (JLnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/RandomSequences;
 		ARG 0 seed
 		ARG 2 tag
+	METHOD reset (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 sequence
+	METHOD reset (Lnet/minecraft/resources/ResourceLocation;IZZ)V
+		ARG 1 sequence
+		ARG 2 seed
+		ARG 3 includeWorldSeed
+		ARG 4 includeSequenceId
+	METHOD setSeedDefaults (IZZ)V
+		ARG 1 salt
+		ARG 2 includeWorldSeed
+		ARG 3 includeSequenceId
+	CLASS DirtyMarkingRandomSource
+		METHOD <init> (Lnet/minecraft/world/RandomSequences;Lnet/minecraft/util/RandomSource;)V
+			ARG 2 random
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other
