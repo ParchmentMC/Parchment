@@ -14,6 +14,14 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationSystem
 			ARG 2 selectionStrategy
 			ARG 3 travelTimeInTicks
 			ARG 4 reloadVibrationParticle
+		METHOD lambda$static$0 (Lnet/minecraft/world/level/gameevent/vibrations/VibrationSystem$Data;)Ljava/util/Optional;
+			ARG 0 data
+		METHOD lambda$static$1 (Ljava/util/Optional;Lnet/minecraft/world/level/gameevent/vibrations/VibrationSelector;Ljava/lang/Integer;)Lnet/minecraft/world/level/gameevent/vibrations/VibrationSystem$Data;
+			ARG 0 vibrationInfo
+			ARG 1 vibrationSelector
+			ARG 2 eventDelay
+		METHOD lambda$static$2 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
 		METHOD setCurrentVibration (Lnet/minecraft/world/level/gameevent/vibrations/VibrationInfo;)V
 			ARG 1 currentVibration
 		METHOD setReloadVibrationParticle (Z)V
@@ -42,6 +50,8 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationSystem
 		METHOD areAdjacentChunksTicking (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z
 			ARG 0 level
 			ARG 1 pos
+		METHOD lambda$trySelectAndScheduleVibration$0 (Lnet/minecraft/world/level/gameevent/vibrations/VibrationSystem$Data;Lnet/minecraft/world/level/gameevent/vibrations/VibrationSystem$User;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/vibrations/VibrationInfo;)V
+			ARG 3 vibrationInfo
 		METHOD receiveVibration (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/vibrations/VibrationSystem$Data;Lnet/minecraft/world/level/gameevent/vibrations/VibrationSystem$User;Lnet/minecraft/world/level/gameevent/vibrations/VibrationInfo;)Z
 			ARG 0 level
 			ARG 1 data
@@ -69,13 +79,19 @@ CLASS net/minecraft/world/level/gameevent/vibrations/VibrationSystem
 			ARG 1 level
 			ARG 2 gameEvent
 			ARG 3 context
-			ARG 4 pos
+			ARG 4 eventPos
 		METHOD isOccluded (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)Z
 			ARG 0 level
-			ARG 1 pos
+			ARG 1 eventPos
+			ARG 2 vibrationUserPos
+		METHOD lambda$forceScheduleVibration$0 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
+			ARG 5 vibrationUserPos
+		METHOD lambda$isOccluded$1 (Lnet/minecraft/world/level/block/state/BlockState;)Z
+			ARG 0 state
 		METHOD scheduleVibration (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/gameevent/vibrations/VibrationSystem$Data;Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/level/gameevent/GameEvent$Context;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
 			ARG 1 level
 			ARG 2 data
 			ARG 3 gameEvent
 			ARG 4 context
 			ARG 5 pos
+			ARG 6 vibrationUserPos
