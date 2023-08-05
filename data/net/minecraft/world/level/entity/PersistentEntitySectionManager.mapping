@@ -33,6 +33,38 @@ CLASS net/minecraft/world/level/entity/PersistentEntitySectionManager
 		ARG 1 entity
 	METHOD lambda$addWorldGenChunkEntities$1 (Lnet/minecraft/world/level/entity/EntityAccess;)V
 		ARG 1 entity
+	METHOD lambda$autoSave$12 (Lnet/minecraft/world/level/entity/EntityAccess;)V
+		ARG 0 entity
+	METHOD lambda$autoSave$13 (J)V
+		ARG 1 packedChunkPos
+	METHOD lambda$dumpSections$16 (Lnet/minecraft/util/CsvOutput;Lnet/minecraft/world/level/entity/PersistentEntitySectionManager$ChunkLoadStatus;J)V
+		ARG 3 packedSectionPos
+	METHOD lambda$dumpSections$17 (Lnet/minecraft/util/CsvOutput;J)V
+		ARG 2 packedChunkPos
+	METHOD lambda$processChunkUnload$9 (Lnet/minecraft/world/level/entity/EntityAccess;)V
+		ARG 1 entity
+	METHOD lambda$processPendingLoads$11 (Lnet/minecraft/world/level/entity/EntityAccess;)V
+		ARG 1 entity
+	METHOD lambda$processUnloads$10 (J)Z
+		ARG 1 packedChunkPos
+	METHOD lambda$requestChunkLoad$8 (Lnet/minecraft/world/level/ChunkPos;Ljava/lang/Throwable;)Ljava/lang/Void;
+		ARG 1 throwable
+	METHOD lambda$saveAll$14 (Lnet/minecraft/world/level/entity/EntityAccess;)V
+		ARG 0 entity
+	METHOD lambda$saveAll$15 (J)Z
+		ARG 1 packedChunkPos
+	METHOD lambda$storeChunkSections$7 (Lnet/minecraft/world/level/entity/EntitySection;)Ljava/util/stream/Stream;
+		ARG 0 entitySection
+	METHOD lambda$updateChunkStatus$2 (Lnet/minecraft/world/level/entity/EntityAccess;)Z
+		ARG 0 entity
+	METHOD lambda$updateChunkStatus$3 (Lnet/minecraft/world/level/entity/EntityAccess;)Z
+		ARG 0 entity
+	METHOD lambda$updateChunkStatus$4 (Lnet/minecraft/world/level/entity/EntityAccess;)Z
+		ARG 0 entity
+	METHOD lambda$updateChunkStatus$5 (Lnet/minecraft/world/level/entity/EntityAccess;)Z
+		ARG 0 entity
+	METHOD lambda$updateChunkStatus$6 (Lnet/minecraft/world/level/entity/Visibility;Lnet/minecraft/world/level/entity/EntitySection;)V
+		ARG 2 entitySection
 	METHOD processChunkUnload (J)Z
 		ARG 1 chunkPosValue
 	METHOD removeSectionIfEmpty (JLnet/minecraft/world/level/entity/EntitySection;)V
@@ -50,6 +82,7 @@ CLASS net/minecraft/world/level/entity/PersistentEntitySectionManager
 		ARG 1 entity
 	METHOD storeChunkSections (JLjava/util/function/Consumer;)Z
 		ARG 1 chunkPosValue
+		ARG 3 entityAction
 	METHOD unloadEntity (Lnet/minecraft/world/level/entity/EntityAccess;)V
 		ARG 1 entity
 	METHOD updateChunkStatus (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/server/level/FullChunkStatus;)V
@@ -63,3 +96,6 @@ CLASS net/minecraft/world/level/entity/PersistentEntitySectionManager
 			ARG 2 entity
 			ARG 3 currentSectionKey
 			ARG 5 currentSection
+		METHOD updateStatus (Lnet/minecraft/world/level/entity/Visibility;Lnet/minecraft/world/level/entity/Visibility;)V
+			ARG 1 oldVisibility
+			ARG 2 newVisibility

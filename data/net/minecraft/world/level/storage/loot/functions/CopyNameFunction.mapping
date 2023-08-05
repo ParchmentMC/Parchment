@@ -5,6 +5,8 @@ CLASS net/minecraft/world/level/storage/loot/functions/CopyNameFunction
 		ARG 2 nameSource
 	METHOD copyName (Lnet/minecraft/world/level/storage/loot/functions/CopyNameFunction$NameSource;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
 		ARG 0 source
+	METHOD lambda$copyName$0 (Lnet/minecraft/world/level/storage/loot/functions/CopyNameFunction$NameSource;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		ARG 1 conditions
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
@@ -19,3 +21,8 @@ CLASS net/minecraft/world/level/storage/loot/functions/CopyNameFunction
 			ARG 1 object
 			ARG 2 deserializationContext
 			ARG 3 conditions
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/CopyNameFunction;Lcom/google/gson/JsonSerializationContext;)V
+			COMMENT Serialize the {@link CopyNameFunction} by putting its data into the JsonObject.
+			ARG 1 json
+			ARG 2 copyNameFunction
+			ARG 3 serializationContext

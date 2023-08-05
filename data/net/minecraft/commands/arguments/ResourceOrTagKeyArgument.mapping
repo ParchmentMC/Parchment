@@ -5,6 +5,7 @@ CLASS net/minecraft/commands/arguments/ResourceOrTagKeyArgument
 		ARG 0 context
 		ARG 1 argument
 		ARG 2 registryKey
+		ARG 3 dynamicCommandExceptionType
 	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 context
 		ARG 2 builder
@@ -19,3 +20,9 @@ CLASS net/minecraft/commands/arguments/ResourceOrTagKeyArgument
 	CLASS Result
 		METHOD cast (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
 			ARG 1 registryKey
+	CLASS TagResult
+		METHOD test (Lnet/minecraft/core/Holder;)Z
+			ARG 1 holder
+	CLASS ResourceResult
+		METHOD test (Lnet/minecraft/core/Holder;)Z
+			ARG 1 holder

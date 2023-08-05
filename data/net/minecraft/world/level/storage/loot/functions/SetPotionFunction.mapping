@@ -2,5 +2,17 @@ CLASS net/minecraft/world/level/storage/loot/functions/SetPotionFunction
 	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/item/alchemy/Potion;)V
 		ARG 1 conditions
 		ARG 2 potion
+	METHOD lambda$setPotion$0 (Lnet/minecraft/world/item/alchemy/Potion;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
+		ARG 1 conditions
 	METHOD setPotion (Lnet/minecraft/world/item/alchemy/Potion;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
 		ARG 0 potion
+	CLASS Serializer
+		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetPotionFunction;
+			ARG 1 object
+			ARG 2 deserializationContext
+			ARG 3 conditions
+		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/SetPotionFunction;Lcom/google/gson/JsonSerializationContext;)V
+			COMMENT Serialize the {@link SetPotionFunction} by putting its data into the JsonObject.
+			ARG 1 json
+			ARG 2 setPotionFunction
+			ARG 3 serializationContext
