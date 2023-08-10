@@ -9,6 +9,10 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 1 onFinish
 	METHOD configureClicked (Lcom/mojang/realmsclient/dto/RealmsServer;)V
 		ARG 1 realmsServer
+	METHOD createFooter (Lcom/mojang/realmsclient/RealmsMainScreen$LayoutState;)Lnet/minecraft/client/gui/layouts/Layout;
+		ARG 1 layoutState
+	METHOD createLayout (Lcom/mojang/realmsclient/RealmsMainScreen$LayoutState;)Lnet/minecraft/client/gui/layouts/HeaderAndFooterLayout;
+		ARG 1 layoutState
 	METHOD dismissNotification (Ljava/util/UUID;)V
 		ARG 1 uuid
 	METHOD drawClose (Lnet/minecraft/client/gui/GuiGraphics;IIII)V
@@ -62,6 +66,10 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 2 lastScreen
 	METHOD removeServer (Lcom/mojang/realmsclient/dto/RealmsServer;)V
 		ARG 1 server
+	METHOD renderEnvironment (Lnet/minecraft/client/gui/GuiGraphics;Ljava/lang/String;I)V
+		ARG 1 guiGraphics
+		ARG 2 text
+		ARG 3 color
 	METHOD renderLocal (Lnet/minecraft/client/gui/GuiGraphics;)V
 		ARG 1 guiGraphics
 	METHOD renderNews (Lnet/minecraft/client/gui/GuiGraphics;IIZIIZZ)V
@@ -87,6 +95,8 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 1 realmsServer
 	METHOD updateButtonStates (Lcom/mojang/realmsclient/dto/RealmsServer;)V
 		ARG 1 realmsServer
+	METHOD updateLayout (Lcom/mojang/realmsclient/RealmsMainScreen$LayoutState;)V
+		ARG 1 layoutState
 	METHOD updateTeaserImages (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 0 resourceManager
 	CLASS RealmsCall
@@ -115,6 +125,14 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 	CLASS ServerEntry
 		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/dto/RealmsServer;)V
 			ARG 2 serverData
+		METHOD drawRealmStatus (Lnet/minecraft/client/gui/GuiGraphics;IIIILnet/minecraft/resources/ResourceLocation;Ljava/util/function/Supplier;)V
+			ARG 1 guiGraphics
+			ARG 2 x
+			ARG 3 y
+			ARG 4 mouseX
+			ARG 5 mouseY
+			ARG 6 sprite
+			ARG 7 tooltipSupplier
 		METHOD renderLegacy (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/GuiGraphics;IIII)V
 			ARG 1 realmsServer
 			ARG 2 guiGraphics
@@ -138,6 +156,15 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 			ARG 6 mouseY
 			ARG 7 width
 			ARG 8 height
+	CLASS NotificationButton
+		METHOD <init> (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/gui/components/Button$OnPress;)V
+			ARG 1 message
+			ARG 2 sprite
+			ARG 3 onPress
+		METHOD drawNotificationCounter (Lnet/minecraft/client/gui/GuiGraphics;)V
+			ARG 1 guiGraphics
+		METHOD setNotificationCount (I)V
+			ARG 1 notificationCount
 	CLASS PendingInvitesButton
 		METHOD drawInvitations (Lnet/minecraft/client/gui/GuiGraphics;)V
 			ARG 1 guiGraphics

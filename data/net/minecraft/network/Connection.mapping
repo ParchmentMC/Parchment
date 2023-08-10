@@ -28,6 +28,10 @@ CLASS net/minecraft/network/Connection
 	METHOD configureSerialization (Lio/netty/channel/ChannelPipeline;Lnet/minecraft/network/protocol/PacketFlow;)V
 		ARG 0 pipeline
 		ARG 1 flow
+	METHOD configureSerialization (Lio/netty/channel/ChannelPipeline;Lnet/minecraft/network/protocol/PacketFlow;Lnet/minecraft/network/BandwidthDebugMonitor;)V
+		ARG 0 pipeline
+		ARG 1 flow
+		ARG 2 bandwithMonitor
 	METHOD connect (Ljava/net/InetSocketAddress;ZLnet/minecraft/network/Connection;)Lio/netty/channel/ChannelFuture;
 		ARG 0 address
 		ARG 1 useEpollIfAvailable
@@ -43,6 +47,10 @@ CLASS net/minecraft/network/Connection
 		ARG 0 address
 		ARG 1 useEpollIfAvailable
 			COMMENT whether to use an Epoll channel if it is available
+	METHOD connectToServer (Ljava/net/InetSocketAddress;ZLnet/minecraft/util/SampleLogger;)Lnet/minecraft/network/Connection;
+		ARG 0 address
+		ARG 1 useEpollIfAvailable
+		ARG 2 bandwithLogger
 	METHOD disconnect (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Closes the channel with a given reason. The reason is stored for later and will be used for informational purposes (info log on server,
 		COMMENT disconnection screen on the client). This method is also called on the client when the server requests disconnection via
@@ -130,6 +138,8 @@ CLASS net/minecraft/network/Connection
 		ARG 1 packet
 		ARG 2 sendListener
 		ARG 3 flush
+	METHOD setBandwidthLogger (Lnet/minecraft/util/SampleLogger;)V
+		ARG 1 bandwithLogger
 	METHOD setClientboundProtocolAfterHandshake (Lnet/minecraft/network/protocol/handshake/ClientIntent;)V
 		ARG 1 intention
 	METHOD setEncryptionKey (Ljavax/crypto/Cipher;Ljavax/crypto/Cipher;)V

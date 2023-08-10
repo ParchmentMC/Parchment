@@ -1,9 +1,14 @@
 CLASS net/minecraft/network/chat/RemoteChatSession
 	METHOD createMessageDecoder (Ljava/util/UUID;)Lnet/minecraft/network/chat/SignedMessageChain$Decoder;
 		ARG 1 sender
+	METHOD createMessageValidator (Ljava/time/Duration;)Lnet/minecraft/network/chat/SignedMessageValidator;
+		ARG 1 duration
 	CLASS Data
 		METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/chat/RemoteChatSession$Data;
 			ARG 0 buffer
+		METHOD validate (Lcom/mojang/authlib/GameProfile;Lnet/minecraft/util/SignatureValidator;)Lnet/minecraft/network/chat/RemoteChatSession;
+			ARG 1 profile
+			ARG 2 signatureValidator
 		METHOD validate (Lcom/mojang/authlib/GameProfile;Lnet/minecraft/util/SignatureValidator;Ljava/time/Duration;)Lnet/minecraft/network/chat/RemoteChatSession;
 			ARG 1 profile
 			ARG 2 validator

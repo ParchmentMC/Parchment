@@ -1,4 +1,7 @@
 CLASS net/minecraft/util/ExtraCodecs
+	METHOD adaptJsonSerializer (Ljava/util/function/Function;Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+		ARG 0 encoder
+		ARG 1 decoder
 	METHOD asOptionalLong (Lcom/mojang/serialization/MapCodec;)Lcom/mojang/serialization/MapCodec;
 		ARG 0 codec
 	METHOD catchDecoderException (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
@@ -7,6 +10,9 @@ CLASS net/minecraft/util/ExtraCodecs
 		ARG 0 min
 		ARG 1 max
 		ARG 2 errorMessage
+	METHOD idResolverCodec (Ljava/util/function/ToIntFunction;Ljava/util/function/IntFunction;I)Lcom/mojang/serialization/Codec;
+		ARG 0 encoder
+		ARG 1 decoder
 	METHOD instantCodec (Ljava/time/format/DateTimeFormatter;)Lcom/mojang/serialization/Codec;
 		ARG 0 dateTimeFormatter
 	METHOD intRange (II)Lcom/mojang/serialization/Codec;
@@ -26,6 +32,8 @@ CLASS net/minecraft/util/ExtraCodecs
 		ARG 0 codec
 	METHOD nonEmptyList (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
 		ARG 0 codec
+	METHOD object2BooleanMap (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+		ARG 0 codec
 	METHOD orCompressed (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
 		ARG 0 first
 		ARG 1 second
@@ -34,12 +42,24 @@ CLASS net/minecraft/util/ExtraCodecs
 	METHOD sizeLimitedString (II)Lcom/mojang/serialization/Codec;
 		ARG 0 minSize
 		ARG 1 maxSize
+	METHOD strictOptionalField (Lcom/mojang/serialization/Codec;Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+		ARG 0 elementCodec
+		ARG 1 name
+	METHOD strictOptionalField (Lcom/mojang/serialization/Codec;Ljava/lang/String;Ljava/lang/Object;)Lcom/mojang/serialization/MapCodec;
+		ARG 0 elementCodec
+		ARG 1 name
+	METHOD stringResolverCodec (Ljava/util/function/Function;Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+		ARG 0 encoder
+		ARG 1 decoder
 	METHOD validate (Lcom/mojang/serialization/Codec;Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
 		ARG 0 codec
 		ARG 1 validator
 	METHOD validate (Lcom/mojang/serialization/MapCodec;Ljava/util/function/Function;)Lcom/mojang/serialization/MapCodec;
 		ARG 0 codec
 		ARG 1 validator
+	METHOD withAlternative (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+		ARG 0 codec
+		ARG 1 alternative
 	METHOD xor (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
 		ARG 0 first
 		ARG 1 second
@@ -99,6 +119,14 @@ CLASS net/minecraft/util/ExtraCodecs
 			ARG 3 prefix
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other
+	CLASS RecursiveCodec
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 input
+			ARG 2 ops
+			ARG 3 value
 	CLASS LazyInitializedCodec
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
@@ -117,5 +145,20 @@ CLASS net/minecraft/util/ExtraCodecs
 			ARG 1 input
 			ARG 2 ops
 			ARG 3 prefix
+		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
+			ARG 1 ops
+	CLASS StrictOptionalFieldCodec
+		METHOD <init> (Ljava/lang/String;Lcom/mojang/serialization/Codec;)V
+			ARG 1 name
+			ARG 2 elementCodec
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;)Lcom/mojang/serialization/RecordBuilder;
+			ARG 1 input
+			ARG 2 ops
+			ARG 3 prefix
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other
 		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
 			ARG 1 ops

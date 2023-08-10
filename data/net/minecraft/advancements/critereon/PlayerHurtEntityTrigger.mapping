@@ -9,6 +9,10 @@ CLASS net/minecraft/advancements/critereon/PlayerHurtEntityTrigger
 		ARG 5 amountTaken
 		ARG 6 blocked
 	CLASS TriggerInstance
+		METHOD <init> (Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;)V
+			ARG 1 player
+			ARG 2 damage
+			ARG 3 entity
 		METHOD <init> (Lnet/minecraft/advancements/critereon/ContextAwarePredicate;Lnet/minecraft/advancements/critereon/DamagePredicate;Lnet/minecraft/advancements/critereon/ContextAwarePredicate;)V
 			ARG 1 player
 			ARG 2 damage
@@ -20,8 +24,16 @@ CLASS net/minecraft/advancements/critereon/PlayerHurtEntityTrigger
 			ARG 4 dealt
 			ARG 5 taken
 			ARG 6 blocked
+		METHOD playerHurtEntity (Ljava/util/Optional;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
+			ARG 0 entity
+		METHOD playerHurtEntity (Ljava/util/Optional;Ljava/util/Optional;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
+			ARG 0 damage
+			ARG 1 entity
 		METHOD playerHurtEntity (Lnet/minecraft/advancements/critereon/DamagePredicate$Builder;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
 			ARG 0 damageBuilder
+		METHOD playerHurtEntity (Lnet/minecraft/advancements/critereon/DamagePredicate$Builder;Ljava/util/Optional;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
+			ARG 0 damage
+			ARG 1 entity
 		METHOD playerHurtEntity (Lnet/minecraft/advancements/critereon/DamagePredicate$Builder;Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
 			ARG 0 damageBuilder
 			ARG 1 entity
@@ -32,5 +44,9 @@ CLASS net/minecraft/advancements/critereon/PlayerHurtEntityTrigger
 			ARG 1 entity
 		METHOD playerHurtEntity (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
 			ARG 0 entity
+		METHOD playerHurtEntityWithDamage (Ljava/util/Optional;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
+			ARG 0 damage
+		METHOD playerHurtEntityWithDamage (Lnet/minecraft/advancements/critereon/DamagePredicate$Builder;)Lnet/minecraft/advancements/critereon/PlayerHurtEntityTrigger$TriggerInstance;
+			ARG 0 damage
 		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
 			ARG 1 conditions
