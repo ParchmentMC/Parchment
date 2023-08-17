@@ -60,9 +60,9 @@ April Fools versions are excluded, which are (as of writing):[^skipped-years]
 
 The up-to-date list of versions can be seen at the [repository for the Compass plugin][excluded].
 
-> **Note**
+> [!NOTE]
 > Setting the excluded versions through the extension or the project property will fully override the default set of
-> excluded versions. The above April Fools
+> excluded versions. The above April Fools will need to be respecified in the extension or project property.
 
 [jammer]: https://github.com/marchermans/JarAwareMapping
 
