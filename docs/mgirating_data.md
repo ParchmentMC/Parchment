@@ -49,14 +49,14 @@ versions) from causing data loss when the mapping data passes through those vers
 
 Versions may be excluded from being intermediate through either the `excludedVersions` set property of the
 `migrationExtension` or the `migration-excludedVersions` project property (as a comma-separated list). By default, the
-April Fools versions are excluded, which are (as of writing)[^1]:
+April Fools versions are excluded, which are (as of writing):[^skipped-years]
 
-- `15w14a`
-- `1.RV-Pre1`
-- `3D Shareware v1.34`
-- `20w14infinite`
-- `22w13oneblockatatime`
-- `23w13a_or_b`
+- `15w14a` - "The Love and Hugs Update", released on April 1, 2015;[^mc2.0]
+- `1.RV-Pre1` - The "Trendy Update", released on March 31, 2016;
+- `3D Shareware v1.34` - "Minecraft 3D", released on April 1, 2019;
+- `20w14infinite` - "The Ultimate Content Update", released on April 1, 2020;
+- `22w13oneblockatatime` - "One Block at a Time Update", released on April 1, 2022
+- `23w13a_or_b` - "The Vote Update", released on April 1, 2023
 
 The up-to-date list of versions can be seen at the [repository for the Compass plugin][excluded].
 
@@ -70,5 +70,9 @@ The up-to-date list of versions can be seen at the [repository for the Compass p
 
 [excluded]: https://github.com/ParchmentMC/Compass/blob/dev/src/main/java/org/parchmentmc/compass/MigrationConfiguration.java
 
-[^1]: Minecraft 2.0, despite being an April Fools version, was never published to the launcher, and therefore cannot be
-encountered by the migration system (either as a target version or as an intermediate version). 
+[^skipped-years]: For April 2014, Mojang changed the skins of all players to be a villager skin. For April 2017, Mojang announced a
+fictional console, the "Mine & Craft Digital Leisure Device". For April 2018, Mojang  published a re-texture of blocks
+through their asset distribution system.
+[^mc2.0]: The first publicly April Fools version is from 2015. Minecraft 2.0, despite being an April Fools version for
+April 2013, was never published to the launcher, and therefore cannot be encountered by the migration system
+(either as a target version or as an intermediate version).
