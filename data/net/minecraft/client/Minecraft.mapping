@@ -14,16 +14,26 @@ CLASS net/minecraft/client/Minecraft
 	METHOD addCustomNbtData (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 stack
 		ARG 2 be
+	METHOD addInitialScreens (Ljava/util/List;)V
+		ARG 1 output
 	METHOD addResourcePackLoadFailToast (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 message
 	METHOD archiveProfilingReport (Lnet/minecraft/SystemReport;Ljava/util/List;)Ljava/nio/file/Path;
 		ARG 1 report
 		ARG 2 paths
+	METHOD buildInitialScreens (Lnet/minecraft/client/Minecraft$GameLoadCookie;)Ljava/lang/Runnable;
+		ARG 1 gameLoadCookie
+	METHOD clearClientLevel (Lnet/minecraft/client/gui/screens/Screen;)V
+		ARG 1 nextScreen
 	METHOD clearLevel (Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 1 screen
 	METHOD clearResourcePacksOnError (Ljava/lang/Throwable;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 throwable
 		ARG 2 errorMessage
+	METHOD clearResourcePacksOnError (Ljava/lang/Throwable;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/Minecraft$GameLoadCookie;)V
+		ARG 1 throwable
+		ARG 2 errorMessage
+		ARG 3 gameLoadCookie
 	METHOD constructProfiler (ZLnet/minecraft/util/profiling/SingleTickProfiler;)Lnet/minecraft/util/profiling/ProfilerFiller;
 		ARG 1 renderFpsPie
 		ARG 2 singleTickProfiler
@@ -50,6 +60,8 @@ CLASS net/minecraft/client/Minecraft
 		ARG 1 report
 	METHOD destroy ()V
 		COMMENT Shuts down the minecraft applet by stopping the resource downloads, and clearing up GL stuff. Called when the application (or web page) is exited.
+	METHOD disconnect (Lnet/minecraft/client/gui/screens/Screen;)V
+		ARG 1 nextScreen
 	METHOD doWorldLoad (Ljava/lang/String;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Z)V
 		ARG 1 levelId
 		ARG 2 level
@@ -120,9 +132,15 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT Returns {@code true} if the player is connected to a realms server.
 	METHOD isDemo ()Z
 		COMMENT Gets whether this is a demo or not.
+	METHOD isLocalPlayer (Ljava/util/UUID;)Z
+		ARG 1 uuid
 	METHOD onFullscreenError (IJ)V
 		ARG 1 error
 		ARG 2 description
+	METHOD onGameLoadFinished (Lnet/minecraft/client/Minecraft$GameLoadCookie;)V
+		ARG 1 gameLoadCookie
+	METHOD onResourceLoadFinished (Lnet/minecraft/client/Minecraft$GameLoadCookie;)V
+		ARG 1 gameLoadCookie
 	METHOD openChatScreen (Ljava/lang/String;)V
 		ARG 1 defaultText
 	METHOD pauseGame (Z)V
@@ -135,11 +153,17 @@ CLASS net/minecraft/client/Minecraft
 		ARG 2 values
 	METHOD reloadResourcePacks (Z)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 error
+	METHOD reloadResourcePacks (ZLnet/minecraft/client/Minecraft$GameLoadCookie;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 error
+		ARG 2 gameLoadCookie
 	METHOD renderFpsMeter (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/util/profiling/ProfileResults;)V
 		ARG 1 guiGraphics
 		ARG 2 profileResults
 	METHOD rollbackResourcePacks (Ljava/lang/Throwable;)V
 		ARG 1 throwable
+	METHOD rollbackResourcePacks (Ljava/lang/Throwable;Lnet/minecraft/client/Minecraft$GameLoadCookie;)V
+		ARG 1 throwable
+		ARG 2 gameLoadCookie
 	METHOD runTick (Z)V
 		ARG 1 renderLevel
 	METHOD selectMainFont (Z)V
