@@ -20,6 +20,8 @@ CLASS net/minecraft/world/level/storage/loot/LootPool
 		COMMENT Then the random items are generated based on the {@link LootPoolEntry LootPoolEntries} in this pool according to the rolls and bonusRolls, applying any loot functions.
 		ARG 1 stackConsumer
 		ARG 2 lootContext
+	METHOD lambda$addRandomItem$0 (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/List;Lorg/apache/commons/lang3/mutable/MutableInt;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntry;)V
+		ARG 3 poolEntry
 	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V
 		COMMENT Validate this LootPool according to the given context.
 		ARG 1 context
@@ -30,3 +32,12 @@ CLASS net/minecraft/world/level/storage/loot/LootPool
 			ARG 1 bonusRolls
 		METHOD setRolls (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/LootPool$Builder;
 			ARG 1 rolls
+	CLASS Serializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/world/level/storage/loot/LootPool;
+			ARG 1 json
+			ARG 2 typeOfT
+			ARG 3 context
+		METHOD serialize (Lnet/minecraft/world/level/storage/loot/LootPool;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
+			ARG 1 src
+			ARG 2 typeOfSrc
+			ARG 3 context

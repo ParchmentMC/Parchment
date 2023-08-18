@@ -39,6 +39,9 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 		ARG 8 fluid
 	METHOD createFluidStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
+	METHOD getCacheKey (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)S
+		ARG 0 sourcePos
+		ARG 1 spreadPos
 	METHOD getDropOff (Lnet/minecraft/world/level/LevelReader;)I
 		ARG 1 level
 	METHOD getFlow (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/FluidState;)Lnet/minecraft/world/phys/Vec3;
@@ -56,7 +59,13 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 		ARG 3 blockState
 	METHOD getSlopeDistance (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;ILnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lit/unimi/dsi/fastutil/shorts/Short2ObjectMap;Lit/unimi/dsi/fastutil/shorts/Short2BooleanMap;)I
 		ARG 1 level
+		ARG 2 spreadPos
+		ARG 3 distance
 		ARG 4 direction
+		ARG 5 currentSpreadState
+		ARG 6 sourcePos
+		ARG 7 stateCache
+		ARG 8 waterHoleCache
 	METHOD getSlopeFindDistance (Lnet/minecraft/world/level/LevelReader;)I
 		ARG 1 level
 	METHOD getSource (Z)Lnet/minecraft/world/level/material/FluidState;
@@ -68,6 +77,8 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 	METHOD getSpreadDelay (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/world/level/material/FluidState;)I
 		ARG 1 level
 		ARG 2 pos
+		ARG 3 currentState
+		ARG 4 newState
 	METHOD hasSameAbove (Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 fluidState
 		ARG 1 level
@@ -85,6 +96,16 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 		ARG 4 state
 		ARG 5 spreadPos
 		ARG 6 spreadState
+	METHOD lambda$getShape$5 (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/FluidState;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 2 stateKey
+	METHOD lambda$getSlopeDistance$1 (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;S)Lcom/mojang/datafixers/util/Pair;
+		ARG 2 key
+	METHOD lambda$getSlopeDistance$2 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/level/block/state/BlockState;S)Z
+		ARG 4 key
+	METHOD lambda$getSpread$3 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;S)Lcom/mojang/datafixers/util/Pair;
+		ARG 2 key
+	METHOD lambda$getSpread$4 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;S)Z
+		ARG 5 key
 	METHOD sourceNeighborCount (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)I
 		COMMENT Returns the number of immediately adjacent source blocks of the same fluid that lie on the horizontal plane.
 		ARG 1 level
@@ -108,3 +129,6 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
+	CLASS 1
+		METHOD rehash (I)V
+			ARG 1 newSize

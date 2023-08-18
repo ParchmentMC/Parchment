@@ -20,6 +20,8 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
+		ARG 4 verticalDeltaLimit
+		ARG 5 nodeFloorLevel
 		ARG 7 direction
 		ARG 8 pathType
 	METHOD getBlockPathType (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
@@ -45,6 +47,7 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 		ARG 3 yOffset
 		ARG 4 zOffset
 		ARG 5 output
+		ARG 6 fallbackPathType
 		ARG 7 pos
 	METHOD getBlockedNode (III)Lnet/minecraft/world/level/pathfinder/Node;
 		ARG 1 x
@@ -74,6 +77,15 @@ CLASS net/minecraft/world/level/pathfinder/WalkNodeEvaluator
 	METHOD isBurningBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		COMMENT Checks whether the specified block state can cause burn damage
 		ARG 0 state
+	METHOD isDiagonalValid (Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)Z
+		ARG 1 root
+		ARG 2 xNode
+		ARG 3 zNode
+		ARG 4 diagonal
 	METHOD isNeighborValid (Lnet/minecraft/world/level/pathfinder/Node;Lnet/minecraft/world/level/pathfinder/Node;)Z
 		ARG 1 neighbor
 		ARG 2 node
+	METHOD lambda$getCachedBlockType$1 (IIILnet/minecraft/world/entity/Mob;J)Lnet/minecraft/world/level/pathfinder/BlockPathTypes;
+		ARG 5 key
+	METHOD lambda$hasCollisions$0 (Lnet/minecraft/world/phys/AABB;Ljava/lang/Object;)Z
+		ARG 2 key

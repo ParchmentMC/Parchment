@@ -23,6 +23,7 @@ CLASS net/minecraft/world/level/levelgen/structure/Structure
 		ARG 5 structureTemplateManager
 		ARG 6 seed
 		ARG 8 chunkPos
+		ARG 9 references
 		ARG 10 heightAccessor
 		ARG 11 validBiome
 	METHOD getCornerHeights (Lnet/minecraft/world/level/levelgen/structure/Structure$GenerationContext;IIII)[I
@@ -47,12 +48,20 @@ CLASS net/minecraft/world/level/levelgen/structure/Structure
 	METHOD isValidBiome (Lnet/minecraft/world/level/levelgen/structure/Structure$GenerationStub;Lnet/minecraft/world/level/levelgen/structure/Structure$GenerationContext;)Z
 		ARG 0 stub
 		ARG 1 context
+	METHOD lambda$findValidGenerationPoint$2 (Lnet/minecraft/world/level/levelgen/structure/Structure$GenerationContext;Lnet/minecraft/world/level/levelgen/structure/Structure$GenerationStub;)Z
+		ARG 1 stub
+	METHOD lambda$settingsCodec$0 (Lnet/minecraft/world/level/levelgen/structure/Structure;)Lnet/minecraft/world/level/levelgen/structure/Structure$StructureSettings;
+		ARG 0 structure
+	METHOD lambda$simpleCodec$1 (Ljava/util/function/Function;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 1 instance
 	METHOD onTopOfChunkCenter (Lnet/minecraft/world/level/levelgen/structure/Structure$GenerationContext;Lnet/minecraft/world/level/levelgen/Heightmap$Types;Ljava/util/function/Consumer;)Ljava/util/Optional;
 		ARG 0 context
 		ARG 1 heightmapTypes
 		ARG 2 generator
 	METHOD settingsCodec (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
-		ARG 0 codecBuilder
+		ARG 0 instance
+	METHOD simpleCodec (Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+		ARG 0 builder
 	CLASS GenerationStub
 		METHOD <init> (Lnet/minecraft/core/BlockPos;Ljava/util/function/Consumer;)V
 			ARG 1 position

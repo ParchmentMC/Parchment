@@ -1,7 +1,10 @@
 CLASS net/minecraft/world/level/levelgen/blending/BlendingData
 	METHOD <init> (IILjava/util/Optional;)V
+		ARG 1 sectionX
+		ARG 2 sectionZ
 		ARG 3 heights
 	METHOD addValuesForColumn (ILnet/minecraft/world/level/chunk/ChunkAccess;II)V
+		ARG 1 index
 		ARG 2 chunk
 		ARG 3 x
 		ARG 4 z
@@ -12,26 +15,56 @@ CLASS net/minecraft/world/level/levelgen/blending/BlendingData
 		ARG 1 chunk
 		ARG 2 x
 		ARG 3 z
+	METHOD getCellYIndex (I)I
+		ARG 1 y
+	METHOD getDensity (III)D
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD getDensity ([DI)D
+		ARG 1 heights
+		ARG 2 y
 	METHOD getDensityColumn (Lnet/minecraft/world/level/chunk/ChunkAccess;III)[D
 		ARG 1 chunk
 		ARG 2 x
+		ARG 3 z
+	METHOD getHeight (III)D
+		ARG 1 x
+		ARG 2 y
 		ARG 3 z
 	METHOD getHeightAtXZ (Lnet/minecraft/world/level/chunk/ChunkAccess;II)I
 		ARG 1 chunk
 		ARG 2 x
 		ARG 3 z
+	METHOD getInsideIndex (II)I
+		ARG 0 x
+		ARG 1 z
 	METHOD getOrUpdateBlendingData (Lnet/minecraft/server/level/WorldGenRegion;II)Lnet/minecraft/world/level/levelgen/blending/BlendingData;
 		ARG 0 region
 		ARG 1 chunkX
 		ARG 2 chunkZ
+	METHOD getOutsideIndex (II)I
+		ARG 0 x
+		ARG 1 z
+	METHOD getX (I)I
+		ARG 0 index
+	METHOD getZ (I)I
+		ARG 0 index
 	METHOD isGround (Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 chunk
 		ARG 1 pos
 	METHOD iterateBiomes (IIILnet/minecraft/world/level/levelgen/blending/BlendingData$BiomeConsumer;)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
 		ARG 4 consumer
 	METHOD iterateDensities (IIIILnet/minecraft/world/level/levelgen/blending/BlendingData$DensityConsumer;)V
+		ARG 1 x
+		ARG 2 z
 		ARG 5 consumer
 	METHOD iterateHeights (IILnet/minecraft/world/level/levelgen/blending/BlendingData$HeightConsumer;)V
+		ARG 1 x
+		ARG 2 z
 		ARG 3 consumer
 	METHOD read1 (Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/core/BlockPos$MutableBlockPos;)D
 		ARG 0 chunk
@@ -43,7 +76,24 @@ CLASS net/minecraft/world/level/levelgen/blending/BlendingData
 		ARG 0 level
 		ARG 1 chunkX
 		ARG 2 chunkZ
+		ARG 3 oldNoiseGeneration
 	METHOD validateArraySize (Lnet/minecraft/world/level/levelgen/blending/BlendingData;)Lcom/mojang/serialization/DataResult;
 		ARG 0 blendingData
 	METHOD zeroIfNegative (I)I
 		ARG 0 value
+	CLASS BiomeConsumer
+		METHOD consume (IILnet/minecraft/core/Holder;)V
+			ARG 1 x
+			ARG 2 z
+			ARG 3 biome
+	CLASS HeightConsumer
+		METHOD consume (IID)V
+			ARG 1 x
+			ARG 2 z
+			ARG 3 height
+	CLASS DensityConsumer
+		METHOD consume (IIID)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
+			ARG 4 density
