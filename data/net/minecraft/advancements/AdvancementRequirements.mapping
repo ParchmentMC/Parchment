@@ -1,0 +1,24 @@
+CLASS net/minecraft/advancements/AdvancementRequirements
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD allOf (Ljava/util/Collection;)Lnet/minecraft/advancements/AdvancementRequirements;
+		ARG 0 requirements
+	METHOD anyMatch ([Ljava/lang/String;Ljava/util/function/Predicate;)Z
+		ARG 0 requirement
+		ARG 1 predicate
+	METHOD anyOf (Ljava/util/Collection;)Lnet/minecraft/advancements/AdvancementRequirements;
+		ARG 0 criteria
+	METHOD count (Ljava/util/function/Predicate;)I
+		ARG 1 filter
+	METHOD fromJson (Lcom/google/gson/JsonArray;Ljava/util/Set;)Lnet/minecraft/advancements/AdvancementRequirements;
+		ARG 0 json
+		ARG 1 criteria
+	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)[[Ljava/lang/String;
+		ARG 0 buffer
+	METHOD test (Ljava/util/function/Predicate;)Z
+		ARG 1 predicate
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	CLASS Strategy
+		METHOD create (Ljava/util/Collection;)Lnet/minecraft/advancements/AdvancementRequirements;
+			ARG 1 criteria

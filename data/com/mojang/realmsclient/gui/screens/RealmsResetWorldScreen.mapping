@@ -1,4 +1,13 @@
 CLASS com/mojang/realmsclient/gui/screens/RealmsResetWorldScreen
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lcom/mojang/realmsclient/dto/RealmsServer;ILnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;ILnet/minecraft/network/chat/Component;Ljava/lang/Runnable;)V
+		ARG 1 lastScreen
+		ARG 2 serverData
+		ARG 3 slot
+		ARG 4 title
+		ARG 5 subtitle
+		ARG 6 subtitleColor
+		ARG 7 resetTaskTitle
+		ARG 8 resetWorldRunnable
 	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/Runnable;Ljava/lang/Runnable;)V
 		ARG 1 lastScreen
 		ARG 2 serverData
@@ -27,6 +36,19 @@ CLASS com/mojang/realmsclient/gui/screens/RealmsResetWorldScreen
 		ARG 5 atlasLocation
 		ARG 6 hoveredOrFocuced
 		ARG 7 mouseOver
+	METHOD forEmptySlot (Lnet/minecraft/client/gui/screens/Screen;ILcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/Runnable;)Lcom/mojang/realmsclient/gui/screens/RealmsResetWorldScreen;
+		ARG 0 lastScreen
+		ARG 1 slot
+		ARG 2 serverData
+		ARG 3 resetWorldRunnable
+	METHOD forNewRealm (Lnet/minecraft/client/gui/screens/Screen;Lcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/Runnable;)Lcom/mojang/realmsclient/gui/screens/RealmsResetWorldScreen;
+		ARG 0 lastScreen
+		ARG 1 serverData
+		ARG 2 resetWorldRunnable
+	METHOD forResetSlot (Lnet/minecraft/client/gui/screens/Screen;Lcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/Runnable;)Lcom/mojang/realmsclient/gui/screens/RealmsResetWorldScreen;
+		ARG 0 lastScreen
+		ARG 1 serverData
+		ARG 2 resetWorldRunnable
 	METHOD frame (I)I
 		ARG 1 index
 	METHOD generationSelectionCallback (Lcom/mojang/realmsclient/util/WorldGenerationInfo;)V

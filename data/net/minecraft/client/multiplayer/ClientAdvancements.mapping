@@ -2,9 +2,14 @@ CLASS net/minecraft/client/multiplayer/ClientAdvancements
 	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/telemetry/WorldSessionTelemetryManager;)V
 		ARG 1 minecraft
 		ARG 2 telemetryManager
+	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementHolder;
+		ARG 1 id
 	METHOD setListener (Lnet/minecraft/client/multiplayer/ClientAdvancements$Listener;)V
 		ARG 1 listener
 	METHOD setSelectedTab (Lnet/minecraft/advancements/Advancement;Z)V
+		ARG 1 advancement
+		ARG 2 tellServer
+	METHOD setSelectedTab (Lnet/minecraft/advancements/AdvancementHolder;Z)V
 		ARG 1 advancement
 		ARG 2 tellServer
 	METHOD update (Lnet/minecraft/network/protocol/game/ClientboundUpdateAdvancementsPacket;)V
@@ -12,6 +17,11 @@ CLASS net/minecraft/client/multiplayer/ClientAdvancements
 	CLASS Listener
 		METHOD onSelectedTabChanged (Lnet/minecraft/advancements/Advancement;)V
 			ARG 1 advancement
+		METHOD onSelectedTabChanged (Lnet/minecraft/advancements/AdvancementHolder;)V
+			ARG 1 advancement
 		METHOD onUpdateAdvancementProgress (Lnet/minecraft/advancements/Advancement;Lnet/minecraft/advancements/AdvancementProgress;)V
 			ARG 1 advancement
 			ARG 2 progress
+		METHOD onUpdateAdvancementProgress (Lnet/minecraft/advancements/AdvancementNode;Lnet/minecraft/advancements/AdvancementProgress;)V
+			ARG 1 advancement
+			ARG 2 advancementProgress

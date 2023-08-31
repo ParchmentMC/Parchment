@@ -4,6 +4,11 @@ CLASS net/minecraft/advancements/critereon/RecipeUnlockedTrigger
 	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/crafting/Recipe;)V
 		ARG 1 player
 		ARG 2 recipe
+	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/crafting/RecipeHolder;)V
+		ARG 1 player
+		ARG 2 recipe
+	METHOD unlocked (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/Criterion;
+		ARG 0 recipeId
 	METHOD unlocked (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/critereon/RecipeUnlockedTrigger$TriggerInstance;
 		ARG 0 recipe
 	CLASS TriggerInstance
@@ -14,6 +19,8 @@ CLASS net/minecraft/advancements/critereon/RecipeUnlockedTrigger
 			ARG 1 player
 			ARG 2 recipe
 		METHOD matches (Lnet/minecraft/world/item/crafting/Recipe;)Z
+			ARG 1 recipe
+		METHOD matches (Lnet/minecraft/world/item/crafting/RecipeHolder;)Z
 			ARG 1 recipe
 		METHOD serializeToJson (Lnet/minecraft/advancements/critereon/SerializationContext;)Lcom/google/gson/JsonObject;
 			ARG 1 conditions

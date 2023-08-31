@@ -6,6 +6,9 @@ CLASS net/minecraft/util/ExtraCodecs
 		ARG 0 codec
 	METHOD catchDecoderException (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
 		ARG 0 codec
+	METHOD either (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)Lnet/minecraft/util/ExtraCodecs$EitherCodec;
+		ARG 0 first
+		ARG 1 second
 	METHOD floatRangeMinExclusiveWithMessage (FFLjava/util/function/Function;)Lcom/mojang/serialization/Codec;
 		ARG 0 min
 		ARG 1 max
@@ -48,9 +51,14 @@ CLASS net/minecraft/util/ExtraCodecs
 	METHOD strictOptionalField (Lcom/mojang/serialization/Codec;Ljava/lang/String;Ljava/lang/Object;)Lcom/mojang/serialization/MapCodec;
 		ARG 0 elementCodec
 		ARG 1 name
+	METHOD strictUnboundedMap (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)Lnet/minecraft/util/ExtraCodecs$StrictUnboundedMapCodec;
+		ARG 0 key
+		ARG 1 value
 	METHOD stringResolverCodec (Ljava/util/function/Function;Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
 		ARG 0 encoder
 		ARG 1 decoder
+	METHOD temporalCodec (Ljava/time/format/DateTimeFormatter;)Lcom/mojang/serialization/Codec;
+		ARG 0 dateTimeFormatter
 	METHOD validate (Lcom/mojang/serialization/Codec;Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
 		ARG 0 codec
 		ARG 1 validator

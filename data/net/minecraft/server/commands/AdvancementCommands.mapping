@@ -3,6 +3,13 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 		COMMENT Recursively adds all children of the given advancement to the given list. Does not add the advancement itself to the list.
 		ARG 0 advancement
 		ARG 1 list
+	METHOD addChildren (Lnet/minecraft/advancements/AdvancementNode;Ljava/util/List;)V
+		ARG 0 node
+		ARG 1 output
+	METHOD getAdvancements (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/advancements/AdvancementHolder;Lnet/minecraft/server/commands/AdvancementCommands$Mode;)Ljava/util/List;
+		ARG 0 context
+		ARG 1 advancement
+		ARG 2 mode
 	METHOD getAdvancements (Lnet/minecraft/advancements/Advancement;Lnet/minecraft/server/commands/AdvancementCommands$Mode;)Ljava/util/List;
 		COMMENT Gets all advancements that match the given mode.
 		ARG 0 advancement
@@ -59,6 +66,12 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 		ARG 2 action
 		ARG 3 advancement
 		ARG 4 criterionName
+	METHOD performCriterion (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/server/commands/AdvancementCommands$Action;Lnet/minecraft/advancements/AdvancementHolder;Ljava/lang/String;)I
+		ARG 0 source
+		ARG 1 targets
+		ARG 2 action
+		ARG 3 advancement
+		ARG 4 criterionName
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
 	CLASS Mode
@@ -80,10 +93,17 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 			COMMENT @return True if the player was affected.
 			ARG 1 player
 			ARG 2 advancement
+		METHOD perform (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/advancements/AdvancementHolder;)Z
+			ARG 1 player
+			ARG 2 advancement
 		METHOD performCriterion (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/advancements/Advancement;Ljava/lang/String;)Z
 			COMMENT Applies this action to the given criterion.
 			COMMENT
 			COMMENT @return True if the player was affected.
+			ARG 1 player
+			ARG 2 advancement
+			ARG 3 criterionName
+		METHOD performCriterion (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/advancements/AdvancementHolder;Ljava/lang/String;)Z
 			ARG 1 player
 			ARG 2 advancement
 			ARG 3 criterionName

@@ -1,6 +1,12 @@
 CLASS net/minecraft/world/item/crafting/Ingredient
 	METHOD <init> (Ljava/util/stream/Stream;)V
 		ARG 1 values
+	METHOD <init> ([Lnet/minecraft/world/item/crafting/Ingredient$Value;)V
+		ARG 1 values
+	METHOD codec (Z)Lcom/mojang/serialization/Codec;
+		ARG 0 allowEmpty
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
 	METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/world/item/crafting/Ingredient;
 		ARG 0 json
 	METHOD fromJson (Lcom/google/gson/JsonElement;Z)Lnet/minecraft/world/item/crafting/Ingredient;
@@ -24,6 +30,8 @@ CLASS net/minecraft/world/item/crafting/Ingredient
 		ARG 0 items
 	METHOD test (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
+	METHOD toJson (Z)Lcom/google/gson/JsonElement;
+		ARG 1 allowEmpty
 	METHOD toNetwork (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
 	METHOD valueFromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/Ingredient$Value;
@@ -31,6 +39,10 @@ CLASS net/minecraft/world/item/crafting/Ingredient
 	CLASS TagValue
 		METHOD <init> (Lnet/minecraft/tags/TagKey;)V
 			ARG 1 tag
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other
 	CLASS ItemValue
 		METHOD <init> (Lnet/minecraft/world/item/ItemStack;)V
 			ARG 1 item
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other

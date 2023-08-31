@@ -58,6 +58,8 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 1 chunkHolder
 		ARG 2 range
 		ARG 3 statusGetter
+	METHOD getChunkToSend (J)Lnet/minecraft/world/level/chunk/LevelChunk;
+		ARG 1 chunkPos
 	METHOD getChunks ()Ljava/lang/Iterable;
 		COMMENT Gets an unmodifiable iterable of all loaded chunks in the chunk manager
 	METHOD getDependencyStatus (Lnet/minecraft/world/level/chunk/ChunkStatus;I)Lnet/minecraft/world/level/chunk/ChunkStatus;
@@ -195,6 +197,8 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 2 track
 	METHOD upgradeChunkTag (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 tag
+	METHOD waitForLightBeforeSending (Lnet/minecraft/world/level/ChunkPos;I)V
+		ARG 1 chunkPos
 	CLASS TrackedEntity
 		METHOD <init> (Lnet/minecraft/server/level/ChunkMap;Lnet/minecraft/world/entity/Entity;IIZ)V
 			ARG 2 entity

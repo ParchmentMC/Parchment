@@ -6,9 +6,21 @@ CLASS net/minecraft/client/gui/screens/advancements/AdvancementTab
 		ARG 4 index
 		ARG 5 advancement
 		ARG 6 display
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/advancements/AdvancementsScreen;Lnet/minecraft/client/gui/screens/advancements/AdvancementTabType;ILnet/minecraft/advancements/AdvancementNode;Lnet/minecraft/advancements/DisplayInfo;)V
+		ARG 1 minecraft
+		ARG 2 screen
+		ARG 3 type
+		ARG 4 index
+		ARG 5 rootNode
+		ARG 6 display
 	METHOD addAdvancement (Lnet/minecraft/advancements/Advancement;)V
 		ARG 1 advancement
+	METHOD addAdvancement (Lnet/minecraft/advancements/AdvancementNode;)V
+		ARG 1 node
 	METHOD addWidget (Lnet/minecraft/client/gui/screens/advancements/AdvancementWidget;Lnet/minecraft/advancements/Advancement;)V
+		ARG 1 widget
+		ARG 2 advancement
+	METHOD addWidget (Lnet/minecraft/client/gui/screens/advancements/AdvancementWidget;Lnet/minecraft/advancements/AdvancementHolder;)V
 		ARG 1 widget
 		ARG 2 advancement
 	METHOD create (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/advancements/AdvancementsScreen;ILnet/minecraft/advancements/Advancement;)Lnet/minecraft/client/gui/screens/advancements/AdvancementTab;
@@ -16,6 +28,11 @@ CLASS net/minecraft/client/gui/screens/advancements/AdvancementTab
 		ARG 1 screen
 		ARG 2 tabIndex
 		ARG 3 advancement
+	METHOD create (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/advancements/AdvancementsScreen;ILnet/minecraft/advancements/AdvancementNode;)Lnet/minecraft/client/gui/screens/advancements/AdvancementTab;
+		ARG 0 minecraft
+		ARG 1 screen
+		ARG 2 index
+		ARG 3 rootNode
 	METHOD drawContents (Lnet/minecraft/client/gui/GuiGraphics;II)V
 		ARG 1 guiGraphics
 		ARG 2 x
@@ -36,6 +53,8 @@ CLASS net/minecraft/client/gui/screens/advancements/AdvancementTab
 		ARG 4 width
 		ARG 5 height
 	METHOD getWidget (Lnet/minecraft/advancements/Advancement;)Lnet/minecraft/client/gui/screens/advancements/AdvancementWidget;
+		ARG 1 advancement
+	METHOD getWidget (Lnet/minecraft/advancements/AdvancementHolder;)Lnet/minecraft/client/gui/screens/advancements/AdvancementWidget;
 		ARG 1 advancement
 	METHOD isMouseOver (IIDD)Z
 		ARG 1 offsetX
