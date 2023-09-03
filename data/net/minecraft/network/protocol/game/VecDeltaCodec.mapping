@@ -1,19 +1,45 @@
 CLASS net/minecraft/network/protocol/game/VecDeltaCodec
+	COMMENT A utility class for encoding and decoding vector deltas.
+	COMMENT Vector deltas are used to efficiently store changes in position vectors.
 	METHOD decode (J)D
 		ARG 0 value
 	METHOD decode (JJJ)Lnet/minecraft/world/phys/Vec3;
+		COMMENT Decodes a vector delta using the provided x, y, and z components.
+		COMMENT <p>
+		COMMENT @return the decoded vector delta.
 		ARG 1 x
+			COMMENT the encoded x component of the delta.
 		ARG 3 y
+			COMMENT the encoded y component of the delta.
 		ARG 5 z
+			COMMENT the encoded z component of the delta.
 	METHOD delta (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
-		ARG 1 value
+		COMMENT Calculates the delta vector from the provided base vector.
+		COMMENT <p>
+		COMMENT @return the delta vector.
+		ARG 1 vector
+			COMMENT the vector to calculate the delta from.
 	METHOD encode (D)J
 		ARG 0 value
 	METHOD encodeX (Lnet/minecraft/world/phys/Vec3;)J
-		ARG 1 value
+		COMMENT Encodes the x component of the vector delta.
+		COMMENT <p>
+		COMMENT @return the encoded x component of the vector delta.
+		ARG 1 vector
+			COMMENT the vector to be encoded.
 	METHOD encodeY (Lnet/minecraft/world/phys/Vec3;)J
-		ARG 1 value
+		COMMENT Encodes the y component of the vector delta.
+		COMMENT <p>
+		COMMENT @return the encoded y component of the vector delta.
+		ARG 1 vecctor
+			COMMENT the vector to be encoded.
 	METHOD encodeZ (Lnet/minecraft/world/phys/Vec3;)J
-		ARG 1 value
+		COMMENT Encodes the z component of the vector delta.
+		COMMENT <p>
+		COMMENT @return the encoded z component of the vector delta.
+		ARG 1 vector
+			COMMENT the vector to be encoded.
 	METHOD setBase (Lnet/minecraft/world/phys/Vec3;)V
+		COMMENT Sets the base vector for future delta calculations.
 		ARG 1 base
+			COMMENT the new base vector.

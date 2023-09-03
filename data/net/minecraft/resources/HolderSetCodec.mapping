@@ -1,26 +1,58 @@
 CLASS net/minecraft/resources/HolderSetCodec
+	COMMENT A codec for serializing and deserializing {@code HolderSet}s.
 	METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)V
 		ARG 1 registryKey
 		ARG 2 elementCodec
 		ARG 3 disallowInline
 	METHOD create (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;Z)Lcom/mojang/serialization/Codec;
+		COMMENT @return a new {@linkplain HolderSetCodec} instance.
 		ARG 0 registryKey
+			COMMENT the resource key of the registry to be used for serialization and deserialization.
 		ARG 1 holderCodec
+			COMMENT the codec for serializing and deserializing individual elements.
 		ARG 2 disallowInline
+			COMMENT if {@code true}, disallows inline definitions during decoding.
 	METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		COMMENT Decodes the dynamic value using the specified dynamic ops into a data result containing a HolderSet and the remaining value.
+		COMMENT <p>
+		COMMENT @return a data result containing the decoded {@linkplain HolderSet} and the remaining value or an error if the decoding fails.
 		ARG 1 ops
+			COMMENT the dynamic ops used for decoding.
 		ARG 2 input
+			COMMENT the dynamic value to be decoded.
 	METHOD decodeWithoutRegistry (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		COMMENT Decodes the provided dynamic value using the specified dynamic ops without registry context into a data result containing a HolderSet and the remaining dynamic value.
+		COMMENT <p>
+		COMMENT @return a data result containing the decoded HolderSet and the remaining dynamic value or an error if the decoding fails.
 		ARG 1 ops
+			COMMENT the dynamic ops used for decoding.
 		ARG 2 input
+			COMMENT the dynamic value to be decoded.
 	METHOD encode (Lnet/minecraft/core/HolderSet;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		COMMENT Encodes the provided {@linkplain HolderSet} into a data result using the specified dynamic ops.
+		COMMENT <p>
+		COMMENT @return a data result containing the encoded value or an error if the encoding fails.
 		ARG 1 input
+			COMMENT the {@linkplain HolderSet} to be encoded.
 		ARG 2 ops
+			COMMENT the dynamic ops used for encoding.
 		ARG 3 prefix
+			COMMENT the dynamic value to be encoded into.
 	METHOD encodeWithoutRegistry (Lnet/minecraft/core/HolderSet;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		COMMENT Encodes the provided HolderSet into a data result using the specified dynamic ops without registry context.
+		COMMENT <p>
+		COMMENT @return a data result containing the encoded dynamic value or an error if the encoding fails.
 		ARG 1 input
+			COMMENT the {@linkplain HolderSet} to be encoded.
 		ARG 2 ops
+			COMMENT the dynamic ops used for encoding.
 		ARG 3 prefix
+			COMMENT the dynamic value to be encoded into.
 	METHOD homogenousList (Lcom/mojang/serialization/Codec;Z)Lcom/mojang/serialization/Codec;
+		COMMENT Creates a codec for serializing and deserializing a homogeneous list of holders.
+		COMMENT <p>
+		COMMENT @return a codec for a homogeneous list of holders.
 		ARG 0 holderCodec
+			COMMENT the codec for serializing and deserializing individual holders.
 		ARG 1 disallowInline
+			COMMENT if true, disallows inline definitions during decoding.
