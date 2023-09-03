@@ -2,6 +2,8 @@ CLASS net/minecraft/world/level/levelgen/NoiseChunk
 	METHOD <init> (ILnet/minecraft/world/level/levelgen/RandomState;IILnet/minecraft/world/level/levelgen/NoiseSettings;Lnet/minecraft/world/level/levelgen/DensityFunctions$BeardifierOrMarker;Lnet/minecraft/world/level/levelgen/NoiseGeneratorSettings;Lnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;Lnet/minecraft/world/level/levelgen/blending/Blender;)V
 		ARG 1 cellCountXZ
 		ARG 2 random
+		ARG 3 firstNoiseX
+		ARG 4 firstNoiseZ
 		ARG 5 noiseSettings
 		ARG 6 beardifier
 		ARG 7 noiseGeneratorSettings
@@ -37,10 +39,13 @@ CLASS net/minecraft/world/level/levelgen/NoiseChunk
 		ARG 2 z
 	METHOD updateForX (ID)V
 		ARG 1 cellEndBlockX
+		ARG 2 x
 	METHOD updateForY (ID)V
 		ARG 1 cellEndBlockY
+		ARG 2 y
 	METHOD updateForZ (ID)V
 		ARG 1 cellEndBlockZ
+		ARG 2 z
 	METHOD wrap (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 1 densityFunction
 	METHOD wrapNew (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
@@ -54,6 +59,7 @@ CLASS net/minecraft/world/level/levelgen/NoiseChunk
 	CLASS FlatCache
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/levelgen/DensityFunction;Z)V
 			ARG 2 noiseFiller
+			ARG 3 computeValues
 	CLASS CacheAllInCell
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/levelgen/DensityFunction;)V
 			ARG 2 noiseFilter
@@ -63,3 +69,15 @@ CLASS net/minecraft/world/level/levelgen/NoiseChunk
 	CLASS NoiseInterpolator
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/levelgen/DensityFunction;)V
 			ARG 2 noiseFilter
+		METHOD allocateSlice (II)[[D
+			ARG 1 cellCountY
+			ARG 2 cellCountXZ
+		METHOD selectCellYZ (II)V
+			ARG 1 y
+			ARG 2 z
+		METHOD updateForX (D)V
+			ARG 1 x
+		METHOD updateForY (D)V
+			ARG 1 y
+		METHOD updateForZ (D)V
+			ARG 1 z

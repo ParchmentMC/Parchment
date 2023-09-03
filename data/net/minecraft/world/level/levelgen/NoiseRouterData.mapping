@@ -23,6 +23,9 @@ CLASS net/minecraft/world/level/levelgen/NoiseRouterData
 	METHOD noNewCaves (Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/NoiseRouter;
 		ARG 0 densityFunctions
 		ARG 1 noiseParameters
+	METHOD noiseGradientDensity (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 minFunction
+		ARG 1 maxFunction
 	METHOD noodle (Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 densityFunctions
 		ARG 1 noiseParameters
@@ -55,12 +58,18 @@ CLASS net/minecraft/world/level/levelgen/NoiseRouterData
 		ARG 10 amplified
 	METHOD slide (Lnet/minecraft/world/level/levelgen/DensityFunction;IIIIDIID)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 densityFunction
+		ARG 1 minY
+		ARG 2 maxY
 	METHOD slideEnd (Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 densityFunction
 	METHOD slideEndLike (Lnet/minecraft/world/level/levelgen/DensityFunction;II)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 densityFunction
+		ARG 1 minY
+		ARG 2 maxY
 	METHOD slideNetherLike (Lnet/minecraft/core/HolderGetter;II)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 densityFunctions
+		ARG 1 minY
+		ARG 2 maxY
 	METHOD slideOverworld (ZLnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 amplified
 		ARG 1 densityFunction
@@ -69,6 +78,14 @@ CLASS net/minecraft/world/level/levelgen/NoiseRouterData
 		ARG 1 noiseParameters
 	METHOD spaghettiRoughnessFunction (Lnet/minecraft/core/HolderGetter;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 noiseParameters
+	METHOD splineWithBlending (Lnet/minecraft/world/level/levelgen/DensityFunction;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
+		ARG 0 minFunction
+		ARG 1 maxFunction
 	METHOD underground (Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Lnet/minecraft/world/level/levelgen/DensityFunction;)Lnet/minecraft/world/level/levelgen/DensityFunction;
 		ARG 0 densityFunctions
 		ARG 1 noiseParameters
+	CLASS QuantizedSpaghettiRarity
+		METHOD getSpaghettiRarity3D (D)D
+			ARG 0 value
+		METHOD getSphaghettiRarity2D (D)D
+			ARG 0 value
