@@ -1,6 +1,10 @@
 CLASS net/minecraft/world/entity/npc/VillagerTrades
 	METHOD commonBooks (I)Lnet/minecraft/world/entity/npc/VillagerTrades$ItemListing;
 		ARG 0 villagerXp
+	METHOD enchant (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/enchantment/Enchantment;I)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 item
+		ARG 1 enchantment
+		ARG 2 level
 	METHOD lambda$static$0 (Ljava/util/HashMap;)V
 		ARG 0 map
 	METHOD potion (Lnet/minecraft/world/item/alchemy/Potion;)Lnet/minecraft/world/item/ItemStack;
@@ -40,6 +44,13 @@ CLASS net/minecraft/world/entity/npc/VillagerTrades
 			ARG 3 numberOfItems
 			ARG 4 maxUses
 			ARG 5 villagerXp
+		METHOD <init> (Lnet/minecraft/world/item/Item;IIIIF)V
+			ARG 1 item
+			ARG 2 emeraldCost
+			ARG 3 numberOfItems
+			ARG 4 maxUses
+			ARG 5 villagerXp
+			ARG 6 priceMultiplier
 		METHOD <init> (Lnet/minecraft/world/item/ItemStack;IIII)V
 			ARG 1 itemStack
 			ARG 2 emeraldCost
@@ -62,6 +73,9 @@ CLASS net/minecraft/world/entity/npc/VillagerTrades
 	CLASS TypeSpecificTrade
 		METHOD <init> (Ljava/util/Map;)V
 			ARG 1 trades
+		METHOD oneTradeInBiomes (Lnet/minecraft/world/entity/npc/VillagerTrades$ItemListing;[Lnet/minecraft/world/entity/npc/VillagerType;)Lnet/minecraft/world/entity/npc/VillagerTrades$TypeSpecificTrade;
+			ARG 0 listing
+			ARG 1 types
 	CLASS DyedArmorForEmeralds
 		METHOD <init> (Lnet/minecraft/world/item/Item;I)V
 			ARG 1 item
@@ -101,6 +115,24 @@ CLASS net/minecraft/world/entity/npc/VillagerTrades
 			ARG 5 toCount
 			ARG 6 maxUses
 			ARG 7 villagerXp
+		METHOD <init> (Lnet/minecraft/world/level/ItemLike;IILnet/minecraft/world/item/Item;IIIF)V
+			ARG 1 fromItem
+			ARG 2 fromItemCount
+			ARG 3 emeraldCost
+			ARG 4 toItem
+			ARG 5 toItemCount
+			ARG 6 maxUses
+			ARG 7 villagerXp
+			ARG 8 priceMultiplier
+		METHOD <init> (Lnet/minecraft/world/level/ItemLike;IILnet/minecraft/world/item/ItemStack;IIIF)V
+			ARG 1 fromItem
+			ARG 2 fromItemCount
+			ARG 3 emeraldCost
+			ARG 4 toItem
+			ARG 5 toItemCount
+			ARG 6 maxUses
+			ARG 7 villagerXp
+			ARG 8 priceMultiplier
 		METHOD <init> (Lnet/minecraft/world/level/ItemLike;ILnet/minecraft/world/item/Item;III)V
 			ARG 1 fromItem
 			ARG 2 fromCount
