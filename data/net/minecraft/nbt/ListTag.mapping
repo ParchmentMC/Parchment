@@ -7,6 +7,8 @@ CLASS net/minecraft/nbt/ListTag
 		ARG 2 nbt
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
+	METHOD get (I)Ljava/lang/Object;
+		ARG 1 index
 	METHOD getCompound (I)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 index
 	METHOD getDouble (I)D
@@ -32,3 +34,11 @@ CLASS net/minecraft/nbt/ListTag
 		ARG 1 tag
 	METHOD write (Ljava/io/DataOutput;)V
 		ARG 1 output
+	CLASS 1
+		METHOD loadList (Ljava/io/DataInput;Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/ListTag;
+			ARG 0 input
+			ARG 1 accounter
+		METHOD parseList (Ljava/io/DataInput;Lnet/minecraft/nbt/StreamTagVisitor;Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/StreamTagVisitor$ValueResult;
+			ARG 0 input
+			ARG 1 visitor
+			ARG 2 accounter
