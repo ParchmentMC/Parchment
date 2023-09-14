@@ -54,6 +54,8 @@ CLASS net/minecraft/server/players/PlayerList
 		ARG 2 gameProfile
 	METHOD deop (Lcom/mojang/authlib/GameProfile;)V
 		ARG 1 profile
+	METHOD disconnectAllPlayersWithProfile (Lcom/mojang/authlib/GameProfile;)Z
+		ARG 1 gameProfile
 	METHOD getMaxPlayers ()I
 		COMMENT Returns the maximum number of players allowed on the server.
 	METHOD getPlayer (Ljava/util/UUID;)Lnet/minecraft/server/level/ServerPlayer;
@@ -67,6 +69,9 @@ CLASS net/minecraft/server/players/PlayerList
 		COMMENT Returns the number of players currently on the server.
 	METHOD getPlayerForLogin (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/server/level/ServerPlayer;
 		ARG 1 profile
+	METHOD getPlayerForLogin (Lcom/mojang/authlib/GameProfile;Lnet/minecraft/server/level/ClientInformation;)Lnet/minecraft/server/level/ServerPlayer;
+		ARG 1 gameProfile
+		ARG 2 clientInformation
 	METHOD getPlayerNamesArray ()[Ljava/lang/String;
 		COMMENT Returns an array of the usernames of all the connected players.
 	METHOD getPlayerStats (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/stats/ServerStatsCounter;
@@ -96,6 +101,7 @@ CLASS net/minecraft/server/players/PlayerList
 	METHOD placeNewPlayer (Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/network/CommonListenerCookie;)V
 		ARG 1 connection
 		ARG 2 player
+		ARG 3 cookie
 	METHOD remove (Lnet/minecraft/server/level/ServerPlayer;)V
 		COMMENT Called when a player disconnects from the game. Writes player data to disk and removes them from the world.
 		ARG 1 player

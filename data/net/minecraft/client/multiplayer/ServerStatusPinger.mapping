@@ -10,12 +10,21 @@ CLASS net/minecraft/client/multiplayer/ServerStatusPinger
 	METHOD pingLegacyServer (Ljava/net/InetSocketAddress;Lnet/minecraft/client/multiplayer/ServerData;)V
 		ARG 1 ip
 		ARG 2 serverData
+	METHOD pingLegacyServer (Ljava/net/InetSocketAddress;Lnet/minecraft/client/multiplayer/resolver/ServerAddress;Lnet/minecraft/client/multiplayer/ServerData;)V
+		ARG 1 resolvedServerAddress
+		ARG 2 serverAddress
+		ARG 3 serverData
 	METHOD pingServer (Lnet/minecraft/client/multiplayer/ServerData;Ljava/lang/Runnable;)V
 		ARG 1 server
 		ARG 2 serverListUpdater
 	CLASS 2
 		METHOD initChannel (Lio/netty/channel/Channel;)V
 			ARG 1 channel
+		METHOD lambda$initChannel$0 (Lnet/minecraft/client/multiplayer/ServerData;ILjava/lang/String;Ljava/lang/String;II)V
+			ARG 2 version
+			ARG 3 motd
+			ARG 4 players
+			ARG 5 capacity
 		CLASS 1
 			METHOD channelActive (Lio/netty/channel/ChannelHandlerContext;)V
 				ARG 1 context

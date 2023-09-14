@@ -6,8 +6,14 @@ CLASS net/minecraft/world/level/storage/DimensionDataStorage
 		ARG 1 loadFunction
 		ARG 2 createFunction
 		ARG 3 name
+	METHOD computeIfAbsent (Lnet/minecraft/world/level/saveddata/SavedData$Factory;Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/SavedData;
+		ARG 1 factory
+		ARG 2 name
 	METHOD get (Ljava/util/function/Function;Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/SavedData;
 		ARG 1 loadFunction
+		ARG 2 name
+	METHOD get (Lnet/minecraft/world/level/saveddata/SavedData$Factory;Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/SavedData;
+		ARG 1 factory
 		ARG 2 name
 	METHOD getDataFile (Ljava/lang/String;)Ljava/io/File;
 		ARG 1 name
@@ -19,9 +25,17 @@ CLASS net/minecraft/world/level/storage/DimensionDataStorage
 	METHOD readSavedData (Ljava/util/function/Function;Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/SavedData;
 		ARG 1 loadFunction
 		ARG 2 name
+	METHOD readSavedData (Ljava/util/function/Function;Lnet/minecraft/util/datafix/DataFixTypes;Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/SavedData;
+		ARG 1 deserializer
+		ARG 2 dataFixType
+		ARG 3 name
 	METHOD readTagFromDisk (Ljava/lang/String;I)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 name
 		ARG 2 levelVersion
+	METHOD readTagFromDisk (Ljava/lang/String;Lnet/minecraft/util/datafix/DataFixTypes;I)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 filename
+		ARG 2 dataFixType
+		ARG 3 version
 	METHOD set (Ljava/lang/String;Lnet/minecraft/world/level/saveddata/SavedData;)V
 		ARG 1 name
 		ARG 2 savedData

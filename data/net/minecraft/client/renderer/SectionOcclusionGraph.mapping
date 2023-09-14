@@ -24,6 +24,7 @@ CLASS net/minecraft/client/renderer/SectionOcclusionGraph
 	METHOD queueSectionsWithNewNeighbors (Lnet/minecraft/client/renderer/SectionOcclusionGraph$GraphState;)V
 		ARG 1 graphState
 	METHOD runPartialUpdate (ZLnet/minecraft/client/renderer/culling/Frustum;Ljava/util/List;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 smartCull
 		ARG 2 frustum
 		ARG 3 sections
 		ARG 4 cameraPosition
@@ -31,11 +32,14 @@ CLASS net/minecraft/client/renderer/SectionOcclusionGraph
 		ARG 1 graphStorage
 		ARG 2 cameraPosition
 		ARG 3 nodeQueue
+		ARG 4 smartCull
 		ARG 5 sections
 	METHOD scheduleFullUpdate (ZLnet/minecraft/client/Camera;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 smartCull
 		ARG 2 camera
 		ARG 3 cameraPosition
 	METHOD update (ZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/culling/Frustum;Ljava/util/List;)V
+		ARG 1 smartCull
 		ARG 2 camera
 		ARG 3 frustum
 		ARG 4 sections
@@ -54,6 +58,9 @@ CLASS net/minecraft/client/renderer/SectionOcclusionGraph
 			ARG 1 direction
 		METHOD hasSourceDirection (I)Z
 			ARG 1 direction
+		METHOD setDirections (BLnet/minecraft/core/Direction;)V
+			ARG 1 currentValue
+			ARG 2 direction
 	CLASS GraphState
 		METHOD <init> (I)V
 			ARG 1 size
