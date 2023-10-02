@@ -8,17 +8,6 @@ CLASS net/minecraft/advancements/critereon/StatePropertiesPredicate
 		ARG 2 propertyConsumer
 	METHOD fromJson (Lcom/google/gson/JsonElement;)Ljava/util/Optional;
 		ARG 0 json
-	METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/StatePropertiesPredicate;
-		ARG 0 json
-	METHOD fromJson (Ljava/lang/String;Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/StatePropertiesPredicate$PropertyMatcher;
-		ARG 0 name
-		ARG 1 json
-	METHOD getStringOrNull (Lcom/google/gson/JsonElement;)Ljava/lang/String;
-		ARG 0 json
-	METHOD lambda$checkState$0 (Lnet/minecraft/world/level/block/state/StateDefinition;Ljava/util/function/Consumer;Lnet/minecraft/advancements/critereon/StatePropertiesPredicate$PropertyMatcher;)V
-		ARG 2 propertyMatcher
-	METHOD lambda$serializeToJson$1 (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/StatePropertiesPredicate$PropertyMatcher;)V
-		ARG 1 property
 	METHOD matches (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 	METHOD matches (Lnet/minecraft/world/level/block/state/StateDefinition;Lnet/minecraft/world/level/block/state/StateHolder;)Z
@@ -44,31 +33,8 @@ CLASS net/minecraft/advancements/critereon/StatePropertiesPredicate
 			ARG 1 stateHolder
 			ARG 2 property
 	CLASS PropertyMatcher
-		METHOD <init> (Ljava/lang/String;)V
-			ARG 1 name
 		METHOD checkState (Lnet/minecraft/world/level/block/state/StateDefinition;)Ljava/util/Optional;
 			ARG 1 state
-		METHOD checkState (Lnet/minecraft/world/level/block/state/StateDefinition;Ljava/util/function/Consumer;)V
-			ARG 1 properties
-			ARG 2 propertyConsumer
 		METHOD match (Lnet/minecraft/world/level/block/state/StateDefinition;Lnet/minecraft/world/level/block/state/StateHolder;)Z
 			ARG 1 properties
 			ARG 2 propertyToMatch
-		METHOD match (Lnet/minecraft/world/level/block/state/StateHolder;Lnet/minecraft/world/level/block/state/properties/Property;)Z
-			ARG 1 properties
-			ARG 2 property
-	CLASS ExactPropertyMatcher
-		METHOD <init> (Ljava/lang/String;Ljava/lang/String;)V
-			ARG 1 name
-			ARG 2 value
-		METHOD match (Lnet/minecraft/world/level/block/state/StateHolder;Lnet/minecraft/world/level/block/state/properties/Property;)Z
-			ARG 1 properties
-			ARG 2 propertyTarget
-	CLASS RangedPropertyMatcher
-		METHOD <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-			ARG 1 name
-			ARG 2 minValue
-			ARG 3 maxValue
-		METHOD match (Lnet/minecraft/world/level/block/state/StateHolder;Lnet/minecraft/world/level/block/state/properties/Property;)Z
-			ARG 1 properties
-			ARG 2 propertyTarget

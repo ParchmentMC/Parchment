@@ -5,10 +5,6 @@ CLASS net/minecraft/server/level/ServerPlayer
 		COMMENT the total health of the player, includes actual health and absorption health. Updated every tick.
 	FIELD lastSectionPos Lnet/minecraft/core/SectionPos;
 		COMMENT Player section position as last updated by TicketManager, used by ChunkManager
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/level/ServerLevel;Lcom/mojang/authlib/GameProfile;)V
-		ARG 1 server
-		ARG 2 level
-		ARG 3 gameProfile
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/level/ServerLevel;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/server/level/ClientInformation;)V
 		ARG 1 server
 		ARG 2 level
@@ -178,11 +174,6 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD sendSystemMessage (Lnet/minecraft/network/chat/Component;Z)V
 		ARG 1 component
 		ARG 2 bypassHiddenChat
-	METHOD sendTexturePack (Ljava/lang/String;Ljava/lang/String;ZLnet/minecraft/network/chat/Component;)V
-		ARG 1 url
-		ARG 2 hash
-		ARG 3 required
-		ARG 4 prompt
 	METHOD setCamera (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entityToSpectate
 	METHOD setChatSession (Lnet/minecraft/network/chat/RemoteChatSession;)V
@@ -238,17 +229,10 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 9 pitch
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
-	METHOD trackChunk (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/network/protocol/Packet;)V
-		ARG 1 chunkPos
-		ARG 2 packet
 	METHOD triggerDimensionChangeTriggers (Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 1 level
-	METHOD untrackChunk (Lnet/minecraft/world/level/ChunkPos;)V
-		ARG 1 chunkPos
 	METHOD updateInvisibilityStatus ()V
 		COMMENT Clears potion metadata values if the entity has no potion effects. Otherwise, updates potion effect color, ambience, and invisibility metadata values
-	METHOD updateOptions (Lnet/minecraft/network/protocol/game/ServerboundClientInformationPacket;)V
-		ARG 1 packet
 	METHOD updateOptions (Lnet/minecraft/server/level/ClientInformation;)V
 		ARG 1 clientInformation
 	METHOD updateScoreForCriteria (Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;I)V

@@ -7,13 +7,6 @@ CLASS net/minecraft/world/level/storage/loot/functions/ExplorationMapFunction
 		ARG 4 zoom
 		ARG 5 searchRadius
 		ARG 6 skipKnownStructures
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/level/saveddata/maps/MapDecoration$Type;BIZ)V
-		ARG 1 conditions
-		ARG 2 destination
-		ARG 3 mapDecoration
-		ARG 4 zoom
-		ARG 5 searchRadius
-		ARG 6 skipKnownStructures
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
@@ -28,15 +21,3 @@ CLASS net/minecraft/world/level/storage/loot/functions/ExplorationMapFunction
 			ARG 1 skipKnownStructures
 		METHOD setZoom (B)Lnet/minecraft/world/level/storage/loot/functions/ExplorationMapFunction$Builder;
 			ARG 1 zoom
-	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/ExplorationMapFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
-		METHOD readStructure (Lcom/google/gson/JsonObject;)Lnet/minecraft/tags/TagKey;
-			ARG 0 json
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/ExplorationMapFunction;Lcom/google/gson/JsonSerializationContext;)V
-			COMMENT Serialize the {@link ExplorationMapFunction} by putting its data into the JsonObject.
-			ARG 1 json
-			ARG 2 explorationMapFunction
-			ARG 3 serializationContext

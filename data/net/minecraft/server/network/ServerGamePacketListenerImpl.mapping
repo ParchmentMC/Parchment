@@ -3,10 +3,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		COMMENT Used to keep track of how the player is floating while gamerules should prevent that. Surpassing 80 ticks means kick
 	FIELD chatSpamTickCount I
 		COMMENT Incremented by 20 each time a user sends a chat message, decreased by one every tick. Non-ops kicked when over 200
-	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;)V
-		ARG 1 server
-		ARG 2 connection
-		ARG 3 player
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/network/CommonListenerCookie;)V
 		ARG 1 server
 		ARG 2 connection
@@ -32,9 +28,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 4 z
 		ARG 6 yRot
 		ARG 7 xRot
-	METHOD disconnect (Lnet/minecraft/network/chat/Component;)V
-		COMMENT Disconnect the player with a specified reason
-		ARG 1 textComponent
 	METHOD filterTextPacket (Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 message
 		ARG 2 processor
@@ -57,9 +50,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD handleClientCommand (Lnet/minecraft/network/protocol/game/ServerboundClientCommandPacket;)V
 		COMMENT Processes the client status updates: respawn attempt from player, opening statistics or achievements, or acquiring 'open inventory' achievement
 		ARG 1 packet
-	METHOD handleClientInformation (Lnet/minecraft/network/protocol/game/ServerboundClientInformationPacket;)V
-		COMMENT Updates serverside copy of client settings: language, render distance, chat visibility, chat colours, difficulty, and whether to show the cape
-		ARG 1 packet
 	METHOD handleContainerButtonClick (Lnet/minecraft/network/protocol/game/ServerboundContainerButtonClickPacket;)V
 		COMMENT Enchants the item identified by the packet given some convoluted conditions (matching window, which should/shouldn't be in use?)
 		ARG 1 packet
@@ -72,18 +62,12 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD handleCustomCommandSuggestions (Lnet/minecraft/network/protocol/game/ServerboundCommandSuggestionPacket;)V
 		COMMENT This method is only called for manual tab-completion (the {@link net.minecraft.commands.synchronization.SuggestionProviders#ASK_SERVER minecraft:ask_server} suggestion provider).
 		ARG 1 packet
-	METHOD handleCustomPayload (Lnet/minecraft/network/protocol/game/ServerboundCustomPayloadPacket;)V
-		COMMENT Synchronizes serverside and clientside book contents and signing
-		ARG 1 packet
 	METHOD handleEditBook (Lnet/minecraft/network/protocol/game/ServerboundEditBookPacket;)V
 		ARG 1 packet
 	METHOD handleEntityTagQuery (Lnet/minecraft/network/protocol/game/ServerboundEntityTagQuery;)V
 		ARG 1 packet
 	METHOD handleInteract (Lnet/minecraft/network/protocol/game/ServerboundInteractPacket;)V
 		COMMENT Processes left and right clicks on entities
-		ARG 1 packet
-	METHOD handleKeepAlive (Lnet/minecraft/network/protocol/game/ServerboundKeepAlivePacket;)V
-		COMMENT Updates a players' ping statistics
 		ARG 1 packet
 	METHOD handleMessageDecodeFailure (Lnet/minecraft/network/chat/SignedMessageChain$DecodeException;)V
 		ARG 1 exception
@@ -113,8 +97,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD handleRecipeBookSeenRecipePacket (Lnet/minecraft/network/protocol/game/ServerboundRecipeBookSeenRecipePacket;)V
 		ARG 1 packet
 	METHOD handleRenameItem (Lnet/minecraft/network/protocol/game/ServerboundRenameItemPacket;)V
-		ARG 1 packet
-	METHOD handleResourcePackResponse (Lnet/minecraft/network/protocol/game/ServerboundResourcePackPacket;)V
 		ARG 1 packet
 	METHOD handleSeenAdvancements (Lnet/minecraft/network/protocol/game/ServerboundSeenAdvancementsPacket;)V
 		ARG 1 packet
@@ -163,9 +145,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 2 lastSeenMessages
 	METHOD resetPlayerChatState (Lnet/minecraft/network/chat/RemoteChatSession;)V
 		ARG 1 chatSession
-	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
-		ARG 1 packet
-		ARG 2 listener
 	METHOD sendDisguisedChatMessage (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType$Bound;)V
 		ARG 1 message
 		ARG 2 boundType

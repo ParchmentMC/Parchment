@@ -11,11 +11,6 @@ CLASS net/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer
 		ARG 2 quality
 		ARG 3 conditions
 		ARG 4 functions
-	METHOD <init> (II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)V
-		ARG 1 weight
-		ARG 2 quality
-		ARG 3 conditions
-		ARG 4 functions
 	METHOD createItemStack (Ljava/util/function/Consumer;Lnet/minecraft/world/level/storage/loot/LootContext;)V
 		COMMENT Generate the loot stacks of this entry.
 		COMMENT Contrary to the method name this method does not always generate one stack, it can also generate zero or multiple stacks.
@@ -24,8 +19,6 @@ CLASS net/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer
 	METHOD simpleBuilder (Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$EntryConstructor;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$Builder;
 		ARG 0 entryBuilder
 	CLASS Builder
-		METHOD getFunctions ()[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
-			COMMENT Creates an array from the functions list
 		METHOD setQuality (I)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$Builder;
 			ARG 1 quality
 		METHOD setWeight (I)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$Builder;
@@ -34,32 +27,11 @@ CLASS net/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer
 		METHOD getWeight (F)I
 			COMMENT Gets the effective weight based on the loot entry's weight and quality multiplied by looter's luck.
 			ARG 1 luck
-	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;
-			ARG 1 object
-			ARG 2 context
-			ARG 3 weight
-			ARG 4 quality
-			ARG 5 conditions
-			ARG 6 functions
-		METHOD deserializeCustom (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;
-			ARG 1 object
-			ARG 2 context
-			ARG 3 conditions
-		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;Lcom/google/gson/JsonSerializationContext;)V
-			ARG 1 object
-			ARG 2 context
-			ARG 3 conditions
 	CLASS DummyBuilder
 		METHOD <init> (Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer$EntryConstructor;)V
 			ARG 1 constructor
 	CLASS EntryConstructor
 		METHOD build (IILjava/util/List;Ljava/util/List;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;
-			ARG 1 weight
-			ARG 2 quality
-			ARG 3 conditions
-			ARG 4 functions
-		METHOD build (II[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;[Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer;
 			ARG 1 weight
 			ARG 2 quality
 			ARG 3 conditions

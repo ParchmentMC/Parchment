@@ -7,9 +7,6 @@ CLASS net/minecraft/network/Connection
 		COMMENT A Component indicating why the network has shutdown.
 	FIELD packetListener Lnet/minecraft/network/PacketListener;
 		COMMENT The PacketListener instance responsible for processing received packets
-	FIELD queue Ljava/util/Queue;
-		COMMENT The queue for packets that get sent before the channel is connected.
-		COMMENT Every tick or whenever a new packet is sent the connection will try to flush this queue, if the channel has since finished connecting.
 	METHOD <init> (Lnet/minecraft/network/protocol/PacketFlow;)V
 		ARG 1 receiving
 	METHOD channelActive (Lio/netty/channel/ChannelHandlerContext;)V
@@ -27,9 +24,6 @@ CLASS net/minecraft/network/Connection
 		ARG 1 flow
 	METHOD configurePacketHandler (Lio/netty/channel/ChannelPipeline;)V
 		ARG 1 pipeline
-	METHOD configureSerialization (Lio/netty/channel/ChannelPipeline;Lnet/minecraft/network/protocol/PacketFlow;)V
-		ARG 0 pipeline
-		ARG 1 flow
 	METHOD configureSerialization (Lio/netty/channel/ChannelPipeline;Lnet/minecraft/network/protocol/PacketFlow;Lnet/minecraft/network/BandwidthDebugMonitor;)V
 		ARG 0 pipeline
 		ARG 1 flow
@@ -43,12 +37,6 @@ CLASS net/minecraft/network/Connection
 		COMMENT Establishes a connection to the socket supplied and configures the channel pipeline (only the packet handler is necessary,
 		COMMENT since this is for an in-memory connection). Returns the newly created instance.
 		ARG 0 address
-	METHOD connectToServer (Ljava/net/InetSocketAddress;Z)Lnet/minecraft/network/Connection;
-		COMMENT Prepares a clientside Connection for a network connection to a remote server.
-		COMMENT Establishes a connection to the socket supplied and configures the channel pipeline. Returns the newly created instance.
-		ARG 0 address
-		ARG 1 useEpollIfAvailable
-			COMMENT whether to use an Epoll channel if it is available
 	METHOD connectToServer (Ljava/net/InetSocketAddress;ZLnet/minecraft/util/SampleLogger;)Lnet/minecraft/network/Connection;
 		ARG 0 address
 		ARG 1 useEpollIfAvailable
@@ -60,11 +48,6 @@ CLASS net/minecraft/network/Connection
 		COMMENT
 		COMMENT Closing the channel this way does not send any disconnection packets, it simply terminates the underlying netty channel.
 		ARG 1 message
-	METHOD doSendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/ConnectionProtocol;)V
-		ARG 1 packet
-		ARG 2 sendListener
-		ARG 3 newProtocol
-		ARG 4 currentProtocol
 	METHOD doSendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Z)V
 		ARG 1 packet
 		ARG 2 sendListener
@@ -127,15 +110,6 @@ CLASS net/minecraft/network/Connection
 		ARG 1 packet
 		ARG 2 listener
 		ARG 3 flush
-	METHOD sendNoFlush (Lnet/minecraft/network/protocol/Packet;)V
-		ARG 1 packet
-	METHOD sendNoFlush (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
-		ARG 1 packet
-		ARG 2 sendListener
-	METHOD sendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
-		COMMENT Will commit the packet to the channel. If the current thread 'owns' the channel it will write and flush the packet, otherwise it will add a task for the channel eventloop thread to do that.
-		ARG 1 packet
-		ARG 2 sendListener
 	METHOD sendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Z)V
 		ARG 1 packet
 		ARG 2 sendListener
@@ -160,9 +134,6 @@ CLASS net/minecraft/network/Connection
 		ARG 1 handler
 	METHOD setListenerForServerboundHandshake (Lnet/minecraft/network/PacketListener;)V
 		ARG 1 packetListener
-	METHOD setProtocol (Lnet/minecraft/network/ConnectionProtocol;)V
-		COMMENT Sets the new connection state and registers which packets this channel may send and receive
-		ARG 1 newState
 	METHOD setReadOnly ()V
 		COMMENT Switches the channel to manual reading modus
 	METHOD setupCompression (IZ)V
@@ -180,7 +151,3 @@ CLASS net/minecraft/network/Connection
 	CLASS 2
 		METHOD initChannel (Lio/netty/channel/Channel;)V
 			ARG 1 channel
-	CLASS PacketHolder
-		METHOD <init> (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
-			ARG 1 packet
-			ARG 2 listener

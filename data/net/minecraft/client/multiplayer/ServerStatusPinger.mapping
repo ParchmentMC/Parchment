@@ -7,9 +7,6 @@ CLASS net/minecraft/client/multiplayer/ServerStatusPinger
 	METHOD onPingFailed (Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/multiplayer/ServerData;)V
 		ARG 1 reason
 		ARG 2 serverData
-	METHOD pingLegacyServer (Ljava/net/InetSocketAddress;Lnet/minecraft/client/multiplayer/ServerData;)V
-		ARG 1 ip
-		ARG 2 serverData
 	METHOD pingLegacyServer (Ljava/net/InetSocketAddress;Lnet/minecraft/client/multiplayer/resolver/ServerAddress;Lnet/minecraft/client/multiplayer/ServerData;)V
 		ARG 1 resolvedServerAddress
 		ARG 2 serverAddress
@@ -25,12 +22,3 @@ CLASS net/minecraft/client/multiplayer/ServerStatusPinger
 			ARG 3 motd
 			ARG 4 players
 			ARG 5 capacity
-		CLASS 1
-			METHOD channelActive (Lio/netty/channel/ChannelHandlerContext;)V
-				ARG 1 context
-			METHOD channelRead0 (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;)V
-				ARG 1 context
-				ARG 2 buffer
-			METHOD exceptionCaught (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Throwable;)V
-				ARG 1 context
-				ARG 2 exception

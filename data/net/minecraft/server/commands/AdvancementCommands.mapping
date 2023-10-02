@@ -1,8 +1,4 @@
 CLASS net/minecraft/server/commands/AdvancementCommands
-	METHOD addChildren (Lnet/minecraft/advancements/Advancement;Ljava/util/List;)V
-		COMMENT Recursively adds all children of the given advancement to the given list. Does not add the advancement itself to the list.
-		ARG 0 advancement
-		ARG 1 list
 	METHOD addChildren (Lnet/minecraft/advancements/AdvancementNode;Ljava/util/List;)V
 		ARG 0 node
 		ARG 1 output
@@ -10,10 +6,6 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 		ARG 0 context
 		ARG 1 advancement
 		ARG 2 mode
-	METHOD getAdvancements (Lnet/minecraft/advancements/Advancement;Lnet/minecraft/server/commands/AdvancementCommands$Mode;)Ljava/util/List;
-		COMMENT Gets all advancements that match the given mode.
-		ARG 0 advancement
-		ARG 1 mode
 	METHOD lambda$register$1 (Lnet/minecraft/commands/CommandSourceStack;)Z
 		ARG 0 source
 	METHOD lambda$register$10 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
@@ -57,15 +49,6 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 		ARG 1 targets
 		ARG 2 action
 		ARG 3 advancements
-	METHOD performCriterion (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/server/commands/AdvancementCommands$Action;Lnet/minecraft/advancements/Advancement;Ljava/lang/String;)I
-		COMMENT Updates a single criterion based on the given action.
-		COMMENT
-		COMMENT @return The number of affected criteria across all players.
-		ARG 0 source
-		ARG 1 targets
-		ARG 2 action
-		ARG 3 advancement
-		ARG 4 criterionName
 	METHOD performCriterion (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/server/commands/AdvancementCommands$Action;Lnet/minecraft/advancements/AdvancementHolder;Ljava/lang/String;)I
 		ARG 0 source
 		ARG 1 targets
@@ -87,22 +70,9 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 			COMMENT @return The number of players affected.
 			ARG 1 player
 			ARG 2 advancements
-		METHOD perform (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/advancements/Advancement;)Z
-			COMMENT Applies this action to the given advancement.
-			COMMENT
-			COMMENT @return True if the player was affected.
-			ARG 1 player
-			ARG 2 advancement
 		METHOD perform (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/advancements/AdvancementHolder;)Z
 			ARG 1 player
 			ARG 2 advancement
-		METHOD performCriterion (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/advancements/Advancement;Ljava/lang/String;)Z
-			COMMENT Applies this action to the given criterion.
-			COMMENT
-			COMMENT @return True if the player was affected.
-			ARG 1 player
-			ARG 2 advancement
-			ARG 3 criterionName
 		METHOD performCriterion (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/advancements/AdvancementHolder;Ljava/lang/String;)Z
 			ARG 1 player
 			ARG 2 advancement

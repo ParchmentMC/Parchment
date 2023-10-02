@@ -4,10 +4,6 @@ CLASS net/minecraft/world/level/storage/loot/functions/LootingEnchantFunction
 		ARG 1 conditions
 		ARG 2 value
 		ARG 3 limit
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;I)V
-		ARG 1 conditions
-		ARG 2 lootingMultiplier
-		ARG 3 countLimit
 	METHOD lootingMultiplier (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/functions/LootingEnchantFunction$Builder;
 		ARG 0 lootingMultiplier
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
@@ -18,13 +14,3 @@ CLASS net/minecraft/world/level/storage/loot/functions/LootingEnchantFunction
 			ARG 1 lootingMultiplier
 		METHOD setLimit (I)Lnet/minecraft/world/level/storage/loot/functions/LootingEnchantFunction$Builder;
 			ARG 1 limit
-	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootingEnchantFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/LootingEnchantFunction;Lcom/google/gson/JsonSerializationContext;)V
-			COMMENT Serialize the {@link LootingEnchantFunction} by putting its data into the JsonObject.
-			ARG 1 json
-			ARG 2 lootingEnchantFunction
-			ARG 3 serializationContext

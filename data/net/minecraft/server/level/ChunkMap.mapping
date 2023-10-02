@@ -77,18 +77,6 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 2 chunkPos
 	METHOD isChunkDataValid (Lnet/minecraft/nbt/CompoundTag;)Z
 		ARG 0 tag
-	METHOD isChunkInRange (IIIII)Z
-		ARG 0 x1
-		ARG 1 z1
-		ARG 2 x2
-		ARG 3 z2
-		ARG 4 maxDistance
-	METHOD isChunkOnRangeBorder (IIIII)Z
-		ARG 0 x1
-		ARG 1 z1
-		ARG 2 x2
-		ARG 3 z2
-		ARG 4 maxDistance
 	METHOD isChunkOnTrackedBorder (Lnet/minecraft/server/level/ServerPlayer;II)Z
 		ARG 1 player
 		ARG 2 x
@@ -122,10 +110,6 @@ CLASS net/minecraft/server/level/ChunkMap
 	METHOD playerIsCloseEnoughForSpawning (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/ChunkPos;)Z
 		ARG 1 player
 		ARG 2 chunkPos
-	METHOD playerLoadedChunk (Lnet/minecraft/server/level/ServerPlayer;Lorg/apache/commons/lang3/mutable/MutableObject;Lnet/minecraft/world/level/chunk/LevelChunk;)V
-		ARG 1 player
-		ARG 2 packetCache
-		ARG 3 chunk
 	METHOD postLoadProtoChunk (Lnet/minecraft/server/level/ServerLevel;Ljava/util/List;)V
 		ARG 0 level
 		ARG 1 tags
@@ -168,8 +152,6 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 3 chunkHolder
 	METHOD setServerViewDistance (I)V
 		ARG 1 viewDistance
-	METHOD setViewDistance (I)V
-		ARG 1 viewDistance
 	METHOD skipPlayer (Lnet/minecraft/server/level/ServerPlayer;)Z
 		ARG 1 player
 	METHOD tick (Ljava/util/function/BooleanSupplier;)V
@@ -182,15 +164,6 @@ CLASS net/minecraft/server/level/ChunkMap
 			COMMENT The {@link net.minecraft.server.level.ChunkHolder} of the chunk if it is loaded, and null otherwise.
 		ARG 5 oldLevel
 	METHOD updateChunkTracking (Lnet/minecraft/server/level/ServerPlayer;)V
-		ARG 1 player
-	METHOD updateChunkTracking (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/ChunkPos;Lorg/apache/commons/lang3/mutable/MutableObject;ZZ)V
-		COMMENT Sends the chunk to the client, or tells it to unload it.
-		ARG 1 player
-		ARG 2 chunkPos
-		ARG 3 packetCache
-		ARG 4 wasLoaded
-		ARG 5 load
-	METHOD updatePlayerPos (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/core/SectionPos;
 		ARG 1 player
 	METHOD updatePlayerPos (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player

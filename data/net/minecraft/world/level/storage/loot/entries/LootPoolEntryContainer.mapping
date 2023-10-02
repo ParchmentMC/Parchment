@@ -4,8 +4,6 @@ CLASS net/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer
 		COMMENT Conditions for the loot entry to be applied.
 	METHOD <init> (Ljava/util/List;)V
 		ARG 1 conditions
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)V
-		ARG 1 conditions
 	METHOD canRun (Lnet/minecraft/world/level/storage/loot/LootContext;)Z
 		ARG 1 lootContext
 	METHOD commonFields (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/Products$P1;
@@ -19,12 +17,3 @@ CLASS net/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer
 			ARG 1 childBuilder
 		METHOD then (Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer$Builder;)Lnet/minecraft/world/level/storage/loot/entries/SequentialEntry$Builder;
 			ARG 1 childBuilder
-	CLASS Serializer
-		METHOD deserializeCustom (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;
-			ARG 1 object
-			ARG 2 context
-			ARG 3 conditions
-		METHOD serializeCustom (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer;Lcom/google/gson/JsonSerializationContext;)V
-			ARG 1 object
-			ARG 2 context
-			ARG 3 conditions

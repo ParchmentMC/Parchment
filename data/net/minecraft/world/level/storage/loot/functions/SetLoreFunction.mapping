@@ -6,11 +6,6 @@ CLASS net/minecraft/world/level/storage/loot/functions/SetLoreFunction
 		ARG 2 replace
 		ARG 3 lore
 		ARG 4 resolutionContext
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;ZLjava/util/List;Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)V
-		ARG 1 conditions
-		ARG 2 replace
-		ARG 3 lore
-		ARG 4 resolutionContext
 	METHOD getLoreTag (Lnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/nbt/ListTag;
 		ARG 1 stack
 		ARG 2 createIfMissing
@@ -24,13 +19,3 @@ CLASS net/minecraft/world/level/storage/loot/functions/SetLoreFunction
 			ARG 1 replace
 		METHOD setResolutionContext (Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction$Builder;
 			ARG 1 resolutionContext
-	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction;Lcom/google/gson/JsonSerializationContext;)V
-			COMMENT Serialize the {@link SetLoreFunction} by putting its data into the JsonObject.
-			ARG 1 json
-			ARG 2 setLoreFunction
-			ARG 3 serializationContext

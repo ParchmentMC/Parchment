@@ -19,8 +19,6 @@ CLASS net/minecraft/util/ExtraCodecs
 		ARG 0 encoder
 		ARG 1 decoder
 		ARG 2 notFoundValue
-	METHOD instantCodec (Ljava/time/format/DateTimeFormatter;)Lcom/mojang/serialization/Codec;
-		ARG 0 dateTimeFormatter
 	METHOD intRange (II)Lcom/mojang/serialization/Codec;
 		ARG 0 min
 		ARG 1 max
@@ -37,10 +35,6 @@ CLASS net/minecraft/util/ExtraCodecs
 		ARG 5 maxGetter
 	METHOD lazyInitializedCodec (Ljava/util/function/Supplier;)Lcom/mojang/serialization/Codec;
 		ARG 0 delegate
-	METHOD mapGameProfileToIdName (Lcom/mojang/authlib/GameProfile;)Lcom/mojang/serialization/DataResult;
-		ARG 0 gameProfile
-	METHOD mapIdNameToGameProfile (Lcom/mojang/datafixers/util/Pair;)Lcom/mojang/serialization/DataResult;
-		ARG 0 idName
 	METHOD nonEmptyHolderSet (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
 		ARG 0 codec
 	METHOD nonEmptyList (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
@@ -150,14 +144,6 @@ CLASS net/minecraft/util/ExtraCodecs
 			ARG 1 input
 			ARG 2 ops
 			ARG 3 value
-	CLASS LazyInitializedCodec
-		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
-			ARG 1 ops
-			ARG 2 input
-		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
-			ARG 1 input
-			ARG 2 ops
-			ARG 3 prefix
 	CLASS 1ContextRetrievalCodec
 		METHOD <init> (Ljava/util/function/Function;)V
 			ARG 1 valGetter
@@ -177,7 +163,7 @@ CLASS net/minecraft/util/ExtraCodecs
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
 			ARG 2 input
-		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;)Lcom/mojang/serialization/RecordBuilder;
+		METHOD encode (Ljava/util/Optional;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;)Lcom/mojang/serialization/RecordBuilder;
 			ARG 1 input
 			ARG 2 ops
 			ARG 3 prefix

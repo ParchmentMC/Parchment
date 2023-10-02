@@ -14,33 +14,13 @@ CLASS net/minecraft/network/ConnectionProtocol
 		COMMENT The play protocol. This is the main protocol that is used while "in game" and most normal packets reside in here.
 	FIELD STATUS Lnet/minecraft/network/ConnectionProtocol;
 		COMMENT The status protocol. This protocol is used when a client pings a server while on the multiplayer screen.
-	METHOD <init> (Ljava/lang/String;IILnet/minecraft/network/ConnectionProtocol$ProtocolBuilder;)V
-		ARG 3 id
-		ARG 4 protocolBuilder
 	METHOD <init> (Ljava/lang/String;ILjava/lang/String;Lnet/minecraft/network/ConnectionProtocol$ProtocolBuilder;)V
 		ARG 3 id
 		ARG 4 builder
 	METHOD codec (Lnet/minecraft/network/protocol/PacketFlow;)Lnet/minecraft/network/ConnectionProtocol$CodecData;
 		ARG 1 flow
-	METHOD createPacket (Lnet/minecraft/network/protocol/PacketFlow;ILnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/network/protocol/Packet;
-		COMMENT Create a packet for this protocol using the given direction, packetId and data.
-		COMMENT Returns null if the packetId is not valid for this protocol/direction.
-		ARG 1 direction
-		ARG 2 packetId
-		ARG 3 buffer
-	METHOD getById (I)Lnet/minecraft/network/ConnectionProtocol;
-		COMMENT Get the Protocol for the given ID, or null if the ID is invalid.
-		ARG 0 stateId
-	METHOD getId ()I
-		COMMENT The ID for this protocol.
-	METHOD getPacketId (Lnet/minecraft/network/protocol/PacketFlow;Lnet/minecraft/network/protocol/Packet;)I
-		ARG 1 flow
-		ARG 2 packet
 	METHOD getPacketsByIds (Lnet/minecraft/network/protocol/PacketFlow;)Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
 		ARG 1 packetFlow
-	METHOD getProtocolForPacket (Lnet/minecraft/network/protocol/Packet;)Lnet/minecraft/network/ConnectionProtocol;
-		COMMENT Look up the protocol that uses the given packet.
-		ARG 0 packet
 	CLASS CodecData
 		METHOD <init> (Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/protocol/PacketFlow;Lnet/minecraft/network/ConnectionProtocol$PacketSet;)V
 			ARG 1 protocol
@@ -64,8 +44,6 @@ CLASS net/minecraft/network/ConnectionProtocol
 			ARG 1 packetClass
 		METHOD isKnownPacket (Ljava/lang/Class;)Z
 			ARG 1 packetClass
-		METHOD listAllPackets (Ljava/util/function/Consumer;)V
-			ARG 1 consumer
 		METHOD withBundlePacket (Ljava/lang/Class;Ljava/util/function/Function;)Lnet/minecraft/network/ConnectionProtocol$PacketSet;
 			ARG 1 packetClass
 			ARG 2 bundler

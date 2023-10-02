@@ -47,8 +47,6 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Returns false if this Entity can't move between dimensions. True if it can.
 	METHOD canCollideWith (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
-	METHOD canEnterPose (Lnet/minecraft/world/entity/Pose;)Z
-		ARG 1 pose
 	METHOD canRide (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 vehicle
 	METHOD causeFallDamage (FFLnet/minecraft/world/damagesource/DamageSource;)Z
@@ -139,8 +137,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 6 explosionPower
 	METHOD getBoundingBoxForCulling ()Lnet/minecraft/world/phys/AABB;
 		COMMENT Gets the bounding box of this Entity, adjusted to take auxiliary entities into account (e.g. the tile contained by a minecart, such as a command block).
-	METHOD getBoundingBoxForPose (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/phys/AABB;
-		ARG 1 pose
 	METHOD getCollisionHorizontalEscapeVector (DDF)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 vehicleWidth
 		ARG 2 passengerWidth
@@ -188,8 +184,6 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT The maximum height from where the entity is allowed to jump (used in pathfinder)
 	METHOD getMotionDirection ()Lnet/minecraft/core/Direction;
 		COMMENT Gets the horizontal facing direction of this Entity, adjusted to take specially-treated entity types into account.
-	METHOD getMyRidingOffset ()D
-		COMMENT Returns the Y Offset of this entity.
 	METHOD getMyRidingOffset (Lnet/minecraft/world/entity/Entity;)F
 		ARG 1 entity
 	METHOD getOnPos (F)Lnet/minecraft/core/BlockPos;
@@ -200,8 +194,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 3 scale
 	METHOD getPassengerRidingPosition (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 entity
-	METHOD getPassengersRidingOffset ()D
-		COMMENT Returns the Y offset from the entity's position for any entity riding this one.
 	METHOD getPortalWaitTime ()I
 		COMMENT Return the amount of time this entity should stay in a portal before being transported.
 	METHOD getPosition (F)Lnet/minecraft/world/phys/Vec3;
@@ -372,15 +364,6 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 7 yRot
 		ARG 8 xRot
 		ARG 9 steps
-	METHOD lerpTo (DDDFFIZ)V
-		COMMENT Sets a target for the client to interpolate towards over the next few ticks
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-		ARG 7 yRot
-		ARG 8 xRot
-		ARG 9 lerpSteps
-		ARG 10 teleport
 	METHOD limitPistonMovement (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 pos
 	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V

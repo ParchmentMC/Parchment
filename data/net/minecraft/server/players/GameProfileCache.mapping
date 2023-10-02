@@ -15,9 +15,6 @@ CLASS net/minecraft/server/players/GameProfileCache
 	METHOD get (Ljava/util/UUID;)Ljava/util/Optional;
 		ARG 1 uuid
 			COMMENT Get a player's {@link GameProfile} given their UUID
-	METHOD getAsync (Ljava/lang/String;Ljava/util/function/Consumer;)V
-		ARG 1 name
-		ARG 2 output
 	METHOD getTopMRUProfiles (I)Ljava/util/stream/Stream;
 		ARG 1 limit
 	METHOD lookupGameProfile (Lcom/mojang/authlib/GameProfileRepository;Ljava/lang/String;)Ljava/util/Optional;
@@ -38,9 +35,6 @@ CLASS net/minecraft/server/players/GameProfileCache
 		ARG 0 profileInfo
 		ARG 1 dateFormat
 	CLASS 1
-		METHOD onProfileLookupFailed (Lcom/mojang/authlib/GameProfile;Ljava/lang/Exception;)V
-			ARG 1 profile
-			ARG 2 exception
 		METHOD onProfileLookupFailed (Ljava/lang/String;Ljava/lang/Exception;)V
 			ARG 1 profileName
 			ARG 2 exception

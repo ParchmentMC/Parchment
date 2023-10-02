@@ -10,14 +10,14 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 index
 		ARG 2 length
 		ARG 3 value
-	METHOD capacity (I)Lio/netty/buffer/ByteBuf;
+	METHOD capacity (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 newCapacity
 	METHOD compareTo (Lio/netty/buffer/ByteBuf;)I
 		ARG 1 other
 	METHOD copy (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 length
-	METHOD ensureWritable (I)Lio/netty/buffer/ByteBuf;
+	METHOD ensureWritable (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 size
 	METHOD ensureWritable (IZ)I
 		ARG 1 size
@@ -40,23 +40,23 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 index
 	METHOD getByte (I)B
 		ARG 1 index
-	METHOD getBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
+	METHOD getBytes (ILio/netty/buffer/ByteBuf;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 destination
-	METHOD getBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
+	METHOD getBytes (ILio/netty/buffer/ByteBuf;I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 destination
 		ARG 3 length
-	METHOD getBytes (ILio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
+	METHOD getBytes (ILio/netty/buffer/ByteBuf;II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 destination
 		ARG 3 destinationIndex
 		ARG 4 length
-	METHOD getBytes (ILjava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;
+	METHOD getBytes (ILjava/io/OutputStream;I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 out
 		ARG 3 length
-	METHOD getBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
+	METHOD getBytes (ILjava/nio/ByteBuffer;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 destination
 	METHOD getBytes (ILjava/nio/channels/FileChannel;JI)I
@@ -68,10 +68,10 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 index
 		ARG 2 out
 		ARG 3 length
-	METHOD getBytes (I[B)Lio/netty/buffer/ByteBuf;
+	METHOD getBytes (I[B)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 destination
-	METHOD getBytes (I[BII)Lio/netty/buffer/ByteBuf;
+	METHOD getBytes (I[BII)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 destination
 		ARG 3 destinationIndex
@@ -94,8 +94,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 index
 	METHOD getLongLE (I)J
 		ARG 1 index
-	METHOD getMaxEncodedUtfLength (I)I
-		ARG 0 maxLength
 	METHOD getMedium (I)I
 		ARG 1 index
 	METHOD getMediumLE (I)I
@@ -118,12 +116,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 index
 	METHOD getUnsignedShortLE (I)I
 		ARG 1 index
-	METHOD getVarIntSize (I)I
-		COMMENT Calculates the number of bytes ({@code [1-5]}) required to fit the supplied int if it were to be read/written using readVarInt/writeVarInt
-		ARG 0 input
-	METHOD getVarLongSize (J)I
-		COMMENT Calculates the number of bytes ({@code [1-10]} required to fit the supplied long if it were to be read/written using readVarLong / writeVarLong
-		ARG 0 input
 	METHOD indexOf (IIB)I
 		ARG 1 fromIndex
 		ARG 2 toIndex
@@ -146,15 +138,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 2 length
 	METHOD order (Ljava/nio/ByteOrder;)Lio/netty/buffer/ByteBuf;
 		ARG 1 endianness
-	METHOD readAnySizeNbt ()Lnet/minecraft/nbt/CompoundTag;
-		COMMENT Reads a NBT CompoundTag from this buffer.
-		COMMENT {@code null} is a valid value and may be returned.
-		COMMENT
-		COMMENT This method has no size limit on the NBT data.
-		COMMENT
-		COMMENT @see #writeNbt
-		COMMENT @see #readNbt()
-		COMMENT @see #readNbt(NbtAccounter)
 	METHOD readBitSet ()Ljava/util/BitSet;
 		COMMENT Read a BitSet as a long[].
 		COMMENT
@@ -178,19 +161,19 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 maxLength
 	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
-	METHOD readBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes (Lio/netty/buffer/ByteBuf;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 destination
-	METHOD readBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes (Lio/netty/buffer/ByteBuf;I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 destination
 		ARG 2 length
-	METHOD readBytes (Lio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes (Lio/netty/buffer/ByteBuf;II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 destination
 		ARG 2 destinationIndex
 		ARG 3 length
-	METHOD readBytes (Ljava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes (Ljava/io/OutputStream;I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 out
 		ARG 2 length
-	METHOD readBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes (Ljava/nio/ByteBuffer;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 destination
 	METHOD readBytes (Ljava/nio/channels/FileChannel;JI)I
 		ARG 1 out
@@ -199,9 +182,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD readBytes (Ljava/nio/channels/GatheringByteChannel;I)I
 		ARG 1 out
 		ARG 2 length
-	METHOD readBytes ([B)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes ([B)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 destination
-	METHOD readBytes ([BII)Lio/netty/buffer/ByteBuf;
+	METHOD readBytes ([BII)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 destination
 		ARG 2 destinationIndex
 		ARG 3 length
@@ -290,16 +273,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT @see #writeNbt
 		COMMENT @see #readAnySizeNbt
 		COMMENT @see #readNbt(NbtAccounter)
-	METHOD readNbt (Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/CompoundTag;
-		COMMENT Reads a NBT CompoundTag from this buffer.
-		COMMENT {@code null} is a valid value and may be returned.
-		COMMENT
-		COMMENT This method limits the size of the data using the given {@code NbtAccounter}.
-		COMMENT
-		COMMENT @see #writeNbt
-		COMMENT @see #readNbt()
-		COMMENT @see #readAnySizeNbt
-		ARG 1 nbtAccounter
 	METHOD readNbt (Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/Tag;
 		ARG 1 nbtAccounter
 	METHOD readNullable (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/lang/Object;
@@ -351,9 +324,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Reads a compressed long from the buffer. To do so it maximally reads 10 byte-sized chunks whose most significant bit dictates whether another byte should be read.
 		COMMENT
 		COMMENT @see #writeVarLong
-	METHOD readWithCodec (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
-		ARG 1 ops
-		ARG 2 codec
 	METHOD readWithCodec (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Lnet/minecraft/nbt/NbtAccounter;)Ljava/lang/Object;
 		ARG 1 ops
 		ARG 2 codec
@@ -364,29 +334,29 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD readWithCount (Ljava/util/function/Consumer;)V
 		COMMENT Read a VarInt N from this buffer, then reads N values by calling {@code reader}.
 		ARG 1 reader
-	METHOD readerIndex (I)Lio/netty/buffer/ByteBuf;
+	METHOD readerIndex (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 readerIndex
 	METHOD release (I)Z
 		ARG 1 decrement
-	METHOD retain (I)Lio/netty/buffer/ByteBuf;
+	METHOD retain (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 increment
 	METHOD retainedSlice (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
 		ARG 2 length
-	METHOD setBoolean (IZ)Lio/netty/buffer/ByteBuf;
+	METHOD setBoolean (IZ)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setByte (II)Lio/netty/buffer/ByteBuf;
+	METHOD setByte (II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
+	METHOD setBytes (ILio/netty/buffer/ByteBuf;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 source
-	METHOD setBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
+	METHOD setBytes (ILio/netty/buffer/ByteBuf;I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 source
 		ARG 3 length
-	METHOD setBytes (ILio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
+	METHOD setBytes (ILio/netty/buffer/ByteBuf;II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 source
 		ARG 3 sourceIndex
@@ -395,7 +365,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 index
 		ARG 2 in
 		ARG 3 length
-	METHOD setBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
+	METHOD setBytes (ILjava/nio/ByteBuffer;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 source
 	METHOD setBytes (ILjava/nio/channels/FileChannel;JI)I
@@ -407,58 +377,58 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 index
 		ARG 2 in
 		ARG 3 length
-	METHOD setBytes (I[B)Lio/netty/buffer/ByteBuf;
+	METHOD setBytes (I[B)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 source
-	METHOD setBytes (I[BII)Lio/netty/buffer/ByteBuf;
+	METHOD setBytes (I[BII)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 source
 		ARG 3 sourceIndex
 		ARG 4 length
-	METHOD setChar (II)Lio/netty/buffer/ByteBuf;
+	METHOD setChar (II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
 	METHOD setCharSequence (ILjava/lang/CharSequence;Ljava/nio/charset/Charset;)I
 		ARG 1 index
 		ARG 2 charSequence
 		ARG 3 charset
-	METHOD setDouble (ID)Lio/netty/buffer/ByteBuf;
+	METHOD setDouble (ID)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setFloat (IF)Lio/netty/buffer/ByteBuf;
+	METHOD setFloat (IF)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setIndex (II)Lio/netty/buffer/ByteBuf;
+	METHOD setIndex (II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 readerIndex
 		ARG 2 writerIndex
-	METHOD setInt (II)Lio/netty/buffer/ByteBuf;
+	METHOD setInt (II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setIntLE (II)Lio/netty/buffer/ByteBuf;
+	METHOD setIntLE (II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setLong (IJ)Lio/netty/buffer/ByteBuf;
+	METHOD setLong (IJ)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setLongLE (IJ)Lio/netty/buffer/ByteBuf;
+	METHOD setLongLE (IJ)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setMedium (II)Lio/netty/buffer/ByteBuf;
+	METHOD setMedium (II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setMediumLE (II)Lio/netty/buffer/ByteBuf;
+	METHOD setMediumLE (II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setShort (II)Lio/netty/buffer/ByteBuf;
+	METHOD setShort (II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setShortLE (II)Lio/netty/buffer/ByteBuf;
+	METHOD setShortLE (II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
-	METHOD setZero (II)Lio/netty/buffer/ByteBuf;
+	METHOD setZero (II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 length
-	METHOD skipBytes (I)Lio/netty/buffer/ByteBuf;
+	METHOD skipBytes (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 length
 	METHOD slice (II)Lio/netty/buffer/ByteBuf;
 		ARG 1 index
@@ -469,7 +439,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 3 charset
 	METHOD toString (Ljava/nio/charset/Charset;)Ljava/lang/String;
 		ARG 1 charset
-	METHOD touch (Ljava/lang/Object;)Lio/netty/buffer/ByteBuf;
+	METHOD touch (Ljava/lang/Object;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 hint
 	METHOD writeBitSet (Ljava/util/BitSet;)V
 		COMMENT Write a BitSet as a long[].
@@ -486,28 +456,28 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #readBlockPos
 		ARG 1 pos
-	METHOD writeBoolean (Z)Lio/netty/buffer/ByteBuf;
+	METHOD writeBoolean (Z)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeById (Ljava/util/function/ToIntFunction;Ljava/lang/Object;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 idGetter
 		ARG 2 value
-	METHOD writeByte (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeByte (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeByteArray ([B)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 array
-	METHOD writeBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes (Lio/netty/buffer/ByteBuf;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 source
-	METHOD writeBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes (Lio/netty/buffer/ByteBuf;I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 source
 		ARG 2 length
-	METHOD writeBytes (Lio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes (Lio/netty/buffer/ByteBuf;II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 source
 		ARG 2 sourceIndex
 		ARG 3 length
 	METHOD writeBytes (Ljava/io/InputStream;I)I
 		ARG 1 in
 		ARG 2 length
-	METHOD writeBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes (Ljava/nio/ByteBuffer;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 source
 	METHOD writeBytes (Ljava/nio/channels/FileChannel;JI)I
 		ARG 1 in
@@ -516,13 +486,13 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD writeBytes (Ljava/nio/channels/ScatteringByteChannel;I)I
 		ARG 1 in
 		ARG 2 length
-	METHOD writeBytes ([B)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes ([B)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 source
-	METHOD writeBytes ([BII)Lio/netty/buffer/ByteBuf;
+	METHOD writeBytes ([BII)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 source
 		ARG 2 sourceIndex
 		ARG 3 length
-	METHOD writeChar (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeChar (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeCharSequence (Ljava/lang/CharSequence;Ljava/nio/charset/Charset;)I
 		ARG 1 charSequence
@@ -548,7 +518,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #readDate
 		ARG 1 time
-	METHOD writeDouble (D)Lio/netty/buffer/ByteBuf;
+	METHOD writeDouble (D)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeEither (Lcom/mojang/datafixers/util/Either;Lnet/minecraft/network/FriendlyByteBuf$Writer;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
 		ARG 1 value
@@ -565,7 +535,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD writeFixedBitSet (Ljava/util/BitSet;I)V
 		ARG 1 bitSet
 		ARG 2 size
-	METHOD writeFloat (F)Lio/netty/buffer/ByteBuf;
+	METHOD writeFloat (F)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeGameProfile (Lcom/mojang/authlib/GameProfile;)V
 		ARG 1 gameProfile
@@ -582,14 +552,14 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 3 writer
 	METHOD writeInstant (Ljava/time/Instant;)V
 		ARG 1 instant
-	METHOD writeInt (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeInt (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeIntIdList (Lit/unimi/dsi/fastutil/ints/IntList;)V
 		COMMENT Write an IntList to this buffer. Every element is encoded as a VarInt.
 		COMMENT
 		COMMENT @see #readIntIdList
 		ARG 1 itIdList
-	METHOD writeIntLE (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeIntLE (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes an ItemStack to this buffer.
@@ -599,14 +569,14 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD writeJsonWithCodec (Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
 		ARG 1 codec
 		ARG 2 value
-	METHOD writeLong (J)Lio/netty/buffer/ByteBuf;
+	METHOD writeLong (J)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeLongArray ([J)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes an array of longs to the buffer, prefixed by the length of the array (as a VarInt).
 		COMMENT
 		COMMENT @see #readLongArray
 		ARG 1 array
-	METHOD writeLongLE (J)Lio/netty/buffer/ByteBuf;
+	METHOD writeLongLE (J)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeMap (Ljava/util/Map;Lnet/minecraft/network/FriendlyByteBuf$Writer;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
 		COMMENT Write a Map to this buffer. First the size of the map is written as a VarInt.
@@ -616,18 +586,10 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 map
 		ARG 2 keyWriter
 		ARG 3 valueWriter
-	METHOD writeMedium (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeMedium (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
-	METHOD writeMediumLE (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeMediumLE (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
-	METHOD writeNbt (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/network/FriendlyByteBuf;
-		COMMENT Writes the given NBT CompoundTag to this buffer.
-		COMMENT {@code null} is a valid value and can be encoded by this method.
-		COMMENT
-		COMMENT @see #readNbt()
-		COMMENT @see #readAnySizeNbt
-		COMMENT @see #readNbt(NbtAccounter)
-		ARG 1 nbt
 	METHOD writeNbt (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 tag
 	METHOD writeNullable (Ljava/lang/Object;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
@@ -654,9 +616,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #readSectionPos
 		ARG 1 sectionPos
-	METHOD writeShort (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeShort (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
-	METHOD writeShortLE (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeShortLE (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeUUID (Ljava/util/UUID;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes a UUID encoded as two longs to this buffer.
@@ -693,11 +655,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 ops
 		ARG 2 codec
 		ARG 3 value
-	METHOD writeWithCodec (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
-		ARG 1 ops
-		ARG 2 codec
-		ARG 3 value
-	METHOD writeZero (I)Lio/netty/buffer/ByteBuf;
+	METHOD writeZero (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 length
-	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;
+	METHOD writerIndex (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 writerIndex
