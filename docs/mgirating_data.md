@@ -41,6 +41,9 @@ The target version may be earlier or later than the current version (but not the
 The progression of versions to step through is printed to the console whenever the migration system is configured, for
 ease of debugging.
 
+After performing a data migration, the sanitation task (`sanitizeData`) and the validation task (`validateData`) should
+be run to ensure removal of unwanted fragments of data
+
 ## Excluded Versions
 
 The migration system will step through all versions between the current and the target version (the intermediate
