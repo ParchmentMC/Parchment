@@ -13,7 +13,7 @@ CLASS com/mojang/realmsclient/client/RealmsClient
 		ARG 0 minecraft
 	METHOD deleteWorld (J)V
 		ARG 1 worldId
-	METHOD deop (JLjava/lang/String;)Lcom/mojang/realmsclient/dto/Ops;
+	METHOD deop (JLjava/util/UUID;)Lcom/mojang/realmsclient/dto/Ops;
 		ARG 1 worldId
 		ARG 3 profileUuid
 	METHOD execute (Lcom/mojang/realmsclient/client/Request;)Ljava/lang/String;
@@ -24,8 +24,6 @@ CLASS com/mojang/realmsclient/client/RealmsClient
 		ARG 3 worldType
 	METHOD getActivity (J)Lcom/mojang/realmsclient/dto/ServerActivityList;
 		ARG 1 worldId
-	METHOD getHttpCodeDescription (I)Ljava/lang/String;
-		ARG 0 httpCode
 	METHOD getOwnWorld (J)Lcom/mojang/realmsclient/dto/RealmsServer;
 		ARG 1 serverId
 	METHOD initializeWorld (JLjava/lang/String;Ljava/lang/String;)V
@@ -39,13 +37,11 @@ CLASS com/mojang/realmsclient/client/RealmsClient
 		ARG 1 pendingInvite
 	METHOD join (J)Lcom/mojang/realmsclient/dto/RealmsServerAddress;
 		ARG 1 serverId
-	METHOD lambda$create$1 (Lcom/mojang/realmsclient/client/RealmsClient$Environment;)V
-		ARG 0 currentEnvironment
 	METHOD notificationsDismiss (Ljava/util/List;)V
 		ARG 1 uuidList
 	METHOD notificationsSeen (Ljava/util/List;)V
 		ARG 1 uuidList
-	METHOD op (JLjava/lang/String;)Lcom/mojang/realmsclient/dto/Ops;
+	METHOD op (JLjava/util/UUID;)Lcom/mojang/realmsclient/dto/Ops;
 		ARG 1 worldId
 		ARG 3 profileUuid
 	METHOD open (J)Ljava/lang/Boolean;
@@ -77,9 +73,9 @@ CLASS com/mojang/realmsclient/client/RealmsClient
 	METHOD switchSlot (JI)Z
 		ARG 1 worldId
 		ARG 3 slotId
-	METHOD uninvite (JLjava/lang/String;)V
+	METHOD uninvite (JLjava/util/UUID;)V
 		ARG 1 worldId
-		ARG 3 uuid
+		ARG 3 playerUuid
 	METHOD uninviteMyselfFrom (J)V
 		ARG 1 worldId
 	METHOD update (JLjava/lang/String;Ljava/lang/String;)V

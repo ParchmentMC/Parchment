@@ -111,22 +111,14 @@ CLASS net/minecraft/client/gui/Gui
 			COMMENT the GuiGraphics object used for rendering.
 		ARG 2 x
 			COMMENT the x-coordinate for rendering the experience bar.
-	METHOD renderHeart (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Gui$HeartType;IIIZZ)V
-		COMMENT Renders a single heart icon on the screen.
+	METHOD renderHeart (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Gui$HeartType;IIZZZ)V
 		ARG 1 guiGraphics
-			COMMENT the graphics object used for rendering.
 		ARG 2 heartType
-			COMMENT the type of heart icon to render.
 		ARG 3 x
-			COMMENT the x-coordinate of the heart's position.
 		ARG 4 y
-			COMMENT the y-coordinate of the heart's position.
-		ARG 5 yOffset
-			COMMENT the y-offset of the heart.
-		ARG 6 renderHighlight
-			COMMENT determines whether to render the heart as highlighted.
-		ARG 7 halfHeart
-			COMMENT determines whether to render the heart as a half-heart.
+		ARG 5 hardcore
+		ARG 6 halfHeart
+		ARG 7 blinking
 	METHOD renderHearts (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/entity/player/Player;IIIIFIIIZ)V
 		COMMENT Renders the player's hearts, including health, absorption, and highlight hearts, on the screen.
 		ARG 1 guiGraphics
@@ -266,20 +258,22 @@ CLASS net/minecraft/client/gui/Gui
 		ARG 1 entity
 			COMMENT the entity used to determine the brightness.
 	CLASS HeartType
-		METHOD <init> (Ljava/lang/String;IIZ)V
-			ARG 3 index
-			ARG 4 canBlink
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 3 full
+			ARG 4 fullBlinking
+			ARG 5 half
+			ARG 6 halfBlinking
+			ARG 7 hardcoreFull
+			ARG 8 hardcoreBlinking
+			ARG 9 hardcoreHalf
+			ARG 10 hardcoreHalfBlinking
 		METHOD forPlayer (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/client/gui/Gui$HeartType;
 			COMMENT Returns the {@link HeartType} based on the player's status effects.
 			COMMENT <p>
 			COMMENT @return the {@link HeartType} based on the player's status effects.
 			ARG 0 player
 				COMMENT the player for which to determine the HeartType.
-		METHOD getX (ZZ)I
-			COMMENT Returns the x-coordinate for rendering a heart icon.
-			COMMENT <p>
-			COMMENT @return the x-coordinate for rendering the heart icon.
-			ARG 1 halfHeart
-				COMMENT specifies whether it's a half-heart or a full-heart.
-			ARG 2 renderHighlight
-				COMMENT specifies whether to render the heart with a highlight.
+		METHOD getSprite (ZZZ)Lnet/minecraft/resources/ResourceLocation;
+			ARG 1 hardcore
+			ARG 2 halfHeart
+			ARG 3 blinking

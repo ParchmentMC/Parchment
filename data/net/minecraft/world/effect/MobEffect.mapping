@@ -10,10 +10,9 @@ CLASS net/minecraft/world/effect/MobEffect
 		ARG 2 uuid
 		ARG 3 amount
 		ARG 5 operation
-	METHOD addAttributeModifiers (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/attributes/AttributeMap;I)V
-		ARG 1 livingEntity
-		ARG 2 attributeMap
-		ARG 3 amplifier
+	METHOD addAttributeModifiers (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;I)V
+		ARG 1 attributeMap
+		ARG 2 amplifier
 	METHOD applyEffectTick (Lnet/minecraft/world/entity/LivingEntity;I)V
 		ARG 1 livingEntity
 		ARG 2 amplifier
@@ -23,32 +22,26 @@ CLASS net/minecraft/world/effect/MobEffect
 		ARG 3 livingEntity
 		ARG 4 amplifier
 		ARG 5 health
-	METHOD byId (I)Lnet/minecraft/world/effect/MobEffect;
-		COMMENT Gets a Potion from the potion registry using a numeric Id.
-		ARG 0 potionID
-	METHOD getAttributeModifierValue (ILnet/minecraft/world/entity/ai/attributes/AttributeModifier;)D
-		ARG 1 amplifier
-		ARG 2 modifier
 	METHOD getColor ()I
 		COMMENT Returns the color of the potion liquid.
 	METHOD getDescriptionId ()Ljava/lang/String;
 		COMMENT Returns the name of the effect.
-	METHOD getId (Lnet/minecraft/world/effect/MobEffect;)I
-		COMMENT Gets the numeric Id associated with a potion.
-		ARG 0 potion
-	METHOD getIdFromNullable (Lnet/minecraft/world/effect/MobEffect;)I
-		ARG 0 potion
 	METHOD isBeneficial ()Z
 		COMMENT Get if the potion is beneficial to the player. Beneficial potions are shown on the first row of the HUD
-	METHOD isDurationEffectTick (II)Z
-		COMMENT Checks whether the effect is ready to be applied this tick.
-		ARG 1 duration
-		ARG 2 amplifier
 	METHOD isInstantenous ()Z
 		COMMENT Returns {@code true} if the potion has an instant effect instead of a continuous one (e.g. Harming)
-	METHOD removeAttributeModifiers (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/attributes/AttributeMap;I)V
+	METHOD onEffectStarted (Lnet/minecraft/world/entity/LivingEntity;I)V
 		ARG 1 livingEntity
-		ARG 2 attributeMap
-		ARG 3 amplifier
+		ARG 2 amplifier
+	METHOD removeAttributeModifiers (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;)V
+		ARG 1 attributeMap
 	METHOD setFactorDataFactory (Ljava/util/function/Supplier;)Lnet/minecraft/world/effect/MobEffect;
 		ARG 1 factorDataFactory
+	METHOD shouldApplyEffectTickThisTick (II)Z
+		ARG 1 duration
+		ARG 2 amplifier
+	CLASS MobEffectAttributeModifierTemplate
+		METHOD <init> (Lnet/minecraft/world/effect/MobEffect;Ljava/util/UUID;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)V
+			ARG 2 id
+			ARG 3 amount
+			ARG 5 operation

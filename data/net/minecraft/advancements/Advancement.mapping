@@ -1,58 +1,30 @@
 CLASS net/minecraft/advancements/Advancement
-	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/Advancement;Lnet/minecraft/advancements/DisplayInfo;Lnet/minecraft/advancements/AdvancementRewards;Ljava/util/Map;[[Ljava/lang/String;Z)V
-		ARG 1 id
-		ARG 2 parent
-		ARG 3 display
-		ARG 4 rewards
-		ARG 5 criteria
-		ARG 6 requirements
-		ARG 7 sendsTelemetryEvent
-	METHOD addChild (Lnet/minecraft/advancements/Advancement;)V
-		COMMENT Add the provided {@code child} as a child of this advancement.
-		ARG 1 child
-	METHOD deconstruct ()Lnet/minecraft/advancements/Advancement$Builder;
-		COMMENT Deconstructs this advancement into a {@link net.minecraft.advancements.Advancement#Builder}.
+	METHOD <init> (Ljava/util/Optional;Ljava/util/Optional;Lnet/minecraft/advancements/AdvancementRewards;Ljava/util/Map;Lnet/minecraft/advancements/AdvancementRequirements;Z)V
+		ARG 1 parent
+		ARG 2 display
+		ARG 3 rewards
+		ARG 4 criteria
+		ARG 5 requirements
+		ARG 6 sendsTelemetryEvent
+	METHOD decorateName (Lnet/minecraft/advancements/DisplayInfo;)Lnet/minecraft/network/chat/Component;
+		ARG 0 display
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
-	METHOD getChatComponent ()Lnet/minecraft/network/chat/Component;
-		COMMENT @return The {@link net.minecraft.network.chat.Component} that is shown in the chat message sent after this advancement is completed.
-	METHOD getChildren ()Ljava/lang/Iterable;
-		COMMENT @return An iterable through this advancement's children.
-	METHOD getCriteria ()Ljava/util/Map;
-		COMMENT @return A map of criteria required to complete this advancement. Keys represent the criteria names and values are the {@link net.minecraft.advancements.Criterion} instances.
-	METHOD getDisplay ()Lnet/minecraft/advancements/DisplayInfo;
-		COMMENT @return Display information for this advancement, or {@code null} if this advancement is invisible.
-	METHOD getId ()Lnet/minecraft/resources/ResourceLocation;
-		COMMENT @return The ID of this advancement.
-	METHOD getMaxCriteraRequired ()I
-		COMMENT @return How many requirements this advancement has.
-	METHOD getParent ()Lnet/minecraft/advancements/Advancement;
-		COMMENT @return The parent advancement to display in the advancements screen or {@code null} to signify this is a root advancement.
-	METHOD getRoot (Lnet/minecraft/advancements/Advancement;)Lnet/minecraft/advancements/Advancement;
+	METHOD fromJson (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/Advancement;
+		ARG 0 json
+		ARG 1 deserializationContext
+	METHOD name (Lnet/minecraft/advancements/AdvancementHolder;)Lnet/minecraft/network/chat/Component;
 		ARG 0 advancement
-	METHOD lambda$new$0 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
-		ARG 1 style
+	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/advancements/Advancement;
+		ARG 0 buffer
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
 	CLASS Builder
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/DisplayInfo;Lnet/minecraft/advancements/AdvancementRewards;Ljava/util/Map;[[Ljava/lang/String;Z)V
-			ARG 1 parentId
-			ARG 2 display
-			ARG 3 rewards
-			ARG 4 criteria
-			ARG 5 requirements
-			ARG 6 sendsTelemetryEvent
-		METHOD <init> (Z)V
-			ARG 1 sendsTelemetryEvent
 		METHOD addCriterion (Ljava/lang/String;Lnet/minecraft/advancements/Criterion;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 key
 			ARG 2 criterion
-		METHOD addCriterion (Ljava/lang/String;Lnet/minecraft/advancements/CriterionTriggerInstance;)Lnet/minecraft/advancements/Advancement$Builder;
-			ARG 1 key
-			ARG 2 criterion
-		METHOD build (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/Advancement;
+		METHOD build (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/AdvancementHolder;
 			ARG 1 id
-		METHOD canBuild (Ljava/util/function/Function;)Z
-			COMMENT Tries to resolve the parent of this advancement, if possible. Returns {@code true} on success.
-			ARG 1 parentLookup
 		METHOD display (Lnet/minecraft/advancements/DisplayInfo;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 display
 		METHOD display (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/FrameType;ZZZ)Lnet/minecraft/advancements/Advancement$Builder;
@@ -73,27 +45,18 @@ CLASS net/minecraft/advancements/Advancement
 			ARG 6 showToast
 			ARG 7 announceToChat
 			ARG 8 hidden
-		METHOD fromJson (Lcom/google/gson/JsonObject;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/Advancement$Builder;
-			ARG 0 json
-			ARG 1 context
-		METHOD fromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/advancements/Advancement$Builder;
-			ARG 0 buffer
-		METHOD lambda$build$0 (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/Advancement;
-			ARG 0 parentId
-		METHOD parent (Lnet/minecraft/advancements/Advancement;)Lnet/minecraft/advancements/Advancement$Builder;
+		METHOD parent (Lnet/minecraft/advancements/AdvancementHolder;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 parent
 		METHOD parent (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 parentId
-		METHOD requirements (Lnet/minecraft/advancements/RequirementsStrategy;)Lnet/minecraft/advancements/Advancement$Builder;
-			ARG 1 strategy
-		METHOD requirements ([[Ljava/lang/String;)Lnet/minecraft/advancements/Advancement$Builder;
+		METHOD requirements (Lnet/minecraft/advancements/AdvancementRequirements$Strategy;)Lnet/minecraft/advancements/Advancement$Builder;
+			ARG 1 requirementsStrategy
+		METHOD requirements (Lnet/minecraft/advancements/AdvancementRequirements;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 requirements
 		METHOD rewards (Lnet/minecraft/advancements/AdvancementRewards$Builder;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 rewardsBuilder
 		METHOD rewards (Lnet/minecraft/advancements/AdvancementRewards;)Lnet/minecraft/advancements/Advancement$Builder;
 			ARG 1 rewards
-		METHOD save (Ljava/util/function/Consumer;Ljava/lang/String;)Lnet/minecraft/advancements/Advancement;
-			ARG 1 consumer
+		METHOD save (Ljava/util/function/Consumer;Ljava/lang/String;)Lnet/minecraft/advancements/AdvancementHolder;
+			ARG 1 output
 			ARG 2 id
-		METHOD serializeToNetwork (Lnet/minecraft/network/FriendlyByteBuf;)V
-			ARG 1 buffer

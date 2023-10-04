@@ -41,8 +41,8 @@ CLASS net/minecraft/world/level/storage/loot/LootContext
 	CLASS Builder
 		METHOD <init> (Lnet/minecraft/world/level/storage/loot/LootParams;)V
 			ARG 1 params
-		METHOD create (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/LootContext;
-			ARG 1 location
+		METHOD create (Ljava/util/Optional;)Lnet/minecraft/world/level/storage/loot/LootContext;
+			ARG 1 sequence
 		METHOD withOptionalRandomSeed (J)Lnet/minecraft/world/level/storage/loot/LootContext$Builder;
 			ARG 1 seed
 	CLASS EntityTarget
@@ -60,9 +60,3 @@ CLASS net/minecraft/world/level/storage/loot/LootContext
 			ARG 4 param
 		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;
 			ARG 0 name
-		CLASS Serializer
-			METHOD read (Lcom/google/gson/stream/JsonReader;)Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;
-				ARG 1 reader
-			METHOD write (Lcom/google/gson/stream/JsonWriter;Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)V
-				ARG 1 writer
-				ARG 2 entityTarget

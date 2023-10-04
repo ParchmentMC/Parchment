@@ -66,8 +66,6 @@ CLASS net/minecraft/commands/CommandSourceStack
 	METHOD withCallback (Lcom/mojang/brigadier/ResultConsumer;Ljava/util/function/BinaryOperator;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 resultConsumer
 		ARG 2 resultConsumerSelector
-	METHOD withChatMessageChainer (Lnet/minecraft/util/TaskChainer;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 1 chatMessageChainer
 	METHOD withEntity (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 entity
 	METHOD withLevel (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/commands/CommandSourceStack;
@@ -82,7 +80,8 @@ CLASS net/minecraft/commands/CommandSourceStack
 		ARG 1 returnValueConsumer
 	METHOD withRotation (Lnet/minecraft/world/phys/Vec2;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 rotation
-	METHOD withSigningContext (Lnet/minecraft/commands/CommandSigningContext;)Lnet/minecraft/commands/CommandSourceStack;
+	METHOD withSigningContext (Lnet/minecraft/commands/CommandSigningContext;Lnet/minecraft/util/TaskChainer;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 signingContext
+		ARG 2 chatMessageChainer
 	METHOD withSource (Lnet/minecraft/commands/CommandSource;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 source

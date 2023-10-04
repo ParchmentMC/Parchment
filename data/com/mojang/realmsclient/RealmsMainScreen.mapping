@@ -9,43 +9,14 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 1 onFinish
 	METHOD configureClicked (Lcom/mojang/realmsclient/dto/RealmsServer;)V
 		ARG 1 realmsServer
+	METHOD createFooter (Lcom/mojang/realmsclient/RealmsMainScreen$LayoutState;)Lnet/minecraft/client/gui/layouts/Layout;
+		ARG 1 layoutState
+	METHOD createLayout (Lcom/mojang/realmsclient/RealmsMainScreen$LayoutState;)Lnet/minecraft/client/gui/layouts/HeaderAndFooterLayout;
+		ARG 1 layoutState
 	METHOD dismissNotification (Ljava/util/UUID;)V
 		ARG 1 uuid
-	METHOD drawClose (Lnet/minecraft/client/gui/GuiGraphics;IIII)V
-		ARG 1 guiGraphics
-		ARG 2 x
-		ARG 3 y
-		ARG 4 mouseX
-		ARG 5 mouseY
-	METHOD drawExpired (Lnet/minecraft/client/gui/GuiGraphics;IIII)V
-		ARG 1 guiGraphics
-		ARG 2 x
-		ARG 3 y
-		ARG 4 mouseX
-		ARG 5 mouseY
-	METHOD drawExpiring (Lnet/minecraft/client/gui/GuiGraphics;IIIII)V
-		ARG 1 guiGraphics
-		ARG 2 x
-		ARG 3 y
-		ARG 4 mouseX
-		ARG 5 mouseY
-		ARG 6 daysLeft
-	METHOD drawOpen (Lnet/minecraft/client/gui/GuiGraphics;IIII)V
-		ARG 1 guiGraphics
-		ARG 2 x
-		ARG 3 y
-		ARG 4 mouseX
-		ARG 5 mouseY
-	METHOD drawPopup (Lnet/minecraft/client/gui/GuiGraphics;IIF)V
-		ARG 1 guiGraphics
-		ARG 2 mouseX
-		ARG 3 mouseY
-		ARG 4 partialTick
 	METHOD initDataFetcher (Lcom/mojang/realmsclient/gui/RealmsDataFetcher;)Lcom/mojang/realmsclient/gui/task/DataFetcher$Subscription;
 		ARG 1 dataFetcher
-	METHOD isOutsidePopup (DD)Z
-		ARG 1 mouseX
-		ARG 3 mouseY
 	METHOD isSelfOwnedNonExpiredServer (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
 		ARG 1 server
 	METHOD isSelfOwnedServer (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
@@ -58,25 +29,14 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 	METHOD onRenew (Lcom/mojang/realmsclient/dto/RealmsServer;)V
 		ARG 1 realmsServer
 	METHOD play (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/screens/Screen;)V
-		ARG 1 realmsServer
-		ARG 2 lastScreen
+		ARG 0 realmsServer
+		ARG 1 lastScreen
 	METHOD removeServer (Lcom/mojang/realmsclient/dto/RealmsServer;)V
 		ARG 1 server
-	METHOD renderLocal (Lnet/minecraft/client/gui/GuiGraphics;)V
+	METHOD renderEnvironment (Lnet/minecraft/client/gui/GuiGraphics;Ljava/lang/String;I)V
 		ARG 1 guiGraphics
-	METHOD renderNews (Lnet/minecraft/client/gui/GuiGraphics;IIZIIZZ)V
-		ARG 1 guiGraphics
-		ARG 2 mouseX
-		ARG 3 mouseY
-		ARG 4 hasUnreadNews
-		ARG 5 x
-		ARG 6 y
-		ARG 7 isHoveredOrFocused
-		ARG 8 active
-	METHOD renderStage (Lnet/minecraft/client/gui/GuiGraphics;)V
-		ARG 1 guiGraphics
-	METHOD setCreatedTrial (Z)V
-		ARG 1 createdTrial
+		ARG 2 text
+		ARG 3 color
 	METHOD shouldConfigureButtonBeActive (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
 		ARG 1 realmsServer
 	METHOD shouldLeaveButtonBeActive (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
@@ -85,50 +45,29 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 1 realmsServer
 	METHOD shouldRenewButtonBeActive (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
 		ARG 1 realmsServer
-	METHOD updateButtonStates (Lcom/mojang/realmsclient/dto/RealmsServer;)V
-		ARG 1 realmsServer
-	METHOD updateTeaserImages (Lnet/minecraft/server/packs/resources/ResourceManager;)V
-		ARG 0 resourceManager
+	METHOD updateLayout (Lcom/mojang/realmsclient/RealmsMainScreen$LayoutState;)V
+		ARG 1 layoutState
 	CLASS RealmsCall
 		METHOD request (Lcom/mojang/realmsclient/client/RealmsClient;)Ljava/lang/Object;
 			ARG 1 realmsClient
-	CLASS TrialEntry
-		METHOD renderTrialItem (Lnet/minecraft/client/gui/GuiGraphics;IIIII)V
-			ARG 1 guiGraphics
-			ARG 2 index
-			ARG 3 left
-			ARG 4 top
-			ARG 5 mouseX
-			ARG 6 mouseY
 	CLASS ButtonEntry
 		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lnet/minecraft/client/gui/components/Button;)V
 			ARG 2 button
 	CLASS CrossButton
-		METHOD <init> (IILnet/minecraft/client/gui/components/Button$OnPress;Lnet/minecraft/network/chat/Component;)V
-			ARG 1 x
-			ARG 2 y
-			ARG 3 onPress
-			ARG 4 message
 		METHOD <init> (Lnet/minecraft/client/gui/components/Button$OnPress;Lnet/minecraft/network/chat/Component;)V
 			ARG 1 onPress
 			ARG 2 message
 	CLASS ServerEntry
 		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/dto/RealmsServer;)V
 			ARG 2 serverData
-		METHOD renderLegacy (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/GuiGraphics;IIII)V
-			ARG 1 realmsServer
-			ARG 2 guiGraphics
-			ARG 3 x
-			ARG 4 y
-			ARG 5 mouseX
-			ARG 6 mouseY
-		METHOD renderMcoServerItem (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/GuiGraphics;IIII)V
-			ARG 1 realmsServer
-			ARG 2 guiGraphics
-			ARG 3 x
-			ARG 4 y
-			ARG 5 mouseX
-			ARG 6 mouseY
+		METHOD drawRealmStatus (Lnet/minecraft/client/gui/GuiGraphics;IIIILnet/minecraft/resources/ResourceLocation;Ljava/util/function/Supplier;)V
+			ARG 1 guiGraphics
+			ARG 2 x
+			ARG 3 y
+			ARG 4 mouseX
+			ARG 5 mouseY
+			ARG 6 sprite
+			ARG 7 tooltipSupplier
 		METHOD renderStatusLights (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/GuiGraphics;IIIIII)V
 			ARG 1 realmsServer
 			ARG 2 guiGraphics
@@ -138,13 +77,20 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 			ARG 6 mouseY
 			ARG 7 width
 			ARG 8 height
-	CLASS PendingInvitesButton
-		METHOD drawInvitations (Lnet/minecraft/client/gui/GuiGraphics;)V
+	CLASS NotificationButton
+		METHOD <init> (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/gui/components/Button$OnPress;)V
+			ARG 1 message
+			ARG 2 sprite
+			ARG 3 onPress
+		METHOD drawNotificationCounter (Lnet/minecraft/client/gui/GuiGraphics;)V
 			ARG 1 guiGraphics
+		METHOD setNotificationCount (I)V
+			ARG 1 notificationCount
 	CLASS NotificationMessageEntry
-		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lnet/minecraft/network/chat/Component;Lcom/mojang/realmsclient/dto/RealmsNotification;)V
+		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lnet/minecraft/network/chat/Component;ILcom/mojang/realmsclient/dto/RealmsNotification;)V
 			ARG 2 text
-			ARG 3 notification
+			ARG 3 frameItemHeight
+			ARG 4 notification
 		METHOD refreshLayout (I)V
 			ARG 1 width
 		METHOD updateEntryWidth (I)V

@@ -1,23 +1,9 @@
 CLASS net/minecraft/world/level/storage/loot/functions/SetEnchantmentsFunction
 	COMMENT LootItemFunction that sets a stack's enchantments. If {@code add} is set, will add to any already existing enchantment levels instead of replacing them (ignored for enchanted books).
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Ljava/util/Map;Z)V
+	METHOD <init> (Ljava/util/List;Ljava/util/Map;Z)V
 		ARG 1 conditions
-		ARG 2 enchantmentLevels
+		ARG 2 enchantments
 		ARG 3 add
-	METHOD lambda$getReferencedContextParams$0 (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Ljava/util/stream/Stream;
-		ARG 0 numProvider
-	METHOD lambda$run$1 (Lit/unimi/dsi/fastutil/objects/Object2IntMap;Lnet/minecraft/world/level/storage/loot/LootContext;Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)V
-		ARG 0 enchantment
-		ARG 1 numProvider
-	METHOD lambda$run$2 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/enchantment/Enchantment;Ljava/lang/Integer;)V
-		ARG 1 enchantment
-		ARG 2 lvl
-	METHOD lambda$run$3 (Ljava/util/Map;Lnet/minecraft/world/item/enchantment/Enchantment;Ljava/lang/Integer;)V
-		ARG 1 enchantment
-		ARG 2 lvl
-	METHOD lambda$run$4 (Ljava/util/Map;Lnet/minecraft/world/item/enchantment/Enchantment;Ljava/lang/Integer;)V
-		ARG 1 enchantment
-		ARG 2 lvl
 	METHOD updateEnchantment (Ljava/util/Map;Lnet/minecraft/world/item/enchantment/Enchantment;I)V
 		ARG 0 existingEnchantments
 		ARG 1 enchantment
@@ -28,7 +14,3 @@ CLASS net/minecraft/world/level/storage/loot/functions/SetEnchantmentsFunction
 		METHOD withEnchantment (Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)Lnet/minecraft/world/level/storage/loot/functions/SetEnchantmentsFunction$Builder;
 			ARG 1 enchantment
 			ARG 2 levelProvider
-	CLASS Serializer
-		METHOD lambda$serialize$0 (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonSerializationContext;Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)V
-			ARG 2 enchantment
-			ARG 3 numProvider

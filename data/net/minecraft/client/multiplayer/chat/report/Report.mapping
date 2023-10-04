@@ -1,0 +1,20 @@
+CLASS net/minecraft/client/multiplayer/chat/report/Report
+	METHOD <init> (Ljava/util/UUID;Ljava/time/Instant;Ljava/util/UUID;)V
+		ARG 1 reportId
+		ARG 2 createdAt
+		ARG 3 reportedProfileId
+	METHOD createScreen (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/multiplayer/chat/report/ReportingContext;)Lnet/minecraft/client/gui/screens/Screen;
+		ARG 1 lastScreen
+		ARG 2 reportingContext
+	METHOD isReportedPlayer (Ljava/util/UUID;)Z
+		ARG 1 playerId
+	CLASS Builder
+		METHOD <init> (Lnet/minecraft/client/multiplayer/chat/report/Report;Lcom/mojang/authlib/minecraft/report/AbuseReportLimits;)V
+			ARG 1 report
+			ARG 2 limits
+		METHOD build (Lnet/minecraft/client/multiplayer/chat/report/ReportingContext;)Lcom/mojang/datafixers/util/Either;
+			ARG 1 reportingContext
+		METHOD setComments (Ljava/lang/String;)V
+			ARG 1 comments
+		METHOD setReason (Lnet/minecraft/client/multiplayer/chat/report/ReportReason;)V
+			ARG 1 reason

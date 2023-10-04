@@ -11,9 +11,6 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleAddOrRemoveRecipes (Lnet/minecraft/network/protocol/game/ClientboundRecipePacket;)V
 		ARG 1 packet
-	METHOD handleAddPlayer (Lnet/minecraft/network/protocol/game/ClientboundAddPlayerPacket;)V
-		COMMENT Handles the creation of a nearby player entity, sets the position and held item
-		ARG 1 packet
 	METHOD handleAnimate (Lnet/minecraft/network/protocol/game/ClientboundAnimatePacket;)V
 		COMMENT Renders a specified animation: Waking up a player, a living entity swinging its currently held item, being hurt or receiving a critical hit by normal or magical means
 		ARG 1 packet
@@ -40,6 +37,10 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleChangeDifficulty (Lnet/minecraft/network/protocol/game/ClientboundChangeDifficultyPacket;)V
 		ARG 1 packet
+	METHOD handleChunkBatchFinished (Lnet/minecraft/network/protocol/game/ClientboundChunkBatchFinishedPacket;)V
+		ARG 1 packet
+	METHOD handleChunkBatchStart (Lnet/minecraft/network/protocol/game/ClientboundChunkBatchStartPacket;)V
+		ARG 1 packet
 	METHOD handleChunkBlocksUpdate (Lnet/minecraft/network/protocol/game/ClientboundSectionBlocksUpdatePacket;)V
 		COMMENT Received from the servers PlayerManager if between 1 and 64 blocks in a chunk are changed. If only one block requires an update, the server sends S23PacketBlockChange and if 64 or more blocks are changed, the server sends S21PacketChunkData
 		ARG 1 packet
@@ -49,6 +50,8 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		COMMENT This method is only called for manual tab-completion (the {@link net.minecraft.commands.synchronization.SuggestionProviders#ASK_SERVER minecraft:ask_server} suggestion provider).
 		ARG 1 packet
 	METHOD handleCommands (Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket;)V
+		ARG 1 packet
+	METHOD handleConfigurationStart (Lnet/minecraft/network/protocol/game/ClientboundStartConfigurationPacket;)V
 		ARG 1 packet
 	METHOD handleContainerClose (Lnet/minecraft/network/protocol/game/ClientboundContainerClosePacket;)V
 		COMMENT Resets the ItemStack held in hand and closes the window that is opened
@@ -64,19 +67,11 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 		ARG 1 packet
 	METHOD handleCustomChatCompletions (Lnet/minecraft/network/protocol/game/ClientboundCustomChatCompletionsPacket;)V
 		ARG 1 packet
-	METHOD handleCustomPayload (Lnet/minecraft/network/protocol/game/ClientboundCustomPayloadPacket;)V
-		COMMENT Handles packets that have room for a channel specification. Vanilla implemented channels are "MC|TrList" to acquire a MerchantRecipeList trades for a villager merchant, "MC|Brand" which sets the server brand? on the player instance and finally "MC|RPack" which the server uses to communicate the identifier of the default server resourcepack for the client to load.
-		ARG 1 packet
 	METHOD handleDamageEvent (Lnet/minecraft/network/protocol/game/ClientboundDamageEventPacket;)V
 		ARG 1 packet
 	METHOD handleDeleteChat (Lnet/minecraft/network/protocol/game/ClientboundDeleteChatPacket;)V
 		ARG 1 packet
-	METHOD handleDisconnect (Lnet/minecraft/network/protocol/game/ClientboundDisconnectPacket;)V
-		COMMENT Closes the network channel
-		ARG 1 packet
 	METHOD handleDisguisedChat (Lnet/minecraft/network/protocol/game/ClientboundDisguisedChatPacket;)V
-		ARG 1 packet
-	METHOD handleEnabledFeatures (Lnet/minecraft/network/protocol/game/ClientboundUpdateEnabledFeaturesPacket;)V
 		ARG 1 packet
 	METHOD handleEntityEvent (Lnet/minecraft/network/protocol/game/ClientboundEntityEventPacket;)V
 		COMMENT Invokes the entities' handleUpdateHealth method which is implemented in LivingBase (hurt/death), MinecartMobSpawner (spawn delay), FireworkRocket & MinecartTNT (explosion), IronGolem (throwing,...), Witch (spawn particles), Zombie (villager transformation), Animal (breeding mode particles), Horse (breeding/smoke particles), Sheep (...), Tameable (...), Villager (particles for breeding mode, angry and happy), Wolf (...)
@@ -97,8 +92,6 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleInitializeBorder (Lnet/minecraft/network/protocol/game/ClientboundInitializeBorderPacket;)V
 		ARG 1 packet
 	METHOD handleItemCooldown (Lnet/minecraft/network/protocol/game/ClientboundCooldownPacket;)V
-		ARG 1 packet
-	METHOD handleKeepAlive (Lnet/minecraft/network/protocol/game/ClientboundKeepAlivePacket;)V
 		ARG 1 packet
 	METHOD handleLevelChunkWithLight (Lnet/minecraft/network/protocol/game/ClientboundLevelChunkWithLightPacket;)V
 		ARG 1 packet
@@ -133,8 +126,6 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleParticleEvent (Lnet/minecraft/network/protocol/game/ClientboundLevelParticlesPacket;)V
 		COMMENT Spawns a specified number of particles at the specified location with a randomized displacement according to specified bounds
 		ARG 1 packet
-	METHOD handlePing (Lnet/minecraft/network/protocol/game/ClientboundPingPacket;)V
-		ARG 1 packet
 	METHOD handlePlaceRecipe (Lnet/minecraft/network/protocol/game/ClientboundPlaceGhostRecipePacket;)V
 		ARG 1 packet
 	METHOD handlePlayerAbilities (Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;)V
@@ -154,8 +145,6 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleRemoveEntities (Lnet/minecraft/network/protocol/game/ClientboundRemoveEntitiesPacket;)V
 		ARG 1 packet
 	METHOD handleRemoveMobEffect (Lnet/minecraft/network/protocol/game/ClientboundRemoveMobEffectPacket;)V
-		ARG 1 packet
-	METHOD handleResourcePack (Lnet/minecraft/network/protocol/game/ClientboundResourcePackPacket;)V
 		ARG 1 packet
 	METHOD handleRespawn (Lnet/minecraft/network/protocol/game/ClientboundRespawnPacket;)V
 		ARG 1 packet
@@ -241,8 +230,6 @@ CLASS net/minecraft/network/protocol/game/ClientGamePacketListener
 	METHOD handleUpdateMobEffect (Lnet/minecraft/network/protocol/game/ClientboundUpdateMobEffectPacket;)V
 		ARG 1 packet
 	METHOD handleUpdateRecipes (Lnet/minecraft/network/protocol/game/ClientboundUpdateRecipesPacket;)V
-		ARG 1 packet
-	METHOD handleUpdateTags (Lnet/minecraft/network/protocol/game/ClientboundUpdateTagsPacket;)V
 		ARG 1 packet
 	METHOD setActionBarText (Lnet/minecraft/network/protocol/game/ClientboundSetActionBarTextPacket;)V
 		ARG 1 packet

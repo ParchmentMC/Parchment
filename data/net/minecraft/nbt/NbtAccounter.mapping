@@ -1,7 +1,13 @@
 CLASS net/minecraft/nbt/NbtAccounter
-	METHOD <init> (J)V
+	METHOD <init> (JI)V
 		ARG 1 quota
+		ARG 3 maxDepth
 	METHOD accountBytes (J)V
 		COMMENT Adds the bytes to the current number of read bytes. If the number of bytes is greater than the stored quota, an exception will occur.
 		COMMENT @throws RuntimeException if the number of {@code usage} bytes exceed the number of {@code quota} bytes
 		ARG 1 bytes
+	METHOD accountBytes (JJ)V
+		ARG 1 bytesPerItem
+		ARG 3 items
+	METHOD create (J)Lnet/minecraft/nbt/NbtAccounter;
+		ARG 0 quota

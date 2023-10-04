@@ -15,20 +15,11 @@ CLASS net/minecraft/world/scores/Scoreboard
 		ARG 1 criteria
 		ARG 2 scoreboardName
 		ARG 3 action
-	METHOD getDisplayObjective (I)Lnet/minecraft/world/scores/Objective;
-		COMMENT 0 is tab menu, 1 is sidebar, 2 is below name
+	METHOD getDisplayObjective (Lnet/minecraft/world/scores/DisplaySlot;)Lnet/minecraft/world/scores/Objective;
 		ARG 1 slot
-	METHOD getDisplaySlotByName (Ljava/lang/String;)I
-		COMMENT Returns 0 for (case-insensitive) 'list', 1 for 'sidebar', 2 for 'belowName', otherwise -1.
-		ARG 0 name
-	METHOD getDisplaySlotName (I)Ljava/lang/String;
-		COMMENT Returns 'list' for 0, 'sidebar' for 1, 'belowName' for 2, otherwise null.
-		ARG 0 id
 	METHOD getObjective (Ljava/lang/String;)Lnet/minecraft/world/scores/Objective;
 		COMMENT Returns a ScoreObjective for the objective name
 		ARG 1 name
-	METHOD getOrCreateObjective (Ljava/lang/String;)Lnet/minecraft/world/scores/Objective;
-		ARG 1 objective
 	METHOD getOrCreatePlayerScore (Ljava/lang/String;Lnet/minecraft/world/scores/Objective;)Lnet/minecraft/world/scores/Score;
 		COMMENT Get a player's score or create it if it does not exist
 		ARG 1 username
@@ -49,8 +40,6 @@ CLASS net/minecraft/world/scores/Scoreboard
 		ARG 1 username
 	METHOD getTeamNames ()Ljava/util/Collection;
 		COMMENT Retrieve all registered ScorePlayerTeam names
-	METHOD hasObjective (Ljava/lang/String;)Z
-		ARG 1 objective
 	METHOD hasPlayerScore (Ljava/lang/String;Lnet/minecraft/world/scores/Objective;)Z
 		COMMENT Returns if the entity has the given ScoreObjective
 		ARG 1 name
@@ -91,7 +80,6 @@ CLASS net/minecraft/world/scores/Scoreboard
 		COMMENT Remove the given ScoreObjective for the given Entity name.
 		ARG 1 name
 		ARG 2 objective
-	METHOD setDisplayObjective (ILnet/minecraft/world/scores/Objective;)V
-		COMMENT 0 is tab menu, 1 is sidebar, 2 is below name
-		ARG 1 objectiveSlot
+	METHOD setDisplayObjective (Lnet/minecraft/world/scores/DisplaySlot;Lnet/minecraft/world/scores/Objective;)V
+		ARG 1 slot
 		ARG 2 objective

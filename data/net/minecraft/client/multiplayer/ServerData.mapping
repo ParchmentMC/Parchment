@@ -1,10 +1,8 @@
 CLASS net/minecraft/client/multiplayer/ServerData
-	FIELD lan Z
-		COMMENT True if the server is a LAN server
-	METHOD <init> (Ljava/lang/String;Ljava/lang/String;Z)V
+	METHOD <init> (Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/client/multiplayer/ServerData$Type;)V
 		ARG 1 name
 		ARG 2 ip
-		ARG 3 lan
+		ARG 3 type
 	METHOD copyFrom (Lnet/minecraft/client/multiplayer/ServerData;)V
 		ARG 1 serverData
 	METHOD copyNameIconFrom (Lnet/minecraft/client/multiplayer/ServerData;)V
@@ -20,6 +18,8 @@ CLASS net/minecraft/client/multiplayer/ServerData
 		ARG 1 iconBytes
 	METHOD setResourcePackStatus (Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;)V
 		ARG 1 packStatus
+	METHOD validateIcon ([B)[B
+		ARG 0 icon
 	METHOD write ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Returns an NBTTagCompound with the server's name, IP and maybe acceptTextures.
 	CLASS ServerPackStatus

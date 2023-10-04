@@ -1,37 +1,36 @@
 CLASS net/minecraft/data/recipes/RecipeProvider
 	METHOD <init> (Lnet/minecraft/data/PackOutput;)V
 		ARG 1 output
-	METHOD banner (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD banner (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 banner
 		ARG 2 material
-	METHOD bedFromPlanksAndWool (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD bedFromPlanksAndWool (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 bed
 		ARG 2 wool
-	METHOD buildAdvancement (Lnet/minecraft/data/CachedOutput;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/advancements/Advancement$Builder;)Ljava/util/concurrent/CompletableFuture;
+	METHOD buildAdvancement (Lnet/minecraft/data/CachedOutput;Lnet/minecraft/advancements/AdvancementHolder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 output
-		ARG 2 advancementOutputDir
-		ARG 3 advancementBuilder
-	METHOD buildRecipes (Ljava/util/function/Consumer;)V
-		ARG 1 writer
+		ARG 2 advancementBuilder
+	METHOD buildRecipes (Lnet/minecraft/data/recipes/RecipeOutput;)V
+		ARG 1 recipeOutput
 	METHOD buttonBuilder (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
 		ARG 0 button
 		ARG 1 material
-	METHOD candle (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD candle (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 candle
 		ARG 2 dye
-	METHOD carpet (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD carpet (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 carpet
 		ARG 2 material
-	METHOD chestBoat (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD chestBoat (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 boat
 		ARG 2 material
-	METHOD chiseled (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD chiseled (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 chiseledResult
 		ARG 3 material
@@ -39,34 +38,34 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 0 category
 		ARG 1 chiseledResult
 		ARG 2 material
-	METHOD colorBlockWithDye (Ljava/util/function/Consumer;Ljava/util/List;Ljava/util/List;Ljava/lang/String;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD colorBlockWithDye (Lnet/minecraft/data/recipes/RecipeOutput;Ljava/util/List;Ljava/util/List;Ljava/lang/String;)V
+		ARG 0 recipeOutput
 		ARG 1 dyes
 		ARG 2 dyeableItems
 		ARG 3 group
-	METHOD coloredTerracottaFromTerracottaAndDye (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
-		ARG 1 coloredTerracotta
+	METHOD coloredTerracottaFromTerracottaAndDye (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
+		ARG 1 terracotta
 		ARG 2 dye
-	METHOD concretePowder (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
-		ARG 1 dyedConcretePowder
+	METHOD concretePowder (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
+		ARG 1 concretePowder
 		ARG 2 dye
-	METHOD cookRecipes (Ljava/util/function/Consumer;Ljava/lang/String;Lnet/minecraft/world/item/crafting/RecipeSerializer;I)V
-		ARG 0 finishedRecipeConsumer
+	METHOD cookRecipes (Lnet/minecraft/data/recipes/RecipeOutput;Ljava/lang/String;Lnet/minecraft/world/item/crafting/RecipeSerializer;I)V
+		ARG 0 recipeOutput
 		ARG 1 cookingMethod
 		ARG 2 cookingSerializer
 		ARG 3 cookingTime
-	METHOD copySmithingTemplate (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/tags/TagKey;)V
-		ARG 0 finishedRecipeConsumer
-		ARG 1 result
+	METHOD copySmithingTemplate (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/tags/TagKey;)V
+		ARG 0 recipeOutput
+		ARG 1 template
+		ARG 2 baseMaterial
+	METHOD copySmithingTemplate (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
+		ARG 1 template
 		ARG 2 baseItem
-	METHOD copySmithingTemplate (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
-		ARG 1 result
-		ARG 2 baseItem
-	METHOD cut (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD cut (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 cutResult
 		ARG 3 material
@@ -83,12 +82,12 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 	METHOD fenceGateBuilder (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
 		ARG 0 fenceGate
 		ARG 1 material
-	METHOD generateForEnabledBlockFamilies (Ljava/util/function/Consumer;Lnet/minecraft/world/flag/FeatureFlagSet;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD generateForEnabledBlockFamilies (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/flag/FeatureFlagSet;)V
+		ARG 0 recipeOutput
 		ARG 1 enabledFeatures
-	METHOD generateRecipes (Ljava/util/function/Consumer;Lnet/minecraft/data/BlockFamily;)V
-		ARG 0 finishedRecipeConsumer
-		ARG 1 family
+	METHOD generateRecipes (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/BlockFamily;)V
+		ARG 0 recipeOutput
+		ARG 1 blockFamily
 	METHOD getBaseBlock (Lnet/minecraft/data/BlockFamily;Lnet/minecraft/data/BlockFamily$Variant;)Lnet/minecraft/world/level/block/Block;
 		ARG 0 family
 		ARG 1 variant
@@ -107,43 +106,41 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 0 itemLike
 	METHOD getSmeltingRecipeName (Lnet/minecraft/world/level/ItemLike;)Ljava/lang/String;
 		ARG 0 itemLike
-	METHOD hangingSign (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD hangingSign (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 sign
 		ARG 2 material
-	METHOD has (Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/advancements/critereon/InventoryChangeTrigger$TriggerInstance;
+	METHOD has (Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/advancements/Criterion;
 		ARG 0 count
 		ARG 1 item
-	METHOD has (Lnet/minecraft/tags/TagKey;)Lnet/minecraft/advancements/critereon/InventoryChangeTrigger$TriggerInstance;
-		COMMENT Creates a new {@link InventoryChangeTrigger} that checks for a player having an item within the given tag.
+	METHOD has (Lnet/minecraft/tags/TagKey;)Lnet/minecraft/advancements/Criterion;
 		ARG 0 tag
-	METHOD has (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/advancements/critereon/InventoryChangeTrigger$TriggerInstance;
-		COMMENT Creates a new {@link InventoryChangeTrigger} that checks for a player having a certain item.
+	METHOD has (Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/advancements/Criterion;
 		ARG 0 itemLike
-	METHOD insideOf (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/advancements/critereon/EnterBlockTrigger$TriggerInstance;
-		COMMENT Creates a new {@link EnterBlockTrigger} for use with recipe unlock criteria.
+	METHOD insideOf (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/advancements/Criterion;
 		ARG 0 block
-	METHOD inventoryTrigger ([Lnet/minecraft/advancements/critereon/ItemPredicate;)Lnet/minecraft/advancements/critereon/InventoryChangeTrigger$TriggerInstance;
-		COMMENT Creates a new {@link InventoryChangeTrigger} that checks for a player having a certain item.
+	METHOD inventoryTrigger ([Lnet/minecraft/advancements/critereon/ItemPredicate$Builder;)Lnet/minecraft/advancements/Criterion;
+		ARG 0 items
+	METHOD inventoryTrigger ([Lnet/minecraft/advancements/critereon/ItemPredicate;)Lnet/minecraft/advancements/Criterion;
 		ARG 0 predicates
-	METHOD mosaicBuilder (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD mosaicBuilder (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 result
 		ARG 3 material
-	METHOD netheriteSmithing (Ljava/util/function/Consumer;Lnet/minecraft/world/item/Item;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/item/Item;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD netheriteSmithing (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/item/Item;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/item/Item;)V
+		ARG 0 recipeOutput
 		ARG 1 ingredientItem
 		ARG 2 category
 		ARG 3 resultItem
-	METHOD nineBlockStorageRecipes (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD nineBlockStorageRecipes (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 unpackedCategory
 		ARG 2 unpacked
 		ARG 3 packedCategory
 		ARG 4 packed
-	METHOD nineBlockStorageRecipes (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD nineBlockStorageRecipes (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+		ARG 0 recipeOutput
 		ARG 1 unpackedCategory
 		ARG 2 unpacked
 		ARG 3 packedCategory
@@ -152,71 +149,71 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 6 packedGroup
 		ARG 7 unpackedName
 		ARG 8 unpackedGroup
-	METHOD nineBlockStorageRecipesRecipesWithCustomUnpacking (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;Ljava/lang/String;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD nineBlockStorageRecipesRecipesWithCustomUnpacking (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;Ljava/lang/String;)V
+		ARG 0 recipeOutput
 		ARG 1 unpackedCategory
 		ARG 2 unpacked
 		ARG 3 packedCategory
 		ARG 4 packed
 		ARG 5 unpackedName
 		ARG 6 unpackedGroup
-	METHOD nineBlockStorageRecipesWithCustomPacking (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;Ljava/lang/String;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD nineBlockStorageRecipesWithCustomPacking (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;Ljava/lang/String;)V
+		ARG 0 recipeOutput
 		ARG 1 unpackedCategory
 		ARG 2 unpacked
 		ARG 3 packedCategory
 		ARG 4 packed
 		ARG 5 packedName
 		ARG 6 packedGroup
-	METHOD oneToOneConversionRecipe (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD oneToOneConversionRecipe (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;)V
+		ARG 0 recipeOutput
 		ARG 1 result
 		ARG 2 ingredient
 		ARG 3 group
-	METHOD oneToOneConversionRecipe (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;I)V
-		ARG 0 finishedRecipeConsumer
+	METHOD oneToOneConversionRecipe (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;I)V
+		ARG 0 recipeOutput
 		ARG 1 result
 		ARG 2 ingredient
 		ARG 3 group
 		ARG 4 resultCount
-	METHOD oreBlasting (Ljava/util/function/Consumer;Ljava/util/List;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;FILjava/lang/String;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD oreBlasting (Lnet/minecraft/data/recipes/RecipeOutput;Ljava/util/List;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;FILjava/lang/String;)V
+		ARG 0 recipeOutput
 		ARG 1 ingredients
 		ARG 2 category
 		ARG 3 result
 		ARG 4 experience
 		ARG 5 cookingTime
 		ARG 6 group
-	METHOD oreCooking (Ljava/util/function/Consumer;Lnet/minecraft/world/item/crafting/RecipeSerializer;Ljava/util/List;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;FILjava/lang/String;Ljava/lang/String;)V
-		ARG 0 finishedRecipeConsumer
-		ARG 1 cookingSerializer
+	METHOD oreCooking (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/item/crafting/RecipeSerializer;Ljava/util/List;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;FILjava/lang/String;Ljava/lang/String;)V
+		ARG 0 recipeOutput
+		ARG 1 serializer
 		ARG 2 ingredients
 		ARG 3 category
 		ARG 4 result
 		ARG 5 experience
 		ARG 6 cookingTime
 		ARG 7 group
-		ARG 8 recipeName
-	METHOD oreSmelting (Ljava/util/function/Consumer;Ljava/util/List;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;FILjava/lang/String;)V
-		ARG 0 finishedRecipeConsumer
+		ARG 8 suffix
+	METHOD oreSmelting (Lnet/minecraft/data/recipes/RecipeOutput;Ljava/util/List;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;FILjava/lang/String;)V
+		ARG 0 recipeOutput
 		ARG 1 ingredients
 		ARG 2 category
 		ARG 3 result
 		ARG 4 experience
-		ARG 5 cookingTIme
+		ARG 5 cookingTime
 		ARG 6 group
-	METHOD planksFromLog (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/tags/TagKey;I)V
-		ARG 0 finishedRecipeConsumer
+	METHOD planksFromLog (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/tags/TagKey;I)V
+		ARG 0 recipeOutput
 		ARG 1 planks
 		ARG 2 logs
 		ARG 3 resultCount
-	METHOD planksFromLogs (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/tags/TagKey;I)V
-		ARG 0 finishedRecipeConsumer
+	METHOD planksFromLogs (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/tags/TagKey;I)V
+		ARG 0 recipeOutput
 		ARG 1 planks
 		ARG 2 logs
-		ARG 3 resultCount
-	METHOD polished (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+		ARG 3 result
+	METHOD polished (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 result
 		ARG 3 material
@@ -224,8 +221,8 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 0 category
 		ARG 1 result
 		ARG 2 material
-	METHOD pressurePlate (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD pressurePlate (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 pressurePlate
 		ARG 2 material
 	METHOD pressurePlateBuilder (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
@@ -235,60 +232,60 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 	METHOD signBuilder (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
 		ARG 0 sign
 		ARG 1 material
-	METHOD simpleCookingRecipe (Ljava/util/function/Consumer;Ljava/lang/String;Lnet/minecraft/world/item/crafting/RecipeSerializer;ILnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;F)V
-		ARG 0 finishedRecipeConsumer
+	METHOD simpleCookingRecipe (Lnet/minecraft/data/recipes/RecipeOutput;Ljava/lang/String;Lnet/minecraft/world/item/crafting/RecipeSerializer;ILnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;F)V
+		ARG 0 recipeOutput
 		ARG 1 cookingMethod
 		ARG 2 cookingSerializer
 		ARG 3 cookingTime
-		ARG 4 ingredient
+		ARG 4 material
 		ARG 5 result
 		ARG 6 experience
-	METHOD slab (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD slab (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 category
-		ARG 2 pressurePlate
+		ARG 2 slab
 		ARG 3 material
 	METHOD slabBuilder (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
 		ARG 0 category
 		ARG 1 slab
 		ARG 2 material
-	METHOD smeltingResultFromBase (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD smeltingResultFromBase (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 result
 		ARG 2 ingredient
-	METHOD stainedGlassFromGlassAndDye (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD stainedGlassFromGlassAndDye (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 stainedGlass
 		ARG 2 dye
-	METHOD stainedGlassPaneFromGlassPaneAndDye (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD stainedGlassPaneFromGlassPaneAndDye (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 stainedGlassPane
 		ARG 2 dye
-	METHOD stainedGlassPaneFromStainedGlass (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD stainedGlassPaneFromStainedGlass (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 stainedGlassPane
 		ARG 2 stainedGlass
 	METHOD stairBuilder (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
 		ARG 0 stairs
 		ARG 1 material
-	METHOD stonecutterResultFromBase (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD stonecutterResultFromBase (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 result
 		ARG 3 material
-	METHOD stonecutterResultFromBase (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;I)V
-		ARG 0 finishedRecipeConsumer
+	METHOD stonecutterResultFromBase (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;I)V
+		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 result
 		ARG 3 material
 		ARG 4 resultCount
-	METHOD threeByThreePacker (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD threeByThreePacker (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 packed
 		ARG 3 unpacked
-	METHOD threeByThreePacker (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD threeByThreePacker (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;)V
+		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 packed
 		ARG 3 unpacked
@@ -296,17 +293,17 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 	METHOD trapdoorBuilder (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
 		ARG 0 trapdoor
 		ARG 1 material
-	METHOD trimSmithing (Ljava/util/function/Consumer;Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceLocation;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD trimSmithing (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 0 recipeOutput
 		ARG 1 ingredientItem
 		ARG 2 location
-	METHOD twoByTwoPacker (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD twoByTwoPacker (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 packed
 		ARG 3 unpacked
-	METHOD wall (Ljava/util/function/Consumer;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD wall (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 wall
 		ARG 3 material
@@ -314,13 +311,13 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 0 category
 		ARG 1 wall
 		ARG 2 material
-	METHOD waxRecipes (Ljava/util/function/Consumer;)V
-		ARG 0 finishedRecipeConsumer
-	METHOD woodFromLogs (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD waxRecipes (Lnet/minecraft/data/recipes/RecipeOutput;)V
+		ARG 0 recipeOutput
+	METHOD woodFromLogs (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 wood
 		ARG 2 log
-	METHOD woodenBoat (Ljava/util/function/Consumer;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 finishedRecipeConsumer
+	METHOD woodenBoat (Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
+		ARG 0 recipeOutput
 		ARG 1 boat
 		ARG 2 material

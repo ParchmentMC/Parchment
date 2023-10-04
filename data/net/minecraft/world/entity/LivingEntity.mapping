@@ -241,6 +241,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD indicateDamage (DD)V
 		ARG 1 xDistance
 		ARG 3 zDistance
+	METHOD internalSetAbsorptionAmount (F)V
+		ARG 1 absorptionAmount
 	METHOD isAffectedByPotions ()Z
 		COMMENT Returns false if the entity is an armor stand. Returns {@code true} for all other entity living bases.
 	METHOD isAlive ()Z
@@ -291,23 +293,19 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 0 entity
 	METHOD lambda$updateFallFlying$6 (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 0 entity
+	METHOD lerpHeadRotationStep (ID)V
+		ARG 1 lerpHeadSteps
+		ARG 2 lerpYHeadRot
 	METHOD lerpHeadTo (FI)V
 		ARG 1 yaw
 		ARG 2 pitch
-	METHOD lerpTo (DDDFFIZ)V
-		COMMENT Sets a target for the client to interpolate towards over the next few ticks
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-		ARG 7 yaw
-		ARG 8 pitch
-		ARG 9 posRotationIncrements
-		ARG 10 teleport
 	METHOD lookAt (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 anchor
 		ARG 2 target
 	METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
 		ARG 1 dynamic
+	METHOD onAttributeUpdated (Lnet/minecraft/world/entity/ai/attributes/Attribute;)V
+		ARG 1 attribute
 	METHOD onChangedBlock (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD onClimbable ()Z
@@ -476,3 +474,5 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 partialTick
 	METHOD verifyEquippedItem (Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 stack
+	METHOD wouldNotSuffocateAtTargetPose (Lnet/minecraft/world/entity/Pose;)Z
+		ARG 1 pose

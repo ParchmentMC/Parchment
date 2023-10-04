@@ -45,6 +45,8 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 1 canAlwaysEat
 	METHOD canHarmPlayer (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 other
+	METHOD canPlayerFitWithinBlocksAndEntitiesWhen (Lnet/minecraft/world/entity/Pose;)Z
+		ARG 1 pose
 	METHOD canTakeItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 itemstack
 	METHOD causeFoodExhaustion (F)V
@@ -115,8 +117,6 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 1 damageSource
 	METHOD getItemBySlot (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 slot
-	METHOD getMyRidingOffset ()D
-		COMMENT Returns the Y Offset of this entity.
 	METHOD getPortalWaitTime ()I
 		COMMENT Return the amount of time this entity should stay in a portal before being transported.
 	METHOD getProjectile (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
@@ -250,8 +250,6 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 4 villagerXp
 		ARG 5 showProgress
 		ARG 6 canRestock
-	METHOD setAbsorptionAmount (F)V
-		ARG 1 amount
 	METHOD setEntityOnShoulder (Lnet/minecraft/nbt/CompoundTag;)Z
 		ARG 1 entityCompound
 	METHOD setItemSlot (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
@@ -285,7 +283,7 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 1 entity
 	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 travelVector
-	METHOD triggerRecipeCrafted (Lnet/minecraft/world/item/crafting/Recipe;Ljava/util/List;)V
+	METHOD triggerRecipeCrafted (Lnet/minecraft/world/item/crafting/RecipeHolder;Ljava/util/List;)V
 		ARG 1 recipe
 		ARG 2 items
 	METHOD updateTutorialInventoryAction (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/ClickAction;)V

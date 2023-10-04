@@ -1,41 +1,27 @@
 CLASS net/minecraft/world/item/crafting/ShapedRecipe
-	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;Lnet/minecraft/world/item/crafting/CraftingBookCategory;IILnet/minecraft/core/NonNullList;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 id
-		ARG 2 group
-		ARG 3 category
-		ARG 4 width
-		ARG 5 height
-		ARG 6 recipeItems
-		ARG 7 result
-	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;Lnet/minecraft/world/item/crafting/CraftingBookCategory;IILnet/minecraft/core/NonNullList;Lnet/minecraft/world/item/ItemStack;Z)V
-		ARG 1 id
-		ARG 2 group
-		ARG 3 category
-		ARG 4 width
-		ARG 5 height
-		ARG 6 recipeItems
-		ARG 7 result
-		ARG 8 showNotification
+	METHOD <init> (Ljava/lang/String;Lnet/minecraft/world/item/crafting/CraftingBookCategory;IILnet/minecraft/core/NonNullList;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 group
+		ARG 2 category
+		ARG 3 width
+		ARG 4 height
+		ARG 5 recipeItems
+		ARG 6 result
+	METHOD <init> (Ljava/lang/String;Lnet/minecraft/world/item/crafting/CraftingBookCategory;IILnet/minecraft/core/NonNullList;Lnet/minecraft/world/item/ItemStack;Z)V
+		ARG 1 group
+		ARG 2 category
+		ARG 3 width
+		ARG 4 height
+		ARG 5 recipeItems
+		ARG 6 result
+		ARG 7 showNotification
 	METHOD canCraftInDimensions (II)Z
 		COMMENT Used to determine if this recipe can fit in a grid of the given width/height
 		ARG 1 width
 		ARG 2 height
-	METHOD dissolvePattern ([Ljava/lang/String;Ljava/util/Map;II)Lnet/minecraft/core/NonNullList;
-		ARG 0 pattern
-		ARG 1 keys
-		ARG 2 patternWidth
-		ARG 3 patternHeight
 	METHOD firstNonSpace (Ljava/lang/String;)I
 		ARG 0 entry
 	METHOD getGroup ()Ljava/lang/String;
 		COMMENT Recipes with equal group are combined into one button in the recipe book
-	METHOD itemFromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/Item;
-		ARG 0 itemObject
-	METHOD itemStackFromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/ItemStack;
-		ARG 0 stackObject
-	METHOD keyFromJson (Lcom/google/gson/JsonObject;)Ljava/util/Map;
-		COMMENT Returns a key json object as a Java HashMap.
-		ARG 0 keyEntry
 	METHOD lambda$isIncomplete$0 (Lnet/minecraft/world/item/crafting/Ingredient;)Z
 		ARG 0 ingredient
 	METHOD lambda$isIncomplete$1 (Lnet/minecraft/world/item/crafting/Ingredient;)Z
@@ -52,17 +38,9 @@ CLASS net/minecraft/world/item/crafting/ShapedRecipe
 		COMMENT Used to check if a recipe matches current crafting inventory
 		ARG 1 inv
 		ARG 2 level
-	METHOD patternFromJson (Lcom/google/gson/JsonArray;)[Ljava/lang/String;
-		ARG 0 patternArray
-	METHOD shrink ([Ljava/lang/String;)[Ljava/lang/String;
-		ARG 0 toShrink
+	METHOD shrink (Ljava/util/List;)[Ljava/lang/String;
+		ARG 0 recipe
 	CLASS Serializer
-		METHOD fromJson (Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/ShapedRecipe;
-			ARG 1 recipeId
-			ARG 2 json
-		METHOD fromNetwork (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/item/crafting/ShapedRecipe;
-			ARG 1 recipeId
-			ARG 2 buffer
 		METHOD toNetwork (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/item/crafting/ShapedRecipe;)V
 			ARG 1 buffer
 			ARG 2 recipe

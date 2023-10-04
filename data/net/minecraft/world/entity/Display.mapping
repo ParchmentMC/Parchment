@@ -14,16 +14,18 @@ CLASS net/minecraft/world/entity/Display
 		ARG 1 glowColorOverride
 	METHOD setHeight (F)V
 		ARG 1 height
-	METHOD setInterpolationDelay (I)V
-		ARG 1 interpolationDelay
-	METHOD setInterpolationDuration (I)V
-		ARG 1 interpolationDuration
+	METHOD setPosRotInterpolationDuration (I)V
+		ARG 1 posRotInterpolationDuration
 	METHOD setShadowRadius (F)V
 		ARG 1 shadowRadius
 	METHOD setShadowStrength (F)V
 		ARG 1 shadowStrength
 	METHOD setTransformation (Lcom/mojang/math/Transformation;)V
 		ARG 1 transformation
+	METHOD setTransformationInterpolationDelay (I)V
+		ARG 1 transformationInterpolationDelay
+	METHOD setTransformationInterpolationDuration (I)V
+		ARG 1 transformationInterpolationDuration
 	METHOD setViewRange (F)V
 		ARG 1 viewRange
 	METHOD setWidth (F)V
@@ -93,3 +95,15 @@ CLASS net/minecraft/world/entity/Display
 		METHOD <init> (Ljava/lang/String;IBLjava/lang/String;)V
 			ARG 3 id
 			ARG 4 name
+	CLASS PosRotInterpolationTarget
+		METHOD <init> (IDDDDD)V
+			ARG 1 steps
+			ARG 2 targetX
+			ARG 4 targetY
+			ARG 6 targetZ
+			ARG 8 targetYRot
+			ARG 10 targetXRot
+		METHOD applyLerpStep (Lnet/minecraft/world/entity/Entity;)V
+			ARG 1 entity
+		METHOD applyTargetPosAndRot (Lnet/minecraft/world/entity/Entity;)V
+			ARG 1 entity

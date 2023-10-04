@@ -1,7 +1,11 @@
 CLASS net/minecraft/world/level/storage/loot/predicates/CompositeLootItemCondition
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Ljava/util/function/Predicate;)V
+	METHOD <init> (Ljava/util/List;Ljava/util/function/Predicate;)V
 		ARG 1 terms
 		ARG 2 composedPredicate
+	METHOD createCodec (Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+		ARG 0 factory
+	METHOD createInlineCodec (Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+		ARG 0 factory
 	METHOD test (Lnet/minecraft/world/level/storage/loot/LootContext;)Z
 		ARG 1 context
 	CLASS Builder
@@ -9,10 +13,5 @@ CLASS net/minecraft/world/level/storage/loot/predicates/CompositeLootItemConditi
 			ARG 1 conditions
 		METHOD addTerm (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)V
 			ARG 1 condition
-		METHOD create ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
-			ARG 1 conditions
-		METHOD lambda$build$0 (I)[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
-			ARG 0 size
-	CLASS Serializer
-		METHOD create ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/predicates/CompositeLootItemCondition;
+		METHOD create (Ljava/util/List;)Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
 			ARG 1 conditions

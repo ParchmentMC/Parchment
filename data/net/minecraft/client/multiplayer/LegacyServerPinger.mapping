@@ -1,0 +1,18 @@
+CLASS net/minecraft/client/multiplayer/LegacyServerPinger
+	METHOD <init> (Lnet/minecraft/client/multiplayer/resolver/ServerAddress;Lnet/minecraft/client/multiplayer/LegacyServerPinger$Output;)V
+		ARG 1 address
+		ARG 2 output
+	METHOD channelActive (Lio/netty/channel/ChannelHandlerContext;)V
+		ARG 1 context
+	METHOD channelRead0 (Lio/netty/channel/ChannelHandlerContext;Lio/netty/buffer/ByteBuf;)V
+		ARG 1 context
+		ARG 2 buffer
+	METHOD exceptionCaught (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Throwable;)V
+		ARG 1 context
+		ARG 2 exception
+	CLASS Output
+		METHOD handleResponse (ILjava/lang/String;Ljava/lang/String;II)V
+			ARG 2 version
+			ARG 3 motd
+			ARG 4 players
+			ARG 5 capacity

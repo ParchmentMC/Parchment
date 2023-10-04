@@ -1,14 +1,17 @@
 CLASS net/minecraft/server/packs/repository/FolderRepositorySource
-	METHOD <init> (Ljava/nio/file/Path;Lnet/minecraft/server/packs/PackType;Lnet/minecraft/server/packs/repository/PackSource;)V
+	METHOD <init> (Ljava/nio/file/Path;Lnet/minecraft/server/packs/PackType;Lnet/minecraft/server/packs/repository/PackSource;Lnet/minecraft/world/level/validation/DirectoryValidator;)V
 		ARG 1 folder
 		ARG 2 packType
 		ARG 3 packSource
-	METHOD detectPackResources (Ljava/nio/file/Path;Z)Lnet/minecraft/server/packs/repository/Pack$ResourcesSupplier;
-		ARG 0 directoryPath
-		ARG 1 isBuiltin
-	METHOD discoverPacks (Ljava/nio/file/Path;ZLjava/util/function/BiConsumer;)V
-		ARG 0 directoryPath
-		ARG 1 isBuiltin
-		ARG 2 resources
+		ARG 4 validator
+	METHOD discoverPacks (Ljava/nio/file/Path;Lnet/minecraft/world/level/validation/DirectoryValidator;ZLjava/util/function/BiConsumer;)V
+		ARG 0 folder
+		ARG 1 validator
+		ARG 2 isBuiltin
+		ARG 3 output
 	METHOD nameFromPath (Ljava/nio/file/Path;)Ljava/lang/String;
 		ARG 0 path
+	CLASS FolderPackDetector
+		METHOD <init> (Lnet/minecraft/world/level/validation/DirectoryValidator;Z)V
+			ARG 1 validator
+			ARG 2 isBuiltin

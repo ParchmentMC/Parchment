@@ -1,14 +1,10 @@
 CLASS net/minecraft/world/level/storage/loot/functions/SetContainerLootTable
 	COMMENT LootItemFunction that sets the LootTable and optionally the loot table seed on the stack's {@code BlockEntityTag}. The effect of this is that containers such as chests will receive the given LootTable when placed.
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/resources/ResourceLocation;JLnet/minecraft/world/level/block/entity/BlockEntityType;)V
+	METHOD <init> (Ljava/util/List;Lnet/minecraft/resources/ResourceLocation;JLnet/minecraft/core/Holder;)V
 		ARG 1 conditions
 		ARG 2 name
 		ARG 3 seed
 		ARG 5 type
-	METHOD lambda$withLootTable$0 (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/block/entity/BlockEntityType;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
-		ARG 2 conditions
-	METHOD lambda$withLootTable$1 (Lnet/minecraft/resources/ResourceLocation;JLnet/minecraft/world/level/block/entity/BlockEntityType;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/LootItemFunction;
-		ARG 4 conditions
 	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 		ARG 2 context
@@ -19,13 +15,3 @@ CLASS net/minecraft/world/level/storage/loot/functions/SetContainerLootTable
 		ARG 0 type
 		ARG 1 name
 		ARG 2 seed
-	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetContainerLootTable;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/SetContainerLootTable;Lcom/google/gson/JsonSerializationContext;)V
-			COMMENT Serialize the {@link SetContainerLootTable} by putting its data into the JsonObject.
-			ARG 1 json
-			ARG 2 setContainerLootTable
-			ARG 3 serializationContext

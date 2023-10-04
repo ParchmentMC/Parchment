@@ -2,7 +2,7 @@ CLASS net/minecraft/world/level/storage/loot/functions/EnchantWithLevelsFunction
 	COMMENT Applies a random enchantment to the stack.
 	COMMENT
 	COMMENT @see EnchantmentHelper#enchantItem
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;Z)V
+	METHOD <init> (Ljava/util/List;Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;Z)V
 		ARG 1 conditions
 		ARG 2 levels
 		ARG 3 treasure
@@ -14,13 +14,3 @@ CLASS net/minecraft/world/level/storage/loot/functions/EnchantWithLevelsFunction
 	CLASS Builder
 		METHOD <init> (Lnet/minecraft/world/level/storage/loot/providers/number/NumberProvider;)V
 			ARG 1 levels
-	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/EnchantWithLevelsFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/EnchantWithLevelsFunction;Lcom/google/gson/JsonSerializationContext;)V
-			COMMENT Serialize the {@link EnchantWithLevelsFunction} by putting its data into the JsonObject.
-			ARG 1 json
-			ARG 2 enchantWithLevelsFunction
-			ARG 3 serializationContext

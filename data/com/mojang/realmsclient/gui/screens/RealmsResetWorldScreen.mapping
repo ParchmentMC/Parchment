@@ -1,42 +1,32 @@
 CLASS com/mojang/realmsclient/gui/screens/RealmsResetWorldScreen
-	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/Runnable;Ljava/lang/Runnable;)V
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lcom/mojang/realmsclient/dto/RealmsServer;ILnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;ILnet/minecraft/network/chat/Component;Ljava/lang/Runnable;)V
 		ARG 1 lastScreen
+		ARG 2 serverData
+		ARG 3 slot
+		ARG 4 title
+		ARG 5 subtitle
+		ARG 6 subtitleColor
+		ARG 7 resetTaskTitle
+		ARG 8 resetWorldRunnable
+	METHOD forEmptySlot (Lnet/minecraft/client/gui/screens/Screen;ILcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/Runnable;)Lcom/mojang/realmsclient/gui/screens/RealmsResetWorldScreen;
+		ARG 0 lastScreen
+		ARG 1 slot
 		ARG 2 serverData
 		ARG 3 resetWorldRunnable
-		ARG 4 callback
-	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/network/chat/Component;Ljava/lang/Runnable;Ljava/lang/Runnable;)V
-		ARG 1 lastScreen
-		ARG 2 serverData
-		ARG 3 title
-		ARG 4 resetWorldRunnable
-		ARG 5 callback
-	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;ILnet/minecraft/network/chat/Component;Ljava/lang/Runnable;Ljava/lang/Runnable;)V
-		ARG 1 lastScreen
-		ARG 2 serverData
-		ARG 3 title
-		ARG 4 subtitle
-		ARG 5 subtitleColor
-		ARG 6 buttonTitle
-		ARG 7 resetWorldRunnable
-		ARG 8 callback
-	METHOD drawFrame (Lnet/minecraft/client/gui/GuiGraphics;IILnet/minecraft/network/chat/Component;Lnet/minecraft/resources/ResourceLocation;ZZ)V
-		ARG 1 guiGraphics
-		ARG 2 x
-		ARG 3 y
-		ARG 4 text
-		ARG 5 atlasLocation
-		ARG 6 hoveredOrFocuced
-		ARG 7 mouseOver
+	METHOD forNewRealm (Lnet/minecraft/client/gui/screens/Screen;Lcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/Runnable;)Lcom/mojang/realmsclient/gui/screens/RealmsResetWorldScreen;
+		ARG 0 lastScreen
+		ARG 1 serverData
+		ARG 2 resetWorldRunnable
+	METHOD forResetSlot (Lnet/minecraft/client/gui/screens/Screen;Lcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/Runnable;)Lcom/mojang/realmsclient/gui/screens/RealmsResetWorldScreen;
+		ARG 0 lastScreen
+		ARG 1 serverData
+		ARG 2 resetWorldRunnable
 	METHOD frame (I)I
 		ARG 1 index
 	METHOD generationSelectionCallback (Lcom/mojang/realmsclient/util/WorldGenerationInfo;)V
 		ARG 1 generationInfo
 	METHOD resetWorld (Ljava/lang/Runnable;)V
 		ARG 1 resetter
-	METHOD setResetTitle (Lnet/minecraft/network/chat/Component;)V
-		ARG 1 resetTitle
-	METHOD setSlot (I)V
-		ARG 1 slot
 	METHOD startTask (Lcom/mojang/realmsclient/util/task/LongRunningTask;)V
 		ARG 1 task
 	METHOD switchSlot (Ljava/lang/Runnable;)V

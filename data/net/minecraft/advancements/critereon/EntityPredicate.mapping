@@ -1,48 +1,21 @@
 CLASS net/minecraft/advancements/critereon/EntityPredicate
-	METHOD <init> (Lnet/minecraft/advancements/critereon/EntityTypePredicate;Lnet/minecraft/advancements/critereon/DistancePredicate;Lnet/minecraft/advancements/critereon/LocationPredicate;Lnet/minecraft/advancements/critereon/LocationPredicate;Lnet/minecraft/advancements/critereon/MobEffectsPredicate;Lnet/minecraft/advancements/critereon/NbtPredicate;Lnet/minecraft/advancements/critereon/EntityFlagsPredicate;Lnet/minecraft/advancements/critereon/EntityEquipmentPredicate;Lnet/minecraft/advancements/critereon/EntitySubPredicate;Ljava/lang/String;)V
-		ARG 1 entityType
-		ARG 2 distanceToPlayer
-		ARG 3 location
-		ARG 4 steppingOnLocation
-		ARG 5 effects
-		ARG 6 nbt
-		ARG 7 flags
-		ARG 8 equipment
-		ARG 9 subPredicate
-		ARG 10 team
-	METHOD <init> (Lnet/minecraft/advancements/critereon/EntityTypePredicate;Lnet/minecraft/advancements/critereon/DistancePredicate;Lnet/minecraft/advancements/critereon/LocationPredicate;Lnet/minecraft/advancements/critereon/LocationPredicate;Lnet/minecraft/advancements/critereon/MobEffectsPredicate;Lnet/minecraft/advancements/critereon/NbtPredicate;Lnet/minecraft/advancements/critereon/EntityFlagsPredicate;Lnet/minecraft/advancements/critereon/EntityEquipmentPredicate;Lnet/minecraft/advancements/critereon/EntitySubPredicate;Lnet/minecraft/advancements/critereon/EntityPredicate;Lnet/minecraft/advancements/critereon/EntityPredicate;Lnet/minecraft/advancements/critereon/EntityPredicate;Ljava/lang/String;)V
-		ARG 1 entityType
-		ARG 2 distanceToPlayer
-		ARG 3 location
-		ARG 4 steppingOnLocation
-		ARG 5 effects
-		ARG 6 nbt
-		ARG 7 flags
-		ARG 8 equipment
-		ARG 9 subPredicate
-		ARG 10 vehicle
-		ARG 11 passenger
-		ARG 12 targetedEntity
-		ARG 13 team
 	METHOD createContext (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/level/storage/loot/LootContext;
 		ARG 0 player
 		ARG 1 entity
-	METHOD fromElement (Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/ContextAwarePredicate;
-		ARG 0 id
+	METHOD fromElement (Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;Lcom/google/gson/JsonElement;)Ljava/util/Optional;
+		ARG 0 key
 		ARG 1 context
 		ARG 2 element
-	METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/EntityPredicate;
+	METHOD fromJson (Lcom/google/gson/JsonElement;)Ljava/util/Optional;
 		ARG 0 json
-	METHOD fromJson (Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;)Lnet/minecraft/advancements/critereon/ContextAwarePredicate;
+	METHOD fromJson (Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;)Ljava/util/Optional;
 		ARG 0 json
-		ARG 1 id
+		ARG 1 key
 		ARG 2 context
-	METHOD fromJsonArray (Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;)[Lnet/minecraft/advancements/critereon/ContextAwarePredicate;
+	METHOD fromJsonArray (Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/advancements/critereon/DeserializationContext;)Ljava/util/List;
 		ARG 0 json
-		ARG 1 id
+		ARG 1 key
 		ARG 2 context
-	METHOD lambda$matches$0 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
-		ARG 3 passenger
 	METHOD matches (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 level
 		ARG 2 position
@@ -50,20 +23,28 @@ CLASS net/minecraft/advancements/critereon/EntityPredicate
 	METHOD matches (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 player
 		ARG 2 entity
+	METHOD wrap (Ljava/util/Optional;)Ljava/util/Optional;
+		ARG 0 predicate
+	METHOD wrap (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;)Lnet/minecraft/advancements/critereon/ContextAwarePredicate;
+		ARG 0 builder
 	METHOD wrap (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/ContextAwarePredicate;
 		ARG 0 predicate
+	METHOD wrap ([Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;)Ljava/util/List;
+		ARG 0 builders
 	CLASS Builder
 		METHOD distance (Lnet/minecraft/advancements/critereon/DistancePredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 distanceToPlayer
-		METHOD effects (Lnet/minecraft/advancements/critereon/MobEffectsPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
+		METHOD effects (Lnet/minecraft/advancements/critereon/MobEffectsPredicate$Builder;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 effects
 		METHOD entityType (Lnet/minecraft/advancements/critereon/EntityTypePredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 entityType
+		METHOD equipment (Lnet/minecraft/advancements/critereon/EntityEquipmentPredicate$Builder;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
+			ARG 1 equipment
 		METHOD equipment (Lnet/minecraft/advancements/critereon/EntityEquipmentPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 equipment
-		METHOD flags (Lnet/minecraft/advancements/critereon/EntityFlagsPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
+		METHOD flags (Lnet/minecraft/advancements/critereon/EntityFlagsPredicate$Builder;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 flags
-		METHOD located (Lnet/minecraft/advancements/critereon/LocationPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
+		METHOD located (Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 location
 		METHOD nbt (Lnet/minecraft/advancements/critereon/NbtPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 nbt
@@ -71,15 +52,15 @@ CLASS net/minecraft/advancements/critereon/EntityPredicate
 			ARG 1 entityTypeTag
 		METHOD of (Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 entityType
-		METHOD passenger (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
+		METHOD passenger (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 passenger
-		METHOD steppingOn (Lnet/minecraft/advancements/critereon/LocationPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
+		METHOD steppingOn (Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 steppingOnLocation
 		METHOD subPredicate (Lnet/minecraft/advancements/critereon/EntitySubPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 subPredicate
-		METHOD targetedEntity (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
+		METHOD targetedEntity (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 targetedEntity
 		METHOD team (Ljava/lang/String;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 team
-		METHOD vehicle (Lnet/minecraft/advancements/critereon/EntityPredicate;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
+		METHOD vehicle (Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;)Lnet/minecraft/advancements/critereon/EntityPredicate$Builder;
 			ARG 1 vehicle

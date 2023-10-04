@@ -99,8 +99,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 xSpeed
 		ARG 12 ySpeed
 		ARG 14 zSpeed
-	METHOD addRecentlyCompiledChunk (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;)V
-		ARG 1 renderChunk
+	METHOD addRecentlyCompiledSection (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
+		ARG 1 renderSection
 	METHOD allChanged ()V
 		COMMENT Loads all renderers and sets up the basic options usage.
 	METHOD applyFrustum (Lnet/minecraft/client/renderer/culling/Frustum;)V
@@ -135,10 +135,7 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		COMMENT Asserts that the specified {@code poseStack} is {@linkplain com.mojang.blaze3d.vertex.PoseStack#clear() clear}.
 		COMMENT @throws java.lang.IllegalStateException if the specified {@code poseStack} is not clear
 		ARG 1 poseStack
-	METHOD closeToBorder (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;)Z
-		ARG 1 pos
-		ARG 2 chunk
-	METHOD compileChunks (Lnet/minecraft/client/Camera;)V
+	METHOD compileSections (Lnet/minecraft/client/Camera;)V
 		ARG 1 camera
 	METHOD destroyBlockProgress (ILnet/minecraft/core/BlockPos;I)V
 		ARG 1 breakerId
@@ -148,8 +145,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 camera
 	METHOD drawStars (Lcom/mojang/blaze3d/vertex/BufferBuilder;)Lcom/mojang/blaze3d/vertex/BufferBuilder$RenderedBuffer;
 		ARG 1 builder
-	METHOD getChunkStatistics ()Ljava/lang/String;
-		COMMENT @return chunk rendering statistics to display on the {@linkplain net.minecraft.client.gui.components.DebugScreenOverlay debug overlay}
 	METHOD getEntityStatistics ()Ljava/lang/String;
 		COMMENT @return entity rendering statistics to display on the {@linkplain net.minecraft.client.gui.components.DebugScreenOverlay debug overlay}
 	METHOD getLightColor (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
@@ -159,22 +154,13 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 0 level
 		ARG 1 state
 		ARG 2 pos
-	METHOD getRelativeFrom (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;
-		COMMENT @return the specified {@code renderChunk} offset in the specified {@code direction}, or {@code null} if it can't be seen by the camera at the specified {@code cameraChunkPos}
-		ARG 1 cameraChunkPos
-			COMMENT the minimum block position of the chunk the camera is in
-		ARG 2 renderChunk
-		ARG 3 facing
 	METHOD globalLevelEvent (ILnet/minecraft/core/BlockPos;I)V
 		COMMENT Handles a global level event. This includes playing sounds that should be heard by any player, regardless of position and dimension, such as the Wither spawning.
 		ARG 1 type
 			COMMENT the type of level event to handle. This method only handles {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_WITHER_BOSS_SPAWN the wither boss spawn sound}, {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_DRAGON_DEATH the dragon's death sound}, and {@linkplain net.minecraft.world.level.block.LevelEvent#SOUND_END_PORTAL_SPAWN the end portal spawn sound}.
 		ARG 2 pos
 		ARG 3 data
-	METHOD initializeQueueForFullUpdate (Lnet/minecraft/client/Camera;Ljava/util/Queue;)V
-		ARG 1 camera
-		ARG 2 infoQueue
-	METHOD isChunkCompiled (Lnet/minecraft/core/BlockPos;)Z
+	METHOD isSectionCompiled (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD lambda$initTransparency$0 (Lnet/minecraft/server/packs/PackResources;)Lnet/minecraft/network/chat/MutableComponent;
 		ARG 0 levelRenderer
@@ -190,6 +176,10 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 playing
+	METHOD offsetFrustum (Lnet/minecraft/client/renderer/culling/Frustum;)Lnet/minecraft/client/renderer/culling/Frustum;
+		ARG 0 frustum
+	METHOD onChunkLoaded (Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 1 chunkPos
 	METHOD onResourceManagerReload (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 1 resourceManager
 	METHOD playStreamingMusic (Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/core/BlockPos;)V
@@ -201,13 +191,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 3 projectionMatrix
 	METHOD removeProgress (Lnet/minecraft/server/level/BlockDestructionProgress;)V
 		ARG 1 progress
-	METHOD renderChunkLayer (Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack;DDDLorg/joml/Matrix4f;)V
-		ARG 1 renderType
-		ARG 2 poseStack
-		ARG 3 camX
-		ARG 5 camY
-		ARG 7 camZ
-		ARG 9 projectionMatrix
 	METHOD renderClouds (Lcom/mojang/blaze3d/vertex/PoseStack;Lorg/joml/Matrix4f;FDDD)V
 		ARG 1 poseStack
 		ARG 2 projectionMatrix
@@ -296,6 +279,13 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 14 green
 		ARG 15 blue
 		ARG 16 alpha
+	METHOD renderSectionLayer (Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack;DDDLorg/joml/Matrix4f;)V
+		ARG 1 renderType
+		ARG 2 poseStack
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
+		ARG 9 projectionMatrix
 	METHOD renderShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFF)V
 		ARG 0 poseStack
 		ARG 1 consumer
@@ -382,43 +372,6 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD updateGlobalBlockEntities (Ljava/util/Collection;Ljava/util/Collection;)V
 		ARG 1 blockEntitiesToRemove
 		ARG 2 blockEntitiesToAdd
-	METHOD updateRenderChunks (Ljava/util/LinkedHashSet;Lnet/minecraft/client/renderer/LevelRenderer$RenderInfoMap;Lnet/minecraft/world/phys/Vec3;Ljava/util/Queue;Z)V
-		ARG 1 chunkInfos
-		ARG 2 infoMap
-		ARG 3 viewVector
-		ARG 4 infoQueue
-		ARG 5 shouldCull
-	CLASS RenderInfoMap
-		METHOD <init> (I)V
-			ARG 1 size
-		METHOD get (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;)Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;
-			ARG 1 renderChunk
-		METHOD put (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/client/renderer/LevelRenderer$RenderChunkInfo;)V
-			ARG 1 renderChunk
-			ARG 2 info
-	CLASS RenderChunkInfo
-		METHOD <init> (Lnet/minecraft/client/renderer/chunk/ChunkRenderDispatcher$RenderChunk;Lnet/minecraft/core/Direction;I)V
-			ARG 1 chunk
-			ARG 2 sourceDirection
-			ARG 3 step
-		METHOD addSourceDirection (Lnet/minecraft/core/Direction;)V
-			ARG 1 direction
-		METHOD equals (Ljava/lang/Object;)Z
-			ARG 1 other
-		METHOD hasDirection (Lnet/minecraft/core/Direction;)Z
-			ARG 1 facing
-		METHOD hasSourceDirection (I)Z
-			ARG 1 directionIndex
-		METHOD isAxisAlignedWith (III)Z
-			ARG 1 x
-			ARG 2 y
-			ARG 3 z
-		METHOD setDirections (BLnet/minecraft/core/Direction;)V
-			ARG 1 dir
-			ARG 2 facing
-	CLASS RenderChunkStorage
-		METHOD <init> (I)V
-			ARG 1 size
 	CLASS TransparencyShaderException
 		METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
 			ARG 1 message

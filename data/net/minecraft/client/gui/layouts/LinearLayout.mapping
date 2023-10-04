@@ -1,36 +1,26 @@
 CLASS net/minecraft/client/gui/layouts/LinearLayout
-	METHOD <init> (IIIILnet/minecraft/client/gui/layouts/LinearLayout$Orientation;)V
-		ARG 1 x
-		ARG 2 y
-		ARG 3 width
-		ARG 4 height
-		ARG 5 orientation
 	METHOD <init> (IILnet/minecraft/client/gui/layouts/LinearLayout$Orientation;)V
 		ARG 1 width
 		ARG 2 height
 		ARG 3 orientation
+	METHOD <init> (Lnet/minecraft/client/gui/layouts/LinearLayout$Orientation;)V
+		ARG 1 orientation
 	METHOD addChild (Lnet/minecraft/client/gui/layouts/LayoutElement;)Lnet/minecraft/client/gui/layouts/LayoutElement;
 		ARG 1 child
+	METHOD addChild (Lnet/minecraft/client/gui/layouts/LayoutElement;Ljava/util/function/Consumer;)Lnet/minecraft/client/gui/layouts/LayoutElement;
+		ARG 1 child
+		ARG 2 layoutSettingsFactory
 	METHOD addChild (Lnet/minecraft/client/gui/layouts/LayoutElement;Lnet/minecraft/client/gui/layouts/LayoutSettings;)Lnet/minecraft/client/gui/layouts/LayoutElement;
 		ARG 1 child
 		ARG 2 layoutSettings
+	METHOD spacing (I)Lnet/minecraft/client/gui/layouts/LinearLayout;
+		ARG 1 spacing
 	CLASS Orientation
-		METHOD getPrimaryLength (Lnet/minecraft/client/gui/layouts/LayoutElement;)I
-			ARG 1 element
-		METHOD getPrimaryLength (Lnet/minecraft/client/gui/layouts/LinearLayout$ChildContainer;)I
-			ARG 1 cotainer
-		METHOD getPrimaryPosition (Lnet/minecraft/client/gui/layouts/LayoutElement;)I
-			ARG 1 element
-		METHOD getSecondaryLength (Lnet/minecraft/client/gui/layouts/LayoutElement;)I
-			ARG 1 element
-		METHOD getSecondaryLength (Lnet/minecraft/client/gui/layouts/LinearLayout$ChildContainer;)I
-			ARG 1 container
-		METHOD getSecondaryPosition (Lnet/minecraft/client/gui/layouts/LayoutElement;)I
-			ARG 1 element
-		METHOD setPrimaryPosition (Lnet/minecraft/client/gui/layouts/LinearLayout$ChildContainer;I)V
-			ARG 1 container
-			ARG 2 primaryPosition
-		METHOD setSecondaryPosition (Lnet/minecraft/client/gui/layouts/LinearLayout$ChildContainer;II)V
-			ARG 1 container
-			ARG 2 secondaryPosition
-			ARG 3 secondaryLength
+		METHOD addChild (Lnet/minecraft/client/gui/layouts/GridLayout;Lnet/minecraft/client/gui/layouts/LayoutElement;ILnet/minecraft/client/gui/layouts/LayoutSettings;)Lnet/minecraft/client/gui/layouts/LayoutElement;
+			ARG 1 layout
+			ARG 2 element
+			ARG 3 index
+			ARG 4 layoutSettings
+		METHOD setSpacing (Lnet/minecraft/client/gui/layouts/GridLayout;I)V
+			ARG 1 layout
+			ARG 2 spacing

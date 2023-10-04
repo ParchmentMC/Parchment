@@ -1,42 +1,40 @@
 CLASS net/minecraft/advancements/critereon/LocationPredicate
-	METHOD <init> (Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;Ljava/lang/Boolean;Lnet/minecraft/advancements/critereon/LightPredicate;Lnet/minecraft/advancements/critereon/BlockPredicate;Lnet/minecraft/advancements/critereon/FluidPredicate;)V
-		ARG 1 x
-		ARG 2 y
-		ARG 3 z
-		ARG 4 biome
-		ARG 5 feature
-		ARG 6 dimension
-		ARG 7 smokey
-		ARG 8 light
-		ARG 9 block
-		ARG 10 fluid
-	METHOD atYLocation (Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;)Lnet/minecraft/advancements/critereon/LocationPredicate;
-		ARG 0 yRange
-	METHOD fromJson (Lcom/google/gson/JsonElement;)Lnet/minecraft/advancements/critereon/LocationPredicate;
+	METHOD fromJson (Lcom/google/gson/JsonElement;)Ljava/util/Optional;
 		ARG 0 json
-	METHOD inBiome (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/advancements/critereon/LocationPredicate;
-		ARG 0 biome
-	METHOD inDimension (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/advancements/critereon/LocationPredicate;
-		ARG 0 dimension
-	METHOD inStructure (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/advancements/critereon/LocationPredicate;
-		ARG 0 structure
 	METHOD matches (Lnet/minecraft/server/level/ServerLevel;DDD)Z
 		ARG 1 level
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
+	METHOD of (Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;)Ljava/util/Optional;
+		ARG 0 postition
+		ARG 1 biome
+		ARG 2 structure
+		ARG 3 dimension
+		ARG 4 smokey
+		ARG 5 light
+		ARG 6 block
+		ARG 7 fluid
 	CLASS Builder
+		METHOD atYLocation (Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
+			ARG 0 y
+		METHOD inBiome (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
+			ARG 0 biome
+		METHOD inDimension (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
+			ARG 0 dimension
+		METHOD inStructure (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
+			ARG 0 stucture
 		METHOD setBiome (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
 			ARG 1 biome
-		METHOD setBlock (Lnet/minecraft/advancements/critereon/BlockPredicate;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
+		METHOD setBlock (Lnet/minecraft/advancements/critereon/BlockPredicate$Builder;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
 			ARG 1 block
 		METHOD setDimension (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
 			ARG 1 dimension
-		METHOD setFluid (Lnet/minecraft/advancements/critereon/FluidPredicate;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
+		METHOD setFluid (Lnet/minecraft/advancements/critereon/FluidPredicate$Builder;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
 			ARG 1 fluid
-		METHOD setLight (Lnet/minecraft/advancements/critereon/LightPredicate;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
+		METHOD setLight (Lnet/minecraft/advancements/critereon/LightPredicate$Builder;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
 			ARG 1 light
-		METHOD setSmokey (Ljava/lang/Boolean;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
+		METHOD setSmokey (Z)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
 			ARG 1 smokey
 		METHOD setStructure (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
 			ARG 1 structure
@@ -46,3 +44,12 @@ CLASS net/minecraft/advancements/critereon/LocationPredicate
 			ARG 1 y
 		METHOD setZ (Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;)Lnet/minecraft/advancements/critereon/LocationPredicate$Builder;
 			ARG 1 z
+	CLASS PositionPredicate
+		METHOD matches (DDD)Z
+			ARG 1 x
+			ARG 3 y
+			ARG 5 z
+		METHOD of (Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;Lnet/minecraft/advancements/critereon/MinMaxBounds$Doubles;)Ljava/util/Optional;
+			ARG 0 x
+			ARG 1 y
+			ARG 2 z

@@ -1,7 +1,7 @@
 CLASS net/minecraft/world/level/storage/loot/functions/SetLoreFunction
 	COMMENT LootItemFunction that sets a stack's lore tag, optionally replacing any previously present lore.
 	COMMENT The Components for the lore tag are optionally resolved relative to a given {@link LootContext.EntityTarget} for entity-sensitive component data such as scoreboard scores.
-	METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;ZLjava/util/List;Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)V
+	METHOD <init> (Ljava/util/List;ZLjava/util/List;Ljava/util/Optional;)V
 		ARG 1 conditions
 		ARG 2 replace
 		ARG 3 lore
@@ -19,13 +19,3 @@ CLASS net/minecraft/world/level/storage/loot/functions/SetLoreFunction
 			ARG 1 replace
 		METHOD setResolutionContext (Lnet/minecraft/world/level/storage/loot/LootContext$EntityTarget;)Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction$Builder;
 			ARG 1 resolutionContext
-	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonObject;Lcom/google/gson/JsonDeserializationContext;[Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;)Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction;
-			ARG 1 object
-			ARG 2 deserializationContext
-			ARG 3 conditions
-		METHOD serialize (Lcom/google/gson/JsonObject;Lnet/minecraft/world/level/storage/loot/functions/SetLoreFunction;Lcom/google/gson/JsonSerializationContext;)V
-			COMMENT Serialize the {@link SetLoreFunction} by putting its data into the JsonObject.
-			ARG 1 json
-			ARG 2 setLoreFunction
-			ARG 3 serializationContext

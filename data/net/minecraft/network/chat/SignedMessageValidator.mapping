@@ -6,7 +6,10 @@ CLASS net/minecraft/network/chat/SignedMessageValidator
 	METHOD updateAndValidate (Lnet/minecraft/network/chat/PlayerChatMessage;)Z
 		ARG 1 message
 	CLASS KeyBased
-		METHOD <init> (Lnet/minecraft/util/SignatureValidator;)V
+		METHOD <init> (Lnet/minecraft/util/SignatureValidator;Ljava/util/function/BooleanSupplier;)V
 			ARG 1 validator
+			ARG 2 expired
+		METHOD validate (Lnet/minecraft/network/chat/PlayerChatMessage;)Z
+			ARG 1 message
 		METHOD validateChain (Lnet/minecraft/network/chat/PlayerChatMessage;)Z
 			ARG 1 message
