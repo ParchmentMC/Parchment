@@ -8,6 +8,8 @@ CLASS net/minecraft/gametest/framework/TestCommand
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD exportAllNearbyTests (Lnet/minecraft/commands/CommandSourceStack;)I
+		ARG 0 source
 	METHOD exportNearestTestStructure (Lnet/minecraft/commands/CommandSourceStack;)I
 		ARG 0 source
 	METHOD exportTestStructure (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
@@ -20,6 +22,9 @@ CLASS net/minecraft/gametest/framework/TestCommand
 		ARG 0 dispatcher
 	METHOD runAllNearbyTests (Lnet/minecraft/commands/CommandSourceStack;)I
 		ARG 0 source
+	METHOD runAllNearbyTests (Lnet/minecraft/commands/CommandSourceStack;Z)I
+		ARG 0 source
+		ARG 1 rerunUntilFailed
 	METHOD runAllTests (Lnet/minecraft/commands/CommandSourceStack;II)I
 		ARG 0 source
 		ARG 1 rotationSteps
@@ -36,6 +41,9 @@ CLASS net/minecraft/gametest/framework/TestCommand
 		ARG 3 testsPerRow
 	METHOD runNearbyTest (Lnet/minecraft/commands/CommandSourceStack;)I
 		ARG 0 source
+	METHOD runNearbyTest (Lnet/minecraft/commands/CommandSourceStack;Z)I
+		ARG 0 source
+		ARG 1 rerunUntilFailed
 	METHOD runTest (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/TestFunction;I)I
 		ARG 0 source
 		ARG 1 function
@@ -44,6 +52,11 @@ CLASS net/minecraft/gametest/framework/TestCommand
 		ARG 0 serverLevel
 		ARG 1 pos
 		ARG 2 tracker
+	METHOD runTest (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/gametest/framework/MultipleTestTracker;Z)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 tracker
+		ARG 3 rerunUntilFailed
 	METHOD runTestPreparation (Lnet/minecraft/gametest/framework/TestFunction;Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 0 function
 		ARG 1 serverLevel
@@ -63,7 +76,7 @@ CLASS net/minecraft/gametest/framework/TestCommand
 		ARG 0 source
 		ARG 1 variableName
 	METHOD showTestSummaryIfAllDone (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/gametest/framework/MultipleTestTracker;)V
-		ARG 0 serverLevel
+		ARG 0 level
 		ARG 1 tracker
 	CLASS TestSummaryDisplayer
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/gametest/framework/MultipleTestTracker;)V
