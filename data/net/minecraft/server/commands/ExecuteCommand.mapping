@@ -216,9 +216,23 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 2 context
 	METHOD lambda$wrapStores$35 (Lcom/mojang/brigadier/tree/LiteralCommandNode;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
 		ARG 3 commandNode
+	METHOD prepareCallback (Ljava/util/function/Function;Ljava/util/function/IntPredicate;Ljava/util/List;Lnet/minecraft/commands/ExecutionCommandSource;Z)Lnet/minecraft/commands/ExecutionCommandSource;
+		ARG 0 sourceModifier
+		ARG 1 successCheck
+		ARG 2 successfulFunctions
+		ARG 3 source
+		ARG 4 singleFunction
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandBuildContext;)V
 		ARG 0 dispatcher
 		ARG 1 context
+	METHOD scheduleFunctionConditionsAndTest (Ljava/util/List;Ljava/util/function/Function;Ljava/util/function/IntPredicate;Lcom/mojang/brigadier/context/ContextChain;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/commands/execution/ExecutionControl;Lnet/minecraft/server/commands/ExecuteCommand$CommandGetter;Z)V
+		ARG 0 sources
+		ARG 1 sourceModiifer
+		ARG 2 successCheck
+		ARG 3 contextChain
+		ARG 5 executionControl
+		ARG 6 functions
+		ARG 7 forked
 	METHOD spawnEntityAndRedirect (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/Holder$Reference;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 0 source
 		ARG 1 entityType
@@ -242,9 +256,15 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 0 parent
 		ARG 1 literal
 		ARG 2 storingResult
+	CLASS CommandGetter
+		METHOD get (Lcom/mojang/brigadier/context/CommandContext;)Ljava/lang/Object;
+			ARG 1 context
 	CLASS CommandPredicate
 		METHOD test (Lcom/mojang/brigadier/context/CommandContext;)Z
 			ARG 1 context
 	CLASS CommandNumericPredicate
 		METHOD test (Lcom/mojang/brigadier/context/CommandContext;)I
 			ARG 1 context
+	CLASS ExecuteIfFunctionCustomModifier
+		METHOD <init> (Z)V
+			ARG 1 invert

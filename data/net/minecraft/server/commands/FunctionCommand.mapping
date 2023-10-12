@@ -2,6 +2,13 @@ CLASS net/minecraft/server/commands/FunctionCommand
 	METHOD getArgumentTag (Lnet/minecraft/commands/arguments/NbtPathArgument$NbtPath;Lnet/minecraft/server/commands/data/DataAccessor;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 0 nbtPath
 		ARG 1 dataAccessor
+	METHOD modifySenderForExecution (Lnet/minecraft/commands/CommandSourceStack;)Lnet/minecraft/commands/CommandSourceStack;
+		ARG 0 source
+	METHOD queueFunctions (Ljava/util/Collection;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/commands/ExecutionCommandSource;Lnet/minecraft/commands/ExecutionCommandSource;Lnet/minecraft/commands/execution/ExecutionControl;Lnet/minecraft/server/commands/FunctionCommand$Callbacks;)V
+		ARG 0 functions
+		ARG 1 arguments
+		ARG 4 executionControl
+		ARG 5 callbacks
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
 	METHOD runFunction (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/nbt/CompoundTag;)I
@@ -12,3 +19,11 @@ CLASS net/minecraft/server/commands/FunctionCommand
 		ARG 0 source
 		ARG 1 function
 		ARG 2 arguments
+	CLASS Callbacks
+		METHOD signalResult (Ljava/lang/Object;Lnet/minecraft/resources/ResourceLocation;I)V
+			ARG 1 source
+			ARG 2 function
+			ARG 3 commands
+	CLASS FunctionCustomExecutor
+		METHOD arguments (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/nbt/CompoundTag;
+			ARG 1 context

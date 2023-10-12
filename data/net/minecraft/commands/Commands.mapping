@@ -10,6 +10,9 @@ CLASS net/minecraft/commands/Commands
 		ARG 0 provider
 	METHOD createValidator (Lnet/minecraft/commands/Commands$ParseFunction;)Ljava/util/function/Predicate;
 		ARG 0 parser
+	METHOD executeCommandInContext (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/function/Consumer;)V
+		ARG 0 source
+		ARG 1 contextConsumer
 	METHOD fillUsableCommands (Lcom/mojang/brigadier/tree/CommandNode;Lcom/mojang/brigadier/tree/CommandNode;Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Map;)V
 		ARG 1 rootCommandSource
 		ARG 2 rootSuggestion
@@ -52,14 +55,22 @@ CLASS net/minecraft/commands/Commands
 		COMMENT @return The success value of the command, or 0 if an exception occurred.
 		ARG 1 parseResults
 		ARG 2 command
+	METHOD performCommand (Lcom/mojang/brigadier/ParseResults;Ljava/lang/String;)V
+		ARG 1 parseResults
+		ARG 2 command
 	METHOD performPrefixedCommand (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
 		COMMENT Runs a command.
 		COMMENT
 		COMMENT @return The success value of the command, or 0 if an exception occurred.
 		ARG 1 source
 		ARG 2 command
+	METHOD performPrefixedCommand (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)V
+		ARG 1 source
+		ARG 2 command
 	METHOD sendCommands (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
+	METHOD validateParseResults (Lcom/mojang/brigadier/ParseResults;)V
+		ARG 0 parseResults
 	CLASS ParseFunction
 		METHOD parse (Lcom/mojang/brigadier/StringReader;)V
 			ARG 1 input
