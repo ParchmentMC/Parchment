@@ -6,10 +6,28 @@ CLASS net/minecraft/network/chat/ComponentSerialization
 	METHOD createLegacyComponentMatcher ([Lnet/minecraft/util/StringRepresentable;Ljava/util/function/Function;Ljava/util/function/Function;)Lcom/mojang/serialization/MapCodec;
 		ARG 1 codecGetter
 		ARG 2 typeGetter
+	METHOD createLegacyComponentMatcher ([Lnet/minecraft/util/StringRepresentable;Ljava/util/function/Function;Ljava/util/function/Function;Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+		ARG 1 codecGetter
+		ARG 2 typeGetter
+		ARG 3 typeFieldName
 	CLASS FuzzyCodec
 		METHOD <init> (Ljava/util/List;Ljava/util/function/Function;)V
 			ARG 1 codecs
 			ARG 2 encoderGetter
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;)Lcom/mojang/serialization/RecordBuilder;
+			ARG 1 input
+			ARG 2 ops
+			ARG 3 prefix
+		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
+			ARG 1 ops
+	CLASS StrictEither
+		METHOD <init> (Ljava/lang/String;Lcom/mojang/serialization/MapCodec;Lcom/mojang/serialization/MapCodec;)V
+			ARG 1 typeFieldName
+			ARG 2 typed
+			ARG 3 fuzzy
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
 			ARG 2 input

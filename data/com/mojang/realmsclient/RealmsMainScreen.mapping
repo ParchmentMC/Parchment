@@ -23,12 +23,20 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 1 layoutState
 	METHOD dismissNotification (Ljava/util/UUID;)V
 		ARG 1 uuid
+	METHOD getVersionComponent (Ljava/lang/String;I)Lnet/minecraft/network/chat/Component;
+		ARG 0 version
+		ARG 1 color
+	METHOD getVersionComponent (Ljava/lang/String;Z)Lnet/minecraft/network/chat/Component;
+		ARG 0 version
+		ARG 1 compatible
 	METHOD initDataFetcher (Lcom/mojang/realmsclient/gui/RealmsDataFetcher;)Lcom/mojang/realmsclient/gui/task/DataFetcher$Subscription;
 		ARG 1 dataFetcher
 	METHOD isSelfOwnedNonExpiredServer (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
 		ARG 1 server
 	METHOD isSelfOwnedServer (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
 		ARG 1 server
+	METHOD lambda$init$8 (Lnet/minecraft/client/gui/components/CycleButton;Ljava/lang/Boolean;)V
+		ARG 2 snapshotToggle
 	METHOD leaveClicked (Lcom/mojang/realmsclient/dto/RealmsServer;)V
 		ARG 1 realmsServer
 	METHOD leaveServer (ZLcom/mojang/realmsclient/dto/RealmsServer;)V
@@ -89,6 +97,11 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 			ARG 4 y
 			ARG 5 mouseX
 			ARG 6 mouseY
+		METHOD renderThirdLine (Lnet/minecraft/client/gui/GuiGraphics;IILcom/mojang/realmsclient/dto/RealmsServer;)V
+			ARG 1 guiGraphics
+			ARG 2 top
+			ARG 3 left
+			ARG 4 server
 		METHOD secondLineY (I)I
 			ARG 1 firstLineY
 		METHOD textX (I)I
@@ -123,6 +136,15 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 			ARG 5 mouseY
 			ARG 6 sprite
 			ARG 7 tooltipSupplier
+		METHOD renderFirstLine (Lnet/minecraft/client/gui/GuiGraphics;III)V
+			ARG 1 guiGraphics
+			ARG 2 top
+			ARG 3 left
+			ARG 4 width
+		METHOD renderSecondLine (Lnet/minecraft/client/gui/GuiGraphics;II)V
+			ARG 1 guiGraphics
+			ARG 2 top
+			ARG 3 left
 		METHOD renderStatusLights (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/GuiGraphics;IIIIII)V
 			ARG 1 realmsServer
 			ARG 2 guiGraphics
@@ -149,6 +171,8 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 			ARG 2 text
 			ARG 3 frameItemHeight
 			ARG 4 notification
+		METHOD lambda$render$1 (Lnet/minecraft/client/gui/GuiGraphics;IIFLnet/minecraft/client/gui/components/AbstractWidget;)V
+			ARG 4 widget
 		METHOD refreshLayout (I)V
 			ARG 1 width
 		METHOD updateEntryWidth (I)V

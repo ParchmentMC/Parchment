@@ -7,6 +7,17 @@ CLASS net/minecraft/client/gui/screens/worldselection/WorldOpenFlows
 		ARG 2 levelName
 		ARG 3 customized
 		ARG 4 loadLevel
+	METHOD askForBackup (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;ZLjava/lang/Runnable;Ljava/lang/Runnable;)V
+		ARG 1 levelStorage
+		ARG 2 customized
+		ARG 3 loadLevel
+		ARG 4 onCancel
+	METHOD checkForBackupAndLoad (Ljava/lang/String;Ljava/lang/Runnable;)V
+		ARG 1 levelName
+		ARG 2 callback
+	METHOD checkForBackupAndLoad (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Ljava/lang/Runnable;)V
+		ARG 1 levelStorage
+		ARG 2 callback
 	METHOD confirmWorldCreation (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;Lcom/mojang/serialization/Lifecycle;Ljava/lang/Runnable;Z)V
 		ARG 0 minecraft
 		ARG 1 screen
@@ -18,6 +29,12 @@ CLASS net/minecraft/client/gui/screens/worldselection/WorldOpenFlows
 		ARG 2 levelSettings
 		ARG 3 worldOptions
 		ARG 4 dimensionsGetter
+	METHOD createFreshLevel (Ljava/lang/String;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldOptions;Ljava/util/function/Function;Lnet/minecraft/client/gui/screens/Screen;)V
+		ARG 1 levelName
+		ARG 2 levelSettings
+		ARG 3 worldOptions
+		ARG 4 dimensionGetter
+		ARG 5 lastScreen
 	METHOD createLevelFromExistingSettings (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/ReloadableServerResources;Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/world/level/storage/WorldData;)V
 		ARG 1 levelStorage
 		ARG 2 resources
@@ -42,10 +59,19 @@ CLASS net/minecraft/client/gui/screens/worldselection/WorldOpenFlows
 	METHOD loadLevel (Lnet/minecraft/client/gui/screens/Screen;Ljava/lang/String;)V
 		ARG 1 lastScreen
 		ARG 2 levelName
+	METHOD loadLevel (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lcom/mojang/serialization/Dynamic;ZZLjava/lang/Runnable;)V
+		ARG 1 levelStorage
+		ARG 2 dynamic
+		ARG 3 safeMode
+		ARG 5 callback
 	METHOD loadWorldDataBlocking (Lnet/minecraft/server/WorldLoader$PackConfig;Lnet/minecraft/server/WorldLoader$WorldDataSupplier;Lnet/minecraft/server/WorldLoader$ResultFactory;)Ljava/lang/Object;
 		ARG 1 packConfig
 		ARG 2 worldDataSupplier
 		ARG 3 resultFactory
+	METHOD loadWorldStem (Lcom/mojang/serialization/Dynamic;ZLnet/minecraft/server/packs/repository/PackRepository;)Lnet/minecraft/server/WorldStem;
+		ARG 1 dynamic
+		ARG 2 safeMode
+		ARG 3 packRepository
 	METHOD loadWorldStem (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Z)Lnet/minecraft/server/WorldStem;
 		ARG 1 levelStorage
 		ARG 2 safeMode

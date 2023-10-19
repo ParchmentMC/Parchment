@@ -33,6 +33,8 @@ CLASS net/minecraft/client/Minecraft
 	METHOD crash (Lnet/minecraft/CrashReport;)V
 		COMMENT Wrapper around displayCrashReportInternal
 		ARG 0 report
+	METHOD crash (Lnet/minecraft/client/Minecraft;Ljava/io/File;Lnet/minecraft/CrashReport;)V
+		ARG 0 minecraft
 	METHOD createSearchTrees ()V
 		COMMENT Fills {@link #searchTreeManager} with the current item and recipe registry contents.
 	METHOD createUserApiService (Lcom/mojang/authlib/yggdrasil/YggdrasilAuthenticationService;Lnet/minecraft/client/main/GameConfig;)Lcom/mojang/authlib/minecraft/UserApiService;
@@ -57,8 +59,15 @@ CLASS net/minecraft/client/Minecraft
 		ARG 3 packRepository
 		ARG 4 worldStem
 		ARG 5 newWorld
+	METHOD doWorldLoad (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Z)V
+		ARG 1 levelStorage
+		ARG 2 packRepository
+		ARG 3 worldStem
+		ARG 4 newWorld
 	METHOD emergencySave ()V
 		COMMENT Attempts to free as much memory as possible, including leaving the world and running the garbage collector.
+	METHOD emergencySaveAndCrash (Lnet/minecraft/CrashReport;)V
+		ARG 1 crashReport
 	METHOD fillReport (Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReport;
 		COMMENT Adds core server Info (GL version, Texture pack, isModded, type), and the worldInfo to the crash report.
 		ARG 1 theCrash

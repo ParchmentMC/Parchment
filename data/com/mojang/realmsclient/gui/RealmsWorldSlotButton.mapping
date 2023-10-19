@@ -1,4 +1,11 @@
 CLASS com/mojang/realmsclient/gui/RealmsWorldSlotButton
+	METHOD <init> (IIIIILnet/minecraft/client/gui/components/Button$OnPress;)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 width
+		ARG 4 height
+		ARG 5 slotIndex
+		ARG 6 onPress
 	METHOD <init> (IIIILjava/util/function/Supplier;Ljava/util/function/Consumer;ILnet/minecraft/client/gui/components/Button$OnPress;)V
 		ARG 1 x
 		ARG 2 y
@@ -37,7 +44,15 @@ CLASS com/mojang/realmsclient/gui/RealmsWorldSlotButton
 		ARG 1 guiGraphics
 		ARG 2 x
 		ARG 3 y
+	METHOD setServerData (Lcom/mojang/realmsclient/dto/RealmsServer;)V
+		ARG 1 serverData
+	METHOD setTooltipAndNarration (Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$State;Ljava/lang/String;)V
+		ARG 1 state
+		ARG 2 minigameName
 	CLASS State
+		METHOD <init> (Lcom/mojang/realmsclient/dto/RealmsServer;I)V
+			ARG 1 server
+			ARG 2 slot
 		METHOD <init> (ZLjava/lang/String;JLjava/lang/String;ZZLcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;Lnet/minecraft/network/chat/Component;)V
 			ARG 1 isCurrentlyActiveSlot
 			ARG 2 slotName
