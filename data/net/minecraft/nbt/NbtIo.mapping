@@ -1,4 +1,6 @@
 CLASS net/minecraft/nbt/NbtIo
+	METHOD createCompressorStream (Ljava/io/OutputStream;)Ljava/io/DataOutputStream;
+		ARG 0 outputSteam
 	METHOD createDecompressorStream (Ljava/io/InputStream;)Ljava/io/DataInputStream;
 		ARG 0 zippedStream
 	METHOD parse (Ljava/io/DataInput;Lnet/minecraft/nbt/StreamTagVisitor;Lnet/minecraft/nbt/NbtAccounter;)V
@@ -13,6 +15,10 @@ CLASS net/minecraft/nbt/NbtIo
 		ARG 0 zippedStream
 		ARG 1 visitor
 		ARG 2 accounter
+	METHOD parseCompressed (Ljava/nio/file/Path;Lnet/minecraft/nbt/StreamTagVisitor;Lnet/minecraft/nbt/NbtAccounter;)V
+		ARG 0 path
+		ARG 1 visitor
+		ARG 2 accounter
 	METHOD read (Ljava/io/DataInput;)Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Reads a compound tag from a file. The size of the file can be infinite.
 		ARG 0 input
@@ -23,6 +29,8 @@ CLASS net/minecraft/nbt/NbtIo
 		ARG 1 accounter
 	METHOD read (Ljava/io/File;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 0 file
+	METHOD read (Ljava/nio/file/Path;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 path
 	METHOD readAnyTag (Ljava/io/DataInput;Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/Tag;
 		ARG 0 input
 		ARG 1 accounter
@@ -38,6 +46,9 @@ CLASS net/minecraft/nbt/NbtIo
 	METHOD readCompressed (Ljava/io/InputStream;Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 0 zippedStream
 		ARG 1 accounter
+	METHOD readCompressed (Ljava/nio/file/Path;Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 path
+		ARG 1 accounter
 	METHOD readTagSafe (Ljava/io/DataInput;Lnet/minecraft/nbt/NbtAccounter;B)Lnet/minecraft/nbt/Tag;
 		ARG 0 input
 		ARG 1 accounter
@@ -51,6 +62,9 @@ CLASS net/minecraft/nbt/NbtIo
 	METHOD write (Lnet/minecraft/nbt/CompoundTag;Ljava/io/File;)V
 		ARG 0 compoundTag
 		ARG 1 file
+	METHOD write (Lnet/minecraft/nbt/CompoundTag;Ljava/nio/file/Path;)V
+		ARG 0 compoundTag
+		ARG 1 path
 	METHOD writeAnyTag (Lnet/minecraft/nbt/Tag;Ljava/io/DataOutput;)V
 		ARG 0 tag
 		ARG 1 output
@@ -62,6 +76,9 @@ CLASS net/minecraft/nbt/NbtIo
 		COMMENT @see #writeCompressed(CompoundTag, File)
 		ARG 0 compoundTag
 		ARG 1 outputStream
+	METHOD writeCompressed (Lnet/minecraft/nbt/CompoundTag;Ljava/nio/file/Path;)V
+		ARG 0 compoundTag
+		ARG 1 path
 	METHOD writeToByteArray (Lnet/minecraft/nbt/CompoundTag;)[B
 		ARG 0 compoundTag
 	METHOD writeToByteArrayCompressed (Lnet/minecraft/nbt/CompoundTag;)[B
