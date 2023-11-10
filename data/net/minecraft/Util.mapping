@@ -119,6 +119,9 @@ CLASS net/minecraft/Util
 	METHOD prefix (Ljava/lang/String;Ljava/util/function/Consumer;)Ljava/util/function/Consumer;
 		ARG 0 prefix
 		ARG 1 expectedSize
+	METHOD readTypedOrThrow (Lcom/mojang/datafixers/types/Type;Lcom/mojang/serialization/Dynamic;)Lcom/mojang/datafixers/Typed;
+		ARG 0 type
+		ARG 1 data
 	METHOD runWithRetries (ILjava/lang/String;[Ljava/util/function/BooleanSupplier;)Z
 		ARG 0 maxTries
 		ARG 1 actionName
@@ -187,6 +190,10 @@ CLASS net/minecraft/Util
 	METHOD wrapThreadWithTaskName (Ljava/lang/String;Ljava/util/function/Supplier;)Ljava/util/function/Supplier;
 		ARG 0 name
 		ARG 1 task
+	METHOD writeAndReadTypedOrThrow (Lcom/mojang/datafixers/Typed;Lcom/mojang/datafixers/types/Type;Ljava/util/function/UnaryOperator;)Lcom/mojang/datafixers/Typed;
+		ARG 0 typed
+		ARG 1 type
+		ARG 2 operator
 	CLASS 2
 		METHOD onTermination (Ljava/lang/Throwable;)V
 			ARG 1 throwOnTermination
