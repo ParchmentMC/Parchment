@@ -38,6 +38,9 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 	METHOD checkScore (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;)Z
 		ARG 0 context
 		ARG 1 bounds
+	METHOD checkScore (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/server/commands/ExecuteCommand$IntBiPredicate;)Z
+		ARG 0 source
+		ARG 1 predicate
 	METHOD checkUnlessRegions (Lcom/mojang/brigadier/context/CommandContext;Z)I
 		ARG 0 context
 		ARG 1 isMasked
@@ -269,6 +272,10 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 	CLASS CommandGetter
 		METHOD get (Lcom/mojang/brigadier/context/CommandContext;)Ljava/lang/Object;
 			ARG 1 context
+	CLASS IntBiPredicate
+		METHOD test (II)Z
+			ARG 1 value1
+			ARG 2 value2
 	CLASS CommandPredicate
 		METHOD test (Lcom/mojang/brigadier/context/CommandContext;)Z
 			ARG 1 context

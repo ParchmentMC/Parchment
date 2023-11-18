@@ -30,7 +30,7 @@ CLASS net/minecraft/Util
 		ARG 0 type
 		ARG 1 choiceName
 	METHOD doPause (Ljava/lang/String;)V
-		ARG 0 msg
+		ARG 0 message
 	METHOD executeInSequence ([Ljava/util/function/BooleanSupplier;)Z
 		ARG 0 suppliers
 	METHOD fallibleSequence (Ljava/util/List;Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletableFuture;
@@ -55,6 +55,9 @@ CLASS net/minecraft/Util
 		ARG 0 stream
 		ARG 1 expectedSize
 	METHOD getOrThrow (Lcom/mojang/serialization/DataResult;Ljava/util/function/Function;)Ljava/lang/Object;
+		ARG 0 dataResult
+		ARG 1 exceptionGetter
+	METHOD getPartialOrThrow (Lcom/mojang/serialization/DataResult;Ljava/util/function/Function;)Ljava/lang/Object;
 		ARG 0 dataResult
 		ARG 1 exceptionGetter
 	METHOD getPropertyName (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Object;)Ljava/lang/String;
@@ -85,8 +88,8 @@ CLASS net/minecraft/Util
 	METHOD logAndPauseIfInIde (Ljava/lang/String;)V
 		ARG 0 error
 	METHOD logAndPauseIfInIde (Ljava/lang/String;Ljava/lang/Throwable;)V
-		ARG 0 msg
-		ARG 1 err
+		ARG 0 message
+		ARG 1 error
 	METHOD make (Ljava/lang/Object;Ljava/util/function/Consumer;)Ljava/lang/Object;
 		ARG 0 object
 		ARG 1 consumer
@@ -120,6 +123,9 @@ CLASS net/minecraft/Util
 		ARG 0 prefix
 		ARG 1 expectedSize
 	METHOD readTypedOrThrow (Lcom/mojang/datafixers/types/Type;Lcom/mojang/serialization/Dynamic;)Lcom/mojang/datafixers/Typed;
+		ARG 0 type
+		ARG 1 data
+	METHOD readTypedOrThrow (Lcom/mojang/datafixers/types/Type;Lcom/mojang/serialization/Dynamic;Z)Lcom/mojang/datafixers/Typed;
 		ARG 0 type
 		ARG 1 data
 	METHOD runWithRetries (ILjava/lang/String;[Ljava/util/function/BooleanSupplier;)Z
