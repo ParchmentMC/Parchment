@@ -1,4 +1,13 @@
 CLASS net/minecraft/client/gui/components/toasts/SystemToast
+	METHOD <init> (Lnet/minecraft/client/gui/components/toasts/SystemToast$SystemToastId;Lnet/minecraft/network/chat/Component;Ljava/util/List;I)V
+		ARG 1 id
+		ARG 2 title
+		ARG 3 messageLines
+		ARG 4 width
+	METHOD <init> (Lnet/minecraft/client/gui/components/toasts/SystemToast$SystemToastId;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 id
+		ARG 2 title
+		ARG 3 message
 	METHOD <init> (Lnet/minecraft/client/gui/components/toasts/SystemToast$SystemToastIds;Lnet/minecraft/network/chat/Component;Ljava/util/List;I)V
 		ARG 1 id
 		ARG 2 title
@@ -8,13 +17,31 @@ CLASS net/minecraft/client/gui/components/toasts/SystemToast
 		ARG 1 id
 		ARG 2 title
 		ARG 3 message
+	METHOD add (Lnet/minecraft/client/gui/components/toasts/ToastComponent;Lnet/minecraft/client/gui/components/toasts/SystemToast$SystemToastId;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)V
+		ARG 0 toastComponent
+		ARG 1 id
+		ARG 2 title
+		ARG 3 message
 	METHOD add (Lnet/minecraft/client/gui/components/toasts/ToastComponent;Lnet/minecraft/client/gui/components/toasts/SystemToast$SystemToastIds;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)V
+		ARG 0 toastComponent
+		ARG 1 id
+		ARG 2 title
+		ARG 3 message
+	METHOD addOrUpdate (Lnet/minecraft/client/gui/components/toasts/ToastComponent;Lnet/minecraft/client/gui/components/toasts/SystemToast$SystemToastId;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)V
 		ARG 0 toastComponent
 		ARG 1 id
 		ARG 2 title
 		ARG 3 message
 	METHOD addOrUpdate (Lnet/minecraft/client/gui/components/toasts/ToastComponent;Lnet/minecraft/client/gui/components/toasts/SystemToast$SystemToastIds;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)V
 		ARG 0 toastComponent
+		ARG 1 id
+		ARG 2 title
+		ARG 3 message
+	METHOD forceHide (Lnet/minecraft/client/gui/components/toasts/ToastComponent;Lnet/minecraft/client/gui/components/toasts/SystemToast$SystemToastId;)V
+		ARG 0 toastComponent
+		ARG 1 id
+	METHOD multiline (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/components/toasts/SystemToast$SystemToastId;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/components/toasts/SystemToast;
+		ARG 0 minecraft
 		ARG 1 id
 		ARG 2 title
 		ARG 3 message
@@ -37,9 +64,14 @@ CLASS net/minecraft/client/gui/components/toasts/SystemToast
 	METHOD renderBackgroundRow (Lnet/minecraft/client/gui/GuiGraphics;IIII)V
 		ARG 1 guiGraphics
 		ARG 2 width
+		ARG 4 y
+		ARG 5 height
 	METHOD reset (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 title
 		ARG 2 message
+	CLASS SystemToastId
+		METHOD <init> (J)V
+			ARG 1 displayTime
 	CLASS SystemToastIds
 		METHOD <init> (Ljava/lang/String;IJ)V
 			ARG 3 displayTime

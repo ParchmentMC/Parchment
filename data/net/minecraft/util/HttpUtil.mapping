@@ -1,4 +1,26 @@
 CLASS net/minecraft/util/HttpUtil
+	METHOD cachedFilePath (Ljava/nio/file/Path;Lcom/google/common/hash/HashCode;)Ljava/nio/file/Path;
+		ARG 0 path
+		ARG 1 hash
+	METHOD checkExistingFile (Ljava/nio/file/Path;Lcom/google/common/hash/HashFunction;Lcom/google/common/hash/HashCode;)Z
+		ARG 0 path
+		ARG 1 hashFunction
+		ARG 2 expectedHash
+	METHOD downloadAndHash (Lcom/google/common/hash/HashFunction;ILnet/minecraft/util/HttpUtil$DownloadProgressListener;Ljava/io/InputStream;Ljava/nio/file/Path;)Lcom/google/common/hash/HashCode;
+		ARG 0 hashFuntion
+		ARG 1 maxSize
+		ARG 2 progressListener
+		ARG 3 stream
+		ARG 4 outputPath
+	METHOD downloadFile (Ljava/nio/file/Path;Ljava/net/URL;Ljava/util/Map;Lcom/google/common/hash/HashFunction;Lcom/google/common/hash/HashCode;ILjava/net/Proxy;Lnet/minecraft/util/HttpUtil$DownloadProgressListener;)Ljava/nio/file/Path;
+		ARG 0 saveFile
+		ARG 1 url
+		ARG 2 requestProperties
+		ARG 3 hashFunction
+		ARG 4 hash
+		ARG 5 maxSize
+		ARG 6 proxy
+		ARG 7 progressListener
 	METHOD downloadTo (Ljava/io/File;Ljava/net/URL;Ljava/util/Map;ILnet/minecraft/util/ProgressListener;Ljava/net/Proxy;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 saveFile
 		ARG 1 packUrl
@@ -6,5 +28,13 @@ CLASS net/minecraft/util/HttpUtil
 		ARG 3 maxSize
 		ARG 4 progressCallback
 		ARG 5 proxy
+	METHOD hashFile (Ljava/nio/file/Path;Lcom/google/common/hash/HashFunction;)Lcom/google/common/hash/HashCode;
+		ARG 0 path
+		ARG 1 hashFunction
 	METHOD isPortAvailable (I)Z
 		ARG 0 port
+	CLASS DownloadProgressListener
+		METHOD downloadStart (Ljava/util/OptionalLong;)V
+			ARG 1 totalSize
+		METHOD downloadedBytes (J)V
+			ARG 1 progress
