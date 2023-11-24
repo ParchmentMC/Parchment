@@ -51,6 +51,9 @@ CLASS net/minecraft/util/ExtraCodecs
 		ARG 1 second
 	METHOD overrideLifecycle (Lcom/mojang/serialization/Codec;Ljava/util/function/Function;Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
 		ARG 0 codec
+	METHOD recursive (Ljava/lang/String;Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+		ARG 0 name
+		ARG 1 wrapper
 	METHOD sizeLimitedString (II)Lcom/mojang/serialization/Codec;
 		ARG 0 minSize
 		ARG 1 maxSize
@@ -124,6 +127,20 @@ CLASS net/minecraft/util/ExtraCodecs
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
 			ARG 2 input
+	CLASS 6
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
+		METHOD encode (Lcom/mojang/serialization/Codec;Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/DataResult;
+			ARG 1 valueCodec
+			ARG 2 value
+			ARG 3 ops
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/RecordBuilder;)Lcom/mojang/serialization/RecordBuilder;
+			ARG 1 input
+			ARG 2 ops
+			ARG 3 prefix
+		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
+			ARG 1 ops
 	CLASS XorCodec
 		METHOD <init> (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;)V
 			ARG 1 first
@@ -174,6 +191,9 @@ CLASS net/minecraft/util/ExtraCodecs
 		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
 			ARG 1 ops
 	CLASS StrictUnboundedMapCodec
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 input
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
 			ARG 2 input

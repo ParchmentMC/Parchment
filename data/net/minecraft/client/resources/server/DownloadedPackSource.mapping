@@ -8,6 +8,8 @@ CLASS net/minecraft/client/resources/server/DownloadedPackSource
 		ARG 2 packPromptStatus
 	METHOD configureSource (Ljava/util/List;)Lnet/minecraft/server/packs/repository/RepositorySource;
 		ARG 0 packs
+	METHOD createDownloadNotifier (I)Lnet/minecraft/util/HttpUtil$DownloadProgressListener;
+		ARG 1 packCount
 	METHOD createDownloader (Lnet/minecraft/server/packs/DownloadQueue;Ljava/util/concurrent/Executor;Lnet/minecraft/client/User;Ljava/net/Proxy;)Lnet/minecraft/client/resources/server/PackDownloader;
 		ARG 1 downloadQueue
 		ARG 2 executor
@@ -17,8 +19,14 @@ CLASS net/minecraft/client/resources/server/DownloadedPackSource
 		ARG 0 connection
 	METHOD createUpdateScheduler (Ljava/util/concurrent/Executor;)Ljava/lang/Runnable;
 		ARG 1 executor
+	METHOD lambda$createPackResponseSender$4 (Lnet/minecraft/network/Connection;Ljava/util/UUID;Lnet/minecraft/client/resources/server/PackLoadFeedback$Result;)V
+		ARG 1 id
+		ARG 2 status
 	METHOD lambda$createRepositorySource$3 (Ljava/util/function/Consumer;)V
 		ARG 1 packs
+	METHOD lambda$waitForPackFeedback$5 (Ljava/util/UUID;Lnet/minecraft/client/resources/server/PackLoadFeedback;Ljava/util/concurrent/CompletableFuture;Ljava/util/UUID;Lnet/minecraft/client/resources/server/PackLoadFeedback$Result;)V
+		ARG 4 id
+		ARG 5 result
 	METHOD loadRequestedPacks (Ljava/util/List;)Ljava/util/List;
 		ARG 1 packs
 	METHOD popPack (Ljava/util/UUID;)V
