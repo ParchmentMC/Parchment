@@ -3,6 +3,12 @@ CLASS net/minecraft/client/multiplayer/ClientCommonPacketListenerImpl
 		ARG 1 minecraft
 		ARG 2 connection
 		ARG 3 commonListenerCookie
+	METHOD addOrUpdatePackPrompt (Ljava/util/UUID;Ljava/net/URL;Ljava/lang/String;ZLnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/screens/Screen;
+		ARG 1 id
+		ARG 2 url
+		ARG 3 hash
+		ARG 4 required
+		ARG 5 prompt
 	METHOD createDisconnectScreen (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/screens/Screen;
 		ARG 1 reason
 	METHOD handleCustomPayload (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload;)V
@@ -36,3 +42,17 @@ CLASS net/minecraft/client/multiplayer/ClientCommonPacketListenerImpl
 	METHOD updateTagsForRegistry (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/tags/TagNetworkSerialization$NetworkPayload;)V
 		ARG 1 registryKey
 		ARG 2 networkPayload
+	CLASS PackConfirmScreen
+		METHOD <init> (Lnet/minecraft/client/multiplayer/ClientCommonPacketListenerImpl;Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Ljava/util/List;ZLnet/minecraft/network/chat/Component;)V
+			ARG 2 minecraft
+			ARG 3 parentScreen
+			ARG 4 requests
+			ARG 5 required
+			ARG 6 prompt
+		METHOD update (Lnet/minecraft/client/Minecraft;Ljava/util/UUID;Ljava/net/URL;Ljava/lang/String;ZLnet/minecraft/network/chat/Component;)Lnet/minecraft/client/multiplayer/ClientCommonPacketListenerImpl$PackConfirmScreen;
+			ARG 1 minecraft
+			ARG 2 id
+			ARG 3 url
+			ARG 4 hash
+			ARG 5 required
+			ARG 6 prompt
