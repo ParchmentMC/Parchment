@@ -1,9 +1,4 @@
 CLASS net/minecraft/world/scores/Scoreboard
-	METHOD addObjective (Ljava/lang/String;Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/scores/criteria/ObjectiveCriteria$RenderType;)Lnet/minecraft/world/scores/Objective;
-		ARG 1 name
-		ARG 2 criteria
-		ARG 3 displayName
-		ARG 4 renderType
 	METHOD addObjective (Ljava/lang/String;Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/scores/criteria/ObjectiveCriteria$RenderType;ZLnet/minecraft/network/chat/numbers/NumberFormat;)Lnet/minecraft/world/scores/Objective;
 		ARG 1 name
 		ARG 2 criteria
@@ -18,10 +13,6 @@ CLASS net/minecraft/world/scores/Scoreboard
 		ARG 2 team
 	METHOD entityRemoved (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
-	METHOD forAllObjectives (Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;Ljava/lang/String;Ljava/util/function/Consumer;)V
-		ARG 1 criteria
-		ARG 2 scoreboardName
-		ARG 3 action
 	METHOD forAllObjectives (Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;Lnet/minecraft/world/scores/ScoreHolder;Ljava/util/function/Consumer;)V
 		ARG 1 criteria
 		ARG 2 scoreHolder
@@ -33,10 +24,6 @@ CLASS net/minecraft/world/scores/Scoreboard
 		ARG 1 name
 	METHOD getOrCreatePlayerInfo (Ljava/lang/String;)Lnet/minecraft/world/scores/PlayerScores;
 		ARG 1 username
-	METHOD getOrCreatePlayerScore (Ljava/lang/String;Lnet/minecraft/world/scores/Objective;)Lnet/minecraft/world/scores/Score;
-		COMMENT Get a player's score or create it if it does not exist
-		ARG 1 username
-		ARG 2 objective
 	METHOD getOrCreatePlayerScore (Lnet/minecraft/world/scores/ScoreHolder;Lnet/minecraft/world/scores/Objective;)Lnet/minecraft/world/scores/ScoreAccess;
 		ARG 1 scoreHolder
 		ARG 2 objective
@@ -47,12 +34,6 @@ CLASS net/minecraft/world/scores/Scoreboard
 	METHOD getPlayerScoreInfo (Lnet/minecraft/world/scores/ScoreHolder;Lnet/minecraft/world/scores/Objective;)Lnet/minecraft/world/scores/ReadOnlyScoreInfo;
 		ARG 1 scoreHolder
 		ARG 2 objective
-	METHOD getPlayerScores (Ljava/lang/String;)Ljava/util/Map;
-		COMMENT Returns all the objectives for the given entity
-		ARG 1 name
-	METHOD getPlayerScores (Lnet/minecraft/world/scores/Objective;)Ljava/util/Collection;
-		COMMENT Returns an array of Score objects, sorting by Score.getScorePoints()
-		ARG 1 objective
 	METHOD getPlayerTeam (Ljava/lang/String;)Lnet/minecraft/world/scores/PlayerTeam;
 		COMMENT Retrieve the ScorePlayerTeam instance identified by the passed team name
 		ARG 1 teamName
@@ -63,10 +44,6 @@ CLASS net/minecraft/world/scores/Scoreboard
 		ARG 1 username
 	METHOD getTeamNames ()Ljava/util/Collection;
 		COMMENT Retrieve all registered ScorePlayerTeam names
-	METHOD hasPlayerScore (Ljava/lang/String;Lnet/minecraft/world/scores/Objective;)Z
-		COMMENT Returns if the entity has the given ScoreObjective
-		ARG 1 name
-		ARG 2 objective
 	METHOD listPlayerScores (Lnet/minecraft/world/scores/Objective;)Ljava/util/Collection;
 		ARG 1 objective
 	METHOD listPlayerScores (Lnet/minecraft/world/scores/ScoreHolder;)Lit/unimi/dsi/fastutil/objects/Object2IntMap;
@@ -79,18 +56,11 @@ CLASS net/minecraft/world/scores/Scoreboard
 		ARG 1 objective
 	METHOD onObjectiveRemoved (Lnet/minecraft/world/scores/Objective;)V
 		ARG 1 objective
-	METHOD onPlayerRemoved (Ljava/lang/String;)V
-		ARG 1 scoreName
 	METHOD onPlayerRemoved (Lnet/minecraft/world/scores/ScoreHolder;)V
 		ARG 1 scoreHolder
-	METHOD onPlayerScoreRemoved (Ljava/lang/String;Lnet/minecraft/world/scores/Objective;)V
-		ARG 1 scoreName
-		ARG 2 objective
 	METHOD onPlayerScoreRemoved (Lnet/minecraft/world/scores/ScoreHolder;Lnet/minecraft/world/scores/Objective;)V
 		ARG 1 scoreHolder
 		ARG 2 objective
-	METHOD onScoreChanged (Lnet/minecraft/world/scores/Score;)V
-		ARG 1 score
 	METHOD onScoreChanged (Lnet/minecraft/world/scores/ScoreHolder;Lnet/minecraft/world/scores/Objective;Lnet/minecraft/world/scores/Score;)V
 		ARG 1 scoreHolder
 		ARG 2 objective
@@ -117,10 +87,6 @@ CLASS net/minecraft/world/scores/Scoreboard
 		ARG 1 playerTeam
 	METHOD resetAllPlayerScores (Lnet/minecraft/world/scores/ScoreHolder;)V
 		ARG 1 scoreHolder
-	METHOD resetPlayerScore (Ljava/lang/String;Lnet/minecraft/world/scores/Objective;)V
-		COMMENT Remove the given ScoreObjective for the given Entity name.
-		ARG 1 name
-		ARG 2 objective
 	METHOD resetSinglePlayerScore (Lnet/minecraft/world/scores/ScoreHolder;Lnet/minecraft/world/scores/Objective;)V
 		ARG 1 scoreHolder
 		ARG 2 objective

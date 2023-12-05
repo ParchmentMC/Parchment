@@ -8,10 +8,6 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 		ARG 0 structureBlockY
 		ARG 1 pos
 		ARG 2 serverLevel
-	METHOD clearSpaceForStructure (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;ILnet/minecraft/server/level/ServerLevel;)V
-		ARG 0 boundingBox
-		ARG 1 structureBlockY
-		ARG 2 serverLevel
 	METHOD clearSpaceForStructure (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 0 boundingBox
 		ARG 1 level
@@ -21,12 +17,6 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 		ARG 2 size
 		ARG 3 rotation
 		ARG 4 serverLevel
-	METHOD createStructureBlock (Ljava/lang/String;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;Z)Lnet/minecraft/world/level/block/entity/StructureBlockEntity;
-		ARG 0 structureName
-		ARG 1 pos
-		ARG 2 rotation
-		ARG 3 serverLevel
-		ARG 4 dontPlaceOnSizeMismatch
 	METHOD createStructureBlock (Lnet/minecraft/gametest/framework/GameTestInfo;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/block/entity/StructureBlockEntity;
 		ARG 0 gameTestInfo
 		ARG 1 pos
@@ -48,9 +38,6 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 		ARG 0 pos
 		ARG 1 radius
 		ARG 2 serverLevel
-	METHOD forceLoadChunks (Lnet/minecraft/core/BlockPos;Lnet/minecraft/server/level/ServerLevel;)V
-		ARG 0 pos
-		ARG 1 serverLevel
 	METHOD forceLoadChunks (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 0 boundingBox
 		ARG 1 level
@@ -68,16 +55,10 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 		ARG 0 structureBlockEntity
 	METHOD getStructureOrigin (Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)Lnet/minecraft/core/BlockPos;
 		ARG 0 structureBlockEntity
-	METHOD getStructureTemplate (Ljava/lang/String;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate;
-		ARG 0 structureName
-		ARG 1 serverLevel
 	METHOD getTransformedFarCorner (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Vec3i;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/core/BlockPos;
 		ARG 0 pos
 		ARG 1 offset
 		ARG 2 rotation
-	METHOD intersectingChunks (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;I)Ljava/util/stream/Stream;
-		ARG 0 boundingBox
-		ARG 1 padding
 	METHOD lambda$forceLoadChunks$1 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 chunk
 	METHOD prepareTestStructure (Lnet/minecraft/gametest/framework/GameTestInfo;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/block/entity/StructureBlockEntity;
@@ -85,19 +66,3 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 		ARG 1 pos
 		ARG 2 rotation
 		ARG 3 level
-	METHOD spawnStructure (Ljava/lang/String;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;ILnet/minecraft/server/level/ServerLevel;Z)Lnet/minecraft/world/level/block/entity/StructureBlockEntity;
-		ARG 0 structureName
-		ARG 1 pos
-		ARG 2 rotation
-		ARG 4 serverLevel
-		ARG 5 dontPlaceOnSizeMismatch
-			COMMENT If true, the structure won't be placed if the structure block size doesn't match the structure template size
-	METHOD spawnStructure (Ljava/lang/String;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;Z)Lnet/minecraft/world/level/block/entity/StructureBlockEntity;
-		ARG 0 structureName
-		ARG 1 pos
-		ARG 2 rotation
-		ARG 3 serverLevel
-		ARG 4 dontPlaceOnSizeMismatch
-			COMMENT If true, the structure won't be placed if the structure block size doesn't match the structure template size
-	METHOD tryLoadStructure (Ljava/nio/file/Path;)Lnet/minecraft/nbt/CompoundTag;
-		ARG 0 pathToStructure

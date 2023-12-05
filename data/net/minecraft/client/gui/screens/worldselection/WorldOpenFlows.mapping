@@ -2,11 +2,6 @@ CLASS net/minecraft/client/gui/screens/worldselection/WorldOpenFlows
 	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/world/level/storage/LevelStorageSource;)V
 		ARG 1 minecraft
 		ARG 2 levelSource
-	METHOD askForBackup (Lnet/minecraft/client/gui/screens/Screen;Ljava/lang/String;ZLjava/lang/Runnable;)V
-		ARG 1 lastScreen
-		ARG 2 levelName
-		ARG 3 customized
-		ARG 4 loadLevel
 	METHOD askForBackup (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;ZLjava/lang/Runnable;Ljava/lang/Runnable;)V
 		ARG 1 levelStorage
 		ARG 2 customized
@@ -24,11 +19,6 @@ CLASS net/minecraft/client/gui/screens/worldselection/WorldOpenFlows
 		ARG 2 lifecycle
 		ARG 3 loadWorld
 		ARG 4 skipWarnings
-	METHOD createFreshLevel (Ljava/lang/String;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldOptions;Ljava/util/function/Function;)V
-		ARG 1 levelName
-		ARG 2 levelSettings
-		ARG 3 worldOptions
-		ARG 4 dimensionsGetter
 	METHOD createFreshLevel (Ljava/lang/String;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldOptions;Ljava/util/function/Function;Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 1 levelName
 		ARG 2 levelSettings
@@ -42,26 +32,9 @@ CLASS net/minecraft/client/gui/screens/worldselection/WorldOpenFlows
 		ARG 4 worldData
 	METHOD createWorldAccess (Ljava/lang/String;)Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;
 		ARG 1 levelName
-	METHOD doLoadLevel (Lnet/minecraft/client/gui/screens/Screen;Ljava/lang/String;ZZ)V
-		ARG 1 lastScreen
-		ARG 2 levelName
-		ARG 3 safeMode
-		ARG 4 checkAskForBackup
-	METHOD getPackConfigFromLevelData (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;ZLnet/minecraft/server/packs/repository/PackRepository;)Lnet/minecraft/server/WorldLoader$PackConfig;
-		ARG 1 levelStorage
-		ARG 2 functionCompilationLevel
-		ARG 3 packConfig
-	METHOD lambda$doLoadLevel$10 (Ljava/lang/String;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Lnet/minecraft/client/gui/screens/Screen;Ljava/lang/Boolean;)V
-		ARG 1 levelId
-		ARG 2 level
-		ARG 3 packRepository
-		ARG 4 worldStem
 	METHOD loadBundledResourcePack (Lnet/minecraft/client/resources/server/DownloadedPackSource;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 packSource
 		ARG 2 level
-	METHOD loadLevel (Lnet/minecraft/client/gui/screens/Screen;Ljava/lang/String;)V
-		ARG 1 lastScreen
-		ARG 2 levelName
 	METHOD loadLevel (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lcom/mojang/serialization/Dynamic;ZZLjava/lang/Runnable;)V
 		ARG 1 levelStorage
 		ARG 2 dynamic
@@ -76,15 +49,5 @@ CLASS net/minecraft/client/gui/screens/worldselection/WorldOpenFlows
 		ARG 1 dynamic
 		ARG 2 safeMode
 		ARG 3 packRepository
-	METHOD loadWorldStem (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Z)Lnet/minecraft/server/WorldStem;
-		ARG 1 levelStorage
-		ARG 2 safeMode
-	METHOD loadWorldStem (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;ZLnet/minecraft/server/packs/repository/PackRepository;)Lnet/minecraft/server/WorldStem;
-		ARG 1 levelStorage
-		ARG 2 safeMode
-		ARG 3 packRepository
 	METHOD recreateWorldData (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;)Lcom/mojang/datafixers/util/Pair;
 		ARG 1 levelStorage
-	METHOD safeCloseAccess (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Ljava/lang/String;)V
-		ARG 0 levelStorage
-		ARG 1 levelName

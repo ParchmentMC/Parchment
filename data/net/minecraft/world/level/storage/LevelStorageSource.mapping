@@ -10,18 +10,10 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		ARG 0 savesDir
 	METHOD getBackupPath ()Ljava/nio/file/Path;
 		COMMENT Gets the folder where backups are stored
-	METHOD getDataConfiguration (Ljava/nio/file/Path;Lcom/mojang/datafixers/DataFixer;)Lnet/minecraft/world/level/WorldDataConfiguration;
-		ARG 0 dataFile
-		ARG 1 fixer
 	METHOD getFileModificationTime (Ljava/nio/file/Path;)Ljava/time/Instant;
 		ARG 0 dataFilePath
 	METHOD getFileModificationTime (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelDirectory;)J
 		ARG 0 levelDirectory
-	METHOD getLevelData (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/WorldDataConfiguration;Lnet/minecraft/core/Registry;Lcom/mojang/serialization/Lifecycle;)Ljava/util/function/BiFunction;
-		ARG 0 ops
-		ARG 1 dataConfiguration
-		ARG 2 levelStemRegistry
-		ARG 3 lifecycle
 	METHOD getLevelDataAndDimensions (Lcom/mojang/serialization/Dynamic;Lnet/minecraft/world/level/WorldDataConfiguration;Lnet/minecraft/core/Registry;Lnet/minecraft/core/RegistryAccess$Frozen;)Lnet/minecraft/world/level/storage/LevelDataAndDimensions;
 		ARG 0 dynamic
 		ARG 1 dataConfiguration
@@ -38,9 +30,6 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 	METHOD levelExists (Ljava/lang/String;)Z
 		COMMENT Return whether the given world can be loaded.
 		ARG 1 saveName
-	METHOD levelSummaryReader (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelDirectory;Z)Ljava/util/function/BiFunction;
-		ARG 1 levelDirectory
-		ARG 2 locked
 	METHOD loadLevelSummaries (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelCandidates;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 candidates
 	METHOD makeLevelSummary (Lcom/mojang/serialization/Dynamic;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelDirectory;Z)Lnet/minecraft/world/level/storage/LevelSummary;
@@ -53,9 +42,6 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		ARG 0 validator
 	METHOD readDataConfig (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/level/WorldDataConfiguration;
 		ARG 0 dynamic
-	METHOD readLevelData (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelDirectory;Ljava/util/function/BiFunction;)Ljava/lang/Object;
-		ARG 1 levelDirectory
-		ARG 2 levelDatReader
 	METHOD readLevelDataTagFixed (Ljava/nio/file/Path;Lcom/mojang/datafixers/DataFixer;)Lcom/mojang/serialization/Dynamic;
 		ARG 0 levelPath
 		ARG 1 dataFixer
@@ -66,10 +52,6 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		ARG 2 locked
 	METHOD readLightweightData (Ljava/nio/file/Path;)Lnet/minecraft/nbt/Tag;
 		ARG 0 file
-	METHOD readWorldGenSettings (Lcom/mojang/serialization/Dynamic;Lcom/mojang/datafixers/DataFixer;I)Lcom/mojang/serialization/DataResult;
-		ARG 0 dynamic
-		ARG 1 fixer
-		ARG 2 version
 	METHOD validateAndCreateAccess (Ljava/lang/String;)Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;
 		ARG 1 saveName
 	METHOD wrapWithRegistryOps (Lcom/mojang/serialization/Dynamic;Lnet/minecraft/core/RegistryAccess$Frozen;)Lcom/mojang/serialization/Dynamic;
@@ -86,11 +68,6 @@ CLASS net/minecraft/world/level/storage/LevelStorageSource
 		METHOD <init> (Lnet/minecraft/world/level/storage/LevelStorageSource;Ljava/lang/String;Ljava/nio/file/Path;)V
 			ARG 2 levelId
 			ARG 3 levelDir
-		METHOD getDataTag (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/WorldDataConfiguration;Lnet/minecraft/core/Registry;Lcom/mojang/serialization/Lifecycle;)Lcom/mojang/datafixers/util/Pair;
-			ARG 1 ops
-			ARG 2 dataConfiguration
-			ARG 3 levelStemRegistry
-			ARG 4 lifecycle
 		METHOD getDataTag (Z)Lcom/mojang/serialization/Dynamic;
 			ARG 1 useFallback
 		METHOD getDimensionPath (Lnet/minecraft/resources/ResourceKey;)Ljava/nio/file/Path;

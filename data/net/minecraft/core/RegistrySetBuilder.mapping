@@ -8,9 +8,6 @@ CLASS net/minecraft/core/RegistrySetBuilder
 		ARG 2 bootstrap
 	METHOD build (Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/core/HolderLookup$Provider;
 		ARG 1 registryAccess
-	METHOD buildPatch (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/core/HolderLookup$Provider;
-		ARG 1 registryAccess
-		ARG 2 original
 	METHOD buildPatch (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/core/Cloner$Factory;)Lnet/minecraft/core/RegistrySetBuilder$PatchedRegistries;
 		ARG 1 registry
 		ARG 2 lookupProvider
@@ -38,21 +35,15 @@ CLASS net/minecraft/core/RegistrySetBuilder
 	METHOD wrapContextLookup (Lnet/minecraft/core/HolderLookup$RegistryLookup;)Lnet/minecraft/core/HolderGetter;
 		ARG 0 owner
 	CLASS BuildState
-		METHOD addOwner (Lnet/minecraft/core/HolderOwner;)V
-			ARG 1 owner
 		METHOD create (Lnet/minecraft/core/RegistryAccess;Ljava/util/stream/Stream;)Lnet/minecraft/core/RegistrySetBuilder$BuildState;
 			ARG 0 registryAccess
 			ARG 1 registries
-		METHOD fillMissingHolders (Lnet/minecraft/core/HolderLookup$Provider;)V
-			ARG 1 originial
 	CLASS LazyHolder
 		METHOD <init> (Lnet/minecraft/core/HolderOwner;Lnet/minecraft/resources/ResourceKey;)V
 			ARG 1 owner
 			ARG 2 key
 	CLASS RegistryStub
 		METHOD apply (Lnet/minecraft/core/RegistrySetBuilder$BuildState;)V
-			ARG 1 state
-		METHOD collectChanges (Lnet/minecraft/core/RegistrySetBuilder$BuildState;)Lnet/minecraft/core/RegistrySetBuilder$RegistryContents;
 			ARG 1 state
 		METHOD collectRegisteredValues (Lnet/minecraft/core/RegistrySetBuilder$BuildState;)Lnet/minecraft/core/RegistrySetBuilder$RegistryContents;
 			ARG 1 buildState

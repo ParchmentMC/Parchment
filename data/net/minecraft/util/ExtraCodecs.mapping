@@ -1,7 +1,4 @@
 CLASS net/minecraft/util/ExtraCodecs
-	METHOD adaptJsonSerializer (Ljava/util/function/Function;Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
-		ARG 0 encoder
-		ARG 1 decoder
 	METHOD asOptionalLong (Lcom/mojang/serialization/MapCodec;)Lcom/mojang/serialization/MapCodec;
 		ARG 0 codec
 	METHOD catchDecoderException (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
@@ -106,14 +103,6 @@ CLASS net/minecraft/util/ExtraCodecs
 			ARG 2 ops
 			ARG 3 prefix
 	CLASS 3
-		METHOD apply (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;Lcom/mojang/serialization/DataResult;)Lcom/mojang/serialization/DataResult;
-			ARG 1 ops
-			ARG 2 input
-			ARG 3 a
-		METHOD coApply (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;Lcom/mojang/serialization/DataResult;)Lcom/mojang/serialization/DataResult;
-			ARG 1 ops
-			ARG 2 input
-			ARG 3 t
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
 			ARG 2 prefix
@@ -123,10 +112,6 @@ CLASS net/minecraft/util/ExtraCodecs
 			ARG 3 prefix
 		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
 			ARG 1 ops
-	CLASS 4
-		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
-			ARG 1 ops
-			ARG 2 input
 	CLASS 6
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
@@ -197,7 +182,7 @@ CLASS net/minecraft/util/ExtraCodecs
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
 			ARG 2 input
-		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		METHOD encode (Ljava/util/Map;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
 			ARG 1 input
 			ARG 2 ops
 			ARG 3 value
