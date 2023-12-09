@@ -9,6 +9,36 @@ CLASS net/minecraft/client/gui/font/FontManager
 		ARG 2 missingProvider
 	METHOD getActualId (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
 		ARG 1 id
+	METHOD lambda$apply$16 (Lnet/minecraft/resources/ResourceLocation;Ljava/util/List;)V
+		ARG 1 id
+		ARG 2 providers
+	METHOD lambda$createFont$17 (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/gui/font/FontSet;
+		ARG 1 id
+	METHOD lambda$createFontFilterFishy$18 (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/gui/font/FontSet;
+		ARG 1 id
+	METHOD lambda$finalizeProviderLoading$15 (Ljava/util/List;I)V
+		ARG 1 glyphIndex
+	METHOD lambda$new$0 (Lnet/minecraft/client/gui/font/FontSet;)V
+		ARG 0 fontSet
+	METHOD lambda$prepare$10 (Ljava/util/concurrent/Executor;Ljava/util/List;)Ljava/util/concurrent/CompletionStage;
+		ARG 2 unresolvedBundles
+	METHOD lambda$prepare$2 (Lnet/minecraft/client/gui/font/FontManager$BuilderId;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;Lnet/minecraft/client/gui/font/FontManager$UnresolvedBuilderBundle;Lnet/minecraft/client/gui/font/providers/GlyphProviderDefinition$Loader;)V
+		ARG 5 defnLoader
+	METHOD lambda$prepare$3 (Lnet/minecraft/client/gui/font/FontManager$UnresolvedBuilderBundle;Lnet/minecraft/client/gui/font/FontManager$BuilderId;Lnet/minecraft/client/gui/font/providers/GlyphProviderDefinition$Reference;)V
+		ARG 2 defnRef
+	METHOD lambda$prepare$6 (Lcom/mojang/blaze3d/font/GlyphProvider;Ljava/util/concurrent/Executor;Ljava/util/List;)Ljava/util/concurrent/CompletableFuture;
+		ARG 3 unresolvedProviderList
+	METHOD lambda$prepare$8 (Ljava/util/List;Ljava/util/Map;Ljava/lang/Void;)Lnet/minecraft/client/gui/font/FontManager$Preparation;
+		ARG 2 v
+	METHOD lambda$prepare$9 (Ljava/util/List;Lcom/mojang/blaze3d/font/GlyphProvider;Ljava/util/concurrent/Executor;Ljava/util/List;)Ljava/util/concurrent/CompletionStage;
+		ARG 4 unresolvedProviders
+	METHOD lambda$reload$1 (Lnet/minecraft/util/profiling/ProfilerFiller;Lnet/minecraft/client/gui/font/FontManager$Preparation;)V
+		ARG 2 preparation
+	METHOD lambda$resolveProviders$12 (Lnet/minecraft/util/DependencySorter;Lnet/minecraft/client/gui/font/FontManager$UnresolvedBuilderBundle;)V
+		ARG 1 unresolvedBundle
+	METHOD lambda$resolveProviders$14 (Ljava/util/Map;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/gui/font/FontManager$UnresolvedBuilderBundle;)V
+		ARG 1 id
+		ARG 2 unresolvedBundle
 	METHOD loadResourceStack (Ljava/util/List;Lnet/minecraft/resources/ResourceLocation;)Ljava/util/List;
 		ARG 0 resources
 		ARG 1 fontId
@@ -25,8 +55,15 @@ CLASS net/minecraft/client/gui/font/FontManager
 	METHOD setRenames (Ljava/util/Map;)V
 		ARG 1 unicodeForcedMap
 	CLASS BuilderResult
+		METHOD lambda$resolve$0 (Ljava/util/concurrent/CompletableFuture;)Ljava/util/Optional;
+			ARG 0 providers
+		METHOD lambda$resolve$1 (Ljava/util/function/Function;Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+			ARG 2 id
 		METHOD resolve (Ljava/util/function/Function;)Ljava/util/Optional;
 			ARG 1 providerResolver
+	CLASS FontDefinitionFile
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
 	CLASS UnresolvedBuilderBundle
 		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
 			ARG 1 fontId
@@ -36,5 +73,7 @@ CLASS net/minecraft/client/gui/font/FontManager
 		METHOD add (Lnet/minecraft/client/gui/font/FontManager$BuilderId;Lnet/minecraft/client/gui/font/providers/GlyphProviderDefinition$Reference;)V
 			ARG 1 builderId
 			ARG 2 reference
+		METHOD lambda$listBuilders$0 (Lnet/minecraft/client/gui/font/FontManager$BuilderResult;)Ljava/util/stream/Stream;
+			ARG 0 builderResult
 		METHOD resolve (Ljava/util/function/Function;)Ljava/util/Optional;
 			ARG 1 providerResolver

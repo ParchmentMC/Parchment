@@ -28,6 +28,7 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 		ARG 1 debug
 	METHOD createNewWorld (Lnet/minecraft/world/level/storage/PrimaryLevelData$SpecialWorldProperty;Lnet/minecraft/core/LayeredRegistryAccess;Lcom/mojang/serialization/Lifecycle;)V
 		ARG 1 specialWorldProperty
+		ARG 2 registryAccess
 		ARG 3 worldGenSettingsLifecycle
 	METHOD createTempDataPackDirFromExistingWorld (Ljava/nio/file/Path;Lnet/minecraft/client/Minecraft;)Ljava/nio/file/Path;
 		ARG 0 datapackDir
@@ -38,6 +39,53 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
+	METHOD lambda$applyNewPackConfig$11 (Lcom/mojang/serialization/DynamicOps;Lcom/google/gson/JsonElement;)Lcom/mojang/serialization/DataResult;
+		ARG 1 settingsJson
+	METHOD lambda$applyNewPackConfig$12 (Lnet/minecraft/server/WorldLoader$DataLoadContext;)Lnet/minecraft/server/WorldLoader$DataLoadOutput;
+		ARG 1 context
+	METHOD lambda$applyNewPackConfig$13 (Lnet/minecraft/server/packs/resources/CloseableResourceManager;Lnet/minecraft/server/ReloadableServerResources;Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$DataPackReloadCookie;)Lnet/minecraft/client/gui/screens/worldselection/WorldCreationContext;
+		ARG 0 manager
+		ARG 1 resources
+		ARG 2 registryAccess
+		ARG 3 cookie
+	METHOD lambda$applyNewPackConfig$14 (Ljava/util/function/Consumer;Z)V
+		ARG 2 yes
+	METHOD lambda$applyNewPackConfig$15 (Ljava/util/function/Consumer;Ljava/lang/Void;Ljava/lang/Throwable;)Ljava/lang/Object;
+		ARG 2 v
+		ARG 3 throwable
+	METHOD lambda$createNewWorldDirectory$17 (Ljava/nio/file/Path;)Z
+		ARG 1 tempDatapackFilePath
+	METHOD lambda$createNewWorldDirectory$18 (Ljava/nio/file/Path;Ljava/nio/file/Path;)V
+		ARG 2 tempDatapackFilePath
+	METHOD lambda$createTempDataPackDirFromExistingWorld$19 (Ljava/nio/file/Path;Ljava/nio/file/Path;)Z
+		ARG 1 datapackFilePath
+	METHOD lambda$createTempDataPackDirFromExistingWorld$20 (Lorg/apache/commons/lang3/mutable/MutableObject;Ljava/nio/file/Path;Ljava/nio/file/Path;)V
+		ARG 2 datapackFilePath
+	METHOD lambda$init$3 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$4 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$5 (Lnet/minecraft/client/gui/components/AbstractWidget;)V
+		ARG 1 widget
+	METHOD lambda$new$0 (Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;Lnet/minecraft/client/gui/components/events/GuiEventListener;)V
+		ARG 1 widget
+	METHOD lambda$openDataPackSelectionScreen$8 (Lnet/minecraft/server/packs/repository/PackRepository;)V
+		ARG 1 repository
+	METHOD lambda$openExperimentsScreen$7 (Lnet/minecraft/server/packs/repository/PackRepository;)V
+		ARG 1 repository
+	METHOD lambda$openFresh$1 (Lnet/minecraft/server/WorldLoader$DataLoadContext;)Lnet/minecraft/server/WorldLoader$DataLoadOutput;
+		ARG 0 context
+	METHOD lambda$openFresh$2 (Lnet/minecraft/server/packs/resources/CloseableResourceManager;Lnet/minecraft/server/ReloadableServerResources;Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen$DataPackReloadCookie;)Lnet/minecraft/client/gui/screens/worldselection/WorldCreationContext;
+		ARG 0 manager
+		ARG 1 resources
+		ARG 2 registryAccess
+		ARG 3 cookie
+	METHOD lambda$removeTempDataPackDir$16 (Ljava/nio/file/Path;)V
+		ARG 0 tempDatapackFilePath
+	METHOD lambda$tryApplyNewDataPacks$10 (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/WorldDataConfiguration;Ljava/util/function/Consumer;Z)V
+		ARG 4 yes
+	METHOD lambda$tryApplyNewDataPacks$9 (Ljava/util/List;Ljava/lang/String;)Z
+		ARG 1 packId
 	METHOD openDataPackSelectionScreen (Lnet/minecraft/world/level/WorldDataConfiguration;)V
 		ARG 1 worldDataConfiguration
 	METHOD openExperimentsScreen (Lnet/minecraft/world/level/WorldDataConfiguration;)V
@@ -52,6 +100,48 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 		ARG 1 packRepository
 		ARG 2 shouldConfirm
 		ARG 3 consumer
+	CLASS GameTab
+		METHOD lambda$new$0 (Lnet/minecraft/client/gui/screens/worldselection/WorldCreationUiState;)V
+			ARG 1 state
+		METHOD lambda$new$1 (Lnet/minecraft/client/gui/screens/worldselection/WorldCreationUiState$SelectedGameMode;)Lnet/minecraft/network/chat/Component;
+			ARG 0 selectedGameMode
+		METHOD lambda$new$3 (Lnet/minecraft/client/gui/components/CycleButton;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationUiState;)V
+			ARG 1 state
+		METHOD lambda$new$4 (Lnet/minecraft/client/gui/components/CycleButton;Lnet/minecraft/world/Difficulty;)V
+			ARG 1 button
+			ARG 2 diff
+		METHOD lambda$new$5 (Lnet/minecraft/client/gui/components/CycleButton;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationUiState;)V
+			ARG 2 state
+		METHOD lambda$new$6 (Ljava/lang/Boolean;)Lnet/minecraft/client/gui/components/Tooltip;
+			ARG 0 allowCheats
+		METHOD lambda$new$7 (Lnet/minecraft/client/gui/components/CycleButton;Ljava/lang/Boolean;)V
+			ARG 1 button
+			ARG 2 allowCheats
+		METHOD lambda$new$8 (Lnet/minecraft/client/gui/components/CycleButton;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationUiState;)V
+			ARG 2 state
+		METHOD lambda$new$9 (Lnet/minecraft/client/gui/components/Button;)V
+			ARG 1 button
+	CLASS MoreTab
+		METHOD lambda$new$0 (Lnet/minecraft/client/gui/components/Button;)V
+			ARG 1 button
+		METHOD lambda$new$1 (Lnet/minecraft/client/gui/components/Button;)V
+			ARG 1 button
+		METHOD lambda$new$2 (Lnet/minecraft/client/gui/components/Button;)V
+			ARG 1 button
+		METHOD lambda$openGameRulesScreen$3 (Ljava/util/Optional;)V
+			ARG 1 rule
 	CLASS WorldTab
 		METHOD createTypeButtonNarration (Lnet/minecraft/client/gui/components/CycleButton;)Lnet/minecraft/network/chat/MutableComponent;
 			ARG 0 button
+		METHOD lambda$new$1 (Lnet/minecraft/client/gui/components/CycleButton;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationUiState;)V
+			ARG 2 state
+		METHOD lambda$new$2 (Lnet/minecraft/client/gui/components/Button;)V
+			ARG 1 button
+		METHOD lambda$new$3 (Lnet/minecraft/client/gui/screens/worldselection/WorldCreationUiState;)V
+			ARG 1 state
+		METHOD lambda$new$4 (Ljava/lang/String;)V
+			ARG 1 newText
+		METHOD lambda$new$7 (Lnet/minecraft/client/gui/layouts/GridLayout$RowHelper;Lnet/minecraft/client/gui/layouts/LayoutElement;)V
+			ARG 1 element
+		METHOD lambda$new$8 (Lnet/minecraft/client/gui/screens/worldselection/SwitchGrid;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationUiState;)V
+			ARG 1 state
