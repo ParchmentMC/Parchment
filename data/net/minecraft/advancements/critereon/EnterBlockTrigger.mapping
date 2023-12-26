@@ -1,17 +1,11 @@
 CLASS net/minecraft/advancements/critereon/EnterBlockTrigger
-	METHOD deserializeBlock (Lcom/google/gson/JsonObject;)Lnet/minecraft/world/level/block/Block;
-		ARG 0 json
-	METHOD lambda$createInstance$0 (Lnet/minecraft/world/level/block/Block;Ljava/lang/String;)V
-		ARG 1 property
 	METHOD trigger (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 player
 		ARG 2 state
 	CLASS TriggerInstance
-		METHOD <init> (Ljava/util/Optional;Lnet/minecraft/world/level/block/Block;Ljava/util/Optional;)V
-			ARG 1 player
-			ARG 2 block
-			ARG 3 state
 		METHOD entersBlock (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/advancements/Criterion;
 			ARG 0 block
 		METHOD matches (Lnet/minecraft/world/level/block/state/BlockState;)Z
 			ARG 1 state
+		METHOD validate (Lnet/minecraft/advancements/critereon/EnterBlockTrigger$TriggerInstance;)Lcom/mojang/serialization/DataResult;
+			ARG 0 triggerInstance

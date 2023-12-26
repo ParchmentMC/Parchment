@@ -19,3 +19,19 @@ CLASS com/mojang/realmsclient/dto/RealmsNotification
 		METHOD parse (Lcom/mojang/realmsclient/dto/RealmsNotification;Lcom/google/gson/JsonObject;)Lcom/mojang/realmsclient/dto/RealmsNotification$VisitUrl;
 			ARG 0 notification
 			ARG 1 json
+	CLASS InfoPopup
+		METHOD <init> (Lcom/mojang/realmsclient/dto/RealmsNotification;Lcom/mojang/realmsclient/dto/RealmsText;Lcom/mojang/realmsclient/dto/RealmsText;Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/realmsclient/dto/RealmsNotification$UrlButton;)V
+			ARG 1 notification
+			ARG 2 title
+			ARG 3 message
+			ARG 4 image
+			ARG 5 urlButton
+		METHOD buildScreen (Lnet/minecraft/client/gui/screens/Screen;Ljava/util/function/Consumer;)Lnet/minecraft/client/gui/components/PopupScreen;
+			ARG 1 backgroundScreen
+			ARG 2 uuidOutput
+		METHOD parse (Lcom/mojang/realmsclient/dto/RealmsNotification;Lcom/google/gson/JsonObject;)Lcom/mojang/realmsclient/dto/RealmsNotification$InfoPopup;
+			ARG 0 notification
+			ARG 1 json
+	CLASS UrlButton
+		METHOD parse (Lcom/google/gson/JsonObject;)Lcom/mojang/realmsclient/dto/RealmsNotification$UrlButton;
+			ARG 0 json

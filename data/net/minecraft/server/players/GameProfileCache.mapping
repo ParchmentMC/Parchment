@@ -9,12 +9,16 @@ CLASS net/minecraft/server/players/GameProfileCache
 	METHOD add (Lcom/mojang/authlib/GameProfile;)V
 		COMMENT Add an entry to this cache
 		ARG 1 gameProfile
+	METHOD createUnknownProfile (Ljava/lang/String;)Ljava/util/Optional;
+		ARG 0 profileName
 	METHOD get (Ljava/lang/String;)Ljava/util/Optional;
 		COMMENT Get a player's GameProfile given their username. Mojang's servers will be contacted if the entry is not cached locally.
 		ARG 1 name
 	METHOD get (Ljava/util/UUID;)Ljava/util/Optional;
 		ARG 1 uuid
 			COMMENT Get a player's {@link GameProfile} given their UUID
+	METHOD getAsync (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 name
 	METHOD getTopMRUProfiles (I)Ljava/util/stream/Stream;
 		ARG 1 limit
 	METHOD lookupGameProfile (Lcom/mojang/authlib/GameProfileRepository;Ljava/lang/String;)Ljava/util/Optional;

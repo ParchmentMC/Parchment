@@ -1,11 +1,13 @@
 CLASS net/minecraft/server/commands/TriggerCommand
-	METHOD addValue (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/scores/Score;I)I
+	METHOD addValue (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/scores/Objective;I)I
 		ARG 0 source
-		ARG 1 objective
-		ARG 2 amount
-	METHOD getScore (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/scores/Objective;)Lnet/minecraft/world/scores/Score;
-		ARG 0 player
-		ARG 1 objective
+		ARG 1 player
+		ARG 2 objective
+		ARG 3 value
+	METHOD getScore (Lnet/minecraft/world/scores/Scoreboard;Lnet/minecraft/world/scores/ScoreHolder;Lnet/minecraft/world/scores/Objective;)Lnet/minecraft/world/scores/ScoreAccess;
+		ARG 0 scoreboard
+		ARG 1 scoreHolder
+		ARG 2 objective
 	METHOD lambda$register$0 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 context
 		ARG 1 builder
@@ -17,13 +19,15 @@ CLASS net/minecraft/server/commands/TriggerCommand
 		ARG 0 context
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
-	METHOD setValue (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/scores/Score;I)I
+	METHOD setValue (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/scores/Objective;I)I
 		ARG 0 source
-		ARG 1 objective
-		ARG 2 value
-	METHOD simpleTrigger (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/scores/Score;)I
+		ARG 1 player
+		ARG 2 objective
+		ARG 3 value
+	METHOD simpleTrigger (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/scores/Objective;)I
 		ARG 0 source
-		ARG 1 objectives
+		ARG 1 player
+		ARG 2 objective
 	METHOD suggestObjectives (Lnet/minecraft/commands/CommandSourceStack;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 source
 		ARG 1 builder

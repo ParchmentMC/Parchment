@@ -18,6 +18,7 @@ CLASS net/minecraft/data/models/model/ModelTemplate
 		ARG 3 modelOutput
 	METHOD createBaseTemplate (Lnet/minecraft/resources/ResourceLocation;Ljava/util/Map;)Lcom/google/gson/JsonObject;
 		ARG 1 modelLocation
+		ARG 2 modelGetter
 	METHOD createMap (Lnet/minecraft/data/models/model/TextureMapping;)Ljava/util/Map;
 		ARG 1 textureMapping
 	METHOD createWithOverride (Lnet/minecraft/world/level/block/Block;Ljava/lang/String;Lnet/minecraft/data/models/model/TextureMapping;Ljava/util/function/BiConsumer;)Lnet/minecraft/resources/ResourceLocation;
@@ -30,6 +31,9 @@ CLASS net/minecraft/data/models/model/ModelTemplate
 		ARG 2 modelLocationSuffix
 		ARG 3 textureMapping
 		ARG 4 modelOutput
+	METHOD getDefaultModelLocation (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/resources/ResourceLocation;
+		ARG 1 block
 	CLASS JsonFactory
 		METHOD create (Lnet/minecraft/resources/ResourceLocation;Ljava/util/Map;)Lcom/google/gson/JsonObject;
 			ARG 1 modelLocation
+			ARG 2 modelGetter

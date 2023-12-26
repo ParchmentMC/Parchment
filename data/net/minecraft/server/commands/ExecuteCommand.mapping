@@ -32,12 +32,12 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 2 end
 		ARG 3 destination
 		ARG 4 isMasked
-	METHOD checkScore (Lcom/mojang/brigadier/context/CommandContext;Ljava/util/function/BiPredicate;)Z
-		ARG 0 context
-		ARG 1 comparison
 	METHOD checkScore (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/advancements/critereon/MinMaxBounds$Ints;)Z
 		ARG 0 context
 		ARG 1 bounds
+	METHOD checkScore (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/server/commands/ExecuteCommand$IntBiPredicate;)Z
+		ARG 0 source
+		ARG 1 predicate
 	METHOD checkUnlessRegions (Lcom/mojang/brigadier/context/CommandContext;Z)I
 		ARG 0 context
 		ARG 1 isMasked
@@ -69,28 +69,14 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 0 context
 	METHOD lambda$addConditionals$41 (Lcom/mojang/brigadier/context/CommandContext;)Z
 		ARG 0 context
-	METHOD lambda$addConditionals$42 (Lcom/mojang/brigadier/context/CommandContext;)Z
-		ARG 0 context
 	METHOD lambda$addConditionals$43 (Lcom/mojang/brigadier/context/CommandContext;)Z
 		ARG 0 context
-	METHOD lambda$addConditionals$44 (Ljava/lang/Integer;Ljava/lang/Integer;)Z
-		ARG 0 targetScore
-		ARG 1 sourceScore
 	METHOD lambda$addConditionals$45 (Lcom/mojang/brigadier/context/CommandContext;)Z
 		ARG 0 context
-	METHOD lambda$addConditionals$46 (Ljava/lang/Integer;Ljava/lang/Integer;)Z
-		ARG 0 targetScore
-		ARG 1 sourceScore
 	METHOD lambda$addConditionals$47 (Lcom/mojang/brigadier/context/CommandContext;)Z
 		ARG 0 context
-	METHOD lambda$addConditionals$48 (Ljava/lang/Integer;Ljava/lang/Integer;)Z
-		ARG 0 targetScore
-		ARG 1 sourceScore
 	METHOD lambda$addConditionals$49 (Lcom/mojang/brigadier/context/CommandContext;)Z
 		ARG 0 context
-	METHOD lambda$addConditionals$50 (Ljava/lang/Integer;Ljava/lang/Integer;)Z
-		ARG 0 targetScore
-		ARG 1 sourceScore
 	METHOD lambda$addConditionals$51 (Lcom/mojang/brigadier/context/CommandContext;)Z
 		ARG 0 context
 	METHOD lambda$addConditionals$52 (Lcom/mojang/brigadier/context/CommandContext;)Z
@@ -143,15 +129,9 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 1 entity
 	METHOD lambda$expandOneToOneEntityRelation$73 (Ljava/util/function/Function;Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
 		ARG 1 context
-	METHOD lambda$register$10 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-		ARG 0 context
 	METHOD lambda$register$11 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 0 context
-	METHOD lambda$register$12 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 0 context
 	METHOD lambda$register$13 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-		ARG 0 context
-	METHOD lambda$register$14 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
 		ARG 0 context
 	METHOD lambda$register$15 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 0 context
@@ -161,64 +141,32 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 0 context
 	METHOD lambda$register$18 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 0 context
-	METHOD lambda$register$19 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 0 context
 	METHOD lambda$register$5 (Lnet/minecraft/commands/CommandSourceStack;)Z
 		ARG 0 source
-	METHOD lambda$register$6 (Lnet/minecraft/commands/CommandSourceStack;)Z
-		ARG 0 source
 	METHOD lambda$register$7 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-		ARG 0 context
-	METHOD lambda$register$8 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/Collection;
-		ARG 0 context
-	METHOD lambda$register$9 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 0 context
 	METHOD lambda$static$0 (Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
 		ARG 0 maxBlocks
 		ARG 1 specifiedBlocks
 	METHOD lambda$static$1 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
 		ARG 0 count
-	METHOD lambda$static$3 (Lcom/mojang/brigadier/ResultConsumer;Lcom/mojang/brigadier/ResultConsumer;)Lcom/mojang/brigadier/ResultConsumer;
-		ARG 0 resultConsumer1
-		ARG 1 resultConsumer2
-	METHOD lambda$static$4 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
-		ARG 0 context
-		ARG 1 builder
 	METHOD lambda$wrapStores$20 (ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 context
 	METHOD lambda$wrapStores$21 (ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 context
-	METHOD lambda$wrapStores$22 (ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 1 context
-	METHOD lambda$wrapStores$23 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-		ARG 1 result
-	METHOD lambda$wrapStores$24 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 2 context
-	METHOD lambda$wrapStores$25 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-		ARG 1 result
-	METHOD lambda$wrapStores$26 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 2 context
-	METHOD lambda$wrapStores$27 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-		ARG 1 result
-	METHOD lambda$wrapStores$28 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 2 context
-	METHOD lambda$wrapStores$29 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-		ARG 1 result
-	METHOD lambda$wrapStores$30 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 2 context
-	METHOD lambda$wrapStores$31 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-		ARG 1 result
-	METHOD lambda$wrapStores$32 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 2 context
-	METHOD lambda$wrapStores$33 (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/nbt/Tag;
-		ARG 1 result
-	METHOD lambda$wrapStores$34 (Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 2 context
-	METHOD lambda$wrapStores$35 (Lcom/mojang/brigadier/tree/LiteralCommandNode;Lnet/minecraft/server/commands/data/DataCommands$DataProvider;ZLcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
-		ARG 3 commandNode
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandBuildContext;)V
 		ARG 0 dispatcher
 		ARG 1 context
+	METHOD scheduleFunctionConditionsAndTest (Lnet/minecraft/commands/ExecutionCommandSource;Ljava/util/List;Ljava/util/function/Function;Ljava/util/function/IntPredicate;Lcom/mojang/brigadier/context/ContextChain;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/commands/execution/ExecutionControl;Lnet/minecraft/server/commands/ExecuteCommand$CommandGetter;Lnet/minecraft/commands/execution/ChainModifiers;)V
+		ARG 0 originalSource
+		ARG 1 sources
+		ARG 2 sourceModifier
+		ARG 3 successCheck
+		ARG 4 contextChain
+		ARG 5 arguments
+		ARG 6 executionControl
+		ARG 7 functions
+		ARG 8 chainModifiers
 	METHOD spawnEntityAndRedirect (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/Holder$Reference;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 0 source
 		ARG 1 entityType
@@ -242,9 +190,19 @@ CLASS net/minecraft/server/commands/ExecuteCommand
 		ARG 0 parent
 		ARG 1 literal
 		ARG 2 storingResult
+	CLASS CommandGetter
+		METHOD get (Lcom/mojang/brigadier/context/CommandContext;)Ljava/lang/Object;
+			ARG 1 context
+	CLASS IntBiPredicate
+		METHOD test (II)Z
+			ARG 1 value1
+			ARG 2 value2
 	CLASS CommandPredicate
 		METHOD test (Lcom/mojang/brigadier/context/CommandContext;)Z
 			ARG 1 context
 	CLASS CommandNumericPredicate
 		METHOD test (Lcom/mojang/brigadier/context/CommandContext;)I
 			ARG 1 context
+	CLASS ExecuteIfFunctionCustomModifier
+		METHOD <init> (Z)V
+			ARG 1 invert

@@ -54,6 +54,9 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 2 item
 	METHOD assertContainerEmpty (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
+	METHOD assertEntitiesPresent (Lnet/minecraft/world/entity/EntityType;I)V
+		ARG 1 entityType
+		ARG 2 count
 	METHOD assertEntitiesPresent (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;ID)V
 		ARG 1 entityType
 		ARG 2 pos
@@ -135,10 +138,14 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 2 pos
 		ARG 3 expansionAmount
 		ARG 5 count
+	METHOD assertItemEntityNotPresent (Lnet/minecraft/world/item/Item;)V
+		ARG 1 item
 	METHOD assertItemEntityNotPresent (Lnet/minecraft/world/item/Item;Lnet/minecraft/core/BlockPos;D)V
 		ARG 1 item
 		ARG 2 pos
 		ARG 3 radius
+	METHOD assertItemEntityPresent (Lnet/minecraft/world/item/Item;)V
+		ARG 1 item
 	METHOD assertItemEntityPresent (Lnet/minecraft/world/item/Item;Lnet/minecraft/core/BlockPos;D)V
 		ARG 1 item
 		ARG 2 pos
@@ -247,6 +254,8 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 	METHOD runAtTickTime (JLjava/lang/Runnable;)V
 		ARG 1 tickTime
 		ARG 3 task
+	METHOD setBiome (Lnet/minecraft/resources/ResourceKey;)V
+		ARG 1 biome
 	METHOD setBlock (IIILnet/minecraft/world/level/block/Block;)V
 		ARG 1 x
 		ARG 2 y
@@ -341,6 +350,8 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 	METHOD succeedWhenEntityPresent (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 type
 		ARG 2 pos
+	METHOD tickPrecipitation (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
 	METHOD useBlock (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD useBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)V

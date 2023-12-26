@@ -2,14 +2,6 @@ CLASS net/minecraft/server/ServerFunctionManager
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/ServerFunctionLibrary;)V
 		ARG 1 server
 		ARG 2 library
-	METHOD execute (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;)I
-		ARG 1 functionObject
-		ARG 2 source
-	METHOD execute (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/ServerFunctionManager$TraceCallbacks;Lnet/minecraft/nbt/CompoundTag;)I
-		ARG 1 functionObject
-		ARG 2 source
-		ARG 3 tracer
-		ARG 4 arguments
 	METHOD executeTagFunctions (Ljava/util/Collection;Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 functionObjects
 		ARG 2 identifier
@@ -21,46 +13,3 @@ CLASS net/minecraft/server/ServerFunctionManager
 		ARG 1 reloader
 	METHOD replaceLibrary (Lnet/minecraft/server/ServerFunctionLibrary;)V
 		ARG 1 reloader
-	CLASS QueuedCommand
-		METHOD <init> (Lnet/minecraft/commands/CommandSourceStack;ILnet/minecraft/commands/CommandFunction$Entry;)V
-			ARG 1 sender
-			ARG 2 depth
-			ARG 3 entry
-		METHOD execute (Lnet/minecraft/server/ServerFunctionManager;Ljava/util/Deque;ILnet/minecraft/server/ServerFunctionManager$TraceCallbacks;)V
-			ARG 1 serverFunctionManager
-			ARG 2 queuedCommands
-			ARG 3 commandLimit
-			ARG 4 tracer
-	CLASS TraceCallbacks
-		METHOD onCall (ILnet/minecraft/resources/ResourceLocation;I)V
-			ARG 1 indent
-			ARG 2 command
-			ARG 3 size
-		METHOD onCommand (ILjava/lang/String;)V
-			ARG 1 indent
-			ARG 2 command
-		METHOD onError (ILjava/lang/String;)V
-			ARG 1 indent
-			ARG 2 command
-		METHOD onReturn (ILjava/lang/String;I)V
-			ARG 1 indent
-			ARG 2 returnValue
-			ARG 3 command
-	CLASS ExecutionContext
-		METHOD <init> (Lnet/minecraft/server/ServerFunctionManager;Lnet/minecraft/server/ServerFunctionManager$TraceCallbacks;)V
-			ARG 2 tracer
-		METHOD delayFunctionCall (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;)V
-			ARG 1 function
-			ARG 2 sender
-		METHOD reportError (Ljava/lang/String;)V
-			ARG 1 error
-		METHOD runTopCommand (Lnet/minecraft/commands/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;)I
-			ARG 1 function
-			ARG 2 source
-		METHOD wrapSender (Lnet/minecraft/commands/CommandSourceStack;)Lnet/minecraft/commands/CommandSourceStack;
-			ARG 1 sender
-		CLASS AbortingReturnValueConsumer
-			METHOD <init> (Lnet/minecraft/server/ServerFunctionManager$ExecutionContext;Ljava/util/function/IntConsumer;)V
-				ARG 2 wrapped
-			METHOD accept (I)V
-				ARG 1 value

@@ -1,49 +1,21 @@
 CLASS com/mojang/realmsclient/gui/RealmsWorldSlotButton
-	METHOD <init> (IIIILjava/util/function/Supplier;Ljava/util/function/Consumer;ILnet/minecraft/client/gui/components/Button$OnPress;)V
+	METHOD <init> (IIIIILnet/minecraft/client/gui/components/Button$OnPress;)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 width
 		ARG 4 height
-		ARG 5 serverDataProvider
-		ARG 6 toolTipSetter
-		ARG 7 slotIndex
-		ARG 8 onPress
-	METHOD drawSlotFrame (Lnet/minecraft/client/gui/GuiGraphics;IIIIZLjava/lang/String;IJLjava/lang/String;ZZLcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;Lnet/minecraft/network/chat/Component;)V
-		ARG 1 guiGraphics
-		ARG 2 x
-		ARG 3 y
-		ARG 4 mouseX
-		ARG 5 mouseY
-		ARG 6 isSelected
-		ARG 7 text
-		ARG 8 slotIndex
-		ARG 9 imageId
-		ARG 11 image
-		ARG 12 empty
-		ARG 13 minigame
-		ARG 14 action
-		ARG 15 tooltip
+		ARG 5 slotIndex
+		ARG 6 onPress
 	METHOD getAction (Lcom/mojang/realmsclient/dto/RealmsServer;ZZ)Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
 		ARG 0 realmsServer
 		ARG 1 isCurrentlyActiveSlot
 		ARG 2 minigame
-	METHOD getTooltipAndNarration (Lcom/mojang/realmsclient/dto/RealmsServer;Ljava/lang/String;ZZLcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;)Lcom/mojang/datafixers/util/Pair;
-		ARG 1 realmsServer
-		ARG 2 slotName
-		ARG 3 empty
-		ARG 4 minigame
-		ARG 5 action
-	METHOD renderCheckMark (Lnet/minecraft/client/gui/GuiGraphics;II)V
-		ARG 1 guiGraphics
-		ARG 2 x
-		ARG 3 y
+	METHOD setServerData (Lcom/mojang/realmsclient/dto/RealmsServer;)V
+		ARG 1 serverData
+	METHOD setTooltipAndNarration (Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$State;Ljava/lang/String;)V
+		ARG 1 state
+		ARG 2 minigameName
 	CLASS State
-		METHOD <init> (ZLjava/lang/String;JLjava/lang/String;ZZLcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;Lnet/minecraft/network/chat/Component;)V
-			ARG 1 isCurrentlyActiveSlot
-			ARG 2 slotName
-			ARG 3 imageId
-			ARG 5 image
-			ARG 6 empty
-			ARG 7 minigame
-			ARG 8 action
-			ARG 9 actionPrompt
+		METHOD <init> (Lcom/mojang/realmsclient/dto/RealmsServer;I)V
+			ARG 1 server
+			ARG 2 slot

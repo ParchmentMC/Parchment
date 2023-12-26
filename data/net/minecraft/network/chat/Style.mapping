@@ -21,15 +21,21 @@ CLASS net/minecraft/network/chat/Style
 	METHOD applyTo (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
 		COMMENT Merges the style with another one. If either style is empty the other will be returned. If a value already exists on the current style it will not be overridden.
 		ARG 1 style
-	METHOD create (Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;)Lnet/minecraft/network/chat/Style;
+	METHOD checkEmptyAfterChange (Lnet/minecraft/network/chat/Style;Ljava/lang/Object;Ljava/lang/Object;)Lnet/minecraft/network/chat/Style;
+		ARG 0 style
+		ARG 1 oldValue
+		ARG 2 newValue
+	METHOD create (Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;)Lnet/minecraft/network/chat/Style;
 		ARG 0 color
 		ARG 1 bold
 		ARG 2 italic
 		ARG 3 underlined
 		ARG 4 strikethrough
 		ARG 5 obfuscated
-		ARG 6 insertion
-		ARG 7 font
+		ARG 6 clickEvent
+		ARG 7 hoverEvent
+		ARG 8 insertion
+		ARG 9 font
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
 	METHOD getClickEvent ()Lnet/minecraft/network/chat/ClickEvent;
@@ -83,17 +89,3 @@ CLASS net/minecraft/network/chat/Style
 		METHOD addValueString (Ljava/lang/String;Ljava/lang/Object;)V
 			ARG 1 key
 			ARG 2 value
-	CLASS Serializer
-		METHOD getClickEvent (Lcom/google/gson/JsonObject;)Lnet/minecraft/network/chat/ClickEvent;
-			ARG 0 json
-		METHOD getFont (Lcom/google/gson/JsonObject;)Lnet/minecraft/resources/ResourceLocation;
-			ARG 0 json
-		METHOD getHoverEvent (Lcom/google/gson/JsonObject;)Lnet/minecraft/network/chat/HoverEvent;
-			ARG 0 json
-		METHOD getInsertion (Lcom/google/gson/JsonObject;)Ljava/lang/String;
-			ARG 0 json
-		METHOD getOptionalFlag (Lcom/google/gson/JsonObject;Ljava/lang/String;)Ljava/lang/Boolean;
-			ARG 0 json
-			ARG 1 memberName
-		METHOD getTextColor (Lcom/google/gson/JsonObject;)Lnet/minecraft/network/chat/TextColor;
-			ARG 0 json

@@ -30,9 +30,10 @@ CLASS net/minecraft/client/Minecraft
 		ARG 1 leftClick
 	METHOD countryEqualsISO3 (Ljava/lang/Object;)Z
 		ARG 0 country
-	METHOD crash (Lnet/minecraft/CrashReport;)V
-		COMMENT Wrapper around displayCrashReportInternal
-		ARG 0 report
+	METHOD crash (Lnet/minecraft/client/Minecraft;Ljava/io/File;Lnet/minecraft/CrashReport;)V
+		ARG 0 minecraft
+		ARG 1 gameDirectory
+		ARG 2 crashReport
 	METHOD createSearchTrees ()V
 		COMMENT Fills {@link #searchTreeManager} with the current item and recipe registry contents.
 	METHOD createUserApiService (Lcom/mojang/authlib/yggdrasil/YggdrasilAuthenticationService;Lnet/minecraft/client/main/GameConfig;)Lcom/mojang/authlib/minecraft/UserApiService;
@@ -51,14 +52,15 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT Shuts down the minecraft applet by stopping the resource downloads, and clearing up GL stuff. Called when the application (or web page) is exited.
 	METHOD disconnect (Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 1 nextScreen
-	METHOD doWorldLoad (Ljava/lang/String;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Z)V
-		ARG 1 levelId
-		ARG 2 level
-		ARG 3 packRepository
-		ARG 4 worldStem
-		ARG 5 newWorld
+	METHOD doWorldLoad (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Z)V
+		ARG 1 levelStorage
+		ARG 2 packRepository
+		ARG 3 worldStem
+		ARG 4 newWorld
 	METHOD emergencySave ()V
 		COMMENT Attempts to free as much memory as possible, including leaving the world and running the garbage collector.
+	METHOD emergencySaveAndCrash (Lnet/minecraft/CrashReport;)V
+		ARG 1 crashReport
 	METHOD fillReport (Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReport;
 		COMMENT Adds core server Info (GL version, Texture pack, isModded, type), and the worldInfo to the crash report.
 		ARG 1 theCrash
@@ -74,11 +76,15 @@ CLASS net/minecraft/client/Minecraft
 		ARG 2 languageManager
 		ARG 3 launchVersion
 		ARG 4 options
+	METHOD fillUptime (Lnet/minecraft/CrashReportCategory;)V
+		ARG 1 category
 	METHOD finishProfilers (ZLnet/minecraft/util/profiling/SingleTickProfiler;)V
 		ARG 1 renderFpsPie
 		ARG 2 profiler
 	METHOD forceSetScreen (Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 1 screen
+	METHOD formatSeconds (D)Ljava/lang/String;
+		ARG 0 seconds
 	METHOD getInstance ()Lnet/minecraft/client/Minecraft;
 		COMMENT Return the singleton Minecraft instance for the game
 	METHOD getLaunchedVersion ()Ljava/lang/String;
@@ -97,6 +103,8 @@ CLASS net/minecraft/client/Minecraft
 		COMMENT Returns the currently running integrated server
 	METHOD getTextureAtlas (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/function/Function;
 		ARG 1 location
+	METHOD getTickTargetMillis (F)F
+		ARG 1 defaultValue
 	METHOD getVersionType ()Ljava/lang/String;
 		COMMENT Gets the type of version that Minecraft was launched under (as specified in the version JSON). Specified via the <code>--versionType</code> flag.
 	METHOD grabHugeScreenshot (Ljava/io/File;IIII)Lnet/minecraft/network/chat/Component;

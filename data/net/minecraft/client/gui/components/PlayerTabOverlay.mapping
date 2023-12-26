@@ -9,6 +9,8 @@ CLASS net/minecraft/client/gui/components/PlayerTabOverlay
 		ARG 2 name
 	METHOD getNameForDisplay (Lnet/minecraft/client/multiplayer/PlayerInfo;)Lnet/minecraft/network/chat/Component;
 		ARG 1 playerInfo
+	METHOD lambda$render$3 (Lnet/minecraft/client/multiplayer/PlayerInfo;)Ljava/util/UUID;
+		ARG 0 player
 	METHOD render (Lnet/minecraft/client/gui/GuiGraphics;ILnet/minecraft/world/scores/Scoreboard;Lnet/minecraft/world/scores/Objective;)V
 		ARG 1 guiGraphics
 		ARG 2 width
@@ -16,17 +18,23 @@ CLASS net/minecraft/client/gui/components/PlayerTabOverlay
 		ARG 4 objective
 	METHOD renderPingIcon (Lnet/minecraft/client/gui/GuiGraphics;IIILnet/minecraft/client/multiplayer/PlayerInfo;)V
 		ARG 1 guiGraphics
+		ARG 2 width
+		ARG 3 x
 		ARG 4 y
 		ARG 5 playerInfo
 	METHOD renderTablistHearts (IIILjava/util/UUID;Lnet/minecraft/client/gui/GuiGraphics;I)V
 		ARG 1 y
+		ARG 2 minX
+		ARG 3 maxX
 		ARG 4 playerUuid
 		ARG 5 guiGraphics
 		ARG 6 health
-	METHOD renderTablistScore (Lnet/minecraft/world/scores/Objective;ILjava/lang/String;IILjava/util/UUID;Lnet/minecraft/client/gui/GuiGraphics;)V
+	METHOD renderTablistScore (Lnet/minecraft/world/scores/Objective;ILnet/minecraft/client/gui/components/PlayerTabOverlay$ScoreDisplayEntry;IILjava/util/UUID;Lnet/minecraft/client/gui/GuiGraphics;)V
 		ARG 1 objective
 		ARG 2 y
-		ARG 3 username
+		ARG 3 displayEntry
+		ARG 4 minX
+		ARG 5 maxX
 		ARG 6 playerUuid
 		ARG 7 guiGraphics
 	METHOD setFooter (Lnet/minecraft/network/chat/Component;)V

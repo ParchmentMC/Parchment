@@ -5,6 +5,14 @@ CLASS net/minecraft/network/chat/contents/TranslatableContents
 		ARG 1 key
 		ARG 2 fallback
 		ARG 3 args
+	METHOD adjustArgs (Ljava/util/Optional;)[Ljava/lang/Object;
+		ARG 0 args
+	METHOD adjustArgs ([Ljava/lang/Object;)Ljava/util/Optional;
+		ARG 0 args
+	METHOD create (Ljava/lang/String;Ljava/util/Optional;Ljava/util/Optional;)Lnet/minecraft/network/chat/contents/TranslatableContents;
+		ARG 0 key
+		ARG 1 fallback
+		ARG 2 args
 	METHOD decompose ()V
 		COMMENT Ensures that all the children are up to date with the most recent translation mapping.
 	METHOD decomposeTemplate (Ljava/lang/String;Ljava/util/function/Consumer;)V
@@ -12,5 +20,9 @@ CLASS net/minecraft/network/chat/contents/TranslatableContents
 		ARG 2 consumer
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
+	METHOD filterAllowedArguments (Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 0 input
 	METHOD getArgument (I)Lnet/minecraft/network/chat/FormattedText;
 		ARG 1 index
+	METHOD isAllowedPrimitiveArgument (Ljava/lang/Object;)Z
+		ARG 0 input

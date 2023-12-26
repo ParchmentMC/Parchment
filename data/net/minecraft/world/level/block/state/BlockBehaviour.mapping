@@ -148,6 +148,12 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		ARG 4 neighborBlock
 		ARG 5 neighborPos
 		ARG 6 movedByPiston
+	METHOD onExplosionHit (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/Explosion;Ljava/util/function/BiConsumer;)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 explosion
+		ARG 5 dropConsumer
 	METHOD onPlace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
 		ARG 1 state
 		ARG 2 level
@@ -176,6 +182,8 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 		COMMENT @deprecated call via {@link net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase#rotate} whenever possible. Implementing/overriding is fine.
 		ARG 1 state
 		ARG 2 rotation
+	METHOD simpleCodec (Ljava/util/function/Function;)Lcom/mojang/serialization/MapCodec;
+		ARG 0 factory
 	METHOD skipRendering (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
 		ARG 1 state
 		ARG 2 adjacentState
@@ -238,8 +246,6 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			COMMENT Sets loot table information
 		FIELD isViewBlocking Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;
 			COMMENT If it blocks vision on the client side.
-		METHOD copy (Lnet/minecraft/world/level/block/state/BlockBehaviour;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
-			ARG 0 blockBehaviour
 		METHOD destroyTime (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
 			ARG 1 destroyTime
 		METHOD dropsLike (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
@@ -265,18 +271,6 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 1 isViewBlocking
 		METHOD jumpFactor (F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
 			ARG 1 jumpFactor
-		METHOD lambda$mapColor$7 (Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/MapColor;
-			ARG 1 state
-		METHOD lambda$mapColor$8 (Lnet/minecraft/world/level/material/MapColor;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/MapColor;
-			ARG 1 state
-		METHOD lambda$new$0 (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/MapColor;
-			ARG 0 state
-		METHOD lambda$new$1 (Lnet/minecraft/world/level/block/state/BlockState;)I
-			ARG 0 state
-		METHOD lambda$new$3 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
-			ARG 0 state
-			ARG 1 level
-			ARG 2 pos
 		METHOD lambda$new$4 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
 			ARG 0 state
 			ARG 1 level
@@ -289,10 +283,6 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 0 state
 			ARG 1 level
 			ARG 2 pos
-		METHOD lambda$offsetType$9 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/Vec3;
-			ARG 0 state
-			ARG 1 level
-			ARG 2 pos
 		METHOD lightLevel (Ljava/util/function/ToIntFunction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
 			ARG 1 lightEmission
 		METHOD mapColor (Ljava/util/function/Function;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
@@ -301,6 +291,10 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 1 mapColor
 		METHOD mapColor (Lnet/minecraft/world/level/material/MapColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
 			ARG 1 mapColor
+		METHOD ofFullCopy (Lnet/minecraft/world/level/block/state/BlockBehaviour;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 0 blockBehaviour
+		METHOD ofLegacyCopy (Lnet/minecraft/world/level/block/state/BlockBehaviour;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+			ARG 0 blockBehaviour
 		METHOD offsetType (Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
 			ARG 1 offsetType
 		METHOD pushReaction (Lnet/minecraft/world/level/material/PushReaction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
@@ -427,6 +421,8 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 1 block
 		METHOD is (Lnet/minecraft/core/HolderSet;)Z
 			ARG 1 holder
+		METHOD is (Lnet/minecraft/resources/ResourceKey;)Z
+			ARG 1 block
 		METHOD is (Lnet/minecraft/tags/TagKey;)Z
 			ARG 1 tag
 		METHOD is (Lnet/minecraft/tags/TagKey;Ljava/util/function/Predicate;)Z
@@ -477,6 +473,11 @@ CLASS net/minecraft/world/level/block/state/BlockBehaviour
 			ARG 3 neighborBlock
 			ARG 4 neighborPos
 			ARG 5 movedByPiston
+		METHOD onExplosionHit (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/Explosion;Ljava/util/function/BiConsumer;)V
+			ARG 1 level
+			ARG 2 pos
+			ARG 3 explosion
+			ARG 4 dropConsumer
 		METHOD onPlace (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
 			ARG 1 level
 			ARG 2 pos

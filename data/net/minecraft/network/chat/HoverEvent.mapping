@@ -2,8 +2,8 @@ CLASS net/minecraft/network/chat/HoverEvent
 	METHOD <init> (Lnet/minecraft/network/chat/HoverEvent$Action;Ljava/lang/Object;)V
 		ARG 1 action
 		ARG 2 value
-	METHOD deserialize (Lcom/google/gson/JsonObject;)Lnet/minecraft/network/chat/HoverEvent;
-		ARG 0 json
+	METHOD <init> (Lnet/minecraft/network/chat/HoverEvent$TypedHoverEvent;)V
+		ARG 1 event
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
 	METHOD getAction ()Lnet/minecraft/network/chat/HoverEvent$Action;
@@ -11,48 +11,41 @@ CLASS net/minecraft/network/chat/HoverEvent
 	METHOD getValue (Lnet/minecraft/network/chat/HoverEvent$Action;)Ljava/lang/Object;
 		ARG 1 actionType
 	CLASS Action
-		METHOD <init> (Ljava/lang/String;ZLjava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/Function;)V
+		METHOD <init> (Ljava/lang/String;ZLcom/mojang/serialization/Codec;Ljava/util/function/Function;)V
 			ARG 1 name
 			ARG 2 allowFromServer
-			ARG 3 argDeserializer
-			ARG 4 argSerializer
-			ARG 5 legacyArgSerializer
+			ARG 3 codec
 		METHOD cast (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 parameter
-		METHOD deserialize (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent;
-			ARG 1 element
-		METHOD deserializeFromLegacy (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/HoverEvent;
-			ARG 1 component
-		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/network/chat/HoverEvent$Action;
-			COMMENT Gets a value by its canonical name.
-			ARG 0 canonicalName
-		METHOD getName ()Ljava/lang/String;
-			COMMENT Gets the canonical name for this action (e.g., "show_achievement")
+		METHOD filterForSerialization (Lnet/minecraft/network/chat/HoverEvent$Action;)Lcom/mojang/serialization/DataResult;
+			ARG 0 action
 		METHOD isAllowedFromServer ()Z
 			COMMENT Indicates whether this event can be run from chat text.
-		METHOD serializeArg (Ljava/lang/Object;)Lcom/google/gson/JsonElement;
-			ARG 1 parameter
 	CLASS ItemStackInfo
+		METHOD <init> (Lnet/minecraft/world/item/Item;ILjava/util/Optional;)V
+			ARG 1 item
+			ARG 2 count
+			ARG 3 tag
 		METHOD <init> (Lnet/minecraft/world/item/Item;ILnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 item
 			ARG 2 count
 			ARG 3 tag
 		METHOD <init> (Lnet/minecraft/world/item/ItemStack;)V
 			ARG 1 stack
-		METHOD create (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent$ItemStackInfo;
-			ARG 0 element
-		METHOD create (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/HoverEvent$ItemStackInfo;
-			ARG 0 component
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other
+		METHOD legacyCreate (Lnet/minecraft/network/chat/Component;)Lcom/mojang/serialization/DataResult;
+			ARG 0 component
 	CLASS EntityTooltipInfo
+		METHOD <init> (Lnet/minecraft/world/entity/EntityType;Ljava/util/UUID;Ljava/util/Optional;)V
+			ARG 1 type
+			ARG 2 id
+			ARG 3 name
 		METHOD <init> (Lnet/minecraft/world/entity/EntityType;Ljava/util/UUID;Lnet/minecraft/network/chat/Component;)V
 			ARG 1 type
 			ARG 2 id
 			ARG 3 name
-		METHOD create (Lcom/google/gson/JsonElement;)Lnet/minecraft/network/chat/HoverEvent$EntityTooltipInfo;
-			ARG 0 element
-		METHOD create (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/HoverEvent$EntityTooltipInfo;
-			ARG 0 component
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other
+		METHOD legacyCreate (Lnet/minecraft/network/chat/Component;)Lcom/mojang/serialization/DataResult;
+			ARG 0 component

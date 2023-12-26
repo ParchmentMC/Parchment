@@ -30,9 +30,18 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 		ARG 3 leftOpenModelLocation
 		ARG 4 rightModelLocation
 		ARG 5 rightOpenModelLocation
+	METHOD copyCopperBulbModel (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
+		ARG 1 bulbBlock
+		ARG 2 sourceBlock
+	METHOD copyDoorModel (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
+		ARG 1 doorBlock
+		ARG 2 sourceBlock
 	METHOD copyModel (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 sourceBlock
 		ARG 2 targetBlock
+	METHOD copyTrapdoorModel (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
+		ARG 1 trapdoorBlock
+		ARG 2 sourceBlock
 	METHOD createActiveRail (Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 railBlock
 	METHOD createAirLikeBlock (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/resources/ResourceLocation;)V
@@ -87,6 +96,14 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 		ARG 2 coloredBlocks
 	METHOD createCommandBlock (Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 commandBlock
+	METHOD createCopperBulb (Lnet/minecraft/world/level/block/Block;)V
+		ARG 1 bulbBlock
+	METHOD createCopperBulb (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/data/models/blockstates/BlockStateGenerator;
+		ARG 1 bulbBlock
+		ARG 2 unlit
+		ARG 3 unlitPowered
+		ARG 4 lit
+		ARG 5 litPowered
 	METHOD createCoral (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 coralBlock
 		ARG 2 deadCoralBlock
@@ -400,6 +417,9 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 			ARG 1 fenceBlock
 		METHOD customFenceGate (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;
 			ARG 1 customFenceGateBlock
+		METHOD donateModelTo (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;
+			ARG 1 sourceBlock
+			ARG 2 block
 		METHOD door (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;
 			ARG 1 doorBlock
 		METHOD fence (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;
@@ -409,8 +429,6 @@ CLASS net/minecraft/data/models/BlockModelGenerators
 		METHOD fullBlock (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/data/models/model/ModelTemplate;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;
 			ARG 1 block
 			ARG 2 modelTemplate
-		METHOD fullBlockCopies ([Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;
-			ARG 1 blocks
 		METHOD fullBlockVariant (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;
 			ARG 1 block
 		METHOD generateFor (Lnet/minecraft/data/BlockFamily;)Lnet/minecraft/data/models/BlockModelGenerators$BlockFamilyProvider;

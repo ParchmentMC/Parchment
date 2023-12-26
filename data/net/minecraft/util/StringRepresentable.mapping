@@ -1,9 +1,14 @@
 CLASS net/minecraft/util/StringRepresentable
+	METHOD createNameLookup ([Lnet/minecraft/util/StringRepresentable;Ljava/util/function/Function;)Ljava/util/function/Function;
+		ARG 0 values
+		ARG 1 keyFunction
 	METHOD fromEnum (Ljava/util/function/Supplier;)Lnet/minecraft/util/StringRepresentable$EnumCodec;
 		ARG 0 elementsSupplier
 	METHOD fromEnumWithMapping (Ljava/util/function/Supplier;Ljava/util/function/Function;)Lnet/minecraft/util/StringRepresentable$EnumCodec;
 		ARG 0 enumValues
 		ARG 1 keyFunction
+	METHOD fromValues (Ljava/util/function/Supplier;)Lcom/mojang/serialization/Codec;
+		ARG 0 valuesSupplier
 	METHOD keys ([Lnet/minecraft/util/StringRepresentable;)Lcom/mojang/serialization/Keyable;
 		ARG 0 serializables
 	CLASS 1
@@ -18,10 +23,15 @@ CLASS net/minecraft/util/StringRepresentable
 		METHOD byName (Ljava/lang/String;Ljava/lang/Enum;)Ljava/lang/Enum;
 			ARG 1 name
 			ARG 2 defaultValue
+	CLASS StringRepresentableCodec
+		METHOD <init> ([Lnet/minecraft/util/StringRepresentable;Ljava/util/function/Function;Ljava/util/function/ToIntFunction;)V
+			ARG 1 values
+			ARG 2 nameLookup
+			ARG 3 indexLookup
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
-			ARG 2 input
-		METHOD encode (Ljava/lang/Enum;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 2 value
+		METHOD encode (Lnet/minecraft/util/StringRepresentable;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
 			ARG 1 input
 			ARG 2 ops
 			ARG 3 prefix

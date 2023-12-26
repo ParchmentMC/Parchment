@@ -1,5 +1,5 @@
 CLASS net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement
-	METHOD addPieces (Lnet/minecraft/world/level/levelgen/RandomState;IZLnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;Ljava/util/List;Lnet/minecraft/world/phys/shapes/VoxelShape;)V
+	METHOD addPieces (Lnet/minecraft/world/level/levelgen/RandomState;IZLnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;Ljava/util/List;Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/level/levelgen/structure/pools/alias/PoolAliasLookup;)V
 		ARG 0 randomState
 		ARG 1 maxDepth
 		ARG 2 useExpansionHack
@@ -8,10 +8,10 @@ CLASS net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement
 		ARG 5 level
 		ARG 6 random
 		ARG 7 pools
-		ARG 8 currentPiece
 		ARG 9 pieces
 		ARG 10 free
-	METHOD addPieces (Lnet/minecraft/world/level/levelgen/structure/Structure$GenerationContext;Lnet/minecraft/core/Holder;Ljava/util/Optional;ILnet/minecraft/core/BlockPos;ZLjava/util/Optional;I)Ljava/util/Optional;
+		ARG 11 aliasLookup
+	METHOD addPieces (Lnet/minecraft/world/level/levelgen/structure/Structure$GenerationContext;Lnet/minecraft/core/Holder;Ljava/util/Optional;ILnet/minecraft/core/BlockPos;ZLjava/util/Optional;ILnet/minecraft/world/level/levelgen/structure/pools/alias/PoolAliasLookup;)Ljava/util/Optional;
 		ARG 0 context
 		ARG 1 startPool
 		ARG 2 startJigsawName
@@ -20,6 +20,7 @@ CLASS net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement
 		ARG 5 useExpansionHack
 		ARG 6 projectStartToHeightmap
 		ARG 7 maxDistanceFromCenter
+		ARG 8 aliasLookup
 	METHOD generateJigsaw (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/Holder;Lnet/minecraft/resources/ResourceLocation;ILnet/minecraft/core/BlockPos;Z)Z
 		ARG 0 level
 		ARG 1 startPool
@@ -34,8 +35,6 @@ CLASS net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement
 		ARG 3 rotation
 		ARG 4 structureTemplateManager
 		ARG 5 random
-	METHOD lambda$generateJigsaw$2 (Lnet/minecraft/core/Holder;)Z
-		ARG 0 biome
 	CLASS Placer
 		METHOD <init> (Lnet/minecraft/core/Registry;ILnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Ljava/util/List;Lnet/minecraft/util/RandomSource;)V
 			ARG 1 pools
@@ -44,15 +43,17 @@ CLASS net/minecraft/world/level/levelgen/structure/pools/JigsawPlacement
 			ARG 4 structureTemplateManager
 			ARG 5 pieces
 			ARG 6 random
-		METHOD readPoolName (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate$StructureBlockInfo;)Lnet/minecraft/resources/ResourceKey;
-			ARG 0 structureBlockInfo
-		METHOD tryPlacingChildren (Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;Lorg/apache/commons/lang3/mutable/MutableObject;IZLnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/levelgen/RandomState;)V
+		METHOD readPoolKey (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate$StructureBlockInfo;Lnet/minecraft/world/level/levelgen/structure/pools/alias/PoolAliasLookup;)Lnet/minecraft/resources/ResourceKey;
+			ARG 0 blockInfo
+			ARG 1 aliasLookup
+		METHOD tryPlacingChildren (Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;Lorg/apache/commons/lang3/mutable/MutableObject;IZLnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/levelgen/RandomState;Lnet/minecraft/world/level/levelgen/structure/pools/alias/PoolAliasLookup;)V
 			ARG 1 piece
 			ARG 2 free
 			ARG 3 depth
 			ARG 4 useExpansionHack
 			ARG 5 level
 			ARG 6 randomState
+			ARG 7 poolAliasLookup
 	CLASS PieceState
 		METHOD <init> (Lnet/minecraft/world/level/levelgen/structure/PoolElementStructurePiece;Lorg/apache/commons/lang3/mutable/MutableObject;I)V
 			ARG 1 piece

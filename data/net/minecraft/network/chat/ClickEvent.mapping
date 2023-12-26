@@ -14,10 +14,7 @@ CLASS net/minecraft/network/chat/ClickEvent
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Z)V
 			ARG 3 name
 			ARG 4 allowFromServer
-		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/network/chat/ClickEvent$Action;
-			COMMENT Gets a value by its canonical name.
-			ARG 0 canonicalName
-		METHOD getName ()Ljava/lang/String;
-			COMMENT Gets the canonical name for this action (e.g., "run_command")
+		METHOD filterForSerialization (Lnet/minecraft/network/chat/ClickEvent$Action;)Lcom/mojang/serialization/DataResult;
+			ARG 0 action
 		METHOD isAllowedFromServer ()Z
 			COMMENT Indicates whether this event can be run from chat text.

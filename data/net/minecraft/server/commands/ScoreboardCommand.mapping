@@ -1,4 +1,7 @@
 CLASS net/minecraft/server/commands/ScoreboardCommand
+	METHOD addNumberFormats (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lnet/minecraft/server/commands/ScoreboardCommand$NumberFormatCommandExecutor;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 builder
+		ARG 1 commandExecutor
 	METHOD addObjective (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;Lnet/minecraft/world/scores/criteria/ObjectiveCriteria;Lnet/minecraft/network/chat/Component;)I
 		ARG 0 source
 		ARG 1 name
@@ -16,12 +19,12 @@ CLASS net/minecraft/server/commands/ScoreboardCommand
 		ARG 0 source
 		ARG 1 targets
 		ARG 2 objective
-	METHOD getScore (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;Lnet/minecraft/world/scores/Objective;)I
+	METHOD getFirstTargetName (Ljava/util/Collection;)Lnet/minecraft/network/chat/Component;
+		ARG 0 scores
+	METHOD getScore (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/scores/ScoreHolder;Lnet/minecraft/world/scores/Objective;)I
 		ARG 0 source
-		ARG 1 player
+		ARG 1 scoreHolder
 		ARG 2 objective
-	METHOD lambda$createRenderTypeModify$20 (Lnet/minecraft/world/scores/criteria/ObjectiveCriteria$RenderType;Lcom/mojang/brigadier/context/CommandContext;)I
-		ARG 1 context
 	METHOD lambda$register$1 (Lnet/minecraft/commands/CommandSourceStack;)Z
 		ARG 0 source
 	METHOD lambda$register$10 (Lcom/mojang/brigadier/context/CommandContext;)I
@@ -38,12 +41,7 @@ CLASS net/minecraft/server/commands/ScoreboardCommand
 		ARG 0 context
 	METHOD lambda$register$16 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
-	METHOD lambda$register$17 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
-		ARG 0 context
-		ARG 1 builder
 	METHOD lambda$register$18 (Lcom/mojang/brigadier/context/CommandContext;)I
-		ARG 0 context
-	METHOD lambda$register$19 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
 	METHOD lambda$register$2 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
@@ -55,8 +53,6 @@ CLASS net/minecraft/server/commands/ScoreboardCommand
 		ARG 0 context
 	METHOD lambda$register$6 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
-	METHOD lambda$register$7 (Lcom/mojang/brigadier/context/CommandContext;)I
-		ARG 0 context
 	METHOD lambda$register$8 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
 	METHOD lambda$register$9 (Lcom/mojang/brigadier/context/CommandContext;)I
@@ -66,14 +62,14 @@ CLASS net/minecraft/server/commands/ScoreboardCommand
 		ARG 1 target
 	METHOD listObjectives (Lnet/minecraft/commands/CommandSourceStack;)I
 		ARG 0 source
-	METHOD listTrackedPlayerScores (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
+	METHOD listTrackedPlayerScores (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/scores/ScoreHolder;)I
 		ARG 0 source
-		ARG 1 player
+		ARG 1 score
 	METHOD listTrackedPlayers (Lnet/minecraft/commands/CommandSourceStack;)I
 		ARG 0 source
 	METHOD performOperation (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/world/scores/Objective;Lnet/minecraft/commands/arguments/OperationArgument$Operation;Ljava/util/Collection;Lnet/minecraft/world/scores/Objective;)I
 		ARG 0 source
-		ARG 1 targetEntities
+		ARG 1 targets
 		ARG 2 targetObjectives
 		ARG 3 operation
 		ARG 4 sourceEntities
@@ -95,6 +91,10 @@ CLASS net/minecraft/server/commands/ScoreboardCommand
 	METHOD resetScores (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;)I
 		ARG 0 source
 		ARG 1 targets
+	METHOD setDisplayAutoUpdate (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/scores/Objective;Z)I
+		ARG 0 source
+		ARG 1 objective
+		ARG 2 displayAutoUpdate
 	METHOD setDisplayName (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/scores/Objective;Lnet/minecraft/network/chat/Component;)I
 		ARG 0 source
 		ARG 1 objective
@@ -103,6 +103,10 @@ CLASS net/minecraft/server/commands/ScoreboardCommand
 		ARG 0 source
 		ARG 1 slot
 		ARG 2 objective
+	METHOD setObjectiveFormat (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/scores/Objective;Lnet/minecraft/network/chat/numbers/NumberFormat;)I
+		ARG 0 source
+		ARG 1 objective
+		ARG 2 format
 	METHOD setRenderType (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/scores/Objective;Lnet/minecraft/world/scores/criteria/ObjectiveCriteria$RenderType;)I
 		ARG 0 source
 		ARG 1 objective
@@ -112,7 +116,21 @@ CLASS net/minecraft/server/commands/ScoreboardCommand
 		ARG 1 targets
 		ARG 2 objective
 		ARG 3 newValue
+	METHOD setScoreDisplay (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/world/scores/Objective;Lnet/minecraft/network/chat/Component;)I
+		ARG 0 source
+		ARG 1 targets
+		ARG 2 objective
+		ARG 3 displayName
+	METHOD setScoreNumberFormat (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/world/scores/Objective;Lnet/minecraft/network/chat/numbers/NumberFormat;)I
+		ARG 0 source
+		ARG 1 targets
+		ARG 2 objective
+		ARG 3 numberFormat
 	METHOD suggestTriggers (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 source
 		ARG 1 targets
 		ARG 2 suggestions
+	CLASS NumberFormatCommandExecutor
+		METHOD run (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/network/chat/numbers/NumberFormat;)I
+			ARG 1 context
+			ARG 2 format

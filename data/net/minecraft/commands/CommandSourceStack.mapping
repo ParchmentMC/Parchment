@@ -9,7 +9,7 @@ CLASS net/minecraft/commands/CommandSourceStack
 		ARG 7 displayName
 		ARG 8 server
 		ARG 9 entity
-	METHOD <init> (Lnet/minecraft/commands/CommandSource;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec2;Lnet/minecraft/server/level/ServerLevel;ILjava/lang/String;Lnet/minecraft/network/chat/Component;Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/entity/Entity;ZLcom/mojang/brigadier/ResultConsumer;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/commands/CommandSigningContext;Lnet/minecraft/util/TaskChainer;Ljava/util/function/IntConsumer;)V
+	METHOD <init> (Lnet/minecraft/commands/CommandSource;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec2;Lnet/minecraft/server/level/ServerLevel;ILjava/lang/String;Lnet/minecraft/network/chat/Component;Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/entity/Entity;ZLnet/minecraft/commands/CommandResultCallback;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/commands/CommandSigningContext;Lnet/minecraft/util/TaskChainer;)V
 		ARG 1 source
 		ARG 2 worldPosition
 		ARG 3 rotation
@@ -20,11 +20,10 @@ CLASS net/minecraft/commands/CommandSourceStack
 		ARG 8 server
 		ARG 9 entity
 		ARG 10 silent
-		ARG 11 consumer
+		ARG 11 resultCallback
 		ARG 12 anchor
 		ARG 13 signingContext
-		ARG 14 chatMessageContainer
-		ARG 15 returnValueConsumer
+		ARG 14 chatMessageChainer
 	METHOD broadcastToAdmins (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 message
 	METHOD facing (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)Lnet/minecraft/commands/CommandSourceStack;
@@ -34,18 +33,6 @@ CLASS net/minecraft/commands/CommandSourceStack
 		ARG 1 lookPos
 	METHOD hasPermission (I)Z
 		ARG 1 level
-	METHOD lambda$new$0 (Lcom/mojang/brigadier/context/CommandContext;ZI)V
-		ARG 0 context
-		ARG 1 success
-		ARG 2 result
-	METHOD lambda$new$1 (I)V
-		ARG 0 returnValue
-	METHOD lambda$suggestRegistryElements$2 (Lnet/minecraft/commands/SharedSuggestionProvider$ElementSuggestionType;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;Lnet/minecraft/core/Registry;)Ljava/util/concurrent/CompletableFuture;
-		ARG 3 registry
-	METHOD onCommandComplete (Lcom/mojang/brigadier/context/CommandContext;ZI)V
-		ARG 1 context
-		ARG 2 success
-		ARG 3 result
 	METHOD sendChatMessage (Lnet/minecraft/network/chat/OutgoingChatMessage;ZLnet/minecraft/network/chat/ChatType$Bound;)V
 		ARG 1 message
 		ARG 2 shouldFilter
@@ -61,11 +48,9 @@ CLASS net/minecraft/commands/CommandSourceStack
 		ARG 1 receiver
 	METHOD withAnchor (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 anchor
-	METHOD withCallback (Lcom/mojang/brigadier/ResultConsumer;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 1 consumer
-	METHOD withCallback (Lcom/mojang/brigadier/ResultConsumer;Ljava/util/function/BinaryOperator;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 1 resultConsumer
-		ARG 2 resultConsumerSelector
+	METHOD withCallback (Lnet/minecraft/commands/CommandResultCallback;Ljava/util/function/BinaryOperator;)Lnet/minecraft/commands/CommandSourceStack;
+		ARG 1 callback
+		ARG 2 operator
 	METHOD withEntity (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 entity
 	METHOD withLevel (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/commands/CommandSourceStack;
@@ -76,8 +61,6 @@ CLASS net/minecraft/commands/CommandSourceStack
 		ARG 1 permissionLevel
 	METHOD withPosition (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 pos
-	METHOD withReturnValueConsumer (Ljava/util/function/IntConsumer;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 1 returnValueConsumer
 	METHOD withRotation (Lnet/minecraft/world/phys/Vec2;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 rotation
 	METHOD withSigningContext (Lnet/minecraft/commands/CommandSigningContext;Lnet/minecraft/util/TaskChainer;)Lnet/minecraft/commands/CommandSourceStack;

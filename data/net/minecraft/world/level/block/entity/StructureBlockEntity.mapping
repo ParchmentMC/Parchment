@@ -12,6 +12,8 @@ CLASS net/minecraft/world/level/block/entity/StructureBlockEntity
 	METHOD getRelatedCorners (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Ljava/util/stream/Stream;
 		ARG 1 minPos
 		ARG 2 maxPos
+	METHOD getStructureTemplate (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate;
+		ARG 1 level
 	METHOD lambda$detectSize$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
 		ARG 2 boundingBox
 	METHOD lambda$getRelatedCorners$1 (Lnet/minecraft/core/BlockPos;)Z
@@ -22,17 +24,17 @@ CLASS net/minecraft/world/level/block/entity/StructureBlockEntity
 		ARG 0 blockEntity
 	METHOD lambda$getRelatedCorners$4 (Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)Z
 		ARG 1 blockEntity
-	METHOD loadStructure (Lnet/minecraft/server/level/ServerLevel;)Z
+	METHOD loadStructureInfo (Lnet/minecraft/server/level/ServerLevel;)Z
 		ARG 1 level
-	METHOD loadStructure (Lnet/minecraft/server/level/ServerLevel;Z)Z
+	METHOD loadStructureInfo (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate;)V
+		ARG 1 structureTemplate
+	METHOD placeStructure (Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 1 level
-		ARG 2 dontPlaceOnSizeMismatch
-			COMMENT If true, the structure won't be placed if the structure block size doesn't match the structure template size
-	METHOD loadStructure (Lnet/minecraft/server/level/ServerLevel;ZLnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate;)Z
+	METHOD placeStructure (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate;)V
 		ARG 1 level
-		ARG 2 dontPlaceOnSizeMismatch
-			COMMENT If true, the structure won't be placed if the structure block size doesn't match the structure template size
-		ARG 3 template
+		ARG 2 structureTemplate
+	METHOD placeStructureIfSameSize (Lnet/minecraft/server/level/ServerLevel;)Z
+		ARG 1 level
 	METHOD saveStructure ()Z
 		COMMENT Saves the template, writing it to disk.
 		COMMENT

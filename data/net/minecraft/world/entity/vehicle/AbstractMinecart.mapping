@@ -17,26 +17,20 @@ CLASS net/minecraft/world/entity/vehicle/AbstractMinecart
 		ARG 1 entity
 	METHOD comeOffTrack ()V
 		COMMENT Moves a minecart that is not attached to a rail
-	METHOD createMinecart (Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/entity/vehicle/AbstractMinecart$Type;)Lnet/minecraft/world/entity/vehicle/AbstractMinecart;
+	METHOD createMinecart (Lnet/minecraft/server/level/ServerLevel;DDDLnet/minecraft/world/entity/vehicle/AbstractMinecart$Type;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/entity/vehicle/AbstractMinecart;
 		ARG 0 level
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
 		ARG 7 type
-	METHOD destroy (Lnet/minecraft/world/damagesource/DamageSource;)V
-		ARG 1 damageSource
+		ARG 8 stack
+		ARG 9 player
 	METHOD exits (Lnet/minecraft/world/level/block/state/properties/RailShape;)Lcom/mojang/datafixers/util/Pair;
 		ARG 0 shape
 	METHOD getBoundingBoxForCulling ()Lnet/minecraft/world/phys/AABB;
 		COMMENT Gets the bounding box of this Entity, adjusted to take auxiliary entities into account (e.g. the tile contained by a minecart, such as a command block).
-	METHOD getDamage ()F
-		COMMENT Gets the current amount of damage the minecart has taken. Decreases over time. The cart breaks when this is over 40.
 	METHOD getDismountLocationForPassenger (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 livingEntity
-	METHOD getHurtDir ()I
-		COMMENT Gets the rolling direction the cart rolls while being attacked. Can be 1 or -1.
-	METHOD getHurtTime ()I
-		COMMENT Gets the rolling amplitude the cart rolls while being attacked.
 	METHOD getMaxSpeed ()D
 		COMMENT Gets the maximum speed for a minecart
 	METHOD getMotionDirection ()Lnet/minecraft/core/Direction;
@@ -50,10 +44,6 @@ CLASS net/minecraft/world/entity/vehicle/AbstractMinecart
 		ARG 3 y
 		ARG 5 z
 		ARG 7 offset
-	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
-		COMMENT Called when the entity is attacked.
-		ARG 1 source
-		ARG 2 amount
 	METHOD isPickable ()Z
 		COMMENT Returns {@code true} if other Entities should be prevented from moving through this Entity.
 	METHOD isPushable ()Z
@@ -80,18 +70,9 @@ CLASS net/minecraft/world/entity/vehicle/AbstractMinecart
 		ARG 1 compound
 	METHOD setCustomDisplay (Z)V
 		ARG 1 customDisplay
-	METHOD setDamage (F)V
-		COMMENT Sets the current amount of damage the minecart has taken. Decreases over time. The cart breaks when this is over 40.
-		ARG 1 damage
 	METHOD setDisplayBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 displayState
 	METHOD setDisplayOffset (I)V
 		ARG 1 displayOffset
-	METHOD setHurtDir (I)V
-		COMMENT Sets the rolling direction the cart rolls while being attacked. Can be 1 or -1.
-		ARG 1 hurtDirection
-	METHOD setHurtTime (I)V
-		COMMENT Sets the rolling amplitude the cart rolls while being attacked.
-		ARG 1 hurtTime
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.

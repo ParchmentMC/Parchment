@@ -8,9 +8,6 @@ CLASS net/minecraft/commands/arguments/OperationArgument
 	METHOD getSimpleOperation (Ljava/lang/String;)Lnet/minecraft/commands/arguments/OperationArgument$SimpleOperation;
 		COMMENT Makes an {@link net.minecraft.commands.arguments.OperationArgument.Operation} instance based on the given name. This method actually returns {@link net.minecraft.commands.arguments.OperationArgument.SimpleOperation}, which is used as a functional interface target with 2 ints. It handles all operations other than swap (><).
 		ARG 0 name
-	METHOD lambda$getOperation$0 (Lnet/minecraft/world/scores/Score;Lnet/minecraft/world/scores/Score;)V
-		ARG 0 targetScore
-		ARG 1 sourceScore
 	METHOD lambda$getSimpleOperation$1 (II)I
 		ARG 0 targetScore
 		ARG 1 sourceScore
@@ -26,16 +23,13 @@ CLASS net/minecraft/commands/arguments/OperationArgument
 	METHOD lambda$getSimpleOperation$5 (II)I
 		ARG 0 targetScore
 		ARG 1 sourceScore
-	METHOD lambda$getSimpleOperation$6 (II)I
-		ARG 0 targetScore
-		ARG 1 sourceScore
 	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 context
 		ARG 2 builder
 	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/OperationArgument$Operation;
 		ARG 1 reader
 	CLASS Operation
-		METHOD apply (Lnet/minecraft/world/scores/Score;Lnet/minecraft/world/scores/Score;)V
+		METHOD apply (Lnet/minecraft/world/scores/ScoreAccess;Lnet/minecraft/world/scores/ScoreAccess;)V
 			ARG 1 targetScore
 			ARG 2 sourceScore
 	CLASS SimpleOperation

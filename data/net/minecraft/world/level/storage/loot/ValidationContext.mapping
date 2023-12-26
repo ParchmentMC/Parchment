@@ -1,22 +1,20 @@
 CLASS net/minecraft/world/level/storage/loot/ValidationContext
 	COMMENT Context for validating loot tables. Loot tables are validated recursively by checking that all functions, conditions, etc. (implementing {@link LootContextUser}) are valid according to their LootTable's {@link LootContextParamSet}.
-	METHOD <init> (Lcom/google/common/collect/Multimap;Ljava/util/function/Supplier;Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;Lnet/minecraft/world/level/storage/loot/LootDataResolver;Ljava/util/Set;)V
-		ARG 1 problems
-		ARG 2 context
-		ARG 3 params
-		ARG 4 resolver
-		ARG 5 visitedElements
-	METHOD <init> (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;Lnet/minecraft/world/level/storage/loot/LootDataResolver;)V
-		ARG 1 params
-		ARG 2 resolver
+	METHOD <init> (Lnet/minecraft/util/ProblemReporter;Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;Lnet/minecraft/world/level/storage/loot/LootDataResolver;)V
+		ARG 1 reporter
+		ARG 2 params
+		ARG 3 resolver
+	METHOD <init> (Lnet/minecraft/util/ProblemReporter;Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;Lnet/minecraft/world/level/storage/loot/LootDataResolver;Ljava/util/Set;)V
+		ARG 1 reporter
+		ARG 2 params
+		ARG 3 resolver
+		ARG 4 visitedElements
 	METHOD enterElement (Ljava/lang/String;Lnet/minecraft/world/level/storage/loot/LootDataId;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
 		ARG 1 childName
 		ARG 2 element
 	METHOD forChild (Ljava/lang/String;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
 		COMMENT Create a new ValidationContext with {@code childName} being added to the context.
 		ARG 1 childName
-	METHOD getProblems ()Lcom/google/common/collect/Multimap;
-		COMMENT Get all problems that have been recorded. The resulting Multimap maps the {@linkplain #getContext context} at the time the problem occurred to the problems.
 	METHOD hasVisitedElement (Lnet/minecraft/world/level/storage/loot/LootDataId;)Z
 		ARG 1 element
 	METHOD reportProblem (Ljava/lang/String;)V
