@@ -21,6 +21,7 @@ CLASS net/minecraft/core/RegistrySetBuilder
 		ARG 3 registryKey
 		ARG 4 registryLookupProvider
 		ARG 5 lookupProvider
+		ARG 6 object
 	METHOD createLazyFullPatchedRegistries (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/core/Cloner$Factory;Ljava/util/Map;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/core/HolderLookup$Provider;
 		ARG 1 registry
 		ARG 2 lookupProvider
@@ -29,6 +30,30 @@ CLASS net/minecraft/core/RegistrySetBuilder
 		ARG 5 registryLookupProvider
 	METHOD createState (Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/core/RegistrySetBuilder$BuildState;
 		ARG 1 registryAccess
+	METHOD lambda$build$2 (Lnet/minecraft/core/RegistrySetBuilder$BuildState;Lnet/minecraft/core/RegistrySetBuilder$RegistryStub;)Lnet/minecraft/core/HolderLookup$RegistryLookup;
+		ARG 1 entry
+	METHOD lambda$buildPatch$10 (Ljava/util/Map;Lnet/minecraft/core/RegistrySetBuilder$RegistryContents;)V
+		ARG 1 contents
+	METHOD lambda$buildPatch$11 (Ljava/util/Set;Lnet/minecraft/resources/ResourceKey;)Z
+		ARG 1 registryKey
+	METHOD lambda$buildPatch$12 (Ljava/util/Map;Lnet/minecraft/resources/ResourceKey;)V
+		ARG 1 registryKey
+	METHOD lambda$buildPatch$13 (Lnet/minecraft/core/RegistrySetBuilder$BuildState;Lnet/minecraft/core/RegistrySetBuilder$RegistryContents;)Lnet/minecraft/core/HolderLookup$RegistryLookup;
+		ARG 1 entry
+	METHOD lambda$buildPatch$9 (Lnet/minecraft/core/RegistrySetBuilder$BuildState;Lnet/minecraft/core/RegistrySetBuilder$RegistryStub;)Lnet/minecraft/core/RegistrySetBuilder$RegistryContents;
+		ARG 1 entry
+	METHOD lambda$buildProviderWithContext$1 (Lnet/minecraft/core/RegistryAccess$RegistryEntry;)Lnet/minecraft/core/HolderLookup$RegistryLookup;
+		ARG 0 holder
+	METHOD lambda$createLazyFullPatchedRegistries$3 (Lnet/minecraft/core/RegistrySetBuilder$CompositeOwner;Lnet/minecraft/core/Cloner$Factory;Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/core/HolderLookup$Provider;Lorg/apache/commons/lang3/mutable/MutableObject;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/HolderLookup$RegistryLookup;
+		ARG 6 registryKey
+	METHOD lambda$createLazyFullPatchedRegistries$5 (Lnet/minecraft/core/HolderOwner;Lnet/minecraft/core/Cloner;Lnet/minecraft/core/HolderLookup$Provider;Lorg/apache/commons/lang3/mutable/MutableObject;Ljava/util/Map;Lnet/minecraft/core/Holder$Reference;)V
+		ARG 5 holder
+	METHOD lambda$createLazyFullPatchedRegistries$7 (Lnet/minecraft/core/HolderOwner;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Cloner;Lnet/minecraft/core/Holder$Reference;Lnet/minecraft/core/HolderLookup$Provider;Lorg/apache/commons/lang3/mutable/MutableObject;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder$Reference;
+		ARG 6 resourceKey
+	METHOD lambda$createLazyFullPatchedRegistries$8 (Ljava/util/Map;Lnet/minecraft/core/HolderOwner;Lnet/minecraft/core/Cloner;Lnet/minecraft/core/HolderLookup$Provider;Lorg/apache/commons/lang3/mutable/MutableObject;Lnet/minecraft/core/Holder$Reference;)V
+		ARG 5 holder
+	METHOD lambda$createState$0 (Lnet/minecraft/core/RegistrySetBuilder$BuildState;Lnet/minecraft/core/RegistrySetBuilder$RegistryStub;)V
+		ARG 1 entry
 	METHOD lookupFromMap (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Ljava/util/Map;)Lnet/minecraft/core/HolderLookup$RegistryLookup;
 		ARG 0 registryKey
 		ARG 1 lifecycle
@@ -38,6 +63,13 @@ CLASS net/minecraft/core/RegistrySetBuilder
 		METHOD create (Lnet/minecraft/core/RegistryAccess;Ljava/util/stream/Stream;)Lnet/minecraft/core/RegistrySetBuilder$BuildState;
 			ARG 0 registryAccess
 			ARG 1 registries
+		METHOD lambda$create$0 (Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/core/RegistryAccess$RegistryEntry;)V
+			ARG 1 registryEntry
+		METHOD lambda$create$1 (Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/core/RegistrySetBuilder$UniversalLookup;Lnet/minecraft/resources/ResourceKey;)V
+			ARG 2 registryKey
+		METHOD lambda$reportUnclaimedRegisteredValues$2 (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/RegistrySetBuilder$RegisteredValue;)V
+			ARG 1 resourceKey
+			ARG 2 registeredValue
 	CLASS LazyHolder
 		METHOD <init> (Lnet/minecraft/core/HolderOwner;Lnet/minecraft/resources/ResourceKey;)V
 			ARG 1 owner
@@ -56,9 +88,13 @@ CLASS net/minecraft/core/RegistrySetBuilder
 	CLASS UniversalLookup
 		METHOD getOrCreate (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder$Reference;
 			ARG 1 key
+		METHOD lambda$getOrCreate$0 (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder$Reference;
+			ARG 1 resourceKey
 	CLASS RegistryContents
 		METHOD buildAsLookup (Lnet/minecraft/core/RegistrySetBuilder$CompositeOwner;)Lnet/minecraft/core/HolderLookup$RegistryLookup;
 			ARG 1 owner
+		METHOD lambda$buildAsLookup$1 (Lnet/minecraft/core/RegistrySetBuilder$CompositeOwner;Ljava/util/Map$Entry;)Lnet/minecraft/core/Holder$Reference;
+			ARG 1 valueAndHolder
 	CLASS RegistryBootstrap
 		METHOD run (Lnet/minecraft/data/worldgen/BootstapContext;)V
 			ARG 1 context

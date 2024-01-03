@@ -2,6 +2,8 @@ CLASS net/minecraft/core/RegistryAccess
 	COMMENT The root level registry, essentially a registry of registries. It is also an access point, hence the name, for other dynamic registries.
 	METHOD fromRegistryOfRegistries (Lnet/minecraft/core/Registry;)Lnet/minecraft/core/RegistryAccess$Frozen;
 		ARG 0 registryOfRegistries
+	METHOD lambda$allRegistriesLifecycle$1 (Lnet/minecraft/core/RegistryAccess$RegistryEntry;)Lcom/mojang/serialization/Lifecycle;
+		ARG 0 registry
 	METHOD registry (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
 		COMMENT Get the registry owned by this registry access by the given key. If it doesn't exist, the default registry of registries is queried instead, which contains static registries such as blocks.
 		COMMENT The returned registry can not guarantee that it is writable here, so the return type is widened to {@code Registry<E>} instead.
@@ -25,3 +27,7 @@ CLASS net/minecraft/core/RegistryAccess
 			ARG 1 registries
 		METHOD <init> (Ljava/util/stream/Stream;)V
 			ARG 1 registries
+		METHOD lambda$new$0 (Lnet/minecraft/core/Registry;)Lnet/minecraft/core/Registry;
+			ARG 0 registry
+		METHOD lambda$registry$1 (Lnet/minecraft/core/Registry;)Lnet/minecraft/core/Registry;
+			ARG 0 registry
