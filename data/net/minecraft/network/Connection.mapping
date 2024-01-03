@@ -97,8 +97,12 @@ CLASS net/minecraft/network/Connection
 		COMMENT Returns {@code true} while this connection is still connecting, i.e. {@link #channelActive} has not fired yet.
 	METHOD isMemoryConnection ()Z
 		COMMENT True if this {@code Connection} uses a memory connection (single player game). False may imply both an active TCP connection or simply no active connection at all
+	METHOD lambda$doSendPacket$10 (Lnet/minecraft/network/PacketSendListener;Lio/netty/util/concurrent/Future;)V
+		ARG 2 future
 	METHOD lambda$initiateServerboundConnection$7 (Lnet/minecraft/network/protocol/handshake/ClientIntent;Lnet/minecraft/network/PacketListener;Ljava/lang/String;ILnet/minecraft/network/Connection;)V
 		ARG 5 connection
+	METHOD lambda$send$8 (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;ZLnet/minecraft/network/Connection;)V
+		ARG 3 connection
 	METHOD runOnceConnected (Ljava/util/function/Consumer;)V
 		ARG 1 action
 	METHOD send (Lnet/minecraft/network/protocol/Packet;)V
