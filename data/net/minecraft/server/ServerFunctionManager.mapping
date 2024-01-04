@@ -2,6 +2,9 @@ CLASS net/minecraft/server/ServerFunctionManager
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/ServerFunctionLibrary;)V
 		ARG 1 server
 		ARG 2 library
+	METHOD execute (Lnet/minecraft/commands/functions/CommandFunction;Lnet/minecraft/commands/CommandSourceStack;)V
+		ARG 1 function
+		ARG 2 source
 	METHOD executeTagFunctions (Ljava/util/Collection;Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 functionObjects
 		ARG 2 identifier
@@ -9,6 +12,8 @@ CLASS net/minecraft/server/ServerFunctionManager
 		ARG 1 functionIdentifier
 	METHOD getTag (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Collection;
 		ARG 1 functionTagIdentifier
+	METHOD lambda$execute$1 (Lnet/minecraft/commands/functions/InstantiatedFunction;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/commands/execution/ExecutionContext;)V
+		ARG 2 contextConsumer
 	METHOD postReload (Lnet/minecraft/server/ServerFunctionLibrary;)V
 		ARG 1 reloader
 	METHOD replaceLibrary (Lnet/minecraft/server/ServerFunctionLibrary;)V

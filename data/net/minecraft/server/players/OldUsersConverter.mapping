@@ -18,6 +18,8 @@ CLASS net/minecraft/server/players/OldUsersConverter
 		ARG 0 dir
 	METHOD getWorldPlayersDirectory (Lnet/minecraft/server/MinecraftServer;)Ljava/io/File;
 		ARG 0 server
+	METHOD lambda$lookupPlayers$0 (Ljava/lang/String;)Z
+		ARG 0 name
 	METHOD lookupPlayers (Lnet/minecraft/server/MinecraftServer;Ljava/util/Collection;Lcom/mojang/authlib/ProfileLookupCallback;)V
 		ARG 0 server
 		ARG 1 names
@@ -33,6 +35,9 @@ CLASS net/minecraft/server/players/OldUsersConverter
 	METHOD serverReadyAfterUserconversion (Lnet/minecraft/server/MinecraftServer;)Z
 		ARG 0 server
 	CLASS 1
+		METHOD onProfileLookupFailed (Ljava/lang/String;Ljava/lang/Exception;)V
+			ARG 1 profileName
+			ARG 2 exception
 		METHOD onProfileLookupSucceeded (Lcom/mojang/authlib/GameProfile;)V
 			ARG 1 gameProfile
 	CLASS 2

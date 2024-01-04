@@ -24,6 +24,16 @@ CLASS net/minecraft/server/network/TextFilterClient
 		ARG 0 json
 		ARG 1 memberName
 		ARG 2 fallback
+	METHOD lambda$createFromConfig$1 (Ljava/lang/String;Ljava/lang/String;Lcom/mojang/authlib/GameProfile;)Lcom/google/gson/JsonObject;
+		ARG 2 profile
+	METHOD lambda$createFromConfig$2 (ILjava/lang/String;Ljava/lang/String;Lcom/mojang/authlib/GameProfile;Ljava/lang/String;)Lcom/google/gson/JsonObject;
+		ARG 3 profile
+		ARG 4 text
+	METHOD lambda$createFromConfig$3 (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/mojang/authlib/GameProfile;Ljava/lang/String;)Lcom/google/gson/JsonObject;
+		ARG 3 profile
+		ARG 4 text
+	METHOD lambda$static$0 (Ljava/lang/Runnable;)Ljava/lang/Thread;
+		ARG 0 task
 	METHOD makeRequest (Lcom/google/gson/JsonObject;Ljava/net/URL;)Ljava/net/HttpURLConnection;
 		ARG 1 json
 		ARG 2 requestUrl
@@ -53,8 +63,27 @@ CLASS net/minecraft/server/network/TextFilterClient
 	CLASS IgnoreStrategy
 		METHOD ignoreOverThreshold (I)Lnet/minecraft/server/network/TextFilterClient$IgnoreStrategy;
 			ARG 0 threshold
+		METHOD lambda$ignoreOverThreshold$2 (ILjava/lang/String;I)Z
+			ARG 1 text
+			ARG 2 threshold
+		METHOD lambda$static$0 (Ljava/lang/String;I)Z
+			ARG 0 text
+			ARG 1 threshold
+		METHOD lambda$static$1 (Ljava/lang/String;I)Z
+			ARG 0 text
+			ARG 1 threshold
 		METHOD select (I)Lnet/minecraft/server/network/TextFilterClient$IgnoreStrategy;
 			ARG 0 threshold
+		METHOD shouldIgnore (Ljava/lang/String;I)Z
+			ARG 1 text
+			ARG 2 threshold
+	CLASS MessageEncoder
+		METHOD encode (Lcom/mojang/authlib/GameProfile;Ljava/lang/String;)Lcom/google/gson/JsonObject;
+			ARG 1 profile
+			ARG 2 text
+	CLASS JoinOrLeaveEncoder
+		METHOD encode (Lcom/mojang/authlib/GameProfile;)Lcom/google/gson/JsonObject;
+			ARG 1 profile
 	CLASS RequestFailedException
 		METHOD <init> (Ljava/lang/String;)V
 			ARG 1 message
