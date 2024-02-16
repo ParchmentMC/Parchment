@@ -108,33 +108,6 @@ CLASS net/minecraft/world/level/Level
 		ARG 10 radius
 		ARG 11 fire
 		ARG 12 explosionInteraction
-	METHOD explode (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Level$ExplosionInteraction;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/sounds/SoundEvent;)Lnet/minecraft/world/level/Explosion;
-		ARG 1 source
-		ARG 2 damageSource
-		ARG 3 damageCalculator
-		ARG 4 x
-		ARG 6 y
-		ARG 8 z
-		ARG 10 radius
-		ARG 11 fire
-		ARG 12 explosionInteraction
-		ARG 13 smallExplosionParticles
-		ARG 14 largeExplosionParticles
-		ARG 15 explosionSound
-	METHOD explode (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Level$ExplosionInteraction;ZLnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/sounds/SoundEvent;)Lnet/minecraft/world/level/Explosion;
-		ARG 1 source
-		ARG 2 damageSource
-		ARG 3 damageCalculator
-		ARG 4 x
-		ARG 6 y
-		ARG 8 z
-		ARG 10 radius
-		ARG 11 fire
-		ARG 12 explosionInteraction
-		ARG 13 spawnParticles
-		ARG 14 smallExplosionParticles
-		ARG 15 largeExplosionParticles
-		ARG 16 explosionSound
 	METHOD explode (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;Lnet/minecraft/world/phys/Vec3;FZLnet/minecraft/world/level/Level$ExplosionInteraction;)Lnet/minecraft/world/level/Explosion;
 		ARG 1 source
 		ARG 2 damageSource
@@ -203,8 +176,6 @@ CLASS net/minecraft/world/level/Level
 		ARG 3 z
 	METHOD getLevelData ()Lnet/minecraft/world/level/storage/LevelData;
 		COMMENT Returns the world's WorldInfo object
-	METHOD getMapData (Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
-		ARG 1 mapName
 	METHOD getRainLevel (F)F
 		COMMENT Returns rain strength.
 		ARG 1 delta
@@ -243,10 +214,6 @@ CLASS net/minecraft/world/level/Level
 		ARG 2 state
 	METHOD isThundering ()Z
 		COMMENT Returns {@code true} if the current thunder strength (weighted with the rain strength) is greater than 0.9
-	METHOD lambda$getEntities$1 (Lnet/minecraft/world/entity/Entity;Ljava/util/function/Predicate;Ljava/util/List;Lnet/minecraft/world/entity/Entity;)V
-		ARG 3 entity
-	METHOD lambda$getEntities$2 (Ljava/util/function/Predicate;Ljava/util/List;ILnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/util/AbortableIterationConsumer$Continuation;
-		ARG 4 entity
 	METHOD loadedAndEntityCanStandOn (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 pos
 		ARG 2 entity
@@ -402,9 +369,6 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 blockPos
 		ARG 2 oldState
 		ARG 3 newState
-	METHOD setMapData (Ljava/lang/String;Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
-		ARG 1 mapName
-		ARG 2 data
 	METHOD setRainLevel (F)V
 		COMMENT Sets the strength of the rain.
 		ARG 1 strength

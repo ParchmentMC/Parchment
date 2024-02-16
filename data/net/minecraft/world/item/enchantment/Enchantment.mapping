@@ -1,16 +1,10 @@
 CLASS net/minecraft/world/item/enchantment/Enchantment
-	FIELD category Lnet/minecraft/world/item/enchantment/EnchantmentCategory;
-		COMMENT The category of the enchantment. This often controls which items the enchantment can be applied to and which creative tabs the enchantment will be displayed under.
 	FIELD descriptionId Ljava/lang/String;
 		COMMENT The descriptionId for the enchantment. Commonly used to create localization keys.
 	FIELD rarity Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;
 		COMMENT The rarity of the enchantment.
 	FIELD slots [Lnet/minecraft/world/entity/EquipmentSlot;
 		COMMENT The valid equipment slots for the enchantment.
-	METHOD <init> (Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;Lnet/minecraft/world/item/enchantment/EnchantmentCategory;[Lnet/minecraft/world/entity/EquipmentSlot;)V
-		ARG 1 rarity
-		ARG 2 category
-		ARG 3 applicableSlots
 	METHOD byId (I)Lnet/minecraft/world/item/enchantment/Enchantment;
 		COMMENT Gets an {@code Enchantment} from the registry using its internal numeric Id.
 		ARG 0 id
@@ -40,11 +34,6 @@ CLASS net/minecraft/world/item/enchantment/Enchantment
 			COMMENT The entity that attacked the target.
 		ARG 3 level
 			COMMENT The level of the enchantment.
-	METHOD getDamageBonus (ILnet/minecraft/world/entity/MobType;)F
-		COMMENT Calculates the amount of additional damage to deal when attacking with an item with the enchantment.
-		ARG 1 level
-			COMMENT The level of the enchantment being used.
-		ARG 2 type
 	METHOD getDamageProtection (ILnet/minecraft/world/damagesource/DamageSource;)I
 		COMMENT Calculates the amount of additional damage protection to provide when a user is damaged.
 		ARG 1 level

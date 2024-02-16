@@ -33,8 +33,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD breakItem (Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Renders broken item particles using the given ItemStack
 		ARG 1 stack
-	METHOD broadcastBreakEvent (Lnet/minecraft/world/InteractionHand;)V
-		ARG 1 hand
 	METHOD broadcastBreakEvent (Lnet/minecraft/world/entity/EquipmentSlot;)V
 		ARG 1 slot
 	METHOD calculateEntityAnimation (Z)V
@@ -117,15 +115,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD getAttackAnim (F)F
 		COMMENT Gets the progression of the swing animation, ranges from 0.0 to 1.0.
 		ARG 1 partialTick
-	METHOD getAttribute (Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
-		ARG 1 attribute
 	METHOD getAttributeBaseValue (Lnet/minecraft/core/Holder;)D
 		ARG 1 attribute
-	METHOD getAttributeBaseValue (Lnet/minecraft/world/entity/ai/attributes/Attribute;)D
-		ARG 1 attribute
 	METHOD getAttributeValue (Lnet/minecraft/core/Holder;)D
-		ARG 1 attribute
-	METHOD getAttributeValue (Lnet/minecraft/world/entity/ai/attributes/Attribute;)D
 		ARG 1 attribute
 	METHOD getBedOrientation ()Lnet/minecraft/core/Direction;
 		COMMENT Gets the {@link net.minecraft.core.Direction} for the camera if this entity is sleeping.
@@ -149,16 +141,10 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 stack
 	METHOD getEatingSound (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 stack
-	METHOD getEffect (Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;
-		COMMENT Returns the {@link net.minecraft.world.effect.MobEffectInstance} for the supplied {@link net.minecraft.world.effect.MobEffect} if it is active, {@code null} otherwise.
-		ARG 1 effect
 	METHOD getEquipmentSlot (I)Lnet/minecraft/world/entity/EquipmentSlot;
 		ARG 0 index
 	METHOD getEquipmentSlotForItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/EquipmentSlot;
 		ARG 0 item
-	METHOD getEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
-		ARG 1 pose
-		ARG 2 size
 	METHOD getFallDamageSound (I)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 height
 	METHOD getFluidFallingAdjustedMovement (DZLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
@@ -192,9 +178,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Returns the volume for the sounds this mob makes.
 	METHOD getSpeed ()F
 		COMMENT Gets the movespeed used for the new AI system.
-	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
-		ARG 1 pose
-		ARG 2 dimensions
 	METHOD getSwimAmount (F)F
 		ARG 1 partialTicks
 	METHOD getViewYRot (F)F
@@ -216,8 +199,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD handleRelativeFrictionAndCalculateMovement (Lnet/minecraft/world/phys/Vec3;F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 deltaMovement
 		ARG 2 friction
-	METHOD hasEffect (Lnet/minecraft/world/effect/MobEffect;)Z
-		ARG 1 effect
 	METHOD hasItemInSlot (Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 slot
 	METHOD hasLineOfSight (Lnet/minecraft/world/entity/Entity;)Z
@@ -281,19 +262,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 strength
 		ARG 3 x
 		ARG 5 z
-	METHOD lambda$addAdditionalSaveData$1 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
-	METHOD lambda$addAdditionalSaveData$2 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
-		ARG 1 nbt
-	METHOD lambda$handleEquipmentChanges$5 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 slot
-		ARG 3 stack
-	METHOD lambda$isHolding$4 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
-	METHOD lambda$tryAddSoulSpeed$0 (Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 0 entity
-	METHOD lambda$updateFallFlying$6 (Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 0 entity
 	METHOD lerpHeadRotationStep (ID)V
 		ARG 1 lerpHeadSteps
 		ARG 2 lerpYHeadRot
@@ -305,8 +273,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 2 target
 	METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
 		ARG 1 dynamic
-	METHOD onAttributeUpdated (Lnet/minecraft/world/entity/ai/attributes/Attribute;)V
-		ARG 1 attribute
 	METHOD onChangedBlock (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD onClimbable ()Z
@@ -347,11 +313,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 compound
-	METHOD removeEffect (Lnet/minecraft/world/effect/MobEffect;)Z
-		ARG 1 effect
-	METHOD removeEffectNoUpdate (Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffectInstance;
-		COMMENT Removes the given potion effect from the active potion map and returns it. Does not call cleanup callbacks for the end of the potion effect.
-		ARG 1 effect
 	METHOD removeEffectParticles ()V
 		COMMENT Resets the potion effect color and ambience metadata values
 	METHOD resetForwardDirectionOfRelativePortalPosition (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;

@@ -4,17 +4,8 @@ CLASS net/minecraft/world/effect/MobEffect
 	METHOD <init> (Lnet/minecraft/world/effect/MobEffectCategory;I)V
 		ARG 1 category
 		ARG 2 color
-	METHOD addAttributeModifier (Lnet/minecraft/world/entity/ai/attributes/Attribute;Ljava/lang/String;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)Lnet/minecraft/world/effect/MobEffect;
-		COMMENT Adds an attribute modifier to this effect. This method can be called for more than one attribute. The attributes are applied to an entity when the potion effect is active and removed when it stops.
-		ARG 1 attribute
-		ARG 2 uuid
-		ARG 3 amount
-		ARG 5 operation
 	METHOD addAttributeModifiers (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;I)V
 		ARG 1 attributeMap
-		ARG 2 amplifier
-	METHOD applyEffectTick (Lnet/minecraft/world/entity/LivingEntity;I)V
-		ARG 1 livingEntity
 		ARG 2 amplifier
 	METHOD applyInstantenousEffect (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/LivingEntity;ID)V
 		ARG 1 source
@@ -35,13 +26,6 @@ CLASS net/minecraft/world/effect/MobEffect
 		ARG 2 amplifier
 	METHOD removeAttributeModifiers (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;)V
 		ARG 1 attributeMap
-	METHOD setFactorDataFactory (Ljava/util/function/Supplier;)Lnet/minecraft/world/effect/MobEffect;
-		ARG 1 factorDataFactory
 	METHOD shouldApplyEffectTickThisTick (II)Z
 		ARG 1 duration
 		ARG 2 amplifier
-	CLASS MobEffectAttributeModifierTemplate
-		METHOD <init> (Lnet/minecraft/world/effect/MobEffect;Ljava/util/UUID;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)V
-			ARG 2 id
-			ARG 3 amount
-			ARG 5 operation

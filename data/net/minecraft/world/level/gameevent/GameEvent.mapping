@@ -56,24 +56,6 @@ CLASS net/minecraft/world/level/gameevent/GameEvent
 		COMMENT The radius around an event source to broadcast this event. Any listeners within this radius will be notified when the event happens.
 	METHOD <init> (I)V
 		ARG 1 notificationRadius
-	METHOD getNotificationRadius ()I
-		COMMENT Gets the radius around an event source to broadcast the event. Any valid listeners within this radius will be notified when the event happens.
-	METHOD is (Lnet/minecraft/tags/TagKey;)Z
-		ARG 1 eventTag
-	METHOD register (Ljava/lang/String;)Lnet/minecraft/world/level/gameevent/GameEvent;
-		COMMENT Creates a new game event with the default notification radius and then registers it with the game registry.
-		COMMENT @see net.minecraft.core.Registry#GAME_EVENT
-		COMMENT @return The newly registered game event.
-		ARG 0 name
-			COMMENT The name of the event. This will be used to generate the namespaced identifier for the event.
-	METHOD register (Ljava/lang/String;I)Lnet/minecraft/world/level/gameevent/GameEvent;
-		COMMENT Creates a new game event and then registers it with the game registry.
-		COMMENT @see net.minecraft.core.Registry#GAME_EVENT
-		COMMENT @return The newly registered game event.
-		ARG 0 name
-			COMMENT The name of the event. This will be used to generate the namespaced identifier for the event.
-		ARG 1 notificationRadius
-			COMMENT The radius around an event source to broadcast the event. Any valid listeners within this radius will be notified when the event happens.
 	CLASS Context
 		METHOD of (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/level/gameevent/GameEvent$Context;
 			ARG 0 sourceEntity
@@ -83,11 +65,5 @@ CLASS net/minecraft/world/level/gameevent/GameEvent
 		METHOD of (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/gameevent/GameEvent$Context;
 			ARG 0 affectedState
 	CLASS ListenerInfo
-		METHOD <init> (Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/level/gameevent/GameEvent$Context;Lnet/minecraft/world/level/gameevent/GameEventListener;Lnet/minecraft/world/phys/Vec3;)V
-			ARG 1 gameEvent
-			ARG 2 source
-			ARG 3 context
-			ARG 4 recipient
-			ARG 5 recipientPosition
 		METHOD compareTo (Lnet/minecraft/world/level/gameevent/GameEvent$ListenerInfo;)I
 			ARG 1 other

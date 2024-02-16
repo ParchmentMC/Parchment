@@ -135,15 +135,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 0 exception
 	METHOD lambda$readWithCodec$0 (Lnet/minecraft/nbt/Tag;Ljava/lang/String;)Lio/netty/handler/codec/DecoderException;
 		ARG 1 exception
-	METHOD lambda$writeEither$6 (Lnet/minecraft/network/FriendlyByteBuf$Writer;Ljava/lang/Object;)V
-		ARG 2 value
-	METHOD lambda$writeEither$7 (Lnet/minecraft/network/FriendlyByteBuf$Writer;Ljava/lang/Object;)V
-		ARG 2 value
 	METHOD lambda$writeJsonWithCodec$3 (Ljava/lang/Object;Ljava/lang/String;)Lio/netty/handler/codec/EncoderException;
 		ARG 1 exception
-	METHOD lambda$writeMap$5 (Lnet/minecraft/network/FriendlyByteBuf$Writer;Lnet/minecraft/network/FriendlyByteBuf$Writer;Ljava/lang/Object;Ljava/lang/Object;)V
-		ARG 3 key
-		ARG 4 value
 	METHOD lambda$writeWithCodec$1 (Ljava/lang/Object;Ljava/lang/String;)Lio/netty/handler/codec/EncoderException;
 		ARG 1 exception
 	METHOD limitValue (Ljava/util/function/IntFunction;I)Ljava/util/function/IntFunction;
@@ -171,11 +164,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT @see #writeBlockPos
 	METHOD readById (Ljava/util/function/IntFunction;)Ljava/lang/Object;
 		ARG 1 idLookuo
-	METHOD readById (Lnet/minecraft/core/IdMap;)Ljava/lang/Object;
-		ARG 1 idMap
-	METHOD readById (Lnet/minecraft/core/IdMap;Lnet/minecraft/network/FriendlyByteBuf$Reader;)Lnet/minecraft/core/Holder;
-		ARG 1 idMap
-		ARG 2 reader
 	METHOD readByteArray (I)[B
 		ARG 1 maxLength
 	METHOD readBytes (I)Lio/netty/buffer/ByteBuf;
@@ -214,24 +202,10 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Reads a ChunkPos encoded as a long from the buffer.
 		COMMENT
 		COMMENT @see #writeChunkPos
-	METHOD readCollection (Ljava/util/function/IntFunction;Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/util/Collection;
-		COMMENT Read a collection from this buffer. First a new collection is created given the number of elements using {@code collectionFactory}.
-		COMMENT Then every element is read using {@code elementReader}.
-		COMMENT
-		COMMENT @see #writeCollection
-		ARG 1 collectionFactory
-		ARG 2 elementReader
-	METHOD readComponent ()Lnet/minecraft/network/chat/Component;
-		COMMENT Reads a Component encoded as a JSON string from the buffer.
-		COMMENT
-		COMMENT @see #writeComponent
 	METHOD readDate ()Ljava/util/Date;
 		COMMENT Read a timestamp as milliseconds since the unix epoch.
 		COMMENT
 		COMMENT @see #writeDate
-	METHOD readEither (Lnet/minecraft/network/FriendlyByteBuf$Reader;Lnet/minecraft/network/FriendlyByteBuf$Reader;)Lcom/mojang/datafixers/util/Either;
-		ARG 1 leftReader
-		ARG 2 rightReader
 	METHOD readEnum (Ljava/lang/Class;)Ljava/lang/Enum;
 		COMMENT Reads an enum of the given type T using the ordinal encoded as a VarInt from the buffer.
 		COMMENT
@@ -245,18 +219,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Read an IntList of VarInts from this buffer.
 		COMMENT
 		COMMENT @see #writeIntIdList
-	METHOD readItem ()Lnet/minecraft/world/item/ItemStack;
-		COMMENT Reads an ItemStack from this buffer.
-		COMMENT
-		COMMENT @see #writeItem
 	METHOD readJsonWithCodec (Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
 		ARG 1 codec
-	METHOD readList (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/util/List;
-		COMMENT Read a List from this buffer. First a new list is created given the number of elements.
-		COMMENT Then every element is read using {@code elementReader}.
-		COMMENT
-		COMMENT @see #writeCollection
-		ARG 1 elementReader
 	METHOD readLongArray ()[J
 		COMMENT Reads a length-prefixed array of longs from the buffer.
 	METHOD readLongArray ([J)[J
@@ -268,21 +232,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Will try to use the given long[] if possible. Note that if an array with the correct size is given, maxLength is ignored.
 		ARG 1 array
 		ARG 2 maxLength
-	METHOD readMap (Ljava/util/function/IntFunction;Lnet/minecraft/network/FriendlyByteBuf$Reader;Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/util/Map;
-		COMMENT Read a Map from this buffer. First a new Map is created given the number of elements using {@code mapFactory}.
-		COMMENT Then all keys and values are read using the given {@code keyReader} and {@code valueReader}.
-		COMMENT
-		COMMENT @see #writeMap
-		ARG 1 mapFactory
-		ARG 2 keyReader
-		ARG 3 valueReader
-	METHOD readMap (Lnet/minecraft/network/FriendlyByteBuf$Reader;Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/util/Map;
-		COMMENT Read a Map from this buffer. First a new HashMap is created.
-		COMMENT Then all keys and values are read using the given {@code keyReader} and {@code valueReader}.
-		COMMENT
-		COMMENT @see #writeMap
-		ARG 1 keyReader
-		ARG 2 valueReader
 	METHOD readNbt ()Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Reads a NBT CompoundTag from this buffer.
 		COMMENT {@code null} is a valid value and may be returned.
@@ -294,10 +243,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT @see #readNbt(NbtAccounter)
 	METHOD readNbt (Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/Tag;
 		ARG 1 nbtAccounter
-	METHOD readNullable (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/lang/Object;
-		ARG 1 reader
-	METHOD readOptional (Lnet/minecraft/network/FriendlyByteBuf$Reader;)Ljava/util/Optional;
-		ARG 1 reader
 	METHOD readResourceKey (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/resources/ResourceKey;
 		ARG 1 registryKey
 	METHOD readResourceLocation ()Lnet/minecraft/resources/ResourceLocation;
@@ -521,17 +466,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT
 		COMMENT @see #readChunkPos
 		ARG 1 chunkPos
-	METHOD writeCollection (Ljava/util/Collection;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
-		COMMENT Write a collection to this buffer. Every element is encoded in order using {@code elementWriter}.
-		COMMENT
-		COMMENT @see #readCollection
-		ARG 1 collection
-		ARG 2 elementWriter
-	METHOD writeComponent (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/FriendlyByteBuf;
-		COMMENT Writes a Component encoded as a JSON string to the buffer.
-		COMMENT
-		COMMENT @see #readComponent
-		ARG 1 component
 	METHOD writeDate (Ljava/util/Date;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Write a timestamp as milliseconds since the unix epoch.
 		COMMENT
@@ -539,10 +473,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 time
 	METHOD writeDouble (D)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
-	METHOD writeEither (Lcom/mojang/datafixers/util/Either;Lnet/minecraft/network/FriendlyByteBuf$Writer;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
-		ARG 1 value
-		ARG 2 leftWriter
-		ARG 3 rightWriter
 	METHOD writeEnum (Ljava/lang/Enum;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes an enum of the given type T using the ordinal encoded as a VarInt to the buffer.
 		COMMENT
@@ -562,13 +492,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 gameProfileProperties
 	METHOD writeGlobalPos (Lnet/minecraft/core/GlobalPos;)V
 		ARG 1 pos
-	METHOD writeId (Lnet/minecraft/core/IdMap;Ljava/lang/Object;)V
-		ARG 1 idMap
-		ARG 2 value
-	METHOD writeId (Lnet/minecraft/core/IdMap;Lnet/minecraft/core/Holder;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
-		ARG 1 idMap
-		ARG 2 value
-		ARG 3 writer
 	METHOD writeInstant (Ljava/time/Instant;)V
 		ARG 1 instant
 	METHOD writeInt (I)Lnet/minecraft/network/FriendlyByteBuf;
@@ -580,11 +503,6 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 itIdList
 	METHOD writeIntLE (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
-	METHOD writeItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/FriendlyByteBuf;
-		COMMENT Writes an ItemStack to this buffer.
-		COMMENT
-		COMMENT @see #readItem
-		ARG 1 stack
 	METHOD writeJsonWithCodec (Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
 		ARG 1 codec
 		ARG 2 value
@@ -597,26 +515,12 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 array
 	METHOD writeLongLE (J)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
-	METHOD writeMap (Ljava/util/Map;Lnet/minecraft/network/FriendlyByteBuf$Writer;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
-		COMMENT Write a Map to this buffer. First the size of the map is written as a VarInt.
-		COMMENT Then all keys and values are written using the given {@code keyWriter} and {@code valueWriter}.
-		COMMENT
-		COMMENT @see #readMap
-		ARG 1 map
-		ARG 2 keyWriter
-		ARG 3 valueWriter
 	METHOD writeMedium (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeMediumLE (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeNbt (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 tag
-	METHOD writeNullable (Ljava/lang/Object;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
-		ARG 1 value
-		ARG 2 writer
-	METHOD writeOptional (Ljava/util/Optional;Lnet/minecraft/network/FriendlyByteBuf$Writer;)V
-		ARG 1 optional
-		ARG 2 writer
 	METHOD writeProperty (Lcom/mojang/authlib/properties/Property;)V
 		ARG 1 property
 	METHOD writePublicKey (Ljava/security/PublicKey;)Lnet/minecraft/network/FriendlyByteBuf;

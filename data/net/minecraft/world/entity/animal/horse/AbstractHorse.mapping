@@ -16,9 +16,6 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 	METHOD containerChanged (Lnet/minecraft/world/Container;)V
 		COMMENT Called by {@code InventoryBasic.onInventoryChanged()} on an array that is never filled.
 		ARG 1 invBasic
-	METHOD createEquipmentSlotAccess (ILjava/util/function/Predicate;)Lnet/minecraft/world/entity/SlotAccess;
-		ARG 1 slot
-		ARG 2 stackFilter
 	METHOD createOffspringAttribute (DDDDLnet/minecraft/util/RandomSource;)D
 		ARG 0 value1
 		ARG 2 value2
@@ -27,21 +24,12 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 8 random
 	METHOD doPlayerRide (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
-	METHOD equipArmor (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 player
-		ARG 2 armor
 	METHOD executeRidersJump (FLnet/minecraft/world/phys/Vec3;)V
 		ARG 1 playerJumpPendingScale
 		ARG 2 travelVector
 	METHOD fedFood (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 stack
-	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
-		ARG 1 level
-		ARG 2 difficulty
-		ARG 3 reason
-		ARG 4 spawnData
-		ARG 5 dataTag
 	METHOD generateJumpStrength (Ljava/util/function/DoubleSupplier;)D
 		ARG 0 supplier
 	METHOD generateMaxHealth (Ljava/util/function/IntUnaryOperator;)F
@@ -65,18 +53,12 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		COMMENT Will return how many at most can spawn in a chunk at once.
 	METHOD getMouthAnim (F)F
 		ARG 1 partialTick
-	METHOD getPassengersRidingOffsetY (Lnet/minecraft/world/entity/EntityDimensions;F)F
-		ARG 1 dimensions
-		ARG 2 scale
 	METHOD getRiddenRotation (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec2;
 		ARG 1 entity
 	METHOD getSoundVolume ()F
 		COMMENT Returns the volume for the sounds this mob makes.
 	METHOD getStandAnim (F)F
 		ARG 1 partialTick
-	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
-		ARG 1 pose
-		ARG 2 size
 	METHOD handleEating (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 player
 		ARG 2 stack
@@ -84,8 +66,6 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 1 jumpPower
 	METHOD hasInventoryChanged (Lnet/minecraft/world/Container;)Z
 		ARG 1 inventory
-	METHOD isArmor (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
 		ARG 1 stack
@@ -122,12 +102,6 @@ CLASS net/minecraft/world/entity/animal/horse/AbstractHorse
 		ARG 2 value
 	METHOD setIsJumping (Z)V
 		ARG 1 jumping
-	METHOD setOffspringAttribute (Lnet/minecraft/world/entity/AgeableMob;Lnet/minecraft/world/entity/animal/horse/AbstractHorse;Lnet/minecraft/world/entity/ai/attributes/Attribute;DD)V
-		ARG 1 otherParent
-		ARG 2 child
-		ARG 3 attribute
-		ARG 4 min
-		ARG 6 max
 	METHOD setOffspringAttributes (Lnet/minecraft/world/entity/AgeableMob;Lnet/minecraft/world/entity/animal/horse/AbstractHorse;)V
 		ARG 1 parent
 		ARG 2 child
