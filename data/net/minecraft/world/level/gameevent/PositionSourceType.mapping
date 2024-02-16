@@ -6,6 +6,15 @@ CLASS net/minecraft/world/level/gameevent/PositionSourceType
 	METHOD codec ()Lcom/mojang/serialization/Codec;
 		COMMENT Gets a codec that can handle the serialization of PositionSources of this type.
 		COMMENT @return A codec that can serialize PositionSources of this type.
+	METHOD fromNetwork (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/level/gameevent/PositionSource;
+		COMMENT Reads a PositionSource from a byte buffer. This will first read the Id of the source type which will then be used to deserialize the source itself.
+		ARG 0 byteBuf
+			COMMENT The buffer to read the PositionSource from.
+	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/level/gameevent/PositionSource;
+		COMMENT Reads a PositionSource from the byte buffer.
+		COMMENT @return The PositionSource that was read.
+		ARG 1 byteBuf
+			COMMENT The byte buffer to read from.
 	METHOD register (Ljava/lang/String;Lnet/minecraft/world/level/gameevent/PositionSourceType;)Lnet/minecraft/world/level/gameevent/PositionSourceType;
 		COMMENT Registers a new PositionSource type with the game registry.
 		COMMENT @see net.minecraft.core.Registry#POSITION_SOURCE_TYPE
@@ -14,3 +23,15 @@ CLASS net/minecraft/world/level/gameevent/PositionSourceType
 			COMMENT The Id to register the type to.
 		ARG 1 type
 			COMMENT The type to register.
+	METHOD toNetwork (Lnet/minecraft/world/level/gameevent/PositionSource;Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes a PositionSource to a network byte buffer. This will first write the Id of the source type and then write the source itself.
+		ARG 0 source
+			COMMENT The PositionSource to write.
+		ARG 1 byteBuf
+			COMMENT The byte buffer to write to.
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/level/gameevent/PositionSource;)V
+		COMMENT Writes a PositionSource to a byte buffer.
+		ARG 1 byteBuf
+			COMMENT The byte buffer to write to.
+		ARG 2 source
+			COMMENT The PositionSource to write.

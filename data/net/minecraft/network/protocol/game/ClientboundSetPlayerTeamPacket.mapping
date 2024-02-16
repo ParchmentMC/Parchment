@@ -4,6 +4,8 @@ CLASS net/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket
 		ARG 2 method
 		ARG 3 parameters
 		ARG 4 players
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
 	METHOD createAddOrModifyPacket (Lnet/minecraft/world/scores/PlayerTeam;Z)Lnet/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket;
 		ARG 0 team
 		ARG 1 useAdd
@@ -20,6 +22,13 @@ CLASS net/minecraft/network/protocol/game/ClientboundSetPlayerTeamPacket
 		ARG 0 method
 	METHOD shouldHavePlayerList (I)Z
 		ARG 0 method
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buffer
 	CLASS Parameters
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
 		METHOD <init> (Lnet/minecraft/world/scores/PlayerTeam;)V
 			ARG 1 team
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer

@@ -2,6 +2,9 @@ CLASS net/minecraft/world/item/enchantment/ThornsEnchantment
 	METHOD <init> (Lnet/minecraft/world/item/enchantment/Enchantment$Rarity;[Lnet/minecraft/world/entity/EquipmentSlot;)V
 		ARG 1 rarity
 		ARG 2 applicableSlots
+	METHOD canEnchant (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Determines if this enchantment can be applied to a specific ItemStack.
+		ARG 1 stack
 	METHOD doPostHurt (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;I)V
 		COMMENT Whenever an entity that has this enchantment on one of its associated items is damaged this method will be called.
 		ARG 1 user
@@ -17,6 +20,8 @@ CLASS net/minecraft/world/item/enchantment/ThornsEnchantment
 	METHOD getMinCost (I)I
 		COMMENT Returns the minimal value of enchantability needed on the enchantment level passed.
 		ARG 1 enchantmentLevel
+	METHOD lambda$doPostHurt$0 (Ljava/util/Map$Entry;Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 player
 	METHOD shouldHit (ILnet/minecraft/util/RandomSource;)Z
 		ARG 0 level
 		ARG 1 random

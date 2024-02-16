@@ -1,4 +1,7 @@
 CLASS net/minecraft/gametest/framework/TestCommand
+	METHOD clearAllTests (Lnet/minecraft/commands/CommandSourceStack;I)I
+		ARG 0 source
+		ARG 1 radius
 	METHOD createNewStructure (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;III)I
 		ARG 0 source
 		ARG 1 structureName
@@ -7,14 +10,65 @@ CLASS net/minecraft/gametest/framework/TestCommand
 		ARG 4 z
 	METHOD createTestPositionAround (Lnet/minecraft/commands/CommandSourceStack;)Lnet/minecraft/core/BlockPos;
 		ARG 0 source
+	METHOD exportAllNearbyTests (Lnet/minecraft/commands/CommandSourceStack;)I
+		ARG 0 source
+	METHOD exportNearestTestStructure (Lnet/minecraft/commands/CommandSourceStack;)I
+		ARG 0 source
 	METHOD exportTestStructure (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
 		ARG 0 source
 		ARG 1 structurePath
 	METHOD importTestStructure (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
 		ARG 0 source
 		ARG 1 structurePath
+	METHOD lambda$runAllNearbyTests$28 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/gametest/framework/MultipleTestTracker;ZLnet/minecraft/core/BlockPos;)V
+		ARG 3 blockPos
+	METHOD lambda$runTests$29 (Lnet/minecraft/gametest/framework/GameTestInfo;)V
+		ARG 0 gameTestInfo
+	METHOD lambda$say$31 (Lnet/minecraft/server/level/ServerPlayer;)Z
+		ARG 0 player
+	METHOD lambda$say$32 (Ljava/lang/String;Lnet/minecraft/ChatFormatting;Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 2 player
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
+	METHOD resetNearbyTest (Lnet/minecraft/commands/CommandSourceStack;)I
+		ARG 0 source
+	METHOD runAllNearbyTests (Lnet/minecraft/commands/CommandSourceStack;Z)I
+		ARG 0 source
+		ARG 1 rerunUntilFailed
+	METHOD runAllTests (Lnet/minecraft/commands/CommandSourceStack;II)I
+		ARG 0 source
+		ARG 1 rotationSteps
+		ARG 2 testsPerRow
+	METHOD runAllTestsInClass (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;II)I
+		ARG 0 source
+		ARG 1 testClassName
+		ARG 2 rotationSteps
+		ARG 3 testsPerRow
+	METHOD runLastFailedTests (Lnet/minecraft/commands/CommandSourceStack;ZII)I
+		ARG 0 source
+		ARG 1 runOnlyRequired
+		ARG 2 rotationSteps
+		ARG 3 testsPerRow
+	METHOD runNearbyTest (Lnet/minecraft/commands/CommandSourceStack;Z)I
+		ARG 0 source
+		ARG 1 rerunUntilFailed
+	METHOD runTest (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/TestFunction;I)I
+		ARG 0 source
+		ARG 1 function
+		ARG 2 rotationSteps
+	METHOD runTest (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/gametest/framework/MultipleTestTracker;Z)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 tracker
+		ARG 3 rerunUntilFailed
+	METHOD runTestPreparation (Lnet/minecraft/gametest/framework/TestFunction;Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 0 function
+		ARG 1 serverLevel
+	METHOD runTests (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;II)V
+		ARG 0 source
+		ARG 1 tests
+		ARG 2 rotationSteps
+		ARG 3 testsPerRow
 	METHOD saveAndExportTestStructure (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)I
 		ARG 0 source
 		ARG 1 structureBlockEntity
@@ -28,6 +82,12 @@ CLASS net/minecraft/gametest/framework/TestCommand
 	METHOD showPos (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
 		ARG 0 source
 		ARG 1 variableName
+	METHOD showTestSummaryIfAllDone (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/gametest/framework/MultipleTestTracker;)V
+		ARG 0 level
+		ARG 1 tracker
+	METHOD verifyStructureExists (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/gametest/framework/GameTestInfo;)Z
+		ARG 0 level
+		ARG 1 gameTestInfo
 	CLASS TestSummaryDisplayer
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/gametest/framework/MultipleTestTracker;)V
 			ARG 1 serverLevel

@@ -21,15 +21,30 @@ CLASS net/minecraft/world/item/MapItem
 		ARG 5 trackingPosition
 		ARG 6 unlimitedTracking
 		ARG 7 dimension
+	METHOD createNewSavedData (Lnet/minecraft/world/level/Level;IIIZZLnet/minecraft/resources/ResourceKey;)I
+		ARG 0 level
+		ARG 1 x
+		ARG 2 z
+		ARG 3 scale
+		ARG 4 trackingPosition
+		ARG 5 unlimitedTracking
+		ARG 6 dimension
 	METHOD getColor (Lnet/minecraft/world/item/ItemStack;)I
 		ARG 0 stack
 	METHOD getCorrectStateForFluidBlock (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 level
 		ARG 2 state
 		ARG 3 pos
+	METHOD getMapId (Lnet/minecraft/world/item/ItemStack;)Ljava/lang/Integer;
+		ARG 0 stack
+	METHOD getSavedData (Ljava/lang/Integer;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
+		ARG 0 mapId
+		ARG 1 level
 	METHOD getSavedData (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
 		ARG 0 stack
 		ARG 1 level
+	METHOD getTooltipForId (I)Lnet/minecraft/network/chat/Component;
+		ARG 0 id
 	METHOD getTooltipForId (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/chat/Component;
 		ARG 0 stack
 	METHOD getUpdatePacket (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/network/protocol/Packet;
@@ -50,6 +65,8 @@ CLASS net/minecraft/world/item/MapItem
 	METHOD lockMap (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 0 level
 		ARG 1 stack
+	METHOD makeKey (I)Ljava/lang/String;
+		ARG 0 mapId
 	METHOD renderBiomePreviewMap (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 0 serverLevel
 		ARG 1 stack
@@ -57,6 +74,9 @@ CLASS net/minecraft/world/item/MapItem
 		ARG 0 stack
 		ARG 1 level
 		ARG 2 scale
+	METHOD storeMapData (Lnet/minecraft/world/item/ItemStack;I)V
+		ARG 0 stack
+		ARG 1 mapId
 	METHOD update (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
 		ARG 1 level
 		ARG 2 viewer

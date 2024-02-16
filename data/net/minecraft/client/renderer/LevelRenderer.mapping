@@ -162,6 +162,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 3 data
 	METHOD isSectionCompiled (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
+	METHOD lambda$destroyBlockProgress$7 (J)Ljava/util/SortedSet;
+		ARG 0 destructionTime
 	METHOD lambda$initTransparency$0 (Lnet/minecraft/server/packs/PackResources;)Lnet/minecraft/network/chat/MutableComponent;
 		ARG 0 levelRenderer
 	METHOD lambda$renderLevel$2 (Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
@@ -194,8 +196,19 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD playStreamingMusic (Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 soundEvent
 		ARG 2 pos
+	METHOD prepareCullFrustum (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/phys/Vec3;Lorg/joml/Matrix4f;)V
+		ARG 1 poseStack
+		ARG 2 cameraPos
+		ARG 3 projectionMatrix
 	METHOD removeProgress (Lnet/minecraft/server/level/BlockDestructionProgress;)V
 		ARG 1 progress
+	METHOD renderClouds (Lcom/mojang/blaze3d/vertex/PoseStack;Lorg/joml/Matrix4f;FDDD)V
+		ARG 1 poseStack
+		ARG 2 projectionMatrix
+		ARG 3 partialTick
+		ARG 4 camX
+		ARG 6 camY
+		ARG 8 camZ
 	METHOD renderDebug (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/Camera;)V
 		ARG 1 poseStack
 		ARG 2 buffer
@@ -219,6 +232,15 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 8 camZ
 		ARG 10 pos
 		ARG 11 state
+	METHOD renderLevel (Lcom/mojang/blaze3d/vertex/PoseStack;FJZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lorg/joml/Matrix4f;)V
+		ARG 1 poseStack
+		ARG 2 partialTick
+		ARG 3 finishNanoTime
+		ARG 5 renderBlockOutline
+		ARG 6 camera
+		ARG 7 gameRenderer
+		ARG 8 lightTexture
+		ARG 9 projectionMatrix
 	METHOD renderLineBox (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;DDDDDDFFFF)V
 		ARG 0 poseStack
 		ARG 1 consumer
@@ -268,6 +290,13 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 14 green
 		ARG 15 blue
 		ARG 16 alpha
+	METHOD renderSectionLayer (Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack;DDDLorg/joml/Matrix4f;)V
+		ARG 1 renderType
+		ARG 2 poseStack
+		ARG 3 x
+		ARG 5 y
+		ARG 7 z
+		ARG 9 projectionMatrix
 	METHOD renderShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFF)V
 		ARG 0 poseStack
 		ARG 1 consumer
@@ -279,6 +308,13 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 green
 		ARG 11 blue
 		ARG 12 alpha
+	METHOD renderSky (Lcom/mojang/blaze3d/vertex/PoseStack;Lorg/joml/Matrix4f;FLnet/minecraft/client/Camera;ZLjava/lang/Runnable;)V
+		ARG 1 poseStack
+		ARG 2 projectionMatrix
+		ARG 3 partialTick
+		ARG 4 camera
+		ARG 5 isFoggy
+		ARG 6 skyFogSetup
 	METHOD renderSnowAndRain (Lnet/minecraft/client/renderer/LightTexture;FDDD)V
 		ARG 1 lightTexture
 		ARG 2 partialTick

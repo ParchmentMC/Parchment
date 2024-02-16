@@ -1,7 +1,18 @@
 CLASS net/minecraft/network/protocol/game/ClientboundMapItemDataPacket
+	METHOD <init> (IBZLjava/util/Collection;Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData$MapPatch;)V
+		ARG 1 mapId
+		ARG 2 scale
+		ARG 3 locked
+		ARG 4 decorations
+		ARG 5 colorPatch
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
 	METHOD applyToMap (Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
 		COMMENT Sets new MapData from the packet to given MapData param
 		ARG 1 mapdata
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		COMMENT Writes the raw packet data to the data stream.
+		ARG 1 buffer

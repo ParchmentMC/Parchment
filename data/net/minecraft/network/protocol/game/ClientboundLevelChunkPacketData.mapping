@@ -1,4 +1,8 @@
 CLASS net/minecraft/network/protocol/game/ClientboundLevelChunkPacketData
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;II)V
+		ARG 1 heightmaps
+		ARG 2 chunkX
+		ARG 3 chunkZ
 	METHOD <init> (Lnet/minecraft/world/level/chunk/LevelChunk;)V
 		ARG 1 levelChunk
 	METHOD calculateChunkSize (Lnet/minecraft/world/level/chunk/LevelChunk;)I
@@ -13,14 +17,20 @@ CLASS net/minecraft/network/protocol/game/ClientboundLevelChunkPacketData
 	METHOD getBlockEntitiesTagsConsumer (II)Ljava/util/function/Consumer;
 		ARG 1 chunkX
 		ARG 2 chunkZ
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
 	CLASS BlockEntityInfo
 		METHOD <init> (IILnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 packedXZ
 			ARG 2 y
 			ARG 3 type
 			ARG 4 tag
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
 		METHOD create (Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/network/protocol/game/ClientboundLevelChunkPacketData$BlockEntityInfo;
 			ARG 0 blockEntity
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
 	CLASS BlockEntityTagOutput
 		METHOD accept (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/nbt/CompoundTag;)V
 			ARG 1 pos

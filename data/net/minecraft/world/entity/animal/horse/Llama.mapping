@@ -7,6 +7,12 @@ CLASS net/minecraft/world/entity/animal/horse/Llama
 	METHOD containerChanged (Lnet/minecraft/world/Container;)V
 		COMMENT Called by {@code InventoryBasic.onInventoryChanged()} on an array that is never filled.
 		ARG 1 invBasic
+	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;
+		ARG 1 level
+		ARG 2 difficulty
+		ARG 3 reason
+		ARG 4 spawnData
+		ARG 5 dataTag
 	METHOD getDyeColor (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/DyeColor;
 		ARG 0 stack
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
@@ -14,6 +20,8 @@ CLASS net/minecraft/world/entity/animal/horse/Llama
 	METHOD handleEating (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 player
 		ARG 2 stack
+	METHOD isArmor (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
 		ARG 1 stack
@@ -37,6 +45,8 @@ CLASS net/minecraft/world/entity/animal/horse/Llama
 		ARG 1 random
 	METHOD setStrength (I)V
 		ARG 1 strength
+	METHOD setSwag (Lnet/minecraft/world/item/DyeColor;)V
+		ARG 1 color
 	METHOD spit (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 target
 	CLASS Variant

@@ -1,4 +1,6 @@
 CLASS net/minecraft/world/level/levelgen/presets/WorldPresets
+	METHOD bootstrap (Lnet/minecraft/data/worldgen/BootstapContext;)V
+		ARG 0 context
 	METHOD createNormalWorldDimensions (Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/level/levelgen/WorldDimensions;
 		ARG 0 registry
 	METHOD fromSettings (Lnet/minecraft/core/Registry;)Ljava/util/Optional;
@@ -8,6 +10,8 @@ CLASS net/minecraft/world/level/levelgen/presets/WorldPresets
 	METHOD register (Ljava/lang/String;)Lnet/minecraft/resources/ResourceKey;
 		ARG 0 name
 	CLASS Bootstrap
+		METHOD <init> (Lnet/minecraft/data/worldgen/BootstapContext;)V
+			ARG 1 context
 		METHOD createPresetWithCustomOverworld (Lnet/minecraft/world/level/dimension/LevelStem;)Lnet/minecraft/world/level/levelgen/presets/WorldPreset;
 			ARG 1 overworldStem
 		METHOD makeNoiseBasedOverworld (Lnet/minecraft/world/level/biome/BiomeSource;Lnet/minecraft/core/Holder;)Lnet/minecraft/world/level/dimension/LevelStem;

@@ -62,6 +62,8 @@ CLASS net/minecraft/world/entity/player/Player
 	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
 		COMMENT Called when the mob's health reaches 0.
 		ARG 1 cause
+	METHOD disableShield (Z)V
+		ARG 1 becauseOfAxe
 	METHOD displayClientMessage (Lnet/minecraft/network/chat/Component;Z)V
 		ARG 1 chatComponent
 		ARG 2 actionBar
@@ -93,6 +95,8 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 1 state
 	METHOD getDimensionChangingDelay ()I
 		COMMENT Return the amount of cooldown before this entity can use a portal again.
+	METHOD getDimensions (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/entity/EntityDimensions;
+		ARG 1 pose
 	METHOD getEnderChestInventory ()Lnet/minecraft/world/inventory/PlayerEnderChestContainer;
 		COMMENT Returns the InventoryEnderChest of this player.
 	METHOD getFoodData ()Lnet/minecraft/world/food/FoodData;
@@ -103,6 +107,8 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 1 damageSource
 	METHOD getItemBySlot (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 slot1
+	METHOD getPickRange (Z)F
+		ARG 0 creative
 	METHOD getPortalWaitTime ()I
 		COMMENT Return the amount of time this entity should stay in a portal before being transported.
 	METHOD getProjectile (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
@@ -113,6 +119,9 @@ CLASS net/minecraft/world/entity/player/Player
 		COMMENT Returns a String to use as this entity's name in the scoreboard/entity selector systems
 	METHOD getSpeed ()F
 		COMMENT Gets the movespeed used for the new AI system.
+	METHOD getStandingEyeHeight (Lnet/minecraft/world/entity/Pose;Lnet/minecraft/world/entity/EntityDimensions;)F
+		ARG 1 pose
+		ARG 2 size
 	METHOD getXpNeededForNextLevel ()I
 		COMMENT This method returns the cap amount of experience that the experience bar can hold. With each level, the experience cap on the player's experience bar is raised by 10.
 	METHOD giveExperienceLevels (I)V

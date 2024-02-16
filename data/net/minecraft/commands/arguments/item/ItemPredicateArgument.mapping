@@ -1,8 +1,24 @@
 CLASS net/minecraft/commands/arguments/item/ItemPredicateArgument
 	METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
 		ARG 1 context
+	METHOD createResult (Ljava/util/function/Predicate;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/commands/arguments/item/ItemPredicateArgument$Result;
+		ARG 0 itemPredicate
+		ARG 1 nbt
+	METHOD getItemPredicate (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/function/Predicate;
+		ARG 0 context
+		ARG 1 name
 	METHOD itemPredicate (Lnet/minecraft/commands/CommandBuildContext;)Lnet/minecraft/commands/arguments/item/ItemPredicateArgument;
 		ARG 0 context
+	METHOD lambda$createResult$3 (Ljava/util/function/Predicate;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 2 item
+	METHOD lambda$createResult$4 (Ljava/util/function/Predicate;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 item
+	METHOD lambda$parse$0 (Lnet/minecraft/commands/arguments/item/ItemParser$ItemResult;Lnet/minecraft/core/Holder;)Z
+		ARG 1 item
+	METHOD lambda$parse$1 (Lnet/minecraft/commands/arguments/item/ItemParser$ItemResult;)Lnet/minecraft/commands/arguments/item/ItemPredicateArgument$Result;
+		ARG 0 itemResult
+	METHOD lambda$parse$2 (Lnet/minecraft/commands/arguments/item/ItemParser$TagResult;)Lnet/minecraft/commands/arguments/item/ItemPredicateArgument$Result;
+		ARG 0 tagResult
 	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 context
 		ARG 2 builder

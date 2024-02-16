@@ -92,6 +92,8 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 		ARG 1 id
 	METHOD getLevelData ()Lnet/minecraft/client/multiplayer/ClientLevel$ClientLevelData;
 		COMMENT Returns the world's WorldInfo object
+	METHOD getMapData (Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
+		ARG 1 mapName
 	METHOD getSkyColor (Lnet/minecraft/world/phys/Vec3;F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 pos
 		ARG 2 partialTick
@@ -137,6 +139,9 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 		ARG 4 data
 	METHOD onChunkLoaded (Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 chunkPos
+	METHOD overrideMapData (Ljava/lang/String;Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
+		ARG 1 mapName
+		ARG 2 data
 	METHOD playLocalSound (DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFZ)V
 		ARG 1 x
 		ARG 3 y
@@ -181,6 +186,8 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 		ARG 2 spawnAngle
 	METHOD setGameTime (J)V
 		ARG 1 time
+	METHOD setScoreboard (Lnet/minecraft/world/scores/Scoreboard;)V
+		ARG 1 scoreboard
 	METHOD setSectionDirtyWithNeighbors (III)V
 		ARG 1 sectionX
 		ARG 2 sectionY
@@ -235,6 +242,12 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 			COMMENT Gets the GameRules class Instance.
 		METHOD getHorizonHeight (Lnet/minecraft/world/level/LevelHeightAccessor;)D
 			ARG 1 level
+		METHOD getXSpawn ()I
+			COMMENT Returns the x spawn position
+		METHOD getYSpawn ()I
+			COMMENT Return the Y axis spawning point of the player.
+		METHOD getZSpawn ()I
+			COMMENT Returns the z spawn position
 		METHOD isHardcore ()Z
 			COMMENT Returns {@code true} if hardcore mode is enabled, otherwise {@code false}.
 		METHOD isRaining ()Z
@@ -255,3 +268,14 @@ CLASS net/minecraft/client/multiplayer/ClientLevel
 		METHOD setSpawn (Lnet/minecraft/core/BlockPos;F)V
 			ARG 1 spawnPoint
 			ARG 2 angle
+		METHOD setSpawnAngle (F)V
+			ARG 1 angle
+		METHOD setXSpawn (I)V
+			COMMENT Set the x spawn position to the passed in value
+			ARG 1 x
+		METHOD setYSpawn (I)V
+			COMMENT Sets the y spawn position
+			ARG 1 y
+		METHOD setZSpawn (I)V
+			COMMENT Set the z spawn position to the passed in value
+			ARG 1 z

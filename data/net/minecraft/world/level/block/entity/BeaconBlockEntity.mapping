@@ -14,6 +14,17 @@ CLASS net/minecraft/world/level/block/entity/BeaconBlockEntity
 	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 blockState
+	METHOD applyEffects (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/effect/MobEffect;Lnet/minecraft/world/effect/MobEffect;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 levels
+		ARG 3 primary
+		ARG 4 secondary
+	METHOD filterEffect (Lnet/minecraft/world/effect/MobEffect;)Lnet/minecraft/world/effect/MobEffect;
+		ARG 0 effect
+	METHOD loadEffect (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Lnet/minecraft/world/effect/MobEffect;
+		ARG 0 tag
+		ARG 1 key
 	METHOD playSound (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;)V
 		ARG 0 level
 		ARG 1 pos
@@ -21,6 +32,10 @@ CLASS net/minecraft/world/level/block/entity/BeaconBlockEntity
 	METHOD setCustomName (Lnet/minecraft/network/chat/Component;)V
 		COMMENT Sets the custom name for this beacon.
 		ARG 1 name
+	METHOD storeEffect (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;Lnet/minecraft/world/effect/MobEffect;)V
+		ARG 0 tag
+		ARG 1 key
+		ARG 2 effect
 	METHOD tick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BeaconBlockEntity;)V
 		ARG 0 level
 		ARG 1 pos

@@ -5,6 +5,11 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 random
+	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/BlockGetter;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
+		ARG 1 stack
+		ARG 2 level
+		ARG 3 tooltip
+		ARG 4 flag
 	METHOD box (DDDDDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 0 x1
 		ARG 2 y1
@@ -85,6 +90,8 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 0 state
 	METHOD getShapeForEachState (Ljava/util/function/Function;)Lcom/google/common/collect/ImmutableMap;
 		ARG 1 shapeGetter
+	METHOD getSoundType (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/SoundType;
+		ARG 1 state
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 context
 	METHOD handlePrecipitation (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/biome/Biome$Precipitation;)V
@@ -98,6 +105,9 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 0 shape
 		ARG 1 face
 	METHOD isPossibleToRespawnInThis (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
+	METHOD isRandomlyTicking (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		COMMENT @return whether this block needs random ticking.
 		ARG 1 state
 	METHOD isShapeFullBlock (Lnet/minecraft/world/phys/shapes/VoxelShape;)Z
 		COMMENT @return whether the provided {@link net.minecraft.world.phys.shapes.VoxelShape} is a full block (1x1x1)
@@ -140,6 +150,10 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 1 pos
 		ARG 2 direction
 		ARG 3 stack
+	METHOD propagatesSkylightDown (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
 	METHOD pushEntitiesUp (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 0 oldState
 		ARG 1 newState

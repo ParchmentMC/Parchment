@@ -1,4 +1,34 @@
 CLASS net/minecraft/world/level/storage/PrimaryLevelData
+	METHOD <init> (Lnet/minecraft/nbt/CompoundTag;ZIIIFJJIIIZIZZZLnet/minecraft/world/level/border/WorldBorder$Settings;IILjava/util/UUID;Ljava/util/Set;Ljava/util/Set;Lnet/minecraft/world/level/timers/TimerQueue;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/dimension/end/EndDragonFight$Data;Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldOptions;Lnet/minecraft/world/level/storage/PrimaryLevelData$SpecialWorldProperty;Lcom/mojang/serialization/Lifecycle;)V
+		ARG 1 loadedPlayerTag
+		ARG 2 wasModded
+		ARG 3 xSpawn
+		ARG 4 ySpawn
+		ARG 5 zSpawn
+		ARG 6 spawnAngle
+		ARG 7 gameTime
+		ARG 9 dayTime
+		ARG 11 version
+		ARG 12 clearWeatherTime
+		ARG 13 rainTime
+		ARG 14 raining
+		ARG 15 thunderTime
+		ARG 16 thundering
+		ARG 17 initialized
+		ARG 18 difficultyLocked
+		ARG 19 worldBorder
+		ARG 20 wanderingTraderSpawnDelay
+		ARG 21 wanderingTraderSpawnChance
+		ARG 22 wanderTraderId
+		ARG 23 knownServerBrands
+		ARG 24 removedFeatureFlags
+		ARG 25 scheduledEvents
+		ARG 26 customBossEvents
+		ARG 27 endDragonFightData
+		ARG 28 settings
+		ARG 29 worldOptions
+		ARG 30 specialWorldProperty
+		ARG 31 worldGenSettingsLifecycle
 	METHOD <init> (Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/levelgen/WorldOptions;Lnet/minecraft/world/level/storage/PrimaryLevelData$SpecialWorldProperty;Lcom/mojang/serialization/Lifecycle;)V
 		ARG 1 settings
 		ARG 2 worldOptions
@@ -7,6 +37,8 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 	METHOD createTag (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 registries
 		ARG 2 hostPlayerNBT
+	METHOD getAllowCommands ()Z
+		COMMENT Returns {@code true} if commands are allowed on this World.
 	METHOD getDayTime ()J
 		COMMENT Get current world time
 	METHOD getGameRules ()Lnet/minecraft/world/level/GameRules;
@@ -19,6 +51,12 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 		COMMENT Return the number of ticks until rain.
 	METHOD getThunderTime ()I
 		COMMENT Returns the number of ticks until next thunderbolt.
+	METHOD getXSpawn ()I
+		COMMENT Returns the x spawn position
+	METHOD getYSpawn ()I
+		COMMENT Return the Y axis spawning point of the player.
+	METHOD getZSpawn ()I
+		COMMENT Returns the z spawn position
 	METHOD isHardcore ()Z
 		COMMENT Returns {@code true} if hardcore mode is enabled, otherwise {@code false}.
 	METHOD isInitialized ()Z
@@ -73,6 +111,8 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 	METHOD setSpawn (Lnet/minecraft/core/BlockPos;F)V
 		ARG 1 spawnPoint
 		ARG 2 angle
+	METHOD setSpawnAngle (F)V
+		ARG 1 angle
 	METHOD setTagData (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 registry
 		ARG 2 nbt
@@ -91,5 +131,14 @@ CLASS net/minecraft/world/level/storage/PrimaryLevelData
 		ARG 1 delay
 	METHOD setWorldBorder (Lnet/minecraft/world/level/border/WorldBorder$Settings;)V
 		ARG 1 serializer
+	METHOD setXSpawn (I)V
+		COMMENT Set the x spawn position to the passed in value
+		ARG 1 x
+	METHOD setYSpawn (I)V
+		COMMENT Sets the y spawn position
+		ARG 1 y
+	METHOD setZSpawn (I)V
+		COMMENT Set the z spawn position to the passed in value
+		ARG 1 z
 	METHOD stringCollectionToTag (Ljava/util/Set;)Lnet/minecraft/nbt/ListTag;
 		ARG 0 stringCollection

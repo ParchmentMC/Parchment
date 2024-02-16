@@ -1,6 +1,37 @@
 CLASS net/minecraft/world/effect/MobEffectInstance
 	FIELD hiddenEffect Lnet/minecraft/world/effect/MobEffectInstance;
 		COMMENT A hidden effect which is not shown to the player.
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;)V
+		ARG 1 effect
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;I)V
+		ARG 1 effect
+		ARG 2 duration
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;II)V
+		ARG 1 effect
+		ARG 2 duration
+		ARG 3 amplifier
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;IIZZ)V
+		ARG 1 effect
+		ARG 2 duration
+		ARG 3 amplifier
+		ARG 4 ambient
+		ARG 5 visible
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;IIZZZ)V
+		ARG 1 effect
+		ARG 2 duration
+		ARG 3 amplifier
+		ARG 4 ambient
+		ARG 5 visible
+		ARG 6 showIcon
+	METHOD <init> (Lnet/minecraft/world/effect/MobEffect;IIZZZLnet/minecraft/world/effect/MobEffectInstance;Ljava/util/Optional;)V
+		ARG 1 effect
+		ARG 2 duration
+		ARG 3 amplifier
+		ARG 4 ambient
+		ARG 5 visible
+		ARG 6 showIcon
+		ARG 7 hiddenEffect
+		ARG 8 factorData
 	METHOD <init> (Lnet/minecraft/world/effect/MobEffectInstance;)V
 		ARG 1 other
 	METHOD compareTo (Lnet/minecraft/world/effect/MobEffectInstance;)I
@@ -18,10 +49,16 @@ CLASS net/minecraft/world/effect/MobEffectInstance
 	METHOD load (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/effect/MobEffectInstance;
 		COMMENT Read a custom potion effect from a potion item's NBT data.
 		ARG 0 nbt
+	METHOD loadSpecifiedEffect (Lnet/minecraft/world/effect/MobEffect;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/effect/MobEffectInstance;
+		ARG 0 effect
+		ARG 1 nbt
 	METHOD mapDuration (Lit/unimi/dsi/fastutil/ints/Int2IntFunction;)I
 		ARG 1 mapper
 	METHOD onEffectStarted (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 entity
+	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Write a custom potion effect to a potion item's NBT data.
+		ARG 1 nbt
 	METHOD setDetailsFrom (Lnet/minecraft/world/effect/MobEffectInstance;)V
 		ARG 1 effectInstance
 	METHOD tick (Lnet/minecraft/world/entity/LivingEntity;Ljava/lang/Runnable;)Z
@@ -29,3 +66,21 @@ CLASS net/minecraft/world/effect/MobEffectInstance
 		ARG 2 onExpirationRunnable
 	METHOD update (Lnet/minecraft/world/effect/MobEffectInstance;)Z
 		ARG 1 other
+	METHOD writeDetailsTo (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 nbt
+	CLASS FactorData
+		METHOD <init> (I)V
+			ARG 1 paddingDuration
+		METHOD <init> (IFFFIFZ)V
+			ARG 1 paddingDuration
+			ARG 2 factorStart
+			ARG 3 factorTarget
+			ARG 4 factorCurrent
+			ARG 5 effectChangedTimestamp
+			ARG 6 factorPreviousFrame
+			ARG 7 hadEffectLastTick
+		METHOD getFactor (Lnet/minecraft/world/entity/LivingEntity;F)F
+			ARG 1 entity
+			ARG 2 partialTick
+		METHOD tick (Lnet/minecraft/world/effect/MobEffectInstance;)V
+			ARG 1 effect
