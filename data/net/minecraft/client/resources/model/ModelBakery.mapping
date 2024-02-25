@@ -4,6 +4,8 @@ CLASS net/minecraft/client/resources/model/ModelBakery
 		ARG 2 profilerFiller
 		ARG 3 modelResources
 		ARG 4 blockStateResources
+	METHOD bakeModels (Ljava/util/function/BiFunction;)V
+		ARG 1 spriteGetter
 	METHOD cacheAndQueueDependencies (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/model/UnbakedModel;)V
 		ARG 1 location
 		ARG 2 model
@@ -12,6 +14,27 @@ CLASS net/minecraft/client/resources/model/ModelBakery
 	METHOD getValueHelper (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/String;)Ljava/lang/Comparable;
 		ARG 0 property
 		ARG 1 value
+	METHOD lambda$bakeModels$9 (Ljava/util/function/BiFunction;Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 2 paths
+	METHOD lambda$loadModel$12 (Ljava/util/Map;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 2 possibleState
+	METHOD lambda$loadModel$14 (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/model/ModelBakery$LoadedJson;)Lcom/mojang/datafixers/util/Pair;
+		ARG 2 resource
+	METHOD lambda$loadModel$16 (Ljava/util/Map;Lnet/minecraft/client/renderer/block/model/multipart/MultiPart;Ljava/util/List;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 3 possibleState
+	METHOD lambda$loadModel$19 (Ljava/util/Map;Lnet/minecraft/client/renderer/block/model/MultiVariant;Ljava/util/List;Lnet/minecraft/client/renderer/block/model/multipart/MultiPart;Lcom/mojang/datafixers/util/Pair;Lnet/minecraft/client/renderer/block/model/BlockModelDefinition;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 6 possibleState
+	METHOD lambda$loadModel$20 (Lcom/google/common/collect/ImmutableList;Lnet/minecraft/world/level/block/state/StateDefinition;Ljava/util/Map;Ljava/util/List;Lnet/minecraft/client/renderer/block/model/multipart/MultiPart;Lcom/mojang/datafixers/util/Pair;Lnet/minecraft/client/renderer/block/model/BlockModelDefinition;Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/datafixers/util/Pair;Ljava/lang/String;Lnet/minecraft/client/renderer/block/model/MultiVariant;)V
+		ARG 9 name
+		ARG 10 variant
+	METHOD lambda$loadModel$21 (Lnet/minecraft/client/resources/model/ModelBakery$ModelGroupKey;)Ljava/util/Set;
+		ARG 0 key
+	METHOD lambda$loadModel$22 (Ljava/util/Map;Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/datafixers/util/Pair;Ljava/util/Map;Lnet/minecraft/client/resources/model/ModelResourceLocation;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 5 modelPath
+		ARG 6 blockState
+	METHOD lambda$loadModel$23 (Lnet/minecraft/client/resources/model/ModelBakery$ModelGroupKey;Ljava/util/Set;)V
+		ARG 1 key
+		ARG 2 set
 	METHOD lambda$new$5 (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 2 state
 	METHOD lambda$new$6 (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/block/state/StateDefinition;)V
@@ -25,6 +48,10 @@ CLASS net/minecraft/client/resources/model/ModelBakery
 		ARG 2 state
 	METHOD lambda$registerModelGroup$24 (ILnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 2 state
+	METHOD lambda$static$0 (I)Lnet/minecraft/resources/ResourceLocation;
+		ARG 0 index
+	METHOD lambda$static$1 (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+		ARG 0 destroyStage
 	METHOD loadBlockModel (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/block/model/BlockModel;
 		ARG 1 location
 	METHOD loadModel (Lnet/minecraft/resources/ResourceLocation;)V
@@ -53,6 +80,12 @@ CLASS net/minecraft/client/resources/model/ModelBakery
 		METHOD getColoringValues (Lnet/minecraft/world/level/block/state/BlockState;Ljava/util/Collection;)Ljava/util/List;
 			ARG 0 blockState
 			ARG 1 properties
+	CLASS ModelBakerImpl
+		METHOD <init> (Lnet/minecraft/client/resources/model/ModelBakery;Ljava/util/function/BiFunction;Lnet/minecraft/resources/ResourceLocation;)V
+			ARG 2 spriteGetter
+			ARG 3 path
+		METHOD lambda$new$0 (Ljava/util/function/BiFunction;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/model/Material;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+			ARG 2 material
 	CLASS BlockStateDefinitionException
 		METHOD <init> (Ljava/lang/String;)V
 			ARG 1 message

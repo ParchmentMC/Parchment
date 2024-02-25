@@ -10,6 +10,11 @@ CLASS net/minecraft/data/HashCache
 		ARG 2 updateFunction
 	METHOD getProviderCachePath (Ljava/lang/String;)Ljava/nio/file/Path;
 		ARG 1 provider
+	METHOD lambda$purgeStaleAndWrite$1 (Ljava/util/Set;Ljava/lang/String;Lnet/minecraft/data/HashCache$ProviderCache;)V
+		ARG 2 cacheName
+		ARG 3 providerCache
+	METHOD lambda$purgeStaleAndWrite$2 (Lorg/apache/commons/lang3/mutable/MutableInt;Ljava/util/Set;Lorg/apache/commons/lang3/mutable/MutableInt;Ljava/nio/file/Path;)V
+		ARG 4 path
 	METHOD purgeStaleAndWrite ()V
 		COMMENT Writes the cache file containing the hashes of newly created files to the disk, and deletes any stale files.
 	METHOD readCache (Ljava/nio/file/Path;Ljava/nio/file/Path;)Lnet/minecraft/data/HashCache$ProviderCache;
@@ -28,6 +33,8 @@ CLASS net/minecraft/data/HashCache
 	CLASS ProviderCache
 		METHOD get (Ljava/nio/file/Path;)Lcom/google/common/hash/HashCode;
 			ARG 1 path
+		METHOD lambda$load$0 (Lcom/google/common/collect/ImmutableMap$Builder;Ljava/nio/file/Path;Ljava/lang/String;)V
+			ARG 2 line
 		METHOD load (Ljava/nio/file/Path;Ljava/nio/file/Path;)Lnet/minecraft/data/HashCache$ProviderCache;
 			ARG 0 rootDir
 			ARG 1 cachePath

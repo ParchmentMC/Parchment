@@ -55,10 +55,18 @@ CLASS net/minecraft/client/OptionInstance
 		ARG 0 value
 	METHOD lambda$createBoolean$2 (Ljava/lang/Boolean;)V
 		ARG 0 value
+	METHOD lambda$createButton$7 (Ljava/lang/Object;)V
+		ARG 0 value
+	METHOD lambda$forOptionEnum$6 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/util/OptionEnum;)Lnet/minecraft/network/chat/Component;
+		ARG 0 caption
+		ARG 1 optionEnum
 	METHOD lambda$new$3 (Lnet/minecraft/client/OptionInstance$CaptionBasedToString;Ljava/lang/Object;)Lnet/minecraft/network/chat/Component;
 		ARG 2 value
 	METHOD lambda$noTooltip$4 (Ljava/lang/Object;)Lnet/minecraft/client/gui/components/Tooltip;
 		ARG 0 value
+	METHOD lambda$static$0 (Lnet/minecraft/network/chat/Component;Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Component;
+		ARG 0 caption
+		ARG 1 value
 	METHOD set (Ljava/lang/Object;)V
 		ARG 1 value
 	CLASS ValueSet
@@ -70,6 +78,13 @@ CLASS net/minecraft/client/OptionInstance
 			ARG 5 width
 			ARG 6 onValueChanged
 		METHOD validateValue (Ljava/lang/Object;)Ljava/util/Optional;
+			ARG 1 value
+	CLASS IntRangeBase
+		METHOD xmap (Ljava/util/function/IntFunction;Ljava/util/function/ToIntFunction;)Lnet/minecraft/client/OptionInstance$SliderableValueSet;
+			ARG 1 to
+			ARG 2 from
+	CLASS TooltipSupplier
+		METHOD apply (Ljava/lang/Object;)Lnet/minecraft/client/gui/components/Tooltip;
 			ARG 1 value
 	CLASS CycleableValueSet
 		CLASS ValueSetter
@@ -87,6 +102,9 @@ CLASS net/minecraft/client/OptionInstance
 		METHOD toString (Lnet/minecraft/network/chat/Component;Ljava/lang/Object;)Lnet/minecraft/network/chat/Component;
 			ARG 1 caption
 			ARG 2 value
+	CLASS ClampingLazyMaxIntRange
+		METHOD lambda$codec$1 (Ljava/lang/Integer;)Lcom/mojang/serialization/DataResult;
+			ARG 1 integer
 	CLASS OptionInstanceSliderButton
 		METHOD <init> (Lnet/minecraft/client/Options;IIIILnet/minecraft/client/OptionInstance;Lnet/minecraft/client/OptionInstance$SliderableValueSet;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Ljava/util/function/Consumer;)V
 			ARG 1 options
