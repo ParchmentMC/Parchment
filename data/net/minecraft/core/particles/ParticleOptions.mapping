@@ -1,10 +1,16 @@
 CLASS net/minecraft/core/particles/ParticleOptions
 	METHOD writeToNetwork (Lnet/minecraft/network/FriendlyByteBuf;)V
 		ARG 1 buffer
+	METHOD writeToString (Lnet/minecraft/core/HolderLookup$Provider;)Ljava/lang/String;
+		ARG 1 lookupProvider
 	CLASS Deserializer
 		METHOD fromCommand (Lnet/minecraft/core/particles/ParticleType;Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/core/particles/ParticleOptions;
 			ARG 1 particleType
 			ARG 2 reader
+		METHOD fromCommand (Lnet/minecraft/core/particles/ParticleType;Lcom/mojang/brigadier/StringReader;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/core/particles/ParticleOptions;
+			ARG 1 type
+			ARG 2 reader
+			ARG 3 lookupProvider
 		METHOD fromNetwork (Lnet/minecraft/core/particles/ParticleType;Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/core/particles/ParticleOptions;
 			ARG 1 particleType
 			ARG 2 buffer
