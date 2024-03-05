@@ -45,6 +45,15 @@ repositories {
         name = 'FabricMC'
         url = 'https://maven.fabricmc.net/'
     }
+    maven {
+        name = 'QuiltMC <333'
+        url = 'https://maven.quiltmc.org/repository/release/'
+    }
+    maven {
+        name = "Vineflower snapshots for Enigma"
+        url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+    }
+    mavenLocal()
 }
 
 configurations {
@@ -59,8 +68,8 @@ dependencies {
     // ForgeAutoRenamingTool, for remapping the client JAR
     remapper 'net.minecraftforge:ForgeAutoRenamingTool:1.0.2'
 
-    // Enigma, pretty interface for editing mappings
-    enigma 'cuchaz:enigma-swing:2.3.3'
+    // Enigma, gorgeous interface for editing mappings
+    enigma 'org.quiltmc:enigma-swing:2.2.1'
 
     // ParchmentJAM, JAMMER integration for migrating mapping data
     jammer 'org.parchmentmc.jam:jam-parchment:0.1.0'
@@ -232,15 +241,15 @@ abstract class EnigmaExec extends JavaExec {
         description 'Runs the Enigma mapping tool.'
 
         classpath project.configurations.enigma
-        mainClass.set 'cuchaz.enigma.gui.Main'
+        mainClass.set 'org.quiltmc.enigma.gui.Main'
 
-        args = ['--no-edit-all', '--edit-parameters', '--edit-javadocs', '--single-class-tree']
+        args = ['--no-edit-all', '--edit-parameters', '--edit-javadocs']
         argumentProviders.add({ ->
             ['--jar', inputJar.get().asFile.absolutePath,
              '--mappings', mappings.get().asFile.absolutePath]
         } as CommandLineArgumentProvider)
 
-        // Enigma 2.x runs on Java 17. If the Gradle JVM supports Java 17, then we are fine
+        // Enigma runs on Java 17. If the Gradle JVM supports Java 17, then we are fine
         // If not, then we set the java launcher via JVM toolchain so Gradle downloads a Java 17 JVM
         if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
             javaLauncher.set project.javaToolchains.launcherFor {
