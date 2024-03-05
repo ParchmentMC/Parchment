@@ -17,6 +17,8 @@ CLASS net/minecraft/client/gui/Gui
 		COMMENT The time that the title is display
 	FIELD titleTime I
 		COMMENT A timer for the current title and subtitle displayed
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+		ARG 1 minecraft
 	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/renderer/entity/ItemRenderer;)V
 		ARG 1 minecraft
 		ARG 2 itemRenderer
@@ -88,6 +90,21 @@ CLASS net/minecraft/client/gui/Gui
 		ARG 3 score
 	METHOD lambda$displayScoreboardSidebar$3 (I)[Lnet/minecraft/client/gui/Gui$1DisplayEntry;
 		ARG 0 index
+	METHOD lambda$displayScoreboardSidebar$6 (Lnet/minecraft/world/scores/PlayerScoreEntry;)Z
+		ARG 0 score
+	METHOD lambda$displayScoreboardSidebar$7 (Lnet/minecraft/world/scores/Scoreboard;Lnet/minecraft/network/chat/numbers/NumberFormat;Lnet/minecraft/world/scores/PlayerScoreEntry;)Lnet/minecraft/client/gui/Gui$1DisplayEntry;
+		ARG 3 score
+	METHOD lambda$displayScoreboardSidebar$8 (I)[Lnet/minecraft/client/gui/Gui$1DisplayEntry;
+		ARG 0 index
+	METHOD lambda$new$0 (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
+	METHOD lambda$new$1 (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
+	METHOD lambda$new$2 (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD onDisconnected ()V
 		COMMENT Called when the player is disconnected from the server.
 		COMMENT Resets various UI elements and clears messages.
@@ -97,24 +114,42 @@ CLASS net/minecraft/client/gui/Gui
 			COMMENT the GuiGraphics object used for rendering.
 		ARG 2 partialTick
 			COMMENT the partial tick value for smooth animations.
+	METHOD renderCameraOverlays (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
+	METHOD renderChat (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD renderCrosshair (Lnet/minecraft/client/gui/GuiGraphics;)V
 		COMMENT Renders the Crosshair element of the base gui.
 		ARG 1 guiGraphics
 			COMMENT the GuiGraphics object used for rendering.
+	METHOD renderCrosshair (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD renderDemoOverlay (Lnet/minecraft/client/gui/GuiGraphics;)V
 		COMMENT Renders the demo overlay on the screen using the provided GuiGraphics object.
 		ARG 1 guiGraphics
 			COMMENT the GuiGraphics object used for rendering.
+	METHOD renderDemoOverlay (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD renderEffects (Lnet/minecraft/client/gui/GuiGraphics;)V
 		COMMENT Renders the active effects on the screen using the provided GuiGraphics object.
 		ARG 1 guiGraphics
 			COMMENT the GuiGraphics object used for rendering.
+	METHOD renderEffects (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD renderExperienceBar (Lnet/minecraft/client/gui/GuiGraphics;I)V
 		COMMENT Renders the experience bar on the screen using the provided GuiGraphics object and x-coordinate.
 		ARG 1 guiGraphics
 			COMMENT the GuiGraphics object used for rendering.
 		ARG 2 x
 			COMMENT the x-coordinate for rendering the experience bar.
+	METHOD renderExperienceLevel (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD renderHeart (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Gui$HeartType;IIZZZ)V
 		ARG 1 guiGraphics
 		ARG 2 heartType
@@ -153,6 +188,12 @@ CLASS net/minecraft/client/gui/Gui
 			COMMENT the partial tick value for smooth animations.
 		ARG 2 guiGraphics
 			COMMENT the GuiGraphics object used for rendering.
+	METHOD renderHotbarAndDecorations (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
+	METHOD renderItemHotbar (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD renderJumpMeter (Lnet/minecraft/world/entity/PlayerRideableJumping;Lnet/minecraft/client/gui/GuiGraphics;I)V
 		COMMENT Renders the jump meter for a rideable entity on the screen using the provided rideable object, GuiGraphics object, and x-coordinate.
 		ARG 1 rideable
@@ -161,6 +202,9 @@ CLASS net/minecraft/client/gui/Gui
 			COMMENT the GuiGraphics object used for rendering.
 		ARG 3 x
 			COMMENT the x-coordinate for rendering the jump meter.
+	METHOD renderOverlayMessage (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD renderPlayerHealth (Lnet/minecraft/client/gui/GuiGraphics;)V
 		COMMENT Renders the player's health, armor, food, and air bars on the screen.
 		ARG 1 guiGraphics
@@ -175,10 +219,16 @@ CLASS net/minecraft/client/gui/Gui
 		COMMENT Renders the autosave indicator on the screen.
 		ARG 1 guiGraphics
 			COMMENT the {@link GuiGraphics} instance used for rendering.
+	METHOD renderScoreboardSidebar (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD renderSelectedItemName (Lnet/minecraft/client/gui/GuiGraphics;)V
 		COMMENT Renders the name of the selected item on the screen using the provided GuiGraphics object.
 		ARG 1 guiGraphics
 			COMMENT the GuiGraphics object used for rendering.
+	METHOD renderSleepOverlay (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD renderSlot (Lnet/minecraft/client/gui/GuiGraphics;IIFLnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;I)V
 		COMMENT Renders a slot with the specified item stack at the given position on the screen.
 		ARG 1 guiGraphics
@@ -201,6 +251,9 @@ CLASS net/minecraft/client/gui/Gui
 			COMMENT the graphics object used for rendering.
 		ARG 2 scopeScale
 			COMMENT the scale factor for the spyglass scope.
+	METHOD renderTabList (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD renderTextureOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/resources/ResourceLocation;F)V
 		COMMENT Renders a texture overlay on the screen with the specified shader location and alpha value.
 		ARG 1 guiGraphics
@@ -209,6 +262,9 @@ CLASS net/minecraft/client/gui/Gui
 			COMMENT the location of the shader texture.
 		ARG 3 alpha
 			COMMENT the alpha value to apply to the overlay.
+	METHOD renderTitle (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
 	METHOD renderVehicleHealth (Lnet/minecraft/client/gui/GuiGraphics;)V
 		COMMENT Renders the health of the player's vehicle on the screen.
 		ARG 1 guiGraphics
