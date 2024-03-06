@@ -1,9 +1,9 @@
 Parchment Mappings
 ==================
 [![Discord server badge](https://img.shields.io/discord/851855518398152725?color=5865F2&label=discord&logo=discord&logoColor=white)](https://discord.parchmentmc.org/)
-[![Minecraft version badge](https://img.shields.io/badge/mc%20version-1.20.3-3b8526)](#)
+[![Minecraft version badge](https://img.shields.io/badge/mc%20version-1.20.4-3b852)](#)
 &nbsp;
-[![Latest release version badge](https://img.shields.io/maven-metadata/v?color=forestgreen&label=release&metadataUrl=https%3A%2F%2Fldtteam.jfrog.io%2Fartifactory%2Fparchmentmc-internal%2Forg%2Fparchmentmc%2Fdata%2Fparchment-1.20.3%2Fmaven-metadata.xml)](#)
+[![Latest release version badge](https://img.shields.io/maven-metadata/v?color=forestgreen&label=release&metadataUrl=https%3A%2F%2Fldtteam.jfrog.io%2Fartifactory%2Fparchmentmc-internal%2Forg%2Fparchmentmc%2Fdata%2Fparchment-1.20.4%2Fmaven-metadata.xml)](#)
 [![CI release build status](https://buildsystem.ldtteam.com/app/rest/builds/buildType:(id:ParchmentMC_Mappings_Release),branch:1.20.x/statusIcon)](#)
 
 [![Latest nightly version badge](https://img.shields.io/maven-metadata/v?color=orange&label=nightly&metadataUrl=https%3A%2F%2Fldtteam.jfrog.io%2Fartifactory%2Fparchmentmc-snapshots%2Forg%2Fparchmentmc%2Fdata%2Fparchment-1.20.3%2Fmaven-metadata.xml)](#)
