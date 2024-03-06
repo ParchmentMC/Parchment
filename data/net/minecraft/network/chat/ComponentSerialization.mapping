@@ -8,6 +8,8 @@ CLASS net/minecraft/network/chat/ComponentSerialization
 		ARG 1 codecGetter
 		ARG 2 typeGetter
 		ARG 3 typeFieldName
+	METHOD lambda$createCodec$3 (Lcom/mojang/serialization/MapCodec;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 2 instance
 	METHOD lambda$createCodec$5 (Lcom/mojang/serialization/MapCodec;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 		ARG 2 instance
 	METHOD lambda$createCodec$6 (Lcom/mojang/datafixers/util/Either;)Lnet/minecraft/network/chat/Component;
@@ -26,6 +28,16 @@ CLASS net/minecraft/network/chat/ComponentSerialization
 		ARG 0 component
 	METHOD lambda$static$1 (Lnet/minecraft/network/chat/Component;)Lcom/mojang/serialization/DataResult;
 		ARG 0 component
+	CLASS 1
+		METHOD asJsonOps (Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/DynamicOps;
+			ARG 0 ops
+		METHOD decode (Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 ops
+			ARG 2 element
+		METHOD encode (Ljava/lang/Object;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 component
+			ARG 2 ops
+			ARG 3 value
 	CLASS FuzzyCodec
 		METHOD <init> (Ljava/util/List;Ljava/util/function/Function;)V
 			ARG 1 codecs

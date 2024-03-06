@@ -6,32 +6,62 @@ CLASS net/minecraft/world/level/block/entity/BlockEntity
 	METHOD addEntityType (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/block/entity/BlockEntityType;)V
 		ARG 0 tag
 		ARG 1 entityType
+	METHOD applyComponents (Lnet/minecraft/core/component/DataComponentMap;)V
+		ARG 1 components
 	METHOD clearRemoved ()V
 		COMMENT Marks this {@code BlockEntity} as valid again (no longer removed from the level).
+	METHOD collectComponents (Lnet/minecraft/core/component/DataComponentMap$Builder;)V
+		ARG 1 builder
 	METHOD fillCrashReportCategory (Lnet/minecraft/CrashReportCategory;)V
 		ARG 1 reportCategory
 	METHOD getPosFromTag (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/core/BlockPos;
 		ARG 0 tag
+	METHOD getUpdateTag (Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 lookupProvider
 	METHOD hasLevel ()Z
 		COMMENT @return whether this BlockEntity's level has been set
 	METHOD lambda$loadStatic$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Ljava/lang/String;Lnet/minecraft/world/level/block/entity/BlockEntityType;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 3 type
 	METHOD lambda$loadStatic$1 (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 2 blockEntity
+	METHOD lambda$loadStatic$1 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;Ljava/lang/String;Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+		ARG 3 blockEntity
 	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
+	METHOD load (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;)V
+		ARG 1 tag
+		ARG 2 lookupProvider
 	METHOD loadStatic (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 0 pos
 		ARG 1 state
 		ARG 2 tag
+	METHOD loadStatic (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+		ARG 0 blockPos
+		ARG 1 blockState
+		ARG 2 tag
+		ARG 3 lookupProvider
+	METHOD removeComponentsFromTag (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 1 tag
 	METHOD saveAdditional (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
+	METHOD saveAdditional (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;)V
+		ARG 1 tag
+		ARG 2 lookupProvider
 	METHOD saveId (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
 	METHOD saveMetadata (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
 	METHOD saveToItem (Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 stack
+	METHOD saveToItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/HolderLookup$Provider;)V
+		ARG 1 itemStack
+		ARG 2 lookupProvider
+	METHOD saveWithFullMetadata (Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 lookupProvider
+	METHOD saveWithId (Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 lookupProvider
+	METHOD saveWithoutMetadata (Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 lookupProvider
 	METHOD setBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 blockState
 	METHOD setChanged (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
