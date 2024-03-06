@@ -10,6 +10,10 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 1 item
 		ARG 2 count
 		ARG 3 tag
+	METHOD <init> (Lnet/minecraft/core/Holder;ILnet/minecraft/core/component/DataComponentPatch;)V
+		ARG 1 holder
+		ARG 2 count
+		ARG 3 patch
 	METHOD <init> (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compoundTag
 	METHOD <init> (Lnet/minecraft/world/level/ItemLike;)V
@@ -17,16 +21,43 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD <init> (Lnet/minecraft/world/level/ItemLike;I)V
 		ARG 1 item
 		ARG 2 count
+	METHOD <init> (Lnet/minecraft/world/level/ItemLike;ILnet/minecraft/core/component/PatchedDataComponentMap;)V
+		ARG 1 item
+		ARG 2 count
+		ARG 3 map
 	METHOD addAttributeModifier (Lnet/minecraft/world/entity/ai/attributes/Attribute;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;Lnet/minecraft/world/entity/EquipmentSlot;)V
 		ARG 1 attribute
 		ARG 2 modifier
 		ARG 3 slot
+	METHOD addAttributeTooltips (Ljava/util/function/Consumer;Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 component
+		ARG 2 player
+	METHOD addModifierTooltip (Ljava/util/function/Consumer;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
+		ARG 1 tooltip
+		ARG 2 player
+		ARG 3 attribute
+		ARG 4 attributeModifier
 	METHOD addTagElement (Ljava/lang/String;Lnet/minecraft/nbt/Tag;)V
 		ARG 1 key
 		ARG 2 tag
+	METHOD addToTooltip (Lnet/minecraft/core/component/DataComponentType;Ljava/util/function/Consumer;Lnet/minecraft/world/item/TooltipFlag;)V
+		ARG 1 componentType
+		ARG 2 component
+		ARG 3 flag
 	METHOD appendEnchantmentNames (Ljava/util/List;Lnet/minecraft/nbt/ListTag;)V
 		ARG 0 tooltipComponents
 		ARG 1 storedEnchantments
+	METHOD applyComponents (Lnet/minecraft/core/component/DataComponentMap;)V
+		ARG 1 components
+	METHOD applyComponents (Lnet/minecraft/core/component/DataComponentPatch;)V
+		ARG 1 patch
+	METHOD canBreakBlockInAdventureMode (Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+		ARG 1 block
+	METHOD canPlaceOnBlockInAdventureMode (Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+		ARG 1 block
+	METHOD consume (ILnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 count
+		ARG 2 entity
 	METHOD copy ()Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns a new stack with the same properties.
 	METHOD copyWithCount (I)Lnet/minecraft/world/item/ItemStack;
@@ -41,6 +72,9 @@ CLASS net/minecraft/world/item/ItemStack
 		COMMENT Called when the item in use count reach 0, e.g. item food eaten. Return the new ItemStack. Args : world, entity
 		ARG 1 level
 		ARG 2 livingEntity
+	METHOD forEachModifier (Lnet/minecraft/world/entity/EquipmentSlot;Ljava/util/function/BiConsumer;)V
+		ARG 1 slot
+		ARG 2 attirbuteModifiers
 	METHOD getAttributeModifiers (Lnet/minecraft/world/entity/EquipmentSlot;)Lcom/google/common/collect/Multimap;
 		COMMENT Gets the attribute modifiers for this ItemStack.
 		COMMENT Will check for an NBT tag list containing modifiers for the stack.
@@ -82,6 +116,10 @@ CLASS net/minecraft/world/item/ItemStack
 		COMMENT Returns {@code true} if the itemstack has a display name
 	METHOD hasTag ()Z
 		COMMENT Returns {@code true} if the ItemStack has an NBTTagCompound. Currently used to store enchantments.
+	METHOD hashItemAndComponents (Lnet/minecraft/world/item/ItemStack;)I
+		ARG 0 stack
+	METHOD hashStackList (Ljava/util/List;)I
+		ARG 0 stacks
 	METHOD hideTooltipPart (Lnet/minecraft/world/item/ItemStack$TooltipPart;)V
 		ARG 1 part
 	METHOD hurt (ILnet/minecraft/util/RandomSource;Lnet/minecraft/server/level/ServerPlayer;)Z
@@ -89,10 +127,19 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 1 amount
 		ARG 2 random
 		ARG 3 user
+	METHOD hurtAndBreak (ILnet/minecraft/util/RandomSource;Lnet/minecraft/server/level/ServerPlayer;Ljava/lang/Runnable;)V
+		ARG 1 damageValue
+		ARG 2 random
+		ARG 3 player
+		ARG 4 onStackBroken
 	METHOD hurtAndBreak (ILnet/minecraft/world/entity/LivingEntity;Ljava/util/function/Consumer;)V
 		ARG 1 amount
 		ARG 2 entity
 		ARG 3 onBroken
+	METHOD hurtAndBreak (ILnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;)V
+		ARG 1 damageValue
+		ARG 2 entity
+		ARG 3 slot
 	METHOD hurtEnemy (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/player/Player;)V
 		COMMENT Calls the delegated method to the Item to damage the incoming Entity, and if necessary, triggers a stats increase.
 		ARG 1 entity
@@ -135,11 +182,60 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD isSameItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 stack
 		ARG 1 other
+	METHOD isSameItemSameComponents (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 stack
+		ARG 1 otherStack
 	METHOD isSameItemSameTags (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 stack
 		ARG 1 other
 	METHOD isStackable ()Z
 		COMMENT Returns {@code true} if the {@code ItemStack} can hold 2 or more units of the item.
+	METHOD lambda$addAttributeTooltips$14 (Lorg/apache/commons/lang3/mutable/MutableBoolean;Ljava/util/function/Consumer;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
+		ARG 5 attribute
+		ARG 6 attributeModifier
+	METHOD lambda$addAttributeTooltips$17 (Lorg/apache/commons/lang3/mutable/MutableBoolean;Ljava/util/function/Consumer;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
+		ARG 5 attribute
+		ARG 6 modifier
+	METHOD lambda$enchant$15 (Lnet/minecraft/world/item/enchantment/Enchantment;ILnet/minecraft/world/item/enchantment/ItemEnchantments$Mutable;)V
+		ARG 2 enchantment
+	METHOD lambda$getDisplayName$16 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 style
+	METHOD lambda$optionalFieldOf$12 (Ljava/util/Optional;)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 stack
+	METHOD lambda$optionalFieldOf$13 (Lnet/minecraft/world/item/ItemStack;)Ljava/util/Optional;
+		ARG 0 stack
+	METHOD lambda$optionalFieldOf$15 (Ljava/util/Optional;)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 stack
+	METHOD lambda$optionalFieldOf$16 (Lnet/minecraft/world/item/ItemStack;)Ljava/util/Optional;
+		ARG 0 stack
+	METHOD lambda$parse$10 (Ljava/lang/String;)V
+		ARG 0 item
+	METHOD lambda$static$1 (Lnet/minecraft/core/Holder;)Lcom/mojang/serialization/DataResult;
+		ARG 0 holder
+	METHOD lambda$static$11 (Ljava/util/Optional;)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 stack
+	METHOD lambda$static$12 (Lnet/minecraft/world/item/ItemStack;)Ljava/util/Optional;
+		ARG 0 stack
+	METHOD lambda$static$2 (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/core/component/DataComponentPatch;
+		ARG 0 stack
+	METHOD lambda$static$3 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
+	METHOD lambda$static$5 (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/core/component/DataComponentPatch;
+		ARG 0 stack
+	METHOD lambda$static$6 (Lnet/minecraft/core/Holder;Lnet/minecraft/core/component/DataComponentPatch;)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 holder
+		ARG 1 patch
+	METHOD lambda$static$7 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
+	METHOD lambda$static$7 (Ljava/util/Optional;)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 stack
+	METHOD lambda$static$8 (Lnet/minecraft/world/item/ItemStack;)Ljava/util/Optional;
+		ARG 0 stack
+	METHOD lambda$static$9 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
+	METHOD listMatches (Ljava/util/List;Ljava/util/List;)Z
+		ARG 0 stacks
+		ARG 1 otherStacks
 	METHOD matches (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Compares both {@code ItemStacks}, returns {@code true} if both {@code ItemStacks} are equal.
 		ARG 0 stack
@@ -165,6 +261,8 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 1 level
 		ARG 2 livingEntity
 		ARG 3 count
+	METHOD optionalFieldOf (Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+		ARG 0 fieldName
 	METHOD overrideOtherStackedOnMe (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/inventory/ClickAction;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/SlotAccess;)Z
 		ARG 1 stack
 		ARG 2 slot
@@ -175,18 +273,36 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 1 slot
 		ARG 2 action
 		ARG 3 player
+	METHOD parse (Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/nbt/Tag;)Ljava/util/Optional;
+		ARG 0 lookupProvider
+		ARG 1 tag
+	METHOD parseOptional (Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 lookupProvider
+		ARG 1 tag
 	METHOD releaseUsing (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V
 		COMMENT Called when the player releases the use item button.
 		ARG 1 level
 		ARG 2 livingEntity
 		ARG 3 timeLeft
+	METHOD remove (Lnet/minecraft/core/component/DataComponentType;)Ljava/lang/Object;
+		ARG 1 componentType
 	METHOD removeTagKey (Ljava/lang/String;)V
 		ARG 1 key
 	METHOD resetHoverName ()V
 		COMMENT Clear any custom name set for this ItemStack
+	METHOD save (Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/nbt/Tag;
+		ARG 1 lookupProvider
+	METHOD save (Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+		ARG 1 lookupProvider
+		ARG 2 tag
 	METHOD save (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Write the stack fields to a NBT object. Return the new NBT object.
 		ARG 1 compoundTag
+	METHOD saveOptional (Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/nbt/Tag;
+		ARG 1 lookupProvider
+	METHOD set (Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Ljava/lang/Object;
+		ARG 1 type
+		ARG 2 element
 	METHOD setCount (I)V
 		ARG 1 count
 	METHOD setDamageValue (I)V
@@ -211,6 +327,19 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD split (I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Splits off a stack of the given amount of this stack and reduces this stack by the amount.
 		ARG 1 amount
+	METHOD transmuteCopy (Lnet/minecraft/world/level/ItemLike;I)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 item
+		ARG 2 count
+	METHOD transmuteCopyIgnoreEmpty (Lnet/minecraft/world/level/ItemLike;I)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 item
+		ARG 2 count
+	METHOD update (Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object;
+		ARG 1 type
+		ARG 2 element
+	METHOD update (Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;Ljava/util/function/UnaryOperator;)Ljava/lang/Object;
+		ARG 1 componentType
+		ARG 2 element
+		ARG 3 elementUpdater
 	METHOD use (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
 		COMMENT Called when the {@code ItemStack} is equipped and right-clicked. Replaces the {@code ItemStack} with the return value.
 		ARG 1 level
@@ -218,3 +347,5 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 3 usedHand
 	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 context
+	METHOD validate (Lnet/minecraft/world/item/ItemStack;)Lcom/mojang/serialization/DataResult;
+		ARG 0 stack

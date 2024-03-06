@@ -156,11 +156,18 @@ CLASS net/minecraft/world/item/Item
 	METHOD useOnRelease (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT If this stack's item is a crossbow
 		ARG 1 stack
+	METHOD verifyComponentsAfterLoad (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 itemStack
 	METHOD verifyTagAfterLoad (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
 	CLASS Properties
 		FIELD foodProperties Lnet/minecraft/world/food/FoodProperties;
 			COMMENT Sets food information to this item
+		METHOD attributes (Lnet/minecraft/world/item/component/ItemAttributeModifiers;)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 attributeModifiers
+		METHOD component (Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 componentType
+			ARG 2 value
 		METHOD craftRemainder (Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 craftingRemainingItem
 		METHOD defaultDurability (I)Lnet/minecraft/world/item/Item$Properties;
