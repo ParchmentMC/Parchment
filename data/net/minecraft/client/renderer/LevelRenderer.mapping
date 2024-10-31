@@ -133,6 +133,11 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 xSpeed
 		ARG 12 ySpeed
 		ARG 14 zSpeed
+	METHOD addParticlesPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/client/Camera;FLnet/minecraft/client/renderer/FogParameters;)V
+		ARG 1 frameGraphBuilder
+		ARG 2 camera
+		ARG 3 partialTick
+		ARG 4 fog
 	METHOD addParticlesPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/LightTexture;FLnet/minecraft/client/renderer/FogParameters;)V
 		ARG 1 frameGraphBuilder
 		ARG 2 camera
@@ -152,6 +157,11 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 3 cameraPosition
 		ARG 4 partialTick
 		ARG 5 fog
+	METHOD addWeatherPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/world/phys/Vec3;FLnet/minecraft/client/renderer/FogParameters;)V
+		ARG 1 frameGraphBuilder
+		ARG 2 cameraPosition
+		ARG 3 partialTick
+		ARG 4 fog
 	METHOD allChanged ()V
 		COMMENT Loads all renderers and sets up the basic options usage.
 	METHOD applyFrustum (Lnet/minecraft/client/renderer/culling/Frustum;)V
@@ -253,6 +263,8 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 0 frustum
 	METHOD onChunkLoaded (Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 chunkPos
+	METHOD onChunkReadyToRender (Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 1 chunkPos
 	METHOD onResourceManagerReload (Lnet/minecraft/server/packs/resources/ResourceManager;)V
 		ARG 1 resourceManager
 	METHOD onSectionBecomingNonEmpty (J)V
@@ -351,6 +363,14 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 6 lightTexture
 		ARG 7 frustumMatrix
 		ARG 8 projectionMatrix
+	METHOD renderLevel (Lcom/mojang/blaze3d/resource/GraphicsResourceAllocator;Lnet/minecraft/client/DeltaTracker;ZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lorg/joml/Matrix4f;Lorg/joml/Matrix4f;)V
+		ARG 1 graphicsResourceAllocator
+		ARG 2 deltaTracker
+		ARG 3 renderBlockOutline
+		ARG 4 camera
+		ARG 5 gameRenderer
+		ARG 6 frustumMatrix
+		ARG 7 projectionMatrix
 	METHOD renderLevel (Lnet/minecraft/client/DeltaTracker;ZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lorg/joml/Matrix4f;Lorg/joml/Matrix4f;)V
 		ARG 1 deltaTracker
 		ARG 2 renderBlockOutline

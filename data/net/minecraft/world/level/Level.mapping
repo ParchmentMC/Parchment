@@ -21,7 +21,7 @@ CLASS net/minecraft/world/level/Level
 		ARG 7 biomeZoomSeed
 		ARG 9 maxChainedNeighborUpdates
 	METHOD addAlwaysVisibleParticle (Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
-		ARG 1 particleData
+		ARG 1 particle
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
@@ -29,7 +29,7 @@ CLASS net/minecraft/world/level/Level
 		ARG 10 ySpeed
 		ARG 12 zSpeed
 	METHOD addAlwaysVisibleParticle (Lnet/minecraft/core/particles/ParticleOptions;ZDDDDDD)V
-		ARG 1 particleData
+		ARG 1 particle
 		ARG 2 ignoreRange
 		ARG 3 x
 		ARG 5 y
@@ -59,6 +59,16 @@ CLASS net/minecraft/world/level/Level
 		ARG 9 xSpeed
 		ARG 11 ySpeed
 		ARG 13 zSpeed
+	METHOD addParticle (Lnet/minecraft/core/particles/ParticleOptions;ZZDDDDDD)V
+		ARG 1 particle
+		ARG 2 overrideLimiter
+		ARG 3 alwaysShow
+		ARG 4 x
+		ARG 6 y
+		ARG 8 z
+		ARG 10 xSpeed
+		ARG 12 ySpeed
+		ARG 14 zSpeed
 	METHOD blockEntityChanged (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD blockEvent (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;II)V
@@ -260,7 +270,7 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 partialTick
 	METHOD getSunAngle (F)F
 		COMMENT Return getCelestialAngle()*2*PI
-		ARG 1 partialTicks
+		ARG 1 partialTick
 	METHOD getThunderLevel (F)F
 		ARG 1 partialTick
 	METHOD globalLevelEvent (ILnet/minecraft/core/BlockPos;I)V
@@ -293,6 +303,8 @@ CLASS net/minecraft/world/level/Level
 		ARG 2 state
 	METHOD isThundering ()Z
 		COMMENT Returns {@code true} if the current thunder strength (weighted with the rain strength) is greater than 0.9
+	METHOD lambda$getEntities$1 (Ljava/util/function/Predicate;Ljava/util/List;ILnet/minecraft/world/level/entity/EntityTypeTest;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/util/AbortableIterationConsumer$Continuation;
+		ARG 4 entity
 	METHOD loadedAndEntityCanStandOn (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 pos
 		ARG 2 entity

@@ -10,6 +10,11 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 4 cookie
 	METHOD ackBlockChangesUpTo (I)V
 		ARG 1 sequence
+	METHOD addBlockDataToItem (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 0 state
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 stack
 	METHOD addPendingMessage (Lnet/minecraft/network/chat/PlayerChatMessage;)V
 		ARG 1 message
 	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;)V
@@ -202,6 +207,8 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	METHOD tryHandleChat (Ljava/lang/String;Ljava/lang/Runnable;)V
 		ARG 1 message
 		ARG 2 handler
+	METHOD tryPickItem (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 stack
 	METHOD unpackAndApplyLastSeen (Lnet/minecraft/network/chat/LastSeenMessages$Update;)Ljava/util/Optional;
 		ARG 1 update
 	METHOD updateBookContents (Ljava/util/List;I)V

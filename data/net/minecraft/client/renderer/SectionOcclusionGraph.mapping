@@ -35,13 +35,23 @@ CLASS net/minecraft/client/renderer/SectionOcclusionGraph
 		ARG 5 isNearby
 	METHOD lambda$initializeQueueForFullUpdate$4 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/SectionOcclusionGraph$Node;)D
 		ARG 1 node
+	METHOD lambda$initializeQueueForFullUpdate$5 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/SectionOcclusionGraph$Node;)D
+		ARG 1 node
 	METHOD lambda$runPartialUpdate$3 (Lnet/minecraft/client/renderer/culling/Frustum;Ljava/util/List;Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
+		ARG 2 renderSection
+	METHOD lambda$runPartialUpdate$4 (Lnet/minecraft/client/renderer/culling/Frustum;Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
 		ARG 2 renderSection
 	METHOD lambda$scheduleFullUpdate$0 (Lnet/minecraft/client/renderer/SectionOcclusionGraph$GraphState;Lnet/minecraft/client/renderer/SectionOcclusionGraph$Node;)V
 		ARG 1 node
+	METHOD lambda$scheduleFullUpdate$1 (Lnet/minecraft/client/renderer/SectionOcclusionGraph$GraphState;Lnet/minecraft/client/renderer/SectionOcclusionGraph$Node;)V
+		ARG 1 node
 	METHOD lambda$scheduleFullUpdate$1 (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
 		ARG 0 renderSection
+	METHOD lambda$scheduleFullUpdate$2 (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
+		ARG 0 renderSection
 	METHOD onChunkLoaded (Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 1 chunkPos
+	METHOD onChunkReadyToRender (Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 chunkPos
 	METHOD onSectionCompiled (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
 		ARG 1 section
@@ -95,6 +105,16 @@ CLASS net/minecraft/client/renderer/SectionOcclusionGraph
 		ARG 5 loadedEmptySections
 	METHOD waitAndReset (Lnet/minecraft/client/renderer/ViewArea;)V
 		ARG 1 viewArea
+	CLASS GraphState
+		METHOD <init> (I)V
+			ARG 1 size
+		METHOD <init> (Lnet/minecraft/client/renderer/ViewArea;)V
+			ARG 1 viewArea
+	CLASS GraphStorage
+		METHOD <init> (I)V
+			ARG 1 size
+		METHOD <init> (Lnet/minecraft/client/renderer/ViewArea;)V
+			ARG 1 viewArea
 	CLASS Node
 		METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;Lnet/minecraft/core/Direction;I)V
 			ARG 1 section
@@ -111,16 +131,6 @@ CLASS net/minecraft/client/renderer/SectionOcclusionGraph
 		METHOD setDirections (BLnet/minecraft/core/Direction;)V
 			ARG 1 currentValue
 			ARG 2 direction
-	CLASS GraphState
-		METHOD <init> (I)V
-			ARG 1 size
-		METHOD <init> (Lnet/minecraft/client/renderer/ViewArea;)V
-			ARG 1 viewArea
-	CLASS GraphStorage
-		METHOD <init> (I)V
-			ARG 1 size
-		METHOD <init> (Lnet/minecraft/client/renderer/ViewArea;)V
-			ARG 1 viewArea
 	CLASS SectionToNodeMap
 		METHOD <init> (I)V
 			ARG 1 size

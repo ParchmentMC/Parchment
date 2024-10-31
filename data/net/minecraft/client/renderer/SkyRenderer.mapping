@@ -1,9 +1,20 @@
 CLASS net/minecraft/client/renderer/SkyRenderer
+	METHOD buildEndSky (Lcom/mojang/blaze3d/vertex/VertexConsumer;)V
+		ARG 1 buffer
 	METHOD buildSkyDisc (Lcom/mojang/blaze3d/vertex/Tesselator;F)Lcom/mojang/blaze3d/vertex/MeshData;
 		ARG 1 tesselator
 		ARG 2 y
+	METHOD buildSkyDisc (Lcom/mojang/blaze3d/vertex/VertexConsumer;F)V
+		ARG 1 buffer
+		ARG 2 y
+	METHOD buildStars (Lcom/mojang/blaze3d/vertex/VertexConsumer;)V
+		ARG 1 buffer
 	METHOD drawStars (Lcom/mojang/blaze3d/vertex/Tesselator;)Lcom/mojang/blaze3d/vertex/MeshData;
 		ARG 1 tesselator
+	METHOD lambda$new$0 (Lcom/mojang/blaze3d/vertex/VertexConsumer;)V
+		ARG 1 buffer
+	METHOD lambda$new$1 (Lcom/mojang/blaze3d/vertex/VertexConsumer;)V
+		ARG 1 buffer
 	METHOD renderDarkDisc (Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 poseStack
 	METHOD renderEndSky (Lcom/mojang/blaze3d/vertex/PoseStack;)V
@@ -12,6 +23,11 @@ CLASS net/minecraft/client/renderer/SkyRenderer
 		ARG 1 phase
 		ARG 2 alpha
 		ARG 3 tesselator
+		ARG 4 poseStack
+	METHOD renderMoon (IFLnet/minecraft/client/renderer/MultiBufferSource;Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 phase
+		ARG 2 alpha
+		ARG 3 bufferSource
 		ARG 4 poseStack
 	METHOD renderSkyDisc (FFF)V
 		ARG 1 red
@@ -25,6 +41,10 @@ CLASS net/minecraft/client/renderer/SkyRenderer
 		ARG 1 alpha
 		ARG 2 tesselator
 		ARG 3 poseStack
+	METHOD renderSun (FLnet/minecraft/client/renderer/MultiBufferSource;Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 alpha
+		ARG 2 bufferSource
+		ARG 3 poseStack
 	METHOD renderSunMoonAndStars (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/Tesselator;FIFFLnet/minecraft/client/renderer/FogParameters;)V
 		ARG 1 poseStack
 		ARG 2 tesselator
@@ -33,8 +53,21 @@ CLASS net/minecraft/client/renderer/SkyRenderer
 		ARG 5 rainLevel
 		ARG 6 starBrightness
 		ARG 7 fog
+	METHOD renderSunMoonAndStars (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;FIFFLnet/minecraft/client/renderer/FogParameters;)V
+		ARG 1 poseStack
+		ARG 2 bufferSource
+		ARG 3 timeOfDay
+		ARG 4 moonPhase
+		ARG 5 rainLevel
+		ARG 6 starBrightness
+		ARG 7 fog
 	METHOD renderSunriseAndSunset (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/Tesselator;FI)V
 		ARG 1 poseStack
 		ARG 2 tesselator
+		ARG 3 sunAngle
+		ARG 4 color
+	METHOD renderSunriseAndSunset (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;FI)V
+		ARG 1 poseStack
+		ARG 2 bufferSource
 		ARG 3 sunAngle
 		ARG 4 color
