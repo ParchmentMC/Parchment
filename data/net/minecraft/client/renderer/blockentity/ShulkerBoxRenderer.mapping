@@ -1,9 +1,21 @@
 CLASS net/minecraft/client/renderer/blockentity/ShulkerBoxRenderer
+	METHOD <init> (Lnet/minecraft/client/model/geom/EntityModelSet;)V
+		ARG 1 modelSet
 	METHOD <init> (Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider$Context;)V
 		ARG 1 context
+	METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IILnet/minecraft/core/Direction;FLnet/minecraft/client/resources/model/Material;)V
+		ARG 1 poseStack
+		ARG 2 bufferSource
+		ARG 3 packedLight
+		ARG 4 packedOverlay
+		ARG 5 facing
+		ARG 6 progress
+		ARG 7 material
 	CLASS ShulkerBoxModel
 		METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;)V
 			ARG 1 root
+		METHOD animate (F)V
+			ARG 1 progress
 		METHOD animate (Lnet/minecraft/world/level/block/entity/ShulkerBoxBlockEntity;F)V
 			ARG 1 blockEntity
 			ARG 2 partialTick

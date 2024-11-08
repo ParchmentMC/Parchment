@@ -14,11 +14,24 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 		ARG 1 button
 	METHOD lambda$initButtons$3 (Lnet/minecraft/client/gui/components/Button;)V
 		ARG 1 button
+	METHOD lambda$initButtons$4 (Lnet/minecraft/client/gui/screens/achievement/StatsScreen;Lnet/minecraft/client/gui/components/events/GuiEventListener;)V
+		ARG 1 listener
 	METHOD setActiveList (Lnet/minecraft/client/gui/components/ObjectSelectionList;)V
 		ARG 1 activeList
+	CLASS GeneralStatisticsList
+		METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen;Lnet/minecraft/client/Minecraft;)V
+			ARG 2 minecraft
+		METHOD lambda$new$0 (Lnet/minecraft/stats/Stat;)Ljava/lang/String;
+			ARG 0 stat
+		CLASS Entry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen$GeneralStatisticsList;Lnet/minecraft/stats/Stat;)V
+				ARG 2 stat
 	CLASS ItemStatisticsList
 		METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen;Lnet/minecraft/client/Minecraft;)V
 			ARG 2 minecraft
+		METHOD clickedHeader (II)Z
+			ARG 1 x
+			ARG 2 y
 		METHOD getColumn (I)Lnet/minecraft/stats/StatType;
 			ARG 1 index
 		METHOD getColumnIndex (Lnet/minecraft/stats/StatType;)I
@@ -37,6 +50,9 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 				ARG 4 y
 				ARG 5 evenRow
 		CLASS ItemRowComparator
+			METHOD compare (Ljava/lang/Object;Ljava/lang/Object;)I
+				ARG 1 first
+				ARG 2 second
 			METHOD compare (Lnet/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRow;Lnet/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRow;)I
 				ARG 1 row1
 				ARG 2 row2
@@ -46,11 +62,3 @@ CLASS net/minecraft/client/gui/screens/achievement/StatsScreen
 		CLASS MobRow
 			METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen$MobsStatisticsList;Lnet/minecraft/world/entity/EntityType;)V
 				ARG 2 entityType
-	CLASS GeneralStatisticsList
-		METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen;Lnet/minecraft/client/Minecraft;)V
-			ARG 2 minecraft
-		METHOD lambda$new$0 (Lnet/minecraft/stats/Stat;)Ljava/lang/String;
-			ARG 0 stat
-		CLASS Entry
-			METHOD <init> (Lnet/minecraft/client/gui/screens/achievement/StatsScreen$GeneralStatisticsList;Lnet/minecraft/stats/Stat;)V
-				ARG 2 stat

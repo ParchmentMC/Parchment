@@ -5,10 +5,20 @@ CLASS net/minecraft/data/DataProvider
 		ARG 0 map
 	METHOD run (Lnet/minecraft/data/CachedOutput;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 output
+	METHOD saveAll (Lnet/minecraft/data/CachedOutput;Lcom/mojang/serialization/Codec;Ljava/util/function/Function;Ljava/util/Map;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 output
+		ARG 1 codec
+		ARG 2 pathGetter
+		ARG 3 entries
 	METHOD saveAll (Lnet/minecraft/data/CachedOutput;Lcom/mojang/serialization/Codec;Lnet/minecraft/data/PackOutput$PathProvider;Ljava/util/Map;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 output
 		ARG 1 codec
 		ARG 2 pathProvider
+		ARG 3 entries
+	METHOD saveAll (Lnet/minecraft/data/CachedOutput;Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/Map;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 output
+		ARG 1 serializer
+		ARG 2 pathGetter
 		ARG 3 entries
 	METHOD saveStable (Lnet/minecraft/data/CachedOutput;Lcom/google/gson/JsonElement;Ljava/nio/file/Path;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 output

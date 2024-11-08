@@ -5,14 +5,25 @@ CLASS net/minecraft/server/packs/resources/SimpleJsonResourceReloadListener
 	METHOD <init> (Lcom/mojang/serialization/Codec;Ljava/lang/String;)V
 		ARG 1 codec
 		ARG 2 directory
+	METHOD <init> (Lcom/mojang/serialization/Codec;Lnet/minecraft/resources/FileToIdConverter;)V
+		ARG 1 codec
+		ARG 2 lister
 	METHOD <init> (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/lang/String;)V
 		ARG 1 ops
 		ARG 2 codec
 		ARG 3 directory
+	METHOD <init> (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Lnet/minecraft/resources/FileToIdConverter;)V
+		ARG 1 ops
+		ARG 2 codec
+		ARG 3 lister
 	METHOD <init> (Lnet/minecraft/core/HolderLookup$Provider;Lcom/mojang/serialization/Codec;Ljava/lang/String;)V
 		ARG 1 registries
 		ARG 2 codec
 		ARG 3 directory
+	METHOD <init> (Lnet/minecraft/core/HolderLookup$Provider;Lcom/mojang/serialization/Codec;Lnet/minecraft/resources/ResourceKey;)V
+		ARG 1 provider
+		ARG 2 codec
+		ARG 3 registryKey
 	METHOD prepare (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Ljava/util/Map;
 		COMMENT Performs any reloading that can be done off-thread, such as file IO
 		ARG 1 resourceManager
@@ -28,3 +39,15 @@ CLASS net/minecraft/server/packs/resources/SimpleJsonResourceReloadListener
 		ARG 2 ops
 		ARG 3 codec
 		ARG 4 results
+	METHOD scanDirectory (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/FileToIdConverter;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/util/Map;)V
+		ARG 0 resourceManager
+		ARG 1 lister
+		ARG 2 ops
+		ARG 3 codec
+		ARG 4 output
+	METHOD scanDirectory (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/util/Map;)V
+		ARG 0 resourceManager
+		ARG 1 registryKey
+		ARG 2 ops
+		ARG 3 codec
+		ARG 4 output
