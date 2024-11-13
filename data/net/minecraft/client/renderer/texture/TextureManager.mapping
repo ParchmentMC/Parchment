@@ -16,11 +16,21 @@ CLASS net/minecraft/client/renderer/texture/TextureManager
 	METHOD getTexture (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/AbstractTexture;)Lnet/minecraft/client/renderer/texture/AbstractTexture;
 		ARG 1 path
 		ARG 2 defaultTexture
+	METHOD lambda$_dumpAllSheets$4 (Ljava/nio/file/Path;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/AbstractTexture;)V
+		ARG 1 location
+		ARG 2 texture
 	METHOD lambda$_dumpAllSheets$8 (Ljava/nio/file/Path;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/AbstractTexture;)V
 		ARG 1 path
 		ARG 2 texture
+	METHOD lambda$reload$0 (Ljava/util/List;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/AbstractTexture;)V
+		ARG 3 location
+		ARG 4 texture
 	METHOD lambda$reload$6 (Ljava/lang/Runnable;)V
 		ARG 0 renderCall
+	METHOD loadContents (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/ReloadableTexture;)Lnet/minecraft/client/renderer/texture/TextureContents;
+		ARG 0 resourceManager
+		ARG 1 textureId
+		ARG 2 texture
 	METHOD loadTexture (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/AbstractTexture;)Lnet/minecraft/client/renderer/texture/AbstractTexture;
 		ARG 1 path
 		ARG 2 texture
@@ -33,6 +43,11 @@ CLASS net/minecraft/client/renderer/texture/TextureManager
 	METHOD register (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/AbstractTexture;)V
 		ARG 1 path
 		ARG 2 texture
+	METHOD registerAndLoad (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/ReloadableTexture;)V
+		ARG 1 textureId
+		ARG 2 texture
+	METHOD registerForNextReload (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 textureId
 	METHOD release (Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 path
 	METHOD reload (Lnet/minecraft/server/packs/resources/PreparableReloadListener$PreparationBarrier;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;Lnet/minecraft/util/profiling/ProfilerFiller;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
@@ -45,3 +60,8 @@ CLASS net/minecraft/client/renderer/texture/TextureManager
 	METHOD safeClose (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/AbstractTexture;)V
 		ARG 1 path
 		ARG 2 texture
+	METHOD scheduleLoad (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/ReloadableTexture;Ljava/util/concurrent/Executor;)Lnet/minecraft/client/renderer/texture/TextureManager$PendingReload;
+		ARG 0 resourceManager
+		ARG 1 textureId
+		ARG 2 texture
+		ARG 3 executor

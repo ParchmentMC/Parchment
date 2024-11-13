@@ -1,8 +1,14 @@
 CLASS net/minecraft/world/entity/monster/creaking/Creaking
 	METHOD activate (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
+	METHOD blameSourceForDamage (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/world/entity/player/Player;
+		ARG 1 damageSource
+	METHOD creakingDeathEffects (Lnet/minecraft/world/damagesource/DamageSource;)V
+		ARG 1 damageSource
 	METHOD setIsActive (Z)V
 		ARG 1 isActive
+	METHOD setTransient (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 homePos
 	CLASS CreakingBodyRotationControl
 		METHOD <init> (Lnet/minecraft/world/entity/monster/creaking/Creaking;Lnet/minecraft/world/entity/monster/creaking/Creaking;)V
 			ARG 2 creaking
@@ -15,3 +21,7 @@ CLASS net/minecraft/world/entity/monster/creaking/Creaking
 	CLASS CreakingMoveControl
 		METHOD <init> (Lnet/minecraft/world/entity/monster/creaking/Creaking;Lnet/minecraft/world/entity/monster/creaking/Creaking;)V
 			ARG 2 creaking
+	CLASS CreakingPathNavigation
+		METHOD <init> (Lnet/minecraft/world/entity/monster/creaking/Creaking;Lnet/minecraft/world/entity/monster/creaking/Creaking;Lnet/minecraft/world/level/Level;)V
+			ARG 2 creaking
+			ARG 3 level
