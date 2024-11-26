@@ -5,11 +5,24 @@ CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
 		ARG 2 acquiringMemory
 		ARG 3 onlyIfAdult
 		ARG 4 entityEventId
+	METHOD create (Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLjava/util/Optional;Ljava/util/function/BiPredicate;)Lnet/minecraft/world/entity/ai/behavior/BehaviorControl;
+		ARG 0 acquirablePois
+		ARG 1 existingAbsentMemory
+		ARG 2 acquiringMemory
+		ARG 3 onlyIfAdult
+		ARG 4 entityEventId
+		ARG 5 predicate
 	METHOD create (Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLjava/util/Optional;)Lnet/minecraft/world/entity/ai/behavior/BehaviorControl;
 		ARG 0 acquirablePois
 		ARG 1 acquiringMemory
 		ARG 2 onlyIfAdult
 		ARG 3 entityEventId
+	METHOD create (Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLjava/util/Optional;Ljava/util/function/BiPredicate;)Lnet/minecraft/world/entity/ai/behavior/BehaviorControl;
+		ARG 0 acquirablePois
+		ARG 1 acquiringMemory
+		ARG 2 onlyIfAdult
+		ARG 3 entityEventId
+		ARG 4 predicate
 	METHOD findPathToPois (Lnet/minecraft/world/entity/Mob;Ljava/util/Set;)Lnet/minecraft/world/level/pathfinder/Path;
 		ARG 0 mob
 		ARG 1 poiPositions
@@ -19,6 +32,14 @@ CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
 		ARG 3 pos
 	METHOD lambda$create$10 (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/world/entity/ai/behavior/OneShot;Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 		ARG 2 instance
+	METHOD lambda$create$10 (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;ZLorg/apache/commons/lang3/mutable/MutableLong;Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;Ljava/util/function/Predicate;Ljava/util/function/BiPredicate;Ljava/util/Optional;Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 7 instance
+	METHOD lambda$create$11 (Lnet/minecraft/world/entity/ai/behavior/OneShot;Lnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;)Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;
+		ARG 1 memoryAccessor
+	METHOD lambda$create$12 (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Lnet/minecraft/world/entity/ai/behavior/OneShot;Lnet/minecraft/world/entity/ai/behavior/declarative/BehaviorBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 2 instance
+	METHOD lambda$create$2 (Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;JLnet/minecraft/core/BlockPos;)Z
+		ARG 3 pos
 	METHOD lambda$create$2 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Holder;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 testPoi
 		ARG 2 testPos
@@ -28,6 +49,8 @@ CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
 		ARG 8 poiType
 	METHOD lambda$create$5 (Lnet/minecraft/server/level/ServerLevel;JJ)Lnet/minecraft/world/entity/ai/behavior/AcquirePoi$JitteredLinearRetry;
 		ARG 3 pos
+	METHOD lambda$create$5 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/PathfinderMob;Ljava/lang/Byte;)V
+		ARG 2 id
 	METHOD lambda$create$6 (ZLorg/apache/commons/lang3/mutable/MutableLong;Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;Ljava/util/function/Predicate;Lnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;Ljava/util/Optional;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/PathfinderMob;J)Z
 		ARG 6 level
 		ARG 7 mob
@@ -42,8 +65,14 @@ CLASS net/minecraft/world/entity/ai/behavior/AcquirePoi
 		ARG 4 acquirablePois
 		ARG 5 entityEventId
 		ARG 6 instance
+	METHOD lambda$create$8 (ZLorg/apache/commons/lang3/mutable/MutableLong;Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;Ljava/util/function/Predicate;Ljava/util/function/BiPredicate;Lnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;Ljava/util/Optional;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/PathfinderMob;J)Z
+		ARG 7 level
+		ARG 8 mob
+		ARG 9 time
 	METHOD lambda$create$9 (Lnet/minecraft/world/entity/ai/behavior/OneShot;Lnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;)Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;
 		ARG 1 memory
+	METHOD lambda$create$9 (ZLorg/apache/commons/lang3/mutable/MutableLong;Lit/unimi/dsi/fastutil/longs/Long2ObjectMap;Ljava/util/function/Predicate;Ljava/util/function/BiPredicate;Ljava/util/Optional;Lnet/minecraft/world/entity/ai/behavior/declarative/MemoryAccessor;)Lnet/minecraft/world/entity/ai/behavior/declarative/Trigger;
+		ARG 6 memoryAccessor
 	CLASS JitteredLinearRetry
 		METHOD <init> (Lnet/minecraft/util/RandomSource;J)V
 			ARG 1 random
