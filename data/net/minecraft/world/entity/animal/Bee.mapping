@@ -98,16 +98,18 @@ CLASS net/minecraft/world/entity/animal/Bee
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-	CLASS BeeBecomeAngryTargetGoal
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Bee;)V
-			ARG 1 mob
+	CLASS BeeWanderGoal
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-	CLASS BeeEnterHiveGoal
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
+	CLASS BeeLookControl
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Bee;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
+		METHOD tick ()V
+			COMMENT Updates look
 	CLASS BeeGoToHiveGoal
 		METHOD blacklistTarget (Lnet/minecraft/core/BlockPos;)V
 			ARG 1 pos
@@ -123,36 +125,12 @@ CLASS net/minecraft/world/entity/animal/Bee
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
-	CLASS BeeGoToKnownFlowerGoal
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
-		METHOD stop ()V
-			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
 	CLASS BeeGrowCropGoal
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
-	CLASS BeeHurtByOtherGoal
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Bee;Lnet/minecraft/world/entity/animal/Bee;)V
-			ARG 2 mob
-		METHOD alertOther (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/entity/LivingEntity;)V
-			ARG 1 mob
-			ARG 2 target
-		METHOD canContinueToUse ()Z
-			COMMENT Returns whether an in-progress EntityAIBase should continue executing
-	CLASS BeeLocateHiveGoal
-		METHOD lambda$findNearbyHivesWithSpace$0 (Lnet/minecraft/core/Holder;)Z
-			ARG 0 poiRecord
-		METHOD lambda$findNearbyHivesWithSpace$1 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)D
-			ARG 1 pos
+	CLASS BeeEnterHiveGoal
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
-	CLASS BeeLookControl
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Bee;Lnet/minecraft/world/entity/Mob;)V
-			ARG 2 mob
-		METHOD tick ()V
-			COMMENT Updates look
 	CLASS BeePollinateGoal
 		METHOD findNearestBlock (Ljava/util/function/Predicate;D)Ljava/util/Optional;
 			ARG 1 predicate
@@ -165,13 +143,35 @@ CLASS net/minecraft/world/entity/animal/Bee
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
-	CLASS BeeWanderGoal
+	CLASS BeeLocateHiveGoal
+		METHOD lambda$findNearbyHivesWithSpace$0 (Lnet/minecraft/core/Holder;)Z
+			ARG 0 poiRecord
+		METHOD lambda$findNearbyHivesWithSpace$1 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)D
+			ARG 1 pos
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+	CLASS BeeHurtByOtherGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Bee;Lnet/minecraft/world/entity/animal/Bee;)V
+			ARG 2 mob
+		METHOD alertOther (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/entity/LivingEntity;)V
+			ARG 1 mob
+			ARG 2 target
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+	CLASS ValidateFlowerGoal
+		METHOD isFlower (Lnet/minecraft/core/BlockPos;)Z
+			ARG 1 pos
+	CLASS BeeGoToKnownFlowerGoal
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS BeeBecomeAngryTargetGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Bee;)V
+			ARG 1 mob
 		METHOD canContinueToUse ()Z
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
-	CLASS ValidateFlowerGoal
-		METHOD isFlower (Lnet/minecraft/core/BlockPos;)Z
-			ARG 1 pos

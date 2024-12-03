@@ -73,6 +73,17 @@ CLASS net/minecraft/world/entity/monster/Shulker
 		ARG 1 peekAmount
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
+	CLASS ShulkerPeekGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
 	CLASS ShulkerAttackGoal
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
@@ -82,9 +93,9 @@ CLASS net/minecraft/world/entity/monster/Shulker
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
-	CLASS ShulkerBodyRotationControl
-		METHOD clientTick ()V
-			COMMENT Update the Head and Body rendering angles
+	CLASS ShulkerLookControl
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
 	CLASS ShulkerDefenseAttackGoal
 		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;)V
 			ARG 1 shulker
@@ -97,9 +108,6 @@ CLASS net/minecraft/world/entity/monster/Shulker
 		METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/server/level/ServerLevel;)Z
 			ARG 0 entity
 			ARG 1 level
-	CLASS ShulkerLookControl
-		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/Mob;)V
-			ARG 2 mob
 	CLASS ShulkerNearestAttackGoal
 		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/monster/Shulker;)V
 			ARG 2 shulker
@@ -107,14 +115,6 @@ CLASS net/minecraft/world/entity/monster/Shulker
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;
 			ARG 1 targetDistance
-	CLASS ShulkerPeekGoal
-		METHOD canContinueToUse ()Z
-			COMMENT Returns whether an in-progress EntityAIBase should continue executing
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
-		METHOD stop ()V
-			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
+	CLASS ShulkerBodyRotationControl
+		METHOD clientTick ()V
+			COMMENT Update the Head and Body rendering angles

@@ -683,17 +683,32 @@ CLASS net/minecraft/client/data/models/BlockModelGenerators
 	METHOD wrapModels (Ljava/util/List;Ljava/util/function/UnaryOperator;)Ljava/util/List;
 		ARG 0 modelLocations
 		ARG 1 variantMapper
-	CLASS BlockEntityModelGenerator
-		METHOD <init> (Lnet/minecraft/client/data/models/BlockModelGenerators;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/block/Block;)V
-			ARG 2 baseModel
-			ARG 3 particleBlock
-		METHOD create ([Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$BlockEntityModelGenerator;
-			ARG 1 blocks
-		METHOD createWithCustomBlockItemModel (Lnet/minecraft/client/data/models/model/ModelTemplate;[Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$BlockEntityModelGenerator;
-			ARG 1 modelTemplate
-			ARG 2 blocks
-		METHOD createWithoutBlockItem ([Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$BlockEntityModelGenerator;
-			ARG 1 blocks
+	CLASS PlantType
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/client/data/models/model/ModelTemplate;Lnet/minecraft/client/data/models/model/ModelTemplate;Z)V
+			ARG 3 blockTemplate
+			ARG 4 flowerPotTemplate
+			ARG 5 isEmissive
+		METHOD createItemModel (Lnet/minecraft/client/data/models/BlockModelGenerators;Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/resources/ResourceLocation;
+			ARG 1 generator
+			ARG 2 block
+		METHOD createItemModel (Lnet/minecraft/client/data/models/BlockModelGenerators;Lnet/minecraft/world/level/block/Block;)V
+			ARG 1 blockModelGenerator
+			ARG 2 block
+		METHOD getPlantTextureMapping (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/model/TextureMapping;
+			ARG 1 block
+		METHOD getTextureMapping (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/model/TextureMapping;
+			ARG 1 block
+	CLASS WoodProvider
+		METHOD <init> (Lnet/minecraft/client/data/models/BlockModelGenerators;Lnet/minecraft/client/data/models/model/TextureMapping;)V
+			ARG 2 logMapping
+		METHOD log (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$WoodProvider;
+			ARG 1 logBlock
+		METHOD logUVLocked (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$WoodProvider;
+			ARG 1 logBlock
+		METHOD logWithHorizontal (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$WoodProvider;
+			ARG 1 logBlock
+		METHOD wood (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$WoodProvider;
+			ARG 1 woodBlock
 	CLASS BlockFamilyProvider
 		METHOD <init> (Lnet/minecraft/client/data/models/BlockModelGenerators;Lnet/minecraft/client/data/models/model/TextureMapping;)V
 			ARG 2 mapping
@@ -739,35 +754,20 @@ CLASS net/minecraft/client/data/models/BlockModelGenerators
 			ARG 1 trapdoorBlock
 		METHOD wall (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$BlockFamilyProvider;
 			ARG 1 wallBlock
+	CLASS BlockEntityModelGenerator
+		METHOD <init> (Lnet/minecraft/client/data/models/BlockModelGenerators;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/block/Block;)V
+			ARG 2 baseModel
+			ARG 3 particleBlock
+		METHOD create ([Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$BlockEntityModelGenerator;
+			ARG 1 blocks
+		METHOD createWithCustomBlockItemModel (Lnet/minecraft/client/data/models/model/ModelTemplate;[Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$BlockEntityModelGenerator;
+			ARG 1 modelTemplate
+			ARG 2 blocks
+		METHOD createWithoutBlockItem ([Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$BlockEntityModelGenerator;
+			ARG 1 blocks
 	CLASS BlockStateGeneratorSupplier
 		METHOD create (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/data/models/model/TextureMapping;Ljava/util/function/BiConsumer;)Lnet/minecraft/client/data/models/blockstates/BlockStateGenerator;
 			ARG 1 block
 			ARG 2 modelLocation
 			ARG 3 textureMapping
 			ARG 4 modelOutput
-	CLASS PlantType
-		METHOD <init> (Ljava/lang/String;ILnet/minecraft/client/data/models/model/ModelTemplate;Lnet/minecraft/client/data/models/model/ModelTemplate;Z)V
-			ARG 3 blockTemplate
-			ARG 4 flowerPotTemplate
-			ARG 5 isEmissive
-		METHOD createItemModel (Lnet/minecraft/client/data/models/BlockModelGenerators;Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/resources/ResourceLocation;
-			ARG 1 generator
-			ARG 2 block
-		METHOD createItemModel (Lnet/minecraft/client/data/models/BlockModelGenerators;Lnet/minecraft/world/level/block/Block;)V
-			ARG 1 blockModelGenerator
-			ARG 2 block
-		METHOD getPlantTextureMapping (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/model/TextureMapping;
-			ARG 1 block
-		METHOD getTextureMapping (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/model/TextureMapping;
-			ARG 1 block
-	CLASS WoodProvider
-		METHOD <init> (Lnet/minecraft/client/data/models/BlockModelGenerators;Lnet/minecraft/client/data/models/model/TextureMapping;)V
-			ARG 2 logMapping
-		METHOD log (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$WoodProvider;
-			ARG 1 logBlock
-		METHOD logUVLocked (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$WoodProvider;
-			ARG 1 logBlock
-		METHOD logWithHorizontal (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$WoodProvider;
-			ARG 1 logBlock
-		METHOD wood (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/BlockModelGenerators$WoodProvider;
-			ARG 1 woodBlock
