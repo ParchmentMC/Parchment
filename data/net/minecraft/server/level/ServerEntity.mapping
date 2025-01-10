@@ -5,6 +5,13 @@ CLASS net/minecraft/server/level/ServerEntity
 		ARG 3 updateInterval
 		ARG 4 trackDelta
 		ARG 5 broadcast
+	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;IZLjava/util/function/Consumer;Ljava/util/function/BiConsumer;)V
+		ARG 1 level
+		ARG 2 entity
+		ARG 3 updateInterval
+		ARG 4 trackDelta
+		ARG 5 broadcast
+		ARG 6 broadcastWithIgnore
 	METHOD addPairing (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
 	METHOD broadcastAndSend (Lnet/minecraft/network/protocol/Packet;)V
@@ -16,8 +23,14 @@ CLASS net/minecraft/server/level/ServerEntity
 		ARG 2 yRot
 		ARG 3 xRot
 		ARG 4 dirty
+	METHOD lambda$mountedOrDismounted$0 (Ljava/util/List;Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD lambda$mountedOrDismounted$1 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
 	METHOD lambda$sendChanges$0 (Lnet/minecraft/world/entity/Entity;)V
 		ARG 0 removedPassenger
+	METHOD mountedOrDismounted (Ljava/util/List;)Ljava/util/stream/Stream;
+		ARG 1 entities
 	METHOD removePairing (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
 	METHOD removedPassengers (Ljava/util/List;Ljava/util/List;)Ljava/util/stream/Stream;

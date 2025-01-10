@@ -10,6 +10,11 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 		ARG 0 context
 	METHOD lambda$register$11 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
+	METHOD lambda$register$11 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 context
+		ARG 1 builder
+	METHOD lambda$register$12 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
 	METHOD lambda$register$12 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 context
 		ARG 1 builder
@@ -23,9 +28,18 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 		ARG 0 context
 	METHOD lambda$register$17 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
+	METHOD lambda$register$2 (Lnet/minecraft/commands/CommandSourceStack;)Z
+		ARG 0 source
+	METHOD lambda$register$3 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
 	METHOD lambda$register$3 (Lnet/minecraft/commands/CommandSourceStack;)Z
 		ARG 0 stack
 	METHOD lambda$register$4 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$4 (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 context
+		ARG 1 builder
+	METHOD lambda$register$5 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
 	METHOD lambda$register$6 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
@@ -51,6 +65,12 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 		ARG 1 targets
 		ARG 2 action
 		ARG 3 advancements
+	METHOD perform (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/server/commands/AdvancementCommands$Action;Ljava/util/Collection;Z)I
+		ARG 0 source
+		ARG 1 targets
+		ARG 2 action
+		ARG 3 advancements
+		ARG 4 grantEverything
 	METHOD performCriterion (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/server/commands/AdvancementCommands$Action;Lnet/minecraft/advancements/AdvancementHolder;Ljava/lang/String;)I
 		ARG 0 source
 		ARG 1 targets
@@ -59,10 +79,6 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 		ARG 4 criterionName
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
-	CLASS Mode
-		METHOD <init> (Ljava/lang/String;IZZ)V
-			ARG 3 parents
-			ARG 4 children
 	CLASS Action
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 			ARG 3 key
@@ -72,6 +88,10 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 			COMMENT @return The number of players affected.
 			ARG 1 player
 			ARG 2 advancements
+		METHOD perform (Lnet/minecraft/server/level/ServerPlayer;Ljava/lang/Iterable;Z)I
+			ARG 1 player
+			ARG 2 advancements
+			ARG 3 grantEverything
 		METHOD perform (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/advancements/AdvancementHolder;)Z
 			ARG 1 player
 			ARG 2 advancement
@@ -79,3 +99,7 @@ CLASS net/minecraft/server/commands/AdvancementCommands
 			ARG 1 player
 			ARG 2 advancement
 			ARG 3 criterionName
+	CLASS Mode
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 parents
+			ARG 4 children

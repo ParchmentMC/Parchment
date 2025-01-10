@@ -88,6 +88,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 3 onGround
 		ARG 4 state
 		ARG 5 pos
+	METHOD checkInsideBlocks (Ljava/util/List;Ljava/util/List;)V
+		ARG 1 movements
+		ARG 2 blocksInside
 	METHOD checkInsideBlocks (Ljava/util/List;Ljava/util/Set;)V
 		ARG 1 movements
 		ARG 2 blocksInside
@@ -443,6 +446,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 pos
 	METHOD lambda$isInWall$2 (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/core/BlockPos;)Z
 		ARG 2 pos
+	METHOD lambda$load$1 (Lnet/minecraft/nbt/Tag;Lcom/mojang/serialization/DataResult$Error;)V
+		ARG 1 error
 	METHOD lambda$move$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 loadedState
 	METHOD lambda$removePassenger$4 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
@@ -515,6 +520,10 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD move (Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 type
 		ARG 2 movement
+	METHOD moveOrInterpolateTo (Lnet/minecraft/world/phys/Vec3;FF)V
+		ARG 1 pos
+		ARG 2 yRot
+		ARG 3 xRot
 	METHOD moveRelative (FLnet/minecraft/world/phys/Vec3;)V
 		ARG 1 amount
 		ARG 2 relative
@@ -551,6 +560,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 numbers
 	METHOD onAboveBubbleCol (Z)V
 		ARG 1 downwards
+	METHOD onAboveBubbleCol (ZLnet/minecraft/core/BlockPos;)V
+		ARG 1 dragDown
+		ARG 2 pos
 	METHOD onExplosionHit (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD onInsideBlock (Lnet/minecraft/world/level/block/state/BlockState;)V
@@ -652,6 +664,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD saveWithoutId (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Writes this entity, including passengers, to NBT, regardless as to whether it is removed or a passenger. Does <b>not</b> include the entity's type ID, so the NBT is insufficient to recreate the entity using {@link AnvilChunkLoader#readWorldEntity}. Use {@link #writeUnlessPassenger} for that purpose.
 		ARG 1 compound
+	METHOD sendBubbleColumnParticles (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
 	METHOD sendTeleportTransitionToRidingPlayers (Lnet/minecraft/world/level/portal/TeleportTransition;)V
 		ARG 1 teleportTransition
 	METHOD setAirSupply (I)V
@@ -885,11 +899,11 @@ CLASS net/minecraft/world/entity/Entity
 			ARG 2 x
 			ARG 4 y
 			ARG 6 z
-	CLASS RemovalReason
-		METHOD <init> (Ljava/lang/String;IZZ)V
-			ARG 3 destroy
-			ARG 4 save
 	CLASS MovementEmission
 		METHOD <init> (Ljava/lang/String;IZZ)V
 			ARG 3 sounds
 			ARG 4 events
+	CLASS RemovalReason
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 destroy
+			ARG 4 save

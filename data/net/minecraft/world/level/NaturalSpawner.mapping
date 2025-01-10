@@ -76,6 +76,13 @@ CLASS net/minecraft/world/level/NaturalSpawner
 		ARG 1 chunk
 	METHOD lambda$static$0 (Lnet/minecraft/world/entity/MobCategory;)Z
 		ARG 0 category
+	METHOD mobsAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Holder;)Lnet/minecraft/util/random/WeightedList;
+		ARG 0 level
+		ARG 1 structureManager
+		ARG 2 generator
+		ARG 3 cetagory
+		ARG 4 pos
+		ARG 5 biome
 	METHOD mobsAt (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Holder;)Lnet/minecraft/util/random/WeightedRandomList;
 		ARG 0 level
 		ARG 1 structureManager
@@ -117,6 +124,19 @@ CLASS net/minecraft/world/level/NaturalSpawner
 		ARG 1 biome
 		ARG 2 chunkPos
 		ARG 3 random
+	CLASS AfterSpawnCallback
+		METHOD run (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+			ARG 1 mob
+			ARG 2 chunk
+	CLASS ChunkGetter
+		METHOD query (JLjava/util/function/Consumer;)V
+			ARG 1 chunkPos
+			ARG 3 chunkConsumer
+	CLASS SpawnPredicate
+		METHOD test (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
+			ARG 1 entityType
+			ARG 2 pos
+			ARG 3 chunk
 	CLASS SpawnState
 		METHOD <init> (ILit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;Lnet/minecraft/world/level/PotentialCalculator;Lnet/minecraft/world/level/LocalMobCapCalculator;)V
 			ARG 1 spawnableChunkCount
@@ -138,16 +158,3 @@ CLASS net/minecraft/world/level/NaturalSpawner
 		METHOD canSpawnForCategoryLocal (Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/ChunkPos;)Z
 			ARG 1 category
 			ARG 2 chunkPos
-	CLASS ChunkGetter
-		METHOD query (JLjava/util/function/Consumer;)V
-			ARG 1 chunkPos
-			ARG 3 chunkConsumer
-	CLASS SpawnPredicate
-		METHOD test (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
-			ARG 1 entityType
-			ARG 2 pos
-			ARG 3 chunk
-	CLASS AfterSpawnCallback
-		METHOD run (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
-			ARG 1 mob
-			ARG 2 chunk

@@ -21,6 +21,21 @@ CLASS net/minecraft/server/level/ChunkMap
 		ARG 11 overworldDataStorage
 		ARG 12 viewDistance
 		ARG 13 sync
+	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Ljava/util/concurrent/Executor;Lnet/minecraft/util/thread/BlockableEventLoop;Lnet/minecraft/world/level/chunk/LightChunkGetter;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/server/level/progress/ChunkProgressListener;Lnet/minecraft/world/level/entity/ChunkStatusUpdateListener;Ljava/util/function/Supplier;Lnet/minecraft/world/level/TicketStorage;IZ)V
+		ARG 1 level
+		ARG 2 levelStorageAccess
+		ARG 3 fixerUpper
+		ARG 4 structureManager
+		ARG 5 dispatcher
+		ARG 6 mainThreadExecutor
+		ARG 7 lightChunk
+		ARG 8 generator
+		ARG 9 progressListener
+		ARG 10 chunkStatusListener
+		ARG 11 overworldDataStorage
+		ARG 12 ticketStorage
+		ARG 13 serverViewDistance
+		ARG 14 sync
 	METHOD addEntity (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD anyPlayerCloseEnoughForSpawning (Lnet/minecraft/world/level/ChunkPos;)Z
@@ -222,6 +237,21 @@ CLASS net/minecraft/server/level/ChunkMap
 	METHOD waitForLightBeforeSending (Lnet/minecraft/world/level/ChunkPos;I)V
 		ARG 1 chunkPos
 		ARG 2 range
+	CLASS DistanceManager
+		METHOD <init> (Lnet/minecraft/server/level/ChunkMap;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)V
+			ARG 2 dispatcher
+			ARG 3 mainThreadExecutor
+		METHOD <init> (Lnet/minecraft/server/level/ChunkMap;Lnet/minecraft/world/level/TicketStorage;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)V
+			ARG 2 ticketStorage
+			ARG 3 dispatcher
+			ARG 4 mainThreadExecutor
+		METHOD getChunk (J)Lnet/minecraft/server/level/ChunkHolder;
+			ARG 1 chunkPos
+		METHOD updateChunkScheduling (JILnet/minecraft/server/level/ChunkHolder;I)Lnet/minecraft/server/level/ChunkHolder;
+			ARG 1 chunkPos
+			ARG 3 newLevel
+			ARG 4 holder
+			ARG 5 oldLevel
 	CLASS TrackedEntity
 		METHOD <init> (Lnet/minecraft/server/level/ChunkMap;Lnet/minecraft/world/entity/Entity;IIZ)V
 			ARG 2 entity
@@ -232,6 +262,9 @@ CLASS net/minecraft/server/level/ChunkMap
 			ARG 1 packet
 		METHOD broadcastAndSend (Lnet/minecraft/network/protocol/Packet;)V
 			ARG 1 packet
+		METHOD broadcastIgnorePlayers (Lnet/minecraft/network/protocol/Packet;Ljava/util/List;)V
+			ARG 1 packet
+			ARG 2 ignoredPlayers
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other
 		METHOD removePlayer (Lnet/minecraft/server/level/ServerPlayer;)V
@@ -242,14 +275,3 @@ CLASS net/minecraft/server/level/ChunkMap
 			ARG 1 player
 		METHOD updatePlayers (Ljava/util/List;)V
 			ARG 1 playersList
-	CLASS DistanceManager
-		METHOD <init> (Lnet/minecraft/server/level/ChunkMap;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)V
-			ARG 2 dispatcher
-			ARG 3 mainThreadExecutor
-		METHOD getChunk (J)Lnet/minecraft/server/level/ChunkHolder;
-			ARG 1 chunkPos
-		METHOD updateChunkScheduling (JILnet/minecraft/server/level/ChunkHolder;I)Lnet/minecraft/server/level/ChunkHolder;
-			ARG 1 chunkPos
-			ARG 3 newLevel
-			ARG 4 holder
-			ARG 5 oldLevel

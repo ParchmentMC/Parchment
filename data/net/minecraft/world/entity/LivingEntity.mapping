@@ -215,6 +215,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 stack
 	METHOD getEffect (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/effect/MobEffectInstance;
 		ARG 1 effect
+	METHOD getEffectBlendFactor (Lnet/minecraft/core/Holder;F)F
+		ARG 1 effect
+		ARG 2 partialTick
 	METHOD getEquipmentSlot (I)Lnet/minecraft/world/entity/EquipmentSlot;
 		ARG 0 index
 	METHOD getEquipmentSlotForItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/EquipmentSlot;
@@ -548,6 +551,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Plays the fall sound for the block landed on
 	METHOD playHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)V
 		ARG 1 source
+	METHOD playSecondaryHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)V
+		ARG 1 damageSource
 	METHOD push (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Applies a velocity to the entities, to push them away from each other.
 		ARG 1 entity
@@ -603,8 +608,17 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD setLastHurtByMob (Lnet/minecraft/world/entity/LivingEntity;)V
 		COMMENT Hint to AI tasks that we were attacked by the passed EntityLivingBase and should retaliate. Is not guaranteed to change our actual active target (for example if we are currently busy attacking someone else)
 		ARG 1 livingEntity
+	METHOD setLastHurtByPlayer (Ljava/util/UUID;I)V
+		ARG 1 uuid
+		ARG 2 memoryTime
+	METHOD setLastHurtByPlayer (Lnet/minecraft/world/entity/EntityReference;I)V
+		ARG 1 player
+		ARG 2 memoryTime
 	METHOD setLastHurtByPlayer (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
+	METHOD setLastHurtByPlayer (Lnet/minecraft/world/entity/player/Player;I)V
+		ARG 1 player
+		ARG 2 memoryTime
 	METHOD setLastHurtMob (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD setLivingEntityFlag (IZ)V
@@ -665,6 +679,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Called to update the entity's position/logic.
 	METHOD tickDeath ()V
 		COMMENT Handles entity death timer, experience orb, and particle creation.
+	METHOD tickHeadTurn (F)V
+		ARG 1 yBodyRot
 	METHOD tickHeadTurn (FF)F
 		ARG 1 yRot
 		ARG 2 animStep
@@ -675,6 +691,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 pos
 		ARG 2 state
 	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 travelVector
+	METHOD travelFallFlying (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 travelVector
 	METHOD travelInAir (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 travelVector

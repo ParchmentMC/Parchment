@@ -1,25 +1,42 @@
 CLASS net/minecraft/server/commands/SetBlockCommand
 	METHOD lambda$register$0 (Lnet/minecraft/commands/CommandSourceStack;)Z
 		ARG 0 source
+	METHOD lambda$register$0 (Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+		ARG 0 block
 	METHOD lambda$register$1 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
+	METHOD lambda$register$1 (Lnet/minecraft/commands/CommandSourceStack;)Z
+		ARG 0 source
 	METHOD lambda$register$2 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$3 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
 	METHOD lambda$register$3 (Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
 		ARG 0 pos
 	METHOD lambda$register$4 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
+	METHOD lambda$register$4 (Ljava/util/function/Predicate;Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 1 context
 	METHOD lambda$register$5 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$6 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandBuildContext;)V
 		ARG 0 dispatcher
-		ARG 1 context
+		ARG 1 buildContext
 	METHOD setBlock (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/BlockPos;Lnet/minecraft/commands/arguments/blocks/BlockInput;Lnet/minecraft/server/commands/SetBlockCommand$Mode;Ljava/util/function/Predicate;)I
 		ARG 0 source
 		ARG 1 pos
 		ARG 2 state
 		ARG 3 mode
 		ARG 4 predicate
+	METHOD setBlock (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/BlockPos;Lnet/minecraft/commands/arguments/blocks/BlockInput;Lnet/minecraft/server/commands/SetBlockCommand$Mode;Ljava/util/function/Predicate;Z)I
+		ARG 0 source
+		ARG 1 pos
+		ARG 2 block
+		ARG 3 mode
+		ARG 4 filter
+		ARG 5 strict
 	CLASS Filter
 		METHOD filter (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/BlockPos;Lnet/minecraft/commands/arguments/blocks/BlockInput;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/commands/arguments/blocks/BlockInput;
 			ARG 1 boundingBox

@@ -2,6 +2,10 @@ CLASS net/minecraft/server/level/DistanceManager
 	METHOD <init> (Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)V
 		ARG 1 dispatcher
 		ARG 2 mainThreadExecutor
+	METHOD <init> (Lnet/minecraft/world/level/TicketStorage;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)V
+		ARG 1 ticketStorage
+		ARG 2 dispatcher
+		ARG 3 mainThreadExecutor
 	METHOD addPlayer (Lnet/minecraft/core/SectionPos;Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 sectionPos
 		ARG 2 player
@@ -22,6 +26,9 @@ CLASS net/minecraft/server/level/DistanceManager
 		ARG 1 filename
 	METHOD getChunk (J)Lnet/minecraft/server/level/ChunkHolder;
 		ARG 1 chunkPos
+	METHOD getChunkLevel (JZ)I
+		ARG 1 chunkPos
+		ARG 3 simulate
 	METHOD getNaturalSpawnChunkCount ()I
 		COMMENT Returns the number of chunks taken into account when calculating the mob cap
 	METHOD getTicketDebugString (J)Ljava/lang/String;
@@ -79,22 +86,6 @@ CLASS net/minecraft/server/level/DistanceManager
 		METHOD setLevel (JI)V
 			ARG 1 sectionPos
 			ARG 3 level
-	CLASS PlayerTicketTracker
-		METHOD haveTicketFor (I)Z
-			ARG 1 level
-		METHOD onLevelChange (JII)V
-			COMMENT Called after {@link PlayerChunkTracker#setLevel(long, int)} puts/removes chunk into/from {@link #chunksInRange}.
-			ARG 1 chunkPos
-			ARG 3 oldLevel
-				COMMENT Previous level of the chunk if it was smaller than {@link #range}, {@code range + 2} otherwise.
-			ARG 4 newLevel
-		METHOD onLevelChange (JIZZ)V
-			ARG 1 chunkPos
-			ARG 3 level
-			ARG 4 hadTicket
-			ARG 5 hasTicket
-		METHOD updateViewDistance (I)V
-			ARG 1 viewDistance
 	CLASS FixedPlayerDistanceChunkTracker
 		FIELD chunks Lit/unimi/dsi/fastutil/longs/Long2ByteMap;
 			COMMENT Chunks that are at most {@link #range} chunks away from the closest player.
@@ -117,3 +108,19 @@ CLASS net/minecraft/server/level/DistanceManager
 		METHOD setLevel (JI)V
 			ARG 1 sectionPos
 			ARG 3 level
+	CLASS PlayerTicketTracker
+		METHOD haveTicketFor (I)Z
+			ARG 1 level
+		METHOD onLevelChange (JII)V
+			COMMENT Called after {@link PlayerChunkTracker#setLevel(long, int)} puts/removes chunk into/from {@link #chunksInRange}.
+			ARG 1 chunkPos
+			ARG 3 oldLevel
+				COMMENT Previous level of the chunk if it was smaller than {@link #range}, {@code range + 2} otherwise.
+			ARG 4 newLevel
+		METHOD onLevelChange (JIZZ)V
+			ARG 1 chunkPos
+			ARG 3 level
+			ARG 4 hadTicket
+			ARG 5 hasTicket
+		METHOD updateViewDistance (I)V
+			ARG 1 viewDistance

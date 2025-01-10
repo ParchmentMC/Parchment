@@ -17,6 +17,24 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 6 x2
 		ARG 8 y2
 		ARG 10 z2
+	METHOD boxZ (DDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 0 size
+		ARG 2 z1
+		ARG 4 z2
+	METHOD boxZ (DDDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 0 xSize
+		ARG 2 ySize
+		ARG 4 z1
+		ARG 6 z2
+	METHOD boxZ (DDDDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 0 xSize
+		ARG 2 y1
+		ARG 4 y2
+		ARG 6 z1
+		ARG 8 z2
+	METHOD boxes (ILjava/util/function/IntFunction;)[Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 0 count
+		ARG 1 boxCreator
 	METHOD byItem (Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/level/block/Block;
 		ARG 0 item
 	METHOD canSupportCenter (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
@@ -28,12 +46,27 @@ CLASS net/minecraft/world/level/block/Block
 		COMMENT @return whether the given position has a rigid top face
 		ARG 0 level
 		ARG 1 pos
+	METHOD column (DDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 0 size
+		ARG 2 y1
+		ARG 4 y2
+	METHOD column (DDDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 0 xSize
+		ARG 2 zSize
+		ARG 4 y1
+		ARG 6 y2
 	METHOD copyProperty (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/properties/Property;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 0 sourceState
 		ARG 1 targetState
 		ARG 2 property
 	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
+	METHOD cube (D)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 0 size
+	METHOD cube (DDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 0 xSize
+		ARG 2 ySize
+		ARG 4 zSize
 	METHOD defaultBlockState ()Lnet/minecraft/world/level/block/state/BlockState;
 		COMMENT Gets the default state for this block
 	METHOD destroy (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
@@ -90,6 +123,11 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 0 state
 	METHOD getShapeForEachState (Ljava/util/function/Function;)Lcom/google/common/collect/ImmutableMap;
 		ARG 1 shapeGetter
+	METHOD getShapeForEachState (Ljava/util/function/Function;)Ljava/util/function/Function;
+		ARG 1 shapeGetter
+	METHOD getShapeForEachState (Ljava/util/function/Function;[Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/util/function/Function;
+		ARG 1 shapeGetter
+		ARG 2 properties
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 context
 	METHOD handlePrecipitation (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/biome/Biome$Precipitation;)V
@@ -109,10 +147,26 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 0 shape
 	METHOD lambda$dropResources$1 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 itemStack
+	METHOD lambda$dropResources$2 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 2 stack
 	METHOD lambda$dropResources$2 (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 itemStack
 	METHOD lambda$dropResources$3 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 itemStack
+	METHOD lambda$dropResources$3 (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 2 stack
+	METHOD lambda$dropResources$4 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 2 stack
+	METHOD lambda$getShapeForEachState$10 (Ljava/util/Map;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
+	METHOD lambda$getShapeForEachState$11 (Ljava/util/Map;Lcom/google/common/collect/ImmutableMap;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 2 state
+	METHOD lambda$getShapeForEachState$7 (Lnet/minecraft/world/level/block/state/properties/Property;)Lnet/minecraft/world/level/block/state/properties/Property;
+		ARG 0 property
+	METHOD lambda$getShapeForEachState$8 (Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Object;
+		ARG 0 property
+	METHOD lambda$getShapeForEachState$9 (Lnet/minecraft/world/level/block/state/BlockState;Ljava/util/Map$Entry;)Z
+		ARG 1 entry
 	METHOD playerDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Called after a player has successfully harvested this block. This method will only be called if the player has used the correct tool and drops should be spawned.
 		ARG 1 level
@@ -159,6 +213,10 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 3 state
 		ARG 4 placer
 		ARG 5 stack
+	METHOD setValueHelper (Lnet/minecraft/world/level/block/state/StateHolder;Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Object;)Lnet/minecraft/world/level/block/state/StateHolder;
+		ARG 0 stateHolder
+		ARG 1 property
+		ARG 2 value
 	METHOD shouldRenderFace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/BlockPos;)Z
 		ARG 0 state
 		ARG 1 level
@@ -230,13 +288,13 @@ CLASS net/minecraft/world/level/block/Block
 	CLASS 2
 		METHOD rehash (I)V
 			ARG 1 newN
-	CLASS ShapePairKey
-		METHOD equals (Ljava/lang/Object;)Z
-			ARG 1 other
 	CLASS BlockStatePairKey
 		METHOD <init> (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)V
 			ARG 1 first
 			ARG 2 second
 			ARG 3 direction
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other
+	CLASS ShapePairKey
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other

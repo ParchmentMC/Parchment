@@ -10,6 +10,10 @@ CLASS net/minecraft/network/chat/ComponentSerialization
 		ARG 3 typeFieldName
 	METHOD flatCodec (I)Lcom/mojang/serialization/Codec;
 		ARG 0 maxSize
+	METHOD flatRestrictedCodec (I)Lcom/mojang/serialization/Codec;
+		ARG 0 maxSize
+	METHOD lambda$createCodec$2 (Lcom/mojang/serialization/MapCodec;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 2 instance
 	CLASS 1
 		METHOD asJsonOps (Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/DynamicOps;
 			ARG 0 ops
@@ -20,6 +24,9 @@ CLASS net/minecraft/network/chat/ComponentSerialization
 			ARG 1 input
 			ARG 2 ops
 			ARG 3 value
+		METHOD isTooLarge (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/network/chat/Component;)Z
+			ARG 1 ops
+			ARG 2 component
 	CLASS FuzzyCodec
 		METHOD <init> (Ljava/util/List;Ljava/util/function/Function;)V
 			ARG 1 codecs

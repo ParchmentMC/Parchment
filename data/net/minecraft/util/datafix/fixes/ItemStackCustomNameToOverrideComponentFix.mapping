@@ -1,10 +1,19 @@
 CLASS net/minecraft/util/datafix/fixes/ItemStackCustomNameToOverrideComponentFix
 	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;)V
 		ARG 1 outputSchema
+	METHOD fixBanner (Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;
+		ARG 0 data
 	METHOD fixBanner (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
 		ARG 0 data
+	METHOD fixCustomName (Lcom/mojang/datafixers/Typed;Ljava/util/function/Predicate;)Lcom/mojang/datafixers/Typed;
+		ARG 0 data
+		ARG 1 namePredicate
 	METHOD fixCustomName (Lcom/mojang/serialization/Dynamic;Ljava/util/function/Predicate;)Lcom/mojang/serialization/Dynamic;
 		ARG 0 data
 		ARG 1 shouldFix
+	METHOD fixMap (Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;
+		ARG 0 data
 	METHOD fixMap (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
 		ARG 0 data
+	METHOD lambda$fixBanner$3 (Ljava/lang/String;)Z
+		ARG 0 name

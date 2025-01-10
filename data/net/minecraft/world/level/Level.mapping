@@ -265,6 +265,9 @@ CLASS net/minecraft/world/level/Level
 		COMMENT Returns the world's WorldInfo object
 	METHOD getMapData (Lnet/minecraft/world/level/saveddata/maps/MapId;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
 		ARG 1 mapId
+	METHOD getPushableEntities (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;
+		ARG 1 entity
+		ARG 2 boundingBox
 	METHOD getRainLevel (F)F
 		COMMENT Returns rain strength.
 		ARG 1 partialTick
@@ -312,6 +315,9 @@ CLASS net/minecraft/world/level/Level
 		ARG 1 pos
 		ARG 2 entity
 		ARG 3 direction
+	METHOD mayInteract (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 entity
+		ARG 2 pos
 	METHOD mayInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 player
 		ARG 2 pos
@@ -344,23 +350,51 @@ CLASS net/minecraft/world/level/Level
 		ARG 3 y
 		ARG 5 z
 		ARG 7 sound
-		ARG 8 category
+		ARG 8 source
 		ARG 9 volume
 		ARG 10 pitch
 		ARG 11 distanceDelay
 	METHOD playLocalSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFZ)V
 		ARG 1 pos
 		ARG 2 sound
-		ARG 3 category
+		ARG 3 source
 		ARG 4 volume
 		ARG 5 pitch
 		ARG 6 distanceDelay
 	METHOD playLocalSound (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
 		ARG 1 entity
 		ARG 2 sound
-		ARG 3 category
+		ARG 3 source
 		ARG 4 volume
 		ARG 5 pitch
+	METHOD playSeededSound (Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/core/Holder;Lnet/minecraft/sounds/SoundSource;FFJ)V
+		ARG 1 entity
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 sound
+		ARG 9 source
+		ARG 10 volume
+		ARG 11 pitch
+		ARG 12 seed
+	METHOD playSeededSound (Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFJ)V
+		ARG 1 entity
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 sound
+		ARG 9 source
+		ARG 10 volume
+		ARG 11 pitch
+		ARG 12 seed
+	METHOD playSeededSound (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;Lnet/minecraft/sounds/SoundSource;FFJ)V
+		ARG 1 entity
+		ARG 2 sourceEntity
+		ARG 3 sound
+		ARG 4 source
+		ARG 5 volume
+		ARG 6 pitch
+		ARG 7 seed
 	METHOD playSeededSound (Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/core/Holder;Lnet/minecraft/sounds/SoundSource;FFJ)V
 		ARG 1 player
 		ARG 2 x
@@ -389,11 +423,43 @@ CLASS net/minecraft/world/level/Level
 		ARG 5 volume
 		ARG 6 pitch
 		ARG 7 seed
+	METHOD playSound (Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/core/Holder;Lnet/minecraft/sounds/SoundSource;FF)V
+		ARG 1 entity
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 sound
+		ARG 9 source
+		ARG 10 volume
+		ARG 11 pitch
+	METHOD playSound (Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;)V
+		ARG 1 entity
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 sound
+		ARG 9 source
+	METHOD playSound (Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+		ARG 1 entity
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 sound
+		ARG 9 source
+		ARG 10 volume
+		ARG 11 pitch
 	METHOD playSound (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
 		ARG 1 entity
 		ARG 2 pos
 		ARG 3 sound
 		ARG 4 category
+		ARG 5 volume
+		ARG 6 pitch
+	METHOD playSound (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+		ARG 1 entity
+		ARG 2 sourceEntity
+		ARG 3 sound
+		ARG 4 source
 		ARG 5 volume
 		ARG 6 pitch
 	METHOD playSound (Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/core/Holder;Lnet/minecraft/sounds/SoundSource;FF)V
@@ -521,6 +587,10 @@ CLASS net/minecraft/world/level/Level
 	METHOD updateNeighbourForOutputSignal (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V
 		ARG 1 pos
 		ARG 2 block
+	METHOD updatePOIOnBlockStateChange (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 oldState
+		ARG 3 newState
 	METHOD updateSkyBrightness ()V
 		COMMENT Called on the construction of the {@code Level} class to set up the initial skylight values.
 	CLASS ExplosionInteraction

@@ -1,6 +1,17 @@
 CLASS net/minecraft/util/datafix/fixes/EntityCustomNameToComponentFix
+	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;)V
+		ARG 1 outputSchema
 	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;Z)V
 		ARG 1 outputSchema
 		ARG 2 changesType
+	METHOD fixCustomName (Lcom/mojang/serialization/DynamicOps;Ljava/lang/String;Ljava/lang/String;)Lcom/mojang/serialization/Dynamic;
+		ARG 0 ops
+		ARG 1 customName
+		ARG 2 id
+	METHOD fixEntity (Lcom/mojang/datafixers/Typed;Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/OpticFinder;Lcom/mojang/datafixers/types/Type;)Lcom/mojang/datafixers/Typed;
+		ARG 0 data
+		ARG 1 customNameOptic
+		ARG 2 idOptic
+		ARG 3 newType
 	METHOD fixTagCustomName (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
 		ARG 0 tag

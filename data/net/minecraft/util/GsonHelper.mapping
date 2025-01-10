@@ -53,6 +53,9 @@ CLASS net/minecraft/util/GsonHelper
 		COMMENT Gets the string value of the given JsonElement.  Expects the second parameter to be the name of the element's field if an error message needs to be thrown.
 		ARG 0 json
 		ARG 1 memberName
+	METHOD encodesLongerThan (Lcom/google/gson/JsonElement;I)Z
+		ARG 0 element
+		ARG 1 maxLength
 	METHOD fromJson (Lcom/google/gson/Gson;Ljava/io/Reader;Lcom/google/gson/reflect/TypeToken;)Ljava/lang/Object;
 		ARG 0 gson
 		ARG 1 reader
@@ -286,3 +289,16 @@ CLASS net/minecraft/util/GsonHelper
 		ARG 0 writer
 		ARG 1 jsonElement
 		ARG 2 sorter
+	CLASS CountedAppendable
+		METHOD <init> (I)V
+			ARG 1 limit
+		METHOD accountChars (I)Ljava/lang/Appendable;
+			ARG 1 chars
+		METHOD append (C)Ljava/lang/Appendable;
+			ARG 1 c
+		METHOD append (Ljava/lang/CharSequence;)Ljava/lang/Appendable;
+			ARG 1 sequence
+		METHOD append (Ljava/lang/CharSequence;II)Ljava/lang/Appendable;
+			ARG 1 sequence
+			ARG 2 start
+			ARG 3 end

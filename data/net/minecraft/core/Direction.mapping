@@ -102,6 +102,12 @@ CLASS net/minecraft/core/Direction
 		ARG 0 direction
 	METHOD isFacingAngle (F)Z
 		ARG 1 degrees
+	METHOD lambda$static$0 (Lnet/minecraft/core/Direction;)I
+		ARG 0 direction
+	METHOD lambda$static$2 (Lnet/minecraft/core/Direction;)Z
+		ARG 0 direction
+	METHOD lambda$static$3 (Lnet/minecraft/core/Direction;)I
+		ARG 0 direction
 	METHOD makeDirectionArray (Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)[Lnet/minecraft/core/Direction;
 		ARG 0 first
 		ARG 1 second
@@ -132,6 +138,10 @@ CLASS net/minecraft/core/Direction
 			ARG 1 x
 			ARG 2 y
 			ARG 3 z
+		METHOD choose (ZZZ)Z
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
 		METHOD getPlane ()Lnet/minecraft/core/Direction$Plane;
 			COMMENT @return this Axis' Plane (VERTICAL for Y, HORIZONTAL for X and Z)
 		METHOD getRandom (Lnet/minecraft/util/RandomSource;)Lnet/minecraft/core/Direction$Axis;
@@ -140,6 +150,12 @@ CLASS net/minecraft/core/Direction
 			COMMENT @return whether this Axis is on the horizontal plane (true for X and Z)
 		METHOD test (Lnet/minecraft/core/Direction;)Z
 			ARG 1 direction
+	CLASS AxisDirection
+		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
+			ARG 3 step
+			ARG 4 name
+		METHOD getStep ()I
+			COMMENT @return the offset for this AxisDirection. 1 for POSITIVE, -1 for NEGATIVE
 	CLASS Plane
 		METHOD <init> (Ljava/lang/String;I[Lnet/minecraft/core/Direction;[Lnet/minecraft/core/Direction$Axis;)V
 			ARG 3 faces
@@ -152,9 +168,3 @@ CLASS net/minecraft/core/Direction
 			ARG 1 random
 		METHOD test (Lnet/minecraft/core/Direction;)Z
 			ARG 1 direction
-	CLASS AxisDirection
-		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
-			ARG 3 step
-			ARG 4 name
-		METHOD getStep ()I
-			COMMENT @return the offset for this AxisDirection. 1 for POSITIVE, -1 for NEGATIVE

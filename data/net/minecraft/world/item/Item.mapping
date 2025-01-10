@@ -15,6 +15,12 @@ CLASS net/minecraft/world/item/Item
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 player
+	METHOD canDestroyBlock (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 1 stack
+		ARG 2 state
+		ARG 3 level
+		ARG 4 pos
+		ARG 5 entity
 	METHOD finishUsingItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Called when the player finishes using this Item (E.g. finishes eating.). Not called when the player stops using the Item before the action is complete.
 		ARG 1 stack
@@ -60,6 +66,10 @@ CLASS net/minecraft/world/item/Item
 		ARG 2 entity
 	METHOD hasCraftingRemainingItem ()Z
 		COMMENT True if this Item has a container item (a.k.a. crafting result)
+	METHOD hurtEnemy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 stack
+		ARG 2 target
+		ARG 3 attacker
 	METHOD hurtEnemy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)Z
 		COMMENT Current implementations of this method in child classes do not use the entry argument beside ev. They just raise the damage on the stack.
 		ARG 1 stack
@@ -97,6 +107,8 @@ CLASS net/minecraft/world/item/Item
 		COMMENT Return whether this item is repairable in an anvil.
 		ARG 1 stack
 		ARG 2 repairCandidate
+	METHOD lambda$static$1 (Lnet/minecraft/core/Holder;)Lcom/mojang/serialization/DataResult;
+		ARG 0 holder
 	METHOD mineBlock (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
 		COMMENT Called when a {@link net.minecraft.world.level.block.Block} is destroyed using this Item. Return {@code true} to trigger the "Use Item" statistic.
 		ARG 1 stack
@@ -195,6 +207,9 @@ CLASS net/minecraft/world/item/Item
 		METHOD food (Lnet/minecraft/world/food/FoodProperties;Lnet/minecraft/world/item/component/Consumable;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 food
 			ARG 2 consumable
+		METHOD humanoidArmor (Lnet/minecraft/world/item/equipment/ArmorMaterial;Lnet/minecraft/world/item/equipment/ArmorType;)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 material
+			ARG 2 type
 		METHOD jukeboxPlayable (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 song
 		METHOD lambda$static$0 (Lnet/minecraft/resources/ResourceKey;)Ljava/lang/String;
@@ -205,6 +220,10 @@ CLASS net/minecraft/world/item/Item
 			ARG 1 description
 		METHOD overrideModel (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 model
+		METHOD pickaxe (Lnet/minecraft/world/item/ToolMaterial;FF)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 material
+			ARG 2 attackDamage
+			ARG 3 attackSpeed
 		METHOD rarity (Lnet/minecraft/world/item/Rarity;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 rarity
 		METHOD repairable (Lnet/minecraft/tags/TagKey;)Lnet/minecraft/world/item/Item$Properties;
@@ -217,6 +236,16 @@ CLASS net/minecraft/world/item/Item
 			ARG 1 id
 		METHOD stacksTo (I)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 maxStackSize
+		METHOD sword (Lnet/minecraft/world/item/ToolMaterial;FF)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 material
+			ARG 2 attackDamage
+			ARG 3 attackSpeed
+		METHOD tool (Lnet/minecraft/world/item/ToolMaterial;Lnet/minecraft/tags/TagKey;FFZ)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 material
+			ARG 2 mineableBlocks
+			ARG 3 attackDamage
+			ARG 4 attackSpeed
+			ARG 5 canDisableBlocking
 		METHOD useCooldown (F)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 useCooldown
 		METHOD usingConvertsTo (Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/item/Item$Properties;
