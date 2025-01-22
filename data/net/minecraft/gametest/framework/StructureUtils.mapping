@@ -17,6 +17,12 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 		ARG 2 size
 		ARG 3 rotation
 		ARG 4 serverLevel
+	METHOD createNewEmptyTest (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Vec3i;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/block/entity/TestInstanceBlockEntity;
+		ARG 0 id
+		ARG 1 pos
+		ARG 2 size
+		ARG 3 rotation
+		ARG 4 level
 	METHOD createStructureBlock (Lnet/minecraft/gametest/framework/GameTestInfo;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/block/entity/StructureBlockEntity;
 		ARG 0 gameTestInfo
 		ARG 1 pos
@@ -34,6 +40,10 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 		ARG 0 pos
 		ARG 1 radius
 		ARG 2 level
+	METHOD findNearestTest (Lnet/minecraft/core/BlockPos;ILnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
+		ARG 0 pos
+		ARG 1 radius
+		ARG 2 level
 	METHOD findStructureBlockContainingPos (Lnet/minecraft/core/BlockPos;ILnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
 		ARG 0 pos
 		ARG 1 radius
@@ -47,6 +57,14 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 		ARG 1 radius
 		ARG 2 level
 		ARG 3 testName
+	METHOD findTestBlocks (Lnet/minecraft/core/BlockPos;ILnet/minecraft/server/level/ServerLevel;)Ljava/util/stream/Stream;
+		ARG 0 pos
+		ARG 1 radius
+		ARG 2 level
+	METHOD findTestContainingPos (Lnet/minecraft/core/BlockPos;ILnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
+		ARG 0 pos
+		ARG 1 radius
+		ARG 2 level
 	METHOD forceLoadChunks (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 0 boundingBox
 		ARG 1 level
@@ -77,7 +95,25 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 		ARG 0 pos
 		ARG 1 offset
 		ARG 2 rotation
+	METHOD lambda$clearSpaceForStructure$0 (ILnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V
+		ARG 2 pos
+	METHOD lambda$clearSpaceForStructure$1 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
+	METHOD lambda$findNearestTest$3 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)I
+		ARG 1 blockPos
+	METHOD lambda$findTestBlocks$4 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 blockPos
+	METHOD lambda$findTestContainingPos$2 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Z
+		ARG 2 blockPos
+	METHOD lambda$lookedAtTestPos$5 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Ljava/util/Optional;
+		ARG 1 blockPos
+	METHOD lambda$lookedAtTestPos$6 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/level/block/entity/TestInstanceBlockEntity;)Z
+		ARG 2 blockEntity
 	METHOD lookedAtStructureBlockPos (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/server/level/ServerLevel;)Ljava/util/stream/Stream;
+		ARG 0 pos
+		ARG 1 entity
+		ARG 2 level
+	METHOD lookedAtTestPos (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/server/level/ServerLevel;)Ljava/util/stream/Stream;
 		ARG 0 pos
 		ARG 1 entity
 		ARG 2 level

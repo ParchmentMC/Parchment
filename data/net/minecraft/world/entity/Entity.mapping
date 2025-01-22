@@ -16,6 +16,19 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD absRotateTo (FF)V
 		ARG 1 yRot
 		ARG 2 xRot
+	METHOD absSnapRotationTo (FF)V
+		ARG 1 yRot
+		ARG 2 xRot
+	METHOD absSnapTo (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD absSnapTo (DDDFF)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 yRot
+		ARG 8 xRot
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
 	METHOD addDeltaMovement (Lnet/minecraft/world/phys/Vec3;)V
@@ -29,9 +42,19 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 pos
 	METHOD animateHurt (F)V
 		ARG 1 yaw
+	METHOD applyComponentsFromItemStack (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 stack
 	METHOD applyEffectsFromBlocks (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 oldPosition
 		ARG 2 position
+	METHOD applyImplicitComponent (Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Z
+		ARG 1 component
+		ARG 2 value
+	METHOD applyImplicitComponentIfPresent (Lnet/minecraft/core/component/DataComponentGetter;Lnet/minecraft/core/component/DataComponentType;)Z
+		ARG 1 componentGetter
+		ARG 2 component
+	METHOD applyImplicitComponents (Lnet/minecraft/core/component/DataComponentGetter;)V
+		ARG 1 componentGetter
 	METHOD applyMovementEmissionAndPlaySound (Lnet/minecraft/world/entity/Entity$MovementEmission;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 movementEmission
 		ARG 2 movement
@@ -66,7 +89,7 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD canChangeDimensions (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/Level;)Z
 		ARG 1 oldLevel
 		ARG 2 newLevel
-	METHOD canCollideWith (Lnet/minecraft/world/entity/Entity;)Z
+	METHOD canCollideWith (Lnet/minecraft/world/entity/Entity;)Zd
 		ARG 1 entity
 	METHOD canRide (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 vehicle
@@ -75,6 +98,13 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 toLevel
 	METHOD canUsePortal (Z)Z
 		ARG 1 allowPassengers
+	METHOD castComponentValue (Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Ljava/lang/Object;
+		ARG 0 componentType
+		ARG 1 value
+	METHOD causeFallDamage (DFLnet/minecraft/world/damagesource/DamageSource;)Z
+		ARG 1 fallDistance
+		ARG 3 damageMultiplier
+		ARG 4 damageSource
 	METHOD causeFallDamage (FFLnet/minecraft/world/damagesource/DamageSource;)Z
 		ARG 1 fallDistance
 		ARG 2 multiplier
@@ -94,6 +124,9 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD checkInsideBlocks (Ljava/util/List;Ljava/util/Set;)V
 		ARG 1 movements
 		ARG 2 blocksInside
+	METHOD checkInsideBlocks (Ljava/util/List;Lnet/minecraft/world/entity/Entity$StateVisitor;)V
+		ARG 1 movements
+		ARG 2 stateVisitor
 	METHOD checkInsideBlocks (Ljava/util/Set;)V
 		ARG 1 blocks
 	METHOD checkSupportingBlock (ZLnet/minecraft/world/phys/Vec3;)V
@@ -135,10 +168,19 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 0 deltaMovement
 		ARG 1 entityBB
 		ARG 2 shapes
+	METHOD collidedWithFluid (Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)Z
+		ARG 1 fluid
+		ARG 2 pos
+		ARG 3 from
+		ARG 4 to
 	METHOD collidedWithShapeMovingFrom (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/VoxelShape;)Z
 		ARG 1 entityPosition
 		ARG 2 blockPos
 		ARG 3 shape
+	METHOD collidedWithShapeMovingFrom (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Ljava/util/List;)Z
+		ARG 1 from
+		ARG 2 to
+		ARG 3 boxes
 	METHOD collidedWithShapeMovingFrom (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/VoxelShape;)Z
 		ARG 1 oldPosition
 		ARG 2 position
@@ -675,6 +717,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 pos
 	METHOD setBoundingBox (Lnet/minecraft/world/phys/AABB;)V
 		ARG 1 bb
+	METHOD setComponent (Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)V
+		ARG 1 component
+		ARG 2 value
 	METHOD setCustomName (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 name
 	METHOD setCustomNameVisible (Z)V
@@ -790,6 +835,26 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD skipAttackInteraction (Lnet/minecraft/world/entity/Entity;)Z
 		COMMENT Called when a player attacks an entity. If this returns true the attack will not happen.
 		ARG 1 entity
+	METHOD snapTo (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD snapTo (DDDFF)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 yRot
+		ARG 8 xRot
+	METHOD snapTo (Lnet/minecraft/core/BlockPos;FF)V
+		ARG 1 pos
+		ARG 2 yRot
+		ARG 3 xRot
+	METHOD snapTo (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 pos
+	METHOD snapTo (Lnet/minecraft/world/phys/Vec3;FF)V
+		ARG 1 pos
+		ARG 2 yRot
+		ARG 3 xRot
 	METHOD spawnAtLocation (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/item/ItemEntity;
 		ARG 1 level
 		ARG 2 stack
@@ -893,6 +958,9 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD walkingStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 state
+	CLASS FireStateVisitor
+		METHOD reset (Z)V
+			ARG 1 isOnFire
 	CLASS MoveFunction
 		METHOD accept (Lnet/minecraft/world/entity/Entity;DDD)V
 			ARG 1 entity
@@ -907,3 +975,8 @@ CLASS net/minecraft/world/entity/Entity
 		METHOD <init> (Ljava/lang/String;IZZ)V
 			ARG 3 destroy
 			ARG 4 save
+	CLASS StateVisitor
+		METHOD visit (Lnet/minecraft/world/level/block/state/BlockState;ZZ)V
+			ARG 1 state
+			ARG 2 blockCollision
+			ARG 3 fluidCollision

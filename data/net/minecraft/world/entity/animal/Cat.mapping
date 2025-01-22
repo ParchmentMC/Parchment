@@ -17,6 +17,8 @@ CLASS net/minecraft/world/entity/animal/Cat
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
 		ARG 1 stack
+	METHOD lambda$registerGoals$0 (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 stack
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
@@ -31,20 +33,12 @@ CLASS net/minecraft/world/entity/animal/Cat
 		ARG 1 lying
 	METHOD setRelaxStateOne (Z)V
 		ARG 1 relaxStateOne
+	METHOD setVariant (Lnet/minecraft/core/Holder;)V
+		ARG 1 variant
 	METHOD tick ()V
 		COMMENT Called to update the entity's position/logic.
 	METHOD tryToTame (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
-	CLASS CatTemptGoal
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Cat;DLjava/util/function/Predicate;Z)V
-			ARG 1 cat
-			ARG 2 speedModifier
-			ARG 4 items
-			ARG 5 canScare
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
 	CLASS CatAvoidEntityGoal
 		METHOD <init> (Lnet/minecraft/world/entity/animal/Cat;Ljava/lang/Class;FDD)V
 			ARG 1 cat
@@ -65,9 +59,22 @@ CLASS net/minecraft/world/entity/animal/Cat
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD lambda$canUse$0 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos;
 			ARG 1 pos
+		METHOD lambda$giveMorningGift$2 (Lnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
+			ARG 2 level
+			ARG 3 stack
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS CatTemptGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Cat;DLjava/util/function/Predicate;Z)V
+			ARG 1 cat
+			ARG 2 speedModifier
+			ARG 4 items
+			ARG 5 canScare
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started

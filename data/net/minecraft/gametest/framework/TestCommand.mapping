@@ -1,4 +1,10 @@
 CLASS net/minecraft/gametest/framework/TestCommand
+	METHOD clear (Lnet/minecraft/gametest/framework/TestFinder;)I
+		ARG 0 testFinder
+	METHOD createGameTestInfo (Lnet/minecraft/core/BlockPos;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/RetryOptions;)Ljava/util/Optional;
+		ARG 0 pos
+		ARG 1 source
+		ARG 2 retryOptions
 	METHOD createGameTestInfo (Lnet/minecraft/core/BlockPos;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/gametest/framework/RetryOptions;)Ljava/util/Optional;
 		ARG 0 pos
 		ARG 1 level
@@ -9,16 +15,35 @@ CLASS net/minecraft/gametest/framework/TestCommand
 		ARG 2 x
 		ARG 3 y
 		ARG 4 z
+	METHOD createNewStructure (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/resources/ResourceLocation;III)I
+		ARG 0 source
+		ARG 1 id
+		ARG 2 width
+		ARG 3 height
+		ARG 4 depth
 	METHOD createTestPositionAround (Lnet/minecraft/commands/CommandSourceStack;)Lnet/minecraft/core/BlockPos;
 		ARG 0 source
+	METHOD export (Lnet/minecraft/gametest/framework/TestFinder;)I
+		ARG 0 testFinder
 	METHOD exportTestStructure (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
 		ARG 0 source
 		ARG 1 structurePath
+	METHOD exportTestStructure (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/Holder;)I
+		ARG 0 source
+		ARG 1 testInstance
 	METHOD importTestStructure (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
 		ARG 0 source
 		ARG 1 structurePath
+	METHOD lambda$clear$2 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)I
+		ARG 1 pos
 	METHOD lambda$createNewStructure$37 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
+	METHOD lambda$createNewStructure$45 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD lambda$locate$7 (Ljava/lang/String;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 style
+	METHOD lambda$locate$9 (Lnet/minecraft/gametest/framework/TestFinder;Lnet/minecraft/core/BlockPos;Lorg/apache/commons/lang3/mutable/MutableInt;Lnet/minecraft/core/BlockPos;)V
+		ARG 3 pos
 	METHOD lambda$register$10 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
 	METHOD lambda$register$11 (Lcom/mojang/brigadier/context/CommandContext;)I
@@ -37,9 +62,15 @@ CLASS net/minecraft/gametest/framework/TestCommand
 		ARG 0 context
 	METHOD lambda$register$18 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
+	METHOD lambda$register$18 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/gametest/framework/TestFinder;
+		ARG 0 context
 	METHOD lambda$register$19 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
+	METHOD lambda$register$19 (Lnet/minecraft/commands/CommandSourceStack;)Z
+		ARG 0 source
 	METHOD lambda$register$20 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$20 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/gametest/framework/TestFinder;
 		ARG 0 context
 	METHOD lambda$register$21 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
@@ -65,22 +96,56 @@ CLASS net/minecraft/gametest/framework/TestCommand
 		ARG 0 context
 	METHOD lambda$register$32 (Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 0 context
+	METHOD lambda$register$33 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$34 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$35 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$36 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$37 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$38 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$39 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$40 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$41 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
 	METHOD lambda$register$7 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/gametest/framework/TestCommand$Runner;
 		ARG 0 context
 	METHOD lambda$register$8 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/gametest/framework/TestCommand$Runner;
 		ARG 0 context
 	METHOD lambda$register$9 (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/gametest/framework/TestCommand$Runner;
 		ARG 0 context
+	METHOD lambda$reset$1 (Lnet/minecraft/gametest/framework/TestFinder;Lnet/minecraft/gametest/framework/GameTestInfo;)Ljava/lang/Integer;
+		ARG 1 testInfo
 	METHOD lambda$resetGameTestInfo$33 (Lnet/minecraft/world/entity/Entity;)V
 		ARG 0 entity
 	METHOD lambda$runWithRetryOptions$0 (Ljava/util/function/Function;Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 1 context
 	METHOD lambda$runWithRetryOptions$1 (Ljava/util/function/Function;Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 1 context
+	METHOD lambda$runWithRetryOptions$11 (Lnet/minecraft/server/commands/InCommandFunction;Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 1 context
+	METHOD lambda$runWithRetryOptions$12 (Lnet/minecraft/server/commands/InCommandFunction;Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 1 context
+	METHOD lambda$runWithRetryOptions$13 (Lnet/minecraft/server/commands/InCommandFunction;Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 1 context
+	METHOD lambda$runWithRetryOptions$14 (Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 builder
 	METHOD lambda$runWithRetryOptions$2 (Ljava/util/function/Function;Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 1 context
 	METHOD lambda$runWithRetryOptions$3 (Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
 		ARG 0 builder
+	METHOD lambda$runWithRetryOptionsAndBuildInfo$15 (Lnet/minecraft/server/commands/InCommandFunction;Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 1 context
+	METHOD lambda$runWithRetryOptionsAndBuildInfo$16 (Lnet/minecraft/server/commands/InCommandFunction;Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 1 context
+	METHOD lambda$runWithRetryOptionsAndBuildInfo$17 (Lnet/minecraft/server/commands/InCommandFunction;Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 1 builder
 	METHOD lambda$runWithRetryOptionsAndBuildInfo$4 (Ljava/util/function/Function;Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 1 context
 	METHOD lambda$runWithRetryOptionsAndBuildInfo$5 (Ljava/util/function/Function;Lcom/mojang/brigadier/context/CommandContext;)I
@@ -89,16 +154,43 @@ CLASS net/minecraft/gametest/framework/TestCommand
 		ARG 0 player
 	METHOD lambda$say$42 (Ljava/lang/String;Lnet/minecraft/ChatFormatting;Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 2 player
+	METHOD lambda$static$0 (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 x
+		ARG 1 y
+		ARG 2 z
 	METHOD lambda$toGameTestInfo$35 (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/TestFunction;)Z
 		ARG 1 function
 	METHOD lambda$toGameTestInfo$36 (ILnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/RetryOptions;Lnet/minecraft/gametest/framework/TestFunction;)Lnet/minecraft/gametest/framework/GameTestInfo;
 		ARG 3 function
+	METHOD lambda$toGameTestInfo$43 (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/core/Holder$Reference;)Z
+		ARG 1 reference
+	METHOD lambda$toGameTestInfo$44 (ILnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/RetryOptions;Lnet/minecraft/core/Holder$Reference;)Lnet/minecraft/gametest/framework/GameTestInfo;
+		ARG 3 reference
+	METHOD lambda$toGameTestInfos$42 (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/RetryOptions;Lnet/minecraft/core/BlockPos;)Ljava/util/Optional;
+		ARG 2 pos
 	METHOD lambda$trackAndStartRunner$39 (Lnet/minecraft/gametest/framework/GameTestInfo;)V
 		ARG 0 testInfo
+	METHOD lambda$trackAndStartRunner$47 (Lnet/minecraft/gametest/framework/GameTestInfo;)V
+		ARG 0 testInfo
+	METHOD locate (Lnet/minecraft/gametest/framework/TestFinder;)I
+		ARG 0 testFinder
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandBuildContext;)V
+		ARG 0 dispatcher
+		ARG 1 buildContext
+	METHOD reset (Lnet/minecraft/gametest/framework/TestFinder;)I
+		ARG 0 testFinder
+	METHOD resetGameTestInfo (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/GameTestInfo;)I
+		ARG 0 source
+		ARG 1 testInfo
 	METHOD resetGameTestInfo (Lnet/minecraft/gametest/framework/GameTestInfo;)I
 		ARG 0 gameTestInfo
+	METHOD run (Lnet/minecraft/gametest/framework/TestFinder;Lnet/minecraft/gametest/framework/RetryOptions;II)I
+		ARG 0 testFinder
+		ARG 1 retryOptions
+		ARG 2 rotationSteps
+		ARG 3 testsPerRow
 	METHOD runWithRetryOptions (Lcom/mojang/brigadier/builder/ArgumentBuilder;Ljava/util/function/Function;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
 		ARG 0 argumentBuilder
 		ARG 1 runnerGetter
@@ -106,9 +198,19 @@ CLASS net/minecraft/gametest/framework/TestCommand
 		ARG 0 argumentBuilder
 		ARG 1 runnerGetter
 		ARG 2 modifier
+	METHOD runWithRetryOptions (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lnet/minecraft/server/commands/InCommandFunction;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 argumentBuilder
+		ARG 1 finderGetter
+	METHOD runWithRetryOptions (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lnet/minecraft/server/commands/InCommandFunction;Ljava/util/function/Function;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 argumentBuilder
+		ARG 1 finderGetter
+		ARG 2 modifier
 	METHOD runWithRetryOptionsAndBuildInfo (Lcom/mojang/brigadier/builder/ArgumentBuilder;Ljava/util/function/Function;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
 		ARG 0 argumentBuilder
 		ARG 1 runnerGetter
+	METHOD runWithRetryOptionsAndBuildInfo (Lcom/mojang/brigadier/builder/ArgumentBuilder;Lnet/minecraft/server/commands/InCommandFunction;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 argumentBuilder
+		ARG 1 finderGetter
 	METHOD saveAndExportTestStructure (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)I
 		ARG 0 source
 		ARG 1 structureBlockEntity
@@ -122,19 +224,39 @@ CLASS net/minecraft/gametest/framework/TestCommand
 	METHOD showPos (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
 		ARG 0 source
 		ARG 1 variableName
+	METHOD suggestTestFunction (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 context
+		ARG 1 builder
 	METHOD toGameTestInfo (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/RetryOptions;Lnet/minecraft/gametest/framework/TestFunctionFinder;I)Ljava/util/stream/Stream;
 		ARG 0 source
 		ARG 1 retryOptions
 		ARG 2 testFunctionFinder
 		ARG 3 rotationSteps
+	METHOD toGameTestInfo (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/RetryOptions;Lnet/minecraft/gametest/framework/TestInstanceFinder;I)Ljava/util/stream/Stream;
+		ARG 0 source
+		ARG 1 retryOptions
+		ARG 2 finder
+		ARG 3 rotationSteps
 	METHOD toGameTestInfos (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/RetryOptions;Lnet/minecraft/gametest/framework/StructureBlockPosFinder;)Ljava/util/stream/Stream;
 		ARG 0 source
 		ARG 1 retryOptions
 		ARG 2 structureBlockPosFinder
+	METHOD toGameTestInfos (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/RetryOptions;Lnet/minecraft/gametest/framework/TestPosFinder;)Ljava/util/stream/Stream;
+		ARG 0 source
+		ARG 1 retryOptions
+		ARG 2 posFinder
+	METHOD trackAndStartRunner (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/GameTestRunner;)I
+		ARG 0 source
+		ARG 1 testRunner
 	METHOD trackAndStartRunner (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/gametest/framework/GameTestRunner;)I
 		ARG 0 source
 		ARG 1 level
 		ARG 2 runner
+	METHOD verify (Lnet/minecraft/gametest/framework/TestFinder;)I
+		ARG 0 testFinder
+	METHOD verifyStructureExists (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/resources/ResourceLocation;)Z
+		ARG 0 source
+		ARG 1 structure
 	METHOD verifyStructureExists (Lnet/minecraft/server/level/ServerLevel;Ljava/lang/String;)Z
 		ARG 0 level
 		ARG 1 structure

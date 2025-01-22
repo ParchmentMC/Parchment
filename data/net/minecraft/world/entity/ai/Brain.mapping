@@ -23,6 +23,11 @@ CLASS net/minecraft/world/entity/ai/Brain
 		ARG 2 priorityStart
 		ARG 3 tasks
 		ARG 4 memoryType
+	METHOD addActivityWithConditions (Lnet/minecraft/world/entity/schedule/Activity;ILcom/google/common/collect/ImmutableList;Ljava/util/Set;)V
+		ARG 1 activity
+		ARG 2 priorityStart
+		ARG 3 tasks
+		ARG 4 memoryStatuses
 	METHOD addActivityWithConditions (Lnet/minecraft/world/entity/schedule/Activity;Lcom/google/common/collect/ImmutableList;Ljava/util/Set;)V
 		ARG 1 activity
 		ARG 2 tasks
@@ -115,12 +120,6 @@ CLASS net/minecraft/world/entity/ai/Brain
 			ARG 3 prefix
 		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
 			ARG 1 ops
-	CLASS Provider
-		METHOD <init> (Ljava/util/Collection;Ljava/util/Collection;)V
-			ARG 1 memoryTypes
-			ARG 2 sensorTypes
-		METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
-			ARG 1 ops
 	CLASS MemoryValue
 		METHOD <init> (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Ljava/util/Optional;)V
 			ARG 1 type
@@ -137,3 +136,9 @@ CLASS net/minecraft/world/entity/ai/Brain
 			ARG 2 builder
 		METHOD setMemoryInternal (Lnet/minecraft/world/entity/ai/Brain;)V
 			ARG 1 brain
+	CLASS Provider
+		METHOD <init> (Ljava/util/Collection;Ljava/util/Collection;)V
+			ARG 1 memoryTypes
+			ARG 2 sensorTypes
+		METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
+			ARG 1 ops

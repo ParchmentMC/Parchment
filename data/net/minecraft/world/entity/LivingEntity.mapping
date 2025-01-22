@@ -39,9 +39,14 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 stack
 	METHOD calculateEntityAnimation (Z)V
 		ARG 1 includeHeight
+	METHOD calculateFallDamage (DF)I
+		ARG 1 fallDistance
+		ARG 3 damageMultiplier
 	METHOD calculateFallDamage (FF)I
 		ARG 1 fallDistance
 		ARG 2 damageMultiplier
+	METHOD calculateFallPower (D)D
+		ARG 1 fallDistance
 	METHOD canAttack (Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 1 target
 	METHOD canAttack (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;)Z
@@ -218,6 +223,10 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD getEffectBlendFactor (Lnet/minecraft/core/Holder;F)F
 		ARG 1 effect
 		ARG 2 partialTick
+	METHOD getEquipSound (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/equipment/Equippable;)Lnet/minecraft/core/Holder;
+		ARG 1 slot
+		ARG 2 stack
+		ARG 3 equippable
 	METHOD getEquipmentSlot (I)Lnet/minecraft/world/entity/EquipmentSlot;
 		ARG 0 index
 	METHOD getEquipmentSlotForItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/EquipmentSlot;
@@ -393,6 +402,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 pos
 	METHOD lambda$addAdditionalSaveData$1 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
 		ARG 1 brainTag
+	METHOD lambda$addAdditionalSaveData$2 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
 	METHOD lambda$addAdditionalSaveData$2 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
 		ARG 1 brain
 	METHOD lambda$checkBedExists$11 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
@@ -400,6 +411,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD lambda$checkBedExists$13 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
 		ARG 1 pos
 	METHOD lambda$checkBedExists$14 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
+		ARG 1 pos
+	METHOD lambda$checkBedExists$15 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
 		ARG 1 pos
 	METHOD lambda$checkBedExists$7 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
 		ARG 1 pos
@@ -409,6 +422,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 attribute
 		ARG 2 modifier
 	METHOD lambda$collectEquipmentChanges$11 (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
+		ARG 1 attribute
+		ARG 2 modifier
+	METHOD lambda$collectEquipmentChanges$12 (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
 		ARG 1 attribute
 		ARG 2 modifier
 	METHOD lambda$collectEquipmentChanges$6 (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
@@ -425,6 +441,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 2 stack
 	METHOD lambda$createEquipmentSlotAccess$18 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 2 stack
+	METHOD lambda$createEquipmentSlotAccess$19 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 2 stack
 	METHOD lambda$dismountVehicle$5 (DLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 		ARG 2 vec3
 	METHOD lambda$dismountVehicle$7 (DLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
@@ -437,13 +455,19 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 builder
 	METHOD lambda$dropFromGiftLootTable$5 (Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
 		ARG 1 builder
+	METHOD lambda$dropFromGiftLootTable$6 (Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
+		ARG 1 builder
 	METHOD lambda$dropFromLootTable$3 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 stack
 	METHOD lambda$dropFromLootTable$4 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 stack
+	METHOD lambda$dropFromLootTable$5 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 2 stack
 	METHOD lambda$dropFromLootTable$6 (Ljava/util/function/BiConsumer;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 stack
 	METHOD lambda$dropFromLootTable$7 (Ljava/util/function/BiConsumer;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 2 stack
+	METHOD lambda$dropFromLootTable$8 (Ljava/util/function/BiConsumer;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 stack
 	METHOD lambda$dropFromShearingLootTable$4 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
 		ARG 2 builder
@@ -451,10 +475,15 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 2 builder
 	METHOD lambda$dropFromShearingLootTable$6 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
 		ARG 2 builder
+	METHOD lambda$dropFromShearingLootTable$7 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
+		ARG 2 builder
 	METHOD lambda$handleEquipmentChanges$11 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 slot
 		ARG 3 stack
 	METHOD lambda$handleEquipmentChanges$12 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 2 slot
+		ARG 3 stack
+	METHOD lambda$handleEquipmentChanges$13 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 slot
 		ARG 3 stack
 	METHOD lambda$handleEquipmentChanges$7 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
@@ -463,6 +492,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD lambda$handleEquipmentChanges$9 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 slot
 		ARG 3 stack
+	METHOD lambda$isHolding$10 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
 	METHOD lambda$isHolding$4 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
 	METHOD lambda$isHolding$6 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
@@ -485,11 +516,16 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD lambda$stopLocationBasedEffects$17 (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
 		ARG 1 attribute
 		ARG 2 modifier
+	METHOD lambda$stopLocationBasedEffects$18 (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
+		ARG 1 attribute
+		ARG 2 modifier
 	METHOD lambda$stopSleeping$11 (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD lambda$stopSleeping$13 (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD lambda$stopSleeping$15 (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD lambda$stopSleeping$17 (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD lambda$stopSleeping$9 (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
@@ -498,6 +534,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD lambda$updateFallFlying$12 (Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 slot
 	METHOD lambda$updateFallFlying$13 (Lnet/minecraft/world/entity/EquipmentSlot;)Z
+		ARG 1 slot
+	METHOD lambda$updateFallFlying$14 (Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 slot
 	METHOD lambda$updateFallFlying$8 (Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 slot

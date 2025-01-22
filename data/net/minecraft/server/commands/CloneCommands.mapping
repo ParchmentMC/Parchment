@@ -2,6 +2,9 @@ CLASS net/minecraft/server/commands/CloneCommands
 	METHOD beginEndDestinationAndModeSuffix (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
 		ARG 0 buildContext
 		ARG 1 levelGetter
+	METHOD beginEndDestinationAndModeSuffix (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/server/commands/InCommandFunction;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 buildContext
+		ARG 1 levelGetter
 	METHOD clone (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;Ljava/util/function/Predicate;Lnet/minecraft/server/commands/CloneCommands$Mode;)I
 		ARG 0 source
 		ARG 1 begin
@@ -25,6 +28,10 @@ CLASS net/minecraft/server/commands/CloneCommands
 		ARG 0 buildContext
 		ARG 1 levelGetter
 		ARG 2 dimensionGetter
+	METHOD destinationAndStrictSuffix (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 buildContext
+		ARG 1 sourceLevelGetter
+		ARG 2 destinationLevelGetter
 	METHOD getLoadedDimensionAndPosition (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/server/level/ServerLevel;Ljava/lang/String;)Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;
 		ARG 0 context
 		ARG 1 level
@@ -61,12 +68,24 @@ CLASS net/minecraft/server/commands/CloneCommands
 		ARG 1 context
 	METHOD lambda$destinationAndStrictSuffix$7 (Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;
 		ARG 1 context
+	METHOD lambda$destinationAndStrictSuffix$7 (Lnet/minecraft/server/commands/InCommandFunction;Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;
+		ARG 1 context
 	METHOD lambda$destinationAndStrictSuffix$8 (Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;
+		ARG 1 context
+	METHOD lambda$destinationAndStrictSuffix$8 (Lnet/minecraft/server/commands/InCommandFunction;Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;
 		ARG 1 context
 	METHOD lambda$destinationAndStrictSuffix$9 (Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;
 		ARG 1 context
+	METHOD lambda$destinationAndStrictSuffix$9 (Lnet/minecraft/server/commands/InCommandFunction;Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/server/commands/CloneCommands$DimensionAndPosition;
+		ARG 1 context
+	METHOD lambda$modeSuffix$10 (Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+		ARG 0 block
 	METHOD lambda$modeSuffix$11 (Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;ZLcom/mojang/brigadier/context/CommandContext;)I
 		ARG 4 context
+	METHOD lambda$modeSuffix$11 (Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;ZLcom/mojang/brigadier/context/CommandContext;)I
+		ARG 4 context
+	METHOD lambda$modeSuffix$12 (Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+		ARG 0 block
 	METHOD lambda$modeSuffix$13 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/function/Predicate;
 		ARG 0 context
 	METHOD lambda$modeSuffix$14 (Lcom/mojang/brigadier/context/CommandContext;)Ljava/util/function/Predicate;
@@ -86,11 +105,19 @@ CLASS net/minecraft/server/commands/CloneCommands
 		ARG 0 blockInWorld
 	METHOD lambda$wrapWithCloneMode$16 (Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;ZLcom/mojang/brigadier/context/CommandContext;)I
 		ARG 5 context
+	METHOD lambda$wrapWithCloneMode$16 (Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;ZLcom/mojang/brigadier/context/CommandContext;)I
+		ARG 5 context
 	METHOD lambda$wrapWithCloneMode$17 (Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;ZLcom/mojang/brigadier/context/CommandContext;)I
+		ARG 5 context
+	METHOD lambda$wrapWithCloneMode$17 (Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;ZLcom/mojang/brigadier/context/CommandContext;)I
 		ARG 5 context
 	METHOD lambda$wrapWithCloneMode$18 (Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;ZLcom/mojang/brigadier/context/CommandContext;)I
 		ARG 5 context
+	METHOD lambda$wrapWithCloneMode$18 (Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;ZLcom/mojang/brigadier/context/CommandContext;)I
+		ARG 5 context
 	METHOD lambda$wrapWithCloneMode$19 (Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;ZLcom/mojang/brigadier/context/CommandContext;)I
+		ARG 5 context
+	METHOD lambda$wrapWithCloneMode$19 (Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;ZLcom/mojang/brigadier/context/CommandContext;)I
 		ARG 5 context
 	METHOD lambda$wrapWithCloneMode$20 (Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lcom/mojang/brigadier/context/CommandContext;)I
 		ARG 4 context
@@ -100,6 +127,13 @@ CLASS net/minecraft/server/commands/CloneCommands
 		ARG 4 context
 	METHOD modeSuffix (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;ZLcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
 		ARG 0 builderContext
+		ARG 1 begin
+		ARG 2 end
+		ARG 3 destination
+		ARG 4 strict
+		ARG 5 argumentBuilder
+	METHOD modeSuffix (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;ZLcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 buildContext
 		ARG 1 begin
 		ARG 2 end
 		ARG 3 destination
@@ -115,6 +149,13 @@ CLASS net/minecraft/server/commands/CloneCommands
 		ARG 3 filterGetter
 		ARG 4 argumentBuilder
 	METHOD wrapWithCloneMode (Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;Lnet/minecraft/server/commands/CloneCommands$CommandFunction;ZLcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+		ARG 0 begin
+		ARG 1 end
+		ARG 2 destination
+		ARG 3 filter
+		ARG 4 strict
+		ARG 5 argumentBuilder
+	METHOD wrapWithCloneMode (Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;Lnet/minecraft/server/commands/InCommandFunction;ZLcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
 		ARG 0 begin
 		ARG 1 end
 		ARG 2 destination

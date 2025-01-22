@@ -4,6 +4,10 @@ CLASS net/minecraft/gametest/framework/TestFinder
 		ARG 2 contextProvider
 		ARG 3 testFunctionFinder
 		ARG 4 structureBlockPosFinder
+	METHOD <init> (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/TestInstanceFinder;Lnet/minecraft/gametest/framework/TestPosFinder;)V
+		ARG 1 source
+		ARG 2 testInstanceFinder
+		ARG 3 testPosFinder
 	CLASS Builder
 		METHOD <init> (Ljava/util/function/Function;)V
 			ARG 1 contextProvider
@@ -11,7 +15,12 @@ CLASS net/minecraft/gametest/framework/TestFinder
 			ARG 1 contextProvider
 			ARG 2 testFunctionFinderWrapper
 			ARG 3 structureBlockPosFinderWrapper
+		METHOD <init> (Ljava/util/function/UnaryOperator;Ljava/util/function/UnaryOperator;)V
+			ARG 1 testFinderWrapper
+			ARG 2 structureBlockPosFinderWrapper
 		METHOD allNearby (Lcom/mojang/brigadier/context/CommandContext;)Ljava/lang/Object;
+			ARG 1 context
+		METHOD allNearby (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/gametest/framework/TestFinder;
 			ARG 1 context
 		METHOD allTests (Lcom/mojang/brigadier/context/CommandContext;)Ljava/lang/Object;
 			ARG 1 context
@@ -22,25 +31,46 @@ CLASS net/minecraft/gametest/framework/TestFinder
 			ARG 1 source
 			ARG 2 testFunctionFinder
 			ARG 3 structureBlockPosFinder
+		METHOD build (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/gametest/framework/TestInstanceFinder;Lnet/minecraft/gametest/framework/TestPosFinder;)Lnet/minecraft/gametest/framework/TestFinder;
+			ARG 1 source
+			ARG 2 instanceFinder
+			ARG 3 posFinder
 		METHOD byArgument (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/lang/Object;
 			ARG 1 context
 			ARG 2 argumentName
+		METHOD byResourceSelection (Lcom/mojang/brigadier/context/CommandContext;Ljava/util/Collection;)Lnet/minecraft/gametest/framework/TestFinder;
+			ARG 1 context
+			ARG 2 collection
 		METHOD createCopies (I)Ljava/util/function/UnaryOperator;
 			ARG 0 count
 		METHOD createMultipleCopies (I)Lnet/minecraft/gametest/framework/TestFinder$Builder;
 			ARG 1 count
 		METHOD failedTests (Lcom/mojang/brigadier/context/CommandContext;)Ljava/lang/Object;
 			ARG 1 context
+		METHOD failedTests (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/gametest/framework/TestFinder;
+			ARG 1 context
 		METHOD failedTests (Lcom/mojang/brigadier/context/CommandContext;Z)Ljava/lang/Object;
 			ARG 1 context
 			ARG 2 onlyRequired
+		METHOD failedTests (Lcom/mojang/brigadier/context/CommandContext;Z)Lnet/minecraft/gametest/framework/TestFinder;
+			ARG 1 context
+			ARG 2 onlyRequired
+		METHOD lambda$failedTests$7 (ZLnet/minecraft/core/Holder$Reference;)Z
+			ARG 1 reference
 		METHOD locateByName (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/lang/Object;
 			ARG 1 context
 			ARG 2 name
 		METHOD lookedAt (Lcom/mojang/brigadier/context/CommandContext;)Ljava/lang/Object;
 			ARG 1 context
+		METHOD lookedAt (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/gametest/framework/TestFinder;
+			ARG 1 context
 		METHOD nearest (Lcom/mojang/brigadier/context/CommandContext;)Ljava/lang/Object;
 			ARG 1 context
+		METHOD nearest (Lcom/mojang/brigadier/context/CommandContext;)Lnet/minecraft/gametest/framework/TestFinder;
+			ARG 1 context
 		METHOD radius (Lcom/mojang/brigadier/context/CommandContext;I)Ljava/lang/Object;
+			ARG 1 context
+			ARG 2 radius
+		METHOD radius (Lcom/mojang/brigadier/context/CommandContext;I)Lnet/minecraft/gametest/framework/TestFinder;
 			ARG 1 context
 			ARG 2 radius

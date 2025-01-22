@@ -6,21 +6,50 @@ CLASS net/minecraft/gametest/framework/GameTestServer
 		ARG 4 worldStem
 		ARG 5 testBatches
 		ARG 6 spawnPos
+	METHOD <init> (Ljava/lang/Thread;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Ljava/util/Optional;Z)V
+		ARG 1 serverThread
+		ARG 2 storageSource
+		ARG 3 packRepository
+		ARG 4 worldStem
+		ARG 5 testSelection
+		ARG 6 verify
 	METHOD create (Ljava/lang/Thread;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Ljava/util/Collection;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/gametest/framework/GameTestServer;
 		ARG 0 serverThread
 		ARG 1 storageSource
 		ARG 2 packRepository
 		ARG 3 testBatches
 		ARG 4 spawnPos
+	METHOD create (Ljava/lang/Thread;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Ljava/util/Optional;Z)Lnet/minecraft/gametest/framework/GameTestServer;
+		ARG 0 serverThread
+		ARG 1 storageSource
+		ARG 2 packRepository
+		ARG 3 testSelection
+		ARG 4 verify
+	METHOD evaluateTestsToRun (Lnet/minecraft/server/level/ServerLevel;)Ljava/util/List;
+		ARG 1 level
+	METHOD getTestsForSelection (Lnet/minecraft/core/RegistryAccess;Ljava/lang/String;)Ljava/util/stream/Stream;
+		ARG 0 registries
+		ARG 1 selection
+	METHOD lambda$create$0 (Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/server/WorldLoader$DataLoadContext;)Lnet/minecraft/server/WorldLoader$DataLoadOutput;
+		ARG 1 context
 	METHOD lambda$create$1 (Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/server/WorldLoader$DataLoadContext;)Lnet/minecraft/server/WorldLoader$DataLoadOutput;
 		ARG 1 context
 	METHOD lambda$create$2 (Lnet/minecraft/server/WorldLoader$InitConfig;Lnet/minecraft/world/level/LevelSettings;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
 		ARG 2 executor
+	METHOD lambda$evaluateTestsToRun$2 (Lnet/minecraft/core/Holder$Reference;)Z
+		ARG 0 reference
+	METHOD lambda$evaluateTestsToRun$3 (Lnet/minecraft/core/Holder$Reference;)Z
+		ARG 0 reference
 	METHOD lambda$static$0 (Lnet/minecraft/world/level/GameRules;)V
 		ARG 0 gameRules
 	METHOD lambda$tickServer$3 (Lnet/minecraft/gametest/framework/GameTestInfo;)V
 		ARG 0 gameTestInfo
 	METHOD lambda$tickServer$4 (Lnet/minecraft/gametest/framework/GameTestInfo;)V
 		ARG 0 gameTestInfo
+	METHOD lambda$tickServer$5 (Lnet/minecraft/gametest/framework/GameTestInfo;)V
+		ARG 0 gameTestInfo
+	METHOD rotateAndMultiply (Lnet/minecraft/core/Holder$Reference;Lnet/minecraft/server/level/ServerLevel;)Ljava/util/stream/Stream;
+		ARG 0 test
+		ARG 1 level
 	METHOD startTests (Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 1 serverLevel

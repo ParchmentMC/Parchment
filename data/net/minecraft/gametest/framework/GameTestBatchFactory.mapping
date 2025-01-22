@@ -1,14 +1,38 @@
 CLASS net/minecraft/gametest/framework/GameTestBatchFactory
+	METHOD divideIntoBatches (Ljava/util/Collection;Lnet/minecraft/gametest/framework/GameTestBatchFactory$TestDecorator;Lnet/minecraft/server/level/ServerLevel;)Ljava/util/List;
+		ARG 0 instances
+		ARG 1 decorator
+		ARG 2 level
 	METHOD fromGameTestInfo (I)Lnet/minecraft/gametest/framework/GameTestRunner$GameTestBatcher;
 		ARG 0 maxTests
 	METHOD fromTestFunction (Ljava/util/Collection;Lnet/minecraft/server/level/ServerLevel;)Ljava/util/Collection;
 		ARG 0 testFunctions
 		ARG 1 level
+	METHOD lambda$divideIntoBatches$1 (Lnet/minecraft/gametest/framework/GameTestBatchFactory$TestDecorator;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/Holder$Reference;)Ljava/util/stream/Stream;
+		ARG 2 instance
+	METHOD lambda$divideIntoBatches$2 (Lnet/minecraft/gametest/framework/GameTestInfo;)Lnet/minecraft/core/Holder;
+		ARG 0 testInfo
+	METHOD lambda$divideIntoBatches$3 (Lnet/minecraft/core/Holder;Ljava/util/List;J)Lnet/minecraft/gametest/framework/GameTestBatch;
+		ARG 1 gameTestInfos
+		ARG 2 index
+	METHOD lambda$divideIntoBatches$4 (Ljava/util/Map$Entry;)Ljava/util/stream/Stream;
+		ARG 0 entry
+	METHOD lambda$static$0 (Lnet/minecraft/core/Holder$Reference;Lnet/minecraft/server/level/ServerLevel;)Ljava/util/stream/Stream;
+		ARG 0 instance
+		ARG 1 level
 	METHOD toGameTestBatch (Ljava/util/Collection;Ljava/lang/String;J)Lnet/minecraft/gametest/framework/GameTestBatch;
 		ARG 0 gameTestInfos
 		ARG 1 functionName
+		ARG 2 index
+	METHOD toGameTestBatch (Ljava/util/Collection;Lnet/minecraft/core/Holder;I)Lnet/minecraft/gametest/framework/GameTestBatch;
+		ARG 0 gameTestInfos
+		ARG 1 environment
 		ARG 2 index
 	METHOD toGameTestInfo (Lnet/minecraft/gametest/framework/TestFunction;ILnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/gametest/framework/GameTestInfo;
 		ARG 0 testFunction
 		ARG 1 rotationSteps
 		ARG 2 level
+	CLASS TestDecorator
+		METHOD decorate (Lnet/minecraft/core/Holder$Reference;Lnet/minecraft/server/level/ServerLevel;)Ljava/util/stream/Stream;
+			ARG 1 instance
+			ARG 2 level
