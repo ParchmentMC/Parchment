@@ -30,8 +30,13 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 0 potionEffects
 	METHOD baseTick ()V
 		COMMENT Gets called every tick from main Entity class
+	METHOD blockUsingItem (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 level
+		ARG 2 entity
 	METHOD blockUsingShield (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 attacker
+	METHOD blockedByItem (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 entity
 	METHOD blockedByShield (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 defender
 	METHOD breakItem (Lnet/minecraft/world/item/ItemStack;)V
@@ -502,6 +507,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 stack
 	METHOD lambda$isHolding$9 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
+	METHOD lambda$new$1 (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 slot
 	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 0 entity
 	METHOD lambda$stopLocationBasedEffects$12 (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V

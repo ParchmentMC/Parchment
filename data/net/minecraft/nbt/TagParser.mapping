@@ -1,6 +1,12 @@
 CLASS net/minecraft/nbt/TagParser
 	METHOD <init> (Lcom/mojang/brigadier/StringReader;)V
 		ARG 1 reader
+	METHOD <init> (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/brigadier/StringReader;)V
+		ARG 1 ops
+		ARG 2 reader
+	METHOD castToCompoundOrThrow (Lcom/mojang/brigadier/StringReader;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 reader
+		ARG 1 tag
 	METHOD expect (C)V
 		ARG 1 expected
 	METHOD lambda$static$0 (Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
@@ -11,10 +17,29 @@ CLASS net/minecraft/nbt/TagParser
 		ARG 1 arrayType
 	METHOD lambda$static$2 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
 		ARG 0 arrayType
+	METHOD parseAsArgument (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/brigadier/StringReader;)Ljava/lang/Object;
+		ARG 0 ops
+		ARG 1 reader
+	METHOD parseCompoundAsArgument (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 reader
+	METHOD parseCompoundFully (Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 data
+	METHOD parseFully (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/brigadier/StringReader;)Ljava/lang/Object;
+		ARG 0 ops
+		ARG 1 reader
+	METHOD parseFully (Lcom/mojang/serialization/DynamicOps;Ljava/lang/String;)Ljava/lang/Object;
+		ARG 0 ops
+		ARG 1 data
+	METHOD parseNumber (Ljava/lang/String;)Ljava/lang/Number;
+		ARG 0 number
+	METHOD parseSingleWordValue (Ljava/lang/String;)Ljava/lang/Object;
+		ARG 1 value
 	METHOD parseTag (Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 0 text
 	METHOD readArray (Lnet/minecraft/nbt/TagType;Lnet/minecraft/nbt/TagType;)Ljava/util/List;
 		ARG 1 arrayType
 		ARG 2 elementType
+	METHOD readKey (Lcom/mojang/brigadier/StringReader;)Ljava/lang/String;
+		ARG 0 reader
 	METHOD type (Ljava/lang/String;)Lnet/minecraft/nbt/Tag;
 		ARG 1 value

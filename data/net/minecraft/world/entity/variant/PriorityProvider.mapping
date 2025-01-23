@@ -1,0 +1,25 @@
+CLASS net/minecraft/world/entity/variant/PriorityProvider
+	METHOD alwaysTrue (I)Ljava/util/List;
+		ARG 0 priority
+	METHOD pick (Ljava/util/stream/Stream;Ljava/util/function/Function;Lnet/minecraft/util/RandomSource;Ljava/lang/Object;)Ljava/util/Optional;
+		ARG 0 elements
+		ARG 1 entryGetter
+		ARG 2 random
+		ARG 3 context
+	METHOD select (Ljava/util/stream/Stream;Ljava/util/function/Function;Ljava/lang/Object;)Ljava/util/stream/Stream;
+		ARG 0 elements
+		ARG 1 entryGetter
+		ARG 2 context
+	METHOD single (Lnet/minecraft/world/entity/variant/PriorityProvider$SelectorCondition;I)Ljava/util/List;
+		ARG 0 condition
+		ARG 1 priority
+	CLASS Selector
+		METHOD <init> (I)V
+			ARG 1 priority
+		METHOD <init> (Lnet/minecraft/world/entity/variant/PriorityProvider$SelectorCondition;I)V
+			ARG 1 condition
+			ARG 2 priority
+		METHOD codec (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+			ARG 0 conditionCodec
+		METHOD lambda$codec$0 (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 1 instance

@@ -6,6 +6,8 @@ CLASS net/minecraft/world/entity/animal/WolfVariants
 	METHOD getSpawnVariant (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/core/Holder;)Lnet/minecraft/core/Holder;
 		ARG 0 registryAccess
 		ARG 1 biome
+	METHOD highPrioBiome (Lnet/minecraft/core/HolderSet;)Lnet/minecraft/world/entity/variant/SpawnPrioritySelectors;
+		ARG 0 spawnBiomes
 	METHOD register (Lnet/minecraft/data/worldgen/BootstrapContext;Lnet/minecraft/resources/ResourceKey;Ljava/lang/String;Lnet/minecraft/core/HolderSet;)V
 		ARG 0 context
 		ARG 1 key
@@ -21,3 +23,12 @@ CLASS net/minecraft/world/entity/animal/WolfVariants
 		ARG 1 key
 		ARG 2 name
 		ARG 3 spawnBiomes
+	METHOD register (Lnet/minecraft/data/worldgen/BootstrapContext;Lnet/minecraft/resources/ResourceKey;Ljava/lang/String;Lnet/minecraft/world/entity/variant/SpawnPrioritySelectors;)V
+		ARG 0 context
+		ARG 1 key
+		ARG 2 name
+		ARG 3 spawnConditions
+	METHOD selectVariantToSpawn (Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/entity/variant/SpawnContext;)Ljava/util/Optional;
+		ARG 0 random
+		ARG 1 registryAccess
+		ARG 2 context

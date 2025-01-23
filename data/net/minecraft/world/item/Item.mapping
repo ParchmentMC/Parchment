@@ -6,6 +6,12 @@ CLASS net/minecraft/world/item/Item
 		ARG 2 context
 		ARG 3 tooltipComponents
 		ARG 4 tooltipFlag
+	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item$TooltipContext;Lnet/minecraft/world/item/component/TooltipDisplay;Ljava/util/function/Consumer;Lnet/minecraft/world/item/TooltipFlag;)V
+		ARG 1 stack
+		ARG 2 context
+		ARG 3 tooltipDisplay
+		ARG 4 tooltipAdder
+		ARG 5 flag
 	METHOD byBlock (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/item/Item;
 		ARG 0 block
 	METHOD byId (I)Lnet/minecraft/world/item/Item;
@@ -182,6 +188,10 @@ CLASS net/minecraft/world/item/Item
 	CLASS Properties
 		METHOD attributes (Lnet/minecraft/world/item/component/ItemAttributeModifiers;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 attributes
+		METHOD axe (Lnet/minecraft/world/item/ToolMaterial;FF)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 material
+			ARG 2 attackDamage
+			ARG 3 attackSpeed
 		METHOD buildAndValidateComponents (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/core/component/DataComponentMap;
 			ARG 1 itemName
 			ARG 2 itemModel
@@ -207,6 +217,12 @@ CLASS net/minecraft/world/item/Item
 		METHOD food (Lnet/minecraft/world/food/FoodProperties;Lnet/minecraft/world/item/component/Consumable;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 food
 			ARG 2 consumable
+		METHOD hoe (Lnet/minecraft/world/item/ToolMaterial;FF)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 material
+			ARG 2 attackDamage
+			ARG 3 attackSpeed
+		METHOD horseArmor (Lnet/minecraft/world/item/equipment/ArmorMaterial;)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 material
 		METHOD humanoidArmor (Lnet/minecraft/world/item/equipment/ArmorMaterial;Lnet/minecraft/world/item/equipment/ArmorType;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 material
 			ARG 2 type
@@ -234,22 +250,36 @@ CLASS net/minecraft/world/item/Item
 			ARG 1 requiredFeatures
 		METHOD setId (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 id
+		METHOD shovel (Lnet/minecraft/world/item/ToolMaterial;FF)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 material
+			ARG 2 attackDamage
+			ARG 3 attackSpeed
 		METHOD stacksTo (I)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 maxStackSize
 		METHOD sword (Lnet/minecraft/world/item/ToolMaterial;FF)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 material
 			ARG 2 attackDamage
 			ARG 3 attackSpeed
+		METHOD tool (Lnet/minecraft/world/item/ToolMaterial;Lnet/minecraft/tags/TagKey;FFF)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 material
+			ARG 2 mineableBlocks
+			ARG 3 attackDamage
+			ARG 4 attackSpeed
+			ARG 5 disableBlockingForSeconds
 		METHOD tool (Lnet/minecraft/world/item/ToolMaterial;Lnet/minecraft/tags/TagKey;FFZ)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 material
 			ARG 2 mineableBlocks
 			ARG 3 attackDamage
 			ARG 4 attackSpeed
 			ARG 5 canDisableBlocking
+		METHOD trimMaterial (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 trimMaterial
 		METHOD useCooldown (F)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 useCooldown
 		METHOD usingConvertsTo (Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 usingConvertsTo
+		METHOD wolfArmor (Lnet/minecraft/world/item/equipment/ArmorMaterial;)Lnet/minecraft/world/item/Item$Properties;
+			ARG 1 material
 	CLASS TooltipContext
 		METHOD mapData (Lnet/minecraft/world/level/saveddata/maps/MapId;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
 			ARG 1 mapId

@@ -25,21 +25,27 @@ CLASS net/minecraft/commands/arguments/item/ItemPredicateArgument
 		ARG 2 builder
 	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/item/ItemPredicateArgument$Result;
 		ARG 1 reader
-	CLASS Context
-		METHOD <init> (Lnet/minecraft/core/HolderLookup$Provider;)V
-			ARG 1 registries
 	CLASS ComponentWrapper
 		METHOD create (Lcom/mojang/brigadier/ImmutableStringReader;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/core/component/DataComponentType;)Lnet/minecraft/commands/arguments/item/ItemPredicateArgument$ComponentWrapper;
 			ARG 0 reader
 			ARG 1 id
 			ARG 2 componentType
+		METHOD decode (Lcom/mojang/brigadier/ImmutableStringReader;Lcom/mojang/serialization/Dynamic;)Ljava/util/function/Predicate;
+			ARG 1 reader
+			ARG 2 data
 		METHOD decode (Lcom/mojang/brigadier/ImmutableStringReader;Lnet/minecraft/resources/RegistryOps;Lnet/minecraft/nbt/Tag;)Ljava/util/function/Predicate;
 			ARG 1 reader
 			ARG 2 ops
 			ARG 3 value
+	CLASS Context
+		METHOD <init> (Lnet/minecraft/core/HolderLookup$Provider;)V
+			ARG 1 registries
 	CLASS PredicateWrapper
 		METHOD <init> (Lnet/minecraft/core/Holder$Reference;)V
 			ARG 1 predicate
+		METHOD decode (Lcom/mojang/brigadier/ImmutableStringReader;Lcom/mojang/serialization/Dynamic;)Ljava/util/function/Predicate;
+			ARG 1 reader
+			ARG 2 data
 		METHOD decode (Lcom/mojang/brigadier/ImmutableStringReader;Lnet/minecraft/resources/RegistryOps;Lnet/minecraft/nbt/Tag;)Ljava/util/function/Predicate;
 			ARG 1 reader
 			ARG 2 ops

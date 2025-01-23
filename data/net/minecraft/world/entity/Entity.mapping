@@ -89,7 +89,7 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD canChangeDimensions (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/Level;)Z
 		ARG 1 oldLevel
 		ARG 2 newLevel
-	METHOD canCollideWith (Lnet/minecraft/world/entity/Entity;)Zd
+	METHOD canCollideWith (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD canRide (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 vehicle
@@ -357,6 +357,13 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD handleEntityEvent (B)V
 		COMMENT Handles an entity event received from a {@link net.minecraft.network.protocol.game.ClientboundEntityEventPacket}.
 		ARG 1 id
+	METHOD handleOnAboveBubbleColumn (Lnet/minecraft/world/entity/Entity;ZLnet/minecraft/core/BlockPos;)V
+		ARG 0 entity
+		ARG 1 downwards
+		ARG 2 pos
+	METHOD handleOnInsideBubbleColumn (Lnet/minecraft/world/entity/Entity;Z)V
+		ARG 0 entity
+		ARG 1 downwards
 	METHOD hasIndirectPassenger (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD hasPassenger (Ljava/util/function/Predicate;)Z
@@ -605,6 +612,9 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD onAboveBubbleCol (ZLnet/minecraft/core/BlockPos;)V
 		ARG 1 dragDown
 		ARG 2 pos
+	METHOD onAboveBubbleColumn (ZLnet/minecraft/core/BlockPos;)V
+		ARG 1 downwards
+		ARG 2 pos
 	METHOD onExplosionHit (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD onInsideBlock (Lnet/minecraft/world/level/block/state/BlockState;)V
@@ -707,6 +717,9 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Writes this entity, including passengers, to NBT, regardless as to whether it is removed or a passenger. Does <b>not</b> include the entity's type ID, so the NBT is insufficient to recreate the entity using {@link AnvilChunkLoader#readWorldEntity}. Use {@link #writeUnlessPassenger} for that purpose.
 		ARG 1 compound
 	METHOD sendBubbleColumnParticles (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD sendBubbleColumnParticles (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 0 level
 		ARG 1 pos
 	METHOD sendTeleportTransitionToRidingPlayers (Lnet/minecraft/world/level/portal/TeleportTransition;)V
 		ARG 1 teleportTransition
