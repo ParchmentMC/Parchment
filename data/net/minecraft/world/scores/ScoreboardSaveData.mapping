@@ -1,11 +1,16 @@
 CLASS net/minecraft/world/scores/ScoreboardSaveData
 	METHOD <init> (Lnet/minecraft/world/scores/Scoreboard;)V
 		ARG 1 scoreboard
+	METHOD lambda$loadFrom$0 (Lnet/minecraft/world/scores/DisplaySlot;Ljava/lang/String;)V
+		ARG 1 slot
+		ARG 2 objective
 	METHOD load (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/scores/ScoreboardSaveData;
 		ARG 1 tag
 		ARG 2 levelRegistry
 	METHOD loadDisplaySlots (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 compound
+	METHOD loadFrom (Lnet/minecraft/world/scores/ScoreboardSaveData$Packed;)V
+		ARG 1 packed
 	METHOD loadObjectives (Lnet/minecraft/nbt/ListTag;Lnet/minecraft/core/HolderLookup$Provider;)V
 		ARG 1 tag
 		ARG 2 levelRegistry
@@ -21,3 +26,6 @@ CLASS net/minecraft/world/scores/ScoreboardSaveData
 		ARG 1 levelRegistry
 	METHOD saveTeams (Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/nbt/ListTag;
 		ARG 1 levelRegistry
+	CLASS Packed
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

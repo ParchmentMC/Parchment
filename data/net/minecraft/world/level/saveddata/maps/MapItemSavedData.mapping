@@ -7,6 +7,17 @@ CLASS net/minecraft/world/level/saveddata/maps/MapItemSavedData
 		ARG 5 unlimitedTracking
 		ARG 6 locked
 		ARG 7 dimension
+	METHOD <init> (Lnet/minecraft/resources/ResourceKey;IIBLjava/nio/ByteBuffer;ZZZLjava/util/List;Ljava/util/List;)V
+		ARG 1 dimension
+		ARG 2 x
+		ARG 3 z
+		ARG 4 scale
+		ARG 5 colors
+		ARG 6 trackingPosition
+		ARG 7 unlimitedTracking
+		ARG 8 locked
+		ARG 9 banners
+		ARG 10 frames
 	METHOD addClientSideDecorations (Ljava/util/List;)V
 		ARG 1 decorations
 	METHOD addDecoration (Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/LevelAccessor;Ljava/lang/String;DDDLnet/minecraft/network/chat/Component;)V
@@ -69,6 +80,8 @@ CLASS net/minecraft/world/level/saveddata/maps/MapItemSavedData
 		ARG 2 decorations
 	METHOD lambda$save$3 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
 		ARG 1 dimension
+	METHOD lambda$static$10 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
 	METHOD load (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
 		ARG 0 tag
 		ARG 1 levelRegistry
@@ -99,24 +112,12 @@ CLASS net/minecraft/world/level/saveddata/maps/MapItemSavedData
 	METHOD toggleBanner (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 accessor
 		ARG 2 pos
+	METHOD type (Lnet/minecraft/world/level/saveddata/maps/MapId;)Lnet/minecraft/world/level/saveddata/SavedDataType;
+		ARG 0 mapId
 	METHOD updateColor (IIB)Z
 		ARG 1 x
 		ARG 2 z
 		ARG 3 color
-	CLASS MapPatch
-		METHOD <init> (IIII[B)V
-			ARG 1 startX
-			ARG 2 startY
-			ARG 3 width
-			ARG 4 height
-			ARG 5 mapColors
-		METHOD applyToMap (Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
-			ARG 1 savedData
-		METHOD read (Lio/netty/buffer/ByteBuf;)Ljava/util/Optional;
-			ARG 0 buffer
-		METHOD write (Lio/netty/buffer/ByteBuf;Ljava/util/Optional;)V
-			ARG 0 buffer
-			ARG 1 mapPatch
 	CLASS HoldingPlayer
 		FIELD maxDirtyX I
 			COMMENT The highest dirty x value
@@ -133,3 +134,17 @@ CLASS net/minecraft/world/level/saveddata/maps/MapItemSavedData
 			ARG 2 z
 		METHOD nextUpdatePacket (Lnet/minecraft/world/level/saveddata/maps/MapId;)Lnet/minecraft/network/protocol/Packet;
 			ARG 1 mapId
+	CLASS MapPatch
+		METHOD <init> (IIII[B)V
+			ARG 1 startX
+			ARG 2 startY
+			ARG 3 width
+			ARG 4 height
+			ARG 5 mapColors
+		METHOD applyToMap (Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
+			ARG 1 savedData
+		METHOD read (Lio/netty/buffer/ByteBuf;)Ljava/util/Optional;
+			ARG 0 buffer
+		METHOD write (Lio/netty/buffer/ByteBuf;Ljava/util/Optional;)V
+			ARG 0 buffer
+			ARG 1 mapPatch

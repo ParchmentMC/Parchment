@@ -12,6 +12,8 @@ CLASS net/minecraft/world/item/component/BlocksAttacks
 		ARG 3 entity
 		ARG 4 hand
 		ARG 5 damage
+	METHOD lambda$disable$2 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/core/Holder;)V
+		ARG 2 sound
 	METHOD lambda$onBlocked$1 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/core/Holder;)V
 		ARG 2 sound
 	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
@@ -22,12 +24,20 @@ CLASS net/minecraft/world/item/component/BlocksAttacks
 	METHOD resolveBlockedDamage (Lnet/minecraft/world/damagesource/DamageSource;F)F
 		ARG 1 damageSource
 		ARG 2 damageAmount
+	METHOD resolveBlockedDamage (Lnet/minecraft/world/damagesource/DamageSource;FD)F
+		ARG 1 damageSource
+		ARG 2 damageAmount
+		ARG 3 horizontalAngle
 	CLASS DamageReduction
 		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 			ARG 0 instance
 		METHOD resolve (Lnet/minecraft/world/damagesource/DamageSource;F)F
 			ARG 1 damageSource
 			ARG 2 damageAmount
+		METHOD resolve (Lnet/minecraft/world/damagesource/DamageSource;FD)F
+			ARG 1 damageSource
+			ARG 2 damageAmount
+			ARG 3 horizontalAngle
 	CLASS ItemDamageFunction
 		METHOD apply (F)I
 			ARG 1 damageAmount

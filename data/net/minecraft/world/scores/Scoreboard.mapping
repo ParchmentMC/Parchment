@@ -48,9 +48,15 @@ CLASS net/minecraft/world/scores/Scoreboard
 		ARG 1 objective
 	METHOD listPlayerScores (Lnet/minecraft/world/scores/ScoreHolder;)Lit/unimi/dsi/fastutil/objects/Object2IntMap;
 		ARG 1 scoreHolder
+	METHOD loadObjective (Lnet/minecraft/world/scores/Objective$Packed;)V
+		ARG 1 packed
+	METHOD loadPlayerScore (Lnet/minecraft/world/scores/Scoreboard$PackedScore;)V
+		ARG 1 score
 	METHOD loadPlayerScores (Lnet/minecraft/nbt/ListTag;Lnet/minecraft/core/HolderLookup$Provider;)V
 		ARG 1 tag
 		ARG 2 levelRegistry
+	METHOD loadPlayerTeam (Lnet/minecraft/world/scores/PlayerTeam$Packed;)V
+		ARG 1 packed
 	METHOD onObjectiveAdded (Lnet/minecraft/world/scores/Objective;)V
 		ARG 1 objective
 	METHOD onObjectiveChanged (Lnet/minecraft/world/scores/Objective;)V
@@ -99,3 +105,6 @@ CLASS net/minecraft/world/scores/Scoreboard
 	CLASS 1
 		METHOD setLocked (Z)V
 			ARG 1 locked
+	CLASS PackedScore
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

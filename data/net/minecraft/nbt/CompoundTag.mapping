@@ -108,6 +108,18 @@ CLASS net/minecraft/nbt/CompoundTag
 	METHOD putUUID (Ljava/lang/String;Ljava/util/UUID;)V
 		ARG 1 key
 		ARG 2 value
+	METHOD read (Lcom/mojang/serialization/MapCodec;)Ljava/util/Optional;
+		ARG 1 mapCodec
+	METHOD read (Lcom/mojang/serialization/MapCodec;Lcom/mojang/serialization/DynamicOps;)Ljava/util/Optional;
+		ARG 1 mapCodec
+		ARG 2 ops
+	METHOD read (Ljava/lang/String;Lcom/mojang/serialization/Codec;)Ljava/util/Optional;
+		ARG 1 key
+		ARG 2 codec
+	METHOD read (Ljava/lang/String;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/DynamicOps;)Ljava/util/Optional;
+		ARG 1 key
+		ARG 2 codec
+		ARG 3 ops
 	METHOD readNamedTagData (Lnet/minecraft/nbt/TagType;Ljava/lang/String;Ljava/io/DataInput;Lnet/minecraft/nbt/NbtAccounter;)Lnet/minecraft/nbt/Tag;
 		ARG 0 type
 		ARG 1 name
@@ -115,6 +127,22 @@ CLASS net/minecraft/nbt/CompoundTag
 		ARG 3 accounter
 	METHOD remove (Ljava/lang/String;)V
 		ARG 1 key
+	METHOD store (Lcom/mojang/serialization/MapCodec;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)V
+		ARG 1 mapCodec
+		ARG 2 ops
+		ARG 3 data
+	METHOD store (Lcom/mojang/serialization/MapCodec;Ljava/lang/Object;)V
+		ARG 1 mapCodec
+		ARG 2 data
+	METHOD store (Ljava/lang/String;Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/DynamicOps;Ljava/lang/Object;)V
+		ARG 1 key
+		ARG 2 codec
+		ARG 3 ops
+		ARG 4 data
+	METHOD store (Ljava/lang/String;Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
+		ARG 1 key
+		ARG 2 codec
+		ARG 3 data
 	METHOD write (Ljava/io/DataOutput;)V
 		ARG 1 output
 	METHOD writeNamedTag (Ljava/lang/String;Lnet/minecraft/nbt/Tag;Ljava/io/DataOutput;)V

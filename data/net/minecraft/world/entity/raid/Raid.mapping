@@ -3,9 +3,25 @@ CLASS net/minecraft/world/entity/raid/Raid
 		ARG 1 id
 		ARG 2 level
 		ARG 3 center
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/Difficulty;)V
+		ARG 1 center
+		ARG 2 difficulty
 	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 level
 		ARG 2 compound
+	METHOD <init> (ZZJIIIIFILnet/minecraft/world/entity/raid/Raid$RaidStatus;Lnet/minecraft/core/BlockPos;Ljava/util/Set;)V
+		ARG 1 started
+		ARG 2 active
+		ARG 3 ticksActive
+		ARG 5 raidOmenLevel
+		ARG 6 groupsSpawned
+		ARG 7 raidCooldownTicks
+		ARG 8 postRaidTicks
+		ARG 9 totalHealth
+		ARG 10 numGroups
+		ARG 11 status
+		ARG 12 center
+		ARG 13 heroesOfTheVillage
 	METHOD absorbRaidOmen (Lnet/minecraft/server/level/ServerPlayer;)Z
 		ARG 1 player
 	METHOD addHeroOfTheVillage (Lnet/minecraft/world/entity/Entity;)V
@@ -17,11 +33,23 @@ CLASS net/minecraft/world/entity/raid/Raid
 		ARG 1 wave
 		ARG 2 raider
 		ARG 3 isRecruited
+	METHOD addWaveMob (Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/entity/raid/Raider;)Z
+		ARG 1 level
+		ARG 2 wave
+		ARG 3 raider
+	METHOD addWaveMob (Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/entity/raid/Raider;Z)Z
+		ARG 1 level
+		ARG 2 wave
+		ARG 3 raider
+		ARG 4 isRecruited
 	METHOD findRandomSpawnPos (I)Lnet/minecraft/core/BlockPos;
 		ARG 1 attempts
 	METHOD findRandomSpawnPos (II)Lnet/minecraft/core/BlockPos;
 		ARG 1 offsetMultiplier
 		ARG 2 maxTry
+	METHOD findRandomSpawnPos (Lnet/minecraft/server/level/ServerLevel;I)Lnet/minecraft/core/BlockPos;
+		ARG 1 level
+		ARG 2 attempts
 	METHOD getDefaultNumSpawns (Lnet/minecraft/world/entity/raid/Raid$RaiderType;IZ)I
 		ARG 1 raiderType
 		ARG 2 wave
@@ -42,19 +70,66 @@ CLASS net/minecraft/world/entity/raid/Raid
 		ARG 5 shouldSpawnBonusGroup
 	METHOD getValidSpawnPos (I)Ljava/util/Optional;
 		ARG 1 offsetMultiplier
+	METHOD getValidSpawnPos (Lnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
+		ARG 1 level
 	METHOD joinRaid (ILnet/minecraft/world/entity/raid/Raider;Lnet/minecraft/core/BlockPos;Z)V
 		ARG 1 wave
 		ARG 2 raider
 		ARG 3 pos
 		ARG 4 isRecruited
+	METHOD joinRaid (Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/entity/raid/Raider;Lnet/minecraft/core/BlockPos;Z)V
+		ARG 1 level
+		ARG 2 wave
+		ARG 3 raider
+		ARG 4 pos
+		ARG 5 isRecruited
 	METHOD lambda$addWaveMob$2 (Ljava/lang/Integer;)Ljava/util/Set;
 		ARG 0 value
 	METHOD lambda$moveRaidCenterToNearbyVillageSection$1 (Lnet/minecraft/core/BlockPos;)D
 		ARG 1 pos
+	METHOD lambda$moveRaidCenterToNearbyVillageSection$15 (Lnet/minecraft/core/BlockPos;)D
+		ARG 1 pos
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/raid/Raid;)Ljava/lang/Boolean;
+		ARG 0 raid
+	METHOD lambda$static$1 (Lnet/minecraft/world/entity/raid/Raid;)Ljava/lang/Boolean;
+		ARG 0 raid
+	METHOD lambda$static$10 (Lnet/minecraft/world/entity/raid/Raid;)Lnet/minecraft/core/BlockPos;
+		ARG 0 raid
+	METHOD lambda$static$11 (Lnet/minecraft/world/entity/raid/Raid;)Ljava/util/Set;
+		ARG 0 raid
+	METHOD lambda$static$12 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
+	METHOD lambda$static$2 (Lnet/minecraft/world/entity/raid/Raid;)Ljava/lang/Long;
+		ARG 0 raid
+	METHOD lambda$static$3 (Lnet/minecraft/world/entity/raid/Raid;)Ljava/lang/Integer;
+		ARG 0 raid
+	METHOD lambda$static$4 (Lnet/minecraft/world/entity/raid/Raid;)Ljava/lang/Integer;
+		ARG 0 raid
+	METHOD lambda$static$5 (Lnet/minecraft/world/entity/raid/Raid;)Ljava/lang/Integer;
+		ARG 0 raid
+	METHOD lambda$static$6 (Lnet/minecraft/world/entity/raid/Raid;)Ljava/lang/Integer;
+		ARG 0 raid
+	METHOD lambda$static$7 (Lnet/minecraft/world/entity/raid/Raid;)Ljava/lang/Float;
+		ARG 0 raid
+	METHOD lambda$static$8 (Lnet/minecraft/world/entity/raid/Raid;)Ljava/lang/Integer;
+		ARG 0 raid
+	METHOD lambda$static$9 (Lnet/minecraft/world/entity/raid/Raid;)Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
+		ARG 0 raid
 	METHOD lambda$validPlayer$0 (Lnet/minecraft/server/level/ServerPlayer;)Z
 		ARG 1 player
+	METHOD lambda$validPlayer$13 (Lnet/minecraft/server/level/ServerPlayer;)Z
+		ARG 1 player
+	METHOD moveRaidCenterToNearbyVillageSection (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	METHOD playSound (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
+	METHOD playSound (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 level
+		ARG 2 pos
+	METHOD removeFromRaid (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/raid/Raider;Z)V
+		ARG 1 level
+		ARG 2 raider
+		ARG 3 wanderedOutOfRaid
 	METHOD removeFromRaid (Lnet/minecraft/world/entity/raid/Raider;Z)V
 		ARG 1 raider
 		ARG 2 wanderedOutOfRaid
@@ -64,6 +139,8 @@ CLASS net/minecraft/world/entity/raid/Raid
 		ARG 1 compound
 	METHOD setCenter (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 center
+	METHOD setDirty (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	METHOD setLeader (ILnet/minecraft/world/entity/raid/Raider;)V
 		ARG 1 wave
 		ARG 2 raider
@@ -71,7 +148,18 @@ CLASS net/minecraft/world/entity/raid/Raid
 		ARG 1 raidOmenLevel
 	METHOD spawnGroup (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
+	METHOD spawnGroup (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 level
+		ARG 2 pos
+	METHOD tick (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
+	METHOD updatePlayers (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
+	METHOD updateRaiders (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
 	CLASS RaidStatus
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 name
 		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/world/entity/raid/Raid$RaidStatus;
 			ARG 0 name
 	CLASS RaiderType

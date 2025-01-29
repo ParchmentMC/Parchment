@@ -1,6 +1,14 @@
 CLASS net/minecraft/world/RandomSequences
 	METHOD <init> (J)V
 		ARG 1 seed
+	METHOD <init> (JIZZLjava/util/Map;)V
+		ARG 1 worldSeed
+		ARG 3 salt
+		ARG 4 includeWorldSeed
+		ARG 5 includeSequenceId
+		ARG 6 sequences
+	METHOD codec (J)Lcom/mojang/serialization/Codec;
+		ARG 0 worldSeed
 	METHOD createSequence (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/RandomSequence;
 		ARG 1 location
 	METHOD createSequence (Lnet/minecraft/resources/ResourceLocation;IZZ)Lnet/minecraft/world/RandomSequence;
@@ -18,6 +26,8 @@ CLASS net/minecraft/world/RandomSequences
 		ARG 0 tag
 		ARG 1 key
 		ARG 2 defaultValue
+	METHOD lambda$codec$6 (JLcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 2 instance
 	METHOD load (JLnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/RandomSequences;
 		ARG 0 seed
 		ARG 2 tag
