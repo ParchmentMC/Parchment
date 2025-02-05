@@ -1,6 +1,9 @@
 CLASS net/minecraft/world/entity/player/Inventory
 	METHOD <init> (Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 player
+	METHOD <init> (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/EntityEquipment;)V
+		ARG 1 player
+		ARG 2 equipment
 	METHOD add (ILnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Adds the stack to the specified slot in the player's inventory. Returns {@code false} if it's not possible to place the entire stack in the inventory.
 		ARG 1 slot
@@ -109,6 +112,10 @@ CLASS net/minecraft/world/entity/player/Inventory
 		ARG 1 stack
 	METHOD setSelectedHotbarSlot (I)V
 		ARG 1 selectedHotbarSlot
+	METHOD setSelectedItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 stack
+	METHOD setSelectedSlot (I)V
+		ARG 1 slot
 	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
 		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
 		ARG 1 player
