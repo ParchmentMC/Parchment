@@ -204,6 +204,9 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 0 location
 		ARG 1 transpose
 		ARG 2 value
+	METHOD _glUniformMatrix4 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
 	METHOD _glUniformMatrix4 (IZLjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 transpose
@@ -276,6 +279,16 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 1 parameterName
 		ARG 2 parameter
 	METHOD _texSubImage2D (IIIIIIIIJ)V
+		ARG 0 target
+		ARG 1 level
+		ARG 2 xOffset
+		ARG 3 yOffset
+		ARG 4 width
+		ARG 5 height
+		ARG 6 format
+		ARG 7 type
+		ARG 8 pixels
+	METHOD _texSubImage2D (IIIIIIIILjava/nio/IntBuffer;)V
 		ARG 0 target
 		ARG 1 level
 		ARG 2 xOffset
@@ -374,20 +387,20 @@ CLASS com/mojang/blaze3d/platform/GlStateManager
 		ARG 5 format
 		ARG 6 pixels
 		ARG 7 output
-	CLASS LogicOp
-		METHOD <init> (Ljava/lang/String;II)V
-			ARG 3 value
-	CLASS DestFactor
-		METHOD <init> (Ljava/lang/String;II)V
-			ARG 3 value
 	CLASS BooleanState
 		METHOD <init> (I)V
 			ARG 1 state
 		METHOD setEnabled (Z)V
 			ARG 1 enabled
-	CLASS SourceFactor
+	CLASS DestFactor
 		METHOD <init> (Ljava/lang/String;II)V
 			ARG 3 value
 	CLASS FramebufferState
 		METHOD update (I)Z
 			ARG 1 binding
+	CLASS LogicOp
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 value
+	CLASS SourceFactor
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 value

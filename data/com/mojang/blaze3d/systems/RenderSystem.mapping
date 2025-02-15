@@ -77,6 +77,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 formatMode
 	METHOD getShaderTexture (I)I
 		ARG 0 shaderTexture
+	METHOD getShaderTexture (I)Lcom/mojang/blaze3d/textures/GpuTexture;
+		ARG 0 index
 	METHOD getString (ILjava/util/function/Consumer;)V
 		ARG 0 name
 		ARG 1 consumer
@@ -132,6 +134,9 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 location
 		ARG 1 transpose
 		ARG 2 value
+	METHOD glUniformMatrix4 (ILjava/nio/FloatBuffer;)V
+		ARG 0 location
+		ARG 1 value
 	METHOD glUniformMatrix4 (IZLjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 transpose
@@ -227,8 +232,11 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD setShaderTexture (II)V
 		ARG 0 shaderTexture
 		ARG 1 textureId
+	METHOD setShaderTexture (ILcom/mojang/blaze3d/textures/GpuTexture;)V
+		ARG 0 index
+		ARG 1 texture
 	METHOD setShaderTexture (ILnet/minecraft/resources/ResourceLocation;)V
-		ARG 0 shaderTexture
+		ARG 0 index
 		ARG 1 textureId
 	METHOD setTextureMatrix (Lorg/joml/Matrix4f;)V
 		ARG 0 textureMatrix
@@ -249,6 +257,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD setupOverlayColor (II)V
 		ARG 0 textureId
 		ARG 1 color
+	METHOD setupOverlayColor (Lcom/mojang/blaze3d/textures/GpuTexture;)V
+		ARG 0 overlayColor
 	METHOD setupShaderLights (Lnet/minecraft/client/renderer/CompiledShaderProgram;)V
 		ARG 0 shader
 	METHOD setupShaderLights (Lnet/minecraft/client/renderer/ShaderInstance;)V

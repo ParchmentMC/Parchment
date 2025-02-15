@@ -52,11 +52,6 @@ CLASS net/minecraft/client/renderer/block/model/BlockModel
 		ARG 0 str
 	METHOD lambda$resolveParents$0 (Ljava/util/function/Function;Lnet/minecraft/client/renderer/block/model/ItemOverride;)V
 		ARG 2 override
-	CLASS GuiLight
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
-			ARG 3 name
-		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/client/renderer/block/model/BlockModel$GuiLight;
-			ARG 0 name
 	CLASS Deserializer
 		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/client/renderer/block/model/BlockModel;
 			ARG 1 json
@@ -65,6 +60,9 @@ CLASS net/minecraft/client/renderer/block/model/BlockModel
 		METHOD getAmbientOcclusion (Lcom/google/gson/JsonObject;)Ljava/lang/Boolean;
 			ARG 1 json
 		METHOD getElements (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Ljava/util/List;
+			ARG 1 context
+			ARG 2 json
+		METHOD getElements (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Lnet/minecraft/client/resources/model/UnbakedGeometry;
 			ARG 1 context
 			ARG 2 json
 		METHOD getOverrides (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Ljava/util/List;
@@ -79,6 +77,11 @@ CLASS net/minecraft/client/renderer/block/model/BlockModel
 		METHOD parseTextureLocationOrReference (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Lcom/mojang/datafixers/util/Either;
 			ARG 0 location
 			ARG 1 name
+	CLASS GuiLight
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 name
+		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/client/renderer/block/model/BlockModel$GuiLight;
+			ARG 0 name
 	CLASS LoopException
 		METHOD <init> (Ljava/lang/String;)V
 			ARG 1 message

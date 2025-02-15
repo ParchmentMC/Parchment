@@ -24,6 +24,27 @@ CLASS net/minecraft/client/renderer/block/model/FaceBakery
 		ARG 6 rotation
 		ARG 7 shade
 		ARG 8 lightEmission
+	METHOD bakeQuad (Lorg/joml/Vector3fc;Lorg/joml/Vector3fc;Lnet/minecraft/client/renderer/block/model/BlockElementFace;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/core/Direction;Lnet/minecraft/client/resources/model/ModelState;Lnet/minecraft/client/renderer/block/model/BlockElementRotation;ZI)Lnet/minecraft/client/renderer/block/model/BakedQuad;
+		ARG 0 posFrom
+		ARG 1 posTo
+		ARG 2 face
+		ARG 3 sprite
+		ARG 4 facing
+		ARG 5 modelState
+		ARG 6 rotation
+		ARG 7 shade
+		ARG 8 lightEmission
+	METHOD bakeVertex ([IILnet/minecraft/client/renderer/FaceInfo;Lnet/minecraft/client/renderer/block/model/BlockElementFace$UVs;Lcom/mojang/math/Quadrant;Lorg/joml/Matrix4fc;[FLnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lcom/mojang/math/Transformation;Lnet/minecraft/client/renderer/block/model/BlockElementRotation;)V
+		ARG 0 vertexData
+		ARG 1 vertexIndex
+		ARG 2 faceInfo
+		ARG 3 uvs
+		ARG 4 rotation
+		ARG 5 inverseFaceTransform
+		ARG 6 shape
+		ARG 7 sprite
+		ARG 8 transformation
+		ARG 9 partRotation
 	METHOD bakeVertex ([IILnet/minecraft/core/Direction;Lnet/minecraft/client/renderer/block/model/BlockFaceUV;[FLnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lcom/mojang/math/Transformation;Lnet/minecraft/client/renderer/block/model/BlockElementRotation;)V
 		ARG 0 vertexData
 		ARG 1 vertexIndex
@@ -45,12 +66,39 @@ CLASS net/minecraft/client/renderer/block/model/FaceBakery
 		ARG 9 shade
 	METHOD calculateFacing ([I)Lnet/minecraft/core/Direction;
 		ARG 0 faceData
+	METHOD centerToCorner (F)F
+		ARG 0 coord
+	METHOD cornerToCenter (F)F
+		ARG 0 coord
+	METHOD defaultFaceUV (Lorg/joml/Vector3fc;Lorg/joml/Vector3fc;Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/model/BlockElementFace$UVs;
+		ARG 0 posFrom
+		ARG 1 posTo
+		ARG 2 facing
+	METHOD extractPositions ([ILjava/util/function/Consumer;)V
+		ARG 0 faceData
+		ARG 1 output
+	METHOD fillVertex ([IILorg/joml/Vector3f;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;FF)V
+		ARG 0 vertexData
+		ARG 1 vertexIndex
+		ARG 2 pos
+		ARG 3 sprite
+		ARG 4 u
+		ARG 5 v
 	METHOD fillVertex ([IILorg/joml/Vector3f;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/client/renderer/block/model/BlockFaceUV;)V
 		ARG 0 vertexData
 		ARG 1 vertexIndex
 		ARG 2 vector
 		ARG 3 sprite
 		ARG 4 blockFaceUV
+	METHOD makeVertices (Lnet/minecraft/client/renderer/block/model/BlockElementFace$UVs;Lcom/mojang/math/Quadrant;Lorg/joml/Matrix4fc;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/core/Direction;[FLcom/mojang/math/Transformation;Lnet/minecraft/client/renderer/block/model/BlockElementRotation;)[I
+		ARG 0 uvs
+		ARG 1 rotation
+		ARG 2 inverseFaceTransform
+		ARG 3 sprite
+		ARG 4 facing
+		ARG 5 shape
+		ARG 6 transformation
+		ARG 7 partRotation
 	METHOD makeVertices (Lnet/minecraft/client/renderer/block/model/BlockFaceUV;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/core/Direction;[FLcom/mojang/math/Transformation;Lnet/minecraft/client/renderer/block/model/BlockElementRotation;)[I
 		ARG 0 uvs
 		ARG 1 sprite
@@ -78,6 +126,29 @@ CLASS net/minecraft/client/renderer/block/model/FaceBakery
 		ARG 1 origin
 		ARG 2 transform
 		ARG 3 scale
+	METHOD rotateVertexBy (Lorg/joml/Vector3f;Lorg/joml/Vector3fc;Lorg/joml/Matrix4fc;Lorg/joml/Vector3fc;)V
+		ARG 0 pos
+		ARG 1 origin
+		ARG 2 transform
+		ARG 3 scale
 	METHOD setupShape (Lorg/joml/Vector3f;Lorg/joml/Vector3f;)[F
 		ARG 0 min
 		ARG 1 max
+	METHOD setupShape (Lorg/joml/Vector3fc;Lorg/joml/Vector3fc;)[F
+		ARG 0 posFrom
+		ARG 1 posTo
+	METHOD shrinkUVs (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/client/renderer/block/model/BlockElementFace$UVs;)Lnet/minecraft/client/renderer/block/model/BlockElementFace$UVs;
+		ARG 0 sprite
+		ARG 1 uvs
+	METHOD vectorFromData ([II)Lorg/joml/Vector3f;
+		ARG 0 faceData
+		ARG 1 index
+	METHOD xFromData ([II)F
+		ARG 0 faceData
+		ARG 1 index
+	METHOD yFromData ([II)F
+		ARG 0 faceData
+		ARG 1 index
+	METHOD zFromData ([II)F
+		ARG 0 faceData
+		ARG 1 index

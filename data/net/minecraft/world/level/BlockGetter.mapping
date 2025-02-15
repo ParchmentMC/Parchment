@@ -1,4 +1,10 @@
 CLASS net/minecraft/world/level/BlockGetter
+	METHOD addCollisionsAlongTravel (Lit/unimi/dsi/fastutil/longs/LongSet;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/level/BlockGetter$BlockStepVisitor;)I
+		ARG 0 output
+		ARG 1 from
+		ARG 2 to
+		ARG 3 boundingBox
+		ARG 4 stepVisitor
 	METHOD addCollisionsAlongTravel (Ljava/util/Set;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;)V
 		ARG 0 output
 		ARG 1 start
@@ -18,6 +24,11 @@ CLASS net/minecraft/world/level/BlockGetter
 		ARG 3 pos
 		ARG 4 shape
 		ARG 5 state
+	METHOD forEachBlockIntersectedBetween (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/level/BlockGetter$BlockStepVisitor;)V
+		ARG 0 from
+		ARG 1 to
+		ARG 2 boundingBox
+		ARG 3 stepVisitor
 	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
 	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntityType;)Ljava/util/Optional;
@@ -54,3 +65,7 @@ CLASS net/minecraft/world/level/BlockGetter
 		ARG 2 context
 		ARG 3 tester
 		ARG 4 onFail
+	CLASS BlockStepVisitor
+		METHOD visit (Lnet/minecraft/core/BlockPos;I)V
+			ARG 1 pos
+			ARG 2 step

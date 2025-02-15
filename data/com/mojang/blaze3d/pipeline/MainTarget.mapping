@@ -5,13 +5,20 @@ CLASS com/mojang/blaze3d/pipeline/MainTarget
 	METHOD allocateAttachments (II)Lcom/mojang/blaze3d/pipeline/MainTarget$Dimension;
 		ARG 1 width
 		ARG 2 height
+	METHOD allocateColorAttachment (Lcom/mojang/blaze3d/pipeline/MainTarget$Dimension;)Lcom/mojang/blaze3d/textures/GpuTexture;
+		ARG 1 dimension
 	METHOD allocateColorAttachment (Lcom/mojang/blaze3d/pipeline/MainTarget$Dimension;)Z
+		ARG 1 dimension
+	METHOD allocateDepthAttachment (Lcom/mojang/blaze3d/pipeline/MainTarget$Dimension;)Lcom/mojang/blaze3d/textures/GpuTexture;
 		ARG 1 dimension
 	METHOD allocateDepthAttachment (Lcom/mojang/blaze3d/pipeline/MainTarget$Dimension;)Z
 		ARG 1 dimension
 	METHOD createFrameBuffer (II)V
 		ARG 1 width
 		ARG 2 height
+	CLASS AttachmentState
+		METHOD with (Lcom/mojang/blaze3d/pipeline/MainTarget$AttachmentState;)Lcom/mojang/blaze3d/pipeline/MainTarget$AttachmentState;
+			ARG 1 otherState
 	CLASS Dimension
 		METHOD <init> (II)V
 			ARG 1 width
@@ -21,6 +28,3 @@ CLASS com/mojang/blaze3d/pipeline/MainTarget
 		METHOD listWithFallback (II)Ljava/util/List;
 			ARG 0 width
 			ARG 1 height
-	CLASS AttachmentState
-		METHOD with (Lcom/mojang/blaze3d/pipeline/MainTarget$AttachmentState;)Lcom/mojang/blaze3d/pipeline/MainTarget$AttachmentState;
-			ARG 1 otherState

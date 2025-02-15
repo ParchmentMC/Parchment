@@ -1,4 +1,6 @@
 CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
+	METHOD <init> (Ljava/util/List;)V
+		ARG 1 entries
 	METHOD add (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V
 		ARG 1 identifier
 		ARG 2 gossipType
@@ -16,16 +18,31 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 		ARG 3 second
 	METHOD lambda$getCountForType$4 (Ljava/util/function/DoublePredicate;Lnet/minecraft/world/entity/ai/gossip/GossipType;Lnet/minecraft/world/entity/ai/gossip/GossipContainer$EntityGossips;)Z
 		ARG 2 gossips
+	METHOD lambda$getCountForType$6 (Ljava/util/function/DoublePredicate;Lnet/minecraft/world/entity/ai/gossip/GossipType;Lnet/minecraft/world/entity/ai/gossip/GossipContainer$EntityGossips;)Z
+		ARG 2 gossips
 	METHOD lambda$getGossipEntries$0 (Ljava/util/Map;Ljava/util/UUID;)V
+		ARG 2 uuid
+	METHOD lambda$getGossipEntries$2 (Ljava/util/Map;Ljava/util/UUID;)V
 		ARG 2 uuid
 	METHOD lambda$getOrCreate$2 (Ljava/util/UUID;)Lnet/minecraft/world/entity/ai/gossip/GossipContainer$EntityGossips;
 		ARG 0 uuid
+	METHOD lambda$getOrCreate$4 (Ljava/util/UUID;)Lnet/minecraft/world/entity/ai/gossip/GossipContainer$EntityGossips;
+		ARG 0 uuid
+	METHOD lambda$new$1 (Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;)V
+		ARG 1 entry
+	METHOD lambda$putAll$8 (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipContainer$EntityGossips;)V
+		ARG 1 uuid
+		ARG 2 gossips
 	METHOD lambda$store$6 (Ljava/lang/String;)V
 		ARG 0 errorMessage
 	METHOD lambda$transferFrom$3 (Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;)V
 		ARG 1 gossip
+	METHOD lambda$transferFrom$5 (Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;)V
+		ARG 1 entry
 	METHOD lambda$unpack$1 (Ljava/util/Map$Entry;)Ljava/util/stream/Stream;
 		ARG 0 gossip
+	METHOD lambda$unpack$3 (Ljava/util/Map$Entry;)Ljava/util/stream/Stream;
+		ARG 0 entry
 	METHOD lambda$update$7 (Ljava/lang/String;)V
 		ARG 0 errorMessage
 	METHOD lambda$update$8 (Lcom/mojang/datafixers/util/Pair;)Ljava/util/stream/Stream;
@@ -40,6 +57,8 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 		COMMENT Returns the greater of two int values
 		ARG 0 value1
 		ARG 1 value2
+	METHOD putAll (Lnet/minecraft/world/entity/ai/gossip/GossipContainer;)V
+		ARG 1 other
 	METHOD remove (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;)V
 		ARG 1 identifier
 		ARG 2 gossipType
@@ -60,13 +79,6 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 		ARG 3 amount
 	METHOD update (Lcom/mojang/serialization/Dynamic;)V
 		ARG 1 dynamic
-	CLASS GossipEntry
-		METHOD <init> (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V
-			ARG 1 target
-			ARG 2 type
-			ARG 3 value
-		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-			ARG 0 instance
 	CLASS EntityGossips
 		METHOD lambda$unpack$2 (Ljava/util/UUID;Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;)Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;
 			ARG 1 gossip
@@ -82,3 +94,10 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 			ARG 1 identifier
 		METHOD weightedValue (Ljava/util/function/Predicate;)I
 			ARG 1 gossipType
+	CLASS GossipEntry
+		METHOD <init> (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V
+			ARG 1 target
+			ARG 2 type
+			ARG 3 value
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

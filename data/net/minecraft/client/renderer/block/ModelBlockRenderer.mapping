@@ -28,6 +28,26 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 13 lightmap2
 		ARG 14 lightmap3
 		ARG 15 packedOverlay
+	METHOD putQuadData (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lnet/minecraft/client/renderer/block/model/BakedQuad;[F[II)V
+		ARG 1 level
+		ARG 2 state
+		ARG 3 pos
+		ARG 4 consumer
+		ARG 5 pose
+		ARG 6 quad
+		ARG 7 brightness
+		ARG 8 lightmap
+		ARG 9 packedOverlay
+	METHOD renderModel (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/client/renderer/block/model/BlockStateModel;FFFII)V
+		ARG 1 pose
+		ARG 2 consumer
+		ARG 3 state
+		ARG 4 model
+		ARG 5 red
+		ARG 6 green
+		ARG 7 blue
+		ARG 8 packedLight
+		ARG 9 packedOverlay
 	METHOD renderModel (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/client/resources/model/BakedModel;FFFII)V
 		ARG 1 pose
 		ARG 2 consumer
@@ -73,6 +93,18 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 5 quads
 		ARG 6 packedLight
 		ARG 7 packedOverlay
+	METHOD tesselateBlock (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/client/renderer/block/model/BlockStateModel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLnet/minecraft/util/RandomSource;JI)V
+		ARG 1 level
+		ARG 2 model
+		ARG 3 state
+		ARG 4 pos
+		ARG 5 poseStack
+		ARG 6 consumer
+		ARG 7 checkSides
+			COMMENT if {@code true}, only renders each side if {@link net.minecraft.world.level.block.Block#shouldRenderFace(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.BlockPos)} returns {@code true}
+		ARG 8 random
+		ARG 9 seed
+		ARG 11 packedOverlay
 	METHOD tesselateBlock (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLnet/minecraft/util/RandomSource;JI)V
 		ARG 1 level
 		ARG 2 model
@@ -82,6 +114,17 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 6 consumer
 		ARG 7 checkSides
 			COMMENT if {@code true}, only renders each side if {@link net.minecraft.world.level.block.Block#shouldRenderFace(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.BlockPos)} returns {@code true}
+		ARG 8 random
+		ARG 9 seed
+		ARG 11 packedOverlay
+	METHOD tesselateWithAO (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/client/renderer/block/model/BlockStateModel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLnet/minecraft/util/RandomSource;JI)V
+		ARG 1 level
+		ARG 2 model
+		ARG 3 state
+		ARG 4 pos
+		ARG 5 poseStack
+		ARG 6 consumer
+		ARG 7 checkSides
 		ARG 8 random
 		ARG 9 seed
 		ARG 11 packedOverlay
@@ -97,6 +140,17 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 8 random
 		ARG 9 seed
 		ARG 11 packedOverlay
+	METHOD tesselateWithoutAO (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/client/renderer/block/model/BlockStateModel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLnet/minecraft/util/RandomSource;JI)V
+		ARG 1 level
+		ARG 2 model
+		ARG 3 state
+		ARG 4 pos
+		ARG 5 poseStack
+		ARG 6 consumer
+		ARG 7 checkSides
+		ARG 8 random
+		ARG 9 seed
+		ARG 11 packedOverlay
 	METHOD tesselateWithoutAO (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZLnet/minecraft/util/RandomSource;JI)V
 		ARG 1 level
 		ARG 2 model
@@ -109,25 +163,6 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 8 random
 		ARG 9 seed
 		ARG 11 packedOverlay
-	CLASS Cache
-		METHOD getLightColor (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
-			ARG 1 state
-			ARG 2 level
-			ARG 3 pos
-		METHOD getShadeBrightness (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)F
-			ARG 1 state
-			ARG 2 level
-			ARG 3 pos
-		CLASS 1
-			METHOD rehash (I)V
-				ARG 1 newN
-		CLASS 2
-			METHOD rehash (I)V
-				ARG 1 newN
-	CLASS SizeInfo
-		METHOD <init> (Ljava/lang/String;ILnet/minecraft/core/Direction;Z)V
-			ARG 3 direction
-			ARG 4 flip
 	CLASS AdjacencyInfo
 		METHOD <init> (Ljava/lang/String;I[Lnet/minecraft/core/Direction;FZ[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;)V
 			ARG 3 corners
@@ -141,16 +176,6 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
 			ARG 0 facing
 		METHOD lambda$static$0 ([Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;)V
-			ARG 0 byFacing
-	CLASS AmbientVertexRemap
-		METHOD <init> (Ljava/lang/String;IIIII)V
-			ARG 3 vert0
-			ARG 4 vert1
-			ARG 5 vert2
-			ARG 6 vert3
-		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-			ARG 0 facing
-		METHOD lambda$static$0 ([Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;)V
 			ARG 0 byFacing
 	CLASS AmbientOcclusionFace
 		METHOD blend (IIII)I
@@ -187,3 +212,32 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 			ARG 5 shapeFlags
 				COMMENT the bit set to store the shape flags in. The first bit will be {@code true} if the face should be offset, and the second if the face is less than a block in width and height.
 			ARG 6 quad
+	CLASS AmbientVertexRemap
+		METHOD <init> (Ljava/lang/String;IIIII)V
+			ARG 3 vert0
+			ARG 4 vert1
+			ARG 5 vert2
+			ARG 6 vert3
+		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
+			ARG 0 facing
+		METHOD lambda$static$0 ([Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;)V
+			ARG 0 byFacing
+	CLASS Cache
+		METHOD getLightColor (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
+			ARG 1 state
+			ARG 2 level
+			ARG 3 pos
+		METHOD getShadeBrightness (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)F
+			ARG 1 state
+			ARG 2 level
+			ARG 3 pos
+		CLASS 1
+			METHOD rehash (I)V
+				ARG 1 newN
+		CLASS 2
+			METHOD rehash (I)V
+				ARG 1 newN
+	CLASS SizeInfo
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/core/Direction;Z)V
+			ARG 3 direction
+			ARG 4 flip

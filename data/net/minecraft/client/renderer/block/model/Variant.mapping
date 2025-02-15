@@ -1,4 +1,6 @@
 CLASS net/minecraft/client/renderer/block/model/Variant
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+		ARG 1 modelLocation
 	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/math/Transformation;ZI)V
 		ARG 1 modelLocation
 		ARG 2 rotation
@@ -6,6 +8,22 @@ CLASS net/minecraft/client/renderer/block/model/Variant
 		ARG 4 weight
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
+	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
+	METHOD with (Lnet/minecraft/client/renderer/block/model/VariantMutator;)Lnet/minecraft/client/renderer/block/model/Variant;
+		ARG 1 mutator
+	METHOD withModel (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/block/model/Variant;
+		ARG 1 modelLocation
+	METHOD withState (Lnet/minecraft/client/renderer/block/model/Variant$SimpleModelState;)Lnet/minecraft/client/renderer/block/model/Variant;
+		ARG 1 modelState
+	METHOD withUvLock (Z)Lnet/minecraft/client/renderer/block/model/Variant;
+		ARG 1 uvLock
+	METHOD withWeight (I)Lnet/minecraft/client/renderer/block/model/Variant;
+		ARG 1 weight
+	METHOD withXRot (Lcom/mojang/math/Quadrant;)Lnet/minecraft/client/renderer/block/model/Variant;
+		ARG 1 xRot
+	METHOD withYRot (Lcom/mojang/math/Quadrant;)Lnet/minecraft/client/renderer/block/model/Variant;
+		ARG 1 yRot
 	CLASS Deserializer
 		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/client/renderer/block/model/Variant;
 			ARG 1 json
@@ -19,3 +37,12 @@ CLASS net/minecraft/client/renderer/block/model/Variant
 			ARG 1 json
 		METHOD getWeight (Lcom/google/gson/JsonObject;)I
 			ARG 1 json
+	CLASS SimpleModelState
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+		METHOD withUvLock (Z)Lnet/minecraft/client/renderer/block/model/Variant$SimpleModelState;
+			ARG 1 uvLock
+		METHOD withX (Lcom/mojang/math/Quadrant;)Lnet/minecraft/client/renderer/block/model/Variant$SimpleModelState;
+			ARG 1 xRot
+		METHOD withY (Lcom/mojang/math/Quadrant;)Lnet/minecraft/client/renderer/block/model/Variant$SimpleModelState;
+			ARG 1 yRot

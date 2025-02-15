@@ -1,4 +1,6 @@
 CLASS net/minecraft/server/packs/resources/SimpleReloadInstance
+	METHOD <init> (Ljava/util/List;)V
+		ARG 1 preparingListeners
 	METHOD <init> (Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/List;Lnet/minecraft/server/packs/resources/SimpleReloadInstance$StateFactory;Ljava/util/concurrent/CompletableFuture;)V
 		ARG 1 backgroundExecutor
 		ARG 2 gameExecutor
@@ -13,6 +15,10 @@ CLASS net/minecraft/server/packs/resources/SimpleReloadInstance
 		ARG 3 gameExecutor
 		ARG 4 alsoWaitedFor
 		ARG 5 profiled
+	METHOD createBarrierForListener (Lnet/minecraft/server/packs/resources/PreparableReloadListener;Ljava/util/concurrent/CompletableFuture;Ljava/util/concurrent/Executor;)Lnet/minecraft/server/packs/resources/PreparableReloadListener$PreparationBarrier;
+		ARG 1 listener
+		ARG 2 alsoWaitedFor
+		ARG 3 executor
 	METHOD lambda$new$2 (Ljava/util/concurrent/Executor;Ljava/lang/Runnable;)V
 		ARG 2 task
 	METHOD lambda$new$4 (Ljava/util/concurrent/Executor;Ljava/lang/Runnable;)V
@@ -23,12 +29,36 @@ CLASS net/minecraft/server/packs/resources/SimpleReloadInstance
 		ARG 3 listener
 		ARG 4 backgroundExecutor
 		ARG 5 gameExecutor
+	METHOD of (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/List;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/server/packs/resources/ReloadInstance;
+		ARG 0 resourceManager
+		ARG 1 listeners
+		ARG 2 backgroundExecutor
+		ARG 3 gameExecutor
+		ARG 4 alsoWaitedFor
 	METHOD of (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/List;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Ljava/util/concurrent/CompletableFuture;)Lnet/minecraft/server/packs/resources/SimpleReloadInstance;
 		ARG 0 resourceManager
 		ARG 1 listeners
 		ARG 2 backgroundExecutor
 		ARG 3 gameExecutor
 		ARG 4 alsoWaitedFor
+	METHOD prepareTasks (Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/List;Lnet/minecraft/server/packs/resources/SimpleReloadInstance$StateFactory;Ljava/util/concurrent/CompletableFuture;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 backgroundExecutor
+		ARG 2 gameExectutor
+		ARG 3 resourceManager
+		ARG 4 listeners
+		ARG 5 stateFactory
+		ARG 6 alsoWaitedFor
+	METHOD startTasks (Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/List;Lnet/minecraft/server/packs/resources/SimpleReloadInstance$StateFactory;Ljava/util/concurrent/CompletableFuture;)V
+		ARG 1 backgroundExecutor
+		ARG 2 gameExecutor
+		ARG 3 resourceManager
+		ARG 4 listeners
+		ARG 5 stateFactory
+		ARG 6 alsoWaitedFor
+	METHOD weightProgress (III)I
+		ARG 0 tasks
+		ARG 1 reloads
+		ARG 2 listeners
 	CLASS StateFactory
 		METHOD create (Lnet/minecraft/server/packs/resources/PreparableReloadListener$PreparationBarrier;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/server/packs/resources/PreparableReloadListener;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
 			ARG 1 preperationBarrier
@@ -36,3 +66,9 @@ CLASS net/minecraft/server/packs/resources/SimpleReloadInstance
 			ARG 3 listener
 			ARG 4 backgroundExecutor
 			ARG 5 gameExecutor
+		METHOD lambda$static$0 (Lnet/minecraft/server/packs/resources/PreparableReloadListener$PreparationBarrier;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/server/packs/resources/PreparableReloadListener;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+			ARG 0 preperationBarrier
+			ARG 1 resourceManager
+			ARG 2 listener
+			ARG 3 backgroundExecutor
+			ARG 4 gameExecutor

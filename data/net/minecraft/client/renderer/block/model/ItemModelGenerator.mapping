@@ -1,4 +1,14 @@
 CLASS net/minecraft/client/renderer/block/model/ItemModelGenerator
+	METHOD bake (Lnet/minecraft/client/renderer/block/model/TextureSlots;Lnet/minecraft/client/resources/model/ModelBaker;Lnet/minecraft/client/resources/model/ModelState;Lnet/minecraft/client/resources/model/ModelDebugName;)Lnet/minecraft/client/resources/model/QuadCollection;
+		ARG 0 textureSlots
+		ARG 1 baker
+		ARG 2 modelState
+		ARG 3 debugName
+	METHOD bake (Lnet/minecraft/client/renderer/block/model/TextureSlots;Lnet/minecraft/client/resources/model/SpriteGetter;Lnet/minecraft/client/resources/model/ModelState;Lnet/minecraft/client/resources/model/ModelDebugName;)Lnet/minecraft/client/resources/model/QuadCollection;
+		ARG 0 textureSlots
+		ARG 1 sprites
+		ARG 2 modelState
+		ARG 3 debugName
 	METHOD bake (Lnet/minecraft/client/renderer/block/model/TextureSlots;Lnet/minecraft/client/resources/model/SpriteGetter;Lnet/minecraft/client/resources/model/ModelState;ZZLnet/minecraft/client/renderer/block/model/ItemTransforms;)Lnet/minecraft/client/resources/model/BakedModel;
 		ARG 1 textureSlots
 		ARG 2 spriteGetter
@@ -7,42 +17,42 @@ CLASS net/minecraft/client/renderer/block/model/ItemModelGenerator
 		ARG 5 useBlockLight
 		ARG 6 transforms
 	METHOD checkTransition (Lnet/minecraft/client/renderer/block/model/ItemModelGenerator$SpanFacing;Ljava/util/List;Lnet/minecraft/client/renderer/texture/SpriteContents;IIIIIZ)V
-		ARG 1 spanFacing
-		ARG 2 listSpans
-		ARG 3 contents
-		ARG 4 frameIndex
-		ARG 5 pixelX
-		ARG 6 pixelY
-		ARG 7 spriteWidth
-		ARG 8 spriteHeight
-		ARG 9 transparent
-	METHOD createOrExpandSpan (Ljava/util/List;Lnet/minecraft/client/renderer/block/model/ItemModelGenerator$SpanFacing;II)V
+		ARG 0 spanFacing
 		ARG 1 listSpans
-		ARG 2 spanFacing
-		ARG 3 pixelX
-		ARG 4 pixelY
+		ARG 2 contents
+		ARG 3 frameIndex
+		ARG 4 pixelX
+		ARG 5 pixelY
+		ARG 6 spriteWidth
+		ARG 7 spriteHeight
+		ARG 8 transparent
+	METHOD createOrExpandSpan (Ljava/util/List;Lnet/minecraft/client/renderer/block/model/ItemModelGenerator$SpanFacing;II)V
+		ARG 0 listSpans
+		ARG 1 spanFacing
+		ARG 2 pixelX
+		ARG 3 pixelY
 	METHOD createSideElements (Lnet/minecraft/client/renderer/texture/SpriteContents;Ljava/lang/String;I)Ljava/util/List;
-		ARG 1 sprite
-		ARG 2 texture
-		ARG 3 tintIndex
+		ARG 0 sprite
+		ARG 1 texture
+		ARG 2 tintIndex
 	METHOD generateBlockModel (Ljava/util/function/Function;Lnet/minecraft/client/renderer/block/model/BlockModel;)Lnet/minecraft/client/renderer/block/model/BlockModel;
 		ARG 1 spriteGetter
 		ARG 2 model
 	METHOD getSpans (Lnet/minecraft/client/renderer/texture/SpriteContents;)Ljava/util/List;
-		ARG 1 sprite
+		ARG 0 sprite
 	METHOD isTransparent (Lnet/minecraft/client/renderer/texture/SpriteContents;IIIII)Z
-		ARG 1 sprite
-		ARG 2 frameIndex
-		ARG 3 pixelX
-		ARG 4 pixelY
-		ARG 5 spriteWidth
-		ARG 6 spriteHeight
+		ARG 0 sprite
+		ARG 1 frameIndex
+		ARG 2 pixelX
+		ARG 3 pixelY
+		ARG 4 spriteWidth
+		ARG 5 spriteHeight
 	METHOD lambda$getSpans$0 (IILnet/minecraft/client/renderer/texture/SpriteContents;Ljava/util/List;I)V
 		ARG 5 frame
 	METHOD processFrames (ILjava/lang/String;Lnet/minecraft/client/renderer/texture/SpriteContents;)Ljava/util/List;
-		ARG 1 tintIndex
-		ARG 2 texture
-		ARG 3 sprite
+		ARG 0 tintIndex
+		ARG 1 texture
+		ARG 2 sprite
 	CLASS Span
 		METHOD <init> (Lnet/minecraft/client/renderer/block/model/ItemModelGenerator$SpanFacing;II)V
 			ARG 1 facing

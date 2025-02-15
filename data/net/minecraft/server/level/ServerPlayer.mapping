@@ -94,6 +94,10 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 2 angle
 		ARG 3 forced
 		ARG 4 useCharge
+	METHOD findRespawnAndUseSpawnBlock (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/server/level/ServerPlayer$RespawnConfig;Z)Ljava/util/Optional;
+		ARG 0 level
+		ARG 1 respawnConfig
+		ARG 2 useCharge
 	METHOD findRespawnPositionAndUseSpawnBlock (ZLnet/minecraft/world/level/portal/DimensionTransition$PostDimensionTransition;)Lnet/minecraft/world/level/portal/DimensionTransition;
 		ARG 1 keepInventory
 		ARG 2 postDimensionTransition
@@ -134,6 +138,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 spawnDimension
 	METHOD lambda$addAdditionalSaveData$9 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
 		ARG 1 raidOmenPosition
+	METHOD lambda$awardRecipesByKey$18 (Lnet/minecraft/resources/ResourceKey;)Ljava/util/stream/Stream;
+		ARG 1 key
 	METHOD lambda$awardRecipesByKey$22 (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/stream/Stream;
 		ARG 1 recipe
 	METHOD lambda$awardStat$17 (ILnet/minecraft/world/scores/ScoreAccess;)V
@@ -144,8 +150,16 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 score
 	METHOD lambda$die$13 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
 		ARG 1 style
+	METHOD lambda$die$9 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 style
+	METHOD lambda$drop$20 (Lnet/minecraft/world/entity/player/Inventory;I)V
+		ARG 2 slot
 	METHOD lambda$drop$24 (Lnet/minecraft/world/entity/player/Inventory;I)V
 		ARG 2 slot
+	METHOD lambda$findRespawnAndUseSpawnBlock$13 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/server/level/ServerPlayer$RespawnPosAngle;
+		ARG 1 pos
+	METHOD lambda$findRespawnAndUseSpawnBlock$14 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/server/level/ServerPlayer$RespawnPosAngle;
+		ARG 1 pos
 	METHOD lambda$loadAndSpawnEnderpearls$10 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 entity
 	METHOD lambda$loadAndSpawnEnderpearls$11 (Lnet/minecraft/nbt/Tag;)V
@@ -154,8 +168,15 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 entity
 	METHOD lambda$loadAndSpawnEnderpearls$13 (Lnet/minecraft/nbt/Tag;)V
 		ARG 1 enderPearlTag
+	METHOD lambda$loadAndSpawnEnderpearls$6 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/entity/Entity;
+		ARG 1 entity
 	METHOD lambda$loadAndSpawnParentVehicle$10 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 entity
+	METHOD lambda$loadAndSpawnParentVehicle$5 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/entity/Entity;
+		ARG 1 entity
+	METHOD lambda$new$0 (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Consumer;)V
+		ARG 1 recipe
+		ARG 2 output
 	METHOD lambda$readAdditionalSaveData$0 (Lnet/minecraft/world/entity/monster/warden/WardenSpawnTracker;)V
 		ARG 1 wardenSpawnTracker
 	METHOD lambda$readAdditionalSaveData$1 (Lnet/minecraft/core/BlockPos;)V
@@ -164,6 +185,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 wardenSpawnTracker
 	METHOD lambda$readAdditionalSaveData$4 (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 raidOmenPosition
+	METHOD lambda$readAdditionalSaveData$4 (Lnet/minecraft/resources/ResourceKey;)Z
+		ARG 1 key
 	METHOD lambda$readAdditionalSaveData$4 (Lnet/minecraft/world/entity/monster/warden/WardenSpawnTracker;)V
 		ARG 1 wardenSpawnTracker
 	METHOD lambda$readAdditionalSaveData$5 (Lnet/minecraft/resources/ResourceKey;)Z
@@ -199,6 +222,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD lambda$updateScoreForCriteria$12 (ILnet/minecraft/world/scores/ScoreAccess;)V
 		ARG 1 score
 	METHOD lambda$updateScoreForCriteria$5 (ILnet/minecraft/world/scores/ScoreAccess;)V
+		ARG 1 score
+	METHOD lambda$updateScoreForCriteria$8 (ILnet/minecraft/world/scores/ScoreAccess;)V
 		ARG 1 score
 	METHOD loadAndSpawnEnderpearls (Ljava/util/Optional;)V
 		ARG 1 tag
@@ -318,6 +343,9 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 3 angle
 		ARG 4 forced
 		ARG 5 sendMessage
+	METHOD setRespawnPosition (Lnet/minecraft/server/level/ServerPlayer$RespawnConfig;Z)V
+		ARG 1 respawnConfig
+		ARG 2 displayInChat
 	METHOD setServerLevel (Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 1 level
 	METHOD setSpawnExtraParticlesOnFall (Z)V
@@ -374,6 +402,13 @@ CLASS net/minecraft/server/level/ServerPlayer
 			ARG 1 container
 			ARG 2 id
 			ARG 3 value
+	CLASS RespawnConfig
+		METHOD getDimensionOrDefault (Lnet/minecraft/server/level/ServerPlayer$RespawnConfig;)Lnet/minecraft/resources/ResourceKey;
+			ARG 0 respawnConfig
+		METHOD isSamePosition (Lnet/minecraft/server/level/ServerPlayer$RespawnConfig;)Z
+			ARG 1 respawnConfig
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
 	CLASS RespawnPosAngle
 		METHOD calculateLookAtYaw (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;)F
 			ARG 0 position

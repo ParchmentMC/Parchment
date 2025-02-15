@@ -230,6 +230,11 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 enumClass
 	METHOD readFixedBitSet (I)Ljava/util/BitSet;
 		ARG 1 size
+	METHOD readFixedSizeLongArray (Lio/netty/buffer/ByteBuf;[J)[J
+		ARG 0 buffer
+		ARG 1 output
+	METHOD readFixedSizeLongArray ([J)[J
+		ARG 1 output
 	METHOD readIntIdList ()Lit/unimi/dsi/fastutil/ints/IntList;
 		COMMENT Read an IntList of VarInts from this buffer.
 		COMMENT
@@ -240,6 +245,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 elementReader
 	METHOD readLongArray ()[J
 		COMMENT Reads a length-prefixed array of longs from the buffer.
+	METHOD readLongArray (Lio/netty/buffer/ByteBuf;)[J
+		ARG 0 buffer
 	METHOD readLongArray ([J)[J
 		COMMENT Reads a length-prefixed array of longs from the buffer.
 		COMMENT Will try to use the given long[] if possible. Note that if an array with the correct size is given, maxLength is ignored.
@@ -545,6 +552,11 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD writeFixedBitSet (Ljava/util/BitSet;I)V
 		ARG 1 bitSet
 		ARG 2 size
+	METHOD writeFixedSizeLongArray (Lio/netty/buffer/ByteBuf;[J)V
+		ARG 0 buffer
+		ARG 1 array
+	METHOD writeFixedSizeLongArray ([J)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 array
 	METHOD writeFloat (F)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
 	METHOD writeGlobalPos (Lnet/minecraft/core/GlobalPos;)V
@@ -565,6 +577,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 2 value
 	METHOD writeLong (J)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
+	METHOD writeLongArray (Lio/netty/buffer/ByteBuf;[J)V
+		ARG 0 buffer
+		ARG 1 array
 	METHOD writeLongArray ([J)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes an array of longs to the buffer, prefixed by the length of the array (as a VarInt).
 		COMMENT

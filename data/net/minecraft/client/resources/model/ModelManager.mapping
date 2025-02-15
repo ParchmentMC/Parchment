@@ -9,9 +9,16 @@ CLASS net/minecraft/client/resources/model/ModelManager
 	METHOD buildModelGroups (Lnet/minecraft/client/color/block/BlockColors;Lnet/minecraft/client/resources/model/BlockStateModelLoader$LoadedModels;)Lit/unimi/dsi/fastutil/objects/Object2IntMap;
 		ARG 0 blockColors
 		ARG 1 loadedModels
+	METHOD createBlockStateToModelDispatch (Ljava/util/Map;Lnet/minecraft/client/renderer/block/model/BlockStateModel;)Ljava/util/Map;
+		ARG 0 blockStateModels
+		ARG 1 missingModel
 	METHOD createBlockStateToModelDispatch (Ljava/util/Map;Lnet/minecraft/client/resources/model/BakedModel;)Ljava/util/Map;
 		ARG 0 blockStateModels
 		ARG 1 missingModel
+	METHOD discoverModelDependencies (Ljava/util/Map;Lnet/minecraft/client/resources/model/BlockStateModelLoader$LoadedModels;Lnet/minecraft/client/resources/model/ClientItemInfoLoader$LoadedClientInfos;)Lnet/minecraft/client/resources/model/ModelManager$ResolvedModels;
+		ARG 0 inputModels
+		ARG 1 loadedModels
+		ARG 2 loadedClientInfos
 	METHOD discoverModelDependencies (Lnet/minecraft/client/resources/model/UnbakedModel;Ljava/util/Map;Lnet/minecraft/client/resources/model/BlockStateModelLoader$LoadedModels;)Lnet/minecraft/client/resources/model/ModelDiscovery;
 		ARG 1 missingModel
 		ARG 2 inputModels
@@ -36,6 +43,10 @@ CLASS net/minecraft/client/resources/model/ModelManager
 		ARG 1 modelLocation
 	METHOD lambda$createBlockStateToModelDispatch$18 (Ljava/util/Map;Ljava/util/Map;Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 3 state
+	METHOD lambda$createBlockStateToModelDispatch$19 (Ljava/util/Map;Lnet/minecraft/client/renderer/block/model/BlockStateModel;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 2 state
+	METHOD lambda$discoverModelDependencies$12 (Lnet/minecraft/client/resources/model/ModelDiscovery;Lnet/minecraft/client/renderer/item/ClientItem;)V
+		ARG 1 item
 	METHOD lambda$loadBlockModels$10 (Ljava/util/concurrent/Executor;Ljava/util/Map;)Ljava/util/concurrent/CompletionStage;
 		ARG 1 modelResources
 	METHOD lambda$loadBlockModels$9 (Ljava/util/List;)Ljava/util/Map;
@@ -63,6 +74,13 @@ CLASS net/minecraft/client/resources/model/ModelManager
 	METHOD loadBlockStates (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 resourceManager
 		ARG 1 executor
+	METHOD loadModels (Ljava/util/Map;Lnet/minecraft/client/resources/model/ModelBakery;Lit/unimi/dsi/fastutil/objects/Object2IntMap;Lnet/minecraft/client/model/geom/EntityModelSet;Lnet/minecraft/client/renderer/SpecialBlockModelRenderer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 stitchResults
+		ARG 1 modelBakery
+		ARG 2 modelGroups
+		ARG 3 entityModelSet
+		ARG 4 specialBlockModelRenderer
+		ARG 5 executor
 	METHOD loadModels (Lnet/minecraft/util/profiling/ProfilerFiller;Ljava/util/Map;Lnet/minecraft/client/resources/model/ModelBakery;)Lnet/minecraft/client/resources/model/ModelManager$ReloadState;
 		ARG 1 profilerFiller
 		ARG 2 atlasPreparations
