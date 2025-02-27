@@ -1,5 +1,19 @@
 CLASS net/minecraft/util/parsing/packrat/commands/StringReaderTerms
 	METHOD character (C)Lnet/minecraft/util/parsing/packrat/Term;
 		ARG 0 value
+	METHOD characters (CC)Lnet/minecraft/util/parsing/packrat/Term;
+		ARG 0 value1
+		ARG 1 value2
+	METHOD createReader (Ljava/lang/String;I)Lcom/mojang/brigadier/StringReader;
+		ARG 0 input
+		ARG 1 cursor
 	METHOD word (Ljava/lang/String;)Lnet/minecraft/util/parsing/packrat/Term;
 		ARG 0 value
+	CLASS TerminalCharacters
+		METHOD <init> (Lit/unimi/dsi/fastutil/chars/CharList;)V
+			ARG 1 characters
+		METHOD isAccepted (C)Z
+			ARG 1 c
+	CLASS TerminalWord
+		METHOD <init> (Ljava/lang/String;)V
+			ARG 1 value

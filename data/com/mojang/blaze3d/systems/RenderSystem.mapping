@@ -73,6 +73,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD flipFrame (JLcom/mojang/blaze3d/TracyFrameCapture;)V
 		ARG 0 window
 		ARG 2 tracyFrameCapture
+	METHOD getQuadVertexBuffer (Ljava/util/function/Supplier;)Lcom/mojang/blaze3d/buffers/GpuBuffer;
+		ARG 0 label
 	METHOD getSequentialBuffer (Lcom/mojang/blaze3d/vertex/VertexFormat$Mode;)Lcom/mojang/blaze3d/systems/RenderSystem$AutoStorageIndexBuffer;
 		ARG 0 formatMode
 	METHOD getShaderTexture (I)I
@@ -144,6 +146,12 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD initRenderer (IZ)V
 		ARG 0 debugVerbosity
 		ARG 1 synchronous
+	METHOD initRenderer (JIZLjava/util/function/BiFunction;Z)V
+		ARG 0 window
+		ARG 2 glDebugVerbosity
+		ARG 3 synchronous
+		ARG 4 defaultShaderSource
+		ARG 5 renderDebugLabels
 	METHOD lambda$static$0 (Lit/unimi/dsi/fastutil/ints/IntConsumer;I)V
 		ARG 0 consumer
 		ARG 1 index
@@ -293,6 +301,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 			ARG 1 index
 		METHOD ensureStorage (I)V
 			ARG 1 neededIndexCount
+		METHOD getBuffer (I)Lcom/mojang/blaze3d/buffers/GpuBuffer;
+			ARG 1 index
 		METHOD hasStorage (I)Z
 			ARG 1 index
 		METHOD intConsumer (Ljava/nio/ByteBuffer;)Lit/unimi/dsi/fastutil/ints/IntConsumer;

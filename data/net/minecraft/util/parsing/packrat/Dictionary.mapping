@@ -1,6 +1,20 @@
 CLASS net/minecraft/util/parsing/packrat/Dictionary
+	METHOD forward (Lnet/minecraft/util/parsing/packrat/Atom;)Lnet/minecraft/util/parsing/packrat/NamedRule;
+		ARG 1 name
 	METHOD get (Lnet/minecraft/util/parsing/packrat/Atom;)Lnet/minecraft/util/parsing/packrat/Rule;
 		ARG 1 atom
+	METHOD getOrCreateEntry (Lnet/minecraft/util/parsing/packrat/Atom;)Lnet/minecraft/util/parsing/packrat/Dictionary$Entry;
+		ARG 1 name
+	METHOD getOrThrow (Lnet/minecraft/util/parsing/packrat/Atom;)Lnet/minecraft/util/parsing/packrat/NamedRule;
+		ARG 1 name
+	METHOD named (Lnet/minecraft/util/parsing/packrat/Atom;)Lnet/minecraft/util/parsing/packrat/Term;
+		ARG 1 name
+	METHOD namedWithAlias (Lnet/minecraft/util/parsing/packrat/Atom;Lnet/minecraft/util/parsing/packrat/Atom;)Lnet/minecraft/util/parsing/packrat/Term;
+		ARG 1 name
+		ARG 2 alias
+	METHOD put (Lnet/minecraft/util/parsing/packrat/Atom;Lnet/minecraft/util/parsing/packrat/Rule;)Lnet/minecraft/util/parsing/packrat/NamedRule;
+		ARG 1 name
+		ARG 2 rule
 	METHOD put (Lnet/minecraft/util/parsing/packrat/Atom;Lnet/minecraft/util/parsing/packrat/Rule;)V
 		ARG 1 atom
 		ARG 2 rule
@@ -8,7 +22,18 @@ CLASS net/minecraft/util/parsing/packrat/Dictionary
 		ARG 1 atom
 		ARG 2 term
 		ARG 3 ruleAction
+	METHOD put (Lnet/minecraft/util/parsing/packrat/Atom;Lnet/minecraft/util/parsing/packrat/Term;Lnet/minecraft/util/parsing/packrat/Rule$SimpleRuleAction;)Lnet/minecraft/util/parsing/packrat/NamedRule;
+		ARG 1 name
+		ARG 2 term
+		ARG 3 ruleAction
 	METHOD put (Lnet/minecraft/util/parsing/packrat/Atom;Lnet/minecraft/util/parsing/packrat/Term;Lnet/minecraft/util/parsing/packrat/Rule$SimpleRuleAction;)V
 		ARG 1 atom
 		ARG 2 term
 		ARG 3 simpleRuleAction
+	METHOD putComplex (Lnet/minecraft/util/parsing/packrat/Atom;Lnet/minecraft/util/parsing/packrat/Term;Lnet/minecraft/util/parsing/packrat/Rule$RuleAction;)Lnet/minecraft/util/parsing/packrat/NamedRule;
+		ARG 1 name
+		ARG 2 term
+		ARG 3 ruleAction
+	CLASS Entry
+		METHOD <init> (Lnet/minecraft/util/parsing/packrat/Atom;)V
+			ARG 1 name

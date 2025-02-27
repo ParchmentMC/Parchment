@@ -1,0 +1,21 @@
+CLASS com/mojang/blaze3d/opengl/VertexArrayCache
+	METHOD bindVertexArray (Lcom/mojang/blaze3d/vertex/VertexFormat;Lcom/mojang/blaze3d/opengl/GlBuffer;)V
+		ARG 1 format
+		ARG 2 buffer
+	METHOD create (Lorg/lwjgl/opengl/GLCapabilities;Lcom/mojang/blaze3d/opengl/GlDebugLabel;)Lcom/mojang/blaze3d/opengl/VertexArrayCache;
+		ARG 0 capabilities
+		ARG 1 debugLabel
+	CLASS Emulated
+		METHOD <init> (Lcom/mojang/blaze3d/opengl/GlDebugLabel;)V
+			ARG 1 debugLabels
+		METHOD setupCombinedAttributes (Lcom/mojang/blaze3d/vertex/VertexFormat;Z)V
+			ARG 0 vertexFormat
+			ARG 1 enabled
+	CLASS Separate
+		METHOD <init> (Lcom/mojang/blaze3d/opengl/GlDebugLabel;)V
+			ARG 1 debugLabels
+	CLASS VertexArray
+		METHOD <init> (ILcom/mojang/blaze3d/vertex/VertexFormat;Lcom/mojang/blaze3d/opengl/GlBuffer;)V
+			ARG 1 id
+			ARG 2 format
+			ARG 3 lastVertexBuffer

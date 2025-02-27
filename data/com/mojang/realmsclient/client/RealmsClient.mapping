@@ -26,6 +26,8 @@ CLASS com/mojang/realmsclient/client/RealmsClient
 		ARG 3 worldType
 	METHOD getActivity (J)Lcom/mojang/realmsclient/dto/ServerActivityList;
 		ARG 1 worldId
+	METHOD getOrCreate (Lnet/minecraft/client/Minecraft;)Lcom/mojang/realmsclient/client/RealmsClient;
+		ARG 0 minecraft
 	METHOD getOwnRealm (J)Lcom/mojang/realmsclient/dto/RealmsServer;
 		ARG 1 id
 	METHOD initializeRealm (JLjava/lang/String;Ljava/lang/String;)V
@@ -95,11 +97,19 @@ CLASS com/mojang/realmsclient/client/RealmsClient
 	METHOD url (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 		ARG 1 path
 		ARG 2 query
+	METHOD url (Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+		ARG 0 path
+		ARG 1 query
+		ARG 2 useAlternativeUrl
 	METHOD uuidListToJsonArray (Ljava/util/List;)Lcom/google/gson/JsonArray;
 		ARG 0 uuidList
 	CLASS Environment
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
 			ARG 3 baseUrl
 			ARG 4 protocol
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+			ARG 3 baseUrl
+			ARG 4 alternativeUrl
+			ARG 5 protocol
 		METHOD byName (Ljava/lang/String;)Ljava/util/Optional;
 			ARG 0 name
