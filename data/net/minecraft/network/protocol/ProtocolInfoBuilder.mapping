@@ -5,21 +5,55 @@ CLASS net/minecraft/network/protocol/ProtocolInfoBuilder
 	METHOD addPacket (Lnet/minecraft/network/protocol/PacketType;Lnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/protocol/ProtocolInfoBuilder;
 		ARG 1 type
 		ARG 2 serializer
+	METHOD addPacket (Lnet/minecraft/network/protocol/PacketType;Lnet/minecraft/network/codec/StreamCodec;Lnet/minecraft/network/protocol/CodecModifier;)Lnet/minecraft/network/protocol/ProtocolInfoBuilder;
+		ARG 1 type
+		ARG 2 serializer
+		ARG 3 modifier
 	METHOD build (Ljava/util/function/Function;)Lnet/minecraft/network/ProtocolInfo;
 		ARG 1 bufferFactory
+	METHOD buildDetails (Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/protocol/PacketFlow;Ljava/util/List;)Lnet/minecraft/network/ProtocolInfo$Details;
+		ARG 0 protocol
+		ARG 1 flow
+		ARG 2 entries
 	METHOD buildPacketCodec (Ljava/util/function/Function;Ljava/util/List;)Lnet/minecraft/network/codec/StreamCodec;
 		ARG 1 bufferFactory
 		ARG 2 codecs
+	METHOD buildPacketCodec (Ljava/util/function/Function;Ljava/util/List;Ljava/lang/Object;)Lnet/minecraft/network/codec/StreamCodec;
+		ARG 1 bufferFactory
+		ARG 2 entries
+		ARG 3 context
+	METHOD buildUnbound (Ljava/lang/Object;)Lnet/minecraft/network/protocol/SimpleUnboundProtocol;
+		ARG 1 context
 	METHOD clientboundProtocol (Lnet/minecraft/network/ConnectionProtocol;Ljava/util/function/Consumer;)Lnet/minecraft/network/ProtocolInfo$Unbound;
 		ARG 0 protocol
 		ARG 1 setup
+	METHOD clientboundProtocol (Lnet/minecraft/network/ConnectionProtocol;Ljava/util/function/Consumer;)Lnet/minecraft/network/protocol/SimpleUnboundProtocol;
+		ARG 0 protocol
+		ARG 1 packetAdder
+	METHOD contextClientboundProtocol (Lnet/minecraft/network/ConnectionProtocol;Ljava/util/function/Consumer;)Lnet/minecraft/network/protocol/UnboundProtocol;
+		ARG 0 protocol
+		ARG 1 packetAdder
+	METHOD contextProtocol (Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/protocol/PacketFlow;Ljava/util/function/Consumer;)Lnet/minecraft/network/protocol/UnboundProtocol;
+		ARG 0 protocol
+		ARG 1 flow
+		ARG 2 packetAdder
+	METHOD contextServerboundProtocol (Lnet/minecraft/network/ConnectionProtocol;Ljava/util/function/Consumer;)Lnet/minecraft/network/protocol/UnboundProtocol;
+		ARG 0 protocol
+		ARG 1 packetAdder
 	METHOD protocol (Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/protocol/PacketFlow;Ljava/util/function/Consumer;)Lnet/minecraft/network/ProtocolInfo$Unbound;
 		ARG 0 protocol
 		ARG 1 flow
 		ARG 2 setup
+	METHOD protocol (Lnet/minecraft/network/ConnectionProtocol;Lnet/minecraft/network/protocol/PacketFlow;Ljava/util/function/Consumer;)Lnet/minecraft/network/protocol/SimpleUnboundProtocol;
+		ARG 0 protocol
+		ARG 1 flow
+		ARG 2 packetAdder
 	METHOD serverboundProtocol (Lnet/minecraft/network/ConnectionProtocol;Ljava/util/function/Consumer;)Lnet/minecraft/network/ProtocolInfo$Unbound;
 		ARG 0 protocol
 		ARG 1 setup
+	METHOD serverboundProtocol (Lnet/minecraft/network/ConnectionProtocol;Ljava/util/function/Consumer;)Lnet/minecraft/network/protocol/SimpleUnboundProtocol;
+		ARG 0 protocol
+		ARG 1 packetAdder
 	METHOD withBundlePacket (Lnet/minecraft/network/protocol/PacketType;Ljava/util/function/Function;Lnet/minecraft/network/protocol/BundleDelimiterPacket;)Lnet/minecraft/network/protocol/ProtocolInfoBuilder;
 		ARG 1 type
 		ARG 2 bundler
@@ -28,3 +62,7 @@ CLASS net/minecraft/network/protocol/ProtocolInfoBuilder
 		METHOD addToBuilder (Lnet/minecraft/network/protocol/ProtocolCodecBuilder;Ljava/util/function/Function;)V
 			ARG 1 codecBuilder
 			ARG 2 bufferFactory
+		METHOD addToBuilder (Lnet/minecraft/network/protocol/ProtocolCodecBuilder;Ljava/util/function/Function;Ljava/lang/Object;)V
+			ARG 1 builder
+			ARG 2 bufferFactory
+			ARG 3 context

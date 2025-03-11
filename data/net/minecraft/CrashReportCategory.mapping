@@ -5,17 +5,17 @@ CLASS net/minecraft/CrashReportCategory
 		COMMENT Resets our stack trace according to the current trace, pruning the deepest 3 entries.  The parameter indicates how many additional deepest entries to prune.  Returns the number of entries in the resulting pruned stack trace.
 		ARG 1 size
 	METHOD formatLocation (Lnet/minecraft/world/level/LevelHeightAccessor;DDD)Ljava/lang/String;
-		ARG 0 levelHeightAccess
+		ARG 0 levelHeightAccessor
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
 	METHOD formatLocation (Lnet/minecraft/world/level/LevelHeightAccessor;III)Ljava/lang/String;
-		ARG 0 levelHeightAccess
+		ARG 0 levelHeightAccessor
 		ARG 1 x
 		ARG 2 y
 		ARG 3 z
 	METHOD formatLocation (Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/core/BlockPos;)Ljava/lang/String;
-		ARG 0 levelHeightAccess
+		ARG 0 levelHeightAccessor
 		ARG 1 pos
 	METHOD getDetails (Ljava/lang/StringBuilder;)V
 		ARG 1 builder
@@ -24,6 +24,10 @@ CLASS net/minecraft/CrashReportCategory
 		ARG 1 levelHeightAccessor
 		ARG 2 pos
 		ARG 3 state
+	METHOD populateBlockLocationDetails (Lnet/minecraft/CrashReportCategory;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/CrashReportCategory;
+		ARG 0 category
+		ARG 1 levelHeightAccessor
+		ARG 2 pos
 	METHOD setDetail (Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraft/CrashReportCategory;
 		COMMENT Adds a Crashreport section with the given name with the given value (converted {@code .toString()})
 		ARG 1 sectionName
