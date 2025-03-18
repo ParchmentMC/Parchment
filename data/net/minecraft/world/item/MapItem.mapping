@@ -1,4 +1,11 @@
 CLASS net/minecraft/world/item/MapItem
+	METHOD create (Lnet/minecraft/server/level/ServerLevel;IIBZZ)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 level
+		ARG 1 x
+		ARG 2 z
+		ARG 3 scale
+		ARG 4 trackingPosition
+		ARG 5 unlimitedTracking
 	METHOD create (Lnet/minecraft/world/level/Level;IIBZZ)Lnet/minecraft/world/item/ItemStack;
 		ARG 0 level
 		ARG 1 levelX
@@ -6,6 +13,14 @@ CLASS net/minecraft/world/item/MapItem
 		ARG 3 scale
 		ARG 4 trackingPosition
 		ARG 5 unlimitedTracking
+	METHOD createNewSavedData (Lnet/minecraft/server/level/ServerLevel;IIIZZLnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/saveddata/maps/MapId;
+		ARG 0 level
+		ARG 1 x
+		ARG 2 z
+		ARG 3 scale
+		ARG 4 trackingPosition
+		ARG 5 unlimitedTracking
+		ARG 6 dimension
 	METHOD createNewSavedData (Lnet/minecraft/world/level/Level;IIIZZLnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/saveddata/maps/MapId;
 		ARG 0 level
 		ARG 1 x
@@ -41,12 +56,18 @@ CLASS net/minecraft/world/item/MapItem
 		ARG 0 wateryMap
 		ARG 1 xSample
 		ARG 2 zSample
+	METHOD lockMap (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 0 stack
+		ARG 1 level
 	METHOD lockMap (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 0 level
 		ARG 1 stack
 	METHOD renderBiomePreviewMap (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 0 serverLevel
 		ARG 1 stack
+	METHOD scaleMap (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 0 stack
+		ARG 1 level
 	METHOD scaleMap (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;)V
 		ARG 0 stack
 		ARG 1 level
