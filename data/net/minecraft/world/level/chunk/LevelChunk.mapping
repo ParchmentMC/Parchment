@@ -97,13 +97,16 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 1 level
 	METHOD updateBlockEntityTicker (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 blockEntity
+	CLASS UnsavedListener
+		METHOD setUnsaved (Lnet/minecraft/world/level/ChunkPos;)V
+			ARG 1 chunkPos
+	CLASS PostLoadProcessor
+		METHOD run (Lnet/minecraft/world/level/chunk/LevelChunk;)V
+			ARG 1 chunk
 	CLASS BoundTickingBlockEntity
 		METHOD <init> (Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/level/block/entity/BlockEntityTicker;)V
 			ARG 2 blockEntity
 			ARG 3 ticker
-	CLASS PostLoadProcessor
-		METHOD run (Lnet/minecraft/world/level/chunk/LevelChunk;)V
-			ARG 1 chunk
 	CLASS RebindableTickingBlockEntityWrapper
 		METHOD <init> (Lnet/minecraft/world/level/block/entity/TickingBlockEntity;)V
 			ARG 1 ticker
@@ -111,6 +114,3 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 			ARG 2 ticker
 		METHOD rebind (Lnet/minecraft/world/level/block/entity/TickingBlockEntity;)V
 			ARG 1 ticker
-	CLASS UnsavedListener
-		METHOD setUnsaved (Lnet/minecraft/world/level/ChunkPos;)V
-			ARG 1 chunkPos

@@ -118,6 +118,20 @@ CLASS net/minecraft/world/level/saveddata/maps/MapItemSavedData
 		ARG 1 x
 		ARG 2 z
 		ARG 3 color
+	CLASS MapPatch
+		METHOD <init> (IIII[B)V
+			ARG 1 startX
+			ARG 2 startY
+			ARG 3 width
+			ARG 4 height
+			ARG 5 mapColors
+		METHOD applyToMap (Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
+			ARG 1 savedData
+		METHOD read (Lio/netty/buffer/ByteBuf;)Ljava/util/Optional;
+			ARG 0 buffer
+		METHOD write (Lio/netty/buffer/ByteBuf;Ljava/util/Optional;)V
+			ARG 0 buffer
+			ARG 1 mapPatch
 	CLASS HoldingPlayer
 		FIELD maxDirtyX I
 			COMMENT The highest dirty x value
@@ -134,17 +148,3 @@ CLASS net/minecraft/world/level/saveddata/maps/MapItemSavedData
 			ARG 2 z
 		METHOD nextUpdatePacket (Lnet/minecraft/world/level/saveddata/maps/MapId;)Lnet/minecraft/network/protocol/Packet;
 			ARG 1 mapId
-	CLASS MapPatch
-		METHOD <init> (IIII[B)V
-			ARG 1 startX
-			ARG 2 startY
-			ARG 3 width
-			ARG 4 height
-			ARG 5 mapColors
-		METHOD applyToMap (Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;)V
-			ARG 1 savedData
-		METHOD read (Lio/netty/buffer/ByteBuf;)Ljava/util/Optional;
-			ARG 0 buffer
-		METHOD write (Lio/netty/buffer/ByteBuf;Ljava/util/Optional;)V
-			ARG 0 buffer
-			ARG 1 mapPatch

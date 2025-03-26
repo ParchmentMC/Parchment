@@ -28,6 +28,27 @@ CLASS net/minecraft/network/chat/HoverEvent
 			ARG 0 action
 		METHOD isAllowedFromServer ()Z
 			COMMENT Indicates whether this event can be run from chat text.
+	CLASS ItemStackInfo
+		METHOD <init> (Lnet/minecraft/core/Holder;ILnet/minecraft/core/component/DataComponentPatch;)V
+			ARG 1 item
+			ARG 2 count
+			ARG 3 components
+		METHOD <init> (Lnet/minecraft/world/item/ItemStack;)V
+			ARG 1 stack
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other
+		METHOD legacyCreate (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/RegistryOps;)Lcom/mojang/serialization/DataResult;
+			ARG 0 name
+			ARG 1 ops
+	CLASS LegacyConverter
+		METHOD parse (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/RegistryOps;)Lcom/mojang/serialization/DataResult;
+			ARG 1 name
+			ARG 2 ops
+	CLASS TypedHoverEvent
+		METHOD lambda$static$0 (Lnet/minecraft/network/chat/HoverEvent$Action;)Lcom/mojang/serialization/MapCodec;
+			ARG 0 hoverEvent
+		METHOD lambda$static$1 (Lnet/minecraft/network/chat/HoverEvent$Action;)Lcom/mojang/serialization/MapCodec;
+			ARG 0 hoverEvent
 	CLASS EntityTooltipInfo
 		METHOD <init> (Lnet/minecraft/world/entity/EntityType;Ljava/util/UUID;Ljava/util/Optional;)V
 			ARG 1 type
@@ -50,24 +71,3 @@ CLASS net/minecraft/network/chat/HoverEvent
 		METHOD legacyCreate (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/RegistryOps;)Lcom/mojang/serialization/DataResult;
 			ARG 0 name
 			ARG 1 ops
-	CLASS ItemStackInfo
-		METHOD <init> (Lnet/minecraft/core/Holder;ILnet/minecraft/core/component/DataComponentPatch;)V
-			ARG 1 item
-			ARG 2 count
-			ARG 3 components
-		METHOD <init> (Lnet/minecraft/world/item/ItemStack;)V
-			ARG 1 stack
-		METHOD equals (Ljava/lang/Object;)Z
-			ARG 1 other
-		METHOD legacyCreate (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/RegistryOps;)Lcom/mojang/serialization/DataResult;
-			ARG 0 name
-			ARG 1 ops
-	CLASS LegacyConverter
-		METHOD parse (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/RegistryOps;)Lcom/mojang/serialization/DataResult;
-			ARG 1 name
-			ARG 2 ops
-	CLASS TypedHoverEvent
-		METHOD lambda$static$0 (Lnet/minecraft/network/chat/HoverEvent$Action;)Lcom/mojang/serialization/MapCodec;
-			ARG 0 hoverEvent
-		METHOD lambda$static$1 (Lnet/minecraft/network/chat/HoverEvent$Action;)Lcom/mojang/serialization/MapCodec;
-			ARG 0 hoverEvent

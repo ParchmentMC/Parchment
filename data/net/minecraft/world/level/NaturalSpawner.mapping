@@ -124,19 +124,6 @@ CLASS net/minecraft/world/level/NaturalSpawner
 		ARG 1 biome
 		ARG 2 chunkPos
 		ARG 3 random
-	CLASS AfterSpawnCallback
-		METHOD run (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
-			ARG 1 mob
-			ARG 2 chunk
-	CLASS ChunkGetter
-		METHOD query (JLjava/util/function/Consumer;)V
-			ARG 1 chunkPos
-			ARG 3 chunkConsumer
-	CLASS SpawnPredicate
-		METHOD test (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
-			ARG 1 entityType
-			ARG 2 pos
-			ARG 3 chunk
 	CLASS SpawnState
 		METHOD <init> (ILit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;Lnet/minecraft/world/level/PotentialCalculator;Lnet/minecraft/world/level/LocalMobCapCalculator;)V
 			ARG 1 spawnableChunkCount
@@ -158,3 +145,16 @@ CLASS net/minecraft/world/level/NaturalSpawner
 		METHOD canSpawnForCategoryLocal (Lnet/minecraft/world/entity/MobCategory;Lnet/minecraft/world/level/ChunkPos;)Z
 			ARG 1 category
 			ARG 2 chunkPos
+	CLASS ChunkGetter
+		METHOD query (JLjava/util/function/Consumer;)V
+			ARG 1 chunkPos
+			ARG 3 chunkConsumer
+	CLASS SpawnPredicate
+		METHOD test (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/ChunkAccess;)Z
+			ARG 1 entityType
+			ARG 2 pos
+			ARG 3 chunk
+	CLASS AfterSpawnCallback
+		METHOD run (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/chunk/ChunkAccess;)V
+			ARG 1 mob
+			ARG 2 chunk

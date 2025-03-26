@@ -79,6 +79,13 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 		ARG 3 amount
 	METHOD update (Lcom/mojang/serialization/Dynamic;)V
 		ARG 1 dynamic
+	CLASS GossipEntry
+		METHOD <init> (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V
+			ARG 1 target
+			ARG 2 type
+			ARG 3 value
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
 	CLASS EntityGossips
 		METHOD lambda$unpack$2 (Ljava/util/UUID;Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;)Lnet/minecraft/world/entity/ai/gossip/GossipContainer$GossipEntry;
 			ARG 1 gossip
@@ -94,10 +101,3 @@ CLASS net/minecraft/world/entity/ai/gossip/GossipContainer
 			ARG 1 identifier
 		METHOD weightedValue (Ljava/util/function/Predicate;)I
 			ARG 1 gossipType
-	CLASS GossipEntry
-		METHOD <init> (Ljava/util/UUID;Lnet/minecraft/world/entity/ai/gossip/GossipType;I)V
-			ARG 1 target
-			ARG 2 type
-			ARG 3 value
-		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-			ARG 0 instance

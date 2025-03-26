@@ -18,6 +18,18 @@ CLASS com/mojang/blaze3d/vertex/VertexFormat
 		ARG 1 buffer
 	METHOD uploadImmediateVertexBuffer (Ljava/nio/ByteBuffer;)Lcom/mojang/blaze3d/buffers/GpuBuffer;
 		ARG 1 buffer
+	CLASS Mode
+		METHOD <init> (Ljava/lang/String;IIIIZ)V
+			ARG 3 asGLMode
+			ARG 4 primitiveLength
+			ARG 5 primitiveStride
+			ARG 6 connectedPrimitives
+		METHOD <init> (Ljava/lang/String;IIIZ)V
+			ARG 3 primitiveLength
+			ARG 4 primitiveStride
+			ARG 5 connectedPrimitives
+		METHOD indexCount (I)I
+			ARG 1 vertices
 	CLASS Builder
 		METHOD add (Ljava/lang/String;Lcom/mojang/blaze3d/vertex/VertexFormatElement;)Lcom/mojang/blaze3d/vertex/VertexFormat$Builder;
 			ARG 1 name
@@ -32,15 +44,3 @@ CLASS com/mojang/blaze3d/vertex/VertexFormat
 			ARG 4 bytes
 		METHOD least (I)Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;
 			ARG 0 indexCount
-	CLASS Mode
-		METHOD <init> (Ljava/lang/String;IIIIZ)V
-			ARG 3 asGLMode
-			ARG 4 primitiveLength
-			ARG 5 primitiveStride
-			ARG 6 connectedPrimitives
-		METHOD <init> (Ljava/lang/String;IIIZ)V
-			ARG 3 primitiveLength
-			ARG 4 primitiveStride
-			ARG 5 connectedPrimitives
-		METHOD indexCount (I)I
-			ARG 1 vertices

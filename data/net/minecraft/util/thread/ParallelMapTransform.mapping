@@ -8,12 +8,6 @@ CLASS net/minecraft/util/thread/ParallelMapTransform
 		ARG 0 inputs
 		ARG 1 operation
 		ARG 2 executor
-	CLASS BatchedTaskSplitter
-		METHOD createTask (Ljava/util/Map;IILnet/minecraft/util/thread/ParallelMapTransform$Container;)Ljava/lang/Runnable;
-			ARG 0 result
-			ARG 1 lastScheduledIndex
-			ARG 2 currentIndex
-			ARG 3 container
 	CLASS Container
 		METHOD <init> (Ljava/util/function/BiFunction;I)V
 			ARG 1 operation
@@ -33,10 +27,6 @@ CLASS net/minecraft/util/thread/ParallelMapTransform
 			ARG 1 index
 			ARG 2 key
 			ARG 3 value
-	CLASS SingleTaskSplitter
-		METHOD <init> (Ljava/util/function/BiFunction;I)V
-			ARG 1 operation
-			ARG 2 size
 	CLASS SplitterBase
 		METHOD <init> (Ljava/util/function/BiFunction;II)V
 			ARG 1 operation
@@ -58,3 +48,13 @@ CLASS net/minecraft/util/thread/ParallelMapTransform
 		METHOD scheduleTasks (Ljava/util/Map;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
 			ARG 1 inputs
 			ARG 2 executor
+	CLASS SingleTaskSplitter
+		METHOD <init> (Ljava/util/function/BiFunction;I)V
+			ARG 1 operation
+			ARG 2 size
+	CLASS BatchedTaskSplitter
+		METHOD createTask (Ljava/util/Map;IILnet/minecraft/util/thread/ParallelMapTransform$Container;)Ljava/lang/Runnable;
+			ARG 0 result
+			ARG 1 lastScheduledIndex
+			ARG 2 currentIndex
+			ARG 3 container

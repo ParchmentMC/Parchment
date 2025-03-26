@@ -1,13 +1,6 @@
 CLASS net/minecraft/commands/arguments/item/ComponentPredicateParser
 	METHOD createGrammar (Lnet/minecraft/commands/arguments/item/ComponentPredicateParser$Context;)Lnet/minecraft/util/parsing/packrat/commands/Grammar;
 		ARG 0 context
-	CLASS ComponentLookupRule
-		METHOD <init> (Lnet/minecraft/util/parsing/packrat/Atom;Lnet/minecraft/commands/arguments/item/ComponentPredicateParser$Context;)V
-			ARG 1 idParser
-			ARG 2 context
-		METHOD <init> (Lnet/minecraft/util/parsing/packrat/NamedRule;Lnet/minecraft/commands/arguments/item/ComponentPredicateParser$Context;)V
-			ARG 1 idParser
-			ARG 2 context
 	CLASS Context
 		METHOD anyOf (Ljava/util/List;)Ljava/lang/Object;
 			ARG 1 values
@@ -44,6 +37,13 @@ CLASS net/minecraft/commands/arguments/item/ComponentPredicateParser
 			ARG 2 predicateType
 		METHOD negate (Ljava/lang/Object;)Ljava/lang/Object;
 			ARG 1 value
+	CLASS TagLookupRule
+		METHOD <init> (Lnet/minecraft/util/parsing/packrat/Atom;Lnet/minecraft/commands/arguments/item/ComponentPredicateParser$Context;)V
+			ARG 1 idParser
+			ARG 2 context
+		METHOD <init> (Lnet/minecraft/util/parsing/packrat/NamedRule;Lnet/minecraft/commands/arguments/item/ComponentPredicateParser$Context;)V
+			ARG 1 idParser
+			ARG 2 context
 	CLASS ElementLookupRule
 		METHOD <init> (Lnet/minecraft/util/parsing/packrat/Atom;Lnet/minecraft/commands/arguments/item/ComponentPredicateParser$Context;)V
 			ARG 1 idParser
@@ -51,14 +51,14 @@ CLASS net/minecraft/commands/arguments/item/ComponentPredicateParser
 		METHOD <init> (Lnet/minecraft/util/parsing/packrat/NamedRule;Lnet/minecraft/commands/arguments/item/ComponentPredicateParser$Context;)V
 			ARG 1 idParser
 			ARG 2 context
-	CLASS PredicateLookupRule
+	CLASS ComponentLookupRule
 		METHOD <init> (Lnet/minecraft/util/parsing/packrat/Atom;Lnet/minecraft/commands/arguments/item/ComponentPredicateParser$Context;)V
 			ARG 1 idParser
 			ARG 2 context
 		METHOD <init> (Lnet/minecraft/util/parsing/packrat/NamedRule;Lnet/minecraft/commands/arguments/item/ComponentPredicateParser$Context;)V
 			ARG 1 idParser
 			ARG 2 context
-	CLASS TagLookupRule
+	CLASS PredicateLookupRule
 		METHOD <init> (Lnet/minecraft/util/parsing/packrat/Atom;Lnet/minecraft/commands/arguments/item/ComponentPredicateParser$Context;)V
 			ARG 1 idParser
 			ARG 2 context

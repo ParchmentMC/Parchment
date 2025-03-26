@@ -43,18 +43,34 @@ CLASS net/minecraft/world/entity/animal/Rabbit
 		ARG 1 variant
 	METHOD wantsMoreFood ()Z
 		COMMENT Returns {@code true} if {@link #moreCarrotTicks} has reached zero
-	CLASS RabbitAvoidEntityGoal
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;Ljava/lang/Class;FDD)V
+	CLASS Variant
+		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
+			ARG 3 id
+			ARG 4 name
+		METHOD byId (I)Lnet/minecraft/world/entity/animal/Rabbit$Variant;
+			ARG 0 id
+	CLASS RaidGardenGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;)V
 			ARG 1 rabbit
-			ARG 2 entityClassToAvoid
-			ARG 3 maxDist
-			ARG 4 walkSpeedModifier
-			ARG 6 sprintSpeedModifier
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD isValidTarget (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+			COMMENT Return {@code true} to set given position as destination
+			ARG 1 level
+			ARG 2 pos
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
 	CLASS RabbitGroupData
 		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit$Variant;)V
 			ARG 1 variant
+	CLASS RabbitPanicGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;D)V
+			ARG 1 rabbit
+			ARG 2 speedModifier
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
 	CLASS RabbitJumpControl
 		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;)V
 			ARG 1 rabbit
@@ -71,28 +87,12 @@ CLASS net/minecraft/world/entity/animal/Rabbit
 			ARG 3 y
 			ARG 5 z
 			ARG 7 speed
-	CLASS RabbitPanicGoal
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;D)V
+	CLASS RabbitAvoidEntityGoal
+		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;Ljava/lang/Class;FDD)V
 			ARG 1 rabbit
-			ARG 2 speedModifier
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
-	CLASS RaidGardenGoal
-		METHOD <init> (Lnet/minecraft/world/entity/animal/Rabbit;)V
-			ARG 1 rabbit
-		METHOD canContinueToUse ()Z
-			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+			ARG 2 entityClassToAvoid
+			ARG 3 maxDist
+			ARG 4 walkSpeedModifier
+			ARG 6 sprintSpeedModifier
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD isValidTarget (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
-			COMMENT Return {@code true} to set given position as destination
-			ARG 1 level
-			ARG 2 pos
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
-	CLASS Variant
-		METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
-			ARG 3 id
-			ARG 4 name
-		METHOD byId (I)Lnet/minecraft/world/entity/animal/Rabbit$Variant;
-			ARG 0 id
