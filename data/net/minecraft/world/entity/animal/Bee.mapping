@@ -15,8 +15,6 @@ CLASS net/minecraft/world/entity/animal/Bee
 		ARG 2 distance
 	METHOD createNavigation (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/ai/navigation/PathNavigation;
 		ARG 1 level
-	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 entity
 	METHOD doesHiveHaveSpace (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 hivePos
 	METHOD getFlag (I)Z
@@ -30,12 +28,6 @@ CLASS net/minecraft/world/entity/animal/Bee
 	METHOD getWalkTargetValue (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelReader;)F
 		ARG 1 pos
 		ARG 2 level
-	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
-		COMMENT Called when the entity is attacked.
-		ARG 1 source
-		ARG 2 amount
-	METHOD isFlowerValid (Lnet/minecraft/core/BlockPos;)Z
-		ARG 1 pos
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
 		ARG 1 stack
@@ -132,9 +124,6 @@ CLASS net/minecraft/world/entity/animal/Bee
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 	CLASS BeePollinateGoal
-		METHOD findNearestBlock (Ljava/util/function/Predicate;D)Ljava/util/Optional;
-			ARG 1 predicate
-			ARG 2 distance
 		METHOD lambda$new$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
 			ARG 0 state
 		METHOD start ()V

@@ -1,0 +1,80 @@
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - 'versions/**'
+
+name: Publish bleeding export
+
+jobs:
+  publish:
+    name: Publish export
+    runs-on: ubuntu-latest
+    outputs:
+      CI_VERSION: ${{ steps.info.outputs.CI_VERSION }}
+      CI_GROUP: ${{ steps.info.outputs.CI_GROUP }}
+      CI_ARTIFACT: ${{ steps.info.outputs.CI_ARTIFACT }}
+      CI_GAME_VERSION: ${{ steps.info.outputs.CI_GAME_VERSION }}
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Obtain GAV info
+        id: info
+        run: ./gradlew --quiet -PreleaseType=bleeding printGHActionsOutput >> "$GITHUB_OUTPUT"
+  
+      - name: Publish export
+        run: ./gradlew publishExport -PreleaseType=bleeding
+        env:
+          LDTTeamJfrogUsername: ${{ secrets.PUBLISHING_USERNAME }}
+          LDTTeamJfrogPassword: ${{ secrets.PUBLISHING_PASSWORD }}
+  announce:
+    name: Send announcement message
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download discord.sh
+        run: curl -LOJ https://github.com/fieu/discord.sh/releases/download/v2.0.0/discord.sh
+
+      - name: Set discord.sh executable
+        run: chmod +x discord.sh
+
+      - name: Send announcement message
+        run: |
+          ./discord.sh \
+            --webhook-url="$WEBHOOK" \
+            --username "ParchmentMC" \
+            --color "0xFF0000" \
+            --title "New bleeding for \`$CI_GAME_VERSION\`!" \
+            --field "Version;\`$CI_VERSION\`;false" \
+            --field "Group;\`$CI_GROUP\`;true" \
+            --field "Artifact;\`$CI_ARTIFACT\`;true" \
+            --field "Coordinate;\`$CI_GROUP:$CI_ARTIFACT:$CI_VERSION\`;false" \
+            --timestamp
+        env:
+          WEBHOOK: ${{ secrets.BLEEDING_DISCORD_WEBHOOK }}
+          CI_VERSION: ${{ needs.publish.outputs.CI_VERSION }}
+          CI_GROUP: ${{ needs.publish.outputs.CI_GROUP }}
+          CI_ARTIFACT: ${{ needs.publish.outputs.CI_ARTIFACT }}
+          CI_GAME_VERSION: ${{ needs.publish.outputs.CI_GAME_VERSION }}
+  set-variables:
+    name: Set repository variables
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mark pending variables
+        run: |
+          gh -R $GITHUB_SERVER_URL/$GITHUB_REPOSITORY variable set HAS_PENDING_NIGHTLY --body "true"
+          gh -R $GITHUB_SERVER_URL/$GITHUB_REPOSITORY variable set HAS_PENDING_RELEASE --body "true"
+        env: 
+          # This should be a GH PAT with 'repo' scope
+          GH_TOKEN: ${{ secrets.VARIABLES_GH_TOKEN }}
