@@ -1,4 +1,8 @@
 CLASS net/minecraft/server/commands/DataPackCommand
+	METHOD createPack (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;Lnet/minecraft/network/chat/Component;)I
+		ARG 0 source
+		ARG 1 id
+		ARG 2 description
 	METHOD disablePack (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/server/packs/repository/Pack;)I
 		COMMENT Disables the given pack.
 		COMMENT
@@ -58,6 +62,20 @@ CLASS net/minecraft/server/commands/DataPackCommand
 		ARG 0 pack
 	METHOD lambda$static$2 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
 		ARG 0 pack
+	METHOD lambda$static$3 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 pack
+	METHOD lambda$static$4 (Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 pack
+		ARG 1 flags
+	METHOD lambda$static$5 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 name
+	METHOD lambda$static$6 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 name
+	METHOD lambda$static$7 (Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 name
+		ARG 1 error
+	METHOD lambda$static$8 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 name
 	METHOD listAvailablePacks (Lnet/minecraft/commands/CommandSourceStack;)I
 		COMMENT Sends a list of available packs to the user.
 		COMMENT
@@ -75,6 +93,9 @@ CLASS net/minecraft/server/commands/DataPackCommand
 		ARG 0 source
 	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
 		ARG 0 dispatcher
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/commands/CommandBuildContext;)V
+		ARG 0 dispatcher
+		ARG 1 buildContext
 	CLASS Inserter
 		METHOD apply (Ljava/util/List;Lnet/minecraft/server/packs/repository/Pack;)V
 			ARG 1 currentPacks

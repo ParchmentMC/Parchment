@@ -1,4 +1,10 @@
 CLASS net/minecraft/client/renderer/ScreenEffectRenderer
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/renderer/MultiBufferSource;)V
+		ARG 1 minecraft
+		ARG 2 bufferSource
+	METHOD displayItemActivation (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/util/RandomSource;)V
+		ARG 1 item
+		ARG 2 random
 	METHOD getViewBlockingState (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 0 player
 	METHOD renderFire (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;)V
@@ -7,6 +13,9 @@ CLASS net/minecraft/client/renderer/ScreenEffectRenderer
 	METHOD renderFire (Lnet/minecraft/client/Minecraft;Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 0 minecraft
 		ARG 1 poseStack
+	METHOD renderItemActivationAnimation (Lcom/mojang/blaze3d/vertex/PoseStack;F)V
+		ARG 1 poseStack
+		ARG 2 partialTick
 	METHOD renderScreenEffect (Lnet/minecraft/client/Minecraft;Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 0 minecraft
 		ARG 1 poseStack
@@ -14,6 +23,9 @@ CLASS net/minecraft/client/renderer/ScreenEffectRenderer
 		ARG 0 minecraft
 		ARG 1 poseStack
 		ARG 2 bufferSource
+	METHOD renderScreenEffect (ZF)V
+		ARG 1 sleeping
+		ARG 2 partialTick
 	METHOD renderTex (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 0 texture
 		ARG 1 poseStack

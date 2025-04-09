@@ -13,6 +13,8 @@ CLASS net/minecraft/world/entity/monster/Ghast
 		ARG 2 spawnType
 		ARG 3 pos
 		ARG 4 random
+	METHOD faceMovementDirection (Lnet/minecraft/world/entity/Mob;)V
+		ARG 0 mob
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getMaxSpawnClusterSize ()I
@@ -31,6 +33,8 @@ CLASS net/minecraft/world/entity/monster/Ghast
 	METHOD setCharging (Z)V
 		ARG 1 charging
 	CLASS GhastLookGoal
+		METHOD <init> (Lnet/minecraft/world/entity/Mob;)V
+			ARG 1 ghast
 		METHOD <init> (Lnet/minecraft/world/entity/monster/Ghast;)V
 			ARG 1 ghast
 		METHOD canUse ()Z
@@ -38,20 +42,15 @@ CLASS net/minecraft/world/entity/monster/Ghast
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS GhastMoveControl
+		METHOD <init> (Lnet/minecraft/world/entity/Mob;ZF)V
+			ARG 1 ghast
+			ARG 2 careful
+			ARG 3 speed
 		METHOD <init> (Lnet/minecraft/world/entity/monster/Ghast;)V
 			ARG 1 ghast
 		METHOD canReach (Lnet/minecraft/world/phys/Vec3;I)Z
 			ARG 1 pos
 			ARG 2 length
-	CLASS RandomFloatAroundGoal
-		METHOD <init> (Lnet/minecraft/world/entity/monster/Ghast;)V
-			ARG 1 ghast
-		METHOD canContinueToUse ()Z
-			COMMENT Returns whether an in-progress EntityAIBase should continue executing
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
 	CLASS GhastShootFireballGoal
 		METHOD <init> (Lnet/minecraft/world/entity/monster/Ghast;)V
 			ARG 1 ghast
@@ -63,3 +62,31 @@ CLASS net/minecraft/world/entity/monster/Ghast
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
+	CLASS RandomFloatAroundGoal
+		METHOD <init> (Lnet/minecraft/world/entity/Mob;)V
+			ARG 1 ghast
+		METHOD <init> (Lnet/minecraft/world/entity/Mob;I)V
+			ARG 1 ghast
+			ARG 2 distanceToBlocks
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Ghast;)V
+			ARG 1 ghast
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD chooseRandomPosition (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/util/RandomSource;)Lnet/minecraft/world/phys/Vec3;
+			ARG 0 pos
+			ARG 1 random
+		METHOD chooseRandomPositionWithRestriction (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/util/RandomSource;)Lnet/minecraft/world/phys/Vec3;
+			ARG 0 mob
+			ARG 1 pos
+			ARG 2 random
+		METHOD getSuitableFlyToPosition (Lnet/minecraft/world/entity/Mob;I)Lnet/minecraft/world/phys/Vec3;
+			ARG 0 mob
+			ARG 1 distanceToBlocks
+		METHOD isGoodTarget (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/Vec3;I)Z
+			ARG 0 level
+			ARG 1 pos
+			ARG 2 distanceToBlocks
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task

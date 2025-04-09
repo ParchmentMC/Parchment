@@ -221,6 +221,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		COMMENT Read a timestamp as milliseconds since the unix epoch.
 		COMMENT
 		COMMENT @see #writeDate
+	METHOD readEither (Lnet/minecraft/network/codec/StreamDecoder;Lnet/minecraft/network/codec/StreamDecoder;)Lcom/mojang/datafixers/util/Either;
+		ARG 1 leftReader
+		ARG 2 rightReader
 	METHOD readEnum (Ljava/lang/Class;)Ljava/lang/Enum;
 		COMMENT Reads an enum of the given type T using the ordinal encoded as a VarInt from the buffer.
 		COMMENT
@@ -541,6 +544,10 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 time
 	METHOD writeDouble (D)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 value
+	METHOD writeEither (Lcom/mojang/datafixers/util/Either;Lnet/minecraft/network/codec/StreamEncoder;Lnet/minecraft/network/codec/StreamEncoder;)V
+		ARG 1 either
+		ARG 2 leftWriter
+		ARG 3 rightWriter
 	METHOD writeEnum (Ljava/lang/Enum;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Writes an enum of the given type T using the ordinal encoded as a VarInt to the buffer.
 		COMMENT

@@ -8,6 +8,9 @@ CLASS net/minecraft/world/item/component/ItemAttributeModifiers
 	METHOD forEach (Lnet/minecraft/world/entity/EquipmentSlotGroup;Ljava/util/function/BiConsumer;)V
 		ARG 1 slotGroup
 		ARG 2 action
+	METHOD forEach (Lnet/minecraft/world/entity/EquipmentSlotGroup;Lorg/apache/commons/lang3/function/TriConsumer;)V
+		ARG 1 slot
+		ARG 2 action
 	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 		ARG 0 instance
 	METHOD lambda$static$1 (Ljava/util/List;)Lnet/minecraft/world/item/component/ItemAttributeModifiers;
@@ -18,14 +21,40 @@ CLASS net/minecraft/world/item/component/ItemAttributeModifiers
 		ARG 3 slot
 	METHOD withTooltip (Z)Lnet/minecraft/world/item/component/ItemAttributeModifiers;
 		ARG 1 showInTooltip
-	CLASS Entry
-		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-			ARG 0 instance
-		METHOD matches (Lnet/minecraft/core/Holder;Lnet/minecraft/resources/ResourceLocation;)Z
-			ARG 1 attribute
-			ARG 2 id
 	CLASS Builder
 		METHOD add (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;Lnet/minecraft/world/entity/EquipmentSlotGroup;)Lnet/minecraft/world/item/component/ItemAttributeModifiers$Builder;
 			ARG 1 attribute
 			ARG 2 modifier
 			ARG 3 slot
+		METHOD add (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;Lnet/minecraft/world/entity/EquipmentSlotGroup;Lnet/minecraft/world/item/component/ItemAttributeModifiers$Display;)Lnet/minecraft/world/item/component/ItemAttributeModifiers$Builder;
+			ARG 1 attribute
+			ARG 2 modifier
+			ARG 3 slot
+			ARG 4 display
+	CLASS Display
+		METHOD apply (Ljava/util/function/Consumer;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
+			ARG 1 output
+			ARG 2 player
+			ARG 3 attribute
+			ARG 4 modifier
+		METHOD override (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/world/item/component/ItemAttributeModifiers$Display;
+			ARG 0 component
+		CLASS OverrideText
+			METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+				ARG 0 instance
+		CLASS Type
+			METHOD <init> (Ljava/lang/String;ILjava/lang/String;ILcom/mojang/serialization/MapCodec;Lnet/minecraft/network/codec/StreamCodec;)V
+				ARG 3 name
+				ARG 4 id
+				ARG 5 codec
+				ARG 6 streamCodec
+	CLASS Entry
+		METHOD <init> (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;Lnet/minecraft/world/entity/EquipmentSlotGroup;)V
+			ARG 1 attribute
+			ARG 2 modifier
+			ARG 3 slot
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+		METHOD matches (Lnet/minecraft/core/Holder;Lnet/minecraft/resources/ResourceLocation;)Z
+			ARG 1 attribute
+			ARG 2 id

@@ -119,6 +119,9 @@ CLASS net/minecraft/client/gui/Gui
 		ARG 3 heartRows
 		ARG 4 height
 		ARG 5 x
+	METHOD renderBossOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
 	METHOD renderCameraOverlays (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
 		ARG 1 guiGraphics
 		ARG 2 deltaTracker
@@ -129,6 +132,9 @@ CLASS net/minecraft/client/gui/Gui
 		ARG 1 guiGraphics
 		ARG 2 intensity
 	METHOD renderCrosshair (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderDebugOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
 		ARG 1 guiGraphics
 		ARG 2 deltaTracker
 	METHOD renderDemoOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
@@ -197,6 +203,11 @@ CLASS net/minecraft/client/gui/Gui
 			COMMENT the GuiGraphics object used for rendering.
 		ARG 3 x
 			COMMENT the x-coordinate for rendering the jump meter.
+	METHOD renderOnLayer (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;Lnet/minecraft/client/gui/Gui$RenderFunction;Lnet/minecraft/client/gui/render/GuiLayer;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+		ARG 3 renderFunction
+		ARG 4 layer
 	METHOD renderOverlayMessage (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
 		ARG 1 guiGraphics
 		ARG 2 deltaTracker
@@ -237,6 +248,9 @@ CLASS net/minecraft/client/gui/Gui
 			COMMENT the graphics object used for rendering.
 		ARG 2 scopeScale
 			COMMENT the scale factor for the spyglass scope.
+	METHOD renderSubtitleOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
 	METHOD renderTabList (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
 		ARG 1 guiGraphics
 		ARG 2 deltaTracker
@@ -323,3 +337,7 @@ CLASS net/minecraft/client/gui/Gui
 			ARG 1 hardcore
 			ARG 2 halfHeart
 			ARG 3 blinking
+	CLASS RenderFunction
+		METHOD render (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+			ARG 1 guiGraphics
+			ARG 2 deltaTracker

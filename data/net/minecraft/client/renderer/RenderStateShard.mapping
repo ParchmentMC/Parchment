@@ -5,60 +5,38 @@ CLASS net/minecraft/client/renderer/RenderStateShard
 		ARG 3 clearState
 	METHOD setupGlintTexturing (F)V
 		ARG 0 scale
-	CLASS CullStateShard
-		METHOD <init> (Z)V
-			ARG 1 useCull
-	CLASS LineStateShard
-		METHOD <init> (Ljava/util/OptionalDouble;)V
-			ARG 1 width
-	CLASS OutputStateShard
-		METHOD <init> (Ljava/lang/String;Ljava/util/function/Supplier;)V
-			ARG 1 name
-			ARG 2 renderTargetSupplier
-	CLASS ShaderStateShard
-		METHOD <init> (Ljava/util/function/Supplier;)V
-			ARG 1 shader
-		METHOD <init> (Lnet/minecraft/client/renderer/ShaderProgram;)V
-			ARG 1 shader
 	CLASS BooleanStateShard
 		METHOD <init> (Ljava/lang/String;Ljava/lang/Runnable;Ljava/lang/Runnable;Z)V
 			ARG 1 name
 			ARG 2 setupState
 			ARG 3 clearState
 			ARG 4 enabled
-	CLASS OverlayStateShard
+	CLASS CullStateShard
 		METHOD <init> (Z)V
-			ARG 1 useOverlay
-	CLASS TextureStateShard
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/util/TriState;Z)V
-			ARG 1 texture
-			ARG 2 blur
-			ARG 3 mipmap
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;ZZ)V
-			ARG 1 texture
-			ARG 2 blur
-			ARG 3 mipmap
-	CLASS LightmapStateShard
-		METHOD <init> (Z)V
-			ARG 1 useLightmap
+			ARG 1 useCull
 	CLASS DepthTestStateShard
 		METHOD <init> (Ljava/lang/String;I)V
 			ARG 1 functionName
 			ARG 2 depthFunc
-	CLASS WriteMaskStateShard
-		METHOD <init> (ZZ)V
-			ARG 1 writeColor
-			ARG 2 writeDepth
 	CLASS EmptyTextureStateShard
 		METHOD <init> (Ljava/lang/Runnable;Ljava/lang/Runnable;)V
 			ARG 1 setupState
 			ARG 2 clearState
+	CLASS LightmapStateShard
+		METHOD <init> (Z)V
+			ARG 1 useLightmap
+	CLASS LineStateShard
+		METHOD <init> (Ljava/util/OptionalDouble;)V
+			ARG 1 width
 	CLASS MultiTextureStateShard
 		METHOD <init> (Lcom/google/common/collect/ImmutableList;)V
 			ARG 1 textures
 		METHOD <init> (Ljava/util/List;)V
 			ARG 1 entries
 		CLASS Builder
+			METHOD add (Lnet/minecraft/resources/ResourceLocation;Z)Lnet/minecraft/client/renderer/RenderStateShard$MultiTextureStateShard$Builder;
+				ARG 1 id
+				ARG 2 mipmap
 			METHOD add (Lnet/minecraft/resources/ResourceLocation;ZZ)Lnet/minecraft/client/renderer/RenderStateShard$MultiTextureStateShard$Builder;
 				ARG 1 texture
 				ARG 2 blur
@@ -67,3 +45,31 @@ CLASS net/minecraft/client/renderer/RenderStateShard
 		METHOD <init> (FF)V
 			ARG 1 u
 			ARG 2 v
+	CLASS OutputStateShard
+		METHOD <init> (Ljava/lang/String;Ljava/util/function/Supplier;)V
+			ARG 1 name
+			ARG 2 renderTargetSupplier
+	CLASS OverlayStateShard
+		METHOD <init> (Z)V
+			ARG 1 useOverlay
+	CLASS ShaderStateShard
+		METHOD <init> (Ljava/util/function/Supplier;)V
+			ARG 1 shader
+		METHOD <init> (Lnet/minecraft/client/renderer/ShaderProgram;)V
+			ARG 1 shader
+	CLASS TextureStateShard
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/util/TriState;Z)V
+			ARG 1 texture
+			ARG 2 blur
+			ARG 3 mipmap
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Z)V
+			ARG 1 texture
+			ARG 2 mipmap
+		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;ZZ)V
+			ARG 1 texture
+			ARG 2 blur
+			ARG 3 mipmap
+	CLASS WriteMaskStateShard
+		METHOD <init> (ZZ)V
+			ARG 1 writeColor
+			ARG 2 writeDepth

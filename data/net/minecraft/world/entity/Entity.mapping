@@ -824,6 +824,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 pose
 	METHOD setRemainingFireTicks (I)V
 		ARG 1 remainingFireTicks
+	METHOD setRequiresPrecisePosition (Z)V
+		ARG 1 requiresPercisePosition
 	METHOD setRot (FF)V
 		COMMENT Sets the rotation of the entity.
 		ARG 1 yRot
@@ -942,6 +944,10 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 5 z
 	METHOD teleport (Lnet/minecraft/world/level/portal/TeleportTransition;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 teleportTransition
+	METHOD teleportCrossDimension (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/portal/TeleportTransition;)Lnet/minecraft/world/entity/Entity;
+		ARG 1 oldLevel
+		ARG 2 newLevel
+		ARG 3 teleportTransition
 	METHOD teleportCrossDimension (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/portal/TeleportTransition;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 level
 		ARG 2 teleportTransition
@@ -957,6 +963,9 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 2 relatives
 	METHOD teleportSetPosition (Lnet/minecraft/world/level/portal/DimensionTransition;)V
 		ARG 1 dimensionTransition
+	METHOD teleportSpectators (Lnet/minecraft/world/level/portal/TeleportTransition;Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 teleportTransition
+		ARG 2 oldLevel
 	METHOD teleportTo (DDD)V
 		COMMENT Sets the position of the entity and updates the 'last' variables
 		ARG 1 x
@@ -1001,25 +1010,25 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD walkingStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 state
+	CLASS FireStateVisitor
+		METHOD reset (Z)V
+			ARG 1 isOnFire
 	CLASS MoveFunction
 		METHOD accept (Lnet/minecraft/world/entity/Entity;DDD)V
 			ARG 1 entity
 			ARG 2 x
 			ARG 4 y
 			ARG 6 z
+	CLASS MovementEmission
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 sounds
+			ARG 4 events
+	CLASS RemovalReason
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 destroy
+			ARG 4 save
 	CLASS StateVisitor
 		METHOD visit (Lnet/minecraft/world/level/block/state/BlockState;ZZ)V
 			ARG 1 state
 			ARG 2 blockCollision
 			ARG 3 fluidCollision
-	CLASS RemovalReason
-		METHOD <init> (Ljava/lang/String;IZZ)V
-			ARG 3 destroy
-			ARG 4 save
-	CLASS FireStateVisitor
-		METHOD reset (Z)V
-			ARG 1 isOnFire
-	CLASS MovementEmission
-		METHOD <init> (Ljava/lang/String;IZZ)V
-			ARG 3 sounds
-			ARG 4 events
