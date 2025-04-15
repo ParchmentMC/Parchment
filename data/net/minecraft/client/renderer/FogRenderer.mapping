@@ -5,6 +5,8 @@ CLASS net/minecraft/client/renderer/FogRenderer
 		ARG 2 level
 		ARG 3 renderDistance
 		ARG 4 darkenWorldAmount
+	METHOD getBuffer (Lnet/minecraft/client/renderer/FogRenderer$FogMode;)Lcom/mojang/blaze3d/buffers/GpuBufferSlice;
+		ARG 1 fogMode
 	METHOD getPriorityFogFunction (Lnet/minecraft/world/entity/Entity;F)Lnet/minecraft/client/renderer/FogRenderer$MobEffectFogFunction;
 		ARG 0 entity
 		ARG 1 partialTick
@@ -33,6 +35,21 @@ CLASS net/minecraft/client/renderer/FogRenderer
 		ARG 3 renderDistance
 		ARG 4 isFoggy
 		ARG 5 partialTick
+	METHOD setupFog (Lnet/minecraft/client/Camera;Lorg/joml/Vector4f;FZF)V
+		ARG 1 camera
+		ARG 2 color
+		ARG 3 renderDistance
+		ARG 4 shouldCreateFog
+		ARG 5 partialTick
+	METHOD updateBuffer (Ljava/nio/ByteBuffer;ILorg/joml/Vector4f;Lcom/mojang/blaze3d/shaders/FogShape;FFFF)V
+		ARG 1 buffer
+		ARG 2 position
+		ARG 3 color
+		ARG 4 shape
+		ARG 5 start
+		ARG 6 end
+		ARG 7 skyEnd
+		ARG 8 cloudEnd
 	CLASS FogData
 		METHOD <init> (Lnet/minecraft/client/renderer/FogRenderer$FogMode;)V
 			ARG 1 mode

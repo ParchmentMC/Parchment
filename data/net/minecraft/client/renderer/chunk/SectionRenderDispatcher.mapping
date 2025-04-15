@@ -28,6 +28,12 @@ CLASS net/minecraft/client/renderer/chunk/SectionRenderDispatcher
 	METHOD uploadSectionLayer (Lcom/mojang/blaze3d/vertex/MeshData;Lcom/mojang/blaze3d/vertex/VertexBuffer;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 meshData
 		ARG 2 vertexBuffer
+	CLASS CompiledSection
+		METHOD facesCanSeeEachother (Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Z
+			ARG 1 face1
+			ARG 2 face2
+		METHOD isEmpty (Lnet/minecraft/client/renderer/RenderType;)Z
+			ARG 1 renderType
 	CLASS RenderSection
 		METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher;IIII)V
 			ARG 2 index
@@ -71,6 +77,8 @@ CLASS net/minecraft/client/renderer/chunk/SectionRenderDispatcher
 			ARG 1 compiled
 		METHOD setDirty (Z)V
 			ARG 1 playerChanged
+		METHOD setDynamicTransformIndex (I)V
+			ARG 1 dynamicTransformIndex
 		METHOD setOrigin (III)V
 			ARG 1 x
 			ARG 2 y
@@ -135,12 +143,6 @@ CLASS net/minecraft/client/renderer/chunk/SectionRenderDispatcher
 			ARG 1 indexType
 		METHOD setVertexBuffer (Lcom/mojang/blaze3d/buffers/GpuBuffer;)V
 			ARG 1 vertexBuffer
-	CLASS CompiledSection
-		METHOD facesCanSeeEachother (Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Z
-			ARG 1 face1
-			ARG 2 face2
-		METHOD isEmpty (Lnet/minecraft/client/renderer/RenderType;)Z
-			ARG 1 renderType
 	CLASS TranslucencyPointOfView
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other

@@ -63,6 +63,10 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 1 consumer
 		ARG 2 matrix
 		ARG 3 vertexIndex
+	METHOD addLateDebugPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/world/phys/Vec3;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 1 frameGraphBuilder
+		ARG 2 cameraPosition
+		ARG 3 shaderFog
 	METHOD addLateDebugPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/client/renderer/FogParameters;)V
 		ARG 1 frameGraphBuilder
 		ARG 2 cameraPosition
@@ -73,6 +77,16 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 3 frustumMatrix
 		ARG 4 projectionMatrix
 		ARG 5 fogParameters
+		ARG 6 renderBlockOutline
+		ARG 7 renderEntityOutline
+		ARG 8 deltaTracker
+		ARG 9 profiler
+	METHOD addMainPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/client/renderer/culling/Frustum;Lnet/minecraft/client/Camera;Lorg/joml/Matrix4f;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;ZZLnet/minecraft/client/DeltaTracker;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+		ARG 1 frameGraphBuilder
+		ARG 2 frustum
+		ARG 3 camera
+		ARG 4 frustumMatrix
+		ARG 5 shaderFog
 		ARG 6 renderBlockOutline
 		ARG 7 renderEntityOutline
 		ARG 8 deltaTracker
@@ -140,6 +154,11 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 10 xSpeed
 		ARG 12 ySpeed
 		ARG 14 zSpeed
+	METHOD addParticlesPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/client/Camera;FLcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 1 frameGraphBuilder
+		ARG 2 camera
+		ARG 3 partialTick
+		ARG 4 shaderFog
 	METHOD addParticlesPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/client/Camera;FLnet/minecraft/client/renderer/FogParameters;)V
 		ARG 1 frameGraphBuilder
 		ARG 2 camera
@@ -153,6 +172,11 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 5 fog
 	METHOD addRecentlyCompiledSection (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
 		ARG 1 renderSection
+	METHOD addSkyPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/client/Camera;FLcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 1 frameGraphBuilder
+		ARG 2 camera
+		ARG 3 partialTick
+		ARG 4 shaderFog
 	METHOD addSkyPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/client/Camera;FLnet/minecraft/client/renderer/FogParameters;)V
 		ARG 1 frameGraphBuilder
 		ARG 2 camera
@@ -164,6 +188,11 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 3 cameraPosition
 		ARG 4 partialTick
 		ARG 5 fog
+	METHOD addWeatherPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/world/phys/Vec3;FLcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 1 frameGraphBuilder
+		ARG 2 cameraPosition
+		ARG 3 partialTick
+		ARG 4 shaderFog
 	METHOD addWeatherPass (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Lnet/minecraft/world/phys/Vec3;FLnet/minecraft/client/renderer/FogParameters;)V
 		ARG 1 frameGraphBuilder
 		ARG 2 cameraPosition
@@ -447,6 +476,9 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 6 z
 		ARG 8 frustrumMatrix
 		ARG 9 projectionMatrix
+	METHOD renderSectionLayer (Lnet/minecraft/client/renderer/RenderType;[Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 1 renderType
+		ARG 2 uniforms
 	METHOD renderShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFF)V
 		ARG 0 poseStack
 		ARG 1 consumer

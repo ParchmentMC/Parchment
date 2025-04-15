@@ -9,11 +9,21 @@ CLASS net/minecraft/client/renderer/CloudRenderer
 		ARG 7 x
 		ARG 8 y
 		ARG 9 cellData
+	METHOD buildExtrudedCell (Lnet/minecraft/client/renderer/CloudRenderer$RelativeCameraPos;Ljava/nio/ByteBuffer;IIJ)V
+		ARG 1 relativeCameraPos
+		ARG 2 buffer
+		ARG 3 cellX
+		ARG 4 cellZ
+		ARG 5 cellData
 	METHOD buildFlatCell (Lcom/mojang/blaze3d/vertex/BufferBuilder;III)V
 		ARG 1 bufferBuilder
 		ARG 2 color
 		ARG 3 x
 		ARG 4 y
+	METHOD buildFlatCell (Ljava/nio/ByteBuffer;II)V
+		ARG 1 buffer
+		ARG 2 cellX
+		ARG 3 cellZ
 	METHOD buildMesh (Lcom/mojang/blaze3d/vertex/Tesselator;IILnet/minecraft/client/CloudStatus;Lnet/minecraft/client/renderer/CloudRenderer$RelativeCameraPos;Lcom/mojang/blaze3d/pipeline/RenderPipeline;)Lcom/mojang/blaze3d/vertex/MeshData;
 		ARG 1 tesselator
 		ARG 2 cellX
@@ -38,6 +48,12 @@ CLASS net/minecraft/client/renderer/CloudRenderer
 		ARG 7 sideColor
 		ARG 8 frontColor
 		ARG 9 fancyClouds
+	METHOD buildMesh (Lnet/minecraft/client/renderer/CloudRenderer$RelativeCameraPos;Ljava/nio/ByteBuffer;IIZ)V
+		ARG 1 relativeCameraPos
+		ARG 2 buffer
+		ARG 3 cellX
+		ARG 4 cellZ
+		ARG 5 fancyClouds
 	METHOD draw (Lcom/mojang/blaze3d/pipeline/RenderPipeline;FFF)V
 		ARG 1 pipeline
 		ARG 2 x
@@ -55,6 +71,12 @@ CLASS net/minecraft/client/renderer/CloudRenderer
 		ARG 4 x
 		ARG 5 y
 		ARG 6 z
+	METHOD encodeFace (Ljava/nio/ByteBuffer;IILnet/minecraft/core/Direction;I)V
+		ARG 1 buffer
+		ARG 2 cellX
+		ARG 3 cellZ
+		ARG 4 face
+		ARG 5 offset
 	METHOD getColor (J)I
 		ARG 0 cellData
 	METHOD isCellEmpty (I)Z

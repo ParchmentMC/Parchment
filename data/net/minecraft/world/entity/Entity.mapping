@@ -230,6 +230,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 7 onGround
 	METHOD doWaterSplashEffect ()V
 		COMMENT Plays the {@link #getSplashSound() splash sound}, and the {@link ParticleType#WATER_BUBBLE} and {@link ParticleType#WATER_SPLASH} particles.
+	METHOD dropAllLeashConnections (Lnet/minecraft/world/entity/player/Player;)Z
+		ARG 1 player
 	METHOD ejectPassengers ()V
 		COMMENT Dismounts all entities riding this entity from this entity.
 	METHOD equals (Ljava/lang/Object;)Z
@@ -633,6 +635,10 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD newFloatList ([F)Lnet/minecraft/nbt/ListTag;
 		COMMENT Returns a new NBTTagList filled with the specified floats
 		ARG 1 numbers
+	METHOD notifyLeashHolder (Lnet/minecraft/world/entity/Leashable;)V
+		ARG 1 leashHolder
+	METHOD notifyLeasheeRemoved (Lnet/minecraft/world/entity/Leashable;)V
+		ARG 1 leashHolder
 	METHOD onAboveBubbleCol (Z)V
 		ARG 1 downwards
 	METHOD onAboveBubbleCol (ZLnet/minecraft/core/BlockPos;)V
@@ -862,6 +868,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 1 yHeadRot
 	METHOD setYRot (F)V
 		ARG 1 yRot
+	METHOD shearOffAllLeashConnections (Lnet/minecraft/world/entity/player/Player;)Z
+		ARG 1 player
 	METHOD shouldBlockExplode (Lnet/minecraft/world/level/Explosion;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;F)Z
 		ARG 1 explosion
 		ARG 2 level

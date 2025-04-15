@@ -9,11 +9,24 @@ CLASS com/mojang/blaze3d/opengl/GlCommandEncoder
 		ARG 3 indexCount
 		ARG 4 indexType
 		ARG 5 pipeline
+	METHOD drawFromBuffers (Lcom/mojang/blaze3d/opengl/GlRenderPass;IILcom/mojang/blaze3d/vertex/VertexFormat$IndexType;Lcom/mojang/blaze3d/opengl/GlRenderPipeline;I)V
+		ARG 1 renderPass
+		ARG 2 firstIndex
+		ARG 3 indexCount
+		ARG 4 indexType
+		ARG 5 pipeline
+		ARG 6 primCount
 	METHOD executeDraw (Lcom/mojang/blaze3d/opengl/GlRenderPass;IILcom/mojang/blaze3d/vertex/VertexFormat$IndexType;)V
 		ARG 1 renderPass
 		ARG 2 firstIndex
 		ARG 3 indexCount
 		ARG 4 indexType
+	METHOD executeDraw (Lcom/mojang/blaze3d/opengl/GlRenderPass;IILcom/mojang/blaze3d/vertex/VertexFormat$IndexType;I)V
+		ARG 1 renderPass
+		ARG 2 firstIndex
+		ARG 3 indexCount
+		ARG 4 indexType
+		ARG 5 primCount
 	METHOD executeDrawMultiple (Lcom/mojang/blaze3d/opengl/GlRenderPass;Ljava/util/Collection;)V
 		ARG 1 renderPass
 		ARG 2 draws
@@ -22,8 +35,17 @@ CLASS com/mojang/blaze3d/opengl/GlCommandEncoder
 		ARG 2 draws
 		ARG 3 buffer
 		ARG 4 indexType
+	METHOD executeDrawMultiple (Lcom/mojang/blaze3d/opengl/GlRenderPass;Ljava/util/Collection;Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;Ljava/util/Collection;)V
+		ARG 1 renderPass
+		ARG 2 draws
+		ARG 3 buffer
+		ARG 4 indexType
+		ARG 5 uniforms
 	METHOD trySetup (Lcom/mojang/blaze3d/opengl/GlRenderPass;)Z
 		ARG 1 renderPass
+	METHOD trySetup (Lcom/mojang/blaze3d/opengl/GlRenderPass;Ljava/util/Collection;)Z
+		ARG 1 renderPass
+		ARG 2 uniforms
 	METHOD verifyColorTexture (Lcom/mojang/blaze3d/textures/GpuTexture;)V
 		ARG 1 texture
 	METHOD verifyDepthTexture (Lcom/mojang/blaze3d/textures/GpuTexture;)V

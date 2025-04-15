@@ -3,6 +3,11 @@ CLASS net/minecraft/client/renderer/PostChain
 		ARG 1 passes
 		ARG 2 internalTargets
 		ARG 3 externalTargets
+	METHOD <init> (Ljava/util/List;Ljava/util/Map;Ljava/util/Set;Lnet/minecraft/client/renderer/CachedOrthoProjectionMatrixBuffer;)V
+		ARG 1 passes
+		ARG 2 internalTargets
+		ARG 3 externalTargets
+		ARG 4 projectionMatrixBuffer
 	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureManager;Lnet/minecraft/server/packs/resources/ResourceProvider;Lcom/mojang/blaze3d/pipeline/RenderTarget;Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 textureManager
 		ARG 2 resourceProvider
@@ -56,6 +61,9 @@ CLASS net/minecraft/client/renderer/PostChain
 		ARG 0 resourceProvider
 		ARG 1 textureManager
 		ARG 2 pass
+	METHOD getOrCreatePersistentTarget (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/blaze3d/resource/RenderTargetDescriptor;)Lcom/mojang/blaze3d/pipeline/RenderTarget;
+		ARG 1 name
+		ARG 2 descriptor
 	METHOD getRenderTarget (Ljava/lang/String;)Lcom/mojang/blaze3d/pipeline/RenderTarget;
 		ARG 1 target
 	METHOD getTempTarget (Ljava/lang/String;)Lcom/mojang/blaze3d/pipeline/RenderTarget;
@@ -67,6 +75,12 @@ CLASS net/minecraft/client/renderer/PostChain
 		ARG 1 textureManager
 		ARG 2 externalTargets
 		ARG 3 name
+	METHOD load (Lnet/minecraft/client/renderer/PostChainConfig;Lnet/minecraft/client/renderer/texture/TextureManager;Ljava/util/Set;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/CachedOrthoProjectionMatrixBuffer;)Lnet/minecraft/client/renderer/PostChain;
+		ARG 0 config
+		ARG 1 textureManager
+		ARG 2 externalTargets
+		ARG 3 name
+		ARG 4 projectionMatrixBuffer
 	METHOD load (Lnet/minecraft/client/renderer/PostChainConfig;Lnet/minecraft/client/renderer/texture/TextureManager;Lnet/minecraft/client/renderer/ShaderManager;Ljava/util/Set;)Lnet/minecraft/client/renderer/PostChain;
 		ARG 0 config
 		ARG 1 textureManager

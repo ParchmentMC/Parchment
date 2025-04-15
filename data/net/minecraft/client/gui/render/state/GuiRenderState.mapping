@@ -1,4 +1,14 @@
 CLASS net/minecraft/client/gui/render/state/GuiRenderState
+	METHOD forEachElement (Lnet/minecraft/client/gui/render/state/GuiRenderState$LayeredElementConsumer;)V
+		ARG 1 action
+	METHOD forEachItem (Ljava/util/function/Consumer;)V
+		ARG 1 action
+	METHOD forEachPictureInPicture (Ljava/util/function/Consumer;)V
+		ARG 1 action
+	METHOD forEachText (Ljava/util/function/Consumer;)V
+		ARG 1 action
+	METHOD sortElements (Ljava/util/Comparator;)V
+		ARG 1 comparator
 	METHOD submitGuiElement (Lnet/minecraft/client/gui/render/state/GuiElementRenderState;)V
 		ARG 1 renderState
 	METHOD submitItem (Lnet/minecraft/client/gui/render/state/GuiItemRenderState;)V
@@ -7,3 +17,23 @@ CLASS net/minecraft/client/gui/render/state/GuiRenderState
 		ARG 1 renderState
 	METHOD submitText (Lnet/minecraft/client/gui/render/state/GuiTextRenderState;)V
 		ARG 1 renderState
+	METHOD traverse (Ljava/util/function/Consumer;)V
+		ARG 1 action
+	METHOD traverse (Lnet/minecraft/client/gui/render/state/GuiRenderState$Node;Ljava/util/function/Consumer;)V
+		ARG 1 node
+		ARG 2 action
+	CLASS LayeredElementConsumer
+		METHOD accept (Lnet/minecraft/client/gui/render/state/GuiElementRenderState;I)V
+			ARG 1 renderState
+			ARG 2 layer
+	CLASS Node
+		METHOD <init> (Lnet/minecraft/client/gui/render/state/GuiRenderState$Node;)V
+			ARG 1 parent
+		METHOD submitGuiElement (Lnet/minecraft/client/gui/render/state/GuiElementRenderState;)V
+			ARG 1 renderState
+		METHOD submitItem (Lnet/minecraft/client/gui/render/state/GuiItemRenderState;)V
+			ARG 1 renderState
+		METHOD submitPicturesInPictureState (Lnet/minecraft/client/gui/render/state/pip/PictureInPictureRenderState;)V
+			ARG 1 renderState
+		METHOD submitText (Lnet/minecraft/client/gui/render/state/GuiTextRenderState;)V
+			ARG 1 renderState

@@ -8,12 +8,21 @@ CLASS com/mojang/blaze3d/systems/RenderPass
 	METHOD drawIndexed (II)V
 		ARG 1 firstIndex
 		ARG 2 indexCount
+	METHOD drawIndexed (III)V
+		ARG 1 firstIndex
+		ARG 2 indexCount
+		ARG 3 primCount
 	METHOD drawMultipleIndexed (Ljava/util/Collection;)V
 		ARG 1 draws
 	METHOD drawMultipleIndexed (Ljava/util/Collection;Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;)V
 		ARG 1 draws
 		ARG 2 buffer
 		ARG 3 indexType
+	METHOD drawMultipleIndexed (Ljava/util/Collection;Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;Ljava/util/Collection;)V
+		ARG 1 draws
+		ARG 2 buffer
+		ARG 3 indexType
+		ARG 4 uniforms
 	METHOD enableScissor (IIII)V
 		ARG 1 x
 		ARG 2 y
@@ -26,6 +35,12 @@ CLASS com/mojang/blaze3d/systems/RenderPass
 		ARG 2 indexType
 	METHOD setPipeline (Lcom/mojang/blaze3d/pipeline/RenderPipeline;)V
 		ARG 1 pipeline
+	METHOD setUniform (Ljava/lang/String;Lcom/mojang/blaze3d/buffers/GpuBuffer;)V
+		ARG 1 uniform
+		ARG 2 buffer
+	METHOD setUniform (Ljava/lang/String;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 1 uniform
+		ARG 2 bufferSlice
 	METHOD setUniform (Ljava/lang/String;Lorg/joml/Matrix4f;)V
 		ARG 1 name
 		ARG 2 values
@@ -47,6 +62,9 @@ CLASS com/mojang/blaze3d/systems/RenderPass
 			ARG 5 firstIndex
 			ARG 6 indexCount
 	CLASS UniformUploader
+		METHOD upload (Ljava/lang/String;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+			ARG 1 uniform
+			ARG 2 bufferSlice
 		METHOD upload (Ljava/lang/String;[F)V
 			ARG 1 name
 			ARG 2 values
