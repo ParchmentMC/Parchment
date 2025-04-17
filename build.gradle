@@ -24,7 +24,10 @@ final isBleeding = releaseType.toString() == 'bleeding'
 if (isBleeding) {
     version = 'BLEEDING-SNAPSHOT'
 }
-println("Version: $version")
+// Only output if not in CI
+if (!Boolean.parseBoolean(System.getenv("CI"))){
+    println("Version: $version")
+}
 
 writtenbooks {
     snapshotVersion = !isRelease
@@ -75,14 +78,12 @@ dependencies {
     jammer 'org.parchmentmc.jam:jam-parchment:0.1.0'
 }
 
-afterEvaluate {
-    final isCI = Boolean.parseBoolean(project.findProperty('isCI') as String)
-    if (isCI) {
-        println('Running on CI.')
-        println("##teamcity[setParameter name='env.CI_VERSION' value='$version']")
-        println("##teamcity[setParameter name='env.CI_GROUP' value='$group']")
-        println("##teamcity[setParameter name='env.CI_ARTIFACT' value='parchment-${project.compass.version.get()}']")
-        println("##teamcity[setParameter name='env.CI_GAME_VERSION' value='${project.compass.version.get()}']")
+tasks.register('printGHActionsOutput') {
+    doLast {
+        println("CI_VERSION=${project.version}")
+        println("CI_GROUP=${project.group}")
+        println("CI_ARTIFACT=parchment-${project.compass.version.get()}")
+        println("CI_GAME_VERSION=${project.compass.version.get()}")
     }
 }
 
