@@ -3,6 +3,10 @@ CLASS com/mojang/realmsclient/dto/RealmsServer
 		ARG 1 slots
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
+	METHOD finalize (Lcom/mojang/realmsclient/dto/RealmsServer;)V
+		ARG 0 server
+	METHOD finalizeSlots (Lcom/mojang/realmsclient/dto/RealmsServer;)V
+		ARG 0 server
 	METHOD getCompatibility (Ljava/lang/String;)Lcom/mojang/realmsclient/dto/RealmsServer$Compatibility;
 		ARG 0 id
 	METHOD getState (Ljava/lang/String;)Lcom/mojang/realmsclient/dto/RealmsServer$State;
@@ -13,6 +17,9 @@ CLASS com/mojang/realmsclient/dto/RealmsServer
 		ARG 0 name
 	METHOD parse (Lcom/google/gson/JsonObject;)Lcom/mojang/realmsclient/dto/RealmsServer;
 		ARG 0 json
+	METHOD parse (Lcom/mojang/realmsclient/dto/GuardedSerializer;Ljava/lang/String;)Lcom/mojang/realmsclient/dto/RealmsServer;
+		ARG 0 serializer
+		ARG 1 json
 	METHOD parse (Ljava/lang/String;)Lcom/mojang/realmsclient/dto/RealmsServer;
 		ARG 0 json
 	METHOD parseInvited (Lcom/google/gson/JsonArray;)Ljava/util/List;
@@ -30,7 +37,7 @@ CLASS com/mojang/realmsclient/dto/RealmsServer
 	METHOD setName (Ljava/lang/String;)V
 		ARG 1 name
 	METHOD sortInvited (Lcom/mojang/realmsclient/dto/RealmsServer;)V
-		ARG 0 realmsServer
+		ARG 0 server
 	METHOD toServerData (Ljava/lang/String;)Lnet/minecraft/client/multiplayer/ServerData;
 		ARG 1 ip
 	CLASS McoServerComparator

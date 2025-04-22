@@ -3,11 +3,18 @@ CLASS net/minecraft/client/gui/render/GuiRenderer
 		ARG 1 renderState
 		ARG 2 bufferSource
 		ARG 3 pictureInPictureRenderers
+	METHOD addElementToMesh (Lnet/minecraft/client/gui/render/state/GuiElementRenderState;I)V
+		ARG 1 renderState
+		ARG 2 layer
+	METHOD addElementsToMeshes (Lnet/minecraft/client/gui/render/state/GuiRenderState$TraverseRange;)V
+		ARG 1 traverseRange
 	METHOD calculateAtlasSizeInPixels (II)I
 		ARG 1 itemCount
 		ARG 2 itemSize
 	METHOD createAtlasTextures (I)V
 		ARG 1 atlasSize
+	METHOD draw (Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 1 bufferSlice
 	METHOD enableScissor (Lnet/minecraft/client/gui/navigation/ScreenRectangle;Lcom/mojang/blaze3d/systems/RenderPass;)V
 		ARG 1 scissorArea
 		ARG 2 renderPass
@@ -16,12 +23,32 @@ CLASS net/minecraft/client/gui/render/GuiRenderer
 		ARG 2 renderPass
 		ARG 3 buffer
 		ARG 4 indexType
+	METHOD executeDrawRange (Ljava/util/function/Supplier;Lcom/mojang/blaze3d/pipeline/RenderTarget;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;II)V
+		ARG 1 debugGroup
+		ARG 2 renderTarget
+		ARG 3 fog
+		ARG 4 dynamicTransforms
+		ARG 5 buffer
+		ARG 6 indexType
+		ARG 7 start
+		ARG 8 end
 	METHOD getBufferBuilder (Lcom/mojang/blaze3d/pipeline/RenderPipeline;)Lcom/mojang/blaze3d/vertex/BufferBuilder;
 		ARG 1 pipeline
+	METHOD lambda$prepareItemElements$3 (IILorg/apache/commons/lang3/mutable/MutableBoolean;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/render/state/GuiItemRenderState;)V
+		ARG 5 renderState
+	METHOD lambda$preparePictureInPicture$4 (ILnet/minecraft/client/gui/render/state/pip/PictureInPictureRenderState;)V
+		ARG 2 renderState
+	METHOD lambda$prepareText$2 (Lnet/minecraft/client/gui/render/state/GuiTextRenderState;)V
+		ARG 1 renderState
 	METHOD preparePictureInPictureState (Lnet/minecraft/client/gui/render/state/pip/PictureInPictureRenderState;I)V
 		ARG 1 state
 		ARG 2 guiScale
 	METHOD recordDraw (Lcom/mojang/blaze3d/vertex/BufferBuilder;Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/client/gui/render/TextureSetup;Lnet/minecraft/client/gui/navigation/ScreenRectangle;)V
+		ARG 1 bufferBuilder
+		ARG 2 pipeline
+		ARG 3 textureSetup
+		ARG 4 scissorArea
+	METHOD recordMesh (Lcom/mojang/blaze3d/vertex/BufferBuilder;Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/client/gui/render/TextureSetup;Lnet/minecraft/client/gui/navigation/ScreenRectangle;)V
 		ARG 1 bufferBuilder
 		ARG 2 pipeline
 		ARG 3 textureSetup

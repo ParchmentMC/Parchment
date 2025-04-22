@@ -7,6 +7,9 @@ CLASS net/minecraft/world/waypoints/TrackedWaypoint
 		ARG 1 entity
 	METHOD empty (Ljava/util/UUID;)Lnet/minecraft/world/waypoints/TrackedWaypoint;
 		ARG 0 uuid
+	METHOD pitchDirectionToCamera (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/waypoints/TrackedWaypoint$Projector;)I
+		ARG 1 level
+		ARG 2 projector
 	METHOD pitchDirectionToEntity (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/waypoints/TrackedWaypoint$Projector;)I
 		ARG 1 entity
 		ARG 2 projector
@@ -30,6 +33,9 @@ CLASS net/minecraft/world/waypoints/TrackedWaypoint
 		ARG 1 buffer
 	METHOD writeContents (Lio/netty/buffer/ByteBuf;)V
 		ARG 1 buffer
+	METHOD yawAngleToCamera (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/waypoints/TrackedWaypoint$Camera;)D
+		ARG 1 level
+		ARG 2 camera
 	METHOD yawAngleToEntity (Lnet/minecraft/world/entity/Entity;)D
 		ARG 1 entity
 	CLASS AzimuthWaypoint
@@ -50,6 +56,8 @@ CLASS net/minecraft/world/waypoints/TrackedWaypoint
 			ARG 1 uuid
 			ARG 2 icon
 			ARG 3 chunkPos
+		METHOD position (D)Lnet/minecraft/world/phys/Vec3;
+			ARG 1 y
 		METHOD position (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/phys/Vec3;
 			ARG 1 entity
 	CLASS EmptyWaypoint
