@@ -27,13 +27,20 @@ CLASS net/minecraft/world/level/storage/loot/ValidationContext
 	METHOD enterElement (Ljava/lang/String;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
 		ARG 1 name
 		ARG 2 key
+	METHOD enterElement (Lnet/minecraft/util/ProblemReporter$PathElement;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
+		ARG 1 element
+		ARG 2 key
 	METHOD forChild (Ljava/lang/String;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
 		COMMENT Create a new ValidationContext with {@code childName} being added to the context.
 		ARG 1 childName
+	METHOD forChild (Lnet/minecraft/util/ProblemReporter$PathElement;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
+		ARG 1 child
 	METHOD hasVisitedElement (Lnet/minecraft/resources/ResourceKey;)Z
 		ARG 1 key
 	METHOD reportProblem (Ljava/lang/String;)V
 		COMMENT Report a problem to this ValidationContext.
+		ARG 1 problem
+	METHOD reportProblem (Lnet/minecraft/util/ProblemReporter$Problem;)V
 		ARG 1 problem
 	METHOD setContextKeySet (Lnet/minecraft/util/context/ContextKeySet;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
 		ARG 1 contextKeySet

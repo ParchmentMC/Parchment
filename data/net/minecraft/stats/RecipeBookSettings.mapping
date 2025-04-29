@@ -1,6 +1,11 @@
 CLASS net/minecraft/stats/RecipeBookSettings
 	METHOD <init> (Ljava/util/Map;)V
 		ARG 1 states
+	METHOD <init> (Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;)V
+		ARG 1 crafting
+		ARG 2 furnace
+		ARG 3 blastFurnace
+		ARG 4 smoker
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
 	METHOD getSettings (Lnet/minecraft/world/inventory/RecipeBookType;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
@@ -17,10 +22,32 @@ CLASS net/minecraft/stats/RecipeBookSettings
 	METHOD lambda$read$3 (Lnet/minecraft/nbt/CompoundTag;Ljava/util/Map;Lnet/minecraft/world/inventory/RecipeBookType;Lcom/mojang/datafixers/util/Pair;)V
 		ARG 2 type
 		ARG 3 settings
+	METHOD lambda$setFiltering$10 (ZLnet/minecraft/stats/RecipeBookSettings$TypeSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
+		ARG 1 settings
 	METHOD lambda$setFiltering$2 (ZLnet/minecraft/stats/RecipeBookSettings$TypeSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
 		ARG 1 settings
 	METHOD lambda$setOpen$1 (ZLnet/minecraft/stats/RecipeBookSettings$TypeSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
 		ARG 1 settings
+	METHOD lambda$setOpen$9 (ZLnet/minecraft/stats/RecipeBookSettings$TypeSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
+		ARG 1 settings
+	METHOD lambda$static$0 (Lnet/minecraft/stats/RecipeBookSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
+		ARG 0 settings
+	METHOD lambda$static$1 (Lnet/minecraft/stats/RecipeBookSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
+		ARG 0 settings
+	METHOD lambda$static$2 (Lnet/minecraft/stats/RecipeBookSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
+		ARG 0 settings
+	METHOD lambda$static$3 (Lnet/minecraft/stats/RecipeBookSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
+		ARG 0 settings
+	METHOD lambda$static$4 (Lnet/minecraft/stats/RecipeBookSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
+		ARG 0 settings
+	METHOD lambda$static$5 (Lnet/minecraft/stats/RecipeBookSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
+		ARG 0 settings
+	METHOD lambda$static$6 (Lnet/minecraft/stats/RecipeBookSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
+		ARG 0 settings
+	METHOD lambda$static$7 (Lnet/minecraft/stats/RecipeBookSettings;)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
+		ARG 0 settings
+	METHOD lambda$static$8 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
 	METHOD lambda$write$2 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/inventory/RecipeBookType;Lcom/mojang/datafixers/util/Pair;)V
 		ARG 2 bookType
 		ARG 3 fieldKeys
@@ -50,8 +77,13 @@ CLASS net/minecraft/stats/RecipeBookSettings
 		METHOD <init> (ZZ)V
 			ARG 1 open
 			ARG 2 filtering
+		METHOD codec (Ljava/lang/String;Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+			ARG 0 openKey
+			ARG 1 filteringKey
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other
+		METHOD lambda$codec$0 (Ljava/lang/String;Ljava/lang/String;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 2 instance
 		METHOD setFiltering (Z)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;
 			ARG 1 filtering
 		METHOD setOpen (Z)Lnet/minecraft/stats/RecipeBookSettings$TypeSettings;

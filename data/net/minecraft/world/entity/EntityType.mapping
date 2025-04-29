@@ -67,6 +67,8 @@ CLASS net/minecraft/world/entity/EntityType
 		ARG 0 boatItemGetter
 	METHOD by (Lnet/minecraft/nbt/CompoundTag;)Ljava/util/Optional;
 		ARG 0 tag
+	METHOD by (Lnet/minecraft/world/level/storage/ValueInput;)Ljava/util/Optional;
+		ARG 0 input
 	METHOD byString (Ljava/lang/String;)Ljava/util/Optional;
 		COMMENT Tries to get the entity type associated by the key.
 		ARG 0 key
@@ -98,6 +100,10 @@ CLASS net/minecraft/world/entity/EntityType
 	METHOD create (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/Entity;
 		ARG 1 level
 	METHOD create (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/EntitySpawnReason;)Lnet/minecraft/world/entity/Entity;
+		ARG 1 level
+		ARG 2 spawnReason
+	METHOD create (Lnet/minecraft/world/level/storage/ValueInput;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/EntitySpawnReason;)Ljava/util/Optional;
+		ARG 0 input
 		ARG 1 level
 		ARG 2 spawnReason
 	METHOD createDefaultStackConfig (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)Ljava/util/function/Consumer;
@@ -185,6 +191,10 @@ CLASS net/minecraft/world/entity/EntityType
 		ARG 0 entityTags
 		ARG 1 level
 		ARG 2 spawnReason
+	METHOD loadEntitiesRecursive (Lnet/minecraft/world/level/storage/ValueInput$ValueInputList;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/EntitySpawnReason;)Ljava/util/stream/Stream;
+		ARG 0 input
+		ARG 1 level
+		ARG 2 spawnReason
 	METHOD loadEntityRecursive (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/Level;Ljava/util/function/Function;)Lnet/minecraft/world/entity/Entity;
 		ARG 0 compound
 		ARG 1 level
@@ -194,11 +204,20 @@ CLASS net/minecraft/world/entity/EntityType
 		ARG 1 level
 		ARG 2 spawnReason
 		ARG 3 adapter
+	METHOD loadEntityRecursive (Lnet/minecraft/world/level/storage/ValueInput;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/EntitySpawnReason;Ljava/util/function/Function;)Lnet/minecraft/world/entity/Entity;
+		ARG 0 input
+		ARG 1 level
+		ARG 2 spawnReason
+		ARG 3 adapter
 	METHOD loadStaticEntity (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
 		ARG 0 compound
 		ARG 1 level
 	METHOD loadStaticEntity (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/EntitySpawnReason;)Ljava/util/Optional;
 		ARG 0 entityTag
+		ARG 1 level
+		ARG 2 spawnReason
+	METHOD loadStaticEntity (Lnet/minecraft/world/level/storage/ValueInput;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/EntitySpawnReason;)Ljava/util/Optional;
+		ARG 0 input
 		ARG 1 level
 		ARG 2 spawnReason
 	METHOD raftFactory (Ljava/util/function/Supplier;)Lnet/minecraft/world/entity/EntityType$EntityFactory;

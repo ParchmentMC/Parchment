@@ -31,6 +31,8 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 8 xRot
 	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
+	METHOD addAdditionalSaveData (Lnet/minecraft/world/level/storage/ValueOutput;)V
+		ARG 1 output
 	METHOD addDeltaMovement (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 addend
 	METHOD addPassenger (Lnet/minecraft/world/entity/Entity;)V
@@ -572,6 +574,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD load (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT Reads the entity from NBT (calls an abstract helper method to read specialized data)
 		ARG 1 compound
+	METHOD load (Lnet/minecraft/world/level/storage/ValueInput;)V
+		ARG 1 input
 	METHOD lookAt (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 anchor
 		ARG 2 target
@@ -713,6 +717,8 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
 		ARG 1 tag
+	METHOD readAdditionalSaveData (Lnet/minecraft/world/level/storage/ValueInput;)V
+		ARG 1 input
 	METHOD reapplyPosition ()V
 		COMMENT Recomputes this entity's bounding box so that it is positioned at this entity's X/Y/Z.
 	METHOD recordMovementThroughBlocks (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
@@ -742,6 +748,8 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT
 		COMMENT @return True if the entity was written (and the passed compound should be saved)" false if the entity was not written.
 		ARG 1 compound
+	METHOD save (Lnet/minecraft/world/level/storage/ValueOutput;)Z
+		ARG 1 output
 	METHOD saveAsPassenger (Lnet/minecraft/nbt/CompoundTag;)Z
 		COMMENT Writes this entity to NBT, unless it has been removed. Also writes this entity's passengers, and the entity type ID (so the produced NBT is sufficient to recreate the entity).
 		COMMENT
@@ -749,9 +757,13 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT
 		COMMENT @return True if the entity was written (and the passed compound should be saved)" false if the entity was not written.
 		ARG 1 compound
+	METHOD saveAsPassenger (Lnet/minecraft/world/level/storage/ValueOutput;)Z
+		ARG 1 output
 	METHOD saveWithoutId (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
 		COMMENT Writes this entity, including passengers, to NBT, regardless as to whether it is removed or a passenger. Does <b>not</b> include the entity's type ID, so the NBT is insufficient to recreate the entity using {@link AnvilChunkLoader#readWorldEntity}. Use {@link #writeUnlessPassenger} for that purpose.
 		ARG 1 compound
+	METHOD saveWithoutId (Lnet/minecraft/world/level/storage/ValueOutput;)V
+		ARG 1 output
 	METHOD sendBubbleColumnParticles (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD sendBubbleColumnParticles (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V

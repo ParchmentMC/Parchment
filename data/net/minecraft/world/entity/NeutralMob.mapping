@@ -1,6 +1,8 @@
 CLASS net/minecraft/world/entity/NeutralMob
 	METHOD addPersistentAngerSaveData (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 nbt
+	METHOD addPersistentAngerSaveData (Lnet/minecraft/world/level/storage/ValueOutput;)V
+		ARG 1 output
 	METHOD canAttack (Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 1 entity
 	METHOD getTarget ()Lnet/minecraft/world/entity/LivingEntity;
@@ -22,6 +24,9 @@ CLASS net/minecraft/world/entity/NeutralMob
 	METHOD readPersistentAngerSaveData (Lnet/minecraft/world/level/Level;Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 level
 		ARG 2 tag
+	METHOD readPersistentAngerSaveData (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/storage/ValueInput;)V
+		ARG 1 level
+		ARG 2 input
 	METHOD setLastHurtByMob (Lnet/minecraft/world/entity/LivingEntity;)V
 		COMMENT Hint to AI tasks that we were attacked by the passed EntityLivingBase and should retaliate. Is not guaranteed to change our actual active target (for example if we are currently busy attacking someone else)
 		ARG 1 livingEntity

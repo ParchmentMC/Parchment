@@ -227,16 +227,24 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 score
 	METHOD loadAndSpawnEnderPearl (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
+	METHOD loadAndSpawnEnderPearl (Lnet/minecraft/world/level/storage/ValueInput;)V
+		ARG 1 input
 	METHOD loadAndSpawnEnderPearls (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
+	METHOD loadAndSpawnEnderPearls (Lnet/minecraft/world/level/storage/ValueInput;)V
+		ARG 1 input
 	METHOD loadAndSpawnEnderpearls (Ljava/util/Optional;)V
 		ARG 1 tag
 	METHOD loadAndSpawnParentVehicle (Ljava/util/Optional;)V
 		ARG 1 tag
 	METHOD loadAndSpawnParentVehicle (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
+	METHOD loadAndSpawnParentVehicle (Lnet/minecraft/world/level/storage/ValueInput;)V
+		ARG 1 input
 	METHOD loadGameTypes (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
+	METHOD loadGameTypes (Lnet/minecraft/world/level/storage/ValueInput;)V
+		ARG 1 input
 	METHOD lookAt (Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/commands/arguments/EntityAnchorArgument$Anchor;)V
 		ARG 1 fromAnchor
 		ARG 2 entity
@@ -287,6 +295,9 @@ CLASS net/minecraft/server/level/ServerPlayer
 	METHOD readPlayerMode (Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Lnet/minecraft/world/level/GameType;
 		ARG 0 tag
 		ARG 1 key
+	METHOD readPlayerMode (Lnet/minecraft/world/level/storage/ValueInput;Ljava/lang/String;)Lnet/minecraft/world/level/GameType;
+		ARG 0 input
+		ARG 1 key
 	METHOD registerAndUpdateEnderPearlTicket (Lnet/minecraft/world/entity/projectile/ThrownEnderpearl;)J
 		ARG 1 enderPearl
 	METHOD registerEnderPearl (Lnet/minecraft/world/entity/projectile/ThrownEnderpearl;)V
@@ -300,8 +311,12 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 2 keepEverything
 	METHOD saveEnderPearls (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
+	METHOD saveEnderPearls (Lnet/minecraft/world/level/storage/ValueOutput;)V
+		ARG 1 output
 	METHOD saveParentVehicle (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
+	METHOD saveParentVehicle (Lnet/minecraft/world/level/storage/ValueOutput;)V
+		ARG 1 output
 	METHOD sendChatMessage (Lnet/minecraft/network/chat/OutgoingChatMessage;ZLnet/minecraft/network/chat/ChatType$Bound;)V
 		ARG 1 message
 		ARG 2 filtered
@@ -364,6 +379,8 @@ CLASS net/minecraft/server/level/ServerPlayer
 		ARG 1 pos
 	METHOD storeGameTypes (Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 tag
+	METHOD storeGameTypes (Lnet/minecraft/world/level/storage/ValueOutput;)V
+		ARG 1 output
 	METHOD swing (Lnet/minecraft/world/InteractionHand;)V
 		ARG 1 hand
 	METHOD synchronizeSpecialItemUpdates (Lnet/minecraft/world/item/ItemStack;)V
@@ -408,6 +425,9 @@ CLASS net/minecraft/server/level/ServerPlayer
 			ARG 1 container
 			ARG 2 id
 			ARG 3 value
+		CLASS 1
+			METHOD load (Ljava/lang/Object;)Ljava/lang/Object;
+				ARG 1 component
 	CLASS RespawnConfig
 		METHOD getDimensionOrDefault (Lnet/minecraft/server/level/ServerPlayer$RespawnConfig;)Lnet/minecraft/resources/ResourceKey;
 			ARG 0 respawnConfig

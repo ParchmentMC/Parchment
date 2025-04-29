@@ -8,6 +8,11 @@ CLASS net/minecraft/world/level/block/entity/trialspawner/TrialSpawner
 		ARG 6 stateAccessor
 		ARG 7 playerDetector
 		ARG 8 entitySelector
+	METHOD <init> (Lnet/minecraft/world/level/block/entity/trialspawner/TrialSpawner$FullConfig;Lnet/minecraft/world/level/block/entity/trialspawner/TrialSpawner$StateAccessor;Lnet/minecraft/world/level/block/entity/trialspawner/PlayerDetector;Lnet/minecraft/world/level/block/entity/trialspawner/PlayerDetector$EntitySelector;)V
+		ARG 1 config
+		ARG 2 stateAccessor
+		ARG 3 playerDetector
+		ARG 4 entitySelector
 	METHOD <init> (Lnet/minecraft/world/level/block/entity/trialspawner/TrialSpawner$StateAccessor;Lnet/minecraft/world/level/block/entity/trialspawner/PlayerDetector;Lnet/minecraft/world/level/block/entity/trialspawner/PlayerDetector$EntitySelector;)V
 		ARG 1 stateAccessor
 		ARG 2 playerDetector
@@ -65,6 +70,8 @@ CLASS net/minecraft/world/level/block/entity/trialspawner/TrialSpawner
 		ARG 2 mob
 	METHOD lambda$tickServer$5 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Ljava/util/UUID;)Z
 		ARG 2 uuid
+	METHOD load (Lnet/minecraft/world/level/storage/ValueInput;)V
+		ARG 1 input
 	METHOD overrideEntityToSpawn (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
 		ARG 1 entityType
 		ARG 2 level
@@ -83,6 +90,8 @@ CLASS net/minecraft/world/level/block/entity/trialspawner/TrialSpawner
 	METHOD spawnMob (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Ljava/util/Optional;
 		ARG 1 level
 		ARG 2 pos
+	METHOD store (Lnet/minecraft/world/level/storage/ValueOutput;)V
+		ARG 1 output
 	METHOD tickClient (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Z)V
 		ARG 1 level
 		ARG 2 pos
@@ -96,6 +105,11 @@ CLASS net/minecraft/world/level/block/entity/trialspawner/TrialSpawner
 			ARG 3 particleType
 		METHOD decode (I)Lnet/minecraft/world/level/block/entity/trialspawner/TrialSpawner$FlameParticle;
 			ARG 0 id
+	CLASS FullConfig
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+		METHOD overrideEntity (Lnet/minecraft/world/entity/EntityType;)Lnet/minecraft/world/level/block/entity/trialspawner/TrialSpawner$FullConfig;
+			ARG 1 entity
 	CLASS StateAccessor
 		METHOD setState (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/entity/trialspawner/TrialSpawnerState;)V
 			ARG 1 level

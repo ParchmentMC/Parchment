@@ -7,6 +7,19 @@ CLASS net/minecraft/client/gui/components/MultiLineEditBox
 		ARG 5 height
 		ARG 6 placeholder
 		ARG 7 message
+	METHOD <init> (Lnet/minecraft/client/gui/Font;IIIILnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;IZIZZ)V
+		ARG 1 font
+		ARG 2 x
+		ARG 3 y
+		ARG 4 width
+		ARG 5 height
+		ARG 6 placeholder
+		ARG 7 message
+		ARG 8 textColor
+		ARG 9 textShadow
+		ARG 10 cursorColor
+		ARG 11 showBackground
+		ARG 12 showDecorations
 	METHOD renderHighlight (Lnet/minecraft/client/gui/GuiGraphics;IIII)V
 		ARG 1 guiGraphics
 		ARG 2 minX
@@ -18,7 +31,31 @@ CLASS net/minecraft/client/gui/components/MultiLineEditBox
 		ARG 3 mouseY
 	METHOD setCharacterLimit (I)V
 		ARG 1 characterLimit
+	METHOD setLineLimit (I)V
+		ARG 1 lineLimit
 	METHOD setValue (Ljava/lang/String;)V
 		ARG 1 fullText
 	METHOD setValueListener (Ljava/util/function/Consumer;)V
 		ARG 1 valueListener
+	CLASS Builder
+		METHOD build (Lnet/minecraft/client/gui/Font;IILnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/components/MultiLineEditBox;
+			ARG 1 font
+			ARG 2 width
+			ARG 3 height
+			ARG 4 message
+		METHOD setCursorColor (I)Lnet/minecraft/client/gui/components/MultiLineEditBox$Builder;
+			ARG 1 cursorColor
+		METHOD setPlaceholder (Lnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/components/MultiLineEditBox$Builder;
+			ARG 1 placeholder
+		METHOD setShowBackground (Z)Lnet/minecraft/client/gui/components/MultiLineEditBox$Builder;
+			ARG 1 showBackground
+		METHOD setShowDecorations (Z)Lnet/minecraft/client/gui/components/MultiLineEditBox$Builder;
+			ARG 1 showDecorations
+		METHOD setTextColor (I)Lnet/minecraft/client/gui/components/MultiLineEditBox$Builder;
+			ARG 1 textColor
+		METHOD setTextShadow (Z)Lnet/minecraft/client/gui/components/MultiLineEditBox$Builder;
+			ARG 1 textShadow
+		METHOD setX (I)Lnet/minecraft/client/gui/components/MultiLineEditBox$Builder;
+			ARG 1 x
+		METHOD setY (I)Lnet/minecraft/client/gui/components/MultiLineEditBox$Builder;
+			ARG 1 y

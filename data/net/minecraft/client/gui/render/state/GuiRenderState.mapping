@@ -1,4 +1,6 @@
 CLASS net/minecraft/client/gui/render/state/GuiRenderState
+	METHOD findAppropriateNode (Lnet/minecraft/client/gui/render/state/ScreenArea;)Z
+		ARG 1 screenArea
 	METHOD forEachElement (Lnet/minecraft/client/gui/render/state/GuiRenderState$LayeredElementConsumer;)V
 		ARG 1 action
 	METHOD forEachElement (Lnet/minecraft/client/gui/render/state/GuiRenderState$LayeredElementConsumer;Lnet/minecraft/client/gui/render/state/GuiRenderState$TraverseRange;)V
@@ -10,9 +12,16 @@ CLASS net/minecraft/client/gui/render/state/GuiRenderState
 		ARG 1 action
 	METHOD forEachText (Ljava/util/function/Consumer;)V
 		ARG 1 action
+	METHOD hasIntersection (Lnet/minecraft/client/gui/navigation/ScreenRectangle;Ljava/util/List;)Z
+		ARG 1 rectangle
+		ARG 2 screenAreas
+	METHOD navigateToAboveHighestElementWithIntersectingBounds (Lnet/minecraft/client/gui/navigation/ScreenRectangle;)V
+		ARG 1 rectangle
 	METHOD sortElements (Ljava/util/Comparator;)V
 		ARG 1 comparator
 	METHOD submitGuiElement (Lnet/minecraft/client/gui/render/state/GuiElementRenderState;)V
+		ARG 1 renderState
+	METHOD submitGuiElementToCurrentLayer (Lnet/minecraft/client/gui/render/state/GuiElementRenderState;)V
 		ARG 1 renderState
 	METHOD submitItem (Lnet/minecraft/client/gui/render/state/GuiItemRenderState;)V
 		ARG 1 renderState
@@ -20,6 +29,8 @@ CLASS net/minecraft/client/gui/render/state/GuiRenderState
 		ARG 1 renderState
 	METHOD submitText (Lnet/minecraft/client/gui/render/state/GuiTextRenderState;)V
 		ARG 1 renderState
+	METHOD sumbitDebugRectangleIfEnabled (Lnet/minecraft/client/gui/navigation/ScreenRectangle;)V
+		ARG 1 debugRectangle
 	METHOD traverse (Ljava/util/function/Consumer;)V
 		ARG 1 action
 	METHOD traverse (Ljava/util/function/Consumer;Lnet/minecraft/client/gui/render/state/GuiRenderState$TraverseRange;)V

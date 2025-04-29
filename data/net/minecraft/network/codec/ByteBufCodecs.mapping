@@ -20,6 +20,9 @@ CLASS net/minecraft/network/codec/ByteBufCodecs
 	METHOD fromCodec (Lcom/mojang/serialization/Codec;Ljava/util/function/Supplier;)Lnet/minecraft/network/codec/StreamCodec;
 		ARG 0 codec
 		ARG 1 accounterSupplier
+	METHOD fromCodec (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;)Lnet/minecraft/network/codec/StreamCodec$CodecOperation;
+		ARG 0 ops
+		ARG 1 codec
 	METHOD fromCodecTrusted (Lcom/mojang/serialization/Codec;)Lnet/minecraft/network/codec/StreamCodec;
 		ARG 0 codec
 	METHOD fromCodecWithRegistries (Lcom/mojang/serialization/Codec;)Lnet/minecraft/network/codec/StreamCodec;
@@ -43,6 +46,8 @@ CLASS net/minecraft/network/codec/ByteBufCodecs
 		ARG 0 idMap
 	METHOD lambda$collection$12 (Ljava/util/function/IntFunction;Lnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/codec/StreamCodec;
 		ARG 1 codec
+	METHOD lambda$collection$9 (Ljava/util/function/IntFunction;Lnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/codec/StreamCodec;
+		ARG 1 size
 	METHOD lambda$compoundTagCodec$3 (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 0 tag
 	METHOD lambda$compoundTagCodec$4 (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/Tag;
@@ -51,10 +56,18 @@ CLASS net/minecraft/network/codec/ByteBufCodecs
 		ARG 1 tag
 	METHOD lambda$fromCodec$8 (Lcom/mojang/serialization/Codec;Lnet/minecraft/nbt/Tag;)Ljava/lang/Object;
 		ARG 1 tag
+	METHOD lambda$lengthPrefixed$12 (ILjava/util/function/BiFunction;Lnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/codec/StreamCodec;
+		ARG 2 codec
+	METHOD lambda$list$10 (Lnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/codec/StreamCodec;
+		ARG 0 size
+	METHOD lambda$list$11 (ILnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/codec/StreamCodec;
+		ARG 1 size
 	METHOD lambda$list$13 (Lnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/codec/StreamCodec;
 		ARG 0 codec
 	METHOD lambda$list$14 (ILnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/codec/StreamCodec;
 		ARG 1 codec
+	METHOD lambda$registry$14 (Lnet/minecraft/core/Registry;)Lnet/minecraft/core/IdMap;
+		ARG 0 registry
 	METHOD lambda$static$0 (Ljava/lang/Integer;)Ljava/util/OptionalInt;
 		ARG 0 value
 	METHOD lengthPrefixed (I)Lnet/minecraft/network/codec/StreamCodec$CodecOperation;
@@ -62,6 +75,8 @@ CLASS net/minecraft/network/codec/ByteBufCodecs
 	METHOD lengthPrefixed (ILjava/util/function/BiFunction;)Lnet/minecraft/network/codec/StreamCodec$CodecOperation;
 		ARG 0 maxLength
 		ARG 1 function
+	METHOD lenientJson (I)Lnet/minecraft/network/codec/StreamCodec;
+		ARG 0 maxLength
 	METHOD list (I)Lnet/minecraft/network/codec/StreamCodec$CodecOperation;
 		ARG 0 maxSize
 	METHOD map (Ljava/util/function/IntFunction;Lnet/minecraft/network/codec/StreamCodec;Lnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/codec/StreamCodec;
@@ -125,6 +140,9 @@ CLASS net/minecraft/network/codec/ByteBufCodecs
 		METHOD getRegistryOrThrow (Lnet/minecraft/network/RegistryFriendlyByteBuf;)Lnet/minecraft/core/IdMap;
 			ARG 1 buffer
 	CLASS 28
+		METHOD getRegistryOrThrow (Lnet/minecraft/network/RegistryFriendlyByteBuf;)Lnet/minecraft/core/IdMap;
+			ARG 1 buffer
+	CLASS 29
 		METHOD getRegistryOrThrow (Lnet/minecraft/network/RegistryFriendlyByteBuf;)Lnet/minecraft/core/IdMap;
 			ARG 1 buffer
 	CLASS 30
