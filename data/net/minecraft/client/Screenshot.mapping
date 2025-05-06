@@ -21,8 +21,14 @@ CLASS net/minecraft/client/Screenshot
 	METHOD grab (Ljava/io/File;Lcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V
 		COMMENT Saves a screenshot in the game directory with a time-stamped filename.
 		ARG 0 gameDirectory
-		ARG 1 buffer
+		ARG 1 renderTarget
 		ARG 2 messageConsumer
+	METHOD grab (Ljava/io/File;Ljava/lang/String;Lcom/mojang/blaze3d/pipeline/RenderTarget;ILjava/util/function/Consumer;)V
+		ARG 0 gameDirectory
+		ARG 1 filename
+		ARG 2 renderTarget
+		ARG 3 downscaleFactor
+		ARG 4 messageConsumer
 	METHOD grab (Ljava/io/File;Ljava/lang/String;Lcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V
 		COMMENT Saves a screenshot in the game directory with the given file name (or null to generate a time-stamped name).
 		ARG 0 gameDirectory
@@ -31,6 +37,10 @@ CLASS net/minecraft/client/Screenshot
 		ARG 3 messageConsumer
 	METHOD takeScreenshot (Lcom/mojang/blaze3d/pipeline/RenderTarget;)Lcom/mojang/blaze3d/platform/NativeImage;
 		ARG 0 framebuffer
+	METHOD takeScreenshot (Lcom/mojang/blaze3d/pipeline/RenderTarget;ILjava/util/function/Consumer;)V
+		ARG 0 renderTarget
+		ARG 1 downscaleFactor
+		ARG 2 writer
 	METHOD takeScreenshot (Lcom/mojang/blaze3d/pipeline/RenderTarget;Ljava/util/function/Consumer;)V
 		ARG 0 renderTarget
 		ARG 1 writer

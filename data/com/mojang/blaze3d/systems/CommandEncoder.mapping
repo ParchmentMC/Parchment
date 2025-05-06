@@ -63,6 +63,16 @@ CLASS com/mojang/blaze3d/systems/CommandEncoder
 		ARG 3 clearColor
 		ARG 4 depthTexture
 		ARG 5 clearDepth
+	METHOD createRenderPass (Ljava/util/function/Supplier;Lcom/mojang/blaze3d/textures/GpuTextureView;Ljava/util/OptionalInt;)Lcom/mojang/blaze3d/systems/RenderPass;
+		ARG 1 debugGroup
+		ARG 2 colorTexture
+		ARG 3 clearColor
+	METHOD createRenderPass (Ljava/util/function/Supplier;Lcom/mojang/blaze3d/textures/GpuTextureView;Ljava/util/OptionalInt;Lcom/mojang/blaze3d/textures/GpuTextureView;Ljava/util/OptionalDouble;)Lcom/mojang/blaze3d/systems/RenderPass;
+		ARG 1 debugGroup
+		ARG 2 colorTexture
+		ARG 3 clearColor
+		ARG 4 depthTexture
+		ARG 5 clearDepth
 	METHOD mapBuffer (Lcom/mojang/blaze3d/buffers/GpuBuffer;ZZ)Lcom/mojang/blaze3d/buffers/GpuBuffer$MappedView;
 		ARG 1 buffer
 		ARG 2 read
@@ -72,6 +82,8 @@ CLASS com/mojang/blaze3d/systems/CommandEncoder
 		ARG 2 read
 		ARG 3 write
 	METHOD presentTexture (Lcom/mojang/blaze3d/textures/GpuTexture;)V
+		ARG 1 texture
+	METHOD presentTexture (Lcom/mojang/blaze3d/textures/GpuTextureView;)V
 		ARG 1 texture
 	METHOD readBuffer (Lcom/mojang/blaze3d/buffers/GpuBuffer;)Lcom/mojang/blaze3d/buffers/GpuBuffer$ReadView;
 		ARG 1 buffer
@@ -102,6 +114,17 @@ CLASS com/mojang/blaze3d/systems/CommandEncoder
 		ARG 7 height
 		ARG 8 sourceX
 		ARG 9 sourceY
+	METHOD writeToTexture (Lcom/mojang/blaze3d/textures/GpuTexture;Lcom/mojang/blaze3d/platform/NativeImage;IIIIIIII)V
+		ARG 1 texture
+		ARG 2 image
+		ARG 3 mipLevel
+		ARG 4 depthOrLayer
+		ARG 5 x
+		ARG 6 y
+		ARG 7 width
+		ARG 8 height
+		ARG 9 sourceX
+		ARG 10 sourceY
 	METHOD writeToTexture (Lcom/mojang/blaze3d/textures/GpuTexture;Ljava/nio/IntBuffer;Lcom/mojang/blaze3d/platform/NativeImage$Format;IIIII)V
 		ARG 1 texture
 		ARG 2 buffer
@@ -111,3 +134,13 @@ CLASS com/mojang/blaze3d/systems/CommandEncoder
 		ARG 6 y
 		ARG 7 width
 		ARG 8 height
+	METHOD writeToTexture (Lcom/mojang/blaze3d/textures/GpuTexture;Ljava/nio/IntBuffer;Lcom/mojang/blaze3d/platform/NativeImage$Format;IIIIII)V
+		ARG 1 texture
+		ARG 2 buffer
+		ARG 3 format
+		ARG 4 mipLevel
+		ARG 5 depthOrLayer
+		ARG 6 x
+		ARG 7 y
+		ARG 8 width
+		ARG 9 height
