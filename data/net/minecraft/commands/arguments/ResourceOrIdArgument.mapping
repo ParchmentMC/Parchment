@@ -6,6 +6,11 @@ CLASS net/minecraft/commands/arguments/ResourceOrIdArgument
 	METHOD createGrammar (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/DynamicOps;)Lnet/minecraft/util/parsing/packrat/commands/Grammar;
 		ARG 0 registryKey
 		ARG 1 ops
+	METHOD dialog (Lnet/minecraft/commands/CommandBuildContext;)Lnet/minecraft/commands/arguments/ResourceOrIdArgument$DialogArgument;
+		ARG 0 context
+	METHOD getDialog (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/core/Holder;
+		ARG 0 context
+		ARG 1 name
 	METHOD getLootModifier (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/core/Holder;
 		ARG 0 context
 		ARG 1 name
@@ -20,6 +25,9 @@ CLASS net/minecraft/commands/arguments/ResourceOrIdArgument
 		ARG 1 name
 	METHOD hasConsumedWholeArg (Lcom/mojang/brigadier/StringReader;)Z
 		ARG 0 reader
+	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 context
+		ARG 2 builder
 	METHOD lootModifier (Lnet/minecraft/commands/CommandBuildContext;)Lnet/minecraft/commands/arguments/ResourceOrIdArgument$LootModifierArgument;
 		ARG 0 context
 	METHOD lootPredicate (Lnet/minecraft/commands/CommandBuildContext;)Lnet/minecraft/commands/arguments/ResourceOrIdArgument$LootPredicateArgument;
@@ -44,6 +52,9 @@ CLASS net/minecraft/commands/arguments/ResourceOrIdArgument
 		ARG 0 ops
 		ARG 1 tagParser
 		ARG 2 reader
+	CLASS DialogArgument
+		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
+			ARG 1 context
 	CLASS LootModifierArgument
 		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
 			ARG 1 context

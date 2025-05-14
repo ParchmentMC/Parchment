@@ -9,8 +9,20 @@ CLASS net/minecraft/client/gui/screens/Screen
 		ARG 1 listener
 	METHOD changeFocus (Lnet/minecraft/client/gui/ComponentPath;)V
 		ARG 1 path
+	METHOD clickCommandAction (Lnet/minecraft/client/Minecraft;Ljava/lang/String;Z)V
+		ARG 0 minecraft
+		ARG 1 command
+		ARG 2 closeIfConfirmed
+	METHOD clickUrlAction (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Ljava/net/URI;)Z
+		ARG 0 minecraft
+		ARG 1 screen
+		ARG 2 url
 	METHOD createArrowEvent (Lnet/minecraft/client/gui/navigation/ScreenDirection;)Lnet/minecraft/client/gui/navigation/FocusNavigationEvent$ArrowNavigation;
 		ARG 1 direction
+	METHOD defaultHandleClickEvent (Lnet/minecraft/network/chat/ClickEvent;Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;)Z
+		ARG 0 clickEvent
+		ARG 1 minecraft
+		ARG 2 screen
 	METHOD fadeWidgets (F)V
 		ARG 1 fade
 	METHOD fillCrashDetails (Lnet/minecraft/CrashReport;)V
@@ -21,6 +33,8 @@ CLASS net/minecraft/client/gui/screens/Screen
 	METHOD getTooltipFromItem (Lnet/minecraft/client/Minecraft;Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;
 		ARG 0 minecraft
 		ARG 1 item
+	METHOD handleClickEvent (Lnet/minecraft/network/chat/ClickEvent;)Z
+		ARG 1 clickEvent
 	METHOD handleComponentClicked (Lnet/minecraft/network/chat/Style;)Z
 		ARG 1 style
 	METHOD init (Lnet/minecraft/client/Minecraft;II)V

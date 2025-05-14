@@ -253,6 +253,20 @@ CLASS net/minecraft/client/gui/Font
 		ARG 1 text
 		ARG 2 maxWidth
 		ARG 3 tail
+	METHOD prepareText (Ljava/lang/String;FFIZI)Lnet/minecraft/client/gui/Font$PreparedText;
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 dropShadow
+		ARG 6 backgroundColor
+	METHOD prepareText (Lnet/minecraft/util/FormattedCharSequence;FFIZI)Lnet/minecraft/client/gui/Font$PreparedText;
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 dropShadow
+		ARG 6 backgroundColor
 	METHOD renderChar (Lnet/minecraft/client/gui/font/glyphs/BakedGlyph;ZZFFFLorg/joml/Matrix4f;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFFFI)V
 		ARG 1 glyph
 		ARG 2 bold
@@ -368,6 +382,50 @@ CLASS net/minecraft/client/gui/Font
 	METHOD wordWrapHeight (Lnet/minecraft/network/chat/FormattedText;I)I
 		ARG 1 text
 		ARG 2 maxWidth
+	CLASS GlyphVisitor
+		METHOD acceptEffect (Lnet/minecraft/client/gui/font/glyphs/BakedGlyph;Lnet/minecraft/client/gui/font/glyphs/BakedGlyph$Effect;)V
+			ARG 1 glyph
+			ARG 2 effect
+		METHOD acceptGlyph (Lnet/minecraft/client/gui/font/glyphs/BakedGlyph$GlyphInstance;)V
+			ARG 1 glyph
+		METHOD forMultiBufferSource (Lnet/minecraft/client/renderer/MultiBufferSource;Lorg/joml/Matrix4f;Lnet/minecraft/client/gui/Font$DisplayMode;I)Lnet/minecraft/client/gui/Font$GlyphVisitor;
+			ARG 0 bufferSource
+			ARG 1 pose
+			ARG 2 displayMode
+			ARG 3 packedLight
+	CLASS PreparedText
+		METHOD visit (Lnet/minecraft/client/gui/Font$GlyphVisitor;)V
+			ARG 1 visitor
+	CLASS PreparedTextBuilder
+		METHOD <init> (Lnet/minecraft/client/gui/Font;FFIIZ)V
+			ARG 2 x
+			ARG 3 y
+			ARG 4 color
+			ARG 5 backgroundColor
+			ARG 6 dropShadow
+		METHOD <init> (Lnet/minecraft/client/gui/Font;FFIZ)V
+			ARG 2 x
+			ARG 3 y
+			ARG 4 color
+			ARG 5 dropShadow
+		METHOD addEffect (Lnet/minecraft/client/gui/font/glyphs/BakedGlyph$Effect;)V
+			ARG 1 effect
+		METHOD addGlyph (Lnet/minecraft/client/gui/font/glyphs/BakedGlyph$GlyphInstance;)V
+			ARG 1 glyph
+		METHOD getShadowColor (Lnet/minecraft/network/chat/Style;I)I
+			ARG 1 style
+			ARG 2 textColor
+		METHOD getTextColor (Lnet/minecraft/network/chat/TextColor;)I
+			ARG 1 textColor
+		METHOD markBackground (FFF)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 advance
+		METHOD markSize (FFFF)V
+			ARG 1 left
+			ARG 2 top
+			ARG 3 right
+			ARG 4 bottom
 	CLASS StringRenderOutput
 		METHOD <init> (Lnet/minecraft/client/gui/Font;FFIIZLnet/minecraft/client/gui/Font$DisplayMode;IZ)V
 			ARG 2 x
