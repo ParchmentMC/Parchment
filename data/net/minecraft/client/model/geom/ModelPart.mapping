@@ -2,6 +2,8 @@ CLASS net/minecraft/client/model/geom/ModelPart
 	METHOD <init> (Ljava/util/List;Ljava/util/Map;)V
 		ARG 1 cubes
 		ARG 2 children
+	METHOD addAllChildren (Ljava/util/function/BiConsumer;)V
+		ARG 1 adder
 	METHOD compile (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V
 		ARG 1 pose
 		ARG 2 buffer
@@ -82,6 +84,17 @@ CLASS net/minecraft/client/model/geom/ModelPart
 			ARG 3 packedLight
 			ARG 4 packedOverlay
 			ARG 5 color
+	CLASS Polygon
+		METHOD <init> ([Lnet/minecraft/client/model/geom/ModelPart$Vertex;FFFFFFZLnet/minecraft/core/Direction;)V
+			ARG 1 vertices
+			ARG 2 u1
+			ARG 3 v1
+			ARG 4 u2
+			ARG 5 v2
+			ARG 6 textureWidth
+			ARG 7 textureHeight
+			ARG 8 mirror
+			ARG 9 direction
 	CLASS Vertex
 		METHOD <init> (FFFFF)V
 			ARG 1 x
@@ -96,17 +109,6 @@ CLASS net/minecraft/client/model/geom/ModelPart
 		METHOD remap (FF)Lnet/minecraft/client/model/geom/ModelPart$Vertex;
 			ARG 1 u
 			ARG 2 v
-	CLASS Polygon
-		METHOD <init> ([Lnet/minecraft/client/model/geom/ModelPart$Vertex;FFFFFFZLnet/minecraft/core/Direction;)V
-			ARG 1 vertices
-			ARG 2 u1
-			ARG 3 v1
-			ARG 4 u2
-			ARG 5 v2
-			ARG 6 textureWidth
-			ARG 7 textureHeight
-			ARG 8 mirror
-			ARG 9 direction
 	CLASS Visitor
 		METHOD visit (Lcom/mojang/blaze3d/vertex/PoseStack$Pose;Ljava/lang/String;ILnet/minecraft/client/model/geom/ModelPart$Cube;)V
 			ARG 1 pose

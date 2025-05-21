@@ -24,6 +24,11 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		COMMENT A counter for how long the sound manager has been running
 	FIELD tickingSounds Ljava/util/List;
 		COMMENT A subset of playingSounds, this contains only {@linkplain TickableSoundInstance}
+	METHOD <init> (Lnet/minecraft/client/sounds/MusicManager;Lnet/minecraft/client/sounds/SoundManager;Lnet/minecraft/client/Options;Lnet/minecraft/server/packs/resources/ResourceProvider;)V
+		ARG 1 musicManager
+		ARG 2 soundManager
+		ARG 3 options
+		ARG 4 resourceManager
 	METHOD <init> (Lnet/minecraft/client/sounds/SoundManager;Lnet/minecraft/client/Options;Lnet/minecraft/server/packs/resources/ResourceProvider;)V
 		ARG 1 soundManager
 		ARG 2 options
@@ -88,6 +93,8 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		COMMENT Pauses all currently playing sounds
 	METHOD pauseAllExcept ([Lnet/minecraft/sounds/SoundSource;)V
 		ARG 1 soundSources
+	METHOD play (Lnet/minecraft/client/resources/sounds/SoundInstance;)Lnet/minecraft/client/sounds/SoundEngine$PlayResult;
+		ARG 1 sound
 	METHOD play (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
 		COMMENT Plays a given sound instance.
 		COMMENT <p>
@@ -185,6 +192,8 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		COMMENT <p>
 		COMMENT Note: This method assumes that it is being called within a tick loop.
 		COMMENT @implNote This method assumes proper synchronization or thread confinement mechanisms are in place.
+	METHOD updateCategoryVolume (Lnet/minecraft/sounds/SoundSource;)V
+		ARG 1 category
 	METHOD updateCategoryVolume (Lnet/minecraft/sounds/SoundSource;F)V
 		COMMENT Updates the volume for a specific sound category.
 		COMMENT <p>

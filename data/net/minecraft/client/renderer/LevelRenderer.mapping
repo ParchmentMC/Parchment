@@ -489,6 +489,9 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 	METHOD renderSectionLayer (Lnet/minecraft/client/renderer/RenderType;[Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
 		ARG 1 renderType
 		ARG 2 uniforms
+	METHOD renderSectionLayer (Lnet/minecraft/client/renderer/chunk/ChunkSectionLayer;[Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 1 layer
+		ARG 2 uniforms
 	METHOD renderShape (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/phys/shapes/VoxelShape;DDDFFFF)V
 		ARG 0 poseStack
 		ARG 1 consumer
@@ -535,6 +538,12 @@ CLASS net/minecraft/client/renderer/LevelRenderer
 		ARG 3 cameraPosition
 		ARG 4 force
 			COMMENT If {@code true}, will schedule a resort even if the point of view hasn't changed
+		ARG 5 ignoreAxisAlignment
+	METHOD scheduleResort (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;Lnet/minecraft/client/renderer/chunk/TranslucencyPointOfView;Lnet/minecraft/world/phys/Vec3;ZZ)V
+		ARG 1 section
+		ARG 2 pointOfView
+		ARG 3 cameraPosition
+		ARG 4 force
 		ARG 5 ignoreAxisAlignment
 	METHOD scheduleTranslucentSectionResort (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 cameraPosition

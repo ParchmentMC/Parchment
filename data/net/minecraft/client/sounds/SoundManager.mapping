@@ -3,6 +3,9 @@ CLASS net/minecraft/client/sounds/SoundManager
 	COMMENT It handles sound event registrations, caching of sound resources, and sound playback.
 	METHOD <init> (Lnet/minecraft/client/Options;)V
 		ARG 1 options
+	METHOD <init> (Lnet/minecraft/client/Options;Lnet/minecraft/client/sounds/MusicManager;)V
+		ARG 1 options
+		ARG 2 musicManager
 	METHOD addListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
 		ARG 1 listener
 	METHOD apply (Lnet/minecraft/client/sounds/SoundManager$Preparations;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
@@ -28,6 +31,8 @@ CLASS net/minecraft/client/sounds/SoundManager
 			COMMENT The sound instance to check
 	METHOD pauseAllExcept ([Lnet/minecraft/sounds/SoundSource;)V
 		ARG 1 soundSources
+	METHOD play (Lnet/minecraft/client/resources/sounds/SoundInstance;)Lnet/minecraft/client/sounds/SoundEngine$PlayResult;
+		ARG 1 sound
 	METHOD play (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
 		COMMENT Play a sound
 		ARG 1 sound
@@ -68,6 +73,8 @@ CLASS net/minecraft/client/sounds/SoundManager
 		COMMENT Updates the sound source position based on the active render info.
 		ARG 1 activeRenderInfo
 			COMMENT The active render info
+	METHOD updateSourceVolume (Lnet/minecraft/sounds/SoundSource;)V
+		ARG 1 source
 	METHOD updateSourceVolume (Lnet/minecraft/sounds/SoundSource;F)V
 		COMMENT Updates the volume of the specified sound source category.
 		ARG 1 category
