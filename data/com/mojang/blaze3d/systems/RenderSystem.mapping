@@ -12,6 +12,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 1 textureId
 	METHOD activeTexture (I)V
 		ARG 0 texture
+	METHOD bindDefaultUniforms (Lcom/mojang/blaze3d/systems/RenderPass;)V
+		ARG 0 renderPass
 	METHOD bindTexture (I)V
 		ARG 0 texture
 	METHOD bindTextureForSetup (I)V
@@ -80,6 +82,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD getShaderTexture (I)I
 		ARG 0 shaderTexture
 	METHOD getShaderTexture (I)Lcom/mojang/blaze3d/textures/GpuTexture;
+		ARG 0 index
+	METHOD getShaderTexture (I)Lcom/mojang/blaze3d/textures/GpuTextureView;
 		ARG 0 index
 	METHOD getString (ILjava/util/function/Consumer;)V
 		ARG 0 name
@@ -191,10 +195,15 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 fancyRunnable
 	METHOD setErrorCallback (Lorg/lwjgl/glfw/GLFWErrorCallbackI;)V
 		ARG 0 callback
+	METHOD setGlobalSettingsUniform (Lcom/mojang/blaze3d/buffers/GpuBuffer;)V
+		ARG 0 globalSettingsUniform
 	METHOD setModelOffset (FFF)V
 		ARG 0 x
 		ARG 1 y
 		ARG 2 z
+	METHOD setProjectionMatrix (Lcom/mojang/blaze3d/buffers/GpuBufferSlice;Lcom/mojang/blaze3d/ProjectionType;)V
+		ARG 0 projectionMatrixBuffer
+		ARG 1 projectionType
 	METHOD setProjectionMatrix (Lorg/joml/Matrix4f;Lcom/mojang/blaze3d/ProjectionType;)V
 		ARG 0 projectionMatrix
 		ARG 1 projectionType
@@ -212,6 +221,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 1 green
 		ARG 2 blue
 		ARG 3 alpha
+	METHOD setShaderFog (Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 0 shaderFog
 	METHOD setShaderFog (Lnet/minecraft/client/renderer/FogParameters;)V
 		ARG 0 shaderFog
 	METHOD setShaderFogColor (FFF)V
@@ -236,6 +247,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 0 shaderGlintAlpha
 	METHOD setShaderGlintAlpha (F)V
 		ARG 0 shaderGlintAlpha
+	METHOD setShaderLights (Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 0 shaderLightDirections
 	METHOD setShaderLights (Lorg/joml/Vector3f;Lorg/joml/Vector3f;)V
 		ARG 0 lightingVector0
 		ARG 1 lightingVector1
@@ -245,6 +258,9 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD setShaderTexture (ILcom/mojang/blaze3d/textures/GpuTexture;)V
 		ARG 0 index
 		ARG 1 texture
+	METHOD setShaderTexture (ILcom/mojang/blaze3d/textures/GpuTextureView;)V
+		ARG 0 index
+		ARG 1 textureView
 	METHOD setShaderTexture (ILnet/minecraft/resources/ResourceLocation;)V
 		ARG 0 index
 		ARG 1 textureId
@@ -269,6 +285,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 1 color
 	METHOD setupOverlayColor (Lcom/mojang/blaze3d/textures/GpuTexture;)V
 		ARG 0 overlayColor
+	METHOD setupOverlayColor (Lcom/mojang/blaze3d/textures/GpuTextureView;)V
+		ARG 0 textureView
 	METHOD setupShaderLights (Lnet/minecraft/client/renderer/CompiledShaderProgram;)V
 		ARG 0 shader
 	METHOD setupShaderLights (Lnet/minecraft/client/renderer/ShaderInstance;)V

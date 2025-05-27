@@ -2,18 +2,31 @@ CLASS com/mojang/blaze3d/systems/RenderPass
 	METHOD bindSampler (Ljava/lang/String;Lcom/mojang/blaze3d/textures/GpuTexture;)V
 		ARG 1 name
 		ARG 2 texture
+	METHOD bindSampler (Ljava/lang/String;Lcom/mojang/blaze3d/textures/GpuTextureView;)V
+		ARG 1 name
+		ARG 2 textureView
 	METHOD draw (II)V
-		ARG 1 firstIndex
-		ARG 2 indexCount
+		ARG 1 firstVertex
+		ARG 2 vertexCount
 	METHOD drawIndexed (II)V
 		ARG 1 firstIndex
 		ARG 2 indexCount
+	METHOD drawIndexed (IIII)V
+		ARG 1 firstVertex
+		ARG 2 firstIndex
+		ARG 3 indexCount
+		ARG 4 instanceCount
 	METHOD drawMultipleIndexed (Ljava/util/Collection;)V
 		ARG 1 draws
 	METHOD drawMultipleIndexed (Ljava/util/Collection;Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;)V
 		ARG 1 draws
 		ARG 2 buffer
 		ARG 3 indexType
+	METHOD drawMultipleIndexed (Ljava/util/Collection;Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;Ljava/util/Collection;)V
+		ARG 1 draws
+		ARG 2 indexBuffer
+		ARG 3 indexType
+		ARG 4 dynamicUniforms
 	METHOD enableScissor (IIII)V
 		ARG 1 x
 		ARG 2 y
@@ -21,11 +34,19 @@ CLASS com/mojang/blaze3d/systems/RenderPass
 		ARG 4 height
 	METHOD enableScissor (Lcom/mojang/blaze3d/systems/ScissorState;)V
 		ARG 1 scissorState
+	METHOD pushDebugGroup (Ljava/util/function/Supplier;)V
+		ARG 1 label
 	METHOD setIndexBuffer (Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;)V
 		ARG 1 indexBuffer
 		ARG 2 indexType
 	METHOD setPipeline (Lcom/mojang/blaze3d/pipeline/RenderPipeline;)V
 		ARG 1 pipeline
+	METHOD setUniform (Ljava/lang/String;Lcom/mojang/blaze3d/buffers/GpuBuffer;)V
+		ARG 1 name
+		ARG 2 buffer
+	METHOD setUniform (Ljava/lang/String;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 1 name
+		ARG 2 bufferSlice
 	METHOD setUniform (Ljava/lang/String;Lorg/joml/Matrix4f;)V
 		ARG 1 name
 		ARG 2 values
@@ -47,6 +68,9 @@ CLASS com/mojang/blaze3d/systems/RenderPass
 			ARG 5 firstIndex
 			ARG 6 indexCount
 	CLASS UniformUploader
+		METHOD upload (Ljava/lang/String;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+			ARG 1 uboName
+			ARG 2 uboData
 		METHOD upload (Ljava/lang/String;[F)V
 			ARG 1 name
 			ARG 2 values

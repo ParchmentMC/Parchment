@@ -3,12 +3,27 @@ CLASS com/mojang/blaze3d/opengl/GlCommandEncoder
 		ARG 1 device
 	METHOD applyPipelineState (Lcom/mojang/blaze3d/pipeline/RenderPipeline;)V
 		ARG 1 pipeline
+	METHOD drawFromBuffers (Lcom/mojang/blaze3d/opengl/GlRenderPass;IIILcom/mojang/blaze3d/vertex/VertexFormat$IndexType;Lcom/mojang/blaze3d/opengl/GlRenderPipeline;I)V
+		ARG 1 renderPass
+		ARG 2 firstVertex
+		ARG 3 firstIndex
+		ARG 4 vertexOrIndexCount
+		ARG 5 indexType
+		ARG 6 pipeline
+		ARG 7 instanceCount
 	METHOD drawFromBuffers (Lcom/mojang/blaze3d/opengl/GlRenderPass;IILcom/mojang/blaze3d/vertex/VertexFormat$IndexType;Lcom/mojang/blaze3d/opengl/GlRenderPipeline;)V
 		ARG 1 renderPass
 		ARG 2 firstIndex
 		ARG 3 indexCount
 		ARG 4 indexType
 		ARG 5 pipeline
+	METHOD executeDraw (Lcom/mojang/blaze3d/opengl/GlRenderPass;IIILcom/mojang/blaze3d/vertex/VertexFormat$IndexType;I)V
+		ARG 1 renderPass
+		ARG 2 firstVertex
+		ARG 3 firstIndex
+		ARG 4 vertexCount
+		ARG 5 indexType
+		ARG 6 instanceCount
 	METHOD executeDraw (Lcom/mojang/blaze3d/opengl/GlRenderPass;IILcom/mojang/blaze3d/vertex/VertexFormat$IndexType;)V
 		ARG 1 renderPass
 		ARG 2 firstIndex
@@ -22,5 +37,27 @@ CLASS com/mojang/blaze3d/opengl/GlCommandEncoder
 		ARG 2 draws
 		ARG 3 buffer
 		ARG 4 indexType
+	METHOD executeDrawMultiple (Lcom/mojang/blaze3d/opengl/GlRenderPass;Ljava/util/Collection;Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;Ljava/util/Collection;)V
+		ARG 1 renderPass
+		ARG 2 draws
+		ARG 3 indexBuffer
+		ARG 4 indexType
+		ARG 5 dynamicUniforms
+	METHOD lambda$executeDrawMultiple$0 (Lcom/mojang/blaze3d/opengl/GlRenderPass;Ljava/lang/String;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 1 uniformName
+		ARG 2 uniformdataBufferSlice
 	METHOD trySetup (Lcom/mojang/blaze3d/opengl/GlRenderPass;)Z
 		ARG 1 renderPass
+	METHOD trySetup (Lcom/mojang/blaze3d/opengl/GlRenderPass;Ljava/util/Collection;)Z
+		ARG 1 renderPass
+		ARG 2 dynamicUniforms
+	METHOD verifyColorTexture (Lcom/mojang/blaze3d/textures/GpuTexture;)V
+		ARG 1 texture
+	METHOD verifyDepthTexture (Lcom/mojang/blaze3d/textures/GpuTexture;)V
+		ARG 1 texture
+	METHOD verifyRegion (Lcom/mojang/blaze3d/textures/GpuTexture;IIII)V
+		ARG 1 texture
+		ARG 2 regionX
+		ARG 3 regionY
+		ARG 4 regionWidth
+		ARG 5 regionHeight
