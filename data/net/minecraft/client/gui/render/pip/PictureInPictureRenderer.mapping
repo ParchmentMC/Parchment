@@ -1,6 +1,9 @@
 CLASS net/minecraft/client/gui/render/pip/PictureInPictureRenderer
 	METHOD <init> (Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;)V
 		ARG 1 bufferSource
+	METHOD blitTexture (Lnet/minecraft/client/gui/render/state/pip/PictureInPictureRenderState;Lnet/minecraft/client/gui/render/state/GuiRenderState;)V
+		ARG 1 renderState
+		ARG 2 guiRenderState
 	METHOD getTranslateY (II)F
 		ARG 1 height
 		ARG 2 guiScale
@@ -11,6 +14,12 @@ CLASS net/minecraft/client/gui/render/pip/PictureInPictureRenderer
 	METHOD prepareTexturesAndProjection (II)V
 		ARG 1 width
 		ARG 2 height
+	METHOD prepareTexturesAndProjection (ZII)V
+		ARG 1 resetTexture
+		ARG 2 width
+		ARG 3 height
 	METHOD renderToTexture (Lnet/minecraft/client/gui/render/state/pip/PictureInPictureRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 renderState
 		ARG 2 poseStack
+	METHOD textureIsReadyToBlit (Lnet/minecraft/client/gui/render/state/pip/PictureInPictureRenderState;)Z
+		ARG 1 renderState

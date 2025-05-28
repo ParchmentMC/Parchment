@@ -20,9 +20,17 @@ CLASS net/minecraft/client/gui/screens/dialog/DialogScreen
 		ARG 2 connectionAccess
 	METHOD handleDialogClickEvent (Lnet/minecraft/network/chat/ClickEvent;)V
 		ARG 1 clickEvent
+	METHOD handleDialogClickEvent (Lnet/minecraft/network/chat/ClickEvent;Lnet/minecraft/client/gui/screens/Screen;)V
+		ARG 1 clickEvent
+		ARG 2 previousScreen
 	METHOD packControlsIntoColumns (Ljava/util/List;I)Lnet/minecraft/client/gui/layouts/LayoutElement;
 		ARG 0 controls
 		ARG 1 columns
+	METHOD populateBodyElements (Lnet/minecraft/client/gui/layouts/LinearLayout;Lnet/minecraft/client/gui/screens/dialog/DialogControlSet;Lnet/minecraft/server/dialog/Dialog;Lnet/minecraft/client/gui/screens/dialog/DialogConnectionAccess;)V
+		ARG 1 layout
+		ARG 2 controls
+		ARG 3 dialog
+		ARG 4 connectionAccess
 	METHOD populateBodyElements (Lnet/minecraft/client/gui/layouts/LinearLayout;Lnet/minecraft/server/dialog/Dialog;)V
 		ARG 1 layout
 		ARG 2 dialog
@@ -30,6 +38,16 @@ CLASS net/minecraft/client/gui/screens/dialog/DialogScreen
 		ARG 1 layout
 		ARG 2 dialog
 		ARG 3 connectionAccess
+	METHOD runAction (Ljava/util/Optional;)V
+		ARG 1 clickEvent
+	METHOD runAction (Ljava/util/Optional;Lnet/minecraft/server/dialog/DialogAction;)V
+		ARG 1 clickEvent
+		ARG 2 action
+	METHOD updateHeaderAndFooter (Lnet/minecraft/client/gui/layouts/HeaderAndFooterLayout;Lnet/minecraft/client/gui/screens/dialog/DialogControlSet;Lnet/minecraft/server/dialog/Dialog;Lnet/minecraft/client/gui/screens/dialog/DialogConnectionAccess;)V
+		ARG 1 layout
+		ARG 2 controls
+		ARG 3 dialog
+		ARG 4 connectionAccess
 	METHOD updateHeaderAndFooter (Lnet/minecraft/client/gui/layouts/HeaderAndFooterLayout;Lnet/minecraft/server/dialog/Dialog;)V
 		ARG 1 layout
 		ARG 2 dialog

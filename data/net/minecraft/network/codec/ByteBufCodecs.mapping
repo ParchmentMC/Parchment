@@ -90,6 +90,8 @@ CLASS net/minecraft/network/codec/ByteBufCodecs
 		ARG 3 maxSize
 	METHOD optional (Lnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/codec/StreamCodec;
 		ARG 0 codec
+	METHOD optionalTagCodec (Ljava/util/function/Supplier;)Lnet/minecraft/network/codec/StreamCodec;
+		ARG 0 accounter
 	METHOD readCount (Lio/netty/buffer/ByteBuf;I)I
 		ARG 0 buffer
 		ARG 1 maxSize
@@ -98,6 +100,8 @@ CLASS net/minecraft/network/codec/ByteBufCodecs
 	METHOD registry (Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Function;)Lnet/minecraft/network/codec/StreamCodec;
 		ARG 0 registryKey
 		ARG 1 idGetter
+	METHOD registryFriendlyLengthPrefixed (I)Lnet/minecraft/network/codec/StreamCodec$CodecOperation;
+		ARG 0 length
 	METHOD stringUtf8 (I)Lnet/minecraft/network/codec/StreamCodec;
 		ARG 0 maxLength
 	METHOD tagCodec (Ljava/util/function/Supplier;)Lnet/minecraft/network/codec/StreamCodec;
@@ -146,6 +150,8 @@ CLASS net/minecraft/network/codec/ByteBufCodecs
 		METHOD getRegistryOrThrow (Lnet/minecraft/network/RegistryFriendlyByteBuf;)Lnet/minecraft/core/IdMap;
 			ARG 1 buffer
 	CLASS 30
+		METHOD getRegistryOrThrow (Lnet/minecraft/network/RegistryFriendlyByteBuf;)Lnet/minecraft/core/IdMap;
+			ARG 1 buffer
 		METHOD lambda$decode$0 (Lio/netty/buffer/ByteBuf;)Ljava/lang/String;
 			ARG 0 buf
 		METHOD lambda$encode$1 (Lio/netty/buffer/ByteBuf;Ljava/lang/String;)V

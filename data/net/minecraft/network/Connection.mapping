@@ -51,6 +51,10 @@ CLASS net/minecraft/network/Connection
 		COMMENT
 		COMMENT Closing the channel this way does not send any disconnection packets, it simply terminates the underlying netty channel.
 		ARG 1 message
+	METHOD doSendPacket (Lnet/minecraft/network/protocol/Packet;Lio/netty/channel/ChannelFutureListener;Z)V
+		ARG 1 packet
+		ARG 2 sendListener
+		ARG 3 flush
 	METHOD doSendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Z)V
 		ARG 1 packet
 		ARG 2 sendListener
@@ -113,12 +117,23 @@ CLASS net/minecraft/network/Connection
 		ARG 1 action
 	METHOD send (Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 packet
+	METHOD send (Lnet/minecraft/network/protocol/Packet;Lio/netty/channel/ChannelFutureListener;)V
+		ARG 1 packet
+		ARG 2 sendListener
+	METHOD send (Lnet/minecraft/network/protocol/Packet;Lio/netty/channel/ChannelFutureListener;Z)V
+		ARG 1 packet
+		ARG 2 sendListener
+		ARG 3 flush
 	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;)V
 		ARG 1 packet
 		ARG 2 sendListener
 	METHOD send (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Z)V
 		ARG 1 packet
 		ARG 2 listener
+		ARG 3 flush
+	METHOD sendPacket (Lnet/minecraft/network/protocol/Packet;Lio/netty/channel/ChannelFutureListener;Z)V
+		ARG 1 packet
+		ARG 2 sendListener
 		ARG 3 flush
 	METHOD sendPacket (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Z)V
 		ARG 1 packet
