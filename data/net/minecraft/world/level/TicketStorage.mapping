@@ -47,6 +47,9 @@ CLASS net/minecraft/world/level/TicketStorage
 	METHOD lambda$packTickets$2 (Ljava/util/List;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/server/level/Ticket;)V
 		ARG 1 chunkPos
 		ARG 2 ticket
+	METHOD lambda$purgeStaleTickets$5 (Lnet/minecraft/server/level/ChunkMap;Ljava/lang/Long;Lnet/minecraft/server/level/Ticket;)Z
+		ARG 1 chunkPos
+		ARG 2 ticket
 	METHOD lambda$purgeStaleTickets$5 (Lnet/minecraft/server/level/Ticket;)Z
 		ARG 0 ticket
 	METHOD lambda$removeTicketIf$7 (Lit/unimi/dsi/fastutil/longs/Long2ObjectMap$Entry;J)Ljava/util/List;
@@ -64,12 +67,17 @@ CLASS net/minecraft/world/level/TicketStorage
 	METHOD load (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/level/TicketStorage;
 		ARG 0 tag
 		ARG 1 registries
+	METHOD purgeStaleTickets (Lnet/minecraft/server/level/ChunkMap;)V
+		ARG 1 map
 	METHOD removeTicket (JLnet/minecraft/server/level/Ticket;)Z
 		ARG 1 chunkPos
 		ARG 3 ticket
 	METHOD removeTicket (Lnet/minecraft/server/level/Ticket;Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 ticket
 		ARG 2 chunkPos
+	METHOD removeTicketIf (Ljava/util/function/BiPredicate;Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;)V
+		ARG 1 predicate
+		ARG 2 tickets
 	METHOD removeTicketIf (Ljava/util/function/Predicate;Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;)V
 		ARG 1 predicate
 		ARG 2 tickets

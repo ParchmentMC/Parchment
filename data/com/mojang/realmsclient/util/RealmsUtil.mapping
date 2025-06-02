@@ -3,9 +3,26 @@ CLASS com/mojang/realmsclient/util/RealmsUtil
 		ARG 0 millis
 	METHOD convertToAgePresentationFromInstant (Ljava/util/Date;)Lnet/minecraft/network/chat/Component;
 		ARG 0 date
+	METHOD openScreenAndLogOnFailure (Ljava/util/function/Function;Ljava/lang/String;)Ljava/util/function/Consumer;
+		ARG 0 screenSupplier
+		ARG 1 errorMessage
+	METHOD openScreenOnFailure (Ljava/util/function/Function;)Ljava/util/function/Consumer;
+		ARG 0 screenSupplier
 	METHOD renderPlayerFace (Lnet/minecraft/client/gui/GuiGraphics;IIILjava/util/UUID;)V
 		ARG 0 guiGraphics
 		ARG 1 x
 		ARG 2 y
 		ARG 3 size
 		ARG 4 playerUuid
+	METHOD runAsync (Lcom/mojang/realmsclient/util/RealmsUtil$RealmsIoConsumer;Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 action
+		ARG 1 onError
+	METHOD supplyAsync (Lcom/mojang/realmsclient/util/RealmsUtil$RealmsIoFunction;Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 action
+		ARG 1 onError
+	CLASS RealmsIoConsumer
+		METHOD accept (Lcom/mojang/realmsclient/client/RealmsClient;)V
+			ARG 1 client
+	CLASS RealmsIoFunction
+		METHOD apply (Lcom/mojang/realmsclient/client/RealmsClient;)Ljava/lang/Object;
+			ARG 1 client
