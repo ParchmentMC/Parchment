@@ -412,6 +412,10 @@ CLASS net/minecraft/world/entity/Entity
 		COMMENT Called when the entity is attacked.
 		ARG 1 source
 		ARG 2 amount
+	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
+		COMMENT Called when the entity is attacked.
+		ARG 1 source
+		ARG 2 amount
 	METHOD hurtClient (Lnet/minecraft/world/damagesource/DamageSource;)Z
 		ARG 1 damageSource
 	METHOD hurtOrSimulate (Lnet/minecraft/world/damagesource/DamageSource;F)Z
@@ -564,6 +568,12 @@ CLASS net/minecraft/world/entity/Entity
 		ARG 0 passenger
 	METHOD lambda$teleportPassengers$10 (Lnet/minecraft/world/entity/Entity;)V
 		ARG 0 entity
+	METHOD lambda$startRiding$4 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 passenger
+	METHOD lambda$startRiding$5 (Lnet/minecraft/world/entity/Entity;)V
+		ARG 0 passenger
+	METHOD lambda$teleportPassengers$10 (Lnet/minecraft/world/entity/Entity;)V
+		ARG 0 entity
 	METHOD lambda$teleportPassengers$11 (Lnet/minecraft/world/entity/Entity;)V
 		ARG 0 entity
 	METHOD lambda$teleportPassengers$12 (Lnet/minecraft/world/entity/Entity;)V
@@ -610,6 +620,9 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD markHurt ()V
 		COMMENT Marks this entity's velocity as changed, so that it can be re-synced with the client later
 	METHOD mayInteract (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 level
+		ARG 2 pos
+	METHOD mayInteract (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 level
 		ARG 2 pos
 	METHOD mayInteract (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z
@@ -1066,16 +1079,24 @@ CLASS net/minecraft/world/entity/Entity
 			ARG 2 x
 			ARG 4 y
 			ARG 6 z
-	CLASS MovementEmission
-		METHOD <init> (Ljava/lang/String;IZZ)V
-			ARG 3 sounds
-			ARG 4 events
-	CLASS RemovalReason
-		METHOD <init> (Ljava/lang/String;IZZ)V
-			ARG 3 destroy
-			ARG 4 save
 	CLASS StateVisitor
 		METHOD visit (Lnet/minecraft/world/level/block/state/BlockState;ZZ)V
 			ARG 1 state
 			ARG 2 blockCollision
 			ARG 3 fluidCollision
+	CLASS RemovalReason
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 destroy
+			ARG 4 save
+CLASS StateVisitor
+	METHOD visit (Lnet/minecraft/world/level/block/state/BlockState;ZZ)V
+		ARG 1 state
+		ARG 2 blockCollision
+		ARG 3 fluidCollision
+CLASS FireStateVisitor
+	METHOD reset (Z)V
+		ARG 1 isOnFire
+CLASS MovementEmission
+	METHOD <init> (Ljava/lang/String;IZZ)V
+		ARG 3 sounds
+		ARG 4 events

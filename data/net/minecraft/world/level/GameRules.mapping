@@ -53,12 +53,21 @@ CLASS net/minecraft/world/level/GameRules
 	METHOD lambda$loadFromTag$15 (Lcom/mojang/serialization/DynamicLike;Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Value;)V
 		ARG 1 key
 		ARG 2 value
+	METHOD lambda$loadFromTag$15 (Lcom/mojang/serialization/DynamicLike;Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Value;)V
+		ARG 1 key
+		ARG 2 value
 	METHOD lambda$loadFromTag$9 (Lcom/mojang/serialization/DynamicLike;Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Value;)V
 		ARG 1 key
 		ARG 2 value
 	METHOD lambda$static$0 (Lnet/minecraft/world/level/GameRules$Key;)Ljava/lang/String;
 		ARG 0 entry
 	METHOD lambda$static$1 (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/level/GameRules$BooleanValue;)V
+		ARG 0 server
+		ARG 1 value
+	METHOD lambda$static$10 (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/level/GameRules$IntegerValue;)V
+		ARG 0 server
+		ARG 1 value
+	METHOD lambda$static$11 (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/level/GameRules$IntegerValue;)V
 		ARG 0 server
 		ARG 1 value
 	METHOD lambda$static$10 (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/level/GameRules$IntegerValue;)V
@@ -93,6 +102,15 @@ CLASS net/minecraft/world/level/GameRules
 	METHOD lambda$static$9 (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/level/GameRules$BooleanValue;)V
 		ARG 0 server
 		ARG 1 value
+	METHOD lambda$static$7 (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/level/GameRules$BooleanValue;)V
+		ARG 0 server
+		ARG 1 value
+	METHOD lambda$static$8 (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/level/GameRules$BooleanValue;)V
+		ARG 0 server
+		ARG 1 value
+	METHOD lambda$static$9 (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/world/level/GameRules$BooleanValue;)V
+		ARG 0 server
+		ARG 1 value
 	METHOD lambda$visitGameRuleTypes$11 (Lnet/minecraft/world/level/GameRules$GameRuleTypeVisitor;Lnet/minecraft/world/level/GameRules$Key;Lnet/minecraft/world/level/GameRules$Type;)V
 		ARG 2 key
 		ARG 3 type
@@ -107,6 +125,55 @@ CLASS net/minecraft/world/level/GameRules
 		ARG 2 type
 	METHOD visitGameRuleTypes (Lnet/minecraft/world/level/GameRules$GameRuleTypeVisitor;)V
 		ARG 1 visitor
+	CLASS Key
+		METHOD <init> (Ljava/lang/String;Lnet/minecraft/world/level/GameRules$Category;)V
+			ARG 1 id
+			ARG 2 category
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other
+	CLASS Type
+		METHOD <init> (Ljava/util/function/Supplier;Ljava/util/function/Function;Ljava/util/function/BiConsumer;Lnet/minecraft/world/level/GameRules$VisitorCaller;)V
+			ARG 1 argument
+			ARG 2 constructor
+			ARG 3 callback
+			ARG 4 visitorCaller
+		METHOD <init> (Ljava/util/function/Supplier;Ljava/util/function/Function;Ljava/util/function/BiConsumer;Lnet/minecraft/world/level/GameRules$VisitorCaller;Ljava/lang/Class;Lnet/minecraft/world/flag/FeatureFlagSet;)V
+			ARG 1 argument
+			ARG 2 constructor
+			ARG 3 callback
+			ARG 4 visitorCaller
+			ARG 5 valueClass
+			ARG 6 requiredFeatures
+		METHOD <init> (Ljava/util/function/Supplier;Ljava/util/function/Function;Ljava/util/function/BiConsumer;Lnet/minecraft/world/level/GameRules$VisitorCaller;Lnet/minecraft/world/flag/FeatureFlagSet;)V
+			ARG 1 argument
+			ARG 2 constructor
+			ARG 3 callback
+			ARG 4 visitorCaller
+			ARG 5 requiredFeature
+		METHOD callVisitor (Lnet/minecraft/world/level/GameRules$GameRuleTypeVisitor;Lnet/minecraft/world/level/GameRules$Key;)V
+			ARG 1 visitor
+			ARG 2 key
+		METHOD createArgument (Ljava/lang/String;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+			ARG 1 name
+	CLASS Value
+		METHOD <init> (Lnet/minecraft/world/level/GameRules$Type;)V
+			ARG 1 type
+		METHOD deserialize (Ljava/lang/String;)V
+			ARG 1 value
+		METHOD onChanged (Lnet/minecraft/server/MinecraftServer;)V
+			ARG 1 server
+		METHOD setFrom (Lnet/minecraft/world/level/GameRules$Value;Lnet/minecraft/server/MinecraftServer;)V
+			ARG 1 value
+			ARG 2 server
+		METHOD setFromArgument (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)V
+			ARG 1 context
+			ARG 2 paramName
+		METHOD updateFromArgument (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)V
+			ARG 1 context
+			ARG 2 paramName
+	CLASS Category
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 descriptionId
 	CLASS BooleanValue
 		METHOD <init> (Lnet/minecraft/world/level/GameRules$Type;Z)V
 			ARG 1 type
