@@ -41,6 +41,57 @@ CLASS net/minecraft/network/protocol/game/ClientboundCommandsPacket
 	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
 		COMMENT Writes the raw packet data to the data stream.
 		ARG 1 buffer
+	CLASS Entry
+		METHOD <init> (Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$NodeStub;II[I)V
+			ARG 1 stub
+			ARG 2 flags
+			ARG 3 redirect
+			ARG 4 children
+		METHOD canBuild (Lit/unimi/dsi/fastutil/ints/IntSet;)Z
+			ARG 1 children
+		METHOD canResolve (Lit/unimi/dsi/fastutil/ints/IntSet;)Z
+			ARG 1 children
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+	CLASS NodeStub
+		METHOD build (Lnet/minecraft/commands/CommandBuildContext;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+			ARG 1 context
+		METHOD build (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$NodeBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+			ARG 1 context
+			ARG 2 nodeBuilder
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+	CLASS NodeBuilder
+		METHOD configure (Lcom/mojang/brigadier/builder/ArgumentBuilder;ZZ)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+			ARG 1 argumentBuilder
+			ARG 2 executable
+			ARG 3 restricted
+		METHOD createArgument (Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+			ARG 1 id
+			ARG 2 type
+			ARG 3 suggestionId
+		METHOD createLiteral (Ljava/lang/String;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+			ARG 1 id
+	CLASS NodeResolver
+		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;Ljava/util/List;)V
+			ARG 1 context
+			ARG 2 entries
+		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$NodeBuilder;Ljava/util/List;)V
+			ARG 1 context
+			ARG 2 builder
+			ARG 3 entries
+		METHOD resolve (I)Lcom/mojang/brigadier/tree/CommandNode;
+			ARG 1 index
+	CLASS NodeInspector
+		METHOD isExecutable (Lcom/mojang/brigadier/tree/CommandNode;)Z
+			ARG 1 node
+		METHOD isRestricted (Lcom/mojang/brigadier/tree/CommandNode;)Z
+			ARG 1 node
+		METHOD suggestionId (Lcom/mojang/brigadier/tree/ArgumentCommandNode;)Lnet/minecraft/resources/ResourceLocation;
+			ARG 1 node
+	CLASS LiteralNodeStub
+		METHOD <init> (Ljava/lang/String;)V
+			ARG 1 id
 	CLASS ArgumentNodeStub
 		METHOD <init> (Lcom/mojang/brigadier/tree/ArgumentCommandNode;)V
 			ARG 1 argumentNode
@@ -57,54 +108,3 @@ CLASS net/minecraft/network/protocol/game/ClientboundCommandsPacket
 			ARG 0 buffer
 			ARG 1 argumentInfo
 			ARG 2 argumentInfoTemplate
-	CLASS Entry
-		METHOD <init> (Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$NodeStub;II[I)V
-			ARG 1 stub
-			ARG 2 flags
-			ARG 3 redirect
-			ARG 4 children
-		METHOD canBuild (Lit/unimi/dsi/fastutil/ints/IntSet;)Z
-			ARG 1 children
-		METHOD canResolve (Lit/unimi/dsi/fastutil/ints/IntSet;)Z
-			ARG 1 children
-		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
-			ARG 1 buffer
-	CLASS LiteralNodeStub
-		METHOD <init> (Ljava/lang/String;)V
-			ARG 1 id
-	CLASS NodeBuilder
-		METHOD configure (Lcom/mojang/brigadier/builder/ArgumentBuilder;ZZ)Lcom/mojang/brigadier/builder/ArgumentBuilder;
-			ARG 1 argumentBuilder
-			ARG 2 executable
-			ARG 3 restricted
-		METHOD createArgument (Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
-			ARG 1 id
-			ARG 2 type
-			ARG 3 suggestionId
-		METHOD createLiteral (Ljava/lang/String;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
-			ARG 1 id
-	CLASS NodeInspector
-		METHOD isExecutable (Lcom/mojang/brigadier/tree/CommandNode;)Z
-			ARG 1 node
-		METHOD isRestricted (Lcom/mojang/brigadier/tree/CommandNode;)Z
-			ARG 1 node
-		METHOD suggestionId (Lcom/mojang/brigadier/tree/ArgumentCommandNode;)Lnet/minecraft/resources/ResourceLocation;
-			ARG 1 node
-	CLASS NodeResolver
-		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;Ljava/util/List;)V
-			ARG 1 context
-			ARG 2 entries
-		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$NodeBuilder;Ljava/util/List;)V
-			ARG 1 context
-			ARG 2 builder
-			ARG 3 entries
-		METHOD resolve (I)Lcom/mojang/brigadier/tree/CommandNode;
-			ARG 1 index
-	CLASS NodeStub
-		METHOD build (Lnet/minecraft/commands/CommandBuildContext;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
-			ARG 1 context
-		METHOD build (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$NodeBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
-			ARG 1 context
-			ARG 2 nodeBuilder
-		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
-			ARG 1 buffer

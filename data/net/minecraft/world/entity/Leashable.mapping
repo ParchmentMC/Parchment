@@ -96,6 +96,14 @@ CLASS net/minecraft/world/entity/Leashable
 	METHOD writeLeashData (Lnet/minecraft/world/level/storage/ValueOutput;Lnet/minecraft/world/entity/Leashable$LeashData;)V
 		ARG 1 output
 		ARG 2 leashData
+	CLASS Wrench
+		METHOD accumulate (Ljava/util/List;)Lnet/minecraft/world/entity/Leashable$Wrench;
+			ARG 0 wrenches
+		METHOD scale (D)Lnet/minecraft/world/entity/Leashable$Wrench;
+			ARG 1 scale
+		METHOD torqueFromForce (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)D
+			ARG 0 attachmentPoint
+			ARG 1 force
 	CLASS LeashData
 		METHOD <init> (I)V
 			ARG 1 delayedLeashInfoId
@@ -105,11 +113,3 @@ CLASS net/minecraft/world/entity/Leashable
 			ARG 1 leashHolder
 		METHOD setLeashHolder (Lnet/minecraft/world/entity/Entity;)V
 			ARG 1 leashHolder
-	CLASS Wrench
-		METHOD accumulate (Ljava/util/List;)Lnet/minecraft/world/entity/Leashable$Wrench;
-			ARG 0 wrenches
-		METHOD scale (D)Lnet/minecraft/world/entity/Leashable$Wrench;
-			ARG 1 scale
-		METHOD torqueFromForce (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)D
-			ARG 0 attachmentPoint
-			ARG 1 force

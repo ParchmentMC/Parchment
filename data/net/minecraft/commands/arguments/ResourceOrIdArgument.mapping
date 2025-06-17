@@ -52,7 +52,17 @@ CLASS net/minecraft/commands/arguments/ResourceOrIdArgument
 		ARG 0 ops
 		ARG 1 tagParser
 		ARG 2 reader
+	CLASS Result
+		METHOD parse (Lcom/mojang/brigadier/ImmutableStringReader;Lnet/minecraft/core/HolderLookup$Provider;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Lnet/minecraft/core/HolderLookup$RegistryLookup;)Lnet/minecraft/core/Holder;
+			ARG 1 reader
+			ARG 2 registryLookup
+			ARG 3 ops
+			ARG 4 codec
+			ARG 5 elementLookup
 	CLASS DialogArgument
+		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
+			ARG 1 context
+	CLASS LootTableArgument
 		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
 			ARG 1 context
 	CLASS LootModifierArgument
@@ -61,13 +71,3 @@ CLASS net/minecraft/commands/arguments/ResourceOrIdArgument
 	CLASS LootPredicateArgument
 		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
 			ARG 1 context
-	CLASS LootTableArgument
-		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
-			ARG 1 context
-	CLASS Result
-		METHOD parse (Lcom/mojang/brigadier/ImmutableStringReader;Lnet/minecraft/core/HolderLookup$Provider;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Lnet/minecraft/core/HolderLookup$RegistryLookup;)Lnet/minecraft/core/Holder;
-			ARG 1 reader
-			ARG 2 registryLookup
-			ARG 3 ops
-			ARG 4 codec
-			ARG 5 elementLookup

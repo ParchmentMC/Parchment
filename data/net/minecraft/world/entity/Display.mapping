@@ -33,45 +33,11 @@ CLASS net/minecraft/world/entity/Display
 	METHOD updateRenderSubState (ZF)V
 		ARG 1 interpolate
 		ARG 2 partialTick
-	CLASS BillboardConstraints
-		METHOD <init> (Ljava/lang/String;IBLjava/lang/String;)V
-			ARG 3 id
-			ARG 4 name
-	CLASS BlockDisplay
-		METHOD setBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
-			ARG 1 blockState
-	CLASS FloatInterpolator
-		METHOD constant (F)Lnet/minecraft/world/entity/Display$FloatInterpolator;
-			ARG 0 value
-		METHOD get (F)F
-			ARG 1 partialTick
-	CLASS GenericInterpolator
-		METHOD constant (Ljava/lang/Object;)Lnet/minecraft/world/entity/Display$GenericInterpolator;
-			ARG 0 value
-		METHOD get (F)Ljava/lang/Object;
-			ARG 1 partialTick
-	CLASS IntInterpolator
-		METHOD constant (I)Lnet/minecraft/world/entity/Display$IntInterpolator;
-			ARG 0 value
-		METHOD get (F)I
-			ARG 1 partialTick
 	CLASS ItemDisplay
 		METHOD setItemStack (Lnet/minecraft/world/item/ItemStack;)V
 			ARG 1 itemStack
 		METHOD setItemTransform (Lnet/minecraft/world/item/ItemDisplayContext;)V
 			ARG 1 itemTransform
-	CLASS PosRotInterpolationTarget
-		METHOD <init> (IDDDDD)V
-			ARG 1 steps
-			ARG 2 targetX
-			ARG 4 targetY
-			ARG 6 targetZ
-			ARG 8 targetYRot
-			ARG 10 targetXRot
-		METHOD applyLerpStep (Lnet/minecraft/world/entity/Entity;)V
-			ARG 1 entity
-		METHOD applyTargetPosAndRot (Lnet/minecraft/world/entity/Entity;)V
-			ARG 1 entity
 	CLASS TextDisplay
 		METHOD cacheDisplay (Lnet/minecraft/world/entity/Display$TextDisplay$LineSplitter;)Lnet/minecraft/world/entity/Display$TextDisplay$CachedInfo;
 			ARG 1 splitter
@@ -117,3 +83,37 @@ CLASS net/minecraft/world/entity/Display
 			METHOD split (Lnet/minecraft/network/chat/Component;I)Lnet/minecraft/world/entity/Display$TextDisplay$CachedInfo;
 				ARG 1 text
 				ARG 2 maxWidth
+	CLASS BlockDisplay
+		METHOD setBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
+			ARG 1 blockState
+	CLASS IntInterpolator
+		METHOD constant (I)Lnet/minecraft/world/entity/Display$IntInterpolator;
+			ARG 0 value
+		METHOD get (F)I
+			ARG 1 partialTick
+	CLASS FloatInterpolator
+		METHOD constant (F)Lnet/minecraft/world/entity/Display$FloatInterpolator;
+			ARG 0 value
+		METHOD get (F)F
+			ARG 1 partialTick
+	CLASS GenericInterpolator
+		METHOD constant (Ljava/lang/Object;)Lnet/minecraft/world/entity/Display$GenericInterpolator;
+			ARG 0 value
+		METHOD get (F)Ljava/lang/Object;
+			ARG 1 partialTick
+	CLASS BillboardConstraints
+		METHOD <init> (Ljava/lang/String;IBLjava/lang/String;)V
+			ARG 3 id
+			ARG 4 name
+	CLASS PosRotInterpolationTarget
+		METHOD <init> (IDDDDD)V
+			ARG 1 steps
+			ARG 2 targetX
+			ARG 4 targetY
+			ARG 6 targetZ
+			ARG 8 targetYRot
+			ARG 10 targetXRot
+		METHOD applyLerpStep (Lnet/minecraft/world/entity/Entity;)V
+			ARG 1 entity
+		METHOD applyTargetPosAndRot (Lnet/minecraft/world/entity/Entity;)V
+			ARG 1 entity
