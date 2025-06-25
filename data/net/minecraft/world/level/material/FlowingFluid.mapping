@@ -7,8 +7,6 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 		ARG 3 state
 	METHOD canConvertToSource (Lnet/minecraft/server/level/ServerLevel;)Z
 		ARG 1 level
-	METHOD canConvertToSource (Lnet/minecraft/world/level/Level;)Z
-		ARG 1 level
 	METHOD canHoldAnyFluid (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
 	METHOD canHoldFluid (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/Fluid;)Z
@@ -45,20 +43,8 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 		ARG 3 state
 		ARG 4 spreadPos
 		ARG 5 spreadState
-	METHOD canSpreadTo (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/world/level/material/Fluid;)Z
-		ARG 1 level
-		ARG 2 fromPos
-		ARG 3 fromBlockState
-		ARG 4 direction
-		ARG 5 toPos
-		ARG 6 toBlockState
-		ARG 7 toFluidState
-		ARG 8 fluid
 	METHOD createFluidStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
 		ARG 1 builder
-	METHOD getCacheKey (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)S
-		ARG 0 sourcePos
-		ARG 1 spreadPos
 	METHOD getDropOff (Lnet/minecraft/world/level/LevelReader;)I
 		ARG 1 level
 	METHOD getFlow (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/FluidState;)Lnet/minecraft/world/phys/Vec3;
@@ -74,19 +60,6 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
-	METHOD getNewLiquid (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/material/FluidState;
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 blockState
-	METHOD getSlopeDistance (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;ILnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lit/unimi/dsi/fastutil/shorts/Short2ObjectMap;Lit/unimi/dsi/fastutil/shorts/Short2BooleanMap;)I
-		ARG 1 level
-		ARG 2 spreadPos
-		ARG 3 distance
-		ARG 4 direction
-		ARG 5 currentSpreadState
-		ARG 6 sourcePos
-		ARG 7 stateCache
-		ARG 8 waterHoleCache
 	METHOD getSlopeDistance (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;ILnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/FlowingFluid$SpreadContext;)I
 		ARG 1 level
 		ARG 2 pos
@@ -99,10 +72,6 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 	METHOD getSource (Z)Lnet/minecraft/world/level/material/FluidState;
 		ARG 1 falling
 	METHOD getSpread (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Ljava/util/Map;
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 state
-	METHOD getSpread (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Ljava/util/Map;
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
@@ -127,23 +96,6 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 		ARG 3 state
 		ARG 4 belowPos
 		ARG 5 belowState
-	METHOD isWaterHole (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 1 level
-		ARG 2 fluid
-		ARG 3 pos
-		ARG 4 state
-		ARG 5 spreadPos
-		ARG 6 spreadState
-	METHOD lambda$getShape$5 (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/FluidState;)Lnet/minecraft/world/phys/shapes/VoxelShape;
-		ARG 2 stateKey
-	METHOD lambda$getSlopeDistance$1 (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;S)Lcom/mojang/datafixers/util/Pair;
-		ARG 2 key
-	METHOD lambda$getSlopeDistance$2 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/level/block/state/BlockState;S)Z
-		ARG 4 key
-	METHOD lambda$getSpread$3 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;S)Lcom/mojang/datafixers/util/Pair;
-		ARG 2 key
-	METHOD lambda$getSpread$4 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;S)Z
-		ARG 5 key
 	METHOD sourceNeighborCount (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)I
 		COMMENT Returns the number of immediately adjacent source blocks of the same fluid that lie on the horizontal plane.
 		ARG 1 level
@@ -153,15 +105,6 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 		ARG 2 pos
 		ARG 3 blockState
 		ARG 4 fluidState
-	METHOD spread (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/FluidState;)V
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 blockState
-		ARG 4 fluidState
-	METHOD spread (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/FluidState;)V
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 state
 	METHOD spreadTo (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/material/FluidState;)V
 		ARG 1 level
 		ARG 2 pos
@@ -173,15 +116,6 @@ CLASS net/minecraft/world/level/material/FlowingFluid
 		ARG 2 pos
 		ARG 3 fluidState
 		ARG 4 blockState
-	METHOD spreadToSides (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 fluidState
-		ARG 4 blockState
-	METHOD tick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/material/FluidState;)V
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 state
 	CLASS 1
 		METHOD rehash (I)V
 			ARG 1 newSize

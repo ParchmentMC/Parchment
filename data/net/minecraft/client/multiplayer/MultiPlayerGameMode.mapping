@@ -22,12 +22,6 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		ARG 3 recipeBook
 		ARG 4 lastSentInput
 		ARG 5 wasSprinting
-	METHOD createPlayer (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/stats/StatsCounter;Lnet/minecraft/client/ClientRecipeBook;ZZ)Lnet/minecraft/client/player/LocalPlayer;
-		ARG 1 level
-		ARG 2 statsManager
-		ARG 3 recipes
-		ARG 4 wasShiftKeyDown
-		ARG 5 wasSprinting
 	METHOD destroyBlock (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD ensureHasSentCarriedItem ()V
@@ -49,18 +43,12 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		ARG 3 mouseButton
 		ARG 4 clickType
 		ARG 5 player
-	METHOD handlePickItem (I)V
-		ARG 1 index
 	METHOD handlePickItemFromBlock (Lnet/minecraft/core/BlockPos;Z)V
 		ARG 1 pos
 		ARG 2 includeData
 	METHOD handlePickItemFromEntity (Lnet/minecraft/world/entity/Entity;Z)V
 		ARG 1 entity
 		ARG 2 includeData
-	METHOD handlePlaceRecipe (ILnet/minecraft/world/item/crafting/RecipeHolder;Z)V
-		ARG 1 containerId
-		ARG 2 recipe
-		ARG 3 shiftDown
 	METHOD handlePlaceRecipe (ILnet/minecraft/world/item/crafting/display/RecipeDisplayId;Z)V
 		ARG 1 containerId
 		ARG 2 recipe
@@ -69,8 +57,6 @@ CLASS net/minecraft/client/multiplayer/MultiPlayerGameMode
 		ARG 1 slotId
 		ARG 2 containerId
 		ARG 3 newState
-	METHOD hasInfiniteItems ()Z
-		COMMENT Returns {@code true} if player is in creative mode.
 	METHOD hasMissTime ()Z
 		COMMENT Checks if the player is not creative, used for checking if it should break a block instantly
 	METHOD interact (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;

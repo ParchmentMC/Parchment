@@ -2,11 +2,6 @@ CLASS net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent
 	METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/SlotSelectTime;Z)V
 		ARG 1 slotSelectTime
 		ARG 2 isFurnaceMenu
-	METHOD init (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;IIIIF)V
-		ARG 1 minecraft
-		ARG 2 collection
-		ARG 3 x
-		ARG 4 y
 	METHOD init (Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/util/context/ContextMap;ZIIIIF)V
 		ARG 1 collection
 		ARG 2 contextMap
@@ -16,23 +11,6 @@ CLASS net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent
 		ARG 6 overlayX
 		ARG 7 overlayY
 		ARG 8 width
-	METHOD init (Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/world/item/crafting/display/SlotDisplay$ResolutionContext;ZIIIIF)V
-		ARG 1 collection
-		ARG 2 resolutionContext
-		ARG 3 isFiltering
-		ARG 4 x
-		ARG 5 y
-		ARG 6 overlayX
-		ARG 7 overlayY
-		ARG 8 width
-	METHOD init (Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;ZIIIIF)V
-		ARG 1 collection
-		ARG 2 filtered
-		ARG 3 x
-		ARG 4 y
-		ARG 5 overlayX
-		ARG 6 overlayY
-		ARG 7 width
 	METHOD isMouseOver (DD)Z
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -43,25 +21,12 @@ CLASS net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent
 	METHOD setVisible (Z)V
 		ARG 1 isVisible
 	CLASS OverlayRecipeButton
-		METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;IILnet/minecraft/world/item/crafting/RecipeHolder;Z)V
-			ARG 2 x
-			ARG 3 y
-			ARG 4 recipe
-			ARG 5 isCraftable
-		METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;IILnet/minecraft/world/item/crafting/RecipeHolder;ZLjava/util/List;)V
-			ARG 2 x
-			ARG 3 y
-			ARG 4 recipe
-			ARG 5 isCraftable
-			ARG 6 slots
 		METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;IILnet/minecraft/world/item/crafting/display/RecipeDisplayId;ZLjava/util/List;)V
 			ARG 2 x
 			ARG 3 y
 			ARG 4 recipe
 			ARG 5 isCraftable
 			ARG 6 slots
-		METHOD calculateIngredientsPositions (Lnet/minecraft/world/item/crafting/RecipeHolder;)V
-			ARG 1 recipe
 		METHOD createGridPos (IILjava/util/List;)Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent$OverlayRecipeButton$Pos;
 			ARG 0 x
 			ARG 1 y
@@ -73,18 +38,9 @@ CLASS net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent
 				ARG 1 x
 				ARG 2 y
 				ARG 3 ingredients
-			METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent$OverlayRecipeButton;II[Lnet/minecraft/world/item/ItemStack;)V
-				ARG 2 x
-				ARG 3 y
-				ARG 4 ingredients
 			METHOD selectIngredient (I)Lnet/minecraft/world/item/ItemStack;
 				ARG 1 index
 	CLASS OverlayCraftingRecipeButton
-		METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;IILnet/minecraft/world/item/crafting/RecipeHolder;Z)V
-			ARG 2 x
-			ARG 3 y
-			ARG 4 recipe
-			ARG 5 isCraftable
 		METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;IILnet/minecraft/world/item/crafting/display/RecipeDisplayId;Lnet/minecraft/world/item/crafting/display/RecipeDisplay;Lnet/minecraft/util/context/ContextMap;Z)V
 			ARG 2 x
 			ARG 3 y
@@ -92,27 +48,10 @@ CLASS net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent
 			ARG 5 recipeDisplay
 			ARG 6 contextMap
 			ARG 7 isCraftable
-		METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;IILnet/minecraft/world/item/crafting/display/RecipeDisplayId;Lnet/minecraft/world/item/crafting/display/RecipeDisplay;Lnet/minecraft/world/item/crafting/display/SlotDisplay$ResolutionContext;Z)V
-			ARG 2 x
-			ARG 3 y
-			ARG 4 recipe
-			ARG 5 recipeDisplay
-			ARG 6 resolutionContext
-			ARG 7 isCraftable
-		METHOD calculateIngredientsPositions (Lnet/minecraft/world/item/crafting/RecipeHolder;)Ljava/util/List;
-			ARG 0 recipe
 		METHOD calculateIngredientsPositions (Lnet/minecraft/world/item/crafting/display/RecipeDisplay;Lnet/minecraft/util/context/ContextMap;)Ljava/util/List;
 			ARG 0 recipeDisplay
 			ARG 1 contextMap
-		METHOD calculateIngredientsPositions (Lnet/minecraft/world/item/crafting/display/RecipeDisplay;Lnet/minecraft/world/item/crafting/display/SlotDisplay$ResolutionContext;)Ljava/util/List;
-			ARG 0 recipeDisplay
-			ARG 1 resolutionContext
 	CLASS OverlaySmeltingRecipeButton
-		METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;IILnet/minecraft/world/item/crafting/RecipeHolder;Z)V
-			ARG 2 x
-			ARG 3 y
-			ARG 4 recipe
-			ARG 5 isCraftable
 		METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;IILnet/minecraft/world/item/crafting/display/RecipeDisplayId;Lnet/minecraft/world/item/crafting/display/RecipeDisplay;Lnet/minecraft/util/context/ContextMap;Z)V
 			ARG 2 x
 			ARG 3 y
@@ -120,18 +59,6 @@ CLASS net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent
 			ARG 5 recipeDisplay
 			ARG 6 contextMap
 			ARG 7 isCraftable
-		METHOD <init> (Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;IILnet/minecraft/world/item/crafting/display/RecipeDisplayId;Lnet/minecraft/world/item/crafting/display/RecipeDisplay;Lnet/minecraft/world/item/crafting/display/SlotDisplay$ResolutionContext;Z)V
-			ARG 2 x
-			ARG 3 y
-			ARG 4 recipe
-			ARG 5 recipeDisplay
-			ARG 6 resolutionContext
-			ARG 7 isCraftable
-		METHOD calculateIngredientsPositions (Lnet/minecraft/world/item/crafting/RecipeHolder;)Ljava/util/List;
-			ARG 0 recipe
 		METHOD calculateIngredientsPositions (Lnet/minecraft/world/item/crafting/display/RecipeDisplay;Lnet/minecraft/util/context/ContextMap;)Ljava/util/List;
 			ARG 0 recipeDisplay
 			ARG 1 contextMap
-		METHOD calculateIngredientsPositions (Lnet/minecraft/world/item/crafting/display/RecipeDisplay;Lnet/minecraft/world/item/crafting/display/SlotDisplay$ResolutionContext;)Ljava/util/List;
-			ARG 0 recipeDisplay
-			ARG 1 resolutionContext

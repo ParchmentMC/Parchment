@@ -1,11 +1,4 @@
 CLASS net/minecraft/client/renderer/chunk/SectionRenderDispatcher
-	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/renderer/LevelRenderer;Ljava/util/concurrent/Executor;Lnet/minecraft/client/renderer/RenderBuffers;Lnet/minecraft/client/renderer/block/BlockRenderDispatcher;Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher;)V
-		ARG 1 level
-		ARG 2 renderer
-		ARG 3 executor
-		ARG 4 buffers
-		ARG 5 blockRenderer
-		ARG 6 blockEntityRenderer
 	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/renderer/LevelRenderer;Lnet/minecraft/TracingExecutor;Lnet/minecraft/client/renderer/RenderBuffers;Lnet/minecraft/client/renderer/block/BlockRenderDispatcher;Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher;)V
 		ARG 1 level
 		ARG 2 renderer
@@ -18,24 +11,11 @@ CLASS net/minecraft/client/renderer/chunk/SectionRenderDispatcher
 		ARG 2 regionCache
 	METHOD schedule (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection$CompileTask;)V
 		ARG 1 task
-	METHOD setCamera (Lnet/minecraft/world/phys/Vec3;)V
-		ARG 1 camera
 	METHOD setCameraPosition (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 cameraPosition
 	METHOD setLevel (Lnet/minecraft/client/multiplayer/ClientLevel;)V
 		ARG 1 level
-	METHOD uploadSectionIndexBuffer (Lcom/mojang/blaze3d/vertex/ByteBufferBuilder$Result;Lcom/mojang/blaze3d/vertex/VertexBuffer;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 result
-		ARG 2 vertexBuffer
-	METHOD uploadSectionLayer (Lcom/mojang/blaze3d/vertex/MeshData;Lcom/mojang/blaze3d/vertex/VertexBuffer;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 meshData
-		ARG 2 vertexBuffer
 	CLASS RenderSection
-		METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher;IIII)V
-			ARG 2 index
-			ARG 3 originX
-			ARG 4 originY
-			ARG 5 originZ
 		METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher;IJ)V
 			ARG 2 index
 			ARG 3 sectionNode
@@ -47,129 +27,34 @@ CLASS net/minecraft/client/renderer/chunk/SectionRenderDispatcher
 			ARG 1 sectionPos
 		METHOD doesChunkExistAt (J)Z
 			ARG 1 pos
-		METHOD doesChunkExistAt (Lnet/minecraft/core/BlockPos;)Z
-			ARG 1 pos
-		METHOD getBuffer (Lnet/minecraft/client/renderer/RenderType;)Lcom/mojang/blaze3d/vertex/VertexBuffer;
-			ARG 1 renderType
-		METHOD getBuffers (Lnet/minecraft/client/renderer/RenderType;)Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$SectionBuffers;
-			ARG 1 renderType
 		METHOD getNeighborSectionNode (Lnet/minecraft/core/Direction;)J
 			ARG 1 direction
-		METHOD getRelativeOrigin (Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos;
-			ARG 1 direction
-		METHOD isAxisAlignedWith (III)Z
-			ARG 1 x
-			ARG 2 y
-			ARG 3 z
 		METHOD rebuildSectionAsync (Lnet/minecraft/client/renderer/chunk/RenderRegionCache;)V
 			ARG 1 regionCache
-		METHOD rebuildSectionAsync (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher;Lnet/minecraft/client/renderer/chunk/RenderRegionCache;)V
-			ARG 1 sectionRenderDispatcher
-			ARG 2 regionCache
-		METHOD resortTransparency (Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher;)Z
-			ARG 1 renderType
-			ARG 2 sectionRenderDispatcher
 		METHOD resortTransparency (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher;)V
 			ARG 1 dispatcher
-		METHOD setCompiled (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$CompiledSection;)V
-			ARG 1 compiled
 		METHOD setDirty (Z)V
 			ARG 1 playerChanged
-		METHOD setDynamicTransformIndex (I)V
-			ARG 1 dynamicTransformIndex
-		METHOD setOrigin (III)V
-			ARG 1 x
-			ARG 2 y
-			ARG 3 z
 		METHOD setSectionMesh (Lnet/minecraft/client/renderer/chunk/SectionMesh;)V
 			ARG 1 sectionMesh
 		METHOD setSectionNode (J)V
 			ARG 1 sectionNode
-		METHOD updateGlobalBlockEntities (Ljava/util/Collection;)V
-			ARG 1 blockEntities
 		METHOD upload (Ljava/util/Map;Lnet/minecraft/client/renderer/chunk/CompiledSectionMesh;)Ljava/util/concurrent/CompletableFuture;
 			ARG 1 renderedLayers
 			ARG 2 mesh
-		METHOD uploadSectionIndexBuffer (Lcom/mojang/blaze3d/vertex/ByteBufferBuilder$Result;Lnet/minecraft/client/renderer/RenderType;)Ljava/util/concurrent/CompletableFuture;
-			ARG 1 result
-			ARG 2 renderType
 		METHOD uploadSectionIndexBuffer (Lnet/minecraft/client/renderer/chunk/CompiledSectionMesh;Lcom/mojang/blaze3d/vertex/ByteBufferBuilder$Result;Lnet/minecraft/client/renderer/chunk/ChunkSectionLayer;)Ljava/util/concurrent/CompletableFuture;
 			ARG 1 mesh
 			ARG 2 result
 			ARG 3 layer
-		METHOD uploadSectionLayer (Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/MeshData;)Ljava/util/concurrent/CompletableFuture;
-			ARG 1 renderType
-			ARG 2 meshData
 		CLASS CompileTask
-			METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;DZ)V
-				ARG 1 renderSection
-				ARG 2 distAtCreation
-				ARG 4 isHighPriority
 			METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;Z)V
 				ARG 2 isRecompile
-			METHOD compareTo (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection$CompileTask;)I
-				ARG 1 other
 			METHOD doTask (Lnet/minecraft/client/renderer/SectionBufferBuilderPack;)Ljava/util/concurrent/CompletableFuture;
 				ARG 1 sectionBufferBuilderPack
 		CLASS RebuildTask
-			METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;DLnet/minecraft/client/renderer/chunk/RenderChunkRegion;Z)V
-				ARG 2 distAtCreation
-				ARG 4 region
-				ARG 5 isHighPriority
-			METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;Lnet/minecraft/client/renderer/chunk/RenderChunkRegion;Z)V
-				ARG 2 region
-				ARG 3 isRecompile
 			METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;Lnet/minecraft/client/renderer/chunk/RenderSectionRegion;Z)V
 				ARG 2 region
 				ARG 3 isRecompile
-			METHOD lambda$doTask$0 (Ljava/util/List;Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$CompiledSection;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/MeshData;)V
-				ARG 3 renderType
-				ARG 4 meshData
-			METHOD lambda$doTask$1 (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$CompiledSection;Ljava/util/List;Ljava/lang/Throwable;)Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$SectionTaskResult;
-				ARG 3 exception
-			METHOD lambda$doTask$1 (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$CompiledSection;Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$TranslucencyPointOfView;Ljava/util/List;Ljava/lang/Throwable;)Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$SectionTaskResult;
-				ARG 3 result
-				ARG 4 throwable
 		CLASS ResortTransparencyTask
-			METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;DLnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$CompiledSection;)V
-				ARG 2 distAtCreation
-				ARG 4 compiledSection
 			METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;Lnet/minecraft/client/renderer/chunk/CompiledSectionMesh;)V
 				ARG 2 compiledSectionMesh
-			METHOD <init> (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$CompiledSection;)V
-				ARG 2 compiledSection
-			METHOD lambda$doTask$1 (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$SectionTaskResult;Ljava/lang/Throwable;)Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$SectionTaskResult;
-				ARG 1 result
-				ARG 2 exception
-	CLASS SectionBuffers
-		METHOD <init> (Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/buffers/GpuBuffer;ILcom/mojang/blaze3d/vertex/VertexFormat$IndexType;)V
-			ARG 1 vertexBuffer
-			ARG 2 indexBuffer
-			ARG 3 indexCount
-			ARG 4 indexType
-		METHOD setIndexBuffer (Lcom/mojang/blaze3d/buffers/GpuBuffer;)V
-			ARG 1 indexBuffer
-		METHOD setIndexCount (I)V
-			ARG 1 indexCount
-		METHOD setIndexType (Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;)V
-			ARG 1 indexType
-		METHOD setVertexBuffer (Lcom/mojang/blaze3d/buffers/GpuBuffer;)V
-			ARG 1 vertexBuffer
-	CLASS CompiledSection
-		METHOD facesCanSeeEachother (Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Z
-			ARG 1 face1
-			ARG 2 face2
-		METHOD isEmpty (Lnet/minecraft/client/renderer/RenderType;)Z
-			ARG 1 renderType
-	CLASS TranslucencyPointOfView
-		METHOD equals (Ljava/lang/Object;)Z
-			ARG 1 other
-		METHOD getCoordinate (DI)I
-			ARG 0 cameraCoord
-			ARG 2 sectionCoord
-		METHOD of (Lnet/minecraft/world/phys/Vec3;J)Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$TranslucencyPointOfView;
-			ARG 0 cameraPosition
-			ARG 1 sectionNode
-		METHOD set (Lnet/minecraft/world/phys/Vec3;J)Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$TranslucencyPointOfView;
-			ARG 1 cameraPosition
-			ARG 2 sectionNode

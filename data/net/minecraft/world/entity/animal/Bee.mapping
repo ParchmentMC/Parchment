@@ -1,6 +1,4 @@
 CLASS net/minecraft/world/entity/animal/Bee
-	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 compound
 	METHOD aiStep ()V
 		COMMENT Called frequently, so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
 	METHOD attractsBees (Lnet/minecraft/world/level/block/state/BlockState;)Z
@@ -44,9 +42,6 @@ CLASS net/minecraft/world/entity/animal/Bee
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 block
-	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
-		ARG 1 compound
 	METHOD setFlag (IZ)V
 		ARG 1 flagId
 		ARG 2 value
@@ -124,8 +119,6 @@ CLASS net/minecraft/world/entity/animal/Bee
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 	CLASS BeePollinateGoal
-		METHOD lambda$new$0 (Lnet/minecraft/world/level/block/state/BlockState;)Z
-			ARG 0 state
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V

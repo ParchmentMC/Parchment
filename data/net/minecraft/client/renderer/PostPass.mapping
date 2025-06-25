@@ -1,81 +1,18 @@
 CLASS net/minecraft/client/renderer/PostPass
-	METHOD <init> (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/client/renderer/CompiledShaderProgram;Lnet/minecraft/resources/ResourceLocation;Ljava/util/List;)V
-		ARG 1 pipeline
-		ARG 2 shader
-		ARG 3 outputTargetId
-		ARG 4 uniforms
-	METHOD <init> (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/ResourceLocation;Ljava/util/List;)V
-		ARG 1 pipeline
-		ARG 2 outputTargetId
-		ARG 3 uniforms
 	METHOD <init> (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/ResourceLocation;Ljava/util/Map;Ljava/util/List;)V
 		ARG 1 pipeline
 		ARG 2 outputTargetId
 		ARG 3 uniforms
 		ARG 4 inputs
-	METHOD <init> (Ljava/lang/String;Lnet/minecraft/client/renderer/CompiledShaderProgram;Lnet/minecraft/resources/ResourceLocation;Ljava/util/List;)V
-		ARG 1 name
-		ARG 2 shader
-		ARG 3 outputTargetId
-		ARG 4 uniforms
-	METHOD <init> (Lnet/minecraft/server/packs/resources/ResourceProvider;Ljava/lang/String;Lcom/mojang/blaze3d/pipeline/RenderTarget;Lcom/mojang/blaze3d/pipeline/RenderTarget;Z)V
-		ARG 1 resourceProvider
-		ARG 2 name
-		ARG 3 inTarget
-		ARG 4 outTarget
-		ARG 5 useLinearFilter
-	METHOD <init> (Lnet/minecraft/server/packs/resources/ResourceProvider;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)V
-		ARG 1 resourceProvider
-		ARG 2 name
-		ARG 3 outputTargetId
-	METHOD addAuxAsset (Ljava/lang/String;Ljava/util/function/IntSupplier;II)V
-		ARG 1 auxName
-		ARG 2 auxFramebuffer
-		ARG 3 width
-		ARG 4 height
-	METHOD addInput (Lnet/minecraft/client/renderer/PostPass$Input;)V
-		ARG 1 input
 	METHOD addToFrame (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Ljava/util/Map;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
 		ARG 1 frameGraphBuilder
 		ARG 2 targets
 		ARG 3 projectionMatrixBuffer
-	METHOD addToFrame (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Ljava/util/Map;Lorg/joml/Matrix4f;)V
-		ARG 1 frameGraphBuilder
-		ARG 2 targets
-		ARG 3 projectionMatrix
-	METHOD addToFrame (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Ljava/util/Map;Lorg/joml/Matrix4f;F)V
-		ARG 1 frameGraphBuilder
-		ARG 2 targets
-		ARG 3 matrix
-		ARG 4 time
-	METHOD addToFrame (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Ljava/util/Map;Lorg/joml/Matrix4f;Ljava/util/function/Consumer;)V
-		ARG 1 frameGraphBuilder
-		ARG 2 targets
-		ARG 3 projectionMatrix
-		ARG 4 uniformSetter
-	METHOD process (F)V
-		ARG 1 partialTicks
-	METHOD setOrthoMatrix (Lorg/joml/Matrix4f;)V
-		ARG 1 shaderOrthoMatrix
-	METHOD storeUniform (Lcom/mojang/blaze3d/shaders/Uniform;Ljava/util/List;)V
-		ARG 0 uniform
-		ARG 1 values
 	CLASS Input
 		METHOD addToPass (Lcom/mojang/blaze3d/framegraph/FramePass;Ljava/util/Map;)V
 			ARG 1 pass
 			ARG 2 targets
-		METHOD bindTo (Lcom/mojang/blaze3d/systems/RenderPass;Ljava/util/Map;)V
-			ARG 1 renderPass
-			ARG 2 targets
-		METHOD bindTo (Lnet/minecraft/client/renderer/CompiledShaderProgram;Ljava/util/Map;)V
-			ARG 1 shaderProgram
-			ARG 2 targets
-		METHOD bindTo (Lnet/minecraft/client/renderer/EffectInstance;Ljava/util/Map;)V
-			ARG 1 effect
-			ARG 2 targets
 		METHOD cleanup (Ljava/util/Map;)V
-			ARG 1 targets
-		METHOD texture (Ljava/util/Map;)Lcom/mojang/blaze3d/textures/GpuTexture;
 			ARG 1 targets
 		METHOD texture (Ljava/util/Map;)Lcom/mojang/blaze3d/textures/GpuTextureView;
 			ARG 1 targets

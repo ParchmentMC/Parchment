@@ -1,6 +1,4 @@
 CLASS net/minecraft/world/entity/Mob
-	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 compound
 	METHOD ate ()V
 		COMMENT Applies the benefits of growing back wool and faster growing up to the acting entity. This function is used in the {@code EatBlockGoal}.
 	METHOD baseTick ()V
@@ -11,9 +9,6 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 1 projectileWeapon
 	METHOD canHoldItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
-	METHOD canReplaceCurrentItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 candidate
-		ARG 2 existing
 	METHOD canReplaceCurrentItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 newItem
 		ARG 2 currentItem
@@ -23,8 +18,6 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 2 existing
 	METHOD canShearEquipment (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 player
-	METHOD canTakeItem (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 itemstack
 	METHOD checkAndHandleImportantInteractions (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
@@ -36,20 +29,11 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 2 spawnReason
 		ARG 3 pos
 		ARG 4 random
-	METHOD checkMobSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)Z
-		ARG 0 type
-		ARG 1 level
-		ARG 2 spawnType
-		ARG 3 pos
-		ARG 4 random
 	METHOD checkSpawnObstruction (Lnet/minecraft/world/level/LevelReader;)Z
 		ARG 1 level
 	METHOD checkSpawnRules (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/EntitySpawnReason;)Z
 		ARG 1 level
 		ARG 2 spawnReason
-	METHOD checkSpawnRules (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/MobSpawnType;)Z
-		ARG 1 level
-		ARG 2 reason
 	METHOD compareArmor (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 newItem
 		ARG 2 currentItem
@@ -67,9 +51,6 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 2 conversionParams
 		ARG 3 spawnReason
 		ARG 4 afterConversion
-	METHOD convertTo (Lnet/minecraft/world/entity/EntityType;Z)Lnet/minecraft/world/entity/Mob;
-		ARG 1 entityType
-		ARG 2 transferInventory
 	METHOD createEquipmentParams (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/storage/loot/LootParams;
 		ARG 1 level
 	METHOD createEquipmentSlotContainer (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/Container;
@@ -78,17 +59,6 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 1 level
 	METHOD customServerAiStep (Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 1 level
-	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 entity
-	METHOD dropFromLootTable (Lnet/minecraft/world/damagesource/DamageSource;Z)V
-		ARG 1 damageSource
-		ARG 2 attackedRecently
-	METHOD dropLeash (ZZ)V
-		COMMENT Removes the leash from this entity
-		ARG 1 broadcastPacket
-		ARG 2 dropLeash
-	METHOD dropPreservedEquipment (Ljava/util/function/Predicate;)Ljava/util/Set;
-		ARG 1 predicate
 	METHOD dropPreservedEquipment (Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 1 level
 	METHOD dropPreservedEquipment (Lnet/minecraft/server/level/ServerLevel;Ljava/util/function/Predicate;)Ljava/util/Set;
@@ -117,33 +87,20 @@ CLASS net/minecraft/world/entity/Mob
 	METHOD equipItemIfPossible (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 level
 		ARG 2 stack
-	METHOD equipItemIfPossible (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
-		ARG 1 stack
 	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/EntitySpawnReason;Lnet/minecraft/world/entity/SpawnGroupData;)Lnet/minecraft/world/entity/SpawnGroupData;
 		ARG 1 level
 		ARG 2 difficulty
 		ARG 3 spawnReason
 		ARG 4 spawnGroupData
-	METHOD finalizeSpawn (Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;)Lnet/minecraft/world/entity/SpawnGroupData;
-		ARG 1 level
-		ARG 2 difficulty
-		ARG 3 spawnType
-		ARG 4 spawnGroupData
 	METHOD getAmbientSoundInterval ()I
 		COMMENT Get number of ticks, at least during which the living entity will be silent.
-	METHOD getApproximateAttackDamageWithItem (Lnet/minecraft/world/item/ItemStack;)D
-		ARG 1 itemStack
 	METHOD getApproximateAttributeWith (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/EquipmentSlot;)D
 		ARG 1 item
 		ARG 2 attribute
 		ARG 3 slot
-	METHOD getEquipmentDropChance (Lnet/minecraft/world/entity/EquipmentSlot;)F
-		ARG 1 slot
 	METHOD getEquipmentForSlot (Lnet/minecraft/world/entity/EquipmentSlot;I)Lnet/minecraft/world/item/Item;
 		ARG 0 slot
 		ARG 1 chance
-	METHOD getItemBySlot (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
-		ARG 1 slot
 	METHOD getMaxFallDistance ()I
 		COMMENT The maximum height from where the entity is allowed to jump (used in pathfinder)
 	METHOD getMaxHeadXRot ()I
@@ -154,15 +111,11 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 1 pathType
 	METHOD getTarget ()Lnet/minecraft/world/entity/LivingEntity;
 		COMMENT Gets the active target the Goal system uses for tracking
-	METHOD hasAnyComponentExceptDamage (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 0 stack
 	METHOD hasValidEquippableItemForSlot (Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 slot
 	METHOD interact (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
-	METHOD isBodyArmorItem (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
 	METHOD isEffectiveAi ()Z
 		COMMENT Returns whether the entity is in a server world
 	METHOD isMaxGroupSizeReached (I)Z
@@ -177,26 +130,6 @@ CLASS net/minecraft/world/entity/Mob
 		ARG 1 pos
 	METHOD isWithinMeleeAttackRange (Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 1 entity
-	METHOD isWithinRestriction (Lnet/minecraft/core/BlockPos;)Z
-		ARG 1 pos
-	METHOD isWithinRestriction (Lnet/minecraft/world/phys/Vec3;)Z
-		ARG 1 pos
-	METHOD lambda$checkAndHandleImportantInteractions$1 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Mob;)V
-		ARG 2 mob
-	METHOD lambda$checkAndHandleImportantInteractions$5 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Mob;)V
-		ARG 2 mob
-	METHOD lambda$dropPreservedEquipment$0 (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 0 stack
-	METHOD lambda$dropPreservedEquipment$4 (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 0 stack
-	METHOD lambda$readAdditionalSaveData$1 (Lnet/minecraft/world/entity/EntityEquipment;)V
-		ARG 1 equipment
-	METHOD lambda$readAdditionalSaveData$3 (Lnet/minecraft/world/entity/DropChances;)V
-		ARG 1 dropChances
-	METHOD lambda$removeAfterChangingDimensions$3 (Lnet/minecraft/world/item/ItemStack;)V
-		ARG 0 stack
-	METHOD lambda$removeFreeWill$2 (Lnet/minecraft/world/entity/ai/goal/Goal;)Z
-		ARG 0 goal
 	METHOD lookAt (Lnet/minecraft/world/entity/Entity;FF)V
 		COMMENT Changes the X and Y rotation so that this entity is facing the given entity.
 		ARG 1 entity
@@ -211,9 +144,6 @@ CLASS net/minecraft/world/entity/Mob
 	METHOD pickUpItem (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/item/ItemEntity;)V
 		ARG 1 level
 		ARG 2 entity
-	METHOD pickUpItem (Lnet/minecraft/world/entity/item/ItemEntity;)V
-		COMMENT Tests if this entity should pick up a weapon or an armor piece. Entity drops current weapon or armor if the new one is better.
-		ARG 1 itemEntity
 	METHOD playAmbientSound ()V
 		COMMENT Plays living's sound at its position
 	METHOD playHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)V
@@ -225,16 +155,10 @@ CLASS net/minecraft/world/entity/Mob
 	METHOD populateDefaultEquipmentSlots (Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/DifficultyInstance;)V
 		ARG 1 random
 		ARG 2 difficulty
-	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
-		ARG 1 compound
 	METHOD removeAllGoals (Ljava/util/function/Predicate;)V
 		ARG 1 filter
 	METHOD removeWhenFarAway (D)Z
 		ARG 1 distanceToClosestPlayer
-	METHOD restrictTo (Lnet/minecraft/core/BlockPos;I)V
-		ARG 1 center
-		ARG 2 radius
 	METHOD rotlerp (FFF)F
 		COMMENT Arguments: current rotation, intended rotation, max increment.
 		ARG 1 angle
@@ -257,18 +181,11 @@ CLASS net/minecraft/world/entity/Mob
 	METHOD setHomeTo (Lnet/minecraft/core/BlockPos;I)V
 		ARG 1 pos
 		ARG 2 radius
-	METHOD setItemSlot (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 slot
-		ARG 2 stack
 	METHOD setItemSlotAndDropWhenKilled (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 1 slot
 		ARG 2 stack
 	METHOD setLeftHanded (Z)V
 		ARG 1 leftHanded
-	METHOD setLootTable (Ljava/util/Optional;)V
-		ARG 1 lootTable
-	METHOD setLootTableSeed (J)V
-		ARG 1 lootTableSeed
 	METHOD setNoAi (Z)V
 		COMMENT Set whether this Entity's AI is disabled
 		ARG 1 noAi
@@ -301,5 +218,3 @@ CLASS net/minecraft/world/entity/Mob
 	METHOD wantsToPickUp (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 level
 		ARG 2 stack
-	METHOD wantsToPickUp (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack

@@ -10,14 +10,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 level
 		ARG 2 damageSource
 		ARG 3 amount
-	METHOD actuallyHurt (Lnet/minecraft/world/damagesource/DamageSource;F)V
-		COMMENT Deals damage to the entity. This will take the armor of the entity into consideration before damaging the health bar.
-		ARG 1 damageSource
-		ARG 2 damageAmount
-	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 compound
-	METHOD addEatEffect (Lnet/minecraft/world/food/FoodProperties;)V
-		ARG 1 foodProperties
 	METHOD addEffect (Lnet/minecraft/world/effect/MobEffectInstance;)Z
 		ARG 1 effectInstance
 	METHOD addEffect (Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z
@@ -37,12 +29,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD blockUsingItem (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 level
 		ARG 2 entity
-	METHOD blockUsingShield (Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 1 attacker
 	METHOD blockedByItem (Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 1 entity
-	METHOD blockedByShield (Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 1 defender
 	METHOD breakItem (Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Renders broken item particles using the given ItemStack
 		ARG 1 stack
@@ -51,22 +39,14 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD calculateFallDamage (DF)I
 		ARG 1 fallDistance
 		ARG 3 damageMultiplier
-	METHOD calculateFallDamage (FF)I
-		ARG 1 fallDistance
-		ARG 2 damageMultiplier
 	METHOD calculateFallPower (D)D
 		ARG 1 fallDistance
 	METHOD canAttack (Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 1 target
-	METHOD canAttack (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;)Z
-		ARG 1 livingentity
-		ARG 2 condition
 	METHOD canAttackType (Lnet/minecraft/world/entity/EntityType;)Z
 		ARG 1 entityType
 	METHOD canBeAffected (Lnet/minecraft/world/effect/MobEffectInstance;)Z
 		ARG 1 effectInstance
-	METHOD canContinueToGlide (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
 	METHOD canDispenserEquipIntoSlot (Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 slot
 	METHOD canEquipWithDispenser (Lnet/minecraft/world/item/ItemStack;)Z
@@ -76,8 +56,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 slot
 	METHOD canStandOnFluid (Lnet/minecraft/world/level/material/FluidState;)Z
 		ARG 1 fluidState
-	METHOD canTakeItem (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
 	METHOD canUseSlot (Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 slot
 	METHOD checkAutoSpinAttack (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/phys/AABB;)V
@@ -118,8 +96,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD doHurtTarget (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 level
 		ARG 2 source
-	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 target
 	METHOD doPush (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
 	METHOD doesEmitEquipEvent (Lnet/minecraft/world/entity/EquipmentSlot;)Z
@@ -140,18 +116,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD dropExperience (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 level
 		ARG 2 entity
-	METHOD dropExperience (Lnet/minecraft/world/entity/Entity;)V
-		ARG 1 entity
-	METHOD dropFromGiftLootTable (Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Consumer;)Z
-		ARG 1 lootTable
-		ARG 2 dropConsumer
 	METHOD dropFromGiftLootTable (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/resources/ResourceKey;Ljava/util/function/BiConsumer;)Z
 		ARG 1 level
 		ARG 2 lootTable
-		ARG 3 dropConsumer
-	METHOD dropFromLootTable (Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Function;Ljava/util/function/Consumer;)Z
-		ARG 1 lootTable
-		ARG 2 params
 		ARG 3 dropConsumer
 	METHOD dropFromLootTable (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)Z
 		ARG 1 level
@@ -162,28 +129,11 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 level
 		ARG 2 damageSource
 		ARG 3 playerKill
-	METHOD dropFromLootTable (Lnet/minecraft/world/damagesource/DamageSource;Z)V
-		ARG 1 damageSource
-		ARG 2 hitByPlayer
-	METHOD dropFromShearingLootTable (Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Consumer;)V
-		ARG 1 lootTable
-		ARG 2 output
-	METHOD dropFromShearingLootTable (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/item/ItemStack;Ljava/util/function/Consumer;)V
-		ARG 1 lootTable
-		ARG 2 shears
-		ARG 3 dropConsumer
 	METHOD dropFromShearingLootTable (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/item/ItemStack;Ljava/util/function/BiConsumer;)V
 		ARG 1 level
 		ARG 2 lootTable
 		ARG 3 shears
 		ARG 4 dropConsumer
-	METHOD eat (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
-		ARG 1 level
-		ARG 2 food
-	METHOD eat (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/food/FoodProperties;)Lnet/minecraft/world/item/ItemStack;
-		ARG 1 level
-		ARG 2 food
-		ARG 3 foodProperties
 	METHOD entityEventForEquipmentBreak (Lnet/minecraft/world/entity/EquipmentSlot;)B
 		ARG 0 slot
 	METHOD equipmentHasChanged (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
@@ -211,8 +161,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 level
 	METHOD getBedOrientation ()Lnet/minecraft/core/Direction;
 		COMMENT Gets the {@link net.minecraft.core.Direction} for the camera if this entity is sleeping.
-	METHOD getBoundingBoxForCulling ()Lnet/minecraft/world/phys/AABB;
-		COMMENT Gets the bounding box of this Entity, adjusted to take auxiliary entities into account (e.g. the tile contained by a minecart, such as a command block).
 	METHOD getCombatTracker ()Lnet/minecraft/world/damagesource/CombatTracker;
 		COMMENT 1.8.9
 	METHOD getComfortableFallDistance (F)I
@@ -231,10 +179,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 pose
 	METHOD getDimensions (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/entity/EntityDimensions;
 		ARG 1 pose
-	METHOD getDrinkingSound (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/sounds/SoundEvent;
-		ARG 1 stack
-	METHOD getEatingSound (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/sounds/SoundEvent;
-		ARG 1 stack
 	METHOD getEffect (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/effect/MobEffectInstance;
 		ARG 1 effect
 	METHOD getEffectBlendFactor (Lnet/minecraft/core/Holder;F)F
@@ -272,10 +216,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD getKnockback (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;)F
 		ARG 1 attacker
 		ARG 2 damageSource
-	METHOD getLastArmorItem (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
-		ARG 1 slot
-	METHOD getLastHandItem (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
-		ARG 1 slot
 	METHOD getLocalBoundsForPose (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/phys/AABB;
 		ARG 1 pose
 	METHOD getMaxHealth ()F
@@ -330,23 +270,12 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 2 block
 		ARG 3 fluid
 		ARG 4 y
-	METHOD hasLineOfSight (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/ClipContext$Block;Lnet/minecraft/world/level/ClipContext$Fluid;Ljava/util/function/DoubleSupplier;)Z
-		ARG 1 entity
-		ARG 2 blockClipContext
-		ARG 3 fluidClipContext
-		ARG 4 eyeY
 	METHOD heal (F)V
 		COMMENT Heal living entity (param: amount of half-hearts)
 		ARG 1 healAmount
-	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
-		COMMENT Called when the entity is attacked.
-		ARG 1 source
-		ARG 2 amount
 	METHOD hurtArmor (Lnet/minecraft/world/damagesource/DamageSource;F)V
 		ARG 1 damageSource
 		ARG 2 damageAmount
-	METHOD hurtCurrentlyUsedShield (F)V
-		ARG 1 damageAmount
 	METHOD hurtHelmet (Lnet/minecraft/world/damagesource/DamageSource;F)V
 		ARG 1 damageSource
 		ARG 2 damageAmount
@@ -365,9 +294,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Only use is to identify if class is an instance of player for experience dropping
 	METHOD isBaby ()Z
 		COMMENT If Animal, checks if the age timer is negative
-	METHOD isDamageSourceBlocked (Lnet/minecraft/world/damagesource/DamageSource;)Z
-		COMMENT Determines whether the entity can block the damage source based on the damage source's location, whether the damage source is blockable, and whether the entity is blocking.
-		ARG 1 damageSource
 	METHOD isEquippableInSlot (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 stack
 		ARG 2 slot
@@ -384,13 +310,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD isInvulnerableTo (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;)Z
 		ARG 1 level
 		ARG 2 damageSource
-	METHOD isLookingAtMe (Lnet/minecraft/world/entity/LivingEntity;DZZLjava/util/function/Predicate;[Ljava/util/function/DoubleSupplier;)Z
-		ARG 1 entity
-		ARG 2 tolerance
-		ARG 4 scaleByDistance
-		ARG 5 visual
-		ARG 6 filter
-		ARG 7 yValues
 	METHOD isLookingAtMe (Lnet/minecraft/world/entity/LivingEntity;DZZ[D)Z
 		ARG 1 entity
 		ARG 2 tolerance
@@ -407,157 +326,14 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Causes this entity to do an upwards motion (jumping).
 	METHOD jumpInLiquid (Lnet/minecraft/tags/TagKey;)V
 		ARG 1 fluidTag
-	METHOD kill ()V
-		COMMENT Called by the /kill command.
 	METHOD knockback (DDD)V
 		ARG 1 strength
 		ARG 3 x
 		ARG 5 z
-	METHOD lambda$addAdditionalSaveData$0 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
-	METHOD lambda$addAdditionalSaveData$1 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
-	METHOD lambda$addAdditionalSaveData$1 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
-		ARG 1 brainTag
-	METHOD lambda$addAdditionalSaveData$2 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
-	METHOD lambda$addAdditionalSaveData$2 (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V
-		ARG 1 brain
-	METHOD lambda$checkBedExists$11 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
-		ARG 1 pos
-	METHOD lambda$checkBedExists$13 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
-		ARG 1 pos
-	METHOD lambda$checkBedExists$14 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
-		ARG 1 pos
-	METHOD lambda$checkBedExists$15 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
-		ARG 1 pos
-	METHOD lambda$checkBedExists$7 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
-		ARG 1 pos
-	METHOD lambda$checkBedExists$9 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;
-		ARG 1 pos
-	METHOD lambda$collectEquipmentChanges$10 (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
-		ARG 1 attribute
-		ARG 2 modifier
-	METHOD lambda$collectEquipmentChanges$11 (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
-		ARG 1 attribute
-		ARG 2 modifier
-	METHOD lambda$collectEquipmentChanges$12 (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
-		ARG 1 attribute
-		ARG 2 modifier
-	METHOD lambda$collectEquipmentChanges$6 (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
-		ARG 1 attribute
-		ARG 2 modifier
-	METHOD lambda$collectEquipmentChanges$8 (Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
-		ARG 1 attribute
-		ARG 2 modifier
-	METHOD lambda$createEquipmentSlotAccess$10 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 2 stack
-	METHOD lambda$createEquipmentSlotAccess$15 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 2 stack
-	METHOD lambda$createEquipmentSlotAccess$17 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 2 stack
-	METHOD lambda$createEquipmentSlotAccess$18 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 2 stack
-	METHOD lambda$createEquipmentSlotAccess$19 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 2 stack
-	METHOD lambda$dismountVehicle$5 (DLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
-		ARG 2 vec3
-	METHOD lambda$dismountVehicle$7 (DLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
-		ARG 2 pos
-	METHOD lambda$dismountVehicle$9 (DLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
-		ARG 2 pos
-	METHOD lambda$dropFromGiftLootTable$3 (Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
-		ARG 1 builder
-	METHOD lambda$dropFromGiftLootTable$4 (Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
-		ARG 1 builder
-	METHOD lambda$dropFromGiftLootTable$5 (Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
-		ARG 1 builder
-	METHOD lambda$dropFromGiftLootTable$6 (Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
-		ARG 1 builder
-	METHOD lambda$dropFromLootTable$3 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 stack
-	METHOD lambda$dropFromLootTable$4 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 stack
-	METHOD lambda$dropFromLootTable$5 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 stack
-	METHOD lambda$dropFromLootTable$6 (Ljava/util/function/BiConsumer;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 stack
-	METHOD lambda$dropFromLootTable$7 (Ljava/util/function/BiConsumer;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 stack
-	METHOD lambda$dropFromLootTable$8 (Ljava/util/function/BiConsumer;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 stack
-	METHOD lambda$dropFromShearingLootTable$4 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
-		ARG 2 builder
-	METHOD lambda$dropFromShearingLootTable$5 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
-		ARG 2 builder
-	METHOD lambda$dropFromShearingLootTable$6 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
-		ARG 2 builder
-	METHOD lambda$dropFromShearingLootTable$7 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
-		ARG 2 builder
-	METHOD lambda$handleEquipmentChanges$11 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 slot
-		ARG 3 stack
-	METHOD lambda$handleEquipmentChanges$12 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 slot
-		ARG 3 stack
-	METHOD lambda$handleEquipmentChanges$13 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 slot
-		ARG 3 stack
-	METHOD lambda$handleEquipmentChanges$7 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 slot
-		ARG 3 stack
-	METHOD lambda$handleEquipmentChanges$9 (Ljava/util/List;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 slot
-		ARG 3 stack
-	METHOD lambda$isHolding$10 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
-	METHOD lambda$isHolding$4 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
-	METHOD lambda$isHolding$6 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
-	METHOD lambda$isHolding$8 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
-	METHOD lambda$isHolding$9 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
 	METHOD lambda$new$1 (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
 		ARG 0 slot
 	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 0 entity
-	METHOD lambda$stopLocationBasedEffects$12 (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
-		ARG 1 attribute
-		ARG 2 modifier
-	METHOD lambda$stopLocationBasedEffects$14 (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
-		ARG 1 attribute
-		ARG 2 modifier
-	METHOD lambda$stopLocationBasedEffects$16 (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
-		ARG 1 attribute
-		ARG 2 modifier
-	METHOD lambda$stopLocationBasedEffects$17 (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
-		ARG 1 attribute
-		ARG 2 modifier
-	METHOD lambda$stopLocationBasedEffects$18 (Lnet/minecraft/world/entity/ai/attributes/AttributeMap;Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
-		ARG 1 attribute
-		ARG 2 modifier
-	METHOD lambda$stopSleeping$11 (Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
-	METHOD lambda$stopSleeping$13 (Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
-	METHOD lambda$stopSleeping$15 (Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
-	METHOD lambda$stopSleeping$17 (Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
-	METHOD lambda$stopSleeping$9 (Lnet/minecraft/core/BlockPos;)V
-		ARG 1 pos
-	METHOD lambda$updateFallFlying$10 (Lnet/minecraft/world/entity/EquipmentSlot;)Z
-		ARG 1 slot
-	METHOD lambda$updateFallFlying$12 (Lnet/minecraft/world/entity/EquipmentSlot;)Z
-		ARG 1 slot
-	METHOD lambda$updateFallFlying$13 (Lnet/minecraft/world/entity/EquipmentSlot;)Z
-		ARG 1 slot
-	METHOD lambda$updateFallFlying$14 (Lnet/minecraft/world/entity/EquipmentSlot;)Z
-		ARG 1 slot
-	METHOD lambda$updateFallFlying$8 (Lnet/minecraft/world/entity/EquipmentSlot;)Z
-		ARG 1 slot
 	METHOD lerpHeadRotationStep (ID)V
 		ARG 1 lerpHeadSteps
 		ARG 2 lerpYHeadRot
@@ -581,8 +357,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD onEffectAdded (Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 effectInstance
 		ARG 2 entity
-	METHOD onEffectRemoved (Lnet/minecraft/world/effect/MobEffectInstance;)V
-		ARG 1 effectInstance
 	METHOD onEffectUpdated (Lnet/minecraft/world/effect/MobEffectInstance;ZLnet/minecraft/world/entity/Entity;)V
 		ARG 1 effectInstance
 		ARG 2 forced
@@ -618,9 +392,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 3 y
 		ARG 5 z
 		ARG 7 broadcastTeleport
-	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
-		ARG 1 compound
 	METHOD removeEffect (Lnet/minecraft/core/Holder;)Z
 		ARG 1 effect
 	METHOD removeEffectNoUpdate (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/effect/MobEffectInstance;
@@ -656,12 +427,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 2 stack
 	METHOD setJumping (Z)V
 		ARG 1 jumping
-	METHOD setLastArmorItem (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 slot
-		ARG 2 stack
-	METHOD setLastHandItem (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 slot
-		ARG 2 stack
 	METHOD setLastHurtByMob (Lnet/minecraft/world/entity/LivingEntity;)V
 		COMMENT Hint to AI tasks that we were attacked by the passed EntityLivingBase and should retaliate. Is not guaranteed to change our actual active target (for example if we are currently busy attacking someone else)
 		ARG 1 livingEntity
@@ -671,8 +436,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD setLastHurtByPlayer (Lnet/minecraft/world/entity/EntityReference;I)V
 		ARG 1 player
 		ARG 2 memoryTime
-	METHOD setLastHurtByPlayer (Lnet/minecraft/world/entity/player/Player;)V
-		ARG 1 player
 	METHOD setLastHurtByPlayer (Lnet/minecraft/world/entity/player/Player;I)V
 		ARG 1 player
 		ARG 2 memoryTime
@@ -738,9 +501,6 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Handles entity death timer, experience orb, and particle creation.
 	METHOD tickHeadTurn (F)V
 		ARG 1 yBodyRot
-	METHOD tickHeadTurn (FF)F
-		ARG 1 yRot
-		ARG 2 animStep
 	METHOD tickRidden (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 player
 		ARG 2 travelVector
@@ -766,14 +526,9 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD travelRidden (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 player
 		ARG 2 travelVector
-	METHOD triggerItemUseEffects (Lnet/minecraft/world/item/ItemStack;I)V
-		ARG 1 stack
-		ARG 2 amount
 	METHOD triggerOnDeathMobEffects (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity$RemovalReason;)V
 		ARG 1 level
 		ARG 2 removalReason
-	METHOD triggerOnDeathMobEffects (Lnet/minecraft/world/entity/Entity$RemovalReason;)V
-		ARG 1 removalReason
 	METHOD updateFallFlying ()V
 		COMMENT Called each tick. Updates state for the elytra.
 	METHOD updateFallFlyingMovement (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
@@ -786,7 +541,5 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 usingItem
 	METHOD updateWalkAnimation (F)V
 		ARG 1 partialTick
-	METHOD verifyEquippedItem (Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 stack
 	METHOD wouldNotSuffocateAtTargetPose (Lnet/minecraft/world/entity/Pose;)Z
 		ARG 1 pose

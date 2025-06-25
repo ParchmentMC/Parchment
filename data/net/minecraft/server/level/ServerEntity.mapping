@@ -1,10 +1,4 @@
 CLASS net/minecraft/server/level/ServerEntity
-	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;IZLjava/util/function/Consumer;)V
-		ARG 1 level
-		ARG 2 entity
-		ARG 3 updateInterval
-		ARG 4 trackDelta
-		ARG 5 broadcast
 	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;IZLjava/util/function/Consumer;Ljava/util/function/BiConsumer;)V
 		ARG 1 level
 		ARG 2 entity
@@ -16,8 +10,6 @@ CLASS net/minecraft/server/level/ServerEntity
 		ARG 1 player
 	METHOD broadcastAndSend (Lnet/minecraft/network/protocol/Packet;)V
 		ARG 1 packet
-	METHOD handleMinecartPosRot (Lnet/minecraft/world/entity/vehicle/NewMinecartBehavior;)V
-		ARG 1 newMinecartBehavior
 	METHOD handleMinecartPosRot (Lnet/minecraft/world/entity/vehicle/NewMinecartBehavior;BBZ)V
 		ARG 1 behavior
 		ARG 2 yRot
@@ -27,15 +19,10 @@ CLASS net/minecraft/server/level/ServerEntity
 		ARG 1 entity
 	METHOD lambda$mountedOrDismounted$1 (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
-	METHOD lambda$sendChanges$0 (Lnet/minecraft/world/entity/Entity;)V
-		ARG 0 removedPassenger
 	METHOD mountedOrDismounted (Ljava/util/List;)Ljava/util/stream/Stream;
 		ARG 1 entities
 	METHOD removePairing (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 player
-	METHOD removedPassengers (Ljava/util/List;Ljava/util/List;)Ljava/util/stream/Stream;
-		ARG 0 initialPassengers
-		ARG 1 currentPassengers
 	METHOD sendPairingData (Lnet/minecraft/server/level/ServerPlayer;Ljava/util/function/Consumer;)V
 		ARG 1 player
 		ARG 2 consumer

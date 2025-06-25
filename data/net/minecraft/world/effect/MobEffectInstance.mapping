@@ -61,9 +61,6 @@ CLASS net/minecraft/world/effect/MobEffectInstance
 		ARG 0 duration
 	METHOD lambda$withScaledDuration$2 (FI)I
 		ARG 1 duration
-	METHOD load (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/effect/MobEffectInstance;
-		COMMENT Read a custom potion effect from a potion item's NBT data.
-		ARG 0 nbt
 	METHOD mapDuration (Lit/unimi/dsi/fastutil/ints/Int2IntFunction;)I
 		ARG 1 mapper
 	METHOD onEffectAdded (Lnet/minecraft/world/entity/LivingEntity;)V
@@ -75,22 +72,12 @@ CLASS net/minecraft/world/effect/MobEffectInstance
 		ARG 2 entity
 		ARG 3 damageSource
 		ARG 4 amount
-	METHOD onMobHurt (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/damagesource/DamageSource;F)V
-		ARG 1 livingEntity
-		ARG 2 damageSource
-		ARG 3 amount
 	METHOD onMobRemoved (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity$RemovalReason;)V
 		ARG 1 level
 		ARG 2 entity
 		ARG 3 reason
-	METHOD onMobRemoved (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity$RemovalReason;)V
-		ARG 1 livingEntity
-		ARG 2 reason
 	METHOD setDetailsFrom (Lnet/minecraft/world/effect/MobEffectInstance;)V
 		ARG 1 effectInstance
-	METHOD tick (Lnet/minecraft/world/entity/LivingEntity;Ljava/lang/Runnable;)Z
-		ARG 1 entity
-		ARG 2 onExpirationRunnable
 	METHOD tickServer (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;Ljava/lang/Runnable;)Z
 		ARG 1 level
 		ARG 2 entity
@@ -116,12 +103,8 @@ CLASS net/minecraft/world/effect/MobEffectInstance
 		METHOD lambda$static$3 (Lnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/codec/StreamCodec;
 			ARG 0 codec
 	CLASS BlendState
-		METHOD computeTarget (Lnet/minecraft/world/effect/MobEffectInstance;)F
-			ARG 0 effect
 		METHOD copyFrom (Lnet/minecraft/world/effect/MobEffectInstance$BlendState;)V
 			ARG 1 blendState
-		METHOD getBlendDuration (Lnet/minecraft/world/effect/MobEffectInstance;)I
-			ARG 0 effect
 		METHOD getFactor (Lnet/minecraft/world/entity/LivingEntity;F)F
 			ARG 1 entity
 			ARG 2 delta

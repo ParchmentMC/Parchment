@@ -1,9 +1,4 @@
 CLASS net/minecraft/world/level/block/RedStoneWireBlock
-	METHOD calculateShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/phys/shapes/VoxelShape;
-		ARG 1 state
-	METHOD calculateTargetStrength (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)I
-		ARG 1 level
-		ARG 2 pos
 	METHOD canSurvive (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 state
 		ARG 2 level
@@ -57,37 +52,20 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 		ARG 4 side
 	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 context
-	METHOD getWireSignal (Lnet/minecraft/world/level/block/state/BlockState;)I
-		ARG 1 state
 	METHOD isCross (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
 	METHOD isDot (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 0 state
 	METHOD isSignalSource (Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
-	METHOD lambda$static$0 ([Lnet/minecraft/world/phys/Vec3;)V
-		ARG 0 array
 	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 state
 		ARG 2 mirror
-	METHOD neighborChanged (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos;Z)V
-		ARG 1 state
-		ARG 2 level
-		ARG 3 pos
-		ARG 4 block
-		ARG 5 fromPos
-		ARG 6 isMoving
 	METHOD onPlace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
 		ARG 1 state
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 oldState
-		ARG 5 isMoving
-	METHOD onRemove (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
-		ARG 1 state
-		ARG 2 level
-		ARG 3 pos
-		ARG 4 newState
 		ARG 5 isMoving
 	METHOD rotate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 state
@@ -106,24 +84,6 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 		ARG 5 perpendicularDirection
 		ARG 6 start
 		ARG 7 end
-	METHOD spawnParticlesAlongLine (Lnet/minecraft/world/level/Level;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;FF)V
-		ARG 1 level
-		ARG 2 random
-		ARG 3 pos
-		ARG 4 particleVec
-		ARG 5 xDirection
-		ARG 6 zDirection
-		ARG 7 min
-		ARG 8 max
-	METHOD spawnParticlesAlongLine (Lnet/minecraft/world/level/Level;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/BlockPos;Lorg/joml/Vector3f;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;FF)V
-		ARG 1 level
-		ARG 2 random
-		ARG 3 pos
-		ARG 4 color
-		ARG 5 forwardDirection
-		ARG 6 perpendicularDirection
-		ARG 7 start
-		ARG 8 end
 	METHOD updateIndirectNeighbourShapes (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;II)V
 		ARG 1 state
 		ARG 2 level
@@ -133,28 +93,12 @@ CLASS net/minecraft/world/level/block/RedStoneWireBlock
 	METHOD updateNeighborsOfNeighboringWires (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 level
 		ARG 2 pos
-	METHOD updatePowerStrength (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 state
-	METHOD updatePowerStrength (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/redstone/Orientation;)V
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 state
-		ARG 4 orientation
 	METHOD updatePowerStrength (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/redstone/Orientation;Z)V
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 state
 		ARG 4 orientation
 		ARG 5 updateShape
-	METHOD updateShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
-		ARG 1 state
-		ARG 2 facing
-		ARG 3 facingState
-		ARG 4 level
-		ARG 5 currentPos
-		ARG 6 facingPos
 	METHOD updatesOnShapeChange (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 level
 		ARG 2 pos

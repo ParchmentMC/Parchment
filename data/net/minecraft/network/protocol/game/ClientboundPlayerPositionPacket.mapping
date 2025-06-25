@@ -1,16 +1,4 @@
 CLASS net/minecraft/network/protocol/game/ClientboundPlayerPositionPacket
-	METHOD <init> (DDDFFLjava/util/Set;I)V
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-		ARG 7 yRot
-		ARG 8 xRot
-		ARG 9 relativeArguments
-		ARG 10 id
-	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
-		ARG 1 buffer
-	METHOD getRelativeArguments ()Ljava/util/Set;
-		COMMENT Returns a set of which fields are relative. Items in this set indicate that the value is a relative change applied to the player's position, rather than an exact value.
 	METHOD handle (Lnet/minecraft/network/protocol/game/ClientGamePacketListener;)V
 		COMMENT Passes this Packet on to the NetHandler for processing.
 		ARG 1 handler
@@ -18,6 +6,3 @@ CLASS net/minecraft/network/protocol/game/ClientboundPlayerPositionPacket
 		ARG 0 id
 		ARG 1 positionMoveRotation
 		ARG 2 relativeArguments
-	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
-		COMMENT Writes the raw packet data to the data stream.
-		ARG 1 buffer

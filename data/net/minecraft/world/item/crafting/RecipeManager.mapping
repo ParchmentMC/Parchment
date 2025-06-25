@@ -1,22 +1,11 @@
 CLASS net/minecraft/world/item/crafting/RecipeManager
 	METHOD <init> (Lnet/minecraft/core/HolderLookup$Provider;)V
 		ARG 1 registries
-	METHOD apply (Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
-		ARG 1 object
-		ARG 2 resourceManager
-		ARG 3 profiler
 	METHOD byKey (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
 		ARG 1 key
-	METHOD byKey (Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
-		ARG 1 recipeId
 	METHOD byKeyTyped (Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/item/crafting/RecipeHolder;
 		ARG 1 type
 		ARG 2 key
-	METHOD byKeyTyped (Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/item/crafting/RecipeHolder;
-		ARG 1 type
-		ARG 2 name
-	METHOD byType (Lnet/minecraft/world/item/crafting/RecipeType;)Ljava/util/Collection;
-		ARG 1 type
 	METHOD createCheck (Lnet/minecraft/world/item/crafting/RecipeType;)Lnet/minecraft/world/item/crafting/RecipeManager$CachedCheck;
 		ARG 0 recipeType
 	METHOD filterDisabled (Lnet/minecraft/world/flag/FeatureFlagSet;Ljava/util/List;)Ljava/util/List;
@@ -30,12 +19,6 @@ CLASS net/minecraft/world/item/crafting/RecipeManager
 		ARG 0 recipe
 		ARG 1 json
 		ARG 2 registries
-	METHOD fromJson (Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/item/crafting/RecipeHolder;
-		ARG 0 recipeId
-		ARG 1 json
-		ARG 2 registries
-	METHOD getAllRecipesFor (Lnet/minecraft/world/item/crafting/RecipeType;)Ljava/util/List;
-		ARG 1 recipeType
 	METHOD getRecipeFor (Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/item/crafting/RecipeInput;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
 		ARG 1 recipeType
 		ARG 2 input
@@ -45,11 +28,6 @@ CLASS net/minecraft/world/item/crafting/RecipeManager
 		ARG 2 input
 		ARG 3 level
 		ARG 4 recipe
-	METHOD getRecipeFor (Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/item/crafting/RecipeInput;Lnet/minecraft/world/level/Level;Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
-		ARG 1 recipeType
-		ARG 2 input
-		ARG 3 level
-		ARG 4 lastRecipe
 	METHOD getRecipeFor (Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/item/crafting/RecipeInput;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/crafting/RecipeHolder;)Ljava/util/Optional;
 		ARG 1 recipeType
 		ARG 2 input
@@ -57,25 +35,11 @@ CLASS net/minecraft/world/item/crafting/RecipeManager
 		ARG 4 lastRecipe
 	METHOD getRecipeFromDisplay (Lnet/minecraft/world/item/crafting/display/RecipeDisplayId;)Lnet/minecraft/world/item/crafting/RecipeManager$ServerDisplayInfo;
 		ARG 1 display
-	METHOD getRecipesFor (Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/item/crafting/RecipeInput;Lnet/minecraft/world/level/Level;)Ljava/util/List;
-		ARG 1 recipeType
-		ARG 2 input
-		ARG 3 level
-	METHOD getRemainingItemsFor (Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/item/crafting/RecipeInput;Lnet/minecraft/world/level/Level;)Lnet/minecraft/core/NonNullList;
-		ARG 1 recipeType
-		ARG 2 input
-		ARG 3 lvel
 	METHOD isIngredientEnabled (Lnet/minecraft/world/flag/FeatureFlagSet;Lnet/minecraft/world/item/crafting/Ingredient;)Z
 		ARG 0 enabledFeatures
 		ARG 1 ingredient
 	METHOD lambda$filterDisabled$10 (Lnet/minecraft/world/flag/FeatureFlagSet;Lnet/minecraft/world/item/crafting/Ingredient;)Z
 		ARG 1 ingredient
-	METHOD lambda$filterDisabled$3 (Lnet/minecraft/world/flag/FeatureFlagSet;Lnet/minecraft/world/item/crafting/Ingredient;)Z
-		ARG 1 ingredient
-	METHOD lambda$finalizeRecipeLoading$1 (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lnet/minecraft/world/flag/FeatureFlagSet;Ljava/util/List;Lnet/minecraft/world/item/crafting/RecipeHolder;)V
-		ARG 9 recipe
-	METHOD lambda$finalizeRecipeLoading$2 (Lnet/minecraft/world/item/crafting/RecipeManager$ServerDisplayInfo;)Lnet/minecraft/resources/ResourceKey;
-		ARG 0 displayInfo
 	METHOD lambda$finalizeRecipeLoading$4 (Ljava/util/Map$Entry;)Lnet/minecraft/world/item/crafting/RecipeManager$IngredientCollector;
 		ARG 0 entry
 	METHOD lambda$finalizeRecipeLoading$5 (Lnet/minecraft/world/item/crafting/Recipe;Lnet/minecraft/world/item/crafting/RecipeManager$IngredientCollector;)V
@@ -92,15 +56,8 @@ CLASS net/minecraft/world/item/crafting/RecipeManager
 		ARG 1 recipe
 	METHOD lambda$isIngredientEnabled$11 (Lnet/minecraft/world/flag/FeatureFlagSet;Lnet/minecraft/core/Holder;)Z
 		ARG 1 item
-	METHOD lambda$isIngredientEnabled$4 (Lnet/minecraft/world/flag/FeatureFlagSet;Lnet/minecraft/core/Holder;)Z
-		ARG 1 item
 	METHOD lambda$listDisplaysForRecipe$12 (Ljava/util/function/Consumer;Lnet/minecraft/world/item/crafting/RecipeManager$ServerDisplayInfo;)V
 		ARG 1 displayInfo
-	METHOD lambda$listDisplaysForRecipe$5 (Ljava/util/function/Consumer;Lnet/minecraft/world/item/crafting/RecipeManager$ServerDisplayInfo;)V
-		ARG 1 displayInfo
-	METHOD lambda$prepare$0 (Ljava/util/List;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/crafting/Recipe;)V
-		ARG 1 location
-		ARG 2 recipe
 	METHOD lambda$prepare$3 (Ljava/util/List;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/crafting/Recipe;)V
 		ARG 1 location
 		ARG 2 recipe
@@ -113,8 +70,6 @@ CLASS net/minecraft/world/item/crafting/RecipeManager
 	METHOD listDisplaysForRecipe (Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Consumer;)V
 		ARG 1 recipe
 		ARG 2 output
-	METHOD replaceRecipes (Ljava/lang/Iterable;)V
-		ARG 1 recipes
 	METHOD unpackRecipeInfo (Ljava/lang/Iterable;Lnet/minecraft/world/flag/FeatureFlagSet;)Ljava/util/List;
 		ARG 0 recipes
 		ARG 1 enabledFeatures
@@ -122,14 +77,11 @@ CLASS net/minecraft/world/item/crafting/RecipeManager
 		METHOD getRecipeFor (Lnet/minecraft/world/item/crafting/RecipeInput;Lnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
 			ARG 1 input
 			ARG 2 level
-		METHOD getRecipeFor (Lnet/minecraft/world/item/crafting/RecipeInput;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
-			ARG 1 input
-			ARG 2 level
 	CLASS IngredientCollector
 		METHOD <init> (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/item/crafting/RecipeManager$IngredientExtractor;)V
 			ARG 1 key
 			ARG 2 extractor
-		METHOD accept (Ljava/lang/Object;)V
+		METHOD accept (Lnet/minecraft/world/item/crafting/Recipe;)V
 			ARG 1 recipe
 		METHOD asPropertySet (Lnet/minecraft/world/flag/FeatureFlagSet;)Lnet/minecraft/world/item/crafting/RecipePropertySet;
 			ARG 1 enabledFeatures

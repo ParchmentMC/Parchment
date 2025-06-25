@@ -12,11 +12,6 @@ CLASS net/minecraft/client/renderer/RenderStateShard
 		METHOD <init> (Ljava/lang/String;Ljava/util/function/Supplier;)V
 			ARG 1 name
 			ARG 2 renderTargetSupplier
-	CLASS ShaderStateShard
-		METHOD <init> (Ljava/util/function/Supplier;)V
-			ARG 1 shader
-		METHOD <init> (Lnet/minecraft/client/renderer/ShaderProgram;)V
-			ARG 1 shader
 	CLASS BooleanStateShard
 		METHOD <init> (Ljava/lang/String;Ljava/lang/Runnable;Ljava/lang/Runnable;Z)V
 			ARG 1 name
@@ -27,24 +22,12 @@ CLASS net/minecraft/client/renderer/RenderStateShard
 		METHOD <init> (Z)V
 			ARG 1 useOverlay
 	CLASS TextureStateShard
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/util/TriState;Z)V
-			ARG 1 texture
-			ARG 2 blur
-			ARG 3 mipmap
 		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Z)V
 			ARG 1 texture
 			ARG 2 mipmap
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;ZZ)V
-			ARG 1 texture
-			ARG 2 blur
-			ARG 3 mipmap
 	CLASS LightmapStateShard
 		METHOD <init> (Z)V
 			ARG 1 useLightmap
-	CLASS WriteMaskStateShard
-		METHOD <init> (ZZ)V
-			ARG 1 writeColor
-			ARG 2 writeDepth
 	CLASS EmptyTextureStateShard
 		METHOD <init> (Ljava/lang/Runnable;Ljava/lang/Runnable;)V
 			ARG 1 setupState
@@ -56,10 +39,6 @@ CLASS net/minecraft/client/renderer/RenderStateShard
 			METHOD add (Lnet/minecraft/resources/ResourceLocation;Z)Lnet/minecraft/client/renderer/RenderStateShard$MultiTextureStateShard$Builder;
 				ARG 1 id
 				ARG 2 mipmap
-			METHOD add (Lnet/minecraft/resources/ResourceLocation;ZZ)Lnet/minecraft/client/renderer/RenderStateShard$MultiTextureStateShard$Builder;
-				ARG 1 texture
-				ARG 2 blur
-				ARG 3 mipmap
 	CLASS OffsetTexturingStateShard
 		METHOD <init> (FF)V
 			ARG 1 u

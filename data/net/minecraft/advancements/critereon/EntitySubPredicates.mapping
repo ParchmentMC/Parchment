@@ -1,47 +1,6 @@
 CLASS net/minecraft/advancements/critereon/EntitySubPredicates
 	METHOD bootstrap (Lnet/minecraft/core/Registry;)Lcom/mojang/serialization/MapCodec;
 		ARG 0 registry
-	METHOD catVariant (Lnet/minecraft/core/Holder;)Lnet/minecraft/advancements/critereon/EntitySubPredicate;
-		ARG 0 catVariant
-	METHOD frogVariant (Lnet/minecraft/core/Holder;)Lnet/minecraft/advancements/critereon/EntitySubPredicate;
-		ARG 0 frogVariant
 	METHOD register (Ljava/lang/String;Lcom/mojang/serialization/MapCodec;)Lcom/mojang/serialization/MapCodec;
 		ARG 0 name
 		ARG 1 codec
-	METHOD register (Ljava/lang/String;Lnet/minecraft/advancements/critereon/EntitySubPredicates$EntityHolderVariantPredicateType;)Lnet/minecraft/advancements/critereon/EntitySubPredicates$EntityHolderVariantPredicateType;
-		ARG 0 name
-		ARG 1 predicateType
-	METHOD register (Ljava/lang/String;Lnet/minecraft/advancements/critereon/EntitySubPredicates$EntityVariantPredicateType;)Lnet/minecraft/advancements/critereon/EntitySubPredicates$EntityVariantPredicateType;
-		ARG 0 name
-		ARG 1 predicateType
-	METHOD wolfVariant (Lnet/minecraft/core/HolderSet;)Lnet/minecraft/advancements/critereon/EntitySubPredicate;
-		ARG 0 wolfVariant
-	CLASS EntityVariantPredicateType
-		METHOD <init> (Lcom/mojang/serialization/Codec;Ljava/util/function/Function;)V
-			ARG 1 codec
-			ARG 2 getter
-		METHOD create (Lcom/mojang/serialization/Codec;Ljava/util/function/Function;)Lnet/minecraft/advancements/critereon/EntitySubPredicates$EntityVariantPredicateType;
-			ARG 0 codec
-			ARG 1 getter
-		METHOD create (Lnet/minecraft/core/Registry;Ljava/util/function/Function;)Lnet/minecraft/advancements/critereon/EntitySubPredicates$EntityVariantPredicateType;
-			ARG 0 variantRegistry
-			ARG 1 getter
-		METHOD createPredicate (Ljava/lang/Object;)Lnet/minecraft/advancements/critereon/EntitySubPredicate;
-			ARG 1 variant
-		CLASS Instance
-			METHOD <init> (Lnet/minecraft/advancements/critereon/EntitySubPredicates$EntityVariantPredicateType;Ljava/lang/Object;)V
-				ARG 2 variant
-	CLASS EntityHolderVariantPredicateType
-		METHOD <init> (Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Function;)V
-			ARG 1 registryKey
-			ARG 2 getter
-		METHOD create (Lnet/minecraft/resources/ResourceKey;Ljava/util/function/Function;)Lnet/minecraft/advancements/critereon/EntitySubPredicates$EntityHolderVariantPredicateType;
-			ARG 0 registryKey
-			ARG 1 getter
-		METHOD createPredicate (Lnet/minecraft/core/HolderSet;)Lnet/minecraft/advancements/critereon/EntitySubPredicate;
-			ARG 1 variants
-		METHOD lambda$new$2 (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-			ARG 2 instance
-		CLASS Instance
-			METHOD <init> (Lnet/minecraft/advancements/critereon/EntitySubPredicates$EntityHolderVariantPredicateType;Lnet/minecraft/core/HolderSet;)V
-				ARG 2 variants

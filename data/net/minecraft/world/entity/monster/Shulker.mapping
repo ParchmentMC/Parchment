@@ -1,6 +1,4 @@
 CLASS net/minecraft/world/entity/monster/Shulker
-	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 compound
 	METHOD canStayAt (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
 		ARG 1 pos
 		ARG 2 facing
@@ -14,34 +12,19 @@ CLASS net/minecraft/world/entity/monster/Shulker
 		COMMENT The speed it takes to move the entity's rotationPitch through the faceEntity method. This is only currently use in wolves.
 	METHOD getPhysicalPeek (F)F
 		ARG 0 peek
-	METHOD getProgressAabb (FLnet/minecraft/core/Direction;F)Lnet/minecraft/world/phys/AABB;
-		ARG 0 scale
-		ARG 1 expansionDirection
-		ARG 2 peek
 	METHOD getProgressAabb (FLnet/minecraft/core/Direction;FLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/AABB;
 		ARG 0 scale
 		ARG 1 expansionDirection
 		ARG 2 peek
 		ARG 3 position
-	METHOD getProgressDeltaAabb (FLnet/minecraft/core/Direction;FF)Lnet/minecraft/world/phys/AABB;
-		ARG 0 scale
-		ARG 1 expansionDirection
-		ARG 2 currentPeek
-		ARG 3 oldPeek
 	METHOD getProgressDeltaAabb (FLnet/minecraft/core/Direction;FFLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/AABB;
 		ARG 0 scale
 		ARG 1 expansionDirection
 		ARG 2 currentPeek
 		ARG 3 oldPeek
 		ARG 4 position
-	METHOD getRenderPosition (F)Ljava/util/Optional;
-		ARG 1 partial
 	METHOD getRenderPosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTick
-	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
-		COMMENT Called when the entity is attacked.
-		ARG 1 source
-		ARG 2 amount
 	METHOD isPositionBlocked (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD lambda$onPeekAmountChange$1 (Lnet/minecraft/world/entity/Entity;)Z
@@ -58,9 +41,6 @@ CLASS net/minecraft/world/entity/monster/Shulker
 	METHOD push (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Applies a velocity to the entities, to push them away from each other.
 		ARG 1 entity
-	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
-		ARG 1 compound
 	METHOD setAttachFace (Lnet/minecraft/core/Direction;)V
 		ARG 1 attachFace
 	METHOD setPos (DDD)V
@@ -105,8 +85,6 @@ CLASS net/minecraft/world/entity/monster/Shulker
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
 		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;
 			ARG 1 targetDistance
-		METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
-			ARG 0 entity
 		METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/server/level/ServerLevel;)Z
 			ARG 0 entity
 			ARG 1 level

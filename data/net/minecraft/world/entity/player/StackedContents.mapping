@@ -2,53 +2,18 @@ CLASS net/minecraft/world/entity/player/StackedContents
 	METHOD account (Ljava/lang/Object;I)V
 		ARG 1 item
 		ARG 2 amount
-	METHOD accountSimpleStack (Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 stack
-	METHOD accountStack (Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 stack
-	METHOD accountStack (Lnet/minecraft/world/item/ItemStack;I)V
-		ARG 1 stack
-		ARG 2 amount
 	METHOD anyIngredientMatches (Ljava/lang/Iterable;Ljava/lang/Object;)Z
 		ARG 0 ingredients
 		ARG 1 item
-	METHOD canCraft (Lnet/minecraft/world/item/crafting/Recipe;Lit/unimi/dsi/fastutil/ints/IntList;)Z
-		ARG 1 recipe
-		ARG 2 stackingIndexList
-	METHOD canCraft (Lnet/minecraft/world/item/crafting/Recipe;Lit/unimi/dsi/fastutil/ints/IntList;I)Z
-		ARG 1 recipe
-		ARG 2 stackingIndexList
-		ARG 3 amount
-	METHOD fromStackingIndex (I)Lnet/minecraft/world/item/ItemStack;
-		ARG 0 stackingIndex
-	METHOD getBiggestCraftableStack (Lnet/minecraft/world/item/crafting/RecipeHolder;ILit/unimi/dsi/fastutil/ints/IntList;)I
-		ARG 1 recipe
-		ARG 2 amount
-		ARG 3 stackingIndexList
-	METHOD getBiggestCraftableStack (Lnet/minecraft/world/item/crafting/RecipeHolder;Lit/unimi/dsi/fastutil/ints/IntList;)I
-		ARG 1 recipe
-		ARG 2 stackingIndexList
 	METHOD getResultUpperBound (Ljava/util/List;)I
 		ARG 1 ingredients
-	METHOD getStackingIndex (Lnet/minecraft/world/item/ItemStack;)I
-		ARG 0 stack
 	METHOD getUniqueAvailableIngredientItems (Ljava/lang/Iterable;)Ljava/util/List;
 		ARG 1 ingredients
-	METHOD has (I)Z
-		ARG 1 stackingIndex
-	METHOD hasAnyAmount (Ljava/lang/Object;)Z
-		ARG 1 item
 	METHOD hasAtLeast (Ljava/lang/Object;I)Z
 		ARG 1 item
 		ARG 2 amount
-	METHOD put (II)V
-		ARG 1 stackingIndex
-		ARG 2 increment
 	METHOD put (Ljava/lang/Object;I)V
 		ARG 1 item
-		ARG 2 amount
-	METHOD take (II)I
-		ARG 1 stackingIndex
 		ARG 2 amount
 	METHOD take (Ljava/lang/Object;I)V
 		ARG 1 item
@@ -67,33 +32,22 @@ CLASS net/minecraft/world/entity/player/StackedContents
 	CLASS RecipePicker
 		METHOD <init> (Lnet/minecraft/world/entity/player/StackedContents;Ljava/util/List;)V
 			ARG 2 ingredients
-		METHOD <init> (Lnet/minecraft/world/entity/player/StackedContents;Lnet/minecraft/world/item/crafting/Recipe;)V
-			ARG 2 recipe
 		METHOD assign (II)V
 			ARG 1 itemIndex
 			ARG 2 ingredientIndex
 		METHOD clearRange (II)V
 			ARG 1 offset
 			ARG 2 count
-		METHOD dfs (I)Z
-			ARG 1 amount
 		METHOD findNewItemAssignmentPath (I)Lit/unimi/dsi/fastutil/ints/IntList;
 			ARG 1 amount
 		METHOD getConnectionIndex (II)I
 			ARG 1 itemIndex
 			ARG 2 ingredientIndex
-		METHOD getIndex (ZII)I
-			ARG 1 isIngredientPath
-			ARG 2 stackingIndex
-			ARG 3 pathIndex
 		METHOD getResidualIndex (II)I
 			ARG 1 itemIndex
 			ARG 2 ingredientIndex
 		METHOD getSatisfiedIndex (I)I
 			ARG 1 stackingIndex
-		METHOD getVisitedIndex (ZI)I
-			ARG 1 isIngredientPath
-			ARG 2 pathIndex
 		METHOD getVisitedIngredientIndex (I)I
 			ARG 1 ingredientIndex
 		METHOD getVisitiedItemIndex (I)I
@@ -101,17 +55,6 @@ CLASS net/minecraft/world/entity/player/StackedContents
 		METHOD hasConnection (II)Z
 			ARG 1 itemIndex
 			ARG 2 ingredientIndex
-		METHOD hasConnection (ZII)Z
-			ARG 1 isIngredientPath
-			ARG 2 stackingIndex
-			ARG 3 pathIndex
-		METHOD hasResidual (ZII)Z
-			ARG 1 isIngredientPath
-			ARG 2 stackingIndex
-			ARG 3 pathIndex
-		METHOD hasVisited (ZI)Z
-			ARG 1 isIngredientPath
-			ARG 2 pathIndex
 		METHOD hasVisitedIngredient (I)Z
 			ARG 1 ingredientIndex
 		METHOD hasVisitedItem (I)Z
@@ -128,36 +71,21 @@ CLASS net/minecraft/world/entity/player/StackedContents
 			ARG 2 ingredientIndex
 		METHOD setSatisfied (I)V
 			ARG 1 stackingIndex
-		METHOD toggleResidual (ZII)V
-			ARG 1 isIngredientPath
-			ARG 2 stackingIndex
-			ARG 3 pathIndex
 		METHOD tryAssigningNewItem (I)Lit/unimi/dsi/fastutil/ints/IntList;
 			ARG 1 amount
-		METHOD tryPick (ILit/unimi/dsi/fastutil/ints/IntList;)Z
-			ARG 1 amount
-			ARG 2 stackingIndexList
 		METHOD tryPick (ILnet/minecraft/world/entity/player/StackedContents$Output;)Z
 			ARG 1 amount
 			ARG 2 output
-		METHOD tryPickAll (ILit/unimi/dsi/fastutil/ints/IntList;)I
-			ARG 1 amount
-			ARG 2 stackingIndexList
 		METHOD tryPickAll (ILnet/minecraft/world/entity/player/StackedContents$Output;)I
 			ARG 1 amount
 			ARG 2 output
 		METHOD unassign (II)V
 			ARG 1 itemIndex
 			ARG 2 ingredientIndex
-		METHOD visit (ZI)V
-			ARG 1 isIngredientPath
-			ARG 2 pathIndex
 		METHOD visitIngredient (I)V
 			ARG 1 ingredientIndex
 		METHOD visitItem (I)V
 			ARG 1 itemIndex
 	CLASS IngredientInfo
-		METHOD <init> (Ljava/util/List;)V
-			ARG 1 allowedItems
 		METHOD acceptsItem (Ljava/lang/Object;)Z
 			ARG 1 item

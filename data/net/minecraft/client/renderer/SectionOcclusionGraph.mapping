@@ -2,9 +2,6 @@ CLASS net/minecraft/client/renderer/SectionOcclusionGraph
 	METHOD addNeighbors (Lnet/minecraft/client/renderer/SectionOcclusionGraph$GraphEvents;Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 graphEvents
 		ARG 2 chunkPos
-	METHOD addSectionsInFrustum (Lnet/minecraft/client/renderer/culling/Frustum;Ljava/util/List;)V
-		ARG 1 frustum
-		ARG 2 sections
 	METHOD addSectionsInFrustum (Lnet/minecraft/client/renderer/culling/Frustum;Ljava/util/List;Ljava/util/List;)V
 		ARG 1 frustum
 		ARG 2 visibleSections
@@ -15,65 +12,35 @@ CLASS net/minecraft/client/renderer/SectionOcclusionGraph
 		ARG 1 sectionPos
 		ARG 3 section
 		ARG 4 direction
-	METHOD getRelativeFrom (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;
-		ARG 1 pos
-		ARG 2 section
-		ARG 3 direction
 	METHOD initializeQueueForFullUpdate (Lnet/minecraft/client/Camera;Ljava/util/Queue;)V
 		ARG 1 camera
 		ARG 2 nodeQueue
 	METHOD isInViewDistance (JJ)Z
 		ARG 1 centerPos
 		ARG 3 pos
-	METHOD isInViewDistance (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)Z
-		ARG 1 pos
-		ARG 2 origin
 	METHOD lambda$addSectionsInFrustum$0 (Ljava/util/List;Ljava/util/List;Lnet/minecraft/client/renderer/Octree$Node;ZIZ)V
 		ARG 2 node
 		ARG 3 isLeafNode
 		ARG 4 recursionDepth
 		ARG 5 isNearby
-	METHOD lambda$initializeQueueForFullUpdate$4 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/SectionOcclusionGraph$Node;)D
-		ARG 1 node
 	METHOD lambda$initializeQueueForFullUpdate$5 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/SectionOcclusionGraph$Node;)D
 		ARG 1 node
-	METHOD lambda$runPartialUpdate$3 (Lnet/minecraft/client/renderer/culling/Frustum;Ljava/util/List;Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
-		ARG 2 renderSection
 	METHOD lambda$runPartialUpdate$4 (Lnet/minecraft/client/renderer/culling/Frustum;Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
 		ARG 2 renderSection
-	METHOD lambda$scheduleFullUpdate$0 (Lnet/minecraft/client/renderer/SectionOcclusionGraph$GraphState;Lnet/minecraft/client/renderer/SectionOcclusionGraph$Node;)V
-		ARG 1 node
 	METHOD lambda$scheduleFullUpdate$1 (Lnet/minecraft/client/renderer/SectionOcclusionGraph$GraphState;Lnet/minecraft/client/renderer/SectionOcclusionGraph$Node;)V
 		ARG 1 node
-	METHOD lambda$scheduleFullUpdate$1 (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
-		ARG 0 renderSection
 	METHOD lambda$scheduleFullUpdate$2 (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
 		ARG 0 renderSection
-	METHOD onChunkLoaded (Lnet/minecraft/world/level/ChunkPos;)V
-		ARG 1 chunkPos
 	METHOD onChunkReadyToRender (Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 chunkPos
-	METHOD onSectionCompiled (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
-		ARG 1 section
 	METHOD queueSectionsWithNewNeighbors (Lnet/minecraft/client/renderer/SectionOcclusionGraph$GraphState;)V
 		ARG 1 graphState
-	METHOD runPartialUpdate (ZLnet/minecraft/client/renderer/culling/Frustum;Ljava/util/List;Lnet/minecraft/world/phys/Vec3;)V
-		ARG 1 smartCull
-		ARG 2 frustum
-		ARG 3 sections
-		ARG 4 cameraPosition
 	METHOD runPartialUpdate (ZLnet/minecraft/client/renderer/culling/Frustum;Ljava/util/List;Lnet/minecraft/world/phys/Vec3;Lit/unimi/dsi/fastutil/longs/LongOpenHashSet;)V
 		ARG 1 smartCull
 		ARG 2 frustum
 		ARG 3 visibleSections
 		ARG 4 cameraPosition
 		ARG 5 loadedEmptySections
-	METHOD runUpdates (Lnet/minecraft/client/renderer/SectionOcclusionGraph$GraphStorage;Lnet/minecraft/world/phys/Vec3;Ljava/util/Queue;ZLjava/util/function/Consumer;)V
-		ARG 1 graphStorage
-		ARG 2 cameraPosition
-		ARG 3 nodeQueue
-		ARG 4 smartCull
-		ARG 5 sections
 	METHOD runUpdates (Lnet/minecraft/client/renderer/SectionOcclusionGraph$GraphStorage;Lnet/minecraft/world/phys/Vec3;Ljava/util/Queue;ZLjava/util/function/Consumer;Lit/unimi/dsi/fastutil/longs/LongOpenHashSet;)V
 		ARG 1 storage
 		ARG 2 cameraPosition
@@ -81,10 +48,6 @@ CLASS net/minecraft/client/renderer/SectionOcclusionGraph
 		ARG 4 smartCull
 		ARG 5 visibleSectionConsumer
 		ARG 6 loadedEmptySection
-	METHOD scheduleFullUpdate (ZLnet/minecraft/client/Camera;Lnet/minecraft/world/phys/Vec3;)V
-		ARG 1 smartCull
-		ARG 2 camera
-		ARG 3 cameraPosition
 	METHOD scheduleFullUpdate (ZLnet/minecraft/client/Camera;Lnet/minecraft/world/phys/Vec3;Lit/unimi/dsi/fastutil/longs/LongOpenHashSet;)V
 		ARG 1 smartCull
 		ARG 2 camera
@@ -92,11 +55,6 @@ CLASS net/minecraft/client/renderer/SectionOcclusionGraph
 		ARG 4 loadedEmptySections
 	METHOD schedulePropagationFrom (Lnet/minecraft/client/renderer/chunk/SectionRenderDispatcher$RenderSection;)V
 		ARG 1 section
-	METHOD update (ZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/culling/Frustum;Ljava/util/List;)V
-		ARG 1 smartCull
-		ARG 2 camera
-		ARG 3 frustum
-		ARG 4 sections
 	METHOD update (ZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/culling/Frustum;Ljava/util/List;Lit/unimi/dsi/fastutil/longs/LongOpenHashSet;)V
 		ARG 1 smartCull
 		ARG 2 camera
@@ -122,13 +80,9 @@ CLASS net/minecraft/client/renderer/SectionOcclusionGraph
 			ARG 1 currentValue
 			ARG 2 direction
 	CLASS GraphState
-		METHOD <init> (I)V
-			ARG 1 size
 		METHOD <init> (Lnet/minecraft/client/renderer/ViewArea;)V
 			ARG 1 viewArea
 	CLASS GraphStorage
-		METHOD <init> (I)V
-			ARG 1 size
 		METHOD <init> (Lnet/minecraft/client/renderer/ViewArea;)V
 			ARG 1 viewArea
 	CLASS SectionToNodeMap

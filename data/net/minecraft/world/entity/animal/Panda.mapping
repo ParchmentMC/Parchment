@@ -1,12 +1,6 @@
 CLASS net/minecraft/world/entity/animal/Panda
-	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 compound
 	METHOD canPickUpAndEat (Lnet/minecraft/world/entity/item/ItemEntity;)Z
 		ARG 0 itemEntity
-	METHOD canTakeItem (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 itemstack
-	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 entity
 	METHOD eat (Z)V
 		ARG 1 eating
 	METHOD getFlag (I)Z
@@ -19,29 +13,17 @@ CLASS net/minecraft/world/entity/animal/Panda
 		ARG 1 partialTick
 	METHOD getSitAmount (F)F
 		ARG 1 partialTick
-	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
-		COMMENT Called when the entity is attacked.
-		ARG 1 source
-		ARG 2 amount
 	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
-		ARG 1 stack
-	METHOD isFoodOrCake (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
 	METHOD lambda$registerGoals$0 (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 stack
 	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
-	METHOD pickUpItem (Lnet/minecraft/world/entity/item/ItemEntity;)V
-		COMMENT Tests if this entity should pick up a weapon or an armor piece. Entity drops current weapon or armor if the new one is better.
-		ARG 1 itemEntity
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 block
-	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
-		ARG 1 compound
 	METHOD roll (Z)V
 		ARG 1 rolling
 	METHOD setEatCounter (I)V
@@ -75,8 +57,6 @@ CLASS net/minecraft/world/entity/animal/Panda
 			ARG 5 isRecessive
 		METHOD byId (I)Lnet/minecraft/world/entity/animal/Panda$Gene;
 			ARG 0 index
-		METHOD byName (Ljava/lang/String;)Lnet/minecraft/world/entity/animal/Panda$Gene;
-			ARG 0 name
 		METHOD getRandom (Lnet/minecraft/util/RandomSource;)Lnet/minecraft/world/entity/animal/Panda$Gene;
 			ARG 0 random
 		METHOD getVariantFromGenes (Lnet/minecraft/world/entity/animal/Panda$Gene;Lnet/minecraft/world/entity/animal/Panda$Gene;)Lnet/minecraft/world/entity/animal/Panda$Gene;

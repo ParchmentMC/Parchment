@@ -1,10 +1,4 @@
 CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
-	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationContext;Ljava/util/Optional;Ljava/util/OptionalLong;)V
-		ARG 1 minecraft
-		ARG 2 lastScreen
-		ARG 3 settings
-		ARG 4 preset
-		ARG 5 seed
 	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationContext;Ljava/util/Optional;Ljava/util/OptionalLong;Lnet/minecraft/client/gui/screens/worldselection/CreateWorldCallback;)V
 		ARG 1 minecraft
 		ARG 2 lastScreen
@@ -12,8 +6,6 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 		ARG 4 preset
 		ARG 5 seed
 		ARG 6 createWorldCallback
-	METHOD addWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
-		ARG 1 listener
 	METHOD applyNewPackConfig (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/WorldDataConfiguration;Ljava/util/function/Consumer;)V
 		ARG 1 packRepository
 		ARG 2 worldDataConfiguration
@@ -36,10 +28,6 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 	METHOD createNewWorld (Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/world/level/storage/WorldData;)Z
 		ARG 1 registryAccess
 		ARG 2 worldData
-	METHOD createNewWorld (Lnet/minecraft/world/level/storage/PrimaryLevelData$SpecialWorldProperty;Lnet/minecraft/core/LayeredRegistryAccess;Lcom/mojang/serialization/Lifecycle;)V
-		ARG 1 specialWorldProperty
-		ARG 2 registryAccess
-		ARG 3 worldGenSettingsLifecycle
 	METHOD createNewWorldDirectory (Lnet/minecraft/client/Minecraft;Ljava/lang/String;Ljava/nio/file/Path;)Ljava/util/Optional;
 		ARG 0 minecraft
 		ARG 1 saveName
@@ -56,66 +44,10 @@ CLASS net/minecraft/client/gui/screens/worldselection/CreateWorldScreen
 		ARG 1 keyCode
 		ARG 2 scanCode
 		ARG 3 modifiers
-	METHOD lambda$applyNewPackConfig$23 (Ljava/util/function/Consumer;Z)V
-		ARG 2 confirmed
-	METHOD lambda$createFromExisting$9 (Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/world/level/storage/PrimaryLevelData;Ljava/nio/file/Path;)Z
-		ARG 0 createWorldScreen
-		ARG 1 registryAccess
-		ARG 2 levelData
-	METHOD lambda$createNewWorldDirectory$26 (Ljava/nio/file/Path;Ljava/nio/file/Path;)Z
-		ARG 1 path
-	METHOD lambda$createNewWorldDirectory$27 (Ljava/nio/file/Path;Ljava/nio/file/Path;Ljava/nio/file/Path;)V
-		ARG 2 path
-	METHOD lambda$createTempDataPackDirFromExistingWorld$28 (Ljava/nio/file/Path;Ljava/nio/file/Path;)Z
-		ARG 1 path
-	METHOD lambda$createTempDataPackDirFromExistingWorld$29 (Lorg/apache/commons/lang3/mutable/MutableObject;Ljava/nio/file/Path;Ljava/nio/file/Path;)V
-		ARG 2 path
-	METHOD lambda$init$10 (Lnet/minecraft/client/gui/components/Button;)V
-		ARG 1 button
 	METHOD lambda$init$11 (Lnet/minecraft/client/gui/components/Button;)V
 		ARG 1 button
-	METHOD lambda$init$12 (Lnet/minecraft/client/gui/components/AbstractWidget;)V
-		ARG 1 widget
 	METHOD lambda$new$0 (Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;Lnet/minecraft/client/gui/components/events/GuiEventListener;)V
 		ARG 1 listener
-	METHOD lambda$openDataPackSelectionScreen$15 (Lnet/minecraft/server/packs/repository/PackRepository;)V
-		ARG 1 repository
-	METHOD lambda$openExperimentsScreen$14 (Lnet/minecraft/server/packs/repository/PackRepository;)V
-		ARG 1 repository
-	METHOD lambda$openFresh$1 (Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/world/level/storage/PrimaryLevelData;Ljava/nio/file/Path;)Z
-		ARG 0 createWorldScreen
-		ARG 1 registryAccess
-		ARG 2 levelData
-		ARG 3 tempDataPackDir
-	METHOD lambda$openFresh$2 (Lnet/minecraft/server/ReloadableServerResources;Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/client/gui/screens/worldselection/DataPackReloadCookie;)Lnet/minecraft/client/gui/screens/worldselection/WorldCreationContext;
-		ARG 0 dataPackResources
-		ARG 1 worldGenRegistries
-		ARG 2 dataPackReloadCookie
-	METHOD lambda$openFresh$3 (Lnet/minecraft/server/WorldLoader$DataLoadContext;)Lnet/minecraft/world/level/levelgen/WorldGenSettings;
-		ARG 0 context
-	METHOD lambda$removeTempDataPackDir$25 (Ljava/nio/file/Path;)V
-		ARG 0 path
-	METHOD lambda$testWorld$4 (Lnet/minecraft/server/ReloadableServerResources;Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/client/gui/screens/worldselection/DataPackReloadCookie;)Lnet/minecraft/client/gui/screens/worldselection/WorldCreationContext;
-		ARG 0 dataPackResources
-		ARG 1 worldGenSettings
-		ARG 2 dataPackReloadCookie
-	METHOD lambda$testWorld$5 (Lnet/minecraft/server/WorldLoader$DataLoadContext;)Lnet/minecraft/world/level/levelgen/WorldGenSettings;
-		ARG 0 context
-	METHOD lambda$testWorld$6 (Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/world/level/storage/PrimaryLevelData;Ljava/nio/file/Path;)Z
-		ARG 0 createWorldScreen
-		ARG 1 registryAccess
-		ARG 2 levelData
-		ARG 3 tempDataPackDir
-	METHOD lambda$tryApplyNewDataPacks$16 (Ljava/util/List;Ljava/lang/String;)Z
-		ARG 1 id
-	METHOD lambda$tryApplyNewDataPacks$17 (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/WorldDataConfiguration;Ljava/util/function/Consumer;Z)V
-		ARG 4 confirmed
-	METHOD openCreateWorldScreen (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Ljava/util/function/Function;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationContextMapper;Lnet/minecraft/resources/ResourceKey;)V
-		ARG 0 minecraft
-		ARG 1 lastScreen
-		ARG 2 worldGenSettingsGetter
-		ARG 3 creationContextMapper
-		ARG 4 preset
 	METHOD openCreateWorldScreen (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Ljava/util/function/Function;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationContextMapper;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/client/gui/screens/worldselection/CreateWorldCallback;)V
 		ARG 0 minecraft
 		ARG 1 lastScreen

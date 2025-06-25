@@ -4,11 +4,6 @@ CLASS net/minecraft/world/level/storage/loot/LootTable
 		ARG 2 randomSequence
 		ARG 3 pools
 		ARG 4 functions
-	METHOD <init> (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;Ljava/util/Optional;Ljava/util/List;Ljava/util/List;)V
-		ARG 1 paramSet
-		ARG 2 randomSequence
-		ARG 3 pools
-		ARG 4 functions
 	METHOD createStackSplitter (Lnet/minecraft/server/level/ServerLevel;Ljava/util/function/Consumer;)Ljava/util/function/Consumer;
 		ARG 0 level
 		ARG 1 output
@@ -19,8 +14,6 @@ CLASS net/minecraft/world/level/storage/loot/LootTable
 	METHOD getAvailableSlots (Lnet/minecraft/world/Container;Lnet/minecraft/util/RandomSource;)Ljava/util/List;
 		ARG 1 inventory
 		ARG 2 random
-	METHOD getParamSet ()Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;
-		COMMENT Get the parameter set for this LootTable.
 	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootContext;)Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
 		COMMENT Generate random items to a List.
 		ARG 1 context
@@ -63,8 +56,6 @@ CLASS net/minecraft/world/level/storage/loot/LootTable
 	CLASS Builder
 		METHOD setParamSet (Lnet/minecraft/util/context/ContextKeySet;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 			ARG 1 paramSet
-		METHOD setParamSet (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-			ARG 1 parameterSet
 		METHOD setRandomSequence (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 			ARG 1 randomSequence
 		METHOD withPool (Lnet/minecraft/world/level/storage/loot/LootPool$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;

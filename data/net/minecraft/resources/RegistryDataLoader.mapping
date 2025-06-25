@@ -2,13 +2,8 @@ CLASS net/minecraft/resources/RegistryDataLoader
 	METHOD createContext (Ljava/util/List;Ljava/util/List;)Lnet/minecraft/resources/RegistryOps$RegistryInfoLookup;
 		ARG 0 registryLookups
 		ARG 1 loaders
-	METHOD createContext (Lnet/minecraft/core/RegistryAccess;Ljava/util/List;)Lnet/minecraft/resources/RegistryOps$RegistryInfoLookup;
-		ARG 0 registryAccess
-		ARG 1 registryLoaders
 	METHOD createInfoForContextRegistry (Lnet/minecraft/core/HolderLookup$RegistryLookup;)Lnet/minecraft/resources/RegistryOps$RegistryInfo;
 		ARG 0 registryLookup
-	METHOD createInfoForContextRegistry (Lnet/minecraft/core/Registry;)Lnet/minecraft/resources/RegistryOps$RegistryInfo;
-		ARG 0 registry
 	METHOD createInfoForNewRegistry (Lnet/minecraft/core/WritableRegistry;)Lnet/minecraft/resources/RegistryOps$RegistryInfo;
 		ARG 0 registry
 	METHOD createReportWithBriefInfo (Ljava/util/Map;)Lnet/minecraft/ReportedException;
@@ -30,26 +25,13 @@ CLASS net/minecraft/resources/RegistryDataLoader
 		ARG 1 resourceProvider
 		ARG 2 registryLookups
 		ARG 3 registryData
-	METHOD load (Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceProvider;Lnet/minecraft/core/RegistryAccess;Ljava/util/List;)Lnet/minecraft/core/RegistryAccess$Frozen;
-		ARG 0 elements
-		ARG 1 resourceProvider
-		ARG 2 registryAccess
-		ARG 3 registryData
 	METHOD load (Lnet/minecraft/resources/RegistryDataLoader$LoadingFunction;Ljava/util/List;Ljava/util/List;)Lnet/minecraft/core/RegistryAccess$Frozen;
 		ARG 0 loadingFunction
 		ARG 1 registryLookups
 		ARG 2 registryData
-	METHOD load (Lnet/minecraft/resources/RegistryDataLoader$LoadingFunction;Lnet/minecraft/core/RegistryAccess;Ljava/util/List;)Lnet/minecraft/core/RegistryAccess$Frozen;
-		ARG 0 loadingFunction
-		ARG 1 registryAccess
-		ARG 2 registryData
 	METHOD load (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/List;Ljava/util/List;)Lnet/minecraft/core/RegistryAccess$Frozen;
 		ARG 0 resourceManager
 		ARG 1 registryLookups
-		ARG 2 registryData
-	METHOD load (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/core/RegistryAccess;Ljava/util/List;)Lnet/minecraft/core/RegistryAccess$Frozen;
-		ARG 0 resourceManager
-		ARG 1 registryAccess
 		ARG 2 registryData
 	METHOD loadContentsFromManager (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/RegistryOps$RegistryInfoLookup;Lnet/minecraft/core/WritableRegistry;Lcom/mojang/serialization/Decoder;Ljava/util/Map;)V
 		ARG 0 resourceManager
@@ -72,8 +54,6 @@ CLASS net/minecraft/resources/RegistryDataLoader
 		ARG 4 resource
 		ARG 5 registrationInfo
 	METHOD logErrors (Ljava/util/Map;)Lnet/minecraft/ReportedException;
-		ARG 0 errors
-	METHOD logErrors (Ljava/util/Map;)V
 		ARG 0 errors
 	METHOD printFullDetailsToLog (Ljava/util/Map;)V
 		ARG 0 errors

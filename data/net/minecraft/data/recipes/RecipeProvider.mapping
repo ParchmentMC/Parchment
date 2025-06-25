@@ -2,38 +2,25 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 	METHOD <init> (Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/data/recipes/RecipeOutput;)V
 		ARG 1 registries
 		ARG 2 output
-	METHOD <init> (Lnet/minecraft/data/PackOutput;Ljava/util/concurrent/CompletableFuture;)V
-		ARG 1 output
-		ARG 2 registries
 	METHOD banner (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 banner
 		ARG 2 material
 	METHOD bedFromPlanksAndWool (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 bed
 		ARG 2 wool
-	METHOD buildAdvancement (Lnet/minecraft/data/CachedOutput;Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/advancements/AdvancementHolder;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 output
-		ARG 2 registries
-		ARG 3 advancement
 	METHOD buttonBuilder (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
 		ARG 1 button
 		ARG 2 material
 	METHOD candle (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 candle
 		ARG 2 dye
 	METHOD carpet (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 carpet
 		ARG 2 material
 	METHOD chestBoat (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 boat
 		ARG 2 material
 	METHOD chiseled (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 chiseledResult
 		ARG 3 material
@@ -41,15 +28,6 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 1 category
 		ARG 2 chiseledResult
 		ARG 3 material
-	METHOD colorBlockWithDye (Ljava/util/List;Ljava/util/List;Ljava/lang/String;)V
-		ARG 0 recipeOutput
-		ARG 1 dyes
-		ARG 2 dyeableItems
-		ARG 3 group
-	METHOD colorItemWithDye (Ljava/util/List;Ljava/util/List;Ljava/lang/String;)V
-		ARG 1 dyeItems
-		ARG 2 dyeableItems
-		ARG 3 group
 	METHOD colorItemWithDye (Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lnet/minecraft/data/recipes/RecipeCategory;)V
 		ARG 1 dyeItems
 		ARG 2 dyeableItems
@@ -62,37 +40,26 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 4 group
 		ARG 5 category
 	METHOD coloredTerracottaFromTerracottaAndDye (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 terracotta
 		ARG 2 dye
 	METHOD concretePowder (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 concretePowder
 		ARG 2 dye
 	METHOD cookRecipes (Ljava/lang/String;Lnet/minecraft/world/item/crafting/RecipeSerializer;Lnet/minecraft/world/item/crafting/AbstractCookingRecipe$Factory;I)V
-		ARG 0 recipeOutput
 		ARG 1 cookingMethod
 		ARG 2 cookingSerializer
 		ARG 3 recipeFactory
 		ARG 4 cookingTime
 	METHOD copperBulb (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
-		ARG 0 recipeOutput
 		ARG 1 bulbBlock
 		ARG 2 material
-	METHOD copySmithingTemplate (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/tags/TagKey;)V
-		ARG 0 recipeOutput
-		ARG 1 template
-		ARG 2 baseMaterial
 	METHOD copySmithingTemplate (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)V
-		ARG 0 recipeOutput
 		ARG 1 template
 		ARG 2 baseItem
 	METHOD copySmithingTemplate (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 template
 		ARG 2 baseItem
 	METHOD cut (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 cutResult
 		ARG 3 material
@@ -112,10 +79,8 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 1 fenceGate
 		ARG 2 material
 	METHOD generateForEnabledBlockFamilies (Lnet/minecraft/world/flag/FeatureFlagSet;)V
-		ARG 0 recipeOutput
 		ARG 1 enabledFeatures
 	METHOD generateRecipes (Lnet/minecraft/data/BlockFamily;Lnet/minecraft/world/flag/FeatureFlagSet;)V
-		ARG 0 recipeOutput
 		ARG 1 blockFamily
 		ARG 2 requiredFeatures
 	METHOD getBaseBlock (Lnet/minecraft/data/BlockFamily;Lnet/minecraft/data/BlockFamily$Variant;)Lnet/minecraft/world/level/block/Block;
@@ -130,18 +95,14 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 0 itemLike
 	METHOD getItemName (Lnet/minecraft/world/level/ItemLike;)Ljava/lang/String;
 		ARG 0 itemLike
-	METHOD getName ()Ljava/lang/String;
-		COMMENT Gets a name for this provider, to use in logging.
 	METHOD getSimpleRecipeName (Lnet/minecraft/world/level/ItemLike;)Ljava/lang/String;
 		ARG 0 itemLike
 	METHOD getSmeltingRecipeName (Lnet/minecraft/world/level/ItemLike;)Ljava/lang/String;
 		ARG 0 itemLike
 	METHOD grate (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
-		ARG 0 recipeOutput
 		ARG 1 grateBlock
 		ARG 2 material
 	METHOD hangingSign (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 sign
 		ARG 2 material
 	METHOD harness (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
@@ -165,23 +126,19 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 	METHOD lambda$generateForEnabledBlockFamilies$0 (Lnet/minecraft/world/flag/FeatureFlagSet;Lnet/minecraft/data/BlockFamily;)V
 		ARG 2 blockFamily
 	METHOD mosaicBuilder (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 result
 		ARG 3 material
 	METHOD netheriteSmithing (Lnet/minecraft/world/item/Item;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/item/Item;)V
-		ARG 0 recipeOutput
 		ARG 1 ingredientItem
 		ARG 2 category
 		ARG 3 resultItem
 	METHOD nineBlockStorageRecipes (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 unpackedCategory
 		ARG 2 unpacked
 		ARG 3 packedCategory
 		ARG 4 packed
 	METHOD nineBlockStorageRecipes (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-		ARG 0 recipeOutput
 		ARG 1 unpackedCategory
 		ARG 2 unpacked
 		ARG 3 packedCategory
@@ -191,7 +148,6 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 7 unpackedName
 		ARG 8 unpackedGroup
 	METHOD nineBlockStorageRecipesRecipesWithCustomUnpacking (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;Ljava/lang/String;)V
-		ARG 0 recipeOutput
 		ARG 1 unpackedCategory
 		ARG 2 unpacked
 		ARG 3 packedCategory
@@ -199,7 +155,6 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 5 unpackedName
 		ARG 6 unpackedGroup
 	METHOD nineBlockStorageRecipesWithCustomPacking (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;Ljava/lang/String;)V
-		ARG 0 recipeOutput
 		ARG 1 unpackedCategory
 		ARG 2 unpacked
 		ARG 3 packedCategory
@@ -207,18 +162,15 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 5 packedName
 		ARG 6 packedGroup
 	METHOD oneToOneConversionRecipe (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;)V
-		ARG 0 recipeOutput
 		ARG 1 result
 		ARG 2 ingredient
 		ARG 3 group
 	METHOD oneToOneConversionRecipe (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;I)V
-		ARG 0 recipeOutput
 		ARG 1 result
 		ARG 2 ingredient
 		ARG 3 group
 		ARG 4 resultCount
 	METHOD oreBlasting (Ljava/util/List;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;FILjava/lang/String;)V
-		ARG 0 recipeOutput
 		ARG 1 ingredients
 		ARG 2 category
 		ARG 3 result
@@ -226,7 +178,6 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 5 cookingTime
 		ARG 6 group
 	METHOD oreCooking (Lnet/minecraft/world/item/crafting/RecipeSerializer;Lnet/minecraft/world/item/crafting/AbstractCookingRecipe$Factory;Ljava/util/List;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;FILjava/lang/String;Ljava/lang/String;)V
-		ARG 0 recipeOutput
 		ARG 1 serializer
 		ARG 2 recipeFactory
 		ARG 3 ingredients
@@ -237,7 +188,6 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 8 group
 		ARG 9 suffix
 	METHOD oreSmelting (Ljava/util/List;Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;FILjava/lang/String;)V
-		ARG 0 recipeOutput
 		ARG 1 ingredients
 		ARG 2 category
 		ARG 3 result
@@ -245,17 +195,14 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 5 cookingTime
 		ARG 6 group
 	METHOD planksFromLog (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/tags/TagKey;I)V
-		ARG 0 recipeOutput
 		ARG 1 planks
 		ARG 2 logs
 		ARG 3 resultCount
 	METHOD planksFromLogs (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/tags/TagKey;I)V
-		ARG 0 recipeOutput
 		ARG 1 planks
 		ARG 2 logs
 		ARG 3 result
 	METHOD polished (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 result
 		ARG 3 material
@@ -264,16 +211,12 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 2 result
 		ARG 3 material
 	METHOD pressurePlate (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 pressurePlate
 		ARG 2 material
 	METHOD pressurePlateBuilder (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
 		ARG 1 category
 		ARG 2 pressurePlate
 		ARG 3 material
-	METHOD run (Lnet/minecraft/data/CachedOutput;Lnet/minecraft/core/HolderLookup$Provider;)Ljava/util/concurrent/CompletableFuture;
-		ARG 1 output
-		ARG 2 registries
 	METHOD shaped (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/data/recipes/ShapedRecipeBuilder;
 		ARG 1 category
 		ARG 2 result
@@ -295,7 +238,6 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 1 sign
 		ARG 2 material
 	METHOD simpleCookingRecipe (Ljava/lang/String;Lnet/minecraft/world/item/crafting/RecipeSerializer;Lnet/minecraft/world/item/crafting/AbstractCookingRecipe$Factory;ILnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;F)V
-		ARG 0 recipeOutput
 		ARG 1 cookingMethod
 		ARG 2 cookingSerializer
 		ARG 3 recipeFactory
@@ -304,7 +246,6 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 6 result
 		ARG 7 experience
 	METHOD slab (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 slab
 		ARG 3 material
@@ -313,31 +254,25 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 2 slab
 		ARG 3 material
 	METHOD smeltingResultFromBase (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 result
 		ARG 2 ingredient
 	METHOD stainedGlassFromGlassAndDye (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 stainedGlass
 		ARG 2 dye
 	METHOD stainedGlassPaneFromGlassPaneAndDye (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 stainedGlassPane
 		ARG 2 dye
 	METHOD stainedGlassPaneFromStainedGlass (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 stainedGlassPane
 		ARG 2 stainedGlass
 	METHOD stairBuilder (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
 		ARG 1 stairs
 		ARG 2 material
 	METHOD stonecutterResultFromBase (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 result
 		ARG 3 material
 	METHOD stonecutterResultFromBase (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;I)V
-		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 result
 		ARG 3 material
@@ -348,12 +283,10 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 	METHOD tag (Lnet/minecraft/tags/TagKey;)Lnet/minecraft/world/item/crafting/Ingredient;
 		ARG 1 tag
 	METHOD threeByThreePacker (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 packed
 		ARG 3 unpacked
 	METHOD threeByThreePacker (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;)V
-		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 packed
 		ARG 3 unpacked
@@ -361,24 +294,15 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 	METHOD trapdoorBuilder (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/data/recipes/RecipeBuilder;
 		ARG 1 trapdoor
 		ARG 2 material
-	METHOD trimSmithing (Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceKey;)V
-		ARG 1 templateItem
-		ARG 2 key
 	METHOD trimSmithing (Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;)V
 		ARG 1 template
 		ARG 2 pattern
 		ARG 3 recipe
-	METHOD trimSmithing (Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceLocation;)V
-		ARG 0 recipeOutput
-		ARG 1 ingredientItem
-		ARG 2 location
 	METHOD twoByTwoPacker (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 packed
 		ARG 3 unpacked
 	METHOD wall (Lnet/minecraft/data/recipes/RecipeCategory;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 category
 		ARG 2 wall
 		ARG 3 material
@@ -387,14 +311,11 @@ CLASS net/minecraft/data/recipes/RecipeProvider
 		ARG 2 wall
 		ARG 3 material
 	METHOD waxRecipes (Lnet/minecraft/world/flag/FeatureFlagSet;)V
-		ARG 0 recipeOutput
 		ARG 1 requiredFeatures
 	METHOD woodFromLogs (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 wood
 		ARG 2 log
 	METHOD woodenBoat (Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;)V
-		ARG 0 recipeOutput
 		ARG 1 boat
 		ARG 2 material
 	CLASS Runner

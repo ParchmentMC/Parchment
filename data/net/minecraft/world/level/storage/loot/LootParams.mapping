@@ -1,9 +1,4 @@
 CLASS net/minecraft/world/level/storage/loot/LootParams
-	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Ljava/util/Map;Ljava/util/Map;F)V
-		ARG 1 level
-		ARG 2 params
-		ARG 3 dynamicDrops
-		ARG 4 luck
 	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/util/context/ContextMap;Ljava/util/Map;F)V
 		ARG 1 level
 		ARG 2 params
@@ -12,28 +7,14 @@ CLASS net/minecraft/world/level/storage/loot/LootParams
 	METHOD addDynamicDrops (Lnet/minecraft/resources/ResourceLocation;Ljava/util/function/Consumer;)V
 		ARG 1 location
 		ARG 2 consumer
-	METHOD getOptionalParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;)Ljava/lang/Object;
-		ARG 1 param
-	METHOD getParamOrNull (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;)Ljava/lang/Object;
-		ARG 1 param
-	METHOD getParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;)Ljava/lang/Object;
-		ARG 1 param
-	METHOD hasParam (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;)Z
-		ARG 1 param
 	CLASS Builder
 		METHOD <init> (Lnet/minecraft/server/level/ServerLevel;)V
 			ARG 1 level
 		METHOD create (Lnet/minecraft/util/context/ContextKeySet;)Lnet/minecraft/world/level/storage/loot/LootParams;
 			ARG 1 contextKeySet
-		METHOD create (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParamSet;)Lnet/minecraft/world/level/storage/loot/LootParams;
-			ARG 1 params
 		METHOD getOptionalParameter (Lnet/minecraft/util/context/ContextKey;)Ljava/lang/Object;
 			ARG 1 parameter
-		METHOD getOptionalParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;)Ljava/lang/Object;
-			ARG 1 parameter
 		METHOD getParameter (Lnet/minecraft/util/context/ContextKey;)Ljava/lang/Object;
-			ARG 1 parameter
-		METHOD getParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;)Ljava/lang/Object;
 			ARG 1 parameter
 		METHOD withDynamicDrop (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/level/storage/loot/LootParams$DynamicDrop;)Lnet/minecraft/world/level/storage/loot/LootParams$Builder;
 			ARG 1 name
@@ -43,14 +24,8 @@ CLASS net/minecraft/world/level/storage/loot/LootParams
 		METHOD withOptionalParameter (Lnet/minecraft/util/context/ContextKey;Ljava/lang/Object;)Lnet/minecraft/world/level/storage/loot/LootParams$Builder;
 			ARG 1 parameter
 			ARG 2 value
-		METHOD withOptionalParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;Ljava/lang/Object;)Lnet/minecraft/world/level/storage/loot/LootParams$Builder;
-			ARG 1 parameter
-			ARG 2 value
 		METHOD withParameter (Lnet/minecraft/util/context/ContextKey;Ljava/lang/Object;)Lnet/minecraft/world/level/storage/loot/LootParams$Builder;
 			ARG 1 paramater
-			ARG 2 value
-		METHOD withParameter (Lnet/minecraft/world/level/storage/loot/parameters/LootContextParam;Ljava/lang/Object;)Lnet/minecraft/world/level/storage/loot/LootParams$Builder;
-			ARG 1 parameter
 			ARG 2 value
 	CLASS DynamicDrop
 		METHOD add (Ljava/util/function/Consumer;)V

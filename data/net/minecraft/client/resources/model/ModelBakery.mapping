@@ -1,78 +1,19 @@
 CLASS net/minecraft/client/resources/model/ModelBakery
-	METHOD <init> (Ljava/util/Map;Ljava/util/Map;Lnet/minecraft/client/resources/model/UnbakedModel;)V
-		ARG 1 topModels
-		ARG 2 unbackedModels
-		ARG 3 missingModel
-	METHOD <init> (Lnet/minecraft/client/color/block/BlockColors;Lnet/minecraft/util/profiling/ProfilerFiller;Ljava/util/Map;Ljava/util/Map;)V
-		ARG 1 blockColors
-		ARG 2 profilerFiller
-		ARG 3 modelResources
-		ARG 4 blockStateResources
 	METHOD <init> (Lnet/minecraft/client/model/geom/EntityModelSet;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Lnet/minecraft/client/resources/model/ResolvedModel;)V
 		ARG 1 entityModelSet
 		ARG 2 unbakedBlockStateModels
 		ARG 3 clientInfos
 		ARG 4 resolvedModels
 		ARG 5 missingModel
-	METHOD <init> (Lnet/minecraft/client/model/geom/EntityModelSet;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;Lnet/minecraft/client/resources/model/UnbakedModel;)V
-		ARG 1 entityModelSet
-		ARG 2 unbakedBlockStateModels
-		ARG 3 unbakedItemStackModels
-		ARG 4 unbakedPlainModels
-		ARG 5 missingModel
-	METHOD bakeModels (Lnet/minecraft/client/resources/model/ModelBakery$TextureGetter;)Lnet/minecraft/client/resources/model/ModelBakery$BakingResult;
-		ARG 1 textureGetter
-	METHOD bakeModels (Lnet/minecraft/client/resources/model/ModelBakery$TextureGetter;)V
-		ARG 1 textureGetter
 	METHOD bakeModels (Lnet/minecraft/client/resources/model/SpriteGetter;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 sprites
 		ARG 2 executor
-	METHOD getModel (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/resources/model/UnbakedModel;
-		ARG 1 modelLocation
-	METHOD lambda$bakeModels$3 (Lnet/minecraft/client/resources/model/ModelBakery$ModelBakerImpl;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/client/renderer/block/model/BlockStateModel$Unbaked;)Lnet/minecraft/client/renderer/block/model/BlockStateModel;
-		ARG 1 state
-		ARG 2 model
 	METHOD lambda$static$0 (I)Lnet/minecraft/resources/ResourceLocation;
 		ARG 0 index
-	METHOD loadBlockModel (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/block/model/BlockModel;
-		ARG 1 location
-	METHOD loadItemModelAndDependencies (Lnet/minecraft/resources/ResourceLocation;)V
-		ARG 1 modelLocation
-	METHOD loadSpecialItemModelAndDependencies (Lnet/minecraft/client/resources/model/ModelResourceLocation;)V
-		ARG 1 modelLocation
-	METHOD registerModel (Lnet/minecraft/client/resources/model/ModelResourceLocation;Lnet/minecraft/client/resources/model/UnbakedModel;)V
-		ARG 1 modelLocation
-		ARG 2 model
-	METHOD registerModelAndLoadDependencies (Lnet/minecraft/client/resources/model/ModelResourceLocation;Lnet/minecraft/client/resources/model/UnbakedModel;)V
-		ARG 1 modelLocation
-		ARG 2 model
 	CLASS MissingModels
 		METHOD bake (Lnet/minecraft/client/resources/model/ResolvedModel;Lnet/minecraft/client/resources/model/SpriteGetter;)Lnet/minecraft/client/resources/model/ModelBakery$MissingModels;
 			ARG 0 model
 			ARG 1 sprites
-	CLASS TextureGetter
-		METHOD bind (Lnet/minecraft/client/resources/model/ModelDebugName;)Lnet/minecraft/client/resources/model/SpriteGetter;
-			ARG 1 name
-		METHOD get (Lnet/minecraft/client/resources/model/ModelDebugName;Lnet/minecraft/client/resources/model/Material;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
-			ARG 1 name
-			ARG 2 material
-		METHOD get (Lnet/minecraft/client/resources/model/ModelResourceLocation;Lnet/minecraft/client/resources/model/Material;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
-			ARG 1 modelLocation
-			ARG 2 material
-		METHOD reportMissingReference (Lnet/minecraft/client/resources/model/ModelDebugName;Ljava/lang/String;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
-			ARG 1 name
-			ARG 2 reference
 	CLASS ModelBakerImpl
-		METHOD <init> (Lnet/minecraft/client/resources/model/ModelBakery;Lnet/minecraft/client/resources/model/ModelBakery$TextureGetter;Lnet/minecraft/client/resources/model/ModelDebugName;)V
-			ARG 2 textureGetter
-			ARG 3 rootName
-		METHOD <init> (Lnet/minecraft/client/resources/model/ModelBakery;Lnet/minecraft/client/resources/model/ModelBakery$TextureGetter;Lnet/minecraft/client/resources/model/ModelResourceLocation;)V
-			ARG 2 textureGetter
-			ARG 3 modelLocation
 		METHOD <init> (Lnet/minecraft/client/resources/model/ModelBakery;Lnet/minecraft/client/resources/model/SpriteGetter;)V
 			ARG 2 sprites
-		METHOD bakeUncached (Lnet/minecraft/client/resources/model/UnbakedModel;Lnet/minecraft/client/resources/model/ModelState;)Lnet/minecraft/client/resources/model/BakedModel;
-			ARG 1 model
-			ARG 2 state
-		METHOD getModel (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/resources/model/UnbakedModel;
-			ARG 1 name

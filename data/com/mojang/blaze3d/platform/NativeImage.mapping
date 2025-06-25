@@ -14,33 +14,6 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 3 height
 		ARG 4 useStbFree
 		ARG 5 pixels
-	METHOD _upload (IIIIIIIZ)V
-		ARG 1 level
-		ARG 2 xOffset
-		ARG 3 yOffset
-		ARG 4 unpackSkipPixels
-		ARG 5 unpackSkipRows
-		ARG 6 width
-		ARG 7 height
-		ARG 8 autoClose
-	METHOD _upload (IIIIIIIZZZZ)V
-		ARG 1 level
-		ARG 2 xOffset
-		ARG 3 yOffset
-		ARG 4 unpackSkipPixels
-		ARG 5 unpackSkipRows
-		ARG 6 width
-		ARG 7 height
-		ARG 8 blur
-		ARG 9 clamp
-		ARG 10 mipmap
-		ARG 11 autoClose
-	METHOD applyToAllPixels (Ljava/util/function/IntUnaryOperator;)V
-		ARG 1 function
-	METHOD blendPixel (III)V
-		ARG 1 x
-		ARG 2 y
-		ARG 3 abgrColor
 	METHOD copyFrom (Lcom/mojang/blaze3d/platform/NativeImage;)V
 		ARG 1 other
 	METHOD copyFromFont (Lorg/lwjgl/util/freetype/FT_Face;I)Z
@@ -65,23 +38,12 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 7 height
 		ARG 8 mirrorX
 		ARG 9 mirrorY
-	METHOD downloadDepthBuffer (F)V
-		ARG 1 unused
-	METHOD downloadTexture (IZ)V
-		ARG 1 level
-		ARG 2 opaque
 	METHOD fillRect (IIIII)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 width
 		ARG 4 height
 		ARG 5 value
-	METHOD getBlueOrLuminance (II)B
-		ARG 1 x
-		ARG 2 y
-	METHOD getGreenOrLuminance (II)B
-		ARG 1 x
-		ARG 2 y
 	METHOD getLuminanceOrAlpha (II)B
 		ARG 1 x
 		ARG 2 y
@@ -89,12 +51,6 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 1 x
 		ARG 2 y
 	METHOD getPixelABGR (II)I
-		ARG 1 x
-		ARG 2 y
-	METHOD getPixelRGBA (II)I
-		ARG 1 x
-		ARG 2 y
-	METHOD getRedOrLuminance (II)B
 		ARG 1 x
 		ARG 2 y
 	METHOD isOutsideBounds (II)Z
@@ -123,9 +79,6 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 3 width
 		ARG 4 height
 		ARG 5 image
-	METHOD setFilter (ZZ)V
-		ARG 0 linear
-		ARG 1 mipmap
 	METHOD setPixel (III)V
 		ARG 1 x
 		ARG 2 y
@@ -134,50 +87,6 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 		ARG 1 x
 		ARG 2 y
 		ARG 3 color
-	METHOD setPixelLuminance (IIB)V
-		ARG 1 x
-		ARG 2 y
-		ARG 3 luminance
-	METHOD setPixelRGBA (III)V
-		ARG 1 x
-		ARG 2 y
-		ARG 3 abgrColor
-	METHOD upload (IIIIIIIZ)V
-		ARG 1 level
-		ARG 2 xOffset
-		ARG 3 yOffset
-		ARG 4 unpackSkipPixels
-		ARG 5 unpackSkipRows
-		ARG 6 width
-		ARG 7 height
-		ARG 8 autoClose
-	METHOD upload (IIIIIIIZZ)V
-		ARG 1 level
-		ARG 2 xOffset
-		ARG 3 yOffset
-		ARG 4 unpackSkipPixels
-		ARG 5 unpackSkipRows
-		ARG 6 width
-		ARG 7 height
-		ARG 8 mipmap
-		ARG 9 autoClose
-	METHOD upload (IIIIIIIZZZZ)V
-		ARG 1 level
-		ARG 2 xOffset
-		ARG 3 yOffset
-		ARG 4 unpackSkipPixels
-		ARG 5 unpackSkipRows
-		ARG 6 width
-		ARG 7 height
-		ARG 8 blur
-		ARG 9 clamp
-		ARG 10 mipmap
-		ARG 11 autoClose
-	METHOD upload (IIIZ)V
-		ARG 1 level
-		ARG 2 xOffset
-		ARG 3 yOffset
-		ARG 4 mipmap
 	METHOD writeToChannel (Ljava/nio/channels/WritableByteChannel;)Z
 		ARG 1 channel
 	METHOD writeToFile (Ljava/io/File;)V
@@ -185,20 +94,6 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 	METHOD writeToFile (Ljava/nio/file/Path;)V
 		ARG 1 path
 	CLASS Format
-		METHOD <init> (Ljava/lang/String;IIIZZZZZIIIIIZ)V
-			ARG 3 components
-			ARG 4 glFormat
-			ARG 5 hasRed
-			ARG 6 hasGreen
-			ARG 7 hasBlue
-			ARG 8 hasLuminance
-			ARG 9 hasAlpha
-			ARG 10 redOffset
-			ARG 11 greenOffset
-			ARG 12 blueOffset
-			ARG 13 luminanceOffset
-			ARG 14 alphaOffset
-			ARG 15 supportedByStb
 		METHOD <init> (Ljava/lang/String;IIZZZZZIIIIIZ)V
 			ARG 3 components
 			ARG 4 hasRed
@@ -221,6 +116,3 @@ CLASS com/mojang/blaze3d/platform/NativeImage
 			ARG 1 context
 			ARG 3 data
 			ARG 5 size
-	CLASS InternalGlFormat
-		METHOD <init> (Ljava/lang/String;II)V
-			ARG 3 glFormat

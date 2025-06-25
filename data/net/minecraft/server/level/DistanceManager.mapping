@@ -1,7 +1,4 @@
 CLASS net/minecraft/server/level/DistanceManager
-	METHOD <init> (Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)V
-		ARG 1 dispatcher
-		ARG 2 mainThreadExecutor
 	METHOD <init> (Lnet/minecraft/world/level/TicketStorage;Ljava/util/concurrent/Executor;Ljava/util/concurrent/Executor;)V
 		ARG 1 ticketStorage
 		ARG 2 dispatcher
@@ -9,23 +6,6 @@ CLASS net/minecraft/server/level/DistanceManager
 	METHOD addPlayer (Lnet/minecraft/core/SectionPos;Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 sectionPos
 		ARG 2 player
-	METHOD addRegionTicket (Lnet/minecraft/server/level/TicketType;Lnet/minecraft/world/level/ChunkPos;ILjava/lang/Object;)V
-		ARG 1 type
-		ARG 2 pos
-		ARG 3 distance
-		ARG 4 value
-	METHOD addTicket (JLnet/minecraft/server/level/Ticket;)V
-		ARG 1 chunkPos
-		ARG 3 ticket
-	METHOD addTicket (Lnet/minecraft/server/level/TicketType;Lnet/minecraft/world/level/ChunkPos;ILjava/lang/Object;)V
-		ARG 1 type
-		ARG 2 pos
-		ARG 3 level
-		ARG 4 value
-	METHOD dumpTickets (Ljava/lang/String;)V
-		ARG 1 filename
-	METHOD forEachBlockTickingChunks (Lit/unimi/dsi/fastutil/longs/LongConsumer;)V
-		ARG 1 action
 	METHOD forEachEntityTickingChunk (Lit/unimi/dsi/fastutil/longs/LongConsumer;)V
 		ARG 1 action
 	METHOD getChunk (J)Lnet/minecraft/server/level/ChunkHolder;
@@ -35,16 +15,7 @@ CLASS net/minecraft/server/level/DistanceManager
 		ARG 3 simulate
 	METHOD getNaturalSpawnChunkCount ()I
 		COMMENT Returns the number of chunks taken into account when calculating the mob cap
-	METHOD getTicketDebugString (J)Ljava/lang/String;
-		ARG 1 chunkPos
-	METHOD getTicketLevelAt (Lnet/minecraft/util/SortedArraySet;)I
-		COMMENT Gets the {@linkplain net.minecraft.server.level.Ticket#getTicketLevel level} of the ticket.
-		ARG 0 tickets
-	METHOD getTickets (J)Lnet/minecraft/util/SortedArraySet;
-		ARG 1 chunkPos
 	METHOD hasPlayersNearby (J)Lnet/minecraft/util/TriState;
-		ARG 1 chunkPos
-	METHOD hasPlayersNearby (J)Z
 		ARG 1 chunkPos
 	METHOD inBlockTickingRange (J)Z
 		ARG 1 chunkPos
@@ -55,24 +26,8 @@ CLASS net/minecraft/server/level/DistanceManager
 	METHOD removePlayer (Lnet/minecraft/core/SectionPos;Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 1 sectionPos
 		ARG 2 player
-	METHOD removeRegionTicket (Lnet/minecraft/server/level/TicketType;Lnet/minecraft/world/level/ChunkPos;ILjava/lang/Object;)V
-		ARG 1 type
-		ARG 2 pos
-		ARG 3 distance
-		ARG 4 value
-	METHOD removeTicket (JLnet/minecraft/server/level/Ticket;)V
-		ARG 1 chunkPos
-		ARG 3 ticket
-	METHOD removeTicket (Lnet/minecraft/server/level/TicketType;Lnet/minecraft/world/level/ChunkPos;ILjava/lang/Object;)V
-		ARG 1 type
-		ARG 2 pos
-		ARG 3 level
-		ARG 4 value
 	METHOD runAllUpdates (Lnet/minecraft/server/level/ChunkMap;)Z
 		ARG 1 chunkMap
-	METHOD updateChunkForced (Lnet/minecraft/world/level/ChunkPos;Z)V
-		ARG 1 pos
-		ARG 2 add
 	METHOD updateChunkScheduling (JILnet/minecraft/server/level/ChunkHolder;I)Lnet/minecraft/server/level/ChunkHolder;
 		ARG 1 chunkPos
 		ARG 3 newLevel
@@ -82,16 +37,6 @@ CLASS net/minecraft/server/level/DistanceManager
 		ARG 1 viewDistance
 	METHOD updateSimulationDistance (I)V
 		ARG 1 simulationDistance
-	CLASS ChunkTicketTracker
-		METHOD getLevel (J)I
-			ARG 1 sectionPos
-		METHOD getLevelFromSource (J)I
-			ARG 1 pos
-		METHOD runDistanceUpdates (I)I
-			ARG 1 toUpdateCount
-		METHOD setLevel (JI)V
-			ARG 1 sectionPos
-			ARG 3 level
 	CLASS PlayerTicketTracker
 		METHOD haveTicketFor (I)Z
 			ARG 1 level
@@ -113,8 +58,6 @@ CLASS net/minecraft/server/level/DistanceManager
 			COMMENT Chunks that are at most {@link #range} chunks away from the closest player.
 		METHOD <init> (Lnet/minecraft/server/level/DistanceManager;I)V
 			ARG 2 maxDistance
-		METHOD dumpChunks (Ljava/lang/String;)V
-			ARG 1 filename
 		METHOD getLevel (J)I
 			ARG 1 sectionPos
 		METHOD getLevelFromSource (J)I

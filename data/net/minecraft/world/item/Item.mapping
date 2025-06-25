@@ -1,11 +1,6 @@
 CLASS net/minecraft/world/item/Item
 	METHOD <init> (Lnet/minecraft/world/item/Item$Properties;)V
 		ARG 1 properties
-	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item$TooltipContext;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
-		ARG 1 stack
-		ARG 2 context
-		ARG 3 tooltipComponents
-		ARG 4 tooltipFlag
 	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item$TooltipContext;Lnet/minecraft/world/item/component/TooltipDisplay;Ljava/util/function/Consumer;Lnet/minecraft/world/item/TooltipFlag;)V
 		ARG 1 stack
 		ARG 2 context
@@ -16,11 +11,6 @@ CLASS net/minecraft/world/item/Item
 		ARG 0 block
 	METHOD byId (I)Lnet/minecraft/world/item/Item;
 		ARG 0 id
-	METHOD canAttackBlock (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)Z
-		ARG 1 state
-		ARG 2 level
-		ARG 3 pos
-		ARG 4 player
 	METHOD canDestroyBlock (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 1 stack
 		ARG 2 state
@@ -44,14 +34,9 @@ CLASS net/minecraft/world/item/Item
 		ARG 1 entity
 	METHOD getDescriptionId ()Ljava/lang/String;
 		COMMENT Returns the unlocalized name of this item.
-	METHOD getDescriptionId (Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
-		COMMENT Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have different names based on their damage or NBT.
-		ARG 1 stack
 	METHOD getDestroySpeed (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/state/BlockState;)F
 		ARG 1 stack
 		ARG 2 state
-	METHOD getEnchantmentValue ()I
-		COMMENT Return the enchantability factor of the item, most of the time is based on material.
 	METHOD getId (Lnet/minecraft/world/item/Item;)I
 		ARG 0 item
 	METHOD getName (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/chat/Component;
@@ -64,20 +49,10 @@ CLASS net/minecraft/world/item/Item
 		ARG 1 stack
 	METHOD getUseAnimation (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemUseAnimation;
 		ARG 1 stack
-	METHOD getUseAnimation (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/UseAnim;
-		COMMENT Returns the action that specifies what animation to play when the item is being used.
-		ARG 1 stack
 	METHOD getUseDuration (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)I
 		ARG 1 stack
 		ARG 2 entity
-	METHOD hasCraftingRemainingItem ()Z
-		COMMENT True if this Item has a container item (a.k.a. crafting result)
 	METHOD hurtEnemy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 1 stack
-		ARG 2 target
-		ARG 3 attacker
-	METHOD hurtEnemy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)Z
-		COMMENT Current implementations of this method in child classes do not use the entry argument beside ev. They just raise the damage on the stack.
 		ARG 1 stack
 		ARG 2 target
 		ARG 3 attacker
@@ -92,32 +67,16 @@ CLASS net/minecraft/world/item/Item
 		ARG 2 level
 		ARG 3 entity
 		ARG 4 slot
-	METHOD inventoryTick (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;IZ)V
-		COMMENT Called each tick as long the item is in a player's inventory. Used by maps to check if it's in a player's hand and update its contents.
-		ARG 1 stack
-		ARG 2 level
-		ARG 3 entity
-		ARG 4 slotId
-		ARG 5 isSelected
 	METHOD isBarVisible (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
-	METHOD isComplex ()Z
-		COMMENT Returns {@code true} if this is a complex item.
 	METHOD isCorrectToolForDrops (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 stack
 		ARG 2 state
-	METHOD isEnchantable (Lnet/minecraft/world/item/ItemStack;)Z
-		COMMENT Checks isDamagable and if it cannot be stacked
-		ARG 1 stack
 	METHOD isFoil (Lnet/minecraft/world/item/ItemStack;)Z
 		COMMENT Returns {@code true} if this item has an enchantment glint. By default, this returns {@code stack.isEnchanted()}, but other items can override it (for instance, written books always return true).
 		COMMENT
 		COMMENT Note that if you override this method, you generally want to also call the super version (on {@link Item}) to get the glint for enchanted items. Of course, that is unnecessary if the overwritten version always returns true.
 		ARG 1 stack
-	METHOD isValidRepairItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
-		COMMENT Return whether this item is repairable in an anvil.
-		ARG 1 stack
-		ARG 2 repairCandidate
 	METHOD lambda$static$1 (Lnet/minecraft/core/Holder;)Lcom/mojang/serialization/DataResult;
 		ARG 0 holder
 	METHOD mineBlock (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
@@ -130,11 +89,6 @@ CLASS net/minecraft/world/item/Item
 	METHOD onCraftedBy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V
 		ARG 1 stack
 		ARG 2 player
-	METHOD onCraftedBy (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)V
-		COMMENT Called when item is crafted/smelted. Used only by maps so far.
-		ARG 1 stack
-		ARG 2 level
-		ARG 3 player
 	METHOD onCraftedPostProcess (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;)V
 		ARG 1 stack
 		ARG 2 level
@@ -162,12 +116,6 @@ CLASS net/minecraft/world/item/Item
 		ARG 1 stack
 		ARG 2 target
 		ARG 3 attacker
-	METHOD releaseUsing (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V
-		COMMENT Called when the player stops using an Item (stops holding the right mouse button).
-		ARG 1 stack
-		ARG 2 level
-		ARG 3 livingEntity
-		ARG 4 timeCharged
 	METHOD releaseUsing (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)Z
 		ARG 1 stack
 		ARG 2 level
@@ -180,11 +128,6 @@ CLASS net/minecraft/world/item/Item
 		ARG 1 level
 		ARG 2 player
 		ARG 3 hand
-	METHOD use (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
-		COMMENT Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see {@link net.minecraft.world.item.Item#useOn(net.minecraft.world.item.context.UseOnContext)}.
-		ARG 1 level
-		ARG 2 player
-		ARG 3 usedHand
 	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
 		COMMENT Called when this item is used when targeting a Block
 		ARG 1 context
@@ -214,10 +157,6 @@ CLASS net/minecraft/world/item/Item
 			ARG 1 enchantmentValue
 		METHOD equippable (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 slot
-		METHOD equippable (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/core/Holder;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/item/Item$Properties;
-			ARG 1 slot
-			ARG 2 equipSound
-			ARG 3 modelId
 		METHOD equippableUnswappable (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 slot
 		METHOD food (Lnet/minecraft/world/food/FoodProperties;)Lnet/minecraft/world/item/Item$Properties;
@@ -242,8 +181,6 @@ CLASS net/minecraft/world/item/Item
 			ARG 0 key
 		METHOD overrideDescription (Ljava/lang/String;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 description
-		METHOD overrideModel (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/item/Item$Properties;
-			ARG 1 model
 		METHOD pickaxe (Lnet/minecraft/world/item/ToolMaterial;FF)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 material
 			ARG 2 attackDamage
@@ -274,12 +211,6 @@ CLASS net/minecraft/world/item/Item
 			ARG 3 attackDamage
 			ARG 4 attackSpeed
 			ARG 5 disableBlockingForSeconds
-		METHOD tool (Lnet/minecraft/world/item/ToolMaterial;Lnet/minecraft/tags/TagKey;FFZ)Lnet/minecraft/world/item/Item$Properties;
-			ARG 1 material
-			ARG 2 mineableBlocks
-			ARG 3 attackDamage
-			ARG 4 attackSpeed
-			ARG 5 canDisableBlocking
 		METHOD trimMaterial (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/item/Item$Properties;
 			ARG 1 trimMaterial
 		METHOD useCooldown (F)Lnet/minecraft/world/item/Item$Properties;
@@ -295,6 +226,3 @@ CLASS net/minecraft/world/item/Item
 			ARG 0 registries
 		METHOD of (Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/item/Item$TooltipContext;
 			ARG 0 level
-		METHOD of (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/item/Item$TooltipContext;
-			ARG 0 level
-			ARG 1 player

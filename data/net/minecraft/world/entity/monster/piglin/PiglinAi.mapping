@@ -5,32 +5,22 @@ CLASS net/minecraft/world/entity/monster/piglin/PiglinAi
 		ARG 0 level
 		ARG 1 player
 		ARG 2 requireLineOfSight
-	METHOD angerNearbyPiglins (Lnet/minecraft/world/entity/player/Player;Z)V
-		ARG 0 player
-		ARG 1 angerOnlyIfCanSee
 	METHOD broadcastAngerTarget (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 0 level
 		ARG 1 piglin
 		ARG 2 angerTarget
-	METHOD broadcastAngerTarget (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 0 piglin
-		ARG 1 target
 	METHOD broadcastRetreat (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 0 piglin
 		ARG 1 target
 	METHOD broadcastUniversalAnger (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;)V
 		ARG 0 level
 		ARG 1 piglin
-	METHOD broadcastUniversalAnger (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;)V
-		ARG 0 piglin
 	METHOD canAdmire (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 piglin
 		ARG 1 stack
 	METHOD cancelAdmiring (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/monster/piglin/Piglin;)V
 		ARG 0 level
 		ARG 1 piglin
-	METHOD cancelAdmiring (Lnet/minecraft/world/entity/monster/piglin/Piglin;)V
-		ARG 0 piglin
 	METHOD doesntSeeAnyPlayerHoldingLovedItem (Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 0 piglin
 	METHOD dontKillAnyMoreHoglinsForAWhile (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;)V
@@ -40,8 +30,6 @@ CLASS net/minecraft/world/entity/monster/piglin/PiglinAi
 	METHOD findNearestValidAttackTarget (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/monster/piglin/Piglin;)Ljava/util/Optional;
 		ARG 0 level
 		ARG 1 piglin
-	METHOD findNearestValidAttackTarget (Lnet/minecraft/world/entity/monster/piglin/Piglin;)Ljava/util/Optional;
-		ARG 0 piglin
 	METHOD getAdultPiglins (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;)Ljava/util/List;
 		ARG 0 piglin
 	METHOD getAngerTarget (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;)Ljava/util/Optional;
@@ -71,9 +59,6 @@ CLASS net/minecraft/world/entity/monster/piglin/PiglinAi
 		ARG 0 level
 		ARG 1 piglin
 		ARG 2 stack
-	METHOD holdInOffhand (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 0 piglin
-		ARG 1 stack
 	METHOD initAdmireItemActivity (Lnet/minecraft/world/entity/ai/Brain;)V
 		ARG 0 brain
 	METHOD initCelebrateActivity (Lnet/minecraft/world/entity/ai/Brain;)V
@@ -118,68 +103,35 @@ CLASS net/minecraft/world/entity/monster/piglin/PiglinAi
 		ARG 0 level
 		ARG 1 piglin
 		ARG 2 target
-	METHOD isNearestValidAttackTarget (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/LivingEntity;)Z
-		ARG 0 piglin
-		ARG 1 target
 	METHOD isNotHoldingLovedItemInOffHand (Lnet/minecraft/world/entity/monster/piglin/Piglin;)Z
 		ARG 0 piglin
 	METHOD isPlayerHoldingLovedItem (Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 0 player
-	METHOD isWearingGold (Lnet/minecraft/world/entity/LivingEntity;)Z
-		ARG 0 livingEntity
 	METHOD isWearingSafeArmor (Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 0 entity
 	METHOD isZombified (Lnet/minecraft/world/entity/EntityType;)Z
 		ARG 0 entityType
-	METHOD lambda$angerNearbyPiglins$4 (ZLnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/monster/piglin/Piglin;)Z
-		ARG 2 piglin
-	METHOD lambda$angerNearbyPiglins$5 (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/monster/piglin/Piglin;)V
-		ARG 1 piglin
 	METHOD lambda$angerNearbyPiglins$6 (ZLnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/monster/piglin/Piglin;)Z
 		ARG 2 piglin
 	METHOD lambda$angerNearbyPiglins$7 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/monster/piglin/Piglin;)V
 		ARG 2 piglin
 	METHOD lambda$babySometimesRideBabyHoglin$10 (Lnet/minecraft/world/entity/ai/behavior/SetEntityLookTargetSometimes$Ticker;Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 1 entity
-	METHOD lambda$babySometimesRideBabyHoglin$8 (Lnet/minecraft/world/entity/ai/behavior/SetEntityLookTargetSometimes$Ticker;Lnet/minecraft/world/entity/LivingEntity;)Z
-		ARG 1 entity
-	METHOD lambda$broadcastAngerTarget$9 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;)V
-		ARG 1 adultPiglin
-	METHOD lambda$broadcastRetreat$12 (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;)Z
-		ARG 0 adultPiglin
-	METHOD lambda$broadcastRetreat$13 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;)V
-		ARG 1 adultPiglin
-	METHOD lambda$broadcastUniversalAnger$10 (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;Lnet/minecraft/world/entity/player/Player;)V
-		ARG 1 player
-	METHOD lambda$broadcastUniversalAnger$11 (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;)V
-		ARG 0 adultPiglin
-	METHOD lambda$getSoundForCurrentActivity$7 (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/schedule/Activity;)Lnet/minecraft/sounds/SoundEvent;
-		ARG 1 activity
 	METHOD lambda$getSoundForCurrentActivity$9 (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/schedule/Activity;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 activity
-	METHOD lambda$initCelebrateActivity$1 (Lnet/minecraft/world/entity/monster/piglin/Piglin;)Z
-		ARG 0 piglin
 	METHOD lambda$initCelebrateActivity$2 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/monster/piglin/Piglin;)Z
 		ARG 0 level
 		ARG 1 piglin
 	METHOD lambda$initCelebrateActivity$3 (Lnet/minecraft/world/entity/monster/piglin/Piglin;)Z
 		ARG 0 level
-	METHOD lambda$initFightActivity$0 (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/LivingEntity;)Z
-		ARG 1 entity
 	METHOD lambda$initFightActivity$1 (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 1 level
 		ARG 2 entity
 	METHOD lambda$initIdleActivity$0 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/monster/piglin/Piglin;)Z
 		ARG 0 level
 		ARG 1 piglin
-	METHOD lambda$initRideHoglinActivity$2 (Lnet/minecraft/world/entity/monster/piglin/Piglin;)Z
-		ARG 0 piglin
 	METHOD lambda$initRideHoglinActivity$4 (Lnet/minecraft/world/entity/monster/piglin/Piglin;)Z
 		ARG 0 piglin
-	METHOD lambda$isNearestValidAttackTarget$3 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)Z
-		ARG 1 entity
-	METHOD lambda$wasHurtBy$6 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/Brain;Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 2 entity
 	METHOD lambda$wasHurtBy$8 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/Brain;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 2 avoidTarget
 	METHOD makeBrain (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/ai/Brain;)Lnet/minecraft/world/entity/ai/Brain;
@@ -189,25 +141,15 @@ CLASS net/minecraft/world/entity/monster/piglin/PiglinAi
 		ARG 0 level
 		ARG 1 piglin
 		ARG 2 entity
-	METHOD maybeRetaliate (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 0 piglin
-		ARG 1 target
 	METHOD mobInteract (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 0 level
 		ARG 1 piglin
 		ARG 2 player
 		ARG 3 hand
-	METHOD mobInteract (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
-		ARG 0 piglin
-		ARG 1 player
-		ARG 2 hand
 	METHOD pickUpItem (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/item/ItemEntity;)V
 		ARG 0 level
 		ARG 1 piglin
 		ARG 2 itemEntity
-	METHOD pickUpItem (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/item/ItemEntity;)V
-		ARG 0 piglin
-		ARG 1 itemEntity
 	METHOD piglinsEqualOrOutnumberHoglins (Lnet/minecraft/world/entity/monster/piglin/Piglin;)Z
 		ARG 0 piglin
 	METHOD putInInventory (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/item/ItemStack;)V
@@ -224,23 +166,14 @@ CLASS net/minecraft/world/entity/monster/piglin/PiglinAi
 		ARG 0 level
 		ARG 1 piglin
 		ARG 2 angerTarget
-	METHOD setAngerTarget (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 0 piglin
-		ARG 1 target
 	METHOD setAngerTargetIfCloserThanCurrent (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 0 level
 		ARG 1 piglin
 		ARG 2 angerTarget
-	METHOD setAngerTargetIfCloserThanCurrent (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 0 piglin
-		ARG 1 currentTarget
 	METHOD setAngerTargetToNearestTargetablePlayerIfFound (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 0 level
 		ARG 1 piglin
 		ARG 2 entity
-	METHOD setAngerTargetToNearestTargetablePlayerIfFound (Lnet/minecraft/world/entity/monster/piglin/AbstractPiglin;Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 0 piglin
-		ARG 1 currentTarget
 	METHOD setAvoidTargetAndDontHuntForAWhile (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/LivingEntity;)V
 		ARG 0 piglin
 		ARG 1 target
@@ -248,9 +181,6 @@ CLASS net/minecraft/world/entity/monster/piglin/PiglinAi
 		ARG 0 level
 		ARG 1 piglin
 		ARG 2 barter
-	METHOD stopHoldingOffHandItem (Lnet/minecraft/world/entity/monster/piglin/Piglin;Z)V
-		ARG 0 piglin
-		ARG 1 shouldBarter
 	METHOD stopWalking (Lnet/minecraft/world/entity/monster/piglin/Piglin;)V
 		ARG 0 piglin
 	METHOD throwItems (Lnet/minecraft/world/entity/monster/piglin/Piglin;Ljava/util/List;)V
@@ -284,8 +214,5 @@ CLASS net/minecraft/world/entity/monster/piglin/PiglinAi
 		ARG 0 level
 		ARG 1 piglin
 		ARG 2 entity
-	METHOD wasHurtBy (Lnet/minecraft/world/entity/monster/piglin/Piglin;Lnet/minecraft/world/entity/LivingEntity;)V
-		ARG 0 piglin
-		ARG 1 target
 	METHOD wasHurtRecently (Lnet/minecraft/world/entity/LivingEntity;)Z
 		ARG 0 piglin

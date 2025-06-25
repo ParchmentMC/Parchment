@@ -1,6 +1,4 @@
 CLASS net/minecraft/client/data/models/ItemModelGenerators
-	METHOD <init> (Ljava/util/function/BiConsumer;)V
-		ARG 1 output
 	METHOD <init> (Lnet/minecraft/client/data/models/ItemModelOutput;Ljava/util/function/BiConsumer;)V
 		ARG 1 itemModelOutput
 		ARG 2 modelOutput
@@ -25,21 +23,6 @@ CLASS net/minecraft/client/data/models/ItemModelGenerators
 		ARG 1 holdingModel
 	METHOD declareCustomModelItem (Lnet/minecraft/world/item/Item;)V
 		ARG 1 item
-	METHOD generateArmorTrims (Lnet/minecraft/world/item/ArmorItem;)V
-		ARG 1 armorItem
-	METHOD generateArmorTrims (Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/equipment/EquipmentModel;Lnet/minecraft/world/entity/EquipmentSlot;)V
-		ARG 1 item
-		ARG 2 modelId
-		ARG 3 model
-		ARG 4 slot
-	METHOD generateBaseArmorTrimTemplate (Lnet/minecraft/resources/ResourceLocation;Ljava/util/Map;Lnet/minecraft/core/Holder;)Lcom/google/gson/JsonObject;
-		ARG 1 modelLocation
-		ARG 2 modelGetter
-		ARG 3 armorMaterial
-	METHOD generateBaseArmorTrimTemplate (Lnet/minecraft/resources/ResourceLocation;Ljava/util/Map;Lnet/minecraft/resources/ResourceLocation;)Lcom/google/gson/JsonObject;
-		ARG 1 modelLocation
-		ARG 2 modelGetter
-		ARG 3 name
 	METHOD generateBooleanDispatch (Lnet/minecraft/world/item/Item;Lnet/minecraft/client/renderer/item/properties/conditional/ConditionalItemModelProperty;Lnet/minecraft/client/renderer/item/ItemModel$Unbaked;Lnet/minecraft/client/renderer/item/ItemModel$Unbaked;)V
 		ARG 1 item
 		ARG 2 property
@@ -57,8 +40,6 @@ CLASS net/minecraft/client/data/models/ItemModelGenerators
 		ARG 1 bundleItem
 	METHOD generateClockItem (Lnet/minecraft/world/item/Item;)V
 		ARG 1 item
-	METHOD generateCompassItem (Lnet/minecraft/world/item/Item;)V
-		ARG 1 item
 	METHOD generateCrossbow (Lnet/minecraft/world/item/Item;)V
 		ARG 1 crossbowItem
 	METHOD generateDyedItem (Lnet/minecraft/world/item/Item;I)V
@@ -68,10 +49,6 @@ CLASS net/minecraft/client/data/models/ItemModelGenerators
 		ARG 1 elytraItem
 	METHOD generateFishingRod (Lnet/minecraft/world/item/Item;)V
 		ARG 1 fishingRodItem
-	METHOD generateFlatItem (Lnet/minecraft/world/item/Item;Ljava/lang/String;Lnet/minecraft/client/data/models/model/ModelTemplate;)V
-		ARG 1 item
-		ARG 2 modelLocationSuffix
-		ARG 3 modelTemplate
 	METHOD generateFlatItem (Lnet/minecraft/world/item/Item;Lnet/minecraft/client/data/models/model/ModelTemplate;)V
 		ARG 1 item
 		ARG 2 modelTemplate
@@ -81,8 +58,6 @@ CLASS net/minecraft/client/data/models/ItemModelGenerators
 		ARG 3 modelTemplate
 	METHOD generateGoatHorn (Lnet/minecraft/world/item/Item;)V
 		ARG 1 goatHornItem
-	METHOD generateItemWithOverlay (Lnet/minecraft/world/item/Item;)V
-		ARG 1 item
 	METHOD generateItemWithTintedOverlay (Lnet/minecraft/world/item/Item;Ljava/lang/String;Lnet/minecraft/client/color/item/ItemTintSource;)V
 		ARG 1 item
 		ARG 2 suffix
@@ -91,10 +66,6 @@ CLASS net/minecraft/client/data/models/ItemModelGenerators
 		ARG 1 item
 		ARG 2 tintSource
 	METHOD generateLayeredItem (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
-		ARG 1 modelLocation
-		ARG 2 layer0
-		ARG 3 layer1
-	METHOD generateLayeredItem (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 modelLocation
 		ARG 2 layer0
 		ARG 3 layer1
@@ -113,10 +84,6 @@ CLASS net/minecraft/client/data/models/ItemModelGenerators
 		ARG 1 item
 	METHOD generateShield (Lnet/minecraft/world/item/Item;)V
 		ARG 1 shieldItem
-	METHOD generateSpawnEgg (Lnet/minecraft/world/item/Item;II)V
-		ARG 1 spawnEggItem
-		ARG 2 primaryColor
-		ARG 3 secondaryColor
 	METHOD generateSpyglass (Lnet/minecraft/world/item/Item;)V
 		ARG 1 spyglassItem
 	METHOD generateStandardCompassItem (Lnet/minecraft/world/item/Item;)V
@@ -125,11 +92,6 @@ CLASS net/minecraft/client/data/models/ItemModelGenerators
 		ARG 1 arrowItem
 	METHOD generateTrident (Lnet/minecraft/world/item/Item;)V
 		ARG 1 tridentItem
-	METHOD generateTrimmableItem (Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceKey;Ljava/lang/String;Z)V
-		ARG 1 item
-		ARG 2 key
-		ARG 3 name
-		ARG 4 dyeable
 	METHOD generateTrimmableItem (Lnet/minecraft/world/item/Item;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceLocation;Z)V
 		ARG 1 item
 		ARG 2 equipmentAsset
@@ -137,18 +99,5 @@ CLASS net/minecraft/client/data/models/ItemModelGenerators
 		ARG 4 usesSecondLayer
 	METHOD generateTwoLayerDyedItem (Lnet/minecraft/world/item/Item;)V
 		ARG 1 item
-	METHOD generateWolfArmor (Lnet/minecraft/world/item/Item;)V
-		ARG 1 armorItem
-	METHOD getItemModelForTrimMaterial (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
-		ARG 1 modelLocation
-		ARG 2 trimId
 	METHOD prefixForSlotTrim (Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
 		ARG 0 name
-	CLASS TrimModelData
-		METHOD name (Lnet/minecraft/core/Holder;)Ljava/lang/String;
-			ARG 1 armorMaterial
-		METHOD name (Lnet/minecraft/resources/ResourceLocation;)Ljava/lang/String;
-			ARG 1 name
-	CLASS TrimMaterialData
-		METHOD textureName (Lnet/minecraft/resources/ResourceKey;)Ljava/lang/String;
-			ARG 1 key

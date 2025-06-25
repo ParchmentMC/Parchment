@@ -17,8 +17,6 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 		COMMENT Starting X position for the Gui. Inconsistent use for Gui backgrounds.
 	FIELD menu Lnet/minecraft/world/inventory/AbstractContainerMenu;
 		COMMENT A list of the players inventory slots
-	FIELD snapbackItem Lnet/minecraft/world/item/ItemStack;
-		COMMENT Used when touchscreen is enabled
 	FIELD topPos I
 		COMMENT Starting Y position for the Gui. Inconsistent use for Gui backgrounds.
 	METHOD <init> (Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V
@@ -32,12 +30,6 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 		ARG 2 scanCode
 	METHOD checkHotbarMouseClicked (I)V
 		ARG 1 keyCode
-	METHOD checkItemSlotActionKeyPressed (II)Z
-		ARG 1 keysym
-		ARG 2 scancode
-	METHOD findSlot (DD)Lnet/minecraft/world/inventory/Slot;
-		ARG 1 mouseX
-		ARG 3 mouseY
 	METHOD getHoveredSlot (DD)Lnet/minecraft/world/inventory/Slot;
 		ARG 1 mouseX
 		ARG 3 mouseY
@@ -114,11 +106,6 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 	METHOD renderSlot (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/inventory/Slot;)V
 		ARG 1 guiGraphics
 		ARG 2 slot
-	METHOD renderSlotHighlight (Lnet/minecraft/client/gui/GuiGraphics;III)V
-		ARG 0 guiGraphics
-		ARG 1 x
-		ARG 2 y
-		ARG 3 blitOffset
 	METHOD renderSlotHighlightBack (Lnet/minecraft/client/gui/GuiGraphics;)V
 		ARG 1 guiGraphics
 	METHOD renderSlotHighlightFront (Lnet/minecraft/client/gui/GuiGraphics;)V
@@ -131,9 +118,6 @@ CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
 		ARG 1 guiGraphics
 		ARG 2 x
 		ARG 3 y
-	METHOD resetHoveredSlot (DD)V
-		ARG 1 mouseX
-		ARG 3 mouseY
 	METHOD showTooltipWithItemInHand (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
 	METHOD slotClicked (Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ClickType;)V

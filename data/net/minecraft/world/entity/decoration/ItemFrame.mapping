@@ -8,33 +8,19 @@ CLASS net/minecraft/world/entity/decoration/ItemFrame
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 facingDirection
-	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 compound
 	METHOD canHurtWhenFixed (Lnet/minecraft/world/damagesource/DamageSource;)Z
 		ARG 0 damageSource
 	METHOD dropItem (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;Z)V
 		ARG 1 level
 		ARG 2 entity
 		ARG 3 dropItem
-	METHOD dropItem (Lnet/minecraft/world/entity/Entity;)V
-		COMMENT Called when this entity is broken. Entity parameter may be null.
-		ARG 1 brokenEntity
-	METHOD dropItem (Lnet/minecraft/world/entity/Entity;Z)V
-		ARG 1 entity
-		ARG 2 dropSelf
 	METHOD getFramedMapId (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/level/saveddata/maps/MapId;
 		ARG 1 stack
 	METHOD getRotation ()I
 		COMMENT Return the rotation of the item currently on this frame.
-	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
-		COMMENT Called when the entity is attacked.
-		ARG 1 source
-		ARG 2 amount
 	METHOD interact (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
 		ARG 2 hand
-	METHOD kill ()V
-		COMMENT Called by the /kill command.
 	METHOD move (Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 type
 		ARG 2 pos
@@ -47,9 +33,6 @@ CLASS net/minecraft/world/entity/decoration/ItemFrame
 		ARG 1 x
 		ARG 3 y
 		ARG 5 z
-	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
-		ARG 1 compound
 	METHOD removeFramedMap (Lnet/minecraft/world/item/ItemStack;)V
 		COMMENT Removes the dot representing this frame's position from the map when the item frame is broken.
 		ARG 1 stack

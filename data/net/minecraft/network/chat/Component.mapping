@@ -31,9 +31,6 @@ CLASS net/minecraft/network/chat/Component
 	METHOD score (Lnet/minecraft/commands/arguments/selector/SelectorPattern;Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
 		ARG 0 selectorPattern
 		ARG 1 objective
-	METHOD selector (Ljava/lang/String;Ljava/util/Optional;)Lnet/minecraft/network/chat/MutableComponent;
-		ARG 0 pattern
-		ARG 1 separator
 	METHOD selector (Lnet/minecraft/commands/arguments/selector/SelectorPattern;Ljava/util/Optional;)Lnet/minecraft/network/chat/MutableComponent;
 		ARG 0 selectorPattern
 		ARG 1 seperator
@@ -71,33 +68,3 @@ CLASS net/minecraft/network/chat/Component
 	METHOD visit (Lnet/minecraft/network/chat/FormattedText$StyledContentConsumer;Lnet/minecraft/network/chat/Style;)Ljava/util/Optional;
 		ARG 1 acceptor
 		ARG 2 style
-	CLASS Serializer
-		METHOD deserialize (Lcom/google/gson/JsonElement;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/network/chat/MutableComponent;
-			ARG 0 json
-			ARG 1 provider
-		METHOD fromJson (Lcom/google/gson/JsonElement;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/network/chat/MutableComponent;
-			ARG 0 json
-			ARG 1 registries
-		METHOD fromJson (Ljava/lang/String;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/network/chat/MutableComponent;
-			ARG 0 json
-			ARG 1 registries
-		METHOD fromJsonLenient (Ljava/lang/String;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/network/chat/MutableComponent;
-			ARG 0 json
-			ARG 1 registries
-		METHOD serialize (Lnet/minecraft/network/chat/Component;Lnet/minecraft/core/HolderLookup$Provider;)Lcom/google/gson/JsonElement;
-			ARG 0 component
-			ARG 1 provider
-		METHOD toJson (Lnet/minecraft/network/chat/Component;Lnet/minecraft/core/HolderLookup$Provider;)Ljava/lang/String;
-			ARG 0 component
-			ARG 1 registries
-	CLASS SerializerAdapter
-		METHOD <init> (Lnet/minecraft/core/HolderLookup$Provider;)V
-			ARG 1 registries
-		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/network/chat/MutableComponent;
-			ARG 1 json
-			ARG 2 typeOfT
-			ARG 3 context
-		METHOD serialize (Lnet/minecraft/network/chat/Component;Ljava/lang/reflect/Type;Lcom/google/gson/JsonSerializationContext;)Lcom/google/gson/JsonElement;
-			ARG 1 src
-			ARG 2 typeOfSrc
-			ARG 3 context

@@ -1,7 +1,4 @@
 CLASS net/minecraft/server/ReloadableServerRegistries
-	METHOD apply (Lnet/minecraft/core/LayeredRegistryAccess;Ljava/util/List;)Lnet/minecraft/core/LayeredRegistryAccess;
-		ARG 0 registryAccess
-		ARG 1 registries
 	METHOD concatenateLookups (Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/core/HolderLookup$Provider;
 		ARG 0 lookup1
 		ARG 1 lookup2
@@ -17,15 +14,6 @@ CLASS net/minecraft/server/ReloadableServerRegistries
 		ARG 1 postponedTags
 		ARG 2 resourceManager
 		ARG 3 backgroundExecutor
-	METHOD reload (Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
-		ARG 0 registries
-		ARG 1 resourceManager
-		ARG 2 backgroundExecutor
-	METHOD scheduleElementParse (Lnet/minecraft/world/level/storage/loot/LootDataType;Lnet/minecraft/resources/RegistryOps;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
-		ARG 0 lootDataType
-		ARG 1 registryOps
-		ARG 2 resourceManager
-		ARG 3 backgroundExecutor
 	METHOD scheduleRegistryLoad (Lnet/minecraft/world/level/storage/loot/LootDataType;Lnet/minecraft/resources/RegistryOps;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 lootDataType
 		ARG 1 ops
@@ -37,19 +25,8 @@ CLASS net/minecraft/server/ReloadableServerRegistries
 		ARG 0 context
 		ARG 1 lootDataType
 		ARG 2 registries
-	METHOD validateRegistry (Lnet/minecraft/world/level/storage/loot/ValidationContext;Lnet/minecraft/world/level/storage/loot/LootDataType;Lnet/minecraft/core/RegistryAccess;)V
-		ARG 0 context
-		ARG 1 lootDataType
-		ARG 2 registryAccess
 	CLASS Holder
 		METHOD <init> (Lnet/minecraft/core/HolderLookup$Provider;)V
 			ARG 1 registries
-		METHOD <init> (Lnet/minecraft/core/RegistryAccess$Frozen;)V
-			ARG 1 registries
-		METHOD getKeys (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Collection;
-			ARG 1 registryKey
 		METHOD getLootTable (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/storage/loot/LootTable;
 			ARG 1 lootTableKey
-	CLASS EmptyTagLookupWrapper
-		METHOD <init> (Lnet/minecraft/core/RegistryAccess;)V
-			ARG 1 registryAccess

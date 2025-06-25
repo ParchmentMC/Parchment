@@ -2,13 +2,8 @@ CLASS net/minecraft/client/tutorial/Tutorial
 	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/Options;)V
 		ARG 1 minecraft
 		ARG 2 options
-	METHOD addTimedToast (Lnet/minecraft/client/gui/components/toasts/TutorialToast;I)V
-		ARG 1 toast
-		ARG 2 durationTicks
 	METHOD key (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
 		ARG 0 keybind
-	METHOD lambda$removeTimedToast$0 (Lnet/minecraft/client/gui/components/toasts/TutorialToast;Lnet/minecraft/client/tutorial/Tutorial$TimedToast;)Z
-		ARG 1 timed
 	METHOD onDestroyBlock (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;F)V
 		ARG 1 level
 		ARG 2 pos
@@ -18,8 +13,6 @@ CLASS net/minecraft/client/tutorial/Tutorial
 		COMMENT Called when the player pick up an ItemStack
 		ARG 1 stack
 	METHOD onInput (Lnet/minecraft/client/player/ClientInput;)V
-		ARG 1 input
-	METHOD onInput (Lnet/minecraft/client/player/Input;)V
 		ARG 1 input
 	METHOD onInventoryAction (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/ClickAction;)V
 		ARG 1 carriedStack
@@ -33,14 +26,8 @@ CLASS net/minecraft/client/tutorial/Tutorial
 		ARG 3 velocityY
 	METHOD onOpenInventory ()V
 		COMMENT Called when the player opens his inventory
-	METHOD removeTimedToast (Lnet/minecraft/client/gui/components/toasts/TutorialToast;)V
-		ARG 1 toast
 	METHOD setStep (Lnet/minecraft/client/tutorial/TutorialSteps;)V
 		COMMENT Sets a new step to the tutorial
 		ARG 1 step
 	METHOD start ()V
 		COMMENT Reloads the tutorial step from the game settings
-	CLASS TimedToast
-		METHOD <init> (Lnet/minecraft/client/gui/components/toasts/TutorialToast;I)V
-			ARG 1 toast
-			ARG 2 durationTicks

@@ -1,8 +1,6 @@
 CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 	FIELD aboveGroundTickCount I
 		COMMENT Used to keep track of how the player is floating while gamerules should prevent that. Surpassing 80 ticks means kick
-	FIELD chatSpamTickCount I
-		COMMENT Incremented by 20 each time a user sends a chat message, decreased by one every tick. Non-ops kicked when over 200
 	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/network/CommonListenerCookie;)V
 		ARG 1 server
 		ARG 2 connection
@@ -15,8 +13,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 stack
-	METHOD addPendingMessage (Lnet/minecraft/network/chat/PlayerChatMessage;)V
-		ARG 1 message
 	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;)V
 		ARG 1 message
 	METHOD clampHorizontal (D)D
@@ -89,8 +85,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 1 packet
 	METHOD handlePaddleBoat (Lnet/minecraft/network/protocol/game/ServerboundPaddleBoatPacket;)V
 		ARG 1 packet
-	METHOD handlePickItem (Lnet/minecraft/network/protocol/game/ServerboundPickItemPacket;)V
-		ARG 1 packet
 	METHOD handlePlaceRecipe (Lnet/minecraft/network/protocol/game/ServerboundPlaceRecipePacket;)V
 		ARG 1 packet
 	METHOD handlePlayerAbilities (Lnet/minecraft/network/protocol/game/ServerboundPlayerAbilitiesPacket;)V
@@ -147,30 +141,14 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 4 x
 		ARG 6 y
 		ARG 8 z
-	METHOD isPlayerCollidingWithAnythingNew (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/world/phys/AABB;DDD)Z
-		ARG 1 level
-		ARG 2 box
-		ARG 3 x
-		ARG 5 y
-		ARG 7 z
 	METHOD lambda$filterTextPacket$0 (Ljava/lang/Object;)Ljava/lang/Object;
 		ARG 1 result
-	METHOD lambda$handleChat$5 (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/network/chat/Component;Lnet/minecraft/server/network/FilteredText;)V
-		ARG 3 filteredText
 	METHOD lambda$handleCustomCommandSuggestions$1 (Lnet/minecraft/network/protocol/game/ServerboundCommandSuggestionPacket;Lcom/mojang/brigadier/suggestion/Suggestions;)V
 		ARG 2 suggestions
-	METHOD lambda$handleEditBook$2 (ILjava/util/List;)V
-		ARG 2 texts
 	METHOD lambda$handleEditBook$3 (ILjava/util/List;)V
 		ARG 2 texts
-	METHOD lambda$handlePlaceRecipe$10 (Lnet/minecraft/network/protocol/game/ServerboundPlaceRecipePacket;Lnet/minecraft/world/item/crafting/RecipeHolder;)V
-		ARG 2 recipeHolder
 	METHOD lambda$handleSignUpdate$11 (Lnet/minecraft/network/protocol/game/ServerboundSignUpdatePacket;Ljava/util/List;)V
 		ARG 2 texts
-	METHOD lambda$performSignedChatCommand$9 (Lnet/minecraft/commands/CommandSigningContext;Lnet/minecraft/commands/CommandSourceStack;)Lnet/minecraft/commands/CommandSourceStack;
-		ARG 2 source
-	METHOD lambda$signBook$4 (Lnet/minecraft/server/network/FilteredText;)Lnet/minecraft/server/network/Filterable;
-		ARG 1 filteredText
 	METHOD noBlocksAround (Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD parseCommand (Ljava/lang/String;)Lcom/mojang/brigadier/ParseResults;
@@ -200,14 +178,6 @@ CLASS net/minecraft/server/network/ServerGamePacketListenerImpl
 		ARG 5 z
 		ARG 7 yaw
 		ARG 8 pitch
-	METHOD teleport (DDDFFLjava/util/Set;)V
-		COMMENT Teleports the player position to the (relative) values specified, and syncs to the client
-		ARG 1 x
-		ARG 3 y
-		ARG 5 z
-		ARG 7 yaw
-		ARG 8 pitch
-		ARG 9 relativeSet
 	METHOD teleport (Lnet/minecraft/world/entity/PositionMoveRotation;Ljava/util/Set;)V
 		ARG 1 posMoveRotation
 		ARG 2 relatives

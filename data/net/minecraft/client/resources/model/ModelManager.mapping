@@ -12,66 +12,21 @@ CLASS net/minecraft/client/resources/model/ModelManager
 	METHOD createBlockStateToModelDispatch (Ljava/util/Map;Lnet/minecraft/client/renderer/block/model/BlockStateModel;)Ljava/util/Map;
 		ARG 0 blockStateModels
 		ARG 1 missingModel
-	METHOD createBlockStateToModelDispatch (Ljava/util/Map;Lnet/minecraft/client/resources/model/BakedModel;)Ljava/util/Map;
-		ARG 0 blockStateModels
-		ARG 1 missingModel
 	METHOD discoverModelDependencies (Ljava/util/Map;Lnet/minecraft/client/resources/model/BlockStateModelLoader$LoadedModels;Lnet/minecraft/client/resources/model/ClientItemInfoLoader$LoadedClientInfos;)Lnet/minecraft/client/resources/model/ModelManager$ResolvedModels;
 		ARG 0 inputModels
 		ARG 1 loadedModels
 		ARG 2 loadedClientInfos
-	METHOD discoverModelDependencies (Lnet/minecraft/client/resources/model/UnbakedModel;Ljava/util/Map;Lnet/minecraft/client/resources/model/BlockStateModelLoader$LoadedModels;)Lnet/minecraft/client/resources/model/ModelDiscovery;
-		ARG 1 missingModel
-		ARG 2 inputModels
-		ARG 3 loadedModels
-	METHOD discoverModelDependencies (Lnet/minecraft/client/resources/model/UnbakedModel;Ljava/util/Map;Lnet/minecraft/client/resources/model/BlockStateModelLoader$LoadedModels;Lnet/minecraft/client/resources/model/ClientItemInfoLoader$LoadedClientInfos;)Lnet/minecraft/client/resources/model/ModelDiscovery;
-		ARG 0 missingModel
-		ARG 1 inputModels
-		ARG 2 loadedModels
-		ARG 3 loadedClientInfos
-	METHOD discoverModelDependencies (Lnet/minecraft/client/resources/model/UnbakedModel;Ljava/util/Map;Lnet/minecraft/client/resources/model/BlockStateModelLoader$LoadedModels;Lnet/minecraft/client/resources/model/ItemStackModelLoader$LoadedModels;)Lnet/minecraft/client/resources/model/ModelDiscovery;
-		ARG 0 missingModel
-		ARG 1 inputModels
-		ARG 2 loadedBlockStateModels
-		ARG 3 loadedItemStackModels
 	METHOD getAtlas (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlas;
 		ARG 1 location
 	METHOD getItemModel (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/item/ItemModel;
 		ARG 1 modelLocation
 	METHOD getItemProperties (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/item/ClientItem$Properties;
 		ARG 1 itemId
-	METHOD getModel (Lnet/minecraft/client/resources/model/ModelResourceLocation;)Lnet/minecraft/client/resources/model/BakedModel;
-		ARG 1 modelLocation
-	METHOD lambda$createBlockStateToModelDispatch$18 (Ljava/util/Map;Ljava/util/Map;Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 3 state
 	METHOD lambda$createBlockStateToModelDispatch$19 (Ljava/util/Map;Lnet/minecraft/client/renderer/block/model/BlockStateModel;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 2 state
 	METHOD lambda$discoverModelDependencies$12 (Lnet/minecraft/client/resources/model/ModelDiscovery;Lnet/minecraft/client/renderer/item/ClientItem;)V
 		ARG 1 item
-	METHOD lambda$loadBlockModels$10 (Ljava/util/concurrent/Executor;Ljava/util/Map;)Ljava/util/concurrent/CompletionStage;
-		ARG 1 modelResources
-	METHOD lambda$loadBlockModels$9 (Ljava/util/List;)Ljava/util/Map;
-		ARG 0 modelResourcePairs
-	METHOD lambda$loadBlockStates$13 (Ljava/util/List;)Ljava/util/Map;
-		ARG 0 loadedBlockStates
-	METHOD lambda$loadBlockStates$14 (Ljava/util/concurrent/Executor;Ljava/util/Map;)Ljava/util/concurrent/CompletionStage;
-		ARG 1 blockStateResources
-	METHOD lambda$loadModels$18 (Ljava/util/Map;Lnet/minecraft/client/resources/model/BakedModel;Ljava/util/Map;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 3 possibleState
-	METHOD lambda$reload$0 (Lnet/minecraft/util/profiling/ProfilerFiller;Ljava/util/Map;Ljava/util/Map;)Lnet/minecraft/client/resources/model/ModelBakery;
-		ARG 2 modelResources
-		ARG 3 blockStateResources
-	METHOD lambda$reload$7 (Lnet/minecraft/client/resources/model/ModelManager$ReloadState;)Ljava/util/concurrent/CompletionStage;
-		ARG 0 reloadState
-	METHOD lambda$reload$8 (Lnet/minecraft/client/resources/model/ModelManager$ReloadState;)V
-		ARG 1 reloadState
 	METHOD loadBlockModels (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
-		ARG 0 resourceManager
-		ARG 1 executor
-	METHOD loadBlockStates (Lnet/minecraft/client/resources/model/BlockStateModelLoader;Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
-		ARG 0 modelLoader
-		ARG 1 resourceManager
-		ARG 2 backgroundExecutor
-	METHOD loadBlockStates (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
 		ARG 0 resourceManager
 		ARG 1 executor
 	METHOD loadModels (Ljava/util/Map;Lnet/minecraft/client/resources/model/ModelBakery;Lit/unimi/dsi/fastutil/objects/Object2IntMap;Lnet/minecraft/client/model/geom/EntityModelSet;Lnet/minecraft/client/renderer/SpecialBlockModelRenderer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
@@ -81,22 +36,6 @@ CLASS net/minecraft/client/resources/model/ModelManager
 		ARG 3 entityModelSet
 		ARG 4 specialBlockModelRenderer
 		ARG 5 executor
-	METHOD loadModels (Lnet/minecraft/util/profiling/ProfilerFiller;Ljava/util/Map;Lnet/minecraft/client/resources/model/ModelBakery;)Lnet/minecraft/client/resources/model/ModelManager$ReloadState;
-		ARG 1 profilerFiller
-		ARG 2 atlasPreparations
-		ARG 3 modelBakery
-	METHOD loadModels (Lnet/minecraft/util/profiling/ProfilerFiller;Ljava/util/Map;Lnet/minecraft/client/resources/model/ModelBakery;Lit/unimi/dsi/fastutil/objects/Object2IntMap;)Lnet/minecraft/client/resources/model/ModelManager$ReloadState;
-		ARG 1 profiler
-		ARG 2 stitchResults
-		ARG 3 modelBakery
-		ARG 4 modelGroups
-	METHOD loadModels (Lnet/minecraft/util/profiling/ProfilerFiller;Ljava/util/Map;Lnet/minecraft/client/resources/model/ModelBakery;Lit/unimi/dsi/fastutil/objects/Object2IntMap;Lnet/minecraft/client/model/geom/EntityModelSet;Lnet/minecraft/client/renderer/SpecialBlockModelRenderer;)Lnet/minecraft/client/resources/model/ModelManager$ReloadState;
-		ARG 0 profiler
-		ARG 1 atlasPreperations
-		ARG 2 modelBakery
-		ARG 3 modelGroups
-		ARG 4 entityModelSet
-		ARG 5 specialBlockModelRenderer
 	METHOD requiresRender (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 oldState
 		ARG 2 newState

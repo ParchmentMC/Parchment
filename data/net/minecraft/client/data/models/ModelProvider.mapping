@@ -1,10 +1,6 @@
 CLASS net/minecraft/client/data/models/ModelProvider
 	METHOD <init> (Lnet/minecraft/data/PackOutput;)V
 		ARG 1 output
-	METHOD saveAll (Lnet/minecraft/data/CachedOutput;Ljava/util/function/Function;Ljava/util/Map;)Ljava/util/concurrent/CompletableFuture;
-		ARG 0 output
-		ARG 1 pathGetter
-		ARG 2 entries
 	CLASS ItemInfoCollector
 		METHOD lambda$finalizeAndValidate$2 (Lnet/minecraft/core/Holder$Reference;)Z
 			ARG 1 item
@@ -17,14 +13,14 @@ CLASS net/minecraft/client/data/models/ModelProvider
 			ARG 1 output
 			ARG 2 pathProvider
 	CLASS SimpleModelCollector
-		METHOD accept (Ljava/lang/Object;Ljava/lang/Object;)V
+		METHOD accept (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/data/models/model/ModelInstance;)V
 			ARG 1 location
 			ARG 2 model
 		METHOD save (Lnet/minecraft/data/CachedOutput;Lnet/minecraft/data/PackOutput$PathProvider;)Ljava/util/concurrent/CompletableFuture;
 			ARG 1 output
 			ARG 2 pathProvider
 	CLASS BlockStateGeneratorCollector
-		METHOD accept (Ljava/lang/Object;)V
+		METHOD accept (Lnet/minecraft/client/data/models/blockstates/BlockModelDefinitionGenerator;)V
 			ARG 1 generator
 		METHOD lambda$validate$0 (Lnet/minecraft/core/Holder$Reference;)Z
 			ARG 0 block

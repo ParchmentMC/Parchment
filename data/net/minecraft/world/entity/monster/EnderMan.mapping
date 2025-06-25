@@ -1,36 +1,15 @@
 CLASS net/minecraft/world/entity/monster/EnderMan
-	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 compound
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
-	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
-		COMMENT Called when the entity is attacked.
-		ARG 1 source
-		ARG 2 amount
 	METHOD hurtWithCleanWater (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/entity/projectile/AbstractThrownPotion;F)Z
 		ARG 1 level
 		ARG 2 damageSource
 		ARG 3 potion
 		ARG 4 damageAmount
-	METHOD hurtWithCleanWater (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/entity/projectile/ThrownPotion;F)Z
-		ARG 1 level
-		ARG 2 damageSource
-		ARG 3 potion
-		ARG 4 amount
-	METHOD hurtWithCleanWater (Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/entity/projectile/ThrownPotion;F)Z
-		ARG 1 source
-		ARG 2 potion
-		ARG 3 amount
 	METHOD isBeingStaredBy (Lnet/minecraft/world/entity/player/Player;)Z
-		ARG 1 player
-	METHOD isLookingAtMe (Lnet/minecraft/world/entity/player/Player;)Z
-		COMMENT Checks to see if this enderman should be attacking this player
 		ARG 1 player
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
 		ARG 1 key
-	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
-		ARG 1 compound
 	METHOD setCarriedBlock (Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 state
 	METHOD setPersistentAngerTarget (Ljava/util/UUID;)V
@@ -74,9 +53,6 @@ CLASS net/minecraft/world/entity/monster/EnderMan
 	CLASS EndermanLookForPlayerGoal
 		FIELD pendingTarget Lnet/minecraft/world/entity/player/Player;
 			COMMENT The player
-		METHOD <init> (Lnet/minecraft/world/entity/monster/EnderMan;Ljava/util/function/Predicate;)V
-			ARG 1 enderman
-			ARG 2 selectionPredicate
 		METHOD <init> (Lnet/minecraft/world/entity/monster/EnderMan;Lnet/minecraft/world/entity/ai/targeting/TargetingConditions$Selector;)V
 			ARG 1 enderman
 			ARG 2 selector
@@ -84,8 +60,6 @@ CLASS net/minecraft/world/entity/monster/EnderMan
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD lambda$new$0 (Lnet/minecraft/world/entity/monster/EnderMan;Lnet/minecraft/world/entity/LivingEntity;)Z
-			ARG 1 entity
 		METHOD lambda$new$0 (Lnet/minecraft/world/entity/monster/EnderMan;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/server/level/ServerLevel;)Z
 			ARG 1 entity
 			ARG 2 level

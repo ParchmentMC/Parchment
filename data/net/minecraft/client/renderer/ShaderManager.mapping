@@ -1,106 +1,33 @@
 CLASS net/minecraft/client/renderer/ShaderManager
-	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureManager;)V
-		ARG 1 textureManager
 	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureManager;Ljava/util/function/Consumer;)V
 		ARG 1 textureManager
 		ARG 2 recoveryHandler
-	METHOD compileProgram (Lnet/minecraft/client/renderer/ShaderProgram;)Lnet/minecraft/client/renderer/CompiledShaderProgram;
-		ARG 1 program
-	METHOD compileShader (Lnet/minecraft/client/renderer/ShaderManager$ShaderCompilationKey;)Lcom/mojang/blaze3d/shaders/CompiledShader;
-		ARG 1 compilationKey
 	METHOD createPreprocessor (Ljava/util/Map;Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/blaze3d/preprocessor/GlslPreprocessor;
 		ARG 0 shaderResources
 		ARG 1 shaderLocation
-	METHOD getOrCompileShader (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/blaze3d/shaders/CompiledShader$Type;Lnet/minecraft/client/renderer/ShaderDefines;)Lcom/mojang/blaze3d/shaders/CompiledShader;
-		ARG 1 id
-		ARG 2 type
-		ARG 3 defines
 	METHOD getPostChain (Lnet/minecraft/resources/ResourceLocation;Ljava/util/Set;)Lnet/minecraft/client/renderer/PostChain;
 		ARG 1 id
 		ARG 2 externalTargets
-	METHOD getProgram (Lcom/mojang/blaze3d/pipeline/RenderPipeline;)Lnet/minecraft/client/renderer/CompiledShaderProgram;
-		ARG 1 renderPipeline
-	METHOD getProgram (Lnet/minecraft/client/renderer/ShaderProgram;)Lnet/minecraft/client/renderer/CompiledShaderProgram;
-		ARG 1 program
-	METHOD getProgramForLoading (Lcom/mojang/blaze3d/pipeline/RenderPipeline;)Lnet/minecraft/client/renderer/CompiledShaderProgram;
-		ARG 1 renderPipeline
-	METHOD getProgramForLoading (Lnet/minecraft/client/renderer/ShaderProgram;)Lnet/minecraft/client/renderer/CompiledShaderProgram;
-		ARG 1 program
 	METHOD getShader (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/blaze3d/shaders/ShaderType;)Ljava/lang/String;
 		ARG 1 id
 		ARG 2 type
-	METHOD isProgram (Lnet/minecraft/resources/ResourceLocation;)Z
-		ARG 0 location
 	METHOD isShader (Lnet/minecraft/resources/ResourceLocation;)Z
 		ARG 0 location
-	METHOD lambda$apply$0 (Ljava/util/Map$Entry;)Ljava/lang/String;
-		ARG 0 entry
-	METHOD lambda$apply$1 (Ljava/util/Map$Entry;)Ljava/lang/String;
-		ARG 0 entry
-	METHOD lambda$prepare$0 (Lnet/minecraft/resources/ResourceLocation;)Z
-		ARG 0 location
-	METHOD linkProgram (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lcom/mojang/blaze3d/shaders/CompiledShader;Lcom/mojang/blaze3d/shaders/CompiledShader;)Lnet/minecraft/client/renderer/CompiledShaderProgram;
-		ARG 0 renderPipeline
-		ARG 1 vertexShader
-		ARG 2 fragmentShader
-	METHOD linkProgram (Lnet/minecraft/client/renderer/ShaderProgram;Lnet/minecraft/client/renderer/ShaderProgramConfig;Lcom/mojang/blaze3d/shaders/CompiledShader;Lcom/mojang/blaze3d/shaders/CompiledShader;)Lnet/minecraft/client/renderer/CompiledShaderProgram;
-		ARG 0 program
-		ARG 1 config
-		ARG 2 vertexShader
-		ARG 3 fragmentShader
-	METHOD loadPostChain (Lnet/minecraft/resources/ResourceLocation;Ljava/util/Set;)Lnet/minecraft/client/renderer/PostChain;
-		ARG 1 id
-		ARG 2 externalTargets
 	METHOD loadPostChain (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/Resource;Lcom/google/common/collect/ImmutableMap$Builder;)V
 		ARG 0 location
 		ARG 1 postChain
 		ARG 2 output
-	METHOD loadProgram (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/Resource;Lcom/google/common/collect/ImmutableMap$Builder;)V
-		ARG 0 location
-		ARG 1 resource
-		ARG 2 output
-	METHOD loadShader (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/Resource;Lcom/mojang/blaze3d/shaders/CompiledShader$Type;Ljava/util/Map;Lcom/google/common/collect/ImmutableMap$Builder;)V
-		ARG 0 location
-		ARG 1 shader
-		ARG 2 type
-		ARG 3 shaderResources
-		ARG 4 output
 	METHOD loadShader (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/Resource;Lcom/mojang/blaze3d/shaders/ShaderType;Ljava/util/Map;Lcom/google/common/collect/ImmutableMap$Builder;)V
 		ARG 0 location
 		ARG 1 shader
 		ARG 2 type
 		ARG 3 shaderResources
 		ARG 4 output
-	METHOD preloadForStartup (Lnet/minecraft/server/packs/resources/ResourceProvider;[Lcom/mojang/blaze3d/pipeline/RenderPipeline;)V
-		ARG 1 resourceProvider
-		ARG 2 renderPipelines
-	METHOD preloadForStartup (Lnet/minecraft/server/packs/resources/ResourceProvider;[Lnet/minecraft/client/renderer/ShaderProgram;)V
-		ARG 1 resourceProvider
-		ARG 2 programs
-	METHOD preloadShader (Lnet/minecraft/server/packs/resources/ResourceProvider;Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/blaze3d/shaders/CompiledShader$Type;Lnet/minecraft/client/renderer/ShaderDefines;)Lcom/mojang/blaze3d/shaders/CompiledShader;
-		ARG 1 resourceProvider
-		ARG 2 shader
-		ARG 3 type
-		ARG 4 defines
 	METHOD tryTriggerRecovery (Ljava/lang/Exception;)V
 		ARG 1 exception
 	CLASS CompilationCache
 		METHOD <init> (Lnet/minecraft/client/renderer/ShaderManager;Lnet/minecraft/client/renderer/ShaderManager$Configs;)V
 			ARG 2 configs
-		METHOD compileProgram (Lcom/mojang/blaze3d/pipeline/RenderPipeline;)Lnet/minecraft/client/renderer/CompiledShaderProgram;
-			ARG 1 renderPipeline
-		METHOD compileProgram (Lnet/minecraft/client/renderer/ShaderProgram;)Lnet/minecraft/client/renderer/CompiledShaderProgram;
-			ARG 1 program
-		METHOD compileShader (Lnet/minecraft/client/renderer/ShaderManager$ShaderCompilationKey;)Lcom/mojang/blaze3d/shaders/CompiledShader;
-			ARG 1 compilationKey
-		METHOD getOrCompileProgram (Lcom/mojang/blaze3d/pipeline/RenderPipeline;)Lnet/minecraft/client/renderer/CompiledShaderProgram;
-			ARG 1 renderPipeline
-		METHOD getOrCompileProgram (Lnet/minecraft/client/renderer/ShaderProgram;)Lnet/minecraft/client/renderer/CompiledShaderProgram;
-			ARG 1 program
-		METHOD getOrCompileShader (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/blaze3d/shaders/CompiledShader$Type;Lnet/minecraft/client/renderer/ShaderDefines;)Lcom/mojang/blaze3d/shaders/CompiledShader;
-			ARG 1 id
-			ARG 2 type
-			ARG 3 defines
 		METHOD getOrLoadPostChain (Lnet/minecraft/resources/ResourceLocation;Ljava/util/Set;)Lnet/minecraft/client/renderer/PostChain;
 			ARG 1 name
 			ARG 2 externalTargets

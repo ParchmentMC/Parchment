@@ -1,62 +1,30 @@
 CLASS net/minecraft/world/level/storage/DimensionDataStorage
-	METHOD <init> (Ljava/io/File;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/core/HolderLookup$Provider;)V
-		ARG 1 dataFolder
-		ARG 2 fixerUpper
-		ARG 3 registries
-	METHOD <init> (Ljava/nio/file/Path;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/core/HolderLookup$Provider;)V
-		ARG 1 dataFolder
-		ARG 2 fixerUpper
-		ARG 3 registries
 	METHOD <init> (Lnet/minecraft/world/level/saveddata/SavedData$Context;Ljava/nio/file/Path;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/core/HolderLookup$Provider;)V
 		ARG 1 context
 		ARG 2 dataFolder
 		ARG 3 fixerUpper
 		ARG 4 registries
-	METHOD computeIfAbsent (Lnet/minecraft/world/level/saveddata/SavedData$Factory;Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/SavedData;
-		ARG 1 factory
-		ARG 2 name
 	METHOD computeIfAbsent (Lnet/minecraft/world/level/saveddata/SavedDataType;)Lnet/minecraft/world/level/saveddata/SavedData;
 		ARG 1 type
 	METHOD encodeUnchecked (Lnet/minecraft/world/level/saveddata/SavedDataType;Lnet/minecraft/world/level/saveddata/SavedData;Lnet/minecraft/resources/RegistryOps;)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 type
 		ARG 2 data
 		ARG 3 ops
-	METHOD get (Lnet/minecraft/world/level/saveddata/SavedData$Factory;Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/SavedData;
-		ARG 1 factory
-		ARG 2 name
 	METHOD get (Lnet/minecraft/world/level/saveddata/SavedDataType;)Lnet/minecraft/world/level/saveddata/SavedData;
 		ARG 1 type
-	METHOD getDataFile (Ljava/lang/String;)Ljava/io/File;
-		ARG 1 name
 	METHOD getDataFile (Ljava/lang/String;)Ljava/nio/file/Path;
 		ARG 1 filename
 	METHOD isGzip (Ljava/io/PushbackInputStream;)Z
 		ARG 1 inputStream
-	METHOD lambda$save$0 (Ljava/lang/String;Lnet/minecraft/world/level/saveddata/SavedData;)V
-		ARG 1 name
-		ARG 2 savedData
-	METHOD readSavedData (Ljava/util/function/BiFunction;Lnet/minecraft/util/datafix/DataFixTypes;Ljava/lang/String;)Lnet/minecraft/world/level/saveddata/SavedData;
-		ARG 1 reader
-		ARG 2 dataFixType
-		ARG 3 filename
 	METHOD readSavedData (Lnet/minecraft/world/level/saveddata/SavedDataType;)Lnet/minecraft/world/level/saveddata/SavedData;
 		ARG 1 type
 	METHOD readTagFromDisk (Ljava/lang/String;Lnet/minecraft/util/datafix/DataFixTypes;I)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 filename
 		ARG 2 dataFixType
 		ARG 3 version
-	METHOD set (Ljava/lang/String;Lnet/minecraft/world/level/saveddata/SavedData;)V
-		ARG 1 name
-		ARG 2 savedData
 	METHOD set (Lnet/minecraft/world/level/saveddata/SavedDataType;Lnet/minecraft/world/level/saveddata/SavedData;)V
 		ARG 1 type
 		ARG 2 value
-	METHOD tryWrite (Ljava/nio/file/Path;Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 0 path
-		ARG 1 tag
 	METHOD tryWrite (Lnet/minecraft/world/level/saveddata/SavedDataType;Lnet/minecraft/nbt/CompoundTag;)V
 		ARG 1 type
 		ARG 2 tag
-	METHOD tryWriteAsync (Ljava/nio/file/Path;Lnet/minecraft/nbt/CompoundTag;)Ljava/util/concurrent/CompletableFuture;
-		ARG 0 path
-		ARG 1 tag

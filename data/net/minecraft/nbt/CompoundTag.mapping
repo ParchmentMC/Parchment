@@ -3,14 +3,6 @@ CLASS net/minecraft/nbt/CompoundTag
 		ARG 1 tags
 	METHOD contains (Ljava/lang/String;)Z
 		ARG 1 key
-	METHOD contains (Ljava/lang/String;I)Z
-		COMMENT Returns whether the tag of the specified {@code key} is a particular {@code tagType}. If the {@code tagType} is {@code 99}, all numeric tags will be checked against the type of the stored tag.
-		ARG 1 key
-		ARG 2 tagType
-	METHOD createReport (Ljava/lang/String;Lnet/minecraft/nbt/TagType;Ljava/lang/ClassCastException;)Lnet/minecraft/CrashReport;
-		ARG 1 tagName
-		ARG 2 type
-		ARG 3 exception
 	METHOD equals (Ljava/lang/Object;)Z
 		ARG 1 other
 	METHOD forEach (Ljava/util/function/BiConsumer;)V
@@ -19,103 +11,60 @@ CLASS net/minecraft/nbt/CompoundTag
 		ARG 1 key
 	METHOD getBoolean (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
-	METHOD getBoolean (Ljava/lang/String;)Z
-		ARG 1 key
 	METHOD getBooleanOr (Ljava/lang/String;Z)Z
 		ARG 1 key
 		ARG 2 defaultValue
-	METHOD getByte (Ljava/lang/String;)B
-		ARG 1 key
 	METHOD getByte (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
 	METHOD getByteArray (Ljava/lang/String;)Ljava/util/Optional;
-		ARG 1 key
-	METHOD getByteArray (Ljava/lang/String;)[B
 		ARG 1 key
 	METHOD getByteOr (Ljava/lang/String;B)B
 		ARG 1 key
 		ARG 2 defaultValue
 	METHOD getCompound (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
-	METHOD getCompound (Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
-		ARG 1 key
 	METHOD getCompoundOrEmpty (Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
-		ARG 1 key
-	METHOD getDouble (Ljava/lang/String;)D
 		ARG 1 key
 	METHOD getDouble (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
 	METHOD getDoubleOr (Ljava/lang/String;D)D
 		ARG 1 key
 		ARG 2 defaultValue
-	METHOD getFloat (Ljava/lang/String;)F
-		ARG 1 key
 	METHOD getFloat (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
 	METHOD getFloatOr (Ljava/lang/String;F)F
 		ARG 1 key
 		ARG 2 defaultValue
-	METHOD getFloatOrDefault (Ljava/lang/String;F)F
-		ARG 1 key
-		ARG 2 defaultValue
-	METHOD getInt (Ljava/lang/String;)I
-		ARG 1 key
 	METHOD getInt (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
 	METHOD getIntArray (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
-	METHOD getIntArray (Ljava/lang/String;)[I
-		ARG 1 key
 	METHOD getIntOr (Ljava/lang/String;I)I
-		ARG 1 key
-		ARG 2 defaultValue
-	METHOD getIntOrDefault (Ljava/lang/String;I)I
 		ARG 1 key
 		ARG 2 defaultValue
 	METHOD getList (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
-	METHOD getList (Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
-		ARG 1 key
-		ARG 2 tagType
 	METHOD getListOrEmpty (Ljava/lang/String;)Lnet/minecraft/nbt/ListTag;
-		ARG 1 key
-	METHOD getLong (Ljava/lang/String;)J
 		ARG 1 key
 	METHOD getLong (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
 	METHOD getLongArray (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
-	METHOD getLongArray (Ljava/lang/String;)[J
-		ARG 1 key
 	METHOD getLongOr (Ljava/lang/String;J)J
-		ARG 1 key
-		ARG 2 defaultValue
-	METHOD getLongOrDefault (Ljava/lang/String;J)J
 		ARG 1 key
 		ARG 2 defaultValue
 	METHOD getOptional (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
 	METHOD getShort (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
-	METHOD getShort (Ljava/lang/String;)S
-		ARG 1 key
 	METHOD getShortOr (Ljava/lang/String;S)S
 		ARG 1 key
 		ARG 2 defaultValue
-	METHOD getString (Ljava/lang/String;)Ljava/lang/String;
-		ARG 1 key
 	METHOD getString (Ljava/lang/String;)Ljava/util/Optional;
 		ARG 1 key
 	METHOD getStringOr (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 		ARG 1 key
 		ARG 2 defaultValue
-	METHOD getTagType (Ljava/lang/String;)B
-		COMMENT Gets the byte identifier of the tag of the specified {@code key}, or {@code 0} if no tag exists for the {@code key}.
-		ARG 1 key
-	METHOD getUUID (Ljava/lang/String;)Ljava/util/UUID;
-		ARG 1 key
-	METHOD hasUUID (Ljava/lang/String;)Z
-		ARG 1 key
 	METHOD lambda$copy$3 (Ljava/util/HashMap;Ljava/lang/String;Lnet/minecraft/nbt/Tag;)V
 		ARG 1 key
 		ARG 2 value
@@ -136,9 +85,6 @@ CLASS net/minecraft/nbt/CompoundTag
 	METHOD putByte (Ljava/lang/String;B)V
 		ARG 1 key
 		ARG 2 value
-	METHOD putByteArray (Ljava/lang/String;Ljava/util/List;)V
-		ARG 1 key
-		ARG 2 value
 	METHOD putByteArray (Ljava/lang/String;[B)V
 		ARG 1 key
 		ARG 2 value
@@ -151,16 +97,10 @@ CLASS net/minecraft/nbt/CompoundTag
 	METHOD putInt (Ljava/lang/String;I)V
 		ARG 1 key
 		ARG 2 value
-	METHOD putIntArray (Ljava/lang/String;Ljava/util/List;)V
-		ARG 1 key
-		ARG 2 value
 	METHOD putIntArray (Ljava/lang/String;[I)V
 		ARG 1 key
 		ARG 2 value
 	METHOD putLong (Ljava/lang/String;J)V
-		ARG 1 key
-		ARG 2 value
-	METHOD putLongArray (Ljava/lang/String;Ljava/util/List;)V
 		ARG 1 key
 		ARG 2 value
 	METHOD putLongArray (Ljava/lang/String;[J)V
@@ -170,9 +110,6 @@ CLASS net/minecraft/nbt/CompoundTag
 		ARG 1 key
 		ARG 2 value
 	METHOD putString (Ljava/lang/String;Ljava/lang/String;)V
-		ARG 1 key
-		ARG 2 value
-	METHOD putUUID (Ljava/lang/String;Ljava/util/UUID;)V
 		ARG 1 key
 		ARG 2 value
 	METHOD read (Lcom/mojang/serialization/MapCodec;)Ljava/util/Optional;

@@ -1,62 +1,6 @@
 CLASS net/minecraft/client/renderer/block/model/BlockModel
-	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Ljava/util/List;Ljava/util/Map;Ljava/lang/Boolean;Lnet/minecraft/client/renderer/block/model/BlockModel$GuiLight;Lnet/minecraft/client/renderer/block/model/ItemTransforms;Ljava/util/List;)V
-		ARG 1 parentLocation
-		ARG 2 elements
-		ARG 3 textureMap
-		ARG 4 hasAmbientOcclusion
-		ARG 5 guiLight
-		ARG 6 transforms
-		ARG 7 overrides
-	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Ljava/util/List;Lnet/minecraft/client/renderer/block/model/TextureSlots$Data;Ljava/lang/Boolean;Lnet/minecraft/client/resources/model/UnbakedModel$GuiLight;Lnet/minecraft/client/renderer/block/model/ItemTransforms;)V
-		ARG 1 parentLocation
-		ARG 2 elements
-		ARG 3 textureSlots
-		ARG 4 hasAmbientOcclusion
-		ARG 5 guiLight
-		ARG 6 transforms
-	METHOD bake (Ljava/util/function/Function;Lnet/minecraft/client/resources/model/ModelState;Z)Lnet/minecraft/client/resources/model/BakedModel;
-		ARG 1 spriteGetter
-		ARG 2 state
-		ARG 3 isGui3d
-	METHOD bake (Lnet/minecraft/client/resources/model/ModelBaker;Lnet/minecraft/client/renderer/block/model/BlockModel;Ljava/util/function/Function;Lnet/minecraft/client/resources/model/ModelState;Z)Lnet/minecraft/client/resources/model/BakedModel;
-		ARG 1 baker
-		ARG 2 model
-		ARG 3 spriteGetter
-		ARG 4 state
-		ARG 5 guiLight3d
-	METHOD bakeFace (Lnet/minecraft/client/renderer/block/model/BlockElement;Lnet/minecraft/client/renderer/block/model/BlockElementFace;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/core/Direction;Lnet/minecraft/client/resources/model/ModelState;)Lnet/minecraft/client/renderer/block/model/BakedQuad;
-		ARG 0 element
-		ARG 1 face
-		ARG 2 sprite
-		ARG 3 facing
-		ARG 4 state
-	METHOD bakeItemOverrides (Lnet/minecraft/client/resources/model/ModelBaker;Lnet/minecraft/client/renderer/block/model/BlockModel;)Lnet/minecraft/client/renderer/block/model/ItemOverrides;
-		ARG 1 modelMaker
-		ARG 2 model
-	METHOD findTextureEntry (Ljava/lang/String;)Lcom/mojang/datafixers/util/Either;
-		ARG 1 name
 	METHOD fromStream (Ljava/io/Reader;)Lnet/minecraft/client/renderer/block/model/BlockModel;
 		ARG 0 reader
-	METHOD fromString (Ljava/lang/String;)Lnet/minecraft/client/renderer/block/model/BlockModel;
-		ARG 0 jsonString
-	METHOD getItemOverrides (Lnet/minecraft/client/resources/model/ModelBaker;Lnet/minecraft/client/renderer/block/model/BlockModel;)Lnet/minecraft/client/renderer/block/model/ItemOverrides;
-		ARG 1 baker
-		ARG 2 model
-	METHOD getMaterial (Ljava/lang/String;)Lnet/minecraft/client/resources/model/Material;
-		ARG 1 name
-	METHOD getTransform (Lnet/minecraft/world/item/ItemDisplayContext;)Lnet/minecraft/client/renderer/block/model/ItemTransform;
-		ARG 1 displayContext
-	METHOD hasTexture (Ljava/lang/String;)Z
-		ARG 1 textureName
-	METHOD isTextureReference (Ljava/lang/String;)Z
-		ARG 0 str
-	METHOD lambda$resolveParents$0 (Ljava/util/function/Function;Lnet/minecraft/client/renderer/block/model/ItemOverride;)V
-		ARG 2 override
-	CLASS GuiLight
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
-			ARG 3 name
-		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/client/renderer/block/model/BlockModel$GuiLight;
-			ARG 0 name
 	CLASS Deserializer
 		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/client/renderer/block/model/BlockModel;
 			ARG 1 json
@@ -64,24 +8,10 @@ CLASS net/minecraft/client/renderer/block/model/BlockModel
 			ARG 3 context
 		METHOD getAmbientOcclusion (Lcom/google/gson/JsonObject;)Ljava/lang/Boolean;
 			ARG 1 json
-		METHOD getElements (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Ljava/util/List;
-			ARG 1 context
-			ARG 2 json
 		METHOD getElements (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Lnet/minecraft/client/resources/model/UnbakedGeometry;
-			ARG 1 context
-			ARG 2 json
-		METHOD getOverrides (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Ljava/util/List;
 			ARG 1 context
 			ARG 2 json
 		METHOD getParentName (Lcom/google/gson/JsonObject;)Ljava/lang/String;
 			ARG 1 json
-		METHOD getTextureMap (Lcom/google/gson/JsonObject;)Ljava/util/Map;
-			ARG 1 json
 		METHOD getTextureMap (Lcom/google/gson/JsonObject;)Lnet/minecraft/client/renderer/block/model/TextureSlots$Data;
 			ARG 1 json
-		METHOD parseTextureLocationOrReference (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)Lcom/mojang/datafixers/util/Either;
-			ARG 0 location
-			ARG 1 name
-	CLASS LoopException
-		METHOD <init> (Ljava/lang/String;)V
-			ARG 1 message

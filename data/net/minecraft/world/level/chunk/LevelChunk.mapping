@@ -35,29 +35,12 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 		ARG 3 z
 	METHOD isTicking (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
-	METHOD lambda$clearAllBlockEntities$4 (Lnet/minecraft/world/level/chunk/LevelChunk$RebindableTickingBlockEntityWrapper;)V
-		ARG 0 blockEntityWrapper
 	METHOD lambda$clearAllBlockEntities$5 (Lnet/minecraft/world/level/chunk/LevelChunk$RebindableTickingBlockEntityWrapper;)V
 		ARG 0 ticker
-	METHOD lambda$getListenerRegistry$0 (Lnet/minecraft/server/level/ServerLevel;II)Lnet/minecraft/world/level/gameevent/GameEventListenerRegistry;
-		ARG 3 key
 	METHOD lambda$new$0 (Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 0 chunkPos
-	METHOD lambda$registerAllBlockEntitiesAfterLevelLoad$5 (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
-		ARG 1 blockEntity
 	METHOD lambda$registerAllBlockEntitiesAfterLevelLoad$6 (Lnet/minecraft/world/level/block/entity/BlockEntity;)V
 		ARG 1 blockEntity
-	METHOD lambda$replaceWithPacketData$3 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 pos
-		ARG 2 type
-		ARG 3 tag
-	METHOD lambda$replaceWithPacketData$4 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 pos
-		ARG 2 blockEntityType
-		ARG 3 blockEntityTag
-	METHOD lambda$updateBlockEntityTicker$6 (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/level/block/entity/BlockEntityTicker;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/LevelChunk$RebindableTickingBlockEntityWrapper;)Lnet/minecraft/world/level/chunk/LevelChunk$RebindableTickingBlockEntityWrapper;
-		ARG 3 keyBlockPos
-		ARG 4 blockEntityWrapper
 	METHOD lambda$updateBlockEntityTicker$7 (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/level/block/entity/BlockEntityTicker;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/LevelChunk$RebindableTickingBlockEntityWrapper;)Lnet/minecraft/world/level/chunk/LevelChunk$RebindableTickingBlockEntityWrapper;
 		ARG 3 pos
 		ARG 4 ticker
@@ -80,10 +63,6 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 	METHOD replaceWithPacketData (Lnet/minecraft/network/FriendlyByteBuf;Ljava/util/Map;Ljava/util/function/Consumer;)V
 		ARG 1 buffer
 		ARG 2 heightmaps
-		ARG 3 outputTagConsumer
-	METHOD replaceWithPacketData (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/nbt/CompoundTag;Ljava/util/function/Consumer;)V
-		ARG 1 buffer
-		ARG 2 tag
 		ARG 3 outputTagConsumer
 	METHOD setFullStatus (Ljava/util/function/Supplier;)V
 		ARG 1 fullStatus
@@ -110,7 +89,5 @@ CLASS net/minecraft/world/level/chunk/LevelChunk
 	CLASS RebindableTickingBlockEntityWrapper
 		METHOD <init> (Lnet/minecraft/world/level/block/entity/TickingBlockEntity;)V
 			ARG 1 ticker
-		METHOD <init> (Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/world/level/block/entity/TickingBlockEntity;)V
-			ARG 2 ticker
 		METHOD rebind (Lnet/minecraft/world/level/block/entity/TickingBlockEntity;)V
 			ARG 1 ticker

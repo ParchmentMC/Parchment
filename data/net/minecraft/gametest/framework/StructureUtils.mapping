@@ -1,9 +1,4 @@
 CLASS net/minecraft/gametest/framework/StructureUtils
-	METHOD addCommandBlockAndButtonToStartTest (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;)V
-		ARG 0 structureBlockPos
-		ARG 1 offset
-		ARG 2 rotation
-		ARG 3 serverLevel
 	METHOD clearBlock (ILnet/minecraft/core/BlockPos;Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 0 structureBlockY
 		ARG 1 pos
@@ -11,52 +6,20 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 	METHOD clearSpaceForStructure (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/server/level/ServerLevel;)V
 		ARG 0 boundingBox
 		ARG 1 level
-	METHOD createNewEmptyStructureBlock (Ljava/lang/String;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Vec3i;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;)V
-		ARG 0 structureName
-		ARG 1 pos
-		ARG 2 size
-		ARG 3 rotation
-		ARG 4 serverLevel
 	METHOD createNewEmptyTest (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Vec3i;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/block/entity/TestInstanceBlockEntity;
 		ARG 0 id
 		ARG 1 pos
 		ARG 2 size
 		ARG 3 rotation
 		ARG 4 level
-	METHOD createStructureBlock (Lnet/minecraft/gametest/framework/GameTestInfo;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/block/entity/StructureBlockEntity;
-		ARG 0 gameTestInfo
-		ARG 1 pos
-		ARG 2 rotation
-		ARG 3 level
 	METHOD doesStructureContain (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/server/level/ServerLevel;)Z
 		ARG 0 structureBlockPos
 		ARG 1 posToTest
 		ARG 2 serverLevel
-	METHOD encaseStructure (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/server/level/ServerLevel;Z)V
-		ARG 0 bounds
-		ARG 1 level
-		ARG 2 placeBarriers
-	METHOD findNearestStructureBlock (Lnet/minecraft/core/BlockPos;ILnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
-		ARG 0 pos
-		ARG 1 radius
-		ARG 2 level
 	METHOD findNearestTest (Lnet/minecraft/core/BlockPos;ILnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
 		ARG 0 pos
 		ARG 1 radius
 		ARG 2 level
-	METHOD findStructureBlockContainingPos (Lnet/minecraft/core/BlockPos;ILnet/minecraft/server/level/ServerLevel;)Ljava/util/Optional;
-		ARG 0 pos
-		ARG 1 radius
-		ARG 2 serverLevel
-	METHOD findStructureBlocks (Lnet/minecraft/core/BlockPos;ILnet/minecraft/server/level/ServerLevel;)Ljava/util/stream/Stream;
-		ARG 0 pos
-		ARG 1 radius
-		ARG 2 level
-	METHOD findStructureByTestFunction (Lnet/minecraft/core/BlockPos;ILnet/minecraft/server/level/ServerLevel;Ljava/lang/String;)Ljava/util/stream/Stream;
-		ARG 0 pos
-		ARG 1 radius
-		ARG 2 level
-		ARG 3 testName
 	METHOD findTestBlocks (Lnet/minecraft/core/BlockPos;ILnet/minecraft/server/level/ServerLevel;)Ljava/util/stream/Stream;
 		ARG 0 pos
 		ARG 1 radius
@@ -65,32 +28,14 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 		ARG 0 pos
 		ARG 1 radius
 		ARG 2 level
-	METHOD forceLoadChunks (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/server/level/ServerLevel;)V
-		ARG 0 boundingBox
-		ARG 1 level
-	METHOD getBoundingBoxAtGround (Lnet/minecraft/core/BlockPos;ILnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
-		ARG 0 pos
-		ARG 1 radius
-		ARG 2 level
 	METHOD getRotationForRotationSteps (I)Lnet/minecraft/world/level/block/Rotation;
 		ARG 0 rotationSteps
 	METHOD getRotationStepsForRotation (Lnet/minecraft/world/level/block/Rotation;)I
 		ARG 0 rotation
-	METHOD getStartCorner (Lnet/minecraft/gametest/framework/GameTestInfo;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/core/BlockPos;
-		ARG 0 gameTestInfo
-		ARG 1 pos
-		ARG 2 rotation
-		ARG 3 level
 	METHOD getStructureBoundingBox (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Vec3i;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
 		ARG 0 pos
 		ARG 1 offset
 		ARG 2 rotation
-	METHOD getStructureBoundingBox (Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
-		ARG 0 structureBlockEntity
-	METHOD getStructureBounds (Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)Lnet/minecraft/world/phys/AABB;
-		ARG 0 structureBlockEntity
-	METHOD getStructureOrigin (Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)Lnet/minecraft/core/BlockPos;
-		ARG 0 structureBlockEntity
 	METHOD getTransformedFarCorner (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Vec3i;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/core/BlockPos;
 		ARG 0 pos
 		ARG 1 offset
@@ -101,27 +46,9 @@ CLASS net/minecraft/gametest/framework/StructureUtils
 		ARG 0 entity
 	METHOD lambda$findNearestTest$3 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)I
 		ARG 1 blockPos
-	METHOD lambda$findTestBlocks$4 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Z
-		ARG 1 blockPos
 	METHOD lambda$findTestContainingPos$2 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Z
 		ARG 2 blockPos
-	METHOD lambda$lookedAtTestPos$5 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Ljava/util/Optional;
-		ARG 1 blockPos
-	METHOD lambda$lookedAtTestPos$6 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/level/block/entity/TestInstanceBlockEntity;)Z
-		ARG 2 blockEntity
-	METHOD lookedAtStructureBlockPos (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/server/level/ServerLevel;)Ljava/util/stream/Stream;
-		ARG 0 pos
-		ARG 1 entity
-		ARG 2 level
 	METHOD lookedAtTestPos (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/server/level/ServerLevel;)Ljava/util/stream/Stream;
 		ARG 0 pos
 		ARG 1 entity
 		ARG 2 level
-	METHOD prepareTestStructure (Lnet/minecraft/gametest/framework/GameTestInfo;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/block/entity/StructureBlockEntity;
-		ARG 0 gameTestInfo
-		ARG 1 pos
-		ARG 2 rotation
-		ARG 3 level
-	METHOD removeBarriers (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/server/level/ServerLevel;)V
-		ARG 0 bounds
-		ARG 1 level

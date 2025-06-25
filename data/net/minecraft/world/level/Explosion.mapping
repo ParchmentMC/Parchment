@@ -1,58 +1,4 @@
 CLASS net/minecraft/world/level/Explosion
-	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;DDDFLjava/util/List;Lnet/minecraft/world/level/Explosion$BlockInteraction;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/Holder;)V
-		ARG 1 level
-		ARG 2 source
-		ARG 3 x
-		ARG 5 y
-		ARG 7 z
-		ARG 9 radius
-		ARG 10 toBlow
-		ARG 11 blockInteraction
-		ARG 12 smallExplosionParticles
-		ARG 13 largeExplosionParticles
-		ARG 14 explosionSound
-	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;)V
-		ARG 1 level
-		ARG 2 source
-		ARG 3 x
-		ARG 5 y
-		ARG 7 z
-		ARG 9 radius
-		ARG 10 fire
-		ARG 11 blockInteraction
-	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;Ljava/util/List;)V
-		ARG 1 level
-		ARG 2 source
-		ARG 3 x
-		ARG 5 y
-		ARG 7 z
-		ARG 9 radius
-		ARG 10 fire
-		ARG 11 blockInteraction
-		ARG 12 positions
-	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/level/ExplosionDamageCalculator;DDDFZLnet/minecraft/world/level/Explosion$BlockInteraction;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/particles/ParticleOptions;Lnet/minecraft/core/Holder;)V
-		ARG 1 level
-		ARG 2 source
-		ARG 3 damageSource
-		ARG 4 damageCalculator
-		ARG 5 x
-		ARG 7 y
-		ARG 9 z
-		ARG 11 radius
-		ARG 12 fire
-		ARG 13 blockInteraction
-		ARG 14 smallExplosionParticles
-		ARG 15 largeExplosionParticles
-		ARG 16 explosionSound
-	METHOD addOrAppendStack (Ljava/util/List;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/BlockPos;)V
-		ARG 0 drops
-		ARG 1 stack
-		ARG 2 pos
-	METHOD explode ()V
-		COMMENT Does the first part of the explosion (destroy blocks)
-	METHOD finalizeExplosion (Z)V
-		COMMENT Does the second part of the explosion (sound, particles, drop spawn)
-		ARG 1 spawnParticles
 	METHOD getDefaultDamageSource (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/damagesource/DamageSource;
 		ARG 0 level
 		ARG 1 source
@@ -60,13 +6,6 @@ CLASS net/minecraft/world/level/Explosion
 		COMMENT Returns either the entity that placed the explosive block, the entity that caused the explosion or null.
 	METHOD getIndirectSourceEntity (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/entity/LivingEntity;
 		ARG 0 source
-	METHOD getIndirectSourceEntityInternal (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/entity/LivingEntity;
-		ARG 0 source
-	METHOD getSeenPercent (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)F
-		ARG 0 explosionVector
-		ARG 1 entity
-	METHOD makeDamageCalculator (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/level/ExplosionDamageCalculator;
-		ARG 1 entity
 	CLASS BlockInteraction
 		METHOD <init> (Ljava/lang/String;IZ)V
 			ARG 3 shouldAffectBlocklikeEntities

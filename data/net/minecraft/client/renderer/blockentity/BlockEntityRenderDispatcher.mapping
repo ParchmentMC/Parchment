@@ -6,12 +6,6 @@ CLASS net/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher
 		ARG 4 itemModelResolver
 		ARG 5 itemRenderer
 		ARG 6 entityRenderer
-	METHOD <init> (Lnet/minecraft/client/gui/Font;Lnet/minecraft/client/model/geom/EntityModelSet;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Ljava/util/function/Supplier;)V
-		ARG 1 font
-		ARG 2 entityModelSet
-		ARG 3 blockRenderDispatcher
-		ARG 4 itemRenderer
-		ARG 5 entityRenderer
 	METHOD getRenderer (Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderer;
 		ARG 1 blockEntity
 	METHOD prepare (Lnet/minecraft/world/level/Level;Lnet/minecraft/client/Camera;Lnet/minecraft/world/phys/HitResult;)V
@@ -23,21 +17,8 @@ CLASS net/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher
 		ARG 2 partialTick
 		ARG 3 poseStack
 		ARG 4 bufferSource
-	METHOD renderItem (Lnet/minecraft/world/level/block/entity/BlockEntity;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)Z
-		COMMENT @return {@code true} if no renderer was found; otherwise {@code false} if render completed
-		ARG 1 blockEntity
-		ARG 2 poseStack
-		ARG 3 bufferSource
-		ARG 4 packedLight
-		ARG 5 packedOverlay
 	METHOD setLevel (Lnet/minecraft/world/level/Level;)V
 		ARG 1 level
-	METHOD setupAndRender (Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderer;Lnet/minecraft/world/level/block/entity/BlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;)V
-		ARG 0 renderer
-		ARG 1 blockEntity
-		ARG 2 partialTick
-		ARG 3 poseStack
-		ARG 4 bufferSource
 	METHOD setupAndRender (Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderer;Lnet/minecraft/world/level/block/entity/BlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 0 renderer
 		ARG 1 blockEntity
@@ -45,6 +26,3 @@ CLASS net/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher
 		ARG 3 poseStack
 		ARG 4 bufferSource
 		ARG 5 cameraPos
-	METHOD tryRender (Lnet/minecraft/world/level/block/entity/BlockEntity;Ljava/lang/Runnable;)V
-		ARG 0 blockEntity
-		ARG 1 renderer

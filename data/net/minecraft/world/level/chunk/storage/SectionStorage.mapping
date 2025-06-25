@@ -8,13 +8,6 @@ CLASS net/minecraft/world/level/chunk/storage/SectionStorage
 		ARG 6 registryAccess
 		ARG 7 errorReporter
 		ARG 8 levelHeightAccessor
-	METHOD <init> (Lnet/minecraft/world/level/chunk/storage/SimpleRegionStorage;Ljava/util/function/Function;Ljava/util/function/Function;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/level/chunk/storage/ChunkIOErrorReporter;Lnet/minecraft/world/level/LevelHeightAccessor;)V
-		ARG 1 simpleRegionStorage
-		ARG 2 codec
-		ARG 3 factory
-		ARG 4 registryAccess
-		ARG 5 errorReporter
-		ARG 6 levelHeightAccessor
 	METHOD flush (Lnet/minecraft/world/level/ChunkPos;)V
 		ARG 1 chunkPos
 	METHOD get (J)Ljava/util/Optional;
@@ -28,24 +21,12 @@ CLASS net/minecraft/world/level/chunk/storage/SectionStorage
 		ARG 1 sectionKey
 	METHOD getVersion (Lcom/mojang/serialization/Dynamic;)I
 		ARG 0 columnData
-	METHOD lambda$readColumn$3 (JLcom/mojang/serialization/Dynamic;)Ljava/util/Optional;
-		ARG 3 sectionDynamic
-	METHOD lambda$readColumn$4 (JZLjava/lang/Object;)V
-		ARG 4 parsedValue
-	METHOD lambda$tryRead$1 (Lnet/minecraft/world/level/ChunkPos;Ljava/lang/Throwable;)Ljava/util/Optional;
-		ARG 1 throwable
 	METHOD onSectionLoad (J)V
 		ARG 1 sectionKey
 	METHOD outsideStoredRange (J)Z
 		ARG 1 sectionKey
 	METHOD prefetch (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 pos
-	METHOD readColumn (Lnet/minecraft/world/level/ChunkPos;)V
-		ARG 1 chunkPos
-	METHOD readColumn (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/resources/RegistryOps;Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 chunkPos
-		ARG 2 ops
-		ARG 3 tag
 	METHOD setDirty (J)V
 		ARG 1 sectionPos
 	METHOD tick (Ljava/util/function/BooleanSupplier;)V
@@ -61,11 +42,6 @@ CLASS net/minecraft/world/level/chunk/storage/SectionStorage
 		ARG 1 pos
 	METHOD writeChunk (Lnet/minecraft/world/level/ChunkPos;Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/Dynamic;
 		ARG 1 pos
-		ARG 2 ops
-	METHOD writeColumn (Lnet/minecraft/world/level/ChunkPos;)V
-		ARG 1 chunkPos
-	METHOD writeColumn (Lnet/minecraft/world/level/ChunkPos;Lcom/mojang/serialization/DynamicOps;)Lcom/mojang/serialization/Dynamic;
-		ARG 1 chunkPos
 		ARG 2 ops
 	CLASS PackedChunk
 		METHOD parse (Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/nbt/Tag;Lnet/minecraft/world/level/chunk/storage/SimpleRegionStorage;Lnet/minecraft/world/level/LevelHeightAccessor;)Lnet/minecraft/world/level/chunk/storage/SectionStorage$PackedChunk;

@@ -38,8 +38,6 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 1 chunkPos
 	METHOD areEntitiesActuallyLoadedAndTicking (Lnet/minecraft/world/level/ChunkPos;)Z
 		ARG 1 chunkPos
-	METHOD areEntitiesActuallyTicking (Lnet/minecraft/world/level/ChunkPos;)Z
-		ARG 1 chunkPos
 	METHOD areEntitiesLoaded (J)Z
 		ARG 1 chunkPos
 	METHOD blockEvent (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;II)V
@@ -47,9 +45,6 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 2 block
 		ARG 3 eventID
 		ARG 4 eventParam
-	METHOD blockUpdated (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V
-		ARG 1 pos
-		ARG 2 block
 	METHOD broadcastEntityEvent (Lnet/minecraft/world/entity/Entity;B)V
 		COMMENT Sends a {@link net.minecraft.network.protocol.game.ClientboundEntityEventPacket} to all tracked players of that entity.
 		ARG 1 entity
@@ -105,8 +100,6 @@ CLASS net/minecraft/server/level/ServerLevel
 	METHOD getEntity (I)Lnet/minecraft/world/entity/Entity;
 		COMMENT Returns the Entity with the given ID, or null if it doesn't exist in this World.
 		ARG 1 id
-	METHOD getEntity (Ljava/util/UUID;)Lnet/minecraft/world/entity/Entity;
-		ARG 1 uniqueId
 	METHOD getEntityOrPart (I)Lnet/minecraft/world/entity/Entity;
 		ARG 1 id
 	METHOD getPlayers (Ljava/util/function/Predicate;)Ljava/util/List;
@@ -130,10 +123,6 @@ CLASS net/minecraft/server/level/ServerLevel
 	METHOD isCloseToVillage (Lnet/minecraft/core/BlockPos;I)Z
 		ARG 1 pos
 		ARG 2 sections
-	METHOD isNaturalSpawningAllowed (Lnet/minecraft/core/BlockPos;)Z
-		ARG 1 pos
-	METHOD isNaturalSpawningAllowed (Lnet/minecraft/world/level/ChunkPos;)Z
-		ARG 1 chunkPos
 	METHOD isPositionEntityTicking (Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD isPositionTickingWithEntitiesLoaded (J)Z
@@ -144,8 +133,6 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 1 pos
 	METHOD isVillage (Lnet/minecraft/core/SectionPos;)Z
 		ARG 1 pos
-	METHOD lambda$clearBlockEvents$15 (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/BlockEventData;)Z
-		ARG 1 event
 	METHOD lambda$clearBlockEvents$16 (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/BlockEventData;)Z
 		ARG 1 blockEventData
 	METHOD lambda$findLightningRod$4 (Lnet/minecraft/core/Holder;)Z
@@ -158,36 +145,16 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 1 entity
 	METHOD lambda$getEntities$10 (Ljava/util/function/Predicate;Ljava/util/List;ILnet/minecraft/world/entity/Entity;)Lnet/minecraft/util/AbortableIterationConsumer$Continuation;
 		ARG 3 entity
-	METHOD lambda$getTypeCount$17 (Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;)Ljava/lang/String;
-		ARG 0 entry
 	METHOD lambda$getTypeCount$18 (Lit/unimi/dsi/fastutil/objects/Object2IntMap$Entry;)Ljava/lang/String;
 		ARG 0 entry
-	METHOD lambda$getWatchdogStats$16 (Lnet/minecraft/world/entity/Entity;)Ljava/lang/String;
-		ARG 0 entity
 	METHOD lambda$getWatchdogStats$17 (Lnet/minecraft/world/entity/Entity;)Ljava/lang/String;
 		ARG 0 entity
 	METHOD lambda$globalLevelEvent$11 (Lnet/minecraft/core/BlockPos;IILnet/minecraft/server/level/ServerPlayer;)V
 		ARG 4 player
-	METHOD lambda$onBlockStateChange$13 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Holder;)V
-		ARG 2 poiType
-	METHOD lambda$onBlockStateChange$15 (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Holder;)V
-		ARG 2 poiType
 	METHOD lambda$tick$2 (Lnet/minecraft/world/TickRateManager;Lnet/minecraft/util/profiling/ProfilerFiller;Lnet/minecraft/world/entity/Entity;)V
 		ARG 3 entity
 	METHOD lambda$wakeUpAllPlayers$3 (Lnet/minecraft/server/level/ServerPlayer;)V
 		ARG 0 player
-	METHOD levelEvent (Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/core/BlockPos;I)V
-		ARG 1 player
-		ARG 2 type
-		ARG 3 pos
-		ARG 4 data
-	METHOD mayInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;)Z
-		ARG 1 player
-		ARG 2 pos
-	METHOD onBlockStateChange (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
-		ARG 1 pos
-		ARG 2 blockState
-		ARG 3 newState
 	METHOD onReputationEvent (Lnet/minecraft/world/entity/ai/village/ReputationEventType;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/ReputationEventHandler;)V
 		ARG 1 type
 		ARG 2 target
@@ -205,8 +172,6 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 3 skipSave
 	METHOD saveDebugReport (Ljava/nio/file/Path;)V
 		ARG 1 path
-	METHOD saveLevelData ()V
-		COMMENT Saves the chunks to disk.
 	METHOD saveLevelData (Z)V
 		ARG 1 join
 	METHOD sectionsToVillage (Lnet/minecraft/core/SectionPos;)I
@@ -231,18 +196,6 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 1 type
 		ARG 2 overrideLimiter
 		ARG 3 alwaysShow
-		ARG 4 posX
-		ARG 6 posY
-		ARG 8 posZ
-		ARG 10 particleCount
-		ARG 11 xOffset
-		ARG 13 yOffset
-		ARG 15 zOffset
-		ARG 17 speed
-	METHOD sendParticles (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/core/particles/ParticleOptions;ZDDDIDDDD)Z
-		ARG 1 player
-		ARG 2 type
-		ARG 3 longDistance
 		ARG 4 posX
 		ARG 6 posY
 		ARG 8 posZ
@@ -290,8 +243,6 @@ CLASS net/minecraft/server/level/ServerLevel
 		ARG 2 weatherTime
 		ARG 3 isRaining
 		ARG 4 isThundering
-	METHOD shouldDiscardEntity (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 entity
 	METHOD startTickingChunk (Lnet/minecraft/world/level/chunk/LevelChunk;)V
 		ARG 1 chunk
 	METHOD tick (Ljava/util/function/BooleanSupplier;)V

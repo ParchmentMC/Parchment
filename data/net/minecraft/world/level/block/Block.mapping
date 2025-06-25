@@ -5,11 +5,6 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 2 level
 		ARG 3 pos
 		ARG 4 random
-	METHOD appendHoverText (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item$TooltipContext;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
-		ARG 1 stack
-		ARG 2 context
-		ARG 3 tooltipComponents
-		ARG 4 tooltipFlag
 	METHOD box (DDDDDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
 		ARG 0 x1
 		ARG 2 y1
@@ -99,18 +94,6 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 3 pos
 		ARG 4 entity
 		ARG 5 fallDistance
-	METHOD fallOn (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;F)V
-		ARG 1 level
-		ARG 2 state
-		ARG 3 pos
-		ARG 4 entity
-		ARG 5 fallDistance
-	METHOD getCloneItemStack (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/item/ItemStack;
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 state
-	METHOD getDescriptionId ()Ljava/lang/String;
-		COMMENT @return the description ID of this block, for use with language files.
 	METHOD getDrops (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;)Ljava/util/List;
 		ARG 0 state
 		ARG 1 level
@@ -127,8 +110,6 @@ CLASS net/minecraft/world/level/block/Block
 		COMMENT @return how much this block resists an explosion
 	METHOD getId (Lnet/minecraft/world/level/block/state/BlockState;)I
 		ARG 0 state
-	METHOD getShapeForEachState (Ljava/util/function/Function;)Lcom/google/common/collect/ImmutableMap;
-		ARG 1 shapeGetter
 	METHOD getShapeForEachState (Ljava/util/function/Function;)Ljava/util/function/Function;
 		ARG 1 shapeGetter
 	METHOD getShapeForEachState (Ljava/util/function/Function;[Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/util/function/Function;
@@ -151,14 +132,8 @@ CLASS net/minecraft/world/level/block/Block
 	METHOD isShapeFullBlock (Lnet/minecraft/world/phys/shapes/VoxelShape;)Z
 		COMMENT @return whether the provided {@link net.minecraft.world.phys.shapes.VoxelShape} is a full block (1x1x1)
 		ARG 0 shape
-	METHOD lambda$dropResources$1 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 itemStack
 	METHOD lambda$dropResources$2 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 stack
-	METHOD lambda$dropResources$2 (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 itemStack
-	METHOD lambda$dropResources$3 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
-		ARG 2 itemStack
 	METHOD lambda$dropResources$3 (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
 		ARG 2 stack
 	METHOD lambda$dropResources$4 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V
@@ -223,12 +198,6 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 0 stateHolder
 		ARG 1 property
 		ARG 2 value
-	METHOD shouldRenderFace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Lnet/minecraft/core/BlockPos;)Z
-		ARG 0 state
-		ARG 1 level
-		ARG 2 offset
-		ARG 3 face
-		ARG 4 pos
 	METHOD shouldRenderFace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)Z
 		ARG 0 currentFace
 		ARG 1 neighboringFace
@@ -250,11 +219,6 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 2 pos
 		ARG 3 heldItem
 		ARG 4 amount
-	METHOD updateEntityAfterFallOn (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/entity/Entity;)V
-		COMMENT Called when an Entity lands on this Block.
-		COMMENT This method is responsible for doing any modification on the motion of the entity that should result from the landing.
-		ARG 1 level
-		ARG 2 entity
 	METHOD updateEntityMovementAfterFallOn (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 level
 		ARG 2 entity
@@ -281,11 +245,6 @@ CLASS net/minecraft/world/level/block/Block
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 explosion
-	METHOD wasExploded (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/Explosion;)V
-		COMMENT Called when this Block is destroyed by an Explosion
-		ARG 1 level
-		ARG 2 pos
-		ARG 3 explosion
 	METHOD withPropertiesOf (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
 		ARG 1 state
 	CLASS 1
@@ -295,12 +254,5 @@ CLASS net/minecraft/world/level/block/Block
 		METHOD rehash (I)V
 			ARG 1 newN
 	CLASS ShapePairKey
-		METHOD equals (Ljava/lang/Object;)Z
-			ARG 1 other
-	CLASS BlockStatePairKey
-		METHOD <init> (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;)V
-			ARG 1 first
-			ARG 2 second
-			ARG 3 direction
 		METHOD equals (Ljava/lang/Object;)Z
 			ARG 1 other

@@ -14,27 +14,15 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 	METHOD assertAtTickTimeContainerEmpty (JLnet/minecraft/core/BlockPos;)V
 		ARG 1 tickTime
 		ARG 3 pos
-	METHOD assertBlock (Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;Ljava/lang/String;)V
-		ARG 1 pos
-		ARG 2 predicate
-		ARG 3 exceptionMessage
 	METHOD assertBlock (Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;Ljava/util/function/Function;)V
 		ARG 1 pos
 		ARG 2 predicate
 		ARG 3 message
-	METHOD assertBlock (Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;Ljava/util/function/Supplier;)V
-		ARG 1 pos
-		ARG 2 predicate
-		ARG 3 exceptionMessage
 	METHOD assertBlockEntityData (Lnet/minecraft/core/BlockPos;Ljava/lang/Class;Ljava/util/function/Predicate;Ljava/util/function/Supplier;)V
 		ARG 1 pos
 		ARG 2 blockEntityClass
 		ARG 3 predicate
 		ARG 4 message
-	METHOD assertBlockEntityData (Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;Ljava/util/function/Supplier;)V
-		ARG 1 pos
-		ARG 2 predicate
-		ARG 3 exceptionMessage
 	METHOD assertBlockNotPresent (Lnet/minecraft/world/level/block/Block;III)V
 		ARG 1 block
 		ARG 2 x
@@ -55,11 +43,6 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 1 pos
 		ARG 2 property
 		ARG 3 value
-	METHOD assertBlockProperty (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/properties/Property;Ljava/util/function/Predicate;Ljava/lang/String;)V
-		ARG 1 pos
-		ARG 2 property
-		ARG 3 predicate
-		ARG 4 exceptionMessage
 	METHOD assertBlockProperty (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/properties/Property;Ljava/util/function/Predicate;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 pos
 		ARG 2 property
@@ -69,10 +52,6 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 1 pos
 		ARG 2 predicate
 		ARG 3 message
-	METHOD assertBlockState (Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;Ljava/util/function/Supplier;)V
-		ARG 1 pos
-		ARG 2 predicate
-		ARG 3 exceptionMessage
 	METHOD assertBlockState (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 state
@@ -133,19 +112,11 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 	METHOD assertEntityNotPresent (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/phys/AABB;)V
 		ARG 1 type
 		ARG 2 box
-	METHOD assertEntityNotPresent (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
-		ARG 1 type
-		ARG 2 from
-		ARG 3 to
 	METHOD assertEntityNotTouching (Lnet/minecraft/world/entity/EntityType;DDD)V
 		ARG 1 type
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
-	METHOD assertEntityPosition (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;Ljava/lang/String;)V
-		ARG 1 entity
-		ARG 2 box
-		ARG 3 exceptionMessage
 	METHOD assertEntityPosition (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 entity
 		ARG 2 boundingBox
@@ -167,24 +138,11 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 	METHOD assertEntityPresent (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/phys/AABB;)V
 		ARG 1 type
 		ARG 2 box
-	METHOD assertEntityPresent (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
-		ARG 1 entityType
-		ARG 2 startPos
-		ARG 3 endPos
 	METHOD assertEntityProperty (Lnet/minecraft/world/entity/Entity;Ljava/util/function/Function;Ljava/lang/Object;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 entity
 		ARG 2 valueGetter
 		ARG 3 expectedValue
 		ARG 4 message
-	METHOD assertEntityProperty (Lnet/minecraft/world/entity/Entity;Ljava/util/function/Function;Ljava/lang/String;Ljava/lang/Object;)V
-		ARG 1 entity
-		ARG 2 entityPropertyGetter
-		ARG 3 valueName
-		ARG 4 testEntityProperty
-	METHOD assertEntityProperty (Lnet/minecraft/world/entity/Entity;Ljava/util/function/Predicate;Ljava/lang/String;)V
-		ARG 1 entity
-		ARG 2 predicate
-		ARG 3 name
 	METHOD assertEntityProperty (Lnet/minecraft/world/entity/Entity;Ljava/util/function/Predicate;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 entity
 		ARG 2 predicate
@@ -194,9 +152,6 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 2 x
 		ARG 4 y
 		ARG 6 z
-	METHOD assertFalse (ZLjava/lang/String;)V
-		ARG 1 condition
-		ARG 2 failureMessage
 	METHOD assertFalse (ZLnet/minecraft/network/chat/Component;)V
 		ARG 1 condition
 		ARG 2 message
@@ -232,16 +187,9 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 	METHOD assertSameBlockStates (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/core/BlockPos;)V
 		ARG 1 boundingBox
 		ARG 2 pos
-	METHOD assertTrue (ZLjava/lang/String;)V
-		ARG 1 condition
-		ARG 2 failureMessage
 	METHOD assertTrue (ZLnet/minecraft/network/chat/Component;)V
 		ARG 1 condition
 		ARG 2 message
-	METHOD assertValueEqual (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/String;)V
-		ARG 1 actual
-		ARG 2 expected
-		ARG 3 valueName
 	METHOD assertValueEqual (Ljava/lang/Object;Ljava/lang/Object;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 expected
 		ARG 2 actual
@@ -260,14 +208,6 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 1 message
 	METHOD destroyBlock (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
-	METHOD fail (Ljava/lang/String;)V
-		ARG 1 exceptionMessage
-	METHOD fail (Ljava/lang/String;Lnet/minecraft/core/BlockPos;)V
-		ARG 1 exceptionMessage
-		ARG 2 pos
-	METHOD fail (Ljava/lang/String;Lnet/minecraft/world/entity/Entity;)V
-		ARG 1 exceptionMessage
-		ARG 2 entity
 	METHOD fail (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 message
 	METHOD fail (Lnet/minecraft/network/chat/Component;Lnet/minecraft/core/BlockPos;)V
@@ -300,8 +240,6 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 1 type
 	METHOD forEveryBlockInStructure (Ljava/util/function/Consumer;)V
 		ARG 1 consumer
-	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
-		ARG 1 pos
 	METHOD getBlockEntity (Lnet/minecraft/core/BlockPos;Ljava/lang/Class;)Lnet/minecraft/world/level/block/entity/BlockEntity;
 		ARG 1 pos
 		ARG 2 clazz
@@ -325,8 +263,6 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 1 entity
 	METHOD killAllEntitiesOfClass (Ljava/lang/Class;)V
 		ARG 1 entityClass
-	METHOD lambda$assertBlock$12 (Ljava/util/function/Predicate;Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 1 state
 	METHOD lambda$assertBlock$13 (Ljava/util/function/Predicate;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 1 state
 	METHOD lambda$assertBlock$14 (Ljava/util/function/Function;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/network/chat/Component;
@@ -339,10 +275,6 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 2 actualBlock
 	METHOD lambda$assertBlockPresent$7 (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/network/chat/Component;
 		ARG 1 actualBlock
-	METHOD lambda$assertBlockProperty$12 (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/util/function/Predicate;Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 2 state
-	METHOD lambda$assertBlockProperty$13 (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/util/function/Predicate;Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 2 state
 	METHOD lambda$assertBlockProperty$15 (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/util/function/Predicate;Lnet/minecraft/world/level/block/state/BlockState;)Z
 		ARG 2 state
 	METHOD lambda$assertBlockProperty$16 (Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/network/chat/Component;
@@ -353,17 +285,11 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 1 state
 	METHOD lambda$assertEntityInstancePresent$17 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 currentEntity
-	METHOD lambda$assertEntityInventoryContains$20 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 1 stack
 	METHOD lambda$assertEntityInventoryContains$21 (Ljava/lang/Object;)Z
 		ARG 0 entity
 	METHOD lambda$assertEntityInventoryContains$22 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
-	METHOD lambda$assertEntityNotTouching$18 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 entity
 	METHOD lambda$assertEntityNotTouching$20 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 entity
-	METHOD lambda$assertEntityTouching$17 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
 	METHOD lambda$assertEntityTouching$19 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 entity
@@ -378,8 +304,6 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 0 entity
 	METHOD lambda$killAllEntitiesOfClass$1 (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entity
-	METHOD lambda$pressButton$5 (Lnet/minecraft/world/level/block/state/BlockState;)Z
-		ARG 0 state
 	METHOD makeAboutToDrown (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/entity/LivingEntity;
 		ARG 1 entity
 	METHOD makeMockPlayer (Lnet/minecraft/world/level/GameType;)Lnet/minecraft/world/entity/player/Player;

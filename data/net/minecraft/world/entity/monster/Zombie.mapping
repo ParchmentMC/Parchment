@@ -1,8 +1,6 @@
 CLASS net/minecraft/world/entity/monster/Zombie
 	METHOD <init> (Lnet/minecraft/world/level/Level;)V
 		ARG 1 level
-	METHOD addAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		ARG 1 compound
 	METHOD canHoldItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
 	METHOD convertToZombieType (Lnet/minecraft/world/entity/EntityType;)V
@@ -10,18 +8,12 @@ CLASS net/minecraft/world/entity/monster/Zombie
 	METHOD convertVillagerToZombieVillager (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/npc/Villager;)Z
 		ARG 1 level
 		ARG 2 villager
-	METHOD doHurtTarget (Lnet/minecraft/world/entity/Entity;)Z
-		ARG 1 entity
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
 	METHOD getSpawnAsBabyOdds (Lnet/minecraft/util/RandomSource;)Z
 		ARG 0 random
 	METHOD handleAttributes (F)V
 		ARG 1 difficulty
-	METHOD hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z
-		COMMENT Called when the entity is attacked.
-		ARG 1 source
-		ARG 2 amount
 	METHOD isBaby ()Z
 		COMMENT If Animal, checks if the age timer is negative
 	METHOD lambda$convertToZombieType$1 (Lnet/minecraft/world/entity/monster/Zombie;)V
@@ -33,9 +25,6 @@ CLASS net/minecraft/world/entity/monster/Zombie
 	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 block
-	METHOD readAdditionalSaveData (Lnet/minecraft/nbt/CompoundTag;)V
-		COMMENT (abstract) Protected helper method to read subclass entity data from NBT.
-		ARG 1 compound
 	METHOD setBaby (Z)V
 		COMMENT Set whether this zombie is a child.
 		ARG 1 childZombie

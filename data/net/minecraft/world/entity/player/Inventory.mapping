@@ -1,6 +1,4 @@
 CLASS net/minecraft/world/entity/player/Inventory
-	METHOD <init> (Lnet/minecraft/world/entity/player/Player;)V
-		ARG 1 player
 	METHOD <init> (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/EntityEquipment;)V
 		ARG 1 player
 		ARG 2 equipment
@@ -34,34 +32,21 @@ CLASS net/minecraft/world/entity/player/Inventory
 		ARG 1 slot
 	METHOD dropAll ()V
 		COMMENT Drop all armor and main inventory items.
-	METHOD fillStackedContents (Lnet/minecraft/world/entity/player/StackedContents;)V
-		ARG 1 stackedContent
 	METHOD fillStackedContents (Lnet/minecraft/world/entity/player/StackedItemContents;)V
 		ARG 1 contents
-	METHOD findSlotMatchingCraftingIngredient (Lnet/minecraft/core/Holder;)I
-		ARG 1 ingredient
 	METHOD findSlotMatchingCraftingIngredient (Lnet/minecraft/core/Holder;Lnet/minecraft/world/item/ItemStack;)I
 		ARG 1 item
 		ARG 2 stack
 	METHOD findSlotMatchingItem (Lnet/minecraft/world/item/ItemStack;)I
 		COMMENT Finds the stack or an equivalent one in the main inventory
 		ARG 1 stack
-	METHOD findSlotMatchingUnusedItem (Lnet/minecraft/world/item/ItemStack;)I
-		ARG 1 stack
-	METHOD getArmor (I)Lnet/minecraft/world/item/ItemStack;
-		COMMENT @return a player armor item (as an {@code ItemStack}) contained in specified armor slot
-		ARG 1 slot
 	METHOD getContainerSize ()I
 		COMMENT Returns the number of slots in the inventory.
-	METHOD getDestroySpeed (Lnet/minecraft/world/level/block/state/BlockState;)F
-		ARG 1 state
 	METHOD getFreeSlot ()I
 		COMMENT Returns the first item stack that is empty.
 	METHOD getItem (I)Lnet/minecraft/world/item/ItemStack;
 		COMMENT Returns the stack in the given slot.
 		ARG 1 index
-	METHOD getSelected ()Lnet/minecraft/world/item/ItemStack;
-		COMMENT Returns the item stack currently held by the player.
 	METHOD getSelectionSize ()I
 		COMMENT Get the size of the player hotbar inventory
 	METHOD getSlotWithRemainingSpace (Lnet/minecraft/world/item/ItemStack;)I
@@ -74,9 +59,6 @@ CLASS net/minecraft/world/entity/player/Inventory
 		ARG 0 index
 	METHOD isUsableForCrafting (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 0 stack
-	METHOD load (Lnet/minecraft/nbt/ListTag;)V
-		COMMENT Reads from the given tag list and fills the slots in the inventory with the correct items.
-		ARG 1 listTag
 	METHOD load (Lnet/minecraft/world/level/storage/ValueInput$TypedInputList;)V
 		ARG 1 input
 	METHOD pickSlot (I)V
@@ -101,9 +83,6 @@ CLASS net/minecraft/world/entity/player/Inventory
 	METHOD replaceWith (Lnet/minecraft/world/entity/player/Inventory;)V
 		COMMENT Copy the ItemStack contents from another InventoryPlayer instance
 		ARG 1 playerInventory
-	METHOD save (Lnet/minecraft/nbt/ListTag;)Lnet/minecraft/nbt/ListTag;
-		COMMENT Writes the inventory out as a list of compound tags. This is where the slot indices are used (+100 for armor, +80 for crafting).
-		ARG 1 listTag
 	METHOD save (Lnet/minecraft/world/level/storage/ValueOutput$TypedOutputList;)V
 		ARG 1 output
 	METHOD setChanged ()V
@@ -112,10 +91,6 @@ CLASS net/minecraft/world/entity/player/Inventory
 		COMMENT Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
 		ARG 1 index
 		ARG 2 stack
-	METHOD setPickedItem (Lnet/minecraft/world/item/ItemStack;)V
-		ARG 1 stack
-	METHOD setSelectedHotbarSlot (I)V
-		ARG 1 selectedHotbarSlot
 	METHOD setSelectedItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 stack
 	METHOD setSelectedSlot (I)V
@@ -123,8 +98,5 @@ CLASS net/minecraft/world/entity/player/Inventory
 	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
 		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
 		ARG 1 player
-	METHOD swapPaint (D)V
-		COMMENT Change the selected item in the hotbar after a mouse scroll. Select the slot to the left if {@code direction} is positive, or to the right if negative.
-		ARG 1 direction
 	METHOD tick ()V
 		COMMENT Ticks every item in inventory. Used for animations. Is called on client and server.

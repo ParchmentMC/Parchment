@@ -3,11 +3,6 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 		ARG 0 texture
 	METHOD _bindTexture (I)V
 		ARG 0 texture
-	METHOD _blendEquation (I)V
-		ARG 0 mode
-	METHOD _blendFunc (II)V
-		ARG 0 sourceFactor
-		ARG 1 destFactor
 	METHOD _blendFuncSeparate (IIII)V
 		ARG 0 srcFactor
 		ARG 1 dstFactor
@@ -15,18 +10,6 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 		ARG 3 dstFactorAlpha
 	METHOD _clear (I)V
 		ARG 0 mask
-	METHOD _clear (IZ)V
-		ARG 0 mask
-		ARG 1 checkError
-	METHOD _clearColor (FFFF)V
-		ARG 0 red
-		ARG 1 green
-		ARG 2 blue
-		ARG 3 alpha
-	METHOD _clearDepth (D)V
-		ARG 0 depth
-	METHOD _clearStencil (I)V
-		ARG 0 index
 	METHOD _colorMask (ZZZZ)V
 		ARG 0 red
 		ARG 1 green
@@ -34,14 +17,10 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 		ARG 3 alpha
 	METHOD _deleteTexture (I)V
 		ARG 0 texture
-	METHOD _deleteTextures ([I)V
-		ARG 0 textures
 	METHOD _depthFunc (I)V
 		ARG 0 depthFunc
 	METHOD _depthMask (Z)V
 		ARG 0 flag
-	METHOD _disableVertexAttribArray (I)V
-		ARG 0 index
 	METHOD _drawArrays (III)V
 		ARG 0 mode
 		ARG 1 first
@@ -53,18 +32,10 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 		ARG 3 indices
 	METHOD _enableVertexAttribArray (I)V
 		ARG 0 index
-	METHOD _genTextures ([I)V
-		ARG 0 textures
 	METHOD _getInteger (I)I
 		ARG 0 pname
 	METHOD _getString (I)Ljava/lang/String;
 		ARG 0 name
-	METHOD _getTexImage (IIIIJ)V
-		ARG 0 tex
-		ARG 1 level
-		ARG 2 format
-		ARG 3 type
-		ARG 4 pixels
 	METHOD _getTexLevelParameter (III)I
 		ARG 0 target
 		ARG 1 level
@@ -79,9 +50,6 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 	METHOD _glBindFramebuffer (II)V
 		ARG 0 target
 		ARG 1 frameBuffer
-	METHOD _glBindRenderbuffer (II)V
-		ARG 0 target
-		ARG 1 renderBuffer
 	METHOD _glBindVertexArray (I)V
 		ARG 0 array
 	METHOD _glBlitFrameBuffer (IIIIIIIIII)V
@@ -107,72 +75,33 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 		ARG 0 target
 		ARG 1 offset
 		ARG 2 data
-	METHOD _glClientWaitSync (JII)I
-		ARG 0 sync
-		ARG 2 flags
-		ARG 3 timeout
 	METHOD _glClientWaitSync (JIJ)I
 		ARG 0 sync
 		ARG 2 flags
 		ARG 3 timeout
-	METHOD _glCopyTexSubImage2D (IIIIIIII)V
-		ARG 0 target
-		ARG 1 level
-		ARG 2 xOffset
-		ARG 3 yOffset
-		ARG 4 x
-		ARG 5 y
-		ARG 6 width
-		ARG 7 height
 	METHOD _glDeleteBuffers (I)V
 		ARG 0 buffer
 	METHOD _glDeleteFramebuffers (I)V
 		ARG 0 frameBuffer
-	METHOD _glDeleteRenderbuffers (I)V
-		ARG 0 renderBuffer
 	METHOD _glDeleteSync (J)V
 		ARG 0 sync
-	METHOD _glDeleteVertexArrays (I)V
-		ARG 0 array
-	METHOD _glDrawPixels (IIIIJ)V
-		ARG 0 width
-		ARG 1 height
-		ARG 2 format
-		ARG 3 type
-		ARG 4 pixels
 	METHOD _glFenceSync (II)J
 		ARG 0 condition
 		ARG 1 flags
-	METHOD _glFramebufferRenderbuffer (IIII)V
-		ARG 0 target
-		ARG 1 attachment
-		ARG 2 renderBufferTarget
-		ARG 3 renderBuffer
 	METHOD _glFramebufferTexture2D (IIIII)V
 		ARG 0 target
 		ARG 1 attachment
 		ARG 2 texTarget
 		ARG 3 texture
 		ARG 4 level
-	METHOD _glGetAttribLocation (ILjava/lang/CharSequence;)I
-		ARG 0 program
-		ARG 1 name
 	METHOD _glGetUniformLocation (ILjava/lang/CharSequence;)I
 		ARG 0 program
 		ARG 1 name
-	METHOD _glMapBuffer (II)Ljava/nio/ByteBuffer;
-		ARG 0 target
-		ARG 1 access
 	METHOD _glMapBufferRange (IIII)Ljava/nio/ByteBuffer;
 		ARG 0 target
 		ARG 1 offset
 		ARG 2 length
 		ARG 3 access
-	METHOD _glRenderbufferStorage (IIII)V
-		ARG 0 target
-		ARG 1 internalFormat
-		ARG 2 width
-		ARG 3 height
 	METHOD _glUniform1 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
@@ -185,9 +114,6 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 	METHOD _glUniform2 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
-	METHOD _glUniform2 (ILjava/nio/IntBuffer;)V
-		ARG 0 location
-		ARG 1 value
 	METHOD _glUniform3 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
@@ -197,24 +123,9 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 	METHOD _glUniform4 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
-	METHOD _glUniform4 (ILjava/nio/IntBuffer;)V
-		ARG 0 location
-		ARG 1 value
-	METHOD _glUniformMatrix2 (IZLjava/nio/FloatBuffer;)V
-		ARG 0 location
-		ARG 1 transpose
-		ARG 2 value
-	METHOD _glUniformMatrix3 (IZLjava/nio/FloatBuffer;)V
-		ARG 0 location
-		ARG 1 transpose
-		ARG 2 value
 	METHOD _glUniformMatrix4 (ILjava/nio/FloatBuffer;)V
 		ARG 0 location
 		ARG 1 value
-	METHOD _glUniformMatrix4 (IZLjava/nio/FloatBuffer;)V
-		ARG 0 location
-		ARG 1 transpose
-		ARG 2 value
 	METHOD _glUnmapBuffer (I)V
 		ARG 0 target
 	METHOD _glUseProgram (I)V
@@ -238,32 +149,11 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 		ARG 4 format
 		ARG 5 type
 		ARG 6 pixels
-	METHOD _readPixels (IIIIIILjava/nio/ByteBuffer;)V
-		ARG 0 x
-		ARG 1 y
-		ARG 2 width
-		ARG 3 height
-		ARG 4 format
-		ARG 5 type
-		ARG 6 pixels
 	METHOD _scissorBox (IIII)V
 		ARG 0 x
 		ARG 1 y
 		ARG 2 width
 		ARG 3 height
-	METHOD _stencilFunc (III)V
-		ARG 0 func
-		ARG 1 ref
-		ARG 2 mask
-	METHOD _stencilMask (I)V
-		ARG 0 mask
-	METHOD _stencilOp (III)V
-		ARG 0 sfail
-			COMMENT The action to take if the stencil test fails.
-		ARG 1 dpfail
-			COMMENT The action to take if the depth buffer test fails.
-		ARG 2 dppass
-			COMMENT The action to take if the depth buffer test passes.
 	METHOD _texImage2D (IIIIIIIILjava/nio/IntBuffer;)V
 		ARG 0 target
 		ARG 1 level
@@ -274,10 +164,6 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 		ARG 6 format
 		ARG 7 type
 		ARG 8 pixels
-	METHOD _texParameter (IIF)V
-		ARG 0 target
-		ARG 1 parameterName
-		ARG 2 parameter
 	METHOD _texParameter (III)V
 		ARG 0 target
 		ARG 1 parameterName
@@ -302,15 +188,6 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 		ARG 6 format
 		ARG 7 type
 		ARG 8 pixels
-	METHOD _upload (IIIIILcom/mojang/blaze3d/platform/NativeImage$Format;Ljava/nio/IntBuffer;Ljava/util/function/Consumer;)V
-		ARG 0 level
-		ARG 1 xOffset
-		ARG 2 yOffset
-		ARG 3 width
-		ARG 4 height
-		ARG 5 format
-		ARG 6 pixels
-		ARG 7 output
 	METHOD _vertexAttribIPointer (IIIIJ)V
 		ARG 0 index
 		ARG 1 size
@@ -341,8 +218,6 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 		ARG 1 dFactorRGB
 		ARG 2 sFactorAlpha
 		ARG 3 dFactorAlpha
-	METHOD glCheckFramebufferStatus (I)I
-		ARG 0 target
 	METHOD glCompileShader (I)V
 		ARG 0 shader
 	METHOD glCreateShader (I)I
@@ -368,45 +243,8 @@ CLASS com/mojang/blaze3d/opengl/GlStateManager
 	METHOD glShaderSource (ILjava/lang/String;)V
 		ARG 0 type
 		ARG 1 source
-	METHOD glShaderSource (ILjava/util/List;)V
-		ARG 0 shader
-			COMMENT The shader object whose source code is to be replaced.
-		ARG 1 shaderData
-	METHOD lambda$static$0 (I)Lcom/mojang/blaze3d/platform/GlStateManager$TextureState;
-		ARG 0 index
-	METHOD setupGui3DDiffuseLighting (Lorg/joml/Vector3f;Lorg/joml/Vector3f;)V
-		ARG 0 lightingVector1
-		ARG 1 lightingVector2
-	METHOD setupGuiFlatDiffuseLighting (Lorg/joml/Vector3f;Lorg/joml/Vector3f;)V
-		ARG 0 lightingVector1
-		ARG 1 lightingVector2
-	METHOD setupLevelDiffuseLighting (Lorg/joml/Vector3f;Lorg/joml/Vector3f;Lorg/joml/Matrix4f;)V
-		ARG 0 lightingVector1
-		ARG 1 lightingVector2
-		ARG 2 matrix
-	METHOD upload (IIIIILcom/mojang/blaze3d/platform/NativeImage$Format;Ljava/nio/IntBuffer;Ljava/util/function/Consumer;)V
-		ARG 0 level
-		ARG 1 xOffset
-		ARG 2 yOffset
-		ARG 3 width
-		ARG 4 height
-		ARG 5 format
-		ARG 6 pixels
-		ARG 7 output
-	CLASS LogicOp
-		METHOD <init> (Ljava/lang/String;II)V
-			ARG 3 value
-	CLASS DestFactor
-		METHOD <init> (Ljava/lang/String;II)V
-			ARG 3 value
 	CLASS BooleanState
 		METHOD <init> (I)V
 			ARG 1 state
 		METHOD setEnabled (Z)V
 			ARG 1 enabled
-	CLASS SourceFactor
-		METHOD <init> (Ljava/lang/String;II)V
-			ARG 3 value
-	CLASS FramebufferState
-		METHOD update (I)Z
-			ARG 1 binding

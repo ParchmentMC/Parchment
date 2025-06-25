@@ -1,8 +1,6 @@
 CLASS com/mojang/realmsclient/RealmsMainScreen
 	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 1 lastScreen
-	METHOD addListEntriesForNotification (Lcom/mojang/realmsclient/dto/RealmsNotification;)Z
-		ARG 1 notification
 	METHOD callRealmsClient (Lcom/mojang/realmsclient/RealmsMainScreen$RealmsCall;Ljava/util/function/Consumer;)V
 		ARG 0 call
 		ARG 1 onFinish
@@ -107,8 +105,6 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 		ARG 1 realmsServer
 	METHOD shouldLeaveButtonBeActive (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
 		ARG 1 realmsServer
-	METHOD shouldPlayButtonBeActive (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
-		ARG 1 realmsServer
 	METHOD shouldRenewButtonBeActive (Lcom/mojang/realmsclient/dto/RealmsServer;)Z
 		ARG 1 realmsServer
 	METHOD updateLayout (Lcom/mojang/realmsclient/RealmsMainScreen$LayoutState;)V
@@ -146,12 +142,6 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 			ARG 5 serverNameColor
 			ARG 6 server
 		METHOD renderGameMode (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/GuiGraphics;III)I
-			ARG 1 server
-			ARG 2 guiGraphics
-			ARG 3 left
-			ARG 4 width
-			ARG 5 firstLineY
-		METHOD renderGameMode (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/GuiGraphics;III)V
 			ARG 1 server
 			ARG 2 guiGraphics
 			ARG 3 left
@@ -201,19 +191,6 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 	CLASS ServerEntry
 		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/dto/RealmsServer;)V
 			ARG 2 serverData
-		METHOD renderFirstLine (Lnet/minecraft/client/gui/GuiGraphics;III)V
-			ARG 1 guiGraphics
-			ARG 2 top
-			ARG 3 left
-			ARG 4 width
-		METHOD renderOnlinePlayers (Lnet/minecraft/client/gui/GuiGraphics;IIIIII)Z
-			ARG 1 guiGraphics
-			ARG 2 top
-			ARG 3 left
-			ARG 4 width
-			ARG 5 height
-			ARG 6 mouseX
-			ARG 7 mouseY
 		METHOD renderOnlinePlayers (Lnet/minecraft/client/gui/GuiGraphics;IIIIIIF)Z
 			ARG 1 guiGraphics
 			ARG 2 top
@@ -223,15 +200,6 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 			ARG 6 mouseX
 			ARG 7 mouseY
 			ARG 8 partialTick
-		METHOD renderSecondLine (Lnet/minecraft/client/gui/GuiGraphics;II)V
-			ARG 1 guiGraphics
-			ARG 2 top
-			ARG 3 left
-		METHOD renderSecondLine (Lnet/minecraft/client/gui/GuiGraphics;III)V
-			ARG 1 guiGraphics
-			ARG 2 top
-			ARG 3 left
-			ARG 4 width
 	CLASS NotificationButton
 		METHOD <init> (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/gui/components/Button$OnPress;)V
 			ARG 1 message

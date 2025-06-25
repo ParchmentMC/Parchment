@@ -1,94 +1,22 @@
 CLASS net/minecraft/client/renderer/entity/ItemRenderer
-	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/renderer/texture/TextureManager;Lnet/minecraft/client/resources/model/ModelManager;Lnet/minecraft/client/color/item/ItemColors;Lnet/minecraft/client/renderer/BlockEntityWithoutLevelRenderer;)V
-		ARG 1 minecraft
-		ARG 2 textureManager
-		ARG 3 modelManager
-		ARG 4 itemColors
-		ARG 5 blockEntityRenderer
 	METHOD <init> (Lnet/minecraft/client/renderer/item/ItemModelResolver;)V
 		ARG 1 resolver
-	METHOD <init> (Lnet/minecraft/client/resources/model/ModelManager;Lnet/minecraft/client/color/item/ItemColors;Lnet/minecraft/client/renderer/BlockEntityWithoutLevelRenderer;)V
-		ARG 1 modelManager
-		ARG 2 itemColors
-		ARG 3 blockEntityRenderer
 	METHOD getArmorFoilBuffer (Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Z)Lcom/mojang/blaze3d/vertex/VertexConsumer;
 		ARG 0 bufferSource
 		ARG 1 renderType
 		ARG 2 hasFoil
-	METHOD getBundleOpenBackModelLocation (Lnet/minecraft/world/item/BundleItem;)Lnet/minecraft/client/resources/model/ModelResourceLocation;
-		ARG 0 bundle
-	METHOD getBundleOpenFrontModelLocation (Lnet/minecraft/world/item/BundleItem;)Lnet/minecraft/client/resources/model/ModelResourceLocation;
-		ARG 0 bundle
-	METHOD getCompassFoilBuffer (Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
-		ARG 0 bufferSource
-		ARG 1 renderType
-		ARG 2 pose
 	METHOD getFoilBuffer (Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;ZZ)Lcom/mojang/blaze3d/vertex/VertexConsumer;
 		ARG 0 bufferSource
 		ARG 1 renderType
 		ARG 2 isItem
 		ARG 3 glint
-	METHOD getFoilBufferDirect (Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;ZZ)Lcom/mojang/blaze3d/vertex/VertexConsumer;
-		ARG 0 bufferSource
-		ARG 1 renderType
-		ARG 2 noEntity
-		ARG 3 withGlint
 	METHOD getLayerColorSafe ([II)I
 		ARG 0 tintLayers
 		ARG 1 index
-	METHOD getModel (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)Lnet/minecraft/client/resources/model/BakedModel;
-		ARG 1 stack
-		ARG 2 level
-		ARG 3 entity
-		ARG 4 seed
 	METHOD getSpecialFoilBuffer (Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
 		ARG 0 bufferSource
 		ARG 1 renderType
 		ARG 2 pose
-	METHOD hasAnimatedTexture (Lnet/minecraft/world/item/ItemStack;)Z
-		ARG 0 stack
-	METHOD onResourceManagerReload (Lnet/minecraft/server/packs/resources/ResourceManager;)V
-		ARG 1 resourceManager
-	METHOD render (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IILnet/minecraft/client/resources/model/BakedModel;)V
-		ARG 1 itemStack
-		ARG 2 displayContext
-		ARG 3 leftHand
-		ARG 4 poseStack
-		ARG 5 bufferSource
-		ARG 6 packedLIght
-		ARG 7 packedOverlay
-		ARG 8 model
-	METHOD renderBundleItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IILnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V
-		ARG 1 itemStack
-		ARG 2 displayContext
-		ARG 3 leftHand
-		ARG 4 poseStack
-		ARG 5 bufferSource
-		ARG 6 packedLight
-		ARG 7 packedOverlay
-		ARG 8 model
-		ARG 9 level
-		ARG 10 entity
-		ARG 11 seed
-	METHOD renderBundleWithSelectedItem (Lnet/minecraft/world/item/BundleItem;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IIZ)V
-		ARG 1 bundle
-		ARG 2 itemStack
-		ARG 3 displayContext
-		ARG 4 leftHand
-		ARG 5 poseStack
-		ARG 6 bufferSource
-		ARG 7 packedLight
-		ARG 8 packedOverlay
-		ARG 9 renderOpenBundle
-	METHOD renderBundleWithSelectedItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IIZ)V
-		ARG 1 itemStack
-		ARG 2 displayContext
-		ARG 3 leftHand
-		ARG 4 poseStack
-		ARG 5 bufferSource
-		ARG 6 packedLight
-		ARG 7 packedOverlay
-		ARG 8 renderOpenBundle
 	METHOD renderItem (Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II[ILjava/util/List;Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/item/ItemStackRenderState$FoilType;)V
 		ARG 0 displayContext
 		ARG 1 poseStack
@@ -99,57 +27,6 @@ CLASS net/minecraft/client/renderer/entity/ItemRenderer
 		ARG 6 quads
 		ARG 7 renderType
 		ARG 8 foilType
-	METHOD renderItem (Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II[ILnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/item/ItemStackRenderState$FoilType;)V
-		ARG 0 displayContext
-		ARG 1 poseStack
-		ARG 2 bufferSource
-		ARG 3 packedLight
-		ARG 4 packedOverlay
-		ARG 5 tintLayers
-		ARG 6 model
-		ARG 7 renderType
-		ARG 8 foilType
-	METHOD renderItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IILnet/minecraft/client/resources/model/BakedModel;Z)V
-		ARG 1 itemStack
-		ARG 2 displayContext
-		ARG 3 poseStack
-		ARG 4 bufferSource
-		ARG 5 packedLight
-		ARG 6 packedOverlay
-		ARG 7 model
-		ARG 8 renderOpenBundle
-	METHOD renderItemModelRaw (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IILnet/minecraft/client/resources/model/BakedModel;ZF)V
-		ARG 1 itemStack
-		ARG 2 displayContext
-		ARG 3 leftHand
-		ARG 4 poseStack
-		ARG 5 bufferSource
-		ARG 6 packedLight
-		ARG 7 packedOverlay
-		ARG 8 model
-		ARG 9 renderOpenBundle
-		ARG 10 z
-	METHOD renderModelLists (Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/item/ItemStack;IILcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;)V
-		ARG 1 model
-		ARG 2 stack
-		ARG 3 packedLight
-		ARG 4 packedOverlay
-		ARG 5 poseStack
-		ARG 6 buffer
-	METHOD renderModelLists (Lnet/minecraft/client/resources/model/BakedModel;[IIILcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;)V
-		ARG 0 model
-		ARG 1 tintLayers
-		ARG 2 packedLight
-		ARG 3 packedOverlay
-		ARG 4 poseStack
-		ARG 5 buffer
-	METHOD renderQuadList (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Ljava/util/List;Lnet/minecraft/world/item/ItemStack;II)V
-		ARG 1 poseStack
-		ARG 2 buffer
-		ARG 3 quads
-		ARG 4 itemStack
-		ARG 5 combinedLight
-		ARG 6 combinedOverlay
 	METHOD renderQuadList (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Ljava/util/List;[III)V
 		ARG 0 poseStack
 		ARG 1 buffer
@@ -157,16 +34,6 @@ CLASS net/minecraft/client/renderer/entity/ItemRenderer
 		ARG 3 tintLayers
 		ARG 4 packedLight
 		ARG 5 packedOverlay
-	METHOD renderSimpleItemModel (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;IILnet/minecraft/client/resources/model/BakedModel;Z)V
-		ARG 1 itemStack
-		ARG 2 displayContext
-		ARG 3 leftHand
-		ARG 4 poseStack
-		ARG 5 bufferSource
-		ARG 6 packedLight
-		ARG 7 packedOverlay
-		ARG 8 model
-		ARG 9 renderOpenBundle
 	METHOD renderStatic (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/level/Level;III)V
 		ARG 1 entity
 		ARG 2 stack
@@ -177,17 +44,6 @@ CLASS net/minecraft/client/renderer/entity/ItemRenderer
 		ARG 7 packedLight
 		ARG 8 packedOverlay
 		ARG 9 seed
-	METHOD renderStatic (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/level/Level;III)V
-		ARG 1 entity
-		ARG 2 itemStack
-		ARG 3 diplayContext
-		ARG 4 leftHand
-		ARG 5 poseStack
-		ARG 6 bufferSource
-		ARG 7 level
-		ARG 8 combinedLight
-		ARG 9 combinedOverlay
-		ARG 10 seed
 	METHOD renderStatic (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;IILcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/level/Level;I)V
 		ARG 1 stack
 		ARG 2 displayContext
@@ -197,17 +53,5 @@ CLASS net/minecraft/client/renderer/entity/ItemRenderer
 		ARG 6 bufferSource
 		ARG 7 level
 		ARG 8 seed
-	METHOD resolveItemModel (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemDisplayContext;)Lnet/minecraft/client/resources/model/BakedModel;
-		ARG 1 stack
-		ARG 2 entity
-		ARG 3 displayContext
-	METHOD resolveModelOverride (Lnet/minecraft/client/resources/model/BakedModel;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)Lnet/minecraft/client/resources/model/BakedModel;
-		ARG 1 model
-		ARG 2 stack
-		ARG 3 level
-		ARG 4 entity
-		ARG 5 seed
-	METHOD shouldRenderItemFlat (Lnet/minecraft/world/item/ItemDisplayContext;)Z
-		ARG 0 displayContent
 	METHOD useTransparentGlint (Lnet/minecraft/client/renderer/RenderType;)Z
 		ARG 0 renderType

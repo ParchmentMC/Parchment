@@ -1,36 +1,15 @@
 CLASS com/mojang/blaze3d/systems/RenderPass
-	METHOD bindSampler (Ljava/lang/String;Lcom/mojang/blaze3d/textures/GpuTexture;)V
-		ARG 1 name
-		ARG 2 texture
 	METHOD bindSampler (Ljava/lang/String;Lcom/mojang/blaze3d/textures/GpuTextureView;)V
 		ARG 1 name
 		ARG 2 texture
 	METHOD draw (II)V
 		ARG 1 firstIndex
 		ARG 2 indexCount
-	METHOD drawIndexed (II)V
-		ARG 1 firstIndex
-		ARG 2 indexCount
-	METHOD drawIndexed (III)V
-		ARG 1 firstIndex
-		ARG 2 indexCount
-		ARG 3 primCount
 	METHOD drawIndexed (IIII)V
 		ARG 1 firstIndex
 		ARG 2 index
 		ARG 3 indexCount
 		ARG 4 primCount
-	METHOD drawMultipleIndexed (Ljava/util/Collection;)V
-		ARG 1 draws
-	METHOD drawMultipleIndexed (Ljava/util/Collection;Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;)V
-		ARG 1 draws
-		ARG 2 buffer
-		ARG 3 indexType
-	METHOD drawMultipleIndexed (Ljava/util/Collection;Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;Ljava/util/Collection;)V
-		ARG 1 draws
-		ARG 2 buffer
-		ARG 3 indexType
-		ARG 4 uniforms
 	METHOD drawMultipleIndexed (Ljava/util/Collection;Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;Ljava/util/Collection;Ljava/lang/Object;)V
 		ARG 1 draws
 		ARG 2 indexBuffer
@@ -42,8 +21,6 @@ CLASS com/mojang/blaze3d/systems/RenderPass
 		ARG 2 y
 		ARG 3 width
 		ARG 4 height
-	METHOD enableScissor (Lcom/mojang/blaze3d/systems/ScissorState;)V
-		ARG 1 scissorState
 	METHOD pushDebugGroup (Ljava/util/function/Supplier;)V
 		ARG 1 name
 	METHOD setIndexBuffer (Lcom/mojang/blaze3d/buffers/GpuBuffer;Lcom/mojang/blaze3d/vertex/VertexFormat$IndexType;)V
@@ -57,15 +34,6 @@ CLASS com/mojang/blaze3d/systems/RenderPass
 	METHOD setUniform (Ljava/lang/String;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
 		ARG 1 name
 		ARG 2 bufferSlice
-	METHOD setUniform (Ljava/lang/String;Lorg/joml/Matrix4f;)V
-		ARG 1 name
-		ARG 2 values
-	METHOD setUniform (Ljava/lang/String;[F)V
-		ARG 1 name
-		ARG 2 values
-	METHOD setUniform (Ljava/lang/String;[I)V
-		ARG 1 name
-		ARG 2 values
 	METHOD setVertexBuffer (ILcom/mojang/blaze3d/buffers/GpuBuffer;)V
 		ARG 1 index
 		ARG 2 buffer
@@ -81,6 +49,3 @@ CLASS com/mojang/blaze3d/systems/RenderPass
 		METHOD upload (Ljava/lang/String;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
 			ARG 1 name
 			ARG 2 bufferSlice
-		METHOD upload (Ljava/lang/String;[F)V
-			ARG 1 name
-			ARG 2 values
