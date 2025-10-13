@@ -1,4 +1,20 @@
 CLASS net/minecraft/client/gui/components/CycleButton
+	METHOD <init> (IIIILnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;ILjava/lang/Object;Ljava/util/function/Supplier;Lnet/minecraft/client/gui/components/CycleButton$ValueListSupplier;Ljava/util/function/Function;Ljava/util/function/Function;Lnet/minecraft/client/gui/components/CycleButton$OnValueChange;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Z)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 width
+		ARG 4 height
+		ARG 5 message
+		ARG 6 name
+		ARG 7 index
+		ARG 8 value
+		ARG 9 defaultValueSupplier
+		ARG 10 values
+		ARG 11 valueStringifier
+		ARG 12 narrationProvider
+		ARG 13 onValueChange
+		ARG 14 tooltipSupplier
+		ARG 15 displayOnlyValues
 	METHOD <init> (IIIILnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;ILjava/lang/Object;Lnet/minecraft/client/gui/components/CycleButton$ValueListSupplier;Ljava/util/function/Function;Ljava/util/function/Function;Lnet/minecraft/client/gui/components/CycleButton$OnValueChange;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Z)V
 		ARG 1 x
 		ARG 2 y
@@ -17,8 +33,18 @@ CLASS net/minecraft/client/gui/components/CycleButton
 	METHOD booleanBuilder (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/components/CycleButton$Builder;
 		ARG 0 componentOn
 		ARG 1 componentOff
+	METHOD booleanBuilder (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Z)Lnet/minecraft/client/gui/components/CycleButton$Builder;
+		ARG 0 trueText
+		ARG 1 falseText
+		ARG 2 defaultValue
 	METHOD builder (Ljava/util/function/Function;)Lnet/minecraft/client/gui/components/CycleButton$Builder;
 		ARG 0 valueStringifier
+	METHOD builder (Ljava/util/function/Function;Ljava/lang/Object;)Lnet/minecraft/client/gui/components/CycleButton$Builder;
+		ARG 0 valueStringifier
+		ARG 1 defaultValue
+	METHOD builder (Ljava/util/function/Function;Ljava/util/function/Supplier;)Lnet/minecraft/client/gui/components/CycleButton$Builder;
+		ARG 0 valueStringifier
+		ARG 1 defaultValueSupplier
 	METHOD createFullName (Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
 		ARG 1 value
 	METHOD createLabelForValue (Ljava/lang/Object;)Lnet/minecraft/network/chat/Component;
@@ -28,7 +54,7 @@ CLASS net/minecraft/client/gui/components/CycleButton
 	METHOD getCycledValue (I)Ljava/lang/Object;
 		ARG 1 delta
 	METHOD onOffBuilder (Z)Lnet/minecraft/client/gui/components/CycleButton$Builder;
-		ARG 0 initialValue
+		ARG 0 defaultValue
 	METHOD setValue (Ljava/lang/Object;)V
 		ARG 1 value
 	METHOD updateValue (Ljava/lang/Object;)V
@@ -36,6 +62,9 @@ CLASS net/minecraft/client/gui/components/CycleButton
 	CLASS Builder
 		METHOD <init> (Ljava/util/function/Function;)V
 			ARG 1 valueStringifier
+		METHOD <init> (Ljava/util/function/Function;Ljava/util/function/Supplier;)V
+			ARG 1 valueStringifier
+			ARG 2 defaultValueSupplier
 		METHOD create (IIIILnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/components/CycleButton;
 			ARG 1 x
 			ARG 2 y

@@ -57,6 +57,10 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 fluidState
 	METHOD canUseSlot (Lnet/minecraft/world/entity/EquipmentSlot;)Z
 		ARG 1 slot
+	METHOD causeExtraKnockback (Lnet/minecraft/world/entity/Entity;FLnet/minecraft/world/phys/Vec3;)V
+		ARG 1 entity
+		ARG 2 knockback
+		ARG 3 deltaMovement
 	METHOD checkAutoSpinAttack (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/phys/AABB;)V
 		ARG 1 boundingBoxBeforeSpin
 		ARG 2 boundingBoxAfterSpin
@@ -249,6 +253,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Gets the movespeed used for the new AI system.
 	METHOD getSwimAmount (F)F
 		ARG 1 partialTicks
+	METHOD getTicksUsingItem (F)F
+		ARG 1 partialTick
 	METHOD getViewYRot (F)F
 		COMMENT Gets the current yaw of the entity
 		ARG 1 partialTicks
@@ -344,6 +350,12 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 strength
 		ARG 3 x
 		ARG 5 z
+	METHOD lambda$dropFromEntityInteractLootTable$10 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
+		ARG 3 params
+	METHOD lambda$dropFromGiftLootTable$11 (Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
+		ARG 1 params
+	METHOD lambda$dropFromShearingLootTable$12 (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootParams$Builder;)Lnet/minecraft/world/level/storage/loot/LootParams;
+		ARG 2 params
 	METHOD lambda$new$1 (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;
 		ARG 0 slot
 	METHOD lambda$static$0 (Lnet/minecraft/world/entity/LivingEntity;)Z
@@ -406,6 +418,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 3 y
 		ARG 5 z
 		ARG 7 broadcastTeleport
+	METHOD rememberStabbedEntity (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
 	METHOD removeEffect (Lnet/minecraft/core/Holder;)Z
 		ARG 1 effect
 	METHOD removeEffectNoUpdate (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/effect/MobEffectInstance;
@@ -490,6 +504,13 @@ CLASS net/minecraft/world/entity/LivingEntity
 	METHOD spawnItemParticles (Lnet/minecraft/world/item/ItemStack;I)V
 		ARG 1 stack
 		ARG 2 amount
+	METHOD stabAttack (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/entity/Entity;FZZZ)Z
+		ARG 1 slot
+		ARG 2 entity
+		ARG 3 damageAmount
+		ARG 4 damage
+		ARG 5 knockback
+		ARG 6 dismount
 	METHOD startSleeping (Lnet/minecraft/core/BlockPos;)V
 		ARG 1 pos
 	METHOD startUsingItem (Lnet/minecraft/world/InteractionHand;)V
@@ -555,5 +576,7 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 usingItem
 	METHOD updateWalkAnimation (F)V
 		ARG 1 partialTick
+	METHOD wasRecentlyStabbed (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
 	METHOD wouldNotSuffocateAtTargetPose (Lnet/minecraft/world/entity/Pose;)Z
 		ARG 1 pose

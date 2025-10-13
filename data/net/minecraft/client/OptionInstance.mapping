@@ -71,43 +71,6 @@ CLASS net/minecraft/client/OptionInstance
 		ARG 1 value
 	METHOD set (Ljava/lang/Object;)V
 		ARG 1 value
-	CLASS IntRange
-		METHOD <init> (II)V
-			ARG 1 minInclusive
-			ARG 2 maxInclusive
-	CLASS ValueSet
-		METHOD createButton (Lnet/minecraft/client/OptionInstance$TooltipSupplier;Lnet/minecraft/client/Options;IIILjava/util/function/Consumer;)Ljava/util/function/Function;
-			ARG 1 tooltipSupplier
-			ARG 2 options
-			ARG 3 x
-			ARG 4 y
-			ARG 5 width
-			ARG 6 onValueChanged
-		METHOD validateValue (Ljava/lang/Object;)Ljava/util/Optional;
-			ARG 1 value
-	CLASS UnitDouble
-		METHOD xmap (Ljava/util/function/DoubleFunction;Ljava/util/function/ToDoubleFunction;)Lnet/minecraft/client/OptionInstance$SliderableValueSet;
-			ARG 1 encoder
-			ARG 2 decoder
-	CLASS IntRangeBase
-		METHOD xmap (Ljava/util/function/IntFunction;Ljava/util/function/ToIntFunction;)Lnet/minecraft/client/OptionInstance$SliderableValueSet;
-			ARG 1 to
-			ARG 2 from
-	CLASS TooltipSupplier
-		METHOD apply (Ljava/lang/Object;)Lnet/minecraft/client/gui/components/Tooltip;
-			ARG 1 value
-	CLASS CycleableValueSet
-		CLASS ValueSetter
-			METHOD set (Lnet/minecraft/client/OptionInstance;Ljava/lang/Object;)V
-				ARG 1 instance
-				ARG 2 value
-	CLASS SliderableValueSet
-		METHOD fromSliderValue (D)Ljava/lang/Object;
-			ARG 1 value
-		METHOD lambda$createButton$0 (Lnet/minecraft/client/Options;IIILnet/minecraft/client/OptionInstance$TooltipSupplier;Ljava/util/function/Consumer;Lnet/minecraft/client/OptionInstance;)Lnet/minecraft/client/gui/components/AbstractWidget;
-			ARG 7 instance
-		METHOD toSliderValue (Ljava/lang/Object;)D
-			ARG 1 value
 	CLASS CaptionBasedToString
 		METHOD toString (Lnet/minecraft/network/chat/Component;Ljava/lang/Object;)Lnet/minecraft/network/chat/Component;
 			ARG 1 caption
@@ -115,6 +78,23 @@ CLASS net/minecraft/client/OptionInstance
 	CLASS ClampingLazyMaxIntRange
 		METHOD lambda$codec$1 (Ljava/lang/Integer;)Lcom/mojang/serialization/DataResult;
 			ARG 1 integer
+	CLASS CycleableValueSet
+		CLASS ValueSetter
+			METHOD set (Lnet/minecraft/client/OptionInstance;Ljava/lang/Object;)V
+				ARG 1 instance
+				ARG 2 value
+	CLASS IntRange
+		METHOD <init> (II)V
+			ARG 1 minInclusive
+			ARG 2 maxInclusive
+	CLASS IntRangeBase
+		METHOD xmap (Ljava/util/function/IntFunction;Ljava/util/function/ToIntFunction;)Lnet/minecraft/client/OptionInstance$SliderableValueSet;
+			ARG 1 to
+			ARG 2 from
+		METHOD xmap (Ljava/util/function/IntFunction;Ljava/util/function/ToIntFunction;Z)Lnet/minecraft/client/OptionInstance$SliderableValueSet;
+			ARG 1 encoder
+			ARG 2 decoder
+			ARG 3 allowStepping
 	CLASS OptionInstanceSliderButton
 		METHOD <init> (Lnet/minecraft/client/Options;IIIILnet/minecraft/client/OptionInstance;Lnet/minecraft/client/OptionInstance$SliderableValueSet;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Ljava/util/function/Consumer;Z)V
 			ARG 1 options
@@ -127,3 +107,31 @@ CLASS net/minecraft/client/OptionInstance
 			ARG 8 tooltipSupplier
 			ARG 9 onValueChanged
 			ARG 10 applyValueImmediately
+	CLASS SliderableValueSet
+		METHOD fromSliderValue (D)Ljava/lang/Object;
+			ARG 1 value
+		METHOD lambda$createButton$0 (Lnet/minecraft/client/Options;IIILnet/minecraft/client/OptionInstance$TooltipSupplier;Ljava/util/function/Consumer;Lnet/minecraft/client/OptionInstance;)Lnet/minecraft/client/gui/components/AbstractWidget;
+			ARG 7 instance
+		METHOD next (Ljava/lang/Object;)Ljava/util/Optional;
+			ARG 1 current
+		METHOD previous (Ljava/lang/Object;)Ljava/util/Optional;
+			ARG 1 current
+		METHOD toSliderValue (Ljava/lang/Object;)D
+			ARG 1 value
+	CLASS TooltipSupplier
+		METHOD apply (Ljava/lang/Object;)Lnet/minecraft/client/gui/components/Tooltip;
+			ARG 1 value
+	CLASS UnitDouble
+		METHOD xmap (Ljava/util/function/DoubleFunction;Ljava/util/function/ToDoubleFunction;)Lnet/minecraft/client/OptionInstance$SliderableValueSet;
+			ARG 1 encoder
+			ARG 2 decoder
+	CLASS ValueSet
+		METHOD createButton (Lnet/minecraft/client/OptionInstance$TooltipSupplier;Lnet/minecraft/client/Options;IIILjava/util/function/Consumer;)Ljava/util/function/Function;
+			ARG 1 tooltipSupplier
+			ARG 2 options
+			ARG 3 x
+			ARG 4 y
+			ARG 5 width
+			ARG 6 onValueChanged
+		METHOD validateValue (Ljava/lang/Object;)Ljava/util/Optional;
+			ARG 1 value

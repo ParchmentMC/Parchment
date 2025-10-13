@@ -1,4 +1,9 @@
 CLASS net/minecraft/world/entity/ai/util/LandRandomPos
+	METHOD generateRandomPosTowardDirection (Lnet/minecraft/world/entity/PathfinderMob;DZLnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
+		ARG 0 mob
+		ARG 1 radius
+		ARG 3 shortCircuit
+		ARG 4 pos
 	METHOD generateRandomPosTowardDirection (Lnet/minecraft/world/entity/PathfinderMob;IZLnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
 		ARG 0 mob
 		ARG 1 radius
@@ -13,11 +18,24 @@ CLASS net/minecraft/world/entity/ai/util/LandRandomPos
 		ARG 1 radius
 		ARG 2 yRange
 		ARG 3 toDoubleFunction
+	METHOD getPosAway (Lnet/minecraft/world/entity/PathfinderMob;DDILnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 mob
+		ARG 1 minDistance
+		ARG 3 maxDistance
+		ARG 5 yRange
+		ARG 6 pos
 	METHOD getPosAway (Lnet/minecraft/world/entity/PathfinderMob;IILnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 mob
 		ARG 1 radius
 		ARG 2 yRange
-		ARG 3 vectorPosition
+		ARG 3 pos
+	METHOD getPosInDirection (Lnet/minecraft/world/entity/PathfinderMob;DDILnet/minecraft/world/phys/Vec3;Z)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 mob
+		ARG 1 minDistance
+		ARG 3 maxDistance
+		ARG 5 yRange
+		ARG 6 pos
+		ARG 7 shortCircuit
 	METHOD getPosInDirection (Lnet/minecraft/world/entity/PathfinderMob;IILnet/minecraft/world/phys/Vec3;Z)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 mob
 		ARG 1 radius
@@ -28,7 +46,7 @@ CLASS net/minecraft/world/entity/ai/util/LandRandomPos
 		ARG 0 mob
 		ARG 1 radius
 		ARG 2 yRange
-		ARG 3 vectorPosition
+		ARG 3 pos
 	METHOD lambda$movePosUpOutOfSolid$2 (Lnet/minecraft/world/entity/PathfinderMob;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 pos
 	METHOD movePosUpOutOfSolid (Lnet/minecraft/world/entity/PathfinderMob;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;

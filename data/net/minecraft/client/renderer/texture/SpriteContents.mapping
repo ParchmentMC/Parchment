@@ -9,6 +9,13 @@ CLASS net/minecraft/client/renderer/texture/SpriteContents
 		ARG 3 originalImage
 		ARG 4 animationMetadata
 		ARG 5 additionalMetadata
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/metadata/animation/FrameSize;Lcom/mojang/blaze3d/platform/NativeImage;Ljava/util/Optional;Ljava/util/List;Z)V
+		ARG 1 name
+		ARG 2 size
+		ARG 3 originalImage
+		ARG 4 animationMetadata
+		ARG 5 additionalMetadata
+		ARG 6 darkenedCutoutMipmap
 	METHOD createAnimatedTexture (Lnet/minecraft/client/resources/metadata/animation/FrameSize;IILnet/minecraft/client/resources/metadata/animation/AnimationMetadataSection;)Lnet/minecraft/client/renderer/texture/SpriteContents$AnimatedTexture;
 		ARG 1 frameSize
 		ARG 2 width
@@ -33,18 +40,18 @@ CLASS net/minecraft/client/renderer/texture/SpriteContents
 		ARG 4 sourceY
 		ARG 5 images
 		ARG 6 texture
+	METHOD upload (IIII[Lcom/mojang/blaze3d/platform/NativeImage;Lcom/mojang/blaze3d/textures/GpuTexture;I)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 frameX
+		ARG 4 frameY
+		ARG 5 mipLevels
+		ARG 6 texture
+		ARG 7 mipLevel
 	METHOD uploadFirstFrame (IILcom/mojang/blaze3d/textures/GpuTexture;)V
 		ARG 1 x
 		ARG 2 y
 		ARG 3 texture
-	CLASS Ticker
-		METHOD <init> (Lnet/minecraft/client/renderer/texture/SpriteContents;Lnet/minecraft/client/renderer/texture/SpriteContents$AnimatedTexture;Lnet/minecraft/client/renderer/texture/SpriteContents$InterpolationData;)V
-			ARG 2 animationInfo
-			ARG 3 interpolationData
-	CLASS FrameInfo
-		METHOD <init> (II)V
-			ARG 1 index
-			ARG 2 time
 	CLASS AnimatedTexture
 		METHOD <init> (Lnet/minecraft/client/renderer/texture/SpriteContents;Ljava/util/List;IZ)V
 			ARG 2 frames
@@ -65,6 +72,16 @@ CLASS net/minecraft/client/renderer/texture/SpriteContents
 			ARG 2 y
 			ARG 3 frameIndex
 			ARG 4 texture
+		METHOD uploadFrame (IIILcom/mojang/blaze3d/textures/GpuTexture;I)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 frameIndex
+			ARG 4 texture
+			ARG 5 mipLevel
+	CLASS FrameInfo
+		METHOD <init> (II)V
+			ARG 1 index
+			ARG 2 time
 	CLASS InterpolationData
 		METHOD getPixel (Lnet/minecraft/client/renderer/texture/SpriteContents$AnimatedTexture;IIII)I
 			ARG 1 animatedTexture
@@ -77,3 +94,7 @@ CLASS net/minecraft/client/renderer/texture/SpriteContents
 			ARG 2 y
 			ARG 3 ticker
 			ARG 4 texture
+	CLASS Ticker
+		METHOD <init> (Lnet/minecraft/client/renderer/texture/SpriteContents;Lnet/minecraft/client/renderer/texture/SpriteContents$AnimatedTexture;Lnet/minecraft/client/renderer/texture/SpriteContents$InterpolationData;)V
+			ARG 2 animationInfo
+			ARG 3 interpolationData

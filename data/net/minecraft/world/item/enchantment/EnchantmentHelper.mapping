@@ -3,6 +3,9 @@ CLASS net/minecraft/world/item/enchantment/EnchantmentHelper
 		ARG 0 stack
 	METHOD createBook (Lnet/minecraft/world/item/enchantment/EnchantmentInstance;)Lnet/minecraft/world/item/ItemStack;
 		ARG 0 enchantmant
+	METHOD doLungeEffects (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;)V
+		ARG 0 level
+		ARG 1 entity
 	METHOD doPostAttackEffects (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;)V
 		ARG 0 level
 		ARG 1 entity
@@ -235,12 +238,12 @@ CLASS net/minecraft/world/item/enchantment/EnchantmentHelper
 	METHOD updateEnchantments (Lnet/minecraft/world/item/ItemStack;Ljava/util/function/Consumer;)Lnet/minecraft/world/item/enchantment/ItemEnchantments;
 		ARG 0 stack
 		ARG 1 updater
-	CLASS EnchantmentVisitor
-		METHOD accept (Lnet/minecraft/core/Holder;I)V
-			ARG 1 enchantment
-			ARG 2 level
 	CLASS EnchantmentInSlotVisitor
 		METHOD accept (Lnet/minecraft/core/Holder;ILnet/minecraft/world/item/enchantment/EnchantedItemInUse;)V
 			ARG 1 enchantment
 			ARG 2 level
 			ARG 3 item
+	CLASS EnchantmentVisitor
+		METHOD accept (Lnet/minecraft/core/Holder;I)V
+			ARG 1 enchantment
+			ARG 2 level

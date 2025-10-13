@@ -1,4 +1,10 @@
 CLASS net/minecraft/client/renderer/debug/DebugRenderer
+	METHOD emitGizmos (Lnet/minecraft/client/renderer/culling/Frustum;DDDF)V
+		ARG 1 frustum
+		ARG 2 camX
+		ARG 4 camY
+		ARG 6 camZ
+		ARG 8 partialTick
 	METHOD getTargetedEntity (Lnet/minecraft/world/entity/Entity;I)Ljava/util/Optional;
 		ARG 0 entity
 		ARG 1 distance
@@ -130,6 +136,13 @@ CLASS net/minecraft/client/renderer/debug/DebugRenderer
 		ARG 2 blue
 		ARG 3 shift
 	CLASS SimpleDebugRenderer
+		METHOD emitGizmos (DDDLnet/minecraft/util/debug/DebugValueAccess;Lnet/minecraft/client/renderer/culling/Frustum;F)V
+			ARG 1 camX
+			ARG 3 camY
+			ARG 5 camZ
+			ARG 7 debugValueAccess
+			ARG 8 frustum
+			ARG 9 partialTick
 		METHOD render (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;DDDLnet/minecraft/util/debug/DebugValueAccess;Lnet/minecraft/client/renderer/culling/Frustum;)V
 			ARG 1 poseStack
 			ARG 2 bufferSource

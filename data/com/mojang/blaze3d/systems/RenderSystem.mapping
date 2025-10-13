@@ -11,6 +11,8 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 		ARG 1 frameCapture
 	METHOD getSequentialBuffer (Lcom/mojang/blaze3d/vertex/VertexFormat$Mode;)Lcom/mojang/blaze3d/systems/RenderSystem$AutoStorageIndexBuffer;
 		ARG 0 formatMode
+	METHOD getShaderTexture (I)Lcom/mojang/blaze3d/systems/RenderSystem$TextureAndSampler;
+		ARG 0 mipLevel
 	METHOD getShaderTexture (I)Lcom/mojang/blaze3d/textures/GpuTextureView;
 		ARG 0 id
 	METHOD initRenderer (JIZLjava/util/function/BiFunction;Z)V
@@ -45,10 +47,17 @@ CLASS com/mojang/blaze3d/systems/RenderSystem
 	METHOD setShaderTexture (ILcom/mojang/blaze3d/textures/GpuTextureView;)V
 		ARG 0 textureId
 		ARG 1 texture
+	METHOD setShaderTexture (ILcom/mojang/blaze3d/textures/GpuTextureView;Lcom/mojang/blaze3d/textures/GpuSampler;)V
+		ARG 0 mipLevel
+		ARG 1 textureView
+		ARG 2 sampler
 	METHOD setTextureMatrix (Lorg/joml/Matrix4f;)V
 		ARG 0 textureMatrix
 	METHOD setupOverlayColor (Lcom/mojang/blaze3d/textures/GpuTextureView;)V
 		ARG 0 texture
+	METHOD setupOverlayColor (Lcom/mojang/blaze3d/textures/GpuTextureView;Lcom/mojang/blaze3d/textures/GpuSampler;)V
+		ARG 0 textureView
+		ARG 1 sampler
 	CLASS AutoStorageIndexBuffer
 		METHOD <init> (IILcom/mojang/blaze3d/systems/RenderSystem$AutoStorageIndexBuffer$IndexGenerator;)V
 			ARG 1 vertexStride

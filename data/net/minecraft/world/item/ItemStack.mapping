@@ -37,6 +37,11 @@ CLASS net/minecraft/world/item/ItemStack
 		ARG 3 tooltipDisplay
 		ARG 4 tooltipAdder
 		ARG 5 tooltipFlag
+	METHOD addUnitComponentToTooltip (Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/network/chat/Component;Lnet/minecraft/world/item/component/TooltipDisplay;Ljava/util/function/Consumer;)V
+		ARG 1 component
+		ARG 2 tooltip
+		ARG 3 tooltipDisplay
+		ARG 4 tooltipAdder
 	METHOD applyAfterUseComponentSideEffects (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 entity
 		ARG 2 stack
@@ -89,6 +94,9 @@ CLASS net/minecraft/world/item/ItemStack
 	METHOD forEachModifier (Lnet/minecraft/world/entity/EquipmentSlotGroup;Lorg/apache/commons/lang3/function/TriConsumer;)V
 		ARG 1 slot
 		ARG 2 action
+	METHOD getDamageSource (Lnet/minecraft/world/entity/LivingEntity;Ljava/util/function/Supplier;)Lnet/minecraft/world/damagesource/DamageSource;
+		ARG 1 attacker
+		ARG 2 defaultGetter
 	METHOD getDestroySpeed (Lnet/minecraft/world/level/block/state/BlockState;)F
 		ARG 1 state
 	METHOD getDisplayName ()Lnet/minecraft/network/chat/Component;
@@ -214,6 +222,10 @@ CLASS net/minecraft/world/item/ItemStack
 		COMMENT Compares both {@code ItemStacks}, returns {@code true} if both {@code ItemStacks} are equal.
 		ARG 0 stack
 		ARG 1 other
+	METHOD matchesIgnoringComponents (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Ljava/util/function/Predicate;)Z
+		ARG 0 stack
+		ARG 1 other
+		ARG 2 shouldIgnore
 	METHOD mineBlock (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)V
 		COMMENT Called when a Block is destroyed using this ItemStack
 		ARG 1 level

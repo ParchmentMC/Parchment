@@ -1,6 +1,8 @@
 CLASS net/minecraft/server/dedicated/DedicatedServerProperties
 	METHOD createDimensions (Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/level/levelgen/WorldDimensions;
 		ARG 1 registries
+	METHOD deserializePermission (Ljava/lang/String;)Lnet/minecraft/server/permissions/LevelBasedPermissionSet;
+		ARG 0 permission
 	METHOD fromFile (Ljava/nio/file/Path;)Lnet/minecraft/server/dedicated/DedicatedServerProperties;
 		ARG 0 path
 	METHOD getDatapackConfig (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/world/level/DataPackConfig;
@@ -21,6 +23,8 @@ CLASS net/minecraft/server/dedicated/DedicatedServerProperties
 		ARG 0 property
 	METHOD parseResourcePackPrompt (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
 		ARG 0 json
+	METHOD serializePermission (Lnet/minecraft/server/permissions/LevelBasedPermissionSet;)Ljava/lang/String;
+		ARG 0 permission
 	CLASS WorldDimensionData
 		METHOD create (Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/level/levelgen/WorldDimensions;
 			ARG 1 registries

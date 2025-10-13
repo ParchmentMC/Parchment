@@ -1,4 +1,9 @@
 CLASS net/minecraft/world/RandomSequences
+	METHOD <init> (IZZLjava/util/Map;)V
+		ARG 1 salt
+		ARG 2 includeWorldSeed
+		ARG 3 includeSequenceId
+		ARG 4 sequences
 	METHOD <init> (J)V
 		ARG 1 seed
 	METHOD <init> (JIZZLjava/util/Map;)V
@@ -16,12 +21,26 @@ CLASS net/minecraft/world/RandomSequences
 		ARG 2 salt
 		ARG 3 includeWorldSeed
 		ARG 4 includeSequenceId
+	METHOD createSequence (Lnet/minecraft/resources/ResourceLocation;J)Lnet/minecraft/world/RandomSequence;
+		ARG 1 id
+		ARG 2 worldSeed
+	METHOD createSequence (Lnet/minecraft/resources/ResourceLocation;JIZZ)Lnet/minecraft/world/RandomSequence;
+		ARG 1 id
+		ARG 2 worldSeed
+		ARG 4 salt
+		ARG 5 includeWorldSeed
+		ARG 6 includeSequenceId
 	METHOD forAllSequences (Ljava/util/function/BiConsumer;)V
 		ARG 1 action
 	METHOD get (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/util/RandomSource;
 		ARG 1 location
+	METHOD get (Lnet/minecraft/resources/ResourceLocation;J)Lnet/minecraft/util/RandomSource;
+		ARG 1 id
+		ARG 2 worldSeed
 	METHOD lambda$codec$6 (JLcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 		ARG 2 instance
+	METHOD lambda$static$1 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
 	METHOD reset (Lnet/minecraft/resources/ResourceLocation;)V
 		ARG 1 sequence
 	METHOD reset (Lnet/minecraft/resources/ResourceLocation;IZZ)V
@@ -29,6 +48,15 @@ CLASS net/minecraft/world/RandomSequences
 		ARG 2 seed
 		ARG 3 includeWorldSeed
 		ARG 4 includeSequenceId
+	METHOD reset (Lnet/minecraft/resources/ResourceLocation;J)V
+		ARG 1 id
+		ARG 2 worldSeed
+	METHOD reset (Lnet/minecraft/resources/ResourceLocation;JIZZ)V
+		ARG 1 id
+		ARG 2 worldSeed
+		ARG 4 salt
+		ARG 5 includeWorldSeed
+		ARG 6 includeSequenceId
 	METHOD setSeedDefaults (IZZ)V
 		ARG 1 salt
 		ARG 2 includeWorldSeed

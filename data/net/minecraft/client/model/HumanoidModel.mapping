@@ -31,9 +31,13 @@ CLASS net/minecraft/client/model/HumanoidModel
 	METHOD poseBlockingArm (Lnet/minecraft/client/model/geom/ModelPart;Z)V
 		ARG 1 arm
 		ARG 2 isRightArm
+	METHOD poseLeftArm (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;)V
+		ARG 1 renderState
 	METHOD poseLeftArm (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;Lnet/minecraft/client/model/HumanoidModel$ArmPose;)V
 		ARG 1 renderState
 		ARG 2 pose
+	METHOD poseRightArm (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;)V
+		ARG 1 renderState
 	METHOD poseRightArm (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;Lnet/minecraft/client/model/HumanoidModel$ArmPose;)V
 		ARG 1 renderState
 		ARG 2 pose
@@ -41,9 +45,16 @@ CLASS net/minecraft/client/model/HumanoidModel
 		ARG 1 limbSwing
 	METHOD setAllVisible (Z)V
 		ARG 1 visible
+	METHOD setupAttackAnimation (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;)V
+		ARG 1 renderState
 	METHOD setupAttackAnimation (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;F)V
 		ARG 1 renderState
 		ARG 2 ageInTicks
 	CLASS ArmPose
 		METHOD <init> (Ljava/lang/String;IZ)V
 			ARG 3 twoHanded
+		METHOD animateUseItem (Lcom/mojang/blaze3d/vertex/PoseStack;FLnet/minecraft/world/entity/HumanoidArm;Lnet/minecraft/world/item/ItemStack;)V
+			ARG 1 poseStack
+			ARG 2 useTime
+			ARG 3 arm
+			ARG 4 item

@@ -4,6 +4,15 @@ CLASS net/minecraft/world/entity/ai/util/RandomPos
 		ARG 0 random
 		ARG 1 horizontalDistance
 		ARG 2 verticalDistance
+	METHOD generateRandomDirectionWithinRadians (Lnet/minecraft/util/RandomSource;DDIIDDD)Lnet/minecraft/core/BlockPos;
+		ARG 0 random
+		ARG 1 minDistance
+		ARG 3 maxDistance
+		ARG 5 verticalDistance
+		ARG 6 y
+		ARG 7 x
+		ARG 9 z
+		ARG 11 radians
 	METHOD generateRandomDirectionWithinRadians (Lnet/minecraft/util/RandomSource;IIIDDD)Lnet/minecraft/core/BlockPos;
 		COMMENT @return a random (x, y, z) coordinate by picking a point (x, z), adding a random angle, up to a difference of {@code maxAngleDelta}. The y position is randomly chosen from the range {@code [y - yRange, y + yRange]}. Will be {@code null} if the chosen coordinate is outside a distance of {@code maxHorizontalDistance} from the origin.
 		ARG 0 random
@@ -26,6 +35,11 @@ CLASS net/minecraft/world/entity/ai/util/RandomPos
 	METHOD generateRandomPos (Lnet/minecraft/world/entity/PathfinderMob;Ljava/util/function/Supplier;)Lnet/minecraft/world/phys/Vec3;
 		ARG 0 mob
 		ARG 1 posSupplier
+	METHOD generateRandomPosTowardDirection (Lnet/minecraft/world/entity/PathfinderMob;DLnet/minecraft/util/RandomSource;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
+		ARG 0 mob
+		ARG 1 radius
+		ARG 3 random
+		ARG 4 pos
 	METHOD generateRandomPosTowardDirection (Lnet/minecraft/world/entity/PathfinderMob;ILnet/minecraft/util/RandomSource;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/BlockPos;
 		COMMENT @return a random position within range, only if the mob is currently restricted
 		ARG 0 mob

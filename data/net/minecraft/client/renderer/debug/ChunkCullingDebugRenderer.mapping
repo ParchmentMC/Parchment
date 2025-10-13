@@ -1,6 +1,10 @@
 CLASS net/minecraft/client/renderer/debug/ChunkCullingDebugRenderer
 	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
 		ARG 1 minecraft
+	METHOD addFrustumLine (Lnet/minecraft/world/phys/Vec3;Lorg/joml/Vector4f;Lorg/joml/Vector4f;)V
+		ARG 1 cameraPos
+		ARG 2 start
+		ARG 3 end
 	METHOD addFrustumQuad (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lorg/joml/Matrix4f;[Lorg/joml/Vector4f;IIIIIII)V
 		ARG 1 buffer
 		ARG 2 pose
@@ -12,6 +16,16 @@ CLASS net/minecraft/client/renderer/debug/ChunkCullingDebugRenderer
 		ARG 8 red
 		ARG 9 green
 		ARG 10 blue
+	METHOD addFrustumQuad (Lnet/minecraft/world/phys/Vec3;[Lorg/joml/Vector4f;IIIIIII)V
+		ARG 1 cameraPos
+		ARG 2 frustumPoints
+		ARG 3 point1
+		ARG 4 point2
+		ARG 5 point3
+		ARG 6 point4
+		ARG 7 red
+		ARG 8 green
+		ARG 9 blue
 	METHOD addFrustumVertex (Lcom/mojang/blaze3d/vertex/VertexConsumer;Lorg/joml/Matrix4f;Lorg/joml/Vector4f;)V
 		ARG 1 buffer
 		ARG 2 pose

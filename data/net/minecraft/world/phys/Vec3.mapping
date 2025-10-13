@@ -7,6 +7,8 @@ CLASS net/minecraft/world/phys/Vec3
 		ARG 1 vector
 	METHOD <init> (Lorg/joml/Vector3f;)V
 		ARG 1 vector
+	METHOD <init> (Lorg/joml/Vector3fc;)V
+		ARG 1 vector
 	METHOD add (D)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 amount
 	METHOD add (DDD)Lnet/minecraft/world/phys/Vec3;
@@ -16,8 +18,13 @@ CLASS net/minecraft/world/phys/Vec3
 		ARG 5 z
 	METHOD add (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 vec
+	METHOD addLocalCoordinates (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 localCoordinates
 	METHOD align (Ljava/util/EnumSet;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 axes
+	METHOD applyLocalCoordinatesToRotation (Lnet/minecraft/world/phys/Vec2;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 rotation
+		ARG 1 localCoordinates
 	METHOD atBottomCenterOf (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/world/phys/Vec3;
 		COMMENT Copies the coordinates of an int vector and centers them horizontally (x and z)
 		ARG 0 toCopy
@@ -86,6 +93,9 @@ CLASS net/minecraft/world/phys/Vec3
 	METHOD normalize ()Lnet/minecraft/world/phys/Vec3;
 		COMMENT Normalizes the vector to a length of 1 (except if it is the zero vector)
 	METHOD offsetRandom (Lnet/minecraft/util/RandomSource;F)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 random
+		ARG 2 factor
+	METHOD offsetRandomXZ (Lnet/minecraft/util/RandomSource;F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 random
 		ARG 2 factor
 	METHOD projectedOn (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;

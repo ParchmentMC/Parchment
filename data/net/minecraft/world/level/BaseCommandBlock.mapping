@@ -7,6 +7,11 @@ CLASS net/minecraft/world/level/BaseCommandBlock
 		COMMENT The number of successful commands run. (used for redstone output)
 	METHOD createCommandSourceStack (Lnet/minecraft/commands/CommandSource;)Lnet/minecraft/commands/CommandSourceStack;
 		ARG 1 commandSource
+	METHOD createCommandSourceStack (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/commands/CommandSource;)Lnet/minecraft/commands/CommandSourceStack;
+		ARG 1 level
+		ARG 2 commandSource
+	METHOD createSource (Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/level/BaseCommandBlock$CloseableCommandBlockSource;
+		ARG 1 level
 	METHOD getCommand ()Ljava/lang/String;
 		COMMENT Returns the command of the command block.
 	METHOD getLastOutput ()Lnet/minecraft/network/chat/Component;
@@ -15,6 +20,10 @@ CLASS net/minecraft/world/level/BaseCommandBlock
 		COMMENT Returns the {@code successCount} int.
 	METHOD load (Lnet/minecraft/world/level/storage/ValueInput;)V
 		ARG 1 input
+	METHOD onUpdated (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
+	METHOD performCommand (Lnet/minecraft/server/level/ServerLevel;)Z
+		ARG 1 level
 	METHOD performCommand (Lnet/minecraft/world/level/Level;)Z
 		ARG 1 level
 	METHOD save (Lnet/minecraft/world/level/storage/ValueOutput;)V
@@ -32,3 +41,6 @@ CLASS net/minecraft/world/level/BaseCommandBlock
 		ARG 1 shouldTrackOutput
 	METHOD usedBy (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/InteractionResult;
 		ARG 1 player
+	CLASS CloseableCommandBlockSource
+		METHOD <init> (Lnet/minecraft/world/level/BaseCommandBlock;Lnet/minecraft/server/level/ServerLevel;)V
+			ARG 2 level

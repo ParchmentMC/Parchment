@@ -9,6 +9,12 @@ CLASS net/minecraft/world/entity/player/Player
 	METHOD attack (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Attacks for the player the targeted entity with the currently equipped item.  The equipped item has hitEntity called on it. Args: targetEntity
 		ARG 1 target
+	METHOD attackVisualEffects (Lnet/minecraft/world/entity/Entity;ZZZF)V
+		ARG 1 entity
+		ARG 2 crit
+		ARG 3 sweepAttack
+		ARG 4 fullyCharged
+		ARG 5 enchantedDamage
 	METHOD awardRecipes (Ljava/util/Collection;)I
 		ARG 1 recipes
 	METHOD awardRecipesByKey (Ljava/util/List;)V
@@ -29,6 +35,8 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 1 level
 		ARG 2 pos
 		ARG 3 gameMode
+	METHOD canCriticalAttack (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
 	METHOD canEat (Z)Z
 		ARG 1 canAlwaysEat
 	METHOD canFallAtLeast (DDD)Z
@@ -48,6 +56,11 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 2 distance
 	METHOD canPlayerFitWithinBlocksAndEntitiesWhen (Lnet/minecraft/world/entity/Pose;)Z
 		ARG 1 pose
+	METHOD cannotAttack (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD cannotAttackWithItem (Lnet/minecraft/world/item/ItemStack;I)Z
+		ARG 1 stack
+		ARG 2 adjustTicks
 	METHOD causeFoodExhaustion (F)V
 		COMMENT Increases exhaustion level by the supplied amount.
 		ARG 1 exhaustion
@@ -57,17 +70,29 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 0 variant
 	METHOD convertParrotVariant (Ljava/util/OptionalInt;)Ljava/util/Optional;
 		ARG 0 id
+	METHOD createAttackSource (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/damagesource/DamageSource;
+		ARG 1 stack
 	METHOD crit (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Called when the entity is dealt a critical hit.
 		ARG 1 entityHit
+	METHOD damageStatsAndHearts (Lnet/minecraft/world/entity/Entity;F)V
+		ARG 1 entity
+		ARG 2 healthBeforeAttack
 	METHOD decorateDisplayNameComponent (Lnet/minecraft/network/chat/MutableComponent;)Lnet/minecraft/network/chat/MutableComponent;
 		ARG 1 displayName
+	METHOD deflectProjectile (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
 	METHOD die (Lnet/minecraft/world/damagesource/DamageSource;)V
 		COMMENT Called when the mob's health reaches 0.
 		ARG 1 cause
 	METHOD displayClientMessage (Lnet/minecraft/network/chat/Component;Z)V
 		ARG 1 chatComponent
 		ARG 2 actionBar
+	METHOD doSweepAttack (Lnet/minecraft/world/entity/Entity;FLnet/minecraft/world/damagesource/DamageSource;F)V
+		ARG 1 entity
+		ARG 2 damage
+		ARG 3 damageSource
+		ARG 4 attackStrengthScale
 	METHOD doWaterSplashEffect ()V
 		COMMENT Plays the {@link #getSplashSound() splash sound}, and the {@link ParticleType#WATER_BUBBLE} and {@link ParticleType#WATER_SPLASH} particles.
 	METHOD drop (Lnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/world/entity/item/ItemEntity;
@@ -99,6 +124,8 @@ CLASS net/minecraft/world/entity/player/Player
 		COMMENT Returns the GameProfile for this player
 	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
 		ARG 1 damageSource
+	METHOD getItemSwapScale (F)F
+		ARG 1 adjustTicks
 	METHOD getProjectile (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
 		ARG 1 shootable
 	METHOD getRopeHoldPosition (F)Lnet/minecraft/world/phys/Vec3;
@@ -147,6 +174,14 @@ CLASS net/minecraft/world/entity/player/Player
 		COMMENT Returns whether the player is asleep and the screen has fully faded.
 	METHOD isSpectator ()Z
 		COMMENT Returns {@code true} if the player is in spectator mode.
+	METHOD isSweepAttack (ZZZ)Z
+		ARG 1 fullyCharged
+		ARG 2 crit
+		ARG 3 sprinting
+	METHOD itemAttackInteraction (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/damagesource/DamageSource;)V
+		ARG 1 entity
+		ARG 2 stack
+		ARG 3 damageSource
 	METHOD magicCrit (Lnet/minecraft/world/entity/Entity;)V
 		ARG 1 entityHit
 	METHOD makeStuckInBlock (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/phys/Vec3;)V
@@ -186,6 +221,8 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 1 jigsawBlockEntity
 	METHOD openMenu (Lnet/minecraft/world/MenuProvider;)Ljava/util/OptionalInt;
 		ARG 1 menu
+	METHOD openMinecartCommandBlock (Lnet/minecraft/world/entity/vehicle/MinecartCommandBlock;)V
+		ARG 1 minecartCommandBlock
 	METHOD openMinecartCommandBlock (Lnet/minecraft/world/level/BaseCommandBlock;)V
 		ARG 1 commandEntity
 	METHOD openStructureBlock (Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)V
