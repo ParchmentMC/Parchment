@@ -21,6 +21,8 @@ CLASS net/minecraft/world/level/material/LavaFluid
 	METHOD hasFlammableNeighbours (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 level
 		ARG 2 pos
+	METHOD isFastLava (Lnet/minecraft/world/level/LevelReader;)Z
+		ARG 0 level
 	METHOD isFlammable (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
 		ARG 1 level
 		ARG 2 pos
@@ -32,14 +34,14 @@ CLASS net/minecraft/world/level/material/LavaFluid
 		ARG 3 blockState
 		ARG 4 direction
 		ARG 5 fluidState
-	CLASS Source
+	CLASS Flowing
+		METHOD createFluidStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
+			ARG 1 builder
 		METHOD getAmount (Lnet/minecraft/world/level/material/FluidState;)I
 			ARG 1 state
 		METHOD isSource (Lnet/minecraft/world/level/material/FluidState;)Z
 			ARG 1 state
-	CLASS Flowing
-		METHOD createFluidStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
-			ARG 1 builder
+	CLASS Source
 		METHOD getAmount (Lnet/minecraft/world/level/material/FluidState;)I
 			ARG 1 state
 		METHOD isSource (Lnet/minecraft/world/level/material/FluidState;)Z

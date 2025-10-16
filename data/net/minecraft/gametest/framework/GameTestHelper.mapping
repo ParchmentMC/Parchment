@@ -78,11 +78,16 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 1 pos
 		ARG 2 type
 		ARG 3 entityDataGetter
-		ARG 4 testEntityData
+		ARG 4 expectedValue
 	METHOD assertEntityData (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/EntityType;Ljava/util/function/Predicate;)V
 		ARG 1 pos
 		ARG 2 type
 		ARG 3 predicate
+	METHOD assertEntityData (Lnet/minecraft/world/phys/AABB;Lnet/minecraft/world/entity/EntityType;Ljava/util/function/Function;Ljava/lang/Object;)V
+		ARG 1 area
+		ARG 2 type
+		ARG 3 entityDataGetter
+		ARG 4 expectedValue
 	METHOD assertEntityInstancePresent (Lnet/minecraft/world/entity/Entity;III)V
 		ARG 1 entity
 		ARG 2 x
@@ -196,6 +201,10 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 	METHOD assertTrue (ZLnet/minecraft/network/chat/Component;)V
 		ARG 1 condition
 		ARG 2 message
+	METHOD assertValueEqual (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/String;)V
+		ARG 1 expected
+		ARG 2 actual
+		ARG 3 name
 	METHOD assertValueEqual (Ljava/lang/Object;Ljava/lang/Object;Lnet/minecraft/network/chat/Component;)V
 		ARG 1 expected
 		ARG 2 actual
@@ -293,6 +302,18 @@ CLASS net/minecraft/gametest/framework/GameTestHelper
 		ARG 1 state
 	METHOD lambda$assertEntityInstancePresent$17 (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
 		ARG 1 currentEntity
+	METHOD lambda$assertEntityNotTouching$24 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD lambda$assertEntityTouching$23 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD lambda$assertItemEntityNotPresent$20 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/entity/item/ItemEntity;)Z
+		ARG 1 itemEntity
+	METHOD lambda$assertItemEntityNotPresent$22 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/entity/item/ItemEntity;)Z
+		ARG 1 itemEntity
+	METHOD lambda$assertItemEntityPresent$19 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/entity/item/ItemEntity;)Z
+		ARG 1 itemEntity
+	METHOD lambda$assertItemEntityPresent$21 (Lnet/minecraft/world/item/Item;Lnet/minecraft/world/entity/item/ItemEntity;)Z
+		ARG 1 itemEntity
 	METHOD lambda$findClosestEntity$2 (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)I
 		ARG 1 first
 		ARG 2 second

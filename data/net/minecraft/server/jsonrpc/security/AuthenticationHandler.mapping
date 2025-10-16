@@ -1,13 +1,22 @@
 CLASS net/minecraft/server/jsonrpc/security/AuthenticationHandler
 	METHOD <init> (Lnet/minecraft/server/jsonrpc/security/SecurityConfig;)V
 		ARG 1 securityConfig
+	METHOD <init> (Lnet/minecraft/server/jsonrpc/security/SecurityConfig;Ljava/lang/String;)V
+		ARG 1 securityConfig
+		ARG 2 allowedOrigins
 	METHOD channelRead (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
 		ARG 1 context
 		ARG 2 request
 	METHOD getClientIp (Lio/netty/channel/ChannelHandlerContext;)Ljava/lang/String;
 		ARG 1 context
+	METHOD isAllowedOriginHeader (Lio/netty/handler/codec/http/HttpRequest;)Z
+		ARG 1 request
 	METHOD isValidApiKey (Ljava/lang/String;)Z
 		ARG 1 apiKey
+	METHOD parseTokenInAuthorizationHeader (Lio/netty/handler/codec/http/HttpRequest;)Ljava/lang/String;
+		ARG 1 request
+	METHOD parseTokenInSecWebsocketProtocolHeader (Lio/netty/handler/codec/http/HttpRequest;)Ljava/lang/String;
+		ARG 1 request
 	METHOD performSecurityChecks (Lio/netty/handler/codec/http/HttpRequest;)Lnet/minecraft/server/jsonrpc/security/AuthenticationHandler$SecurityCheckResult;
 		ARG 1 request
 	METHOD sendUnauthorizedResponse (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/String;)V
@@ -15,9 +24,19 @@ CLASS net/minecraft/server/jsonrpc/security/AuthenticationHandler
 		ARG 2 message
 	METHOD validateAuthentication (Lio/netty/handler/codec/http/HttpRequest;)Z
 		ARG 1 request
+	METHOD write (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;Lio/netty/channel/ChannelPromise;)V
+		ARG 1 context
+		ARG 2 message
+		ARG 3 promise
 	CLASS SecurityCheckResult
 		METHOD <init> (ZLjava/lang/String;)V
 			ARG 1 allowed
 			ARG 2 reason
+		METHOD <init> (ZLjava/lang/String;Z)V
+			ARG 1 allowed
+			ARG 2 reason
+			ARG 3 tokenSentInSecWebsocketProtocol
+		METHOD allowed (Z)Lnet/minecraft/server/jsonrpc/security/AuthenticationHandler$SecurityCheckResult;
+			ARG 0 tokenSentInSecWebsocketProtocol
 		METHOD denied (Ljava/lang/String;)Lnet/minecraft/server/jsonrpc/security/AuthenticationHandler$SecurityCheckResult;
 			ARG 0 reason

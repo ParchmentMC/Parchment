@@ -1,0 +1,34 @@
+CLASS net/minecraft/world/attribute/EnvironmentAttributeMap
+	METHOD <init> (Ljava/util/Map;)V
+		ARG 1 entries
+	METHOD applyModifier (Lnet/minecraft/world/attribute/EnvironmentAttribute;Ljava/lang/Object;)Ljava/lang/Object;
+		ARG 1 attribute
+		ARG 2 oldValue
+	METHOD contains (Lnet/minecraft/world/attribute/EnvironmentAttribute;)Z
+		ARG 1 attribute
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD filterSyncable (Lnet/minecraft/world/attribute/EnvironmentAttributeMap;)Lnet/minecraft/world/attribute/EnvironmentAttributeMap;
+		ARG 0 map
+	METHOD get (Lnet/minecraft/world/attribute/EnvironmentAttribute;)Lnet/minecraft/world/attribute/EnvironmentAttributeMap$Entry;
+		ARG 1 attribute
+	CLASS Builder
+		METHOD modify (Lnet/minecraft/world/attribute/EnvironmentAttribute;Lnet/minecraft/world/attribute/modifier/AttributeModifier;Ljava/lang/Object;)Lnet/minecraft/world/attribute/EnvironmentAttributeMap$Builder;
+			ARG 1 attribute
+			ARG 2 modifier
+			ARG 3 paramater
+		METHOD putAll (Lnet/minecraft/world/attribute/EnvironmentAttributeMap;)Lnet/minecraft/world/attribute/EnvironmentAttributeMap$Builder;
+			ARG 1 map
+		METHOD set (Lnet/minecraft/world/attribute/EnvironmentAttribute;Ljava/lang/Object;)Lnet/minecraft/world/attribute/EnvironmentAttributeMap$Builder;
+			ARG 1 attribute
+			ARG 2 value
+	CLASS Entry
+		METHOD applyModifier (Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 value
+		METHOD createCodec (Lnet/minecraft/world/attribute/EnvironmentAttribute;)Lcom/mojang/serialization/Codec;
+			ARG 0 attribute
+		METHOD createFullCodec (Lnet/minecraft/world/attribute/EnvironmentAttribute;Lnet/minecraft/world/attribute/modifier/AttributeModifier;)Lcom/mojang/serialization/MapCodec;
+			ARG 0 attribute
+			ARG 1 modifier
+		METHOD lambda$createFullCodec$6 (Lnet/minecraft/world/attribute/modifier/AttributeModifier;Lnet/minecraft/world/attribute/EnvironmentAttribute;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 2 instance

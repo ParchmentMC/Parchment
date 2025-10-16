@@ -1,4 +1,7 @@
 CLASS net/minecraft/util/ARGB
+	METHOD addRgb (II)I
+		ARG 0 color1
+		ARG 1 color2
 	METHOD alpha (I)I
 		ARG 0 color
 	METHOD alphaFloat (I)F
@@ -8,6 +11,10 @@ CLASS net/minecraft/util/ARGB
 	METHOD average (II)I
 		ARG 0 color1
 		ARG 1 color2
+	METHOD black (F)I
+		ARG 0 alpha
+	METHOD black (I)I
+		ARG 0 alpha
 	METHOD blue (I)I
 		ARG 0 color
 	METHOD blueFloat (I)F
@@ -34,6 +41,10 @@ CLASS net/minecraft/util/ARGB
 		ARG 1 red
 		ARG 2 green
 		ARG 3 blue
+	METHOD computeLinearToSrgb (F)F
+		ARG 0 linear
+	METHOD computeSrgbToLinear (F)F
+		ARG 0 srgb
 	METHOD from8BitChannel (I)F
 		ARG 0 value
 	METHOD fromABGR (I)I
@@ -48,9 +59,28 @@ CLASS net/minecraft/util/ARGB
 		ARG 0 delta
 		ARG 1 color1
 		ARG 2 color2
+	METHOD linearChannelMean (IIII)I
+		ARG 0 color1
+		ARG 1 color2
+		ARG 2 color3
+		ARG 3 color4
+	METHOD linearLerp (FII)I
+		ARG 0 delta
+		ARG 1 start
+		ARG 2 end
+	METHOD linearToSrgbChannel (F)I
+		ARG 0 linear
+	METHOD meanLinear (IIII)I
+		ARG 0 color1
+		ARG 1 color2
+		ARG 2 color3
+		ARG 3 color4
 	METHOD multiply (II)I
 		ARG 0 color1
 		ARG 1 color2
+	METHOD multiplyAlpha (IF)I
+		ARG 0 color
+		ARG 1 alpha
 	METHOD opaque (I)I
 		ARG 0 color
 	METHOD red (I)I
@@ -71,6 +101,15 @@ CLASS net/minecraft/util/ARGB
 	METHOD setBrightness (IF)I
 		ARG 0 color
 		ARG 1 brightness
+	METHOD srgbLerp (FII)I
+		ARG 0 delta
+		ARG 1 start
+		ARG 2 end
+	METHOD srgbToLinearChannel (I)F
+		ARG 0 srgb
+	METHOD subtractRgb (II)I
+		ARG 0 color1
+		ARG 1 color2
 	METHOD toABGR (I)I
 		ARG 0 color
 	METHOD transparent (I)I
@@ -78,4 +117,6 @@ CLASS net/minecraft/util/ARGB
 	METHOD vector3fFromRGB24 (I)Lorg/joml/Vector3f;
 		ARG 0 color
 	METHOD white (F)I
+		ARG 0 alpha
+	METHOD white (I)I
 		ARG 0 alpha

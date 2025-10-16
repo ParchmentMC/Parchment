@@ -68,7 +68,7 @@ CLASS net/minecraft/client/gui/Font
 		ARG 2 x
 		ARG 3 y
 		ARG 4 color
-		ARG 5 dropShadow
+		ARG 5 drawShadow
 		ARG 6 backgroundColor
 	METHOD prepareText (Lnet/minecraft/util/FormattedCharSequence;FFIZI)Lnet/minecraft/client/gui/Font$PreparedText;
 		ARG 1 text
@@ -77,6 +77,14 @@ CLASS net/minecraft/client/gui/Font
 		ARG 4 color
 		ARG 5 dropShadow
 		ARG 6 backgroundColor
+	METHOD prepareText (Lnet/minecraft/util/FormattedCharSequence;FFIZZI)Lnet/minecraft/client/gui/Font$PreparedText;
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+		ARG 4 color
+		ARG 5 drawShadow
+		ARG 6 includeEmpty
+		ARG 7 backgroundColor
 	METHOD split (Lnet/minecraft/network/chat/FormattedText;I)Ljava/util/List;
 		ARG 1 text
 		ARG 2 maxWidth
@@ -100,12 +108,13 @@ CLASS net/minecraft/client/gui/Font
 	METHOD wordWrapHeight (Lnet/minecraft/network/chat/FormattedText;I)I
 		ARG 1 text
 		ARG 2 maxWidth
-	CLASS Provider
-		METHOD glyphs (Lnet/minecraft/network/chat/FontDescription;)Lnet/minecraft/client/gui/GlyphSource;
-			ARG 1 fontDescription
 	CLASS GlyphVisitor
 		METHOD acceptEffect (Lnet/minecraft/client/gui/font/TextRenderable;)V
 			ARG 1 effect
+		METHOD acceptEmptyArea (Lnet/minecraft/client/gui/font/EmptyArea;)V
+			ARG 1 emptyArea
+		METHOD acceptGlyph (Lnet/minecraft/client/gui/font/TextRenderable$Styled;)V
+			ARG 1 glyph
 		METHOD acceptGlyph (Lnet/minecraft/client/gui/font/TextRenderable;)V
 			ARG 1 glyph
 		METHOD forMultiBufferSource (Lnet/minecraft/client/renderer/MultiBufferSource;Lorg/joml/Matrix4f;Lnet/minecraft/client/gui/Font$DisplayMode;I)Lnet/minecraft/client/gui/Font$GlyphVisitor;
@@ -126,17 +135,34 @@ CLASS net/minecraft/client/gui/Font
 			ARG 4 color
 			ARG 5 backgroundColor
 			ARG 6 dropShadow
+		METHOD <init> (Lnet/minecraft/client/gui/Font;FFIIZZ)V
+			ARG 2 x
+			ARG 3 y
+			ARG 4 color
+			ARG 5 backgroundColor
+			ARG 6 drawShadow
+			ARG 7 includeEmpty
 		METHOD <init> (Lnet/minecraft/client/gui/Font;FFIZ)V
 			ARG 2 x
 			ARG 3 y
 			ARG 4 color
 			ARG 5 dropShadow
+		METHOD <init> (Lnet/minecraft/client/gui/Font;FFIZZ)V
+			ARG 2 x
+			ARG 3 y
+			ARG 4 color
+			ARG 5 drawShadow
+			ARG 6 includeEmpty
 		METHOD accept (ILnet/minecraft/network/chat/Style;Lnet/minecraft/client/gui/font/glyphs/BakedGlyph;)Z
 			ARG 1 positionInCurrentSequence
 			ARG 2 style
 			ARG 3 glyph
 		METHOD addEffect (Lnet/minecraft/client/gui/font/TextRenderable;)V
 			ARG 1 effect
+		METHOD addEmptyGlyph (Lnet/minecraft/client/gui/font/EmptyArea;)V
+			ARG 1 emptyArea
+		METHOD addGlyph (Lnet/minecraft/client/gui/font/TextRenderable$Styled;)V
+			ARG 1 glyph
 		METHOD addGlyph (Lnet/minecraft/client/gui/font/TextRenderable;)V
 			ARG 1 glyph
 		METHOD getShadowColor (Lnet/minecraft/network/chat/Style;I)I
@@ -153,3 +179,6 @@ CLASS net/minecraft/client/gui/Font
 			ARG 2 top
 			ARG 3 right
 			ARG 4 bottom
+	CLASS Provider
+		METHOD glyphs (Lnet/minecraft/network/chat/FontDescription;)Lnet/minecraft/client/gui/GlyphSource;
+			ARG 1 fontDescription
