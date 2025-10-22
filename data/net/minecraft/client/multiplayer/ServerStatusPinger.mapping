@@ -1,6 +1,6 @@
 CLASS net/minecraft/client/multiplayer/ServerStatusPinger
 	FIELD connections Ljava/util/List;
-		COMMENT A list of NetworkManagers that have pending pings
+		COMMENT A list of Connections that have pending pings
 	METHOD formatPlayerCount (II)Lnet/minecraft/network/chat/Component;
 		ARG 0 players
 		ARG 1 capacity
@@ -11,10 +11,20 @@ CLASS net/minecraft/client/multiplayer/ServerStatusPinger
 		ARG 1 resolvedServerAddress
 		ARG 2 serverAddress
 		ARG 3 serverData
+	METHOD pingLegacyServer (Ljava/net/InetSocketAddress;Lnet/minecraft/client/multiplayer/resolver/ServerAddress;Lnet/minecraft/client/multiplayer/ServerData;Lnet/minecraft/server/network/EventLoopGroupHolder;)V
+		ARG 1 resolvedAddress
+		ARG 2 serverAddress
+		ARG 3 serverData
+		ARG 4 group
 	METHOD pingServer (Lnet/minecraft/client/multiplayer/ServerData;Ljava/lang/Runnable;Ljava/lang/Runnable;)V
 		ARG 1 serverData
 		ARG 2 serverListUpdater
 		ARG 3 stateUpdater
+	METHOD pingServer (Lnet/minecraft/client/multiplayer/ServerData;Ljava/lang/Runnable;Ljava/lang/Runnable;Lnet/minecraft/server/network/EventLoopGroupHolder;)V
+		ARG 1 serverData
+		ARG 2 serverListUpdater
+		ARG 3 stateUpdater
+		ARG 4 group
 	CLASS 1
 		METHOD lambda$handleStatusResponse$0 (Lnet/minecraft/client/multiplayer/ServerData;Lnet/minecraft/network/protocol/status/ServerStatus$Version;)V
 			ARG 1 version

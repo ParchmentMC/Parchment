@@ -5,8 +5,25 @@ CLASS net/minecraft/world/level/chunk/storage/SimpleRegionStorage
 		ARG 3 fixerUpper
 		ARG 4 sync
 		ARG 5 dataFixType
+	METHOD <init> (Lnet/minecraft/world/level/chunk/storage/RegionStorageInfo;Ljava/nio/file/Path;Lcom/mojang/datafixers/DataFixer;ZLnet/minecraft/util/datafix/DataFixTypes;Ljava/util/function/Supplier;)V
+		ARG 1 info
+		ARG 2 folder
+		ARG 3 fixerUpper
+		ARG 4 sync
+		ARG 5 dataFixType
+		ARG 6 legacyFixer
+	METHOD injectDatafixingContext (Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 0 tag
+		ARG 1 context
+	METHOD isOldChunkAround (Lnet/minecraft/world/level/ChunkPos;I)Z
+		ARG 1 chunkPos
+		ARG 2 radius
+	METHOD markChunkDone (Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 1 chunkPos
 	METHOD read (Lnet/minecraft/world/level/ChunkPos;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 chunkPos
+	METHOD removeDatafixingContext (Lnet/minecraft/nbt/CompoundTag;)V
+		ARG 0 tag
 	METHOD synchronize (Z)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 flushStorage
 	METHOD upgradeChunkTag (Lcom/mojang/serialization/Dynamic;I)Lcom/mojang/serialization/Dynamic;
@@ -15,6 +32,13 @@ CLASS net/minecraft/world/level/chunk/storage/SimpleRegionStorage
 	METHOD upgradeChunkTag (Lnet/minecraft/nbt/CompoundTag;I)Lnet/minecraft/nbt/CompoundTag;
 		ARG 1 tag
 		ARG 2 version
+	METHOD upgradeChunkTag (Lnet/minecraft/nbt/CompoundTag;ILnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 tag
+		ARG 2 version
+		ARG 3 context
+	METHOD write (Lnet/minecraft/world/level/ChunkPos;Ljava/util/function/Supplier;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 chunkPos
+		ARG 2 dataSupplier
 	METHOD write (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/nbt/CompoundTag;)Ljava/util/concurrent/CompletableFuture;
 		ARG 1 chunkPos
 		ARG 2 data

@@ -1,6 +1,10 @@
 CLASS net/minecraft/world/level/border/WorldBorder
+	METHOD <init> (Lnet/minecraft/world/level/border/WorldBorder$Settings;)V
+		ARG 1 settings
 	METHOD addListener (Lnet/minecraft/world/level/border/BorderChangeListener;)V
 		ARG 1 listener
+	METHOD applyInitialSettings (J)V
+		ARG 1 lerpBegin
 	METHOD applySettings (Lnet/minecraft/world/level/border/WorldBorder$Settings;)V
 		ARG 1 serializer
 	METHOD clampToBounds (DDD)Lnet/minecraft/core/BlockPos;
@@ -22,6 +26,14 @@ CLASS net/minecraft/world/level/border/WorldBorder
 		ARG 3 z
 	METHOD getDistanceToBorder (Lnet/minecraft/world/entity/Entity;)D
 		ARG 1 entity
+	METHOD getMaxX (F)D
+		ARG 1 partialTick
+	METHOD getMaxZ (F)D
+		ARG 1 partialTick
+	METHOD getMinX (F)D
+		ARG 1 partialTick
+	METHOD getMinZ (F)D
+		ARG 1 partialTick
 	METHOD isInsideCloseToBorder (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/AABB;)Z
 		ARG 1 entity
 		ARG 2 bounds
@@ -49,6 +61,11 @@ CLASS net/minecraft/world/level/border/WorldBorder
 		ARG 1 oldSize
 		ARG 3 newSize
 		ARG 5 time
+	METHOD lerpSizeBetween (DDJJ)V
+		ARG 1 from
+		ARG 3 to
+		ARG 5 duration
+		ARG 7 begin
 	METHOD removeListener (Lnet/minecraft/world/level/border/BorderChangeListener;)V
 		ARG 1 listener
 	METHOD setAbsoluteMaxSize (I)V
@@ -66,6 +83,25 @@ CLASS net/minecraft/world/level/border/WorldBorder
 		ARG 1 warningDistance
 	METHOD setWarningTime (I)V
 		ARG 1 warningTime
+	CLASS BorderExtent
+		METHOD getMaxX (F)D
+			ARG 1 partialTick
+		METHOD getMaxZ (F)D
+			ARG 1 partialTick
+		METHOD getMinX (F)D
+			ARG 1 partialTick
+		METHOD getMinZ (F)D
+			ARG 1 partialTick
+	CLASS MovingBorderExtent
+		METHOD <init> (Lnet/minecraft/world/level/border/WorldBorder;DDJ)V
+			ARG 2 from
+			ARG 4 to
+			ARG 6 lerpDuration
+		METHOD <init> (Lnet/minecraft/world/level/border/WorldBorder;DDJJ)V
+			ARG 2 from
+			ARG 4 to
+			ARG 6 lerpDuration
+			ARG 8 lerpBegin
 	CLASS Settings
 		METHOD <init> (DDDDIIDJD)V
 			ARG 1 centerX
@@ -81,11 +117,6 @@ CLASS net/minecraft/world/level/border/WorldBorder
 			ARG 1 border
 		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 			ARG 0 instance
-	CLASS MovingBorderExtent
-		METHOD <init> (Lnet/minecraft/world/level/border/WorldBorder;DDJ)V
-			ARG 2 from
-			ARG 4 to
-			ARG 6 lerpDuration
 	CLASS StaticBorderExtent
 		METHOD <init> (Lnet/minecraft/world/level/border/WorldBorder;D)V
 			ARG 2 size

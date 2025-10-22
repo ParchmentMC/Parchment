@@ -294,6 +294,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 length
 	METHOD readSlice (I)Lio/netty/buffer/ByteBuf;
 		ARG 1 length
+	METHOD readString (ILjava/nio/charset/Charset;)Ljava/lang/String;
+		ARG 1 length
+		ARG 2 charset
 	METHOD readUUID ()Ljava/util/UUID;
 		COMMENT Reads a UUID encoded as two longs from this buffer.
 		COMMENT
@@ -341,6 +344,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD readWithCount (Ljava/util/function/Consumer;)V
 		COMMENT Read a VarInt N from this buffer, then reads N values by calling {@code reader}.
 		ARG 1 reader
+	METHOD readerIndex (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
 	METHOD readerIndex (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 readerIndex
 	METHOD release (I)Z
@@ -405,6 +410,9 @@ CLASS net/minecraft/network/FriendlyByteBuf
 	METHOD setFloat (IF)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 index
 		ARG 2 value
+	METHOD setIndex (II)Lio/netty/buffer/ByteBuf;
+		ARG 1 reader
+		ARG 2 writer
 	METHOD setIndex (II)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 readerIndex
 		ARG 2 writerIndex
@@ -678,5 +686,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 3 value
 	METHOD writeZero (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 length
+	METHOD writerIndex (I)Lio/netty/buffer/ByteBuf;
+		ARG 1 index
 	METHOD writerIndex (I)Lnet/minecraft/network/FriendlyByteBuf;
 		ARG 1 writerIndex

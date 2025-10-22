@@ -24,6 +24,10 @@ CLASS net/minecraft/network/Connection
 		ARG 1 flow
 		ARG 2 memoryOnly
 		ARG 3 bandwithDebugMonitor
+	METHOD connect (Ljava/net/InetSocketAddress;Lnet/minecraft/server/network/EventLoopGroupHolder;Lnet/minecraft/network/Connection;)Lio/netty/channel/ChannelFuture;
+		ARG 0 address
+		ARG 1 group
+		ARG 2 connection
 	METHOD connect (Ljava/net/InetSocketAddress;ZLnet/minecraft/network/Connection;)Lio/netty/channel/ChannelFuture;
 		ARG 0 address
 		ARG 1 useEpollIfAvailable
@@ -33,6 +37,10 @@ CLASS net/minecraft/network/Connection
 		COMMENT Establishes a connection to the socket supplied and configures the channel pipeline (only the packet handler is necessary,
 		COMMENT since this is for an in-memory connection). Returns the newly created instance.
 		ARG 0 address
+	METHOD connectToServer (Ljava/net/InetSocketAddress;Lnet/minecraft/server/network/EventLoopGroupHolder;Lnet/minecraft/util/debugchart/LocalSampleLogger;)Lnet/minecraft/network/Connection;
+		ARG 0 address
+		ARG 1 group
+		ARG 2 bandwidthLogger
 	METHOD connectToServer (Ljava/net/InetSocketAddress;ZLnet/minecraft/util/debugchart/LocalSampleLogger;)Lnet/minecraft/network/Connection;
 		ARG 0 address
 		ARG 1 useEpollIfAvailable

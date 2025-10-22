@@ -4,7 +4,16 @@ CLASS net/minecraft/client/renderer/entity/ItemRenderer
 		ARG 1 renderType
 		ARG 2 isItem
 		ARG 3 glint
+	METHOD getFoilBuffer (Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/rendertype/RenderType;ZZ)Lcom/mojang/blaze3d/vertex/VertexConsumer;
+		ARG 0 bufferSource
+		ARG 1 renderType
+		ARG 2 isItem
+		ARG 3 glint
 	METHOD getFoilRenderTypes (Lnet/minecraft/client/renderer/RenderType;ZZ)Ljava/util/List;
+		ARG 0 renderType
+		ARG 1 isItem
+		ARG 2 glint
+	METHOD getFoilRenderTypes (Lnet/minecraft/client/renderer/rendertype/RenderType;ZZ)Ljava/util/List;
 		ARG 0 renderType
 		ARG 1 isItem
 		ARG 2 glint
@@ -12,6 +21,10 @@ CLASS net/minecraft/client/renderer/entity/ItemRenderer
 		ARG 0 tintLayers
 		ARG 1 index
 	METHOD getSpecialFoilBuffer (Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
+		ARG 0 bufferSource
+		ARG 1 renderType
+		ARG 2 pose
+	METHOD getSpecialFoilBuffer (Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/rendertype/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
 		ARG 0 bufferSource
 		ARG 1 renderType
 		ARG 2 pose
@@ -25,12 +38,24 @@ CLASS net/minecraft/client/renderer/entity/ItemRenderer
 		ARG 6 quads
 		ARG 7 renderType
 		ARG 8 foilType
+	METHOD renderItem (Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II[ILjava/util/List;Lnet/minecraft/client/renderer/rendertype/RenderType;Lnet/minecraft/client/renderer/item/ItemStackRenderState$FoilType;)V
+		ARG 0 displayContext
+		ARG 1 poseStack
+		ARG 2 bufferSource
+		ARG 3 packedLight
+		ARG 4 packedOverlay
+		ARG 5 tintLayers
+		ARG 6 quads
+		ARG 7 renderType
+		ARG 8 foilType
 	METHOD renderQuadList (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Ljava/util/List;[III)V
 		ARG 0 poseStack
-		ARG 1 buffer
+		ARG 1 consumer
 		ARG 2 quads
 		ARG 3 tintLayers
 		ARG 4 packedLight
 		ARG 5 packedOverlay
 	METHOD useTransparentGlint (Lnet/minecraft/client/renderer/RenderType;)Z
+		ARG 0 renderType
+	METHOD useTransparentGlint (Lnet/minecraft/client/renderer/rendertype/RenderType;)Z
 		ARG 0 renderType

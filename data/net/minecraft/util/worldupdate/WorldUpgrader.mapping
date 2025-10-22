@@ -20,6 +20,9 @@ CLASS net/minecraft/util/worldupdate/WorldUpgrader
 		METHOD createStorage (Lnet/minecraft/world/level/chunk/storage/RegionStorageInfo;Ljava/nio/file/Path;)Ljava/lang/AutoCloseable;
 			ARG 1 regionStorageInfo
 			ARG 2 path
+		METHOD createStorage (Lnet/minecraft/world/level/chunk/storage/RegionStorageInfo;Ljava/nio/file/Path;)Lnet/minecraft/world/level/chunk/storage/SimpleRegionStorage;
+			ARG 1 info
+			ARG 2 folder
 		METHOD getAllChunkPositions (Lnet/minecraft/world/level/chunk/storage/RegionStorageInfo;Ljava/nio/file/Path;)Ljava/util/List;
 			ARG 0 regionStorageInfo
 			ARG 1 path
@@ -35,8 +38,16 @@ CLASS net/minecraft/util/worldupdate/WorldUpgrader
 			ARG 1 dimension
 			ARG 2 storage
 			ARG 3 chunkPos
+		METHOD processOnePosition (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/chunk/storage/SimpleRegionStorage;Lnet/minecraft/world/level/ChunkPos;)Z
+			ARG 1 dimension
+			ARG 2 regionStorage
+			ARG 3 chunkPos
 		METHOD tryProcessOnePosition (Ljava/lang/AutoCloseable;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/resources/ResourceKey;)Z
 			ARG 1 chunkStorage
+			ARG 2 chunkPos
+			ARG 3 dimension
+		METHOD tryProcessOnePosition (Lnet/minecraft/world/level/chunk/storage/SimpleRegionStorage;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/resources/ResourceKey;)Z
+			ARG 1 regionStorage
 			ARG 2 chunkPos
 			ARG 3 dimension
 	CLASS SimpleRegionStorageUpgrader
