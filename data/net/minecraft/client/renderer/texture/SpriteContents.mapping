@@ -28,6 +28,9 @@ CLASS net/minecraft/client/renderer/texture/SpriteContents
 		ARG 2 width
 		ARG 3 height
 		ARG 4 metadata
+	METHOD createAnimationState (Lcom/mojang/blaze3d/buffers/GpuBufferSlice;I)Lnet/minecraft/client/renderer/texture/SpriteContents$AnimationState;
+		ARG 1 buffer
+		ARG 2 size
 	METHOD getAdditionalMetadata (Lnet/minecraft/server/packs/metadata/MetadataSectionType;)Ljava/util/Optional;
 		ARG 1 sectionType
 	METHOD increaseMipLevel (I)V
@@ -59,11 +62,17 @@ CLASS net/minecraft/client/renderer/texture/SpriteContents
 		ARG 1 x
 		ARG 2 y
 		ARG 3 texture
+	METHOD uploadFirstFrame (Lcom/mojang/blaze3d/textures/GpuTexture;I)V
+		ARG 1 texture
+		ARG 2 mipLevel
 	CLASS AnimatedTexture
 		METHOD <init> (Lnet/minecraft/client/renderer/texture/SpriteContents;Ljava/util/List;IZ)V
 			ARG 2 frames
 			ARG 3 frameRowSize
 			ARG 4 interpolateFrames
+		METHOD createAnimationState (Lcom/mojang/blaze3d/buffers/GpuBufferSlice;I)Lnet/minecraft/client/renderer/texture/SpriteContents$AnimationState;
+			ARG 1 buffer
+			ARG 2 size
 		METHOD getFrameX (I)I
 			ARG 1 frameIndex
 		METHOD getFrameY (I)I
@@ -85,6 +94,16 @@ CLASS net/minecraft/client/renderer/texture/SpriteContents
 			ARG 3 frameIndex
 			ARG 4 texture
 			ARG 5 mipLevel
+	CLASS AnimationState
+		METHOD <init> (Lnet/minecraft/client/renderer/texture/SpriteContents;Lnet/minecraft/client/renderer/texture/SpriteContents$AnimatedTexture;Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;[Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+			ARG 2 animationInfo
+			ARG 3 frameTexturesByIndex
+			ARG 4 spriteUbosByMip
+		METHOD drawToAtlas (Lcom/mojang/blaze3d/systems/RenderPass;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+			ARG 1 renderPass
+			ARG 2 ubo
+		METHOD getDrawUbo (I)Lcom/mojang/blaze3d/buffers/GpuBufferSlice;
+			ARG 1 mipLevel
 	CLASS FrameInfo
 		METHOD <init> (II)V
 			ARG 1 index

@@ -1,9 +1,17 @@
 CLASS net/minecraft/server/jsonrpc/internalapi/MinecraftGameRuleService
 	METHOD getRule (Lnet/minecraft/world/level/GameRules$Key;)Lnet/minecraft/world/level/GameRules$Value;
 		ARG 1 key
+	METHOD getRuleValue (Lnet/minecraft/world/level/gamerules/GameRule;)Ljava/lang/Object;
+		ARG 1 gameRule
 	METHOD getTypedRule (Ljava/lang/String;Lnet/minecraft/world/level/GameRules$Value;)Lnet/minecraft/server/jsonrpc/methods/GameRulesService$TypedRule;
 		ARG 1 name
 		ARG 2 value
+	METHOD getTypedRule (Lnet/minecraft/world/level/gamerules/GameRule;Ljava/lang/Object;)Lnet/minecraft/server/jsonrpc/methods/GameRulesService$GameRuleUpdate;
+		ARG 1 gameRule
+		ARG 2 value
+	METHOD updateGameRule (Lnet/minecraft/server/jsonrpc/methods/GameRulesService$GameRuleUpdate;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Lnet/minecraft/server/jsonrpc/methods/GameRulesService$GameRuleUpdate;
+		ARG 1 gameRuleUpdate
+		ARG 2 clientInfo
 	METHOD updateGameRule (Lnet/minecraft/server/jsonrpc/methods/GameRulesService$UntypedRule;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Lnet/minecraft/server/jsonrpc/methods/GameRulesService$TypedRule;
 		ARG 1 rule
 		ARG 2 clientInfo

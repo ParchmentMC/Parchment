@@ -1,20 +1,50 @@
 CLASS com/mojang/realmsclient/client/FileDownload
 	METHOD contentLength (Ljava/lang/String;)J
 		ARG 1 uri
+	METHOD contentLength (Ljava/lang/String;)Ljava/util/OptionalLong;
+		ARG 0 url
+	METHOD createRequest (Ljava/lang/String;)Ljava/net/http/HttpRequest$Builder;
+		ARG 0 url
 	METHOD download (Lcom/mojang/realmsclient/dto/WorldDownload;Ljava/lang/String;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;Lnet/minecraft/world/level/storage/LevelStorageSource;)V
 		ARG 1 download
 		ARG 2 worldName
 		ARG 3 status
 		ARG 4 source
+	METHOD download (Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;Ljava/net/http/HttpClient;Ljava/lang/String;Ljava/io/File;)V
+		ARG 1 status
+		ARG 2 client
+		ARG 3 url
+		ARG 4 tempFile
 	METHOD findAvailableFolderName (Ljava/lang/String;)Ljava/lang/String;
 		COMMENT Modifies a folder name to make sure it is valid to store on disk.
 		COMMENT @return the modified folder name
 		ARG 0 folderName
 			COMMENT The folder name to modify
+	METHOD finishResourcePackDownload (Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;Ljava/io/File;Lcom/mojang/realmsclient/dto/WorldDownload;)V
+		ARG 1 status
+		ARG 2 tempFile
+		ARG 3 worldDownload
+	METHOD finishWorldDownload (Ljava/lang/String;Ljava/io/File;Lnet/minecraft/world/level/storage/LevelStorageSource;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;)V
+		ARG 1 worldName
+		ARG 2 tempFile
+		ARG 3 source
+		ARG 4 status
+	METHOD joinCancellableRequest (Ljava/util/concurrent/CompletableFuture;)Ljava/lang/Object;
+		ARG 1 request
 	METHOD untarGzipArchive (Ljava/lang/String;Ljava/io/File;Lnet/minecraft/world/level/storage/LevelStorageSource;)V
 		ARG 1 worldName
 		ARG 2 tempFile
 		ARG 3 levelStorageSource
+	CLASS DownloadCountingOutputStream
+		METHOD <init> (Ljava/io/OutputStream;)V
+			ARG 1 out
+		METHOD <init> (Ljava/io/OutputStream;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;)V
+			ARG 1 parent
+			ARG 2 downloadStatus
+		METHOD afterWrite (I)V
+			ARG 1 bytesWritten
+		METHOD setListener (Ljava/awt/event/ActionListener;)V
+			ARG 1 listener
 	CLASS ProgressListener
 		METHOD <init> (Lcom/mojang/realmsclient/client/FileDownload;Ljava/lang/String;Ljava/io/File;Lnet/minecraft/world/level/storage/LevelStorageSource;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;)V
 			ARG 2 worldName
@@ -23,13 +53,6 @@ CLASS com/mojang/realmsclient/client/FileDownload
 			ARG 5 downloadStatus
 		METHOD actionPerformed (Ljava/awt/event/ActionEvent;)V
 			ARG 1 action
-	CLASS DownloadCountingOutputStream
-		METHOD <init> (Ljava/io/OutputStream;)V
-			ARG 1 out
-		METHOD afterWrite (I)V
-			ARG 1 bytesWritten
-		METHOD setListener (Ljava/awt/event/ActionListener;)V
-			ARG 1 listener
 	CLASS ResourcePackProgressListener
 		METHOD <init> (Lcom/mojang/realmsclient/client/FileDownload;Ljava/io/File;Lcom/mojang/realmsclient/gui/screens/RealmsDownloadLatestWorldScreen$DownloadStatus;Lcom/mojang/realmsclient/dto/WorldDownload;)V
 			ARG 2 tempFile

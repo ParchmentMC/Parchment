@@ -6,6 +6,17 @@ CLASS net/minecraft/client/renderer/texture/TextureAtlasSprite
 		ARG 4 originY
 		ARG 5 x
 		ARG 6 y
+	METHOD <init> (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/renderer/texture/SpriteContents;IIIII)V
+		ARG 1 atlasLocation
+		ARG 2 contents
+		ARG 3 textureWidth
+		ARG 4 textureHeight
+		ARG 5 x
+		ARG 6 y
+		ARG 7 padding
+	METHOD createAnimationState (Lcom/mojang/blaze3d/buffers/GpuBufferSlice;I)Lnet/minecraft/client/renderer/texture/SpriteContents$AnimationState;
+		ARG 1 buffer
+		ARG 2 size
 	METHOD getU (F)F
 		ARG 1 u
 	METHOD getU0 ()F
@@ -24,6 +35,16 @@ CLASS net/minecraft/client/renderer/texture/TextureAtlasSprite
 		ARG 1 offset
 	METHOD uploadFirstFrame (Lcom/mojang/blaze3d/textures/GpuTexture;)V
 		ARG 1 texture
+	METHOD uploadFirstFrame (Lcom/mojang/blaze3d/textures/GpuTexture;I)V
+		ARG 1 texture
+		ARG 2 mipLevel
+	METHOD uploadSpriteUbo (Ljava/nio/ByteBuffer;IIIII)V
+		ARG 1 buffer
+		ARG 2 offset
+		ARG 3 maxMipLevel
+		ARG 4 width
+		ARG 5 height
+		ARG 6 length
 	METHOD wrap (Lcom/mojang/blaze3d/vertex/VertexConsumer;)Lcom/mojang/blaze3d/vertex/VertexConsumer;
 		ARG 1 consumer
 	CLASS Ticker

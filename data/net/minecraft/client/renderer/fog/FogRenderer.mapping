@@ -1,4 +1,10 @@
 CLASS net/minecraft/client/renderer/fog/FogRenderer
+	METHOD computeFogColor (Lnet/minecraft/client/Camera;FLnet/minecraft/client/multiplayer/ClientLevel;IF)Lorg/joml/Vector4f;
+		ARG 1 camera
+		ARG 2 partialTick
+		ARG 3 level
+		ARG 4 renderDistance
+		ARG 5 darkenWorldAmount
 	METHOD computeFogColor (Lnet/minecraft/client/Camera;FLnet/minecraft/client/multiplayer/ClientLevel;IFZ)Lorg/joml/Vector4f;
 		ARG 1 camera
 		ARG 2 partialTick
@@ -8,9 +14,17 @@ CLASS net/minecraft/client/renderer/fog/FogRenderer
 		ARG 6 isFoggy
 	METHOD getBuffer (Lnet/minecraft/client/renderer/fog/FogRenderer$FogMode;)Lcom/mojang/blaze3d/buffers/GpuBufferSlice;
 		ARG 1 fogMode
+	METHOD getFogType (Lnet/minecraft/client/Camera;)Lnet/minecraft/world/level/material/FogType;
+		ARG 1 camera
 	METHOD getFogType (Lnet/minecraft/client/Camera;Z)Lnet/minecraft/world/level/material/FogType;
 		ARG 1 camera
 		ARG 2 isFoggy
+	METHOD setupFog (Lnet/minecraft/client/Camera;ILnet/minecraft/client/DeltaTracker;FLnet/minecraft/client/multiplayer/ClientLevel;)Lorg/joml/Vector4f;
+		ARG 1 camera
+		ARG 2 renderDistance
+		ARG 3 deltaTracker
+		ARG 4 darkenWorldAmount
+		ARG 5 level
 	METHOD setupFog (Lnet/minecraft/client/Camera;IZLnet/minecraft/client/DeltaTracker;FLnet/minecraft/client/multiplayer/ClientLevel;)Lorg/joml/Vector4f;
 		ARG 1 camera
 		ARG 2 renderDistance

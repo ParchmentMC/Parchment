@@ -3,6 +3,11 @@ CLASS net/minecraft/client/renderer/texture/Stitcher
 		ARG 1 maxWidth
 		ARG 2 maxHeight
 		ARG 3 mipLevel
+	METHOD <init> (IIII)V
+		ARG 1 maxWidth
+		ARG 2 maxHeight
+		ARG 3 mipLevel
+		ARG 4 padding
 	METHOD addToStorage (Lnet/minecraft/client/renderer/texture/Stitcher$Holder;)Z
 		COMMENT Attempts to find space for specified {@code holder}.
 		COMMENT
@@ -42,8 +47,16 @@ CLASS net/minecraft/client/renderer/texture/Stitcher
 			ARG 1 holder
 		METHOD walk (Lnet/minecraft/client/renderer/texture/Stitcher$SpriteLoader;)V
 			ARG 1 spriteLoader
+		METHOD walk (Lnet/minecraft/client/renderer/texture/Stitcher$SpriteLoader;I)V
+			ARG 1 loader
+			ARG 2 padding
 	CLASS SpriteLoader
 		METHOD load (Lnet/minecraft/client/renderer/texture/Stitcher$Entry;II)V
 			ARG 1 entry
 			ARG 2 x
 			ARG 3 y
+		METHOD load (Lnet/minecraft/client/renderer/texture/Stitcher$Entry;III)V
+			ARG 1 entry
+			ARG 2 x
+			ARG 3 y
+			ARG 4 padding

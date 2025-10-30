@@ -1,14 +1,37 @@
 CLASS net/minecraft/server/jsonrpc/methods/GameRulesService
+	METHOD addGameRule (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/world/level/gamerules/GameRule;Ljava/util/List;)V
+		ARG 0 api
+		ARG 1 gameRule
+		ARG 2 updates
 	METHOD get (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;)Ljava/util/List;
 		ARG 0 api
 	METHOD getTypedRule (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Ljava/lang/String;Lnet/minecraft/world/level/GameRules$Value;)Lnet/minecraft/server/jsonrpc/methods/GameRulesService$TypedRule;
 		ARG 0 api
 		ARG 1 name
 		ARG 2 value
+	METHOD getTypedRule (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/world/level/gamerules/GameRule;Ljava/lang/Object;)Lnet/minecraft/server/jsonrpc/methods/GameRulesService$GameRuleUpdate;
+		ARG 0 api
+		ARG 1 gameRule
+		ARG 2 value
+	METHOD update (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/server/jsonrpc/methods/GameRulesService$GameRuleUpdate;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Lnet/minecraft/server/jsonrpc/methods/GameRulesService$GameRuleUpdate;
+		ARG 0 api
+		ARG 1 gameRuleUpdate
+		ARG 2 clientInfo
 	METHOD update (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/server/jsonrpc/methods/GameRulesService$UntypedRule;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Lnet/minecraft/server/jsonrpc/methods/GameRulesService$TypedRule;
 		ARG 0 api
 		ARG 1 rule
 		ARG 2 clientInfo
+	CLASS GameRuleUpdate
+		METHOD getUntypedRule (Lnet/minecraft/world/level/gamerules/GameRule;Lnet/minecraft/world/level/gamerules/GameRuleType;Ljava/lang/Object;)Lnet/minecraft/server/jsonrpc/methods/GameRulesService$GameRuleUpdate;
+			ARG 0 gameRule
+			ARG 1 type
+			ARG 2 value
+		METHOD getValueAndTypeCodec (Lnet/minecraft/world/level/gamerules/GameRule;)Lcom/mojang/serialization/MapCodec;
+			ARG 0 gameRule
+		METHOD getValueCodec (Lnet/minecraft/world/level/gamerules/GameRule;)Lcom/mojang/serialization/MapCodec;
+			ARG 0 gameRule
+		METHOD lambda$getValueAndTypeCodec$3 (Lnet/minecraft/world/level/gamerules/GameRule;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 1 instance
 	CLASS RuleType
 		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
 			ARG 3 name

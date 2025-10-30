@@ -348,6 +348,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Causes this entity to do an upwards motion (jumping).
 	METHOD jumpInLiquid (Lnet/minecraft/tags/TagKey;)V
 		ARG 1 fluidTag
+	METHOD jumpOutOfFluid (D)V
+		ARG 1 power
 	METHOD knockback (DDD)V
 		ARG 1 strength
 		ARG 3 x
@@ -503,6 +505,8 @@ CLASS net/minecraft/world/entity/LivingEntity
 		COMMENT Entity won't drop experience points if this returns false
 	METHOD shouldDropLoot (Lnet/minecraft/server/level/ServerLevel;)Z
 		ARG 1 level
+	METHOD shouldTravelInFluid (Lnet/minecraft/world/level/material/FluidState;)Z
+		ARG 1 fluidState
 	METHOD spawnItemParticles (Lnet/minecraft/world/item/ItemStack;I)V
 		ARG 1 stack
 		ARG 2 amount
@@ -560,6 +564,16 @@ CLASS net/minecraft/world/entity/LivingEntity
 		ARG 1 travelVector
 	METHOD travelInFluid (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 travelVector
+	METHOD travelInLava (Lnet/minecraft/world/phys/Vec3;DZD)V
+		ARG 1 travelVector
+		ARG 2 gravity
+		ARG 4 movingDown
+		ARG 5 y
+	METHOD travelInWater (Lnet/minecraft/world/phys/Vec3;DZD)V
+		ARG 1 travelVector
+		ARG 2 gravity
+		ARG 4 movingDown
+		ARG 5 y
 	METHOD travelRidden (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 player
 		ARG 2 travelVector

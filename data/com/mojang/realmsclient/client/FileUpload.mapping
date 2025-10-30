@@ -11,14 +11,24 @@ CLASS com/mojang/realmsclient/client/FileUpload
 	METHOD cleanup (Lorg/apache/http/client/methods/HttpPost;Lorg/apache/http/impl/client/CloseableHttpClient;)V
 		ARG 1 post
 		ARG 2 httpClient
+	METHOD getRetryDelaySeconds (Ljava/net/http/HttpResponse;)J
+		ARG 1 response
 	METHOD getRetryDelaySeconds (Lorg/apache/http/HttpResponse;)J
 		ARG 1 httpResponse
+	METHOD handleResponse (Ljava/net/http/HttpResponse;)Lcom/mojang/realmsclient/gui/screens/UploadResult;
+		ARG 1 response
 	METHOD handleResponse (Lorg/apache/http/HttpResponse;Lcom/mojang/realmsclient/gui/screens/UploadResult$Builder;)V
 		ARG 1 response
 		ARG 2 uploadResult
+	METHOD inputStreamPublisherWithSize (Ljava/util/function/Supplier;J)Ljava/net/http/HttpRequest$BodyPublisher;
+		ARG 0 streamSupplier
+		ARG 1 size
 	METHOD requestUpload (I)Lcom/mojang/realmsclient/gui/screens/UploadResult;
 		ARG 1 retries
 			COMMENT The number of times this upload has already been attempted
+	METHOD requestUpload (IJ)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 retries
+		ARG 2 size
 	METHOD retryUploadAfter (JI)Lcom/mojang/realmsclient/gui/screens/UploadResult;
 		ARG 1 seconds
 		ARG 3 retries
@@ -34,3 +44,9 @@ CLASS com/mojang/realmsclient/client/FileUpload
 			ARG 5 uploadStatus
 		METHOD writeTo (Ljava/io/OutputStream;)V
 			ARG 1 out
+	CLASS UploadCountingInputStream
+		METHOD <init> (Ljava/io/InputStream;Lcom/mojang/realmsclient/client/UploadStatus;)V
+			ARG 1 parent
+			ARG 2 uploadStatus
+		METHOD afterRead (I)V
+			ARG 1 bytesRead

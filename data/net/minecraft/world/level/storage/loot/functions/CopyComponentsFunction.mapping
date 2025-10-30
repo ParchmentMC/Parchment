@@ -1,4 +1,9 @@
 CLASS net/minecraft/world/level/storage/loot/functions/CopyComponentsFunction
+	METHOD <init> (Ljava/util/List;Lnet/minecraft/world/level/storage/loot/LootContextArg;Ljava/util/Optional;Ljava/util/Optional;)V
+		ARG 1 conditions
+		ARG 2 source
+		ARG 3 include
+		ARG 4 exclude
 	METHOD <init> (Ljava/util/List;Lnet/minecraft/world/level/storage/loot/functions/CopyComponentsFunction$Source;Ljava/util/Optional;Ljava/util/Optional;)V
 		ARG 1 conditions
 		ARG 2 source
@@ -10,15 +15,19 @@ CLASS net/minecraft/world/level/storage/loot/functions/CopyComponentsFunction
 		ARG 0 contextParam
 	METHOD lambda$static$3 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
 		ARG 0 instance
-	CLASS Source
-		METHOD get (Ljava/lang/Object;)Lnet/minecraft/core/component/DataComponentGetter;
-			ARG 1 value
-		METHOD get (Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/core/component/DataComponentGetter;
-			ARG 1 context
+	METHOD lambda$static$4 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
 	CLASS Builder
+		METHOD <init> (Lnet/minecraft/world/level/storage/loot/LootContextArg;)V
+			ARG 1 source
 		METHOD <init> (Lnet/minecraft/world/level/storage/loot/functions/CopyComponentsFunction$Source;)V
 			ARG 1 source
 		METHOD exclude (Lnet/minecraft/core/component/DataComponentType;)Lnet/minecraft/world/level/storage/loot/functions/CopyComponentsFunction$Builder;
 			ARG 1 exclude
 		METHOD include (Lnet/minecraft/core/component/DataComponentType;)Lnet/minecraft/world/level/storage/loot/functions/CopyComponentsFunction$Builder;
 			ARG 1 include
+	CLASS Source
+		METHOD get (Ljava/lang/Object;)Lnet/minecraft/core/component/DataComponentGetter;
+			ARG 1 value
+		METHOD get (Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/core/component/DataComponentGetter;
+			ARG 1 context

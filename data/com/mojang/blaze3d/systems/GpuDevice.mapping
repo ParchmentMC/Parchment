@@ -12,6 +12,12 @@ CLASS com/mojang/blaze3d/systems/GpuDevice
 		ARG 2 addressModeV
 		ARG 3 minFilter
 		ARG 4 magFilter
+	METHOD createSampler (Lcom/mojang/blaze3d/textures/AddressMode;Lcom/mojang/blaze3d/textures/AddressMode;Lcom/mojang/blaze3d/textures/FilterMode;Lcom/mojang/blaze3d/textures/FilterMode;I)Lcom/mojang/blaze3d/textures/GpuSampler;
+		ARG 1 addressModeU
+		ARG 2 addressModeV
+		ARG 3 minFilter
+		ARG 4 magFilter
+		ARG 5 maxAnisotropy
 	METHOD createTexture (Ljava/lang/String;ILcom/mojang/blaze3d/textures/TextureFormat;IIII)Lcom/mojang/blaze3d/textures/GpuTexture;
 		ARG 1 label
 		ARG 2 usage
@@ -36,6 +42,9 @@ CLASS com/mojang/blaze3d/systems/GpuDevice
 		ARG 3 mipLevels
 	METHOD precompilePipeline (Lcom/mojang/blaze3d/pipeline/RenderPipeline;)Lcom/mojang/blaze3d/pipeline/CompiledRenderPipeline;
 		ARG 1 pipeline
+	METHOD precompilePipeline (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lcom/mojang/blaze3d/shaders/ShaderSource;)Lcom/mojang/blaze3d/pipeline/CompiledRenderPipeline;
+		ARG 1 pipeline
+		ARG 2 shaderSource
 	METHOD precompilePipeline (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Ljava/util/function/BiFunction;)Lcom/mojang/blaze3d/pipeline/CompiledRenderPipeline;
 		ARG 1 renderPipeline
 		ARG 2 shaderSource
