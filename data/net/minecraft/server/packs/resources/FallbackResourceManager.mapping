@@ -7,29 +7,31 @@ CLASS net/minecraft/server/packs/resources/FallbackResourceManager
 		ARG 1 resources
 	METHOD convertToMetadata (Lnet/minecraft/server/packs/resources/IoSupplier;)Lnet/minecraft/server/packs/resources/IoSupplier;
 		ARG 0 streamSupplier
-	METHOD createResource (Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/IoSupplier;Lnet/minecraft/server/packs/resources/IoSupplier;)Lnet/minecraft/server/packs/resources/Resource;
+	METHOD createResource (Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/resources/IoSupplier;Lnet/minecraft/server/packs/resources/IoSupplier;)Lnet/minecraft/server/packs/resources/Resource;
 		ARG 0 source
 		ARG 1 location
 		ARG 2 streamSupplier
 		ARG 3 metadataSupplier
-	METHOD createStackMetadataFinder (Lnet/minecraft/resources/ResourceLocation;I)Lnet/minecraft/server/packs/resources/IoSupplier;
+	METHOD createStackMetadataFinder (Lnet/minecraft/resources/Identifier;I)Lnet/minecraft/server/packs/resources/IoSupplier;
 		ARG 1 location
 		ARG 2 fallbackIndex
-	METHOD getMetadataLocation (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+	METHOD getIdentifierFromMetadata (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/Identifier;
 		ARG 0 location
-	METHOD getResourceLocationFromMetadata (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+	METHOD getMetadataLocation (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/Identifier;
+		ARG 0 location
+	METHOD getResourceLocationFromMetadata (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/Identifier;
 		ARG 0 metadataResourceLocation
-	METHOD isMetadata (Lnet/minecraft/resources/ResourceLocation;)Z
+	METHOD isMetadata (Lnet/minecraft/resources/Identifier;)Z
 		ARG 0 location
-	METHOD lambda$listPackResources$6 (Ljava/util/function/Predicate;Ljava/util/Map;Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/IoSupplier;)V
+	METHOD lambda$listPackResources$6 (Ljava/util/function/Predicate;Ljava/util/Map;Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/resources/IoSupplier;)V
 		ARG 3 path
 		ARG 4 inputStream
 	METHOD lambda$listPacks$7 (Lnet/minecraft/server/packs/resources/FallbackResourceManager$PackEntry;)Lnet/minecraft/server/packs/PackResources;
 		ARG 0 fallback
-	METHOD lambda$listResources$2 (Ljava/util/function/Predicate;Ljava/util/Map;Lnet/minecraft/server/packs/PackResources;ILjava/util/Map;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/IoSupplier;)V
+	METHOD lambda$listResources$2 (Ljava/util/function/Predicate;Ljava/util/Map;Lnet/minecraft/server/packs/PackResources;ILjava/util/Map;Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/resources/IoSupplier;)V
 		ARG 5 path
 		ARG 6 inputStream
-	METHOD lambda$listResources$3 (Ljava/util/Map;Ljava/util/Map;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/FallbackResourceManager$1ResourceWithSourceAndIndex;)V
+	METHOD lambda$listResources$3 (Ljava/util/Map;Ljava/util/Map;Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/resources/FallbackResourceManager$1ResourceWithSourceAndIndex;)V
 		ARG 2 path
 		ARG 3 resource
 	METHOD listPackResources (Lnet/minecraft/server/packs/resources/FallbackResourceManager$PackEntry;Ljava/lang/String;Ljava/util/function/Predicate;Ljava/util/Map;)V
@@ -51,20 +53,20 @@ CLASS net/minecraft/server/packs/resources/FallbackResourceManager
 		ARG 1 name
 		ARG 2 resources
 		ARG 3 filter
-	METHOD wrapForDebug (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/server/packs/resources/IoSupplier;)Lnet/minecraft/server/packs/resources/IoSupplier;
+	METHOD wrapForDebug (Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/server/packs/resources/IoSupplier;)Lnet/minecraft/server/packs/resources/IoSupplier;
 		ARG 0 location
 		ARG 1 packResources
 		ARG 2 stream
-	CLASS PackEntry
-		METHOD filterAll (Ljava/util/Collection;)V
-			ARG 1 locations
-		METHOD isFiltered (Lnet/minecraft/resources/ResourceLocation;)Z
-			ARG 1 location
 	CLASS EntryStack
-		METHOD <init> (Lnet/minecraft/resources/ResourceLocation;)V
+		METHOD <init> (Lnet/minecraft/resources/Identifier;)V
 			ARG 1 fileLocation
 	CLASS LeakedResourceWarningInputStream
-		METHOD <init> (Ljava/io/InputStream;Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)V
+		METHOD <init> (Ljava/io/InputStream;Lnet/minecraft/resources/Identifier;Ljava/lang/String;)V
 			ARG 1 inputStream
 			ARG 2 resourceLocation
 			ARG 3 packName
+	CLASS PackEntry
+		METHOD filterAll (Ljava/util/Collection;)V
+			ARG 1 locations
+		METHOD isFiltered (Lnet/minecraft/resources/Identifier;)Z
+			ARG 1 location

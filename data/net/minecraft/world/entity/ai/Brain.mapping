@@ -90,6 +90,8 @@ CLASS net/minecraft/world/entity/ai/Brain
 		ARG 1 memoryType
 		ARG 2 memory
 		ARG 3 timeToLive
+	METHOD setSchedule (Lnet/minecraft/world/attribute/EnvironmentAttribute;)V
+		ARG 1 schedule
 	METHOD setSchedule (Lnet/minecraft/world/entity/schedule/Schedule;)V
 		ARG 1 newSchedule
 	METHOD startEachNonRunningBehavior (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;)V
@@ -110,6 +112,10 @@ CLASS net/minecraft/world/entity/ai/Brain
 	METHOD updateActivityFromSchedule (JJ)V
 		ARG 1 dayTime
 		ARG 3 gameTime
+	METHOD updateActivityFromSchedule (Lnet/minecraft/world/attribute/EnvironmentAttributeSystem;JLnet/minecraft/world/phys/Vec3;)V
+		ARG 1 attributes
+		ARG 2 time
+		ARG 4 pos
 	CLASS 1
 		METHOD decode (Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/MapLike;)Lcom/mojang/serialization/DataResult;
 			ARG 1 ops
@@ -119,12 +125,6 @@ CLASS net/minecraft/world/entity/ai/Brain
 			ARG 2 ops
 			ARG 3 prefix
 		METHOD keys (Lcom/mojang/serialization/DynamicOps;)Ljava/util/stream/Stream;
-			ARG 1 ops
-	CLASS Provider
-		METHOD <init> (Ljava/util/Collection;Ljava/util/Collection;)V
-			ARG 1 memoryTypes
-			ARG 2 sensorTypes
-		METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
 			ARG 1 ops
 	CLASS MemoryValue
 		METHOD <init> (Lnet/minecraft/world/entity/ai/memory/MemoryModuleType;Ljava/util/Optional;)V
@@ -142,3 +142,9 @@ CLASS net/minecraft/world/entity/ai/Brain
 			ARG 2 builder
 		METHOD setMemoryInternal (Lnet/minecraft/world/entity/ai/Brain;)V
 			ARG 1 brain
+	CLASS Provider
+		METHOD <init> (Ljava/util/Collection;Ljava/util/Collection;)V
+			ARG 1 memoryTypes
+			ARG 2 sensorTypes
+		METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
+			ARG 1 ops

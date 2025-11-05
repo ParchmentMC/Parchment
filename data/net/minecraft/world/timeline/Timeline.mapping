@@ -1,0 +1,27 @@
+CLASS net/minecraft/world/timeline/Timeline
+	METHOD <init> (Ljava/util/Optional;Ljava/util/Map;)V
+		ARG 1 periodTicks
+		ARG 2 tracks
+	METHOD createTrackSampler (Lnet/minecraft/world/attribute/EnvironmentAttribute;Ljava/util/function/LongSupplier;)Lnet/minecraft/world/timeline/AttributeTrackSampler;
+		ARG 1 attribute
+		ARG 2 dayTimeGetter
+	METHOD filterSyncableTracks (Lnet/minecraft/world/timeline/Timeline;)Lnet/minecraft/world/timeline/Timeline;
+		ARG 0 timeline
+	METHOD getCurrentTicks (Lnet/minecraft/world/level/Level;)J
+		ARG 1 level
+	METHOD getTotalTicks (Lnet/minecraft/world/level/Level;)J
+		ARG 1 level
+	METHOD lambda$static$2 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
+	METHOD validateInternal (Lnet/minecraft/world/timeline/Timeline;)Lcom/mojang/serialization/DataResult;
+		ARG 0 timeline
+	CLASS Builder
+		METHOD addModifierTrack (Lnet/minecraft/world/attribute/EnvironmentAttribute;Lnet/minecraft/world/attribute/modifier/AttributeModifier;Ljava/util/function/Consumer;)Lnet/minecraft/world/timeline/Timeline$Builder;
+			ARG 1 attribute
+			ARG 2 modifier
+			ARG 3 trackBuilder
+		METHOD addTrack (Lnet/minecraft/world/attribute/EnvironmentAttribute;Ljava/util/function/Consumer;)Lnet/minecraft/world/timeline/Timeline$Builder;
+			ARG 1 attribute
+			ARG 2 trackBuilder
+		METHOD setPeriodTicks (I)Lnet/minecraft/world/timeline/Timeline$Builder;
+			ARG 1 periodTicks

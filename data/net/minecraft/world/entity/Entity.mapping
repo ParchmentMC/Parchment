@@ -292,6 +292,9 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD getRelativePortalPosition (Lnet/minecraft/core/Direction$Axis;Lnet/minecraft/BlockUtil$FoundRectangle;)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 axis
 		ARG 2 portal
+	METHOD getRelativePortalPosition (Lnet/minecraft/core/Direction$Axis;Lnet/minecraft/util/BlockUtil$FoundRectangle;)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 axis
+		ARG 2 rectangle
 	METHOD getRopeHoldPosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTicks
 	METHOD getRotationVector ()Lnet/minecraft/world/phys/Vec2;
@@ -850,6 +853,12 @@ CLASS net/minecraft/world/entity/Entity
 	METHOD walkingStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
 		ARG 1 pos
 		ARG 2 state
+	CLASS MoveFunction
+		METHOD accept (Lnet/minecraft/world/entity/Entity;DDD)V
+			ARG 1 entity
+			ARG 2 x
+			ARG 4 y
+			ARG 6 z
 	CLASS Movement
 		METHOD <init> (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
 			ARG 1 from
@@ -858,17 +867,11 @@ CLASS net/minecraft/world/entity/Entity
 			ARG 1 from
 			ARG 2 to
 			ARG 3 axisDependentOriginalMovement
-	CLASS MoveFunction
-		METHOD accept (Lnet/minecraft/world/entity/Entity;DDD)V
-			ARG 1 entity
-			ARG 2 x
-			ARG 4 y
-			ARG 6 z
-	CLASS RemovalReason
-		METHOD <init> (Ljava/lang/String;IZZ)V
-			ARG 3 destroy
-			ARG 4 save
 	CLASS MovementEmission
 		METHOD <init> (Ljava/lang/String;IZZ)V
 			ARG 3 sounds
 			ARG 4 events
+	CLASS RemovalReason
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 destroy
+			ARG 4 save

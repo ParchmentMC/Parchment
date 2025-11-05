@@ -1,6 +1,8 @@
 CLASS net/minecraft/client/sounds/SoundManager
 	COMMENT The SoundManager class is responsible for managing sound events and playing sounds.
 	COMMENT It handles sound event registrations, caching of sound resources, and sound playback.
+	METHOD <init> (Lnet/minecraft/client/Options;)V
+		ARG 1 options
 	METHOD <init> (Lnet/minecraft/client/Options;Lnet/minecraft/client/sounds/MusicManager;)V
 		ARG 1 options
 		ARG 2 musicManager
@@ -18,7 +20,7 @@ CLASS net/minecraft/client/sounds/SoundManager
 		COMMENT Retrieves a list of available sound devices.
 	METHOD getAvailableSounds ()Ljava/util/Collection;
 		COMMENT {@return The collection of available sound event locations}
-	METHOD getSoundEvent (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/sounds/WeighedSoundEvents;
+	METHOD getSoundEvent (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/client/sounds/WeighedSoundEvents;
 		COMMENT {@return The sound event associated with the specific {@linkplain ResourceLocation}, or {@code null} if not found}
 		ARG 1 location
 			COMMENT The location of the sound event
@@ -47,6 +49,8 @@ CLASS net/minecraft/client/sounds/SoundManager
 		COMMENT Queues a ticking sound to be played.
 		ARG 1 tickableSound
 			COMMENT The ticking sound instance
+	METHOD refreshCategoryVolume (Lnet/minecraft/sounds/SoundSource;)V
+		ARG 1 soundSource
 	METHOD removeListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
 		ARG 1 listener
 	METHOD setVolume (Lnet/minecraft/client/resources/sounds/SoundInstance;F)V
@@ -54,7 +58,7 @@ CLASS net/minecraft/client/sounds/SoundManager
 		ARG 2 volume
 	METHOD stop (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
 		ARG 1 sound
-	METHOD stop (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/sounds/SoundSource;)V
+	METHOD stop (Lnet/minecraft/resources/Identifier;Lnet/minecraft/sounds/SoundSource;)V
 		COMMENT Stops all sounds associated with the specified ID and category.
 		ARG 1 id
 			COMMENT The ID of the sounds to stop, or null to stop all sounds
@@ -64,13 +68,16 @@ CLASS net/minecraft/client/sounds/SoundManager
 		COMMENT Updates the sound manager's tick state.
 		ARG 1 isGamePaused
 			COMMENT {@code true} if the game is paused, {@code false} otherwise
+	METHOD updateCategoryVolume (Lnet/minecraft/sounds/SoundSource;F)V
+		ARG 1 soundSource
+		ARG 2 volume
 	METHOD updateSource (Lnet/minecraft/client/Camera;)V
 		COMMENT Updates the sound source position based on the active render info.
 		ARG 1 activeRenderInfo
 			COMMENT The active render info
 	METHOD updateSourceVolume (Lnet/minecraft/sounds/SoundSource;)V
 		ARG 1 source
-	METHOD validateSoundResource (Lnet/minecraft/client/resources/sounds/Sound;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/ResourceProvider;)Z
+	METHOD validateSoundResource (Lnet/minecraft/client/resources/sounds/Sound;Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/resources/ResourceProvider;)Z
 		COMMENT Validates a sound resource
 		COMMENT <p>
 		COMMENT @return {@code true} if the sound resource is valid, {@code false} otherwise
@@ -90,7 +97,7 @@ CLASS net/minecraft/client/sounds/SoundManager
 				COMMENT The sound cache to apply to
 			ARG 3 soundEngine
 				COMMENT The sound engine to apply to
-		METHOD handleRegistration (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/sounds/SoundEventRegistration;)V
+		METHOD handleRegistration (Lnet/minecraft/resources/Identifier;Lnet/minecraft/client/resources/sounds/SoundEventRegistration;)V
 			ARG 1 location
 			ARG 2 registration
 		METHOD listResources (Lnet/minecraft/server/packs/resources/ResourceManager;)V

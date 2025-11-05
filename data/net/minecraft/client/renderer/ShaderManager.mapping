@@ -2,22 +2,22 @@ CLASS net/minecraft/client/renderer/ShaderManager
 	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureManager;Ljava/util/function/Consumer;)V
 		ARG 1 textureManager
 		ARG 2 recoveryHandler
-	METHOD createPreprocessor (Ljava/util/Map;Lnet/minecraft/resources/ResourceLocation;)Lcom/mojang/blaze3d/preprocessor/GlslPreprocessor;
+	METHOD createPreprocessor (Ljava/util/Map;Lnet/minecraft/resources/Identifier;)Lcom/mojang/blaze3d/preprocessor/GlslPreprocessor;
 		ARG 0 shaderResources
 		ARG 1 shaderLocation
-	METHOD getPostChain (Lnet/minecraft/resources/ResourceLocation;Ljava/util/Set;)Lnet/minecraft/client/renderer/PostChain;
+	METHOD getPostChain (Lnet/minecraft/resources/Identifier;Ljava/util/Set;)Lnet/minecraft/client/renderer/PostChain;
 		ARG 1 id
 		ARG 2 externalTargets
-	METHOD getShader (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/blaze3d/shaders/ShaderType;)Ljava/lang/String;
+	METHOD getShader (Lnet/minecraft/resources/Identifier;Lcom/mojang/blaze3d/shaders/ShaderType;)Ljava/lang/String;
 		ARG 1 id
 		ARG 2 type
-	METHOD isShader (Lnet/minecraft/resources/ResourceLocation;)Z
+	METHOD isShader (Lnet/minecraft/resources/Identifier;)Z
 		ARG 0 location
-	METHOD loadPostChain (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/Resource;Lcom/google/common/collect/ImmutableMap$Builder;)V
+	METHOD loadPostChain (Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/resources/Resource;Lcom/google/common/collect/ImmutableMap$Builder;)V
 		ARG 0 location
 		ARG 1 postChain
 		ARG 2 output
-	METHOD loadShader (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/server/packs/resources/Resource;Lcom/mojang/blaze3d/shaders/ShaderType;Ljava/util/Map;Lcom/google/common/collect/ImmutableMap$Builder;)V
+	METHOD loadShader (Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/resources/Resource;Lcom/mojang/blaze3d/shaders/ShaderType;Ljava/util/Map;Lcom/google/common/collect/ImmutableMap$Builder;)V
 		ARG 0 location
 		ARG 1 shader
 		ARG 2 type
@@ -28,15 +28,15 @@ CLASS net/minecraft/client/renderer/ShaderManager
 	CLASS CompilationCache
 		METHOD <init> (Lnet/minecraft/client/renderer/ShaderManager;Lnet/minecraft/client/renderer/ShaderManager$Configs;)V
 			ARG 2 configs
-		METHOD getOrLoadPostChain (Lnet/minecraft/resources/ResourceLocation;Ljava/util/Set;)Lnet/minecraft/client/renderer/PostChain;
+		METHOD getOrLoadPostChain (Lnet/minecraft/resources/Identifier;Ljava/util/Set;)Lnet/minecraft/client/renderer/PostChain;
 			ARG 1 name
 			ARG 2 externalTargets
-		METHOD getShaderSource (Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/blaze3d/shaders/ShaderType;)Ljava/lang/String;
+		METHOD getShaderSource (Lnet/minecraft/resources/Identifier;Lcom/mojang/blaze3d/shaders/ShaderType;)Ljava/lang/String;
 			ARG 1 id
 			ARG 2 type
 		METHOD lambda$close$0 (Ljava/util/Optional;)V
 			ARG 0 program
-		METHOD loadPostChain (Lnet/minecraft/resources/ResourceLocation;Ljava/util/Set;)Lnet/minecraft/client/renderer/PostChain;
+		METHOD loadPostChain (Lnet/minecraft/resources/Identifier;Ljava/util/Set;)Lnet/minecraft/client/renderer/PostChain;
 			ARG 1 name
 			ARG 2 externalTargets
 	CLASS CompilationException

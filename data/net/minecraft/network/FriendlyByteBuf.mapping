@@ -286,7 +286,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 0 buffer
 	METHOD readResourceKey (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/resources/ResourceKey;
 		ARG 1 registryKey
-	METHOD readResourceLocation ()Lnet/minecraft/resources/ResourceLocation;
+	METHOD readResourceLocation ()Lnet/minecraft/resources/Identifier;
 		COMMENT Read a ResourceLocation using its String representation.
 		COMMENT
 		COMMENT @see #writeResourceLocation
@@ -565,6 +565,8 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 value
 	METHOD writeGlobalPos (Lnet/minecraft/core/GlobalPos;)V
 		ARG 1 pos
+	METHOD writeIdentifier (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/network/FriendlyByteBuf;
+		ARG 1 id
 	METHOD writeInstant (Ljava/time/Instant;)V
 		ARG 1 instant
 	METHOD writeInt (I)Lnet/minecraft/network/FriendlyByteBuf;
@@ -628,7 +630,7 @@ CLASS net/minecraft/network/FriendlyByteBuf
 		ARG 1 quaternion
 	METHOD writeResourceKey (Lnet/minecraft/resources/ResourceKey;)V
 		ARG 1 resourceKey
-	METHOD writeResourceLocation (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/network/FriendlyByteBuf;
+	METHOD writeResourceLocation (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/network/FriendlyByteBuf;
 		COMMENT Write a ResourceLocation using its String representation.
 		COMMENT
 		COMMENT @see #readResourceLocation

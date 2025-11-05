@@ -104,8 +104,25 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 	METHOD upgradeRealmAndPlay (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/screens/Screen;)V
 		ARG 0 server
 		ARG 1 lastScreen
+	CLASS AvailableSnapshotEntry
+		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/dto/RealmsServer;)V
+			ARG 2 parent
+		METHOD lambda$addSnapshotRealm$0 (Lnet/minecraft/client/gui/components/PopupScreen;)V
+			ARG 1 screen
+	CLASS CrossButton
+		METHOD <init> (Lnet/minecraft/client/gui/components/Button$OnPress;Lnet/minecraft/network/chat/Component;)V
+			ARG 1 onPress
+			ARG 2 message
 	CLASS Entry
-		METHOD drawRealmStatus (Lnet/minecraft/client/gui/GuiGraphics;IIIILnet/minecraft/resources/ResourceLocation;Ljava/util/function/Supplier;)V
+		METHOD drawRealmStatus (Lnet/minecraft/client/gui/GuiGraphics;IIIILnet/minecraft/resources/Identifier;Ljava/util/function/Supplier;)V
+			ARG 1 guiGraphics
+			ARG 2 x
+			ARG 3 y
+			ARG 4 mouseX
+			ARG 5 mouseY
+			ARG 6 spriteId
+			ARG 7 tooltipSupplier
+		METHOD drawRealmStatus (Lnet/minecraft/client/gui/GuiGraphics;IIIILnet/minecraft/resources/Identifier;Ljava/util/function/Supplier;)V
 			ARG 1 guiGraphics
 			ARG 2 x
 			ARG 3 y
@@ -167,16 +184,46 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 			ARG 1 left
 			ARG 2 width
 			ARG 3 versionComponent
-	CLASS RealmsCall
-		METHOD request (Lcom/mojang/realmsclient/client/RealmsClient;)Ljava/lang/Object;
-			ARG 1 realmsClient
-	CLASS CrossButton
-		METHOD <init> (Lnet/minecraft/client/gui/components/Button$OnPress;Lnet/minecraft/network/chat/Component;)V
-			ARG 1 onPress
-			ARG 2 message
+	CLASS NotificationButton
+		METHOD <init> (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/Identifier;Lnet/minecraft/client/gui/components/Button$OnPress;Lnet/minecraft/network/chat/Component;)V
+			ARG 1 message
+			ARG 2 sprite
+			ARG 3 onPress
+			ARG 4 tooltip
+		METHOD <init> (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/Identifier;Lnet/minecraft/client/gui/components/Button$OnPress;Lnet/minecraft/network/chat/Component;)V
+			ARG 1 message
+			ARG 2 sprite
+			ARG 3 onPress
+			ARG 4 tooltip
+		METHOD drawNotificationCounter (Lnet/minecraft/client/gui/GuiGraphics;)V
+			ARG 1 guiGraphics
+		METHOD setNotificationCount (I)V
+			ARG 1 notificationCount
+	CLASS NotificationMessageEntry
+		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/RealmsMainScreen;ILnet/minecraft/network/chat/Component;Lcom/mojang/realmsclient/dto/RealmsNotification$VisitUrl;)V
+			ARG 2 screen
+			ARG 3 frameItemHeight
+			ARG 4 text
+			ARG 5 visitUrl
+		METHOD refreshLayout (I)V
+			ARG 1 width
+		METHOD textWidth (I)I
+			ARG 0 width
 	CLASS ParentEntry
 		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/dto/RealmsServer;)V
 			ARG 2 server
+	CLASS RealmSelectionList
+		METHOD addEntriesForNotification (Lcom/mojang/realmsclient/dto/RealmsNotification$VisitUrl;Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/RealmsMainScreen$Entry;)V
+			ARG 1 visitUrl
+			ARG 2 screen
+			ARG 3 entry
+		METHOD refreshEntries (Lcom/mojang/realmsclient/RealmsMainScreen;)V
+			ARG 1 screen
+		METHOD refreshServerEntries (Lcom/mojang/realmsclient/RealmsMainScreen$Entry;)V
+			ARG 1 entry
+	CLASS RealmsCall
+		METHOD request (Lcom/mojang/realmsclient/client/RealmsClient;)Ljava/lang/Object;
+			ARG 1 realmsClient
 	CLASS ServerEntry
 		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/dto/RealmsServer;)V
 			ARG 2 serverData
@@ -189,37 +236,3 @@ CLASS com/mojang/realmsclient/RealmsMainScreen
 			ARG 6 mouseX
 			ARG 7 mouseY
 			ARG 8 partialTick
-	CLASS NotificationButton
-		METHOD <init> (Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/gui/components/Button$OnPress;Lnet/minecraft/network/chat/Component;)V
-			ARG 1 message
-			ARG 2 sprite
-			ARG 3 onPress
-			ARG 4 tooltip
-		METHOD drawNotificationCounter (Lnet/minecraft/client/gui/GuiGraphics;)V
-			ARG 1 guiGraphics
-		METHOD setNotificationCount (I)V
-			ARG 1 notificationCount
-	CLASS RealmSelectionList
-		METHOD addEntriesForNotification (Lcom/mojang/realmsclient/dto/RealmsNotification$VisitUrl;Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/RealmsMainScreen$Entry;)V
-			ARG 1 visitUrl
-			ARG 2 screen
-			ARG 3 entry
-		METHOD refreshEntries (Lcom/mojang/realmsclient/RealmsMainScreen;)V
-			ARG 1 screen
-		METHOD refreshServerEntries (Lcom/mojang/realmsclient/RealmsMainScreen$Entry;)V
-			ARG 1 entry
-	CLASS AvailableSnapshotEntry
-		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/dto/RealmsServer;)V
-			ARG 2 parent
-		METHOD lambda$addSnapshotRealm$0 (Lnet/minecraft/client/gui/components/PopupScreen;)V
-			ARG 1 screen
-	CLASS NotificationMessageEntry
-		METHOD <init> (Lcom/mojang/realmsclient/RealmsMainScreen;Lcom/mojang/realmsclient/RealmsMainScreen;ILnet/minecraft/network/chat/Component;Lcom/mojang/realmsclient/dto/RealmsNotification$VisitUrl;)V
-			ARG 2 screen
-			ARG 3 frameItemHeight
-			ARG 4 text
-			ARG 5 visitUrl
-		METHOD refreshLayout (I)V
-			ARG 1 width
-		METHOD textWidth (I)I
-			ARG 0 width

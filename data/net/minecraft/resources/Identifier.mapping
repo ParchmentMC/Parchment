@@ -1,0 +1,85 @@
+CLASS net/minecraft/resources/Identifier
+	COMMENT An immutable location of a resource, in terms of a path and namespace.
+	COMMENT <p>
+	COMMENT This is used as an identifier for a resource, usually for those housed in a {@link net.minecraft.core.Registry}, such as blocks and items.
+	COMMENT <p>
+	COMMENT {@code minecraft} is always taken as the default namespace for a resource location when none is explicitly stated. When using this for registering objects, this namespace <strong>should</strong> only be used for resources added by Minecraft itself.
+	COMMENT <p>
+	COMMENT Generally, and by the implementation of {@link #toString()}, the string representation of this class is expressed in the form {@code namespace:path}. The colon is also used as the default separator for parsing strings as a {@code ResourceLocation}.
+	COMMENT @see net.minecraft.resources.ResourceKey
+	METHOD <init> (Ljava/lang/String;Ljava/lang/String;)V
+		ARG 1 namespace
+		ARG 2 path
+	METHOD assertValidNamespace (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 namespace
+		ARG 1 path
+	METHOD assertValidPath (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 namespace
+		ARG 1 path
+	METHOD bySeparator (Ljava/lang/String;C)Lnet/minecraft/resources/Identifier;
+		ARG 0 location
+		ARG 1 separator
+	METHOD compareTo (Lnet/minecraft/resources/Identifier;)I
+		ARG 1 other
+	METHOD createUntrusted (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+		ARG 0 namespace
+		ARG 1 path
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD fromNamespaceAndPath (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+		ARG 0 namespace
+		ARG 1 path
+	METHOD isAllowedInIdentifier (C)Z
+		ARG 0 c
+	METHOD isAllowedInResourceLocation (C)Z
+		ARG 0 character
+	METHOD isValidNamespace (Ljava/lang/String;)Z
+		COMMENT @return {@code true} if the specified {@code namespace} is valid: consists only of {@code [a-z0-9_.-]} characters
+		ARG 0 namespace
+	METHOD isValidPath (Ljava/lang/String;)Z
+		COMMENT @return {@code true} if the specified {@code path} is valid: consists only of {@code [a-z0-9/._-]} characters
+		ARG 0 path
+	METHOD parse (Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+		ARG 0 location
+	METHOD read (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/resources/Identifier;
+		ARG 0 reader
+	METHOD read (Ljava/lang/String;)Lcom/mojang/serialization/DataResult;
+		ARG 0 location
+	METHOD readGreedy (Lcom/mojang/brigadier/StringReader;)Ljava/lang/String;
+		ARG 0 reader
+	METHOD readNonEmpty (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/resources/Identifier;
+		ARG 0 reader
+	METHOD toLanguageKey (Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 type
+	METHOD toLanguageKey (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 type
+		ARG 2 key
+	METHOD tryBuild (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+		ARG 0 namespace
+		ARG 1 path
+	METHOD tryBySeparator (Ljava/lang/String;C)Lnet/minecraft/resources/Identifier;
+		ARG 0 location
+		ARG 1 seperator
+	METHOD tryParse (Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+		COMMENT Attempts to parse the specified {@code location} as a {@code ResourceLocation} by splitting it into a
+		COMMENT namespace and path by a colon.
+		COMMENT <p>
+		COMMENT If no colon is present in the {@code location}, the namespace defaults to {@code minecraft}, taking the {@code location} as the path.
+		COMMENT @return the parsed resource location; otherwise {@code null} if there is a non {@code [a-z0-9_.-]} character in the decomposed namespace or a non {@code [a-z0-9/._-]} character in the decomposed path
+		COMMENT @see #of(String, char)
+		ARG 0 location
+			COMMENT the location string to try to parse as a {@code ResourceLocation}
+	METHOD validNamespaceChar (C)Z
+		ARG 0 namespaceChar
+	METHOD validPathChar (C)Z
+		ARG 0 pathChar
+	METHOD withDefaultNamespace (Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+		ARG 0 location
+	METHOD withPath (Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+		ARG 1 path
+	METHOD withPath (Ljava/util/function/UnaryOperator;)Lnet/minecraft/resources/Identifier;
+		ARG 1 pathOperator
+	METHOD withPrefix (Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+		ARG 1 pathPrefix
+	METHOD withSuffix (Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+		ARG 1 pathSuffix

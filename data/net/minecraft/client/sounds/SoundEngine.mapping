@@ -29,6 +29,10 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		ARG 2 soundManager
 		ARG 3 options
 		ARG 4 resourceManager
+	METHOD <init> (Lnet/minecraft/client/sounds/SoundManager;Lnet/minecraft/client/Options;Lnet/minecraft/server/packs/resources/ResourceProvider;)V
+		ARG 1 soundManager
+		ARG 2 options
+		ARG 3 resourceManager
 	METHOD addEventListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
 		ARG 1 listener
 	METHOD calculatePitch (Lnet/minecraft/client/resources/sounds/SoundInstance;)F
@@ -76,6 +80,8 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		COMMENT Queues a new {@linkplain TickingCodeInstance}
 		ARG 1 tickableSound
 			COMMENT the {@linkplain TickableSoundInstance} to queue
+	METHOD refreshCategoryVolume (Lnet/minecraft/sounds/SoundSource;)V
+		ARG 1 source
 	METHOD reload ()V
 		COMMENT Reloads the sound engine.
 		COMMENT <p>
@@ -123,7 +129,7 @@ CLASS net/minecraft/client/sounds/SoundEngine
 	METHOD stop (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
 		COMMENT Stops the provided {@linkplain SoundInstance} from continuing to play.
 		ARG 1 sound
-	METHOD stop (Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/sounds/SoundSource;)V
+	METHOD stop (Lnet/minecraft/resources/Identifier;Lnet/minecraft/sounds/SoundSource;)V
 		ARG 1 soundName
 		ARG 2 category
 	METHOD stopAll ()V
@@ -133,5 +139,8 @@ CLASS net/minecraft/client/sounds/SoundEngine
 		ARG 1 isGamePaused
 	METHOD updateCategoryVolume (Lnet/minecraft/sounds/SoundSource;)V
 		ARG 1 category
+	METHOD updateCategoryVolume (Lnet/minecraft/sounds/SoundSource;F)V
+		ARG 1 source
+		ARG 2 value
 	METHOD updateSource (Lnet/minecraft/client/Camera;)V
 		ARG 1 renderInfo

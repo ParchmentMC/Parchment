@@ -1,0 +1,20 @@
+CLASS net/minecraft/advancements/criterion/MobEffectsPredicate
+	METHOD <init> (Ljava/util/Map;)V
+		ARG 1 effectMap
+	METHOD matches (Ljava/util/Map;)Z
+		ARG 1 effects
+	METHOD matches (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD matches (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 1 entity
+	CLASS Builder
+		METHOD and (Lnet/minecraft/core/Holder;)Lnet/minecraft/advancements/criterion/MobEffectsPredicate$Builder;
+			ARG 1 effect
+		METHOD and (Lnet/minecraft/core/Holder;Lnet/minecraft/advancements/criterion/MobEffectsPredicate$MobEffectInstancePredicate;)Lnet/minecraft/advancements/criterion/MobEffectsPredicate$Builder;
+			ARG 1 effect
+			ARG 2 predicate
+	CLASS MobEffectInstancePredicate
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+		METHOD matches (Lnet/minecraft/world/effect/MobEffectInstance;)Z
+			ARG 1 effect

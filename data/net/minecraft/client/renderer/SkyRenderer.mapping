@@ -24,10 +24,10 @@ CLASS net/minecraft/client/renderer/SkyRenderer
 		ARG 2 partialTick
 		ARG 3 cameraPosition
 		ARG 4 reusedState
-	METHOD getTexture (Lnet/minecraft/client/renderer/texture/TextureManager;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/texture/AbstractTexture;
+	METHOD getTexture (Lnet/minecraft/client/renderer/texture/TextureManager;Lnet/minecraft/resources/Identifier;)Lnet/minecraft/client/renderer/texture/AbstractTexture;
 		ARG 1 textureManager
 		ARG 2 texture
-	METHOD getTexture (Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/texture/AbstractTexture;
+	METHOD getTexture (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/client/renderer/texture/AbstractTexture;
 		ARG 1 location
 	METHOD renderEndFlash (Lcom/mojang/blaze3d/vertex/PoseStack;FFF)V
 		ARG 1 poseStack
@@ -46,12 +46,22 @@ CLASS net/minecraft/client/renderer/SkyRenderer
 		ARG 1 red
 		ARG 2 green
 		ARG 3 blue
+	METHOD renderSkyDisc (I)V
+		ARG 1 color
 	METHOD renderStars (FLcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 starBrightness
 		ARG 2 poseStack
 	METHOD renderSun (FLcom/mojang/blaze3d/vertex/PoseStack;)V
 		ARG 1 rainBrightness
 		ARG 2 poseStack
+	METHOD renderSunMoonAndStars (Lcom/mojang/blaze3d/vertex/PoseStack;FFFLnet/minecraft/world/level/MoonPhase;FF)V
+		ARG 1 poseStack
+		ARG 2 sunAngle
+		ARG 3 moonAngle
+		ARG 4 starAngle
+		ARG 5 moonPhase
+		ARG 6 rainBrightness
+		ARG 7 starBrightness
 	METHOD renderSunMoonAndStars (Lcom/mojang/blaze3d/vertex/PoseStack;FIFF)V
 		ARG 1 poseStack
 		ARG 2 timeOfDay
