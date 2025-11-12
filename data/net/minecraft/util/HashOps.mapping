@@ -71,6 +71,8 @@ CLASS net/minecraft/util/HashOps
 	METHOD hashMap (Lcom/google/common/hash/Hasher;Ljava/util/stream/Stream;)Lcom/google/common/hash/Hasher;
 		ARG 0 hasher
 		ARG 1 map
+	METHOD isEmpty (Lcom/google/common/hash/HashCode;)Z
+		ARG 1 value
 	METHOD mergeToList (Lcom/google/common/hash/HashCode;Lcom/google/common/hash/HashCode;)Lcom/mojang/serialization/DataResult;
 		ARG 1 list
 		ARG 2 value
@@ -102,3 +104,11 @@ CLASS net/minecraft/util/HashOps
 		ARG 1 input
 		ARG 2 key
 		ARG 3 updater
+	CLASS MapHashBuilder
+		METHOD append (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+			ARG 1 key
+			ARG 2 value
+			ARG 3 entries
+		METHOD build (Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+			ARG 1 entries
+			ARG 2 value

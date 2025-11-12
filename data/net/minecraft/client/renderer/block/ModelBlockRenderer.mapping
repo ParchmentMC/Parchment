@@ -1,6 +1,12 @@
 CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 	METHOD <init> (Lnet/minecraft/client/color/block/BlockColors;)V
 		ARG 1 blockColors
+	METHOD calculateShape (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/client/renderer/block/model/BakedQuad;Lnet/minecraft/client/renderer/block/ModelBlockRenderer$CommonRenderStorage;)V
+		ARG 0 level
+		ARG 1 state
+		ARG 2 pos
+		ARG 3 quad
+		ARG 4 renderStorage
 	METHOD calculateShape (Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;[ILnet/minecraft/core/Direction;Lnet/minecraft/client/renderer/block/ModelBlockRenderer$CommonRenderStorage;)V
 		ARG 0 level
 		ARG 1 state
@@ -89,24 +95,6 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		ARG 6 consumer
 		ARG 7 checkSides
 		ARG 8 packedOverlay
-	CLASS Cache
-		METHOD getLightColor (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
-			ARG 1 state
-			ARG 2 level
-			ARG 3 pos
-		METHOD getShadeBrightness (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)F
-			ARG 1 state
-			ARG 2 level
-			ARG 3 pos
-		CLASS 1
-			METHOD rehash (I)V
-				ARG 1 newN
-		CLASS 2
-			METHOD rehash (I)V
-				ARG 1 newN
-	CLASS SizeInfo
-		METHOD <init> (Ljava/lang/String;II)V
-			ARG 3 index
 	CLASS AdjacencyInfo
 		METHOD <init> (Ljava/lang/String;I[Lnet/minecraft/core/Direction;FZ[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;[Lnet/minecraft/client/renderer/block/ModelBlockRenderer$SizeInfo;)V
 			ARG 3 corners
@@ -120,16 +108,6 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;
 			ARG 0 facing
 		METHOD lambda$static$0 ([Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AdjacencyInfo;)V
-			ARG 0 byFacing
-	CLASS AmbientVertexRemap
-		METHOD <init> (Ljava/lang/String;IIIII)V
-			ARG 3 vert0
-			ARG 4 vert1
-			ARG 5 vert2
-			ARG 6 vert3
-		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
-			ARG 0 facing
-		METHOD lambda$static$0 ([Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;)V
 			ARG 0 byFacing
 	CLASS AmbientOcclusionRenderStorage
 		METHOD blend (IIII)I
@@ -152,3 +130,31 @@ CLASS net/minecraft/client/renderer/block/ModelBlockRenderer
 			ARG 3 pos
 			ARG 4 direction
 			ARG 5 shade
+	CLASS AmbientVertexRemap
+		METHOD <init> (Ljava/lang/String;IIIII)V
+			ARG 3 vert0
+			ARG 4 vert1
+			ARG 5 vert2
+			ARG 6 vert3
+		METHOD fromFacing (Lnet/minecraft/core/Direction;)Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;
+			ARG 0 facing
+		METHOD lambda$static$0 ([Lnet/minecraft/client/renderer/block/ModelBlockRenderer$AmbientVertexRemap;)V
+			ARG 0 byFacing
+	CLASS Cache
+		METHOD getLightColor (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
+			ARG 1 state
+			ARG 2 level
+			ARG 3 pos
+		METHOD getShadeBrightness (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)F
+			ARG 1 state
+			ARG 2 level
+			ARG 3 pos
+		CLASS 1
+			METHOD rehash (I)V
+				ARG 1 newN
+		CLASS 2
+			METHOD rehash (I)V
+				ARG 1 newN
+	CLASS SizeInfo
+		METHOD <init> (Ljava/lang/String;II)V
+			ARG 3 index

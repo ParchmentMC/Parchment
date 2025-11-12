@@ -1,14 +1,27 @@
 CLASS net/minecraft/client/renderer/block/model/BlockElementRotation
+	METHOD <init> (Lorg/joml/Vector3fc;Lnet/minecraft/client/renderer/block/model/BlockElementRotation$RotationValue;Z)V
+		ARG 1 origin
+		ARG 2 value
+		ARG 3 rescale
 	METHOD <init> (Lorg/joml/Vector3fc;Lnet/minecraft/core/Direction$Axis;FZ)V
 		ARG 1 origin
 		ARG 2 axis
 		ARG 3 angle
 		ARG 4 rescale
+	METHOD computeRescale (Lorg/joml/Matrix4fc;)Lorg/joml/Vector3fc;
+		ARG 0 transformation
 	METHOD computeRescale (ZFLnet/minecraft/core/Direction$Axis;)Lorg/joml/Vector3fc;
 		ARG 0 rescale
 		ARG 1 angle
 		ARG 2 axis
+	METHOD computeTransform (Lnet/minecraft/client/renderer/block/model/BlockElementRotation$RotationValue;Z)Lorg/joml/Matrix4f;
+		ARG 0 value
+		ARG 1 rescale
 	METHOD computeTransform (Lnet/minecraft/core/Direction$Axis;FZ)Lorg/joml/Matrix4f;
 		ARG 0 axis
 		ARG 1 angle
 		ARG 2 rescale
+	METHOD scaleFactorForAxis (Lorg/joml/Matrix4fc;Lnet/minecraft/core/Direction$Axis;Lorg/joml/Vector3f;)F
+		ARG 0 transformation
+		ARG 1 axis
+		ARG 2 scratchVector

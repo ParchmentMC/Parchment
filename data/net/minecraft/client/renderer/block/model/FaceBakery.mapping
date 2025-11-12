@@ -5,6 +5,17 @@ CLASS net/minecraft/client/renderer/block/model/FaceBakery
 	METHOD applyModelRotation (Lorg/joml/Vector3f;Lcom/mojang/math/Transformation;)V
 		ARG 0 pos
 		ARG 1 transform
+	METHOD bakeQuad (Lnet/minecraft/client/resources/model/ModelBaker$PartCache;Lorg/joml/Vector3fc;Lorg/joml/Vector3fc;Lnet/minecraft/client/renderer/block/model/BlockElementFace;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/core/Direction;Lnet/minecraft/client/resources/model/ModelState;Lnet/minecraft/client/renderer/block/model/BlockElementRotation;ZI)Lnet/minecraft/client/renderer/block/model/BakedQuad;
+		ARG 0 partCache
+		ARG 1 posFrom
+		ARG 2 posTo
+		ARG 3 face
+		ARG 4 sprite
+		ARG 5 facing
+		ARG 6 modelState
+		ARG 7 rotation
+		ARG 8 shade
+		ARG 9 lightEmission
 	METHOD bakeQuad (Lorg/joml/Vector3fc;Lorg/joml/Vector3fc;Lnet/minecraft/client/renderer/block/model/BlockElementFace;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/core/Direction;Lnet/minecraft/client/resources/model/ModelState;Lnet/minecraft/client/renderer/block/model/BlockElementRotation;ZI)Lnet/minecraft/client/renderer/block/model/BakedQuad;
 		ARG 0 posFrom
 		ARG 1 posTo
@@ -15,6 +26,20 @@ CLASS net/minecraft/client/renderer/block/model/FaceBakery
 		ARG 6 rotation
 		ARG 7 shade
 		ARG 8 lightEmission
+	METHOD bakeVertex (ILnet/minecraft/client/renderer/FaceInfo;Lnet/minecraft/client/renderer/block/model/BlockElementFace$UVs;Lcom/mojang/math/Quadrant;Lorg/joml/Matrix4fc;Lorg/joml/Vector3fc;Lorg/joml/Vector3fc;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lcom/mojang/math/Transformation;Lnet/minecraft/client/renderer/block/model/BlockElementRotation;[Lorg/joml/Vector3fc;[JLnet/minecraft/client/resources/model/ModelBaker$PartCache;)V
+		ARG 0 vertexIndex
+		ARG 1 faceInfo
+		ARG 2 uvs
+		ARG 3 faceRotation
+		ARG 4 inverseFaceTransform
+		ARG 5 posFrom
+		ARG 6 posTo
+		ARG 7 sprite
+		ARG 8 transformation
+		ARG 9 rotation
+		ARG 10 positions
+		ARG 11 packedUVs
+		ARG 12 partCache
 	METHOD bakeVertex ([IILnet/minecraft/client/renderer/FaceInfo;Lnet/minecraft/client/renderer/block/model/BlockElementFace$UVs;Lcom/mojang/math/Quadrant;Lorg/joml/Matrix4fc;[FLnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lcom/mojang/math/Transformation;Lnet/minecraft/client/renderer/block/model/BlockElementRotation;)V
 		ARG 0 vertexData
 		ARG 1 vertexIndex
@@ -28,6 +53,8 @@ CLASS net/minecraft/client/renderer/block/model/FaceBakery
 		ARG 9 partRotation
 	METHOD calculateFacing ([I)Lnet/minecraft/core/Direction;
 		ARG 0 faceData
+	METHOD calculateFacing ([Lorg/joml/Vector3fc;)Lnet/minecraft/core/Direction;
+		ARG 0 positions
 	METHOD centerToCorner (F)F
 		ARG 0 coord
 	METHOD computeRescale (Lnet/minecraft/client/renderer/block/model/BlockElementRotation;)Lorg/joml/Vector3fc;
@@ -48,6 +75,14 @@ CLASS net/minecraft/client/renderer/block/model/FaceBakery
 		ARG 3 sprite
 		ARG 4 u
 		ARG 5 v
+	METHOD findClosestDirection (Lorg/joml/Vector3f;)Lnet/minecraft/core/Direction;
+		ARG 0 pos
+	METHOD findVertex ([Lorg/joml/Vector3fc;IFFF)I
+		ARG 0 positions
+		ARG 1 startIndex
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z
 	METHOD makeVertices (Lnet/minecraft/client/renderer/block/model/BlockElementFace$UVs;Lcom/mojang/math/Quadrant;Lorg/joml/Matrix4fc;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/core/Direction;[FLcom/mojang/math/Transformation;Lnet/minecraft/client/renderer/block/model/BlockElementRotation;)[I
 		ARG 0 uvs
 		ARG 1 rotation
@@ -60,6 +95,10 @@ CLASS net/minecraft/client/renderer/block/model/FaceBakery
 	METHOD recalculateWinding ([ILnet/minecraft/core/Direction;)V
 		ARG 0 vertices
 		ARG 1 direction
+	METHOD recalculateWinding ([Lorg/joml/Vector3fc;[JLnet/minecraft/core/Direction;)V
+		ARG 0 positions
+		ARG 1 packedUVs
+		ARG 2 facing
 	METHOD rotateVertexBy (Lorg/joml/Vector3f;Lorg/joml/Vector3fc;Lorg/joml/Matrix4fc;)V
 		ARG 0 vertex
 		ARG 1 origin
@@ -75,6 +114,14 @@ CLASS net/minecraft/client/renderer/block/model/FaceBakery
 	METHOD shrinkUVs (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/client/renderer/block/model/BlockElementFace$UVs;)Lnet/minecraft/client/renderer/block/model/BlockElementFace$UVs;
 		ARG 0 sprite
 		ARG 1 uvs
+	METHOD swap ([JII)V
+		ARG 0 array
+		ARG 1 index1
+		ARG 2 index2
+	METHOD swap ([Lorg/joml/Vector3fc;II)V
+		ARG 0 array
+		ARG 1 index1
+		ARG 2 index2
 	METHOD vectorFromData ([II)Lorg/joml/Vector3f;
 		ARG 0 faceData
 		ARG 1 index
