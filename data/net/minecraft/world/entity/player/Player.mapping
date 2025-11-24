@@ -6,6 +6,8 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 2 gameProfile
 	METHOD addItem (Lnet/minecraft/world/item/ItemStack;)Z
 		ARG 1 stack
+	METHOD applyPostImpulseGraceTime (I)V
+		ARG 1 ticks
 	METHOD attack (Lnet/minecraft/world/entity/Entity;)V
 		COMMENT Attacks for the player the targeted entity with the currently equipped item.  The equipped item has hitEntity called on it. Args: targetEntity
 		ARG 1 target
@@ -178,6 +180,18 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 1 fullyCharged
 		ARG 2 crit
 		ARG 3 sprinting
+	METHOD isWithinAttackRange (Lnet/minecraft/world/phys/AABB;D)Z
+		ARG 1 box
+		ARG 2 range
+	METHOD isWithinBlockInteractionRange (Lnet/minecraft/core/BlockPos;D)Z
+		ARG 1 pos
+		ARG 2 range
+	METHOD isWithinEntityInteractionRange (Lnet/minecraft/world/entity/Entity;D)Z
+		ARG 1 entity
+		ARG 2 range
+	METHOD isWithinEntityInteractionRange (Lnet/minecraft/world/phys/AABB;D)Z
+		ARG 1 box
+		ARG 2 range
 	METHOD itemAttackInteraction (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/damagesource/DamageSource;)V
 		ARG 1 entity
 		ARG 2 stack
@@ -216,6 +230,9 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 1 commandBlockEntity
 	METHOD openDialog (Lnet/minecraft/core/Holder;)V
 		ARG 1 dialog
+	METHOD openHorseInventory (Lnet/minecraft/world/entity/animal/equine/AbstractHorse;Lnet/minecraft/world/Container;)V
+		ARG 1 horse
+		ARG 2 inventory
 	METHOD openHorseInventory (Lnet/minecraft/world/entity/animal/horse/AbstractHorse;Lnet/minecraft/world/Container;)V
 		ARG 1 horse
 		ARG 2 inventory
@@ -228,6 +245,8 @@ CLASS net/minecraft/world/entity/player/Player
 		ARG 1 menu
 	METHOD openMinecartCommandBlock (Lnet/minecraft/world/entity/vehicle/MinecartCommandBlock;)V
 		ARG 1 minecartCommandBlock
+	METHOD openMinecartCommandBlock (Lnet/minecraft/world/entity/vehicle/minecart/MinecartCommandBlock;)V
+		ARG 1 commandBlock
 	METHOD openMinecartCommandBlock (Lnet/minecraft/world/level/BaseCommandBlock;)V
 		ARG 1 commandEntity
 	METHOD openNautilusInventory (Lnet/minecraft/world/entity/animal/nautilus/AbstractNautilus;Lnet/minecraft/world/Container;)V

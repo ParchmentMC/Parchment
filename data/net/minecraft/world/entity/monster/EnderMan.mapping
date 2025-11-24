@@ -6,6 +6,11 @@ CLASS net/minecraft/world/entity/monster/EnderMan
 		ARG 2 damageSource
 		ARG 3 potion
 		ARG 4 damageAmount
+	METHOD hurtWithCleanWater (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/entity/projectile/throwableitemprojectile/AbstractThrownPotion;F)Z
+		ARG 1 level
+		ARG 2 damageSource
+		ARG 3 potion
+		ARG 4 amount
 	METHOD isBeingStaredBy (Lnet/minecraft/world/entity/player/Player;)Z
 		ARG 1 player
 	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
@@ -29,11 +34,13 @@ CLASS net/minecraft/world/entity/monster/EnderMan
 	METHOD teleportTowards (Lnet/minecraft/world/entity/Entity;)Z
 		COMMENT Teleport the enderman to another entity
 		ARG 1 target
-	CLASS EndermanTakeBlockGoal
+	CLASS EndermanFreezeWhenLookedAt
 		METHOD <init> (Lnet/minecraft/world/entity/monster/EnderMan;)V
 			ARG 1 enderman
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
 	CLASS EndermanLeaveBlockGoal
@@ -69,12 +76,10 @@ CLASS net/minecraft/world/entity/monster/EnderMan
 			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started
-	CLASS EndermanFreezeWhenLookedAt
+	CLASS EndermanTakeBlockGoal
 		METHOD <init> (Lnet/minecraft/world/entity/monster/EnderMan;)V
 			ARG 1 enderman
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD tick ()V
 			COMMENT Keep ticking a continuous task that has already been started

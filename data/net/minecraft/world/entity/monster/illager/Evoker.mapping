@@ -1,0 +1,29 @@
+CLASS net/minecraft/world/entity/monster/illager/Evoker
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD setWololoTarget (Lnet/minecraft/world/entity/animal/sheep/Sheep;)V
+		ARG 1 wololoTarget
+	CLASS EvokerAttackSpellGoal
+		METHOD createSpellEntity (DDDDFI)V
+			ARG 1 x
+			ARG 3 z
+			ARG 5 minY
+			ARG 7 maxY
+			ARG 9 yRot
+			ARG 10 warmupDelay
+	CLASS EvokerSummonSpellGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	CLASS EvokerWololoSpellGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/server/level/ServerLevel;)Z
+			ARG 0 entity
+			ARG 1 level
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+	CLASS EvokerCastingSpellGoal
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

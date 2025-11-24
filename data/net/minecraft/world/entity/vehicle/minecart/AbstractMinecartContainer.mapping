@@ -1,0 +1,29 @@
+CLASS net/minecraft/world/entity/vehicle/minecart/AbstractMinecartContainer
+	METHOD createMenu (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
+		ARG 1 containerId
+		ARG 2 playerInventory
+	METHOD getItem (I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Returns the stack in the given slot.
+		ARG 1 index
+	METHOD interact (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 player
+		ARG 2 hand
+	METHOD removeItem (II)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Removes up to a specified number of items from an inventory slot and returns them in a new stack.
+		ARG 1 index
+		ARG 2 count
+	METHOD removeItemNoUpdate (I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Removes a stack from the given slot and returns it.
+		ARG 1 index
+	METHOD setChanged ()V
+		COMMENT For block entities, ensures the chunk containing the block entity is saved to disk later - the game won't think it hasn't changed and skip it.
+	METHOD setItem (ILnet/minecraft/world/item/ItemStack;)V
+		COMMENT Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+		ARG 1 index
+		ARG 2 stack
+	METHOD setLootTable (Lnet/minecraft/resources/ResourceKey;J)V
+		ARG 1 lootTable
+		ARG 2 seed
+	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
+		ARG 1 player

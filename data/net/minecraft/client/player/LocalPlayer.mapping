@@ -31,6 +31,10 @@ CLASS net/minecraft/client/player/LocalPlayer
 		ARG 0 moveVector
 	METHOD drop (Z)Z
 		ARG 1 fullStack
+	METHOD filterHitResult (Lnet/minecraft/world/phys/HitResult;Lnet/minecraft/world/phys/Vec3;D)Lnet/minecraft/world/phys/HitResult;
+		ARG 0 hitResult
+		ARG 1 eyePos
+		ARG 2 blockRange
 	METHOD getRopeHoldPosition (F)Lnet/minecraft/world/phys/Vec3;
 		ARG 1 partialTick
 	METHOD getViewXRot (F)F
@@ -80,10 +84,18 @@ CLASS net/minecraft/client/player/LocalPlayer
 		ARG 1 commandBlock
 	METHOD openStructureBlock (Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)V
 		ARG 1 structure
+	METHOD pick (Lnet/minecraft/world/entity/Entity;DDF)Lnet/minecraft/world/phys/HitResult;
+		ARG 0 cameraEntity
+		ARG 1 blockRange
+		ARG 3 entityRange
+		ARG 5 partialTick
 	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;FF)V
 		ARG 1 sound
 		ARG 2 volume
 		ARG 3 pitch
+	METHOD raycastHitResult (FLnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/phys/HitResult;
+		ARG 1 partialTick
+		ARG 2 cameraEntity
 	METHOD removeRecipeHighlight (Lnet/minecraft/world/item/crafting/display/RecipeDisplayId;)V
 		ARG 1 recipe
 	METHOD rideTick ()V

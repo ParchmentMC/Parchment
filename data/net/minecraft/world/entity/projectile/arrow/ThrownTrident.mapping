@@ -1,0 +1,31 @@
+CLASS net/minecraft/world/entity/projectile/arrow/ThrownTrident
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 pickupItemStack
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 level
+		ARG 2 shooter
+		ARG 3 pickupItemStack
+	METHOD findHitEntity (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/EntityHitResult;
+		COMMENT Gets the EntityHitResult representing the entity hit
+		ARG 1 startVec
+		ARG 2 endVec
+	METHOD getDefaultHitGroundSoundEvent ()Lnet/minecraft/sounds/SoundEvent;
+		COMMENT The sound made when an entity is hit by this projectile
+	METHOD getLoyaltyFromItem (Lnet/minecraft/world/item/ItemStack;)B
+		ARG 1 stack
+	METHOD onHitEntity (Lnet/minecraft/world/phys/EntityHitResult;)V
+		COMMENT Called when the arrow hits an entity
+		ARG 1 result
+	METHOD playerTouch (Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called by a player entity when they collide with an entity
+		ARG 1 entity
+	METHOD shouldRender (DDD)Z
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

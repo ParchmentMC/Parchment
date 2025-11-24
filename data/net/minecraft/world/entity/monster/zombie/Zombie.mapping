@@ -1,0 +1,68 @@
+CLASS net/minecraft/world/entity/monster/zombie/Zombie
+	METHOD <init> (Lnet/minecraft/world/level/Level;)V
+		ARG 1 level
+	METHOD canHoldItem (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
+	METHOD convertToZombieType (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/EntityType;)V
+		ARG 1 level
+		ARG 2 zombieType
+	METHOD convertToZombieType (Lnet/minecraft/world/entity/EntityType;)V
+		ARG 1 entityType
+	METHOD convertVillagerToZombieVillager (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/npc/Villager;)Z
+		ARG 1 level
+		ARG 2 villager
+	METHOD convertVillagerToZombieVillager (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/npc/villager/Villager;)Z
+		ARG 1 level
+		ARG 2 villager
+	METHOD doUnderWaterConversion (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getSpawnAsBabyOdds (Lnet/minecraft/util/RandomSource;)Z
+		ARG 0 random
+	METHOD handleAttributes (F)V
+		ARG 1 difficulty
+	METHOD isBaby ()Z
+		COMMENT If Animal, checks if the age timer is negative
+	METHOD lambda$convertToZombieType$1 (Lnet/minecraft/world/entity/monster/Zombie;)V
+		ARG 0 zombie
+	METHOD lambda$static$0 (Lnet/minecraft/world/Difficulty;)Z
+		ARG 0 difficulty
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 block
+	METHOD setBaby (Z)V
+		COMMENT Set whether this zombie is a child.
+		ARG 1 childZombie
+	METHOD setCanBreakDoors (Z)V
+		COMMENT Sets or removes EntityAIBreakDoor task
+		ARG 1 canBreakDoors
+	METHOD setConversionTime (I)V
+		ARG 1 conversionTime
+	METHOD setInWaterTime (I)V
+		ARG 1 inWaterTime
+	METHOD startUnderWaterConversion (I)V
+		ARG 1 conversionTime
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	CLASS ZombieAttackTurtleEggGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Zombie;Lnet/minecraft/world/entity/PathfinderMob;DI)V
+			ARG 2 mob
+			ARG 3 speedModifier
+			ARG 5 verticalSearchRange
+		METHOD <init> (Lnet/minecraft/world/entity/monster/zombie/Zombie;Lnet/minecraft/world/entity/PathfinderMob;DI)V
+			ARG 2 mob
+			ARG 3 speedModifier
+			ARG 5 searchRange
+		METHOD playBreakSound (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+			ARG 1 level
+			ARG 2 pos
+		METHOD playDestroyProgressSound (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;)V
+			ARG 1 level
+			ARG 2 pos
+	CLASS ZombieGroupData
+		METHOD <init> (ZZ)V
+			ARG 1 isBaby
+			ARG 2 canSpawnJockey

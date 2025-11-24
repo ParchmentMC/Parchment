@@ -19,6 +19,10 @@ CLASS net/minecraft/client/renderer/texture/MipmapGenerator
 		ARG 2 source
 		ARG 3 mipLevel
 		ARG 4 strategy
+	METHOD alphaTestCoverage (Lcom/mojang/blaze3d/platform/NativeImage;FF)F
+		ARG 0 image
+		ARG 1 alphaRef
+		ARG 2 alphaScale
 	METHOD darkenedAlphaBlend (IIII)I
 		ARG 0 col0
 		ARG 1 col1
@@ -40,6 +44,12 @@ CLASS net/minecraft/client/renderer/texture/MipmapGenerator
 		ARG 1 mipLevels
 		ARG 2 mipLevel
 		ARG 3 strategy
+	METHOD generateMipLevels (Lnet/minecraft/resources/Identifier;[Lcom/mojang/blaze3d/platform/NativeImage;ILnet/minecraft/client/renderer/texture/MipmapStrategy;F)[Lcom/mojang/blaze3d/platform/NativeImage;
+		ARG 0 texture
+		ARG 1 mipLevels
+		ARG 2 mipLevel
+		ARG 3 strategy
+		ARG 4 alphaCutoffBias
 	METHOD generateMipLevels ([Lcom/mojang/blaze3d/platform/NativeImage;I)[Lcom/mojang/blaze3d/platform/NativeImage;
 		ARG 0 images
 		ARG 1 mipLevel
@@ -59,3 +69,8 @@ CLASS net/minecraft/client/renderer/texture/MipmapGenerator
 		ARG 0 image
 	METHOD lambda$static$0 ([F)V
 		ARG 0 pow22
+	METHOD scaleAlphaToCoverage (Lcom/mojang/blaze3d/platform/NativeImage;FFF)V
+		ARG 0 image
+		ARG 1 desiredCoverage
+		ARG 2 alphaRef
+		ARG 3 alphaCutoffBias
