@@ -7,6 +7,11 @@ CLASS com/mojang/blaze3d/opengl/BufferStorage
 		ARG 2 label
 		ARG 3 usage
 		ARG 4 size
+	METHOD createBuffer (Lcom/mojang/blaze3d/opengl/DirectStateAccess;Ljava/util/function/Supplier;IJ)Lcom/mojang/blaze3d/opengl/GlBuffer;
+		ARG 1 directStateAccess
+		ARG 2 label
+		ARG 3 usage
+		ARG 4 size
 	METHOD createBuffer (Lcom/mojang/blaze3d/opengl/DirectStateAccess;Ljava/util/function/Supplier;ILjava/nio/ByteBuffer;)Lcom/mojang/blaze3d/opengl/GlBuffer;
 		ARG 1 directStateAccess
 		ARG 2 label
@@ -18,9 +23,20 @@ CLASS com/mojang/blaze3d/opengl/BufferStorage
 		ARG 3 offset
 		ARG 4 size
 		ARG 5 usage
+	METHOD mapBuffer (Lcom/mojang/blaze3d/opengl/DirectStateAccess;Lcom/mojang/blaze3d/opengl/GlBuffer;JJI)Lcom/mojang/blaze3d/opengl/GlBuffer$GlMappedView;
+		ARG 1 directStateAccess
+		ARG 2 buffer
+		ARG 3 offset
+		ARG 5 length
+		ARG 7 access
 	CLASS Immutable
 		METHOD tryMapBufferPersistent (Lcom/mojang/blaze3d/opengl/DirectStateAccess;III)Ljava/nio/ByteBuffer;
 			ARG 1 directStateAccess
 			ARG 2 usage
 			ARG 3 handle
 			ARG 4 size
+		METHOD tryMapBufferPersistent (Lcom/mojang/blaze3d/opengl/DirectStateAccess;IIJ)Ljava/nio/ByteBuffer;
+			ARG 1 directStateAccess
+			ARG 2 usage
+			ARG 3 buffer
+			ARG 4 length
