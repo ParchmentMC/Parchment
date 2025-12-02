@@ -45,8 +45,14 @@ CLASS net/minecraft/client/Minecraft
 	METHOD disconnect (Lnet/minecraft/client/gui/screens/Screen;Z)V
 		ARG 1 nextScreen
 		ARG 2 keepResourcePacks
+	METHOD disconnect (Lnet/minecraft/client/gui/screens/Screen;ZZ)V
+		ARG 1 nextScreen
+		ARG 2 keepResourcePacks
+		ARG 3 stopSounds
 	METHOD disconnectFromWorld (Lnet/minecraft/network/chat/Component;)V
 		ARG 1 reason
+	METHOD disconnectWithProgressScreen (Z)V
+		ARG 1 stopSounds
 	METHOD doWorldLoad (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Z)V
 		ARG 1 levelStorage
 		ARG 2 packRepository
@@ -157,6 +163,9 @@ CLASS net/minecraft/client/Minecraft
 		ARG 1 error
 	METHOD updateLevelInEngines (Lnet/minecraft/client/multiplayer/ClientLevel;)V
 		ARG 1 level
+	METHOD updateLevelInEngines (Lnet/minecraft/client/multiplayer/ClientLevel;Z)V
+		ARG 1 level
+		ARG 2 stopSounds
 	METHOD updateMaxMipLevel (I)V
 		ARG 1 mipMapLevel
 	METHOD updateReportEnvironment (Lnet/minecraft/client/multiplayer/chat/report/ReportEnvironment;)V
