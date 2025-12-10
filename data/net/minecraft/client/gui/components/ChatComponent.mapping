@@ -124,6 +124,28 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 		ARG 1 y
 	METHOD scrollChat (I)V
 		ARG 1 posInc
+	CLASS State
+		METHOD <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+			ARG 1 messages
+			ARG 2 history
+			ARG 3 delayedMessageDeletions
+	CLASS ChatMethod
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 prefix
+		METHOD isDraftRestorable (Lnet/minecraft/client/gui/components/ChatComponent$Draft;)Z
+			ARG 1 draft
+	CLASS LineConsumer
+		METHOD accept (IIILnet/minecraft/client/GuiMessage$Line;IF)V
+			ARG 1 x
+			ARG 2 startY
+			ARG 3 endY
+			ARG 4 line
+			ARG 5 index
+			ARG 6 fade
+		METHOD accept (Lnet/minecraft/client/GuiMessage$Line;IF)V
+			ARG 1 line
+			ARG 2 index
+			ARG 3 opacity
 	CLASS AlphaCalculator
 		METHOD calculate (Lnet/minecraft/client/GuiMessage$Line;)F
 			ARG 1 line
@@ -155,17 +177,21 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 			ARG 5 icon
 		METHOD updatePose (Ljava/util/function/Consumer;)V
 			ARG 1 updater
-	CLASS ChatMethod
-		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
-			ARG 3 prefix
-		METHOD isDraftRestorable (Lnet/minecraft/client/gui/components/ChatComponent$Draft;)Z
-			ARG 1 draft
-	CLASS ClickableTextOnlyGraphicsAccess
-		METHOD <init> (Lnet/minecraft/client/gui/ActiveTextCollector;)V
-			ARG 1 output
-	CLASS DrawingBackgroundGraphicsAccess
-		METHOD <init> (Lnet/minecraft/client/gui/GuiGraphics;)V
+	CLASS DrawingGraphicsAccess
+		METHOD <init> (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Font;II)V
 			ARG 1 graphics
+			ARG 2 font
+			ARG 3 globalMouseX
+			ARG 4 globalMouseY
+		METHOD accept (Ljava/lang/Object;)V
+			ARG 1 style
+		METHOD isMouseOver (IIII)Z
+			ARG 1 minX
+			ARG 2 minY
+			ARG 3 maxX
+			ARG 4 maxY
+		METHOD showTooltip (Lnet/minecraft/client/GuiMessageTag;)V
+			ARG 1 tag
 	CLASS DrawingFocusedGraphicsAccess
 		METHOD <init> (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Font;II)V
 			ARG 1 graphics
@@ -187,35 +213,9 @@ CLASS net/minecraft/client/gui/components/ChatComponent
 			ARG 4 maxY
 		METHOD showTooltip (Lnet/minecraft/client/GuiMessageTag;)V
 			ARG 1 tag
-	CLASS DrawingGraphicsAccess
-		METHOD <init> (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Font;II)V
+	CLASS ClickableTextOnlyGraphicsAccess
+		METHOD <init> (Lnet/minecraft/client/gui/ActiveTextCollector;)V
+			ARG 1 output
+	CLASS DrawingBackgroundGraphicsAccess
+		METHOD <init> (Lnet/minecraft/client/gui/GuiGraphics;)V
 			ARG 1 graphics
-			ARG 2 font
-			ARG 3 globalMouseX
-			ARG 4 globalMouseY
-		METHOD accept (Ljava/lang/Object;)V
-			ARG 1 style
-		METHOD isMouseOver (IIII)Z
-			ARG 1 minX
-			ARG 2 minY
-			ARG 3 maxX
-			ARG 4 maxY
-		METHOD showTooltip (Lnet/minecraft/client/GuiMessageTag;)V
-			ARG 1 tag
-	CLASS LineConsumer
-		METHOD accept (IIILnet/minecraft/client/GuiMessage$Line;IF)V
-			ARG 1 x
-			ARG 2 startY
-			ARG 3 endY
-			ARG 4 line
-			ARG 5 index
-			ARG 6 fade
-		METHOD accept (Lnet/minecraft/client/GuiMessage$Line;IF)V
-			ARG 1 line
-			ARG 2 index
-			ARG 3 opacity
-	CLASS State
-		METHOD <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
-			ARG 1 messages
-			ARG 2 history
-			ARG 3 delayedMessageDeletions

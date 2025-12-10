@@ -8,13 +8,18 @@ CLASS com/mojang/realmsclient/dto/RealmsNotification
 		ARG 0 json
 	METHOD parseList (Ljava/lang/String;)Ljava/util/List;
 		ARG 0 json
-	CLASS InfoPopup
-		METHOD <init> (Lcom/mojang/realmsclient/dto/RealmsNotification;Lcom/mojang/realmsclient/dto/RealmsText;Lcom/mojang/realmsclient/dto/RealmsText;Lnet/minecraft/resources/Identifier;Lcom/mojang/realmsclient/dto/RealmsNotification$UrlButton;)V
+	CLASS VisitUrl
+		METHOD <init> (Lcom/mojang/realmsclient/dto/RealmsNotification;Ljava/lang/String;Lcom/mojang/realmsclient/dto/RealmsText;Lcom/mojang/realmsclient/dto/RealmsText;)V
 			ARG 1 notification
-			ARG 2 title
-			ARG 3 message
-			ARG 4 image
-			ARG 5 urlButton
+			ARG 2 url
+			ARG 3 buttonText
+			ARG 4 message
+		METHOD buildOpenLinkButton (Lnet/minecraft/client/gui/screens/Screen;)Lnet/minecraft/client/gui/components/Button;
+			ARG 1 lastScreen
+		METHOD parse (Lcom/mojang/realmsclient/dto/RealmsNotification;Lcom/google/gson/JsonObject;)Lcom/mojang/realmsclient/dto/RealmsNotification$VisitUrl;
+			ARG 0 notification
+			ARG 1 json
+	CLASS InfoPopup
 		METHOD <init> (Lcom/mojang/realmsclient/dto/RealmsNotification;Lcom/mojang/realmsclient/dto/RealmsText;Lcom/mojang/realmsclient/dto/RealmsText;Lnet/minecraft/resources/Identifier;Lcom/mojang/realmsclient/dto/RealmsNotification$UrlButton;)V
 			ARG 1 notification
 			ARG 2 title
@@ -30,14 +35,3 @@ CLASS com/mojang/realmsclient/dto/RealmsNotification
 	CLASS UrlButton
 		METHOD parse (Lcom/google/gson/JsonObject;)Lcom/mojang/realmsclient/dto/RealmsNotification$UrlButton;
 			ARG 0 json
-	CLASS VisitUrl
-		METHOD <init> (Lcom/mojang/realmsclient/dto/RealmsNotification;Ljava/lang/String;Lcom/mojang/realmsclient/dto/RealmsText;Lcom/mojang/realmsclient/dto/RealmsText;)V
-			ARG 1 notification
-			ARG 2 url
-			ARG 3 buttonText
-			ARG 4 message
-		METHOD buildOpenLinkButton (Lnet/minecraft/client/gui/screens/Screen;)Lnet/minecraft/client/gui/components/Button;
-			ARG 1 lastScreen
-		METHOD parse (Lcom/mojang/realmsclient/dto/RealmsNotification;Lcom/google/gson/JsonObject;)Lcom/mojang/realmsclient/dto/RealmsNotification$VisitUrl;
-			ARG 0 notification
-			ARG 1 json

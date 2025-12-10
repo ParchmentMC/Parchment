@@ -22,6 +22,17 @@ CLASS net/minecraft/world/entity/animal/dolphin/Dolphin
 		COMMENT Called to update the entity's position/logic.
 	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
 		ARG 1 travelVector
+	CLASS PlayWithItemsGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD drop (Lnet/minecraft/world/item/ItemStack;)V
+			ARG 1 stack
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
 	CLASS DolphinSwimToTreasureGoal
 		METHOD <init> (Lnet/minecraft/world/entity/animal/Dolphin;)V
 			ARG 1 dolphin
@@ -48,17 +59,6 @@ CLASS net/minecraft/world/entity/animal/dolphin/Dolphin
 			COMMENT Returns whether an in-progress EntityAIBase should continue executing
 		METHOD canUse ()Z
 			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD start ()V
-			COMMENT Execute a one shot task or start executing a continuous task
-		METHOD stop ()V
-			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
-		METHOD tick ()V
-			COMMENT Keep ticking a continuous task that has already been started
-	CLASS PlayWithItemsGoal
-		METHOD canUse ()Z
-			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-		METHOD drop (Lnet/minecraft/world/item/ItemStack;)V
-			ARG 1 stack
 		METHOD start ()V
 			COMMENT Execute a one shot task or start executing a continuous task
 		METHOD stop ()V

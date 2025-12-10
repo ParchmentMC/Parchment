@@ -23,6 +23,11 @@ CLASS net/minecraft/server/jsonrpc/IncomingRpcMethod
 		METHOD create (Lnet/minecraft/server/jsonrpc/api/MethodInfo;Lnet/minecraft/server/jsonrpc/IncomingRpcMethod$Attributes;)Lnet/minecraft/server/jsonrpc/IncomingRpcMethod;
 			ARG 1 info
 			ARG 2 attributes
+	CLASS RpcMethodFunction
+		METHOD apply (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Ljava/lang/Object;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/lang/Object;
+			ARG 1 api
+			ARG 2 params
+			ARG 3 clientInfo
 	CLASS IncomingRpcMethodBuilder
 		METHOD <init> (Ljava/util/function/Function;)V
 			ARG 1 function
@@ -54,8 +59,3 @@ CLASS net/minecraft/server/jsonrpc/IncomingRpcMethod
 		METHOD apply (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/lang/Object;
 			ARG 1 api
 			ARG 2 clientInfo
-	CLASS RpcMethodFunction
-		METHOD apply (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Ljava/lang/Object;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/lang/Object;
-			ARG 1 api
-			ARG 2 params
-			ARG 3 clientInfo

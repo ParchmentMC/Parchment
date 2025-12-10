@@ -3,19 +3,6 @@ CLASS net/minecraft/core/component/predicates/DataComponentPredicate
 		ARG 1 componentGetter
 	METHOD singleCodec (Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
 		ARG 0 name
-	CLASS AnyValueType
-		METHOD <init> (Lnet/minecraft/core/component/predicates/AnyValue;)V
-			ARG 1 predicate
-		METHOD create (Lnet/minecraft/core/component/DataComponentType;)Lnet/minecraft/core/component/predicates/DataComponentPredicate$AnyValueType;
-			ARG 0 component
-	CLASS Single
-		METHOD fromEntry (Ljava/util/Map$Entry;)Lnet/minecraft/core/component/predicates/DataComponentPredicate$Single;
-			ARG 0 entry
-		METHOD lambda$wrapCodec$1 (Lcom/mojang/serialization/Codec;Lnet/minecraft/core/component/predicates/DataComponentPredicate$Type;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
-			ARG 2 instance
-		METHOD wrapCodec (Lnet/minecraft/core/component/predicates/DataComponentPredicate$Type;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/MapCodec;
-			ARG 0 type
-			ARG 1 codec
 	CLASS Type
 		METHOD <init> (Lcom/mojang/serialization/Codec;)V
 			ARG 1 codec
@@ -25,6 +12,19 @@ CLASS net/minecraft/core/component/predicates/DataComponentPredicate
 			ARG 2 instance
 		METHOD unpackType (Lnet/minecraft/core/component/predicates/DataComponentPredicate$Type;)Lcom/mojang/datafixers/util/Either;
 			ARG 0 type
+	CLASS Single
+		METHOD fromEntry (Ljava/util/Map$Entry;)Lnet/minecraft/core/component/predicates/DataComponentPredicate$Single;
+			ARG 0 entry
+		METHOD lambda$wrapCodec$1 (Lcom/mojang/serialization/Codec;Lnet/minecraft/core/component/predicates/DataComponentPredicate$Type;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 2 instance
+		METHOD wrapCodec (Lnet/minecraft/core/component/predicates/DataComponentPredicate$Type;Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/MapCodec;
+			ARG 0 type
+			ARG 1 codec
 	CLASS TypeBase
 		METHOD <init> (Lcom/mojang/serialization/Codec;)V
 			ARG 1 codec
+	CLASS AnyValueType
+		METHOD <init> (Lnet/minecraft/core/component/predicates/AnyValue;)V
+			ARG 1 predicate
+		METHOD create (Lnet/minecraft/core/component/DataComponentType;)Lnet/minecraft/core/component/predicates/DataComponentPredicate$AnyValueType;
+			ARG 0 component

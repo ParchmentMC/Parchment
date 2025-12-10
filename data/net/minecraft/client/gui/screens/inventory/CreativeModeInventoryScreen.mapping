@@ -70,39 +70,6 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 		ARG 3 provider
 	METHOD updateVisibleTags (Ljava/lang/String;)V
 		ARG 1 search
-	CLASS CustomCreativeSlot
-		METHOD mayPickup (Lnet/minecraft/world/entity/player/Player;)Z
-			COMMENT Return whether this slot's stack can be taken from this slot.
-			ARG 1 player
-	CLASS ItemPickerMenu
-		FIELD items Lnet/minecraft/core/NonNullList;
-			COMMENT The list of items in this container.
-		METHOD <init> (Lnet/minecraft/world/entity/player/Player;)V
-			ARG 1 player
-		METHOD canDragTo (Lnet/minecraft/world/inventory/Slot;)Z
-			COMMENT Returns {@code true} if the player can "drag-spilt" items into this slot. Returns {@code true} by default. Called to check if the slot can be added to a list of Slots to split the held ItemStack across.
-			ARG 1 slot
-		METHOD canTakeItemForPickAll (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z
-			COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
-			ARG 1 stack
-			ARG 2 slot
-		METHOD getRowIndexForScroll (F)I
-			ARG 1 scrollOffs
-		METHOD getScrollForRowIndex (I)F
-			ARG 1 rowIndex
-		METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
-			COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
-			ARG 1 player
-			ARG 2 index
-		METHOD scrollTo (F)V
-			COMMENT Updates the gui slot's ItemStacks based on scroll position.
-			ARG 1 pos
-		METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
-			COMMENT Determines whether supplied player can use this container
-			ARG 1 player
-		METHOD subtractInputFromScroll (FD)F
-			ARG 1 scrollOffs
-			ARG 2 input
 	CLASS SlotWrapper
 		METHOD <init> (Lnet/minecraft/world/inventory/Slot;III)V
 			ARG 1 slot
@@ -133,3 +100,36 @@ CLASS net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen
 			ARG 1 stack
 		METHOD setChanged ()V
 			COMMENT Called when the stack in a Slot changes
+	CLASS ItemPickerMenu
+		FIELD items Lnet/minecraft/core/NonNullList;
+			COMMENT The list of items in this container.
+		METHOD <init> (Lnet/minecraft/world/entity/player/Player;)V
+			ARG 1 player
+		METHOD canDragTo (Lnet/minecraft/world/inventory/Slot;)Z
+			COMMENT Returns {@code true} if the player can "drag-spilt" items into this slot. Returns {@code true} by default. Called to check if the slot can be added to a list of Slots to split the held ItemStack across.
+			ARG 1 slot
+		METHOD canTakeItemForPickAll (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;)Z
+			COMMENT Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
+			ARG 1 stack
+			ARG 2 slot
+		METHOD getRowIndexForScroll (F)I
+			ARG 1 scrollOffs
+		METHOD getScrollForRowIndex (I)F
+			ARG 1 rowIndex
+		METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
+			COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
+			ARG 1 player
+			ARG 2 index
+		METHOD scrollTo (F)V
+			COMMENT Updates the gui slot's ItemStacks based on scroll position.
+			ARG 1 pos
+		METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+			COMMENT Determines whether supplied player can use this container
+			ARG 1 player
+		METHOD subtractInputFromScroll (FD)F
+			ARG 1 scrollOffs
+			ARG 2 input
+	CLASS CustomCreativeSlot
+		METHOD mayPickup (Lnet/minecraft/world/entity/player/Player;)Z
+			COMMENT Return whether this slot's stack can be taken from this slot.
+			ARG 1 player
