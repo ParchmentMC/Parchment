@@ -2,6 +2,7 @@ import com.google.common.io.ByteStreams
 import org.parchmentmc.compass.CompassPlugin
 import org.parchmentmc.compass.tasks.GenerateExport
 import org.parchmentmc.compass.tasks.GenerateSanitizedExport
+import org.parchmentmc.compass.tasks.GenerateUnpickData
 import org.parchmentmc.compass.tasks.VersionDownload
 
 import java.time.OffsetDateTime
@@ -9,9 +10,9 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 plugins {
-    id 'java-base'
+    id 'java'
     id 'maven-publish'
-    id 'org.parchmentmc.compass' version '0.10.0'
+    id 'org.parchmentmc.compass' version '0.11.0'
     id 'org.parchmentmc.writtenbooks' version '0.5.+'
 }
 
@@ -63,6 +64,11 @@ repositories {
 configurations {
     enigma
     remapper
+    unpick
+}
+
+sourceSets {
+    constants
 }
 
 dependencies {
@@ -71,6 +77,8 @@ dependencies {
 
     // ForgeAutoRenamingTool, for remapping the client JAR
     remapper 'net.minecraftforge:ForgeAutoRenamingTool:1.0.2'
+
+    unpick "net.fabricmc.unpick:unpick-cli:${project.unpick_version}"
 
     // Enigma, gorgeous interface for editing mappings
     enigma 'org.quiltmc:enigma-swing:2.7.1'
@@ -110,6 +118,44 @@ tasks.register('enigma', EnigmaExec) {
     mappings = project.compass.productionData
 }
 
+final constantsJar = tasks.register('constantsJar', Jar) {
+    dependsOn constantsClasses
+    from constantsClasses
+    archiveBaseName = 'parchment-constants'
+    destinationDirectory = temporaryDir
+}
+
+final generateUnpickData = tasks.register('generateUnpickData', GenerateUnpickData) {
+    group = 'unpick'
+    inputDirectory = file('unpick-definitions')
+    output = new File(temporaryDir, 'unpick_combined.unpick')
+}
+
+def unpickedJar = project.layout.buildDirectory.dir('unpicked')
+        .zip(project.compass.version) { d, ver -> d.file("$ver-unpicked.jar") }
+tasks.register('unpickJar', JavaExec) {
+    group = 'unpick'
+    dependsOn remapJar, generateUnpickData, constantsJar
+    classpath = configurations.unpick
+    mainClass = 'daomephsta.unpick.cli.Main'
+    args(
+            remapJar.flatMap { it.outputJar }.get().asFile.absolutePath,
+            unpickedJar.get().asFile.absolutePath,
+            generateUnpickData.flatMap { it.output }.get().asFile.absolutePath,
+            constantsJar.flatMap { it.archiveFile }.get().asFile.absolutePath
+    )
+
+    doFirst {
+        mkdir(unpickedJar.get().asFile.parent)
+    }
+}
+
+tasks.register('enigmaUnpicked', EnigmaExec) {
+    dependsOn unpickJar
+    inputJar = unpickedJar
+    mappings = project.compass.productionData
+}
+
 tasks.withType(GenerateExport).configureEach {
     // Disable blackstone if UPDATING is set.
     // This will ensure cascaded method data does not get mixed into the production data when updating.
@@ -126,26 +172,38 @@ tasks.register('generateSanitizedExport', GenerateSanitizedExport) {
 tasks.register('officialExportZip', Zip) {
     group = 'build'
     description = "Creates a ZIP archive containing the export produced by the 'official' intermediate provider and production data."
-    from(tasks.named('generateOfficialExport', GenerateExport).flatMap { it.output })
+    from(tasks.named('generateOfficialExport', GenerateExport).flatMap { it.output }) {
+        rename { 'parchment.json' }
+    }
     archiveBaseName = 'officialExport'
 }
 
 tasks.register('officialSanitizedExportZip', Zip) {
     group = 'build'
     description = "Creates a ZIP archive containing the sanitized export produced by the 'official' intermediate provider and production data."
-    from(tasks.named('generateSanitizedExport', GenerateExport).flatMap { it.output })
+    from(tasks.named('generateSanitizedExport', GenerateExport).flatMap { it.output }) {
+        rename { 'parchment.json' }
+    }
     archiveBaseName = 'officialSanitizedExport'
 }
 
 tasks.register('officialStagingExportZip', Zip) {
     group = 'build'
     description = "Creates a ZIP archive containing the export produced by the 'official' intermediate provider and staging data."
-    from(tasks.named('generateOfficialStagingExport', GenerateExport).flatMap { it.output })
+    from(tasks.named('generateOfficialStagingExport', GenerateExport).flatMap { it.output }) {
+        rename { 'parchment.json' }
+    }
     archiveBaseName = 'officialStagingExport'
 }
 
 tasks.withType(Zip).matching { it.name.startsWith 'official' }.configureEach {
-    rename { 'parchment.json' }
+    from(generateUnpickData.flatMap { it.output }) {
+        rename generateUnpickData.flatMap { it.output }.get().asFile.name, 'extras/definitions.unpick'
+    }
+    from(file('unpick-definitions/unpick.json')) {
+        expand version: project.unpick_version
+        rename 'unpick.json', 'extras/unpick.json'
+    }
     reproducibleFileOrder = true
     preserveFileTimestamps = false
     destinationDirectory = project.layout.buildDirectory.dir('exportZips')
@@ -226,7 +284,8 @@ abstract class RemapJar extends JavaExec {
             ['--input', inputJar.get().asFile.absolutePath,
              '--map', mappings.get().asFile.absolutePath,
              '--output', outputJar.get().asFile.absolutePath,
-             '--log', logFile.get().asFile.absolutePath]
+             '--log', logFile.get().asFile.absolutePath,
+             '--strip-sigs']
         } as CommandLineArgumentProvider)
     }
 }

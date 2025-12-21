@@ -18,14 +18,15 @@ CLASS net/minecraft/world/level/LevelWriter
 		ARG 1 pos
 		ARG 2 isMoving
 	METHOD setBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z
-		COMMENT Sets a block state into this world.Flags are as follows:
-		COMMENT 1 will cause a block update.
-		COMMENT 2 will send the change to clients.
-		COMMENT 4 will prevent the block from being re-rendered.
-		COMMENT 8 will force any re-renders to run on the main thread instead
-		COMMENT 16 will prevent neighbor reactions (e.g. fences connecting, observers pulsing).
-		COMMENT 32 will prevent neighbor reactions from spawning drops.
-		COMMENT 64 will signify the block is being moved.
+		COMMENT Sets a block state into this world. Flags are as follows:
+		COMMENT {@link net.minecraft.world.level.block.Block#UPDATE_NEIGHBORS Block.UPDATE_NEIGHBORS} will cause a block update.
+		COMMENT {@link net.minecraft.world.level.block.Block#UPDATE_CLIENTS Block.UPDATE_CLIENTS} will send the change to clients.
+		COMMENT {@link net.minecraft.world.level.block.Block#UPDATE_INVISIBLE Block.UPDATE_INVISIBLE} will prevent the block from being re-rendered.
+		COMMENT {@link net.minecraft.world.level.block.Block#UPDATE_IMMEDIATE Block.UPDATE_IMMEDIATE} will force any re-renders to run on the main thread instead.
+		COMMENT {@link net.minecraft.world.level.block.Block#UPDATE_KNOWN_SHAPE Block.UPDATE_KNOWN_SHAPE} will prevent neighbor reactions (e.g. fences connecting, observers pulsing).
+		COMMENT {@link net.minecraft.world.level.block.Block#UPDATE_SUPPRESS_DROPS Block.UPDATE_SUPPRESS_DROPS} will prevent neighbor reactions from spawning drops.
+		COMMENT {@link net.minecraft.world.level.block.Block#UPDATE_MOVE_BY_PISTON Block.UPDATE_MOVE_BY_PISTON} will signify the block is being moved.
+		COMMENT {@link net.minecraft.world.level.block.Block#UPDATE_SKIP_SHAPE_UPDATE_ON_WIRE Block.UPDATE_SKIP_SHAPE_UPDATE_ON_WIRE} will skip shape updates for redstone wire.
 		COMMENT Flags can be OR-ed
 		ARG 1 pos
 		ARG 2 newState
